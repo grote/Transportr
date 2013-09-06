@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Liberario</string>
+	<string name="action_settings">Settings</string>
+
+	<string-array name="trip_date_type">
+		<item>departure</item>
+		<item>arrival</item>
+	</string-array>
+
+</resources>

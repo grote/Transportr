@@ -1,0 +1,99 @@
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/highlight"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:paddingBottom="5dp" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.43"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/dArrivialLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="an" />
+
+            <TextView
+                android:id="@+id/dArrivalTimeView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="20:10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dDepartureLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:padding="2dp"
+                android:singleLine="true"
+                android:text="ab" />
+
+            <TextView
+                android:id="@+id/dDepartureTimeView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:padding="2dp"
+                android:singleLine="true"
+                android:text="20:13" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dDepartureView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:text="Turmstr. (U)" />
+
+    <TextView
+        android:id="@+id/dLineView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:text="U9" /><TextView
+        android:id="@+id/dDestinationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:text="S Rathaus Steglitz" />
+
+    <TextView
+        android:id="@+id/dMessageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:enabled="false"
+        android:paddingBottom="2dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="2dp"
+        android:paddingTop="2dp"
+        android:text="Message"
+        android:visibility="gone" />
+
+</TableRow>
