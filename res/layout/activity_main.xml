@@ -33,15 +33,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:text="Turmstr. (U)" />
+                android:ems="10" >
+                <requestFocus />
+            </AutoCompleteTextView>
 
             <Button
                 android:id="@+id/button2"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="F" />
+                android:drawableLeft="@drawable/ic_action_star"
+                android:onClick="fromFavClick"
+                android:paddingLeft="7dp"
+                android:paddingRight="2dp" />
 
         </LinearLayout>
 
@@ -61,18 +65,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:text="Potsdam Hbf (S)" >
-
-                <requestFocus />
-            </AutoCompleteTextView>
+                android:ems="10" />
 
             <Button
                 android:id="@+id/button3"
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="F" />
+                android:drawableLeft="@drawable/ic_action_star"
+                android:onClick="toFavClick"
+                android:paddingLeft="7dp"
+                android:paddingRight="2dp" />
 
         </LinearLayout>
 

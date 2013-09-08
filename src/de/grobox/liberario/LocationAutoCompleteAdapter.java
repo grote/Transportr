@@ -27,8 +27,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 
-public class LocationAutoCompleteAdapter  extends ArrayAdapter<Location> implements Filterable {
+public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implements Filterable {
 	private List<Location> resultList;
+	private Boolean addedFavs = false;
 
 	public LocationAutoCompleteAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
@@ -57,6 +58,7 @@ public class LocationAutoCompleteAdapter  extends ArrayAdapter<Location> impleme
 					// Retrieve the auto-complete results.
 					try {
 						resultList = autocomplete.execute().get();
+						addedFavs = false;
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -83,4 +85,14 @@ public class LocationAutoCompleteAdapter  extends ArrayAdapter<Location> impleme
 			}};
 			return filter;
 	}
+
+	public int addFavs(FavLocation.LOC_TYPE sort) {
+		if(!addedFavs) {
+			resultList = FavFile.getFavLocationList(getContext(), sort);
+
+			addedFavs = true;
+		}
+		return resultList.size();
+	}
+
 }

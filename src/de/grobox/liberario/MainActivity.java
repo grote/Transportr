@@ -19,6 +19,7 @@ package de.grobox.liberario;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import de.grobox.liberario.R;
 import de.schildbach.pte.dto.Location;
@@ -42,6 +43,7 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -111,11 +113,15 @@ public class MainActivity extends FragmentActivity {
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 
 				// check and set from location
-				if(checkLocation("from", (AutoCompleteTextView) findViewById(R.id.from))) query_trips.setFrom(loc_from);
+				if(checkLocation(FavLocation.LOC_TYPE.FROM, (AutoCompleteTextView) findViewById(R.id.from))) {
+					query_trips.setFrom(loc_from);
+				}
 				else return;
 
 				// check and set to location
-				if(checkLocation("to", (AutoCompleteTextView) findViewById(R.id.to))) query_trips.setTo(loc_to);
+				if(checkLocation(FavLocation.LOC_TYPE.TO, (AutoCompleteTextView) findViewById(R.id.to))) {
+					query_trips.setTo(loc_to);
+				}
 				else return;
 
 				// set date
@@ -130,22 +136,73 @@ public class MainActivity extends FragmentActivity {
 
 	}
 
-	private Boolean checkLocation(String loc_string, AutoCompleteTextView view) {
+	public void fromFavClick(View v) {
+		AutoCompleteTextView from = ((AutoCompleteTextView) findViewById(R.id.from));
+		int size = ((LocationAutoCompleteAdapter) from.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
+
+		if(size > 0) {
+			from.showDropDown();
+		}
+		else {
+			// TODO localize
+			Toast.makeText(getBaseContext(), "No favorite locations saved", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	public void toFavClick(View v) {
+		AutoCompleteTextView to = ((AutoCompleteTextView) findViewById(R.id.to));
+		int size = ((LocationAutoCompleteAdapter) to.getAdapter()).addFavs(FavLocation.LOC_TYPE.TO);
+
+		if(size > 0) {
+			to.showDropDown();
+		}
+		else {
+			// TODO localize
+			Toast.makeText(getBaseContext(), "No favorite locations saved", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	private Boolean checkLocation(FavLocation.LOC_TYPE loc_type, AutoCompleteTextView view) {
 		// ugly hack to have one method for all private location vars because call by reference isn't possible
 		Location loc = null;
-		if(loc_string == "from") loc = loc_from;
-		else if(loc_string == "to") loc = loc_to;
+		if(loc_type == FavLocation.LOC_TYPE.FROM) loc = loc_from;
+		else if(loc_type == FavLocation.LOC_TYPE.TO) loc = loc_to;
 
 		if(loc == null) {
 			// no location was selected by user
 			if(view.getText().toString() != "") {
 				// no location selected, but text entered. So let's try create locations from text
-				if(loc_string == "from") loc_from = new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString());
-				else if(loc_string == "to") loc_to = new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString());
+				if(loc_type == FavLocation.LOC_TYPE.FROM) {
+					loc_from = new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString());
+				}
+				else if(loc_type == FavLocation.LOC_TYPE.TO) {
+					loc_to = new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString());
+				}
 				return true;
 			}
 			return false;
 		}
+		// we have a location, so make it a favorite
+		else {
+			//FavFile.resetFavList(getBaseContext());
+			List<FavLocation> fav_list = FavFile.getFavList(getBaseContext());
+			FavLocation fav_loc = new FavLocation(loc);
+			if(fav_list.contains(fav_loc)){
+				// increase counter by one for existing location
+				if(loc_type == FavLocation.LOC_TYPE.FROM) fav_list.get(fav_list.indexOf(fav_loc)).addFrom();
+				else if(loc_type == FavLocation.LOC_TYPE.TO) fav_list.get(fav_list.indexOf(fav_loc)).addTo();
+			}
+			else {
+				// add new favorite location
+				// increase counter by one for existing location
+				if(loc_type == FavLocation.LOC_TYPE.FROM) fav_loc.addFrom();
+				else if(loc_type == FavLocation.LOC_TYPE.TO) fav_loc.addTo();
+
+				fav_list.add(fav_loc);
+			}
+			FavFile.setFavList(getBaseContext(), fav_list);
+		}
+
 		return true;
 	}
 
