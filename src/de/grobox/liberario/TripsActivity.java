@@ -115,7 +115,7 @@ public class TripsActivity extends Activity {
 						((TextView) legViewNew.findViewById(R.id.dMessageView)).setVisibility(View.GONE);
 					}
 
-					if(leg.getClass().equals(de.schildbach.pte.dto.Trip.Public.class)) {
+					if(leg instanceof Trip.Public) {
 						Public public_line = ((Public) leg);
 						transportsView.setText(transportsView.getText() + " " + ((Public) leg).line.label.substring(0, 1));
 						((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(public_line.departureStop.getDepartureTime()));
@@ -133,30 +133,33 @@ public class TripsActivity extends Activity {
 						}
 						// get and add intermediate stops
 						details.addView(getStops(public_line.intermediateStops));
-					}
-					else if(leg.getClass().equals(de.schildbach.pte.dto.Trip.Individual.class)) {
-						transportsView.setText(transportsView.getText() + " W");
-						((TextView) legViewOld.findViewById(R.id.dLineView)).setText("???");
-						((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText("???");
-					}
 
-					// make intermediate stops fold out and in on click
-					legViewOld.setOnClickListener(new View.OnClickListener() {
-						@Override
-						public void onClick(View view) {
-							ViewGroup parent = ((ViewGroup) view.getParent()); 
-							View v = parent.getChildAt(parent.indexOfChild(view) + 1);
-							if(v != null) {
-								if(v.getVisibility() == View.GONE) {
-									v.setVisibility(View.VISIBLE);
-								}
-								else if(v.getVisibility() == View.VISIBLE) {
-									v.setVisibility(View.GONE);
+						// make intermediate stops fold out and in on click
+						legViewOld.setOnClickListener(new View.OnClickListener() {
+							@Override
+							public void onClick(View view) {
+								ViewGroup parent = ((ViewGroup) view.getParent());
+								View v = parent.getChildAt(parent.indexOfChild(view) + 1);
+								if(v != null) {
+									if(v.getVisibility() == View.GONE) {
+										v.setVisibility(View.VISIBLE);
+									}
+									else if(v.getVisibility() == View.VISIBLE) {
+										v.setVisibility(View.GONE);
+									}
 								}
 							}
-						}
 
-					});
+						});
+					}
+					else if(leg instanceof Trip.Individual) {
+						transportsView.setText(transportsView.getText() + " W");
+						// TODO fix departure time
+						((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(leg.departureTime));
+						((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(leg.arrivalTime));
+						((TextView) legViewOld.findViewById(R.id.dLineView)).setText(Integer.toString(((Trip.Individual) leg).distance));
+						((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(((Trip.Individual) leg).type.toString());
+					}
 
 					details.addView(legViewNew);
 
