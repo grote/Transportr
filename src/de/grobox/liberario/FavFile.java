@@ -39,7 +39,7 @@ public class FavFile {
 
 	@SuppressWarnings("unchecked")
 	public static List<FavLocation> getFavList(Context context) {
-		List<FavLocation> fav_list = null;
+		List<FavLocation> fav_list = new ArrayList<FavLocation>();
 
 		FileInputStream fis = null;
 		try {
@@ -47,6 +47,7 @@ public class FavFile {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return fav_list;
 		}
 		ObjectInputStream is = null;
 		try {
@@ -54,29 +55,35 @@ public class FavFile {
 		} catch (StreamCorruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return fav_list;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return fav_list;
 		}
 
 		try {
 			// TODO take care of unchecked cast
-			fav_list = (List<FavLocation>) is.readObject();
+			if(is != null) fav_list = (List<FavLocation>) is.readObject();
 		} catch (OptionalDataException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return fav_list;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return fav_list;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return fav_list;
 		}
 		try {
 			is.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return fav_list;
 		}
 
 		return fav_list;
