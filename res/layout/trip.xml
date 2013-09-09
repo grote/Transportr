@@ -2,7 +2,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@drawable/border"
     android:gravity="fill_horizontal"
     android:orientation="horizontal"
     android:paddingBottom="3dp"
