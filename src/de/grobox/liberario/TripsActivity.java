@@ -102,7 +102,7 @@ public class TripsActivity extends Activity {
 						details.addView(legViewOld);
 					}
 					// only for the last leg
-					else if(i >= trip.legs.size()) {
+					if(i >= trip.legs.size()) {
 						// span last row 
 						TableRow.LayoutParams params = (TableRow.LayoutParams) dDepartureViewNew.getLayoutParams();
 						params.span = 3;
