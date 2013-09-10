@@ -116,13 +116,21 @@ public class MainActivity extends FragmentActivity {
 				if(checkLocation(FavLocation.LOC_TYPE.FROM, (AutoCompleteTextView) findViewById(R.id.from))) {
 					query_trips.setFrom(loc_from);
 				}
-				else return;
+				else {
+					// TODO localize
+					Toast.makeText(getBaseContext(), "Invalid From Location.", Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				// check and set to location
 				if(checkLocation(FavLocation.LOC_TYPE.TO, (AutoCompleteTextView) findViewById(R.id.to))) {
 					query_trips.setTo(loc_to);
 				}
-				else return;
+				else {
+					// TODO localize
+					Toast.makeText(getBaseContext(), "Invalid To Location.", Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				// set date
 				query_trips.setDate(DateUtils.mergeDateTime(getApplicationContext(), dateView.getText(), timeView.getText()));
@@ -170,7 +178,7 @@ public class MainActivity extends FragmentActivity {
 
 		if(loc == null) {
 			// no location was selected by user
-			if(view.getText().toString() != "") {
+			if(!view.getText().toString().equals("")) {
 				// no location selected, but text entered. So let's try create locations from text
 				if(loc_type == FavLocation.LOC_TYPE.FROM) {
 					loc_from = new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString());

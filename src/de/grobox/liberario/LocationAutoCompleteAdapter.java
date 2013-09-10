@@ -53,7 +53,7 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 				FilterResults filterResults = new FilterResults();
 
 				if (constraint != null) {
-					AsyncLocationAutoCompleteTask autocomplete = new AsyncLocationAutoCompleteTask(constraint.toString());
+					AsyncLocationAutoCompleteTask autocomplete = new AsyncLocationAutoCompleteTask(getContext(), constraint.toString());
 
 					// Retrieve the auto-complete results.
 					try {
@@ -67,9 +67,11 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 						e.printStackTrace();
 					}
 
-					// Assign the data to the FilterResults
-					filterResults.values = resultList;
-					filterResults.count = resultList.size();
+					if(resultList != null) {
+						// Assign the data to the FilterResults
+						filterResults.values = resultList;
+						filterResults.count = resultList.size();
+					}
 				}
 				return filterResults;
 			}

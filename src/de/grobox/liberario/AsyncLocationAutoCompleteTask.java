@@ -22,13 +22,15 @@ import java.util.List;
 
 import de.schildbach.pte.BvgProvider;
 import de.schildbach.pte.dto.Location;
+import android.content.Context;
 import android.os.AsyncTask;
 
 public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Location>> {
-
+	private Context context;
 	private String query = "";
 
-	public AsyncLocationAutoCompleteTask(String query) {
+	public AsyncLocationAutoCompleteTask(Context context, String query) {
+		this.context = context;
 		this.query = query;
 	}
 
@@ -39,7 +41,12 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Lo
 		List<Location> loc_list = null;
 
 		try {
-			loc_list = bvg.autocompleteStations(query);
+			if(AsyncQueryTripsTask.isNetworkAvailable(context)) {
+				loc_list = bvg.autocompleteStations(query);
+			}
+			else {
+				return null;
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

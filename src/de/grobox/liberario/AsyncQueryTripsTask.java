@@ -23,6 +23,8 @@ import java.util.Date;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -79,7 +81,12 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 		Log.d(getClass().getSimpleName(), "Date: " + date.toString());
 
 		try {
-			return bvg.queryTrips(from, null, to, date, departure, 3, null, NetworkProvider.WalkSpeed.NORMAL, null, null);
+			if(isNetworkAvailable(context)) {
+				return bvg.queryTrips(from, null, to, date, departure, 3, null, NetworkProvider.WalkSpeed.NORMAL, null, null);
+			}
+			else {
+				return null;
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,5 +124,11 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult.departure", departure);
 			context.startActivity(intent);
 		}
+	}
+
+	static public boolean isNetworkAvailable(Context context) {
+		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 }
