@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 import de.schildbach.pte.BvgProvider;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
@@ -90,6 +91,12 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	protected void onPostExecute(QueryTripsResult result) {
 		if(pd != null) {
 			pd.dismiss();
+		}
+
+		if(result == null) {
+			// TODO localize
+			Toast.makeText(context, "No internet connection available.", Toast.LENGTH_LONG).show();
+			return;
 		}
 
 		if(result.status == QueryTripsResult.Status.OK) {
