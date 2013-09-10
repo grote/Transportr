@@ -32,6 +32,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
@@ -41,20 +44,26 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class TripsActivity extends Activity {
+	private QueryTripsResult trips;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trips);
 
 		ActionBar actionBar = getActionBar();
-		// TODO specify parent activity
+		// TODO specify parent activity as back button
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		final TableLayout main = (TableLayout) findViewById(R.id.activity_trips);
 
 		Intent intent = getIntent();
-		QueryTripsResult trip_results = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
+		trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
 
+		addTrips(main, trips);
+	}
+
+	private void addTrips(final TableLayout main, QueryTripsResult trip_results) {
 		if(trip_results != null) {
 			Log.i("test", trip_results.toString());
 
@@ -211,5 +220,42 @@ public class TripsActivity extends Activity {
 
 		return stopsView;
 	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.trips_activity_actions, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+			case R.id.action_earlier:
+				(new AsyncQueryMoreTripsTask(this, trips.context, false)).execute();
+
+				return true;
+			case R.id.action_later:
+				(new AsyncQueryMoreTripsTask(this, trips.context, true)).execute();
+
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+
+	public void addMoreTrips(QueryTripsResult trip_results) {
+		if(trips != null) {
+			TableLayout main = (TableLayout) findViewById(R.id.activity_trips);
+			main.removeAllViews();
+
+			trips = trip_results;
+
+			addTrips(main, trip_results);
+		}
+	}
+
 
 }

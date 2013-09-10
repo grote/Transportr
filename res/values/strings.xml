@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">Liberario</string>
-	<string name="action_settings">Settings</string>
+    <string name="app_name">Liberario</string>
+    <string name="action_settings">Settings</string>
 
-	<string-array name="trip_date_type">
-		<item>departure</item>
-		<item>arrival</item>
-	</string-array>
+    <string-array name="trip_date_type">
+        <item>departure</item>
+        <item>arrival</item>
+    </string-array>
+
+    <string name="trip_dep">dep</string>
+    <string name="trip_arr">arr</string>
+    <string name="action_earlier">Earlier</string>
+    <string name="action_later">Later</string>
 
 </resources>

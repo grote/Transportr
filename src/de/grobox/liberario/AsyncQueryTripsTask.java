@@ -28,6 +28,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
+
 import de.schildbach.pte.BvgProvider;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
