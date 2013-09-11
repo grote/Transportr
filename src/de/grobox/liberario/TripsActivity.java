@@ -45,6 +45,7 @@ import android.widget.TextView;
 
 public class TripsActivity extends Activity {
 	private QueryTripsResult trips;
+	private Menu mMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -226,6 +227,7 @@ public class TripsActivity extends Activity {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trips_activity_actions, menu);
+		mMenu = menu;
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -234,10 +236,12 @@ public class TripsActivity extends Activity {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_earlier:
+				setProgressButton(false, true);
 				(new AsyncQueryMoreTripsTask(this, trips.context, false)).execute();
 
 				return true;
 			case R.id.action_later:
+				setProgressButton(true, true);
 				(new AsyncQueryMoreTripsTask(this, trips.context, true)).execute();
 
 				return true;
@@ -254,6 +258,19 @@ public class TripsActivity extends Activity {
 			trips = trip_results;
 
 			addTrips(main, trip_results);
+		}
+	}
+
+	public void setProgressButton(Boolean later, Boolean progress) {
+		MenuItem mMenuButtonCheckMail = mMenu.findItem((later) ? R.id.action_later : R.id.action_earlier);
+
+		if(progress) {
+			View mActionButtonProgress = getLayoutInflater().inflate(R.layout.actionbar_progress_actionview, null);
+
+			mMenuButtonCheckMail.setActionView(mActionButtonProgress);
+		}
+		else {
+			mMenuButtonCheckMail.setActionView(null);
 		}
 	}
 

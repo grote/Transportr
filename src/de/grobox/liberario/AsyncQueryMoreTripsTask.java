@@ -57,6 +57,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 	@Override
 	protected void onPostExecute(QueryTripsResult result) {
 		activity.addMoreTrips(result);
+		activity.setProgressButton(later, false);
 	}
 
 }
