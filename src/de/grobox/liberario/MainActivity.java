@@ -28,11 +28,15 @@ import de.schildbach.pte.dto.LocationType;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -280,6 +284,34 @@ public class MainActivity extends FragmentActivity {
 		public void onDateSet(DatePicker view, int year, int month, int day) {
 			TextView dateView = (TextView) getActivity().findViewById(R.id.dateView);
 			dateView.setText(DateUtils.formatDate(getActivity().getApplicationContext(), year, month, day));
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+			case R.id.action_clear_favs:
+				FavFile.resetFavList(getBaseContext());
+				return true;
+			case R.id.action_settings:
+				//
+				return true;
+			case R.id.action_about:
+				Intent intent = new Intent(this, AboutActivity.class);
+				startActivity(intent);
+
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 	}
 

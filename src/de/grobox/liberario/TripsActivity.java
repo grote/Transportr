@@ -262,15 +262,15 @@ public class TripsActivity extends Activity {
 	}
 
 	public void setProgressButton(Boolean later, Boolean progress) {
-		MenuItem mMenuButtonCheckMail = mMenu.findItem((later) ? R.id.action_later : R.id.action_earlier);
+		MenuItem mMenuButtonMoreTrips = mMenu.findItem((later) ? R.id.action_later : R.id.action_earlier);
 
 		if(progress) {
 			View mActionButtonProgress = getLayoutInflater().inflate(R.layout.actionbar_progress_actionview, null);
 
-			mMenuButtonCheckMail.setActionView(mActionButtonProgress);
+			mMenuButtonMoreTrips.setActionView(mActionButtonProgress);
 		}
 		else {
-			mMenuButtonCheckMail.setActionView(null);
+			mMenuButtonMoreTrips.setActionView(null);
 		}
 	}
 
