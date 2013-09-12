@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="@string/trip_dep" />
+                android:text="@string/trip_arr" />
 
             <TextView
                 android:id="@+id/dArrivalTimeView"
@@ -43,7 +43,7 @@
                 android:layout_weight="0.5"
                 android:padding="2dp"
                 android:singleLine="true"
-                android:text="@string/trip_arr" />
+                android:text="@string/trip_dep" />
 
             <TextView
                 android:id="@+id/dDepartureTimeView"
