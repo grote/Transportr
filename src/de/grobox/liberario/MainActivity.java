@@ -165,6 +165,7 @@ public class MainActivity extends FragmentActivity {
 	protected void onResume() {
 		super.onResume();
 		getActionBar().setSubtitle(subtitle);
+		refreshFavs();
 	}
 
 	public void fromFavClick(View v) {
@@ -191,6 +192,14 @@ public class MainActivity extends FragmentActivity {
 			// TODO localize
 			Toast.makeText(getBaseContext(), "No favorite locations saved", Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	public void refreshFavs() {
+		AutoCompleteTextView from = ((AutoCompleteTextView) findViewById(R.id.from));
+		((LocationAutoCompleteAdapter) from.getAdapter()).clearFavs();
+
+		AutoCompleteTextView to = ((AutoCompleteTextView) findViewById(R.id.to));
+		((LocationAutoCompleteAdapter) to.getAdapter()).clearFavs();
 	}
 
 	private Boolean checkLocation(FavLocation.LOC_TYPE loc_type, AutoCompleteTextView view) {

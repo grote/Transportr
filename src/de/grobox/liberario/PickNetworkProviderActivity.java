@@ -177,7 +177,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		de.add(new NetworkItem(NetworkId.MVV, "MVV", "München"));
 		de.add(new NetworkItem(NetworkId.INVG, "INVG", "Ingolstadt", true));
 		de.add(new NetworkItem(NetworkId.VGN, "VGB", "Nürnberg, Fürth, Erlangen", true));
-		de.add(new NetworkItem(NetworkId.VVM, "VVM", "Bayern;Würzburg;Regensburg", true));
+		de.add(new NetworkItem(NetworkId.VVM, "VVM", "Bayern, Würzburg, Regensburg", true));
 		de.add(new NetworkItem(NetworkId.VMV, "VMV", "Mecklenburg-Vorpommern, Schwerin"));
 		de.add(new NetworkItem(NetworkId.HVV, "HVV", "Hamburg"));
 		de.add(new NetworkItem(NetworkId.SH, "SH", "Schleswig-Holstein, Kiel, Lübeck, Hamburg"));

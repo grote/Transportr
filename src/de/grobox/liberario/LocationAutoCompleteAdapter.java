@@ -97,4 +97,11 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 		return resultList.size();
 	}
 
+	public void clearFavs() {
+		if(resultList != null) {
+			resultList.clear();
+		}
+		addedFavs = false;
+	}
+
 }

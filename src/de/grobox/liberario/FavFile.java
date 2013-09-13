@@ -35,7 +35,7 @@ import android.content.Context;
 
 public class FavFile {
 
-	static public final String FAV_FILE = "favs";
+	static public final String FAV_FILE = "favs_";
 
 	@SuppressWarnings("unchecked")
 	public static List<FavLocation> getFavList(Context context) {
@@ -43,10 +43,8 @@ public class FavFile {
 
 		FileInputStream fis = null;
 		try {
-			fis = context.openFileInput(FAV_FILE);
+			fis = context.openFileInput(FAV_FILE + Preferences.getNetwork(context));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return fav_list;
 		}
 		ObjectInputStream is = null;
@@ -110,7 +108,7 @@ public class FavFile {
 	public static void setFavList(Context context, List<FavLocation> favList) {
 		FileOutputStream fos = null;
 		try {
-			fos = context.openFileOutput(FAV_FILE, Context.MODE_PRIVATE);
+			fos = context.openFileOutput(FAV_FILE + Preferences.getNetwork(context), Context.MODE_PRIVATE);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
