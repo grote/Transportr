@@ -31,7 +31,9 @@ import java.util.List;
 
 import de.schildbach.pte.dto.Location;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 
 public class FavFile {
 
@@ -125,9 +127,23 @@ public class FavFile {
 		}
 	}
 
-	public static void resetFavList(Context context) {
-		List<FavLocation> fav_list = new ArrayList<FavLocation>();
-		setFavList(context, fav_list);
+	public static void resetFavList(final Context context) {
+		// show confirmation dialog
+		new AlertDialog.Builder(context)
+		.setMessage(context.getResources().getString(R.string.clear_favs))
+		.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// actually reset the fav file
+				List<FavLocation> fav_list = new ArrayList<FavLocation>();
+				setFavList(context, fav_list);
+			}
+		})
+		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				dialog.cancel();
+			}
+		})
+		.show();
 	}
 
 }

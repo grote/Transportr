@@ -21,6 +21,8 @@
     <string name="trip_arr">arr</string>
     <string name="beta">beta</string>
     <string name="pick_network_activity">Pick a Transportation Network</string>
+    <string name="clear_favs">Are you sure that you want to delete your favorites for the current transportation network?</string>
+
     <string name="error_pick_network">Please select one transportation network!</string>
     <string name="error_no_internet">No internet connection available.</string>
     <string name="error_invalid_from">Invalid From Location.</string>

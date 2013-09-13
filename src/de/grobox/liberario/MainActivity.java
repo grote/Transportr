@@ -324,7 +324,8 @@ public class MainActivity extends FragmentActivity {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_clear_favs:
-				FavFile.resetFavList(getBaseContext());
+				FavFile.resetFavList(this);
+				refreshFavs();
 
 				return true;
 			case R.id.action_settings:
