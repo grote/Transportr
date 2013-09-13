@@ -28,7 +28,6 @@ import de.schildbach.pte.dto.Trip.Individual;
 import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,9 +52,7 @@ public class TripsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trips);
 
-		ActionBar actionBar = getActionBar();
-		// TODO specify parent activity as back button
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		final TableLayout main = (TableLayout) findViewById(R.id.activity_trips);
 
@@ -253,6 +250,10 @@ public class TripsActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
+			case android.R.id.home:
+				onBackPressed();
+
+				return true;
 			case R.id.action_earlier:
 				setProgressButton(false, true);
 				(new AsyncQueryMoreTripsTask(this, trips.context, false)).execute();
