@@ -27,8 +27,7 @@
                 android:id="@+id/dArrivalTimeView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:text="20:10" />
+                android:padding="2dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,8 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:padding="2dp"
-                android:singleLine="true"
-                android:text="20:13" />
+                android:singleLine="true" />
 
         </LinearLayout>
     </LinearLayout>
@@ -63,8 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|center_vertical"
         android:layout_weight="1"
-        android:padding="2dp"
-        android:text="Turmstr. (U)" />
+        android:padding="2dp" />
 
     <TextView
         android:id="@+id/dLineView"
@@ -72,15 +69,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:padding="2dp"
-        android:text="U9" /><TextView
+        android:padding="2dp" />
+
+    <TextView
         android:id="@+id/dDestinationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:padding="2dp"
-        android:text="S Rathaus Steglitz" />
+        android:padding="2dp" />
 
     <TextView
         android:id="@+id/dMessageView"
@@ -92,7 +89,6 @@
         android:paddingLeft="25dp"
         android:paddingRight="2dp"
         android:paddingTop="2dp"
-        android:text="Message"
         android:visibility="gone" />
 
 </TableRow>

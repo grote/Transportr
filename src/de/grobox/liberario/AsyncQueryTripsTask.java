@@ -29,8 +29,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import de.schildbach.pte.BvgProvider;
 import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.NetworkProviderFactory;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
 
@@ -75,7 +75,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 
 	@Override
 	protected QueryTripsResult doInBackground(Void... params) {
-		BvgProvider bvg = new BvgProvider("");
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
 
 		Log.d(getClass().getSimpleName(), "From: " + from.name);
 		Log.d(getClass().getSimpleName(), "To: " + to.name);
@@ -83,7 +83,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 
 		try {
 			if(isNetworkAvailable(context)) {
-				return bvg.queryTrips(from, null, to, date, departure, 3, null, NetworkProvider.WalkSpeed.NORMAL, null, null);
+				return np.queryTrips(from, null, to, date, departure, 3, null, NetworkProvider.WalkSpeed.NORMAL, null, null);
 			}
 			else {
 				return null;

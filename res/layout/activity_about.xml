@@ -30,6 +30,7 @@
                 android:layout_gravity="fill_vertical|fill_horizontal|fill"
                 android:layout_marginTop="15dp"
                 android:clickable="true"
+                android:linksClickable="true"
                 android:text="@string/about" />
 
         </LinearLayout>
@@ -41,7 +42,6 @@
         android:background="?android:attr/dividerHorizontal" />
 
     <Button
-        android:id="@+id/button1"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="fill_parent"
         android:layout_height="0dip"

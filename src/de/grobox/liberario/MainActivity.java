@@ -54,10 +54,23 @@ public class MainActivity extends FragmentActivity {
 	private Location loc_from;
 	private Location loc_to;
 
+	public static String subtitle;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		String network = Preferences.getNetwork(getBaseContext());
+
+		// return if no network is set
+		if(network == null) {
+			startActivity(new Intent(getBaseContext(), PickNetworkProviderActivity.class));
+		}
+		else {
+			subtitle = network;
+			getActionBar().setSubtitle(subtitle);
+		}
 
 		// From text input
 		AutoCompleteTextView from = (AutoCompleteTextView) findViewById(R.id.from);
@@ -146,6 +159,12 @@ public class MainActivity extends FragmentActivity {
 			}
 		});
 
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		getActionBar().setSubtitle(subtitle);
 	}
 
 	public void fromFavClick(View v) {
@@ -301,13 +320,14 @@ public class MainActivity extends FragmentActivity {
 		switch (item.getItemId()) {
 			case R.id.action_clear_favs:
 				FavFile.resetFavList(getBaseContext());
+
 				return true;
 			case R.id.action_settings:
-				//
+				startActivity(new Intent(this, PickNetworkProviderActivity.class));
+
 				return true;
 			case R.id.action_about:
-				Intent intent = new Intent(this, AboutActivity.class);
-				startActivity(intent);
+				startActivity(new Intent(this, AboutActivity.class));
 
 				return true;
 			default:

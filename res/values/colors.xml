@@ -1,4 +1,8 @@
 
     <resources>
         <color name="highlight">#cc222222</color>
+        <color name="holo_blue_light">#ff33b5e5</color>
+        <color name="holo_blue_dark">#ff0099cc</color>
+        <color name="holo_blue_bright">#ff00ddff</color>
+        <color name="holo_red_light">#ffff4444</color>
     </resources>

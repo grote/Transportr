@@ -19,5 +19,8 @@
 
     <string name="trip_dep">dep</string>
     <string name="trip_arr">arr</string>
+    <string name="beta">beta</string>
+    <string name="pick_network_activity">Pick a Transportation Network</string>
+    <string name="error_pick_network">Please select one transportation network!</string>
 
 </resources>

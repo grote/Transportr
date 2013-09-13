@@ -20,7 +20,8 @@ package de.grobox.liberario;
 import java.io.IOException;
 import java.util.List;
 
-import de.schildbach.pte.BvgProvider;
+import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.NetworkProviderFactory;
 import de.schildbach.pte.dto.Location;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -36,13 +37,13 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Lo
 
 	@Override
 	protected List<Location> doInBackground(Void... params) {
-		BvgProvider bvg = new BvgProvider("");
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
 
 		List<Location> loc_list = null;
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(context)) {
-				loc_list = bvg.autocompleteStations(query);
+				loc_list = np.autocompleteStations(query);
 			}
 			else {
 				return null;

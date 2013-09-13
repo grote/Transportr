@@ -30,7 +30,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -66,8 +65,6 @@ public class TripsActivity extends Activity {
 
 	private void addTrips(final TableLayout main, QueryTripsResult trip_results) {
 		if(trip_results != null) {
-			Log.i("test", trip_results.toString());
-
 			for(final Trip trip : trip_results.trips) {
 				TableRow row = (TableRow) LayoutInflater.from(this).inflate(R.layout.trip, null);
 				HorizontalScrollView scroll = (HorizontalScrollView) LayoutInflater.from(this).inflate(R.layout.trip_details, null);

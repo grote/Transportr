@@ -46,6 +46,11 @@
 
         <activity
             android:name="de.grobox.liberario.AmbiguousLocationActivity" />
+
+        <activity
+            android:name="de.grobox.liberario.PickNetworkProviderActivity"
+             android:label="@string/pick_network_activity" />
+
         <activity
             android:name="de.grobox.liberario.AboutActivity"
             android:theme="@android:style/Theme.Holo.Dialog" />

@@ -19,7 +19,8 @@ package de.grobox.liberario;
 
 import java.io.IOException;
 
-import de.schildbach.pte.BvgProvider;
+import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.NetworkProviderFactory;
 import de.schildbach.pte.dto.QueryTripsContext;
 import de.schildbach.pte.dto.QueryTripsResult;
 
@@ -38,11 +39,11 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 
 	@Override
 	protected QueryTripsResult doInBackground(Void... params) {
-		BvgProvider bvg = new BvgProvider("");
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(activity.getBaseContext()));
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(activity.getBaseContext())) {
-				return bvg.queryMoreTrips(qtcontext, later, 3);
+				return np.queryMoreTrips(qtcontext, later, 3);
 			}
 			else {
 				return null;
