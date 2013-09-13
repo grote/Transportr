@@ -102,8 +102,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 		}
 
 		if(result == null) {
-			// TODO localize
-			Toast.makeText(context, "No internet connection available.", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
 			return;
 		}
 

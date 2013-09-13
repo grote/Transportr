@@ -134,8 +134,7 @@ public class MainActivity extends FragmentActivity {
 					query_trips.setFrom(loc_from);
 				}
 				else {
-					// TODO localize
-					Toast.makeText(getBaseContext(), "Invalid From Location.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getBaseContext(), getResources().getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
 					return;
 				}
 
@@ -144,8 +143,7 @@ public class MainActivity extends FragmentActivity {
 					query_trips.setTo(loc_to);
 				}
 				else {
-					// TODO localize
-					Toast.makeText(getBaseContext(), "Invalid To Location.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getBaseContext(), getResources().getString(R.string.error_invalid_to), Toast.LENGTH_SHORT).show();
 					return;
 				}
 
@@ -176,8 +174,7 @@ public class MainActivity extends FragmentActivity {
 			from.showDropDown();
 		}
 		else {
-			// TODO localize
-			Toast.makeText(getBaseContext(), "No favorite locations saved", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getBaseContext(), getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -189,8 +186,7 @@ public class MainActivity extends FragmentActivity {
 			to.showDropDown();
 		}
 		else {
-			// TODO localize
-			Toast.makeText(getBaseContext(), "No favorite locations saved", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getBaseContext(), getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
 		}
 	}
 

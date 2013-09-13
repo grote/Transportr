@@ -16,7 +16,6 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="test"
             android:textStyle="bold" />
 
         <TextView
