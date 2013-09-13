@@ -12,15 +12,13 @@
             android:id="@+id/sArrivalTimeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:text="20:15" />
+            android:padding="2dp" />
 
         <TextView
             android:id="@+id/sDepartureTimeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:text="20:16" />
+            android:padding="2dp" />
     </LinearLayout>
 
     <TextView
@@ -28,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center_vertical"
-        android:padding="2dp"
-        android:text="Hansaplatz (U)" />
+        android:padding="2dp" />
 
 </TableRow>

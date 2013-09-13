@@ -17,12 +17,14 @@
 
 package de.grobox.liberario;
 
+import java.util.Date;
 import java.util.List;
 
 import de.grobox.liberario.R;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
+import de.schildbach.pte.dto.Trip.Individual;
 import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
@@ -129,13 +131,16 @@ public class TripsActivity extends Activity {
 						// TODO public_line.getDepartureDelay()
 						((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(public_line.departureStop.location.name);
 						((TextView) legViewOld.findViewById(R.id.dLineView)).setText(public_line.line.label.substring(1, public_line.line.label.length()));
-						((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(public_line.destination.name);
+						if(public_line.destination != null) {
+							((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(public_line.destination.name);
+						}
 						((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(public_line.arrivalStop.getArrivalTime()));
 						// TODO public_line.getArrivalDelay()
 						dDepartureViewNew.setText(public_line.arrivalStop.location.name);
 						if(public_line.message == null) {
 							((TextView) legViewOld.findViewById(R.id.dMessageView)).setVisibility(View.GONE);
 						} else {
+							((TextView) legViewOld.findViewById(R.id.dMessageView)).setVisibility(View.VISIBLE);
 							((TextView) legViewOld.findViewById(R.id.dMessageView)).setText(public_line.message);
 						}
 						// get and add intermediate stops
@@ -161,11 +166,15 @@ public class TripsActivity extends Activity {
 					}
 					else if(leg instanceof Trip.Individual) {
 						transportsView.setText(transportsView.getText() + " W");
-						// TODO fix departure time
+						Individual individual = (Trip.Individual) leg;
+
+						((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(individual.departure.name);
 						((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(leg.departureTime));
+						((TextView) legViewOld.findViewById(R.id.dLineView)).setText("W");
+						((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(Integer.toString(individual.min) + " min " + Integer.toString(individual.distance) + " m");
 						((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(leg.arrivalTime));
-						((TextView) legViewOld.findViewById(R.id.dLineView)).setText(Integer.toString(((Trip.Individual) leg).distance));
-						((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(((Trip.Individual) leg).type.toString());
+						((TextView) legViewNew.findViewById(R.id.dDestinationView)).setText(individual.arrival.name);
+						dDepartureViewNew.setText(individual.arrival.name);
 					}
 
 					details.addView(legViewNew);
@@ -207,9 +216,21 @@ public class TripsActivity extends Activity {
 		if(stops != null) {
 			for(final Stop stop : stops) {
 				TableRow stopView = (TableRow) LayoutInflater.from(this).inflate(R.layout.stop, null);
+				Date arrivalTime = stop.getArrivalTime();
+				Date departureTime = stop.getDepartureTime();
 
-				((TextView) stopView.findViewById(R.id.sArrivalTimeView)).setText(DateUtils.getTime(stop.getArrivalTime()));
-				((TextView) stopView.findViewById(R.id.sDepartureTimeView)).setText(DateUtils.getTime(stop.getDepartureTime()));
+				if(arrivalTime != null) {
+					((TextView) stopView.findViewById(R.id.sArrivalTimeView)).setText(DateUtils.getTime(arrivalTime));
+				}
+				else {
+					((TextView) stopView.findViewById(R.id.sArrivalTimeView)).setVisibility(View.GONE);
+				}
+				if(departureTime != null) {
+					((TextView) stopView.findViewById(R.id.sDepartureTimeView)).setText(DateUtils.getTime(departureTime));
+				}
+				else {
+					((TextView) stopView.findViewById(R.id.sDepartureTimeView)).setVisibility(View.GONE);
+				}
 				((TextView) stopView.findViewById(R.id.sLocationView)).setText(stop.location.name);
 
 				stopsView.addView(stopView);
