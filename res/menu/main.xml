@@ -3,16 +3,19 @@
     <item
         android:id="@+id/action_clear_favs"
         android:showAsAction="never"
-        android:title="@string/action_clear_favs"/>
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/action_clear_favs" />
 
     <item
         android:id="@+id/action_settings"
         android:showAsAction="ifRoom"
-        android:title="@string/action_settings"/>
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/action_settings" />
 
     <item
         android:id="@+id/action_about"
         android:title="@string/action_about"
-        android:showAsAction="ifRoom"/>
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:showAsAction="ifRoom" />
 
 </menu>
