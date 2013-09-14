@@ -28,7 +28,9 @@ import de.schildbach.pte.dto.LocationType;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -61,16 +63,7 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		String network = Preferences.getNetwork(getBaseContext());
-
-		// return if no network is set
-		if(network == null) {
-			startActivity(new Intent(getBaseContext(), PickNetworkProviderActivity.class));
-		}
-		else {
-			subtitle = network;
-			getActionBar().setSubtitle(subtitle);
-		}
+		checkPreferences();
 
 		// From text input
 		AutoCompleteTextView from = (AutoCompleteTextView) findViewById(R.id.from);
@@ -164,6 +157,32 @@ public class MainActivity extends FragmentActivity {
 		super.onResume();
 		getActionBar().setSubtitle(subtitle);
 		refreshFavs();
+	}
+
+	private void checkPreferences() {
+		SharedPreferences settings = getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
+		boolean firstRun = settings.getBoolean("FirstRun", true);
+
+		// show about page at first run
+		if(firstRun) {
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("FirstRun", false);
+			editor.commit();
+
+			startActivity(new Intent(this, AboutActivity.class));
+		}
+
+		String network = settings.getString("NetworkId", null);
+
+		// return if no network is set
+		if(network == null) {
+			startActivity(new Intent(getBaseContext(), PickNetworkProviderActivity.class));
+		}
+		else {
+			subtitle = network;
+			getActionBar().setSubtitle(subtitle);
+		}
+
 	}
 
 	public void fromFavClick(View v) {

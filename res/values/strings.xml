@@ -15,7 +15,12 @@
     <string name="action_settings">Settings</string>
 
     <string name="about_top">Liberario\n© 2013 Torsten Grote\nFree Software License: GPLv3</string>
-    <string name="about">Liberario is a public transport app which you can freely use, study, share and improve.\n\n<b>Attention: </b>This is still alpha software. It has many bugs and a lot of functionality is still missing.\n\nContributions are encouraged and appreciated. If you like to contribute please go to <a href="https://github.com/grote/Liberario/">github</a> for more information.</string>
+    <string name="about">Liberario is a public transport app which you can freely use, study, share and improve.
+        \n\n<b>Attention: </b>This is still alpha software. It has many bugs and a lot of functionality is still missing.
+        \n\nThere is no guarantee for the correctness of the data. Please only use this app at your own risk.
+        \n\n<b>Contributions</b> are encouraged and appreciated. If you like to contribute please go to <a href="https://github.com/grote/Liberario/">github</a> for more information.
+        \n\nIf you find any issues with this app, please report them at <a href="https://github.com/grote/Liberario/issues">the issue tracker</a>.
+    </string>
 
     <string name="trip_dep">dep</string>
     <string name="trip_arr">arr</string>
