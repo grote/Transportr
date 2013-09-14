@@ -43,12 +43,26 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/firstRunTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="5dp"
+        android:text="@string/pick_network_first_run" />
+    <View
+        android:id="@+id/firstRunSeparator"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_below="@id/firstRunTextView"
+        android:background="?android:attr/dividerHorizontal" />
+
     <ExpandableListView
         android:id="@+id/expandableNetworkProviderListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/pickBottomLayout"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/firstRunSeparator"
         android:choiceMode="singleChoice" />
 
 </RelativeLayout>

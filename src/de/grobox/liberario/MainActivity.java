@@ -56,7 +56,7 @@ public class MainActivity extends FragmentActivity {
 	private Location loc_from;
 	private Location loc_to;
 
-	public static String subtitle;
+	public static String subtitle = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -176,7 +176,10 @@ public class MainActivity extends FragmentActivity {
 
 		// return if no network is set
 		if(network == null) {
-			startActivity(new Intent(getBaseContext(), PickNetworkProviderActivity.class));
+			Intent intent = new Intent(getBaseContext(), PickNetworkProviderActivity.class);
+			intent.putExtra("FirstRun", true);
+
+			startActivity(intent);
 		}
 		else {
 			subtitle = network;

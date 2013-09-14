@@ -24,6 +24,7 @@ import java.util.List;
 import de.schildbach.pte.NetworkId;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -43,13 +44,23 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 	private List<String> listRegion;
 	private HashMap<String, List<NetworkItem>> listNetwork;
 	private int selectedRegion = -1;
+	private boolean back = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pick_network_provider);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		Intent intent = getIntent();
+		if(intent.getBooleanExtra("FirstRun", false)) {
+			// hide cancel button on first run
+			((Button) findViewById(R.id.cancelNetworkProviderButton)).setVisibility(View.GONE);
+			// prevent going back
+			back = false;
+		}
+		else {
+			getActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 
 		expListView = (ExpandableListView) findViewById(R.id.expandableNetworkProviderListView);
 
@@ -115,6 +126,13 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 				finish();
 			}
 		});
+	}
+
+	@Override
+	public void onBackPressed() {
+		if(back) {
+			finish();
+		}
 	}
 
 	@Override
