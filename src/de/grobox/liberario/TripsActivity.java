@@ -17,6 +17,8 @@
 
 package de.grobox.liberario;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -62,9 +64,18 @@ public class TripsActivity extends Activity {
 		addTrips(main, trips);
 	}
 
-	private void addTrips(final TableLayout main, QueryTripsResult trip_results) {
+	private void addTrips(final TableLayout main, QueryTripsResult trip_results, boolean append) {
 		if(trip_results != null) {
-			for(final Trip trip : trip_results.trips) {
+			List<Trip> trips = trip_results.trips;
+
+			// reverse order of trips if they should be prepended
+			if(!append) {
+				ArrayList<Trip> tempResults = new ArrayList<Trip>(trips);
+				Collections.reverse(tempResults);
+				trips = tempResults;
+			}
+
+			for(final Trip trip : trips) {
 				TableRow row = (TableRow) LayoutInflater.from(this).inflate(R.layout.trip, null);
 				HorizontalScrollView scroll = (HorizontalScrollView) LayoutInflater.from(this).inflate(R.layout.trip_details, null);
 				TableLayout details = (TableLayout) scroll.findViewById(R.id.trip_details);
@@ -197,13 +208,23 @@ public class TripsActivity extends Activity {
 
 				});
 
-				main.addView(row);
-				main.addView(scroll);
+				if(append) {
+					main.addView(row);
+					main.addView(scroll);
+				}
+				else {
+					main.addView(row, 0);
+					main.addView(scroll, 1);
+				}
 			}
 		}
 		else {
 			// TODO offer option to query again for trips
 		}
+	}
+
+	private void addTrips(final TableLayout main, QueryTripsResult trip_results) {
+		addTrips(main, trip_results, true);
 	}
 
 	private TableLayout getStops(List<Stop> stops) {
@@ -239,6 +260,8 @@ public class TripsActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO show later/earlier options only if provider has the capability
+
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trips_activity_actions, menu);
@@ -256,12 +279,12 @@ public class TripsActivity extends Activity {
 				return true;
 			case R.id.action_earlier:
 				setProgressButton(false, true);
-				(new AsyncQueryMoreTripsTask(this, trips.context, false)).execute();
+				(new AsyncQueryMoreTripsTask(this, trips.context, false, trips.trips.size())).execute();
 
 				return true;
 			case R.id.action_later:
 				setProgressButton(true, true);
-				(new AsyncQueryMoreTripsTask(this, trips.context, true)).execute();
+				(new AsyncQueryMoreTripsTask(this, trips.context, true, trips.trips.size())).execute();
 
 				return true;
 			default:
@@ -269,14 +292,17 @@ public class TripsActivity extends Activity {
 		}
 	}
 
-	public void addMoreTrips(QueryTripsResult trip_results) {
+	public void addMoreTrips(QueryTripsResult trip_results, boolean later, boolean clear) {
 		if(trips != null) {
 			TableLayout main = (TableLayout) findViewById(R.id.activity_trips);
-			main.removeAllViews();
+
+			if(clear) {
+				main.removeAllViews();
+			}
 
 			trips = trip_results;
 
-			addTrips(main, trip_results);
+			addTrips(main, trip_results, later);
 		}
 	}
 

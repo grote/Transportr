@@ -66,8 +66,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	@Override
 	protected void onPreExecute() {
 		pd = new ProgressDialog(context);
-		pd.setTitle("Processing...");
-		pd.setMessage("Please wait.");
+		pd.setMessage(context.getResources().getString(R.string.trip_searching));
 		pd.setCancelable(false);
 		pd.setIndeterminate(true);
 		pd.show();

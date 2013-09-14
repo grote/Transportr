@@ -29,12 +29,16 @@ import android.os.AsyncTask;
 public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsResult> {
 	private TripsActivity activity;
 	private QueryTripsContext qtcontext;
-	Boolean later;
+	private Boolean later;
+	private int num_old_trips;
 
-	public AsyncQueryMoreTripsTask(TripsActivity activity, QueryTripsContext qtcontext, Boolean later) {
+	private static final int num_trips = 3;
+
+	public AsyncQueryMoreTripsTask(TripsActivity activity, QueryTripsContext qtcontext, Boolean later, int num_old_trips) {
 		this.activity = activity;
 		this.qtcontext = qtcontext;
 		this.later = later;
+		this.num_old_trips = num_old_trips;
 	}
 
 	@Override
@@ -43,7 +47,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(activity.getBaseContext())) {
-				return np.queryMoreTrips(qtcontext, later, 3);
+				return np.queryMoreTrips(qtcontext, later, num_trips);
 			}
 			else {
 				return null;
@@ -57,7 +61,11 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 
 	@Override
 	protected void onPostExecute(QueryTripsResult result) {
-		activity.addMoreTrips(result);
+		if(result.trips != null) {
+			boolean clear = (result.trips.size() >= num_old_trips + num_trips) ? true : false;
+
+			activity.addMoreTrips(result, later, clear);
+		}
 		activity.setProgressButton(later, false);
 	}
 
