@@ -66,7 +66,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 
 			activity.addMoreTrips(result, later, clear);
 		}
-		activity.setProgressButton(later, false);
+		activity.setProgress(later, false);
 	}
 
 }

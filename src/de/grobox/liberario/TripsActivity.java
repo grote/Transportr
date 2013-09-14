@@ -22,6 +22,11 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+
 import de.grobox.liberario.R;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Stop;
@@ -40,6 +45,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.LinearLayout;
@@ -63,6 +69,28 @@ public class TripsActivity extends Activity {
 
 		addTrips(main, trips);
 	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		// Set a listener to be invoked when the list should be refreshed.
+		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_trips);
+		pullToRefreshView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+			@Override
+			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				Mode mode = refreshView.getCurrentMode();
+				boolean later = true;
+				if(mode == Mode.PULL_FROM_START) later = false;
+				else if(mode == Mode.PULL_FROM_END) later = true;
+				startGetMoreTrips(later);
+			}
+		});
+	}
+
+	public void startGetMoreTrips(boolean later) {
+		(new AsyncQueryMoreTripsTask(this, trips.context, later, trips.trips.size())).execute();
+	}
+
 
 	private void addTrips(final TableLayout main, QueryTripsResult trip_results, boolean append) {
 		if(trip_results != null) {
@@ -278,13 +306,13 @@ public class TripsActivity extends Activity {
 
 				return true;
 			case R.id.action_earlier:
-				setProgressButton(false, true);
-				(new AsyncQueryMoreTripsTask(this, trips.context, false, trips.trips.size())).execute();
+				setProgress(false, true);
+				startGetMoreTrips(false);
 
 				return true;
 			case R.id.action_later:
-				setProgressButton(true, true);
-				(new AsyncQueryMoreTripsTask(this, trips.context, true, trips.trips.size())).execute();
+				setProgress(true, true);
+				startGetMoreTrips(true);
 
 				return true;
 			default:
@@ -306,8 +334,9 @@ public class TripsActivity extends Activity {
 		}
 	}
 
-	public void setProgressButton(Boolean later, Boolean progress) {
+	public void setProgress(Boolean later, Boolean progress) {
 		MenuItem mMenuButtonMoreTrips = mMenu.findItem((later) ? R.id.action_later : R.id.action_earlier);
+		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_trips);
 
 		if(progress) {
 			View mActionButtonProgress = getLayoutInflater().inflate(R.layout.actionbar_progress_actionview, null);
@@ -316,6 +345,7 @@ public class TripsActivity extends Activity {
 		}
 		else {
 			mMenuButtonMoreTrips.setActionView(null);
+			pullToRefreshView.onRefreshComplete();
 		}
 	}
 

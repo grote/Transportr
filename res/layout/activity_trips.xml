@@ -1,4 +1,11 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<com.handmark.pulltorefresh.library.PullToRefreshScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pull_to_refresh_trips"
+    ptr:ptrMode="both"
+    ptr:ptrScrollingWhileRefreshingEnabled="true"
+    ptr:ptrListViewExtrasEnabled="true"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
@@ -9,4 +16,4 @@
         android:animateLayoutChanges="true"
         android:shrinkColumns="0" />
 
-</ScrollView>
+</com.handmark.pulltorefresh.library.PullToRefreshScrollView>
