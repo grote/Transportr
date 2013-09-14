@@ -35,6 +35,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
@@ -57,6 +58,8 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 			((Button) findViewById(R.id.cancelNetworkProviderButton)).setVisibility(View.GONE);
 			// prevent going back
 			back = false;
+			// show first time notice
+			((TextView) findViewById(R.id.firstRunTextView)).setVisibility(View.VISIBLE);
 		}
 		else {
 			getActionBar().setDisplayHomeAsUpEnabled(true);

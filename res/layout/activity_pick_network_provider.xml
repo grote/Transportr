@@ -49,7 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:padding="5dp"
-        android:text="@string/pick_network_first_run" />
+        android:text="@string/pick_network_first_run"
+        android:visibility="gone" />
     <View
         android:id="@+id/firstRunSeparator"
         android:layout_width="fill_parent"
