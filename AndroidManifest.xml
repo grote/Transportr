@@ -37,12 +37,7 @@
 
         <activity
             android:name="de.grobox.liberario.TripsActivity"
-            android:parentActivityName="de.grobox.liberario.MainActivity"
-            android:uiOptions="splitActionBarWhenNarrow" >
-            <meta-data
-                android:name="android.support.UI_OPTIONS"
-                android:value="splitActionBarWhenNarrow" />
-        </activity>
+            android:parentActivityName="de.grobox.liberario.MainActivity" />
 
         <activity
             android:name="de.grobox.liberario.AmbiguousLocationActivity" />
