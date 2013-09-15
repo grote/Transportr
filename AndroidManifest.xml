@@ -40,6 +40,10 @@
             android:parentActivityName="de.grobox.liberario.MainActivity" />
 
         <activity
+            android:name="de.grobox.liberario.TripDetailActivity"
+            android:parentActivityName="de.grobox.liberario.TripsActivity" />
+
+        <activity
             android:name="de.grobox.liberario.AmbiguousLocationActivity" />
 
         <activity
