@@ -27,20 +27,25 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 import de.grobox.liberario.R;
+import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.QueryTripsResult;
+import de.schildbach.pte.dto.Style.Shape;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
@@ -121,29 +126,26 @@ public class TripsActivity extends Activity {
 
 				// Duration
 				TextView durationView = ((TextView) trip_layout.findViewById(R.id.durationView));
-				durationView.setText(DateUtils.getDuration(trip.getFirstDepartureTime(), trip.getLastArrivalTime()) + getResources().getString(R.string.min));
+				durationView.setText(DateUtils.getDuration(trip.getFirstDepartureTime(), trip.getLastArrivalTime()));
 
 				// Transports
-				TextView transportsView = ((TextView) trip_layout.findViewById(R.id.transportsView));
+				LinearLayout lineLayout = ((LinearLayout) trip_layout.findViewById(R.id.lineLayout));
 
 				// for each leg
 				for(final Leg leg : trip.legs) {
 					if(leg instanceof Trip.Public) {
-						transportsView.setText(transportsView.getText() + " > " + ((Public) leg).line.label.substring(1));
+						addLineBox(lineLayout, ((Public) leg).line);
 					}
 					else if(leg instanceof Trip.Individual) {
-						transportsView.setText(transportsView.getText() + " > W");
+						addWalkingBox(lineLayout);
 					}
 				}
 
-				// remove first " > " from Transports
-				transportsView.setText(((String) transportsView.getText()).substring(3));
-
 				// remember trip in view for onClick event
-				row.setTag(trip);
+				trip_layout.setTag(trip);
 
 				// make trip details fold out and in on click
-				row.setOnClickListener(new View.OnClickListener() {
+				trip_layout.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						showTripDetails(v.getTag());
@@ -165,6 +167,40 @@ public class TripsActivity extends Activity {
 		else {
 			// TODO offer option to query again for trips
 		}
+	}
+
+	@SuppressWarnings("deprecation")
+	private void addLineBox(LinearLayout lineLayout, Line line) {
+		TextView transportsView =  (TextView) LayoutInflater.from(this).inflate(R.layout.line_box, null);
+
+		GradientDrawable line_box = (GradientDrawable) getResources().getDrawable(R.drawable.line_box);
+		line_box.setColor(line.style.backgroundColor);
+
+		// change shape and mutate before to not share state with other instances
+		line_box.mutate();
+		if(line.style.shape == Shape.CIRCLE) line_box.setShape(GradientDrawable.OVAL);
+
+		transportsView.setText(line.label.substring(1));
+		transportsView.setBackgroundDrawable(line_box);
+		transportsView.setTextColor(line.style.foregroundColor);
+
+		// set margin, because setting in in xml didn't work
+		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		llp.setMargins(0, 0, 7, 0);
+		transportsView.setLayoutParams(llp);
+
+		lineLayout.addView(transportsView);
+	}
+
+	private void addWalkingBox(LinearLayout lineLayout) {
+		ImageView transportsView = (ImageView) LayoutInflater.from(this).inflate(R.layout.walking_box, null);
+
+		// set margin, because setting in in xml didn't work
+		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		llp.setMargins(0, 0, 7, 0);
+		transportsView.setLayoutParams(llp);
+
+		lineLayout.addView(transportsView);
 	}
 
 	private void addTrips(final TableLayout main, List<Trip> trips) {
