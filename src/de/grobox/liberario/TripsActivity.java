@@ -139,8 +139,8 @@ public class TripsActivity extends Activity {
 				// remove first " > " from Transports
 				transportsView.setText(((String) transportsView.getText()).substring(3));
 
-				// remember trip number in view for onClick event
-				row.setTag(trips.indexOf(trip));
+				// remember trip in view for onClick event
+				row.setTag(trip);
 
 				// make trip details fold out and in on click
 				row.setOnClickListener(new View.OnClickListener() {
@@ -172,8 +172,7 @@ public class TripsActivity extends Activity {
 	}
 
 	private void showTripDetails(Object o) {
-		int id = (Integer) o;
-		Trip trip = trips.trips.get(id);
+		Trip trip = (Trip) o;
 
 		Intent intent = new Intent(this, TripDetailActivity.class);
 		intent.putExtra("de.schildbach.pte.dto.Trip", trip);
