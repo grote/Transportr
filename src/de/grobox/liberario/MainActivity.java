@@ -57,6 +57,7 @@ public class MainActivity extends FragmentActivity {
 	private Location loc_to;
 
 	public static String subtitle = null;
+	static final int CHANGED_NETWORK_PROVIDER = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -153,10 +154,15 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	@Override
-	protected void onResume() {
-		super.onResume();
-		getActionBar().setSubtitle(subtitle);
-		refreshFavs();
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// Check which request we're responding to
+		if(requestCode == CHANGED_NETWORK_PROVIDER) {
+			// change things for different network provider
+			getActionBar().setSubtitle(subtitle);
+			refreshFavs();
+			((AutoCompleteTextView) findViewById(R.id.from)).setText("");
+			((AutoCompleteTextView) findViewById(R.id.to)).setText("");
+		}
 	}
 
 	private void checkPreferences() {
@@ -179,7 +185,7 @@ public class MainActivity extends FragmentActivity {
 			Intent intent = new Intent(getBaseContext(), PickNetworkProviderActivity.class);
 			intent.putExtra("FirstRun", true);
 
-			startActivity(intent);
+			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
 		}
 		else {
 			subtitle = network;
@@ -351,7 +357,7 @@ public class MainActivity extends FragmentActivity {
 
 				return true;
 			case R.id.action_settings:
-				startActivity(new Intent(this, PickNetworkProviderActivity.class));
+				startActivityForResult(new Intent(this, PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
 
 				return true;
 			case R.id.action_about:
