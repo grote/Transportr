@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="From" />
+            android:text="@string/from" />
 
         <Spinner
             android:id="@+id/fromSpinner"
@@ -31,7 +31,7 @@
             android:id="@+id/toView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="To" />
+            android:text="@string/to" />
 
         <Spinner
             android:id="@+id/toSpinner"

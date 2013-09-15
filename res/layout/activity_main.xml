@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="From"
+            android:text="@string/from"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
@@ -30,7 +30,7 @@
 
             <AutoCompleteTextView
                 android:id="@+id/from"
-                android:layout_width="match_parent"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10" >
@@ -53,7 +53,7 @@
             android:id="@+id/toView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="To"
+            android:text="@string/to"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
@@ -62,7 +62,7 @@
 
             <AutoCompleteTextView
                 android:id="@+id/to"
-                android:layout_width="match_parent"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10" />
@@ -87,7 +87,7 @@
 
             <LinearLayout
                 android:id="@+id/timeLayout"
-                android:layout_width="match_parent"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical|fill_horizontal"
                 android:layout_marginRight="25dp"
@@ -102,14 +102,13 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Time"
+                    android:text="@string/time"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
                     android:id="@+id/timeView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00:00"
                     android:textColor="?android:attr/editTextColor" />
             </LinearLayout>
 
@@ -134,17 +133,16 @@
             android:background="?android:attr/selectableItemBackground" >
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date"
+                android:text="@string/date"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/dateView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00.00.0000"
                 android:textColor="?android:attr/editTextColor" />
 
         </LinearLayout>

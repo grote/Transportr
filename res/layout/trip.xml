@@ -19,14 +19,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
-            android:text="From" />
+            android:text="@string/from" />
 
         <TextView
             android:id="@+id/toView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
-            android:text="Destination" />
+            android:text="@string/destination" />
 
     </LinearLayout>
 
@@ -40,15 +40,13 @@
             android:id="@+id/departureTimeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:text="12:33" />
+            android:padding="2dp" />
 
         <TextView
             android:id="@+id/arrivalTimeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:text="13:05" />
+            android:padding="2dp" />
 
     </LinearLayout>
 
@@ -58,8 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:padding="2dp"
-        android:text="0:22" />
+        android:padding="2dp" />
 
     <TextView
         android:id="@+id/transportsView"
@@ -67,7 +64,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:padding="2dp"
-        android:text="S B R W" />
+        android:padding="2dp" />
 
 </TableRow>

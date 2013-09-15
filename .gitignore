@@ -12,6 +12,7 @@
 bin/
 gen/
 project.properties
+lint.xml
 
 # Local configuration file (sdk path, etc)
 local.properties
