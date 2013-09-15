@@ -41,6 +41,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -62,6 +63,7 @@ public class TripsActivity extends Activity {
 		Intent intent = getIntent();
 		trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
 
+		setHeader();
 		addTrips(main, trips.trips);
 	}
 
@@ -86,6 +88,10 @@ public class TripsActivity extends Activity {
 		(new AsyncQueryMoreTripsTask(this, trips.context, later)).execute();
 	}
 
+	private void setHeader() {
+		((TextView) findViewById(R.id.tripStartTextView)).setText(trips.from.name);
+		((TextView) findViewById(R.id.tripDestinationTextView)).setText(trips.to.name);
+	}
 
 	private void addTrips(final TableLayout main, List<Trip> trips, boolean append) {
 		if(trips != null) {
@@ -97,7 +103,8 @@ public class TripsActivity extends Activity {
 			}
 
 			for(final Trip trip : trips) {
-				TableRow row = (TableRow) LayoutInflater.from(this).inflate(R.layout.trip, null);
+				LinearLayout trip_layout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.trip, null);
+				TableRow row = (TableRow) trip_layout.findViewById(R.id.tripTableRow);
 				HorizontalScrollView scroll = (HorizontalScrollView) LayoutInflater.from(this).inflate(R.layout.trip_details, null);
 
 				// Locations
@@ -113,21 +120,24 @@ public class TripsActivity extends Activity {
 				arrivalTimeView.setText(DateUtils.getTime(trip.getLastArrivalTime()));
 
 				// Duration
-				TextView durationView = ((TextView) row.findViewById(R.id.durationView));
-				durationView.setText(DateUtils.getDuration(trip.getFirstDepartureTime(), trip.getLastArrivalTime()));
+				TextView durationView = ((TextView) trip_layout.findViewById(R.id.durationView));
+				durationView.setText(DateUtils.getDuration(trip.getFirstDepartureTime(), trip.getLastArrivalTime()) + getResources().getString(R.string.min));
 
 				// Transports
-				TextView transportsView = ((TextView) row.findViewById(R.id.transportsView));
+				TextView transportsView = ((TextView) trip_layout.findViewById(R.id.transportsView));
 
 				// for each leg
 				for(final Leg leg : trip.legs) {
 					if(leg instanceof Trip.Public) {
-						transportsView.setText(transportsView.getText() + " " + ((Public) leg).line.label.substring(0, 1));
+						transportsView.setText(transportsView.getText() + " > " + ((Public) leg).line.label.substring(1));
 					}
 					else if(leg instanceof Trip.Individual) {
-						transportsView.setText(transportsView.getText() + " W");
+						transportsView.setText(transportsView.getText() + " > W");
 					}
 				}
+
+				// remove first " > " from Transports
+				transportsView.setText(((String) transportsView.getText()).substring(3));
 
 				// remember trip number in view for onClick event
 				row.setTag(trips.indexOf(trip));
@@ -142,14 +152,15 @@ public class TripsActivity extends Activity {
 				});
 
 				if(append) {
-					main.addView(row);
+					main.addView(trip_layout);
 					main.addView(scroll);
 				}
 				else {
-					main.addView(row, 0);
+					main.addView(trip_layout, 0);
 					main.addView(scroll, 1);
 				}
 			}
+
 		}
 		else {
 			// TODO offer option to query again for trips

@@ -8,8 +8,8 @@
         <item>arrival</item>
     </string-array>
 
-    <string name="action_earlier">Earlier</string>
-    <string name="action_later">Later</string>
+    <string name="action_earlier">Find Earlier Trips</string>
+    <string name="action_later">Find Later Trips</string>
     <string name="action_about">About</string>
     <string name="action_clear_favs">Clear Favorites</string>
     <string name="action_settings">Settings</string>
@@ -24,10 +24,13 @@
 
     <string name="trip_dep">dep</string>
     <string name="trip_arr">arr</string>
+    <string name="trip_start">Start:</string>
+    <string name="trip_destination">Dest.:</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="time">Time</string>
     <string name="date">Date</string>
+    <string name="min"> min</string>
     <string name="destination">Destination</string>
     <string name="beta">beta</string>
     <string name="pick_network_activity">Pick a Transportation Network</string>

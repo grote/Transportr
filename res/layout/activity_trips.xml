@@ -1,19 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.handmark.pulltorefresh.library.PullToRefreshScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ptr="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/pull_to_refresh_trips"
-    ptr:ptrMode="both"
-    ptr:ptrScrollingWhileRefreshingEnabled="true"
-    ptr:ptrListViewExtrasEnabled="true"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
     <TableLayout
-        android:id="@+id/activity_trips"
-        android:layout_width="match_parent"
+        android:id="@+id/headerTableLayout"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:shrinkColumns="0" />
+        android:background="#1533b5e5"
+        android:padding="3dp" >
 
-</com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trip_start" />
+
+            <TextView
+                android:id="@+id/tripStartTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trip_destination" />
+
+            <TextView
+                android:id="@+id/tripDestinationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold" />
+
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:id="@+id/headerSeparatorView"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/headerTableLayout"
+        android:background="@color/holo_blue_light" />
+
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pull_to_refresh_trips"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/headerSeparatorView"
+        ptr:ptrListViewExtrasEnabled="true"
+        ptr:ptrMode="both"
+        ptr:ptrScrollingWhileRefreshingEnabled="true" >
+
+        <TableLayout
+            android:id="@+id/activity_trips"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:animateLayoutChanges="true"
+            android:shrinkColumns="0" />
+
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+</RelativeLayout>
