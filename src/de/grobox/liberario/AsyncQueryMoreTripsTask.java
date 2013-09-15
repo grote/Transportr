@@ -30,15 +30,13 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 	private TripsActivity activity;
 	private QueryTripsContext qtcontext;
 	private Boolean later;
-	private int num_old_trips;
 
 	private static final int num_trips = 3;
 
-	public AsyncQueryMoreTripsTask(TripsActivity activity, QueryTripsContext qtcontext, Boolean later, int num_old_trips) {
+	public AsyncQueryMoreTripsTask(TripsActivity activity, QueryTripsContext qtcontext, Boolean later) {
 		this.activity = activity;
 		this.qtcontext = qtcontext;
 		this.later = later;
-		this.num_old_trips = num_old_trips;
 	}
 
 	@Override
@@ -62,9 +60,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 	@Override
 	protected void onPostExecute(QueryTripsResult result) {
 		if(result.trips != null) {
-			boolean clear = (result.trips.size() >= num_old_trips + num_trips) ? true : false;
-
-			activity.addMoreTrips(result, later, clear);
+			activity.addMoreTrips(result, later, num_trips);
 		}
 		activity.setProgress(later, false);
 	}

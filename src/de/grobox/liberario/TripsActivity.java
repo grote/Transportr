@@ -67,7 +67,7 @@ public class TripsActivity extends Activity {
 		Intent intent = getIntent();
 		trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
 
-		addTrips(main, trips);
+		addTrips(main, trips.trips);
 	}
 
 	@Override
@@ -88,14 +88,12 @@ public class TripsActivity extends Activity {
 	}
 
 	public void startGetMoreTrips(boolean later) {
-		(new AsyncQueryMoreTripsTask(this, trips.context, later, trips.trips.size())).execute();
+		(new AsyncQueryMoreTripsTask(this, trips.context, later)).execute();
 	}
 
 
-	private void addTrips(final TableLayout main, QueryTripsResult trip_results, boolean append) {
-		if(trip_results != null) {
-			List<Trip> trips = trip_results.trips;
-
+	private void addTrips(final TableLayout main, List<Trip> trips, boolean append) {
+		if(trips != null) {
 			// reverse order of trips if they should be prepended
 			if(!append) {
 				ArrayList<Trip> tempResults = new ArrayList<Trip>(trips);
@@ -251,8 +249,8 @@ public class TripsActivity extends Activity {
 		}
 	}
 
-	private void addTrips(final TableLayout main, QueryTripsResult trip_results) {
-		addTrips(main, trip_results, true);
+	private void addTrips(final TableLayout main, List<Trip> trips) {
+		addTrips(main, trips, true);
 	}
 
 	private TableLayout getStops(List<Stop> stops) {
@@ -320,17 +318,31 @@ public class TripsActivity extends Activity {
 		}
 	}
 
-	public void addMoreTrips(QueryTripsResult trip_results, boolean later, boolean clear) {
+	public void addMoreTrips(QueryTripsResult trip_results, boolean later, int num_trips) {
 		if(trips != null) {
 			TableLayout main = (TableLayout) findViewById(R.id.activity_trips);
+			int num_old_trips = trips.trips.size();
+			List<Trip> trips_res = new ArrayList<Trip>(trip_results.trips);
 
-			if(clear) {
-				main.removeAllViews();
+			// remove old trips for providers that still return them
+			if(trips_res.size() >= num_old_trips + num_trips) {
+				if(later) {
+					// remove the #num_old_trips first trips
+					for(int i = 0; i < num_old_trips; i = i+1) {
+						trips_res.remove(0);
+					}
+				}
+				else {
+					// remove the #num_old_trips last trips
+					for(int i = 0; i < num_old_trips; i = i+1) {
+						trips_res.remove(trips_res.size()-1);
+					}
+				}
 			}
-
+			// save trip results to have context for next query
 			trips = trip_results;
 
-			addTrips(main, trip_results, later);
+			addTrips(main, trips_res, later);
 		}
 	}
 
