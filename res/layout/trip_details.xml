@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/duration" />
+            android:text="@string/detail_duration" />
 
         <TextView
             android:id="@+id/tripDetailsDurationView"
@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/date" />
+            android:text="@string/detail_date" />
 
         <TextView
             android:id="@+id/tripDetailsDateView"
