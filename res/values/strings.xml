@@ -32,6 +32,8 @@
     <string name="date">Date</string>
     <string name="min"> min</string>
     <string name="destination">Destination</string>
+    <string name="detail_duration">Duration:</string>
+    <string name="detail_date">Date:</string>
     <string name="beta">beta</string>
     <string name="pick_network_activity">Pick a Transportation Network</string>
     <string name="pick_network_first_run">This is the first time you\'ve started Liberario. Please select your transportation network in order to continue!</string>

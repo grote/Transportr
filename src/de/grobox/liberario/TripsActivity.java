@@ -44,7 +44,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -110,7 +109,6 @@ public class TripsActivity extends Activity {
 			for(final Trip trip : trips) {
 				LinearLayout trip_layout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.trip, null);
 				TableRow row = (TableRow) trip_layout.findViewById(R.id.tripTableRow);
-				HorizontalScrollView scroll = (HorizontalScrollView) LayoutInflater.from(this).inflate(R.layout.trip_details, null);
 
 				// Locations
 				TextView fromView = (TextView) row.findViewById(R.id.fromView);
@@ -155,11 +153,9 @@ public class TripsActivity extends Activity {
 
 				if(append) {
 					main.addView(trip_layout);
-					main.addView(scroll);
 				}
 				else {
 					main.addView(trip_layout, 0);
-					main.addView(scroll, 1);
 				}
 			}
 

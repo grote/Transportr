@@ -1,13 +1,60 @@
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/highlight" >
+    android:orientation="vertical" >
 
-    <TableLayout
-        android:id="@+id/trip_details"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:clickable="true" />
+        android:background="#1533b5e5"
+        android:padding="3dp"
+        android:weightSum="2" >
 
-</HorizontalScrollView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/duration" />
+
+        <TextView
+            android:id="@+id/tripDetailsDurationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date" />
+
+        <TextView
+            android:id="@+id/tripDetailsDateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/headerSeparatorView"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/headerTableLayout"
+        android:background="@color/holo_blue_light" />
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/highlight" >
+
+        <TableLayout
+            android:id="@+id/trip_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:clickable="true" />
+    </HorizontalScrollView>
+
+</LinearLayout>

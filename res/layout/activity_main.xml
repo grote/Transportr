@@ -99,7 +99,6 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/time"
@@ -133,7 +132,6 @@
             android:background="?android:attr/selectableItemBackground" >
 
             <TextView
-                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/date"

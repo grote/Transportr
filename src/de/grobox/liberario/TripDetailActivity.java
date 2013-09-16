@@ -36,6 +36,7 @@ public class TripDetailActivity extends Activity {
 		Intent intent = getIntent();
 
 		Trip trip = (Trip) intent.getSerializableExtra("de.schildbach.pte.dto.Trip");
+		addHeader(trip);
 		addLegs(trip.legs);
 	}
 
@@ -50,6 +51,15 @@ public class TripDetailActivity extends Activity {
 			default:
 				return super.onOptionsItemSelected(item);
 		}
+	}
+
+	// TODO remove deprecated code
+	@SuppressWarnings("deprecation")
+	private void addHeader(Trip trip) {
+		Date d = trip.getFirstDepartureTime();
+
+		((TextView) findViewById(R.id.tripDetailsDurationView)).setText(DateUtils.getDuration(trip.getFirstDepartureTime(), trip.getLastArrivalTime()));
+		((TextView) findViewById(R.id.tripDetailsDateView)).setText(DateUtils.formatDate(getBaseContext(), d.getYear()+1900, d.getMonth(), d.getDate()));
 	}
 
 	private void addLegs(List<Leg> legs) {
