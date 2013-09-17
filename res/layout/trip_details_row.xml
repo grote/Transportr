@@ -3,92 +3,104 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:orientation="vertical"
-    android:paddingBottom="5dp" >
+    android:background="@drawable/border"
+    android:paddingBottom="2dp" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp" >
+
+        <TextView
+            android:id="@+id/dArrivalTimeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearance" />
+
+        <TextView
+            android:id="@+id/dDepartureTimeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dArrivalTimeView"
+            android:textAppearance="?android:attr/textAppearance" />
+
+        <TextView
+            android:id="@+id/dArrivalDelayView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/dArrivalTimeView"
+            android:layout_marginLeft="2dp"
+            android:layout_toEndOf="@id/dArrivalTimeView"
+            android:layout_toRightOf="@+id/dArrivalTimeView"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/holo_red_light" />
+
+        <TextView
+            android:id="@+id/dDepartureDelayView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/dDepartureTimeView"
+            android:layout_marginLeft="2dp"
+            android:layout_toEndOf="@id/dDepartureTimeView"
+            android:layout_toRightOf="@id/dDepartureTimeView"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/holo_red_light" />
+    </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.43"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="3dp" >
+
+        <TextView
+            android:id="@+id/dDepartureView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/from"
+            android:textAppearance="?android:attr/textAppearance" />
 
         <LinearLayout
-            android:id="@+id/dArrivialLinearLayout"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|center_vertical" >
+            android:orientation="horizontal" >
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/dLineView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:text="@string/trip_arr" />
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal" />
+
+            <ImageView
+                android:id="@+id/dArrowView"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/navigation_next_item" />
 
             <TextView
-                android:id="@+id/dArrivalTimeView"
-                android:layout_width="wrap_content"
+                android:id="@+id/dDestinationView"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="2dp" />
+                android:layout_weight="1"
+                android:text="@string/destination" />
+
+            <ImageView
+                android:id="@+id/dShowMoreView"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@android:drawable/ic_menu_more" />
+
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/dDepartureLinearLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/dMessageView"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|center_vertical" >
+            android:visibility="gone" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:padding="2dp"
-                android:singleLine="true"
-                android:text="@string/trip_dep" />
-
-            <TextView
-                android:id="@+id/dDepartureTimeView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:padding="2dp"
-                android:singleLine="true" />
-
-        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/dDepartureView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|center_vertical"
-        android:layout_weight="1"
-        android:padding="2dp" />
-
-    <TextView
-        android:id="@+id/dLineView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:padding="2dp" />
-
-    <TextView
-        android:id="@+id/dDestinationView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:padding="2dp" />
-
-    <TextView
-        android:id="@+id/dMessageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:enabled="false"
-        android:paddingBottom="2dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="2dp"
-        android:paddingTop="2dp"
-        android:visibility="gone" />
 
 </TableRow>

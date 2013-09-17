@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 public class TripDetailActivity extends Activity {
 	private TableLayout view;
@@ -76,44 +77,60 @@ public class TripDetailActivity extends Activity {
 			// only for the first leg
 			if(i == 1) {
 				// hide arrival time for start location of trip
-				((LinearLayout) legViewOld.findViewById(R.id.dArrivialLinearLayout)).setVisibility(View.GONE);
+				((TextView) legViewOld.findViewById(R.id.dArrivalTimeView)).setVisibility(View.GONE);
+				((TextView) legViewOld.findViewById(R.id.dArrivalDelayView)).setVisibility(View.GONE);
 				// only add old view the first time, because it isn't old there
 				view.addView(legViewOld);
 			}
 			// only for the last leg
 			if(i >= legs.size()) {
-				// span last row 
-				TableRow.LayoutParams params = (TableRow.LayoutParams) dDepartureViewNew.getLayoutParams();
-				params.span = 3;
-				dDepartureViewNew.setLayoutParams(params);
-
 				// hide stuff for last stop (destination)
-				((LinearLayout) legViewNew.findViewById(R.id.dDepartureLinearLayout)).setVisibility(View.GONE);
+				((TextView) legViewNew.findViewById(R.id.dDepartureTimeView)).setVisibility(View.GONE);
+				((TextView) legViewNew.findViewById(R.id.dDepartureDelayView)).setVisibility(View.GONE);
+
 				((TextView) legViewNew.findViewById(R.id.dDestinationView)).setVisibility(View.GONE);
-				((TextView) legViewNew.findViewById(R.id.dLineView)).setVisibility(View.GONE);
+				((LinearLayout) legViewNew.findViewById(R.id.dLineView)).setVisibility(View.GONE);
+				((ImageView) legViewNew.findViewById(R.id.dArrowView)).setVisibility(View.GONE);
+				((ImageView) legViewNew.findViewById(R.id.dShowMoreView)).setVisibility(View.GONE);
 				((TextView) legViewNew.findViewById(R.id.dMessageView)).setVisibility(View.GONE);
 			}
 
 			if(leg instanceof Trip.Public) {
-				Public public_line = ((Public) leg);
-				((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(public_line.departureStop.getDepartureTime()));
+				Public public_leg = ((Public) leg);
 				// TODO public_line.getDepartureDelay()
-				((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(public_line.departureStop.location.name);
-				((TextView) legViewOld.findViewById(R.id.dLineView)).setText(public_line.line.label.substring(1, public_line.line.label.length()));
-				if(public_line.destination != null) {
-					((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(public_line.destination.name);
-				}
-				((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(public_line.arrivalStop.getArrivalTime()));
+				((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(public_leg.departureStop.getDepartureTime()));
 				// TODO public_line.getArrivalDelay()
-				dDepartureViewNew.setText(public_line.arrivalStop.location.name);
-				if(public_line.message == null) {
+				((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(public_leg.arrivalStop.getArrivalTime()));
+
+				// set departure location
+				((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(public_leg.departureStop.location.name);
+
+				// set line box
+				TripsActivity.addLineBox(this, (LinearLayout) legViewOld.findViewById(R.id.dLineView), public_leg.line);
+
+				// set destination of line
+				if(public_leg.destination != null) {
+					((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(public_leg.destination.name);
+				}
+
+				// set arrival location in next row
+				dDepartureViewNew.setText(public_leg.arrivalStop.location.name);
+
+				// deal with optional trip message
+				if(public_leg.message == null) {
 					((TextView) legViewOld.findViewById(R.id.dMessageView)).setVisibility(View.GONE);
 				} else {
 					((TextView) legViewOld.findViewById(R.id.dMessageView)).setVisibility(View.VISIBLE);
-					((TextView) legViewOld.findViewById(R.id.dMessageView)).setText(public_line.message);
+					((TextView) legViewOld.findViewById(R.id.dMessageView)).setText(public_leg.message);
 				}
+
+				// hide show more indicator when there are no intermediate stops
+				if(public_leg.intermediateStops == null) {
+					((ImageView) legViewOld.findViewById(R.id.dShowMoreView)).setVisibility(View.GONE);
+				}
+
 				// get and add intermediate stops
-				view.addView(getStops(public_line.intermediateStops));
+				view.addView(getStops(public_leg.intermediateStops));
 
 				// make intermediate stops fold out and in on click
 				legViewOld.setOnClickListener(new View.OnClickListener() {
@@ -124,9 +141,11 @@ public class TripDetailActivity extends Activity {
 						if(v != null) {
 							if(v.getVisibility() == View.GONE) {
 								v.setVisibility(View.VISIBLE);
+								((ImageView) view.findViewById(R.id.dShowMoreView)).setRotation(180);
 							}
 							else if(v.getVisibility() == View.VISIBLE) {
 								v.setVisibility(View.GONE);
+								((ImageView) view.findViewById(R.id.dShowMoreView)).setRotation(0);
 							}
 						}
 					}
@@ -136,13 +155,25 @@ public class TripDetailActivity extends Activity {
 			else if(leg instanceof Trip.Individual) {
 				Individual individual = (Trip.Individual) leg;
 
+				((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(individual.departureTime));
+				// TODO check why time doesn't change
+				((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(individual.arrivalTime));
+
 				((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(individual.departure.name);
-				((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(leg.departureTime));
-				((TextView) legViewOld.findViewById(R.id.dLineView)).setText("W");
-				((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(Integer.toString(individual.min) + " min " + Integer.toString(individual.distance) + " m");
-				((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(leg.arrivalTime));
+
+				TripsActivity.addWalkingBox(this, (LinearLayout) legViewOld.findViewById(R.id.dLineView));
+
+				// show time for walk and optionally distance
+				String walk = Integer.toString(individual.min) + " min ";
+				if(individual.distance > 0) walk += Integer.toString(individual.distance) + " m";
+				((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(walk);
+
 				((TextView) legViewNew.findViewById(R.id.dDestinationView)).setText(individual.arrival.name);
 				dDepartureViewNew.setText(individual.arrival.name);
+
+				// hide arrow and show more icon
+				((ImageView) legViewOld.findViewById(R.id.dArrowView)).setVisibility(View.GONE);
+				((ImageView) legViewOld.findViewById(R.id.dShowMoreView)).setVisibility(View.GONE);
 			}
 
 			view.addView(legViewNew);

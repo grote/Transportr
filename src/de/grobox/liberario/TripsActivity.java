@@ -35,6 +35,7 @@ import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -132,10 +133,10 @@ public class TripsActivity extends Activity {
 				// for each leg
 				for(final Leg leg : trip.legs) {
 					if(leg instanceof Trip.Public) {
-						addLineBox(lineLayout, ((Public) leg).line);
+						addLineBox(this, lineLayout, ((Public) leg).line);
 					}
 					else if(leg instanceof Trip.Individual) {
-						addWalkingBox(lineLayout);
+						addWalkingBox(this, lineLayout);
 					}
 				}
 
@@ -166,10 +167,10 @@ public class TripsActivity extends Activity {
 	}
 
 	@SuppressWarnings("deprecation")
-	private void addLineBox(LinearLayout lineLayout, Line line) {
-		TextView transportsView =  (TextView) LayoutInflater.from(this).inflate(R.layout.line_box, null);
+	static public void addLineBox(Context context, LinearLayout lineLayout, Line line) {
+		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, null);
 
-		GradientDrawable line_box = (GradientDrawable) getResources().getDrawable(R.drawable.line_box);
+		GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
 		line_box.setColor(line.style.backgroundColor);
 
 		// change shape and mutate before to not share state with other instances
@@ -182,18 +183,18 @@ public class TripsActivity extends Activity {
 
 		// set margin, because setting in in xml didn't work
 		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		llp.setMargins(0, 0, 7, 0);
+		llp.setMargins(3, 0, 3, 0);
 		transportsView.setLayoutParams(llp);
 
 		lineLayout.addView(transportsView);
 	}
 
-	private void addWalkingBox(LinearLayout lineLayout) {
-		ImageView transportsView = (ImageView) LayoutInflater.from(this).inflate(R.layout.walking_box, null);
+	static public void addWalkingBox(Context context, LinearLayout lineLayout) {
+		ImageView transportsView = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
 
 		// set margin, because setting in in xml didn't work
 		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		llp.setMargins(0, 0, 7, 0);
+		llp.setMargins(3, 0, 3, 0);
 		transportsView.setLayoutParams(llp);
 
 		lineLayout.addView(transportsView);

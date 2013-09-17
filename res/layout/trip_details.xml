@@ -26,35 +26,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
             android:text="@string/detail_date" />
 
         <TextView
             android:id="@+id/tripDetailsDateView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginRight="3dp"
             android:paddingLeft="5dp"
             android:textStyle="bold" />
+
     </LinearLayout>
 
     <View
         android:id="@+id/headerSeparatorView"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/headerTableLayout"
         android:background="@color/holo_blue_light" />
 
-    <HorizontalScrollView
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/highlight" >
+        android:layout_height="wrap_content" >
 
         <TableLayout
             android:id="@+id/trip_details"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
-            android:clickable="true" />
-    </HorizontalScrollView>
+            android:shrinkColumns="1"
+            android:stretchColumns="1" >
+        </TableLayout>
+
+    </ScrollView>
 
 </LinearLayout>
