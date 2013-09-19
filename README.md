@@ -1,10 +1,93 @@
 Liberario
 =========
-A Free Software public transport app for android.
+
+A Free Software public transport app for Android which you can freely use, study, share and improve.
 
 ![Liberario Logo](/res/drawable-xhdpi/ic_launcher.png)
 
+**Attention:** This is still *alpha* software. It has many bugs and a lot of functionality is still missing. There is no guarantee for the correctness of the data. Please only use this app at your own risk.
+
+Contributions are both encouraged and appreciated. If you like to contribute please [see below](#contributing) for more information.
+
+If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Liberario/issues).
+
 [![Flattr me](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/thing/1921242)
+
+
+Coverage
+--------
+
+In order to access public transport data, Liberario is using the [public transport enabler](http://code.google.com/p/public-transport-enabler/) library. So it supports all areas that this library also supports.
+
+### Continents and Countries ###
+
+* Europe (mostly long-distance)
+* Germany (long-distance, regional and local, e.g. Berlin, Hamburg, Munich, Cologne, Frankfurt, Stuttgart)
+* Austria (long-distance, regional and local, e.g. Vienna, Graz, Linz, Salzburg, Innsbruck)
+* Belgium (long-distance, regional and local, e.g. Antwerp, Ghent, Charleroi, Brussels)
+* Luxembourg (long-distance, regional and local)
+* Denmark (long-distance, regional and local, e.g. Copenhagen)
+* Sweden (long-distance, regional and local, e.g. Stockholm)
+* Norwegen (long-distance, regional and local, e.g. Oslo, Bergen)
+* Poland (long-distance, regional and local, e.g. Warsaw)
+* U.K. (long-distance, regional and local, e.g. London)
+* Ireland (long-distance, regional and local, e.g. Dublin)
+
+### Local and Regional ###
+
+* Berlin & Brandenburg (local and regional)
+* Frankfurt/Rhine-Main, Kassel & Hesse (local and regional)
+* Munich (local and regional)
+* North Rhine-Westphalia (Cologne, Dortmund, Düsseldorf, Münster, ...) (local and regional)
+* Lüdenscheid & Märkischer Kreis (local and regional)
+* Paderborn & Höxter (local and regional)
+* Mannheim, Rhine-Neckar & Rhein-Nahe (local and regional)
+* Stuttgart (local and regional)
+* Neckar-Alb-Donau (Reutlingen, Tübingen, ...) (local and regional)
+* Ulm (local and regional)
+* Karlsruhe (local and regional)
+* Trier (local and regional)
+* Würzburg & Regensburg (local and regional)
+* Strasbourg & Freiburg (local and regional)
+* Baden-Württemberg, Constance & Basel (local and regional)
+* Kiel, Lübeck & Schleswig-Holstein (local and regional)
+* Hannover & Lower Saxony (local and regional)
+* Bremen, Bremerhaven & Oldenburg (local and regional)
+* Schwerin & Mecklenburg-Vorpommern (local and regional)
+* Leipzig, Halle & Saxony-Anhalt (local and regional)
+* Plauen & Vogtland (local and regional)
+* Vienna (local and regional)
+* Linz (bus, tram and cablecar)
+* Graz & Styria (local and regional)
+* Tyrol (local and regional)
+* London (local and regional)
+* Birmingham (local and regional)
+* Dublin (local and regional)
+* Maribor (local and regional)
+* Philadelphia (local and regional)
+* Sydney (local and regional)
+* Melbourne (local and regional)
+
+
+Contributing
+------------
+
+There is a lot to do to make this app better and more complete. So contributions are both encouraged and appreciated. If you want to do more than fixing bugs, please talk to me *before* doing any major work so that we can coordinate, prevent duplicated work and discuss the best approach for your undertaking.
+
+Missing features are documented in the [issue tracker](https://github.com/grote/Liberario/issues?labels=enhancement&state=open). Feel free to look there for ideas or to add your own.
+
+### Building From Source ###
+
+If you want to start working on Liberario and if you haven't done already, you should [familiarize yourself with Android development](https://developer.android.com/training/basics/firstapp/index.html) and [set up a development environment](https://developer.android.com/sdk/index.html).
+
+Then, you also need to run the following command to build a required library.
+
+`./build-pte.sh`
+
+### Adding Support For A New Area ###
+
+Ideally, Liberario will cover the whole world some day. To achieve this, we need more people adding support for other public transport networks. However, this is out of the scope of this app. It uses the [public transport enabler](http://code.google.com/p/public-transport-enabler/) library. This is the place where to add new transport networks. This way not only Liberario will benefit from your work, but also other apps using this library.
+
 
 License
 -------
