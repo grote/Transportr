@@ -124,33 +124,36 @@ public class TripDetailActivity extends Activity {
 					((TextView) legViewOld.findViewById(R.id.dMessageView)).setText(public_leg.message);
 				}
 
-				// hide show more indicator when there are no intermediate stops
-				if(public_leg.intermediateStops == null) {
-					((ImageView) legViewOld.findViewById(R.id.dShowMoreView)).setVisibility(View.GONE);
-				}
+				if(public_leg.intermediateStops != null & public_leg.intermediateStops.size() > 0) {
+					// get and add intermediate stops
+					view.addView(getStops(public_leg.intermediateStops));
 
-				// get and add intermediate stops
-				view.addView(getStops(public_leg.intermediateStops));
+					// set row as clickable
+					legViewOld.setClickable(true);
 
-				// make intermediate stops fold out and in on click
-				legViewOld.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-						ViewGroup parent = ((ViewGroup) view.getParent());
-						View v = parent.getChildAt(parent.indexOfChild(view) + 1);
-						if(v != null) {
-							if(v.getVisibility() == View.GONE) {
-								v.setVisibility(View.VISIBLE);
-								((ImageView) view.findViewById(R.id.dShowMoreView)).setRotation(180);
-							}
-							else if(v.getVisibility() == View.VISIBLE) {
-								v.setVisibility(View.GONE);
-								((ImageView) view.findViewById(R.id.dShowMoreView)).setRotation(0);
+					// show 'show more' indicator when there are intermediate stops
+					((ImageView) legViewOld.findViewById(R.id.dShowMoreView)).setVisibility(View.VISIBLE);
+
+					// make intermediate stops fold out and in on click
+					legViewOld.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View view) {
+							ViewGroup parent = ((ViewGroup) view.getParent());
+							View v = parent.getChildAt(parent.indexOfChild(view) + 1);
+							if(v != null) {
+								if(v.getVisibility() == View.GONE) {
+									v.setVisibility(View.VISIBLE);
+									((ImageView) view.findViewById(R.id.dShowMoreView)).setRotation(180);
+								}
+								else if(v.getVisibility() == View.VISIBLE) {
+									v.setVisibility(View.GONE);
+									((ImageView) view.findViewById(R.id.dShowMoreView)).setRotation(0);
+								}
 							}
 						}
-					}
 
-				});
+					});
+				}
 			}
 			else if(leg instanceof Trip.Individual) {
 				Individual individual = (Trip.Individual) leg;

@@ -2,7 +2,6 @@
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
     android:orientation="vertical"
     android:background="@drawable/selector_list_item"
     android:paddingBottom="2dp" >
@@ -92,7 +91,8 @@
                 android:id="@+id/dShowMoreView"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@android:drawable/ic_menu_more" />
+                android:src="@android:drawable/ic_menu_more"
+                android:visibility="gone" />
 
         </LinearLayout>
 
