@@ -55,8 +55,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
+            android:divider="?android:attr/dividerHorizontal"
+            android:showDividers="beginning|middle|end"
             android:shrinkColumns="1"
             android:stretchColumns="1" >
+
         </TableLayout>
 
     </ScrollView>

@@ -10,10 +10,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical" >
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
-            android:background="?android:attr/dividerHorizontal" />
+        <include layout="@layout/divider_horizontal"/>
 
         <LinearLayout
             android:layout_width="fill_parent"
