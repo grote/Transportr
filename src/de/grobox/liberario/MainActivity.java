@@ -31,6 +31,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -67,12 +68,13 @@ public class MainActivity extends FragmentActivity {
 		checkPreferences();
 
 		// From text input
-		AutoCompleteTextView from = (AutoCompleteTextView) findViewById(R.id.from);
+		final AutoCompleteTextView from = (AutoCompleteTextView) findViewById(R.id.from);
 		from.setAdapter(new LocationAutoCompleteAdapter(this, R.layout.list_item));
 		from.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
 				loc_from = (Location) parent.getItemAtPosition(position);
+				from.getBackground().setColorFilter(getResources().getColor(R.color.holo_green_light), PorterDuff.Mode.SRC_ATOP);
 			}
 		});
 		from.addTextChangedListener(new TextWatcher() {
@@ -80,18 +82,20 @@ public class MainActivity extends FragmentActivity {
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				// clear location
 				loc_from = null;
+				from.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
 			}
 			public void afterTextChanged(Editable s) {}
-			public void beforeTextChanged(CharSequence s, int start, int count,	int after) {}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 		});
 
 		// To text input
-		AutoCompleteTextView to = (AutoCompleteTextView) findViewById(R.id.to);
+		final AutoCompleteTextView to = (AutoCompleteTextView) findViewById(R.id.to);
 		to.setAdapter(new LocationAutoCompleteAdapter(this, R.layout.list_item));
 		to.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
 				loc_to = (Location) parent.getItemAtPosition(position);
+				to.getBackground().setColorFilter(getResources().getColor(R.color.holo_green_light), PorterDuff.Mode.SRC_ATOP);
 			}
 		});
 		to.addTextChangedListener(new TextWatcher() {
@@ -99,9 +103,10 @@ public class MainActivity extends FragmentActivity {
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				// clear location
 				loc_to = null;
+				to.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
 			}
 			public void afterTextChanged(Editable s) {}
-			public void beforeTextChanged(CharSequence s, int start, int count,	int after) {}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 		});
 
 		// timeView
