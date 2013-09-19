@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DIR=`pwd`
+DIR=$PWD
 
 mkdir -p sublibs/public-transport-enabler/enabler/src/de/schildbach/pte/live
 

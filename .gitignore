@@ -12,7 +12,6 @@ libs/public-transport-enabler.jar
 # generated files
 bin/
 gen/
-project.properties
 lint.xml
 
 # Local configuration file (sdk path, etc)
