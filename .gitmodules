@@ -4,3 +4,4 @@
 [submodule "sublibs/public-transport-enabler"]
 	path = sublibs/public-transport-enabler
 	url = https://code.google.com/p/public-transport-enabler
+	ignore = dirty
