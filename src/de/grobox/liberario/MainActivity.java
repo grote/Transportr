@@ -74,7 +74,8 @@ public class MainActivity extends FragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
 				loc_from = (Location) parent.getItemAtPosition(position);
-				from.getBackground().setColorFilter(getResources().getColor(R.color.holo_green_light), PorterDuff.Mode.SRC_ATOP);
+				from.requestFocus();
+				from.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
 			}
 		});
 		from.addTextChangedListener(new TextWatcher() {
@@ -89,13 +90,15 @@ public class MainActivity extends FragmentActivity {
 		});
 
 		// To text input
+
 		final AutoCompleteTextView to = (AutoCompleteTextView) findViewById(R.id.to);
 		to.setAdapter(new LocationAutoCompleteAdapter(this, R.layout.list_item));
 		to.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
 				loc_to = (Location) parent.getItemAtPosition(position);
-				to.getBackground().setColorFilter(getResources().getColor(R.color.holo_green_light), PorterDuff.Mode.SRC_ATOP);
+				to.requestFocus();
+				to.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
 			}
 		});
 		to.addTextChangedListener(new TextWatcher() {
