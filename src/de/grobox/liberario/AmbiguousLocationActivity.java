@@ -27,6 +27,7 @@ import de.schildbach.pte.dto.QueryTripsResult;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -43,6 +44,8 @@ public class AmbiguousLocationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ambiguous_location);
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Intent intent = getIntent();
 		trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
@@ -88,6 +91,19 @@ public class AmbiguousLocationActivity extends Activity {
 				query_trips.execute();
 			}
 		});
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				onBackPressed();
+
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 
