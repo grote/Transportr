@@ -23,16 +23,22 @@ import java.util.concurrent.ExecutionException;
 import de.schildbach.pte.dto.Location;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.TextView;
 
 public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implements Filterable {
 	private List<Location> resultList;
 	private Boolean addedFavs = false;
+	int resource;
 
 	public LocationAutoCompleteAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
+		resource = textViewResourceId;
 	}
 
 	@Override
@@ -86,6 +92,22 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 				}
 			}};
 			return filter;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		View view;
+		LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		if (convertView == null) {
+			view = inflater.inflate(resource, parent, false);
+		} else {
+			view = convertView;
+		}
+
+		((TextView) view).setText(getItem(position).uniqueShortName());
+
+		return view;
 	}
 
 	public int addFavs(FavLocation.LOC_TYPE sort) {

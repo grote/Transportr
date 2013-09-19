@@ -94,8 +94,8 @@ public class TripsActivity extends Activity {
 	}
 
 	private void setHeader() {
-		((TextView) findViewById(R.id.tripStartTextView)).setText(trips.from.name);
-		((TextView) findViewById(R.id.tripDestinationTextView)).setText(trips.to.name);
+		((TextView) findViewById(R.id.tripStartTextView)).setText(trips.from.uniqueShortName());
+		((TextView) findViewById(R.id.tripDestinationTextView)).setText(trips.to.uniqueShortName());
 	}
 
 	private void addTrips(final TableLayout main, List<Trip> trips, boolean append) {
@@ -113,9 +113,9 @@ public class TripsActivity extends Activity {
 
 				// Locations
 				TextView fromView = (TextView) row.findViewById(R.id.fromView);
-				fromView.setText(trip.from.name);
+				fromView.setText(trip.from.uniqueShortName());
 				TextView toView = ((TextView) row.findViewById(R.id.toView));
-				toView.setText(trip.to.name);
+				toView.setText(trip.to.uniqueShortName());
 
 				// Times
 				TextView departureTimeView = ((TextView) row.findViewById(R.id.departureTimeView));
