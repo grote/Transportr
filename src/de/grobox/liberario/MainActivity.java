@@ -73,7 +73,9 @@ public class MainActivity extends FragmentActivity {
 		from.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				loc_from = (Location) parent.getItemAtPosition(position);
+				Location loc = (Location) parent.getItemAtPosition(position);
+				from.setText(loc.uniqueShortName());
+				loc_from = loc;
 				from.requestFocus();
 				from.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
 			}
@@ -96,7 +98,9 @@ public class MainActivity extends FragmentActivity {
 		to.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				loc_to = (Location) parent.getItemAtPosition(position);
+				Location loc = (Location) parent.getItemAtPosition(position);
+				to.setText(loc.uniqueShortName());
+				loc_to = loc;
 				to.requestFocus();
 				to.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
 			}

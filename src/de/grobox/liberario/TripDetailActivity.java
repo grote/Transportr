@@ -111,6 +111,9 @@ public class TripDetailActivity extends Activity {
 				// set destination of line
 				if(public_leg.destination != null) {
 					((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(public_leg.destination.uniqueShortName());
+				} else {
+					// hide arrow because this line has no destination
+					((View) legViewOld.findViewById(R.id.dArrowView)).setVisibility(View.GONE);
 				}
 
 				// set arrival location in next row
@@ -124,7 +127,7 @@ public class TripDetailActivity extends Activity {
 					((TextView) legViewOld.findViewById(R.id.dMessageView)).setText(public_leg.message);
 				}
 
-				if(public_leg.intermediateStops != null & public_leg.intermediateStops.size() > 0) {
+				if(public_leg.intermediateStops != null && public_leg.intermediateStops.size() > 0) {
 					// get and add intermediate stops
 					view.addView(getStops(public_leg.intermediateStops));
 
