@@ -13,6 +13,11 @@ If you find any issues with this app, please report them at [the issue tracker](
 
 [![Flattr me](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/thing/1921242)
 
+Get Liberario
+-------------
+
+Liberario is about to be available in [F-Droid](http://fdroid.org) soon. Until that has happened, there is a preview apk [available for download](http://grobox.de/liberario/Liberario_1.apk). But please note, that in order to upgrade, you will have to uninstall it later which will cause you to lose all your favorites.
+
 
 Coverage
 --------
