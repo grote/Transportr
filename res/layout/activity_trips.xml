@@ -70,10 +70,9 @@
             android:id="@+id/activity_trips"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:showDividers="beginning|middle|end"
-            android:divider="?android:attr/dividerHorizontal"
             android:animateLayoutChanges="true"
-            android:shrinkColumns="0" />
+            android:shrinkColumns="2"
+            android:stretchColumns="2" />
 
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 

@@ -65,6 +65,9 @@ public class TripsActivity extends Activity {
 
 		final TableLayout main = (TableLayout) findViewById(R.id.activity_trips);
 
+		// add horizontal divider at top
+		main.addView(getDivider(this));
+
 		Intent intent = getIntent();
 		trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
 
@@ -153,9 +156,11 @@ public class TripsActivity extends Activity {
 				});
 
 				if(append) {
+					trip_layout.addView(getDivider(this));
 					main.addView(trip_layout);
 				}
 				else {
+					trip_layout.addView(getDivider(this), 0);
 					main.addView(trip_layout, 0);
 				}
 			}
@@ -198,6 +203,10 @@ public class TripsActivity extends Activity {
 		transportsView.setLayoutParams(llp);
 
 		lineLayout.addView(transportsView);
+	}
+
+	static public View getDivider(Context context) {
+		return (View) LayoutInflater.from(context).inflate(R.layout.divider_horizontal, null);
 	}
 
 	private void addTrips(final TableLayout main, List<Trip> trips) {

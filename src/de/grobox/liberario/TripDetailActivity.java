@@ -182,12 +182,15 @@ public class TripDetailActivity extends Activity {
 				((ImageView) legViewOld.findViewById(R.id.dShowMoreView)).setVisibility(View.GONE);
 			}
 
+			view.addView(TripsActivity.getDivider(this));
 			view.addView(legViewNew);
 
 			// save new leg view for next run of the loop
 			legViewOld = legViewNew;
 			i += 1;
 		}
+		// add horizontal divider at the end
+		view.addView(TripsActivity.getDivider(this));
 	}
 
 	private TableLayout getStops(List<Stop> stops) {
