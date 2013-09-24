@@ -2,9 +2,10 @@
 
 DIR=$PWD
 
-mkdir -p sublibs/public-transport-enabler/enabler/src/de/schildbach/pte/live
+cd sublibs/public-transport-enabler/enabler/
+mkdir -p src/de/schildbach/pte/live
 
-cat <<EOF > sublibs/public-transport-enabler/enabler/src/de/schildbach/pte/live/Secrets.java
+cat <<EOF > src/de/schildbach/pte/live/Secrets.java
 package de.schildbach.pte.live;
 
 /**
@@ -17,10 +18,7 @@ public final class Secrets
 }
 EOF
 
-cd sublibs/public-transport-enabler/enabler/
-
 mvn clean package -DskipTests
 
 cd $DIR
-
 cp sublibs/public-transport-enabler/enabler/target/public-transport-enabler*.jar libs/public-transport-enabler.jar

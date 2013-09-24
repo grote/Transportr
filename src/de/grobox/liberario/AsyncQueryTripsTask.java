@@ -30,7 +30,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.NetworkProviderFactory;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
 

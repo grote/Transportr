@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.List;
 
 import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.NetworkProviderFactory;
 import de.schildbach.pte.dto.Location;
 import android.content.Context;
 import android.os.AsyncTask;

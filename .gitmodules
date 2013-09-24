@@ -1,6 +1,6 @@
 [submodule "sublibs/Android-PullToRefresh"]
 	path = sublibs/Android-PullToRefresh
-	url = git@github.com:chrisbanes/Android-PullToRefresh.git
+	url = https://github.com/chrisbanes/Android-PullToRefresh.git
 [submodule "sublibs/public-transport-enabler"]
 	path = sublibs/public-transport-enabler
 	url = https://code.google.com/p/public-transport-enabler

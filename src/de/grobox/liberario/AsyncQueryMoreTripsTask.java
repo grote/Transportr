@@ -20,7 +20,6 @@ package de.grobox.liberario;
 import java.io.IOException;
 
 import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.NetworkProviderFactory;
 import de.schildbach.pte.dto.QueryTripsContext;
 import de.schildbach.pte.dto.QueryTripsResult;
 
