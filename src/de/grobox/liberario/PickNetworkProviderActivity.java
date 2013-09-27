@@ -34,7 +34,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -81,16 +80,6 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 				parent.setItemChecked(index, true);
 				selectedRegion = groupPosition;
 				return false;
-			}
-		});
-
-		// onGroupClick
-		expListView.setOnGroupClickListener(new OnGroupClickListener() {
-			@Override
-			public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-				// don't allow collapsing of region that has selected network  
-				if(groupPosition == selectedRegion)	return true;
-				else return false;
 			}
 		});
 
