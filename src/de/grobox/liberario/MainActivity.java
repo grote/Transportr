@@ -153,6 +153,9 @@ public class MainActivity extends FragmentActivity {
 					return;
 				}
 
+				// remember trip
+				FavFile.addFavTrip(getBaseContext(), new FavTrip(loc_from, loc_to));
+
 				// set date
 				query_trips.setDate(DateUtils.mergeDateTime(getApplicationContext(), dateView.getText(), timeView.getText()));
 
@@ -260,8 +263,7 @@ public class MainActivity extends FragmentActivity {
 		}
 		// we have a location, so make it a favorite
 		else {
-			//FavFile.resetFavList(getBaseContext());
-			List<FavLocation> fav_list = FavFile.getFavList(getBaseContext());
+			List<FavLocation> fav_list = FavFile.getFavLocationList(getBaseContext());
 			FavLocation fav_loc = new FavLocation(loc);
 			if(fav_list.contains(fav_loc)){
 				// increase counter by one for existing location
@@ -276,7 +278,7 @@ public class MainActivity extends FragmentActivity {
 
 				fav_list.add(fav_loc);
 			}
-			FavFile.setFavList(getBaseContext(), fav_list);
+			FavFile.setFavLocationList(getBaseContext(), fav_list);
 		}
 
 		return true;
@@ -364,7 +366,7 @@ public class MainActivity extends FragmentActivity {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_clear_favs:
-				FavFile.resetFavList(this);
+				FavFile.resetFavLocationList(this);
 				refreshFavs();
 
 				return true;

@@ -37,15 +37,16 @@ import android.content.DialogInterface;
 
 public class FavFile {
 
-	static public final String FAV_FILE = "favs_";
+	static public final String FAV_LOC_FILE = "favs_";
+	static public final String FAV_TRIP_FILE = "favs_trip_";
 
 	@SuppressWarnings("unchecked")
-	public static List<FavLocation> getFavList(Context context) {
+	public static List<FavLocation> getFavLocationList(Context context) {
 		List<FavLocation> fav_list = new ArrayList<FavLocation>();
 
 		FileInputStream fis = null;
 		try {
-			fis = context.openFileInput(FAV_FILE + Preferences.getNetwork(context));
+			fis = context.openFileInput(FAV_LOC_FILE + Preferences.getNetwork(context));
 		} catch (FileNotFoundException e) {
 			return fav_list;
 		}
@@ -90,7 +91,7 @@ public class FavFile {
 	}
 
 	public static List<Location> getFavLocationList(Context context, FavLocation.LOC_TYPE sort) {
-		List<FavLocation> fav_list = getFavList(context);
+		List<FavLocation> fav_list = getFavLocationList(context);
 		List<Location> list = new ArrayList<Location>();
 
 		if(sort == FavLocation.LOC_TYPE.FROM) {
@@ -107,10 +108,10 @@ public class FavFile {
 		return list;
 	}
 
-	public static void setFavList(Context context, List<FavLocation> favList) {
+	public static void setFavLocationList(Context context, List<FavLocation> favList) {
 		FileOutputStream fos = null;
 		try {
-			fos = context.openFileOutput(FAV_FILE + Preferences.getNetwork(context), Context.MODE_PRIVATE);
+			fos = context.openFileOutput(FAV_LOC_FILE + Preferences.getNetwork(context), Context.MODE_PRIVATE);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,7 +128,7 @@ public class FavFile {
 		}
 	}
 
-	public static void resetFavList(final Context context) {
+	public static void resetFavLocationList(final Context context) {
 		// show confirmation dialog
 		new AlertDialog.Builder(context)
 		.setMessage(context.getResources().getString(R.string.clear_favs))
@@ -135,7 +136,7 @@ public class FavFile {
 			public void onClick(DialogInterface dialog, int id) {
 				// actually reset the fav file
 				List<FavLocation> fav_list = new ArrayList<FavLocation>();
-				setFavList(context, fav_list);
+				setFavLocationList(context, fav_list);
 			}
 		})
 		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -146,4 +147,89 @@ public class FavFile {
 		.show();
 	}
 
+
+	/* FavTrip */
+
+	@SuppressWarnings("unchecked")
+	public static List<FavTrip> getFavTripList(Context context) {
+		List<FavTrip> fav_list = new ArrayList<FavTrip>();
+
+		FileInputStream fis = null;
+		try {
+			fis = context.openFileInput(FAV_TRIP_FILE + Preferences.getNetwork(context));
+		} catch (FileNotFoundException e) {
+			return fav_list;
+		}
+		ObjectInputStream is = null;
+		try {
+			is = new ObjectInputStream(fis);
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return fav_list;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return fav_list;
+		}
+
+		try {
+			// TODO take care of unchecked cast
+			if(is != null) fav_list = (List<FavTrip>) is.readObject();
+		} catch (OptionalDataException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return fav_list;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return fav_list;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return fav_list;
+		}
+		try {
+			is.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return fav_list;
+		}
+
+		Collections.sort(fav_list);
+
+		return fav_list;
+	}
+
+	public static void addFavTrip(Context context, FavTrip fav) {
+		List<FavTrip> fav_list = getFavTripList(context);
+
+		if(fav_list.contains(fav)){
+			// increase counter by one for existing location
+			fav_list.get(fav_list.indexOf(fav)).addCount();
+		}
+		else {
+			// do not add new favorite trip, if it is not marked as favorite already
+		}
+
+		FavFile.setFavTripList(context, fav_list);
+	}
+
+	public static void setFavTripList(Context context, List<FavTrip> favList) {
+		FileOutputStream fos = null;
+		try {
+			fos = context.openFileOutput(FAV_TRIP_FILE + Preferences.getNetwork(context), Context.MODE_PRIVATE);
+		} catch (FileNotFoundException e) {	}
+
+		ObjectOutputStream os;
+		try {
+			os = new ObjectOutputStream(fos);
+			os.writeObject(favList);
+			os.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
