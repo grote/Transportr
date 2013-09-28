@@ -89,6 +89,7 @@ public final class NetworkProviderFactory
 	private static Reference<SeptaProvider> septaProviderRef;
 	private static Reference<SydneyProvider> sydneyProviderRef;
 	private static Reference<MetProvider> metProviderRef;
+	private static Reference<VgsProvider> vgsProviderRef;
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
 	{
@@ -896,6 +897,19 @@ public final class NetworkProviderFactory
 
 			final MetProvider provider = new MetProvider();
 			metProviderRef = new SoftReference<MetProvider>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.VGS))
+		{
+			if (vgsProviderRef != null)
+			{
+				final VgsProvider provider = vgsProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final VgsProvider provider = new VgsProvider();
+			vgsProviderRef = new SoftReference<VgsProvider>(provider);
 			return provider;
 		}
 		else
