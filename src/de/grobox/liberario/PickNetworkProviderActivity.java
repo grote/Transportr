@@ -100,7 +100,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 
 					editor.commit();
 
-					MainActivity.subtitle = network;
+					DirectionsFragment.subtitle = network;
 
 					finish();
 				}
