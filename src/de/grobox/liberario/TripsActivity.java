@@ -28,6 +28,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 import de.grobox.liberario.R;
 import de.schildbach.pte.dto.Line;
+import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Style.Shape;
 import de.schildbach.pte.dto.Trip;
@@ -55,6 +56,8 @@ import android.widget.TextView;
 public class TripsActivity extends Activity {
 	private QueryTripsResult trips;
 	private Menu mMenu;
+	private Location from;
+	private Location to;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,9 @@ public class TripsActivity extends Activity {
 
 		Intent intent = getIntent();
 		trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
+		// also get locations, because the trip locations are sometimes still ambiguous
+		from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.from");
+		to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.to");
 
 		setHeader();
 		addTrips(main, trips.trips);
@@ -218,6 +224,8 @@ public class TripsActivity extends Activity {
 
 		Intent intent = new Intent(this, TripDetailActivity.class);
 		intent.putExtra("de.schildbach.pte.dto.Trip", trip);
+		intent.putExtra("de.schildbach.pte.dto.Trip.from", from);
+		intent.putExtra("de.schildbach.pte.dto.Trip.to", to);
 		startActivity(intent);
 	}
 

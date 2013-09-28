@@ -30,7 +30,6 @@ import java.util.Collections;
 import java.util.List;
 
 import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.Trip;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -231,28 +230,17 @@ public class FavFile {
 		}
 	}
 
-	public static boolean isFavTrip(Context context, Trip trip) {
-		if(trip == null) {
-			return false;
-		}
-
-		FavTrip fav = new FavTrip(trip.from, trip.to);
-
+	public static boolean isFavTrip(Context context, FavTrip fav) {
 		if(getFavTripList(context).contains(fav)){
 			return true;
 		}
 		return false;
 	}
 
-	public static void favTrip(Context context, Trip trip) {
-		FavTrip fav = new FavTrip(trip.from, trip.to);
+	public static void favTrip(Context context, FavTrip fav) {
 		List<FavTrip> fav_list = getFavTripList(context);
 
-		if(fav_list.contains(fav)){
-			// increase counter by one for existing trip
-			fav_list.get(fav_list.indexOf(fav)).addCount();
-		}
-		else {
+		if(!fav_list.contains(fav)){
 			// add trip as favorite
 			fav_list.add(fav);
 		}
@@ -260,8 +248,7 @@ public class FavFile {
 		FavFile.setFavTripList(context, fav_list);
 	}
 
-	public static void unfavTrip(Context context, Trip trip) {
-		FavTrip fav = new FavTrip(trip.from, trip.to);
+	public static void unfavTrip(Context context, FavTrip fav) {
 		List<FavTrip> fav_list = getFavTripList(context);
 
 		if(fav_list.contains(fav)){

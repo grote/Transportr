@@ -19,41 +19,58 @@ package de.grobox.liberario;
 
 import java.util.List;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class FavTripsFragment extends Fragment {
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setHasOptionsMenu(true);
-	}
+public class FavTripsFragment extends ListFragment {
+	private FavTripArrayAdapter adapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_fav_trips, container, false);
+		adapter = new FavTripArrayAdapter(getActivity(), R.layout.list_item, FavFile.getFavTripList(getActivity()));
+		setListAdapter(adapter);
+
+		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
 	@Override
-	public void onStart() {
-		super.onStart();
+	public void onResume() {
+		super.onResume();
 
-		TextView text = (TextView) getView().findViewById(R.id.favTrips);
+		// reload data because it might have changed
+		adapter.clear();
+		adapter.addAll(FavFile.getFavTripList(getActivity()));
+	}
 
-		List<FavTrip> trips = FavFile.getFavTripList(getActivity());
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		FavTrip trip = (FavTrip) l.getItemAtPosition(position);
 
-		String tmp = "";
+		AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
+		query_trips.setFrom(trip.getFrom());
+		query_trips.setTo(trip.getTo());
 
-		for(final FavTrip trip : trips) {
-			tmp += trip.getFrom().uniqueShortName() + " -> " + trip.getTo().uniqueShortName() +"\n";
+		// remember trip
+		FavFile.useFavTrip(getActivity(), trip);
+
+		query_trips.execute();
+	}
+
+	private class FavTripArrayAdapter extends ArrayAdapter<FavTrip> {
+		public FavTripArrayAdapter(Context context, int textViewResourceId,	List<FavTrip> objects) {
+			super(context, textViewResourceId, objects);
 		}
 
-		text.setText(tmp);
+		@Override
+		public boolean hasStableIds() {
+			return true;
+		}
 	}
 
 }

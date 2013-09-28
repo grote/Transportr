@@ -83,4 +83,9 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 		return other.getCount() - getCount();
 	}
 
+	@Override
+	public String toString() {
+		return getFrom().uniqueShortName() + " → " + getTo().uniqueShortName() + " (" + Integer.toString(getCount()) + ")";
+	}
+
 }

@@ -3,6 +3,7 @@ package de.grobox.liberario;
 import java.util.Date;
 import java.util.List;
 
+import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Individual;
@@ -27,6 +28,8 @@ import android.widget.ImageView;
 public class TripDetailActivity extends Activity {
 	private TableLayout view;
 	private Trip trip;
+	private Location from;
+	private Location to;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,10 @@ public class TripDetailActivity extends Activity {
 		Intent intent = getIntent();
 
 		trip = (Trip) intent.getSerializableExtra("de.schildbach.pte.dto.Trip");
+		// also get locations, because the trip locations are sometimes still ambiguous
+		from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.from");
+		to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.to");
+
 		addHeader(trip);
 		addLegs(trip.legs);
 	}
@@ -50,7 +57,7 @@ public class TripDetailActivity extends Activity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trip_detail_activity_actions, menu);
 
-		if(FavFile.isFavTrip(getBaseContext(), trip)) {
+		if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.fav_on);
 		} else {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.fav_off);
@@ -67,12 +74,12 @@ public class TripDetailActivity extends Activity {
 
 				return true;
 			case R.id.action_fav_trip:
-				if(FavFile.isFavTrip(getBaseContext(), trip)) {
+				if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
 					// TODO confirmation dialog: unfav deletes count
-					FavFile.unfavTrip(getBaseContext(), trip);
+					FavFile.unfavTrip(getBaseContext(), new FavTrip(from, to));
 					item.setIcon(R.drawable.fav_off);
 				} else {
-					FavFile.favTrip(getBaseContext(), trip);
+					FavFile.favTrip(getBaseContext(), new FavTrip(from, to));
 					item.setIcon(R.drawable.fav_on);
 				}
 

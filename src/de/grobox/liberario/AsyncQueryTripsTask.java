@@ -39,7 +39,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	private ProgressDialog pd;
 	private Location from;
 	private Location to;
-	private Date date;
+	private Date date = new Date();
 	private Boolean departure = true;
 
 	public AsyncQueryTripsTask(Context context) {
@@ -109,6 +109,8 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 
 			Intent intent = new Intent(context, TripsActivity.class);
 			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult", result);
+			intent.putExtra("de.schildbach.pte.dto.Trip.from", from);
+			intent.putExtra("de.schildbach.pte.dto.Trip.to", to);
 			context.startActivity(intent);
 		}
 		else if(result.status == QueryTripsResult.Status.AMBIGUOUS) {
