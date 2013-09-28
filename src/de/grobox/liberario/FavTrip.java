@@ -71,8 +71,7 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 
 		if(o instanceof FavTrip) {
 			if(getFrom().equals(((FavTrip) o).getFrom()) &&
-					getTo().equals(((FavTrip) o).getTo()) &&
-					getVia().equals(((FavTrip) o).getVia())) {
+					getTo().equals(((FavTrip) o).getTo())) {
 				return true;
 			}
 		}

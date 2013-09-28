@@ -30,6 +30,7 @@ import java.util.Collections;
 import java.util.List;
 
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.Trip;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -202,18 +203,15 @@ public class FavFile {
 		return fav_list;
 	}
 
-	public static void addFavTrip(Context context, FavTrip fav) {
+	public static void useFavTrip(Context context, FavTrip fav) {
 		List<FavTrip> fav_list = getFavTripList(context);
 
 		if(fav_list.contains(fav)){
-			// increase counter by one for existing location
+			// increase counter by one for existing trip
 			fav_list.get(fav_list.indexOf(fav)).addCount();
-		}
-		else {
-			// do not add new favorite trip, if it is not marked as favorite already
-		}
 
-		FavFile.setFavTripList(context, fav_list);
+			FavFile.setFavTripList(context, fav_list);
+		}
 	}
 
 	public static void setFavTripList(Context context, List<FavTrip> favList) {
@@ -231,5 +229,46 @@ public class FavFile {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public static boolean isFavTrip(Context context, Trip trip) {
+		if(trip == null) {
+			return false;
+		}
+
+		FavTrip fav = new FavTrip(trip.from, trip.to);
+
+		if(getFavTripList(context).contains(fav)){
+			return true;
+		}
+		return false;
+	}
+
+	public static void favTrip(Context context, Trip trip) {
+		FavTrip fav = new FavTrip(trip.from, trip.to);
+		List<FavTrip> fav_list = getFavTripList(context);
+
+		if(fav_list.contains(fav)){
+			// increase counter by one for existing trip
+			fav_list.get(fav_list.indexOf(fav)).addCount();
+		}
+		else {
+			// add trip as favorite
+			fav_list.add(fav);
+		}
+
+		FavFile.setFavTripList(context, fav_list);
+	}
+
+	public static void unfavTrip(Context context, Trip trip) {
+		FavTrip fav = new FavTrip(trip.from, trip.to);
+		List<FavTrip> fav_list = getFavTripList(context);
+
+		if(fav_list.contains(fav)){
+			// remove trip from favorites
+			fav_list.remove(fav);
+		}
+
+		FavFile.setFavTripList(context, fav_list);
 	}
 }

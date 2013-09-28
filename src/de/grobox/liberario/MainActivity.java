@@ -154,7 +154,7 @@ public class MainActivity extends FragmentActivity {
 				}
 
 				// remember trip
-				FavFile.addFavTrip(getBaseContext(), new FavTrip(loc_from, loc_to));
+				FavFile.useFavTrip(getBaseContext(), new FavTrip(loc_from, loc_to));
 
 				// set date
 				query_trips.setDate(DateUtils.mergeDateTime(getApplicationContext(), dateView.getText(), timeView.getText()));

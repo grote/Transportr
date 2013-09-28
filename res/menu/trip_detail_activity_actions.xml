@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_fav_trip"
+        android:icon="@drawable/fav_off"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_fav_trip"/>
+
+</menu>

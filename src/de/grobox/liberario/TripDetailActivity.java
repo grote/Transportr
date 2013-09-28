@@ -13,6 +13,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import android.widget.ImageView;
 
 public class TripDetailActivity extends Activity {
 	private TableLayout view;
+	private Trip trip;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +39,23 @@ public class TripDetailActivity extends Activity {
 
 		Intent intent = getIntent();
 
-		Trip trip = (Trip) intent.getSerializableExtra("de.schildbach.pte.dto.Trip");
+		trip = (Trip) intent.getSerializableExtra("de.schildbach.pte.dto.Trip");
 		addHeader(trip);
 		addLegs(trip.legs);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.trip_detail_activity_actions, menu);
+
+		if(FavFile.isFavTrip(getBaseContext(), trip)) {
+			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.fav_on);
+		} else {
+			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.fav_off);
+		}
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -47,6 +64,17 @@ public class TripDetailActivity extends Activity {
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				onBackPressed();
+
+				return true;
+			case R.id.action_fav_trip:
+				if(FavFile.isFavTrip(getBaseContext(), trip)) {
+					// TODO confirmation dialog: unfav deletes count
+					FavFile.unfavTrip(getBaseContext(), trip);
+					item.setIcon(R.drawable.fav_off);
+				} else {
+					FavFile.favTrip(getBaseContext(), trip);
+					item.setIcon(R.drawable.fav_on);
+				}
 
 				return true;
 			default:
