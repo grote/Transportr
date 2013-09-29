@@ -1,7 +1,7 @@
 Liberario
 =========
 
-A Free Software public transport app for Android which you can freely use, study, share and improve.
+A Free Software public transport app for Android which you can freely use, study, share and improve. It's name comes from *libertad* and *horario* which means *freedom* and *timetable*.
 
 ![Liberario Logo](/res/drawable-xhdpi/ic_launcher.png)
 
@@ -16,8 +16,8 @@ If you find any issues with this app, please report them at [the issue tracker](
 Get Liberario
 -------------
 
-Liberario is about to be available in [F-Droid](http://fdroid.org) soon. Until that has happened, there is a preview apk [available for download](http://grobox.de/liberario/Liberario_1.apk). But please note, that in order to upgrade, you will have to uninstall it later which will cause you to lose all your favorites.
-
+[![Available on F-Droid](https://f-droid.org/wiki/images/c/c4/F-Droid-button_available-on.png)](https://f-droid.org/repository/browse/?fdid=de.grobox.liberario)
+[![Available on Google Play](https://developer.android.com/images/brand/en_app_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=de.grobox.liberario)
 
 Coverage
 --------
