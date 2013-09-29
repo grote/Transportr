@@ -56,12 +56,9 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class DirectionsFragment extends Fragment {
-
-	private Location loc_from;
-	private Location loc_to;
-
 	public static String subtitle = null;
 	static final int CHANGED_NETWORK_PROVIDER = 1;
+	private boolean mChange = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -86,19 +83,15 @@ public class DirectionsFragment extends Fragment {
 		from.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				Location loc = (Location) parent.getItemAtPosition(position);
-				from.setText(loc.uniqueShortName());
-				loc_from = loc;
+				setFrom((Location) parent.getItemAtPosition(position));
 				from.requestFocus();
-				from.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
 			}
 		});
 		from.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				// clear location
-				loc_from = null;
-				from.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
+				setFrom(null);
 			}
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -117,19 +110,15 @@ public class DirectionsFragment extends Fragment {
 		to.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				Location loc = (Location) parent.getItemAtPosition(position);
-				to.setText(loc.uniqueShortName());
-				loc_to = loc;
+				setTo((Location) parent.getItemAtPosition(position));
 				to.requestFocus();
-				to.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
 			}
 		});
 		to.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				// clear location
-				loc_to = null;
-				to.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
+				setTo(null);
 			}
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -174,7 +163,7 @@ public class DirectionsFragment extends Fragment {
 
 				// check and set from location
 				if(checkLocation(FavLocation.LOC_TYPE.FROM, (AutoCompleteTextView) getView().findViewById(R.id.from))) {
-					query_trips.setFrom(loc_from);
+					query_trips.setFrom(getFrom());
 				}
 				else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
@@ -183,7 +172,7 @@ public class DirectionsFragment extends Fragment {
 
 				// check and set to location
 				if(checkLocation(FavLocation.LOC_TYPE.TO, (AutoCompleteTextView) getView().findViewById(R.id.to))) {
-					query_trips.setTo(loc_to);
+					query_trips.setTo(getTo());
 				}
 				else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), Toast.LENGTH_SHORT).show();
@@ -191,7 +180,7 @@ public class DirectionsFragment extends Fragment {
 				}
 
 				// remember trip
-				FavFile.useFavTrip(getActivity(), new FavTrip(loc_from, loc_to));
+				FavFile.useFavTrip(getActivity(), new FavTrip(getFrom(), getTo()));
 
 				// set date
 				query_trips.setDate(DateUtils.mergeDateTime(getActivity(), dateView.getText(), timeView.getText()));
@@ -216,6 +205,12 @@ public class DirectionsFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
+			case R.id.action_swap_locations:
+				Location tmp = getFrom();
+				setFrom(getTo());
+				setTo(tmp);
+
+				return true;
 			case R.id.action_clear_favs:
 				FavFile.resetFavLocationList(getActivity());
 				refreshFavs();
@@ -235,6 +230,52 @@ public class DirectionsFragment extends Fragment {
 			refreshFavs();
 			((AutoCompleteTextView) getView().findViewById(R.id.from)).setText("");
 			((AutoCompleteTextView) getView().findViewById(R.id.to)).setText("");
+		}
+	}
+
+	private Location getFrom() {
+		AutoCompleteTextView fromView = (AutoCompleteTextView) getView().findViewById(R.id.from);
+		Location from = (Location) fromView.getTag();
+		return from;
+	}
+
+	private void setFrom(Location loc) {
+		if(!mChange) {
+			mChange = true;
+			AutoCompleteTextView fromView = (AutoCompleteTextView) getView().findViewById(R.id.from);
+			fromView.setTag(loc);
+
+			if(loc != null) {
+				fromView.setText(loc.uniqueShortName());
+				fromView.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+			}
+			else {
+				fromView.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
+			}
+			mChange = false;
+		}
+	}
+
+	private Location getTo() {
+		AutoCompleteTextView toView = (AutoCompleteTextView) getView().findViewById(R.id.to);
+		Location to = (Location) toView.getTag();
+		return to;
+	}
+
+	private void setTo(Location loc) {
+		if(!mChange) {
+			mChange = true;
+			AutoCompleteTextView toView = (AutoCompleteTextView) getView().findViewById(R.id.to);
+			toView.setTag(loc);
+
+			if(loc != null) {
+				toView.setText(loc.uniqueShortName());
+				toView.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+			}
+			else {
+				toView.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
+			}
+			mChange = false;
 		}
 	}
 
@@ -302,18 +343,18 @@ public class DirectionsFragment extends Fragment {
 	private Boolean checkLocation(FavLocation.LOC_TYPE loc_type, AutoCompleteTextView view) {
 		// ugly hack to have one method for all private location vars because call by reference isn't possible
 		Location loc = null;
-		if(loc_type == FavLocation.LOC_TYPE.FROM) loc = loc_from;
-		else if(loc_type == FavLocation.LOC_TYPE.TO) loc = loc_to;
+		if(loc_type == FavLocation.LOC_TYPE.FROM) loc = getFrom();
+		else if(loc_type == FavLocation.LOC_TYPE.TO) loc = getTo();
 
 		if(loc == null) {
 			// no location was selected by user
 			if(!view.getText().toString().equals("")) {
 				// no location selected, but text entered. So let's try create locations from text
 				if(loc_type == FavLocation.LOC_TYPE.FROM) {
-					loc_from = new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString());
+					setFrom(new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString()));
 				}
 				else if(loc_type == FavLocation.LOC_TYPE.TO) {
-					loc_to = new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString());
+					setTo(new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString()));
 				}
 				return true;
 			}

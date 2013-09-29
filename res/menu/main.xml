@@ -3,12 +3,14 @@
     <item
         android:id="@+id/action_settings"
         android:showAsAction="ifRoom"
+        android:menuCategory="system"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/action_settings" />
 
     <item
         android:id="@+id/action_about"
         android:title="@string/action_about"
+        android:menuCategory="system"
         android:icon="@android:drawable/ic_menu_info_details"
         android:showAsAction="ifRoom" />
 

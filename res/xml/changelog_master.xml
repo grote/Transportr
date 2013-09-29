@@ -2,6 +2,8 @@
 <changelog>
 
     <release version="0.2" versioncode="2">
+        <change>Trips can now be marked as favorites. They can be accessed by swiping right in the main screen or by using the new tab bar.</change>
+        <change>Button to switch From and To location</change>
         <change>Added German Translation (Thanks to Martin Riesner)</change>
     </release>
 
