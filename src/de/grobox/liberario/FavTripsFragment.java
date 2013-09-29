@@ -37,7 +37,7 @@ public class FavTripsFragment extends ListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		adapter = new FavTripArrayAdapter(getActivity(), R.layout.list_item, FavFile.getFavTripList(getActivity()));
+		adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavFile.getFavTripList(getActivity()));
 		setListAdapter(adapter);
 
 		return super.onCreateView(inflater, container, savedInstanceState);
