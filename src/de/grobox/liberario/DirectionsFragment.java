@@ -206,6 +206,27 @@ public class DirectionsFragment extends Fragment {
 	}
 
 	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// Inflate the menu items for use in the action bar
+		inflater.inflate(R.menu.directions, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+			case R.id.action_clear_favs:
+				FavFile.resetFavLocationList(getActivity());
+				refreshFavs();
+
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// Check which request we're responding to
 		if(requestCode == CHANGED_NETWORK_PROVIDER) {
@@ -387,35 +408,6 @@ public class DirectionsFragment extends Fragment {
 		public void onDateSet(DatePicker view, int year, int month, int day) {
 			TextView dateView = (TextView) getActivity().findViewById(R.id.dateView);
 			dateView.setText(DateUtils.formatDate(getActivity().getApplicationContext(), year, month, day));
-		}
-	}
-
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		// Inflate the menu items for use in the action bar
-		inflater.inflate(R.menu.main, menu);
-		super.onCreateOptionsMenu(menu, inflater);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle presses on the action bar items
-		switch (item.getItemId()) {
-			case R.id.action_clear_favs:
-				FavFile.resetFavLocationList(getActivity());
-				refreshFavs();
-
-				return true;
-			case R.id.action_settings:
-				startActivityForResult(new Intent(getActivity(), PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
-
-				return true;
-			case R.id.action_about:
-				startActivity(new Intent(getActivity(), AboutActivity.class));
-
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
 		}
 	}
 
