@@ -19,12 +19,16 @@ package de.grobox.liberario;
 
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -37,6 +41,35 @@ public class FavTripsFragment extends ListFragment {
 		setListAdapter(adapter);
 
 		return super.onCreateView(inflater, container, savedInstanceState);
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedState) {
+		super.onActivityCreated(savedState);
+
+		// remove trip on long click
+		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+				final FavTrip trip = (FavTrip) parent.getItemAtPosition(position);
+
+				new AlertDialog.Builder(getActivity())
+				.setMessage(getActivity().getResources().getString(R.string.clear_fav_trips))
+				.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						FavFile.unfavTrip(getActivity(), trip);
+						adapter.remove(trip);
+					}
+				})
+				.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				})
+				.show();
+				return true;
+			}
+		});
 	}
 
 	@Override
@@ -61,6 +94,7 @@ public class FavTripsFragment extends ListFragment {
 
 		query_trips.execute();
 	}
+
 
 	private class FavTripArrayAdapter extends ArrayAdapter<FavTrip> {
 		public FavTripArrayAdapter(Context context, int textViewResourceId,	List<FavTrip> objects) {

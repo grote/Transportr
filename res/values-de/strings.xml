@@ -42,6 +42,7 @@
     <string name="pick_network_activity">Wähle ein Verkehrs-Netzwerk</string>
     <string name="pick_network_first_run">Dies ist das erste Mal, dass Du Liberario gestartet hast. Bitte wähle deinen Verkehrsverbund um fortzufahren!</string>
     <string name="clear_favs">Bist du sicher, dass Du deine Favoriten im aktuellen Netzwerk löschen willst?</string>
+    <string name="clear_fav_trips">Bist du sicher, dass Du diese Verbindung aus den Favoriten löschen möchtest? Die Anzahl der Benutzungen geht dabei verloren.</string>
     <string name="trip_searching">Suche nach Verbindungen&#8230;</string>
 
     <string name="error_pick_network">Wähle genau ein Verkehrs-Netzwerk!</string>

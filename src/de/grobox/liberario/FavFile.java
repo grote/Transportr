@@ -254,8 +254,8 @@ public class FavFile {
 		if(fav_list.contains(fav)){
 			// remove trip from favorites
 			fav_list.remove(fav);
+			FavFile.setFavTripList(context, fav_list);
 		}
-
-		FavFile.setFavTripList(context, fav_list);
 	}
+
 }
