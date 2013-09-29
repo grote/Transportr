@@ -20,6 +20,8 @@ package de.grobox.liberario;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.cketti.library.changelog.ChangeLog;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -77,5 +79,12 @@ public class MainActivity extends FragmentActivity {
 		});
 
 		mViewPager.setAdapter(mainPagerAdapter);
+
+		// show Changelog
+		ChangeLog cl = new ChangeLog(this);
+		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
+			cl.getLogDialog().show();
+		}
+
 	}
 }

@@ -5,3 +5,6 @@
 	path = sublibs/public-transport-enabler
 	url = https://code.google.com/p/public-transport-enabler
 	ignore = dirty
+[submodule "sublibs/ckChangeLog"]
+	path = sublibs/ckChangeLog
+	url = git@github.com:cketti/ckChangeLog.git
