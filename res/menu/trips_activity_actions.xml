@@ -1,6 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:id="@+id/action_fav_trip"
+        android:icon="@drawable/fav_off"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_fav_trip"/>
+    <item
         android:id="@+id/action_earlier"
         android:icon="@drawable/navigation_previous_item"
         android:showAsAction="never"

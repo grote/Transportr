@@ -33,14 +33,14 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 	public FavTrip(Location from, Location to) {
 		this.from = from;
 		this.to = to;
-		this.count = 0;
+		this.count = 1;
 	}
 
 	public FavTrip(Location from, Location to, Location via) {
 		this.from = from;
 		this.to = to;
 		this.via = via;
-		this.count = 0;
+		this.count = 1;
 	}
 
 	public Location getFrom() {

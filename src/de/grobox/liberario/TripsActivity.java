@@ -36,7 +36,9 @@ import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -96,6 +98,69 @@ public class TripsActivity extends Activity {
 				startGetMoreTrips(later);
 			}
 		});
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO show later/earlier options only if provider has the capability
+
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.trips_activity_actions, menu);
+		mMenu = menu;
+
+		if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
+			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.fav_on);
+		} else {
+			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.fav_off);
+		}
+
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				onBackPressed();
+
+				return true;
+			case R.id.action_fav_trip:
+				if(FavFile.isFavTrip(this, new FavTrip(from, to))) {
+					new AlertDialog.Builder(this)
+					.setMessage(getResources().getString(R.string.clear_fav_trips))
+					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							FavFile.unfavTrip(getBaseContext(), new FavTrip(from, to));
+							item.setIcon(R.drawable.fav_off);
+						}
+					})
+					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							dialog.cancel();
+						}
+					})
+					.show();
+				} else {
+					FavFile.favTrip(getBaseContext(), new FavTrip(from, to));
+					item.setIcon(R.drawable.fav_on);
+				}
+
+				return true;
+			case R.id.action_earlier:
+				setProgress(false, true);
+				startGetMoreTrips(false);
+
+				return true;
+			case R.id.action_later:
+				setProgress(true, true);
+				startGetMoreTrips(true);
+
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 	public void startGetMoreTrips(boolean later) {
@@ -227,40 +292,6 @@ public class TripsActivity extends Activity {
 		intent.putExtra("de.schildbach.pte.dto.Trip.from", from);
 		intent.putExtra("de.schildbach.pte.dto.Trip.to", to);
 		startActivity(intent);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// TODO show later/earlier options only if provider has the capability
-
-		// Inflate the menu items for use in the action bar
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.trips_activity_actions, menu);
-		mMenu = menu;
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle presses on the action bar items
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				onBackPressed();
-
-				return true;
-			case R.id.action_earlier:
-				setProgress(false, true);
-				startGetMoreTrips(false);
-
-				return true;
-			case R.id.action_later:
-				setProgress(true, true);
-				startGetMoreTrips(true);
-
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
 	}
 
 	public void addMoreTrips(QueryTripsResult trip_results, boolean later, int num_trips) {

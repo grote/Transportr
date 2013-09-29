@@ -11,6 +11,8 @@ import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -66,7 +68,7 @@ public class TripDetailActivity extends Activity {
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(final MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case android.R.id.home:
@@ -74,10 +76,21 @@ public class TripDetailActivity extends Activity {
 
 				return true;
 			case R.id.action_fav_trip:
-				if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
-					// TODO confirmation dialog: unfav deletes count
-					FavFile.unfavTrip(getBaseContext(), new FavTrip(from, to));
-					item.setIcon(R.drawable.fav_off);
+				if(FavFile.isFavTrip(this, new FavTrip(from, to))) {
+					new AlertDialog.Builder(this)
+					.setMessage(getResources().getString(R.string.clear_fav_trips))
+					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							FavFile.unfavTrip(getBaseContext(), new FavTrip(from, to));
+							item.setIcon(R.drawable.fav_off);
+						}
+					})
+					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							dialog.cancel();
+						}
+					})
+					.show();
 				} else {
 					FavFile.favTrip(getBaseContext(), new FavTrip(from, to));
 					item.setIcon(R.drawable.fav_on);
