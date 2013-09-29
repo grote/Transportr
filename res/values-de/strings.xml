@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Liberario</string>
+
+    <string-array name="trip_date_type">
+        <item>Abfahrt</item>
+        <item>Ankunft</item>
+    </string-array>
+
+    <string name="action_earlier">Frühere Verbindung finden</string>
+    <string name="action_later">Spätere Verbindung finden</string>
+    <string name="action_about">Über</string>
+    <string name="action_clear_favs">Favoriten löschen</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_fav_trip">Verbindung als Favorit markieren</string>
+
+    <string name="tab_directions">Verbindungen</string>
+    <string name="tab_fav_trips">Favoriten</string>
+
+    <string name="about_top">Liberario\n© 2013 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
+    <string name="about">Liberario ist eine App für den öffentlichen Personenverkehr, die du frei verwenden, verstehen, verbessern und verbreiten kannst.
+        \n\n<b>Achtung: </b>Dies ist immer noch Alpha Stoftware. Es gibt bestimmt noch viele Bugs und diverse Funktionen fehlen noch.
+        \n\nEs gibt keine Garantie für Funktion und Korrektheit der Daten. Du nutzt diese Software auf eigene Gefahr.
+        \n\n<b>Mitmachen</b> ist explizit erwünscht und wird dankend angenommen. Wenn du mithelfen möchtest, besuche <a href="https://github.com/grote/Liberario/#contributing">github</a> für weitere Infos.
+        \n\nFalls du irgendwelche Probleme mit dieser App feststellst, melde sie bitte auf <a href="https://github.com/grote/Liberario/issues">im Tracker</a>.
+    </string>
+
+    <string name="trip_dep">ab</string>
+    <string name="trip_arr">an</string>
+    <string name="trip_start">Start:</string>
+    <string name="trip_destination">Ziel:</string>
+    <string name="from">von</string>
+    <string name="to">nach</string>
+    <string name="time">Zeit</string>
+    <string name="date">Datum</string>
+    <string name="min"> min</string>
+    <string name="destination">Ziel</string>
+    <string name="detail_duration">Dauer:</string>
+    <string name="detail_date">Datum:</string>
+    <string name="beta">beta</string>
+    <string name="pick_network_activity">Wähle ein Verkehrs-Netzwerk</string>
+    <string name="pick_network_first_run">Dies ist das erste Mal, dass Du Liberario gestartet hast. Bitte wähle deinen Verkehrsverbund um fortzufahren!</string>
+    <string name="clear_favs">Bist du sicher, dass Du deine Favoriten im aktuellen Netzwerk löschen willst?</string>
+    <string name="trip_searching">Suche nach Verbindungen&#8230;</string>
+
+    <string name="error_pick_network">Wähle genau ein Verkehrs-Netzwerk!</string>
+    <string name="error_no_internet">Keine Internet-Verbindung verfügbar.</string>
+    <string name="error_invalid_from">Ungültige Angabe des Starts.</string>
+    <string name="error_invalid_to">Ungültige Angabe des Ziels.</string>
+    <string name="error_no_favs">Keine Favoriten gespeichert</string>
+
+</resources>

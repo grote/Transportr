@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelog>
+
+    <release version="0.2" versioncode="2">
+        <change>Added German Translation (Thanks to Martin Riesner)</change>
+    </release>
+
+    <release version="0.1" versioncode="1">
+        <change>First release</change>
+    </release>
+
+</changelog>
