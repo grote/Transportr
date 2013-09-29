@@ -19,6 +19,7 @@ package de.grobox.liberario;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -30,6 +31,7 @@ import de.grobox.liberario.R;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
+import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Style.Shape;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
@@ -191,11 +193,15 @@ public class TripsActivity extends Activity {
 				TextView toView = ((TextView) row.findViewById(R.id.toView));
 				toView.setText(trip.to.uniqueShortName());
 
-				// Times
-				TextView departureTimeView = ((TextView) row.findViewById(R.id.departureTimeView));
-				departureTimeView.setText(DateUtils.getTime(trip.getFirstDepartureTime()));
-				TextView arrivalTimeView = ((TextView) row.findViewById(R.id.arrivalTimeView));
-				arrivalTimeView.setText(DateUtils.getTime(trip.getLastArrivalTime()));
+				// Departure Time and Delay
+				TextView departureTimeView  = (TextView) row.findViewById(R.id.departureTimeView);
+				TextView departureDelayView = (TextView) row.findViewById(R.id.departureDelayView);
+				setDepartureTimes(departureTimeView, departureDelayView, trip.getFirstPublicLeg().departureStop);
+
+				// Arrival Time and Delay
+				TextView arrivalTimeView = (TextView) row.findViewById(R.id.arrivalTimeView);
+				TextView arrivalDelayView = (TextView) row.findViewById(R.id.arrivalDelayView);
+				setArrivalTimes(arrivalTimeView, arrivalDelayView, trip.getLastPublicLeg().arrivalStop);
 
 				// Duration
 				TextView durationView = ((TextView) trip_layout.findViewById(R.id.durationView));
@@ -320,6 +326,38 @@ public class TripsActivity extends Activity {
 
 			addTrips(main, trips_res, later);
 		}
+	}
+
+	static public void setArrivalTimes(TextView timeView, TextView delayView, Stop stop) {
+		Date time = new Date(stop.getArrivalTime().getTime());
+
+		if(stop.isArrivalTimePredicted() && stop.getArrivalDelay() != null) {
+			long delay = stop.getArrivalDelay();
+			time.setTime(time.getTime() - delay);
+
+			if(delay > 0) {
+				delayView.setText("+" + Long.toString(delay / 1000 / 60));
+			} else {
+				delayView.setText("+?");
+			}
+		}
+		timeView.setText(DateUtils.getTime(time));
+	}
+
+	static public void setDepartureTimes(TextView timeView, TextView delayView, Stop stop) {
+		Date time = new Date(stop.getDepartureTime().getTime());
+
+		if(stop.isDepartureTimePredicted() && stop.getDepartureDelay() != null) {
+			long delay = stop.getDepartureDelay();
+			time.setTime(time.getTime() - delay);
+
+			if(delay > 0) {
+				delayView.setText("+" + Long.toString(delay / 1000 / 60));
+			} else {
+				delayView.setText("+?");
+			}
+		}
+		timeView.setText(DateUtils.getTime(time));
 	}
 
 	public void setProgress(Boolean later, Boolean progress) {

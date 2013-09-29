@@ -145,10 +145,16 @@ public class TripDetailActivity extends Activity {
 
 			if(leg instanceof Trip.Public) {
 				Public public_leg = ((Public) leg);
-				// TODO public_line.getDepartureDelay()
-				((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(public_leg.departureStop.getDepartureTime()));
-				// TODO public_line.getArrivalDelay()
-				((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(public_leg.arrivalStop.getArrivalTime()));
+
+				// Departure Time and Delay
+				TextView dDepartureTimeView = (TextView) legViewOld.findViewById(R.id.dDepartureTimeView);
+				TextView dDepartureDelayView = (TextView) legViewOld.findViewById(R.id.dDepartureDelayView);
+				TripsActivity.setDepartureTimes(dDepartureTimeView, dDepartureDelayView, public_leg.departureStop);
+
+				// Arrival Time and Delay
+				TextView dArrivalTimeView = (TextView) legViewNew.findViewById(R.id.dArrivalTimeView);
+				TextView dArrivalDelayView = (TextView) legViewNew.findViewById(R.id.dArrivalDelayView);
+				TripsActivity.setArrivalTimes(dArrivalTimeView, dArrivalDelayView, public_leg.arrivalStop);
 
 				// set departure location
 				((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(public_leg.departureStop.location.uniqueShortName());
@@ -252,17 +258,19 @@ public class TripDetailActivity extends Activity {
 				Date departureTime = stop.getDepartureTime();
 
 				if(arrivalTime != null) {
-					((TextView) stopView.findViewById(R.id.sArrivalTimeView)).setText(DateUtils.getTime(arrivalTime));
+					TripsActivity.setArrivalTimes((TextView) stopView.findViewById(R.id.sArrivalTimeView), (TextView) stopView.findViewById(R.id.sArrivalDelayView), stop);
 				}
 				else {
 					((TextView) stopView.findViewById(R.id.sArrivalTimeView)).setVisibility(View.GONE);
 				}
+
 				if(departureTime != null) {
-					((TextView) stopView.findViewById(R.id.sDepartureTimeView)).setText(DateUtils.getTime(departureTime));
+					TripsActivity.setDepartureTimes((TextView) stopView.findViewById(R.id.sDepartureTimeView), (TextView) stopView.findViewById(R.id.sDepartureDelayView), stop);
 				}
 				else {
 					((TextView) stopView.findViewById(R.id.sDepartureTimeView)).setVisibility(View.GONE);
 				}
+
 				((TextView) stopView.findViewById(R.id.sLocationView)).setText(stop.location.uniqueShortName());
 
 				stopsView.addView(stopView);
