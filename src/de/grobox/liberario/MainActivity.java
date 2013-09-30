@@ -26,6 +26,7 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
@@ -115,6 +116,15 @@ public class MainActivity extends FragmentActivity {
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
+		}
+	}
+
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		super.onActivityResult(requestCode, resultCode, intent);
+		if(requestCode == DirectionsFragment.CHANGED_NETWORK_PROVIDER) {
+			// call the DirectionsFragment's activity to handle the request there
+			Fragment fragment = getSupportFragmentManager().getFragments().get(0);
+			fragment.onActivityResult(requestCode, resultCode, intent);
 		}
 	}
 

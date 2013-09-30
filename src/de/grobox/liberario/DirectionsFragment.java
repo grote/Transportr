@@ -231,6 +231,9 @@ public class DirectionsFragment extends Fragment {
 			((AutoCompleteTextView) getView().findViewById(R.id.from)).setText("");
 			((AutoCompleteTextView) getView().findViewById(R.id.to)).setText("");
 		}
+		else {
+			super.onActivityResult(requestCode, resultCode, data);
+		}
 	}
 
 	private Location getFrom() {
@@ -248,6 +251,7 @@ public class DirectionsFragment extends Fragment {
 			if(loc != null) {
 				fromView.setText(loc.uniqueShortName());
 				fromView.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+				fromView.dismissDropDown();
 			}
 			else {
 				fromView.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
@@ -271,6 +275,7 @@ public class DirectionsFragment extends Fragment {
 			if(loc != null) {
 				toView.setText(loc.uniqueShortName());
 				toView.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+				toView.dismissDropDown();
 			}
 			else {
 				toView.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
