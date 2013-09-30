@@ -127,6 +127,7 @@ public class TripDetailActivity extends Activity {
 				// hide arrival time for start location of trip
 				((TextView) legViewOld.findViewById(R.id.dArrivalTimeView)).setVisibility(View.GONE);
 				((TextView) legViewOld.findViewById(R.id.dArrivalDelayView)).setVisibility(View.GONE);
+				((TextView) legViewOld.findViewById(R.id.dArrivalPositionView)).setVisibility(View.GONE);
 				// only add old view the first time, because it isn't old there
 				view.addView(legViewOld);
 			}
@@ -139,6 +140,7 @@ public class TripDetailActivity extends Activity {
 				((TextView) legViewNew.findViewById(R.id.dDestinationView)).setVisibility(View.GONE);
 				((LinearLayout) legViewNew.findViewById(R.id.dLineView)).setVisibility(View.GONE);
 				((ImageView) legViewNew.findViewById(R.id.dArrowView)).setVisibility(View.GONE);
+				((TextView) legViewNew.findViewById(R.id.dDeparturePositionView)).setVisibility(View.GONE);
 				((ImageView) legViewNew.findViewById(R.id.dShowMoreView)).setVisibility(View.GONE);
 				((TextView) legViewNew.findViewById(R.id.dMessageView)).setVisibility(View.GONE);
 			}
@@ -168,6 +170,14 @@ public class TripDetailActivity extends Activity {
 				} else {
 					// hide arrow because this line has no destination
 					((View) legViewOld.findViewById(R.id.dArrowView)).setVisibility(View.GONE);
+				}
+
+				// set positions
+				if(public_leg.departureStop.plannedDeparturePosition != null) {
+					((TextView) legViewOld.findViewById(R.id.dDeparturePositionView)).setText(public_leg.departureStop.plannedDeparturePosition);
+				}
+				if(public_leg.arrivalStop.plannedArrivalPosition != null) {
+					((TextView) legViewNew.findViewById(R.id.dArrivalPositionView)).setText(public_leg.arrivalStop.plannedArrivalPosition);
 				}
 
 				// set arrival location in next row
@@ -272,6 +282,13 @@ public class TripDetailActivity extends Activity {
 				}
 
 				((TextView) stopView.findViewById(R.id.sLocationView)).setText(stop.location.uniqueShortName());
+
+				if(stop.plannedArrivalPosition != null) {
+					((TextView) stopView.findViewById(R.id.sArrivalPositionView)).setText(stop.plannedArrivalPosition);
+				}
+				if(stop.plannedDeparturePosition != null) {
+					((TextView) stopView.findViewById(R.id.sDeparturePositionView)).setText(stop.plannedDeparturePosition);
+				}
 
 				stopsView.addView(stopView);
 			}

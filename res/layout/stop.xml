@@ -1,7 +1,8 @@
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="10dp" >
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -47,6 +48,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center_vertical"
+        android:layout_weight="1"
         android:padding="2dp" />
+
+    <LinearLayout
+        android:id="@+id/PositionLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/sArrivalPositionView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="2dp" />
+
+        <TextView
+            android:id="@+id/sDeparturePositionView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="2dp" />
+
+    </LinearLayout>
 
 </TableRow>

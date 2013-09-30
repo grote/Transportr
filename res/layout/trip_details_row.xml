@@ -45,10 +45,11 @@
             android:layout_toRightOf="@id/dDepartureTimeView"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/holo_red_light" />
+
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="3dp" >
@@ -57,7 +58,6 @@
             android:id="@+id/dDepartureView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/from"
             android:textAppearance="?android:attr/textAppearance" />
 
         <LinearLayout
@@ -86,13 +86,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <ImageView
-                android:id="@+id/dShowMoreView"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@android:drawable/ic_menu_more"
-                android:visibility="gone" />
-
         </LinearLayout>
 
         <TextView
@@ -100,7 +93,37 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/PositionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="3dp" >
+
+        <TextView
+            android:id="@+id/dArrivalPositionView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:lines="1" />
+
+        <TextView
+            android:id="@+id/dDeparturePositionView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:lines="1" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dShowMoreView"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_vertical"
+        android:src="@android:drawable/ic_menu_more"
+        android:visibility="gone" />
 
 </TableRow>
