@@ -86,7 +86,7 @@ public class MainActivity extends FragmentActivity {
 		mViewPager.setAdapter(mainPagerAdapter);
 
 		// show Changelog
-		ChangeLog cl = new ChangeLog(this);
+		ChangeLog cl = new ChangeLog(this, "body { color:white; font-size: 0.9em; background-color: #282828; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }");
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
 		}
