@@ -17,6 +17,7 @@
 
 package de.grobox.liberario;
 
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.method.LinkMovementMethod;
@@ -34,6 +35,17 @@ public class AboutActivity extends FragmentActivity {
 
 		getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, android.R.drawable.ic_dialog_info);
 		setTitle(getResources().getString(R.string.action_about) + " " + getResources().getString(R.string.app_name));
+
+		String versionName;
+		try {
+			versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+		} catch (NameNotFoundException e) {
+			versionName = "?.?";
+		}
+
+		// add app name and version
+		TextView aboutApp = (TextView) findViewById(R.id.aboutApp);
+		aboutApp.setText(getResources().getString(R.string.app_name) + "  " + versionName);
 
 		// make links in about text clickable
 		TextView t = (TextView) findViewById(R.id.aboutTextView);

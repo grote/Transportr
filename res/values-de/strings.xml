@@ -20,7 +20,7 @@
     <string name="tab_directions">Verbindungen</string>
     <string name="tab_fav_trips">Favoriten</string>
 
-    <string name="about_top">Liberario\n© 2013 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
+    <string name="about_top">© 2013 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
     <string name="about">Liberario ist eine App für den öffentlichen Personenverkehr, die du frei verwenden, verstehen, verbessern und verbreiten kannst.
         \n\n<b>Achtung: </b>Dies ist immer noch Alpha Stoftware. Es gibt bestimmt noch viele Bugs und diverse Funktionen fehlen noch.
         \n\nEs gibt keine Garantie für Funktion und Korrektheit der Daten. Du nutzt diese Software auf eigene Gefahr.

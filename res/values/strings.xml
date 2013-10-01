@@ -20,7 +20,7 @@
     <string name="tab_directions">Directions</string>
     <string name="tab_fav_trips">Favorites</string>
 
-    <string name="about_top">Liberario\n© 2013 Torsten Grote\nFree Software License: GPLv3</string>
+    <string name="about_top">© 2013 Torsten Grote\nFree Software License: GPLv3</string>
     <string name="about">Liberario is a public transport app which you can freely use, study, share and improve.
         \n\n<b>Attention: </b>This is still alpha software. It has many bugs and a lot of functionality is still missing.
         \n\nThere is no guarantee for the correctness of the data. Please only use this app at your own risk.
