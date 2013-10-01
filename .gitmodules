@@ -7,4 +7,4 @@
 	ignore = dirty
 [submodule "sublibs/ckChangeLog"]
 	path = sublibs/ckChangeLog
-	url = git@github.com:cketti/ckChangeLog.git
+	url = https://github.com/cketti/ckChangeLog.git
