@@ -10,6 +10,7 @@
 
     <string name="action_earlier">Find Earlier Trips</string>
     <string name="action_later">Find Later Trips</string>
+    <string name="action_changelog">Change Log</string>
     <string name="action_about">About</string>
     <string name="action_clear_favs">Clear Favorites</string>
     <string name="action_settings">Settings</string>

@@ -8,6 +8,12 @@
         android:title="@string/action_settings" />
 
     <item
+        android:id="@+id/action_changelog"
+        android:title="@string/action_changelog"
+        android:menuCategory="system"
+        android:showAsAction="never" />
+
+    <item
         android:id="@+id/action_about"
         android:title="@string/action_about"
         android:menuCategory="system"

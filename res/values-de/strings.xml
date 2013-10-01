@@ -10,6 +10,7 @@
 
     <string name="action_earlier">Frühere Verbindung finden</string>
     <string name="action_later">Spätere Verbindung finden</string>
+    <string name="action_changelog">Versionsänderungen anzeigen</string>
     <string name="action_about">Über</string>
     <string name="action_clear_favs">Favoriten löschen</string>
     <string name="action_settings">Einstellungen</string>

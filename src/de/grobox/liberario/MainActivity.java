@@ -24,11 +24,13 @@ import de.cketti.library.changelog.ChangeLog;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -87,7 +89,7 @@ public class MainActivity extends FragmentActivity {
 		mViewPager.setAdapter(mainPagerAdapter);
 
 		// show Changelog
-		ChangeLog cl = new ChangeLog(this, "body { color:white; font-size: 0.9em; background-color: #282828; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }");
+		HoloChangeLog cl = new HoloChangeLog(this);
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
 		}
@@ -110,6 +112,10 @@ public class MainActivity extends FragmentActivity {
 				startActivityForResult(new Intent(this, PickNetworkProviderActivity.class), DirectionsFragment.CHANGED_NETWORK_PROVIDER);
 
 				return true;
+			case R.id.action_changelog:
+				new HoloChangeLog(this).getFullLogDialog().show();
+
+				return true;
 			case R.id.action_about:
 				startActivity(new Intent(this, AboutActivity.class));
 
@@ -125,6 +131,16 @@ public class MainActivity extends FragmentActivity {
 			// call the DirectionsFragment's activity to handle the request there
 			Fragment fragment = getSupportFragmentManager().getFragments().get(0);
 			fragment.onActivityResult(requestCode, resultCode, intent);
+		}
+	}
+
+
+	public static class HoloChangeLog extends ChangeLog {
+		public static final String DARK_THEME_CSS =
+				"body { color:white; font-size: 0.9em; background-color: #282828; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
+
+		public HoloChangeLog(Context context) {
+			super(new ContextThemeWrapper(context, R.style.AppTheme), DARK_THEME_CSS);
 		}
 	}
 
