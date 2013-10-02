@@ -16,6 +16,7 @@
     <string name="action_settings">Einstellungen</string>
     <string name="action_fav_trip">Verbindung als Favorit markieren</string>
     <string name="action_switch_locations">Start und Ziel vertauschen</string>
+    <string name="action_platforms">Gleis anzeigen/verstecken</string>
 
     <string name="tab_directions">Verbindungen</string>
     <string name="tab_fav_trips">Favoriten</string>

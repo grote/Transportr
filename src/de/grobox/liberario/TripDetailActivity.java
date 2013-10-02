@@ -1,5 +1,6 @@
 package de.grobox.liberario;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class TripDetailActivity extends Activity {
 	private Trip trip;
 	private Location from;
 	private Location to;
+	private Menu mMenu;
+	private List<TableLayout> mStops = new ArrayList<TableLayout>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class TripDetailActivity extends Activity {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trip_detail_activity_actions, menu);
+		mMenu = menu;
 
 		if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.fav_on);
@@ -73,6 +77,22 @@ public class TripDetailActivity extends Activity {
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				onBackPressed();
+
+				return true;
+			case R.id.action_platforms:
+				boolean isCol = view.isColumnCollapsed(2);
+
+				// change action icon
+				if(isCol) {
+					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_collapse_platforms);
+				} else {
+					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_expand_platforms);
+				}
+				// collapse/expand platforms on stops and intermediate stops
+				view.setColumnCollapsed(2, !isCol);
+				for(final TableLayout stopView : mStops) {
+					stopView.setColumnCollapsed(3, !isCol);
+				}
 
 				return true;
 			case R.id.action_fav_trip:
@@ -260,6 +280,7 @@ public class TripDetailActivity extends Activity {
 	private TableLayout getStops(List<Stop> stops) {
 		TableLayout stopsView = new TableLayout(this);
 		stopsView.setVisibility(View.GONE);
+		stopsView.setColumnCollapsed(3, true);
 
 		if(stops != null) {
 			for(final Stop stop : stops) {
@@ -294,6 +315,7 @@ public class TripDetailActivity extends Activity {
 			}
 		}
 
+		mStops.add(stopsView);
 		return stopsView;
 	}
 

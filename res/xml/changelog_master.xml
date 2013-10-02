@@ -2,11 +2,11 @@
 <changelog>
 
     <release version="0.2" versioncode="2">
-        <change>Trips can now be marked as favorites. They can be accessed by swiping right in the main screen or by using the new tab bar.</change>
-        <change>Show connection delays (alpha!)</change>
-        <change>Show platform where trains will arrive/depart.</change>
+        <change>Trips can now be marked as favorites and be accessed by swiping right in the main screen or by using the new tab bar</change>
+        <change>Automatically show connection delays (alpha!)</change>
+        <change>Add button to show/hide platforms where trains will arrive/depart</change>
         <change>Button to swap From and To location</change>
-        <change>Show Changelog after updates</change>
+        <change>Show changelog after updates and add menu option to show full changelog</change>
         <change>Added German Translation (Thanks to Martin Riesner)</change>
     </release>
 
