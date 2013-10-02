@@ -25,7 +25,7 @@
         \n\n<b>Achtung: </b>Dies ist immer noch Alpha Stoftware. Es gibt bestimmt noch viele Bugs und diverse Funktionen fehlen noch.
         \n\nEs gibt keine Garantie für Funktion und Korrektheit der Daten. Du nutzt diese Software auf eigene Gefahr.
         \n\n<b>Mitmachen</b> ist explizit erwünscht und wird dankend angenommen. Wenn du mithelfen möchtest, besuche <a href="https://github.com/grote/Liberario/#contributing">github</a> für weitere Infos.
-        \n\nFalls du irgendwelche Probleme mit dieser App feststellst, melde sie bitte auf <a href="https://github.com/grote/Liberario/issues">im Tracker</a>.
+        \n\nFalls du irgendwelche Probleme mit dieser App feststellst, melde sie bitte <a href="https://github.com/grote/Liberario/issues">im Tracker</a>.
     </string>
 
     <string name="trip_dep">ab</string>
