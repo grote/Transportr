@@ -22,3 +22,7 @@ mvn clean package -DskipTests
 
 cd $DIR
 cp sublibs/public-transport-enabler/enabler/target/public-transport-enabler*.jar libs/public-transport-enabler.jar
+
+# update sublibs for F-Droid auto-update to work
+${ANDROID_HOME}/tools/android update project -p sublibs/Android-PullToRefresh/library/
+${ANDROID_HOME}/tools/android update project -p sublibs/ckChangeLog/library/

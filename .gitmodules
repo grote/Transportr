@@ -1,6 +1,7 @@
 [submodule "sublibs/Android-PullToRefresh"]
 	path = sublibs/Android-PullToRefresh
 	url = https://github.com/chrisbanes/Android-PullToRefresh.git
+	ignore = dirty
 [submodule "sublibs/public-transport-enabler"]
 	path = sublibs/public-transport-enabler
 	url = https://code.google.com/p/public-transport-enabler
@@ -8,3 +9,4 @@
 [submodule "sublibs/ckChangeLog"]
 	path = sublibs/ckChangeLog
 	url = https://github.com/cketti/ckChangeLog.git
+	ignore = dirty
