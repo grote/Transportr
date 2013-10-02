@@ -2,17 +2,15 @@
 
     <item
         android:id="@+id/action_fav_trip"
-        android:icon="@drawable/fav_off"
+        android:icon="@drawable/ic_menu_fav_off"
         android:showAsAction="ifRoom"
         android:title="@string/action_fav_trip"/>
     <item
         android:id="@+id/action_earlier"
-        android:icon="@drawable/navigation_previous_item"
         android:showAsAction="never"
         android:title="@string/action_earlier"/>
     <item
         android:id="@+id/action_later"
-        android:icon="@drawable/navigation_next_item"
         android:showAsAction="never"
         android:title="@string/action_later"/>
 

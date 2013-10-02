@@ -5,5 +5,5 @@
     android:layout_gravity="center_vertical"
     android:layout_marginRight="5dp"
     android:adjustViewBounds="true"
-    android:src="@drawable/walking" />
+    android:src="@drawable/ic_walking" />
 

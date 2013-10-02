@@ -112,9 +112,9 @@ public class TripsActivity extends Activity {
 		mMenu = menu;
 
 		if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
-			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.fav_on);
+			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_on);
 		} else {
-			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.fav_off);
+			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_off);
 		}
 
 		return super.onCreateOptionsMenu(menu);
@@ -135,7 +135,7 @@ public class TripsActivity extends Activity {
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
 							FavFile.unfavTrip(getBaseContext(), new FavTrip(from, to));
-							item.setIcon(R.drawable.fav_off);
+							item.setIcon(R.drawable.ic_menu_fav_off);
 						}
 					})
 					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -146,7 +146,7 @@ public class TripsActivity extends Activity {
 					.show();
 				} else {
 					FavFile.favTrip(getBaseContext(), new FavTrip(from, to));
-					item.setIcon(R.drawable.fav_on);
+					item.setIcon(R.drawable.ic_menu_fav_on);
 				}
 
 				return true;

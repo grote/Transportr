@@ -78,7 +78,7 @@
                 android:layout_height="10dp"
                 android:layout_marginRight="1dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/navigation_next_item" />
+                android:src="@drawable/ic_right_arrow" />
 
             <TextView
                 android:id="@+id/dDestinationView"
