@@ -24,6 +24,7 @@ import de.schildbach.pte.dto.QueryTripsContext;
 import de.schildbach.pte.dto.QueryTripsResult;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsResult> {
 	private TripsActivity activity;
@@ -47,6 +48,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 				return np.queryMoreTrips(qtcontext, later, num_trips);
 			}
 			else {
+				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
 				return null;
 			}
 		} catch (IOException e) {

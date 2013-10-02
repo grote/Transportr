@@ -49,9 +49,10 @@
     <string name="trip_searching">Searching for connections&#8230;</string>
 
     <string name="error_pick_network">Please select one transportation network!</string>
-    <string name="error_no_internet">No internet connection available.</string>
-    <string name="error_invalid_from">Invalid From Location.</string>
-    <string name="error_invalid_to">Invalid To Location.</string>
+    <string name="error_no_internet">No sufficient internet connection available</string>
+    <string name="error_invalid_from">Invalid From Location</string>
+    <string name="error_invalid_to">Invalid To Location</string>
     <string name="error_no_favs">No favorite locations saved</string>
+    <string name="error_no_trips_found">No directions found</string>
 
 </resources>

@@ -49,9 +49,10 @@
     <string name="trip_searching">Suche nach Verbindungen&#8230;</string>
 
     <string name="error_pick_network">Wähle genau ein Verkehrs-Netzwerk!</string>
-    <string name="error_no_internet">Keine Internet-Verbindung verfügbar.</string>
-    <string name="error_invalid_from">Ungültige Angabe des Starts.</string>
-    <string name="error_invalid_to">Ungültige Angabe des Ziels.</string>
+    <string name="error_no_internet">Keine ausreichende Internet-Verbindung verfügbar</string>
+    <string name="error_invalid_from">Ungültige Angabe des Starts</string>
+    <string name="error_invalid_to">Ungültige Angabe des Ziels</string>
     <string name="error_no_favs">Keine Favoriten gespeichert</string>
+    <string name="error_no_trips_found">Keine Verbindungen gefunden</string>
 
 </resources>

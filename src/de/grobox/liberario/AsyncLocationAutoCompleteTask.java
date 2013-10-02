@@ -24,6 +24,7 @@ import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Location>> {
 	private Context context;
@@ -45,6 +46,7 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Lo
 				loc_list = np.autocompleteStations(query);
 			}
 			else {
+				Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
 				return null;
 			}
 		} catch (IOException e) {

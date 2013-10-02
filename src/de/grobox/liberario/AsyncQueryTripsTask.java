@@ -17,7 +17,6 @@
 
 package de.grobox.liberario;
 
-import java.io.IOException;
 import java.util.Date;
 
 import android.app.ProgressDialog;
@@ -84,9 +83,10 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 				return np.queryTrips(from, null, to, date, departure, 3, null, NetworkProvider.WalkSpeed.NORMAL, null, null);
 			}
 			else {
+				Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
 				return null;
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
@@ -100,7 +100,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 		}
 
 		if(result == null) {
-			Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
+			Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_SHORT).show();
 			return;
 		}
 
