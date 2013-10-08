@@ -15,17 +15,17 @@
     <string name="action_clear_favs">Vider les favoris</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_fav_trip">Marquer le voyage comme favoris</string>
-    <string name="action_switch_locations">Échanger les lieux de départs et d'arrivée</string>
+    <string name="action_switch_locations">Échanger les lieux de départs et d\'arrivée</string>
 
     <string name="tab_directions">Directions</string>
     <string name="tab_fav_trips">Favoris</string>
 
     <string name="about_top">© 2013 Torsten Grote\nFree Software License: GPLv3</string>
     <string name="about">Liberario est une application de transport public que vous pouvez librement utiliser, étudier, partager et améliorer.
-        \n\n<b>Attention: </b>Ceci n'est encore qu'une version alpha. Il y a de nombreux bugs et beaucoup de fonctionnalités manquent encore.
+        \n\n<b>Attention: </b>Ceci n\'est encore qu\'une version alpha. Il y a de nombreux bugs et beaucoup de fonctionnalités manquent encore.
         \n\n Nous ne garantissons pas la validité des données. Utilisez cette application à vos propres risques.
-        \n\n<b>Les contributions</b> sont vivement encouragées et appréciées. Si vous souhaitez contribuer, vous trouverez plus d'information sur <a href="https://github.com/grote/Liberario/#contributing">github</a>.
-        \n\n Si vous rencontrez des problèmes avec cette application, veuillez le rapporter en utilisant notre <a href="https://github.com/grote/Liberario/issues">gestionnaire d'incidents</a>.
+        \n\n<b>Les contributions</b> sont vivement encouragées et appréciées. Si vous souhaitez contribuer, vous trouverez plus d\'information sur <a href="https://github.com/grote/Liberario/#contributing">github</a>.
+        \n\n Si vous rencontrez des problèmes avec cette application, veuillez le rapporter en utilisant notre <a href="https://github.com/grote/Liberario/issues">gestionnaire d\'incidents</a>.
     </string>
 
     <string name="trip_dep">dép</string>
@@ -42,15 +42,15 @@
     <string name="detail_date">Date:</string>
     <string name="beta">beta</string>
     <string name="pick_network_activity">Choisissez un réseau de transport</string>
-    <string name="pick_network_first_run">C'est la première fois que vous lancez Liberario. Veuillez sélectionner un réseau de transport pour continuer!</string>
+    <string name="pick_network_first_run">C\'est la première fois que vous lancez Liberario. Veuillez sélectionner un réseau de transport pour continuer!</string>
     <string name="clear_favs">Êtes vous sûr que vous souhaitez supprimer vos favoris pour ce réseau de transport?</string>
-    <string name="clear_fav_trips">Êtes vous sûr de vouloir supprimer ce trajet de vos favoris ? Le compteur d'utilisation sera perdu.</string>
+    <string name="clear_fav_trips">Êtes vous sûr de vouloir supprimer ce trajet de vos favoris ? Le compteur d\'utilisation sera perdu.</string>
     <string name="trip_searching">En recherche de connections&#8230;</string>
 
     <string name="error_pick_network">Veuillez sélectionner un réseau de transport!</string>
     <string name="error_no_internet">Pas de connexion internet disponible.</string>
     <string name="error_invalid_from">Lieu de départ invalide.</string>
-    <string name="error_invalid_to">Lieu d'arrivée invalide.</string>
+    <string name="error_invalid_to">Lieu d\'arrivée invalide.</string>
     <string name="error_no_favs">Aucun lieu favoris sauvegardé</string>
 
 </resources>
