@@ -293,6 +293,7 @@ public class TripDetailActivity extends Activity {
 				}
 				else {
 					((TextView) stopView.findViewById(R.id.sArrivalTimeView)).setVisibility(View.GONE);
+					((TextView) stopView.findViewById(R.id.sArrivalDelayView)).setVisibility(View.GONE);
 				}
 
 				if(departureTime != null) {
@@ -300,6 +301,7 @@ public class TripDetailActivity extends Activity {
 				}
 				else {
 					((TextView) stopView.findViewById(R.id.sDepartureTimeView)).setVisibility(View.GONE);
+					((TextView) stopView.findViewById(R.id.sDepartureDelayView)).setVisibility(View.GONE);
 				}
 
 				((TextView) stopView.findViewById(R.id.sLocationView)).setText(stop.location.uniqueShortName());
