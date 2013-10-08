@@ -337,8 +337,6 @@ public class TripsActivity extends Activity {
 
 			if(delay > 0) {
 				delayView.setText("+" + Long.toString(delay / 1000 / 60));
-			} else {
-				delayView.setText("+?");
 			}
 		}
 		timeView.setText(DateUtils.getTime(time));
@@ -353,8 +351,6 @@ public class TripsActivity extends Activity {
 
 			if(delay > 0) {
 				delayView.setText("+" + Long.toString(delay / 1000 / 60));
-			} else {
-				delayView.setText("+?");
 			}
 		}
 		timeView.setText(DateUtils.getTime(time));
