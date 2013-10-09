@@ -30,6 +30,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 	private TripsActivity activity;
 	private QueryTripsContext qtcontext;
 	private Boolean later;
+	private boolean internet = true;
 
 	private static final int num_trips = 3;
 
@@ -48,7 +49,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 				return np.queryMoreTrips(qtcontext, later, num_trips);
 			}
 			else {
-				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
+				internet = true;
 				return null;
 			}
 		} catch (IOException e) {
@@ -60,7 +61,14 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 
 	@Override
 	protected void onPostExecute(QueryTripsResult result) {
-		if(result.trips != null) {
+		if(result.trips == null) {
+			if(internet) {
+				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_internet), Toast.LENGTH_SHORT).show();
+			}
+		}
+		else {
 			activity.addMoreTrips(result, later, num_trips);
 		}
 		activity.setProgress(later, false);

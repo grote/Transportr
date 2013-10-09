@@ -46,7 +46,6 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Lo
 				loc_list = np.autocompleteStations(query);
 			}
 			else {
-				Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
 				return null;
 			}
 		} catch (IOException e) {
@@ -57,5 +56,11 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Lo
 		return loc_list;
 	}
 
+	@Override
+	protected void onPostExecute(List<Location> location) {
+		if(location == null) {
+			Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_SHORT).show();
+		}
+	}
 
 }

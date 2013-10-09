@@ -39,7 +39,8 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	private Location from;
 	private Location to;
 	private Date date = new Date();
-	private Boolean departure = true;
+	private boolean departure = true;
+	private boolean internet = true;
 
 	public AsyncQueryTripsTask(Context context) {
 		this.context = context;
@@ -83,7 +84,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 				return np.queryTrips(from, null, to, date, departure, 3, null, NetworkProvider.WalkSpeed.NORMAL, null, null);
 			}
 			else {
-				Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
+				internet = false;
 				return null;
 			}
 		} catch (Exception e) {
@@ -100,7 +101,11 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 		}
 
 		if(result == null) {
-			Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_SHORT).show();
+			if(internet) {
+				Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_SHORT).show();
+			}
 			return;
 		}
 
