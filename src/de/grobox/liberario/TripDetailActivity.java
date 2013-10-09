@@ -63,6 +63,14 @@ public class TripDetailActivity extends Activity {
 		inflater.inflate(R.menu.trip_detail_activity_actions, menu);
 		mMenu = menu;
 
+		if(Preferences.getShowPlatforms(this)) {
+			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+			showPlatforms(true);
+		} else {
+			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+			showPlatforms(false);
+		}
+
 		if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_on);
 		} else {
@@ -80,19 +88,16 @@ public class TripDetailActivity extends Activity {
 
 				return true;
 			case R.id.action_platforms:
-				boolean isCol = view.isColumnCollapsed(2);
+				boolean show = view.isColumnCollapsed(2);
 
 				// change action icon
-				if(isCol) {
-					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_collapse_platforms);
+				if(show) {
+					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
 				} else {
-					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_expand_platforms);
+					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
 				}
-				// collapse/expand platforms on stops and intermediate stops
-				view.setColumnCollapsed(2, !isCol);
-				for(final TableLayout stopView : mStops) {
-					stopView.setColumnCollapsed(3, !isCol);
-				}
+				showPlatforms(show);
+				Preferences.setShowPlatforms(this, show);
 
 				return true;
 			case R.id.action_fav_trip:
@@ -319,6 +324,14 @@ public class TripDetailActivity extends Activity {
 
 		mStops.add(stopsView);
 		return stopsView;
+	}
+
+	private void showPlatforms(boolean show) {
+		// collapse/expand platforms on stops and intermediate stops
+		view.setColumnCollapsed(2, !show);
+		for(final TableLayout stopView : mStops) {
+			stopView.setColumnCollapsed(3, !show);
+		}
 	}
 
 }

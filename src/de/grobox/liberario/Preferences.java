@@ -47,4 +47,18 @@ public class Preferences {
 		return network_id;
 	}
 
+
+	public static boolean getShowPlatforms(Context context) {
+		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+
+		return settings.getBoolean("ShowPlatform", false);
+	}
+
+	public static void setShowPlatforms(Context context, boolean show) {
+		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = settings.edit();
+
+		editor.putBoolean("ShowPlatform", show);
+		editor.commit();
+	}
 }

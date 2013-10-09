@@ -2,7 +2,7 @@
 
     <item
         android:id="@+id/action_platforms"
-        android:icon="@drawable/ic_menu_expand_platforms"
+        android:icon="@drawable/ic_menu_show_platforms"
         android:showAsAction="ifRoom"
         android:title="@string/action_platforms"/>
 
