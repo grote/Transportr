@@ -85,9 +85,22 @@ Missing features are documented in the [issue tracker](https://github.com/grote/
 
 If you want to start working on Liberario and if you haven't done already, you should [familiarize yourself with Android development](https://developer.android.com/training/basics/firstapp/index.html) and [set up a development environment](https://developer.android.com/sdk/index.html).
 
-Then, you also need to run the following command to build a required library.
+The next step is to clone the source code repository. Please make sure to also clone the git submodules that contain external libraries.
 
-`./build-pte.sh`
+    $ git submodule init
+    $ git submodule update
+
+Then, you also need to run the following command to build the public transport enabler library.
+
+    $ ./build-pte.sh
+
+If you don't want to use an IDE like Eclipse, you can build Libeario on the command line as follows.
+
+    $ ${ANDROID_HOME}/tools/android update project --name Liberario -p .
+    $ ant release
+
+The resulting unsigned apk file will be found at `bin/Liberario-release-unsigned.apk`.
+
 
 ### Adding Support For A New Area ###
 
