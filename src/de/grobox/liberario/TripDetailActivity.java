@@ -209,11 +209,15 @@ public class TripDetailActivity extends Activity {
 				dDepartureViewNew.setText(public_leg.arrivalStop.location.uniqueShortName());
 
 				// deal with optional trip message
-				if(public_leg.message == null) {
-					((TextView) legViewOld.findViewById(R.id.dMessageView)).setVisibility(View.GONE);
-				} else {
-					((TextView) legViewOld.findViewById(R.id.dMessageView)).setVisibility(View.VISIBLE);
-					((TextView) legViewOld.findViewById(R.id.dMessageView)).setText(public_leg.message);
+				TextView msgView = (TextView) legViewOld.findViewById(R.id.dMessageView);
+				msgView.setVisibility(View.GONE);
+				if(public_leg.message != null) {
+					msgView.setVisibility(View.VISIBLE);
+					msgView.setText(public_leg.message);
+				}
+				if(public_leg.line.message != null) {
+					msgView.setVisibility(View.VISIBLE);
+					msgView.setText(msgView.getText() + "\n" + public_leg.line.message);
 				}
 
 				if(public_leg.intermediateStops != null && public_leg.intermediateStops.size() > 0) {
