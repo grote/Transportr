@@ -40,7 +40,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	private Location to;
 	private Date date = new Date();
 	private boolean departure = true;
-	private boolean internet = true;
+	private String error = null;
 
 	public AsyncQueryTripsTask(Context context) {
 		this.context = context;
@@ -84,12 +84,17 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 				return np.queryTrips(from, null, to, date, departure, 3, null, NetworkProvider.WalkSpeed.NORMAL, null, null);
 			}
 			else {
-				internet = false;
+				error = context.getResources().getString(R.string.error_no_internet);
 				return null;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
+			if(e.getCause() != null) {
+				error = e.getCause().getClass().getSimpleName() + ": " + e.getCause().getMessage();
+			} else {
+				error = e.getClass().getSimpleName() + ": " + e.getMessage();
+			}
 			return null;
 		}
 	}
@@ -101,10 +106,10 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 		}
 
 		if(result == null) {
-			if(internet) {
-				Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_SHORT).show();
+			if(error == null) {
+				Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
 			} else {
-				Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, error, Toast.LENGTH_LONG).show();
 			}
 			return;
 		}

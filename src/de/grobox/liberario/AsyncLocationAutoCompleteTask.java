@@ -29,6 +29,7 @@ import android.widget.Toast;
 public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Location>> {
 	private Context context;
 	private String query = "";
+	private String error = null;
 
 	public AsyncLocationAutoCompleteTask(Context context, String query) {
 		this.context = context;
@@ -46,11 +47,18 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Lo
 				loc_list = np.autocompleteStations(query);
 			}
 			else {
+				error = context.getResources().getString(R.string.error_no_internet);
 				return null;
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
+			if(e.getCause() != null) {
+				error = e.getCause().getClass().getSimpleName() + ": " + e.getCause().getMessage();
+			} else {
+				error = e.getClass().getSimpleName() + ": " + e.getMessage();
+			}
+			return null;
 		}
 
 		return loc_list;
@@ -58,8 +66,8 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Lo
 
 	@Override
 	protected void onPostExecute(List<Location> location) {
-		if(location == null) {
-			Toast.makeText(context, context.getResources().getString(R.string.error_no_internet), Toast.LENGTH_SHORT).show();
+		if(location == null && error != null) {
+			Toast.makeText(context, error, Toast.LENGTH_LONG).show();
 		}
 	}
 
