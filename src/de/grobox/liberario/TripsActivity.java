@@ -257,7 +257,7 @@ public class TripsActivity extends Activity {
 	}
 
 	@SuppressWarnings("deprecation")
-	static public void addLineBox(Context context, LinearLayout lineLayout, Line line) {
+	static public void addLineBox(Context context, LinearLayout lineLayout, Line line, int index) {
 		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, null);
 
 		GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
@@ -276,7 +276,11 @@ public class TripsActivity extends Activity {
 		llp.setMargins(3, 0, 3, 0);
 		transportsView.setLayoutParams(llp);
 
-		lineLayout.addView(transportsView);
+		lineLayout.addView(transportsView, index);
+	}
+
+	static public void addLineBox(Context context, LinearLayout lineLayout, Line line) {
+		addLineBox(context, lineLayout, line, lineLayout.getChildCount()-1);
 	}
 
 	static public void addWalkingBox(Context context, LinearLayout lineLayout) {

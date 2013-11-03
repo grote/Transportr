@@ -71,10 +71,13 @@ public class MainActivity extends FragmentActivity {
 		List<String> fragments = new ArrayList<String>();
 
 		fragments.add(DirectionsFragment.class.getName());
-		actionBar.addTab(actionBar.newTab().setText(getResources().getString(R.string.tab_directions)).setTabListener(tabListener));
+		actionBar.addTab(actionBar.newTab().setIcon(R.drawable.ic_tab_directions).setTabListener(tabListener));
 
-		actionBar.addTab(actionBar.newTab().setText(getResources().getString(R.string.tab_fav_trips)).setTabListener(tabListener));
+		actionBar.addTab(actionBar.newTab().setIcon(R.drawable.ic_tab_fav_trips).setTabListener(tabListener));
 		fragments.add(FavTripsFragment.class.getName());
+
+		actionBar.addTab(actionBar.newTab().setIcon(R.drawable.ic_tab_stations).setTabListener(tabListener));
+		fragments.add(StationsFragment.class.getName());
 
 		mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), this, fragments);
 

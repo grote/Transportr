@@ -47,6 +47,8 @@
     <string name="clear_favs">Bist du sicher, dass Du deine Favoriten im aktuellen Netzwerk löschen willst?</string>
     <string name="clear_fav_trips">Bist du sicher, dass Du diese Verbindung aus den Favoriten löschen möchtest? Die Anzahl der Benutzungen geht dabei verloren.</string>
     <string name="trip_searching">Suche nach Verbindungen&#8230;</string>
+    <string name="stations_searching_position">Suche aktuelle Position&#8230;</string>
+    <string name="stations_searching_stations">Suche Stationen in der Nähe&#8230;</string>
 
     <string name="error_pick_network">Wähle genau ein Verkehrs-Netzwerk!</string>
     <string name="error_no_internet">Keine ausreichende Internet-Verbindung verfügbar</string>

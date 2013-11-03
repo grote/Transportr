@@ -47,6 +47,8 @@
     <string name="clear_favs">Are you sure that you want to delete your favorites for the current transportation network?</string>
     <string name="clear_fav_trips">Are you sure that you want to delete this trip from your favorites? The usage count will be lost.</string>
     <string name="trip_searching">Searching for connections&#8230;</string>
+    <string name="stations_searching_position">Searching for current position&#8230;</string>
+    <string name="stations_searching_stations">Searching for nearby stations&#8230;</string>
 
     <string name="error_pick_network">Please select one transportation network!</string>
     <string name="error_no_internet">No sufficient internet connection available</string>
