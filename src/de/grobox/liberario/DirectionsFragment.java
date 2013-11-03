@@ -228,8 +228,11 @@ public class DirectionsFragment extends Fragment {
 			// change things for different network provider
 			getActivity().getActionBar().setSubtitle(subtitle);
 			refreshFavs();
-			((AutoCompleteTextView) getView().findViewById(R.id.from)).setText("");
-			((AutoCompleteTextView) getView().findViewById(R.id.to)).setText("");
+			// TODO make this work even if fragment is not selected
+			if(getView() != null) {
+				((AutoCompleteTextView) getView().findViewById(R.id.from)).setText("");
+				((AutoCompleteTextView) getView().findViewById(R.id.to)).setText("");
+			}
 		}
 		else {
 			super.onActivityResult(requestCode, resultCode, data);
@@ -338,11 +341,14 @@ public class DirectionsFragment extends Fragment {
 	}
 
 	public void refreshFavs() {
-		AutoCompleteTextView from = ((AutoCompleteTextView) getView().findViewById(R.id.from));
-		((LocationAutoCompleteAdapter) from.getAdapter()).clearFavs();
+		// TODO make this work even if fragment is not selected
+		if(getView() != null) {
+			AutoCompleteTextView from = ((AutoCompleteTextView) getView().findViewById(R.id.from));
+			((LocationAutoCompleteAdapter) from.getAdapter()).clearFavs();
 
-		AutoCompleteTextView to = ((AutoCompleteTextView) getView().findViewById(R.id.to));
-		((LocationAutoCompleteAdapter) to.getAdapter()).clearFavs();
+			AutoCompleteTextView to = ((AutoCompleteTextView) getView().findViewById(R.id.to));
+			((LocationAutoCompleteAdapter) to.getAdapter()).clearFavs();
+		}
 	}
 
 	private Boolean checkLocation(FavLocation.LOC_TYPE loc_type, AutoCompleteTextView view) {
