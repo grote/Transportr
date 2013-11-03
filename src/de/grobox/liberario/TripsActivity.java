@@ -194,14 +194,18 @@ public class TripsActivity extends Activity {
 				toView.setText(trip.to.uniqueShortName());
 
 				// Departure Time and Delay
-				TextView departureTimeView  = (TextView) row.findViewById(R.id.departureTimeView);
-				TextView departureDelayView = (TextView) row.findViewById(R.id.departureDelayView);
-				setDepartureTimes(departureTimeView, departureDelayView, trip.getFirstPublicLeg().departureStop);
+				if(trip.getFirstPublicLeg() != null) {
+					TextView departureTimeView  = (TextView) row.findViewById(R.id.departureTimeView);
+					TextView departureDelayView = (TextView) row.findViewById(R.id.departureDelayView);
+					setDepartureTimes(departureTimeView, departureDelayView, trip.getFirstPublicLeg().departureStop);
+				}
 
 				// Arrival Time and Delay
-				TextView arrivalTimeView = (TextView) row.findViewById(R.id.arrivalTimeView);
-				TextView arrivalDelayView = (TextView) row.findViewById(R.id.arrivalDelayView);
-				setArrivalTimes(arrivalTimeView, arrivalDelayView, trip.getLastPublicLeg().arrivalStop);
+				if(trip.getLastPublicLeg() != null) {
+					TextView arrivalTimeView = (TextView) row.findViewById(R.id.arrivalTimeView);
+					TextView arrivalDelayView = (TextView) row.findViewById(R.id.arrivalDelayView);
+					setArrivalTimes(arrivalTimeView, arrivalDelayView, trip.getLastPublicLeg().arrivalStop);
+				}
 
 				// Duration
 				TextView durationView = ((TextView) trip_layout.findViewById(R.id.durationView));
