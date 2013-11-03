@@ -96,6 +96,8 @@ Then, you also need to run the following command to build the public transport e
 
 If you don't want to use an IDE like Eclipse, you can build Libeario on the command line as follows.
 
+    $ ${ANDROID_HOME}/tools/android update project -p sublibs/Android-PullToRefresh/library/
+    $ ${ANDROID_HOME}/tools/android update project -p sublibs/ckChangeLog/library/
     $ ${ANDROID_HOME}/tools/android update project --name Liberario -p .
     $ ant release
 
