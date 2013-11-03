@@ -5,7 +5,8 @@
         <change>Remember whether you want to see the train platform or not</change>
         <change>Show actual error messages if a search goes wrong</change>
         <change>Added French Translation (Thanks to @Mina_Vidar)</change>
-        <change>Fixed bugs #10, #13</change>
+        <change>Fixed bug #13 crash for walking-only connections</change>
+        <change>Fixed bug #10 crash when searching in airplane mode</change>
     </release>
 
     <release version="0.2" versioncode="2">
