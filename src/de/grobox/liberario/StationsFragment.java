@@ -21,10 +21,12 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,6 +35,7 @@ import android.widget.ImageButton;
 
 public class StationsFragment extends Fragment implements LocationListener {
 	private LocationManager locationManager;
+	private boolean loc_found = false;
 	public ProgressDialog pd;
 
 	@Override
@@ -61,11 +64,23 @@ public class StationsFragment extends Fragment implements LocationListener {
 		pd.setMessage(getResources().getString(R.string.stations_searching_position));
 		pd.setCancelable(false);
 		pd.setIndeterminate(true);
+		pd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				removeUpdates();
+				dialog.dismiss();
+			}
+		});
 		pd.show();
 
-		// Register the listener with the Location Manager to receive location updates
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-		//TODO also use other providers
+		for(String provider : locationManager.getProviders(true)) {
+			// Register the listener with the Location Manager to receive location updates
+			locationManager.requestSingleUpdate(provider, this, null);
+
+			Log.d(getClass().getSimpleName(), "Register provider for location updates: " + provider);
+		}
+
+		loc_found = false;
 
 		// FIXME only for testing
 		//android.location.Location l = new android.location.Location("");
@@ -74,15 +89,28 @@ public class StationsFragment extends Fragment implements LocationListener {
 		//onLocationChanged(l);
 	}
 
-	public void onLocationChanged(android.location.Location location) {
-		// Called when a new location is found by the network location provider.
-		pd.setMessage(getResources().getString(R.string.stations_searching_stations));
-
-		Location loc = new Location(LocationType.ANY, (int) Math.round(location.getLatitude() * 1E6), (int) Math.round(location.getLongitude() * 1E6));
-		AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(this, loc);
-		query_stations.execute();
-
+	private void removeUpdates() {
 		locationManager.removeUpdates(this);
+	}
+
+	// Called when a new location is found by the network location provider.
+	public void onLocationChanged(android.location.Location location) {
+		// no more updates to prevent this method from being called more than once
+		removeUpdates();
+
+		if(!loc_found) {
+			Log.d(getClass().getSimpleName(), "Found location: " + location.toString());
+
+			// Change progress dialog, because we will now be looking for nearby stations
+			pd.setMessage(getResources().getString(R.string.stations_searching_stations));
+			pd.getButton(ProgressDialog.BUTTON_NEGATIVE).setVisibility(View.GONE);
+
+			// Query for nearby stations
+			Location loc = new Location(LocationType.ANY, (int) Math.round(location.getLatitude() * 1E6), (int) Math.round(location.getLongitude() * 1E6));
+			AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(this, loc);
+			query_stations.execute();
+		}
+		loc_found = true;
 	}
 
 	public void onStatusChanged(String provider, int status, Bundle extras) {}

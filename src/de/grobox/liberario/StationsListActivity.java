@@ -32,6 +32,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,9 +75,18 @@ public class StationsListActivity extends Activity {
 	}
 
 	private void addStations(List<Location> stations) {
-		//TODO also use other providers);
-		android.location.Location cur_loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		android.location.Location cur_loc = new android.location.Location("");
 		android.location.Location sta_loc = new android.location.Location("");
+
+		// get last known position
+		for(String provider : locationManager.getProviders(true)) {
+			// Register the listener with the Location Manager to receive location updates
+			android.location.Location tmp_loc = locationManager.getLastKnownLocation(provider);
+			if(tmp_loc.getTime() > cur_loc.getTime()) {
+				cur_loc = tmp_loc;
+			}
+			Log.d(getClass().getSimpleName(), "Received last known location: " + cur_loc.toString());
+		}
 
 		for(final Location station : stations) {
 			LinearLayout stationView = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.station, null);
