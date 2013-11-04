@@ -175,6 +175,9 @@ public class StationsListActivity extends Activity {
 					positionView.setText(dep.position);
 				}
 
+				// hide progress bar
+				layout.getChildAt(0).setVisibility(View.GONE);
+
 				layout.addView(view);
 			}
 		}
