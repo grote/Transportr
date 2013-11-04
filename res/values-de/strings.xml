@@ -49,6 +49,8 @@
     <string name="trip_searching">Suche nach Verbindungen&#8230;</string>
     <string name="stations_searching_position">Suche aktuelle Position&#8230;</string>
     <string name="stations_searching_stations">Suche Stationen in der Nähe&#8230;</string>
+    <string name="find_nearby_stations">Suche Stationen in der Umgebung</string>
+    <string name="find_departures">Suche Abfahrten</string>
 
     <string name="error_pick_network">Wähle genau ein Verkehrs-Netzwerk!</string>
     <string name="error_no_internet">Keine ausreichende Internet-Verbindung verfügbar</string>
@@ -56,5 +58,9 @@
     <string name="error_invalid_to">Ungültige Angabe des Ziels</string>
     <string name="error_no_favs">Keine Favoriten gespeichert</string>
     <string name="error_no_trips_found">Keine Verbindungen gefunden</string>
+
+    <string name="number_of_stations">Anzahl Stationen</string>
+    <string name="meter">m</string>
+    <string name="max_distance">Maximale Distanz</string>
 
 </resources>
