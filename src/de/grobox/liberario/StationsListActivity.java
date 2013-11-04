@@ -34,6 +34,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +45,7 @@ import android.widget.TextView;
 public class StationsListActivity extends Activity {
 	private LinearLayout main;
 	private LocationManager locationManager;
+	private Menu mMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,24 @@ public class StationsListActivity extends Activity {
 	}
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.stations_activity_actions, menu);
+		mMenu = menu;
+
+		if(Preferences.getShowPlatforms(this)) {
+			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+			showPlatforms(true);
+		} else {
+			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+			showPlatforms(false);
+		}
+
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
@@ -68,7 +89,19 @@ public class StationsListActivity extends Activity {
 				onBackPressed();
 
 				return true;
-			// TODO add position button
+			case R.id.action_platforms:
+				boolean show = !Preferences.getShowPlatforms(this);
+
+				// change action icon
+				if(show) {
+					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+				} else {
+					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+				}
+				showPlatforms(show);
+				Preferences.setShowPlatforms(this, show);
+
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
@@ -195,6 +228,24 @@ public class StationsListActivity extends Activity {
 			}
 		}
 
+	}
+
+	private void showPlatforms(boolean show) {
+		// loop over each station
+		for(int i = 0; i < main.getChildCount(); ++i) {
+			View v = (View) main.getChildAt(i);
+			if(v instanceof LinearLayout && v.getId() == R.id.departureListLayout) {
+				LinearLayout dep = (LinearLayout) v;
+				// loop over each departure
+				for(int j = 0; j < dep.getChildCount(); ++j) {
+					TextView positionView = (TextView) dep.getChildAt(j).findViewById(R.id.positionView);
+					if(positionView != null) {
+						// collapse/expand platforms on departures
+						positionView.setVisibility(show ? View.VISIBLE : View.GONE);
+					}
+				}
+			}
+		}
 	}
 
 }
