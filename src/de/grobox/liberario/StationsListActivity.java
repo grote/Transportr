@@ -72,10 +72,8 @@ public class StationsListActivity extends Activity {
 
 		if(Preferences.getShowPlatforms(this)) {
 			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
-			showPlatforms(true);
 		} else {
 			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
-			showPlatforms(false);
 		}
 
 		return super.onCreateOptionsMenu(menu);
@@ -219,6 +217,7 @@ public class StationsListActivity extends Activity {
 				if(dep.position != null) {
 					TextView positionView = (TextView) view.findViewById(R.id.positionView);
 					positionView.setText(dep.position);
+					positionView.setVisibility(Preferences.getShowPlatforms(this) ? View.VISIBLE : View.GONE);
 				}
 
 				// hide progress bar
