@@ -24,8 +24,10 @@
             android:id="@+id/lineLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:orientation="horizontal" >
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
         </LinearLayout>
     </LinearLayout>
 
@@ -42,7 +44,9 @@
         <TextView
             android:id="@+id/flex2View"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -54,14 +58,16 @@
         <TextView
             android:id="@+id/distanceView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical" />
+            android:layout_height="fill_parent"
+            android:layout_gravity="right"
+            android:gravity="bottom" />
 
         <TextView
             android:id="@+id/timeDistanceView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:visibility="gone" />
 
     </LinearLayout>
 

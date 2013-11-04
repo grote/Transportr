@@ -257,7 +257,18 @@ public class TripsActivity extends Activity {
 	}
 
 	@SuppressWarnings("deprecation")
-	static public void addLineBox(Context context, LinearLayout lineLayout, Line line, int index) {
+	static public void addLineBox(Context context, LinearLayout lineLayout, Line line, int index, boolean check_duplicates) {
+		if(check_duplicates) {
+			// loop through all line boxes in the linearLayout
+			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
+				// check if current line box is the same as the one we are about to add
+				if(line.label.substring(1).equals(((TextView)lineLayout.getChildAt(i)).getText())) {
+					// lines are equal, so bail out from here and don't add new line box
+					return;
+				}
+			}
+		}
+
 		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, null);
 
 		GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
@@ -281,6 +292,14 @@ public class TripsActivity extends Activity {
 
 	static public void addLineBox(Context context, LinearLayout lineLayout, Line line) {
 		addLineBox(context, lineLayout, line, lineLayout.getChildCount()-1);
+	}
+
+	static public void addLineBox(Context context, LinearLayout lineLayout, Line line, boolean check_duplicates) {
+		addLineBox(context, lineLayout, line, lineLayout.getChildCount()-1, check_duplicates);
+	}
+
+	static public void addLineBox(Context context, LinearLayout lineLayout, Line line, int index) {
+		addLineBox(context, lineLayout, line, index, false);
 	}
 
 	static public void addWalkingBox(Context context, LinearLayout lineLayout) {

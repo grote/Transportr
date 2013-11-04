@@ -132,14 +132,19 @@ public class StationsListActivity extends Activity {
 	public void addDepartures(View v, QueryDeparturesResult result) {
 		LinearLayout layout = (LinearLayout) main.getChildAt(main.indexOfChild(v) + 1);
 
+		boolean have_lines = false;
+
 		for(final StationDepartures stat_dep : result.stationDepartures) {
+			LinearLayout stationView = (LinearLayout) v;
+			LinearLayout stationLineLayout = (LinearLayout) stationView.findViewById(R.id.lineLayout);
+
 			// add line boxes if available
 			if(stat_dep.lines != null) {
-				LinearLayout stationView = (LinearLayout) v;
-				LinearLayout lineLayout = (LinearLayout) stationView.findViewById(R.id.lineLayout);
 				for(LineDestination line : stat_dep.lines) {
-					TripsActivity.addLineBox(this, lineLayout, line.line);
+					TripsActivity.addLineBox(this, stationLineLayout, line.line);
 				}
+				stationLineLayout.setVisibility(View.VISIBLE);
+				have_lines = true;
 			}
 
 			// get maximum number of departures
@@ -163,8 +168,16 @@ public class StationsListActivity extends Activity {
 					}
 				}
 
-				LinearLayout lineLayout = (LinearLayout) view.findViewById(R.id.lineLayout);
-				TripsActivity.addLineBox(this, lineLayout, dep.line, 0);
+				if(dep.line != null) {
+					LinearLayout lineLayout = (LinearLayout) view.findViewById(R.id.lineLayout);
+					TripsActivity.addLineBox(this, lineLayout, dep.line, 0);
+
+					// add lines also to departing station row
+					if(!have_lines) {
+						TripsActivity.addLineBox(this, stationLineLayout, dep.line, true);
+						stationLineLayout.setVisibility(View.VISIBLE);
+					}
+				}
 
 				TextView destinationView = (TextView) view.findViewById(R.id.destinationView);
 				destinationView.setText(dep.destination.uniqueShortName());
