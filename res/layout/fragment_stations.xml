@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|right"
                 android:inputType="number"
+                android:maxLength="4"
                 android:text="1000" />
 
             <TextView
@@ -57,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|right"
                 android:inputType="number"
+                android:maxLength="1"
                 android:text="3" />
 
         </TableRow>

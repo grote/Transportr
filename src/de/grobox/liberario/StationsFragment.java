@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class StationsFragment extends Fragment implements LocationListener {
@@ -117,9 +118,27 @@ public class StationsFragment extends Fragment implements LocationListener {
 			pd.setMessage(getResources().getString(R.string.stations_searching_stations));
 			pd.getButton(ProgressDialog.BUTTON_NEGATIVE).setEnabled(false);
 
+			int maxDistance;
+			int maxStations;
+
+			TextView distanceView = (TextView) getView().findViewById(R.id.distanceView);
+			TextView numStationsView = (TextView) getView().findViewById(R.id.numStationsView);
+
+			// Get values from form
+			if(distanceView.getText().length() > 0) {
+				maxDistance = Integer.valueOf(distanceView.getText().toString());
+			} else {
+				maxDistance = 1000;
+			}
+			if(numStationsView.getText().length() > 0) {
+				maxStations = Integer.valueOf(numStationsView.getText().toString());
+			} else{
+				maxStations = 3;
+			}
+
 			// Query for nearby stations
 			Location loc = new Location(LocationType.ANY, (int) Math.round(location.getLatitude() * 1E6), (int) Math.round(location.getLongitude() * 1E6));
-			AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(this, loc);
+			AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(this, loc, maxDistance, maxStations);
 			query_stations.execute();
 		}
 		loc_found = true;

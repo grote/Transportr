@@ -17,8 +17,6 @@
 
 package de.grobox.liberario;
 
-import java.io.IOException;
-
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.NearbyStationsResult;
@@ -33,13 +31,15 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbySt
 	private Context context;
 	private Location loc;
 	private String error = null;
+	int maxDistance;
+	int maxStations;
 
-	private static final int num_stations = 5;
-
-	public AsyncQueryNearbyStationsTask(StationsFragment fragment, Location loc) {
+	public AsyncQueryNearbyStationsTask(StationsFragment fragment, Location loc, int maxDistance, int maxStations) {
 		this.fragment = fragment;
 		this.context = fragment.getActivity();
 		this.loc = loc;
+		this.maxDistance = maxDistance;
+		this.maxStations = maxStations;
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbySt
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(context)) {
-				return np.queryNearbyStations(loc, 1500, num_stations);
+				return np.queryNearbyStations(loc, maxDistance, maxStations);
 			}
 			else {
 				error = context.getResources().getString(R.string.error_no_internet);
