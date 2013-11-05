@@ -28,14 +28,20 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class StationsFragment extends Fragment implements LocationListener {
 	private LocationManager locationManager;
@@ -50,9 +56,10 @@ public class StationsFragment extends Fragment implements LocationListener {
 	}
 
 	@Override
-	public void onActivityCreated(Bundle savedState) {
-		super.onActivityCreated(savedState);
+	public void onStart() {
+		super.onStart();
 
+		// Find Nearby Stations Search Button
 		ImageButton btn = (ImageButton) getView().findViewById(R.id.findNearbyStationsButton);
 		btn.setOnClickListener(new OnClickListener(){
 			@Override
@@ -61,6 +68,57 @@ public class StationsFragment extends Fragment implements LocationListener {
 			}
 		});
 
+		// station name TextView
+		final AutoCompleteTextView stationView = (AutoCompleteTextView) getView().findViewById(R.id.stationView);
+		stationView.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
+		stationView.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+				stationView.setTag((Location) parent.getItemAtPosition(position));
+				stationView.requestFocus();
+			}
+		});
+		stationView.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				// clear saved station
+				stationView.setTag(null);
+			}
+			public void afterTextChanged(Editable s) {}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+		});
+
+		// station name favorites button
+		((View) getView().findViewById(R.id.stationFavButton)).setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				int size = ((LocationAutoCompleteAdapter) stationView.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
+
+				if(size > 0) {
+					stationView.showDropDown();
+				}
+				else {
+					Toast.makeText(getActivity(), getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+
+		// Find Departures Search Button
+		Button stationButton = (Button) getView().findViewById(R.id.stationButton);
+		stationButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				if(stationView.getTag() != null && stationView.getTag() instanceof Location) {
+					// use location to query departures
+					//(Location) stationView.getTag();
+				} else if(stationView.getText().length() > 0) {
+					// use only provided text for search
+					//stationView.getText();
+				} else {
+					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 	}
 
 	private void getLocation() {
