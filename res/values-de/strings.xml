@@ -58,6 +58,7 @@
     <string name="error_invalid_to">Ungültige Angabe des Ziels</string>
     <string name="error_no_favs">Keine Favoriten gespeichert</string>
     <string name="error_no_trips_found">Keine Verbindungen gefunden</string>
+    <string name="error_no_location_provider">Kann Position nicht bestimmen. Bitte schalte GPS ein!</string>
 
     <string name="number_of_stations">Anzahl Stationen</string>
     <string name="meter">m</string>

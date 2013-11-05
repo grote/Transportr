@@ -17,6 +17,8 @@
 
 package de.grobox.liberario;
 
+import java.util.List;
+
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import android.app.ProgressDialog;
@@ -32,6 +34,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class StationsFragment extends Fragment implements LocationListener {
 	private LocationManager locationManager;
@@ -73,11 +76,20 @@ public class StationsFragment extends Fragment implements LocationListener {
 		});
 		pd.show();
 
-		for(String provider : locationManager.getProviders(true)) {
+		List<String> providers = locationManager.getProviders(true);
+
+		for(String provider : providers) {
 			// Register the listener with the Location Manager to receive location updates
 			locationManager.requestSingleUpdate(provider, this, null);
 
 			Log.d(getClass().getSimpleName(), "Register provider for location updates: " + provider);
+		}
+
+		// check if there is a non-passive provider available
+		if(providers.size() == 0 || (providers.size() == 1 && providers.get(0).equals(LocationManager.PASSIVE_PROVIDER)) ) {
+			removeUpdates();
+			pd.dismiss();
+			Toast.makeText(getActivity(), getResources().getString(R.string.error_no_location_provider), Toast.LENGTH_LONG).show();
 		}
 
 		loc_found = false;
@@ -103,7 +115,7 @@ public class StationsFragment extends Fragment implements LocationListener {
 
 			// Change progress dialog, because we will now be looking for nearby stations
 			pd.setMessage(getResources().getString(R.string.stations_searching_stations));
-			pd.getButton(ProgressDialog.BUTTON_NEGATIVE).setVisibility(View.GONE);
+			pd.getButton(ProgressDialog.BUTTON_NEGATIVE).setEnabled(false);
 
 			// Query for nearby stations
 			Location loc = new Location(LocationType.ANY, (int) Math.round(location.getLatitude() * 1E6), (int) Math.round(location.getLongitude() * 1E6));
