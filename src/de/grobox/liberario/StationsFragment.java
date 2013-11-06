@@ -24,6 +24,7 @@ import de.schildbach.pte.dto.LocationType;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -70,7 +71,7 @@ public class StationsFragment extends Fragment implements LocationListener {
 
 		// station name TextView
 		final AutoCompleteTextView stationView = (AutoCompleteTextView) getView().findViewById(R.id.stationView);
-		stationView.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
+		stationView.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item, true));
 		stationView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
@@ -110,12 +111,19 @@ public class StationsFragment extends Fragment implements LocationListener {
 			public void onClick(View v) {
 				if(stationView.getTag() != null && stationView.getTag() instanceof Location) {
 					// use location to query departures
-					//(Location) stationView.getTag();
-				} else if(stationView.getText().length() > 0) {
-					// use only provided text for search
-					//stationView.getText();
+					Location location = (Location) stationView.getTag();
+
+					if(!location.hasId()) {
+						Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					// start StationsListActivity with given location
+					Intent intent = new Intent(v.getContext(), StationsListActivity.class);
+					intent.putExtra("de.schildbach.pte.dto.Location", location);
+					startActivity(intent);
 				} else {
-					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

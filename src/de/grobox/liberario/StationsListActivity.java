@@ -17,6 +17,7 @@
 
 package de.grobox.liberario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.grobox.liberario.R;
@@ -46,6 +47,7 @@ public class StationsListActivity extends Activity {
 	private LinearLayout main;
 	private LocationManager locationManager;
 	private Menu mMenu;
+	boolean gps;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +60,22 @@ public class StationsListActivity extends Activity {
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 		Intent intent = getIntent();
-		NearbyStationsResult stations = (NearbyStationsResult) intent.getSerializableExtra("de.schildbach.pte.dto.NearbyStationsResult");
+		if(intent.getAction() != null && intent.getAction().equals("de.grobox.liberario.LIST_NEARBY_STATIONS")) {
+			NearbyStationsResult stations = (NearbyStationsResult) intent.getSerializableExtra("de.schildbach.pte.dto.NearbyStationsResult");
+			gps = true;
 
-		addStations(stations.stations);
+			addStations(stations.stations);
+		}
+		else {
+			Location station = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
+			gps = false;
+
+			ArrayList<Location> stations = new ArrayList<Location>();
+			stations.add(station);
+
+			addStations(stations);
+		}
+
 	}
 
 	@Override
@@ -109,14 +124,16 @@ public class StationsListActivity extends Activity {
 		android.location.Location cur_loc = new android.location.Location("");
 		android.location.Location sta_loc = new android.location.Location("");
 
-		// get last known position
-		for(String provider : locationManager.getProviders(true)) {
-			// Register the listener with the Location Manager to receive location updates
-			android.location.Location tmp_loc = locationManager.getLastKnownLocation(provider);
-			if(tmp_loc.getTime() > cur_loc.getTime()) {
-				cur_loc = tmp_loc;
+		if(gps) {
+			// get last known position
+			for(String provider : locationManager.getProviders(true)) {
+				// Register the listener with the Location Manager to receive location updates
+				android.location.Location tmp_loc = locationManager.getLastKnownLocation(provider);
+				if(tmp_loc.getTime() > cur_loc.getTime()) {
+					cur_loc = tmp_loc;
+				}
+				Log.d(getClass().getSimpleName(), "Received last known location: " + cur_loc.toString());
 			}
-			Log.d(getClass().getSimpleName(), "Received last known location: " + cur_loc.toString());
 		}
 
 		for(final Location station : stations) {
@@ -125,28 +142,33 @@ public class StationsListActivity extends Activity {
 			TextView stationNameView = (TextView) stationView.findViewById(R.id.stationNameView);
 			stationNameView.setText(station.uniqueShortName());
 
-			// transform station location into android format
-			sta_loc.setLatitude(station.lat / 1E6);
-			sta_loc.setLongitude(station.lon / 1E6);
+			if(gps) {
+				// transform station location into android format
+				sta_loc.setLatitude(station.lat / 1E6);
+				sta_loc.setLongitude(station.lon / 1E6);
 
-			TextView distanceView = (TextView) stationView.findViewById(R.id.distanceView);
-			distanceView.setText(String.valueOf(Math.round(cur_loc.distanceTo(sta_loc))) + " m");
+				TextView distanceView = (TextView) stationView.findViewById(R.id.distanceView);
+				distanceView.setText(String.valueOf(Math.round(cur_loc.distanceTo(sta_loc))) + " m");
 
-			stationView.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					ViewGroup parent = ((ViewGroup) view.getParent());
-					View v = parent.getChildAt(parent.indexOfChild(view) + 1);
-					if(v != null) {
-						if(v.getVisibility() == View.GONE) {
-							v.setVisibility(View.VISIBLE);
-						}
-						else if(v.getVisibility() == View.VISIBLE) {
-							v.setVisibility(View.GONE);
+				stationView.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						ViewGroup parent = ((ViewGroup) view.getParent());
+						View v = parent.getChildAt(parent.indexOfChild(view) + 1);
+						if(v != null) {
+							if(v.getVisibility() == View.GONE) {
+								v.setVisibility(View.VISIBLE);
+							}
+							else if(v.getVisibility() == View.VISIBLE) {
+								v.setVisibility(View.GONE);
+							}
 						}
 					}
-				}
-			});
+				});
+			}
+			else {
+				stationView.setClickable(false);
+			}
 
 			main.addView(stationView);
 
@@ -154,6 +176,10 @@ public class StationsListActivity extends Activity {
 			query_stations.execute();
 
 			LinearLayout depList = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.departure_list, null);
+			if(!gps) {
+				// show departures right away if we only have one station
+				depList.setVisibility(View.VISIBLE);
+			}
 			main.addView(depList);
 
 			main.addView(TripsActivity.getDivider(this));
@@ -166,6 +192,14 @@ public class StationsListActivity extends Activity {
 		boolean have_lines = false;
 
 		for(final StationDepartures stat_dep : result.stationDepartures) {
+			if(stat_dep.departures.size() == 0) {
+				// hide progress bar
+				layout.getChildAt(0).setVisibility(View.GONE);
+
+				// there's no departures here, so exit
+				return;
+			}
+
 			LinearLayout stationView = (LinearLayout) v;
 			LinearLayout stationLineLayout = (LinearLayout) stationView.findViewById(R.id.lineLayout);
 
@@ -213,7 +247,7 @@ public class StationsListActivity extends Activity {
 				TextView destinationView = (TextView) view.findViewById(R.id.destinationView);
 				destinationView.setText(dep.destination.uniqueShortName());
 
-				// TODO use position preference
+				// show platform/position according to user preference and availability
 				if(dep.position != null) {
 					TextView positionView = (TextView) view.findViewById(R.id.positionView);
 					positionView.setText(dep.position);

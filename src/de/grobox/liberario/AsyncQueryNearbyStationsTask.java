@@ -82,6 +82,7 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbySt
 		}
 
 		Intent intent = new Intent(context, StationsListActivity.class);
+		intent.setAction("de.grobox.liberario.LIST_NEARBY_STATIONS");
 		intent.putExtra("de.schildbach.pte.dto.NearbyStationsResult", result);
 		context.startActivity(intent);
 	}

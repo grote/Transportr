@@ -17,6 +17,7 @@
 
 package de.grobox.liberario;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -32,23 +33,32 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implements Filterable {
-	private List<Location> resultList;
+	private List<Location> filteredList;
 	private Boolean addedFavs = false;
+	private boolean onlyIDs;
 	int resource;
 
 	public LocationAutoCompleteAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
 		resource = textViewResourceId;
+		this.onlyIDs = false;
 	}
+
+	public LocationAutoCompleteAdapter(Context context, int textViewResourceId, boolean onlyIDs) {
+		super(context, textViewResourceId);
+		resource = textViewResourceId;
+		this.onlyIDs = onlyIDs;
+	}
+
 
 	@Override
 	public int getCount() {
-		return resultList.size();
+		return filteredList.size();
 	}
 
 	@Override
 	public Location getItem(int index) {
-		return resultList.get(index);
+		return filteredList.get(index);
 	}
 
 	@Override
@@ -60,6 +70,8 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 
 				if (constraint != null) {
 					AsyncLocationAutoCompleteTask autocomplete = new AsyncLocationAutoCompleteTask(getContext(), constraint.toString());
+
+					List<Location> resultList = null;
 
 					// Retrieve the auto-complete results.
 					try {
@@ -74,9 +86,21 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 					}
 
 					if(resultList != null) {
+						if(onlyIDs) {
+							filteredList = new ArrayList<Location>();
+
+							// only add those locations from result that have a station id
+							for(int i = 0; i < resultList.size(); i++) {
+								Location l = resultList.get(i);
+								if(l.hasId()) filteredList.add(l);
+							}
+						} else {
+							filteredList = resultList;
+						}
+
 						// Assign the data to the FilterResults
-						filterResults.values = resultList;
-						filterResults.count = resultList.size();
+						filterResults.values = filteredList;
+						filterResults.count = filteredList.size();
 					}
 				}
 				return filterResults;
@@ -112,16 +136,16 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 
 	public int addFavs(FavLocation.LOC_TYPE sort) {
 		if(!addedFavs) {
-			resultList = FavFile.getFavLocationList(getContext(), sort);
+			filteredList = FavFile.getFavLocationList(getContext(), sort, onlyIDs);
 
 			addedFavs = true;
 		}
-		return resultList.size();
+		return filteredList.size();
 	}
 
 	public void clearFavs() {
-		if(resultList != null) {
-			resultList.clear();
+		if(filteredList != null) {
+			filteredList.clear();
 		}
 		addedFavs = false;
 	}

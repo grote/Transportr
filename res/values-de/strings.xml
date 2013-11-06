@@ -59,6 +59,9 @@
     <string name="error_no_favs">Keine Favoriten gespeichert</string>
     <string name="error_no_trips_found">Keine Verbindungen gefunden</string>
     <string name="error_no_location_provider">Kann Position nicht bestimmen. Bitte schalte GPS ein!</string>
+    <string name="error_no_departures_found">Keine Abfahrten gefunden</string>
+    <string name="error_no_proper_station">Der angegebene Name ist keine gültige Station</string>
+    <string name="error_only_autocomplete_station">Bitte wähle eine Station aus der Auto-Vervollständigen-Liste aus!</string>
 
     <string name="number_of_stations">Anzahl Stationen</string>
     <string name="meter">m</string>

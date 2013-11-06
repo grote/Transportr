@@ -90,7 +90,7 @@ public class FavFile {
 		return fav_list;
 	}
 
-	public static List<Location> getFavLocationList(Context context, FavLocation.LOC_TYPE sort) {
+	public static List<Location> getFavLocationList(Context context, FavLocation.LOC_TYPE sort, boolean onlyIDs) {
 		List<FavLocation> fav_list = getFavLocationList(context);
 		List<Location> list = new ArrayList<Location>();
 
@@ -102,10 +102,16 @@ public class FavFile {
 		}
 
 		for(final FavLocation loc : fav_list) {
-			list.add(loc.getLocation());
+			if(!onlyIDs || loc.getLocation().hasId()) {
+				list.add(loc.getLocation());
+			}
 		}
 
 		return list;
+	}
+
+	public static List<Location> getFavLocationList(Context context, FavLocation.LOC_TYPE sort) {
+		return getFavLocationList(context, sort, false);
 	}
 
 	public static void setFavLocationList(Context context, List<FavLocation> favList) {
