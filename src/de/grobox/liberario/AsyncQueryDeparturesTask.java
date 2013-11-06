@@ -68,7 +68,7 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 	protected void onPostExecute(QueryDeparturesResult result) {
 		if(result == null || result.status != QueryDeparturesResult.Status.OK) {
 			if(error == null) {
-				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
+				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_departures_found), Toast.LENGTH_LONG).show();
 			} else {
 				Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
 			}
