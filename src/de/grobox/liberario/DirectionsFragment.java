@@ -56,7 +56,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class DirectionsFragment extends LiberarioFragment {
-	public static String subtitle = null;
+	private View mView;
 	private boolean mChange = false;
 
 	@Override
@@ -67,7 +67,10 @@ public class DirectionsFragment extends LiberarioFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_directions, container, false);
+		// remember view for UI changes when fragment is not active
+		mView = inflater.inflate(R.layout.fragment_directions, container, false);
+
+		return mView;
 	}
 
 	@Override
@@ -77,7 +80,7 @@ public class DirectionsFragment extends LiberarioFragment {
 		checkPreferences();
 
 		// From text input
-		final AutoCompleteTextView from = (AutoCompleteTextView) getView().findViewById(R.id.from);
+		final AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
 		from.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
 		from.setOnItemClickListener(new OnItemClickListener(){
 			@Override
@@ -95,7 +98,7 @@ public class DirectionsFragment extends LiberarioFragment {
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 		});
-		((View) getView().findViewById(R.id.fromFavButton)).setOnClickListener(new OnClickListener(){
+		((View) mView.findViewById(R.id.fromFavButton)).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				fromFavClick(v);
@@ -104,7 +107,7 @@ public class DirectionsFragment extends LiberarioFragment {
 
 		// To text input
 
-		final AutoCompleteTextView to = (AutoCompleteTextView) getView().findViewById(R.id.to);
+		final AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
 		to.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
 		to.setOnItemClickListener(new OnItemClickListener(){
 			@Override
@@ -122,7 +125,7 @@ public class DirectionsFragment extends LiberarioFragment {
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 		});
-		((View) getView().findViewById(R.id.toFavButton)).setOnClickListener(new OnClickListener(){
+		((View) mView.findViewById(R.id.toFavButton)).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				toFavClick(v);
@@ -130,9 +133,9 @@ public class DirectionsFragment extends LiberarioFragment {
 		});
 
 		// timeView
-		final TextView timeView = (TextView) getView().findViewById(R.id.timeView);
+		final TextView timeView = (TextView) mView.findViewById(R.id.timeView);
 		timeView.setText(DateUtils.getcurrentTime(getActivity()));
-		((View) getView().findViewById(R.id.timeLayout)).setOnClickListener(new OnClickListener(){
+		((View) mView.findViewById(R.id.timeLayout)).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				showTimePickerDialog(v);
@@ -140,28 +143,28 @@ public class DirectionsFragment extends LiberarioFragment {
 		});
 
 		// Trip Date Type Spinner (departure or arrival)
-		final Spinner spinner = (Spinner) getView().findViewById(R.id.dateTypeSpinner);
+		final Spinner spinner = (Spinner) mView.findViewById(R.id.dateTypeSpinner);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.trip_date_type, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
 
 		// dateView
-		final TextView dateView = (TextView) getView().findViewById(R.id.dateView);
+		final TextView dateView = (TextView) mView.findViewById(R.id.dateView);
 		dateView.setText(DateUtils.getcurrentDate(getActivity()));
-		((View) getView().findViewById(R.id.dateLayout)).setOnClickListener(new OnClickListener(){
+		((View) mView.findViewById(R.id.dateLayout)).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				showDatePickerDialog(v);
 			}
 		});
 
-		Button button = (Button) getView().findViewById(R.id.button1);
+		Button button = (Button) mView.findViewById(R.id.button1);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 
 				// check and set from location
-				if(checkLocation(FavLocation.LOC_TYPE.FROM, (AutoCompleteTextView) getView().findViewById(R.id.from))) {
+				if(checkLocation(FavLocation.LOC_TYPE.FROM, (AutoCompleteTextView) mView.findViewById(R.id.from))) {
 					query_trips.setFrom(getFrom());
 				}
 				else {
@@ -170,7 +173,7 @@ public class DirectionsFragment extends LiberarioFragment {
 				}
 
 				// check and set to location
-				if(checkLocation(FavLocation.LOC_TYPE.TO, (AutoCompleteTextView) getView().findViewById(R.id.to))) {
+				if(checkLocation(FavLocation.LOC_TYPE.TO, (AutoCompleteTextView) mView.findViewById(R.id.to))) {
 					query_trips.setTo(getTo());
 				}
 				else {
@@ -221,30 +224,23 @@ public class DirectionsFragment extends LiberarioFragment {
 	}
 
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// Check which request we're responding to
-		if(requestCode == MainActivity.CHANGED_NETWORK_PROVIDER) {
-			// change things for different network provider
-			getActivity().getActionBar().setSubtitle(subtitle);
-			refreshFavs();
-			// TODO make this work even if fragment is not selected
-			if(getView() != null) {
-				((AutoCompleteTextView) getView().findViewById(R.id.from)).setText("");
-				((AutoCompleteTextView) getView().findViewById(R.id.to)).setText("");
-			}
-		}
-		else {
-			super.onActivityResult(requestCode, resultCode, data);
-		}
-	}
-
-	@Override
+	// change things for a different network provider
 	public void onNetworkProviderChanged(NetworkProvider np) {
-		// TODO
+		// get and set new network name for action bar
+		SharedPreferences settings = getActivity().getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
+		getActivity().getActionBar().setSubtitle(settings.getString("NetworkId", "???"));
+
+		refreshFavs();
+
+		// remove old text from TextViews
+		if(mView != null) {
+			((AutoCompleteTextView) mView.findViewById(R.id.from)).setText("");
+			((AutoCompleteTextView) mView.findViewById(R.id.to)).setText("");
+		}
 	}
 
 	private Location getFrom() {
-		AutoCompleteTextView fromView = (AutoCompleteTextView) getView().findViewById(R.id.from);
+		AutoCompleteTextView fromView = (AutoCompleteTextView) mView.findViewById(R.id.from);
 		Location from = (Location) fromView.getTag();
 		return from;
 	}
@@ -252,7 +248,7 @@ public class DirectionsFragment extends LiberarioFragment {
 	private void setFrom(Location loc) {
 		if(!mChange) {
 			mChange = true;
-			AutoCompleteTextView fromView = (AutoCompleteTextView) getView().findViewById(R.id.from);
+			AutoCompleteTextView fromView = (AutoCompleteTextView) mView.findViewById(R.id.from);
 			fromView.setTag(loc);
 
 			if(loc != null) {
@@ -268,7 +264,7 @@ public class DirectionsFragment extends LiberarioFragment {
 	}
 
 	private Location getTo() {
-		AutoCompleteTextView toView = (AutoCompleteTextView) getView().findViewById(R.id.to);
+		AutoCompleteTextView toView = (AutoCompleteTextView) mView.findViewById(R.id.to);
 		Location to = (Location) toView.getTag();
 		return to;
 	}
@@ -276,7 +272,7 @@ public class DirectionsFragment extends LiberarioFragment {
 	private void setTo(Location loc) {
 		if(!mChange) {
 			mChange = true;
-			AutoCompleteTextView toView = (AutoCompleteTextView) getView().findViewById(R.id.to);
+			AutoCompleteTextView toView = (AutoCompleteTextView) mView.findViewById(R.id.to);
 			toView.setTag(loc);
 
 			if(loc != null) {
@@ -314,14 +310,13 @@ public class DirectionsFragment extends LiberarioFragment {
 			startActivityForResult(intent, MainActivity.CHANGED_NETWORK_PROVIDER);
 		}
 		else {
-			subtitle = network;
-			getActivity().getActionBar().setSubtitle(subtitle);
+			getActivity().getActionBar().setSubtitle(network);
 		}
 
 	}
 
 	public void fromFavClick(View v) {
-		AutoCompleteTextView from = ((AutoCompleteTextView) getView().findViewById(R.id.from));
+		AutoCompleteTextView from = ((AutoCompleteTextView) mView.findViewById(R.id.from));
 		int size = ((LocationAutoCompleteAdapter) from.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
 
 		if(size > 0) {
@@ -333,7 +328,7 @@ public class DirectionsFragment extends LiberarioFragment {
 	}
 
 	public void toFavClick(View v) {
-		AutoCompleteTextView to = ((AutoCompleteTextView) getView().findViewById(R.id.to));
+		AutoCompleteTextView to = ((AutoCompleteTextView) mView.findViewById(R.id.to));
 		int size = ((LocationAutoCompleteAdapter) to.getAdapter()).addFavs(FavLocation.LOC_TYPE.TO);
 
 		if(size > 0) {
@@ -345,12 +340,11 @@ public class DirectionsFragment extends LiberarioFragment {
 	}
 
 	public void refreshFavs() {
-		// TODO make this work even if fragment is not selected
-		if(getView() != null) {
-			AutoCompleteTextView from = ((AutoCompleteTextView) getView().findViewById(R.id.from));
+		if(mView != null) {
+			AutoCompleteTextView from = ((AutoCompleteTextView) mView.findViewById(R.id.from));
 			((LocationAutoCompleteAdapter) from.getAdapter()).clearFavs();
 
-			AutoCompleteTextView to = ((AutoCompleteTextView) getView().findViewById(R.id.to));
+			AutoCompleteTextView to = ((AutoCompleteTextView) mView.findViewById(R.id.to));
 			((LocationAutoCompleteAdapter) to.getAdapter()).clearFavs();
 		}
 	}

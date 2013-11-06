@@ -137,10 +137,6 @@ public class MainActivity extends FragmentActivity {
 		if(requestCode == CHANGED_NETWORK_PROVIDER && resultCode == RESULT_OK) {
 			NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(this));
 			onNetworkProviderChanged(np);
-
-			// call the DirectionsFragment's activity to handle the request there
-			Fragment fragment = getSupportFragmentManager().getFragments().get(0);
-			fragment.onActivityResult(requestCode, resultCode, intent);
 		}
 	}
 

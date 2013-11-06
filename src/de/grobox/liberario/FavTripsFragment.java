@@ -19,8 +19,6 @@ package de.grobox.liberario;
 
 import java.util.List;
 
-import de.schildbach.pte.NetworkProvider;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -95,12 +93,6 @@ public class FavTripsFragment extends LiberarioListFragment {
 
 		query_trips.execute();
 	}
-
-	@Override
-	public void onNetworkProviderChanged(NetworkProvider np) {
-		// TODO
-	}
-
 
 	private class FavTripArrayAdapter extends ArrayAdapter<FavTrip> {
 		public FavTripArrayAdapter(Context context, int textViewResourceId,	List<FavTrip> objects) {

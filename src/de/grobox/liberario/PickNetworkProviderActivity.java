@@ -100,8 +100,6 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 
 					editor.commit();
 
-					DirectionsFragment.subtitle = network;
-
 					Intent returnIntent = new Intent();
 					setResult(RESULT_OK, returnIntent);
 					finish();
