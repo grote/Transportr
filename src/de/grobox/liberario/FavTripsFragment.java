@@ -19,11 +19,12 @@ package de.grobox.liberario;
 
 import java.util.List;
 
+import de.schildbach.pte.NetworkProvider;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class FavTripsFragment extends ListFragment {
+public class FavTripsFragment extends LiberarioListFragment {
 	private FavTripArrayAdapter adapter;
 
 	@Override
@@ -93,6 +94,11 @@ public class FavTripsFragment extends ListFragment {
 		FavFile.useFavTrip(getActivity(), trip);
 
 		query_trips.execute();
+	}
+
+	@Override
+	public void onNetworkProviderChanged(NetworkProvider np) {
+		// TODO
 	}
 
 

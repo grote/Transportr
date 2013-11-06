@@ -19,6 +19,8 @@ package de.grobox.liberario;
 
 import java.util.List;
 
+import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.NetworkProvider.Capability;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import android.app.ProgressDialog;
@@ -28,7 +30,6 @@ import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -40,11 +41,13 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class StationsFragment extends Fragment implements LocationListener {
+public class StationsFragment extends LiberarioFragment implements LocationListener {
+	private View mView;
 	private LocationManager locationManager;
 	private boolean loc_found = false;
 	public ProgressDialog pd;
@@ -53,22 +56,52 @@ public class StationsFragment extends Fragment implements LocationListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-		return inflater.inflate(R.layout.fragment_stations, container, false);
+		// remember view for UI changes when fragment is not active
+		mView = inflater.inflate(R.layout.fragment_stations, container, false);
+
+		return mView;
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
 
-		// Find Nearby Stations Search Button
-		ImageButton btn = (ImageButton) getView().findViewById(R.id.findNearbyStationsButton);
-		btn.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				getLocation();
-			}
-		});
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getActivity()));
 
+		if(np.hasCapabilities(Capability.DEPARTURES)) {
+			setDeparturesView();
+		} else {
+			LinearLayout departuresLayout = (LinearLayout) getView().findViewById(R.id.departuresLayout);
+			departuresLayout.setVisibility(View.GONE);
+		}
+
+		if(np.hasCapabilities(Capability.NEARBY_STATIONS)) {
+			setNearbyStationsView();
+		} else {
+			LinearLayout nearbyStationsLayout = (LinearLayout) getView().findViewById(R.id.nearbyStationsLayout);
+			nearbyStationsLayout.setVisibility(View.GONE);
+		}
+	}
+
+	public void onNetworkProviderChanged(NetworkProvider np) {
+		LinearLayout departuresLayout = (LinearLayout) mView.findViewById(R.id.departuresLayout);
+
+		if(np.hasCapabilities(Capability.DEPARTURES)) {
+			departuresLayout.setVisibility(View.VISIBLE);
+		} else {
+			departuresLayout.setVisibility(View.GONE);
+		}
+
+		LinearLayout nearbyStationsLayout = (LinearLayout) mView.findViewById(R.id.nearbyStationsLayout);
+
+		if(np.hasCapabilities(Capability.NEARBY_STATIONS)) {
+			nearbyStationsLayout.setVisibility(View.VISIBLE);
+		} else {
+			nearbyStationsLayout.setVisibility(View.GONE);
+		}
+	}
+
+	private void setDeparturesView() {
 		// station name TextView
 		final AutoCompleteTextView stationView = (AutoCompleteTextView) getView().findViewById(R.id.stationView);
 		stationView.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item, true));
@@ -125,6 +158,17 @@ public class StationsFragment extends Fragment implements LocationListener {
 				} else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
 				}
+			}
+		});
+	}
+
+	private void setNearbyStationsView() {
+		// Find Nearby Stations Search Button
+		ImageButton btn = (ImageButton) getView().findViewById(R.id.findNearbyStationsButton);
+		btn.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				getLocation();
 			}
 		});
 	}

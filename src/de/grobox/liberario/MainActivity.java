@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.cketti.library.changelog.ChangeLog;
+import de.schildbach.pte.NetworkProvider;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -36,8 +37,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity {
-	MainPagerAdapter mainPagerAdapter;
-	ViewPager mViewPager;
+	private MainPagerAdapter mainPagerAdapter;
+	private ViewPager mViewPager;
+
+	static final int CHANGED_NETWORK_PROVIDER = 1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -112,7 +115,7 @@ public class MainActivity extends FragmentActivity {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_settings:
-				startActivityForResult(new Intent(this, PickNetworkProviderActivity.class), DirectionsFragment.CHANGED_NETWORK_PROVIDER);
+				startActivityForResult(new Intent(this, PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
 
 				return true;
 			case R.id.action_changelog:
@@ -130,10 +133,25 @@ public class MainActivity extends FragmentActivity {
 
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
-		if(requestCode == DirectionsFragment.CHANGED_NETWORK_PROVIDER) {
+
+		if(requestCode == CHANGED_NETWORK_PROVIDER && resultCode == RESULT_OK) {
+			NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(this));
+			onNetworkProviderChanged(np);
+
 			// call the DirectionsFragment's activity to handle the request there
 			Fragment fragment = getSupportFragmentManager().getFragments().get(0);
 			fragment.onActivityResult(requestCode, resultCode, intent);
+		}
+	}
+
+	public void onNetworkProviderChanged(NetworkProvider np) {
+		// call this method for each fragment
+		for(final Fragment fragment : getSupportFragmentManager().getFragments()) {
+			if(fragment instanceof LiberarioFragment) {
+				((LiberarioFragment) fragment).onNetworkProviderChanged(np);
+			} else if(fragment instanceof LiberarioListFragment) {
+				((LiberarioListFragment) fragment).onNetworkProviderChanged(np);
+			}
 		}
 	}
 

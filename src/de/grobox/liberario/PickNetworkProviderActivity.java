@@ -102,6 +102,8 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 
 					DirectionsFragment.subtitle = network;
 
+					Intent returnIntent = new Intent();
+					setResult(RESULT_OK, returnIntent);
 					finish();
 				}
 				else {
@@ -115,6 +117,8 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		button_cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Intent returnIntent = new Intent();
+				setResult(RESULT_CANCELED, returnIntent);
 				finish();
 			}
 		});
@@ -123,6 +127,8 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 	@Override
 	public void onBackPressed() {
 		if(back) {
+			Intent returnIntent = new Intent();
+			setResult(RESULT_CANCELED, returnIntent);
 			finish();
 		}
 	}

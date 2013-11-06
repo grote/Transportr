@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 import de.grobox.liberario.R;
+import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
@@ -34,7 +35,6 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -55,9 +55,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class DirectionsFragment extends Fragment {
+public class DirectionsFragment extends LiberarioFragment {
 	public static String subtitle = null;
-	static final int CHANGED_NETWORK_PROVIDER = 1;
 	private boolean mChange = false;
 
 	@Override
@@ -224,7 +223,7 @@ public class DirectionsFragment extends Fragment {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// Check which request we're responding to
-		if(requestCode == CHANGED_NETWORK_PROVIDER) {
+		if(requestCode == MainActivity.CHANGED_NETWORK_PROVIDER) {
 			// change things for different network provider
 			getActivity().getActionBar().setSubtitle(subtitle);
 			refreshFavs();
@@ -237,6 +236,11 @@ public class DirectionsFragment extends Fragment {
 		else {
 			super.onActivityResult(requestCode, resultCode, data);
 		}
+	}
+
+	@Override
+	public void onNetworkProviderChanged(NetworkProvider np) {
+		// TODO
 	}
 
 	private Location getFrom() {
@@ -307,7 +311,7 @@ public class DirectionsFragment extends Fragment {
 			Intent intent = new Intent(getActivity(), PickNetworkProviderActivity.class);
 			intent.putExtra("FirstRun", true);
 
-			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
+			startActivityForResult(intent, MainActivity.CHANGED_NETWORK_PROVIDER);
 		}
 		else {
 			subtitle = network;
