@@ -47,6 +47,7 @@ public class StationsListActivity extends Activity {
 	private LinearLayout main;
 	private LocationManager locationManager;
 	private Menu mMenu;
+	private List<Location> mStations;
 	boolean gps;
 
 	@Override
@@ -64,18 +65,16 @@ public class StationsListActivity extends Activity {
 			NearbyStationsResult stations = (NearbyStationsResult) intent.getSerializableExtra("de.schildbach.pte.dto.NearbyStationsResult");
 			gps = true;
 
-			addStations(stations.stations);
+			mStations = stations.stations;
 		}
 		else {
 			Location station = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
 			gps = false;
 
-			ArrayList<Location> stations = new ArrayList<Location>();
-			stations.add(station);
-
-			addStations(stations);
+			mStations = new ArrayList<Location>();
+			mStations.add(station);
 		}
-
+		addStations();
 	}
 
 	@Override
@@ -102,6 +101,26 @@ public class StationsListActivity extends Activity {
 				onBackPressed();
 
 				return true;
+			case R.id.action_refresh:
+				int i = 0;
+				for(final Location station : mStations) {
+					LinearLayout stationView = (LinearLayout) main.getChildAt(i++);
+					LinearLayout depList = (LinearLayout) main.getChildAt(i++);
+					// one more increment for horizontal divider
+					i++;
+
+					// show progress bar
+					depList.getChildAt(0).setVisibility(View.VISIBLE);
+
+					// remove old departures
+					depList.removeViews(1, depList.getChildCount() - 1);
+
+					// get new departures
+					AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id);
+					query_stations.execute();
+				}
+
+				return true;
 			case R.id.action_platforms:
 				boolean show = !Preferences.getShowPlatforms(this);
 
@@ -120,7 +139,7 @@ public class StationsListActivity extends Activity {
 		}
 	}
 
-	private void addStations(List<Location> stations) {
+	private void addStations() {
 		android.location.Location cur_loc = new android.location.Location("");
 		android.location.Location sta_loc = new android.location.Location("");
 
@@ -129,14 +148,14 @@ public class StationsListActivity extends Activity {
 			for(String provider : locationManager.getProviders(true)) {
 				// Register the listener with the Location Manager to receive location updates
 				android.location.Location tmp_loc = locationManager.getLastKnownLocation(provider);
-				if(tmp_loc.getTime() > cur_loc.getTime()) {
+				if(tmp_loc != null && tmp_loc.getTime() > cur_loc.getTime()) {
 					cur_loc = tmp_loc;
 				}
 				Log.d(getClass().getSimpleName(), "Received last known location: " + cur_loc.toString());
 			}
 		}
 
-		for(final Location station : stations) {
+		for(final Location station : mStations) {
 			LinearLayout stationView = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.station, null);
 
 			TextView stationNameView = (TextView) stationView.findViewById(R.id.stationNameView);

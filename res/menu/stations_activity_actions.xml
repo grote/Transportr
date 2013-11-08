@@ -1,6 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_action_navigation_refresh"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_refresh"/>
+
+    <item
         android:id="@+id/action_platforms"
         android:icon="@drawable/ic_menu_show_platforms"
         android:showAsAction="ifRoom"

@@ -19,7 +19,6 @@ package de.grobox.liberario;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import de.grobox.liberario.R;
 import de.schildbach.pte.NetworkProvider;

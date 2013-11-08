@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="0.3" versioncode="4">
+        <change>Added third tab for stations</change>
+        <change>Find next departures from given station</change>
+        <change>Find nearby stations (from current position) and their next departures</change>
+    </release>
+
     <release version="0.2.1" versioncode="3">
         <change>Remember whether you want to see the train platform or not</change>
         <change>Show actual error messages if a search goes wrong</change>
