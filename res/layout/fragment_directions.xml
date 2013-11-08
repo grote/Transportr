@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:ems="10" >
+                android:inputType="textNoSuggestions" >
 
                 <requestFocus />
             </AutoCompleteTextView>
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:ems="10" />
+                android:inputType="textNoSuggestions" />
 
             <ImageButton
                 android:id="@+id/toFavButton"
