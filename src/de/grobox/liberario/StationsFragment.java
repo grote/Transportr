@@ -88,6 +88,10 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 		if(np.hasCapabilities(Capability.DEPARTURES)) {
 			departuresLayout.setVisibility(View.VISIBLE);
+
+			// clear favorites for auto-complete
+			AutoCompleteTextView stationView = ((AutoCompleteTextView) mView.findViewById(R.id.stationView));
+			((LocationAutoCompleteAdapter) stationView.getAdapter()).clearFavs();
 		} else {
 			departuresLayout.setVisibility(View.GONE);
 		}
