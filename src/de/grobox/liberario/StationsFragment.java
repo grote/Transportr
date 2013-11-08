@@ -155,6 +155,9 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 						return;
 					}
 
+					// Location is valid, so make it a favorite or increase counter
+					FavFile.updateFavLocation(getActivity(), location, FavLocation.LOC_TYPE.FROM);
+
 					// start StationsListActivity with given location
 					Intent intent = new Intent(v.getContext(), StationsListActivity.class);
 					intent.putExtra("de.schildbach.pte.dto.Location", location);

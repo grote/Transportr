@@ -371,22 +371,7 @@ public class DirectionsFragment extends LiberarioFragment {
 		}
 		// we have a location, so make it a favorite
 		else {
-			List<FavLocation> fav_list = FavFile.getFavLocationList(getActivity());
-			FavLocation fav_loc = new FavLocation(loc);
-			if(fav_list.contains(fav_loc)){
-				// increase counter by one for existing location
-				if(loc_type == FavLocation.LOC_TYPE.FROM) fav_list.get(fav_list.indexOf(fav_loc)).addFrom();
-				else if(loc_type == FavLocation.LOC_TYPE.TO) fav_list.get(fav_list.indexOf(fav_loc)).addTo();
-			}
-			else {
-				// add new favorite location
-				// increase counter by one for existing location
-				if(loc_type == FavLocation.LOC_TYPE.FROM) fav_loc.addFrom();
-				else if(loc_type == FavLocation.LOC_TYPE.TO) fav_loc.addTo();
-
-				fav_list.add(fav_loc);
-			}
-			FavFile.setFavLocationList(getActivity(), fav_list);
+			FavFile.updateFavLocation(getActivity(), loc, loc_type);
 		}
 
 		return true;

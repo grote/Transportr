@@ -153,6 +153,25 @@ public class FavFile {
 		.show();
 	}
 
+	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
+		List<FavLocation> fav_list = getFavLocationList(context);
+		FavLocation fav_loc = new FavLocation(loc);
+		if(fav_list.contains(fav_loc)){
+			// increase counter by one for existing location
+			if(loc_type == FavLocation.LOC_TYPE.FROM) fav_list.get(fav_list.indexOf(fav_loc)).addFrom();
+			else if(loc_type == FavLocation.LOC_TYPE.TO) fav_list.get(fav_list.indexOf(fav_loc)).addTo();
+		}
+		else {
+			// add new favorite location
+			// increase counter by one for existing location
+			if(loc_type == FavLocation.LOC_TYPE.FROM) fav_loc.addFrom();
+			else if(loc_type == FavLocation.LOC_TYPE.TO) fav_loc.addTo();
+
+			fav_list.add(fav_loc);
+		}
+		setFavLocationList(context, fav_list);
+	}
+
 
 	/* FavTrip */
 
