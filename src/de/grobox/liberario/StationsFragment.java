@@ -83,6 +83,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		}
 	}
 
+	@Override
 	public void onNetworkProviderChanged(NetworkProvider np) {
 		LinearLayout departuresLayout = (LinearLayout) mView.findViewById(R.id.departuresLayout);
 
@@ -92,6 +93,9 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			// clear favorites for auto-complete
 			AutoCompleteTextView stationView = ((AutoCompleteTextView) mView.findViewById(R.id.stationView));
 			((LocationAutoCompleteAdapter) stationView.getAdapter()).clearFavs();
+
+			// clear text view
+			stationView.setText("");
 		} else {
 			departuresLayout.setVisibility(View.GONE);
 		}
