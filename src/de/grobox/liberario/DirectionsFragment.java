@@ -78,58 +78,8 @@ public class DirectionsFragment extends LiberarioFragment {
 
 		checkPreferences();
 
-		// From text input
-		final AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
-		from.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
-		from.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				setFrom((Location) parent.getItemAtPosition(position));
-				from.requestFocus();
-			}
-		});
-		from.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// clear location
-				setFrom(null);
-			}
-			public void afterTextChanged(Editable s) {}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-		});
-		((View) mView.findViewById(R.id.fromFavButton)).setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				fromFavClick(v);
-			}
-		});
-
-		// To text input
-
-		final AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
-		to.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
-		to.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				setTo((Location) parent.getItemAtPosition(position));
-				to.requestFocus();
-			}
-		});
-		to.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// clear location
-				setTo(null);
-			}
-			public void afterTextChanged(Editable s) {}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-		});
-		((View) mView.findViewById(R.id.toFavButton)).setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				toFavClick(v);
-			}
-		});
+		setFromUI();
+		setToUI();
 
 		// timeView
 		final TextView timeView = (TextView) mView.findViewById(R.id.timeView);
@@ -141,11 +91,19 @@ public class DirectionsFragment extends LiberarioFragment {
 			}
 		});
 
-		// Trip Date Type Spinner (departure or arrival)
-		final Spinner spinner = (Spinner) mView.findViewById(R.id.dateTypeSpinner);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.trip_date_type, android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
+		Button plus5Button = (Button) mView.findViewById(R.id.plus5Button);
+		plus5Button.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addToTime(5);
+			}
+		});
+
+		Button plus10Button = (Button) mView.findViewById(R.id.plus10Button);
+		plus10Button.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addToTime(10);
+			}
+		});
 
 		// dateView
 		final TextView dateView = (TextView) mView.findViewById(R.id.dateView);
@@ -157,8 +115,14 @@ public class DirectionsFragment extends LiberarioFragment {
 			}
 		});
 
-		Button button = (Button) mView.findViewById(R.id.button1);
-		button.setOnClickListener(new View.OnClickListener() {
+		// Trip Date Type Spinner (departure or arrival)
+		final Spinner spinner = (Spinner) mView.findViewById(R.id.dateTypeSpinner);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.trip_date_type, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+
+		Button searchButton = (Button) mView.findViewById(R.id.searchButton);
+		searchButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 
@@ -192,7 +156,6 @@ public class DirectionsFragment extends LiberarioFragment {
 				query_trips.execute();
 			}
 		});
-
 	}
 
 	@Override
@@ -234,8 +197,102 @@ public class DirectionsFragment extends LiberarioFragment {
 		// remove old text from TextViews
 		if(mView != null) {
 			((AutoCompleteTextView) mView.findViewById(R.id.from)).setText("");
+			mView.findViewById(R.id.fromClearButton).setVisibility(View.GONE);
+			setFrom(null);
+
 			((AutoCompleteTextView) mView.findViewById(R.id.to)).setText("");
+			mView.findViewById(R.id.toClearButton).setVisibility(View.GONE);
+			setTo(null);
 		}
+	}
+
+	private void setFromUI() {
+
+		// From text input
+		final AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
+		from.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
+		from.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+				setFrom((Location) parent.getItemAtPosition(position));
+				from.requestFocus();
+			}
+		});
+
+		// clear from text button
+		final Button fromClearButton = (Button) mView.findViewById(R.id.fromClearButton);
+		fromClearButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				from.setText("");
+				setFrom(null);
+				fromClearButton.setVisibility(View.GONE);
+			}
+		});
+
+		// From text input changed
+		from.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				// clear location
+				setFrom(null);
+
+				// show clear button
+				fromClearButton.setVisibility(View.VISIBLE);
+			}
+			public void afterTextChanged(Editable s) {}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+		});
+		((View) mView.findViewById(R.id.fromFavButton)).setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				fromFavClick(v);
+			}
+		});
+	}
+
+	private void setToUI() {
+		// To text input
+		final AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
+		to.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
+		to.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+				setTo((Location) parent.getItemAtPosition(position));
+				to.requestFocus();
+			}
+		});
+
+		// clear from text button
+		final Button toClearButton = (Button) mView.findViewById(R.id.toClearButton);
+		toClearButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				to.setText("");
+				setTo(null);
+				toClearButton.setVisibility(View.GONE);
+			}
+		});
+
+		// To text input changed
+		to.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				// clear location
+				setTo(null);
+
+				// show clear button
+				toClearButton.setVisibility(View.VISIBLE);
+			}
+			public void afterTextChanged(Editable s) {}
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+		});
+		((View) mView.findViewById(R.id.toFavButton)).setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				toFavClick(v);
+			}
+		});
 	}
 
 	private Location getFrom() {
@@ -443,6 +500,27 @@ public class DirectionsFragment extends LiberarioFragment {
 			TextView dateView = (TextView) getActivity().findViewById(R.id.dateView);
 			dateView.setText(DateUtils.formatDate(getActivity().getApplicationContext(), year, month, day));
 		}
+	}
+
+	private void addToTime(int min) {
+		TextView timeView = (TextView) getActivity().findViewById(R.id.timeView);
+		Calendar c = Calendar.getInstance();
+
+		Date date = DateUtils.parseTime(getActivity().getApplicationContext(), timeView.getText());
+
+		if(date != null) {
+			c.setTime(date);
+		} else {
+			// if time couldn't be parsed, use current time
+			c.setTime(new Date());
+		}
+
+		// add min minutes
+		c.add(Calendar.MINUTE, min);
+
+		// FIXME adapt also date if necessary or show warning about date
+
+		timeView.setText(DateUtils.getTime(getActivity(), c));
 	}
 
 }
