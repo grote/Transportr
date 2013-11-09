@@ -162,6 +162,16 @@ public class DirectionsFragment extends LiberarioFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// Inflate the menu items for use in the action bar
 		inflater.inflate(R.menu.directions, menu);
+
+		View moreLayout = mView.findViewById(R.id.moreLayout);
+		if(moreLayout.getVisibility() == View.GONE) {
+			moreLayout.setVisibility(View.VISIBLE);
+			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_collapse);
+		} else {
+			moreLayout.setVisibility(View.GONE);
+			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_expand);
+		}
+
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -169,6 +179,17 @@ public class DirectionsFragment extends LiberarioFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
+			case R.id.action_navigation_expand:
+				View moreLayout = mView.findViewById(R.id.moreLayout);
+				if(moreLayout.getVisibility() == View.GONE) {
+					moreLayout.setVisibility(View.VISIBLE);
+					item.setIcon(R.drawable.ic_action_navigation_collapse);
+				} else {
+					moreLayout.setVisibility(View.GONE);
+					item.setIcon(R.drawable.ic_action_navigation_expand);
+				}
+
+				return true;
 			case R.id.action_swap_locations:
 				Location tmp = getFrom();
 				setFrom(getTo());
