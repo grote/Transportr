@@ -99,31 +99,16 @@ public class DateUtils {
 		return tf.format(c.getTime());
 	}
 
+	static public String getTime(Context context, Calendar c) {
+		DateFormat tf = android.text.format.DateFormat.getTimeFormat(context);
 
-	@SuppressWarnings("deprecation")
-	static public String getTime(Date date) {
-		String time;
+		return tf.format(c.getTime());
+	}
 
-		int hours = date.getHours();
-		int minutes = date.getMinutes();
+	static public String getTime(Context context, Date date) {
+		DateFormat tf = android.text.format.DateFormat.getTimeFormat(context);
 
-		if(hours > 9) {
-			time = Integer.toString(hours);
-		}
-		else {
-			time = "0" + Integer.toString(hours);
-		}
-
-		time += ":";
-
-		if(minutes > 9) {
-			time += Integer.toString(minutes);
-		}
-		else {
-			time += "0" + Integer.toString(minutes);
-		}
-
-		return time;
+		return tf.format(date);
 	}
 
 

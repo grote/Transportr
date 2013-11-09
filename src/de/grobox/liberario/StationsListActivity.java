@@ -241,7 +241,7 @@ public class StationsListActivity extends Activity {
 				LinearLayout view = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.departure, null);
 
 				TextView timeView = (TextView) view.findViewById(R.id.timeView);
-				timeView.setText(DateUtils.getTime(dep.plannedTime));
+				timeView.setText(DateUtils.getTime(this, dep.plannedTime));
 
 				if(dep.predictedTime != null) {
 					long delay = dep.predictedTime.getTime() - dep.plannedTime.getTime();

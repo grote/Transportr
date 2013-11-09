@@ -176,12 +176,12 @@ public class TripDetailActivity extends Activity {
 				// Departure Time and Delay
 				TextView dDepartureTimeView = (TextView) legViewOld.findViewById(R.id.dDepartureTimeView);
 				TextView dDepartureDelayView = (TextView) legViewOld.findViewById(R.id.dDepartureDelayView);
-				TripsActivity.setDepartureTimes(dDepartureTimeView, dDepartureDelayView, public_leg.departureStop);
+				TripsActivity.setDepartureTimes(this, dDepartureTimeView, dDepartureDelayView, public_leg.departureStop);
 
 				// Arrival Time and Delay
 				TextView dArrivalTimeView = (TextView) legViewNew.findViewById(R.id.dArrivalTimeView);
 				TextView dArrivalDelayView = (TextView) legViewNew.findViewById(R.id.dArrivalDelayView);
-				TripsActivity.setArrivalTimes(dArrivalTimeView, dArrivalDelayView, public_leg.arrivalStop);
+				TripsActivity.setArrivalTimes(this, dArrivalTimeView, dArrivalDelayView, public_leg.arrivalStop);
 
 				// set departure location
 				((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(public_leg.departureStop.location.uniqueShortName());
@@ -254,9 +254,9 @@ public class TripDetailActivity extends Activity {
 			else if(leg instanceof Trip.Individual) {
 				Individual individual = (Trip.Individual) leg;
 
-				((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(individual.departureTime));
+				((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(this, individual.departureTime));
 				// TODO check why time doesn't change
-				((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(individual.arrivalTime));
+				((TextView) legViewNew.findViewById(R.id.dArrivalTimeView)).setText(DateUtils.getTime(this, individual.arrivalTime));
 
 				((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(individual.departure.uniqueShortName());
 
@@ -298,7 +298,7 @@ public class TripDetailActivity extends Activity {
 				Date departureTime = stop.getDepartureTime();
 
 				if(arrivalTime != null) {
-					TripsActivity.setArrivalTimes((TextView) stopView.findViewById(R.id.sArrivalTimeView), (TextView) stopView.findViewById(R.id.sArrivalDelayView), stop);
+					TripsActivity.setArrivalTimes(this, (TextView) stopView.findViewById(R.id.sArrivalTimeView), (TextView) stopView.findViewById(R.id.sArrivalDelayView), stop);
 				}
 				else {
 					((TextView) stopView.findViewById(R.id.sArrivalTimeView)).setVisibility(View.GONE);
@@ -306,7 +306,7 @@ public class TripDetailActivity extends Activity {
 				}
 
 				if(departureTime != null) {
-					TripsActivity.setDepartureTimes((TextView) stopView.findViewById(R.id.sDepartureTimeView), (TextView) stopView.findViewById(R.id.sDepartureDelayView), stop);
+					TripsActivity.setDepartureTimes(this, (TextView) stopView.findViewById(R.id.sDepartureTimeView), (TextView) stopView.findViewById(R.id.sDepartureDelayView), stop);
 				}
 				else {
 					((TextView) stopView.findViewById(R.id.sDepartureTimeView)).setVisibility(View.GONE);
