@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[liberario.strings]
+source_lang = en
+source_file = res/values/strings.xml
+type = ANDROID
+
