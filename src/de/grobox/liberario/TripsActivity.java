@@ -198,18 +198,18 @@ public class TripsActivity extends Activity {
 				TextView departureTimeView  = (TextView) row.findViewById(R.id.departureTimeView);
 				TextView departureDelayView = (TextView) row.findViewById(R.id.departureDelayView);
 				if(trip.getFirstPublicLeg() != null) {
-					setDepartureTimes(departureTimeView, departureDelayView, trip.getFirstPublicLeg().departureStop);
+					setDepartureTimes(this, departureTimeView, departureDelayView, trip.getFirstPublicLeg().departureStop);
 				} else {
-					departureTimeView.setText(DateUtils.getTime(trip.getFirstDepartureTime()));
+					departureTimeView.setText(DateUtils.getTime(this, trip.getFirstDepartureTime()));
 				}
 
 				// Arrival Time and Delay
 				TextView arrivalTimeView = (TextView) row.findViewById(R.id.arrivalTimeView);
 				TextView arrivalDelayView = (TextView) row.findViewById(R.id.arrivalDelayView);
 				if(trip.getLastPublicLeg() != null) {
-					setArrivalTimes(arrivalTimeView, arrivalDelayView, trip.getLastPublicLeg().arrivalStop);
+					setArrivalTimes(this, arrivalTimeView, arrivalDelayView, trip.getLastPublicLeg().arrivalStop);
 				} else {
-					arrivalTimeView.setText(DateUtils.getTime(trip.getLastArrivalTime()));
+					arrivalTimeView.setText(DateUtils.getTime(this, trip.getLastArrivalTime()));
 				}
 
 				// Duration
@@ -360,7 +360,7 @@ public class TripsActivity extends Activity {
 		}
 	}
 
-	static public void setArrivalTimes(TextView timeView, TextView delayView, Stop stop) {
+	static public void setArrivalTimes(Context context, TextView timeView, TextView delayView, Stop stop) {
 		Date time = new Date(stop.getArrivalTime().getTime());
 
 		if(stop.isArrivalTimePredicted() && stop.getArrivalDelay() != null) {
@@ -371,10 +371,10 @@ public class TripsActivity extends Activity {
 				delayView.setText("+" + Long.toString(delay / 1000 / 60));
 			}
 		}
-		timeView.setText(DateUtils.getTime(time));
+		timeView.setText(DateUtils.getTime(context, time));
 	}
 
-	static public void setDepartureTimes(TextView timeView, TextView delayView, Stop stop) {
+	static public void setDepartureTimes(Context context, TextView timeView, TextView delayView, Stop stop) {
 		Date time = new Date(stop.getDepartureTime().getTime());
 
 		if(stop.isDepartureTimePredicted() && stop.getDepartureDelay() != null) {
@@ -385,7 +385,7 @@ public class TripsActivity extends Activity {
 				delayView.setText("+" + Long.toString(delay / 1000 / 60));
 			}
 		}
-		timeView.setText(DateUtils.getTime(time));
+		timeView.setText(DateUtils.getTime(context, time));
 	}
 
 	public void setProgress(Boolean later, Boolean progress) {

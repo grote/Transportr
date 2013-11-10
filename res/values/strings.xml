@@ -18,6 +18,7 @@
     <string name="action_switch_locations">Swap From and To location</string>
     <string name="action_platforms">Show/Hide Platforms</string>
     <string name="action_refresh">Refresh</string>
+    <string name="action_navigation_expand">Show More</string>
 
     <string name="tab_directions">Directions</string>
     <string name="tab_fav_trips">Favorites</string>
