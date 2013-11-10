@@ -81,6 +81,12 @@ There is a lot to do to make this app better and more complete. So contributions
 
 Missing features are documented in the [issue tracker](https://github.com/grote/Liberario/issues?labels=enhancement&state=open). Feel free to look there for ideas or to add your own.
 
+### Translate Liberario Into Your Language ###
+
+Translating Liberario is very easy. Just sign up for an account at [Transifex](https://www.transifex.com). After you are logged in, go to the [Liberario translation project](https://www.transifex.com/projects/p/liberario/). There you can click the "Request language" button if your language does not exist, or if you want to improve existing translations, apply for the respective language team.
+
+What you translate there will then be included in the next release of Liberario.
+
 ### Building From Source ###
 
 If you want to start working on Liberario and if you haven't done already, you should [familiarize yourself with Android development](https://developer.android.com/training/basics/firstapp/index.html) and [set up a development environment](https://developer.android.com/sdk/index.html).
