@@ -49,6 +49,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -212,11 +213,11 @@ public class TripsActivity extends Activity {
 				}
 
 				// Duration
-				TextView durationView = ((TextView) trip_layout.findViewById(R.id.durationView));
+				TextView durationView = (TextView) trip_layout.findViewById(R.id.durationView);
 				durationView.setText(DateUtils.getDuration(trip.getFirstDepartureTime(), trip.getLastArrivalTime()));
 
 				// Transports
-				LinearLayout lineLayout = ((LinearLayout) trip_layout.findViewById(R.id.lineLayout));
+				FlowLayout lineLayout = (FlowLayout) trip_layout.findViewById(R.id.lineLayout);
 
 				// for each leg
 				for(final Leg leg : trip.legs) {
@@ -257,7 +258,7 @@ public class TripsActivity extends Activity {
 	}
 
 	@SuppressWarnings("deprecation")
-	static public void addLineBox(Context context, LinearLayout lineLayout, Line line, int index, boolean check_duplicates) {
+	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index, boolean check_duplicates) {
 		if(check_duplicates) {
 			// loop through all line boxes in the linearLayout
 			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
@@ -290,19 +291,19 @@ public class TripsActivity extends Activity {
 		lineLayout.addView(transportsView, index);
 	}
 
-	static public void addLineBox(Context context, LinearLayout lineLayout, Line line) {
+	static public void addLineBox(Context context, ViewGroup lineLayout, Line line) {
 		addLineBox(context, lineLayout, line, lineLayout.getChildCount()-1);
 	}
 
-	static public void addLineBox(Context context, LinearLayout lineLayout, Line line, boolean check_duplicates) {
+	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, boolean check_duplicates) {
 		addLineBox(context, lineLayout, line, lineLayout.getChildCount()-1, check_duplicates);
 	}
 
-	static public void addLineBox(Context context, LinearLayout lineLayout, Line line, int index) {
+	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index) {
 		addLineBox(context, lineLayout, line, index, false);
 	}
 
-	static public void addWalkingBox(Context context, LinearLayout lineLayout) {
+	static public void addWalkingBox(Context context, ViewGroup lineLayout) {
 		ImageView transportsView = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
 
 		// set margin, because setting in in xml didn't work

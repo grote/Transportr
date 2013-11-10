@@ -220,7 +220,7 @@ public class StationsListActivity extends Activity {
 			}
 
 			LinearLayout stationView = (LinearLayout) v;
-			LinearLayout stationLineLayout = (LinearLayout) stationView.findViewById(R.id.lineLayout);
+			ViewGroup stationLineLayout = (ViewGroup) stationView.findViewById(R.id.lineLayout);
 
 			// add line boxes if available
 			if(stat_dep.lines != null) {

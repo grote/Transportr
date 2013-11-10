@@ -20,16 +20,15 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <LinearLayout
+        <de.grobox.liberario.FlowLayout
             android:id="@+id/lineLayout"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="3dp"
             android:orientation="horizontal"
-            android:visibility="gone" >
+            android:visibility="gone" />
 
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
     android:background="@drawable/selector_list_item"
     android:clickable="true"
     android:orientation="vertical" >
@@ -91,11 +90,12 @@
         android:orientation="horizontal"
         android:padding="2dp" >
 
-        <LinearLayout
+        <de.grobox.liberario.FlowLayout
             android:id="@+id/lineLayout"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:orientation="horizontal" />
 
