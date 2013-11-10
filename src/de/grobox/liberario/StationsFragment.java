@@ -128,6 +128,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			@Override
 			public void onClick(View v) {
 				stationView.setText("");
+				stationView.requestFocus();
 				stationView.setTag(null);
 				stationClearButton.setVisibility(View.GONE);
 			}

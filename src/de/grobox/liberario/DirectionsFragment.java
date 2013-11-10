@@ -165,10 +165,8 @@ public class DirectionsFragment extends LiberarioFragment {
 
 		View moreLayout = mView.findViewById(R.id.moreLayout);
 		if(moreLayout.getVisibility() == View.GONE) {
-			moreLayout.setVisibility(View.VISIBLE);
 			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_collapse);
 		} else {
-			moreLayout.setVisibility(View.GONE);
 			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_expand);
 		}
 
@@ -246,6 +244,7 @@ public class DirectionsFragment extends LiberarioFragment {
 			@Override
 			public void onClick(View v) {
 				from.setText("");
+				from.requestFocus();
 				setFrom(null);
 				fromClearButton.setVisibility(View.GONE);
 			}
@@ -290,6 +289,7 @@ public class DirectionsFragment extends LiberarioFragment {
 			@Override
 			public void onClick(View v) {
 				to.setText("");
+				to.requestFocus();
 				setTo(null);
 				toClearButton.setVisibility(View.GONE);
 			}
