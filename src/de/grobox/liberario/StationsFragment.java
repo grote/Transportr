@@ -96,6 +96,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 			// clear text view
 			stationView.setText("");
+			stationView.setTag(null);
 		} else {
 			departuresLayout.setVisibility(View.GONE);
 		}
