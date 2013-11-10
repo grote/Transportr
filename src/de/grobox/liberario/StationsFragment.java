@@ -121,11 +121,27 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 				stationView.requestFocus();
 			}
 		});
+
+		// clear from text button
+		final Button stationClearButton = (Button) mView.findViewById(R.id.stationClearButton);
+		stationClearButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				stationView.setText("");
+				stationView.setTag(null);
+				stationClearButton.setVisibility(View.GONE);
+			}
+		});
+
+		// When text changed
 		stationView.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				// clear saved station
 				stationView.setTag(null);
+
+				// show clear button
+				stationClearButton.setVisibility(View.VISIBLE);
 			}
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="0.4" versioncode="5">
+        <change>New start screen</change>
+        <change>Find trips from current position</change>
+        <change>New home button as a shortcut for your home station(s)</change>
+        <change>+5 and +10 minutes buttons for time</change>
+        <change>Wider input field for location/station name</change>
+        <change>Input fields for station now have a clear text button</change>
+        <change>Hide less used settings from start screen</change>
+        <change>Action Bar button to show less used settings</change>
+    </release>
+
     <release version="0.3" versioncode="4">
         <change>Added third tab for stations</change>
         <change>Find next departures from given station</change>
