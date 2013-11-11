@@ -39,6 +39,7 @@ public class FavFile {
 
 	static public final String FAV_LOC_FILE = "favs_";
 	static public final String FAV_TRIP_FILE = "favs_trip_";
+	static public final String HOME_FILE = "home_";
 
 	@SuppressWarnings("unchecked")
 	public static List<FavLocation> getFavLocationList(Context context) {
@@ -283,4 +284,71 @@ public class FavFile {
 		}
 	}
 
+
+	/* Home */
+
+	public static Location getHome(Context context) {
+		Location home = null;
+
+		FileInputStream fis = null;
+		try {
+			fis = context.openFileInput(HOME_FILE + Preferences.getNetwork(context));
+		} catch (FileNotFoundException e) {
+			return home;
+		}
+		ObjectInputStream is = null;
+		try {
+			is = new ObjectInputStream(fis);
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return home;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return home;
+		}
+
+		try {
+			if(is != null) home = (Location) is.readObject();
+		} catch (OptionalDataException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return home;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return home;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return home;
+		}
+		try {
+			is.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return home;
+		}
+
+		return home;
+	}
+
+	public static void setHome(Context context, Location home) {
+		FileOutputStream fos = null;
+		try {
+			fos = context.openFileOutput(HOME_FILE + Preferences.getNetwork(context), Context.MODE_PRIVATE);
+		} catch (FileNotFoundException e) {	}
+
+		ObjectOutputStream os;
+		try {
+			os = new ObjectOutputStream(fos);
+			os.writeObject(home);
+			os.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

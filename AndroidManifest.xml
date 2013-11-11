@@ -61,6 +61,10 @@
             android:parentActivityName="de.grobox.liberario.MainActivity" />
 
         <activity
+            android:name="de.grobox.liberario.SetHomeActivity"
+            android:theme="@android:style/Theme.Holo.Dialog" />
+
+        <activity
             android:name="de.grobox.liberario.AboutActivity"
             android:theme="@android:style/Theme.Holo.Dialog" />
 

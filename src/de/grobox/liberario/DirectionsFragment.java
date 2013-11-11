@@ -42,6 +42,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -49,6 +50,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -226,6 +228,31 @@ public class DirectionsFragment extends LiberarioFragment {
 	}
 
 	private void setFromUI() {
+		// Home Button
+		ImageButton fromHomeButton = (ImageButton) mView.findViewById(R.id.fromHomeButton);
+		fromHomeButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Location home = FavFile.getHome(getActivity());
+
+				if(home != null) {
+					setFrom(home);
+				}
+				else {
+					startActivity(new Intent(getActivity(), SetHomeActivity.class));
+					// TODO set new home right away!
+				}
+			}
+		});
+		// Home Button Long Click
+		fromHomeButton.setOnLongClickListener(new OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View v) {
+				startActivity(new Intent(getActivity(), SetHomeActivity.class));
+
+				return true;
+			}
+		});
 
 		// From text input
 		final AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
@@ -272,6 +299,31 @@ public class DirectionsFragment extends LiberarioFragment {
 	}
 
 	private void setToUI() {
+		// Home Button
+		ImageButton toHomeButton = (ImageButton) mView.findViewById(R.id.toHomeButton);
+		toHomeButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Location home = FavFile.getHome(getActivity());
+
+				if(home != null) {
+					setTo(home);
+				}
+				else {
+					startActivity(new Intent(getActivity(), SetHomeActivity.class));
+				}
+			}
+		});
+		// Home Button Long Click
+		toHomeButton.setOnLongClickListener(new OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View v) {
+				startActivity(new Intent(getActivity(), SetHomeActivity.class));
+
+				return true;
+			}
+		});
+
 		// To text input
 		final AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
 		to.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
