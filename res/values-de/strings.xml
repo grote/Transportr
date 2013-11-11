@@ -1,71 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
-
-    <string name="app_name">Liberario</string>
-
-    <string-array name="trip_date_type">
-        <item>Abfahrt</item>
-        <item>Ankunft</item>
-    </string-array>
-
-    <string name="action_earlier">Frühere Verbindung finden</string>
-    <string name="action_later">Spätere Verbindung finden</string>
-    <string name="action_changelog">Versionsänderungen anzeigen</string>
-    <string name="action_about">Über</string>
-    <string name="action_clear_favs">Favoriten löschen</string>
-    <string name="action_settings">Einstellungen</string>
-    <string name="action_fav_trip">Verbindung als Favorit markieren</string>
-    <string name="action_switch_locations">Start und Ziel vertauschen</string>
-    <string name="action_platforms">Gleis anzeigen/verstecken</string>
-    <string name="action_refresh">Aktualisieren</string>
-
-    <string name="tab_directions">Verbindungen</string>
-    <string name="tab_fav_trips">Favoriten</string>
-
-    <string name="about_top">© 2013 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
-    <string name="about">Liberario ist eine App für den öffentlichen Personenverkehr, die du frei verwenden, verstehen, verbessern und verbreiten kannst.
-        \n\n<b>Achtung: </b>Dies ist immer noch Alpha Stoftware. Es gibt bestimmt noch viele Bugs und diverse Funktionen fehlen noch.
-        \n\nEs gibt keine Garantie für Funktion und Korrektheit der Daten. Du nutzt diese Software auf eigene Gefahr.
-        \n\n<b>Mitmachen</b> ist explizit erwünscht und wird dankend angenommen. Wenn du mithelfen möchtest, besuche <a href="https://github.com/grote/Liberario/#contributing">github</a> für weitere Infos.
-        \n\nFalls du irgendwelche Probleme mit dieser App feststellst, melde sie bitte <a href="https://github.com/grote/Liberario/issues">im Tracker</a>.
-    </string>
-
-    <string name="trip_dep">ab</string>
-    <string name="trip_arr">an</string>
-    <string name="trip_start">Start:</string>
-    <string name="trip_destination">Ziel:</string>
-    <string name="from">von</string>
-    <string name="to">nach</string>
-    <string name="time">Zeit</string>
-    <string name="date">Datum</string>
-    <string name="min"> min</string>
-    <string name="destination">Ziel</string>
-    <string name="detail_duration">Dauer:</string>
-    <string name="detail_date">Datum:</string>
-    <string name="beta">beta</string>
-    <string name="pick_network_activity">Wähle ein Verkehrs-Netzwerk</string>
-    <string name="pick_network_first_run">Dies ist das erste Mal, dass Du Liberario gestartet hast. Bitte wähle deinen Verkehrsverbund um fortzufahren!</string>
-    <string name="clear_favs">Bist du sicher, dass Du deine Favoriten im aktuellen Netzwerk löschen willst?</string>
-    <string name="clear_fav_trips">Bist du sicher, dass Du diese Verbindung aus den Favoriten löschen möchtest? Die Anzahl der Benutzungen geht dabei verloren.</string>
-    <string name="trip_searching">Suche nach Verbindungen&#8230;</string>
-    <string name="stations_searching_position">Suche aktuelle Position&#8230;</string>
-    <string name="stations_searching_stations">Suche Stationen in der Nähe&#8230;</string>
-    <string name="find_nearby_stations">Suche Stationen in der Umgebung</string>
-    <string name="find_departures">Suche Abfahrten</string>
-
-    <string name="error_pick_network">Wähle genau ein Verkehrs-Netzwerk!</string>
-    <string name="error_no_internet">Keine ausreichende Internet-Verbindung verfügbar</string>
-    <string name="error_invalid_from">Ungültige Angabe des Starts</string>
-    <string name="error_invalid_to">Ungültige Angabe des Ziels</string>
-    <string name="error_no_favs">Keine Favoriten gespeichert</string>
-    <string name="error_no_trips_found">Keine Verbindungen gefunden</string>
-    <string name="error_no_location_provider">Kann Position nicht bestimmen. Bitte schalte GPS ein!</string>
-    <string name="error_no_departures_found">Keine Abfahrten gefunden</string>
-    <string name="error_no_proper_station">Der angegebene Name ist keine gültige Station</string>
-    <string name="error_only_autocomplete_station">Bitte wähle eine Station aus der Auto-Vervollständigen-Liste aus!</string>
-
-    <string name="number_of_stations">Anzahl Stationen</string>
-    <string name="meter">m</string>
-    <string name="max_distance">Maximale Distanz</string>
-
+  <string-array name="trip_date_type">
+    <item>Abfahrt</item>
+    <item>Ankunft</item>
+  </string-array>
+  <string name="action_earlier">Frühere Verbindung finden</string>
+  <string name="action_later">Spätere Verbindung finden</string>
+  <string name="action_changelog">Versionsänderungen anzeigen</string>
+  <string name="action_about">Über</string>
+  <string name="action_clear_favs">Favoriten löschen</string>
+  <string name="action_settings">Einstellungen</string>
+  <string name="action_fav_trip">Verbindung als Favorit markieren</string>
+  <string name="action_switch_locations">Start und Ziel vertauschen</string>
+  <string name="action_platforms">Gleis anzeigen/verstecken</string>
+  <string name="action_refresh">Aktualisieren</string>
+  <string name="action_navigation_expand">Mehr zeigen</string>
+  <string name="tab_directions">Verbindungen</string>
+  <string name="tab_fav_trips">Favoriten</string>
+  <string name="about_top">© 2013 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
+  <string name="about">\n<![CDATA[
+<p>Liberario ist eine App für den öffentlichen Personenverkehr, die du frei verwenden, verstehen, verbessern und verbreiten kannst.</p>
+<p>Es gibt keine Garantie für Funktion und Korrektheit der Daten. Du nutzt diese Software auf eigene Gefahr.</p>
+<p><b>Mitmachen</b> ist explizit erwünscht und wird dankend angenommen. Wenn du mithelfen möchtest, besuche <a href="https://github.com/grote/Liberario/#contributing">github</a> für weitere Infos.</p>
+<p>Falls du irgendwelche Probleme mit dieser App feststellst, melde sie bitte <a href="https://github.com/grote/Liberario/issues">im Tracker</a>.</p>
+]]>\n</string>
+  <string name="trip_dep">ab</string>
+  <string name="trip_arr">an</string>
+  <string name="trip_start">Start:</string>
+  <string name="trip_destination">Ziel:</string>
+  <string name="from">von</string>
+  <string name="to">nach</string>
+  <string name="time">Zeit</string>
+  <string name="date">Datum</string>
+  <string name="min"> min</string>
+  <string name="destination">Ziel</string>
+  <string name="detail_duration">Dauer:</string>
+  <string name="detail_date">Datum:</string>
+  <string name="beta">beta</string>
+  <string name="pick_network_activity">Wähle ein Verkehrs-Netzwerk</string>
+  <string name="pick_network_first_run">Dies ist das erste Mal, dass Du Liberario gestartet hast. Bitte wähle deinen Verkehrsverbund um fortzufahren!</string>
+  <string name="clear_favs">Bist du sicher, dass Du deine Favoriten im aktuellen Netzwerk löschen willst?</string>
+  <string name="clear_fav_trips">Bist du sicher, dass Du diese Verbindung aus den Favoriten löschen möchtest? Die Anzahl der Benutzungen geht dabei verloren.</string>
+  <string name="trip_searching">Suche nach Verbindungen…</string>
+  <string name="stations_searching_position">Suche aktuelle Position…</string>
+  <string name="stations_searching_stations">Suche Stationen in der Nähe…</string>
+  <string name="find_nearby_stations">Suche Stationen in der Umgebung</string>
+  <string name="find_departures">Suche Abfahrten</string>
+  <string name="error_pick_network">Wähle genau ein Verkehrs-Netzwerk!</string>
+  <string name="error_no_internet">Keine ausreichende Internet-Verbindung verfügbar</string>
+  <string name="error_invalid_from">Ungültige Angabe des Starts</string>
+  <string name="error_invalid_to">Ungültige Angabe des Ziels</string>
+  <string name="error_no_favs">Keine Favoriten gespeichert</string>
+  <string name="error_no_trips_found">Keine Verbindungen gefunden</string>
+  <string name="error_no_location_provider">Kann Position nicht bestimmen. Bitte schalte GPS ein!</string>
+  <string name="error_no_departures_found">Keine Abfahrten gefunden</string>
+  <string name="error_no_proper_station">Der angegebene Name ist keine gültige Station</string>
+  <string name="error_only_autocomplete_station">Bitte wähle eine Station aus der Auto-Vervollständigen-Liste aus!</string>
+  <string name="number_of_stations">Anzahl Stationen</string>
+  <string name="meter">m</string>
+  <string name="max_distance">Maximale Distanz</string>
 </resources>

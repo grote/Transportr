@@ -20,6 +20,7 @@ package de.grobox.liberario;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.Window;
@@ -47,8 +48,11 @@ public class AboutActivity extends FragmentActivity {
 		TextView aboutApp = (TextView) findViewById(R.id.aboutApp);
 		aboutApp.setText(getResources().getString(R.string.app_name) + "  " + versionName);
 
-		// make links in about text clickable
+		// create real paragraphs
 		TextView t = (TextView) findViewById(R.id.aboutTextView);
+		t.setText(Html.fromHtml(getString(R.string.about)));
+
+		// make links in about text clickable
 		t.setMovementMethod(LinkMovementMethod.getInstance());
 	}
 
