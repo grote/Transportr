@@ -95,17 +95,10 @@ public class DirectionsFragment extends LiberarioFragment {
 			}
 		});
 
-		Button plus5Button = (Button) mView.findViewById(R.id.plus5Button);
-		plus5Button.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				addToTime(5);
-			}
-		});
-
-		Button plus10Button = (Button) mView.findViewById(R.id.plus10Button);
+		Button plus10Button = (Button) mView.findViewById(R.id.plus15Button);
 		plus10Button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				addToTime(10);
+				addToTime(15);
 			}
 		});
 
@@ -183,11 +176,14 @@ public class DirectionsFragment extends LiberarioFragment {
 		switch (item.getItemId()) {
 			case R.id.action_navigation_expand:
 				View moreLayout = mView.findViewById(R.id.moreLayout);
+				View dateTypeSpinner = mView.findViewById(R.id.dateTypeSpinner);
 				if(moreLayout.getVisibility() == View.GONE) {
 					moreLayout.setVisibility(View.VISIBLE);
+					dateTypeSpinner.setVisibility(View.VISIBLE);
 					item.setIcon(R.drawable.ic_action_navigation_collapse);
 				} else {
 					moreLayout.setVisibility(View.GONE);
+					dateTypeSpinner.setVisibility(View.GONE);
 					item.setIcon(R.drawable.ic_action_navigation_expand);
 				}
 
