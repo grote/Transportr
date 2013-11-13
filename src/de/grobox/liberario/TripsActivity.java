@@ -271,17 +271,19 @@ public class TripsActivity extends Activity {
 		}
 
 		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, null);
-
-		GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
-		line_box.setColor(line.style.backgroundColor);
-
-		// change shape and mutate before to not share state with other instances
-		line_box.mutate();
-		if(line.style.shape == Shape.CIRCLE) line_box.setShape(GradientDrawable.OVAL);
-
 		transportsView.setText(line.label.substring(1));
-		transportsView.setBackgroundDrawable(line_box);
-		transportsView.setTextColor(line.style.foregroundColor);
+
+		if(line.style != null) {
+			GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
+			line_box.setColor(line.style.backgroundColor);
+
+			// change shape and mutate before to not share state with other instances
+			line_box.mutate();
+			if(line.style.shape == Shape.CIRCLE) line_box.setShape(GradientDrawable.OVAL);
+
+			transportsView.setBackgroundDrawable(line_box);
+			transportsView.setTextColor(line.style.foregroundColor);
+		}
 
 		// set margin, because setting in in xml didn't work
 		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
