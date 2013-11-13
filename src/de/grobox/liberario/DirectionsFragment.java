@@ -34,6 +34,7 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -59,6 +60,7 @@ import android.widget.Toast;
 public class DirectionsFragment extends LiberarioFragment {
 	private View mView;
 	private boolean mChange = false;
+	private FavLocation.LOC_TYPE mHomeClicked;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -227,6 +229,19 @@ public class DirectionsFragment extends LiberarioFragment {
 		}
 	}
 
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// after new home location was selected, put it right into the input field
+		if(resultCode == FragmentActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
+			if(mHomeClicked == FavLocation.LOC_TYPE.FROM) {
+				setFrom(FavFile.getHome(getActivity()));
+			}
+			else if(mHomeClicked == FavLocation.LOC_TYPE.TO) {
+				setTo(FavFile.getHome(getActivity()));
+			}
+		}
+	}
+
 	private void setFromUI() {
 		// Home Button
 		ImageButton fromHomeButton = (ImageButton) mView.findViewById(R.id.fromHomeButton);
@@ -239,8 +254,7 @@ public class DirectionsFragment extends LiberarioFragment {
 					setFrom(home);
 				}
 				else {
-					startActivity(new Intent(getActivity(), SetHomeActivity.class));
-					// TODO set new home right away!
+					startSetHome(true, FavLocation.LOC_TYPE.FROM);
 				}
 			}
 		});
@@ -248,7 +262,7 @@ public class DirectionsFragment extends LiberarioFragment {
 		fromHomeButton.setOnLongClickListener(new OnLongClickListener(){
 			@Override
 			public boolean onLongClick(View v) {
-				startActivity(new Intent(getActivity(), SetHomeActivity.class));
+				startSetHome(false, FavLocation.LOC_TYPE.FROM);
 
 				return true;
 			}
@@ -310,7 +324,7 @@ public class DirectionsFragment extends LiberarioFragment {
 					setTo(home);
 				}
 				else {
-					startActivity(new Intent(getActivity(), SetHomeActivity.class));
+					startSetHome(true, FavLocation.LOC_TYPE.TO);
 				}
 			}
 		});
@@ -318,7 +332,7 @@ public class DirectionsFragment extends LiberarioFragment {
 		toHomeButton.setOnLongClickListener(new OnLongClickListener(){
 			@Override
 			public boolean onLongClick(View v) {
-				startActivity(new Intent(getActivity(), SetHomeActivity.class));
+				startSetHome(false, FavLocation.LOC_TYPE.TO);
 
 				return true;
 			}
@@ -414,6 +428,15 @@ public class DirectionsFragment extends LiberarioFragment {
 			}
 			mChange = false;
 		}
+	}
+
+	private void startSetHome(boolean new_home, FavLocation.LOC_TYPE home_clicked) {
+		Intent intent = new Intent(getActivity(), SetHomeActivity.class);
+		intent.putExtra("new", new_home);
+
+		mHomeClicked = home_clicked;
+
+		startActivityForResult(intent, MainActivity.CHANGED_HOME);
 	}
 
 	private void checkPreferences() {

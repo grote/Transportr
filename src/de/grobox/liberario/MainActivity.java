@@ -41,6 +41,7 @@ public class MainActivity extends FragmentActivity {
 	private ViewPager mViewPager;
 
 	static final int CHANGED_NETWORK_PROVIDER = 1;
+	static final int CHANGED_HOME = 2;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

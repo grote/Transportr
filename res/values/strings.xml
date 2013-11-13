@@ -72,6 +72,7 @@
     <string name="max_distance">Maximum Distance</string>
 
     <string name="home_dialog_title">Your Home Location</string>
-    <string name="home_dialog_msg">There is no home location set for the current transportation network. Please give a location below by selecting one from the list.</string>
+    <string name="home_dialog_new_msg">There is no home location set for the current transportation network.</string>
+    <string name="home_dialog_msg">Please give a location below by selecting one from the list.</string>
 
 </resources>

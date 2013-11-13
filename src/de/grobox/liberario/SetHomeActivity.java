@@ -18,6 +18,7 @@
 package de.grobox.liberario;
 
 import de.schildbach.pte.dto.Location;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
@@ -41,6 +42,13 @@ public class SetHomeActivity extends FragmentActivity {
 
 		getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_action_home);
 		setTitle(getString(R.string.home_dialog_title));
+
+		Intent intent = getIntent();
+
+		// show new home text
+		if(!intent.getBooleanExtra("new", true)) {
+			((View) findViewById(R.id.homeMsgView)).setVisibility(View.GONE);
+		}
 
 		// home location TextView
 		final AutoCompleteTextView homeView = (AutoCompleteTextView) findViewById(R.id.homeView);
@@ -103,6 +111,9 @@ public class SetHomeActivity extends FragmentActivity {
 					// save home location in file
 					FavFile.setHome(v.getContext(), (Location) homeView.getTag());
 
+					Intent returnIntent = new Intent();
+					setResult(RESULT_OK, returnIntent);
+
 					close(v);
 				} else {
 					Toast.makeText(v.getContext(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
@@ -115,6 +126,9 @@ public class SetHomeActivity extends FragmentActivity {
 		cancelButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				Intent returnIntent = new Intent();
+				setResult(RESULT_CANCELED, returnIntent);
+
 				close(v);
 			}
 		});
