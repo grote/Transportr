@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="0.3.1" versioncode="5">
+        <change>Added NVV (Hessen, Kassel) (Thanks to Paspartout)</change>
+        <change>Added Wiener Linien (Wien)</change>
+        <change>Fix crash for certain connection without line style (Thanks to Paspartout)</change>
+    </release>
+
     <release version="0.3" versioncode="4">
         <change>Added third tab for stations</change>
         <change>Find next departures from given station</change>

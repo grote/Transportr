@@ -203,6 +203,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		de.add(new NetworkItem(NetworkId.VMS, "VMS", "Mittelsachsen, Chemnitz", true));
 		de.add(new NetworkItem(NetworkId.NASA, "NASA", "Sachsen, Leipzig, Sachsen-Anhalt, Magdeburg, Halle", true));
 		de.add(new NetworkItem(NetworkId.VRR, "VRR", "Nordrhein-Westfalen, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter"));
+//		de.add(new NetworkItem(NetworkId.VRT, "VRT", "Rhein-Neckar-Dreieck", true));
 		de.add(new NetworkItem(NetworkId.MVG, "MVG", "Märkischer Kreis, Lüdenscheid", true));
 		de.add(new NetworkItem(NetworkId.NVV, "NVV", "Hessen, Kassel"));
 		de.add(new NetworkItem(NetworkId.VRN, "VRN", "Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier"));
@@ -225,6 +226,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		at.add(new NetworkItem(NetworkId.VVT, "VVT", "Tirol"));
 		at.add(new NetworkItem(NetworkId.IVB, "IVB", "Innsbruck"));
 		at.add(new NetworkItem(NetworkId.STV, "STV", "Steiermark, Graz"));
+		at.add(new NetworkItem(NetworkId.WIEN, "WIEN", "WIENER LINIEN", true));
 		listNetwork.put("Österreich", at);
 
 		listRegion.add("Liechtenstein");
@@ -282,7 +284,14 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		listRegion.add("Ireland");
 		List<NetworkItem> ie = new ArrayList<NetworkItem>();
 		ie.add(new NetworkItem(NetworkId.TFI, "TFI", "Ireland, Dublin"));
+//		ie.add(new NetworkItem(NetworkId.EIREANN, "EIREANN", "Bus Éireann"));
 		listNetwork.put("Ireland", ie);
+
+//		listRegion.add("Italia");
+//		List<NetworkItem> it = new ArrayList<NetworkItem>();
+//		it.add(new NetworkItem(NetworkId.ATC, "ATC", "Bologna", true));
+//		it.add(new NetworkItem(NetworkId.SAD, "SAD", "Südtirol/Alto Adige", true));
+//		listNetwork.put("Italia", it);
 
 		listRegion.add("Slovenija");
 		List<NetworkItem> si = new ArrayList<NetworkItem>();

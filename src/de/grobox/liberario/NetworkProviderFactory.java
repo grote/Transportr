@@ -90,6 +90,9 @@ public final class NetworkProviderFactory
 	private static Reference<SydneyProvider> sydneyProviderRef;
 	private static Reference<MetProvider> metProviderRef;
 	private static Reference<VgsProvider> vgsProviderRef;
+	private static Reference<SadProvider> sadProviderRef;
+	private static Reference<WienProvider> wienProviderRef;
+	private static Reference<VrtProvider> vrtProviderRef;
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
 	{
@@ -910,6 +913,45 @@ public final class NetworkProviderFactory
 
 			final VgsProvider provider = new VgsProvider();
 			vgsProviderRef = new SoftReference<VgsProvider>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.SAD))
+		{
+			if (sadProviderRef != null)
+			{
+				final SadProvider provider = sadProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final SadProvider provider = new SadProvider();
+			sadProviderRef = new SoftReference<SadProvider>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.WIEN))
+		{
+			if (wienProviderRef != null)
+			{
+				final WienProvider provider = wienProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final WienProvider provider = new WienProvider();
+			wienProviderRef = new SoftReference<WienProvider>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.VRT))
+		{
+			if (vrtProviderRef != null)
+			{
+				final VrtProvider provider = vrtProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final VrtProvider provider = new VrtProvider();
+			vrtProviderRef = new SoftReference<VrtProvider>(provider);
 			return provider;
 		}
 		else

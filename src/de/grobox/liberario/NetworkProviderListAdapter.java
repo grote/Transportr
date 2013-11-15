@@ -53,9 +53,11 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	public int getChildPos(String region, NetworkId network_id) {
 		List<NetworkItem> networks = this._listNetwork.get(region);
-		for(final NetworkItem network : networks) {
-			if(network.id.equals(network_id)) {
-				return networks.indexOf(network);
+		if(networks != null) {
+			for(final NetworkItem network : networks) {
+				if(network.id.equals(network_id)) {
+					return networks.indexOf(network);
+				}
 			}
 		}
 		return -1;
