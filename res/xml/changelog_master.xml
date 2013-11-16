@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="0.4" versioncode="5">
+    <release version="0.4" versioncode="6">
         <change>New start screen</change>
         <change>Find trips from current position</change>
         <change>New home button as a shortcut for your home station(s)</change>
@@ -10,6 +10,12 @@
         <change>Input fields for station now have a clear text button</change>
         <change>Hide less used settings from start screen</change>
         <change>Action Bar button to show less used settings</change>
+    </release>
+    
+	<release version="0.3.1" versioncode="5">
+        <change>Added support for NVV (Hessen, Kassel) (Thanks to Paspartout)</change>
+        <change>Added suport for Wiener Linien (Wien)</change>
+        <change>Fix crash for certain connections without line style (Thanks to Paspartout)</change>
     </release>
 
     <release version="0.3" versioncode="4">
