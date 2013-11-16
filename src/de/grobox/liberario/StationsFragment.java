@@ -123,7 +123,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		});
 
 		// clear from text button
-		final Button stationClearButton = (Button) mView.findViewById(R.id.stationClearButton);
+		final ImageButton stationClearButton = (ImageButton) mView.findViewById(R.id.stationClearButton);
 		stationClearButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {

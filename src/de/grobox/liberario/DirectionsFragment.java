@@ -276,7 +276,7 @@ public class DirectionsFragment extends LiberarioFragment {
 		});
 
 		// clear from text button
-		final Button fromClearButton = (Button) mView.findViewById(R.id.fromClearButton);
+		final ImageButton fromClearButton = (ImageButton) mView.findViewById(R.id.fromClearButton);
 		fromClearButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -346,7 +346,7 @@ public class DirectionsFragment extends LiberarioFragment {
 		});
 
 		// clear from text button
-		final Button toClearButton = (Button) mView.findViewById(R.id.toClearButton);
+		final ImageButton toClearButton = (ImageButton) mView.findViewById(R.id.toClearButton);
 		toClearButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {

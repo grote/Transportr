@@ -29,6 +29,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -62,7 +63,7 @@ public class SetHomeActivity extends FragmentActivity {
 		});
 
 		// clear from text button
-		final Button homeClearButton = (Button) findViewById(R.id.homeClearButton);
+		final ImageButton homeClearButton = (ImageButton) findViewById(R.id.homeClearButton);
 		homeClearButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
