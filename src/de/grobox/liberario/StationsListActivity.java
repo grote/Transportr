@@ -201,7 +201,7 @@ public class StationsListActivity extends Activity {
 			}
 			main.addView(depList);
 
-			main.addView(TripsActivity.getDivider(this));
+			main.addView(LiberarioUtils.getDivider(this));
 		}
 	}
 
@@ -225,7 +225,7 @@ public class StationsListActivity extends Activity {
 			// add line boxes if available
 			if(stat_dep.lines != null) {
 				for(LineDestination line : stat_dep.lines) {
-					TripsActivity.addLineBox(this, stationLineLayout, line.line);
+					LiberarioUtils.addLineBox(this, stationLineLayout, line.line);
 				}
 				stationLineLayout.setVisibility(View.VISIBLE);
 				have_lines = true;
@@ -254,11 +254,11 @@ public class StationsListActivity extends Activity {
 
 				if(dep.line != null) {
 					LinearLayout lineLayout = (LinearLayout) view.findViewById(R.id.lineLayout);
-					TripsActivity.addLineBox(this, lineLayout, dep.line, 0);
+					LiberarioUtils.addLineBox(this, lineLayout, dep.line, 0);
 
 					// add lines also to departing station row
 					if(!have_lines) {
-						TripsActivity.addLineBox(this, stationLineLayout, dep.line, true);
+						LiberarioUtils.addLineBox(this, stationLineLayout, dep.line, true);
 						stationLineLayout.setVisibility(View.VISIBLE);
 					}
 				}

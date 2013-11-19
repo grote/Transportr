@@ -27,12 +27,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
-import de.grobox.liberario.R;
-import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Stop;
-import de.schildbach.pte.dto.Style.Shape;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
@@ -42,16 +39,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
@@ -74,7 +67,7 @@ public class TripsActivity extends Activity {
 		final TableLayout main = (TableLayout) findViewById(R.id.activity_trips);
 
 		// add horizontal divider at top
-		main.addView(getDivider(this));
+		main.addView(LiberarioUtils.getDivider(this));
 
 		Intent intent = getIntent();
 		trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
@@ -222,10 +215,10 @@ public class TripsActivity extends Activity {
 				// for each leg
 				for(final Leg leg : trip.legs) {
 					if(leg instanceof Trip.Public) {
-						addLineBox(this, lineLayout, ((Public) leg).line);
+						LiberarioUtils.addLineBox(this, lineLayout, ((Public) leg).line);
 					}
 					else if(leg instanceof Trip.Individual) {
-						addWalkingBox(this, lineLayout);
+						LiberarioUtils.addWalkingBox(this, lineLayout);
 					}
 				}
 
@@ -242,11 +235,11 @@ public class TripsActivity extends Activity {
 				});
 
 				if(append) {
-					trip_layout.addView(getDivider(this));
+					trip_layout.addView(LiberarioUtils.getDivider(this));
 					main.addView(trip_layout);
 				}
 				else {
-					trip_layout.addView(getDivider(this), 0);
+					trip_layout.addView(LiberarioUtils.getDivider(this), 0);
 					main.addView(trip_layout, 0);
 				}
 			}
@@ -255,69 +248,6 @@ public class TripsActivity extends Activity {
 		else {
 			// TODO offer option to query again for trips
 		}
-	}
-
-	@SuppressWarnings("deprecation")
-	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index, boolean check_duplicates) {
-		if(check_duplicates) {
-			// loop through all line boxes in the linearLayout
-			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
-				// check if current line box is the same as the one we are about to add
-				if(line.label.substring(1).equals(((TextView)lineLayout.getChildAt(i)).getText())) {
-					// lines are equal, so bail out from here and don't add new line box
-					return;
-				}
-			}
-		}
-
-		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, null);
-		transportsView.setText(line.label.substring(1));
-
-		if(line.style != null) {
-			GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
-			line_box.setColor(line.style.backgroundColor);
-
-			// change shape and mutate before to not share state with other instances
-			line_box.mutate();
-			if(line.style.shape == Shape.CIRCLE) line_box.setShape(GradientDrawable.OVAL);
-
-			transportsView.setBackgroundDrawable(line_box);
-			transportsView.setTextColor(line.style.foregroundColor);
-		}
-
-		// set margin, because setting in in xml didn't work
-		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		llp.setMargins(3, 0, 3, 0);
-		transportsView.setLayoutParams(llp);
-
-		lineLayout.addView(transportsView, index);
-	}
-
-	static public void addLineBox(Context context, ViewGroup lineLayout, Line line) {
-		addLineBox(context, lineLayout, line, lineLayout.getChildCount());
-	}
-
-	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, boolean check_duplicates) {
-		addLineBox(context, lineLayout, line, lineLayout.getChildCount(), check_duplicates);
-	}
-
-	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index) {
-		addLineBox(context, lineLayout, line, index, false);
-	}
-
-	static public void addWalkingBox(Context context, ViewGroup lineLayout) {
-		ImageView transportsView = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
-
-		// set margin, because setting in in xml didn't work
-		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		llp.setMargins(3, 0, 3, 0);
-		transportsView.setLayoutParams(llp);
-
-		lineLayout.addView(transportsView);
-	}
-
-	static public View getDivider(Context context) {
-		return (View) LayoutInflater.from(context).inflate(R.layout.divider_horizontal, null);
 	}
 
 	private void addTrips(final TableLayout main, List<Trip> trips) {

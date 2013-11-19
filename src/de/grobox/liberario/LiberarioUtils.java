@@ -1,0 +1,97 @@
+/*    Liberario
+ *    Copyright (C) 2013 Torsten Grote
+ *
+ *    This program is Free Software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as
+ *    published by the Free Software Foundation, either version 3 of the
+ *    License, or (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package de.grobox.liberario;
+
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import de.schildbach.pte.dto.Line;
+import de.schildbach.pte.dto.Style.Shape;
+
+public class LiberarioUtils {
+
+	@SuppressWarnings("deprecation")
+	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index, boolean check_duplicates) {
+		if(check_duplicates) {
+			// loop through all line boxes in the linearLayout
+			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
+				// check if current line box is the same as the one we are about to add
+				if(line.label.substring(1).equals(((TextView)lineLayout.getChildAt(i)).getText())) {
+					// lines are equal, so bail out from here and don't add new line box
+					return;
+				}
+			}
+		}
+
+		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, null);
+		transportsView.setText(line.label.substring(1));
+
+		if(line.style != null) {
+			GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
+			line_box.setColor(line.style.backgroundColor);
+
+			// change shape and mutate before to not share state with other instances
+			line_box.mutate();
+			if(line.style.shape == Shape.CIRCLE) line_box.setShape(GradientDrawable.OVAL);
+
+			transportsView.setBackgroundDrawable(line_box);
+			transportsView.setTextColor(line.style.foregroundColor);
+		}
+
+		// set margin, because setting in in xml didn't work
+		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		llp.setMargins(3, 0, 3, 0);
+		transportsView.setLayoutParams(llp);
+
+		lineLayout.addView(transportsView, index);
+	}
+
+	static public void addLineBox(Context context, ViewGroup lineLayout, Line line) {
+		addLineBox(context, lineLayout, line, lineLayout.getChildCount());
+	}
+
+	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, boolean check_duplicates) {
+		addLineBox(context, lineLayout, line, lineLayout.getChildCount(), check_duplicates);
+	}
+
+	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index) {
+		addLineBox(context, lineLayout, line, index, false);
+	}
+
+	static public void addWalkingBox(Context context, ViewGroup lineLayout) {
+		ImageView transportsView = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
+
+		// set margin, because setting in in xml didn't work
+		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		llp.setMargins(3, 0, 3, 0);
+		transportsView.setLayoutParams(llp);
+
+		lineLayout.addView(transportsView);
+	}
+
+	static public View getDivider(Context context) {
+		return (View) LayoutInflater.from(context).inflate(R.layout.divider_horizontal, null);
+	}
+
+}

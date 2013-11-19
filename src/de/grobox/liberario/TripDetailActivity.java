@@ -187,7 +187,7 @@ public class TripDetailActivity extends Activity {
 				((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(public_leg.departureStop.location.uniqueShortName());
 
 				// set line box
-				TripsActivity.addLineBox(this, (LinearLayout) legViewOld.findViewById(R.id.dLineView), public_leg.line);
+				LiberarioUtils.addLineBox(this, (LinearLayout) legViewOld.findViewById(R.id.dLineView), public_leg.line);
 
 				// set destination of line
 				if(public_leg.destination != null) {
@@ -260,7 +260,7 @@ public class TripDetailActivity extends Activity {
 
 				((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(individual.departure.uniqueShortName());
 
-				TripsActivity.addWalkingBox(this, (LinearLayout) legViewOld.findViewById(R.id.dLineView));
+				LiberarioUtils.addWalkingBox(this, (LinearLayout) legViewOld.findViewById(R.id.dLineView));
 
 				// show time for walk and optionally distance
 				String walk = Integer.toString(individual.min) + " min ";
@@ -275,7 +275,7 @@ public class TripDetailActivity extends Activity {
 				((ImageView) legViewOld.findViewById(R.id.dShowMoreView)).setVisibility(View.GONE);
 			}
 
-			view.addView(TripsActivity.getDivider(this));
+			view.addView(LiberarioUtils.getDivider(this));
 			view.addView(legViewNew);
 
 			// save new leg view for next run of the loop
@@ -283,7 +283,7 @@ public class TripDetailActivity extends Activity {
 			i += 1;
 		}
 		// add horizontal divider at the end
-		view.addView(TripsActivity.getDivider(this));
+		view.addView(LiberarioUtils.getDivider(this));
 	}
 
 	private TableLayout getStops(List<Stop> stops) {
