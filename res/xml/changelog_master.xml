@@ -8,9 +8,10 @@
         <change>+5 and +10 minutes buttons for time</change>
         <change>Wider input field for location/station name</change>
         <change>Input fields for station now have a clear text button</change>
-        <change>Names in the auto completion lists now also show the city of the proposed location</change>
+        <change>Names in the auto completion lists now also show the city of the proposed location (Thanks to Michael Kesper)</change>
         <change>Hide less used settings from start screen</change>
         <change>Action Bar button to show less used settings</change>
+        <change>Little trip boxes are now shown in correct order (Thanks to Sam Tuke)</change>
     </release>
     
 	<release version="0.3.1" versioncode="5">

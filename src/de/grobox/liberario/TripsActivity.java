@@ -294,11 +294,11 @@ public class TripsActivity extends Activity {
 	}
 
 	static public void addLineBox(Context context, ViewGroup lineLayout, Line line) {
-		addLineBox(context, lineLayout, line, lineLayout.getChildCount()-1);
+		addLineBox(context, lineLayout, line, lineLayout.getChildCount());
 	}
 
 	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, boolean check_duplicates) {
-		addLineBox(context, lineLayout, line, lineLayout.getChildCount()-1, check_duplicates);
+		addLineBox(context, lineLayout, line, lineLayout.getChildCount(), check_duplicates);
 	}
 
 	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index) {
