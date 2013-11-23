@@ -19,6 +19,7 @@ package de.grobox.liberario;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import de.grobox.liberario.R;
 import de.schildbach.pte.NetworkProvider;
@@ -32,11 +33,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,10 +61,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class DirectionsFragment extends LiberarioFragment {
+public class DirectionsFragment extends LiberarioFragment implements LocationListener {
 	private View mView;
 	private boolean mChange = false;
 	private FavLocation.LOC_TYPE mHomeClicked;
+	private LocationManager locationManager;
+	private Location gps_loc = null;
+	private boolean mGpsPressed = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +79,7 @@ public class DirectionsFragment extends LiberarioFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_directions, container, false);
+		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
 		return mView;
 	}
@@ -124,12 +132,21 @@ public class DirectionsFragment extends LiberarioFragment {
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 
 				// check and set from location
-				if(checkLocation(FavLocation.LOC_TYPE.FROM, (AutoCompleteTextView) mView.findViewById(R.id.from))) {
-					query_trips.setFrom(getFrom());
-				}
-				else {
-					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
-					return;
+				if(mGpsPressed) {
+					if(gps_loc != null) {
+						query_trips.setFrom(getFrom());
+					} else {
+						// TODO wait for position to be found and then continue
+						Toast.makeText(getActivity(), "NO POSITION FOUND YET!", Toast.LENGTH_SHORT).show();
+						return;
+					}
+				} else {
+					if(checkLocation(FavLocation.LOC_TYPE.FROM, (AutoCompleteTextView) mView.findViewById(R.id.from))) {
+						query_trips.setFrom(getFrom());
+					} else {
+						Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
+						return;
+					}
 				}
 
 				// check and set to location
@@ -141,8 +158,10 @@ public class DirectionsFragment extends LiberarioFragment {
 					return;
 				}
 
-				// remember trip
-				FavFile.useFavTrip(getActivity(), new FavTrip(getFrom(), getTo()));
+				// remember trip if not from GPS
+				if(!mGpsPressed) {
+					FavFile.useFavTrip(getActivity(), new FavTrip(getFrom(), getTo()));
+				}
 
 				// set date
 				query_trips.setDate(DateUtils.mergeDateTime(getActivity(), dateView.getText(), timeView.getText()));
@@ -252,6 +271,7 @@ public class DirectionsFragment extends LiberarioFragment {
 				else {
 					startSetHome(true, FavLocation.LOC_TYPE.FROM);
 				}
+				cancelGpsButton();
 			}
 		});
 		// Home Button Long Click
@@ -259,6 +279,7 @@ public class DirectionsFragment extends LiberarioFragment {
 			@Override
 			public boolean onLongClick(View v) {
 				startSetHome(false, FavLocation.LOC_TYPE.FROM);
+				cancelGpsButton();
 
 				return true;
 			}
@@ -287,6 +308,26 @@ public class DirectionsFragment extends LiberarioFragment {
 			}
 		});
 
+		// GPS Button
+		final ImageButton fromGpsButton = (ImageButton) getView().findViewById(R.id.fromGpsButton);
+		fromGpsButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				// clear from text
+				from.setText(null);
+				setFrom(null);
+				fromClearButton.setVisibility(View.GONE);
+
+				// focus to text
+				AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
+				to.requestFocus();
+
+				pressGpsButton();
+
+				fromGpsButton.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+			}
+		});
+
 		// From text input changed
 		from.addTextChangedListener(new TextWatcher() {
 			@Override
@@ -296,6 +337,8 @@ public class DirectionsFragment extends LiberarioFragment {
 
 				// show clear button
 				fromClearButton.setVisibility(View.VISIBLE);
+
+				cancelGpsButton();
 			}
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -304,6 +347,7 @@ public class DirectionsFragment extends LiberarioFragment {
 			@Override
 			public void onClick(View v) {
 				fromFavClick(v);
+				cancelGpsButton();
 			}
 		});
 	}
@@ -524,6 +568,73 @@ public class DirectionsFragment extends LiberarioFragment {
 
 		return true;
 	}
+
+
+	private void pressGpsButton() {
+		mGpsPressed = true;
+
+		List<String> providers = locationManager.getProviders(true);
+
+		for(String provider : providers) {
+			// Register the listener with the Location Manager to receive location updates
+			locationManager.requestSingleUpdate(provider, this, null);
+
+			Log.d(getClass().getSimpleName(), "Register provider for location updates: " + provider);
+		}
+
+		// check if there is a non-passive provider available
+		if(providers.size() == 0 || (providers.size() == 1 && providers.get(0).equals(LocationManager.PASSIVE_PROVIDER)) ) {
+			removeUpdates();
+			Toast.makeText(getActivity(), getResources().getString(R.string.error_no_location_provider), Toast.LENGTH_LONG).show();
+
+			return;
+		}
+
+		gps_loc = null;
+
+		// FIXME only for testing
+//		android.location.Location l = new android.location.Location("");
+//		l.setLatitude(52.4544);
+//		l.setLongitude(13.2516);
+//		onLocationChanged(l);
+	}
+
+	private void cancelGpsButton() {
+		mGpsPressed = false;
+
+		ImageButton fromGpsButton = (ImageButton) getView().findViewById(R.id.fromGpsButton);
+		fromGpsButton.getDrawable().setColorFilter(null);
+
+		removeUpdates();
+	}
+
+	private void removeUpdates() {
+		locationManager.removeUpdates(this);
+	}
+
+	// Called when a new location is found by the network location provider.
+	public void onLocationChanged(android.location.Location location) {
+		// no more updates to prevent this method from being called more than once
+		removeUpdates();
+
+		if(gps_loc == null) {
+			Log.d(getClass().getSimpleName(), "Found location: " + location.toString());
+
+			int lat = (int) Math.round(location.getLatitude() * 1E6);
+			int lon = (int) Math.round(location.getLongitude() * 1E6);
+
+			// create location based on GPS coordinates
+			gps_loc = new Location(LocationType.ADDRESS, 0, lat, lon, null, String.valueOf(location.getLatitude()).substring(0, 8) + "/" + String.valueOf(location.getLongitude()).substring(0, 8));
+			setFrom(gps_loc);
+		}
+	}
+
+	public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+	public void onProviderEnabled(String provider) {}
+
+	public void onProviderDisabled(String provider) {}
+
 
 	public void showTimePickerDialog(View v) {
 		DialogFragment newFragment = new TimePickerFragment();

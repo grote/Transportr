@@ -231,7 +231,7 @@ public class FavFile {
 	public static void useFavTrip(Context context, FavTrip fav) {
 		List<FavTrip> fav_list = getFavTripList(context);
 
-		if(fav_list.contains(fav)){
+		if(fav_list.contains(fav)) {
 			// increase counter by one for existing trip
 			fav_list.get(fav_list.indexOf(fav)).addCount();
 
