@@ -132,7 +132,7 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 		// set name of location in list item
 		Location l = getItem(position);
 		if(l.place != null) {
-			((TextView) view).setText(l.place + ", " + l.name );
+			((TextView) view).setText(l.name + ", " + l.place);
 		} else {
 			((TextView) view).setText(l.uniqueShortName());
 		}
