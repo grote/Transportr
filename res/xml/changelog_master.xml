@@ -4,10 +4,10 @@
     <release version="0.4" versioncode="6">
         <change>New start screen</change>
         <change>Find trips from current position</change>
-        <change>New home button as a shortcut for your home station(s)</change>
-        <change>+5 and +10 minutes buttons for time</change>
+        <change>New home button as a shortcut for your home station, long press to change later</change>
+        <change>+15 minutes button to quickly change time for trip</change>
         <change>Wider input field for location/station name</change>
-        <change>Input fields for station now have a clear text button</change>
+        <change>Input fields for stations now have a X button to delete the text</change>
         <change>Names in the auto completion lists now also show the city of the proposed location (Thanks to Michael Kesper)</change>
         <change>Hide less used settings from start screen</change>
         <change>Action Bar button to show less used settings</change>

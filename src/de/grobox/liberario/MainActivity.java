@@ -155,7 +155,7 @@ public class MainActivity extends FragmentActivity {
 
 	public static class HoloChangeLog extends ChangeLog {
 		public static final String DARK_THEME_CSS =
-				"body { color:white; font-size: 0.9em; background-color: #282828; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
+				"body { color: #f3f3f3; font-size: 0.9em; background-color: #282828; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
 
 		public HoloChangeLog(Context context) {
 			super(new ContextThemeWrapper(context, R.style.AppTheme), DARK_THEME_CSS);
