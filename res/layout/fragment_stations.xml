@@ -67,15 +67,29 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/stationButton"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="15dp"
+                android:orientation="horizontal"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:text="@android:string/search_go" />
+                android:paddingRight="15dp" >
+
+                <ImageButton
+                    android:id="@+id/stationHomeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_home" />
+
+                <Button
+                    android:id="@+id/stationButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:text="@android:string/search_go" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

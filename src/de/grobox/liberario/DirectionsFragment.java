@@ -149,6 +149,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 						pd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
+								mAfterGpsTask = null;
 								dialog.dismiss();
 							}
 						});
@@ -360,7 +361,11 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				setFrom(null);
 
 				// show clear button
-				fromClearButton.setVisibility(View.VISIBLE);
+				if(s.length() > 0) {
+					fromClearButton.setVisibility(View.VISIBLE);
+				} else {
+					fromClearButton.setVisibility(View.GONE);
+				}
 
 				cancelGpsButton();
 			}
@@ -433,7 +438,11 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				setTo(null);
 
 				// show clear button
-				toClearButton.setVisibility(View.VISIBLE);
+				if(s.length() > 0) {
+					toClearButton.setVisibility(View.VISIBLE);
+				} else {
+					toClearButton.setVisibility(View.GONE);
+				}
 			}
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -626,7 +635,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	private void cancelGpsButton() {
 		mGpsPressed = false;
 
-		ImageButton fromGpsButton = (ImageButton) getView().findViewById(R.id.fromGpsButton);
+		ImageButton fromGpsButton = (ImageButton) mView.findViewById(R.id.fromGpsButton);
 		fromGpsButton.getDrawable().setColorFilter(null);
 
 		removeUpdates();

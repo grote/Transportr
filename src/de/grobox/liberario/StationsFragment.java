@@ -30,12 +30,14 @@ import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -95,8 +97,11 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			((LocationAutoCompleteAdapter) stationView.getAdapter()).clearFavs();
 
 			// clear text view
-			stationView.setText("");
-			stationView.setTag(null);
+			setStation(null);
+
+			// hide text clear button
+			ImageButton stationClearButton = (ImageButton) mView.findViewById(R.id.stationClearButton);
+			stationClearButton.setVisibility(View.GONE);
 		} else {
 			departuresLayout.setVisibility(View.GONE);
 		}
@@ -110,6 +115,14 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		}
 	}
 
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// after new home location was selected, put it right into the input field
+		if(resultCode == FragmentActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
+			queryForStations(FavFile.getHome(getActivity()));
+		}
+	}
+
 	private void setDeparturesView() {
 		// station name TextView
 		final AutoCompleteTextView stationView = (AutoCompleteTextView) getView().findViewById(R.id.stationView);
@@ -117,7 +130,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		stationView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				stationView.setTag((Location) parent.getItemAtPosition(position));
+				setStation((Location) parent.getItemAtPosition(position));
 				stationView.requestFocus();
 			}
 		});
@@ -127,10 +140,8 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		stationClearButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				stationView.setText("");
+				setStation(null);
 				stationView.requestFocus();
-				stationView.setTag(null);
-				stationClearButton.setVisibility(View.GONE);
 			}
 		});
 
@@ -142,7 +153,11 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 				stationView.setTag(null);
 
 				// show clear button
-				stationClearButton.setVisibility(View.VISIBLE);
+				if(s.length() > 0) {
+					stationClearButton.setVisibility(View.VISIBLE);
+				} else {
+					stationClearButton.setVisibility(View.GONE);
+				}
 			}
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -163,6 +178,36 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			}
 		});
 
+		// home station button
+		ImageButton stationHomeButton = (ImageButton) getView().findViewById(R.id.stationHomeButton);
+		stationHomeButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Location home = FavFile.getHome(getActivity());
+
+				if(home != null) {
+					queryForStations(home);
+				} else {
+					Intent intent = new Intent(getActivity(), SetHomeActivity.class);
+					intent.putExtra("new", true);
+
+					startActivityForResult(intent, MainActivity.CHANGED_HOME);
+				}
+			}
+		});
+		// Home Button Long Click
+		stationHomeButton.setOnLongClickListener(new OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View v) {
+				Intent intent = new Intent(getActivity(), SetHomeActivity.class);
+				intent.putExtra("new", false);
+
+				startActivityForResult(intent, MainActivity.CHANGED_HOME);
+
+				return true;
+			}
+		});
+
 		// Find Departures Search Button
 		Button stationButton = (Button) getView().findViewById(R.id.stationButton);
 		stationButton.setOnClickListener(new OnClickListener(){
@@ -176,19 +221,22 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 						Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
 						return;
 					}
-
-					// Location is valid, so make it a favorite or increase counter
-					FavFile.updateFavLocation(getActivity(), location, FavLocation.LOC_TYPE.FROM);
-
-					// start StationsListActivity with given location
-					Intent intent = new Intent(v.getContext(), StationsListActivity.class);
-					intent.putExtra("de.schildbach.pte.dto.Location", location);
-					startActivity(intent);
+					queryForStations(location);
 				} else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
+	}
+
+	private void queryForStations(Location location) {
+		// Location is valid, so make it a favorite or increase counter
+		FavFile.updateFavLocation(getActivity(), location, FavLocation.LOC_TYPE.FROM);
+
+		// start StationsListActivity with given location
+		Intent intent = new Intent(getActivity(), StationsListActivity.class);
+		intent.putExtra("de.schildbach.pte.dto.Location", location);
+		startActivity(intent);
 	}
 
 	private void setNearbyStationsView() {
@@ -200,6 +248,22 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 				getLocation();
 			}
 		});
+	}
+
+	private void setStation(Location station) {
+		AutoCompleteTextView stationView = (AutoCompleteTextView) getView().findViewById(R.id.stationView);
+		ImageButton stationClearButton = (ImageButton) mView.findViewById(R.id.stationClearButton);
+
+		if(station != null) {
+			stationView.setText(station.uniqueShortName());
+			stationView.setTag(station);
+			stationClearButton.setVisibility(View.VISIBLE);
+		} else {
+			stationView.setText("");
+			stationView.setTag(null);
+			stationClearButton.setVisibility(View.GONE);
+		}
+		stationView.dismissDropDown();
 	}
 
 	private void getLocation() {
