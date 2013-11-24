@@ -225,7 +225,7 @@ public class StationsListActivity extends Activity {
 			// add line boxes if available
 			if(stat_dep.lines != null) {
 				for(LineDestination line : stat_dep.lines) {
-					LiberarioUtils.addLineBox(this, stationLineLayout, line.line);
+					LiberarioUtils.addLineBox(this, stationLineLayout, line.line, true);
 				}
 				stationLineLayout.setVisibility(View.VISIBLE);
 				have_lines = true;
