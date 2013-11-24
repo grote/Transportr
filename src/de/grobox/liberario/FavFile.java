@@ -155,6 +155,9 @@ public class FavFile {
 	}
 
 	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
+		// don't save locations with no id
+		if(loc.id == 0) return;
+
 		List<FavLocation> fav_list = getFavLocationList(context);
 		FavLocation fav_loc = new FavLocation(loc);
 		if(fav_list.contains(fav_loc)){
