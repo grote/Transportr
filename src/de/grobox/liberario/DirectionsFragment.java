@@ -206,9 +206,9 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		View moreLayout = mView.findViewById(R.id.moreLayout);
 		if(moreLayout.getVisibility() == View.GONE) {
-			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_collapse);
-		} else {
 			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_expand);
+		} else {
+			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_collapse);
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
