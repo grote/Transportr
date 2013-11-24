@@ -28,8 +28,10 @@ import de.schildbach.pte.dto.LocationType;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -68,6 +70,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	private LocationManager locationManager;
 	private Location gps_loc = null;
 	private boolean mGpsPressed = false;
+	public ProgressDialog pd;
+	AsyncQueryTripsTask mAfterGpsTask = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -133,12 +137,22 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 				// check and set from location
 				if(mGpsPressed) {
-					if(gps_loc != null) {
+					if(getFrom() != null) {
 						query_trips.setFrom(getFrom());
 					} else {
-						// TODO wait for position to be found and then continue
-						Toast.makeText(getActivity(), "NO POSITION FOUND YET!", Toast.LENGTH_SHORT).show();
-						return;
+						mAfterGpsTask = query_trips;
+
+						pd = new ProgressDialog(getActivity());
+						pd.setMessage(getResources().getString(R.string.stations_searching_position));
+						pd.setCancelable(false);
+						pd.setIndeterminate(true);
+						pd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+							}
+						});
+						pd.show();
 					}
 				} else {
 					if(checkLocation(FavLocation.LOC_TYPE.FROM, (AutoCompleteTextView) mView.findViewById(R.id.from))) {
@@ -169,9 +183,19 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				// set departure to true of first item is selected in spinner
 				query_trips.setDeparture(spinner.getSelectedItem().equals(spinner.getItemAtPosition(0)));
 
+				// don't execute if we still have to wait for GPS position
+				if(mAfterGpsTask != null) return;
+
 				query_trips.execute();
 			}
 		});
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		mAfterGpsTask = null;
 	}
 
 	@Override
@@ -617,6 +641,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// no more updates to prevent this method from being called more than once
 		removeUpdates();
 
+		// only execute if we still do not have a location to make super sure this is not run twice
 		if(gps_loc == null) {
 			Log.d(getClass().getSimpleName(), "Found location: " + location.toString());
 
@@ -626,6 +651,16 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			// create location based on GPS coordinates
 			gps_loc = new Location(LocationType.ADDRESS, 0, lat, lon, null, String.valueOf(location.getLatitude()).substring(0, 8) + "/" + String.valueOf(location.getLongitude()).substring(0, 8));
 			setFrom(gps_loc);
+
+			if(pd != null) {
+				pd.dismiss();
+			}
+
+			// query for trips if user pressed search already and we just have been waiting for the location
+			if(mAfterGpsTask != null) {
+				mAfterGpsTask.setFrom(gps_loc);
+				mAfterGpsTask.execute();
+			}
 		}
 	}
 
