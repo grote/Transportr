@@ -297,12 +297,6 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		}
 
 		loc_found = false;
-
-		// FIXME only for testing
-		//android.location.Location l = new android.location.Location("");
-		//l.setLatitude(52.4544);
-		//l.setLongitude(13.2516);
-		//onLocationChanged(l);
 	}
 
 	private void removeUpdates() {

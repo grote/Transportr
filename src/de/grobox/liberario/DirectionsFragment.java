@@ -624,12 +624,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 
 		gps_loc = null;
-
-		// FIXME only for testing
-//		android.location.Location l = new android.location.Location("");
-//		l.setLatitude(52.4544);
-//		l.setLongitude(13.2516);
-//		onLocationChanged(l);
 	}
 
 	private void cancelGpsButton() {
@@ -657,8 +651,13 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			int lat = (int) Math.round(location.getLatitude() * 1E6);
 			int lon = (int) Math.round(location.getLongitude() * 1E6);
 
+			String lat_str = String.valueOf(location.getLatitude());
+			if(lat_str.length() > 9) lat_str = lat_str.substring(0, 8);
+			String lon_str = String.valueOf(location.getLongitude());
+			if(lon_str.length() > 9) lon_str = lon_str.substring(0, 8);
+
 			// create location based on GPS coordinates
-			gps_loc = new Location(LocationType.ADDRESS, 0, lat, lon, null, String.valueOf(location.getLatitude()).substring(0, 8) + "/" + String.valueOf(location.getLongitude()).substring(0, 8));
+			gps_loc = new Location(LocationType.ADDRESS, 0, lat, lon, null, lat_str + "/" + lon_str);
 			setFrom(gps_loc);
 
 			if(pd != null) {
