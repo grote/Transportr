@@ -220,14 +220,14 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		switch (item.getItemId()) {
 			case R.id.action_navigation_expand:
 				View moreLayout = mView.findViewById(R.id.moreLayout);
-				View dateTypeSpinner = mView.findViewById(R.id.dateTypeSpinner);
+//				View dateTypeSpinner = mView.findViewById(R.id.dateTypeSpinner);
 				if(moreLayout.getVisibility() == View.GONE) {
 					moreLayout.setVisibility(View.VISIBLE);
-					dateTypeSpinner.setVisibility(View.VISIBLE);
+//					dateTypeSpinner.setVisibility(View.VISIBLE);
 					item.setIcon(R.drawable.ic_action_navigation_collapse);
 				} else {
 					moreLayout.setVisibility(View.GONE);
-					dateTypeSpinner.setVisibility(View.GONE);
+//					dateTypeSpinner.setVisibility(View.GONE);
 					item.setIcon(R.drawable.ic_action_navigation_expand);
 				}
 
