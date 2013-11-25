@@ -338,18 +338,22 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		fromGpsButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				// clear from text
-				from.setText(null);
-				setFrom(null);
-				fromClearButton.setVisibility(View.GONE);
+				if(mGpsPressed) {
+					cancelGpsButton();
+				} else {
+					// clear from text
+					from.setText(null);
+					setFrom(null);
+					fromClearButton.setVisibility(View.GONE);
 
-				// focus to text
-				AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
-				to.requestFocus();
+					// focus to text
+					AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
+					to.requestFocus();
 
-				pressGpsButton();
+					pressGpsButton();
 
-				fromGpsButton.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+					fromGpsButton.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+				}
 			}
 		});
 
