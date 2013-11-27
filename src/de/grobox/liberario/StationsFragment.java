@@ -73,14 +73,14 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		if(np.hasCapabilities(Capability.DEPARTURES)) {
 			setDeparturesView();
 		} else {
-			LinearLayout departuresLayout = (LinearLayout) getView().findViewById(R.id.departuresLayout);
+			LinearLayout departuresLayout = (LinearLayout) mView.findViewById(R.id.departuresLayout);
 			departuresLayout.setVisibility(View.GONE);
 		}
 
 		if(np.hasCapabilities(Capability.NEARBY_STATIONS)) {
 			setNearbyStationsView();
 		} else {
-			LinearLayout nearbyStationsLayout = (LinearLayout) getView().findViewById(R.id.nearbyStationsLayout);
+			LinearLayout nearbyStationsLayout = (LinearLayout) mView.findViewById(R.id.nearbyStationsLayout);
 			nearbyStationsLayout.setVisibility(View.GONE);
 		}
 	}
@@ -125,7 +125,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 	private void setDeparturesView() {
 		// station name TextView
-		final AutoCompleteTextView stationView = (AutoCompleteTextView) getView().findViewById(R.id.stationView);
+		final AutoCompleteTextView stationView = (AutoCompleteTextView) mView.findViewById(R.id.stationView);
 		stationView.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item, true));
 		stationView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
@@ -164,7 +164,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		});
 
 		// station name favorites button
-		((View) getView().findViewById(R.id.stationFavButton)).setOnClickListener(new OnClickListener(){
+		((View) mView.findViewById(R.id.stationFavButton)).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				int size = ((LocationAutoCompleteAdapter) stationView.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
@@ -179,7 +179,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		});
 
 		// home station button
-		ImageButton stationHomeButton = (ImageButton) getView().findViewById(R.id.stationHomeButton);
+		ImageButton stationHomeButton = (ImageButton) mView.findViewById(R.id.stationHomeButton);
 		stationHomeButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -209,7 +209,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		});
 
 		// Find Departures Search Button
-		Button stationButton = (Button) getView().findViewById(R.id.stationButton);
+		Button stationButton = (Button) mView.findViewById(R.id.stationButton);
 		stationButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -241,7 +241,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 	private void setNearbyStationsView() {
 		// Find Nearby Stations Search Button
-		ImageButton btn = (ImageButton) getView().findViewById(R.id.findNearbyStationsButton);
+		ImageButton btn = (ImageButton) mView.findViewById(R.id.findNearbyStationsButton);
 		btn.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -251,7 +251,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 	}
 
 	private void setStation(Location station) {
-		AutoCompleteTextView stationView = (AutoCompleteTextView) getView().findViewById(R.id.stationView);
+		AutoCompleteTextView stationView = (AutoCompleteTextView) mView.findViewById(R.id.stationView);
 		ImageButton stationClearButton = (ImageButton) mView.findViewById(R.id.stationClearButton);
 
 		if(station != null) {
@@ -318,8 +318,8 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			int maxDistance;
 			int maxStations;
 
-			TextView distanceView = (TextView) getView().findViewById(R.id.distanceView);
-			TextView numStationsView = (TextView) getView().findViewById(R.id.numStationsView);
+			TextView distanceView = (TextView) mView.findViewById(R.id.distanceView);
+			TextView numStationsView = (TextView) mView.findViewById(R.id.numStationsView);
 
 			// Get values from form
 			if(distanceView.getText().length() > 0) {
