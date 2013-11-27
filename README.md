@@ -21,7 +21,10 @@ Get Liberario
 
 Screenshots
 -----------
-[<img src="art/screenshots/directions.png" width="220">](art/screenshots/directions.png)
+[<img src="art/screenshots/directions.png" width="200">](art/screenshots/directions.png)
+[<img src="art/screenshots/trips.png" width="200">](art/screenshots/trips.png)
+[<img src="art/screenshots/stations.png" width="200">](art/screenshots/stations.png)
+[<img src="art/screenshots/nearby_stations.png" width="200">](art/screenshots/nearby_stations.png)
 
 
 Coverage
