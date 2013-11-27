@@ -5,7 +5,7 @@ A Free Software public transport app for Android which you can freely use, study
 
 ![Liberario Logo](/res/drawable-xhdpi/ic_launcher.png)
 
-**Attention:** This is still *alpha* software. It has many bugs and a lot of functionality is still missing. There is no guarantee for the correctness of the data. Please only use this app at your own risk.
+**Attention:** There is no guarantee for the correctness of the data. Please only use this app at your own risk.
 
 Contributions are both encouraged and appreciated. If you like to contribute please [see below](#contributing) for more information.
 
@@ -18,6 +18,11 @@ Get Liberario
 
 [![Available on F-Droid](https://f-droid.org/wiki/images/c/c4/F-Droid-button_available-on.png)](https://f-droid.org/repository/browse/?fdid=de.grobox.liberario)
 [![Available on Google Play](https://developer.android.com/images/brand/en_app_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=de.grobox.liberario)
+
+Screenshots
+-----------
+[<img src="art/screenshots/directions.png" width="220">](art/screenshots/directions.png)
+
 
 Coverage
 --------
