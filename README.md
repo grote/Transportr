@@ -23,6 +23,8 @@ Screenshots
 -----------
 [<img src="art/screenshots/directions.png" width="200">](art/screenshots/directions.png)
 [<img src="art/screenshots/trips.png" width="200">](art/screenshots/trips.png)
+[<img src="art/screenshots/trip_details.png" width="200">](art/screenshots/trip_details.png)
+[<img src="art/screenshots/favorite_trips.png" width="200">](art/screenshots/favorite_trips.png)
 [<img src="art/screenshots/stations.png" width="200">](art/screenshots/stations.png)
 [<img src="art/screenshots/nearby_stations.png" width="200">](art/screenshots/nearby_stations.png)
 
