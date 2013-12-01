@@ -19,6 +19,7 @@
     <string name="action_platforms">Show/Hide Platforms</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_navigation_expand">Show More</string>
+    <string name="action_location_map">Show Stations on Map</string>
 
     <string name="tab_directions">Directions</string>
     <string name="tab_fav_trips">Favorites</string>
@@ -66,6 +67,7 @@
     <string name="error_no_departures_found">No departures found</string>
     <string name="error_no_proper_station">The provided location is no proper station</string>
     <string name="error_only_autocomplete_station">Please select a station from the autocompletion list!</string>
+    <string name="error_no_station_location">Cannot find the location of the(se) station(s)</string>
 
     <string name="number_of_stations">Number of Stations</string>
     <string name="meter">m</string>

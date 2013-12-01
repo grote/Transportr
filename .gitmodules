@@ -10,3 +10,7 @@
 	path = sublibs/ckChangeLog
 	url = https://github.com/cketti/ckChangeLog.git
 	ignore = dirty
+[submodule "sublibs/OSMBonusPack"]
+	path = sublibs/OSMBonusPack
+	url = https://github.com/grote/OSMBonusPack.git
+	ignore = dirty

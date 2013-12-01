@@ -42,6 +42,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class StationsListActivity extends Activity {
 	private LinearLayout main;
@@ -118,6 +119,28 @@ public class StationsListActivity extends Activity {
 					// get new departures
 					AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id);
 					query_stations.execute();
+				}
+
+				return true;
+			case R.id.action_location_map:
+				boolean hasLocation = false;
+
+				// check if at least one station has a location attached to it
+				for(Location station : mStations) {
+					if(station.hasLocation()) {
+						hasLocation = true;
+						break;
+					}
+				}
+
+				if(hasLocation) {
+					// show stations on map
+					Intent intent = new Intent(this, MapStationsActivity.class);
+					intent.putExtra("List<de.schildbach.pte.dto.Location>", (ArrayList<Location>) mStations);
+					startActivity(intent);
+				}
+				else {
+					Toast.makeText(this, getString(R.string.error_no_station_location), Toast.LENGTH_SHORT).show();
 				}
 
 				return true;
