@@ -1,3 +1,20 @@
+/*    Liberario
+ *    Copyright (C) 2013 Torsten Grote
+ *
+ *    This program is Free Software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as
+ *    published by the Free Software Foundation, either version 3 of the
+ *    License, or (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package de.grobox.liberario;
 
 import java.util.ArrayList;
@@ -10,6 +27,8 @@ import org.osmdroid.bonuspack.overlays.ItemizedOverlayWithBubble;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
@@ -42,6 +61,7 @@ public class MapStationsActivity extends Activity {
 
 		Intent intent = getIntent();
 		List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra("List<de.schildbach.pte.dto.Location>");
+		Location myLoc = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
 
 		int minLat = Integer.MAX_VALUE;
 		int maxLat = Integer.MIN_VALUE;
@@ -65,6 +85,29 @@ public class MapStationsActivity extends Activity {
 
 		ItemizedOverlayWithBubble<StationOverlayItem> stationMarkers = new ItemizedOverlayWithBubble<StationOverlayItem>(this, mStations, mMapView, new StationInfoWindow(mMapView));
 		mMapView.getOverlays().add(stationMarkers);
+
+		// show my position on map
+		if(myLoc != null) {
+			// create temporary location object with last known position
+			android.location.Location tmp_loc = new android.location.Location("");
+			tmp_loc.setLatitude(myLoc.lat / 1E6);
+			tmp_loc.setLongitude(myLoc.lon / 1E6);
+
+			// set last known position
+			GpsMyLocationProvider locProvider = new GpsMyLocationProvider(this);
+			locProvider.onLocationChanged(tmp_loc);
+
+			// create my location overlay that shows the current position and updates automatically
+			MyLocationNewOverlay myLocationoverlay = new MyLocationNewOverlay(this, mMapView);
+			myLocationoverlay.enableMyLocation(locProvider);
+			myLocationoverlay.enableFollowLocation();
+			myLocationoverlay.setDrawAccuracyEnabled(true);
+
+			// don't update position for now
+			locProvider.stopLocationProvider();
+
+			mMapView.getOverlays().add(myLocationoverlay);
+		}
 
 		setContentView(mMapView);
 	}

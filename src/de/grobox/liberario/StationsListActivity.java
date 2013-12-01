@@ -50,6 +50,7 @@ public class StationsListActivity extends Activity {
 	private Menu mMenu;
 	private List<Location> mStations;
 	boolean gps;
+	private Location mMyLocation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class StationsListActivity extends Activity {
 		Intent intent = getIntent();
 		if(intent.getAction() != null && intent.getAction().equals("de.grobox.liberario.LIST_NEARBY_STATIONS")) {
 			NearbyStationsResult stations = (NearbyStationsResult) intent.getSerializableExtra("de.schildbach.pte.dto.NearbyStationsResult");
+			mMyLocation = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
 			gps = true;
 
 			mStations = stations.stations;
@@ -137,6 +139,7 @@ public class StationsListActivity extends Activity {
 					// show stations on map
 					Intent intent = new Intent(this, MapStationsActivity.class);
 					intent.putExtra("List<de.schildbach.pte.dto.Location>", (ArrayList<Location>) mStations);
+					intent.putExtra("de.schildbach.pte.dto.Location", mMyLocation);
 					startActivity(intent);
 				}
 				else {
