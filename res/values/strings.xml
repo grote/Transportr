@@ -20,6 +20,7 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_navigation_expand">Show More</string>
     <string name="action_location_map">Show Stations on Map</string>
+    <string name="action_use_gps">Turn on GPS</string>
 
     <string name="tab_directions">Directions</string>
     <string name="tab_fav_trips">Favorites</string>

@@ -37,6 +37,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,6 +47,10 @@ import android.widget.TextView;
 
 public class MapStationsActivity extends Activity {
 	private MapView mMapView;
+	Menu mMenu;
+	private GpsMyLocationProvider mLocProvider;
+	private MyLocationNewOverlay mMyLocationOverlay;
+	private boolean mGps;
 	private ArrayList<StationOverlayItem> mStations = new ArrayList<StationOverlayItem>();
 
 	@SuppressWarnings("unchecked")
@@ -58,6 +64,7 @@ public class MapStationsActivity extends Activity {
 
 		mMapView.setClickable(true);
 		mMapView.setBuiltInZoomControls(true);
+		mMapView.setMultiTouchControls(true);
 
 		Intent intent = getIntent();
 		List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra("List<de.schildbach.pte.dto.Location>");
@@ -68,6 +75,7 @@ public class MapStationsActivity extends Activity {
 		int minLon = Integer.MAX_VALUE;
 		int maxLon = Integer.MIN_VALUE;
 
+		// find location area and mark locations on map
 		for(Location loc : locations) {
 			if(loc.hasLocation()){
 				maxLat = Math.max(loc.lat, maxLat);
@@ -86,7 +94,9 @@ public class MapStationsActivity extends Activity {
 		ItemizedOverlayWithBubble<StationOverlayItem> stationMarkers = new ItemizedOverlayWithBubble<StationOverlayItem>(this, mStations, mMapView, new StationInfoWindow(mMapView));
 		mMapView.getOverlays().add(stationMarkers);
 
-		// show my position on map
+		mLocProvider = new GpsMyLocationProvider(this);
+
+		// show last known position on map
 		if(myLoc != null) {
 			// create temporary location object with last known position
 			android.location.Location tmp_loc = new android.location.Location("");
@@ -94,22 +104,42 @@ public class MapStationsActivity extends Activity {
 			tmp_loc.setLongitude(myLoc.lon / 1E6);
 
 			// set last known position
-			GpsMyLocationProvider locProvider = new GpsMyLocationProvider(this);
-			locProvider.onLocationChanged(tmp_loc);
-
-			// create my location overlay that shows the current position and updates automatically
-			MyLocationNewOverlay myLocationoverlay = new MyLocationNewOverlay(this, mMapView);
-			myLocationoverlay.enableMyLocation(locProvider);
-			myLocationoverlay.enableFollowLocation();
-			myLocationoverlay.setDrawAccuracyEnabled(true);
-
-			// don't update position for now
-			locProvider.stopLocationProvider();
-
-			mMapView.getOverlays().add(myLocationoverlay);
+			mLocProvider.onLocationChanged(tmp_loc);
 		}
 
+		// create my location overlay that shows the current position and updates automatically
+		mMyLocationOverlay = new MyLocationNewOverlay(this, mMapView);
+		mMyLocationOverlay.enableMyLocation(mLocProvider);
+		mMyLocationOverlay.enableFollowLocation(); // without this there's no position marker!?
+		mMyLocationOverlay.setDrawAccuracyEnabled(true);
+
+		mMapView.getOverlays().add(mMyLocationOverlay);
+
+		// turn GPS off by default
+		mGps = false;
+		mLocProvider.stopLocationProvider();
+
 		setContentView(mMapView);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.map_stations_activity_actions, menu);
+		mMenu = menu;
+
+		MenuItem gpsItem = mMenu.findItem(R.id.action_use_gps);
+
+		if(mLocProvider != null) {
+			if(mGps) {
+				gpsItem.setIcon(R.drawable.ic_gps_off);
+			} else {
+				gpsItem.setIcon(R.drawable.ic_gps);
+			}
+		}
+
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -118,6 +148,10 @@ public class MapStationsActivity extends Activity {
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				onBackPressed();
+
+				return true;
+			case R.id.action_use_gps:
+				toggleGPS();
 
 				return true;
 			default:
@@ -134,6 +168,20 @@ public class MapStationsActivity extends Activity {
 		mStations.add(station);
 	}
 
+	private void toggleGPS() {
+		MenuItem gpsItem = mMenu.findItem(R.id.action_use_gps);
+
+		if(mGps) {
+			mGps = false;
+			mLocProvider.stopLocationProvider();
+			gpsItem.setIcon(R.drawable.ic_gps);
+		} else {
+			mGps = true;
+			mLocProvider.startLocationProvider(mMyLocationOverlay);
+			gpsItem.setIcon(R.drawable.ic_gps_off);
+		}
+	}
+
 	public class StationOverlayItem extends ExtendedOverlayItem {
 		List<Line> mLines;
 
@@ -147,6 +195,8 @@ public class MapStationsActivity extends Activity {
 			return mLines;
 		}
 	}
+
+
 
 	public class StationInfoWindow extends InfoWindow {
 
