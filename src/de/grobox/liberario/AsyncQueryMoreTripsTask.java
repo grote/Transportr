@@ -66,7 +66,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 
 	@Override
 	protected void onPostExecute(QueryTripsResult result) {
-		if(result.trips == null) {
+		if(result == null || result.trips == null) {
 			if(error == null) {
 				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
 			} else {
