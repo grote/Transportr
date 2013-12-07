@@ -252,7 +252,7 @@ public class TripDetailActivity extends Activity {
 				}
 			}
 			else if(leg instanceof Trip.Individual) {
-				Individual individual = (Trip.Individual) leg;
+				final Individual individual = (Trip.Individual) leg;
 
 				((TextView) legViewOld.findViewById(R.id.dDepartureTimeView)).setText(DateUtils.getTime(this, individual.departureTime));
 				// TODO check why time doesn't change
@@ -269,6 +269,26 @@ public class TripDetailActivity extends Activity {
 
 				((TextView) legViewNew.findViewById(R.id.dDestinationView)).setText(individual.arrival.uniqueShortName());
 				dDepartureViewNew.setText(individual.arrival.uniqueShortName());
+
+				// show map button
+				ImageView dShowMapView = ((ImageView) legViewOld.findViewById(R.id.dShowMapView));
+				dShowMapView.setVisibility(View.VISIBLE);
+
+				// when row clicked, show map
+				legViewOld.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						// remember arrival station
+						List<Location> loc_list = new ArrayList<Location>();
+						loc_list.add(individual.arrival);
+
+						// show station on map
+						Intent intent = new Intent(getBaseContext(), MapStationsActivity.class);
+						intent.putExtra("List<de.schildbach.pte.dto.Location>", (ArrayList<Location>) loc_list);
+						intent.putExtra("de.schildbach.pte.dto.Location", individual.departure);
+						startActivity(intent);
+					}
+				});
 
 				// hide arrow and show more icon
 				((ImageView) legViewOld.findViewById(R.id.dArrowView)).setVisibility(View.GONE);
