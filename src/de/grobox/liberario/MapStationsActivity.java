@@ -164,7 +164,7 @@ public class MapStationsActivity extends Activity {
 
 		StationOverlayItem station = new StationOverlayItem(loc.name, lines, pos, this);
 		station.setMarker(getResources().getDrawable(R.drawable.ic_marker_station));
-		station.setMarkerHotspot(OverlayItem.HotspotPlace.BOTTOM_CENTER);
+		station.setMarkerHotspot(OverlayItem.HotspotPlace.CENTER);
 		mStations.add(station);
 	}
 
