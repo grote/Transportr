@@ -95,7 +95,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="2dp"
             android:layout_weight="1"
             android:orientation="horizontal" />
 
@@ -103,9 +103,15 @@
             android:id="@+id/durationView"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_marginRight="10dp"
-            android:paddingBottom="2dp"
+            android:layout_marginRight="5dp"
             android:textAppearance="?android:attr/textAppearance" />
+
+        <ImageView
+            android:id="@+id/showMoreView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:src="@android:drawable/ic_menu_more" />
 
     </LinearLayout>
 

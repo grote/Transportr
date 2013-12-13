@@ -21,6 +21,9 @@
     <string name="action_navigation_expand">Show More</string>
     <string name="action_location_map">Show Stations on Map</string>
     <string name="action_use_gps">Turn on GPS</string>
+    <string name="action_trip_share">Share Trip</string>
+    <string name="action_trip_calendar">Put Trip in Calendar</string>
+    <string name="action_trip_details">Show Trip Details on Separate Screen</string>
 
     <string name="tab_directions">Directions</string>
     <string name="tab_fav_trips">Favorites</string>
