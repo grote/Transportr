@@ -87,6 +87,8 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 	@Override
 	public void onNetworkProviderChanged(NetworkProvider np) {
+		if(mView == null) return;
+
 		LinearLayout departuresLayout = (LinearLayout) mView.findViewById(R.id.departuresLayout);
 
 		if(np.hasCapabilities(Capability.DEPARTURES)) {
