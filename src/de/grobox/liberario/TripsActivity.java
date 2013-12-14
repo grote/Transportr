@@ -19,7 +19,6 @@ package de.grobox.liberario;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -29,17 +28,15 @@ import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
-import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -47,6 +44,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -54,13 +52,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class TripsActivity extends Activity {
+public class TripsActivity extends FragmentActivity {
 	private QueryTripsResult trips;
-	private Menu mMenu;
 	private ActionMode mActionMode;
 	private ViewGroup mSelectedTrip;
 	private Location from;
 	private Location to;
+	private int mContainerId = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +85,8 @@ public class TripsActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
+		// TODO activate PullToRefresh only if provider has the capability
+
 		// Set a listener to be invoked when the list should be refreshed.
 		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_trips);
 		pullToRefreshView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
@@ -103,12 +103,9 @@ public class TripsActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// TODO show later/earlier options only if provider has the capability
-
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trips_activity_actions, menu);
-		mMenu = menu;
 
 		if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_on);
@@ -149,16 +146,6 @@ public class TripsActivity extends Activity {
 				}
 
 				return true;
-			case R.id.action_earlier:
-				setProgress(false, true);
-				startGetMoreTrips(false);
-
-				return true;
-			case R.id.action_later:
-				setProgress(true, true);
-				startGetMoreTrips(true);
-
-				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
@@ -183,7 +170,7 @@ public class TripsActivity extends Activity {
 			}
 
 			for(final Trip trip : trips) {
-				LinearLayout trip_layout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.trip, null);
+				final LinearLayout trip_layout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.trip, null);
 				TableRow row = (TableRow) trip_layout.findViewById(R.id.tripTableRow);
 
 				// Locations
@@ -196,7 +183,7 @@ public class TripsActivity extends Activity {
 				TextView departureTimeView  = (TextView) row.findViewById(R.id.departureTimeView);
 				TextView departureDelayView = (TextView) row.findViewById(R.id.departureDelayView);
 				if(trip.getFirstPublicLeg() != null) {
-					setDepartureTimes(this, departureTimeView, departureDelayView, trip.getFirstPublicLeg().departureStop);
+					LiberarioUtils.setDepartureTimes(this, departureTimeView, departureDelayView, trip.getFirstPublicLeg().departureStop);
 				} else {
 					departureTimeView.setText(DateUtils.getTime(this, trip.getFirstDepartureTime()));
 				}
@@ -205,7 +192,7 @@ public class TripsActivity extends Activity {
 				TextView arrivalTimeView = (TextView) row.findViewById(R.id.arrivalTimeView);
 				TextView arrivalDelayView = (TextView) row.findViewById(R.id.arrivalDelayView);
 				if(trip.getLastPublicLeg() != null) {
-					setArrivalTimes(this, arrivalTimeView, arrivalDelayView, trip.getLastPublicLeg().arrivalStop);
+					LiberarioUtils.setArrivalTimes(this, arrivalTimeView, arrivalDelayView, trip.getLastPublicLeg().arrivalStop);
 				} else {
 					arrivalTimeView.setText(DateUtils.getTime(this, trip.getLastArrivalTime()));
 				}
@@ -233,57 +220,69 @@ public class TripsActivity extends Activity {
 				// make trip details fold out and in on click
 				trip_layout.setOnClickListener(new View.OnClickListener() {
 					@Override
-					public void onClick(View v) {
-						// take care of cases for ActionMode is already activated
-						if(mActionMode != null) {
-							if(v.isSelected()) {
-								// disable action mode for current item
-								mActionMode.finish();
+					public void onClick(View view) {
+						View v = main.getChildAt(main.indexOfChild(view) + 1);
 
-								// exit here to not start new ActionMode
-								return;
-							} else {
-								// deselect previously selected trip
-								mSelectedTrip.setSelected(false);
-
-								// disable action mode for current item
-								mActionMode.finish();
+						if(v != null) {
+							if(v.getVisibility() == View.GONE) {
+								v.setVisibility(View.VISIBLE);
+							}
+							else if(v.getVisibility() == View.VISIBLE) {
+								v.setVisibility(View.GONE);
 							}
 						}
-
-						// select clicked trip
-						mSelectedTrip = (ViewGroup) v;
-						mSelectedTrip.setSelected(true);
-
-						// active new ActionMode for clicked trip
-						mActionMode = startActionMode(mTripActionMode);
 					}
 
+				});
+				trip_layout.setOnLongClickListener(new View.OnLongClickListener() {
+					@Override
+					public boolean onLongClick(View view) {
+						selectTrip(view, trip_layout);
+						return true;
+					}
 				});
 
 				// show more button for trip details
-				ImageView showMoreView = (ImageView) trip_layout.findViewById(R.id.showMoreView);
+				final ImageView showMoreView = (ImageView) trip_layout.findViewById(R.id.showMoreView);
 				showMoreView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						ViewGroup parent = ((ViewGroup) view.getParent());
-						View v = (View) parent.getParent();
-						if(v != null) {
-							showTripDetails(v.getTag());
-						}
+						selectTrip(view, trip_layout);
 					}
-
 				});
+
+				// Create container for trip details fragment
+				FrameLayout fragmentContainer = new FrameLayout(this);
+				fragmentContainer.setId(mContainerId);
+				fragmentContainer.setVisibility(View.GONE);
+
+				// Create a new Fragment to be placed in the activity layout
+				TripDetailFragment tripDetailFragment = new TripDetailFragment();
+
+				// In case this activity was started with special instructions from an
+				// Intent, pass the Intent's extras to the fragment as arguments
+				Bundle bundle = new Bundle();
+				bundle.putSerializable("de.schildbach.pte.dto.Trip", trip);
+				bundle.putSerializable("de.schildbach.pte.dto.Trip.from", from);
+				bundle.putSerializable("de.schildbach.pte.dto.Trip.to", to);
+				tripDetailFragment.setArguments(bundle);
+
+				// Add the fragment to the 'fragment_container' FrameLayout
+				getSupportFragmentManager().beginTransaction().add(mContainerId, tripDetailFragment).commit();
+
+				mContainerId++;
 
 				if(append) {
 					trip_layout.addView(LiberarioUtils.getDivider(this));
 					main.addView(trip_layout);
+					main.addView(fragmentContainer);
 				}
 				else {
 					trip_layout.addView(LiberarioUtils.getDivider(this), 0);
 					main.addView(trip_layout, 0);
+					main.addView(fragmentContainer, 1);
 				}
-			}
+			} // end foreach trip
 
 		}
 		else {
@@ -333,47 +332,35 @@ public class TripsActivity extends Activity {
 		}
 	}
 
-	static public void setArrivalTimes(Context context, TextView timeView, TextView delayView, Stop stop) {
-		Date time = new Date(stop.getArrivalTime().getTime());
-
-		if(stop.isArrivalTimePredicted() && stop.getArrivalDelay() != null) {
-			long delay = stop.getArrivalDelay();
-			time.setTime(time.getTime() - delay);
-
-			if(delay > 0) {
-				delayView.setText("+" + Long.toString(delay / 1000 / 60));
-			}
-		}
-		timeView.setText(DateUtils.getTime(context, time));
-	}
-
-	static public void setDepartureTimes(Context context, TextView timeView, TextView delayView, Stop stop) {
-		Date time = new Date(stop.getDepartureTime().getTime());
-
-		if(stop.isDepartureTimePredicted() && stop.getDepartureDelay() != null) {
-			long delay = stop.getDepartureDelay();
-			time.setTime(time.getTime() - delay);
-
-			if(delay > 0) {
-				delayView.setText("+" + Long.toString(delay / 1000 / 60));
-			}
-		}
-		timeView.setText(DateUtils.getTime(context, time));
-	}
-
-	public void setProgress(Boolean later, Boolean progress) {
-		MenuItem mMenuButtonMoreTrips = mMenu.findItem((later) ? R.id.action_later : R.id.action_earlier);
+	public void onRefreshComplete() {
 		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_trips);
+		pullToRefreshView.onRefreshComplete();
+	}
 
-		if(progress) {
-			View mActionButtonProgress = getLayoutInflater().inflate(R.layout.actionbar_progress_actionview, null);
+	private void selectTrip(View view, ViewGroup vg) {
+		// take care of cases for ActionMode is already activated
+		if(mActionMode != null) {
+			if(vg.isSelected()) {
+				// disable action mode for current item
+				mActionMode.finish();
 
-			mMenuButtonMoreTrips.setActionView(mActionButtonProgress);
+				// exit here to not start new ActionMode
+				return;
+			} else {
+				// deselect previously selected trip
+				mSelectedTrip.setSelected(false);
+
+				// disable action mode for current item
+				mActionMode.finish();
+			}
 		}
-		else {
-			mMenuButtonMoreTrips.setActionView(null);
-			pullToRefreshView.onRefreshComplete();
-		}
+
+		// select clicked trip
+		mSelectedTrip = vg;
+		mSelectedTrip.setSelected(true);
+
+		// active new ActionMode for clicked trip
+		mActionMode = startActionMode(mTripActionMode);
 	}
 
 	private ActionMode.Callback mTripActionMode = new ActionMode.Callback() {

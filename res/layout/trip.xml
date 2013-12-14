@@ -109,9 +109,9 @@
         <ImageView
             android:id="@+id/showMoreView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:clickable="true"
-            android:src="@android:drawable/ic_menu_more" />
+            android:src="@drawable/ic_action_core_overflow" />
 
     </LinearLayout>
 

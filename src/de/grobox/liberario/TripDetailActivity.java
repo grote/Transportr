@@ -44,6 +44,7 @@ public class TripDetailActivity extends FragmentActivity {
 
 		// Create a new Fragment to be placed in the activity layout
 		TripDetailFragment tripDetailFragment = new TripDetailFragment();
+		tripDetailFragment.setEmbedded(false);
 
 		// In case this activity was started with special instructions from an
 		// Intent, pass the Intent's extras to the fragment as arguments

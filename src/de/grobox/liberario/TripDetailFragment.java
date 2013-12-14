@@ -50,6 +50,7 @@ public class TripDetailFragment extends LiberarioFragment {
 	private Location from;
 	private Location to;
 	private Menu mMenu;
+	private boolean mEmbedded = true;
 	private List<TableLayout> mStops = new ArrayList<TableLayout>();
 
 	@Override
@@ -83,22 +84,29 @@ public class TripDetailFragment extends LiberarioFragment {
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		// Inflate the menu items for use in the action bar
-		inflater.inflate(R.menu.trip_detail_activity_actions, menu);
-		mMenu = menu;
+		if(!mEmbedded) {
+			// Inflate the menu items for use in the action bar
+			inflater.inflate(R.menu.trip_detail_activity_actions, menu);
+			mMenu = menu;
 
-		if(Preferences.getShowPlatforms(getActivity())) {
-			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
-			showPlatforms(true);
-		} else {
-			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
-			showPlatforms(false);
+			if(Preferences.getShowPlatforms(getActivity())) {
+				mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+			} else {
+				mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+			}
+
+			if(FavFile.isFavTrip(getActivity(), new FavTrip(from, to))) {
+				menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_on);
+			} else {
+				menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_off);
+			}
 		}
 
-		if(FavFile.isFavTrip(getActivity(), new FavTrip(from, to))) {
-			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_on);
+		// show/hide platforms depending on preference
+		if(Preferences.getShowPlatforms(getActivity())) {
+			showPlatforms(true);
 		} else {
-			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_off);
+			showPlatforms(false);
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
@@ -148,14 +156,21 @@ public class TripDetailFragment extends LiberarioFragment {
 		}
 	}
 
+	public void setEmbedded(boolean embedded) {
+		mEmbedded = embedded;
+	}
+
 	private void addLegs(List<Leg> legs) {
 		int i = 1;
 		TableRow legViewOld = (TableRow) LayoutInflater.from(getActivity()).inflate(R.layout.trip_details_row, null);
 		TableRow legViewNew;
 
+		if(!mEmbedded) legViewOld.setBackgroundResource(R.drawable.selector_list_item);
+
 		// for each leg
 		for(final Leg leg : legs) {
 			legViewNew = (TableRow) LayoutInflater.from(getActivity()).inflate(R.layout.trip_details_row, null);
+			if(!mEmbedded) legViewNew.setBackgroundResource(R.drawable.selector_list_item);
 
 			TextView dDepartureViewNew = ((TextView) legViewNew.findViewById(R.id.dDepartureView));
 
@@ -188,12 +203,12 @@ public class TripDetailFragment extends LiberarioFragment {
 				// Departure Time and Delay
 				TextView dDepartureTimeView = (TextView) legViewOld.findViewById(R.id.dDepartureTimeView);
 				TextView dDepartureDelayView = (TextView) legViewOld.findViewById(R.id.dDepartureDelayView);
-				TripsActivity.setDepartureTimes(getActivity(), dDepartureTimeView, dDepartureDelayView, public_leg.departureStop);
+				LiberarioUtils.setDepartureTimes(getActivity(), dDepartureTimeView, dDepartureDelayView, public_leg.departureStop);
 
 				// Arrival Time and Delay
 				TextView dArrivalTimeView = (TextView) legViewNew.findViewById(R.id.dArrivalTimeView);
 				TextView dArrivalDelayView = (TextView) legViewNew.findViewById(R.id.dArrivalDelayView);
-				TripsActivity.setArrivalTimes(getActivity(), dArrivalTimeView, dArrivalDelayView, public_leg.arrivalStop);
+				LiberarioUtils.setArrivalTimes(getActivity(), dArrivalTimeView, dArrivalDelayView, public_leg.arrivalStop);
 
 				// set departure location
 				((TextView) legViewOld.findViewById(R.id.dDepartureView)).setText(public_leg.departureStop.location.uniqueShortName());
@@ -326,11 +341,13 @@ public class TripDetailFragment extends LiberarioFragment {
 		if(stops != null) {
 			for(final Stop stop : stops) {
 				TableRow stopView = (TableRow) LayoutInflater.from(getActivity()).inflate(R.layout.stop, null);
+				if(!mEmbedded) stopView.setBackgroundResource(R.drawable.selector_list_item);
+
 				Date arrivalTime = stop.getArrivalTime();
 				Date departureTime = stop.getDepartureTime();
 
 				if(arrivalTime != null) {
-					TripsActivity.setArrivalTimes(getActivity(), (TextView) stopView.findViewById(R.id.sArrivalTimeView), (TextView) stopView.findViewById(R.id.sArrivalDelayView), stop);
+					LiberarioUtils.setArrivalTimes(getActivity(), (TextView) stopView.findViewById(R.id.sArrivalTimeView), (TextView) stopView.findViewById(R.id.sArrivalDelayView), stop);
 				}
 				else {
 					((TextView) stopView.findViewById(R.id.sArrivalTimeView)).setVisibility(View.GONE);
@@ -338,7 +355,7 @@ public class TripDetailFragment extends LiberarioFragment {
 				}
 
 				if(departureTime != null) {
-					TripsActivity.setDepartureTimes(getActivity(), (TextView) stopView.findViewById(R.id.sDepartureTimeView), (TextView) stopView.findViewById(R.id.sDepartureDelayView), stop);
+					LiberarioUtils.setDepartureTimes(getActivity(), (TextView) stopView.findViewById(R.id.sDepartureTimeView), (TextView) stopView.findViewById(R.id.sDepartureDelayView), stop);
 				}
 				else {
 					((TextView) stopView.findViewById(R.id.sDepartureTimeView)).setVisibility(View.GONE);

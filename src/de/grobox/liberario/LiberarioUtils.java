@@ -17,6 +17,8 @@
 
 package de.grobox.liberario;
 
+import java.util.Date;
+
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
@@ -27,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.schildbach.pte.dto.Line;
+import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Style.Shape;
 
 public class LiberarioUtils {
@@ -92,6 +95,35 @@ public class LiberarioUtils {
 
 	static public View getDivider(Context context) {
 		return (View) LayoutInflater.from(context).inflate(R.layout.divider_horizontal, null);
+	}
+
+
+	static public void setArrivalTimes(Context context, TextView timeView, TextView delayView, Stop stop) {
+		Date time = new Date(stop.getArrivalTime().getTime());
+
+		if(stop.isArrivalTimePredicted() && stop.getArrivalDelay() != null) {
+			long delay = stop.getArrivalDelay();
+			time.setTime(time.getTime() - delay);
+
+			if(delay > 0) {
+				delayView.setText("+" + Long.toString(delay / 1000 / 60));
+			}
+		}
+		timeView.setText(DateUtils.getTime(context, time));
+	}
+
+	static public void setDepartureTimes(Context context, TextView timeView, TextView delayView, Stop stop) {
+		Date time = new Date(stop.getDepartureTime().getTime());
+
+		if(stop.isDepartureTimePredicted() && stop.getDepartureDelay() != null) {
+			long delay = stop.getDepartureDelay();
+			time.setTime(time.getTime() - delay);
+
+			if(delay > 0) {
+				delayView.setText("+" + Long.toString(delay / 1000 / 60));
+			}
+		}
+		timeView.setText(DateUtils.getTime(context, time));
 	}
 
 }

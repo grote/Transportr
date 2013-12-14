@@ -8,7 +8,7 @@
         android:id="@+id/headerTableLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#1533b5e5"
+        android:background="@color/holo_blue_very_light"
         android:padding="3dp" >
 
         <TableRow

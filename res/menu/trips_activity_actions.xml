@@ -5,13 +5,5 @@
         android:icon="@drawable/ic_menu_fav_off"
         android:showAsAction="ifRoom"
         android:title="@string/action_fav_trip"/>
-    <item
-        android:id="@+id/action_earlier"
-        android:showAsAction="never"
-        android:title="@string/action_earlier"/>
-    <item
-        android:id="@+id/action_later"
-        android:showAsAction="never"
-        android:title="@string/action_later"/>
 
 </menu>
