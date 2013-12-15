@@ -58,8 +58,6 @@ public class TripDetailFragment extends LiberarioFragment {
 		// remember view for UI changes when fragment is not active
 		view = (TableLayout) inflater.inflate(R.layout.fragment_trip_details, container, false);
 
-		setHasOptionsMenu(true);
-
 		return view;
 	}
 
@@ -73,6 +71,9 @@ public class TripDetailFragment extends LiberarioFragment {
 		// also get locations, because the trip locations are sometimes still ambiguous
 		from = (Location) bundle.getSerializable("de.schildbach.pte.dto.Trip.from");
 		to = (Location) bundle.getSerializable("de.schildbach.pte.dto.Trip.to");
+
+		// set options menu only after retrieving arguments since options depend on them
+		setHasOptionsMenu(true);
 
 		addLegs(trip.legs);
 	}
@@ -95,10 +96,17 @@ public class TripDetailFragment extends LiberarioFragment {
 				mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
 			}
 
-			if(FavFile.isFavTrip(getActivity(), new FavTrip(from, to))) {
-				menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_on);
+			// Favorite Trip Button
+			MenuItem action_fav_trip = menu.findItem(R.id.action_fav_trip);
+			if(from != null && to != null) {
+				if(FavFile.isFavTrip(getActivity(), new FavTrip(from, to))) {
+					action_fav_trip.setIcon(R.drawable.ic_menu_fav_on);
+				} else {
+					action_fav_trip.setIcon(R.drawable.ic_menu_fav_off);
+				}
 			} else {
-				menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_off);
+				// this should not even happen, but it might
+				action_fav_trip.setVisible(false);
 			}
 		}
 
