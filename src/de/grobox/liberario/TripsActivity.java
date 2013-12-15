@@ -414,16 +414,29 @@ public class TripsActivity extends FragmentActivity {
 		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 			switch(item.getItemId()) {
 				case R.id.action_trip_share:
-					Intent sendIntent = new Intent();
-					sendIntent.setAction(Intent.ACTION_SEND);
-					sendIntent.putExtra(Intent.EXTRA_SUBJECT, LiberarioUtils.tripToSubject(getBaseContext(), (Trip) mSelectedTrip.getTag(), true));
-					sendIntent.putExtra(Intent.EXTRA_TEXT, LiberarioUtils.tripToString(getBaseContext(), (Trip) mSelectedTrip.getTag()));
-					sendIntent.setType("text/plain");
-					sendIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+					Intent sendIntent = new Intent()
+					.setAction(Intent.ACTION_SEND)
+					.putExtra(Intent.EXTRA_SUBJECT, LiberarioUtils.tripToSubject(getBaseContext(), (Trip) mSelectedTrip.getTag(), true))
+					.putExtra(Intent.EXTRA_TEXT, LiberarioUtils.tripToString(getBaseContext(), (Trip) mSelectedTrip.getTag()))
+					.setType("text/plain")
+					.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 					startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.share_trip_via)));
 
 					// Action picked, so close the CAB
 					mode.finish();
+					return true;
+				case R.id.action_trip_calender:
+					Trip trip = (Trip) mSelectedTrip.getTag();
+
+					Intent intent = new Intent(Intent.ACTION_EDIT)
+					.setType("vnd.android.cursor.item/event")
+					.putExtra("beginTime", trip.getFirstDepartureTime().getTime())
+					.putExtra("endTime", trip.getLastArrivalTime().getTime())
+					.putExtra("title", trip.from.name + " → " + trip.to.name)
+					.putExtra("description", LiberarioUtils.tripToString(getBaseContext(), trip));
+					if(trip.from.place != null) intent.putExtra("eventLocation", trip.from.place);
+					startActivity(intent);
+
 					return true;
 				case R.id.action_trip_details:
 					if(mSelectedTrip != null) {

@@ -154,8 +154,9 @@ public class LiberarioUtils {
 				if(pub.line != null && pub.line.label != null) {
 					str += " (" + pub.line.label.substring(0, 1) + " ";
 					str += pub.line.label.substring(1);
+					if(pub.destination  != null) str += " → " + pub.destination;
+					str += ")";
 				}
-				if(pub.destination  != null) str += " → " + pub.destination + ")";
 			} else if(leg instanceof Trip.Individual) {
 				Trip.Individual ind = (Trip.Individual) leg;
 				str += " (Walk ";
