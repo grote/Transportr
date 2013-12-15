@@ -60,6 +60,7 @@
     <string name="stations_searching_stations">Searching for nearby stations&#8230;</string>
     <string name="find_nearby_stations">Find Nearby Stations</string>
     <string name="find_departures">Find Departures</string>
+    <string name="share_trip_via">Share Trip Via&#8230;</string>
 
     <string name="error_pick_network">Please select one transportation network!</string>
     <string name="error_no_internet">No sufficient internet connection available</string>

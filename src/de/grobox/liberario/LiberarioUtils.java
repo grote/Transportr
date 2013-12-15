@@ -31,6 +31,8 @@ import android.widget.TextView;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Style.Shape;
+import de.schildbach.pte.dto.Trip;
+import de.schildbach.pte.dto.Trip.Leg;
 
 public class LiberarioUtils {
 
@@ -124,6 +126,51 @@ public class LiberarioUtils {
 			}
 		}
 		timeView.setText(DateUtils.getTime(context, time));
+	}
+
+	static public String tripToSubject(Context context, Trip trip, boolean tag) {
+		String str = "";
+
+		if(tag) str += "[" + context.getResources().getString(R.string.app_name) + "] ";
+
+		str += DateUtils.getTime(context, trip.getFirstDepartureTime()) + " ";
+		str += trip.from.name;
+		str += " → ";
+		str += trip.to.name + " ";
+		str += DateUtils.getTime(context, trip.getLastArrivalTime());
+		str += " (" + DateUtils.getDate(context, trip.getFirstDepartureTime()) + ")";
+
+		return str;
+	}
+
+	static public String tripToString(Context context, Trip trip) {
+		String str = "";
+
+		for(Leg leg : trip.legs) {
+			str += DateUtils.getTime(context, leg.departureTime) + " ";
+			str += leg.departure.name;
+			if(leg instanceof Trip.Public) {
+				Trip.Public pub = (Trip.Public) leg;
+				if(pub.line != null && pub.line.label != null) {
+					str += " (" + pub.line.label.substring(0, 1) + " ";
+					str += pub.line.label.substring(1);
+				}
+				if(pub.destination  != null) str += " → " + pub.destination + ")";
+			} else if(leg instanceof Trip.Individual) {
+				Trip.Individual ind = (Trip.Individual) leg;
+				str += " (Walk ";
+				if(ind.distance > 0) str += ind.distance + context.getResources().getString(R.string.meter) + " ";
+				if(ind.min > 0) str += ind.min + context.getResources().getString(R.string.min);
+				str += ")";
+			}
+			str += "\n";
+			str += DateUtils.getTime(context, leg.arrivalTime) + " ";
+			str += leg.arrival.name;
+			str += "\n";
+			str += "\n";
+		}
+
+		return str;
 	}
 
 }

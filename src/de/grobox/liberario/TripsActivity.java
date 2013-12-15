@@ -384,6 +384,18 @@ public class TripsActivity extends FragmentActivity {
 		@Override
 		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 			switch(item.getItemId()) {
+				case R.id.action_trip_share:
+					Intent sendIntent = new Intent();
+					sendIntent.setAction(Intent.ACTION_SEND);
+					sendIntent.putExtra(Intent.EXTRA_SUBJECT, LiberarioUtils.tripToSubject(getBaseContext(), (Trip) mSelectedTrip.getTag(), true));
+					sendIntent.putExtra(Intent.EXTRA_TEXT, LiberarioUtils.tripToString(getBaseContext(), (Trip) mSelectedTrip.getTag()));
+					sendIntent.setType("text/plain");
+					sendIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+					startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.share_trip_via)));
+
+					// Action picked, so close the CAB
+					mode.finish();
+					return true;
 				case R.id.action_trip_details:
 					if(mSelectedTrip != null) {
 						showTripDetails(mSelectedTrip.getTag());

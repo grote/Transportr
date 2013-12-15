@@ -99,6 +99,12 @@ public class DateUtils {
 		return tf.format(c.getTime());
 	}
 
+	static public String getDate(Context context, Date date) {
+		DateFormat df = android.text.format.DateFormat.getDateFormat(context);
+
+		return df.format(date);
+	}
+
 	static public String getTime(Context context, Calendar c) {
 		DateFormat tf = android.text.format.DateFormat.getTimeFormat(context);
 

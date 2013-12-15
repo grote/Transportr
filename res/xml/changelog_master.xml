@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="0.5" versioncode="7">
+        <change>You can now share trips via SMS or email</change>
+    </release>
+
     <release version="0.4" versioncode="6">
         <change>New start screen</change>
         <change>Find trips from current position</change>
@@ -13,7 +17,7 @@
         <change>Action Bar button to show less used settings</change>
         <change>Little trip boxes are now shown in correct order (Thanks to Sam Tuke)</change>
     </release>
-    
+
 	<release version="0.3.1" versioncode="5">
         <change>Added support for NVV (Hessen, Kassel) (Thanks to Paspartout)</change>
         <change>Added suport for Wiener Linien (Wien)</change>
