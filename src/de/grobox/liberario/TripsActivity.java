@@ -36,6 +36,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ import android.widget.TextView;
 public class TripsActivity extends FragmentActivity {
 	private QueryTripsResult trips;
 	private ActionMode mActionMode;
+	private Menu mMenu;
 	private ViewGroup mSelectedTrip;
 	private Location from;
 	private Location to;
@@ -106,6 +108,13 @@ public class TripsActivity extends FragmentActivity {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trips_activity_actions, menu);
+		mMenu = menu;
+
+		if(Preferences.getShowPlatforms(this)) {
+			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+		} else {
+			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+		}
 
 		if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_on);
@@ -122,6 +131,19 @@ public class TripsActivity extends FragmentActivity {
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				onBackPressed();
+
+				return true;
+			case R.id.action_platforms:
+				boolean show = !Preferences.getShowPlatforms(this);
+
+				// change action icon
+				if(show) {
+					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+				} else {
+					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+				}
+				showPlatforms(show);
+				Preferences.setShowPlatforms(this, show);
 
 				return true;
 			case R.id.action_fav_trip:
@@ -335,6 +357,13 @@ public class TripsActivity extends FragmentActivity {
 	public void onRefreshComplete() {
 		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_trips);
 		pullToRefreshView.onRefreshComplete();
+	}
+
+	private void showPlatforms(boolean show) {
+		for(Fragment fragment : getSupportFragmentManager().getFragments()) {
+			TripDetailFragment frag = (TripDetailFragment) fragment;
+			frag.showPlatforms(show);
+		}
 	}
 
 	private void selectTrip(View view, ViewGroup vg) {

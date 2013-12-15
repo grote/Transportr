@@ -387,7 +387,7 @@ public class TripDetailFragment extends LiberarioFragment {
 		return stopsView;
 	}
 
-	private void showPlatforms(boolean show) {
+	public void showPlatforms(boolean show) {
 		// collapse/expand platforms on stops and intermediate stops
 		view.setColumnCollapsed(2, !show);
 		for(final TableLayout stopView : mStops) {
