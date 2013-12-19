@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_fav_location" />
+                android:src="@drawable/ic_action_star" />
 
             <ImageButton
                 android:id="@+id/fromGpsButton"
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_fav_location" />
+                android:src="@drawable/ic_action_star" />
 
         </LinearLayout>
 

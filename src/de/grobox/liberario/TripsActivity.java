@@ -117,7 +117,7 @@ public class TripsActivity extends FragmentActivity {
 		}
 
 		if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
-			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_on);
+			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_action_star);
 		} else {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_off);
 		}
@@ -164,7 +164,7 @@ public class TripsActivity extends FragmentActivity {
 					.show();
 				} else {
 					FavFile.favTrip(getBaseContext(), new FavTrip(from, to));
-					item.setIcon(R.drawable.ic_menu_fav_on);
+					item.setIcon(R.drawable.ic_action_star);
 				}
 
 				return true;

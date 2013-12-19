@@ -100,7 +100,7 @@ public class TripDetailFragment extends LiberarioFragment {
 			MenuItem action_fav_trip = menu.findItem(R.id.action_fav_trip);
 			if(from != null && to != null) {
 				if(FavFile.isFavTrip(getActivity(), new FavTrip(from, to))) {
-					action_fav_trip.setIcon(R.drawable.ic_menu_fav_on);
+					action_fav_trip.setIcon(R.drawable.ic_action_star);
 				} else {
 					action_fav_trip.setIcon(R.drawable.ic_menu_fav_off);
 				}
@@ -155,7 +155,7 @@ public class TripDetailFragment extends LiberarioFragment {
 					.show();
 				} else {
 					FavFile.favTrip(getActivity(), new FavTrip(from, to));
-					item.setIcon(R.drawable.ic_menu_fav_on);
+					item.setIcon(R.drawable.ic_action_star);
 				}
 
 				return true;

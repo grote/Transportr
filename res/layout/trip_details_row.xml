@@ -129,7 +129,7 @@
             android:id="@+id/dShowMapView"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/ic_action_location_map"
+            android:src="@android:drawable/ic_menu_mapmode"
             android:visibility="gone" />
 
         <ImageView
