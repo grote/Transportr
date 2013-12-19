@@ -4,6 +4,7 @@
     <release version="0.5" versioncode="7">
         <change>You can now share trips via SMS or email</change>
         <change>You can add trips directly into your calendar</change>
+        <change>Favorite trips list has been improved</change>
     </release>
 
     <release version="0.4" versioncode="6">
