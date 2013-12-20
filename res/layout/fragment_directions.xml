@@ -189,6 +189,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:layout_marginBottom="10dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:orientation="vertical" >
@@ -203,6 +204,88 @@
                     android:id="@+id/dateView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <include layout="@layout/divider_horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/productsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/ic_product_suburban_train"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="S"
+                    android:src="@drawable/ic_product_suburban_train" />
+
+                <ImageView
+                    android:id="@+id/ic_product_subway"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="U"
+                    android:src="@drawable/ic_product_subway" />
+
+                <ImageView
+                    android:id="@+id/ic_product_bus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="B"
+                    android:src="@drawable/ic_product_bus" />
+
+                <ImageView
+                    android:id="@+id/ic_product_tram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="T"
+                    android:src="@drawable/ic_product_tram" />
+
+                <ImageView
+                    android:id="@+id/ic_product_high_speed_train"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="I"
+                    android:src="@drawable/ic_product_high_speed_train" />
+
+                <ImageView
+                    android:id="@+id/ic_product_regional_train"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="R"
+                    android:src="@drawable/ic_product_regional_train" />
+
+                <ImageView
+                    android:id="@+id/ic_product_on_demand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="P"
+                    android:src="@drawable/ic_product_on_demand" />
+
+                <ImageView
+                    android:id="@+id/ic_product_ferry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="F"
+                    android:src="@drawable/ic_product_ferry" />
+
+                <ImageView
+                    android:id="@+id/ic_product_cablecar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="C"
+                    android:src="@drawable/ic_product_cablecar" />
+
             </LinearLayout>
 
         </LinearLayout>

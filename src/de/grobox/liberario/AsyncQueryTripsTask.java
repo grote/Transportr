@@ -18,6 +18,7 @@
 package de.grobox.liberario;
 
 import java.util.Date;
+import java.util.List;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -30,6 +31,7 @@ import android.widget.Toast;
 
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
 public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult> {
@@ -40,6 +42,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	private Location to;
 	private Date date = new Date();
 	private boolean departure = true;
+	private List<Product> mProducts;
 	private String error = null;
 
 	public AsyncQueryTripsTask(Context context) {
@@ -62,6 +65,10 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 		this.departure = b;
 	}
 
+	public void setProducts(List<Product> products) {
+		this.mProducts = products;
+	}
+
 	@Override
 	protected void onPreExecute() {
 		pd = new ProgressDialog(context);
@@ -81,7 +88,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 
 		try {
 			if(isNetworkAvailable(context)) {
-				return np.queryTrips(from, null, to, date, departure, 3, null, NetworkProvider.WalkSpeed.NORMAL, null, null);
+				return np.queryTrips(from, null, to, date, departure, 3, mProducts, NetworkProvider.WalkSpeed.NORMAL, null, null);
 			}
 			else {
 				error = context.getResources().getString(R.string.error_no_internet);
@@ -133,6 +140,9 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult.date", date);
 			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult.departure", departure);
 			context.startActivity(intent);
+		}
+		else if(result.status == QueryTripsResult.Status.NO_TRIPS) {
+			Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
 		}
 	}
 

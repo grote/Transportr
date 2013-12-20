@@ -19,12 +19,14 @@ package de.grobox.liberario;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import de.grobox.liberario.R;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
+import de.schildbach.pte.dto.Product;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -58,6 +60,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -70,8 +73,9 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	private LocationManager locationManager;
 	private Location gps_loc = null;
 	private boolean mGpsPressed = false;
+	private AsyncQueryTripsTask mAfterGpsTask = null;
+	private List<Product> mProducts = new LinkedList<Product>(Product.ALL);
 	public ProgressDialog pd;
-	AsyncQueryTripsTask mAfterGpsTask = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -130,6 +134,33 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
 
+		// Products
+		ViewGroup productsLayout = (ViewGroup) mView.findViewById(R.id.productsLayout);
+		for(int i = 0; i < productsLayout.getChildCount(); ++i) {
+			final ImageView productView = (ImageView) productsLayout.getChildAt(i);
+			final Product product = Product.fromCode(productView.getTag().toString().charAt(0));
+
+			// make active products blue
+			if(mProducts.contains(product)) {
+				productView.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+			} else {
+				productView.getDrawable().setColorFilter(null);
+			}
+
+			// handle click on product icon
+			productView.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					if(mProducts.contains(product)) {
+						productView.getDrawable().setColorFilter(null);
+						mProducts.remove(product);
+					} else {
+						productView.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+						mProducts.add(product);
+					}
+				}
+			});
+		}
+
 		Button searchButton = (Button) mView.findViewById(R.id.searchButton);
 		searchButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -183,6 +214,9 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 				// set departure to true of first item is selected in spinner
 				query_trips.setDeparture(spinner.getSelectedItem().equals(spinner.getItemAtPosition(0)));
+
+				// set products
+				query_trips.setProducts(mProducts);
 
 				// don't execute if we still have to wait for GPS position
 				if(mAfterGpsTask != null) return;
