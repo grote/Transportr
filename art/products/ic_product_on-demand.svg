@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="96"
+   height="96"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="ic_product_on-demand.svg">
+  <title
+     id="title4118">Libreario Iconset</title>
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#000000"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.5554987"
+     inkscape:cx="35.29692"
+     inkscape:cy="-10.483325"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="968"
+     inkscape:window-height="876"
+     inkscape:window-x="355"
+     inkscape:window-y="146"
+     inkscape:window-maximized="0"
+     inkscape:showpageshadow="true"
+     showborder="true"
+     inkscape:snap-bbox="true"
+     showguides="false"
+     inkscape:guide-bbox="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3004"
+       empspacing="8"
+       dotted="false"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       color="#0000ff"
+       opacity="0.07058824"
+       empcolor="#0000ff"
+       empopacity="0.11372549"
+       originx="-296px"
+       originy="-528px" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid3945"
+       empspacing="1"
+       dotted="true"
+       visible="true"
+       enabled="false"
+       snapvisiblegridlinesonly="true"
+       spacingx="1px"
+       spacingy="1px"
+       color="#9f9f9f"
+       opacity="0.03137255"
+       empcolor="#008b99"
+       empopacity="0.0627451"
+       originx="-299.5px"
+       originy="-530.5px" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="4,160.00001"
+       id="guide4262" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="0,128.00001"
+       id="guide4264" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="74,144.00001"
+       id="guide4266" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="60,160.00001"
+       id="guide4268" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="101.5,88.000015"
+       id="guide4270" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="0,72.000015"
+       id="guide4272" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="0,32.000015"
+       id="guide4274" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="0,16.000015"
+       id="guide4276" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="0,-23.999988"
+       id="guide4278" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="0,-39.999988"
+       id="guide4280" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="44,160.00001"
+       id="guide4282" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="100,160.00001"
+       id="guide4284" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Libreario Iconset</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Robert Martinez</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:source>https://github.com/grote/Liberario#liberario</dc:source>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="icon"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline"
+     transform="translate(-300,-425.36218)">
+    <use
+       style="opacity:0.62790695;display:inline"
+       height="1052.3622"
+       width="744.09448"
+       transform="translate(-74.726106,57.893858)"
+       id="use3152"
+       xlink:href="#rect3091"
+       y="0"
+       x="0" />
+    <path
+       sodipodi:nodetypes="ccccccccccsccsccccccccccccccccccccccssssssssss"
+       inkscape:connector-curvature="0"
+       id="path3432"
+       d="m 358,457.36215 -2,2 10,0 -2,-2 z m -24,3 -8,16 0,6 2,2 2.75,0 c 0.068,-3.8652 3.24412,-7 7.125,-7 3.88088,0 7.05694,3.1348 7.125,7 l 9.75,0 c 0.068,-3.8631 3.24632,-7 7.125,-7 3.87868,0 7.0569,3.1369 7.125,7 l 1,0 2,-2 0,-19.6875 -2,-2.3125 z m 1,2 7,0 0,8.00004 -12,1.99996 z m 9,0 12,0 0,8 -12,0 z m 14,0 10,0 2,2 0,6 -12,0 z m -20.125,17 c -2.8423,0 -5.125,2.28268 -5.125,5.125 0,2.8423 2.2827,5.125 5.125,5.125 2.8423,0 5.125,-2.2827 5.125,-5.125 0,-2.84232 -2.2827,-5.125 -5.125,-5.125 z m 24,0 c -2.8401,0 -5.125,2.2849 -5.125,5.125 0,2.8401 2.2849,5.0625 5.125,5.0625 2.8401,0 5.125,-2.2224 5.125,-5.0625 0,-2.8401 -2.2849,-5.125 -5.125,-5.125 z"
+       style="color:#000000;fill:#ffffff;fill-opacity:0.7962963;fill-rule:evenodd;stroke:none;stroke-width:1.00198984000000002;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+  </g>
+</svg>
