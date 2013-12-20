@@ -12,6 +12,7 @@ Contributions are both encouraged and appreciated. If you like to contribute ple
 If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Liberario/issues).
 
 [![Flattr me](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/thing/1921242)
+[![Follow @LibearioApp](art/twitter.png)](https://twitter.com/LiberarioApp)
 
 Get Liberario
 -------------
