@@ -7,7 +7,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="96"
@@ -28,7 +27,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.2941477"
-     inkscape:cx="-12.142771"
+     inkscape:cx="-103.32247"
      inkscape:cy="-149.11362"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -161,47 +160,6 @@
       </cc:License>
     </rdf:RDF>
   </metadata>
-  <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="button"
-     style="display:none"
-     transform="translate(-356,-369.36218)"
-     sodipodi:insensitive="true">
-    <path
-       sodipodi:type="inkscape:offset"
-       inkscape:radius="0"
-       inkscape:original="M 300 361.375 L 300 409.375 L 348 409.375 L 348 361.375 L 300 361.375 z "
-       xlink:href="#rect3091"
-       style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       id="path4239"
-       d="m 300,361.375 0,48 48,0 0,-48 -48,0 z"
-       transform="matrix(2,0,0,2,-244,-353.38781)" />
-    <rect
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="/home/mray/Desktop/test-icon.png"
-       style="color:#000000;fill:#363636;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       id="use3923"
-       width="96"
-       height="96"
-       x="356"
-       y="369.36218"
-       rx="0"
-       ry="0" />
-    <rect
-       ry="0"
-       rx="0"
-       y="377.36218"
-       x="364"
-       height="80"
-       width="80"
-       id="use3962"
-       style="color:#000000;fill:#5d5d5d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       inkscape:export-filename="/home/mray/Desktop/test-icon.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-  </g>
   <g
      inkscape:label="icon"
      inkscape:groupmode="layer"

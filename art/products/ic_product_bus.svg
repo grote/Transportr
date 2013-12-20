@@ -27,7 +27,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.89871368"
-     inkscape:cx="167.51957"
+     inkscape:cx="298.81834"
      inkscape:cy="-28.3028"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -160,38 +160,6 @@
       </cc:License>
     </rdf:RDF>
   </metadata>
-  <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="button"
-     style="display:none"
-     transform="translate(-356,-425.36218)"
-     sodipodi:insensitive="true">
-    <rect
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="/home/mray/Desktop/test-icon.png"
-       style="color:#000000;fill:#000000;fill-opacity:0.65753425;fill-rule:evenodd;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       id="use4233"
-       width="96"
-       height="96"
-       x="356"
-       y="425.36218"
-       rx="0"
-       ry="0" />
-    <rect
-       ry="0"
-       rx="0"
-       y="433.36218"
-       x="364"
-       height="80"
-       width="80"
-       id="use3966"
-       style="color:#000000;fill:#000000;fill-opacity:0.24200912;fill-rule:evenodd;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       inkscape:export-filename="/home/mray/Desktop/test-icon.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-  </g>
   <g
      inkscape:label="icon"
      inkscape:groupmode="layer"
