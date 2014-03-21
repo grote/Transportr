@@ -59,4 +59,7 @@
   <string name="number_of_stations">Anzahl Stationen</string>
   <string name="meter">m</string>
   <string name="max_distance">Maximale Distanz</string>
+  <string name="home_dialog_title">Deine Heimatadresse</string>
+  <string name="home_dialog_new_msg">Für den aktuellen Verkehrsverbund ist keine Heimatadresse gesetzt.</string>
+  <string name="home_dialog_msg">Bitte geben Sie unten einen Ort an, indem Sie einen aus der Liste auswählen.</string>
 </resources>

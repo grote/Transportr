@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Liberario</string>
   <string-array name="trip_date_type">
     <item>départ</item>
     <item>arrivée</item>
@@ -9,23 +8,22 @@
   <string name="action_later">Trajets suivants</string>
   <string name="action_changelog">Journal des modifications</string>
   <string name="action_about">À propos</string>
-  <string name="action_clear_favs">Vide les favoris</string>
+  <string name="action_clear_favs">Vider les favoris</string>
   <string name="action_settings">Paramètres</string>
-  <string name="action_fav_trip">Marque le voyage comme favoris</string>
-  <string name="action_switch_locations">Échange les lieux de départ et d\'arrivée</string>
-  <string name="action_platforms">Montre/cache les plates-formes</string>
-  <string name="action_refresh">Rafraîchis</string>
+  <string name="action_fav_trip">Marquer le voyage comme favoris</string>
+  <string name="action_switch_locations">Échanger les lieux de départs et d\'arrivée</string>
+  <string name="action_platforms">Montrer/cacher les plates-formes</string>
+  <string name="action_refresh">Rafraîchir</string>
+  <string name="action_navigation_expand">Montrer plus</string>
   <string name="tab_directions">Directions</string>
   <string name="tab_fav_trips">Favoris</string>
   <string name="about_top">© 2013 Torsten Grote\nLicence logiciel libre : GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>Liberario est une appli de transport public que tu peux utiliser librement, étudier, partager et améliorer.</p>
-<p>La validité des données n\'est pas garantie. Utilise cette appli à tes propres risques.</p>
-<p><b>Les contributions</b> sont encouragées et appréciées. Si tu souhaites contribuer, tu trouveras plus d\'informations sur <a href="https://github.com/grote/Liberario/#contributing">github</a>.\</p>
-<p>Si tu rencontres des problèmes avec cette appli, rapporte-les en utilisant notre <a href="https://github.com/grote/Liberario/issues">suiveur d\'incidents</a>.</p>
-]]>
-</string>
+  <string name="about">\n<![CDATA[
+<p>Liberario est une appli de transport public que l\'on peut librement utiliser, étudier, partager et améliorer.</p>
+<p>La justesse des données n\'est pas garantie. Utilisez cette appli à vos propres risques.</p>
+<p><b>Les contributions</b> sont encouragées et appréciées. Si vous désirez contribuer, rendez-vous sur <a href="https://github.com/grote/Liberario/#contributing">github</a>.</p>
+<p>Si vous éprouvez un problème avec cette appli, rapporter le avec <a href="https://github.com/grote/Liberario/issues">notre gestionnaire de problèmes</a>.</p>
+]]>\n</string>
   <string name="trip_dep">dép.</string>
   <string name="trip_arr">arr.</string>
   <string name="trip_start">Départ :</string>
@@ -38,27 +36,30 @@
   <string name="destination">Destination</string>
   <string name="detail_duration">Durée :</string>
   <string name="detail_date">Date :</string>
-  <string name="beta">bêta</string>
-  <string name="pick_network_activity">Choisis un réseau de transport</string>
-  <string name="pick_network_first_run">C\'est la première fois que tu lances Liberario. Sélectionne un réseau de transport pour continuer !</string>
-  <string name="clear_favs">Es-tu sûr de vouloir supprimer tes favoris pour ce réseau de transport ?</string>
-  <string name="clear_fav_trips">Es-tu sûr de vouloir supprimer ce trajet de tes favoris ? Le compteur d\'utilisation sera perdu.</string>
+  <string name="beta">version bêta</string>
+  <string name="pick_network_activity">Choisissez un réseau de transport</string>
+  <string name="pick_network_first_run">C\'est la première fois que vous lancez Liberario. Sélectionnez un réseau de transport pour continuer!</string>
+  <string name="clear_favs">Êtes vous sûr de vouloir supprimer vos favoris pour ce réseau de transport?</string>
+  <string name="clear_fav_trips">Êtes vous sûr de vouloir supprimer ce trajet de vos favoris ? Le compteur d\'utilisation sera perdu.</string>
   <string name="trip_searching">Recherche de connexions en cours…</string>
   <string name="stations_searching_position">Recherche de la position actuelle en cours...</string>
   <string name="stations_searching_stations">Recherche des gares proches en cours...</string>
   <string name="find_nearby_stations">Trouve les gares proches</string>
-  <string name="find_departures">Trouve des départs</string>
-  <string name="error_pick_network">Sélectionne un réseau de transport !</string>
+  <string name="find_departures">Trouver des départs</string>
+  <string name="error_pick_network">Sélectionnez un réseau de transport!</string>
   <string name="error_no_internet">Pas de connexion internet suffisante disponible.</string>
   <string name="error_invalid_from">Lieu de départ invalide</string>
   <string name="error_invalid_to">Lieu d\'arrivée invalide</string>
   <string name="error_no_favs">Aucun lieu favori sauvegardé</string>
   <string name="error_no_trips_found">Aucune direction n\'a été trouvée</string>
-  <string name="error_no_location_provider">Position introuvable. Active le GPS !</string>
+  <string name="error_no_location_provider">Position introuvable. Activez le GPS !</string>
   <string name="error_no_departures_found">Aucun départ n\'a été trouvé</string>
   <string name="error_no_proper_station">Le lieu indiqué n\'est pas une gare connue</string>
-  <string name="error_only_autocomplete_station">Sélectionne une gare dans la liste de saisie automatique ! </string>
+  <string name="error_only_autocomplete_station">Sélectionnez une gare dans la liste de saisie automatique ! </string>
   <string name="number_of_stations">Nombre de gares</string>
   <string name="meter">m</string>
   <string name="max_distance">Distance maximum</string>
+  <string name="home_dialog_title">Votre position d\'origine</string>
+  <string name="home_dialog_new_msg">Il n\'y pas de position d\'origine spécifiée pour le réseau de transport actuel.</string>
+  <string name="home_dialog_msg">Choisissez un lieu dans la liste.</string>
 </resources>

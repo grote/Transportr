@@ -7,3 +7,4 @@ source_file = res/values/strings.xml
 type = ANDROID
 trans.de = res/values-de/strings.xml
 trans.fr = res/values-fr/strings.xml
+trans.it = res/values-it/strings.xml
