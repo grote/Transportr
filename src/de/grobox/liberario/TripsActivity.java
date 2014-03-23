@@ -182,16 +182,16 @@ public class TripsActivity extends FragmentActivity {
 		((TextView) findViewById(R.id.tripDestinationTextView)).setText(trips.to.uniqueShortName());
 	}
 
-	private void addTrips(final TableLayout main, List<Trip> trips, boolean append) {
-		if(trips != null) {
+	private void addTrips(final TableLayout main, List<Trip> trip_list, boolean append) {
+		if(trip_list != null) {
 			// reverse order of trips if they should be prepended
 			if(!append) {
-				ArrayList<Trip> tempResults = new ArrayList<Trip>(trips);
+				ArrayList<Trip> tempResults = new ArrayList<Trip>(trip_list);
 				Collections.reverse(tempResults);
-				trips = tempResults;
+				trip_list = tempResults;
 			}
 
-			for(final Trip trip : trips) {
+			for(final Trip trip : trip_list) {
 				final LinearLayout trip_layout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.trip, null);
 				TableRow row = (TableRow) trip_layout.findViewById(R.id.tripTableRow);
 
@@ -326,31 +326,28 @@ public class TripsActivity extends FragmentActivity {
 		startActivity(intent);
 	}
 
-	public void addMoreTrips(QueryTripsResult trip_results, boolean later, int num_trips) {
+	public void addMoreTrips(QueryTripsResult trip_results, boolean later) {
 		if(trips != null) {
-			TableLayout main = (TableLayout) findViewById(R.id.activity_trips);
-			int num_old_trips = trips.trips.size();
-			List<Trip> trips_res = new ArrayList<Trip>(trip_results.trips);
-
-			// remove old trips for providers that still return them
-			if(trips_res.size() >= num_old_trips + num_trips) {
-				if(later) {
-					// remove the #num_old_trips first trips
-					for(int i = 0; i < num_old_trips; i = i+1) {
-						trips_res.remove(0);
+			// remove old trips for providers that return them
+			List<Trip> trips_new = new ArrayList<Trip>();
+			if(trip_results.trips.size() > trips.trips.size()) {
+				for(Trip trip : trip_results.trips) {
+					boolean add = true;
+					for(Trip trip_old : trips.trips) {
+						if(trip.getId().equals(trip_old.getId())) {
+							add = false;
+							break;
+						}
 					}
-				}
-				else {
-					// remove the #num_old_trips last trips
-					for(int i = 0; i < num_old_trips; i = i+1) {
-						trips_res.remove(trips_res.size()-1);
-					}
+					// only add trip if not a duplicate
+					if(add) trips_new.add(trip);
 				}
 			}
+
 			// save trip results to have context for next query
 			trips = trip_results;
 
-			addTrips(main, trips_res, later);
+			addTrips((TableLayout) findViewById(R.id.activity_trips), trips_new, later);
 		}
 	}
 

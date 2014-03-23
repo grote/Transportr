@@ -293,11 +293,6 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 //		it.add(new NetworkItem(NetworkId.SAD, "SAD", "Südtirol/Alto Adige", true));
 //		listNetwork.put("Italia", it);
 
-		listRegion.add("Slovenija");
-		List<NetworkItem> si = new ArrayList<NetworkItem>();
-		si.add(new NetworkItem(NetworkId.MARIBOR, "MARIBOR", "Maribor", true));
-		listNetwork.put("Slovenija", si);
-
 		listRegion.add("Polska");
 		List<NetworkItem> pl = new ArrayList<NetworkItem>();
 		pl.add(new NetworkItem(NetworkId.PL, "PL", "Polska, Warszawa"));
@@ -319,6 +314,11 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		au.add(new NetworkItem(NetworkId.SYDNEY, "SYDNEY", "New South Wales, Sydney", true));
 		au.add(new NetworkItem(NetworkId.MET, "MET", "Victoria, Melbourne", true));
 		listNetwork.put("Australia", au);
+
+		listRegion.add("Israel");
+		List<NetworkItem> il = new ArrayList<NetworkItem>();
+		il.add(new NetworkItem(NetworkId.JET, "JET", "Jerusalem", true));
+		listNetwork.put("Israel", il);
 	}
 
 

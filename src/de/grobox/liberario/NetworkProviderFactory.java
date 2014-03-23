@@ -81,7 +81,6 @@ public final class NetworkProviderFactory
 	private static Reference<TlwmProvider> tlwmProviderRef;
 	private static Reference<TlswProvider> tlswProviderRef;
 	private static Reference<TfiProvider> tfiProviderRef;
-	private static Reference<MariborProvider> mariborProviderRef;
 	private static Reference<PlProvider> plProviderRef;
 	private static Reference<AtcProvider> atcProviderRef;
 	private static Reference<DubProvider> dubProviderRef;
@@ -93,6 +92,7 @@ public final class NetworkProviderFactory
 	private static Reference<SadProvider> sadProviderRef;
 	private static Reference<WienProvider> wienProviderRef;
 	private static Reference<VrtProvider> vrtProviderRef;
+	private static Reference<JetProvider> jetProviderRef;
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
 	{
@@ -798,19 +798,6 @@ public final class NetworkProviderFactory
 			tfiProviderRef = new SoftReference<TfiProvider>(provider);
 			return provider;
 		}
-		else if (networkId.equals(MariborProvider.NETWORK_ID))
-		{
-			if (mariborProviderRef != null)
-			{
-				final MariborProvider provider = mariborProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final MariborProvider provider = new MariborProvider();
-			mariborProviderRef = new SoftReference<MariborProvider>(provider);
-			return provider;
-		}
 		else if (networkId.equals(PlProvider.NETWORK_ID))
 		{
 			if (plProviderRef != null)
@@ -952,6 +939,19 @@ public final class NetworkProviderFactory
 
 			final VrtProvider provider = new VrtProvider();
 			vrtProviderRef = new SoftReference<VrtProvider>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.JET))
+		{
+			if (jetProviderRef != null)
+			{
+				final JetProvider provider = jetProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final JetProvider provider = new JetProvider();
+			jetProviderRef = new SoftReference<JetProvider>(provider);
 			return provider;
 		}
 		else

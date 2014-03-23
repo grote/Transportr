@@ -295,7 +295,7 @@ public class StationsListActivity extends Activity {
 				// show platform/position according to user preference and availability
 				if(dep.position != null) {
 					TextView positionView = (TextView) view.findViewById(R.id.positionView);
-					positionView.setText(dep.position);
+					positionView.setText(dep.position.name);
 					positionView.setVisibility(Preferences.getShowPlatforms(this) ? View.VISIBLE : View.GONE);
 				}
 

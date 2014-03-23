@@ -234,10 +234,10 @@ public class TripDetailFragment extends LiberarioFragment {
 
 				// set positions
 				if(public_leg.departureStop.plannedDeparturePosition != null) {
-					((TextView) legViewOld.findViewById(R.id.dDeparturePositionView)).setText(public_leg.departureStop.plannedDeparturePosition);
+					((TextView) legViewOld.findViewById(R.id.dDeparturePositionView)).setText(public_leg.departureStop.plannedDeparturePosition.name);
 				}
 				if(public_leg.arrivalStop.plannedArrivalPosition != null) {
-					((TextView) legViewNew.findViewById(R.id.dArrivalPositionView)).setText(public_leg.arrivalStop.plannedArrivalPosition);
+					((TextView) legViewNew.findViewById(R.id.dArrivalPositionView)).setText(public_leg.arrivalStop.plannedArrivalPosition.name);
 				}
 
 				// set arrival location in next row
@@ -373,10 +373,10 @@ public class TripDetailFragment extends LiberarioFragment {
 				((TextView) stopView.findViewById(R.id.sLocationView)).setText(stop.location.uniqueShortName());
 
 				if(stop.plannedArrivalPosition != null) {
-					((TextView) stopView.findViewById(R.id.sArrivalPositionView)).setText(stop.plannedArrivalPosition);
+					((TextView) stopView.findViewById(R.id.sArrivalPositionView)).setText(stop.plannedArrivalPosition.name);
 				}
 				if(stop.plannedDeparturePosition != null) {
-					((TextView) stopView.findViewById(R.id.sDeparturePositionView)).setText(stop.plannedDeparturePosition);
+					((TextView) stopView.findViewById(R.id.sDeparturePositionView)).setText(stop.plannedDeparturePosition.name);
 				}
 
 				stopsView.addView(stopView);

@@ -32,8 +32,6 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 	private Boolean later;
 	private String error = null;
 
-	private static final int num_trips = 3;
-
 	public AsyncQueryMoreTripsTask(TripsActivity activity, QueryTripsContext qtcontext, Boolean later) {
 		this.activity = activity;
 		this.qtcontext = qtcontext;
@@ -46,7 +44,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(activity.getBaseContext())) {
-				return np.queryMoreTrips(qtcontext, later, num_trips);
+				return np.queryMoreTrips(qtcontext, later);
 			}
 			else {
 				error = activity.getResources().getString(R.string.error_no_internet);
@@ -74,7 +72,7 @@ public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsRes
 			}
 		}
 		else {
-			activity.addMoreTrips(result, later, num_trips);
+			activity.addMoreTrips(result, later);
 		}
 		activity.onRefreshComplete();
 	}

@@ -88,7 +88,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 
 		try {
 			if(isNetworkAvailable(context)) {
-				return np.queryTrips(from, null, to, date, departure, 3, mProducts, NetworkProvider.WalkSpeed.NORMAL, null, null);
+				return np.queryTrips(from, null, to, date, departure, mProducts, NetworkProvider.WalkSpeed.NORMAL, null, null);
 			}
 			else {
 				error = context.getResources().getString(R.string.error_no_internet);
