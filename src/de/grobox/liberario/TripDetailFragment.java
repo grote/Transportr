@@ -31,6 +31,7 @@ import de.schildbach.pte.dto.Trip.Public;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -317,11 +318,26 @@ public class TripDetailFragment extends LiberarioFragment {
 						List<Location> loc_list = new ArrayList<Location>();
 						loc_list.add(individual.arrival);
 
-						// show station on map
-						Intent intent = new Intent(getActivity(), MapStationsActivity.class);
+						// show station on internal map
+/*						Intent intent = new Intent(getActivity(), MapStationsActivity.class);
 						intent.putExtra("List<de.schildbach.pte.dto.Location>", (ArrayList<Location>) loc_list);
 						intent.putExtra("de.schildbach.pte.dto.Location", individual.departure);
 						startActivity(intent);
+*/
+						String aLat = Double.toString(individual.arrival.lat / 1E6);
+						String aLon = Double.toString(individual.arrival.lon / 1E6);
+						String dLat = Double.toString(individual.departure.lat / 1E6);
+						String dLon = Double.toString(individual.departure.lon / 1E6);
+
+						Uri geo = Uri.parse("geo:"+aLat+","+aLon+"?q="+dLat+","+dLon+"(\""+individual.departure.name+"\")");
+
+						// show station on external map
+						Intent intent = new Intent(Intent.ACTION_VIEW);
+						intent.setData(geo);
+						if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+							startActivity(intent);
+						}
+
 					}
 				});
 
