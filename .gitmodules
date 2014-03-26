@@ -14,3 +14,7 @@
 	path = sublibs/OSMBonusPack
 	url = https://github.com/grote/OSMBonusPack.git
 	ignore = dirty
+[submodule "sublibs/Android-MenuComponent"]
+	path = sublibs/Android-MenuComponent
+	url = https://github.com/mariotaku/Android-MenuComponent
+	ignore = dirty
