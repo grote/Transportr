@@ -186,7 +186,7 @@ public class MapStationsActivity extends Activity {
 		List<Line> mLines;
 
 		public StationOverlayItem(String aTitle, List<Line> lines, GeoPoint aGeoPoint, Context context) {
-			super(aTitle, null, aGeoPoint, context);
+			super(aTitle, null, aGeoPoint);
 
 			mLines = lines;
 		}
