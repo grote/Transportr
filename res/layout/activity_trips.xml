@@ -56,7 +56,6 @@
         android:background="@color/holo_blue_light" />
 
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/pull_to_refresh_trips"
         android:layout_width="fill_parent"

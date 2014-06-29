@@ -21,3 +21,8 @@ local.properties
 .classpath
 .project
 .settings
+
+# Android Studio files
+.idea/
+*.iml
+.gradle/
