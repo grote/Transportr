@@ -42,7 +42,6 @@ public final class NetworkProviderFactory
 	private static Reference<ShProvider> shProviderRef;
 	private static Reference<GvhProvider> gvhProviderRef;
 	private static Reference<BsvagProvider> bsvagProviderRef;
-	private static Reference<BsagProvider> bsagProviderRef;
 	private static Reference<VbnProvider> vbnProviderRef;
 	private static Reference<NasaProvider> nasaProviderRef;
 	private static Reference<VvoProvider> vvoProviderRef;
@@ -89,10 +88,11 @@ public final class NetworkProviderFactory
 	private static Reference<SydneyProvider> sydneyProviderRef;
 	private static Reference<MetProvider> metProviderRef;
 	private static Reference<VgsProvider> vgsProviderRef;
-	private static Reference<SadProvider> sadProviderRef;
+	private static Reference<VsnProvider> vsnProviderRef;
 	private static Reference<WienProvider> wienProviderRef;
 	private static Reference<VrtProvider> vrtProviderRef;
 	private static Reference<JetProvider> jetProviderRef;
+	private static Reference<PacaProvider> pacaProviderRef;
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
 	{
@@ -289,19 +289,6 @@ public final class NetworkProviderFactory
 
 			final BsvagProvider provider = new BsvagProvider();
 			bsvagProviderRef = new SoftReference<BsvagProvider>(provider);
-			return provider;
-		}
-		else if (networkId.equals(BsagProvider.NETWORK_ID))
-		{
-			if (bsagProviderRef != null)
-			{
-				final BsagProvider provider = bsagProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final BsagProvider provider = new BsagProvider();
-			bsagProviderRef = new SoftReference<BsagProvider>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VbnProvider.NETWORK_ID))
@@ -599,7 +586,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final SbbProvider provider = new SbbProvider("no secret");
+			final SbbProvider provider = new SbbProvider();
 			sbbProviderRef = new SoftReference<SbbProvider>(provider);
 			return provider;
 		}
@@ -902,17 +889,17 @@ public final class NetworkProviderFactory
 			vgsProviderRef = new SoftReference<VgsProvider>(provider);
 			return provider;
 		}
-		else if (networkId.equals(NetworkId.SAD))
+		else if (networkId.equals(NetworkId.VSN))
 		{
-			if (sadProviderRef != null)
+			if (vsnProviderRef != null)
 			{
-				final SadProvider provider = sadProviderRef.get();
+				final VsnProvider provider = vsnProviderRef.get();
 				if (provider != null)
 					return provider;
 			}
 
-			final SadProvider provider = new SadProvider();
-			sadProviderRef = new SoftReference<SadProvider>(provider);
+			final VsnProvider provider = new VsnProvider();
+			vsnProviderRef = new SoftReference<VsnProvider>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.WIEN))
@@ -952,6 +939,19 @@ public final class NetworkProviderFactory
 
 			final JetProvider provider = new JetProvider();
 			jetProviderRef = new SoftReference<JetProvider>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.PACA))
+		{
+			if (pacaProviderRef != null)
+			{
+				final PacaProvider provider = pacaProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final PacaProvider provider = new PacaProvider();
+			pacaProviderRef = new SoftReference<PacaProvider>(provider);
 			return provider;
 		}
 		else

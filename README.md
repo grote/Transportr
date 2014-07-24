@@ -68,7 +68,7 @@ In order to access public transport data, Liberario is using the [public transpo
 * Baden-Württemberg, Constance & Basel (local and regional)
 * Kiel, Lübeck & Schleswig-Holstein (local and regional)
 * Hannover & Lower Saxony (local and regional)
-* Bremen, Bremerhaven & Oldenburg (local and regional)
+* Göttingen & South Lower Saxony (local and regional)
 * Schwerin & Mecklenburg-Vorpommern (local and regional)
 * Leipzig, Halle & Saxony-Anhalt (local and regional)
 * Plauen & Vogtland (local and regional)
@@ -83,7 +83,9 @@ In order to access public transport data, Liberario is using the [public transpo
 * Philadelphia (local and regional)
 * Sydney (local and regional)
 * Melbourne (local and regional)
-
+* Dubai (local)
+* Jerusalem (local)
+* Provence-Alpes-Côte d'Azur (local and regional)
 
 Contributing
 ------------
@@ -109,7 +111,7 @@ The next step is to clone the source code repository. Please make sure to also c
 
 Then, you also need to run the following command to build the public transport enabler library.
 
-    $ ./build-pte.sh
+    $ ./pre-build.sh
 
 If you don't want to use an IDE like Eclipse, you can build Libeario on the command line as follows.
 

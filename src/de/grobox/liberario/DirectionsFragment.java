@@ -620,10 +620,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			if(!view.getText().toString().equals("")) {
 				// no location selected, but text entered. So let's try create locations from text
 				if(loc_type == FavLocation.LOC_TYPE.FROM) {
-					setFrom(new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString()));
+					setFrom(new Location(LocationType.ANY, null, view.getText().toString(), view.getText().toString()));
 				}
 				else if(loc_type == FavLocation.LOC_TYPE.TO) {
-					setTo(new Location(LocationType.ANY, 0, view.getText().toString(), view.getText().toString()));
+					setTo(new Location(LocationType.ANY, null, view.getText().toString(), view.getText().toString()));
 				}
 				return true;
 			}
@@ -692,7 +692,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			if(lon_str.length() > 9) lon_str = lon_str.substring(0, 8);
 
 			// create location based on GPS coordinates
-			gps_loc = new Location(LocationType.ADDRESS, 0, lat, lon, null, lat_str + "/" + lon_str);
+			gps_loc = new Location(LocationType.ADDRESS, null, lat, lon, null, lat_str + "/" + lon_str);
 			setFrom(gps_loc);
 
 			if(pd != null) {

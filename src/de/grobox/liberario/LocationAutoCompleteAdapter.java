@@ -75,7 +75,7 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 
 					// Retrieve the auto-complete results.
 					try {
-						resultList = autocomplete.execute().get();
+						resultList = autocomplete.execute().get().locations;
 						addedFavs = false;
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block

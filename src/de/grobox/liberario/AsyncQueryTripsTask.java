@@ -82,8 +82,8 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	protected QueryTripsResult doInBackground(Void... params) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
 
-		Log.d(getClass().getSimpleName(), "From: " + from.toDebugString());
-		Log.d(getClass().getSimpleName(), "To: " + to.toDebugString());
+		Log.d(getClass().getSimpleName(), "From: " + from.toString());
+		Log.d(getClass().getSimpleName(), "To: " + to.toString());
 		Log.d(getClass().getSimpleName(), "Date: " + date.toString());
 
 		try {

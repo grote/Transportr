@@ -22,11 +22,13 @@ import java.util.List;
 
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.SuggestLocationsResult;
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Location>> {
+public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, SuggestLocationsResult> {
 	private Context context;
 	private String query = "";
 	private String error = null;
@@ -37,14 +39,14 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Lo
 	}
 
 	@Override
-	protected List<Location> doInBackground(Void... params) {
+	protected SuggestLocationsResult doInBackground(Void... params) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
 
-		List<Location> loc_list = null;
+		SuggestLocationsResult loc_list = null;
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(context)) {
-				loc_list = np.autocompleteStations(query);
+				loc_list = np.suggestLocations(query);
 			}
 			else {
 				error = context.getResources().getString(R.string.error_no_internet);
@@ -65,8 +67,8 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, List<Lo
 	}
 
 	@Override
-	protected void onPostExecute(List<Location> location) {
-		if(location == null && error != null) {
+	protected void onPostExecute(SuggestLocationsResult loc_list) {
+		if(loc_list == null && error != null) {
 			Toast.makeText(context, error, Toast.LENGTH_LONG).show();
 		}
 	}

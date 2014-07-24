@@ -29,12 +29,12 @@ import android.widget.Toast;
 public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDeparturesResult> {
 	private StationsListActivity activity;
 	private View view;
-	private int station;
+	private String station;
 	private String error = null;
 
 	public static final int max_departures = 6;
 
-	public AsyncQueryDeparturesTask(StationsListActivity activity, View view, int station) {
+	public AsyncQueryDeparturesTask(StationsListActivity activity, View view, String station) {
 		this.activity = activity;
 		this.view = view;
 		this.station = station;

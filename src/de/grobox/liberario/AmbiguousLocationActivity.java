@@ -56,6 +56,8 @@ public class AmbiguousLocationActivity extends Activity {
 
 		final Spinner from_spinner = ((Spinner) findViewById(R.id.fromSpinner));
 
+		// FIXME: trips.ambiguousFrom.toString() now gives debug string. Provide better String here
+
 		if(trips.ambiguousFrom != null) {
 			from_spinner.setAdapter(new ArrayAdapter<Location>(this, R.layout.list_item, trips.ambiguousFrom));
 		}

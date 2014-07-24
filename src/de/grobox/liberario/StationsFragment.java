@@ -96,7 +96,9 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 			// clear favorites for auto-complete
 			AutoCompleteTextView stationView = ((AutoCompleteTextView) mView.findViewById(R.id.stationView));
-			((LocationAutoCompleteAdapter) stationView.getAdapter()).clearFavs();
+			if(stationView.getAdapter() != null) {
+				((LocationAutoCompleteAdapter) stationView.getAdapter()).clearFavs();
+			}
 
 			// clear text view
 			setStation(null);
