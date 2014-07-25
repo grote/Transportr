@@ -50,6 +50,13 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 		this.onlyIDs = onlyIDs;
 	}
 
+	// constructor that enables reuse of this class by AmbiguousLocationActivity
+	public LocationAutoCompleteAdapter(Context context, int textViewResourceId, List<Location> filteredList) {
+		super(context, textViewResourceId);
+		resource = textViewResourceId;
+		this.onlyIDs = false;
+		this.filteredList = filteredList;
+	}
 
 	@Override
 	public int getCount() {
@@ -138,6 +145,11 @@ public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implemen
 		}
 
 		return view;
+	}
+
+	@Override
+	public View getDropDownView(int position, View convertView, ViewGroup parent) {
+		return getView(position, convertView, parent);
 	}
 
 	public int addFavs(FavLocation.LOC_TYPE sort) {
