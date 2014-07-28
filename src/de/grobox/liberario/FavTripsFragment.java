@@ -35,6 +35,7 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -96,6 +97,24 @@ public class FavTripsFragment extends LiberarioListFragment {
 			super(context, textViewResourceId, objects);
 		}
 
+		private void queryFavTrip(View v, final int position, final boolean swap) {
+			FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
+
+			AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
+			if(swap) {
+				query_trips.setFrom(trip.getTo());
+				query_trips.setTo(trip.getFrom());
+			} else {
+				query_trips.setFrom(trip.getFrom());
+				query_trips.setTo(trip.getTo());
+			}
+
+			// remember trip
+			FavFile.useFavTrip(getActivity(), trip);
+
+			query_trips.execute();
+		}
+
 		@Override
 		public View getView(final int position, View v, ViewGroup parent) {
 			if(v == null) {
@@ -107,16 +126,16 @@ public class FavTripsFragment extends LiberarioListFragment {
 			v.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
+					queryFavTrip(v, position, false);
+				}
+			});
 
-					AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
-					query_trips.setFrom(trip.getFrom());
-					query_trips.setTo(trip.getTo());
-
-					// remember trip
-					FavFile.useFavTrip(getActivity(), trip);
-
-					query_trips.execute();
+			// handle click on direction swap button
+			ImageButton swapButton = (ImageButton) v.findViewById(R.id.swapButton);
+			swapButton.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					queryFavTrip(v, position, true);
 				}
 			});
 
