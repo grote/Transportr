@@ -55,24 +55,24 @@ public class AmbiguousLocationActivity extends Activity {
 		final Spinner from_spinner = ((Spinner) findViewById(R.id.fromSpinner));
 
 		if(trips.ambiguousFrom != null) {
-			from_spinner.setAdapter(new LocationAutoCompleteAdapter(this, R.layout.list_item, trips.ambiguousFrom));
+			from_spinner.setAdapter(new LocationAdapter(this, R.layout.list_item, trips.ambiguousFrom));
 		}
 		else {
 			List<Location> list = new ArrayList<Location>();
 			list.add(from);
-			from_spinner.setAdapter(new LocationAutoCompleteAdapter(this, R.layout.list_item, list));
+			from_spinner.setAdapter(new LocationAdapter(this, R.layout.list_item, list));
 			from_spinner.setEnabled(false);
 		}
 
 		final Spinner to_spinner = ((Spinner) findViewById(R.id.toSpinner));
 
 		if(trips.ambiguousTo != null) {
-			to_spinner.setAdapter(new LocationAutoCompleteAdapter(this, R.layout.list_item, trips.ambiguousTo));
+			to_spinner.setAdapter(new LocationAdapter(this, R.layout.list_item, trips.ambiguousTo));
 		}
 		else {
 			List<Location> list = new ArrayList<Location>();
 			list.add(to);
-			to_spinner.setAdapter(new LocationAutoCompleteAdapter(this, R.layout.list_item, list));
+			to_spinner.setAdapter(new LocationAdapter(this, R.layout.list_item, list));
 			to_spinner.setEnabled(false);
 		}
 

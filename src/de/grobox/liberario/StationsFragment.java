@@ -97,7 +97,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			// clear favorites for auto-complete
 			AutoCompleteTextView stationView = ((AutoCompleteTextView) mView.findViewById(R.id.stationView));
 			if(stationView.getAdapter() != null) {
-				((LocationAutoCompleteAdapter) stationView.getAdapter()).clearFavs();
+				((LocationAdapter) stationView.getAdapter()).clearFavs();
 			}
 
 			// clear text view
@@ -130,7 +130,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 	private void setDeparturesView() {
 		// station name TextView
 		final AutoCompleteTextView stationView = (AutoCompleteTextView) mView.findViewById(R.id.stationView);
-		stationView.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item, true));
+		stationView.setAdapter(new LocationAdapter(getActivity(), R.layout.list_item, true));
 		stationView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
@@ -171,7 +171,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		((View) mView.findViewById(R.id.stationFavButton)).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				int size = ((LocationAutoCompleteAdapter) stationView.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
+				int size = ((LocationAdapter) stationView.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
 
 				if(size > 0) {
 					stationView.showDropDown();

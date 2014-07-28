@@ -22,7 +22,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.grobox.liberario.R;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -343,7 +342,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		// From text input
 		final AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
-		from.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
+		from.setAdapter(new LocationAdapter(getActivity(), R.layout.list_item));
 		from.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
@@ -444,7 +443,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		// To text input
 		final AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
-		to.setAdapter(new LocationAutoCompleteAdapter(getActivity(), R.layout.list_item));
+		to.setAdapter(new LocationAdapter(getActivity(), R.layout.list_item));
 		to.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
@@ -577,7 +576,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	public void fromFavClick(View v) {
 		AutoCompleteTextView from = ((AutoCompleteTextView) mView.findViewById(R.id.from));
-		int size = ((LocationAutoCompleteAdapter) from.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
+		int size = ((LocationAdapter) from.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
 
 		if(size > 0) {
 			from.showDropDown();
@@ -589,7 +588,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	public void toFavClick(View v) {
 		AutoCompleteTextView to = ((AutoCompleteTextView) mView.findViewById(R.id.to));
-		int size = ((LocationAutoCompleteAdapter) to.getAdapter()).addFavs(FavLocation.LOC_TYPE.TO);
+		int size = ((LocationAdapter) to.getAdapter()).addFavs(FavLocation.LOC_TYPE.TO);
 
 		if(size > 0) {
 			to.showDropDown();
@@ -602,10 +601,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	public void refreshFavs() {
 		if(mView != null) {
 			AutoCompleteTextView from = ((AutoCompleteTextView) mView.findViewById(R.id.from));
-			((LocationAutoCompleteAdapter) from.getAdapter()).clearFavs();
+			((LocationAdapter) from.getAdapter()).clearFavs();
 
 			AutoCompleteTextView to = ((AutoCompleteTextView) mView.findViewById(R.id.to));
-			((LocationAutoCompleteAdapter) to.getAdapter()).clearFavs();
+			((LocationAdapter) to.getAdapter()).clearFavs();
 		}
 	}
 

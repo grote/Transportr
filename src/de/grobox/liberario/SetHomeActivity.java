@@ -53,7 +53,7 @@ public class SetHomeActivity extends FragmentActivity {
 
 		// home location TextView
 		final AutoCompleteTextView homeView = (AutoCompleteTextView) findViewById(R.id.homeView);
-		homeView.setAdapter(new LocationAutoCompleteAdapter(this, R.layout.list_item, true));
+		homeView.setAdapter(new LocationAdapter(this, R.layout.list_item, true));
 		homeView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
@@ -92,7 +92,7 @@ public class SetHomeActivity extends FragmentActivity {
 		((View) findViewById(R.id.homeFavButton)).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				int size = ((LocationAutoCompleteAdapter) homeView.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
+				int size = ((LocationAdapter) homeView.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
 
 				if(size > 0) {
 					homeView.showDropDown();

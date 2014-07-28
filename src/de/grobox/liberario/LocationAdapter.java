@@ -32,26 +32,26 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
-public class LocationAutoCompleteAdapter extends ArrayAdapter<Location> implements Filterable {
+public class LocationAdapter extends ArrayAdapter<Location> implements Filterable {
 	private List<Location> filteredList;
 	private Boolean addedFavs = false;
 	private boolean onlyIDs;
 	int resource;
 
-	public LocationAutoCompleteAdapter(Context context, int textViewResourceId) {
+	public LocationAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
 		resource = textViewResourceId;
 		this.onlyIDs = false;
 	}
 
-	public LocationAutoCompleteAdapter(Context context, int textViewResourceId, boolean onlyIDs) {
+	public LocationAdapter(Context context, int textViewResourceId, boolean onlyIDs) {
 		super(context, textViewResourceId);
 		resource = textViewResourceId;
 		this.onlyIDs = onlyIDs;
 	}
 
 	// constructor that enables reuse of this class by AmbiguousLocationActivity
-	public LocationAutoCompleteAdapter(Context context, int textViewResourceId, List<Location> filteredList) {
+	public LocationAdapter(Context context, int textViewResourceId, List<Location> filteredList) {
 		super(context, textViewResourceId);
 		resource = textViewResourceId;
 		this.onlyIDs = false;
