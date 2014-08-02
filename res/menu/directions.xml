@@ -14,10 +14,4 @@
         android:title="@string/action_switch_locations"
         android:orderInCategory="1" />
 
-    <item
-        android:id="@+id/action_clear_favs"
-        android:showAsAction="never"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/action_clear_favs" />
-
 </menu>

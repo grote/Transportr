@@ -43,6 +43,12 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 		this.count = 1;
 	}
 
+	public FavTrip(Location from, Location to, int count) {
+		this.from = from;
+		this.to = to;
+		this.count = count;
+	}
+
 	public Location getFrom() {
 		return from;
 	}
@@ -57,10 +63,6 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 
 	public int getCount() {
 		return count;
-	}
-
-	public void addCount() {
-		count += 1;
 	}
 
 	@Override

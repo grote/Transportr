@@ -149,7 +149,7 @@ public class TripsActivity extends FragmentActivity {
 			case R.id.action_fav_trip:
 				if(FavFile.isFavTrip(this, new FavTrip(from, to))) {
 					new AlertDialog.Builder(this)
-					.setMessage(getResources().getString(R.string.clear_fav_trips))
+					.setMessage(getResources().getString(R.string.clear_fav_trips, 1))
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
 							FavFile.unfavTrip(getBaseContext(), new FavTrip(from, to));
@@ -163,7 +163,7 @@ public class TripsActivity extends FragmentActivity {
 					})
 					.show();
 				} else {
-					FavFile.favTrip(getBaseContext(), new FavTrip(from, to));
+					FavFile.updateFavTrip(getBaseContext(), new FavTrip(from, to));
 					item.setIcon(R.drawable.ic_action_star);
 				}
 

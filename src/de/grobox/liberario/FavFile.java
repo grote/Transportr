@@ -17,76 +17,49 @@
 
 package de.grobox.liberario;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OptionalDataException;
-import java.io.StreamCorruptedException;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import de.grobox.liberario.data.DBHelper;
 import de.schildbach.pte.dto.Location;
-
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
+import de.schildbach.pte.dto.LocationType;
 
 public class FavFile {
 
-	static public final String FAV_LOC_FILE = "favs_";
-	static public final String FAV_TRIP_FILE = "favs_trip_";
-	static public final String HOME_FILE = "home_";
+	/* FavLocation */
 
-	@SuppressWarnings("unchecked")
 	public static List<FavLocation> getFavLocationList(Context context) {
 		List<FavLocation> fav_list = new ArrayList<FavLocation>();
 
-		FileInputStream fis = null;
-		try {
-			fis = context.openFileInput(FAV_LOC_FILE + Preferences.getNetwork(context));
-		} catch (FileNotFoundException e) {
-			return fav_list;
-		}
-		ObjectInputStream is = null;
-		try {
-			is = new ObjectInputStream(fis);
-		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+		Cursor c = db.query(
+			DBHelper.TABLE_FAV_LOCS,    // The table to query
+			null,                       // The columns to return (null == all)
+			"network = ?",              // The columns for the WHERE clause
+			new String[] { Preferences.getNetwork(context) }, // The values for the WHERE clause
+			null,   // don't group the rows
+			null,   // don't filter by row groups
+			null    // The sort order
+		);
+
+		while(c.moveToNext()) {
+			Location loc = getLocation(c);
+			FavLocation fav_loc = new FavLocation(loc, c.getInt(c.getColumnIndex("from_count")), c.getInt(c.getColumnIndex("to_count")));
+			fav_list.add(fav_loc);
 		}
 
-		try {
-			// TODO take care of unchecked cast
-			if(is != null) fav_list = (List<FavLocation>) is.readObject();
-		} catch (OptionalDataException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		}
-		try {
-			is.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		}
+		c.close();
+		db.close();
 
 		return fav_list;
 	}
@@ -111,180 +84,170 @@ public class FavFile {
 		return list;
 	}
 
-	public static List<Location> getFavLocationList(Context context, FavLocation.LOC_TYPE sort) {
-		return getFavLocationList(context, sort, false);
-	}
-
-	public static void setFavLocationList(Context context, List<FavLocation> favList) {
-		FileOutputStream fos = null;
-		try {
-			fos = context.openFileOutput(FAV_LOC_FILE + Preferences.getNetwork(context), Context.MODE_PRIVATE);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		ObjectOutputStream os;
-		try {
-			os = new ObjectOutputStream(fos);
-			os.writeObject(favList);
-			os.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public static void resetFavLocationList(final Context context) {
-		// show confirmation dialog
-		new AlertDialog.Builder(context)
-		.setMessage(context.getResources().getString(R.string.clear_favs))
-		.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				// actually reset the fav file
-				List<FavLocation> fav_list = new ArrayList<FavLocation>();
-				setFavLocationList(context, fav_list);
-			}
-		})
-		.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				dialog.cancel();
-			}
-		})
-		.show();
-	}
-
 	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
 		// don't save locations with no id
 		if(!loc.hasId()) return;
 
-		List<FavLocation> fav_list = getFavLocationList(context);
-		FavLocation fav_loc = new FavLocation(loc);
-		if(fav_list.contains(fav_loc)){
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+		// get location that needs to be updated from database
+		Cursor c = db.query(
+				DBHelper.TABLE_FAV_LOCS,    // The table to query
+				new String[] { "_id", "from_count", "to_count" },
+				"network = ? AND id = ?",
+				new String[] { Preferences.getNetwork(context), loc.id },
+				null,   // don't group the rows
+				null,   // don't filter by row groups
+				null    // The sort order
+		);
+
+		ContentValues values = new ContentValues();
+
+		if(c.moveToFirst()) {
 			// increase counter by one for existing location
-			if(loc_type == FavLocation.LOC_TYPE.FROM) fav_list.get(fav_list.indexOf(fav_loc)).addFrom();
-			else if(loc_type == FavLocation.LOC_TYPE.TO) fav_list.get(fav_list.indexOf(fav_loc)).addTo();
+			if(loc_type == FavLocation.LOC_TYPE.FROM) {
+				values.put("from_count", c.getInt(c.getColumnIndex("from_count")) + 1);
+			}
+			else if(loc_type == FavLocation.LOC_TYPE.TO) {
+				values.put("to_count", c.getInt(c.getColumnIndex("to_count")) + 1);
+			}
+			db.update(DBHelper.TABLE_FAV_LOCS, values, "_id = ?", new String[] { c.getString(c.getColumnIndex("_id")) });
 		}
 		else {
 			// add new favorite location
-			// increase counter by one for existing location
-			if(loc_type == FavLocation.LOC_TYPE.FROM) fav_loc.addFrom();
-			else if(loc_type == FavLocation.LOC_TYPE.TO) fav_loc.addTo();
+			values.put("network", Preferences.getNetwork(context));
+			values.put("type", loc.type.name());
+			values.put("id", loc.id);
+			values.put("lat", loc.lat);
+			values.put("lon", loc.lon);
+			values.put("place", loc.place);
+			values.put("name", loc.name);
 
-			fav_list.add(fav_loc);
+			// set counter to one
+			if(loc_type == FavLocation.LOC_TYPE.FROM) {
+				values.put("from_count", 1);
+				values.put("to_count", 0);
+			}
+			else if(loc_type == FavLocation.LOC_TYPE.TO) {
+				values.put("from_count", 0);
+				values.put("to_count", 1);
+			}
+
+			db.insert(DBHelper.TABLE_FAV_LOCS, null, values);
 		}
-		setFavLocationList(context, fav_list);
+
+		c.close();
+		db.close();
 	}
 
 
 	/* FavTrip */
 
-	@SuppressWarnings("unchecked")
 	public static List<FavTrip> getFavTripList(Context context) {
 		List<FavTrip> fav_list = new ArrayList<FavTrip>();
 
-		FileInputStream fis = null;
-		try {
-			fis = context.openFileInput(FAV_TRIP_FILE + Preferences.getNetwork(context));
-		} catch (FileNotFoundException e) {
-			return fav_list;
-		}
-		ObjectInputStream is = null;
-		try {
-			is = new ObjectInputStream(fis);
-		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+		final String FAV_TRIPS =
+			"SELECT f.count, " +
+			"l1.type AS from_type, l1.id AS from_id, l1.lat AS from_lat, l1.lon AS from_lon, l1.place AS from_place, l1.name AS from_name, " +
+			"l2.type AS to_type,   l2.id AS to_id,   l2.lat AS to_lat,   l2.lon AS to_lon,   l2.place AS to_place,   l2.name AS to_name " +
+			"FROM " + DBHelper.TABLE_FAV_TRIPS + " f " +
+			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l1 ON f.from_loc = l1._id " +
+			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l2 ON f.to_loc = l2._id " +
+			"WHERE f.network = ? " +
+			"ORDER BY f.count DESC";
+
+		Cursor c = db.rawQuery(FAV_TRIPS, new String[]{ Preferences.getNetwork(context) });
+
+		Log.d("TEST", DatabaseUtils.dumpCursorToString(c));
+
+		while(c.moveToNext()) {
+			Location from = getLocation(c, "from_");
+			Location to = getLocation(c, "to_");
+			FavTrip trip = new FavTrip(from, to, c.getInt(c.getColumnIndex("count")));
+			fav_list.add(trip);
 		}
 
-		try {
-			// TODO take care of unchecked cast
-			if(is != null) fav_list = (List<FavTrip>) is.readObject();
-		} catch (OptionalDataException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		}
-		try {
-			is.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return fav_list;
-		}
-
-		Collections.sort(fav_list);
+		c.close();
+		db.close();
 
 		return fav_list;
 	}
 
-	public static void useFavTrip(Context context, FavTrip fav) {
-		List<FavTrip> fav_list = getFavTripList(context);
+	public static void updateFavTrip(Context context, FavTrip fav) {
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		if(fav_list.contains(fav)) {
-			// increase counter by one for existing trip
-			fav_list.get(fav_list.indexOf(fav)).addCount();
+		int from_id = getLocationId(db, fav.getFrom(), Preferences.getNetwork(context));
+		int to_id = getLocationId(db, fav.getTo(), Preferences.getNetwork(context));
 
-			FavFile.setFavTripList(context, fav_list);
+		// try to find a fav trip with these locations
+		Cursor c = db.query(
+				DBHelper.TABLE_FAV_TRIPS,    // The table to query
+				new String[] { "_id", "count" },
+				"network = ? AND from_loc = ? AND to_loc = ?",
+				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) },
+				null,   // don't group the rows
+				null,   // don't filter by row groups
+				null    // The sort order
+		);
+
+		ContentValues values = new ContentValues();
+
+		if(c.moveToFirst()) {
+			// increase counter by one for existing fav trip
+			values.put("count", c.getInt(c.getColumnIndex("count")) + 1);
+
+			db.update(DBHelper.TABLE_FAV_TRIPS, values, "_id = ?", new String[] { c.getString(c.getColumnIndex("_id")) });
 		}
-	}
+		else {
+			// add new fav trip trip database
+			values.put("network", Preferences.getNetwork(context));
+			values.put("from_loc", from_id);
+			values.put("to_loc", to_id);
+			values.put("count", 1);
 
-	public static void setFavTripList(Context context, List<FavTrip> favList) {
-		FileOutputStream fos = null;
-		try {
-			fos = context.openFileOutput(FAV_TRIP_FILE + Preferences.getNetwork(context), Context.MODE_PRIVATE);
-		} catch (FileNotFoundException e) {	}
-
-		ObjectOutputStream os;
-		try {
-			os = new ObjectOutputStream(fos);
-			os.writeObject(favList);
-			os.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			db.insert(DBHelper.TABLE_FAV_TRIPS, null, values);
 		}
+
+		c.close();
+		db.close();
 	}
 
 	public static boolean isFavTrip(Context context, FavTrip fav) {
-		if(getFavTripList(context).contains(fav)){
-			return true;
-		}
-		return false;
-	}
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-	public static void favTrip(Context context, FavTrip fav) {
-		List<FavTrip> fav_list = getFavTripList(context);
+		String from_id = String.valueOf(getLocationId(db, fav.getFrom(), Preferences.getNetwork(context)));
+		String to_id = String.valueOf(getLocationId(db, fav.getTo(), Preferences.getNetwork(context)));
 
-		if(!fav_list.contains(fav)){
-			// add trip as favorite
-			fav_list.add(fav);
-		}
+		// try to find a fav trip with these locations
+		Cursor c = db.query(
+				DBHelper.TABLE_FAV_TRIPS,    // The table to query
+				new String[] { "_id", "count" },
+				"network = ? AND from_loc = ? AND to_loc = ?",
+				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) },
+				null,   // don't group the rows
+				null,   // don't filter by row groups
+				null    // The sort order
+		);
 
-		FavFile.setFavTripList(context, fav_list);
+		return c.moveToFirst();
 	}
 
 	public static void unfavTrip(Context context, FavTrip fav) {
-		List<FavTrip> fav_list = getFavTripList(context);
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		if(fav_list.contains(fav)){
-			// remove trip from favorites
-			fav_list.remove(fav);
-			FavFile.setFavTripList(context, fav_list);
-		}
+		String from_id = String.valueOf(getLocationId(db, fav.getFrom(), Preferences.getNetwork(context)));
+		String to_id = String.valueOf(getLocationId(db, fav.getTo(), Preferences.getNetwork(context)));
+
+		db.delete(DBHelper.TABLE_FAV_TRIPS, "network = ? AND from_loc = ? AND to_loc =? ", new String[] { Preferences.getNetwork(context), from_id, to_id });
+
+		db.close();
 	}
 
 
@@ -293,65 +256,98 @@ public class FavFile {
 	public static Location getHome(Context context) {
 		Location home = null;
 
-		FileInputStream fis = null;
-		try {
-			fis = context.openFileInput(HOME_FILE + Preferences.getNetwork(context));
-		} catch (FileNotFoundException e) {
-			return home;
-		}
-		ObjectInputStream is = null;
-		try {
-			is = new ObjectInputStream(fis);
-		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return home;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return home;
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+		Cursor c = db.query(
+				DBHelper.TABLE_HOME_LOCS,   // The table to query
+				null,                       // The columns to return (null == all)
+				"network = ?",              // The columns for the WHERE clause
+				new String[] { Preferences.getNetwork(context) }, // The values for the WHERE clause
+				null,   // don't group the rows
+				null,   // don't filter by row groups
+				null    // The sort order
+		);
+
+		while(c.moveToNext()) {
+			home = getLocation(c);
 		}
 
-		try {
-			if(is != null) home = (Location) is.readObject();
-		} catch (OptionalDataException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return home;
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return home;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return home;
-		}
-		try {
-			is.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return home;
-		}
+		c.close();
+		db.close();
 
 		return home;
 	}
 
 	public static void setHome(Context context, Location home) {
-		FileOutputStream fos = null;
-		try {
-			fos = context.openFileOutput(HOME_FILE + Preferences.getNetwork(context), Context.MODE_PRIVATE);
-		} catch (FileNotFoundException e) {	}
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		ObjectOutputStream os;
-		try {
-			os = new ObjectOutputStream(fos);
-			os.writeObject(home);
-			os.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// prepare values for new home location
+		ContentValues values = new ContentValues();
+		values.put("network", Preferences.getNetwork(context));
+		values.put("type", home.type.name());
+		values.put("id", home.id);
+		values.put("lat", home.lat);
+		values.put("lon", home.lon);
+		values.put("place", home.place);
+		values.put("name", home.name);
+
+		// check if a previous home location was set
+		Cursor c = db.query(
+			DBHelper.TABLE_HOME_LOCS,   // The table to query
+			new String[] { "_id" },     // The columns to return (null == all)
+			"network = ?",              // The columns for the WHERE clause
+			new String[] { Preferences.getNetwork(context) }, // The values for the WHERE clause
+			null,   // don't group the rows
+			null,   // don't filter by row groups
+			null    // The sort order
+		);
+
+		if(c.getCount() > 0) {
+			// found previous home location, so update entry
+			db.update(DBHelper.TABLE_HOME_LOCS, values, "network = ?", new String[] { Preferences.getNetwork(context) });
+		} else {
+			// no previous home location found, so insert new entry
+			db.insert(DBHelper.TABLE_HOME_LOCS, null, values);
+		}
+
+		db.close();
+	}
+
+	private static Location getLocation(Cursor c) {
+		return getLocation(c, "");
+	}
+
+	private static Location getLocation(Cursor c, String pre) {
+		return new Location(
+			LocationType.valueOf(c.getString(c.getColumnIndex("pre_type".replace("pre_", pre)))),
+			c.getString(c.getColumnIndex("pre_id".replace("pre_", pre))),
+			c.getInt(c.getColumnIndex("pre_lat".replace("pre_", pre))),
+			c.getInt(c.getColumnIndex("pre_lon".replace("pre_", pre))),
+			c.getString(c.getColumnIndex("pre_place".replace("pre_", pre))),
+			c.getString(c.getColumnIndex("pre_name".replace("pre_", pre)))
+		);
+	}
+
+	private static int getLocationId(SQLiteDatabase db, Location loc, String network) {
+		// get from location ID from database
+		Cursor c = db.query(
+				DBHelper.TABLE_FAV_LOCS,    // The table to query
+				new String[] { "_id" },
+				"network = ? AND id = ?",
+				new String[] { network, loc.id },
+				null,   // don't group the rows
+				null,   // don't filter by row groups
+				null    // The sort order
+		);
+
+		if(c.moveToFirst()) {
+			int loc_id = c.getInt(c.getColumnIndex("_id"));
+			c.close();
+			return loc_id;
+		} else {
+			return 0;
 		}
 	}
 }

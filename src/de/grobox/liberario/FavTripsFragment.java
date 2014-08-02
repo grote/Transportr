@@ -110,7 +110,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 			}
 
 			// remember trip
-			FavFile.useFavTrip(getActivity(), trip);
+			FavFile.updateFavTrip(getActivity(), trip);
 
 			query_trips.execute();
 		}

@@ -205,7 +205,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 				// remember trip if not from GPS
 				if(!mGpsPressed) {
-					FavFile.useFavTrip(getActivity(), new FavTrip(getFrom(), getTo()));
+					FavFile.updateFavTrip(getActivity(), new FavTrip(getFrom(), getTo()));
 				}
 
 				// set date
@@ -266,11 +266,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				Location tmp = getFrom();
 				setFrom(getTo());
 				setTo(tmp);
-
-				return true;
-			case R.id.action_clear_favs:
-				FavFile.resetFavLocationList(getActivity());
-				refreshFavs();
 
 				return true;
 			default:

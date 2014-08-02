@@ -141,7 +141,7 @@ public class TripDetailFragment extends LiberarioFragment {
 			case R.id.action_fav_trip:
 				if(FavFile.isFavTrip(getActivity(), new FavTrip(from, to))) {
 					new AlertDialog.Builder(getActivity())
-					.setMessage(getResources().getString(R.string.clear_fav_trips))
+					.setMessage(getResources().getString(R.string.clear_fav_trips, 1))
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
 							FavFile.unfavTrip(getActivity(), new FavTrip(from, to));
@@ -155,7 +155,7 @@ public class TripDetailFragment extends LiberarioFragment {
 					})
 					.show();
 				} else {
-					FavFile.favTrip(getActivity(), new FavTrip(from, to));
+					FavFile.updateFavTrip(getActivity(), new FavTrip(from, to));
 					item.setIcon(R.drawable.ic_action_star);
 				}
 

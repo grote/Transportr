@@ -57,7 +57,9 @@ public class SetHomeActivity extends FragmentActivity {
 		homeView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				homeView.setTag((Location) parent.getItemAtPosition(position));
+				Location loc = (Location) parent.getItemAtPosition(position);
+				homeView.setText(loc.uniqueShortName());
+				homeView.setTag(loc);
 				homeView.requestFocus();
 			}
 		});
