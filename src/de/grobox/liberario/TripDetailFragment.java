@@ -17,6 +17,8 @@
 
 package de.grobox.liberario;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +36,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -330,7 +333,17 @@ public class TripDetailFragment extends LiberarioFragment {
 						String dLat = Double.toString(individual.departure.lat / 1E6);
 						String dLon = Double.toString(individual.departure.lon / 1E6);
 
-						Uri geo = Uri.parse("geo:"+aLat+","+aLon+"?q="+dLat+","+dLon+"(\""+individual.departure.name+"\")");
+						String uri1 = "geo:" + aLat + "," + aLon + "?q=" + dLat + "," + dLon;
+						String uri2 = individual.departure.name;
+						Uri geo;
+
+						try {
+							geo = Uri.parse(uri1 + "(" + URLEncoder.encode(uri2, "utf-8") + ")");
+						} catch (UnsupportedEncodingException e) {
+							geo = Uri.parse(uri1 + "(" + uri2 + ")");
+						}
+
+						Log.d(getClass().getCanonicalName(), "Starting geo intent: " + geo.toString());
 
 						// show station on external map
 						Intent intent = new Intent(Intent.ACTION_VIEW);
