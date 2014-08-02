@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 
 import android.content.Context;
@@ -154,7 +155,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 
 	public int addFavs(FavLocation.LOC_TYPE sort) {
 		if(!addedFavs) {
-			filteredList = FavFile.getFavLocationList(getContext(), sort, onlyIDs);
+			filteredList = FavDB.getFavLocationList(getContext(), sort, onlyIDs);
 
 			addedFavs = true;
 		}

@@ -17,6 +17,7 @@
 
 package de.grobox.liberario;
 
+import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 import android.content.Intent;
 import android.os.Bundle;
@@ -112,7 +113,7 @@ public class SetHomeActivity extends FragmentActivity {
 			public void onClick(View v) {
 				if(homeView.getTag() != null && homeView.getTag() instanceof Location) {
 					// save home location in file
-					FavFile.setHome(v.getContext(), (Location) homeView.getTag());
+					FavDB.setHome(v.getContext(), (Location) homeView.getTag());
 
 					Intent returnIntent = new Intent();
 					setResult(RESULT_OK, returnIntent);

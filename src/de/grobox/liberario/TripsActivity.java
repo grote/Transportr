@@ -26,6 +26,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
+import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
@@ -116,7 +117,7 @@ public class TripsActivity extends FragmentActivity {
 			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
 		}
 
-		if(FavFile.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
+		if(FavDB.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_action_star);
 		} else {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_off);
@@ -147,12 +148,12 @@ public class TripsActivity extends FragmentActivity {
 
 				return true;
 			case R.id.action_fav_trip:
-				if(FavFile.isFavTrip(this, new FavTrip(from, to))) {
+				if(FavDB.isFavTrip(this, new FavTrip(from, to))) {
 					new AlertDialog.Builder(this)
 					.setMessage(getResources().getString(R.string.clear_fav_trips, 1))
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							FavFile.unfavTrip(getBaseContext(), new FavTrip(from, to));
+							FavDB.unfavTrip(getBaseContext(), new FavTrip(from, to));
 							item.setIcon(R.drawable.ic_menu_fav_off);
 						}
 					})
@@ -163,7 +164,7 @@ public class TripsActivity extends FragmentActivity {
 					})
 					.show();
 				} else {
-					FavFile.updateFavTrip(getBaseContext(), new FavTrip(from, to));
+					FavDB.updateFavTrip(getBaseContext(), new FavTrip(from, to));
 					item.setIcon(R.drawable.ic_action_star);
 				}
 

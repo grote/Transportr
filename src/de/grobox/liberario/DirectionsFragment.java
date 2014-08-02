@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -205,7 +206,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 				// remember trip if not from GPS
 				if(!mGpsPressed) {
-					FavFile.updateFavTrip(getActivity(), new FavTrip(getFrom(), getTo()));
+					FavDB.updateFavTrip(getActivity(), new FavTrip(getFrom(), getTo()));
 				}
 
 				// set date
@@ -299,10 +300,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// after new home location was selected, put it right into the input field
 		if(resultCode == FragmentActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
 			if(mHomeClicked == FavLocation.LOC_TYPE.FROM) {
-				setFrom(FavFile.getHome(getActivity()));
+				setFrom(FavDB.getHome(getActivity()));
 			}
 			else if(mHomeClicked == FavLocation.LOC_TYPE.TO) {
-				setTo(FavFile.getHome(getActivity()));
+				setTo(FavDB.getHome(getActivity()));
 			}
 		}
 	}
@@ -313,7 +314,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		fromHomeButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Location home = FavFile.getHome(getActivity());
+				Location home = FavDB.getHome(getActivity());
 
 				if(home != null) {
 					setFrom(home);
@@ -416,7 +417,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		toHomeButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Location home = FavFile.getHome(getActivity());
+				Location home = FavDB.getHome(getActivity());
 
 				if(home != null) {
 					setTo(home);
@@ -625,7 +626,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 		// we have a location, so make it a favorite
 		else {
-			FavFile.updateFavLocation(getActivity(), loc, loc_type);
+			FavDB.updateFavLocation(getActivity(), loc, loc_type);
 		}
 
 		return true;

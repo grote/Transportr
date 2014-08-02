@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
@@ -100,7 +101,7 @@ public class TripDetailFragment extends LiberarioFragment {
 			// Favorite Trip Button
 			MenuItem action_fav_trip = menu.findItem(R.id.action_fav_trip);
 			if(from != null && to != null) {
-				if(FavFile.isFavTrip(getActivity(), new FavTrip(from, to))) {
+				if(FavDB.isFavTrip(getActivity(), new FavTrip(from, to))) {
 					action_fav_trip.setIcon(R.drawable.ic_action_star);
 				} else {
 					action_fav_trip.setIcon(R.drawable.ic_menu_fav_off);
@@ -139,12 +140,12 @@ public class TripDetailFragment extends LiberarioFragment {
 
 				return true;
 			case R.id.action_fav_trip:
-				if(FavFile.isFavTrip(getActivity(), new FavTrip(from, to))) {
+				if(FavDB.isFavTrip(getActivity(), new FavTrip(from, to))) {
 					new AlertDialog.Builder(getActivity())
 					.setMessage(getResources().getString(R.string.clear_fav_trips, 1))
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							FavFile.unfavTrip(getActivity(), new FavTrip(from, to));
+							FavDB.unfavTrip(getActivity(), new FavTrip(from, to));
 							item.setIcon(R.drawable.ic_menu_fav_off);
 						}
 					})
@@ -155,7 +156,7 @@ public class TripDetailFragment extends LiberarioFragment {
 					})
 					.show();
 				} else {
-					FavFile.updateFavTrip(getActivity(), new FavTrip(from, to));
+					FavDB.updateFavTrip(getActivity(), new FavTrip(from, to));
 					item.setIcon(R.drawable.ic_action_star);
 				}
 

@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,11 +28,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.FavTrip;
+import de.grobox.liberario.Preferences;
 import de.grobox.liberario.data.DBHelper;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
-public class FavFile {
+public class FavDB {
 
 	/* FavLocation */
 

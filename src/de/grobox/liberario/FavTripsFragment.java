@@ -39,13 +39,15 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import de.grobox.liberario.data.FavDB;
+
 public class FavTripsFragment extends LiberarioListFragment {
 	private FavTripArrayAdapter adapter;
 	private ActionMode mActionMode = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavFile.getFavTripList(getActivity()));
+		adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity()));
 		setListAdapter(adapter);
 
 		return super.onCreateView(inflater, container, savedInstanceState);
@@ -64,7 +66,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 
 		// reload data because it might have changed
 		adapter.clear();
-		adapter.addAll(FavFile.getFavTripList(getActivity()));
+		adapter.addAll(FavDB.getFavTripList(getActivity()));
 	}
 
 	private void checkTrip(View v, int position) {
@@ -110,7 +112,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 			}
 
 			// remember trip
-			FavFile.updateFavTrip(getActivity(), trip);
+			FavDB.updateFavTrip(getActivity(), trip);
 
 			query_trips.execute();
 		}
@@ -217,7 +219,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 								if(tmp.valueAt(i)) {
 									int pos = tmp.keyAt(i);
 									FavTrip trip = adapter.getItem(pos);
-									FavFile.unfavTrip(getActivity(), trip);
+									FavDB.unfavTrip(getActivity(), trip);
 									adapter.remove(trip);
 								}
 							}

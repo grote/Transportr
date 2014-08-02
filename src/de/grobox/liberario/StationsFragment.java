@@ -19,6 +19,7 @@ package de.grobox.liberario;
 
 import java.util.List;
 
+import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.NetworkProvider.Capability;
 import de.schildbach.pte.dto.Location;
@@ -123,7 +124,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// after new home location was selected, put it right into the input field
 		if(resultCode == FragmentActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
-			queryForStations(FavFile.getHome(getActivity()));
+			queryForStations(FavDB.getHome(getActivity()));
 		}
 	}
 
@@ -187,7 +188,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		stationHomeButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Location home = FavFile.getHome(getActivity());
+				Location home = FavDB.getHome(getActivity());
 
 				if(home != null) {
 					queryForStations(home);
@@ -235,7 +236,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 	private void queryForStations(Location location) {
 		// Location is valid, so make it a favorite or increase counter
-		FavFile.updateFavLocation(getActivity(), location, FavLocation.LOC_TYPE.FROM);
+		FavDB.updateFavLocation(getActivity(), location, FavLocation.LOC_TYPE.FROM);
 
 		// start StationsListActivity with given location
 		Intent intent = new Intent(getActivity(), StationsListActivity.class);
