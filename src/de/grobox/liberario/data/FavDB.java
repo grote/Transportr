@@ -149,6 +149,9 @@ public class FavDB {
 	public static List<FavTrip> getFavTripList(Context context) {
 		List<FavTrip> fav_list = new ArrayList<FavTrip>();
 
+		// when the app starts for the first time, no network is selected
+		if(Preferences.getNetwork(context) == null)  return fav_list;
+
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
