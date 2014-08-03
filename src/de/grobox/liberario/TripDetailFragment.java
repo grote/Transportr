@@ -63,13 +63,6 @@ public class TripDetailFragment extends LiberarioFragment {
 		// remember view for UI changes when fragment is not active
 		view = (TableLayout) inflater.inflate(R.layout.fragment_trip_details, container, false);
 
-		return view;
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-
 		Bundle bundle = getArguments();
 
 		trip = (Trip) bundle.getSerializable("de.schildbach.pte.dto.Trip");
@@ -81,11 +74,8 @@ public class TripDetailFragment extends LiberarioFragment {
 		setHasOptionsMenu(true);
 
 		addLegs(trip.legs);
-	}
 
-	@Override
-	public void onResume() {
-		super.onResume();
+		return view;
 	}
 
 	@Override
