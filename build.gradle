@@ -14,13 +14,11 @@ repositories {
 apply plugin: 'android'
 
 dependencies {
-//	compile 'com.android.support:support-v4:+'
 	compile 'com.android.support:appcompat-v7:+'
 
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.0'
 
 	compile project(':sublibs:Android-PullToRefresh:library')
-//	compile project(':sublibs:Android-MenuComponent:library')
     compile project(':sublibs:OSMBonusPack')
 
 	compile files('libs/public-transport-enabler.jar')

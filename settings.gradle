@@ -1,3 +1,2 @@
 include ':sublibs:OSMBonusPack'
 include ':sublibs:Android-PullToRefresh:library'
-include ':sublibs:Android-MenuComponent:library'
