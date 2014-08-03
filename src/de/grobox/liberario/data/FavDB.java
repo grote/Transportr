@@ -31,7 +31,6 @@ import java.util.List;
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.FavTrip;
 import de.grobox.liberario.Preferences;
-import de.grobox.liberario.data.DBHelper;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
@@ -164,8 +163,6 @@ public class FavDB {
 			"ORDER BY f.count DESC";
 
 		Cursor c = db.rawQuery(FAV_TRIPS, new String[]{ Preferences.getNetwork(context) });
-
-		Log.d("TEST", DatabaseUtils.dumpCursorToString(c));
 
 		while(c.moveToNext()) {
 			Location from = getLocation(c, "from_");
