@@ -69,7 +69,7 @@
     <string name="error_invalid_to">Invalid To Location</string>
     <string name="error_no_favs">No favorite locations saved</string>
     <string name="error_no_trips_found">No directions found</string>
-    <string name="error_no_location_provider">Can not find position. Please turn on GPS!</string>
+    <string name="error_no_location_provider">Cannot find position. Please turn on GPS!</string>
     <string name="error_no_departures_found">No departures found</string>
     <string name="error_no_proper_station">The provided location is no proper station</string>
     <string name="error_only_autocomplete_station">Please select a station from the autocompletion list!</string>
