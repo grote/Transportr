@@ -5,11 +5,11 @@
         android:icon="@drawable/ic_menu_show_platforms"
         android:showAsAction="ifRoom"
         android:title="@string/action_platforms"/>
-
+<!--
     <item
         android:id="@+id/action_fav_trip"
         android:icon="@drawable/ic_menu_fav_off"
         android:showAsAction="ifRoom"
         android:title="@string/action_fav_trip"/>
-
+-->
 </menu>

@@ -116,13 +116,13 @@ public class TripsActivity extends FragmentActivity {
 		} else {
 			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
 		}
-
+/*
 		if(FavDB.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_action_star);
 		} else {
 			menu.findItem(R.id.action_fav_trip).setIcon(R.drawable.ic_menu_fav_off);
 		}
-
+*/
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -147,7 +147,7 @@ public class TripsActivity extends FragmentActivity {
 				Preferences.setShowPlatforms(this, show);
 
 				return true;
-			case R.id.action_fav_trip:
+/*			case R.id.action_fav_trip:
 				if(FavDB.isFavTrip(this, new FavTrip(from, to))) {
 					new AlertDialog.Builder(this)
 					.setMessage(getResources().getString(R.string.clear_fav_trips, 1))
@@ -169,7 +169,7 @@ public class TripsActivity extends FragmentActivity {
 				}
 
 				return true;
-			default:
+*/			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}

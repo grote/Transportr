@@ -92,7 +92,7 @@ public class TripDetailFragment extends LiberarioFragment {
 			}
 
 			// Favorite Trip Button
-			MenuItem action_fav_trip = menu.findItem(R.id.action_fav_trip);
+/*			MenuItem action_fav_trip = menu.findItem(R.id.action_fav_trip);
 			if(from != null && to != null) {
 				if(FavDB.isFavTrip(getActivity(), new FavTrip(from, to))) {
 					action_fav_trip.setIcon(R.drawable.ic_action_star);
@@ -103,6 +103,7 @@ public class TripDetailFragment extends LiberarioFragment {
 				// this should not even happen, but it might
 				action_fav_trip.setVisible(false);
 			}
+*/
 		}
 
 		// show/hide platforms depending on preference
@@ -132,7 +133,7 @@ public class TripDetailFragment extends LiberarioFragment {
 				Preferences.setShowPlatforms(getActivity(), show);
 
 				return true;
-			case R.id.action_fav_trip:
+/*			case R.id.action_fav_trip:
 				if(FavDB.isFavTrip(getActivity(), new FavTrip(from, to))) {
 					new AlertDialog.Builder(getActivity())
 					.setMessage(getResources().getString(R.string.clear_fav_trips, 1))
@@ -154,7 +155,7 @@ public class TripDetailFragment extends LiberarioFragment {
 				}
 
 				return true;
-			default:
+*/			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}
