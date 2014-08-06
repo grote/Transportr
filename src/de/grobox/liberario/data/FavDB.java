@@ -187,6 +187,11 @@ public class FavDB {
 		int from_id = getLocationId(db, fav.getFrom(), Preferences.getNetwork(context));
 		int to_id = getLocationId(db, fav.getTo(), Preferences.getNetwork(context));
 
+		if(from_id < 0 || to_id < 0) {
+			db.close();
+			return;
+		}
+
 		// try to find a fav trip with these locations
 		Cursor c = db.query(
 				DBHelper.TABLE_FAV_TRIPS,    // The table to query
@@ -224,8 +229,10 @@ public class FavDB {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		String from_id = String.valueOf(getLocationId(db, fav.getFrom(), Preferences.getNetwork(context)));
-		String to_id = String.valueOf(getLocationId(db, fav.getTo(), Preferences.getNetwork(context)));
+		int from_id = getLocationId(db, fav.getFrom(), Preferences.getNetwork(context));
+		int to_id = getLocationId(db, fav.getTo(), Preferences.getNetwork(context));
+
+		if(from_id < 0 || to_id < 0) return false;
 
 		// try to find a fav trip with these locations
 		Cursor c = db.query(
@@ -245,10 +252,15 @@ public class FavDB {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		String from_id = String.valueOf(getLocationId(db, fav.getFrom(), Preferences.getNetwork(context)));
-		String to_id = String.valueOf(getLocationId(db, fav.getTo(), Preferences.getNetwork(context)));
+		int from_id = getLocationId(db, fav.getFrom(), Preferences.getNetwork(context));
+		int to_id = getLocationId(db, fav.getTo(), Preferences.getNetwork(context));
 
-		db.delete(DBHelper.TABLE_FAV_TRIPS, "network = ? AND from_loc = ? AND to_loc =? ", new String[] { Preferences.getNetwork(context), from_id, to_id });
+		if(from_id < 0 || to_id < 0) {
+			db.close();
+			return;
+		}
+
+		db.delete(DBHelper.TABLE_FAV_TRIPS, "network = ? AND from_loc = ? AND to_loc =? ", new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) });
 
 		db.close();
 	}
@@ -334,12 +346,26 @@ public class FavDB {
 	}
 
 	private static int getLocationId(SQLiteDatabase db, Location loc, String network) {
+		String whereClause;
+		String[] whereArgs;
+
+		if(loc.hasId()) {
+			whereClause = "network = ? AND id = ?";
+			whereArgs = new String[] { network, loc.id };
+		} else {
+			Log.d("getLocationId", "Could not find location: " + loc.toString());
+			return -1;
+			// Do not support locations without id just now
+//			whereClause = "network = ? AND type = ? AND id = ? AND place = ? AND name = ?";
+//			whereArgs = new String[] { network, loc.type.name() , "", loc.place == null ? "" : loc.place, loc.name == null ? "" : loc.name };
+		}
+
 		// get from location ID from database
 		Cursor c = db.query(
 				DBHelper.TABLE_FAV_LOCS,    // The table to query
 				new String[] { "_id" },
-				"network = ? AND id = ?",
-				new String[] { network, loc.id },
+				whereClause,
+				whereArgs,
 				null,   // don't group the rows
 				null,   // don't filter by row groups
 				null    // The sort order
@@ -350,7 +376,8 @@ public class FavDB {
 			c.close();
 			return loc_id;
 		} else {
-			return 0;
+			Log.d("getLocationId", "Could not find location: " + loc.toString());
+			return -1;
 		}
 	}
 }
