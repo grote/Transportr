@@ -62,13 +62,6 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_stations, container, false);
 
-		return mView;
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getActivity()));
 
 		if(np.hasCapabilities(Capability.DEPARTURES)) {
@@ -84,6 +77,8 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			LinearLayout nearbyStationsLayout = (LinearLayout) mView.findViewById(R.id.nearbyStationsLayout);
 			nearbyStationsLayout.setVisibility(View.GONE);
 		}
+
+		return mView;
 	}
 
 	@Override
@@ -169,7 +164,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		});
 
 		// station name favorites button
-		((View) mView.findViewById(R.id.stationFavButton)).setOnClickListener(new OnClickListener(){
+		mView.findViewById(R.id.stationFavButton).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				int size = ((LocationAdapter) stationView.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);

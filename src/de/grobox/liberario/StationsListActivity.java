@@ -20,7 +20,6 @@ package de.grobox.liberario;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.grobox.liberario.R;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.LineDestination;
 import de.schildbach.pte.dto.Location;
@@ -41,8 +40,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 public class StationsListActivity extends Activity {
 	private LinearLayout main;
@@ -51,6 +54,7 @@ public class StationsListActivity extends Activity {
 	private List<Location> mStations;
 	boolean gps;
 	private Location mMyLocation;
+	private int max_departures = 6;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +75,21 @@ public class StationsListActivity extends Activity {
 			mStations = stations.stations;
 		}
 		else {
-			Location station = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
+			final Location station = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
 			gps = false;
 
 			mStations = new ArrayList<Location>();
 			mStations.add(station);
+
+			// Set a listener to be invoked when the list should be refreshed.
+			PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_departures);
+			pullToRefreshView.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+			pullToRefreshView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
+				@Override
+				public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+					startGetDepartures(station, 0, true);
+				}
+			});
 		}
 		addStations();
 	}
@@ -107,20 +121,10 @@ public class StationsListActivity extends Activity {
 			case R.id.action_refresh:
 				int i = 0;
 				for(final Location station : mStations) {
-					LinearLayout stationView = (LinearLayout) main.getChildAt(i++);
-					LinearLayout depList = (LinearLayout) main.getChildAt(i++);
-					// one more increment for horizontal divider
-					i++;
+					startGetDepartures(station, i, false);
 
-					// show progress bar
-					depList.getChildAt(0).setVisibility(View.VISIBLE);
-
-					// remove old departures
-					depList.removeViews(1, depList.getChildCount() - 1);
-
-					// get new departures
-					AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id);
-					query_stations.execute();
+					// viewID = station view + departure view + separator = 3
+					i += 3;
 				}
 
 				return true;
@@ -217,7 +221,7 @@ public class StationsListActivity extends Activity {
 
 			main.addView(stationView);
 
-			AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id);
+			AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id, max_departures);
 			query_stations.execute();
 
 			LinearLayout depList = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.departure_list, null);
@@ -236,6 +240,8 @@ public class StationsListActivity extends Activity {
 
 		boolean have_lines = false;
 
+		onRefreshComplete();
+
 		for(final StationDepartures stat_dep : result.stationDepartures) {
 			if(stat_dep.departures.size() == 0) {
 				// hide progress bar
@@ -244,6 +250,9 @@ public class StationsListActivity extends Activity {
 				// there's no departures here, so exit
 				return;
 			}
+
+			// potentially remove old departures
+			layout.removeViews(1, layout.getChildCount() - 1);
 
 			LinearLayout stationView = (LinearLayout) v;
 			ViewGroup stationLineLayout = (ViewGroup) stationView.findViewById(R.id.lineLayout);
@@ -257,13 +266,7 @@ public class StationsListActivity extends Activity {
 				have_lines = true;
 			}
 
-			// get maximum number of departures
-			int max = AsyncQueryDeparturesTask.max_departures;
-			if(stat_dep.departures.size() <= max) {
-				max = stat_dep.departures.size() - 1;
-			}
-
-			for(final Departure dep : stat_dep.departures.subList(0, max)) {
+			for(final Departure dep : stat_dep.departures) {
 				LinearLayout view = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.departure, null);
 
 				TextView timeView = (TextView) view.findViewById(R.id.timeView);
@@ -311,7 +314,7 @@ public class StationsListActivity extends Activity {
 	private void showPlatforms(boolean show) {
 		// loop over each station
 		for(int i = 0; i < main.getChildCount(); ++i) {
-			View v = (View) main.getChildAt(i);
+			View v = main.getChildAt(i);
 			if(v instanceof LinearLayout && v.getId() == R.id.departureListLayout) {
 				LinearLayout dep = (LinearLayout) v;
 				// loop over each departure
@@ -326,4 +329,28 @@ public class StationsListActivity extends Activity {
 		}
 	}
 
+	private void startGetDepartures(Location station, int viewID, boolean pull) {
+		LinearLayout stationView = (LinearLayout) main.getChildAt(viewID);
+		LinearLayout depList = (LinearLayout) main.getChildAt(++viewID);
+
+		if(pull) {
+			// get more departures
+			max_departures += 3;
+		} else {
+			// show progress bar
+			depList.getChildAt(0).setVisibility(View.VISIBLE);
+
+			// potentially remove old departures
+			depList.removeViews(1, depList.getChildCount() - 1);
+		}
+
+		// get new departures
+		AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id, max_departures);
+		query_stations.execute();
+	}
+
+	public void onRefreshComplete() {
+		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_departures);
+		pullToRefreshView.onRefreshComplete();
+	}
 }

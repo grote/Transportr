@@ -31,13 +31,13 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 	private View view;
 	private String station;
 	private String error = null;
+	private int max_departures;
 
-	public static final int max_departures = 6;
-
-	public AsyncQueryDeparturesTask(StationsListActivity activity, View view, String station) {
+	public AsyncQueryDeparturesTask(StationsListActivity activity, View view, String station, int max_departures) {
 		this.activity = activity;
 		this.view = view;
 		this.station = station;
+		this.max_departures = max_departures;
 	}
 
 	@Override
