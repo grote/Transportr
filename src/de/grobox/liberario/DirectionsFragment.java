@@ -89,13 +89,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		mView = inflater.inflate(R.layout.fragment_directions, container, false);
 		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-		return mView;
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-
 		checkPreferences();
 
 		setFromUI();
@@ -104,10 +97,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// timeView
 		final TextView timeView = (TextView) mView.findViewById(R.id.timeView);
 		timeView.setText(DateUtils.getcurrentTime(getActivity()));
-		((View) mView.findViewById(R.id.timeLayout)).setOnClickListener(new OnClickListener(){
+		mView.findViewById(R.id.timeLayout).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showTimePickerDialog(v);
+				showTimePickerDialog();
 			}
 		});
 
@@ -121,10 +114,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// dateView
 		final TextView dateView = (TextView) mView.findViewById(R.id.dateView);
 		dateView.setText(DateUtils.getcurrentDate(getActivity()));
-		((View) mView.findViewById(R.id.dateLayout)).setOnClickListener(new OnClickListener(){
+		mView.findViewById(R.id.dateLayout).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showDatePickerDialog(v);
+				showDatePickerDialog();
 			}
 		});
 
@@ -224,6 +217,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				query_trips.execute();
 			}
 		});
+
+		return mView;
 	}
 
 	@Override
@@ -360,7 +355,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		});
 
 		// GPS Button
-		final ImageButton fromGpsButton = (ImageButton) getView().findViewById(R.id.fromGpsButton);
+		final ImageButton fromGpsButton = (ImageButton) mView.findViewById(R.id.fromGpsButton);
 		fromGpsButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -402,10 +397,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 		});
-		((View) mView.findViewById(R.id.fromFavButton)).setOnClickListener(new OnClickListener(){
+		mView.findViewById(R.id.fromFavButton).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				fromFavClick(v);
+				fromFavClick();
 				cancelGpsButton();
 			}
 		});
@@ -477,18 +472,17 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			public void afterTextChanged(Editable s) {}
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 		});
-		((View) mView.findViewById(R.id.toFavButton)).setOnClickListener(new OnClickListener(){
+		mView.findViewById(R.id.toFavButton).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				toFavClick(v);
+				toFavClick();
 			}
 		});
 	}
 
 	private Location getFrom() {
 		AutoCompleteTextView fromView = (AutoCompleteTextView) mView.findViewById(R.id.from);
-		Location from = (Location) fromView.getTag();
-		return from;
+		return (Location) fromView.getTag();
 	}
 
 	private void setFrom(Location loc) {
@@ -511,8 +505,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	private Location getTo() {
 		AutoCompleteTextView toView = (AutoCompleteTextView) mView.findViewById(R.id.to);
-		Location to = (Location) toView.getTag();
-		return to;
+		return (Location) toView.getTag();
 	}
 
 	private void setTo(Location loc) {
@@ -550,7 +543,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		if(firstRun) {
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putBoolean("FirstRun", false);
-			editor.commit();
+			editor.apply();
 
 			startActivity(new Intent(getActivity(), AboutActivity.class));
 		}
@@ -570,7 +563,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	}
 
-	public void fromFavClick(View v) {
+	public void fromFavClick() {
 		AutoCompleteTextView from = ((AutoCompleteTextView) mView.findViewById(R.id.from));
 		int size = ((LocationAdapter) from.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
 
@@ -582,7 +575,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 	}
 
-	public void toFavClick(View v) {
+	public void toFavClick() {
 		AutoCompleteTextView to = ((AutoCompleteTextView) mView.findViewById(R.id.to));
 		int size = ((LocationAdapter) to.getAdapter()).addFavs(FavLocation.LOC_TYPE.TO);
 
@@ -709,7 +702,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	public void onProviderDisabled(String provider) {}
 
 
-	public void showTimePickerDialog(View v) {
+	public void showTimePickerDialog() {
 		DialogFragment newFragment = new TimePickerFragment();
 		newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
 	}
@@ -743,7 +736,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 	}
 
-	public void showDatePickerDialog(View v) {
+	public void showDatePickerDialog() {
 		DialogFragment newFragment = new DatePickerFragment();
 		newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
 	}
