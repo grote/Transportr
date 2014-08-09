@@ -15,6 +15,12 @@
   <string name="action_platforms">Gleis anzeigen/verstecken</string>
   <string name="action_refresh">Aktualisieren</string>
   <string name="action_navigation_expand">Mehr zeigen</string>
+  <string name="action_location_map">Zeige Haltestellenkarte</string>
+  <string name="action_use_gps">GPS aktivieren</string>
+  <string name="action_trip_share">Teilen</string>
+  <string name="action_trip_calendar">In den Kalender</string>
+  <string name="action_trip_details">Getrennt anzeigen</string>
+  <string name="action_trip_delete">Verbindung löschen</string>
   <string name="tab_directions">Verbindungen</string>
   <string name="tab_fav_trips">Favoriten</string>
   <string name="about_top">© 2013 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
@@ -40,12 +46,13 @@
   <string name="pick_network_activity">Wähle ein Verkehrs-Netzwerk</string>
   <string name="pick_network_first_run">Dies ist das erste Mal, dass Du Liberario gestartet hast. Bitte wähle deinen Verkehrsverbund um fortzufahren!</string>
   <string name="clear_favs">Bist du sicher, dass Du deine Favoriten im aktuellen Netzwerk löschen willst?</string>
-  <string name="clear_fav_trips">Bist du sicher, dass Du diese Verbindung aus den Favoriten löschen möchtest? Die Anzahl der Benutzungen geht dabei verloren.</string>
+  <string name="clear_fav_trips">Sind Sie sicher, dass Sie %1$d Verbindung(en) aus den Favoriten löschen wollen? Die Nutzungshäufigkeit geht dabei verloren.</string>
   <string name="trip_searching">Suche nach Verbindungen…</string>
   <string name="stations_searching_position">Suche aktuelle Position…</string>
   <string name="stations_searching_stations">Suche Stationen in der Nähe…</string>
   <string name="find_nearby_stations">Suche Stationen in der Umgebung</string>
   <string name="find_departures">Suche Abfahrten</string>
+  <string name="share_trip_via">Verbindungen teilen mit...</string>
   <string name="error_pick_network">Wähle genau ein Verkehrs-Netzwerk!</string>
   <string name="error_no_internet">Keine ausreichende Internet-Verbindung verfügbar</string>
   <string name="error_invalid_from">Ungültige Angabe des Starts</string>
@@ -56,6 +63,7 @@
   <string name="error_no_departures_found">Keine Abfahrten gefunden</string>
   <string name="error_no_proper_station">Der angegebene Name ist keine gültige Station</string>
   <string name="error_only_autocomplete_station">Bitte wähle eine Station aus der Auto-Vervollständigen-Liste aus!</string>
+  <string name="error_no_station_location">Kann die Position dieser Haltestelle(n) nicht finden.</string>
   <string name="number_of_stations">Anzahl Stationen</string>
   <string name="meter">m</string>
   <string name="max_distance">Maximale Distanz</string>

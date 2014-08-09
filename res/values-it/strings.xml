@@ -40,7 +40,6 @@
   <string name="pick_network_activity">Scegli una rete di trasporto</string>
   <string name="pick_network_first_run">Questa è la prima volta che hai avviato Liberario. Seleziona una rete di trasporto per continuare!</string>
   <string name="clear_favs">Sei sicuro di voler eliminare i tuoi favoriti dalla rete di trasporto corrente?</string>
-  <string name="clear_fav_trips">Sei sicuro di voler eliminare questo viaggio dai tuoi favoriti? Il conteggio dell\'utilizzo verrà cancellato.</string>
   <string name="trip_searching">Ricerca connessioni...</string>
   <string name="stations_searching_position">Ricerca posizione corrente...</string>
   <string name="stations_searching_stations">Ricerca stazioni vicine...</string>
