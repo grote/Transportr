@@ -36,6 +36,7 @@ import de.schildbach.pte.dto.Location;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,6 +44,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 public class MapStationsActivity extends Activity {
@@ -87,9 +89,23 @@ public class MapStationsActivity extends Activity {
 			}
 		}
 
+		final GeoPoint center = new GeoPoint( (maxLat + minLat)/2, (maxLon + minLon)/2 );
+
 		IMapController mapController = mMapView.getController();
+		mapController.setCenter(center);
 		mapController.setZoom(15);
-		mapController.setCenter(new GeoPoint( (maxLat + minLat)/2, (maxLon + minLon)/2 ));
+
+		// work around for center issue: https://github.com/osmdroid/osmdroid/issues/22
+		mMapView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+					mMapView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+				else
+					mMapView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+				mMapView.getController().setCenter(center);
+			}
+		});
 
 		ItemizedOverlayWithBubble<StationOverlayItem> stationMarkers = new ItemizedOverlayWithBubble<StationOverlayItem>(this, mStations, mMapView, new StationInfoWindow(mMapView));
 		mMapView.getOverlays().add(stationMarkers);
