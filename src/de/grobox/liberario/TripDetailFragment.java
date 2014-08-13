@@ -23,16 +23,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import de.grobox.liberario.data.FavDB;
-import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Individual;
 import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -51,9 +47,8 @@ import android.widget.ImageView;
 
 public class TripDetailFragment extends LiberarioFragment {
 	private TableLayout view;
-	private Trip trip;
-	private Location from;
-	private Location to;
+//	private Location from;
+//	private Location to;
 	private Menu mMenu;
 	private boolean mEmbedded = true;
 	private List<TableLayout> mStops = new ArrayList<TableLayout>();
@@ -65,10 +60,11 @@ public class TripDetailFragment extends LiberarioFragment {
 
 		Bundle bundle = getArguments();
 
-		trip = (Trip) bundle.getSerializable("de.schildbach.pte.dto.Trip");
-		// also get locations, because the trip locations are sometimes still ambiguous
-		from = (Location) bundle.getSerializable("de.schildbach.pte.dto.Trip.from");
-		to = (Location) bundle.getSerializable("de.schildbach.pte.dto.Trip.to");
+		Trip trip = (Trip) bundle.getSerializable("de.schildbach.pte.dto.Trip");
+
+		// also get locations, because the trip locations are sometimes still ambiguous (required for fav trip)
+//		from = (Location) bundle.getSerializable("de.schildbach.pte.dto.Trip.from");
+//		to = (Location) bundle.getSerializable("de.schildbach.pte.dto.Trip.to");
 
 		// set options menu only after retrieving arguments since options depend on them
 		setHasOptionsMenu(true);
@@ -181,24 +177,24 @@ public class TripDetailFragment extends LiberarioFragment {
 			// only for the first leg
 			if(i == 1) {
 				// hide arrival time for start location of trip
-				((TextView) legViewOld.findViewById(R.id.dArrivalTimeView)).setVisibility(View.GONE);
-				((TextView) legViewOld.findViewById(R.id.dArrivalDelayView)).setVisibility(View.GONE);
-				((TextView) legViewOld.findViewById(R.id.dArrivalPositionView)).setVisibility(View.GONE);
+				legViewOld.findViewById(R.id.dArrivalTimeView).setVisibility(View.GONE);
+				legViewOld.findViewById(R.id.dArrivalDelayView).setVisibility(View.GONE);
+				legViewOld.findViewById(R.id.dArrivalPositionView).setVisibility(View.GONE);
 				// only add old view the first time, because it isn't old there
 				view.addView(legViewOld);
 			}
 			// only for the last leg
 			if(i >= legs.size()) {
 				// hide stuff for last stop (destination)
-				((TextView) legViewNew.findViewById(R.id.dDepartureTimeView)).setVisibility(View.GONE);
-				((TextView) legViewNew.findViewById(R.id.dDepartureDelayView)).setVisibility(View.GONE);
+				legViewNew.findViewById(R.id.dDepartureTimeView).setVisibility(View.GONE);
+				legViewNew.findViewById(R.id.dDepartureDelayView).setVisibility(View.GONE);
 
-				((TextView) legViewNew.findViewById(R.id.dDestinationView)).setVisibility(View.GONE);
-				((LinearLayout) legViewNew.findViewById(R.id.dLineView)).setVisibility(View.GONE);
-				((ImageView) legViewNew.findViewById(R.id.dArrowView)).setVisibility(View.GONE);
-				((TextView) legViewNew.findViewById(R.id.dDeparturePositionView)).setVisibility(View.GONE);
-				((ImageView) legViewNew.findViewById(R.id.dShowMoreView)).setVisibility(View.GONE);
-				((TextView) legViewNew.findViewById(R.id.dMessageView)).setVisibility(View.GONE);
+				legViewNew.findViewById(R.id.dDestinationView).setVisibility(View.GONE);
+				legViewNew.findViewById(R.id.dLineView).setVisibility(View.GONE);
+				legViewNew.findViewById(R.id.dArrowView).setVisibility(View.GONE);
+				legViewNew.findViewById(R.id.dDeparturePositionView).setVisibility(View.GONE);
+				legViewNew.findViewById(R.id.dShowMoreView).setVisibility(View.GONE);
+				legViewNew.findViewById(R.id.dMessageView).setVisibility(View.GONE);
 			}
 
 			if(leg instanceof Trip.Public) {
@@ -225,7 +221,7 @@ public class TripDetailFragment extends LiberarioFragment {
 					((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(public_leg.destination.uniqueShortName());
 				} else {
 					// hide arrow because this line has no destination
-					((View) legViewOld.findViewById(R.id.dArrowView)).setVisibility(View.GONE);
+					legViewOld.findViewById(R.id.dArrowView).setVisibility(View.GONE);
 				}
 
 				// set positions
@@ -259,7 +255,7 @@ public class TripDetailFragment extends LiberarioFragment {
 					legViewOld.setClickable(true);
 
 					// show 'show more' indicator when there are intermediate stops
-					((ImageView) legViewOld.findViewById(R.id.dShowMoreView)).setVisibility(View.VISIBLE);
+					legViewOld.findViewById(R.id.dShowMoreView).setVisibility(View.VISIBLE);
 
 					// make intermediate stops fold out and in on click
 					legViewOld.setOnClickListener(new View.OnClickListener() {
@@ -270,11 +266,11 @@ public class TripDetailFragment extends LiberarioFragment {
 							if(v != null) {
 								if(v.getVisibility() == View.GONE) {
 									v.setVisibility(View.VISIBLE);
-									((ImageView) view.findViewById(R.id.dShowMoreView)).setRotation(180);
+									view.findViewById(R.id.dShowMoreView).setRotation(180);
 								}
 								else if(v.getVisibility() == View.VISIBLE) {
 									v.setVisibility(View.GONE);
-									((ImageView) view.findViewById(R.id.dShowMoreView)).setRotation(0);
+									view.findViewById(R.id.dShowMoreView).setRotation(0);
 								}
 							}
 						}
@@ -310,11 +306,11 @@ public class TripDetailFragment extends LiberarioFragment {
 					@Override
 					public void onClick(View view) {
 						// remember arrival station
-						List<Location> loc_list = new ArrayList<Location>();
+/*						List<Location> loc_list = new ArrayList<Location>();
 						loc_list.add(individual.arrival);
 
 						// show station on internal map
-/*						Intent intent = new Intent(getActivity(), MapStationsActivity.class);
+						Intent intent = new Intent(getActivity(), MapStationsActivity.class);
 						intent.putExtra("List<de.schildbach.pte.dto.Location>", (ArrayList<Location>) loc_list);
 						intent.putExtra("de.schildbach.pte.dto.Location", individual.departure);
 						startActivity(intent);
@@ -347,8 +343,8 @@ public class TripDetailFragment extends LiberarioFragment {
 				});
 
 				// hide arrow and show more icon
-				((ImageView) legViewOld.findViewById(R.id.dArrowView)).setVisibility(View.GONE);
-				((ImageView) legViewOld.findViewById(R.id.dShowMoreView)).setVisibility(View.GONE);
+				legViewOld.findViewById(R.id.dArrowView).setVisibility(View.GONE);
+				legViewOld.findViewById(R.id.dShowMoreView).setVisibility(View.GONE);
 			}
 
 			view.addView(LiberarioUtils.getDivider(getActivity()));
@@ -379,16 +375,16 @@ public class TripDetailFragment extends LiberarioFragment {
 					LiberarioUtils.setArrivalTimes(getActivity(), (TextView) stopView.findViewById(R.id.sArrivalTimeView), (TextView) stopView.findViewById(R.id.sArrivalDelayView), stop);
 				}
 				else {
-					((TextView) stopView.findViewById(R.id.sArrivalTimeView)).setVisibility(View.GONE);
-					((TextView) stopView.findViewById(R.id.sArrivalDelayView)).setVisibility(View.GONE);
+					stopView.findViewById(R.id.sArrivalTimeView).setVisibility(View.GONE);
+					stopView.findViewById(R.id.sArrivalDelayView).setVisibility(View.GONE);
 				}
 
 				if(departureTime != null) {
 					LiberarioUtils.setDepartureTimes(getActivity(), (TextView) stopView.findViewById(R.id.sDepartureTimeView), (TextView) stopView.findViewById(R.id.sDepartureDelayView), stop);
 				}
 				else {
-					((TextView) stopView.findViewById(R.id.sDepartureTimeView)).setVisibility(View.GONE);
-					((TextView) stopView.findViewById(R.id.sDepartureDelayView)).setVisibility(View.GONE);
+					stopView.findViewById(R.id.sDepartureTimeView).setVisibility(View.GONE);
+					stopView.findViewById(R.id.sDepartureDelayView).setVisibility(View.GONE);
 				}
 
 				((TextView) stopView.findViewById(R.id.sLocationView)).setText(stop.location.uniqueShortName());
