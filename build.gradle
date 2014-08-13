@@ -14,7 +14,8 @@ repositories {
 apply plugin: 'android'
 
 dependencies {
-	compile 'com.android.support:appcompat-v7:+'
+	//compile 'com.android.support:appcompat-v7:18.0.+'
+	compile 'com.android.support:support-v4:19.+'
 
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.0'
 
