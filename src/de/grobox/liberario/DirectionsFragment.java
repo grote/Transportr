@@ -159,6 +159,15 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			public void onClick(View v) {
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 
+				// check and set to location
+				if(checkLocation(FavLocation.LOC_TYPE.TO, (AutoCompleteTextView) mView.findViewById(R.id.to))) {
+					query_trips.setTo(getTo());
+				}
+				else {
+					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), Toast.LENGTH_SHORT).show();
+					return;
+				}
+
 				// check and set from location
 				if(mGpsPressed) {
 					if(getFrom() != null) {
@@ -186,15 +195,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 						Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
 						return;
 					}
-				}
-
-				// check and set to location
-				if(checkLocation(FavLocation.LOC_TYPE.TO, (AutoCompleteTextView) mView.findViewById(R.id.to))) {
-					query_trips.setTo(getTo());
-				}
-				else {
-					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), Toast.LENGTH_SHORT).show();
-					return;
 				}
 
 				// remember trip if not from GPS
@@ -372,8 +372,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 					to.requestFocus();
 
 					pressGpsButton();
-
-					fromGpsButton.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
 				}
 			}
 		});
@@ -627,8 +625,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 
 	private void pressGpsButton() {
-		mGpsPressed = true;
-
 		List<String> providers = locationManager.getProviders(true);
 
 		for(String provider : providers) {
@@ -646,12 +642,18 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			return;
 		}
 
+		// activate button
+		ImageButton fromGpsButton = (ImageButton) mView.findViewById(R.id.fromGpsButton);
+		fromGpsButton.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+
+		mGpsPressed = true;
 		gps_loc = null;
 	}
 
 	private void cancelGpsButton() {
 		mGpsPressed = false;
 
+		// deactivate button
 		ImageButton fromGpsButton = (ImageButton) mView.findViewById(R.id.fromGpsButton);
 		fromGpsButton.getDrawable().setColorFilter(null);
 
