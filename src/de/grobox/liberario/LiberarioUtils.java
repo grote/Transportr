@@ -96,7 +96,7 @@ public class LiberarioUtils {
 	}
 
 	static public View getDivider(Context context) {
-		return (View) LayoutInflater.from(context).inflate(R.layout.divider_horizontal, null);
+		return LayoutInflater.from(context).inflate(R.layout.divider_horizontal, null);
 	}
 
 
@@ -147,8 +147,11 @@ public class LiberarioUtils {
 		String str = "";
 
 		for(Leg leg : trip.legs) {
+			String apos = "";
+
 			str += DateUtils.getTime(context, leg.departureTime) + " ";
 			str += leg.departure.name;
+
 			if(leg instanceof Trip.Public) {
 				Trip.Public pub = (Trip.Public) leg;
 				if(pub.line != null && pub.line.label != null) {
@@ -157,16 +160,26 @@ public class LiberarioUtils {
 					if(pub.destination  != null) str += " → " + pub.destination.uniqueShortName();
 					str += ")";
 				}
+				// show departure position if existing
+				if(pub.getDeparturePosition() != null) {
+					str += " - " + context.getString(R.string.position) + ": " + pub.getDeparturePosition().name;
+				}
+				// remember arrival position if existing
+				if(pub.getArrivalPosition() != null) {
+					apos += " - " + context.getString(R.string.position) + ": " + pub.getArrivalPosition().name;
+				}
 			} else if(leg instanceof Trip.Individual) {
 				Trip.Individual ind = (Trip.Individual) leg;
-				str += " (Walk ";
+				str += " (" + context.getString(R.string.walk) + " ";
 				if(ind.distance > 0) str += ind.distance + context.getResources().getString(R.string.meter) + " ";
 				if(ind.min > 0) str += ind.min + context.getResources().getString(R.string.min);
 				str += ")";
 			}
+
 			str += "\n";
 			str += DateUtils.getTime(context, leg.arrivalTime) + " ";
 			str += leg.arrival.name;
+			str += apos;
 			str += "\n";
 			str += "\n";
 		}
