@@ -113,14 +113,11 @@ Then, you also need to run the following command to build the public transport e
 
     $ ./pre-build.sh
 
-If you don't want to use an IDE like Eclipse, you can build Libeario on the command line as follows.
+If you don't want to use an IDE like Android Studio, you can build Liberario on the command line as follows.
 
-    $ ${ANDROID_HOME}/tools/android update project -p sublibs/Android-PullToRefresh/library/
-    $ ${ANDROID_HOME}/tools/android update project -p sublibs/ckChangeLog/library/
-    $ ${ANDROID_HOME}/tools/android update project --name Liberario -p .
-    $ ant release
+    $ gradle assembleRelease
 
-The resulting unsigned apk file will be found at `bin/Liberario-release-unsigned.apk`.
+The resulting unsigned apk file will be found at `build/outputs/apk/liberario-release-unsigned.apk`.
 
 
 ### Adding Support For A New Area ###
