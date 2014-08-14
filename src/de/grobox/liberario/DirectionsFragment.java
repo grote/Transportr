@@ -152,6 +152,16 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 					}
 				}
 			});
+
+			// handle long click on product icon by showing product name
+			productView.setOnLongClickListener(new OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View view) {
+					// TODO show nicer localized names
+					Toast.makeText(view.getContext(), product.name(), Toast.LENGTH_SHORT).show();
+					return true;
+				}
+			});
 		}
 
 		Button searchButton = (Button) mView.findViewById(R.id.searchButton);
