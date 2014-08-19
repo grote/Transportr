@@ -92,7 +92,9 @@
             android:id="@+id/dMessageView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:textColor="@color/holo_red_light"
+            android:textSize="12sp"/>
     </LinearLayout>
 
     <LinearLayout

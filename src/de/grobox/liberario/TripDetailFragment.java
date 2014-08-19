@@ -32,6 +32,7 @@ import de.schildbach.pte.dto.Trip.Public;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -240,11 +241,11 @@ public class TripDetailFragment extends LiberarioFragment {
 				msgView.setVisibility(View.GONE);
 				if(public_leg.message != null) {
 					msgView.setVisibility(View.VISIBLE);
-					msgView.setText(public_leg.message);
+					msgView.setText(Html.fromHtml(public_leg.message).toString());
 				}
 				if(public_leg.line.message != null) {
 					msgView.setVisibility(View.VISIBLE);
-					msgView.setText(msgView.getText() + "\n" + public_leg.line.message);
+					msgView.setText(msgView.getText() + "\n" + Html.fromHtml(public_leg.line.message).toString());
 				}
 
 				if(public_leg.intermediateStops != null && public_leg.intermediateStops.size() > 0) {
