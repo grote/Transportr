@@ -3,21 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/selector_list_item"
-    android:paddingBottom="5dp"
-    android:paddingRight="10dp"
-    android:paddingTop="5dp" >
+    android:paddingLeft="0dp"
+    android:paddingTop="2dp"
+    android:paddingRight="2dp"
+    android:paddingBottom="2dp">
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingRight="5dp" />
+        android:paddingRight="5dp"
+        android:paddingLeft="0dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
 
         <TextView
             android:id="@+id/favFromView"
@@ -33,19 +36,19 @@
 
     </LinearLayout>
 
-    <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:id="@+id/swapButton"
-        android:src="@drawable/ic_menu_swap_location"
-        android:scaleType="centerCrop"/>
-
     <TextView
         android:id="@+id/favCountView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:text="142"
-        android:layout_marginLeft="5dp"/>
+        android:layout_marginRight="5dp"/>
+
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/swapButton"
+        android:src="@drawable/ic_menu_swap_location"
+        android:scaleType="centerCrop"/>
 
 </LinearLayout>
