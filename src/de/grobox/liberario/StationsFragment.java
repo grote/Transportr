@@ -40,6 +40,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -93,7 +94,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			// clear favorites for auto-complete
 			AutoCompleteTextView stationView = ((AutoCompleteTextView) mView.findViewById(R.id.stationView));
 			if(stationView.getAdapter() != null) {
-				((LocationAdapter) stationView.getAdapter()).clearFavs();
+				((LocationAdapter) stationView.getAdapter()).resetList();
 			}
 
 			// clear text view
@@ -126,12 +127,18 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 	private void setDeparturesView() {
 		// station name TextView
 		final AutoCompleteTextView stationView = (AutoCompleteTextView) mView.findViewById(R.id.stationView);
-		stationView.setAdapter(new LocationAdapter(getActivity(), R.layout.list_item, true));
+		LocationAdapter locAdapter = new LocationAdapter(getActivity(), FavLocation.LOC_TYPE.FROM, true);
+		locAdapter.setFavs(true);
+		stationView.setAdapter(locAdapter);
 		stationView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
 				setStation((Location) parent.getItemAtPosition(position));
 				stationView.requestFocus();
+
+				// hide soft-keyboard
+				InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(stationView.getWindowToken(), 0);
 			}
 		});
 
@@ -163,11 +170,12 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 		});
 
+		// TODO adapt like in DirectionsFragment
 		// station name favorites button
-		mView.findViewById(R.id.stationFavButton).setOnClickListener(new OnClickListener() {
+		OnClickListener stationViewListener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				int size = ((LocationAdapter) stationView.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
+				int size = ((LocationAdapter) stationView.getAdapter()).addFavs();
 
 				if(size > 0) {
 					stationView.showDropDown();
@@ -176,7 +184,9 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 					Toast.makeText(getActivity(), getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
 				}
 			}
-		});
+		};
+		mView.findViewById(R.id.stationFavButton).setOnClickListener(stationViewListener);
+		stationView.setOnClickListener(stationViewListener);
 
 		// home station button
 		ImageButton stationHomeButton = (ImageButton) mView.findViewById(R.id.stationHomeButton);

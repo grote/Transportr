@@ -3,11 +3,6 @@
 
     <string name="app_name" translate="false">Liberario</string>
 
-    <string-array name="trip_date_type">
-        <item>departure</item>
-        <item>arrival</item>
-    </string-array>
-
     <string name="action_earlier">Find Earlier Trips</string>
     <string name="action_later">Find Later Trips</string>
     <string name="action_changelog">Change Log</string>
@@ -84,5 +79,7 @@
     <string name="home_dialog_title">Your Home Location</string>
     <string name="home_dialog_new_msg">There is no home location set for the current transportation network.</string>
     <string name="home_dialog_msg">Please give a location below by selecting one from the list.</string>
+    <string name="location_home">Click to set Home Location</string>
+    <string name="location_gps">Use Current Position</string>
 
 </resources>

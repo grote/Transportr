@@ -88,6 +88,7 @@ public class FavDB {
 
 	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
 		// don't save locations with no id
+		// TODO why not? make it happen! issue #42
 		if(!loc.hasId()) return;
 
 		DBHelper mDbHelper = new DBHelper(context);

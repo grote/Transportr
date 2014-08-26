@@ -19,6 +19,8 @@ package de.grobox.liberario;
 
 import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -27,6 +29,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -49,12 +52,14 @@ public class SetHomeActivity extends FragmentActivity {
 
 		// show new home text
 		if(!intent.getBooleanExtra("new", true)) {
-			((View) findViewById(R.id.homeMsgView)).setVisibility(View.GONE);
+			findViewById(R.id.homeMsgView).setVisibility(View.GONE);
 		}
 
 		// home location TextView
 		final AutoCompleteTextView homeView = (AutoCompleteTextView) findViewById(R.id.homeView);
-		homeView.setAdapter(new LocationAdapter(this, R.layout.list_item, true));
+		LocationAdapter locAdapter = new LocationAdapter(this, FavLocation.LOC_TYPE.FROM, true);
+		locAdapter.setFavs(true);
+		homeView.setAdapter(locAdapter);
 		homeView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
@@ -62,6 +67,10 @@ public class SetHomeActivity extends FragmentActivity {
 				homeView.setText(loc.uniqueShortName());
 				homeView.setTag(loc);
 				homeView.requestFocus();
+
+				// hide soft-keyboard
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(homeView.getWindowToken(), 0);
 			}
 		});
 
@@ -92,10 +101,10 @@ public class SetHomeActivity extends FragmentActivity {
 		});
 
 		// station name favorites button
-		((View) findViewById(R.id.homeFavButton)).setOnClickListener(new OnClickListener(){
+		findViewById(R.id.homeFavButton).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				int size = ((LocationAdapter) homeView.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
+				int size = ((LocationAdapter) homeView.getAdapter()).addFavs();
 
 				if(size > 0) {
 					homeView.showDropDown();
@@ -108,10 +117,10 @@ public class SetHomeActivity extends FragmentActivity {
 
 		// OK Button
 		Button okButton = (Button) findViewById(R.id.okButton);
-		okButton.setOnClickListener(new OnClickListener(){
+		okButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(homeView.getTag() != null && homeView.getTag() instanceof Location) {
+				if (homeView.getTag() != null && homeView.getTag() instanceof Location) {
 					// save home location in file
 					FavDB.setHome(v.getContext(), (Location) homeView.getTag());
 

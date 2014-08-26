@@ -1,9 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string-array name="trip_date_type">
-    <item>départ</item>
-    <item>arrivée</item>
-  </string-array>
   <string name="action_earlier">Trouver les trajets précédents</string>
   <string name="action_later">Trouver les trajets suivants</string>
   <string name="action_changelog">Journal des modifications</string>

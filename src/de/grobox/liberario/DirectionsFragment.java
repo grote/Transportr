@@ -18,7 +18,6 @@
 package de.grobox.liberario;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,6 +36,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -53,15 +53,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -95,9 +97,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		setToUI();
 
 		// timeView
-		final TextView timeView = (TextView) mView.findViewById(R.id.timeView);
+		final Button timeView = (Button) mView.findViewById(R.id.timeView);
 		timeView.setText(DateUtils.getcurrentTime(getActivity()));
-		mView.findViewById(R.id.timeLayout).setOnClickListener(new OnClickListener() {
+		timeView.setTag(Calendar.getInstance());
+		timeView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showTimePickerDialog();
@@ -112,9 +115,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		});
 
 		// dateView
-		final TextView dateView = (TextView) mView.findViewById(R.id.dateView);
+		final Button dateView = (Button) mView.findViewById(R.id.dateView);
 		dateView.setText(DateUtils.getcurrentDate(getActivity()));
-		mView.findViewById(R.id.dateLayout).setOnClickListener(new OnClickListener() {
+		dateView.setTag(Calendar.getInstance());
+		dateView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showDatePickerDialog();
@@ -122,10 +126,16 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		});
 
 		// Trip Date Type Spinner (departure or arrival)
-		final Spinner spinner = (Spinner) mView.findViewById(R.id.dateTypeSpinner);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.trip_date_type, android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
+		final TextView dateType = (TextView) mView.findViewById(R.id.dateType);
+		dateType.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if(dateType.getText().equals(getString(R.string.trip_dep))) {
+					dateType.setText(getString(R.string.trip_arr));
+				} else {
+					dateType.setText(getString(R.string.trip_dep));
+				}
+			}
+		});
 
 		// Products
 		ViewGroup productsLayout = (ViewGroup) mView.findViewById(R.id.productsLayout);
@@ -133,21 +143,21 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			final ImageView productView = (ImageView) productsLayout.getChildAt(i);
 			final Product product = Product.fromCode(productView.getTag().toString().charAt(0));
 
-			// make active products blue
+			// make inactive products gray
 			if(mProducts.contains(product)) {
-				productView.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
-			} else {
 				productView.getDrawable().setColorFilter(null);
+			} else {
+				productView.getDrawable().setColorFilter(getResources().getColor(R.color.highlight), PorterDuff.Mode.SRC_ATOP);
 			}
 
 			// handle click on product icon
 			productView.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					if(mProducts.contains(product)) {
-						productView.getDrawable().setColorFilter(null);
+						productView.getDrawable().setColorFilter(getResources().getColor(R.color.highlight), PorterDuff.Mode.SRC_ATOP);
 						mProducts.remove(product);
 					} else {
-						productView.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+						productView.getDrawable().setColorFilter(null);
 						mProducts.add(product);
 					}
 				}
@@ -170,8 +180,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 
 				// check and set to location
-				if(checkLocation(FavLocation.LOC_TYPE.TO, (AutoCompleteTextView) mView.findViewById(R.id.to))) {
-					query_trips.setTo(getTo());
+				if(checkLocation(FavLocation.LOC_TYPE.TO)) {
+					query_trips.setTo(getLocation(FavLocation.LOC_TYPE.TO));
 				}
 				else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), Toast.LENGTH_SHORT).show();
@@ -180,8 +190,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 				// check and set from location
 				if(mGpsPressed) {
-					if(getFrom() != null) {
-						query_trips.setFrom(getFrom());
+					if(getLocation(FavLocation.LOC_TYPE.FROM) != null) {
+						query_trips.setFrom(getLocation(FavLocation.LOC_TYPE.FROM));
 					} else {
 						mAfterGpsTask = query_trips;
 
@@ -199,24 +209,24 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 						pd.show();
 					}
 				} else {
-					if(checkLocation(FavLocation.LOC_TYPE.FROM, (AutoCompleteTextView) mView.findViewById(R.id.from))) {
-						query_trips.setFrom(getFrom());
+					if(checkLocation(FavLocation.LOC_TYPE.FROM)) {
+						query_trips.setFrom(getLocation(FavLocation.LOC_TYPE.FROM));
 					} else {
-						Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
+						Toast.makeText(getActivity(), getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
 						return;
 					}
 				}
 
 				// remember trip if not from GPS
 				if(!mGpsPressed) {
-					FavDB.updateFavTrip(getActivity(), new FavTrip(getFrom(), getTo()));
+					FavDB.updateFavTrip(getActivity(), new FavTrip(getLocation(FavLocation.LOC_TYPE.FROM), getLocation(FavLocation.LOC_TYPE.TO)));
 				}
 
 				// set date
 				query_trips.setDate(DateUtils.mergeDateTime(getActivity(), dateView.getText(), timeView.getText()));
 
 				// set departure to true of first item is selected in spinner
-				query_trips.setDeparture(spinner.getSelectedItem().equals(spinner.getItemAtPosition(0)));
+				query_trips.setDeparture(dateType.getText().equals(getString(R.string.trip_dep)));
 
 				// set products
 				query_trips.setProducts(mProducts);
@@ -243,8 +253,9 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// Inflate the menu items for use in the action bar
 		inflater.inflate(R.menu.directions, menu);
 
-		View moreLayout = mView.findViewById(R.id.moreLayout);
-		if(moreLayout.getVisibility() == View.GONE) {
+		// TODO remember view state
+		View productsScrollView = mView.findViewById(R.id.productsScrollView);
+		if(productsScrollView.getVisibility() == View.GONE) {
 			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_expand);
 		} else {
 			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_collapse);
@@ -258,20 +269,31 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_navigation_expand:
-				View moreLayout = mView.findViewById(R.id.moreLayout);
-				if(moreLayout.getVisibility() == View.GONE) {
-					moreLayout.setVisibility(View.VISIBLE);
+				// TODO remember view state
+				View productsScrollView = mView.findViewById(R.id.productsScrollView);
+				if(productsScrollView.getVisibility() == View.GONE) {
+					productsScrollView.setVisibility(View.VISIBLE);
 					item.setIcon(R.drawable.ic_action_navigation_collapse);
 				} else {
-					moreLayout.setVisibility(View.GONE);
+					productsScrollView.setVisibility(View.GONE);
 					item.setIcon(R.drawable.ic_action_navigation_expand);
 				}
 
 				return true;
 			case R.id.action_swap_locations:
-				Location tmp = getFrom();
-				setFrom(getTo());
-				setTo(tmp);
+				// get location icons to be swapped as well
+				final ImageView fromStatusButton = (ImageView) mView.findViewById(R.id.fromStatusButton);
+				final Drawable icon = ((ImageView) mView.findViewById(R.id.toStatusButton)).getDrawable();
+
+				// swap location objects and drawables
+				Location tmp = getLocation(FavLocation.LOC_TYPE.TO);
+				if(!mGpsPressed) {
+					setLocation(getLocation(FavLocation.LOC_TYPE.FROM), FavLocation.LOC_TYPE.TO, fromStatusButton.getDrawable());
+				} else {
+					// GPS currently only supports from location, so don't swap it
+					clearLocation(FavLocation.LOC_TYPE.TO);
+				}
+				setLocation(tmp, FavLocation.LOC_TYPE.FROM, icon);
 
 				return true;
 			default:
@@ -290,13 +312,11 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		// remove old text from TextViews
 		if(mView != null) {
-			((AutoCompleteTextView) mView.findViewById(R.id.from)).setText("");
 			mView.findViewById(R.id.fromClearButton).setVisibility(View.GONE);
-			setFrom(null);
+			clearLocation(FavLocation.LOC_TYPE.FROM);
 
-			((AutoCompleteTextView) mView.findViewById(R.id.to)).setText("");
 			mView.findViewById(R.id.toClearButton).setVisibility(View.GONE);
-			setTo(null);
+			clearLocation(FavLocation.LOC_TYPE.TO);
 		}
 	}
 
@@ -304,51 +324,50 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// after new home location was selected, put it right into the input field
 		if(resultCode == FragmentActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
-			if(mHomeClicked == FavLocation.LOC_TYPE.FROM) {
-				setFrom(FavDB.getHome(getActivity()));
-			}
-			else if(mHomeClicked == FavLocation.LOC_TYPE.TO) {
-				setTo(FavDB.getHome(getActivity()));
-			}
+			setLocation(FavDB.getHome(getActivity()), mHomeClicked, getResources().getDrawable(R.drawable.ic_action_home));
 		}
 	}
 
 	private void setFromUI() {
-		// Home Button
-		ImageButton fromHomeButton = (ImageButton) mView.findViewById(R.id.fromHomeButton);
-		fromHomeButton.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				Location home = FavDB.getHome(getActivity());
-
-				if(home != null) {
-					setFrom(home);
-				}
-				else {
-					startSetHome(true, FavLocation.LOC_TYPE.FROM);
-				}
-				cancelGpsButton();
-			}
-		});
-		// Home Button Long Click
-		fromHomeButton.setOnLongClickListener(new OnLongClickListener(){
-			@Override
-			public boolean onLongClick(View v) {
-				startSetHome(false, FavLocation.LOC_TYPE.FROM);
-				cancelGpsButton();
-
-				return true;
-			}
-		});
-
 		// From text input
 		final AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
-		from.setAdapter(new LocationAdapter(getActivity(), R.layout.list_item));
-		from.setOnItemClickListener(new OnItemClickListener(){
+		final TextView fromText = (TextView) mView.findViewById(R.id.fromText);
+
+		OnClickListener fromListener = new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if(from.getText().length() > 0) {
+					from.showDropDown();
+				} else {
+					handleInputClick(FavLocation.LOC_TYPE.FROM);
+				}
+			}
+		};
+
+		from.setOnClickListener(fromListener);
+		fromText.setOnClickListener(fromListener);
+
+		// From Location List for Dropdown
+		final LocationAdapter locAdapter = new LocationAdapter(getActivity(), FavLocation.LOC_TYPE.FROM);
+		locAdapter.setFavs(true);
+		locAdapter.setHome(true);
+		locAdapter.setGPS(true);
+		from.setAdapter(locAdapter);
+		from.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				setFrom((Location) parent.getItemAtPosition(position));
-				from.requestFocus();
+				handleLocationItemClick(locAdapter.getItem(position), view, FavLocation.LOC_TYPE.FROM);
+			}
+		});
+
+		// TODO itemLongClickListener to change homeLocation
+
+		final ImageView fromStatusButton = (ImageView) mView.findViewById(R.id.fromStatusButton);
+		fromStatusButton.setImageDrawable(null);
+		fromStatusButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				handleInputClick(FavLocation.LOC_TYPE.FROM);
 			}
 		});
 
@@ -357,32 +376,9 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		fromClearButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				from.setText("");
 				from.requestFocus();
-				setFrom(null);
+				clearLocation(FavLocation.LOC_TYPE.FROM);
 				fromClearButton.setVisibility(View.GONE);
-			}
-		});
-
-		// GPS Button
-		final ImageButton fromGpsButton = (ImageButton) mView.findViewById(R.id.fromGpsButton);
-		fromGpsButton.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				if(mGpsPressed) {
-					cancelGpsButton();
-				} else {
-					// clear from text
-					from.setText(null);
-					setFrom(null);
-					fromClearButton.setVisibility(View.GONE);
-
-					// focus to text
-					AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
-					to.requestFocus();
-
-					pressGpsButton();
-				}
 			}
 		});
 
@@ -390,64 +386,68 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		from.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// clear location
-				setFrom(null);
-
 				// show clear button
 				if(s.length() > 0) {
 					fromClearButton.setVisibility(View.VISIBLE);
+					// clear location
+					setLocation(null, FavLocation.LOC_TYPE.FROM, null, false);
 				} else {
 					fromClearButton.setVisibility(View.GONE);
+					clearLocation(FavLocation.LOC_TYPE.FROM);
+					// clear drop-down list
+					locAdapter.resetList();
 				}
 
 				cancelGpsButton();
 			}
-			public void afterTextChanged(Editable s) {}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-		});
-		mView.findViewById(R.id.fromFavButton).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				fromFavClick();
-				cancelGpsButton();
+
+			public void afterTextChanged(Editable s) {
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			}
 		});
 	}
 
 	private void setToUI() {
-		// Home Button
-		ImageButton toHomeButton = (ImageButton) mView.findViewById(R.id.toHomeButton);
-		toHomeButton.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				Location home = FavDB.getHome(getActivity());
-
-				if(home != null) {
-					setTo(home);
-				}
-				else {
-					startSetHome(true, FavLocation.LOC_TYPE.TO);
-				}
-			}
-		});
-		// Home Button Long Click
-		toHomeButton.setOnLongClickListener(new OnLongClickListener(){
-			@Override
-			public boolean onLongClick(View v) {
-				startSetHome(false, FavLocation.LOC_TYPE.TO);
-
-				return true;
-			}
-		});
-
 		// To text input
 		final AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
-		to.setAdapter(new LocationAdapter(getActivity(), R.layout.list_item));
-		to.setOnItemClickListener(new OnItemClickListener(){
+		final TextView toText = (TextView) mView.findViewById(R.id.toText);
+
+		OnClickListener toListener = new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if(to.getText().length() > 0) {
+					to.showDropDown();
+				} else {
+					handleInputClick(FavLocation.LOC_TYPE.TO);
+				}
+			}
+		};
+
+		to.setOnClickListener(toListener);
+		toText.setOnClickListener(toListener);
+
+		// To Location List for Dropdown
+		final LocationAdapter locAdapter = new LocationAdapter(getActivity(), FavLocation.LOC_TYPE.TO);
+		locAdapter.setFavs(true);
+		locAdapter.setHome(true);
+		to.setAdapter(locAdapter);
+		to.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				setTo((Location) parent.getItemAtPosition(position));
-				to.requestFocus();
+				handleLocationItemClick(locAdapter.getItem(position), view, FavLocation.LOC_TYPE.TO);
+			}
+		});
+
+		// TODO itemLongClickListener to change homeLocation
+
+		final ImageView toStatusButton = (ImageView) mView.findViewById(R.id.toStatusButton);
+		toStatusButton.setImageDrawable(null);
+		toStatusButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				handleInputClick(FavLocation.LOC_TYPE.TO);
 			}
 		});
 
@@ -456,9 +456,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		toClearButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				to.setText("");
 				to.requestFocus();
-				setTo(null);
+				clearLocation(FavLocation.LOC_TYPE.TO);
 				toClearButton.setVisibility(View.GONE);
 			}
 		});
@@ -467,71 +466,72 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		to.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// clear location
-				setTo(null);
-
 				// show clear button
 				if(s.length() > 0) {
 					toClearButton.setVisibility(View.VISIBLE);
+					// clear location
+					setLocation(null, FavLocation.LOC_TYPE.TO, null, false);
 				} else {
 					toClearButton.setVisibility(View.GONE);
+					clearLocation(FavLocation.LOC_TYPE.TO);
+					// clear drop-down list
+					locAdapter.resetList();
 				}
 			}
-			public void afterTextChanged(Editable s) {}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-		});
-		mView.findViewById(R.id.toFavButton).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				toFavClick();
+
+			public void afterTextChanged(Editable s) {
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			}
 		});
 	}
 
-	private Location getFrom() {
-		AutoCompleteTextView fromView = (AutoCompleteTextView) mView.findViewById(R.id.from);
-		return (Location) fromView.getTag();
-	}
-
-	private void setFrom(Location loc) {
-		if(!mChange) {
-			mChange = true;
+	private Location getLocation(FavLocation.LOC_TYPE loc_type) {
+		if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
 			AutoCompleteTextView fromView = (AutoCompleteTextView) mView.findViewById(R.id.from);
-			fromView.setTag(loc);
-
-			if(loc != null) {
-				fromView.setText(loc.uniqueShortName());
-				fromView.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
-				fromView.dismissDropDown();
-			}
-			else {
-				fromView.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
-			}
-			mChange = false;
+			return (Location) fromView.getTag();
+		} else {
+			AutoCompleteTextView toView = (AutoCompleteTextView) mView.findViewById(R.id.to);
+			return (Location) toView.getTag();
 		}
 	}
 
-	private Location getTo() {
-		AutoCompleteTextView toView = (AutoCompleteTextView) mView.findViewById(R.id.to);
-		return (Location) toView.getTag();
-	}
-
-	private void setTo(Location loc) {
+	private void setLocation(Location loc, FavLocation.LOC_TYPE loc_type, Drawable icon, boolean setText) {
 		if(!mChange) {
 			mChange = true;
-			AutoCompleteTextView toView = (AutoCompleteTextView) mView.findViewById(R.id.to);
-			toView.setTag(loc);
+			final ImageView statusButton;
+			AutoCompleteTextView textView;
+
+			if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
+				statusButton = (ImageView) mView.findViewById(R.id.fromStatusButton);
+				textView = (AutoCompleteTextView) mView.findViewById(R.id.from);
+			} else {
+				statusButton = (ImageView) mView.findViewById(R.id.toStatusButton);
+				textView = (AutoCompleteTextView) mView.findViewById(R.id.to);
+			}
+
+			textView.setTag(loc);
 
 			if(loc != null) {
-				toView.setText(loc.uniqueShortName());
-				toView.getBackground().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
-				toView.dismissDropDown();
+				if(setText) textView.setText(loc.uniqueShortName());
+			} else {
+				if(setText) textView.setText(null);
 			}
-			else {
-				toView.getBackground().setColorFilter(getResources().getColor(R.color.holo_red_light), PorterDuff.Mode.SRC_ATOP);
-			}
+
+			statusButton.setImageDrawable(icon);
+			textView.dismissDropDown();
+
 			mChange = false;
 		}
+	}
+
+	private void setLocation(Location loc, FavLocation.LOC_TYPE loc_type, Drawable icon) {
+		setLocation(loc, loc_type, icon, true);
+	}
+
+	private void clearLocation(FavLocation.LOC_TYPE loc_type) {
+		setLocation(null, loc_type, null);
 	}
 
 	private void startSetHome(boolean new_home, FavLocation.LOC_TYPE home_clicked) {
@@ -571,24 +571,20 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	}
 
-	public void fromFavClick() {
-		AutoCompleteTextView from = ((AutoCompleteTextView) mView.findViewById(R.id.from));
-		int size = ((LocationAdapter) from.getAdapter()).addFavs(FavLocation.LOC_TYPE.FROM);
+	public void handleInputClick(FavLocation.LOC_TYPE loc_type) {
+		AutoCompleteTextView textView;
+
+		if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
+			textView = ((AutoCompleteTextView) mView.findViewById(R.id.from));
+		} else {
+			textView = ((AutoCompleteTextView) mView.findViewById(R.id.to));
+		}
+
+		LocationAdapter locAdapter = (LocationAdapter) textView.getAdapter();
+		int size = locAdapter.addFavs();
 
 		if(size > 0) {
-			from.showDropDown();
-		}
-		else {
-			Toast.makeText(getActivity(), getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
-		}
-	}
-
-	public void toFavClick() {
-		AutoCompleteTextView to = ((AutoCompleteTextView) mView.findViewById(R.id.to));
-		int size = ((LocationAdapter) to.getAdapter()).addFavs(FavLocation.LOC_TYPE.TO);
-
-		if(size > 0) {
-			to.showDropDown();
+			textView.showDropDown();
 		}
 		else {
 			Toast.makeText(getActivity(), getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
@@ -598,29 +594,29 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	public void refreshFavs() {
 		if(mView != null) {
 			AutoCompleteTextView from = ((AutoCompleteTextView) mView.findViewById(R.id.from));
-			((LocationAdapter) from.getAdapter()).clearFavs();
+			((LocationAdapter) from.getAdapter()).resetList();
 
 			AutoCompleteTextView to = ((AutoCompleteTextView) mView.findViewById(R.id.to));
-			((LocationAdapter) to.getAdapter()).clearFavs();
+			((LocationAdapter) to.getAdapter()).resetList();
 		}
 	}
 
-	private Boolean checkLocation(FavLocation.LOC_TYPE loc_type, AutoCompleteTextView view) {
-		// ugly hack to have one method for all private location vars because call by reference isn't possible
-		Location loc = null;
-		if(loc_type == FavLocation.LOC_TYPE.FROM) loc = getFrom();
-		else if(loc_type == FavLocation.LOC_TYPE.TO) loc = getTo();
+	private Boolean checkLocation(FavLocation.LOC_TYPE loc_type) {
+		Location loc = getLocation(loc_type);
+
+		AutoCompleteTextView view;
+		if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
+			view = (AutoCompleteTextView) mView.findViewById(R.id.from);
+		} else {
+			view = (AutoCompleteTextView) mView.findViewById(R.id.to);
+		}
 
 		if(loc == null) {
 			// no location was selected by user
 			if(!view.getText().toString().equals("")) {
 				// no location selected, but text entered. So let's try create locations from text
-				if(loc_type == FavLocation.LOC_TYPE.FROM) {
-					setFrom(new Location(LocationType.ANY, null, view.getText().toString(), view.getText().toString()));
-				}
-				else if(loc_type == FavLocation.LOC_TYPE.TO) {
-					setTo(new Location(LocationType.ANY, null, view.getText().toString(), view.getText().toString()));
-				}
+				setLocation(new Location(LocationType.ANY, null, view.getText().toString(), view.getText().toString()), loc_type, null);
+
 				return true;
 			}
 			return false;
@@ -631,6 +627,64 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 
 		return true;
+	}
+
+	private void handleLocationItemClick(Location loc, View view, FavLocation.LOC_TYPE loc_type) {
+		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
+		AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
+		AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
+
+		if(loc.id != null && loc.id.equals("Liberario.GPS")) {
+			if(mGpsPressed) {
+				cancelGpsButton();
+			}
+			else {
+				// clear from text
+				from.setText(null);
+				setLocation(null, FavLocation.LOC_TYPE.FROM, icon);
+				ImageButton fromClearButton = (ImageButton) mView.findViewById(R.id.fromClearButton);
+				fromClearButton.setVisibility(View.VISIBLE);
+
+				to.requestFocus();
+
+				pressGpsButton();
+			}
+		}
+		else {
+			// home location
+			if (loc.id != null && loc.id.equals("Liberario.HOME")) {
+				Location home = FavDB.getHome(getActivity());
+
+				if(home != null) {
+					setLocation(home, loc_type, icon);
+				} else {
+					// prevent home.toString() from being shown in the TextView
+					if (loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
+						from.setText("");
+					} else {
+						to.setText("");
+					}
+					// show dialog to set home screen
+					startSetHome(true, loc_type);
+				}
+			}
+			// locations from favorites or auto-complete
+			else {
+				setLocation(loc, loc_type, icon);
+			}
+
+			// prepare to hide soft-keyboard
+			InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+			if (loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
+				// cancel GPS Button if different from location was clicked
+				cancelGpsButton();
+				imm.hideSoftInputFromWindow(from.getWindowToken(), 0);
+				to.requestFocus();
+			} else {
+				imm.hideSoftInputFromWindow(to.getWindowToken(), 0);
+			}
+		}
 	}
 
 
@@ -652,9 +706,13 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			return;
 		}
 
-		// activate button
-		ImageButton fromGpsButton = (ImageButton) mView.findViewById(R.id.fromGpsButton);
-		fromGpsButton.getDrawable().setColorFilter(getResources().getColor(R.color.holo_blue_light), PorterDuff.Mode.SRC_ATOP);
+		// show GPS button blinking
+		final Animation animation = new AlphaAnimation(1, 0);
+		animation.setDuration(500);
+		animation.setInterpolator(new LinearInterpolator());
+		animation.setRepeatCount(Animation.INFINITE);
+		animation.setRepeatMode(Animation.REVERSE);
+		mView.findViewById(R.id.fromStatusButton).setAnimation(animation);
 
 		mGpsPressed = true;
 		gps_loc = null;
@@ -664,8 +722,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		mGpsPressed = false;
 
 		// deactivate button
-		ImageButton fromGpsButton = (ImageButton) mView.findViewById(R.id.fromGpsButton);
-		fromGpsButton.getDrawable().setColorFilter(null);
+		mView.findViewById(R.id.fromStatusButton).clearAnimation();
 
 		removeUpdates();
 	}
@@ -693,7 +750,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 			// create location based on GPS coordinates
 			gps_loc = new Location(LocationType.ADDRESS, null, lat, lon, null, lat_str + "/" + lon_str);
-			setFrom(gps_loc);
+			setLocation(gps_loc, FavLocation.LOC_TYPE.FROM, getResources().getDrawable(R.drawable.ic_gps));
 
 			if(pd != null) {
 				pd.dismiss();
@@ -722,17 +779,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			TextView timeView = (TextView) getActivity().findViewById(R.id.timeView);
-			Calendar c = Calendar.getInstance();
-
-			Date date = DateUtils.parseTime(getActivity().getApplicationContext(), timeView.getText());
-
-			if(date != null) {
-				c.setTime(date);
-			} else {
-				// if time couldn't be parsed, use current time
-				c.setTime(new Date());
-			}
+			Button timeView = (Button) getActivity().findViewById(R.id.timeView);
+			Calendar c = (Calendar) timeView.getTag();
 
 			// set time for picker
 			int hour = c.get(Calendar.HOUR_OF_DAY);
@@ -743,8 +791,14 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 
 		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-			TextView timeView = (TextView) getActivity().findViewById(R.id.timeView);
+			Button timeView = (Button) getActivity().findViewById(R.id.timeView);
 			timeView.setText(DateUtils.formatTime(getActivity().getApplicationContext(), hourOfDay, minute));
+
+			// store Calendar instance with Button
+			Calendar c = Calendar.getInstance();
+			c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+			c.set(Calendar.MINUTE, minute);
+			timeView.setTag(c);
 		}
 	}
 
@@ -756,17 +810,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			TextView dateView = (TextView) getActivity().findViewById(R.id.dateView);
-			Calendar c = Calendar.getInstance();
-
-			Date date = DateUtils.parseDate(getActivity().getApplicationContext(), dateView.getText()); 
-
-			if(date != null) {
-				c.setTime(date);
-			} else {
-				// if date couldn't be parsed, use current date
-				c.setTime(new Date());
-			}
+			Button dateView = (Button) getActivity().findViewById(R.id.dateView);
+			Calendar c = (Calendar) dateView.getTag();
 
 			// set date for picker
 			int year = c.get(Calendar.YEAR);
@@ -778,30 +823,36 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 
 		public void onDateSet(DatePicker view, int year, int month, int day) {
-			TextView dateView = (TextView) getActivity().findViewById(R.id.dateView);
+			Button dateView = (Button) getActivity().findViewById(R.id.dateView);
 			dateView.setText(DateUtils.formatDate(getActivity().getApplicationContext(), year, month, day));
+
+			// store Calendar instance with Button
+			Calendar c = Calendar.getInstance();
+			c.set(Calendar.YEAR, year);
+			c.set(Calendar.MONTH, month);
+			c.set(Calendar.DAY_OF_MONTH, day);
+			dateView.setTag(c);
 		}
 	}
 
 	private void addToTime(int min) {
-		TextView timeView = (TextView) getActivity().findViewById(R.id.timeView);
-		Calendar c = Calendar.getInstance();
+		Button timeView = (Button) getActivity().findViewById(R.id.timeView);
+		Button dateView = (Button) getActivity().findViewById(R.id.dateView);
+		Calendar c = (Calendar) timeView.getTag();
+		Calendar c_date = (Calendar) dateView.getTag();
 
-		Date date = DateUtils.parseTime(getActivity().getApplicationContext(), timeView.getText());
-
-		if(date != null) {
-			c.setTime(date);
-		} else {
-			// if time couldn't be parsed, use current time
-			c.setTime(new Date());
-		}
+		// set the date to the calendar, so it can calculate a day overflow
+		c.set(Calendar.YEAR, c_date.get(Calendar.YEAR));
+		c.set(Calendar.MONTH, c_date.get(Calendar.MONTH));
+		c.set(Calendar.DAY_OF_MONTH, c_date.get(Calendar.DAY_OF_MONTH));
 
 		// add min minutes
 		c.add(Calendar.MINUTE, min);
 
-		// FIXME adapt also date if necessary or show warning about date
-
 		timeView.setText(DateUtils.getTime(getActivity(), c));
+		timeView.setTag(c);
+		dateView.setText(DateUtils.getDate(getActivity(), c.getTime()));
+		dateView.setTag(c);
 	}
 
 }
