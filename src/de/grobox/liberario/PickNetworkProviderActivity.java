@@ -214,6 +214,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		de.add(new NetworkItem(NetworkId.NVBW, "NVBW", "Baden-Württemberg, Konstanz, Basel, Basel-Stadt"));
 		de.add(new NetworkItem(NetworkId.VVV, "VVV", "Vogtland, Plauen"));
 		de.add(new NetworkItem(NetworkId.VGS, "VGS", "Saarland, Saarbrücken"));
+		de.add(new NetworkItem(NetworkId.RSAG, "RSAG", "Rostock", true));
 		listNetwork.put("Germany", de);
 
 		listRegion.add("Österreich");

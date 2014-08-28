@@ -89,7 +89,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 					// Retrieve the auto-complete results
 					if(constraint.length() > 2) {
 						try {
-							resultList = autocomplete.execute().get().locations;
+							resultList = autocomplete.execute().get().getLocations();
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						} catch (ExecutionException e) {
