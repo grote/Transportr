@@ -4,6 +4,8 @@
     <release version="0.5.1" versioncode="10">
         <change>Station position is now shown in calendar export and shared trip text</change>
         <change>Long press on products now shows their name</change>
+        <change>Special connection messages are shown in red and without HTML code</change>
+        <change>Updated PTE: Added support for Rostock (RSAG), fixed encoding errors in auto-completion, fewer departures shown</change>
     </release>
 
     <release version="0.5" versioncode="9">
