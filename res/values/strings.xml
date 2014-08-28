@@ -82,4 +82,14 @@
     <string name="location_home">Click to set Home Location</string>
     <string name="location_gps">Use Current Position</string>
 
+    <string name="product_high_speed_train">High-Speed Train</string>
+    <string name="product_regional_train">Regional Train</string>
+    <string name="product_suburban_train">Suburban Train</string>
+    <string name="product_subway">Subway</string>
+    <string name="product_tram">Tram</string>
+    <string name="product_bus">Bus</string>
+    <string name="product_ferry">Ferry</string>
+    <string name="product_cablecar">Cablecar</string>
+    <string name="product_on_demand">On Demand</string>
+
 </resources>

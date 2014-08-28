@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.schildbach.pte.dto.Line;
+import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Style.Shape;
 import de.schildbach.pte.dto.Trip;
@@ -185,6 +186,30 @@ public class LiberarioUtils {
 		}
 
 		return str;
+	}
+
+	static public String productToString(Context context, Product p) {
+		if(p == Product.HIGH_SPEED_TRAIN)
+			return context.getString(R.string.product_high_speed_train);
+		else if (p == Product.REGIONAL_TRAIN)
+			return context.getString(R.string.product_regional_train);
+		else if (p == Product.SUBURBAN_TRAIN)
+			return context.getString(R.string.product_suburban_train);
+		else if (p == Product.SUBWAY)
+			return context.getString(R.string.product_subway);
+		else if (p == Product.TRAM)
+			return context.getString(R.string.product_tram);
+		else if (p == Product.BUS)
+			return context.getString(R.string.product_bus);
+		else if (p == Product.FERRY)
+			return context.getString(R.string.product_ferry);
+		else if (p == Product.CABLECAR)
+			return context.getString(R.string.product_cablecar);
+		else if (p == Product.ON_DEMAND)
+			return context.getString(R.string.product_on_demand);
+		else
+			return "";
+
 	}
 
 }

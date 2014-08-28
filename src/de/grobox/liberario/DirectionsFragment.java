@@ -107,6 +107,16 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			}
 		});
 
+		// set current time on long click
+		timeView.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View view) {
+				timeView.setText(DateUtils.getcurrentTime(getActivity()));
+				timeView.setTag(Calendar.getInstance());
+				return true;
+			}
+		});
+
 		Button plus10Button = (Button) mView.findViewById(R.id.plus15Button);
 		plus10Button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -122,6 +132,16 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			@Override
 			public void onClick(View v) {
 				showDatePickerDialog();
+			}
+		});
+
+		// set current date on long click
+		dateView.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View view) {
+				dateView.setText(DateUtils.getcurrentDate(getActivity()));
+				dateView.setTag(Calendar.getInstance());
+				return true;
 			}
 		});
 
@@ -156,9 +176,11 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 					if(mProducts.contains(product)) {
 						productView.getDrawable().setColorFilter(getResources().getColor(R.color.highlight), PorterDuff.Mode.SRC_ATOP);
 						mProducts.remove(product);
+						Toast.makeText(v.getContext(), LiberarioUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
 					} else {
 						productView.getDrawable().setColorFilter(null);
 						mProducts.add(product);
+						Toast.makeText(v.getContext(), LiberarioUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -167,8 +189,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			productView.setOnLongClickListener(new OnLongClickListener() {
 				@Override
 				public boolean onLongClick(View view) {
-					// TODO show nicer localized names
-					Toast.makeText(view.getContext(), product.name(), Toast.LENGTH_SHORT).show();
+					Toast.makeText(view.getContext(), LiberarioUtils.productToString(view.getContext(), product), Toast.LENGTH_SHORT).show();
 					return true;
 				}
 			});
