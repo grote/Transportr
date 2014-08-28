@@ -93,6 +93,7 @@ public final class NetworkProviderFactory
 	private static Reference<VrtProvider> vrtProviderRef;
 	private static Reference<JetProvider> jetProviderRef;
 	private static Reference<PacaProvider> pacaProviderRef;
+	private static Reference<RsagProvider> rsagProviderRef;
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
 	{
@@ -952,6 +953,19 @@ public final class NetworkProviderFactory
 
 			final PacaProvider provider = new PacaProvider();
 			pacaProviderRef = new SoftReference<PacaProvider>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.RSAG))
+		{
+			if (rsagProviderRef != null)
+			{
+				final RsagProvider provider = rsagProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final RsagProvider provider = new RsagProvider();
+			rsagProviderRef = new SoftReference<RsagProvider>(provider);
 			return provider;
 		}
 		else

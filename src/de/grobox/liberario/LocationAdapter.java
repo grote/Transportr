@@ -83,7 +83,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 
 					// Retrieve the auto-complete results.
 					try {
-						resultList = autocomplete.execute().get().locations;
+						resultList = autocomplete.execute().get().getLocations();
 						addedFavs = false;
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
