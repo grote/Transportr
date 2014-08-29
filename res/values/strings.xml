@@ -71,6 +71,7 @@
     <string name="error_no_proper_station">The provided location is no proper station</string>
     <string name="error_only_autocomplete_station">Please select a station from the autocompletion list!</string>
     <string name="error_no_station_location">Cannot find the location of the(se) station(s)</string>
+    <string name="error_no_trips_capability">This transportation network does not support querying for directions.</string>
 
     <string name="number_of_stations">Number of Stations</string>
     <string name="meter">m</string>

@@ -198,6 +198,12 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		Button searchButton = (Button) mView.findViewById(R.id.searchButton);
 		searchButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getActivity()));
+				if(!np.hasCapabilities(NetworkProvider.Capability.TRIPS)) {
+					Toast.makeText(v.getContext(), v.getContext().getString(R.string.error_no_trips_capability), Toast.LENGTH_SHORT).show();
+					return;
+				}
+
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 
 				// check and set to location
