@@ -44,7 +44,7 @@
     <string name="date">Date</string>
     <string name="min"> min</string>
     <string name="walk">Walk</string>
-    <string name="position">Position</string>
+    <string name="position">Platform</string>
     <string name="destination">Destination</string>
     <string name="detail_duration">Duration:</string>
     <string name="detail_date">Date:</string>
