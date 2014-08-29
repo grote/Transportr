@@ -158,7 +158,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		});
 
 		// Products
-		ViewGroup productsLayout = (ViewGroup) mView.findViewById(R.id.productsLayout);
+		final ViewGroup productsLayout = (ViewGroup) mView.findViewById(R.id.productsLayout);
 		for(int i = 0; i < productsLayout.getChildCount(); ++i) {
 			final ImageView productView = (ImageView) productsLayout.getChildAt(i);
 			final Product product = Product.fromCode(productView.getTag().toString().charAt(0));
@@ -193,6 +193,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 					return true;
 				}
 			});
+		}
+
+		if(!Preferences.getPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS)) {
+			(mView.findViewById(R.id.productsScrollView)).setVisibility(View.GONE);
 		}
 
 		Button searchButton = (Button) mView.findViewById(R.id.searchButton);
@@ -280,7 +284,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// Inflate the menu items for use in the action bar
 		inflater.inflate(R.menu.directions, menu);
 
-		// TODO remember view state
 		View productsScrollView = mView.findViewById(R.id.productsScrollView);
 		if(productsScrollView.getVisibility() == View.GONE) {
 			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_expand);
@@ -296,14 +299,15 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_navigation_expand:
-				// TODO remember view state
 				View productsScrollView = mView.findViewById(R.id.productsScrollView);
 				if(productsScrollView.getVisibility() == View.GONE) {
 					productsScrollView.setVisibility(View.VISIBLE);
 					item.setIcon(R.drawable.ic_action_navigation_collapse);
+					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, true);
 				} else {
 					productsScrollView.setVisibility(View.GONE);
 					item.setIcon(R.drawable.ic_action_navigation_expand);
+					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false);
 				}
 
 				return true;

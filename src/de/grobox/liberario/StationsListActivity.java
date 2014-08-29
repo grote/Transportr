@@ -101,7 +101,7 @@ public class StationsListActivity extends Activity {
 		inflater.inflate(R.menu.stations_activity_actions, menu);
 		mMenu = menu;
 
-		if(Preferences.getShowPlatforms(this)) {
+		if(Preferences.getPref(this, Preferences.SHOW_PLATFORM)) {
 			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
 		} else {
 			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
@@ -152,7 +152,7 @@ public class StationsListActivity extends Activity {
 
 				return true;
 			case R.id.action_platforms:
-				boolean show = !Preferences.getShowPlatforms(this);
+				boolean show = !Preferences.getPref(this, Preferences.SHOW_PLATFORM);
 
 				// change action icon
 				if(show) {
@@ -161,7 +161,7 @@ public class StationsListActivity extends Activity {
 					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
 				}
 				showPlatforms(show);
-				Preferences.setShowPlatforms(this, show);
+				Preferences.setPref(this, Preferences.SHOW_PLATFORM, show);
 
 				return true;
 			default:
@@ -299,7 +299,7 @@ public class StationsListActivity extends Activity {
 				if(dep.position != null) {
 					TextView positionView = (TextView) view.findViewById(R.id.positionView);
 					positionView.setText(dep.position.name);
-					positionView.setVisibility(Preferences.getShowPlatforms(this) ? View.VISIBLE : View.GONE);
+					positionView.setVisibility(Preferences.getPref(this, Preferences.SHOW_PLATFORM) ? View.VISIBLE : View.GONE);
 				}
 
 				// hide progress bar

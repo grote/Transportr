@@ -24,7 +24,9 @@ import de.schildbach.pte.NetworkId;
 
 public class Preferences {
 
-	public static final String PREFS = "LiberarioPrefs";
+	public final static String PREFS = "LiberarioPrefs";
+	public final static String SHOW_PLATFORM = "ShowPlatform";
+	public final static String SHOW_ADV_DIRECTIONS = "ShowAdvDirections";
 
 	public static String getNetwork(Context context) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -48,17 +50,18 @@ public class Preferences {
 	}
 
 
-	public static boolean getShowPlatforms(Context context) {
+	public static boolean getPref(Context context, String pref) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 
-		return settings.getBoolean("ShowPlatform", false);
+		// prefs are enabled by default (if never used before, for example)
+		return settings.getBoolean(pref, true);
 	}
 
-	public static void setShowPlatforms(Context context, boolean show) {
+	public static void setPref(Context context, String pref, boolean value) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
 
-		editor.putBoolean("ShowPlatform", show);
+		editor.putBoolean(pref, value);
 		editor.commit();
 	}
 }

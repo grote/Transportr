@@ -26,15 +26,12 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
-import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -111,7 +108,7 @@ public class TripsActivity extends FragmentActivity {
 		inflater.inflate(R.menu.trips_activity_actions, menu);
 		mMenu = menu;
 
-		if(Preferences.getShowPlatforms(this)) {
+		if(Preferences.getPref(this, Preferences.SHOW_PLATFORM)) {
 			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
 		} else {
 			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
@@ -135,7 +132,7 @@ public class TripsActivity extends FragmentActivity {
 
 				return true;
 			case R.id.action_platforms:
-				boolean show = !Preferences.getShowPlatforms(this);
+				boolean show = !Preferences.getPref(this, Preferences.SHOW_PLATFORM);
 
 				// change action icon
 				if(show) {
@@ -144,7 +141,7 @@ public class TripsActivity extends FragmentActivity {
 					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
 				}
 				showPlatforms(show);
-				Preferences.setShowPlatforms(this, show);
+				Preferences.setPref(this, Preferences.SHOW_PLATFORM, show);
 
 				return true;
 /*			case R.id.action_fav_trip:

@@ -82,7 +82,7 @@ public class TripDetailFragment extends LiberarioFragment {
 			inflater.inflate(R.menu.trip_detail_activity_actions, menu);
 			mMenu = menu;
 
-			if(Preferences.getShowPlatforms(getActivity())) {
+			if(Preferences.getPref(getActivity(), Preferences.SHOW_PLATFORM)) {
 				mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
 			} else {
 				mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
@@ -104,7 +104,7 @@ public class TripDetailFragment extends LiberarioFragment {
 		}
 
 		// show/hide platforms depending on preference
-		if(Preferences.getShowPlatforms(getActivity())) {
+		if(Preferences.getPref(getActivity(), Preferences.SHOW_PLATFORM)) {
 			showPlatforms(true);
 		} else {
 			showPlatforms(false);
@@ -127,7 +127,7 @@ public class TripDetailFragment extends LiberarioFragment {
 					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
 				}
 				showPlatforms(show);
-				Preferences.setShowPlatforms(getActivity(), show);
+				Preferences.setPref(getActivity(), Preferences.SHOW_PLATFORM, show);
 
 				return true;
 /*			case R.id.action_fav_trip:
