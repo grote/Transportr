@@ -62,6 +62,7 @@ In order to access public transport data, Liberario is using the [public transpo
 * Neckar-Alb-Donau (Reutlingen, Tübingen, ...) (local and regional)
 * Ulm (local and regional)
 * Karlsruhe (local and regional)
+* Rostock (local and regional)
 * Trier (local and regional)
 * Würzburg & Regensburg (local and regional)
 * Strasbourg & Freiburg (local and regional)
