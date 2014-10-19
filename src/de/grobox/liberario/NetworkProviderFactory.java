@@ -132,7 +132,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final BvgProvider provider = new BvgProvider("");
+			final BvgProvider provider = new BvgProvider();
 			bvgProviderRef = new SoftReference<BvgProvider>(provider);
 			return provider;
 		}

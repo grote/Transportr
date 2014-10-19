@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="0.6" versioncode="11">
+    <release version="0.6" versioncode="12">
         <change>Enable Find Nearby Stations feature for most networks</change>
+    </release>
+
+	<release version="0.5.2" versioncode="11">
+        <change>Updated PTE: This enables "Find Nearby Stations" feature for many providers</change>
+        <change>Fix issue with BVG provider (new API base)</change>
     </release>
 
     <release version="0.5.1" versioncode="10">
