@@ -52,7 +52,7 @@ public class AsyncLocationAutoCompleteTask extends AsyncTask<Void, Void, Suggest
 				error = context.getResources().getString(R.string.error_no_internet);
 				return null;
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 
 			if(e.getCause() != null) {

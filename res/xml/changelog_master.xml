@@ -4,6 +4,7 @@
     <release version="0.5.2" versioncode="11">
         <change>Updated PTE: This enables "Find Nearby Stations" feature for many providers</change>
         <change>Fix issue with BVG provider (new API base)</change>
+        <change>Do not crash on autocompletion like sometimes with VRR provider</change>
     </release>
 
     <release version="0.5.1" versioncode="10">
