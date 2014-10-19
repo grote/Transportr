@@ -15,7 +15,7 @@
    height="500"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="logo.svg"
    inkscape:export-filename="/home/tovok7/svn/liberario/res/drawable-hdpi/ic_launcher.png"
    inkscape:export-xdpi="14.394864"
@@ -87,14 +87,6 @@
          stdDeviation="4.2954251"
          id="feGaussianBlur3815-9" />
     </filter>
-    <filter
-       inkscape:collect="always"
-       id="filter4277">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="1.8101778"
-         id="feGaussianBlur4279" />
-    </filter>
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient3943"
@@ -113,15 +105,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="109.07194"
+     inkscape:cx="-30.834188"
      inkscape:cy="242.68399"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="954"
+     inkscape:window-width="1366"
+     inkscape:window-height="702"
      inkscape:window-x="-4"
-     inkscape:window-y="-6"
+     inkscape:window-y="-4"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -131,7 +123,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -168,18 +160,15 @@
        transform="matrix(0.70710678,-0.70710678,0.70710678,0.70710678,0,0)"
        ry="24.748732"
        rx="24.748749" />
-    <text
-       xml:space="preserve"
+    <g
+       transform="scale(1.006479,0.9935627)"
        style="font-size:139.32168579px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:FreeSans;-inkscape-font-specification:FreeSans"
-       x="158.80952"
-       y="891.57135"
-       id="text3755"
-       sodipodi:linespacing="125%"
-       transform="scale(1.006479,0.9935627)"><tspan
-         sodipodi:role="line"
-         id="tspan3757"
-         x="158.80952"
-         y="891.57135"
-         style="font-size:278.64337158px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Masque;-inkscape-font-specification:Masque">L</tspan></text>
+       id="text3755">
+      <path
+         d="m 231.81409,827.76202 c 0.37145,-4.82975 1.1145,-9.4738 2.22914,-13.93217 1.30026,-4.45821 2.41484,-9.10226 3.34373,-13.93217 l 35.10906,-116.19429 -62.13747,0 c -6.31596,20.43404 -11.70306,37.89567 -16.16132,52.38496 -4.45832,14.30383 -8.17356,26.37837 -11.14573,36.22364 -2.78646,9.65974 -5.0156,17.36887 -6.68744,23.1274 -1.48612,5.75872 -2.69357,10.30989 -3.62237,13.65352 -0.92882,3.15804 -1.57899,5.48007 -1.9505,6.96609 -0.37154,1.48617 -0.65018,2.7865 -0.83593,3.901 -5.57287,21.17695 -5.38711,37.89554 0.55729,50.15581 6.13013,12.07456 17.36874,19.13351 33.71584,21.1769 19.13345,2.78643 38.17406,3.901 57.1219,3.34372 18.94762,-0.55729 38.73128,-2.60067 59.35103,-6.13016 l 14.7681,-51.54902 c -15.41843,3.15801 -30.83668,5.29427 -46.2548,6.4088 -15.41838,1.11462 -31.02239,0.46445 -46.81208,-1.95051 -2.60076,-0.55723 -5.10854,-2.32197 -7.52338,-5.29422 -2.41498,-2.97214 -3.43667,-5.75857 -3.06507,-8.3593"
+         style="font-size:278.64337158px;fill:#ffffff;font-family:Masque;-inkscape-font-specification:Masque"
+         id="path3007"
+         inkscape:connector-curvature="0" />
+    </g>
   </g>
 </svg>
