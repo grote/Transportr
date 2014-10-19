@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="0.5.2" versioncode="11">
+        <change>Updated PTE: This enables "Find Nearby Stations" feature for many providers</change>
+        <change>Fix issue with BVG provider (new API base)</change>
+    </release>
+
     <release version="0.5.1" versioncode="10">
         <change>Station position is now shown in calendar export and shared trip text</change>
         <change>Long press on products now shows their name</change>

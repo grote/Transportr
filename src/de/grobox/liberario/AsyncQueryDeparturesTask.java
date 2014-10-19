@@ -18,6 +18,7 @@
 package de.grobox.liberario;
 
 import java.io.IOException;
+import java.util.Date;
 
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.QueryDeparturesResult;
@@ -46,7 +47,8 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(activity)) {
-				return np.queryDepartures(station, max_departures, true);
+				// TODO allow for custom time/date to be specified
+				return np.queryDepartures(station, new Date(), max_departures, true);
 			}
 			else {
 				error = activity.getResources().getString(R.string.error_no_internet);
