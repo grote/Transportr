@@ -24,7 +24,10 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -147,7 +150,7 @@ public class FavDB {
 
 	/* FavTrip */
 
-	public static List<FavTrip> getFavTripList(Context context) {
+	public static List<FavTrip> getFavTripList(Context context, final boolean sort_count) {
 		List<FavTrip> fav_list = new ArrayList<FavTrip>();
 
 		// when the app starts for the first time, no network is selected
@@ -157,21 +160,21 @@ public class FavDB {
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
 		final String FAV_TRIPS =
-			"SELECT f.count, " +
+			"SELECT f.count, f.last_used, " +
 			"l1.type AS from_type, l1.id AS from_id, l1.lat AS from_lat, l1.lon AS from_lon, l1.place AS from_place, l1.name AS from_name, " +
 			"l2.type AS to_type,   l2.id AS to_id,   l2.lat AS to_lat,   l2.lon AS to_lon,   l2.place AS to_place,   l2.name AS to_name " +
 			"FROM " + DBHelper.TABLE_FAV_TRIPS + " f " +
 			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l1 ON f.from_loc = l1._id " +
 			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l2 ON f.to_loc = l2._id " +
 			"WHERE f.network = ? " +
-			"ORDER BY f.count DESC";
+			"ORDER BY " + (sort_count ? "f.count" : "f.last_used") + " DESC";
 
 		Cursor c = db.rawQuery(FAV_TRIPS, new String[]{ Preferences.getNetwork(context) });
 
 		while(c.moveToNext()) {
 			Location from = getLocation(c, "from_");
 			Location to = getLocation(c, "to_");
-			FavTrip trip = new FavTrip(from, to, c.getInt(c.getColumnIndex("count")));
+			FavTrip trip = new FavTrip(from, to, c.getInt(c.getColumnIndex("count")), c.getString(c.getColumnIndex("last_used")));
 			fav_list.add(trip);
 		}
 
@@ -210,6 +213,10 @@ public class FavDB {
 			// increase counter by one for existing fav trip
 			values.put("count", c.getInt(c.getColumnIndex("count")) + 1);
 
+			// update last_used time
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			values.put("last_used", df.format(Calendar.getInstance().getTime()));
+
 			db.update(DBHelper.TABLE_FAV_TRIPS, values, "_id = ?", new String[] { c.getString(c.getColumnIndex("_id")) });
 		}
 		else {
@@ -218,6 +225,10 @@ public class FavDB {
 			values.put("from_loc", from_id);
 			values.put("to_loc", to_id);
 			values.put("count", 1);
+
+			// insert current time as last_used
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			values.put("last_used", df.format(Calendar.getInstance().getTime()));
 
 			db.insert(DBHelper.TABLE_FAV_TRIPS, null, values);
 		}

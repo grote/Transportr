@@ -92,5 +92,6 @@
     <string name="product_ferry">Ferry</string>
     <string name="product_cablecar">Cablecar</string>
     <string name="product_on_demand">On Demand</string>
+    <string name="action_fav_trips_sort">Sort List</string>
 
 </resources>

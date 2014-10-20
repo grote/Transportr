@@ -46,8 +46,14 @@ public class FavTripsFragment extends LiberarioListFragment {
 	private ActionMode mActionMode = null;
 
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity()));
+		adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)));
 		setListAdapter(adapter);
 
 		return super.onCreateView(inflater, container, savedInstanceState);
@@ -66,7 +72,35 @@ public class FavTripsFragment extends LiberarioListFragment {
 
 		// reload data because it might have changed
 		adapter.clear();
-		adapter.addAll(FavDB.getFavTripList(getActivity()));
+		adapter.addAll(FavDB.getFavTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)));
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// Inflate the menu items for use in the action bar
+		inflater.inflate(R.menu.fav_trip_actions, menu);
+
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+			case R.id.action_fav_trips_sort:
+				if(Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)) {
+					adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), false));
+					Preferences.setPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT, false);
+				} else {
+					adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), true));
+					Preferences.setPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT, true);
+				}
+				setListAdapter(adapter);
+
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 	private void checkTrip(View v, int position) {
@@ -192,7 +226,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 			// Inflate a menu resource providing context menu items
 			MenuInflater inflater = mode.getMenuInflater();
-			inflater.inflate(R.menu.fav_trip_actions, menu);
+			inflater.inflate(R.menu.fav_trip_select_actions, menu);
 			return true;
 		}
 

@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_trip_delete"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:id="@+id/action_fav_trips_sort"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
         android:showAsAction="always"
-        android:title="@string/action_trip_delete"/>
+        android:title="@string/action_fav_trips_sort"/>
 
 </menu>

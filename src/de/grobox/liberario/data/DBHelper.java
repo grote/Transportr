@@ -23,7 +23,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 	public static final String DB_NAME = "liberario.db";
-	private static final int DB_VERSION = 1;
+	private static final int DB_VERSION = 2;
 
 	public static final String TABLE_FAV_LOCS  = "fav_locations";
 	public static final String TABLE_FAV_TRIPS = "fav_trips";
@@ -54,7 +54,8 @@ public class DBHelper extends SQLiteOpenHelper {
 			NETWORK + ", " +
 			"from_loc INTEGER NOT NULL, " +
 			"to_loc INTEGER NOT NULL, " +
-			"count INTEGER NOT NULL DEFAULT 0" +
+			"count INTEGER NOT NULL DEFAULT 0," +
+			"last_used DATETIME" +
 		" )";
 
 	private static final String CREATE_TABLE_HOME_LOCS =
@@ -76,7 +77,16 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// NOOP
+		int upgradeTo = oldVersion + 1;
+		while(upgradeTo <= newVersion) {
+			switch(upgradeTo)
+			{
+				case 2:
+					db.execSQL("ALTER TABLE " + TABLE_FAV_TRIPS + " ADD COLUMN last_used DATETIME");
+					break;
+			}
+			upgradeTo++;
+		}
 	}
 
 

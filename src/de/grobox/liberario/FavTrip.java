@@ -18,6 +18,9 @@
 package de.grobox.liberario;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import de.schildbach.pte.dto.Location;
 
@@ -29,6 +32,7 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 	private Location to;
 	private Location via;
 	private int count;
+	private Date last_used;
 
 	public FavTrip(Location from, Location to) {
 		this.from = from;
@@ -43,10 +47,16 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 		this.count = 1;
 	}
 
-	public FavTrip(Location from, Location to, int count) {
+	public FavTrip(Location from, Location to, int count, String last_used) {
 		this.from = from;
 		this.to = to;
 		this.count = count;
+		try {
+			this.last_used = last_used == null ? new Date() : (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).parse(last_used);
+		} catch(ParseException e) {
+			e.printStackTrace();
+			this.last_used = new Date();
+		}
 	}
 
 	public Location getFrom() {
