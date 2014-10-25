@@ -27,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
@@ -65,17 +66,20 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public View getChildView(int groupPos, final int childPos, boolean isLastChild, View convertView, ViewGroup parent) {
-
 		NetworkItem network = ((NetworkItem) getChild(groupPos, childPos));
 
-		if(convertView == null) {
-			LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = infalInflater.inflate(R.layout.network_provider_item, null);
-		}
+		LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		convertView = infalInflater.inflate(R.layout.network_provider_item, null);
 
 		((TextView) convertView.findViewById(R.id.networkName)).setText(network.name);
 		((TextView) convertView.findViewById(R.id.networkDescription)).setText(network.description);
-		((TextView) convertView.findViewById(R.id.networkBeta)).setVisibility(network.beta ? View.VISIBLE : View.GONE);
+		convertView.findViewById(R.id.networkBeta).setVisibility(network.beta ? View.VISIBLE : View.GONE);
+
+		// set logo of provider if we have one
+		int resourceID = _context.getResources().getIdentifier("network_"+network.id.toString().toLowerCase()+"_logo", "drawable", _context.getPackageName());
+		if(resourceID != 0) {
+			((ImageView) convertView.findViewById(R.id.icon)).setImageDrawable(_context.getResources().getDrawable(resourceID));
+		}
 
 		// remember region name of this child
 		convertView.setTag(getGroup(groupPos));
@@ -114,7 +118,7 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 			convertView = infalInflater.inflate(R.layout.network_provider_group, null);
 		}
 
-		((TextView) convertView.findViewById(R.id.regionName)).setText((String) getGroup(groupPosition));
+		((TextView) convertView.findViewById(R.id.regionName)).setText(getGroup(groupPosition));
 
 		return convertView;
 	}

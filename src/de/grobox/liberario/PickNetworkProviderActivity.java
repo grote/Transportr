@@ -34,7 +34,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
@@ -54,11 +53,11 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		Intent intent = getIntent();
 		if(intent.getBooleanExtra("FirstRun", false)) {
 			// hide cancel button on first run
-			((Button) findViewById(R.id.cancelNetworkProviderButton)).setVisibility(View.GONE);
+			findViewById(R.id.cancelNetworkProviderButton).setVisibility(View.GONE);
 			// prevent going back
 			back = false;
 			// show first time notice
-			((TextView) findViewById(R.id.firstRunTextView)).setVisibility(View.VISIBLE);
+			findViewById(R.id.firstRunTextView).setVisibility(View.VISIBLE);
 		}
 		else {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -152,7 +151,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		}
 
 		// construct NetworkId object from network string
-		NetworkId network_id = null;
+		NetworkId network_id;
 		try {
 			network_id = NetworkId.valueOf(network_string);
 		}
