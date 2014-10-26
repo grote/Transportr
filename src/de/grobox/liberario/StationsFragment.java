@@ -30,6 +30,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
@@ -120,7 +121,17 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// after new home location was selected, put it right into the input field
 		if(resultCode == FragmentActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
-			queryForStations(FavDB.getHome(getActivity()));
+			new AsyncTask<Void, Void, Location>() {
+				@Override
+				protected Location doInBackground(Void... params) {
+					return FavDB.getHome(getActivity());
+				}
+				
+				@Override
+				protected void onPostExecute(Location home) {
+					queryForStations(home);
+				}
+			}.execute();
 		}
 	}
 
@@ -193,16 +204,24 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		stationHomeButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Location home = FavDB.getHome(getActivity());
+				new AsyncTask<Void, Void, Location>() {
+					@Override
+					protected Location doInBackground(Void... params) {
+						return FavDB.getHome(getActivity());
+					}
+					
+					@Override
+					protected void onPostExecute(Location home) {
+						if(home != null) {
+							queryForStations(home);
+						} else {
+							Intent intent = new Intent(getActivity(), SetHomeActivity.class);
+							intent.putExtra("new", true);
 
-				if(home != null) {
-					queryForStations(home);
-				} else {
-					Intent intent = new Intent(getActivity(), SetHomeActivity.class);
-					intent.putExtra("new", true);
-
-					startActivityForResult(intent, MainActivity.CHANGED_HOME);
-				}
+							startActivityForResult(intent, MainActivity.CHANGED_HOME);
+						}
+					}
+				}.execute();
 			}
 		});
 		// Home Button Long Click
@@ -239,14 +258,23 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		});
 	}
 
-	private void queryForStations(Location location) {
-		// Location is valid, so make it a favorite or increase counter
-		FavDB.updateFavLocation(getActivity(), location, FavLocation.LOC_TYPE.FROM);
-
-		// start StationsListActivity with given location
-		Intent intent = new Intent(getActivity(), StationsListActivity.class);
-		intent.putExtra("de.schildbach.pte.dto.Location", location);
-		startActivity(intent);
+	private void queryForStations(final Location location) {
+		new AsyncTask<Void, Void, Void>() {
+			@Override
+			protected Void doInBackground(Void... params) {
+				// Location is valid, so make it a favorite or increase counter
+				FavDB.updateFavLocation(getActivity(), location, FavLocation.LOC_TYPE.FROM);
+				return null;
+			}
+			
+			@Override
+			protected void onPostExecute(Void result) {
+				// start StationsListActivity with given location
+				Intent intent = new Intent(getActivity(), StationsListActivity.class);
+				intent.putExtra("de.schildbach.pte.dto.Location", location);
+				startActivity(intent);
+			}
+		}.execute();
 	}
 
 	private void setNearbyStationsView() {
