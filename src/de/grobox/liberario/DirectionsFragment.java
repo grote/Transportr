@@ -39,6 +39,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -250,7 +251,12 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 				// remember trip if not from GPS
 				if(!mGpsPressed) {
-					FavDB.updateFavTrip(getActivity(), new FavTrip(getLocation(FavLocation.LOC_TYPE.FROM), getLocation(FavLocation.LOC_TYPE.TO)));
+					new Thread() {
+						@Override
+						public void run() {
+							FavDB.updateFavTrip(getActivity(), new FavTrip(getLocation(FavLocation.LOC_TYPE.FROM), getLocation(FavLocation.LOC_TYPE.TO)));
+						}
+					}.start();
 				}
 
 				// set date
@@ -355,7 +361,17 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// after new home location was selected, put it right into the input field
 		if(resultCode == FragmentActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
-			setLocation(FavDB.getHome(getActivity()), mHomeClicked, getResources().getDrawable(R.drawable.ic_action_home));
+			new AsyncTask<Void, Void, Location>() {
+				@Override
+				protected Location doInBackground(Void... params) {
+					return FavDB.getHome(getActivity());
+				}
+				
+				@Override
+				protected void onPostExecute(Location home) {
+					setLocation(home, mHomeClicked, getResources().getDrawable(R.drawable.ic_action_home));
+				}
+			}.execute();
 		}
 	}
 
@@ -660,10 +676,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		return true;
 	}
 
-	private void handleLocationItemClick(Location loc, View view, FavLocation.LOC_TYPE loc_type) {
-		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
-		AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
-		AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
+	private void handleLocationItemClick(Location loc, View view, final FavLocation.LOC_TYPE loc_type) {
+		final Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
+		final AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
+		final AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
 
 		if(loc.id != null && loc.id.equals("Liberario.GPS")) {
 			if(mGpsPressed) {
@@ -684,20 +700,28 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		else {
 			// home location
 			if (loc.id != null && loc.id.equals("Liberario.HOME")) {
-				Location home = FavDB.getHome(getActivity());
-
-				if(home != null) {
-					setLocation(home, loc_type, icon);
-				} else {
-					// prevent home.toString() from being shown in the TextView
-					if (loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
-						from.setText("");
-					} else {
-						to.setText("");
+				new AsyncTask<Void, Void, Location>() {
+					@Override
+					protected Location doInBackground(Void... params) {
+						return FavDB.getHome(getActivity());
 					}
-					// show dialog to set home screen
-					startSetHome(true, loc_type);
-				}
+					
+					@Override
+					protected void onPostExecute(Location home) {
+						if(home != null) {
+							setLocation(home, loc_type, icon);
+						} else {
+							// prevent home.toString() from being shown in the TextView
+							if (loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
+								from.setText("");
+							} else {
+								to.setText("");
+							}
+							// show dialog to set home screen
+							startSetHome(true, loc_type);
+						}
+					}
+				}.execute();
 			}
 			// locations from favorites or auto-complete
 			else {
