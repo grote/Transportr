@@ -27,6 +27,7 @@ import de.schildbach.pte.dto.LocationType;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -143,7 +144,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(int position, View convertView, final ViewGroup parent) {
 		View view;
 		LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -154,20 +155,29 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 		}
 
 		ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-		TextView textView = (TextView) view.findViewById(R.id.textView);
+		final TextView textView = (TextView) view.findViewById(R.id.textView);
 
 		Location l = getItem(position);
 
 		if(l.id != null && l.id.equals("Liberario.HOME")) {
 			imageView.setImageResource(R.drawable.ic_action_home);
-			Location home = FavDB.getHome(parent.getContext());
-			if(home != null) {
-				textView.setText(home.uniqueShortName());
-				textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-			} else {
-				textView.setText(parent.getContext().getString(R.string.location_home));
-				textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
-			}
+			new AsyncTask<Void, Void, Location>() {
+				@Override
+				protected Location doInBackground(Void... params) {
+					return FavDB.getHome(parent.getContext());
+				}
+				
+				@Override
+				protected void onPostExecute(Location home) {
+					if(home != null) {
+						textView.setText(home.uniqueShortName());
+						textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+					} else {
+						textView.setText(parent.getContext().getString(R.string.location_home));
+						textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+					}
+				}
+			}.execute();
 		}
 		else if(l.id != null && l.id.equals("Liberario.GPS")) {
 			imageView.setImageResource(R.drawable.ic_gps);
