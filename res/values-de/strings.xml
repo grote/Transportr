@@ -19,13 +19,15 @@
   <string name="action_trip_delete">Verbindung löschen</string>
   <string name="tab_directions">Verbindungen</string>
   <string name="tab_fav_trips">Favoriten</string>
-  <string name="about_top">© 2013 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
-  <string name="about">\n<![CDATA[
+  <string name="about_top">© 2013 - 2014 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
+  <string name="about">
+<![CDATA[
 <p>Liberario ist eine App für den öffentlichen Personenverkehr, die du frei verwenden, verstehen, verbessern und verbreiten kannst.</p>
 <p>Es gibt keine Garantie für Funktion und Korrektheit der Daten. Du nutzt diese Software auf eigene Gefahr.</p>
-<p><b>Mitmachen</b> ist explizit erwünscht und wird dankend angenommen. Wenn du mithelfen möchtest, besuche <a href="https://github.com/grote/Liberario/#contributing">github</a> für weitere Infos.</p>
-<p>Falls du irgendwelche Probleme mit dieser App feststellst, melde sie bitte <a href="https://github.com/grote/Liberario/issues">im Tracker</a>.</p>
-]]>\n</string>
+<p><b>Mitmachen</b> ist explizit erwünscht und wird dankend angenommen. Wenn du mithelfen möchtest, besuche <a href=\"https://github.com/grote/Liberario/#contributing\">github</a> für weitere Infos.</p>
+<p>Falls du irgendwelche Probleme mit dieser App feststellst, melde sie bitte <a href=\"https://github.com/grote/Liberario/issues\">im Tracker</a>.</p>
+]]>
+</string>
   <string name="trip_dep">ab</string>
   <string name="trip_arr">an</string>
   <string name="trip_start">Start:</string>

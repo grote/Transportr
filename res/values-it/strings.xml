@@ -13,13 +13,14 @@
   <string name="action_navigation_expand">Mostra altro</string>
   <string name="tab_directions">Indicazioni</string>
   <string name="tab_fav_trips">Favoriti</string>
-  <string name="about_top">© 2013 Torsten Grote\nFree Software License: GPLv3</string>
-  <string name="about">\n<![CDATA[
+  <string name="about">
+<![CDATA[
 <p>Liberario è un app per il trasporto pubblico, che puoi usare, condividere e migliorare gratuitamente.</p>
 <p>Non c\'è nessuna garanzia sulla correttezza dei dati. Usate questa applicazione a vostro rischio..</p>
-<p><b>La collaborazione</b> è incoraggiata e apprezzata. Se Vuoi contribuire vai su <a href="https://github.com/grote/Liberario/#contributing">github</a> per avere maggiori informazioni.</p>
-<p>Se noti qualche problema con questa app, segnalalo su <a href="https://github.com/grote/Liberario/issues">il segnalatore di problemi</a>.</p>
-]]>\n</string>
+<p><b>La collaborazione</b> è incoraggiata e apprezzata. Se Vuoi contribuire vai su <a href=\"https://github.com/grote/Liberario/#contributing\">github</a> per avere maggiori informazioni.</p>
+<p>Se noti qualche problema con questa app, segnalalo su <a href=\"https://github.com/grote/Liberario/issues\">il segnalatore di problemi</a>.</p>
+]]>
+</string>
   <string name="trip_dep">part</string>
   <string name="trip_arr">arr</string>
   <string name="trip_start">Inizio:</string>
@@ -50,7 +51,8 @@
   <string name="error_no_location_provider">Impossibile trovare la posizione. Attiva il GPS!</string>
   <string name="error_no_departures_found">Nessuna partenza trovata</string>
   <string name="error_no_proper_station">Il luogo fornito non ha nessuna stazione valida</string>
-  <string name="error_only_autocomplete_station">Seleziona una stazione dall\'elenco!\n</string>
+  <string name="error_only_autocomplete_station">Seleziona una stazione dall\'elenco!
+</string>
   <string name="number_of_stations">Numero di stazioni</string>
   <string name="meter">m</string>
   <string name="max_distance">Distanza massima</string>

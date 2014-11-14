@@ -3,6 +3,7 @@
 
     <release version="0.6" versioncode="12">
         <change>Enable Find Nearby Stations feature for most networks</change>
+		<change>Added Spanish and Turkish Translation. Thanks to Emre Deniz and Adolfo Jayme Barrientos.</change>
     </release>
 
 	<release version="0.5.2" versioncode="11">

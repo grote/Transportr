@@ -8,3 +8,5 @@ type = ANDROID
 trans.de = res/values-de/strings.xml
 trans.fr = res/values-fr/strings.xml
 trans.it = res/values-it/strings.xml
+trans.es = res/values-es/strings.xml
+trans.tr = res/values-tr/strings.xml

@@ -8,7 +8,7 @@
   <string name="action_settings">Paramètres</string>
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
   <string name="action_switch_locations">Inverser les points de départ et d\'arrivée</string>
-  <string name="action_platforms">Montrer/cacher les plates-formes</string>
+  <string name="action_platforms">Montrer/cacher les quais</string>
   <string name="action_refresh">Rafraîchir</string>
   <string name="action_navigation_expand">Montrer plus</string>
   <string name="action_location_map">Afficher les stations/arrêts sur la carte</string>
@@ -19,13 +19,15 @@
   <string name="action_trip_delete">Supprimer le trajet</string>
   <string name="tab_directions">Itinéraires</string>
   <string name="tab_fav_trips">Favoris</string>
-  <string name="about_top">© 2013 Torsten Grote\nLicence logiciel libre : GPLv3</string>
-  <string name="about">\n<![CDATA[
+  <string name="about_top">© 2013 - 2014 Torsten Grote\nLicence logiciel libre : GPLv3</string>
+  <string name="about">
+<![CDATA[
 <p>Liberario est une appli de transport public que l\'on peut librement utiliser, étudier, partager et améliorer.</p>
 <p>La justesse des données n\'est pas garantie. Utilisez cette appli à vos propres risques.</p>
-<p><b>Les contributions</b> sont encouragées et appréciées. Si vous désirez contribuer, rendez-vous sur <a href="https://github.com/grote/Liberario/#contributing">github</a>.</p>
-<p>Si vous éprouvez un problème avec cette appli, rapporter le avec <a href="https://github.com/grote/Liberario/issues">notre gestionnaire de problèmes</a>.</p>
-]]>\n</string>
+<p><b>Les contributions</b> sont encouragées et appréciées. Si vous désirez contribuer, rendez-vous sur <a href=\"https://github.com/grote/Liberario/#contributing\">github</a>.</p>
+<p>Si vous éprouvez un problème avec cette appli, rapporter le avec <a href=\"https://github.com/grote/Liberario/issues\">notre gestionnaire de problèmes</a>.</p>
+]]>
+</string>
   <string name="trip_dep">dép.</string>
   <string name="trip_arr">arr.</string>
   <string name="trip_start">Départ :</string>
@@ -35,6 +37,8 @@
   <string name="time">Heure</string>
   <string name="date">Date</string>
   <string name="min">min</string>
+  <string name="walk">Marche</string>
+  <string name="position">Quai</string>
   <string name="destination">Destination</string>
   <string name="detail_duration">Durée :</string>
   <string name="detail_date">Date :</string>
@@ -60,10 +64,22 @@
   <string name="error_no_proper_station">L\'emplacement fourni n\'est pas une station/arrêt valide</string>
   <string name="error_only_autocomplete_station">Veuillez choisir une station/arrêt dans la liste de saisie automatique ! </string>
   <string name="error_no_station_location">Impossible de trouver l\'emplacement de cette/ces station(s)/arrêt(s)</string>
+  <string name="error_no_trips_capability">Le réseau de transport ne prend pas en charge la demande d\'itinéraire.</string>
   <string name="number_of_stations">Nombre de stations/arrêts</string>
   <string name="meter">m</string>
   <string name="max_distance">Distance maximum</string>
   <string name="home_dialog_title">Votre point d\'origine</string>
   <string name="home_dialog_new_msg">Il n\'y pas de point d\'origine de défini pour le réseau de transport actuel.</string>
   <string name="home_dialog_msg">Veuillez choisir un emplacement dans la liste ci-dessous.</string>
+  <string name="location_home">Cliquer pour définir la position d\'origine</string>
+  <string name="location_gps">Utiliser la position actuelle</string>
+  <string name="product_high_speed_train">Train haute-vitesse</string>
+  <string name="product_regional_train">Train régional</string>
+  <string name="product_suburban_train">Train de banlieue</string>
+  <string name="product_subway">Métro</string>
+  <string name="product_tram">Tram</string>
+  <string name="product_bus">Bus</string>
+  <string name="product_ferry">Traversier</string>
+  <string name="product_cablecar">Funiculaire</string>
+  <string name="product_on_demand">À la demande</string>
 </resources>
