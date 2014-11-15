@@ -4,7 +4,7 @@
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
  *    published by the Free Software Foundation, either version 3 of the
- *    License, or (at your option) any later version.
+ *    License, or (at your option) aupdateFavTripny later version.
  *
  *    This program is distributed in the hope that it will be useful,
  *    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -251,10 +251,11 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 				// remember trip if not from GPS
 				if(!mGpsPressed) {
+					FavTrip updateTrip = new FavTrip(getLocation(FavLocation.LOC_TYPE.FROM), getLocation(FavLocation.LOC_TYPE.TO));
 					new Thread() {
 						@Override
 						public void run() {
-							FavDB.updateFavTrip(getActivity(), new FavTrip(getLocation(FavLocation.LOC_TYPE.FROM), getLocation(FavLocation.LOC_TYPE.TO)));
+							FavDB.updateFavTrip(getActivity(), updateTrip);
 						}
 					}.start();
 				}
