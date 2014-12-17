@@ -5,18 +5,7 @@ DIR=$PWD
 cd sublibs/public-transport-enabler/enabler/
 mkdir -p src/de/schildbach/pte/live
 
-cat <<EOF > src/de/schildbach/pte/live/Secrets.java
-package de.schildbach.pte.live;
-
-/**
- * @author Andreas Schildbach
- */
-public final class Secrets
-{
-        public static final String SBB_ACCESS_ID = "I have no secret :(";
-        public static final String VGN_API_BASE = "I didn't get an API base :(";
-}
-EOF
+cp test/de/schildbach/pte/live/Secrets.java.template src/de/schildbach/pte/live/Secrets.java
 
 mvn clean package -DskipTests
 
