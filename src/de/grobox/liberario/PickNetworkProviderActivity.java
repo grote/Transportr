@@ -236,7 +236,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 
 		listRegion.add("Schweiz");
 		List<NetworkItem> ch = new ArrayList<NetworkItem>();
-//		ch.add(new NetworkItem(NetworkId.SBB, "SBB", ""));
+		ch.add(new NetworkItem(NetworkId.SBB, "SBB", ""));
 		ch.add(new NetworkItem(NetworkId.BVB, "BVB", ""));
 		ch.add(new NetworkItem(NetworkId.VBL, "VBL", "Luzern"));
 		ch.add(new NetworkItem(NetworkId.ZVV, "ZVL", "Zürich"));
