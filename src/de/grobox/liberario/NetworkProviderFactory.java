@@ -75,10 +75,8 @@ public final class NetworkProviderFactory
 	private static Reference<SeProvider> seProviderRef;
 	private static Reference<StockholmProvider> stockholmProviderRef;
 	private static Reference<NriProvider> nriProviderRef;
-	private static Reference<TflProvider> tflProviderRef;
 	private static Reference<TlemProvider> tlemProviderRef;
 	private static Reference<TlwmProvider> tlwmProviderRef;
-	private static Reference<TlswProvider> tlswProviderRef;
 	private static Reference<TfiProvider> tfiProviderRef;
 	private static Reference<PlProvider> plProviderRef;
 	private static Reference<AtcProvider> atcProviderRef;
@@ -721,19 +719,6 @@ public final class NetworkProviderFactory
 			nriProviderRef = new SoftReference<NriProvider>(provider);
 			return provider;
 		}
-		else if (networkId.equals(TflProvider.NETWORK_ID))
-		{
-			if (tflProviderRef != null)
-			{
-				final TflProvider provider = tflProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final TflProvider provider = new TflProvider();
-			tflProviderRef = new SoftReference<TflProvider>(provider);
-			return provider;
-		}
 		else if (networkId.equals(TlemProvider.NETWORK_ID))
 		{
 			if (tlemProviderRef != null)
@@ -758,19 +743,6 @@ public final class NetworkProviderFactory
 
 			final TlwmProvider provider = new TlwmProvider();
 			tlwmProviderRef = new SoftReference<TlwmProvider>(provider);
-			return provider;
-		}
-		else if (networkId.equals(TlswProvider.NETWORK_ID))
-		{
-			if (tlswProviderRef != null)
-			{
-				final TlswProvider provider = tlswProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final TlswProvider provider = new TlswProvider();
-			tlswProviderRef = new SoftReference<TlswProvider>(provider);
 			return provider;
 		}
 		else if (networkId.equals(TfiProvider.NETWORK_ID))
