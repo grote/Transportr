@@ -40,6 +40,7 @@ In order to access public transport data, Liberario is using the [public transpo
 * Europe (mostly long-distance)
 * Germany (long-distance, regional and local, e.g. Berlin, Hamburg, Munich, Cologne, Frankfurt, Stuttgart)
 * Austria (long-distance, regional and local, e.g. Vienna, Graz, Linz, Salzburg, Innsbruck)
+* Switzerland (long-distance, regional and local, e.g. Zürich, Geneva, Basel, Bern)
 * Belgium (long-distance, regional and local, e.g. Antwerp, Ghent, Charleroi, Brussels)
 * Luxembourg (long-distance, regional and local)
 * Denmark (long-distance, regional and local, e.g. Copenhagen)
@@ -77,7 +78,6 @@ In order to access public transport data, Liberario is using the [public transpo
 * Linz (bus, tram and cablecar)
 * Graz & Styria (local and regional)
 * Tyrol (local and regional)
-* London (local and regional)
 * Birmingham (local and regional)
 * Dublin (local and regional)
 * Maribor (local and regional)
@@ -87,6 +87,7 @@ In order to access public transport data, Liberario is using the [public transpo
 * Dubai (local)
 * Jerusalem (local)
 * Provence-Alpes-Côte d'Azur (local and regional)
+* Paris (local and regional)
 
 Contributing
 ------------

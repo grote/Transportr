@@ -6,6 +6,12 @@
 		<change>Added Spanish and Turkish Translation. Thanks to Emre Deniz and Adolfo Jayme Barrientos.</change>
     </release>
 
+    <release version="0.5.3" versioncode="12">
+        <change>Updated PTE: Fix API changes by various networks (Thanks to Jochen Sprickerhof)</change>
+        <change>Add experimental support for Paris (using Navitia)</change>
+        <change>Activate SBB network again for Switzerland</change>
+    </release>
+
 	<release version="0.5.2" versioncode="11">
         <change>Updated PTE: This enables "Find Nearby Stations" feature for many providers</change>
         <change>Fix issue with BVG provider (new API base)</change>
