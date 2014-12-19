@@ -319,6 +319,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 
 		listRegion.add("France");
 		List<NetworkItem> fr = new ArrayList<NetworkItem>();
+		fr.add(new NetworkItem(NetworkId.PARIS, "PARIS", "Paris", true));
 		fr.add(new NetworkItem(NetworkId.PACA, "PACA", "Provence-Alpes-Côte d'Azur", true));
 		listNetwork.put("France", fr);
 	}

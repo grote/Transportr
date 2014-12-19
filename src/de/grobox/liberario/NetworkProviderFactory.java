@@ -92,6 +92,7 @@ public final class NetworkProviderFactory
 	private static Reference<JetProvider> jetProviderRef;
 	private static Reference<PacaProvider> pacaProviderRef;
 	private static Reference<RsagProvider> rsagProviderRef;
+	private static Reference<ParisProvider> parisProviderRef;
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
 	{
@@ -105,7 +106,7 @@ public final class NetworkProviderFactory
 			}
 
 			final RtProvider provider = new RtProvider();
-			rtProviderRef = new SoftReference<RtProvider>(provider);
+			rtProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(BahnProvider.NETWORK_ID))
@@ -118,7 +119,7 @@ public final class NetworkProviderFactory
 			}
 
 			final BahnProvider provider = new BahnProvider();
-			bahnProviderRef = new SoftReference<BahnProvider>(provider);
+			bahnProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(BvgProvider.NETWORK_ID))
@@ -131,7 +132,7 @@ public final class NetworkProviderFactory
 			}
 
 			final BvgProvider provider = new BvgProvider();
-			bvgProviderRef = new SoftReference<BvgProvider>(provider);
+			bvgProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VbbProvider.NETWORK_ID))
@@ -144,7 +145,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VbbProvider provider = new VbbProvider();
-			vbbProviderRef = new SoftReference<VbbProvider>(provider);
+			vbbProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NvvProvider.NETWORK_ID))
@@ -157,7 +158,7 @@ public final class NetworkProviderFactory
 			}
 
 			final NvvProvider provider = new NvvProvider();
-			nvvProviderRef = new SoftReference<NvvProvider>(provider);
+			nvvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(BayernProvider.NETWORK_ID))
@@ -170,7 +171,7 @@ public final class NetworkProviderFactory
 			}
 
 			final BayernProvider provider = new BayernProvider();
-			bayernProviderRef = new SoftReference<BayernProvider>(provider);
+			bayernProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(MvvProvider.NETWORK_ID))
@@ -183,7 +184,7 @@ public final class NetworkProviderFactory
 			}
 
 			final MvvProvider provider = new MvvProvider();
-			mvvProviderRef = new SoftReference<MvvProvider>(provider);
+			mvvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(InvgProvider.NETWORK_ID))
@@ -196,7 +197,7 @@ public final class NetworkProviderFactory
 			}
 
 			final InvgProvider provider = new InvgProvider();
-			invgProviderRef = new SoftReference<InvgProvider>(provider);
+			invgProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(AvvProvider.NETWORK_ID))
@@ -209,7 +210,7 @@ public final class NetworkProviderFactory
 			}
 
 			final AvvProvider provider = new AvvProvider();
-			avvProviderRef = new SoftReference<AvvProvider>(provider);
+			avvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VgnProvider.NETWORK_ID))
@@ -222,7 +223,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VgnProvider provider = new VgnProvider("no secret");
-			vgnProviderRef = new SoftReference<VgnProvider>(provider);
+			vgnProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VvmProvider.NETWORK_ID))
@@ -235,7 +236,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VvmProvider provider = new VvmProvider();
-			vvmProviderRef = new SoftReference<VvmProvider>(provider);
+			vvmProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VmvProvider.NETWORK_ID))
@@ -248,7 +249,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VmvProvider provider = new VmvProvider();
-			vmvProviderRef = new SoftReference<VmvProvider>(provider);
+			vmvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(ShProvider.NETWORK_ID))
@@ -261,7 +262,7 @@ public final class NetworkProviderFactory
 			}
 
 			final ShProvider provider = new ShProvider();
-			shProviderRef = new SoftReference<ShProvider>(provider);
+			shProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(GvhProvider.NETWORK_ID))
@@ -274,7 +275,7 @@ public final class NetworkProviderFactory
 			}
 
 			final GvhProvider provider = new GvhProvider("C2C_User=ASB");
-			gvhProviderRef = new SoftReference<GvhProvider>(provider);
+			gvhProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(BsvagProvider.NETWORK_ID))
@@ -287,7 +288,7 @@ public final class NetworkProviderFactory
 			}
 
 			final BsvagProvider provider = new BsvagProvider();
-			bsvagProviderRef = new SoftReference<BsvagProvider>(provider);
+			bsvagProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VbnProvider.NETWORK_ID))
@@ -300,7 +301,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VbnProvider provider = new VbnProvider();
-			vbnProviderRef = new SoftReference<VbnProvider>(provider);
+			vbnProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NasaProvider.NETWORK_ID))
@@ -313,7 +314,7 @@ public final class NetworkProviderFactory
 			}
 
 			final NasaProvider provider = new NasaProvider();
-			nasaProviderRef = new SoftReference<NasaProvider>(provider);
+			nasaProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VvoProvider.NETWORK_ID))
@@ -326,7 +327,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VvoProvider provider = new VvoProvider("http://efaproxy.fahrinfo.uptrade.de/standard/");
-			vvoProviderRef = new SoftReference<VvoProvider>(provider);
+			vvoProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VmsProvider.NETWORK_ID))
@@ -339,7 +340,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VmsProvider provider = new VmsProvider();
-			vmsProviderRef = new SoftReference<VmsProvider>(provider);
+			vmsProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VrrProvider.NETWORK_ID))
@@ -352,7 +353,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VrrProvider provider = new VrrProvider();
-			vrrProviderRef = new SoftReference<VrrProvider>(provider);
+			vrrProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(MvgProvider.NETWORK_ID))
@@ -365,7 +366,7 @@ public final class NetworkProviderFactory
 			}
 
 			final MvgProvider provider = new MvgProvider();
-			mvgProviderRef = new SoftReference<MvgProvider>(provider);
+			mvgProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VrnProvider.NETWORK_ID))
@@ -378,7 +379,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VrnProvider provider = new VrnProvider();
-			vrnProviderRef = new SoftReference<VrnProvider>(provider);
+			vrnProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VvsProvider.NETWORK_ID))
@@ -391,7 +392,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VvsProvider provider = new VvsProvider("http://www2.vvs.de/oeffi/");
-			vvsProviderRef = new SoftReference<VvsProvider>(provider);
+			vvsProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NaldoProvider.NETWORK_ID))
@@ -404,7 +405,7 @@ public final class NetworkProviderFactory
 			}
 
 			final NaldoProvider provider = new NaldoProvider();
-			naldoProviderRef = new SoftReference<NaldoProvider>(provider);
+			naldoProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(DingProvider.NETWORK_ID))
@@ -417,7 +418,7 @@ public final class NetworkProviderFactory
 			}
 
 			final DingProvider provider = new DingProvider();
-			dingProviderRef = new SoftReference<DingProvider>(provider);
+			dingProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(KvvProvider.NETWORK_ID))
@@ -430,7 +431,7 @@ public final class NetworkProviderFactory
 			}
 
 			final KvvProvider provider = new KvvProvider("http://213.144.24.66/oeffi/");
-			kvvProviderRef = new SoftReference<KvvProvider>(provider);
+			kvvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VagfrProvider.NETWORK_ID))
@@ -443,7 +444,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VagfrProvider provider = new VagfrProvider();
-			vagfrProviderRef = new SoftReference<VagfrProvider>(provider);
+			vagfrProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NvbwProvider.NETWORK_ID))
@@ -456,7 +457,7 @@ public final class NetworkProviderFactory
 			}
 
 			final NvbwProvider provider = new NvbwProvider();
-			nvbwProviderRef = new SoftReference<NvbwProvider>(provider);
+			nvbwProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VvvProvider.NETWORK_ID))
@@ -469,7 +470,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VvvProvider provider = new VvvProvider();
-			vvvProviderRef = new SoftReference<VvvProvider>(provider);
+			vvvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(OebbProvider.NETWORK_ID))
@@ -482,7 +483,7 @@ public final class NetworkProviderFactory
 			}
 
 			final OebbProvider provider = new OebbProvider();
-			oebbProviderRef = new SoftReference<OebbProvider>(provider);
+			oebbProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VorProvider.NETWORK_ID))
@@ -495,7 +496,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VorProvider provider = new VorProvider();
-			vorProviderRef = new SoftReference<VorProvider>(provider);
+			vorProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(LinzProvider.NETWORK_ID))
@@ -508,7 +509,7 @@ public final class NetworkProviderFactory
 			}
 
 			final LinzProvider provider = new LinzProvider();
-			linzProviderRef = new SoftReference<LinzProvider>(provider);
+			linzProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(SvvProvider.NETWORK_ID))
@@ -521,7 +522,7 @@ public final class NetworkProviderFactory
 			}
 
 			final SvvProvider provider = new SvvProvider();
-			svvProviderRef = new SoftReference<SvvProvider>(provider);
+			svvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VvtProvider.NETWORK_ID))
@@ -534,7 +535,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VvtProvider provider = new VvtProvider();
-			vvtProviderRef = new SoftReference<VvtProvider>(provider);
+			vvtProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VmobilProvider.NETWORK_ID))
@@ -547,7 +548,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VmobilProvider provider = new VmobilProvider();
-			vmobilProviderRef = new SoftReference<VmobilProvider>(provider);
+			vmobilProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(IvbProvider.NETWORK_ID))
@@ -560,7 +561,7 @@ public final class NetworkProviderFactory
 			}
 
 			final IvbProvider provider = new IvbProvider();
-			ivbProviderRef = new SoftReference<IvbProvider>(provider);
+			ivbProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(StvProvider.NETWORK_ID))
@@ -573,7 +574,7 @@ public final class NetworkProviderFactory
 			}
 
 			final StvProvider provider = new StvProvider();
-			stvProviderRef = new SoftReference<StvProvider>(provider);
+			stvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(SbbProvider.NETWORK_ID))
@@ -586,7 +587,7 @@ public final class NetworkProviderFactory
 			}
 
 			final SbbProvider provider = new SbbProvider();
-			sbbProviderRef = new SoftReference<SbbProvider>(provider);
+			sbbProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(BvbProvider.NETWORK_ID))
@@ -599,7 +600,7 @@ public final class NetworkProviderFactory
 			}
 
 			final BvbProvider provider = new BvbProvider();
-			bvbProviderRef = new SoftReference<BvbProvider>(provider);
+			bvbProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(VblProvider.NETWORK_ID))
@@ -612,7 +613,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VblProvider provider = new VblProvider();
-			vblProviderRef = new SoftReference<VblProvider>(provider);
+			vblProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(ZvvProvider.NETWORK_ID))
@@ -625,7 +626,7 @@ public final class NetworkProviderFactory
 			}
 
 			final ZvvProvider provider = new ZvvProvider();
-			zvvProviderRef = new SoftReference<ZvvProvider>(provider);
+			zvvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(SncbProvider.NETWORK_ID))
@@ -638,7 +639,7 @@ public final class NetworkProviderFactory
 			}
 
 			final SncbProvider provider = new SncbProvider();
-			sncbProviderRef = new SoftReference<SncbProvider>(provider);
+			sncbProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(LuProvider.NETWORK_ID))
@@ -651,7 +652,7 @@ public final class NetworkProviderFactory
 			}
 
 			final LuProvider provider = new LuProvider();
-			luProviderRef = new SoftReference<LuProvider>(provider);
+			luProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NsProvider.NETWORK_ID))
@@ -664,7 +665,7 @@ public final class NetworkProviderFactory
 			}
 
 			final NsProvider provider = new NsProvider();
-			nsProviderRef = new SoftReference<NsProvider>(provider);
+			nsProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(DsbProvider.NETWORK_ID))
@@ -677,7 +678,7 @@ public final class NetworkProviderFactory
 			}
 
 			final DsbProvider provider = new DsbProvider();
-			dsbProviderRef = new SoftReference<DsbProvider>(provider);
+			dsbProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(SeProvider.NETWORK_ID))
@@ -690,7 +691,7 @@ public final class NetworkProviderFactory
 			}
 
 			final SeProvider provider = new SeProvider();
-			seProviderRef = new SoftReference<SeProvider>(provider);
+			seProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(StockholmProvider.NETWORK_ID))
@@ -703,7 +704,7 @@ public final class NetworkProviderFactory
 			}
 
 			final StockholmProvider provider = new StockholmProvider();
-			stockholmProviderRef = new SoftReference<StockholmProvider>(provider);
+			stockholmProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NriProvider.NETWORK_ID))
@@ -716,7 +717,7 @@ public final class NetworkProviderFactory
 			}
 
 			final NriProvider provider = new NriProvider();
-			nriProviderRef = new SoftReference<NriProvider>(provider);
+			nriProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(TlemProvider.NETWORK_ID))
@@ -729,7 +730,7 @@ public final class NetworkProviderFactory
 			}
 
 			final TlemProvider provider = new TlemProvider();
-			tlemProviderRef = new SoftReference<TlemProvider>(provider);
+			tlemProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(TlwmProvider.NETWORK_ID))
@@ -742,7 +743,7 @@ public final class NetworkProviderFactory
 			}
 
 			final TlwmProvider provider = new TlwmProvider();
-			tlwmProviderRef = new SoftReference<TlwmProvider>(provider);
+			tlwmProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(TfiProvider.NETWORK_ID))
@@ -755,7 +756,7 @@ public final class NetworkProviderFactory
 			}
 
 			final TfiProvider provider = new TfiProvider();
-			tfiProviderRef = new SoftReference<TfiProvider>(provider);
+			tfiProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(PlProvider.NETWORK_ID))
@@ -768,7 +769,7 @@ public final class NetworkProviderFactory
 			}
 
 			final PlProvider provider = new PlProvider();
-			plProviderRef = new SoftReference<PlProvider>(provider);
+			plProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(AtcProvider.NETWORK_ID))
@@ -781,7 +782,7 @@ public final class NetworkProviderFactory
 			}
 
 			final AtcProvider provider = new AtcProvider();
-			atcProviderRef = new SoftReference<AtcProvider>(provider);
+			atcProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(DubProvider.NETWORK_ID))
@@ -794,7 +795,7 @@ public final class NetworkProviderFactory
 			}
 
 			final DubProvider provider = new DubProvider();
-			dubProviderRef = new SoftReference<DubProvider>(provider);
+			dubProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(SfProvider.NETWORK_ID))
@@ -807,7 +808,7 @@ public final class NetworkProviderFactory
 			}
 
 			final SfProvider provider = new SfProvider();
-			sfProviderRef = new SoftReference<SfProvider>(provider);
+			sfProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(SeptaProvider.NETWORK_ID))
@@ -820,7 +821,7 @@ public final class NetworkProviderFactory
 			}
 
 			final SeptaProvider provider = new SeptaProvider();
-			septaProviderRef = new SoftReference<SeptaProvider>(provider);
+			septaProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(SydneyProvider.NETWORK_ID))
@@ -833,7 +834,7 @@ public final class NetworkProviderFactory
 			}
 
 			final SydneyProvider provider = new SydneyProvider();
-			sydneyProviderRef = new SoftReference<SydneyProvider>(provider);
+			sydneyProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(MetProvider.NETWORK_ID))
@@ -846,7 +847,7 @@ public final class NetworkProviderFactory
 			}
 
 			final MetProvider provider = new MetProvider();
-			metProviderRef = new SoftReference<MetProvider>(provider);
+			metProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.VGS))
@@ -859,7 +860,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VgsProvider provider = new VgsProvider();
-			vgsProviderRef = new SoftReference<VgsProvider>(provider);
+			vgsProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.VSN))
@@ -872,7 +873,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VsnProvider provider = new VsnProvider();
-			vsnProviderRef = new SoftReference<VsnProvider>(provider);
+			vsnProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.WIEN))
@@ -885,7 +886,7 @@ public final class NetworkProviderFactory
 			}
 
 			final WienProvider provider = new WienProvider();
-			wienProviderRef = new SoftReference<WienProvider>(provider);
+			wienProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.VRT))
@@ -898,7 +899,7 @@ public final class NetworkProviderFactory
 			}
 
 			final VrtProvider provider = new VrtProvider();
-			vrtProviderRef = new SoftReference<VrtProvider>(provider);
+			vrtProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.JET))
@@ -911,7 +912,7 @@ public final class NetworkProviderFactory
 			}
 
 			final JetProvider provider = new JetProvider();
-			jetProviderRef = new SoftReference<JetProvider>(provider);
+			jetProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.PACA))
@@ -924,7 +925,7 @@ public final class NetworkProviderFactory
 			}
 
 			final PacaProvider provider = new PacaProvider();
-			pacaProviderRef = new SoftReference<PacaProvider>(provider);
+			pacaProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.RSAG))
@@ -937,7 +938,20 @@ public final class NetworkProviderFactory
 			}
 
 			final RsagProvider provider = new RsagProvider();
-			rsagProviderRef = new SoftReference<RsagProvider>(provider);
+			rsagProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.PARIS))
+		{
+			if (parisProviderRef != null)
+			{
+				final ParisProvider provider = parisProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final ParisProvider provider = new ParisProvider("87a37b95-913a-4cb4-ba52-eb0bc0b304ca");
+			parisProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else
