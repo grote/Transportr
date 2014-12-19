@@ -236,7 +236,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 
 		listRegion.add("Schweiz");
 		List<NetworkItem> ch = new ArrayList<NetworkItem>();
-//		ch.add(new NetworkItem(NetworkId.SBB, "SBB", ""));
+		ch.add(new NetworkItem(NetworkId.SBB, "SBB", ""));
 		ch.add(new NetworkItem(NetworkId.BVB, "BVB", ""));
 		ch.add(new NetworkItem(NetworkId.VBL, "VBL", "Luzern"));
 		ch.add(new NetworkItem(NetworkId.ZVV, "ZVL", "Zürich"));
@@ -275,10 +275,8 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 
 		listRegion.add("Great Britan");
 		List<NetworkItem> gb = new ArrayList<NetworkItem>();
-		gb.add(new NetworkItem(NetworkId.TFL, "TFL", "London & Greater Area"));
 		gb.add(new NetworkItem(NetworkId.TLEM, "TLEM", "Great Britan", true));
 		gb.add(new NetworkItem(NetworkId.TLWM, "TLWM", "Birmingham", true));
-		gb.add(new NetworkItem(NetworkId.TLSW, "TLSW", "Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole", true));
 		listNetwork.put("Great Britan", gb);
 
 		listRegion.add("Ireland");
