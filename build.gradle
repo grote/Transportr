@@ -3,7 +3,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:0.12.+'
+		classpath 'com.android.tools.build:gradle:1.0.0'
 	}
 }
 
@@ -14,8 +14,8 @@ repositories {
 apply plugin: 'android'
 
 dependencies {
-	//compile 'com.android.support:appcompat-v7:18.0.+'
-	compile 'com.android.support:support-v4:19.+'
+	//compile "com.android.support:appcompat-v7:21.0.0"
+	compile 'com.android.support:support-v4:21.0.3'
 
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.0'
 
@@ -27,8 +27,8 @@ dependencies {
 
 android {
 	defaultConfig {
-		compileSdkVersion 19
-		buildToolsVersion "19.1.0"
+		compileSdkVersion 21
+		buildToolsVersion "21.1.2"
 	}
 
 	sourceSets {
