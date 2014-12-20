@@ -8,7 +8,6 @@
 
     <release version="0.5.3" versioncode="12">
         <change>Updated PTE: Fix API changes by various networks (Thanks to Jochen Sprickerhof)</change>
-        <change>Add experimental support for Paris (using Navitia)</change>
         <change>Activate SBB network again for Switzerland</change>
     </release>
 
