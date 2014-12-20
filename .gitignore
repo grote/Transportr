@@ -27,3 +27,4 @@ local.properties
 .idea/
 *.iml
 .gradle/
+manifest-merger-release-report.txt
