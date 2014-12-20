@@ -2,8 +2,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.grobox.liberario"
-    android:versionCode="11"
-    android:versionName="0.5.2" >
+    android:versionCode="12"
+    android:versionName="0.5.3" >
 
     <uses-sdk
         android:minSdkVersion="11"
