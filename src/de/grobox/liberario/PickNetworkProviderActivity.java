@@ -273,9 +273,14 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		no.add(new NetworkItem(NetworkId.NRI, "NRI", "Norge, Oslo, Bergen"));
 		listNetwork.put("Norge", no);
 
-		listRegion.add("Great Britan");
+//		listRegion.add("Suomi, Finland");
+//		List<NetworkItem> fi = new ArrayList<NetworkItem>();
+//		fi.add(new NetworkItem(NetworkId.HSL, "HSL", "Suomi, Helsinki"));
+//		listNetwork.put("Suomi, Finland", fi);
+
+		listRegion.add("Great Britain");
 		List<NetworkItem> gb = new ArrayList<NetworkItem>();
-		gb.add(new NetworkItem(NetworkId.TLEM, "TLEM", "Great Britan", true));
+		gb.add(new NetworkItem(NetworkId.TLEM, "TLEM", "Great Britain", true));
 		gb.add(new NetworkItem(NetworkId.TLWM, "TLWM", "Birmingham", true));
 		listNetwork.put("Great Britan", gb);
 

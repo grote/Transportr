@@ -75,6 +75,7 @@ public final class NetworkProviderFactory
 	private static Reference<SeProvider> seProviderRef;
 	private static Reference<StockholmProvider> stockholmProviderRef;
 	private static Reference<NriProvider> nriProviderRef;
+	private static Reference<HslProvider> hslProviderRef;
 	private static Reference<TlemProvider> tlemProviderRef;
 	private static Reference<TlwmProvider> tlwmProviderRef;
 	private static Reference<TfiProvider> tfiProviderRef;
@@ -718,6 +719,19 @@ public final class NetworkProviderFactory
 
 			final NriProvider provider = new NriProvider();
 			nriProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(HslProvider.NETWORK_ID))
+		{
+			if (hslProviderRef != null)
+			{
+				final HslProvider provider = hslProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final HslProvider provider = new HslProvider("pte_hsl", "Eixaeb9tnohcah7A");
+			hslProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(TlemProvider.NETWORK_ID))

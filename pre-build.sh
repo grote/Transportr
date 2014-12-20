@@ -7,6 +7,9 @@ mkdir -p src/de/schildbach/pte/live
 
 cp test/de/schildbach/pte/live/Secrets.java.template src/de/schildbach/pte/live/Secrets.java
 
+# add non-upstream providers
+sed -i "s#MET#MET, HSL#" src/de/schildbach/pte/NetworkId.java
+
 mvn clean package -DskipTests
 
 cd $DIR
