@@ -246,9 +246,11 @@ public class TripsActivity extends FragmentActivity {
 						if(v != null) {
 							if(v.getVisibility() == View.GONE) {
 								v.setVisibility(View.VISIBLE);
+								view.setActivated(true);
 							}
 							else if(v.getVisibility() == View.VISIBLE) {
 								v.setVisibility(View.GONE);
+								view.setActivated(false);
 							}
 						}
 					}

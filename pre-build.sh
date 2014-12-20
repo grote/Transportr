@@ -25,8 +25,8 @@ cat > sublibs/Android-PullToRefresh/library/build.gradle <<EOF
 apply plugin: 'android-library'
 
 android {
-  compileSdkVersion 19
-  buildToolsVersion '19.1.0'
+  compileSdkVersion 21
+  buildToolsVersion '21.1.2'
 
   sourceSets {
     main {

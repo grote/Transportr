@@ -186,16 +186,8 @@ public class TripDetailFragment extends LiberarioFragment {
 			}
 			// only for the last leg
 			if(i >= legs.size()) {
-				// hide stuff for last stop (destination)
-				legViewNew.findViewById(R.id.dDepartureTimeView).setVisibility(View.GONE);
-				legViewNew.findViewById(R.id.dDepartureDelayView).setVisibility(View.GONE);
-
-				legViewNew.findViewById(R.id.dDestinationView).setVisibility(View.GONE);
-				legViewNew.findViewById(R.id.dLineView).setVisibility(View.GONE);
+				// hide arrow for last stop (destination)
 				legViewNew.findViewById(R.id.dArrowView).setVisibility(View.GONE);
-				legViewNew.findViewById(R.id.dDeparturePositionView).setVisibility(View.GONE);
-				legViewNew.findViewById(R.id.dShowMoreView).setVisibility(View.GONE);
-				legViewNew.findViewById(R.id.dMessageView).setVisibility(View.GONE);
 			}
 
 			if(leg instanceof Trip.Public) {
@@ -248,6 +240,7 @@ public class TripDetailFragment extends LiberarioFragment {
 					msgView.setText(msgView.getText() + "\n" + Html.fromHtml(public_leg.line.message).toString());
 				}
 
+				// show stops if available
 				if(public_leg.intermediateStops != null && public_leg.intermediateStops.size() > 0) {
 					// get and add intermediate stops
 					view.addView(getStops(public_leg.intermediateStops));

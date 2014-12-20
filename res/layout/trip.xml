@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/selector_list_item"
@@ -23,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
+                tools:text="20:15"
                 android:textAppearance="?android:attr/textAppearance" />
 
             <TextView
@@ -30,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
+                tools:text="20:20"
                 android:textAppearance="?android:attr/textAppearance" />
 
         </LinearLayout>
@@ -45,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="bottom"
+                tools:text="+10"
                 android:padding="2dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/holo_red_light" />
@@ -55,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="bottom"
+                tools:text="+2"
                 android:padding="2dp"
                 android:textColor="@color/holo_red_light" />
 
@@ -71,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:padding="2dp"
                 android:textAppearance="?android:attr/textAppearance"
-                android:text="@string/from" />
+                tools:text="From Station with a long station name" />
 
             <TextView
                 android:id="@+id/toView"
@@ -79,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:padding="2dp"
                 android:textAppearance="?android:attr/textAppearance"
-                android:text="@string/destination" />
+                tools:text="To Station with a shorter name" />
 
         </LinearLayout>
     </TableRow>
@@ -105,6 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="center_vertical"
+            tools:text="3:33"
             android:textAppearance="?android:attr/textAppearance" />
 
         <ImageView

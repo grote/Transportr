@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -8,21 +9,25 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="3dp" >
 
         <TextView
             android:id="@+id/dArrivalTimeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearance" />
+            android:textAppearance="?android:attr/textAppearance"
+            tools:text="20:15"
+         />
 
         <TextView
             android:id="@+id/dDepartureTimeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dArrivalTimeView"
-            android:textAppearance="?android:attr/textAppearance" />
+            android:textAppearance="?android:attr/textAppearance"
+            tools:text="20:20"
+         />
 
         <TextView
             android:id="@+id/dArrivalDelayView"
@@ -33,6 +38,7 @@
             android:layout_toEndOf="@id/dArrivalTimeView"
             android:layout_toRightOf="@+id/dArrivalTimeView"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="+2"
             android:textColor="@color/holo_red_light" />
 
         <TextView
@@ -44,6 +50,7 @@
             android:layout_toEndOf="@id/dDepartureTimeView"
             android:layout_toRightOf="@id/dDepartureTimeView"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="+12"
             android:textColor="@color/holo_red_light" />
 
     </RelativeLayout>
@@ -58,6 +65,7 @@
             android:id="@+id/dDepartureView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            tools:text="One of the Trip's Stations which has really a very long name"
             android:textAppearance="?android:attr/textAppearance" />
 
         <LinearLayout
@@ -84,6 +92,7 @@
                 android:id="@+id/dDestinationView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                tools:text="Destination of Line"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -94,6 +103,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:textColor="@color/holo_red_light"
+            tools:text="This is an important message and might be very long!"
             android:textSize="12sp"/>
     </LinearLayout>
 
@@ -109,6 +119,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
+            tools:text="13b"
             android:lines="1" />
 
         <TextView
@@ -116,6 +127,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
+            tools:text="2"
             android:lines="1" />
 
     </LinearLayout>

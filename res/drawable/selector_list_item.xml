@@ -9,7 +9,7 @@
         android:drawable="@color/holo_blue_light"
         android:state_selected="true" />
     <item
-        android:drawable="@color/holo_blue_dark"
+        android:drawable="@color/holo_blue_very_dark"
         android:state_activated="true" />
 
 </selector>
