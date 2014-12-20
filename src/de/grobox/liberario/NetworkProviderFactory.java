@@ -94,6 +94,9 @@ public final class NetworkProviderFactory
 	private static Reference<PacaProvider> pacaProviderRef;
 	private static Reference<RsagProvider> rsagProviderRef;
 	private static Reference<ParisProvider> parisProviderRef;
+	private static Reference<NavitiaProvider> usnyProviderRef;
+
+	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
 	{
@@ -964,8 +967,21 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final ParisProvider provider = new ParisProvider("87a37b95-913a-4cb4-ba52-eb0bc0b304ca");
+			final ParisProvider provider = new ParisProvider(NAVITIA);
 			parisProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.USNY))
+		{
+			if (usnyProviderRef != null)
+			{
+				final NavitiaProvider provider = usnyProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final NavitiaProvider provider = new NavitiaProvider(NAVITIA, "us-ny", NetworkId.USNY);
+			usnyProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else

@@ -34,7 +34,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
@@ -54,11 +53,11 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		Intent intent = getIntent();
 		if(intent.getBooleanExtra("FirstRun", false)) {
 			// hide cancel button on first run
-			((Button) findViewById(R.id.cancelNetworkProviderButton)).setVisibility(View.GONE);
+			findViewById(R.id.cancelNetworkProviderButton).setVisibility(View.GONE);
 			// prevent going back
 			back = false;
 			// show first time notice
-			((TextView) findViewById(R.id.firstRunTextView)).setVisibility(View.VISIBLE);
+			findViewById(R.id.firstRunTextView).setVisibility(View.VISIBLE);
 		}
 		else {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -152,7 +151,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		}
 
 		// construct NetworkId object from network string
-		NetworkId network_id = null;
+		NetworkId network_id;
 		try {
 			network_id = NetworkId.valueOf(network_string);
 		}
@@ -173,16 +172,16 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 	}
 
 	private void prepareListData() {
-		listRegion = new ArrayList<String>();
-		listNetwork = new HashMap<String, List<NetworkItem>>();
+		listRegion = new ArrayList<>();
+		listNetwork = new HashMap<>();
 
 		listRegion.add("Europe");
-		List<NetworkItem> eu = new ArrayList<NetworkItem>();
+		List<NetworkItem> eu = new ArrayList<>();
 		eu.add(new NetworkItem(NetworkId.RT, "Europe", "long-distance only"));
 		listNetwork.put("Europe", eu);
 
 		listRegion.add("Germany");
-		List<NetworkItem> de = new ArrayList<NetworkItem>();
+		List<NetworkItem> de = new ArrayList<>();
 		de.add(new NetworkItem(NetworkId.DB, "Deutsche Bahn"));
 		de.add(new NetworkItem(NetworkId.BVG, "BVG", "Berlin"));
 		de.add(new NetworkItem(NetworkId.VBB, "VBB", "Brandenburg, Berlin"));
@@ -218,7 +217,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		listNetwork.put("Germany", de);
 
 		listRegion.add("Österreich");
-		List<NetworkItem> at = new ArrayList<NetworkItem>();
+		List<NetworkItem> at = new ArrayList<>();
 		at.add(new NetworkItem(NetworkId.OEBB, "OEBB", "Ganz Österreich"));
 		at.add(new NetworkItem(NetworkId.VOR, "VOR", "Niederösterreich, Burgenland, Wien"));
 		at.add(new NetworkItem(NetworkId.LINZ, "LINZ", "Oberösterreich, Linz"));
@@ -230,12 +229,12 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		listNetwork.put("Österreich", at);
 
 		listRegion.add("Liechtenstein");
-		List<NetworkItem> li = new ArrayList<NetworkItem>();
+		List<NetworkItem> li = new ArrayList<>();
 		li.add(new NetworkItem(NetworkId.VMOBIL, "VMOBIL", "Liechtenstein, Vorarlberg, Bregenz"));
 		listNetwork.put("Liechtenstein", li);
 
 		listRegion.add("Schweiz");
-		List<NetworkItem> ch = new ArrayList<NetworkItem>();
+		List<NetworkItem> ch = new ArrayList<>();
 		ch.add(new NetworkItem(NetworkId.SBB, "SBB", ""));
 		ch.add(new NetworkItem(NetworkId.BVB, "BVB", ""));
 		ch.add(new NetworkItem(NetworkId.VBL, "VBL", "Luzern"));
@@ -243,88 +242,88 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		listNetwork.put("Schweiz", ch);
 
 		listRegion.add("Belgique");
-		List<NetworkItem> be = new ArrayList<NetworkItem>();
+		List<NetworkItem> be = new ArrayList<>();
 		be.add(new NetworkItem(NetworkId.SNCB, "SNCB", ""));
 		listNetwork.put("Belgique", be);
 
 		listRegion.add("Lëtzebuerg");
-		List<NetworkItem> lu = new ArrayList<NetworkItem>();
+		List<NetworkItem> lu = new ArrayList<>();
 		lu.add(new NetworkItem(NetworkId.LU, "LU", ""));
 		listNetwork.put("Lëtzebuerg", lu);
 
 		listRegion.add("Nederland");
-		List<NetworkItem> nl = new ArrayList<NetworkItem>();
+		List<NetworkItem> nl = new ArrayList<>();
 		nl.add(new NetworkItem(NetworkId.NS, "NS", "Nederland, Amsterdam", true));
 		listNetwork.put("Nederland", nl);
 
 		listRegion.add("Danmark");
-		List<NetworkItem> dk = new ArrayList<NetworkItem>();
+		List<NetworkItem> dk = new ArrayList<>();
 		dk.add(new NetworkItem(NetworkId.DSB, "DSB", "Danmark, København"));
 		listNetwork.put("Danmark", dk);
 
 		listRegion.add("Sverige");
-		List<NetworkItem> sv = new ArrayList<NetworkItem>();
+		List<NetworkItem> sv = new ArrayList<>();
 		sv.add(new NetworkItem(NetworkId.SE, "SE", "Sverige, Stockholm"));
 		sv.add(new NetworkItem(NetworkId.STOCKHOLM, "STOCKHOLM", "Stockholm", true));
 		listNetwork.put("Sverige", sv);
 
 		listRegion.add("Norge");
-		List<NetworkItem> no = new ArrayList<NetworkItem>();
+		List<NetworkItem> no = new ArrayList<>();
 		no.add(new NetworkItem(NetworkId.NRI, "NRI", "Norge, Oslo, Bergen"));
 		listNetwork.put("Norge", no);
 
 //		listRegion.add("Suomi, Finland");
-//		List<NetworkItem> fi = new ArrayList<NetworkItem>();
+//		List<NetworkItem> fi = new ArrayList<>();
 //		fi.add(new NetworkItem(NetworkId.HSL, "HSL", "Suomi, Helsinki"));
 //		listNetwork.put("Suomi, Finland", fi);
 
 		listRegion.add("Great Britain");
-		List<NetworkItem> gb = new ArrayList<NetworkItem>();
+		List<NetworkItem> gb = new ArrayList<>();
 		gb.add(new NetworkItem(NetworkId.TLEM, "TLEM", "Great Britain", true));
 		gb.add(new NetworkItem(NetworkId.TLWM, "TLWM", "Birmingham", true));
 		listNetwork.put("Great Britan", gb);
 
 		listRegion.add("Ireland");
-		List<NetworkItem> ie = new ArrayList<NetworkItem>();
+		List<NetworkItem> ie = new ArrayList<>();
 		ie.add(new NetworkItem(NetworkId.TFI, "TFI", "Ireland, Dublin"));
 //		ie.add(new NetworkItem(NetworkId.EIREANN, "EIREANN", "Bus Éireann"));
 		listNetwork.put("Ireland", ie);
 
 		listRegion.add("Italia");
-		List<NetworkItem> it = new ArrayList<NetworkItem>();
+		List<NetworkItem> it = new ArrayList<>();
 		it.add(new NetworkItem(NetworkId.ATC, "ATC", "Bologna", true));
 		listNetwork.put("Italia", it);
 
 		listRegion.add("Polska");
-		List<NetworkItem> pl = new ArrayList<NetworkItem>();
+		List<NetworkItem> pl = new ArrayList<>();
 		pl.add(new NetworkItem(NetworkId.PL, "PL", "Polska, Warszawa"));
 		listNetwork.put("Polska", pl);
 
 		listRegion.add("United Arab Emirates");
-		List<NetworkItem> ae = new ArrayList<NetworkItem>();
+		List<NetworkItem> ae = new ArrayList<>();
 		ae.add(new NetworkItem(NetworkId.DUB, "DUB", "United Arab Emirates, Dubai", true));
 		listNetwork.put("United Arab Emirates", ae);
 
 		listRegion.add("United States of America");
-		List<NetworkItem> us = new ArrayList<NetworkItem>();
+		List<NetworkItem> us = new ArrayList<>();
 		us.add(new NetworkItem(NetworkId.SF, "SF", "California, San Francisco"));
 		us.add(new NetworkItem(NetworkId.SEPTA, "SEPTA", "Pennsylvania, Philadelphia", true));
 		listNetwork.put("United States of America", us);
 
 		listRegion.add("Australia");
-		List<NetworkItem> au = new ArrayList<NetworkItem>();
+		List<NetworkItem> au = new ArrayList<>();
 		au.add(new NetworkItem(NetworkId.SYDNEY, "SYDNEY", "New South Wales, Sydney", true));
 		au.add(new NetworkItem(NetworkId.MET, "MET", "Victoria, Melbourne", true));
 		listNetwork.put("Australia", au);
 
 		listRegion.add("Israel");
-		List<NetworkItem> il = new ArrayList<NetworkItem>();
+		List<NetworkItem> il = new ArrayList<>();
 		il.add(new NetworkItem(NetworkId.JET, "JET", "Jerusalem", true));
 		listNetwork.put("Israel", il);
 
 		listRegion.add("France");
-		List<NetworkItem> fr = new ArrayList<NetworkItem>();
-		fr.add(new NetworkItem(NetworkId.PARIS, "PARIS", "Paris", true));
+		List<NetworkItem> fr = new ArrayList<>();
+//		fr.add(new NetworkItem(NetworkId.PARIS, "PARIS", "Paris", true));
 		fr.add(new NetworkItem(NetworkId.PACA, "PACA", "Provence-Alpes-Côte d'Azur", true));
 		listNetwork.put("France", fr);
 	}
