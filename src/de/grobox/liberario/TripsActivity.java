@@ -17,6 +17,8 @@
 
 package de.grobox.liberario;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,16 +38,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -53,9 +54,7 @@ import android.widget.TextView;
 
 public class TripsActivity extends FragmentActivity {
 	private QueryTripsResult trips;
-	private ActionMode mActionMode;
 	private Menu mMenu;
-	private ViewGroup mSelectedTrip;
 	private Location from;
 	private Location to;
 	private int mContainerId = 1;
@@ -184,7 +183,7 @@ public class TripsActivity extends FragmentActivity {
 		if(trip_list != null) {
 			// reverse order of trips if they should be prepended
 			if(!append) {
-				ArrayList<Trip> tempResults = new ArrayList<Trip>(trip_list);
+				ArrayList<Trip> tempResults = new ArrayList<>(trip_list);
 				Collections.reverse(tempResults);
 				trip_list = tempResults;
 			}
@@ -256,20 +255,82 @@ public class TripsActivity extends FragmentActivity {
 					}
 
 				});
-				trip_layout.setOnLongClickListener(new View.OnLongClickListener() {
-					@Override
-					public boolean onLongClick(View view) {
-						selectTrip(view, trip_layout);
-						return true;
-					}
-				});
 
 				// show more button for trip details
 				final ImageView showMoreView = (ImageView) trip_layout.findViewById(R.id.showMoreView);
+
+				// Creating PopupMenu
+				final PopupMenu popup = new PopupMenu(getApplicationContext(), showMoreView);
+				popup.getMenuInflater().inflate(R.menu.trip_actions, popup.getMenu());
+				popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+					public boolean onMenuItemClick(MenuItem item) {
+						// handle presses on menu items
+						switch(item.getItemId()) {
+							// Share Trip
+							case R.id.action_trip_share:
+								Intent sendIntent = new Intent()
+										                    .setAction(Intent.ACTION_SEND)
+										                    .putExtra(Intent.EXTRA_SUBJECT, LiberarioUtils.tripToSubject(getBaseContext(), trip, true))
+										                    .putExtra(Intent.EXTRA_TEXT, LiberarioUtils.tripToString(getBaseContext(), trip))
+										                    .setType("text/plain")
+										                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+								startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.share_trip_via)));
+
+								return true;
+							// Add Trip to Calendar
+							case R.id.action_trip_calender:
+								Intent intent = new Intent(Intent.ACTION_EDIT)
+										                .setType("vnd.android.cursor.item/event")
+										                .putExtra("beginTime", trip.getFirstDepartureTime().getTime())
+										                .putExtra("endTime", trip.getLastArrivalTime().getTime())
+										                .putExtra("title", trip.from.name + " → " + trip.to.name)
+										                .putExtra("description", LiberarioUtils.tripToString(getBaseContext(), trip));
+								if(trip.from.place != null) intent.putExtra("eventLocation", trip.from.place);
+								startActivity(intent);
+
+								return true;
+							// Show Trip Details on Separate Screen
+							case R.id.action_trip_details:
+								if(trip != null) {
+									showTripDetails(trip);
+								}
+								return true;
+							default:
+								return false;
+						}
+					}
+				});
+
+				// very ugly hack to show icons in PopupMenu
+				// see: http://stackoverflow.com/a/18431605
+				try {
+					Field[] fields = popup.getClass().getDeclaredFields();
+					for(Field field : fields) {
+						if("mPopup".equals(field.getName())) {
+							field.setAccessible(true);
+							Object menuPopupHelper = field.get(popup);
+							Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
+							Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
+							setForceIcons.invoke(menuPopupHelper, true);
+							break;
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 				showMoreView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						selectTrip(view, trip_layout);
+						popup.show();
+					}
+				});
+
+				trip_layout.setOnLongClickListener(new View.OnLongClickListener() {
+					@Override
+					public boolean onLongClick(View view) {
+						popup.show();
+						return false;
 					}
 				});
 
@@ -305,7 +366,6 @@ public class TripsActivity extends FragmentActivity {
 					main.addView(fragmentContainer, 1);
 				}
 			} // end foreach trip
-
 		}
 		else {
 			// TODO offer option to query again for trips
@@ -329,7 +389,7 @@ public class TripsActivity extends FragmentActivity {
 	public void addMoreTrips(QueryTripsResult trip_results, boolean later) {
 		if(trips != null) {
 			// remove old trips for providers that return them
-			List<Trip> trips_new = new ArrayList<Trip>();
+			List<Trip> trips_new = new ArrayList<>();
 			if(trip_results.trips.size() > trips.trips.size()) {
 				for(Trip trip : trip_results.trips) {
 					boolean add = true;
@@ -362,96 +422,4 @@ public class TripsActivity extends FragmentActivity {
 			frag.showPlatforms(show);
 		}
 	}
-
-	private void selectTrip(View view, ViewGroup vg) {
-		// take care of cases for ActionMode is already activated
-		if(mActionMode != null) {
-			if(vg.isSelected()) {
-				// disable action mode for current item
-				mActionMode.finish();
-
-				// exit here to not start new ActionMode
-				return;
-			} else {
-				// deselect previously selected trip
-				mSelectedTrip.setSelected(false);
-
-				// disable action mode for current item
-				mActionMode.finish();
-			}
-		}
-
-		// select clicked trip
-		mSelectedTrip = vg;
-		mSelectedTrip.setSelected(true);
-
-		// active new ActionMode for clicked trip
-		mActionMode = startActionMode(mTripActionMode);
-	}
-
-	private ActionMode.Callback mTripActionMode = new ActionMode.Callback() {
-		// Called when the action mode is created; startActionMode() was called
-		@Override
-		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-			// Inflate a menu resource providing context menu items
-			MenuInflater inflater = mode.getMenuInflater();
-			inflater.inflate(R.menu.trip_actions, menu);
-			return true;
-		}
-
-		// Called each time the action mode is shown. Always called after onCreateActionMode,
-		// but may be called multiple times if the mode is invalidated.
-		@Override
-		public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-			return false; // Return false if nothing is done
-		}
-
-		// Called when the user selects a contextual menu item
-		@Override
-		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-			switch(item.getItemId()) {
-				case R.id.action_trip_share:
-					Intent sendIntent = new Intent()
-					.setAction(Intent.ACTION_SEND)
-					.putExtra(Intent.EXTRA_SUBJECT, LiberarioUtils.tripToSubject(getBaseContext(), (Trip) mSelectedTrip.getTag(), true))
-					.putExtra(Intent.EXTRA_TEXT, LiberarioUtils.tripToString(getBaseContext(), (Trip) mSelectedTrip.getTag()))
-					.setType("text/plain")
-					.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-					startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.share_trip_via)));
-
-					// Action picked, so close the CAB
-					mode.finish();
-					return true;
-				case R.id.action_trip_calender:
-					Trip trip = (Trip) mSelectedTrip.getTag();
-
-					Intent intent = new Intent(Intent.ACTION_EDIT)
-					.setType("vnd.android.cursor.item/event")
-					.putExtra("beginTime", trip.getFirstDepartureTime().getTime())
-					.putExtra("endTime", trip.getLastArrivalTime().getTime())
-					.putExtra("title", trip.from.name + " → " + trip.to.name)
-					.putExtra("description", LiberarioUtils.tripToString(getBaseContext(), trip));
-					if(trip.from.place != null) intent.putExtra("eventLocation", trip.from.place);
-					startActivity(intent);
-
-					return true;
-				case R.id.action_trip_details:
-					if(mSelectedTrip != null) {
-						showTripDetails(mSelectedTrip.getTag());
-					}
-					// Action picked, so close the CAB
-					mode.finish();
-					return true;
-				default:
-					return false;
-			}
-		}
-
-		// Called when the user exits the action mode
-		@Override
-		public void onDestroyActionMode(ActionMode mode) {
-			mSelectedTrip.setSelected(false);
-			mActionMode = null;
-		}
-	};
 }
