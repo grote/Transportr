@@ -203,7 +203,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		de.add(new NetworkItem(NetworkId.VRR, "VRR", "Nordrhein-Westfalen, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter"));
 //		de.add(new NetworkItem(NetworkId.VRT, "VRT", "Rhein-Neckar-Dreieck", true));
 		de.add(new NetworkItem(NetworkId.MVG, "MVG", "Märkischer Kreis, Lüdenscheid", true));
-		de.add(new NetworkItem(NetworkId.NVV, "NVV", "Hessen, Kassel"));
+		de.add(new NetworkItem(NetworkId.NVV, "NVV/RMV", "Hessen, Frankfurt, Kassel"));
 		de.add(new NetworkItem(NetworkId.VRN, "VRN", "Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier"));
 		de.add(new NetworkItem(NetworkId.VVS, "VVS", "Baden-Württemberg, Stuttgart"));
 		de.add(new NetworkItem(NetworkId.NALDO, "NALDO", "Reutlingen, Rottweil, Tübingen, Sigmaringen"));
