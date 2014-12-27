@@ -17,11 +17,13 @@
 
 package de.grobox.liberario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
@@ -134,9 +136,9 @@ public class FavTripsFragment extends LiberarioListFragment {
 		}
 
 		private void queryFavTrip(View v, final int position, final boolean swap) {
-			FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
+			final FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
 
-			AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
+			final AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 			if(swap) {
 				query_trips.setFrom(trip.getTo());
 				query_trips.setTo(trip.getFrom());
@@ -145,10 +147,18 @@ public class FavTripsFragment extends LiberarioListFragment {
 				query_trips.setTo(trip.getTo());
 			}
 
-			// remember trip
-			FavDB.updateFavTrip(getActivity(), trip);
-
-			query_trips.execute();
+			new AsyncTask<Void, Void, Void>() {
+				@Override
+				protected Void doInBackground(Void... params) {
+					// remember trip
+					FavDB.updateFavTrip(getActivity(), trip);
+				}
+				
+				@Override
+				protected void onPostExecute(Void result) {
+					query_trips.execute();
+				}
+			}.execute();
 		}
 
 		@Override
@@ -249,14 +259,24 @@ public class FavTripsFragment extends LiberarioListFragment {
 							SparseBooleanArray tmp = getListView().getCheckedItemPositions();
 
 							// loop over selected items and delete associated trips
+							final List<FavTrip> favTrips = new ArrayList<FavTrip>();
 							for(int i = tmp.size()-1; i >= 0; i--) {
 								if(tmp.valueAt(i)) {
 									int pos = tmp.keyAt(i);
 									FavTrip trip = adapter.getItem(pos);
-									FavDB.unfavTrip(getActivity(), trip);
+									favTrips.add(trip);
 									adapter.remove(trip);
 								}
 							}
+							new Thread() {
+								@Override
+								public void run() {
+									for(FavTrip trip : favTrips) {
+										FavDB.unfavTrip(getActivity(), trip);
+									}
+								}
+								
+							}.start();
 							mode.finish();
 						}
 					})

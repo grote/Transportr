@@ -22,6 +22,7 @@ import de.schildbach.pte.dto.Location;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
@@ -119,15 +120,24 @@ public class SetHomeActivity extends FragmentActivity {
 		Button okButton = (Button) findViewById(R.id.okButton);
 		okButton.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v) {
+			public void onClick(final View v) {
 				if (homeView.getTag() != null && homeView.getTag() instanceof Location) {
 					// save home location in file
-					FavDB.setHome(v.getContext(), (Location) homeView.getTag());
+					new AsyncTask<Void, Void, Void>() {
+						@Override
+						protected Void doInBackground(Void... params) {
+							FavDB.setHome(v.getContext(), (Location) homeView.getTag());
+							return null;
+						}
+						
+						@Override
+						protected void onPostExecute(Void result) {
+							Intent returnIntent = new Intent();
+							setResult(RESULT_OK, returnIntent);
 
-					Intent returnIntent = new Intent();
-					setResult(RESULT_OK, returnIntent);
-
-					close(v);
+							close(v);
+						}
+					}.execute();
 				} else {
 					Toast.makeText(v.getContext(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
 				}

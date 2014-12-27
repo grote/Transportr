@@ -26,6 +26,7 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,23 +77,32 @@ public class AmbiguousLocationActivity extends Activity {
 
 		Button button = (Button) findViewById(R.id.button1);
 		button.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Location from = (Location) from_spinner.getSelectedItem();
-				Location to = (Location) to_spinner.getSelectedItem();
+			public void onClick(final View v) {
+				final Location from = (Location) from_spinner.getSelectedItem();
+				final Location to = (Location) to_spinner.getSelectedItem();
 
-				// remember location and trip
-				FavDB.updateFavLocation(getApplicationContext(), from, FavLocation.LOC_TYPE.FROM);
-				FavDB.updateFavLocation(getApplicationContext(), to, FavLocation.LOC_TYPE.TO);
-				FavDB.updateFavTrip(getApplicationContext(), new FavTrip(from, to));
+				new AsyncTask<Void, Void, Void>() {
+					@Override
+					protected Void doInBackground(Void... params) {
+						// remember location and trip
+						FavDB.updateFavLocation(getApplicationContext(), from, FavLocation.LOC_TYPE.FROM);
+						FavDB.updateFavLocation(getApplicationContext(), to, FavLocation.LOC_TYPE.TO);
+						FavDB.updateFavTrip(getApplicationContext(), new FavTrip(from, to));
+						return null;
+					}
+					
+					@Override
+					protected void onPostExecute(Void result) {
+						AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 
-				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
+						query_trips.setDate(date);
+						query_trips.setDeparture(departure);
+						query_trips.setFrom(from);
+						query_trips.setTo(to);
 
-				query_trips.setDate(date);
-				query_trips.setDeparture(departure);
-				query_trips.setFrom(from);
-				query_trips.setTo(to);
-
-				query_trips.execute();
+						query_trips.execute();
+					}
+				}.execute();
 			}
 		});
 	}
