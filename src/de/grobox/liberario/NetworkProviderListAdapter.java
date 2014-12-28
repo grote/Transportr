@@ -89,7 +89,14 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPos) {
-		return this._listNetwork.get(this._listRegion.get(groupPos)).size();
+		List<NetworkItem> region = this._listNetwork.get(this._listRegion.get(groupPos));
+
+		if(region != null) {
+			return region.size();
+		} else {
+			// should not happen, but a region might accidentally be empty
+			return 0;
+		}
 	}
 
 	@Override

@@ -281,7 +281,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		List<NetworkItem> gb = new ArrayList<>();
 		gb.add(new NetworkItem(NetworkId.TLEM, "TLEM", "Great Britain", true));
 		gb.add(new NetworkItem(NetworkId.TLWM, "TLWM", "Birmingham", true));
-		listNetwork.put("Great Britan", gb);
+		listNetwork.put("Great Britain", gb);
 
 		listRegion.add("Ireland");
 		List<NetworkItem> ie = new ArrayList<>();
