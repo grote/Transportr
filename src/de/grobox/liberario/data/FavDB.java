@@ -20,7 +20,6 @@ package de.grobox.liberario.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -42,7 +41,7 @@ public class FavDB {
 	/* FavLocation */
 
 	public static List<FavLocation> getFavLocationList(Context context) {
-		List<FavLocation> fav_list = new ArrayList<FavLocation>();
+		List<FavLocation> fav_list = new ArrayList<>();
 
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -71,7 +70,7 @@ public class FavDB {
 
 	public static List<Location> getFavLocationList(Context context, FavLocation.LOC_TYPE sort, boolean onlyIDs) {
 		List<FavLocation> fav_list = getFavLocationList(context);
-		List<Location> list = new ArrayList<Location>();
+		List<Location> list = new ArrayList<>();
 
 		if(sort == FavLocation.LOC_TYPE.FROM) {
 			Collections.sort(fav_list, FavLocation.FromComparator);
@@ -90,9 +89,28 @@ public class FavDB {
 	}
 
 	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
-		// don't save locations with no id
-		// TODO why not? make it happen! issue #42
-		if(!loc.hasId()) return;
+		if(loc.place != null && loc.place.equals("GPS")) {
+			// don't store GPS locations
+			return;
+		}
+
+		String whereClause;
+		String[] whereArgs;
+
+		if(loc.hasId()) {
+			// use location id to identify location
+			whereClause = "network = ? AND id = ?";
+			whereArgs = new String[] { Preferences.getNetwork(context), loc.id };
+		} else {
+			// use other values to identify location
+			String lat = String.valueOf(loc.lat);
+			String lon = String.valueOf(loc.lon);
+			String place = loc.place == null ? "" : loc.place;
+			String name = loc.name == null ? "" : loc.name;
+
+			whereClause = "network = ? AND type = ? AND lat = ? AND lon = ? AND place = ? AND name = ?";
+			whereArgs = new String[] { Preferences.getNetwork(context), loc.type.name(), lat, lon, place, name };
+		}
 
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
@@ -101,13 +119,12 @@ public class FavDB {
 		Cursor c = db.query(
 				DBHelper.TABLE_FAV_LOCS,    // The table to query
 				new String[] { "_id", "from_count", "to_count" },
-				"network = ? AND id = ?",
-				new String[] { Preferences.getNetwork(context), loc.id },
+				whereClause,
+				whereArgs,
 				null,   // don't group the rows
 				null,   // don't filter by row groups
 				null    // The sort order
 		);
-
 		ContentValues values = new ContentValues();
 
 		if(c.moveToFirst()) {
@@ -151,7 +168,7 @@ public class FavDB {
 	/* FavTrip */
 
 	public static List<FavTrip> getFavTripList(Context context, final boolean sort_count) {
-		List<FavTrip> fav_list = new ArrayList<FavTrip>();
+		List<FavTrip> fav_list = new ArrayList<>();
 
 		// when the app starts for the first time, no network is selected
 		if(Preferences.getNetwork(context) == null)  return fav_list;
@@ -185,6 +202,11 @@ public class FavDB {
 	}
 
 	public static void updateFavTrip(Context context, FavTrip fav) {
+		if(fav.getFrom().place != null && fav.getFrom().place.equals("GPS")) {
+			// don't store GPS locations
+			return;
+		}
+
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -365,11 +387,14 @@ public class FavDB {
 			whereClause = "network = ? AND id = ?";
 			whereArgs = new String[] { network, loc.id };
 		} else {
-			Log.d("getLocationId", "Could not find location: " + loc.toString());
-			return -1;
-			// Do not support locations without id just now
-//			whereClause = "network = ? AND type = ? AND id = ? AND place = ? AND name = ?";
-//			whereArgs = new String[] { network, loc.type.name() , "", loc.place == null ? "" : loc.place, loc.name == null ? "" : loc.name };
+			// location has no ID, so use complicated way of assembling query
+			String lat = String.valueOf(loc.lat);
+			String lon = String.valueOf(loc.lon);
+			String place = loc.place == null ? "" : loc.place;
+			String name = loc.name == null ? "" : loc.name;
+
+			whereClause = "network = ? AND type = ? AND lat = ? AND lon = ? AND place = ? AND name = ?";
+			whereArgs = new String[] { network, loc.type.name(), lat, lon, place, name };
 		}
 
 		// get from location ID from database
@@ -386,8 +411,10 @@ public class FavDB {
 		if(c.moveToFirst()) {
 			int loc_id = c.getInt(c.getColumnIndex("_id"));
 			c.close();
+			Log.d("getLocationId", "Found location: " + loc.toString());
 			return loc_id;
 		} else {
+			c.close();
 			Log.d("getLocationId", "Could not find location: " + loc.toString());
 			return -1;
 		}

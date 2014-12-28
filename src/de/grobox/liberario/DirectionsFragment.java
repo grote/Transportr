@@ -40,6 +40,7 @@ import android.graphics.drawable.Drawable;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
@@ -76,7 +77,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	private Location gps_loc = null;
 	private boolean mGpsPressed = false;
 	private AsyncQueryTripsTask mAfterGpsTask = null;
-	private List<Product> mProducts = new LinkedList<Product>(Product.ALL);
+	private List<Product> mProducts = new LinkedList<>(Product.ALL);
 	public ProgressDialog pd;
 
 	@Override
@@ -248,10 +249,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 					}
 				}
 
-				// remember trip if not from GPS
-				if(!mGpsPressed) {
-					FavDB.updateFavTrip(getActivity(), new FavTrip(getLocation(FavLocation.LOC_TYPE.FROM), getLocation(FavLocation.LOC_TYPE.TO)));
-				}
+				// remember trip
+				FavDB.updateFavTrip(getActivity(), new FavTrip(getLocation(FavLocation.LOC_TYPE.FROM), getLocation(FavLocation.LOC_TYPE.TO)));
 
 				// set date
 				query_trips.setDate(DateUtils.mergeDateTime(getActivity(), dateView.getText(), timeView.getText()));
@@ -780,7 +779,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			if(lon_str.length() > 9) lon_str = lon_str.substring(0, 8);
 
 			// create location based on GPS coordinates
-			gps_loc = new Location(LocationType.ADDRESS, null, lat, lon, null, lat_str + "/" + lon_str);
+			gps_loc = new Location(LocationType.ADDRESS, null, lat, lon, "GPS", lat_str + "/" + lon_str);
 			setLocation(gps_loc, FavLocation.LOC_TYPE.FROM, getResources().getDrawable(R.drawable.ic_gps));
 
 			if(pd != null) {
@@ -808,6 +807,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	}
 
 	public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+		@NonNull
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			Button timeView = (Button) getActivity().findViewById(R.id.timeView);
@@ -839,6 +839,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	}
 
 	public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+		@NonNull
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			Button dateView = (Button) getActivity().findViewById(R.id.dateView);
