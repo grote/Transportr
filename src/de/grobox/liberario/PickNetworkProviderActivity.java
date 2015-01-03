@@ -175,158 +175,158 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		listRegion = new ArrayList<>();
 		listNetwork = new HashMap<>();
 
-		listRegion.add("Europe");
+		listRegion.add(getString(R.string.np_region_europe));
 		List<NetworkItem> eu = new ArrayList<>();
-		eu.add(new NetworkItem(NetworkId.RT, "Europe", "long-distance only"));
-		listNetwork.put("Europe", eu);
+		eu.add(new NetworkItem(NetworkId.RT, "EU", getString(R.string.np_desc_rt)));
+		listNetwork.put(getString(R.string.np_region_europe), eu);
 
-		listRegion.add("Germany");
+		listRegion.add(getString(R.string.np_region_germany));
 		List<NetworkItem> de = new ArrayList<>();
-		de.add(new NetworkItem(NetworkId.DB, "Deutsche Bahn"));
-		de.add(new NetworkItem(NetworkId.BVG, "BVG", "Berlin"));
-		de.add(new NetworkItem(NetworkId.VBB, "VBB", "Brandenburg, Berlin"));
-		de.add(new NetworkItem(NetworkId.BAYERN, "Bayern", true));
-		de.add(new NetworkItem(NetworkId.AVV, "AVV", "Augsburg", true));
-		de.add(new NetworkItem(NetworkId.MVV, "MVV", "München"));
-		de.add(new NetworkItem(NetworkId.INVG, "INVG", "Ingolstadt", true));
-//		de.add(new NetworkItem(NetworkId.VGN, "VGB", "Nürnberg, Fürth, Erlangen", true));
-		de.add(new NetworkItem(NetworkId.VVM, "VVM", "Bayern, Würzburg, Regensburg", true));
-		de.add(new NetworkItem(NetworkId.VMV, "VMV", "Mecklenburg-Vorpommern, Schwerin"));
-//		de.add(new NetworkItem(NetworkId.HVV, "HVV", "Hamburg"));
-		de.add(new NetworkItem(NetworkId.SH, "SH", "Schleswig-Holstein, Kiel, Lübeck, Hamburg"));
-		de.add(new NetworkItem(NetworkId.GVH, "GVH", "Niedersachsen, Hannover, Hamburg"));
-		de.add(new NetworkItem(NetworkId.BSVAG, "BSVAG", "Braunschweig, Wolfsburg"));
-		de.add(new NetworkItem(NetworkId.VBN, "VBN", "Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg)", true));
-		de.add(new NetworkItem(NetworkId.VVO, "VVO", "Sachsen, Dresden", true));
-		de.add(new NetworkItem(NetworkId.VMS, "VMS", "Mittelsachsen, Chemnitz", true));
-		de.add(new NetworkItem(NetworkId.NASA, "NASA", "Sachsen, Leipzig, Sachsen-Anhalt, Magdeburg, Halle", true));
-		de.add(new NetworkItem(NetworkId.VRR, "VRR", "Nordrhein-Westfalen, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter"));
-//		de.add(new NetworkItem(NetworkId.VRT, "VRT", "Rhein-Neckar-Dreieck", true));
-		de.add(new NetworkItem(NetworkId.MVG, "MVG", "Märkischer Kreis, Lüdenscheid", true));
-		de.add(new NetworkItem(NetworkId.NVV, "NVV/RMV", "Hessen, Frankfurt, Kassel"));
-		de.add(new NetworkItem(NetworkId.VRN, "VRN", "Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier"));
-		de.add(new NetworkItem(NetworkId.VVS, "VVS", "Baden-Württemberg, Stuttgart"));
-		de.add(new NetworkItem(NetworkId.NALDO, "NALDO", "Reutlingen, Rottweil, Tübingen, Sigmaringen"));
-		de.add(new NetworkItem(NetworkId.DING, "DING", "Baden-Württemberg, Ulm, Neu-Ulm", true));
-		de.add(new NetworkItem(NetworkId.KVV, "KVV", "Baden-Württemberg, Karlsruhe"));
-		de.add(new NetworkItem(NetworkId.VAGFR, "VAGFR", "Elsass, Bas-Rhin, Straßburg, Freiburg im Breisgau"));
-		de.add(new NetworkItem(NetworkId.NVBW, "NVBW", "Baden-Württemberg, Konstanz, Basel, Basel-Stadt"));
-		de.add(new NetworkItem(NetworkId.VVV, "VVV", "Vogtland, Plauen"));
-		de.add(new NetworkItem(NetworkId.VGS, "VGS", "Saarland, Saarbrücken"));
-		de.add(new NetworkItem(NetworkId.RSAG, "RSAG", "Rostock", true));
-		listNetwork.put("Germany", de);
+		de.add(new NetworkItem(NetworkId.DB, getString(R.string.np_name_db), getString(R.string.np_desc_db)));
+		de.add(new NetworkItem(NetworkId.BVG, "BVG", getString(R.string.np_desc_bvg)));
+		de.add(new NetworkItem(NetworkId.VBB, "VBB", getString(R.string.np_desc_vbb)));
+		de.add(new NetworkItem(NetworkId.BAYERN, getString(R.string.np_name_bayern), getString(R.string.np_desc_bayern)));
+		de.add(new NetworkItem(NetworkId.AVV, "AVV", getString(R.string.np_desc_avv), true));
+		de.add(new NetworkItem(NetworkId.MVV, "MVV", getString(R.string.np_desc_mvv)));
+		de.add(new NetworkItem(NetworkId.RSAG, "RSAG", getString(R.string.np_desc_rsag)));
+		de.add(new NetworkItem(NetworkId.INVG, "INVG", getString(R.string.np_desc_invg), true));
+//		de.add(new NetworkItem(NetworkId.VGN, "VGN", getString(R.string.np_desc_vgn), true));
+		de.add(new NetworkItem(NetworkId.VVM, "VVM", getString(R.string.np_desc_vvm)));
+		de.add(new NetworkItem(NetworkId.VMV, "VMV", getString(R.string.np_desc_vmv)));
+//		de.add(new NetworkItem(NetworkId.HVV, "HVV", getString(R.string.np_desc_hvv)));
+		de.add(new NetworkItem(NetworkId.SH, "SH", getString(R.string.np_desc_sh)));
+		de.add(new NetworkItem(NetworkId.GVH, "GVH", getString(R.string.np_desc_gvh)));
+		de.add(new NetworkItem(NetworkId.BSVAG, "BSVAG", getString(R.string.np_desc_bsvag)));
+		de.add(new NetworkItem(NetworkId.VBN, "VBN", getString(R.string.np_desc_vbn)));
+		de.add(new NetworkItem(NetworkId.VVO, "VVO", getString(R.string.np_desc_vvo)));
+		de.add(new NetworkItem(NetworkId.VMS, "VMS", getString(R.string.np_desc_vms), true));
+		de.add(new NetworkItem(NetworkId.NASA, "NASA", getString(R.string.np_desc_nasa), true));
+		de.add(new NetworkItem(NetworkId.VRR, "VRR", getString(R.string.np_desc_vrr)));
+//		de.add(new NetworkItem(NetworkId.VRT, "VRT", getString(R.string.np_desc_vrt), true));
+		de.add(new NetworkItem(NetworkId.MVG, "MVG", getString(R.string.np_desc_mvg)));
+		de.add(new NetworkItem(NetworkId.NVV, "NVV/RMV", getString(R.string.np_desc_nvv)));
+		de.add(new NetworkItem(NetworkId.VRN, "VRN", getString(R.string.np_desc_vrn)));
+		de.add(new NetworkItem(NetworkId.VVS, "VVS", getString(R.string.np_desc_vvs)));
+		de.add(new NetworkItem(NetworkId.NALDO, "NALDO", getString(R.string.np_desc_naldo)));
+		de.add(new NetworkItem(NetworkId.DING, "DING", getString(R.string.np_desc_ding)));
+		de.add(new NetworkItem(NetworkId.KVV, "KVV", getString(R.string.np_desc_kvv)));
+		de.add(new NetworkItem(NetworkId.VAGFR, "VAGFR", getString(R.string.np_desc_vagfr)));
+		de.add(new NetworkItem(NetworkId.NVBW, "NVBW", getString(R.string.np_desc_nvbw)));
+		de.add(new NetworkItem(NetworkId.VVV, "VVV", getString(R.string.np_desc_vvv)));
+		de.add(new NetworkItem(NetworkId.VGS, "VGS", getString(R.string.np_desc_vgs)));
+		listNetwork.put(getString(R.string.np_region_germany), de);
 
-		listRegion.add("Österreich");
+		listRegion.add(getString(R.string.np_region_austria));
 		List<NetworkItem> at = new ArrayList<>();
-		at.add(new NetworkItem(NetworkId.OEBB, "OEBB", "Ganz Österreich"));
-		at.add(new NetworkItem(NetworkId.VOR, "VOR", "Niederösterreich, Burgenland, Wien"));
-		at.add(new NetworkItem(NetworkId.LINZ, "LINZ", "Oberösterreich, Linz"));
-		at.add(new NetworkItem(NetworkId.SVV, "SVV", "Salzburg"));
-		at.add(new NetworkItem(NetworkId.VVT, "VVT", "Tirol"));
-		at.add(new NetworkItem(NetworkId.IVB, "IVB", "Innsbruck"));
-		at.add(new NetworkItem(NetworkId.STV, "STV", "Steiermark, Graz"));
-		at.add(new NetworkItem(NetworkId.WIEN, "WIEN", "WIENER LINIEN", true));
-		listNetwork.put("Österreich", at);
+		at.add(new NetworkItem(NetworkId.OEBB, "OEBB", getString(R.string.np_desc_oebb)));
+		at.add(new NetworkItem(NetworkId.VOR, "VOR", getString(R.string.np_desc_vor)));
+		at.add(new NetworkItem(NetworkId.LINZ, "LINZ", getString(R.string.np_desc_linz)));
+		at.add(new NetworkItem(NetworkId.SVV, "SVV", getString(R.string.np_desc_svv)));
+		at.add(new NetworkItem(NetworkId.VVT, "VVT", getString(R.string.np_desc_vvt)));
+		at.add(new NetworkItem(NetworkId.IVB, "IVB", getString(R.string.np_desc_ivb)));
+		at.add(new NetworkItem(NetworkId.STV, "STV", getString(R.string.np_desc_stv)));
+		at.add(new NetworkItem(NetworkId.WIEN, getString(R.string.np_name_wien), getString(R.string.np_desc_wien)));
+		listNetwork.put(getString(R.string.np_region_austria), at);
 
-		listRegion.add("Liechtenstein");
+		listRegion.add(getString(R.string.np_region_liechtenstein));
 		List<NetworkItem> li = new ArrayList<>();
-		li.add(new NetworkItem(NetworkId.VMOBIL, "VMOBIL", "Liechtenstein, Vorarlberg, Bregenz"));
-		listNetwork.put("Liechtenstein", li);
+		li.add(new NetworkItem(NetworkId.VMOBIL, "VMOBIL", getString(R.string.np_desc_vmobil)));
+		listNetwork.put(getString(R.string.np_region_liechtenstein), li);
 
-		listRegion.add("Schweiz");
+		listRegion.add(getString(R.string.np_region_switzerland));
 		List<NetworkItem> ch = new ArrayList<>();
 		ch.add(new NetworkItem(NetworkId.SBB, "SBB", ""));
-		ch.add(new NetworkItem(NetworkId.BVB, "BVB", ""));
-		ch.add(new NetworkItem(NetworkId.VBL, "VBL", "Luzern"));
-		ch.add(new NetworkItem(NetworkId.ZVV, "ZVL", "Zürich"));
-		listNetwork.put("Schweiz", ch);
+//		ch.add(new NetworkItem(NetworkId.BVB, "BVB", ""));
+		ch.add(new NetworkItem(NetworkId.VBL, "VBL", getString(R.string.np_desc_vbl)));
+		ch.add(new NetworkItem(NetworkId.ZVV, "ZVV", getString(R.string.np_desc_zvv)));
+		listNetwork.put(getString(R.string.np_region_switzerland), ch);
 
-		listRegion.add("Belgique");
+		listRegion.add(getString(R.string.np_region_belgium));
 		List<NetworkItem> be = new ArrayList<>();
 		be.add(new NetworkItem(NetworkId.SNCB, "SNCB", ""));
-		listNetwork.put("Belgique", be);
+		listNetwork.put(getString(R.string.np_region_belgium), be);
 
-		listRegion.add("Lëtzebuerg");
+		listRegion.add(getString(R.string.np_region_luxembourg));
 		List<NetworkItem> lu = new ArrayList<>();
 		lu.add(new NetworkItem(NetworkId.LU, "LU", ""));
-		listNetwork.put("Lëtzebuerg", lu);
+		listNetwork.put(getString(R.string.np_region_luxembourg), lu);
 
-		listRegion.add("Nederland");
+		listRegion.add(getString(R.string.np_region_netherlands));
 		List<NetworkItem> nl = new ArrayList<>();
-		nl.add(new NetworkItem(NetworkId.NS, "NS", "Nederland, Amsterdam", true));
-		listNetwork.put("Nederland", nl);
+		nl.add(new NetworkItem(NetworkId.NS, "NS", getString(R.string.np_desc_ns), true));
+		listNetwork.put(getString(R.string.np_region_netherlands), nl);
 
-		listRegion.add("Danmark");
+		listRegion.add(getString(R.string.np_region_denmark));
 		List<NetworkItem> dk = new ArrayList<>();
-		dk.add(new NetworkItem(NetworkId.DSB, "DSB", "Danmark, København"));
-		listNetwork.put("Danmark", dk);
+		dk.add(new NetworkItem(NetworkId.DSB, "DSB", getString(R.string.np_desc_dsb)));
+		listNetwork.put(getString(R.string.np_region_denmark), dk);
 
-		listRegion.add("Sverige");
+		listRegion.add(getString(R.string.np_region_sweden));
 		List<NetworkItem> sv = new ArrayList<>();
-		sv.add(new NetworkItem(NetworkId.SE, "SE", "Sverige, Stockholm"));
-		sv.add(new NetworkItem(NetworkId.STOCKHOLM, "STOCKHOLM", "Stockholm", true));
-		listNetwork.put("Sverige", sv);
+		sv.add(new NetworkItem(NetworkId.SE, "SE", getString(R.string.np_desc_se)));
+		sv.add(new NetworkItem(NetworkId.STOCKHOLM, getString(R.string.np_name_stockholm), getString(R.string.np_desc_stockholm), true));
+		listNetwork.put(getString(R.string.np_region_sweden), sv);
 
-		listRegion.add("Norge");
+		listRegion.add(getString(R.string.np_region_norway));
 		List<NetworkItem> no = new ArrayList<>();
-		no.add(new NetworkItem(NetworkId.NRI, "NRI", "Norge, Oslo, Bergen"));
-		listNetwork.put("Norge", no);
+		no.add(new NetworkItem(NetworkId.NRI, "NRI", getString(R.string.np_desc_nri)));
+		listNetwork.put(getString(R.string.np_region_norway), no);
 
-//		listRegion.add("Suomi, Finland");
-//		List<NetworkItem> fi = new ArrayList<>();
-//		fi.add(new NetworkItem(NetworkId.HSL, "HSL", "Suomi, Helsinki"));
-//		listNetwork.put("Suomi, Finland", fi);
-
-		listRegion.add("Great Britain");
+/*		listRegion.add(getString(R.string.np_region_finland));
+		List<NetworkItem> fi = new ArrayList<>();
+		fi.add(new NetworkItem(NetworkId.HSL, "HSL", getString(R.string.np_desc_hsl)));
+		listNetwork.put(getString(R.string.np_region_finland), fi);
+*/
+		listRegion.add(getString(R.string.np_region_gb));
 		List<NetworkItem> gb = new ArrayList<>();
-		gb.add(new NetworkItem(NetworkId.TLEM, "TLEM", "Great Britain", true));
-		gb.add(new NetworkItem(NetworkId.TLWM, "TLWM", "Birmingham", true));
-		listNetwork.put("Great Britain", gb);
+		gb.add(new NetworkItem(NetworkId.TLEM, "TLEM", getString(R.string.np_desc_tlem)));
+		gb.add(new NetworkItem(NetworkId.TLWM, "TLWM", getString(R.string.np_desc_tlwm)));
+		listNetwork.put(getString(R.string.np_region_gb), gb);
 
-		listRegion.add("Ireland");
+		listRegion.add(getString(R.string.np_region_ireland));
 		List<NetworkItem> ie = new ArrayList<>();
-		ie.add(new NetworkItem(NetworkId.TFI, "TFI", "Ireland, Dublin"));
+		ie.add(new NetworkItem(NetworkId.TFI, "TFI", getString(R.string.np_desc_tfi)));
 //		ie.add(new NetworkItem(NetworkId.EIREANN, "EIREANN", "Bus Éireann"));
-		listNetwork.put("Ireland", ie);
+		listNetwork.put(getString(R.string.np_region_ireland), ie);
 
-		listRegion.add("Italia");
+		listRegion.add(getString(R.string.np_region_italy));
 		List<NetworkItem> it = new ArrayList<>();
-		it.add(new NetworkItem(NetworkId.ATC, "ATC", "Bologna", true));
-		listNetwork.put("Italia", it);
+		it.add(new NetworkItem(NetworkId.ATC, "ATC", getString(R.string.np_desc_atc), true));
+		listNetwork.put(getString(R.string.np_region_italy), it);
 
-		listRegion.add("Polska");
+		listRegion.add(getString(R.string.np_region_poland));
 		List<NetworkItem> pl = new ArrayList<>();
-		pl.add(new NetworkItem(NetworkId.PL, "PL", "Polska, Warszawa"));
-		listNetwork.put("Polska", pl);
+		pl.add(new NetworkItem(NetworkId.PL, "PL", getString(R.string.np_desc_pl)));
+		listNetwork.put(getString(R.string.np_region_poland), pl);
 
-		listRegion.add("United Arab Emirates");
+		listRegion.add(getString(R.string.np_region_uae));
 		List<NetworkItem> ae = new ArrayList<>();
-		ae.add(new NetworkItem(NetworkId.DUB, "DUB", "United Arab Emirates, Dubai", true));
-		listNetwork.put("United Arab Emirates", ae);
+		ae.add(new NetworkItem(NetworkId.DUB, "DUB", getString(R.string.np_desc_dub), true));
+		listNetwork.put(getString(R.string.np_region_uae), ae);
 
-		listRegion.add("United States of America");
+		listRegion.add(getString(R.string.np_region_usa));
 		List<NetworkItem> us = new ArrayList<>();
-		us.add(new NetworkItem(NetworkId.SF, "SF", "California, San Francisco"));
-		us.add(new NetworkItem(NetworkId.SEPTA, "SEPTA", "Pennsylvania, Philadelphia", true));
+		us.add(new NetworkItem(NetworkId.SF, "SF", getString(R.string.np_desc_sf)));
+		us.add(new NetworkItem(NetworkId.SEPTA, "SEPTA", getString(R.string.np_desc_septa), true));
 //		us.add(new NetworkItem(NetworkId.USNY, "NY", "New York", true));
-		listNetwork.put("United States of America", us);
+		listNetwork.put(getString(R.string.np_region_usa), us);
 
-		listRegion.add("Australia");
+		listRegion.add(getString(R.string.np_region_australia));
 		List<NetworkItem> au = new ArrayList<>();
-		au.add(new NetworkItem(NetworkId.SYDNEY, "SYDNEY", "New South Wales, Sydney", true));
-		au.add(new NetworkItem(NetworkId.MET, "MET", "Victoria, Melbourne", true));
-		listNetwork.put("Australia", au);
+		au.add(new NetworkItem(NetworkId.SYDNEY, getString(R.string.np_name_sydney), getString(R.string.np_desc_sydney)));
+		au.add(new NetworkItem(NetworkId.MET, "MET", getString(R.string.np_desc_met)));
+		listNetwork.put(getString(R.string.np_region_australia), au);
 
-		listRegion.add("Israel");
+		listRegion.add(getString(R.string.np_region_israel));
 		List<NetworkItem> il = new ArrayList<>();
-		il.add(new NetworkItem(NetworkId.JET, "JET", "Jerusalem", true));
-		listNetwork.put("Israel", il);
+		il.add(new NetworkItem(NetworkId.JET, "JET", getString(R.string.np_desc_jet), true));
+		listNetwork.put(getString(R.string.np_region_israel), il);
 
-		listRegion.add("France");
+		listRegion.add(getString(R.string.np_region_france));
 		List<NetworkItem> fr = new ArrayList<>();
-//		fr.add(new NetworkItem(NetworkId.PARIS, "PARIS", "Paris", true));
-		fr.add(new NetworkItem(NetworkId.PACA, "PACA", "Provence-Alpes-Côte d'Azur", true));
-		listNetwork.put("France", fr);
+//		fr.add(new NetworkItem(NetworkId.PARIS, getString(R.string.np_name_paris), getString(R.string.np_desc_paris), true));
+		fr.add(new NetworkItem(NetworkId.PACA, "PACA", getString(R.string.np_desc_paca), true));
+		listNetwork.put(getString(R.string.np_region_france), fr);
 	}
 
 
