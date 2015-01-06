@@ -51,7 +51,7 @@
   <string name="clear_favs">Weet u zeker dat u al uw favorieten voor dit vervoersnetwerk wilt verwijderen?</string>
   <string name="clear_fav_trips">Weet u zeker, dat u %1$d verbinding(en) uit uw favorieten wilt verwijderen? De gebruiksteller zal ook verwijderd worden.</string>
   <string name="trip_searching">Zoeken naar verbindingen&#8230;</string>
-  <string name="stations_searching_position">Uw positie word bepaald&#8230;</string>
+  <string name="stations_searching_position">Uw positie wordt bepaald&#8230;</string>
   <string name="stations_searching_stations">Naar stations in de buurt zoeken&#8230;</string>
   <string name="find_nearby_stations">Zoek naar stations in de buurt</string>
   <string name="find_departures">Zoek vertrekken</string>
