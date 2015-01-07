@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="action_earlier">Vroegere verbindingen zoeken</string>
+  <string name="action_later">Latere verbindingen zoeken</string>
+  <string name="action_changelog">Updateinformatie laten zien</string>
+  <string name="action_about">Over</string>
+  <string name="action_clear_favs">Favorieten wissen</string>
+  <string name="action_settings">Instellingen</string>
+  <string name="action_fav_trip">Verbinding als favoriet toevoegen</string>
+  <string name="action_switch_locations">Begin- en eindpunt omwisselen</string>
+  <string name="action_platforms">Spoorweergave aan/uit</string>
+  <string name="action_refresh">Vernieuwen</string>
+  <string name="action_navigation_expand">Meer laten zien</string>
+  <string name="action_location_map">Laat stations op kaart zien</string>
+  <string name="action_use_gps">GPS inschakelen</string>
+  <string name="action_trip_share">Delen</string>
+  <string name="action_trip_calendar">Naar kalender</string>
+  <string name="action_trip_details">Apart laten zien</string>
+  <string name="action_trip_delete">Verbinding verwijderen</string>
+  
+  <string name="tab_directions">Verbindingen</string>
+  <string name="tab_fav_trips">Favorieten</string>
+  
+  <string name="about_top">© 2013 - 2014 Torsten Grote\nVrije Software Licentie: GPLv3</string>
+  <string name="about">
+<![CDATA[
+<p>Liberario is een app voor het openbaar vervoer, die u vrij kunt gebruiken, bestuderen, verbeteren en delen kunt.</p>
+<p>Er is geen garantie voor functionaliteit en correctheid van data. U gebruikt dit programma op eigen risico.</p>
+<p><b>Hulp</b> is expliciet gewenst en wordt met dank aangenomen. Indien u kunt helpen, vragen wij u op <a href=\"https://github.com/grote/Liberario/#contributing\">github</a> te kijken voor verdere informatie.</p>
+<p>Indien u tegen problemen aan loopt in deze app, vragen wij u deze <a href=\"https://github.com/grote/Liberario/issues\">aan ons te rapporteren</a>.</p>
+]]>
+</string>
+
+  <string name="trip_dep">van</string>
+  <string name="trip_arr">naar</string>
+  <string name="trip_start">Van:</string>
+  <string name="trip_destination">Naar:</string>
+  <string name="from">van</string>
+  <string name="to">naar</string>
+  <string name="time">Tijd</string>
+  <string name="date">Datum</string>
+  <string name="min"> min</string>
+  <string name="walk">Loop</string>
+  <string name="position">Platform</string>
+  <string name="destination">Eindbestemming</string>
+  <string name="detail_duration">Duur:</string>
+  <string name="detail_date">Datum:</string>
+  <string name="beta">beta</string>
+  <string name="pick_network_activity">Kies een vervoersnetwerk</string>
+  <string name="pick_network_first_run">Dit is de eerste keer dat u Liberario start. Gelieve uw vervoersnetwerk te kiezen om door te gaan.</string>
+  <string name="clear_favs">Weet u zeker dat u al uw favorieten voor dit vervoersnetwerk wilt verwijderen?</string>
+  <string name="clear_fav_trips">Weet u zeker, dat u %1$d verbinding(en) uit uw favorieten wilt verwijderen? De gebruiksteller zal ook verwijderd worden.</string>
+  <string name="trip_searching">Zoeken naar verbindingen&#8230;</string>
+  <string name="stations_searching_position">Uw positie wordt bepaald&#8230;</string>
+  <string name="stations_searching_stations">Naar stations in de buurt zoeken&#8230;</string>
+  <string name="find_nearby_stations">Zoek naar stations in de buurt</string>
+  <string name="find_departures">Zoek vertrekken</string>
+  <string name="share_trip_via">Verbindingen delen via&#8230;</string>
+  
+  <string name="error_pick_network">U moet een verkeersnetwerk kiezen</string>
+  <string name="error_no_internet">Geen bruikbare internetverbinding beschikbaar</string>
+  <string name="error_invalid_from">Ongeldige vertreklocatie</string>
+  <string name="error_invalid_to">Ongeldige eindbestemming</string>
+  <string name="error_no_favs">Geen favorieten beschikbaar</string>
+  <string name="error_no_trips_found">Geen verbindingen gevonden</string>
+  <string name="error_no_location_provider">Uw positie kan niet bepaald worden. Staat GPS aan?</string>
+  <string name="error_no_departures_found">Geen vertrekken gevonden</string>
+  <string name="error_no_proper_station">De ingevoerde naam is geen geldig station</string>
+  <string name="error_only_autocomplete_station">U moet een station uit de suggestielijst kiezen</string>
+  <string name="error_no_station_location">Kan de locatie van dit/deze station(en) niet bepalen</string>
+  <string name="error_no_trips_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het zoeken naar verbindingen.</string>
+
+  <string name="number_of_stations">Aantal stations</string>
+  <string name="meter">m</string>
+  <string name="max_distance">Maximale afstand</string>
+  
+  <string name="home_dialog_title">Uw thuisstation</string>
+  <string name="home_dialog_new_msg">Er is geen thuisstation ingesteld voor dit verkeersnetwerk.</string>
+  <string name="home_dialog_msg">Gelieve een thuisstation uit de lijst te kiezen</string>
+  
+  <string name="location_home">Klik om uw thuisstation in te stellen</string>
+  <string name="location_gps">Gebruik huidige locatie</string>
+  
+  <string name="product_high_speed_train">Hogesnelheidstrein</string>
+  <string name="product_regional_train">Regionale trein</string>
+  <string name="product_suburban_train">Stoptrein</string>
+  <string name="product_subway">Metro</string>
+  <string name="product_tram">Tram</string>
+  <string name="product_bus">Bus</string>
+  <string name="product_ferry">Veerboot</string>
+  <string name="product_cablecar">Kabelbaan</string>
+  <string name="product_on_demand">On Demand</string>
+  <string name="action_fav_trips_sort">Sorteer lijst</string>
+  
+  <string name="np_region_europe">Europa</string>
+  <string name="np_name_rt">Europa</string>
+  <string name="np_desc_rt">enkel lange-afstand</string>
+  
+  <string name="np_region_germany">Duitsland</string>
+  <string name="np_desc_db">Het grootste deel van Duitsland</string>
+  <string name="np_desc_bvg">Berlijn</string>
+  <string name="np_desc_vbb">Brandenburg, Berlijn</string>
+  
+  <string name="np_region_austria">Oostenrijk</string>
+  <string name="np_desc_oebb">Oostenrijk</string>
+  <string name="np_desc_vor">Zuid-Oostenrijk, Burgenland, Wenen</string>
+  <string name="np_desc_linz">Noord-Oosternrijk, Linz</string>
+  
+  <string name="np_region_switzerland">Zwitserland</string>
+  
+  <string name="np_region_belgium">België</string>
+  <string name="np_region_luxembourg">Luxemburg</string>
+  <string name="np_region_netherlands">Nederland</string>
+  <string name="np_region_denmark">Denemarken</string>
+  <string name="np_region_sweden">Zweden</string>
+  <string name="np_region_norway">Noorwegen</string>
+  <string name="np_region_gb">Groot Brittannië</string>
+  <string name="np_region_ireland">Ierland</string>
+  <string name="np_region_italy">Italië</string>
+  <string name="np_region_poland">Polen</string>
+  <string name="np_region_uae">Verenigde Arabische Emiraten</string>
+  <string name="np_region_usa">Verenigde Staten</string>
+  <string name="np_region_australia">Australië</string>
+  <string name="np_region_israel">Israel</string>
+  <string name="np_region_france">Frankrijk</string>
+  <string name="np_region_finland">Finland</string>
+
+  <string name="np_desc_ns">Nederlands, Amsterdam</string>
+  <string name="np_desc_dsb">Denemarken, Kopenhagen</string>
+  <string name="np_desc_se">Zweden, Stockholm</string>
+  <string name="np_desc_nri">Noorwegen, Oslo, Bergen</string>
+  <string name="np_desc_tfi">Ierland, Dublin, Belfast</string>
+  <string name="np_desc_pl">Polen, Warsaw</string>
+  <string name="np_desc_dub">Verenigde Arabische Emiraten, Dubai</string>
+  <string name="np_desc_sf">Californië, San Francisco</string>
+  <string name="np_desc_sydney">Australië, New South Wales, Sydney</string>
+  <string name="np_desc_met">Australië, Victoria, Melbourne</string>
+  <string name="np_desc_jet">Israel, Jerusalem</string>
+  <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
+  <string name="np_desc_paris">Parijs</string>
+  
+  <string name="np_name_paris">PARIJS</string>
+  <string name="np_name_wien">WENEN</string>
+</resources>
