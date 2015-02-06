@@ -23,7 +23,7 @@ import java.util.List;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.LineDestination;
 import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.NearbyStationsResult;
+import de.schildbach.pte.dto.NearbyLocationsResult;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
@@ -68,11 +68,11 @@ public class StationsListActivity extends Activity {
 
 		Intent intent = getIntent();
 		if(intent.getAction() != null && intent.getAction().equals("de.grobox.liberario.LIST_NEARBY_STATIONS")) {
-			NearbyStationsResult stations = (NearbyStationsResult) intent.getSerializableExtra("de.schildbach.pte.dto.NearbyStationsResult");
+			NearbyLocationsResult stations = (NearbyLocationsResult) intent.getSerializableExtra("de.schildbach.pte.dto.NearbyStationsResult");
 			mMyLocation = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
 			gps = true;
 
-			mStations = stations.stations;
+			mStations = stations.locations;
 		}
 		else {
 			final Location station = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");

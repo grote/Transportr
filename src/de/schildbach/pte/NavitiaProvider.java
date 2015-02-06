@@ -17,6 +17,10 @@
 
 package de.schildbach.pte;
 
+import android.util.Log;
+
+import de.schildbach.pte.dto.Style;
+
 public class NavitiaProvider extends AbstractNavitiaProvider
 {
 	public static NetworkId NETWORK_ID;
@@ -39,5 +43,54 @@ public class NavitiaProvider extends AbstractNavitiaProvider
 	public String region()
 	{
 		return API_REGION;
+	}
+
+	@Override
+	protected Style getLineStyle(final char product, final String code, final String color)
+	{
+		Log.d("Navitia", "Product: " + product);
+		Log.d("Navitia", "code: " + code);
+		Log.d("Navitia", "color: " + color);
+
+		int bc = Style.RED;
+		if(!color.equals("#")) {
+			bc = Style.parseColor(color);
+		}
+
+		int fc = Style.WHITE;
+		if(!color.equals("#")) {
+			fc = computeForegroundColor(color);
+		}
+
+		switch (product)
+		{
+			case 'S':
+			{
+				if (code.compareTo("F") < 0)
+				{
+					return new Style(Style.Shape.CIRCLE, Style.TRANSPARENT, bc, bc);
+				}
+				else
+				{
+					return new Style(Style.Shape.ROUNDED, Style.TRANSPARENT, bc, bc);
+				}
+			}
+			case 'U':
+			{
+				return new Style(Style.Shape.CIRCLE, bc, fc);
+			}
+			case 'T':
+			{
+				return new Style(Style.Shape.RECT, bc, fc);
+			}
+			case 'B':
+			{
+				return new Style(Style.Shape.RECT, bc, fc);
+			}
+			default:
+				Log.d("Navitia", "Unhandled Product");
+				return new Style(bc, fc);
+		}
+
 	}
 }

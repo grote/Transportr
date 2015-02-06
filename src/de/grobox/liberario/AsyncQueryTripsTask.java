@@ -18,7 +18,9 @@
 package de.grobox.liberario;
 
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -42,7 +44,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	private Location to;
 	private Date date = new Date();
 	private boolean departure = true;
-	private List<Product> mProducts;
+	private Set<Product> mProducts = EnumSet.allOf(Product.class);
 	private String error = null;
 
 	public AsyncQueryTripsTask(Context context) {
@@ -65,7 +67,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 		this.departure = b;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.mProducts = products;
 	}
 

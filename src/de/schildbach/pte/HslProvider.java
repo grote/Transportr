@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -37,7 +38,7 @@ import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
-import de.schildbach.pte.dto.NearbyStationsResult;
+import de.schildbach.pte.dto.NearbyLocationsResult;
 import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryDeparturesResult;
@@ -200,8 +201,9 @@ public class HslProvider extends AbstractNetworkProvider
 	}
 		
 	// Determine stations near to given location. At least one of stationId or lat/lon pair must be present.
+	// TODO: take types into account
 	@Override
-	public NearbyStationsResult queryNearbyStations(Location location, int maxDistance, int maxStations) 
+	public NearbyLocationsResult queryNearbyLocations(EnumSet<LocationType> types, Location location, int maxDistance, int maxStations)
 		throws IOException 
 	{
 		final StringBuilder uri = apiUri("stops_area");
@@ -248,7 +250,7 @@ public class HslProvider extends AbstractNetworkProvider
 				stations.add(new Location(LocationType.STATION, id, pt.lat, pt.lon, place, name));
 			}
 
-			return new NearbyStationsResult(header, stations);
+			return new NearbyLocationsResult(header, stations);
 		}
 		catch (final XmlPullParserException x)
 		{
@@ -486,7 +488,7 @@ public class HslProvider extends AbstractNetworkProvider
 	// Query trips, asking for any ambiguousnesses
 	@Override
 	public QueryTripsResult queryTrips(Location from, Location via, Location to, Date date, boolean dep, 
-				    Collection<Product> products, WalkSpeed walkSpeed,
+				    Set<Product> products, WalkSpeed walkSpeed,
 				    Accessibility accessibility, Set<Option> options) throws IOException 
 	{
 		final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
@@ -713,7 +715,7 @@ public class HslProvider extends AbstractNetworkProvider
 				trips.add(insert++, t);
 			}
 
-			Date lastDate = trips.get(trips.size()-1).legs.get(0).departureTime;
+			Date lastDate = trips.get(trips.size()-1).legs.get(0).getDepartureTime();
 			if (context.nextDate == null || lastDate.after(context.nextDate))
 				context.nextDate = lastDate;
 			if (context.prevDate == null || date.before(context.prevDate))

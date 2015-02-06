@@ -207,7 +207,6 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		de.add(new NetworkItem(NetworkId.NVV, "NVV/RMV", getString(R.string.np_desc_nvv)));
 		de.add(new NetworkItem(NetworkId.VRN, "VRN", getString(R.string.np_desc_vrn)));
 		de.add(new NetworkItem(NetworkId.VVS, "VVS", getString(R.string.np_desc_vvs)));
-		de.add(new NetworkItem(NetworkId.NALDO, "NALDO", getString(R.string.np_desc_naldo)));
 		de.add(new NetworkItem(NetworkId.DING, "DING", getString(R.string.np_desc_ding)));
 		de.add(new NetworkItem(NetworkId.KVV, "KVV", getString(R.string.np_desc_kvv)));
 		de.add(new NetworkItem(NetworkId.VAGFR, "VAGFR", getString(R.string.np_desc_vagfr)));
@@ -280,7 +279,6 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		listRegion.add(getString(R.string.np_region_gb));
 		List<NetworkItem> gb = new ArrayList<>();
 		gb.add(new NetworkItem(NetworkId.TLEM, "TLEM", getString(R.string.np_desc_tlem)));
-		gb.add(new NetworkItem(NetworkId.TLWM, "TLWM", getString(R.string.np_desc_tlwm)));
 		listNetwork.put(getString(R.string.np_region_gb), gb);
 
 		listRegion.add(getString(R.string.np_region_ireland));
@@ -308,7 +306,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		List<NetworkItem> us = new ArrayList<>();
 		us.add(new NetworkItem(NetworkId.SF, "SF", getString(R.string.np_desc_sf)));
 		us.add(new NetworkItem(NetworkId.SEPTA, "SEPTA", getString(R.string.np_desc_septa), true));
-//		us.add(new NetworkItem(NetworkId.USNY, "NY", "New York", true));
+		us.add(new NetworkItem(NetworkId.USNY, "NY", getString(R.string.np_desc_usny), true));
 		listNetwork.put(getString(R.string.np_region_usa), us);
 
 		listRegion.add(getString(R.string.np_region_australia));
@@ -324,9 +322,14 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 
 		listRegion.add(getString(R.string.np_region_france));
 		List<NetworkItem> fr = new ArrayList<>();
-//		fr.add(new NetworkItem(NetworkId.PARIS, getString(R.string.np_name_paris), getString(R.string.np_desc_paris), true));
+		fr.add(new NetworkItem(NetworkId.PARIS, getString(R.string.np_name_paris), getString(R.string.np_desc_paris), true));
 		fr.add(new NetworkItem(NetworkId.PACA, "PACA", getString(R.string.np_desc_paca), true));
 		listNetwork.put(getString(R.string.np_region_france), fr);
+
+		listRegion.add(getString(R.string.np_region_nz));
+		List<NetworkItem> nz = new ArrayList<>();
+		nz.add(new NetworkItem(NetworkId.NZ, "NZ", getString(R.string.np_desc_nz), true));
+		listNetwork.put(getString(R.string.np_region_nz), nz);
 	}
 
 

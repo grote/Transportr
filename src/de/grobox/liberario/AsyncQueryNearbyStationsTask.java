@@ -19,14 +19,19 @@ package de.grobox.liberario;
 
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.NearbyStationsResult;
+import de.schildbach.pte.dto.LocationType;
+import de.schildbach.pte.dto.NearbyLocationsResult;
+import de.schildbach.pte.dto.Product;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyStationsResult> {
+import java.util.EnumSet;
+import java.util.Set;
+
+public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLocationsResult> {
 	private StationsFragment fragment;
 	private Context context;
 	private Location loc;
@@ -43,12 +48,14 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbySt
 	}
 
 	@Override
-	protected NearbyStationsResult doInBackground(Void... params) {
+	protected NearbyLocationsResult doInBackground(Void... params) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
+		// TODO: allow user to specify location types
+		EnumSet<LocationType> types = EnumSet.of(LocationType.STATION);
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(context)) {
-				return np.queryNearbyStations(loc, maxDistance, maxStations);
+				return np.queryNearbyLocations(types, loc, maxDistance, maxStations);
 			}
 			else {
 				error = context.getResources().getString(R.string.error_no_internet);
@@ -67,12 +74,12 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbySt
 	}
 
 	@Override
-	protected void onPostExecute(NearbyStationsResult result) {
+	protected void onPostExecute(NearbyLocationsResult result) {
 		if(fragment.pd != null) {
 			fragment.pd.dismiss();
 		}
 
-		if(result == null || result.status != NearbyStationsResult.Status.OK) {
+		if(result == null || result.status != NearbyLocationsResult.Status.OK) {
 			if(error == null) {
 				Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
 			} else {

@@ -16,13 +16,13 @@ apply plugin: 'com.android.application'
 dependencies {
 	//compile "com.android.support:appcompat-v7:21.0.0"
 	compile 'com.android.support:support-v4:21.0.3'
-
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.1'
-
 	compile project(':sublibs:Android-PullToRefresh:library')
-    compile project(':sublibs:OSMBonusPack')
+	compile project(':sublibs:OSMBonusPack')
 
 	compile files('libs/public-transport-enabler.jar')
+	// needed by PTE to avoid ClassNotFound error
+	compile group: 'com.google.guava', name: 'guava', version: '18.0'
 }
 
 android {

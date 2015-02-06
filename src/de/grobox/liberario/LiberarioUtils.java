@@ -150,7 +150,7 @@ public class LiberarioUtils {
 		for(Leg leg : trip.legs) {
 			String apos = "";
 
-			str += DateUtils.getTime(context, leg.departureTime) + " ";
+			str += DateUtils.getTime(context, leg.getDepartureTime()) + " ";
 			str += leg.departure.name;
 
 			if(leg instanceof Trip.Public) {
@@ -178,7 +178,7 @@ public class LiberarioUtils {
 			}
 
 			str += "\n";
-			str += DateUtils.getTime(context, leg.arrivalTime) + " ";
+			str += DateUtils.getTime(context, leg.getArrivalTime()) + " ";
 			str += leg.arrival.name;
 			str += apos;
 			str += "\n";

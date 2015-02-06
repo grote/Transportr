@@ -72,7 +72,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			departuresLayout.setVisibility(View.GONE);
 		}
 
-		if(np.hasCapabilities(Capability.NEARBY_STATIONS)) {
+		if(np.hasCapabilities(Capability.NEARBY_LOCATIONS)) {
 			setNearbyStationsView();
 		} else {
 			LinearLayout nearbyStationsLayout = (LinearLayout) mView.findViewById(R.id.nearbyStationsLayout);
@@ -109,7 +109,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 		LinearLayout nearbyStationsLayout = (LinearLayout) mView.findViewById(R.id.nearbyStationsLayout);
 
-		if(np.hasCapabilities(Capability.NEARBY_STATIONS)) {
+		if(np.hasCapabilities(Capability.NEARBY_LOCATIONS)) {
 			nearbyStationsLayout.setVisibility(View.VISIBLE);
 		} else {
 			nearbyStationsLayout.setVisibility(View.GONE);

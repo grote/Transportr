@@ -50,7 +50,6 @@ public final class NetworkProviderFactory
 	private static Reference<MvgProvider> mvgProviderRef;
 	private static Reference<VrnProvider> vrnProviderRef;
 	private static Reference<VvsProvider> vvsProviderRef;
-	private static Reference<NaldoProvider> naldoProviderRef;
 	private static Reference<DingProvider> dingProviderRef;
 	private static Reference<KvvProvider> kvvProviderRef;
 	private static Reference<VagfrProvider> vagfrProviderRef;
@@ -77,7 +76,6 @@ public final class NetworkProviderFactory
 	private static Reference<NriProvider> nriProviderRef;
 	private static Reference<HslProvider> hslProviderRef;
 	private static Reference<TlemProvider> tlemProviderRef;
-	private static Reference<TlwmProvider> tlwmProviderRef;
 	private static Reference<TfiProvider> tfiProviderRef;
 	private static Reference<PlProvider> plProviderRef;
 	private static Reference<AtcProvider> atcProviderRef;
@@ -89,12 +87,12 @@ public final class NetworkProviderFactory
 	private static Reference<VgsProvider> vgsProviderRef;
 	private static Reference<VsnProvider> vsnProviderRef;
 	private static Reference<WienProvider> wienProviderRef;
-	private static Reference<VrtProvider> vrtProviderRef;
 	private static Reference<JetProvider> jetProviderRef;
 	private static Reference<PacaProvider> pacaProviderRef;
 	private static Reference<RsagProvider> rsagProviderRef;
 	private static Reference<ParisProvider> parisProviderRef;
 	private static Reference<NavitiaProvider> usnyProviderRef;
+	private static Reference<NavitiaProvider> nzProviderRef;
 
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 
@@ -397,19 +395,6 @@ public final class NetworkProviderFactory
 
 			final VvsProvider provider = new VvsProvider("http://www2.vvs.de/oeffi/");
 			vvsProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
-		else if (networkId.equals(NaldoProvider.NETWORK_ID))
-		{
-			if (naldoProviderRef != null)
-			{
-				final NaldoProvider provider = naldoProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final NaldoProvider provider = new NaldoProvider();
-			naldoProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(DingProvider.NETWORK_ID))
@@ -750,19 +735,6 @@ public final class NetworkProviderFactory
 			tlemProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-		else if (networkId.equals(TlwmProvider.NETWORK_ID))
-		{
-			if (tlwmProviderRef != null)
-			{
-				final TlwmProvider provider = tlwmProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final TlwmProvider provider = new TlwmProvider();
-			tlwmProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
 		else if (networkId.equals(TfiProvider.NETWORK_ID))
 		{
 			if (tfiProviderRef != null)
@@ -906,19 +878,6 @@ public final class NetworkProviderFactory
 			wienProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-		else if (networkId.equals(NetworkId.VRT))
-		{
-			if (vrtProviderRef != null)
-			{
-				final VrtProvider provider = vrtProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final VrtProvider provider = new VrtProvider();
-			vrtProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
 		else if (networkId.equals(NetworkId.JET))
 		{
 			if (jetProviderRef != null)
@@ -982,6 +941,19 @@ public final class NetworkProviderFactory
 
 			final NavitiaProvider provider = new NavitiaProvider(NAVITIA, "us-ny", NetworkId.USNY);
 			usnyProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.NZ))
+		{
+			if (nzProviderRef != null)
+			{
+				final NavitiaProvider provider = nzProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final NavitiaProvider provider = new NavitiaProvider(NAVITIA, "nz", NetworkId.NZ);
+			nzProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else

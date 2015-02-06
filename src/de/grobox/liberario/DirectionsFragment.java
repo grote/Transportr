@@ -18,8 +18,10 @@
 package de.grobox.liberario;
 
 import java.util.Calendar;
+import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.NetworkProvider;
@@ -77,7 +79,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	private Location gps_loc = null;
 	private boolean mGpsPressed = false;
 	private AsyncQueryTripsTask mAfterGpsTask = null;
-	private List<Product> mProducts = new LinkedList<>(Product.ALL);
+	private Set<Product> mProducts = EnumSet.allOf(Product.class);;
 	public ProgressDialog pd;
 
 	@Override

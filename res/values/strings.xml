@@ -119,16 +119,14 @@
     <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
     <string name="np_desc_nasa">Saxony, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
     <string name="np_desc_vrr">North Rhine-Westphalia, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
-    <string name="np_desc_vrt">Rhein-Neckar-Dreieck</string>
     <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
     <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
     <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>
     <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
-    <string name="np_desc_naldo">Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
     <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
     <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
     <string name="np_desc_vagfr">Elsass, Bas-Rhin, Straßburg, Freiburg im Breisgau</string>
-    <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt</string>
+    <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
     <string name="np_desc_vvv">Vogtland, Plauen</string>
     <string name="np_desc_vgs">Saarland, Saarbrücken</string>
 
@@ -171,7 +169,7 @@
     <string name="np_desc_se">Sweden, Stockholm</string>
     <string name="np_desc_stockholm">Stockholm</string>
     <string name="np_desc_nri">Norway, Oslo, Bergen</string>
-    <string name="np_desc_tlem">Greater London, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
+    <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
     <string name="np_desc_tlwm">Birmingham</string>
     <string name="np_desc_tfi">Ireland, Dublin, Belfast</string>
     <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
@@ -192,5 +190,8 @@
     <string name="np_name_sydney">SYDNEY</string>
     <string name="np_name_stockholm">STOCKHOLM</string>
     <string name="np_name_wien">VIENNA</string>
+    <string name="np_region_nz">New Zealand</string>
+    <string name="np_desc_nz">Wellington, Auckland</string>
+    <string name="np_desc_usny">New York</string>
 
 </resources>
