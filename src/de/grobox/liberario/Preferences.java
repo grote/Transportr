@@ -25,7 +25,7 @@ import de.schildbach.pte.NetworkId;
 public class Preferences {
 
 	public final static String PREFS = "LiberarioPrefs";
-	public final static String SHOW_PLATFORM = "ShowPlatform";
+	public final static String SHOW_EXTRA_INFO = "ShowPlatform";
 	public final static String SHOW_ADV_DIRECTIONS = "ShowAdvDirections";
 	public final static String SORT_FAV_TRIPS_COUNT = "SortFavTripsCount";
 

@@ -4,7 +4,7 @@
   <string name="action_about">Acerca de</string>
   <string name="action_settings">Ajustes</string>
   <string name="action_switch_locations">Intercambiar origen y destino</string>
-  <string name="action_platforms">Mostrar/ocultar plataformas</string>
+  <string name="action_show_extra_info">Mostrar/ocultar plataformas</string>
   <string name="action_refresh">Actualizar</string>
   <string name="action_navigation_expand">Mostrar más</string>
   <string name="action_location_map">Mostrar estaciones en el mapa</string>

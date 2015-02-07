@@ -107,10 +107,10 @@ public class TripsActivity extends FragmentActivity {
 		inflater.inflate(R.menu.trips_activity_actions, menu);
 		mMenu = menu;
 
-		if(Preferences.getPref(this, Preferences.SHOW_PLATFORM)) {
-			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+		if(Preferences.getPref(this, Preferences.SHOW_EXTRA_INFO)) {
+			mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_collapse);
 		} else {
-			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+			mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_expand);
 		}
 /*
 		if(FavDB.isFavTrip(getBaseContext(), new FavTrip(from, to))) {
@@ -130,17 +130,17 @@ public class TripsActivity extends FragmentActivity {
 				onBackPressed();
 
 				return true;
-			case R.id.action_platforms:
-				boolean show = !Preferences.getPref(this, Preferences.SHOW_PLATFORM);
+			case R.id.action_show_extra_info:
+				boolean show = !Preferences.getPref(this, Preferences.SHOW_EXTRA_INFO);
 
 				// change action icon
 				if(show) {
-					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+					mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_collapse);
 				} else {
-					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+					mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_expand);
 				}
-				showPlatforms(show);
-				Preferences.setPref(this, Preferences.SHOW_PLATFORM, show);
+				showExtraInfo(show);
+				Preferences.setPref(this, Preferences.SHOW_EXTRA_INFO, show);
 
 				return true;
 /*			case R.id.action_fav_trip:
@@ -175,8 +175,17 @@ public class TripsActivity extends FragmentActivity {
 	}
 
 	private void setHeader() {
-		((TextView) findViewById(R.id.tripStartTextView)).setText(trips.from.uniqueShortName());
-		((TextView) findViewById(R.id.tripDestinationTextView)).setText(trips.to.uniqueShortName());
+		if(trips != null) {
+			((TextView) findViewById(R.id.tripStartTextView)).setText(trips.from.uniqueShortName());
+			((TextView) findViewById(R.id.tripDestinationTextView)).setText(trips.to.uniqueShortName());
+
+			if(trips.trips.get(0) != null) {
+				// add Date on top
+				((TextView) findViewById(R.id.dateView2)).setText(DateUtils.getDate(this, trips.trips.get(0).getFirstDepartureTime()));
+			} else {
+				((TextView) findViewById(R.id.dateView2)).setText("???");
+			}
+		}
 	}
 
 	private void addTrips(final TableLayout main, List<Trip> trip_list, boolean append) {
@@ -416,10 +425,12 @@ public class TripsActivity extends FragmentActivity {
 		pullToRefreshView.onRefreshComplete();
 	}
 
-	private void showPlatforms(boolean show) {
+	private void showExtraInfo(boolean show) {
+		findViewById(R.id.dateView1).setVisibility(show ? View.VISIBLE : View.GONE);
+		findViewById(R.id.dateView2).setVisibility(show ? View.VISIBLE : View.GONE);
 		for(Fragment fragment : getSupportFragmentManager().getFragments()) {
 			TripDetailFragment frag = (TripDetailFragment) fragment;
-			frag.showPlatforms(show);
+			frag.showExtraInfo(show);
 		}
 	}
 }

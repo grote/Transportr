@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -13,7 +14,8 @@
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -25,13 +27,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="1"
+                tools:text="Zoologischer Garten (S+U)"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:"
+                android:id="@+id/dateView1"/>
 
         </TableRow>
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,7 +55,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_weight="1"
+                tools:text="Schönefeld Flughafen Berlin (S)"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateView2"
+                android:textStyle="bold"
+                tools:text="13.03.2015"
+                />
 
         </TableRow>
     </TableLayout>

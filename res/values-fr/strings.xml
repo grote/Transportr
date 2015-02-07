@@ -8,7 +8,7 @@
   <string name="action_settings">Paramètres</string>
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
   <string name="action_switch_locations">Inverser les points de départ et d\'arrivée</string>
-  <string name="action_platforms">Montrer/cacher les quais</string>
+  <string name="action_show_extra_info">Montrer/cacher les quais</string>
   <string name="action_refresh">Rafraîchir</string>
   <string name="action_navigation_expand">Montrer plus</string>
   <string name="action_location_map">Afficher les stations/arrêts sur la carte</string>

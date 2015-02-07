@@ -8,7 +8,7 @@
   <string name="action_settings">Instellingen</string>
   <string name="action_fav_trip">Verbinding als favoriet toevoegen</string>
   <string name="action_switch_locations">Begin- en eindpunt omwisselen</string>
-  <string name="action_platforms">Spoorweergave aan/uit</string>
+  <string name="action_show_extra_info">Spoorweergave aan/uit</string>
   <string name="action_refresh">Vernieuwen</string>
   <string name="action_navigation_expand">Meer laten zien</string>
   <string name="action_location_map">Laat stations op kaart zien</string>

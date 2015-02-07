@@ -101,10 +101,10 @@ public class StationsListActivity extends Activity {
 		inflater.inflate(R.menu.stations_activity_actions, menu);
 		mMenu = menu;
 
-		if(Preferences.getPref(this, Preferences.SHOW_PLATFORM)) {
-			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+		if(Preferences.getPref(this, Preferences.SHOW_EXTRA_INFO)) {
+			mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_collapse);
 		} else {
-			mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+			mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_expand);
 		}
 
 		return super.onCreateOptionsMenu(menu);
@@ -151,17 +151,17 @@ public class StationsListActivity extends Activity {
 				}
 
 				return true;
-			case R.id.action_platforms:
-				boolean show = !Preferences.getPref(this, Preferences.SHOW_PLATFORM);
+			case R.id.action_show_extra_info:
+				boolean show = !Preferences.getPref(this, Preferences.SHOW_EXTRA_INFO);
 
 				// change action icon
 				if(show) {
-					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+					mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_collapse);
 				} else {
-					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+					mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_expand);
 				}
 				showPlatforms(show);
-				Preferences.setPref(this, Preferences.SHOW_PLATFORM, show);
+				Preferences.setPref(this, Preferences.SHOW_EXTRA_INFO, show);
 
 				return true;
 			default:
@@ -299,7 +299,7 @@ public class StationsListActivity extends Activity {
 				if(dep.position != null) {
 					TextView positionView = (TextView) view.findViewById(R.id.positionView);
 					positionView.setText(dep.position.name);
-					positionView.setVisibility(Preferences.getPref(this, Preferences.SHOW_PLATFORM) ? View.VISIBLE : View.GONE);
+					positionView.setVisibility(Preferences.getPref(this, Preferences.SHOW_EXTRA_INFO) ? View.VISIBLE : View.GONE);
 				}
 
 				// hide progress bar

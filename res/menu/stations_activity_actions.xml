@@ -13,9 +13,9 @@
         android:title="@string/action_location_map"/>
 
     <item
-        android:id="@+id/action_platforms"
+        android:id="@+id/action_show_extra_info"
         android:icon="@drawable/ic_menu_show_platforms"
         android:showAsAction="ifRoom"
-        android:title="@string/action_platforms"/>
+        android:title="@string/action_show_extra_info"/>
 
 </menu>

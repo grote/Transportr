@@ -8,7 +8,7 @@
   <string name="action_settings">Ayarlar</string>
   <string name="action_fav_trip">Geziyi Favori Olarak İşaretle</string>
   <string name="action_switch_locations">Nereden Nereye konumunu değiştir</string>
-  <string name="action_platforms">Platformları Göster/Gizle</string>
+  <string name="action_show_extra_info">Platformları Göster/Gizle</string>
   <string name="action_refresh">Tazele</string>
   <string name="action_navigation_expand">Daha Fazla Göster</string>
   <string name="action_location_map">Haritada İstasyonları Göster</string>

@@ -82,10 +82,10 @@ public class TripDetailFragment extends LiberarioFragment {
 			inflater.inflate(R.menu.trip_detail_activity_actions, menu);
 			mMenu = menu;
 
-			if(Preferences.getPref(getActivity(), Preferences.SHOW_PLATFORM)) {
-				mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+			if(Preferences.getPref(getActivity(), Preferences.SHOW_EXTRA_INFO)) {
+				mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_collapse);
 			} else {
-				mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+				mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_expand);
 			}
 
 			// Favorite Trip Button
@@ -104,10 +104,10 @@ public class TripDetailFragment extends LiberarioFragment {
 		}
 
 		// show/hide platforms depending on preference
-		if(Preferences.getPref(getActivity(), Preferences.SHOW_PLATFORM)) {
-			showPlatforms(true);
+		if(Preferences.getPref(getActivity(), Preferences.SHOW_EXTRA_INFO)) {
+			showExtraInfo(true);
 		} else {
-			showPlatforms(false);
+			showExtraInfo(false);
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
@@ -117,17 +117,17 @@ public class TripDetailFragment extends LiberarioFragment {
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
-			case R.id.action_platforms:
+			case R.id.action_show_extra_info:
 				boolean show = view.isColumnCollapsed(2);
 
 				// change action icon
 				if(show) {
-					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_hide_platforms);
+					mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_collapse);
 				} else {
-					mMenu.findItem(R.id.action_platforms).setIcon(R.drawable.ic_menu_show_platforms);
+					mMenu.findItem(R.id.action_show_extra_info).setIcon(R.drawable.ic_action_navigation_expand);
 				}
-				showPlatforms(show);
-				Preferences.setPref(getActivity(), Preferences.SHOW_PLATFORM, show);
+				showExtraInfo(show);
+				Preferences.setPref(getActivity(), Preferences.SHOW_EXTRA_INFO, show);
 
 				return true;
 /*			case R.id.action_fav_trip:
@@ -398,7 +398,7 @@ public class TripDetailFragment extends LiberarioFragment {
 		return stopsView;
 	}
 
-	public void showPlatforms(boolean show) {
+	public void showExtraInfo(boolean show) {
 		// collapse/expand platforms on stops and intermediate stops
 		view.setColumnCollapsed(2, !show);
 		for(final TableLayout stopView : mStops) {

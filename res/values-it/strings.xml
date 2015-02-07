@@ -8,7 +8,7 @@
   <string name="action_settings">Impostazioni</string>
   <string name="action_fav_trip">Segna viaggio come favorito</string>
   <string name="action_switch_locations">Scambia da e a luogo</string>
-  <string name="action_platforms">Mostra/nascondi piattaforme</string>
+  <string name="action_show_extra_info">Mostra/nascondi piattaforme</string>
   <string name="action_refresh">Ricarica</string>
   <string name="action_navigation_expand">Mostra altro</string>
   <string name="tab_directions">Indicazioni</string>
