@@ -395,14 +395,18 @@ public class HslProvider extends AbstractNetworkProvider
 			is = ParserUtils.scrapeInputStream(uri.toString());
 			firstChars = ParserUtils.peekFirstChars(is);
 
+			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
+			final List<SuggestedLocation> locations = new ArrayList<SuggestedLocation>();
+
+			if (firstChars.isEmpty())
+			    return new SuggestLocationsResult(header, locations);
+
 			final XmlPullParser pp = parserFactory.newPullParser();
 			pp.setInput(is, null);
 
 
 			XmlPullUtil.enter(pp, "response"); 
 
-			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
-			final List<SuggestedLocation> locations = new ArrayList<SuggestedLocation>();
 			int weight = 10000;
 
 			while (XmlPullUtil.test(pp, "node")) 
