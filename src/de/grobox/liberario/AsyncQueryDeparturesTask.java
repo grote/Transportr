@@ -74,6 +74,9 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 			} else {
 				Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
 			}
+			// although not successful, we are still done
+			activity.noDepartures(view);
+
 			return;
 		}
 

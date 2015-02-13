@@ -235,6 +235,14 @@ public class StationsListActivity extends Activity {
 		}
 	}
 
+	public void noDepartures(View v) {
+		onRefreshComplete();
+
+		// hide progress bar
+		LinearLayout layout = (LinearLayout) main.getChildAt(main.indexOfChild(v) + 1);
+		layout.getChildAt(0).setVisibility(View.GONE);
+	}
+
 	public void addDepartures(View v, QueryDeparturesResult result) {
 		LinearLayout layout = (LinearLayout) main.getChildAt(main.indexOfChild(v) + 1);
 
