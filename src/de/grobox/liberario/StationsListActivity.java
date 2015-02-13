@@ -275,9 +275,9 @@ public class StationsListActivity extends Activity {
 				if(dep.predictedTime != null) {
 					long delay = dep.predictedTime.getTime() - dep.plannedTime.getTime();
 
-					if(delay > 0) {
+					if(delay != 0) {
 						TextView delayView = (TextView) view.findViewById(R.id.delayView);
-						delayView.setText("+" + Long.toString(delay / 1000 / 60));
+						delayView.setText((delay > 0 ? "+" : "") + Long.toString(delay / 1000 / 60));
 					}
 				}
 
