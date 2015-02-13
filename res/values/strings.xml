@@ -193,5 +193,7 @@
     <string name="np_region_nz">New Zealand</string>
     <string name="np_desc_nz">Wellington, Auckland</string>
     <string name="np_desc_usny">New York</string>
+    <string name="action_show_on_external_map">Show on External Map</string>
+    <string name="action_copy">Copy</string>
 
 </resources>

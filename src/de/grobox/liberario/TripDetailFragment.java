@@ -17,8 +17,6 @@
 
 package de.grobox.liberario;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,10 +28,8 @@ import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +37,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -52,7 +49,7 @@ public class TripDetailFragment extends LiberarioFragment {
 //	private Location to;
 	private Menu mMenu;
 	private boolean mEmbedded = true;
-	private List<TableLayout> mStops = new ArrayList<TableLayout>();
+	private List<TableLayout> mStops = new ArrayList<>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -190,6 +187,49 @@ public class TripDetailFragment extends LiberarioFragment {
 				legViewNew.findViewById(R.id.dArrowView).setVisibility(View.GONE);
 			}
 
+			// Creating PopupMenu for leg
+			final PopupMenu popup = new PopupMenu(getActivity(), legViewOld);
+			popup.getMenuInflater().inflate(R.menu.leg_actions, popup.getMenu());
+			popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+				public boolean onMenuItemClick(MenuItem item) {
+					// handle presses on menu items
+					switch(item.getItemId()) {
+						// Show On Map
+						case R.id.action_show_on_external_map:
+							LiberarioUtils.startGeoIntent(getActivity(), leg.departure);
+
+							return true;
+						// Share Leg
+						case R.id.action_leg_share:
+							Intent sendIntent = new Intent()
+									                    .setAction(Intent.ACTION_SEND)
+									                    .putExtra(Intent.EXTRA_SUBJECT, leg.departure.uniqueShortName())
+									                    .putExtra(Intent.EXTRA_TEXT, LiberarioUtils.legToString(getActivity(), leg))
+									                    .setType("text/plain")
+									                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+							startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.action_trip_share)));
+
+							return true;
+						// Copy Leg to Clipboard
+						case R.id.action_copy:
+							LiberarioUtils.copyToClipboard(getActivity(), leg.departure.uniqueShortName());
+
+							return true;
+						default:
+							return false;
+					}
+				}
+			});
+			LiberarioUtils.showPopupIcons(popup);
+
+			legViewOld.setOnLongClickListener(new View.OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View view) {
+					popup.show();
+					return true;
+				}
+			});
+
 			if(leg instanceof Trip.Public) {
 				Public public_leg = ((Public) leg);
 
@@ -245,9 +285,6 @@ public class TripDetailFragment extends LiberarioFragment {
 					// get and add intermediate stops
 					view.addView(getStops(public_leg.intermediateStops));
 
-					// set row as clickable
-					legViewOld.setClickable(true);
-
 					// show 'show more' indicator when there are intermediate stops
 					legViewOld.findViewById(R.id.dShowMoreView).setVisibility(View.VISIBLE);
 
@@ -269,6 +306,14 @@ public class TripDetailFragment extends LiberarioFragment {
 							}
 						}
 
+					});
+				} else {
+					// show popup on simple click if no stops
+					legViewOld.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View view) {
+							popup.show();
+						}
 					});
 				}
 			}
@@ -296,7 +341,7 @@ public class TripDetailFragment extends LiberarioFragment {
 				dShowMapView.setVisibility(View.VISIBLE);
 
 				// when row clicked, show map
-				legViewOld.setOnClickListener(new View.OnClickListener() {
+				dShowMapView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
 						// remember arrival station
@@ -309,30 +354,15 @@ public class TripDetailFragment extends LiberarioFragment {
 						intent.putExtra("de.schildbach.pte.dto.Location", individual.departure);
 						startActivity(intent);
 */
-						String aLat = Double.toString(individual.arrival.lat / 1E6);
-						String aLon = Double.toString(individual.arrival.lon / 1E6);
-						String dLat = Double.toString(individual.departure.lat / 1E6);
-						String dLon = Double.toString(individual.departure.lon / 1E6);
+						LiberarioUtils.startGeoIntent(getActivity(), individual.arrival);
+					}
+				});
 
-						String uri1 = "geo:" + aLat + "," + aLon + "?q=" + dLat + "," + dLon;
-						String uri2 = individual.departure.name;
-						Uri geo;
-
-						try {
-							geo = Uri.parse(uri1 + "(" + URLEncoder.encode(uri2, "utf-8") + ")");
-						} catch (UnsupportedEncodingException e) {
-							geo = Uri.parse(uri1 + "(" + uri2 + ")");
-						}
-
-						Log.d(getClass().getCanonicalName(), "Starting geo intent: " + geo.toString());
-
-						// show station on external map
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-						intent.setData(geo);
-						if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-							startActivity(intent);
-						}
-
+				// show popup on simple click as well
+				legViewOld.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						popup.show();
 					}
 				});
 
@@ -389,6 +419,57 @@ public class TripDetailFragment extends LiberarioFragment {
 				if(stop.plannedDeparturePosition != null) {
 					((TextView) stopView.findViewById(R.id.sDeparturePositionView)).setText(stop.plannedDeparturePosition.name);
 				}
+
+				// Creating PopupMenu for stop
+				final PopupMenu popup = new PopupMenu(getActivity(), stopView);
+				popup.getMenuInflater().inflate(R.menu.leg_actions, popup.getMenu());
+				popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+					public boolean onMenuItemClick(MenuItem item) {
+						// handle presses on menu items
+						switch(item.getItemId()) {
+							// Show On Map
+							case R.id.action_show_on_external_map:
+								LiberarioUtils.startGeoIntent(getActivity(), stop.location);
+
+								return true;
+							// Share Stop
+							case R.id.action_leg_share:
+								Intent sendIntent = new Intent()
+										                    .setAction(Intent.ACTION_SEND)
+										                    .putExtra(Intent.EXTRA_SUBJECT, stop.location.uniqueShortName())
+										                    .putExtra(Intent.EXTRA_TEXT, DateUtils.getTime(getActivity(), stop.getArrivalTime()) + " " + stop.location.uniqueShortName())
+										                    .setType("text/plain")
+										                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+								startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.action_trip_share)));
+
+								return true;
+							// Copy Stop to Clipboard
+							case R.id.action_copy:
+								LiberarioUtils.copyToClipboard(getActivity(), stop.location.uniqueShortName());
+
+								return true;
+							default:
+								return false;
+						}
+					}
+				});
+				LiberarioUtils.showPopupIcons(popup);
+
+				// show popup on click
+				stopView.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						popup.show();
+					}
+				});
+				// show popup also on long click
+				stopView.setOnLongClickListener(new View.OnLongClickListener() {
+					@Override
+					public boolean onLongClick(View view) {
+						popup.show();
+						return true;
+					}
+				});
 
 				stopsView.addView(stopView);
 			}

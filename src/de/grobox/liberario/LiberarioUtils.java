@@ -17,18 +17,29 @@
 
 package de.grobox.liberario;
 
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.net.URLEncoder;
 import java.util.Date;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import de.schildbach.pte.dto.Line;
+import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Style.Shape;
@@ -148,42 +159,47 @@ public class LiberarioUtils {
 		String str = "";
 
 		for(Leg leg : trip.legs) {
-			String apos = "";
+			str += legToString(context, leg) + "\n\n";
+		}
 
-			str += DateUtils.getTime(context, leg.getDepartureTime()) + " ";
-			str += leg.departure.name;
+		return str;
+	}
 
-			if(leg instanceof Trip.Public) {
-				Trip.Public pub = (Trip.Public) leg;
-				if(pub.line != null && pub.line.label != null) {
-					str += " (" + pub.line.label.substring(0, 1) + " ";
-					str += pub.line.label.substring(1);
-					if(pub.destination  != null) str += " → " + pub.destination.uniqueShortName();
-					str += ")";
-				}
-				// show departure position if existing
-				if(pub.getDeparturePosition() != null) {
-					str += " - " + context.getString(R.string.position) + ": " + pub.getDeparturePosition().name;
-				}
-				// remember arrival position if existing
-				if(pub.getArrivalPosition() != null) {
-					apos += " - " + context.getString(R.string.position) + ": " + pub.getArrivalPosition().name;
-				}
-			} else if(leg instanceof Trip.Individual) {
-				Trip.Individual ind = (Trip.Individual) leg;
-				str += " (" + context.getString(R.string.walk) + " ";
-				if(ind.distance > 0) str += ind.distance + context.getResources().getString(R.string.meter) + " ";
-				if(ind.min > 0) str += ind.min + context.getResources().getString(R.string.min);
+	static public String legToString(Context context, Leg leg) {
+		String str = "";
+		String apos = "";
+
+		str += DateUtils.getTime(context, leg.getDepartureTime()) + " ";
+		str += leg.departure.name;
+
+		if(leg instanceof Trip.Public) {
+			Trip.Public pub = (Trip.Public) leg;
+			if(pub.line != null && pub.line.label != null) {
+				str += " (" + pub.line.label.substring(0, 1) + " ";
+				str += pub.line.label.substring(1);
+				if(pub.destination  != null) str += " → " + pub.destination.uniqueShortName();
 				str += ")";
 			}
-
-			str += "\n";
-			str += DateUtils.getTime(context, leg.getArrivalTime()) + " ";
-			str += leg.arrival.name;
-			str += apos;
-			str += "\n";
-			str += "\n";
+			// show departure position if existing
+			if(pub.getDeparturePosition() != null) {
+				str += " - " + context.getString(R.string.position) + ": " + pub.getDeparturePosition().name;
+			}
+			// remember arrival position if existing
+			if(pub.getArrivalPosition() != null) {
+				apos += " - " + context.getString(R.string.position) + ": " + pub.getArrivalPosition().name;
+			}
+		} else if(leg instanceof Trip.Individual) {
+			Trip.Individual ind = (Trip.Individual) leg;
+			str += " (" + context.getString(R.string.walk) + " ";
+			if(ind.distance > 0) str += ind.distance + context.getResources().getString(R.string.meter) + " ";
+			if(ind.min > 0) str += ind.min + context.getResources().getString(R.string.min);
+			str += ")";
 		}
+
+		str += "\n";
+		str += DateUtils.getTime(context, leg.getArrivalTime()) + " ";
+		str += leg.arrival.name;
+		str += apos;
 
 		return str;
 	}
@@ -210,6 +226,57 @@ public class LiberarioUtils {
 		else
 			return "";
 
+	}
+
+	static void startGeoIntent(Context context, Location loc) {
+		String lat = Double.toString(loc.lat / 1E6);
+		String lon = Double.toString(loc.lon / 1E6);
+
+		String uri1 = "geo:0,0?q=" + lat + "," + lon;
+		String uri2;
+
+		try {
+			uri2 = "(" + URLEncoder.encode(loc.uniqueShortName(), "utf-8") + ")";
+		} catch (UnsupportedEncodingException e) {
+			uri2 = "(" + loc.uniqueShortName() + ")";
+		}
+
+		Uri geo = Uri.parse(uri1 + uri2);
+
+		Log.d(context.getClass().getCanonicalName(), "Starting geo intent: " + geo.toString());
+
+		// show station on external map
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(geo);
+		if (intent.resolveActivity(context.getPackageManager()) != null) {
+			context.startActivity(intent);
+		}
+	}
+
+	static void copyToClipboard(Context context, String text) {
+		ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+		ClipData clip = ClipData.newPlainText("label", text);
+		clipboard.setPrimaryClip(clip);
+	}
+
+	static void showPopupIcons(PopupMenu popup) {
+		// very ugly hack to show icons in PopupMenu
+		// see: http://stackoverflow.com/a/18431605
+		try {
+			Field[] fields = popup.getClass().getDeclaredFields();
+			for(Field field : fields) {
+				if("mPopup".equals(field.getName())) {
+					field.setAccessible(true);
+					Object menuPopupHelper = field.get(popup);
+					Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
+					Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
+					setForceIcons.invoke(menuPopupHelper, true);
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
