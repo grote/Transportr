@@ -54,7 +54,7 @@ public class LiberarioUtils {
 			// loop through all line boxes in the linearLayout
 			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
 				// check if current line box is the same as the one we are about to add
-				if(line.label.substring(1).equals(((TextView)lineLayout.getChildAt(i)).getText())) {
+				if(line.label.equals(((TextView)lineLayout.getChildAt(i)).getText())) {
 					// lines are equal, so bail out from here and don't add new line box
 					return;
 				}
@@ -62,7 +62,7 @@ public class LiberarioUtils {
 		}
 
 		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, null);
-		transportsView.setText(line.label.substring(1));
+		transportsView.setText(line.label);
 
 		if(line.style != null) {
 			GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
@@ -175,8 +175,7 @@ public class LiberarioUtils {
 		if(leg instanceof Trip.Public) {
 			Trip.Public pub = (Trip.Public) leg;
 			if(pub.line != null && pub.line.label != null) {
-				str += " (" + pub.line.label.substring(0, 1) + " ";
-				str += pub.line.label.substring(1);
+				str += " (" + pub.line.label;
 				if(pub.destination  != null) str += " → " + pub.destination.uniqueShortName();
 				str += ")";
 			}

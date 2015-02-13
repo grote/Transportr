@@ -280,7 +280,7 @@ public class HslProvider extends AbstractNetworkProvider
 		}
 
 		label = product.code + label;
-		Line line = new Line(code, label, null, message);
+		Line line = new Line(code, product, label, null, message);
 
 		return line;
 	}

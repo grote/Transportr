@@ -19,6 +19,7 @@ package de.schildbach.pte;
 
 import android.util.Log;
 
+import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Style;
 
 public class NavitiaProvider extends AbstractNavitiaProvider
@@ -46,7 +47,7 @@ public class NavitiaProvider extends AbstractNavitiaProvider
 	}
 
 	@Override
-	protected Style getLineStyle(final char product, final String code, final String color)
+	protected Style getLineStyle(final Product product, final String code, final String color)
 	{
 		Log.d("Navitia", "Product: " + product);
 		Log.d("Navitia", "code: " + code);
@@ -64,7 +65,7 @@ public class NavitiaProvider extends AbstractNavitiaProvider
 
 		switch (product)
 		{
-			case 'S':
+			case SUBURBAN_TRAIN:
 			{
 				if (code.compareTo("F") < 0)
 				{
@@ -75,15 +76,15 @@ public class NavitiaProvider extends AbstractNavitiaProvider
 					return new Style(Style.Shape.ROUNDED, Style.TRANSPARENT, bc, bc);
 				}
 			}
-			case 'U':
+			case SUBWAY:
 			{
 				return new Style(Style.Shape.CIRCLE, bc, fc);
 			}
-			case 'T':
+			case TRAM:
 			{
 				return new Style(Style.Shape.RECT, bc, fc);
 			}
-			case 'B':
+			case BUS:
 			{
 				return new Style(Style.Shape.RECT, bc, fc);
 			}
