@@ -545,14 +545,16 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 			textView.setTag(loc);
 
-			if(loc != null) {
-				if(setText) textView.setText(loc.uniqueShortName());
-			} else {
-				if(setText) textView.setText(null);
+			if(setText) {
+				if(loc != null) {
+					textView.setText(loc.uniqueShortName());
+				} else {
+					textView.setText(null);
+				}
+				textView.dismissDropDown();
 			}
 
 			statusButton.setImageDrawable(icon);
-			textView.dismissDropDown();
 
 			mChange = false;
 		}

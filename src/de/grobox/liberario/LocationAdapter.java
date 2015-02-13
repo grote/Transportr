@@ -37,8 +37,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LocationAdapter extends ArrayAdapter<Location> implements Filterable {
-	private List<Location> filteredList = new ArrayList<Location>();
-	private List<Location> favList = new ArrayList<Location>();
+	private List<Location> filteredList = new ArrayList<>();
+	private List<Location> favList = new ArrayList<>();
 	private boolean onlyIDs = false;
 	private boolean favs = false;
 	private boolean home = false;
@@ -75,13 +75,13 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 
 	@Override
 	public Filter getFilter() {
-		Filter filter = new Filter() {
+		return new Filter() {
 			@Override
 			// This method could be optimized a lot, but hey processors are fast nowadays
-			protected FilterResults performFiltering(CharSequence constraint) {
+			protected FilterResults performFiltering(final CharSequence constraint) {
 				FilterResults filterResults = new FilterResults();
 
-				if (constraint != null) {
+				if(constraint != null) {
 					AsyncLocationAutoCompleteTask autocomplete = new AsyncLocationAutoCompleteTask(getContext(), constraint.toString());
 
 					List<Location> resultList = null;
@@ -90,18 +90,15 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 					if(constraint.length() > 2) {
 						try {
 							resultList = autocomplete.execute().get().getLocations();
-						} catch (InterruptedException e) {
+						} catch(InterruptedException e) {
 							e.printStackTrace();
-						} catch (ExecutionException e) {
+						} catch(ExecutionException e) {
 							e.printStackTrace();
 						}
 					}
 
 					// reset filtered list
 					resetList();
-					if(constraint.length() > 1) {
-						filteredList.clear();
-					}
 
 					// add favorite locations that fulfill constraint
 					for(Location l : favList) {
@@ -117,7 +114,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 					if(resultList != null) {
 						// add locations from result that are not already inside
 						for(Location l : resultList) {
-							if ((!onlyIDs || l.hasId()) && !filteredList.contains(l)) {
+							if((!onlyIDs || l.hasId()) && !filteredList.contains(l)) {
 								filteredList.add(l);
 							}
 						}
@@ -132,14 +129,13 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 
 			@Override
 			protected void publishResults(CharSequence constraint, FilterResults results) {
-				if (results != null && results.count > 0) {
+				if(results != null && results.count > 0) {
 					notifyDataSetChanged();
-				}
-				else {
+				} else {
 					notifyDataSetInvalidated();
 				}
-			}};
-			return filter;
+			}
+		};
 	}
 
 	@Override
