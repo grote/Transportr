@@ -54,7 +54,7 @@ public class StationsListActivity extends Activity {
 	private List<Location> mStations;
 	boolean gps;
 	private Location mMyLocation;
-	private int max_departures = 6;
+	private int max_departures = 12;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -335,7 +335,7 @@ public class StationsListActivity extends Activity {
 
 		if(pull) {
 			// get more departures
-			max_departures += 3;
+			max_departures += 12;
 		} else {
 			// show progress bar
 			depList.getChildAt(0).setVisibility(View.VISIBLE);
