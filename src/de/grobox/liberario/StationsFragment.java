@@ -133,12 +133,14 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		stationView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				setStation((Location) parent.getItemAtPosition(position));
-				stationView.requestFocus();
+				Location loc = (Location) parent.getItemAtPosition(position);
+				setStation(loc);
 
-				// hide soft-keyboard
-				InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(stationView.getWindowToken(), 0);
+				if(!loc.hasId()) {
+					Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
+					return;
+				}
+				queryForStations(loc);
 			}
 		});
 
