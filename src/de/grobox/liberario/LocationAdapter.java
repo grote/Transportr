@@ -26,6 +26,7 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -160,6 +161,19 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 			if(home != null) {
 				textView.setText(home.uniqueShortName());
 				textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+
+				// change home location on long click
+				textView.setOnLongClickListener(new View.OnLongClickListener() {
+					@Override
+					public boolean onLongClick(View view) {
+						Intent intent = new Intent(getContext(), SetHomeActivity.class);
+						intent.putExtra("new", false);
+
+						getContext().startActivity(intent);
+						return true;
+					}
+				});
+
 			} else {
 				textView.setText(parent.getContext().getString(R.string.location_home));
 				textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));

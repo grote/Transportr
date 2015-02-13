@@ -392,8 +392,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			}
 		});
 
-		// TODO itemLongClickListener to change homeLocation
-
 		final ImageView fromStatusButton = (ImageView) mView.findViewById(R.id.fromStatusButton);
 		fromStatusButton.setImageDrawable(null);
 		fromStatusButton.setOnClickListener(new OnClickListener() {
@@ -471,8 +469,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				handleLocationItemClick(locAdapter.getItem(position), view, FavLocation.LOC_TYPE.TO);
 			}
 		});
-
-		// TODO implement something to allow change of homeLocation
 
 		final ImageView toStatusButton = (ImageView) mView.findViewById(R.id.toStatusButton);
 		toStatusButton.setImageDrawable(null);
