@@ -2,7 +2,7 @@
 
     <item
         android:id="@+id/action_show_on_external_map"
-        android:icon="@android:drawable/ic_menu_mapmode"
+        android:icon="@drawable/ic_action_external_map"
         android:showAsAction="always"
         android:title="@string/action_show_on_external_map"/>
 
