@@ -50,6 +50,7 @@ import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.SuggestLocationsResult;
 import de.schildbach.pte.dto.SuggestedLocation;
 import de.schildbach.pte.dto.Trip;
+import de.schildbach.pte.dto.Style;
 
 import de.schildbach.pte.exception.ParserException;
 
@@ -75,7 +76,8 @@ public class HslProvider extends AbstractNetworkProvider
 
 	public HslProvider(String user, String pass)
 	{
-		API_BASE = String.format("http://api.reittiopas.fi/hsl/%s/?user=%s&pass=%s", SERVER_VERSION, user, pass);
+		API_BASE = String.format("http://api.reittiopas.fi/hsl/%s/?user=%s&pass=%s",
+					 SERVER_VERSION, user, pass);
 		try
 		{
 			parserFactory = XmlPullParserFactory.
@@ -201,9 +203,10 @@ public class HslProvider extends AbstractNetworkProvider
 	}
 		
 	// Determine stations near to given location. At least one of stationId or lat/lon pair must be present.
-	// TODO: take types into account
+	// FIXME: take types into account
 	@Override
-	public NearbyLocationsResult queryNearbyLocations(EnumSet<LocationType> types, Location location, int maxDistance, int maxStations)
+	public NearbyLocationsResult queryNearbyLocations(EnumSet<LocationType> types, Location location,
+							  int maxDistance, int maxStations)
 		throws IOException 
 	{
 		final StringBuilder uri = apiUri("stops_area");
@@ -267,28 +270,36 @@ public class HslProvider extends AbstractNetworkProvider
 		String label = code.substring(1, 5).trim().replaceAll("^0+",""); 
 		Product product = Product.BUS;
 
+		int color = 0xFF193695;
+
 		if (label.equals("1300M") || type == 6) {
-			label = "M";
+			label = "Metro";
 			product = Product.SUBWAY;
+			color = 0xFFfb6500;
 		} else if (label.equals("1019") || type == 7) {
 			label = "Ferry";
 			product = Product.FERRY;
 		} else if (type == 2) {
 			product = Product.TRAM;
+			color = 0xFF00ab67;
 		} else if (type == 12) {
 			product = Product.REGIONAL_TRAIN;
+			color = 0xFF2cbe2c;
+			if (label.charAt(0) == '2' && label.length() == 2)
+			    label = label.substring(1);
 		}
 
-		label = product.code + label;
-		Line line = new Line(code, product, label, null, message);
+		Style style = new Style(color, Style.deriveForegroundColor(color));
+		Line line = new Line(code, product, label, style, message);
 
 		return line;
 	}
 
 	// Get departures at a given station, probably live
 	@Override
-	public QueryDeparturesResult queryDepartures(String stationId, Date queryDate, int maxDepartures, boolean equivs)
-		throws IOException
+	public QueryDeparturesResult queryDepartures(String stationId, Date queryDate, int maxDepartures, 
+						     boolean equivs)
+	    throws IOException
 	{
 		//FIXME equivs not taken into account yet
 
@@ -501,7 +512,7 @@ public class HslProvider extends AbstractNetworkProvider
 		{
 			final List<Location> locations = suggestLocations(from.name).getLocations();
 			if (locations.isEmpty())
-				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS); // TODO
+				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS); // FIXME
 			if (locations.size() > 1)
 				return new QueryTripsResult(header, locations, null, null);
 			from = locations.get(0);
@@ -511,7 +522,7 @@ public class HslProvider extends AbstractNetworkProvider
 		{
 			final List<Location> locations = suggestLocations(via.name).getLocations();
 			if (locations.isEmpty())
-				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS); // TODO
+				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS); // FIXME
 			if (locations.size() > 1)
 				return new QueryTripsResult(header, null, locations, null);
 			via = locations.get(0);
@@ -521,7 +532,7 @@ public class HslProvider extends AbstractNetworkProvider
 		{
 			final List<Location> locations = suggestLocations(to.name).getLocations();
 			if (locations.isEmpty())
-				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS); // TODO
+				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS); // FIXME
 			if (locations.size() > 1)
 				return new QueryTripsResult(header, null, null, locations);
 			to = locations.get(0);
@@ -577,7 +588,8 @@ public class HslProvider extends AbstractNetworkProvider
 	}
 
 	private QueryTripsResult queryHslTrips(final Location from, final Location via, final Location to,
-					       QueryTripsHslContext context, Date date, boolean later) throws IOException 
+					       QueryTripsHslContext context, Date date, boolean later) 
+	    throws IOException 
 	{
 		final StringBuilder uri = new StringBuilder(context.uri);
 
@@ -645,7 +657,8 @@ public class HslProvider extends AbstractNetworkProvider
 						String name = XmlPullUtil.optValueTag(pp, "name", null);
 						String code = XmlPullUtil.optValueTag(pp, "code", null);
 						String shortCode = XmlPullUtil.optValueTag(pp, "shortCode", null);
-						String stopAddress = XmlPullUtil.optValueTag(pp, "stopAddress", null);
+						String stopAddress = 
+						    XmlPullUtil.optValueTag(pp, "stopAddress", null);
 
 						if (name == null) {
 							name = (path.size() == 0 && from != null &&
