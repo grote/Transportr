@@ -286,7 +286,7 @@ public class HslProvider extends AbstractNetworkProvider
 			product = Product.REGIONAL_TRAIN;
 			color = 0xFF2cbe2c;
 			if (label.charAt(0) == '2' && label.length() == 2)
-			    label = label.substring(1);
+				label = label.substring(1);
 		}
 
 		Style style = new Style(color, Style.deriveForegroundColor(color));
@@ -445,7 +445,7 @@ public class HslProvider extends AbstractNetworkProvider
 				XmlPullUtil.skipExit(pp, "node");
 
 				if (shortCode != null)
-					name = name + " " + shortCode;
+					name = name + " (" + shortCode + ")";
 
 				locations.add(new SuggestedLocation(new Location(type, id, pt.lat, pt.lon,
 										 null, name),
@@ -699,6 +699,13 @@ public class HslProvider extends AbstractNetworkProvider
 					XmlPullUtil.skipExit(pp, "node");
 
 					if (legType.equals("walk")) {
+						// ugly hack to set the name of the last arrival
+						if (arrival.name.isEmpty()) {
+							arrival = new Location(arrival.type, arrival.id, 
+									       arrival.lat, arrival.lon,
+									       arrival.place, to.name);
+						}
+
 						legs.add(new Trip.Individual(Trip.Individual.Type.WALK,
 									     departure, departureTime,
 									     arrival, arrivalTime, path,
