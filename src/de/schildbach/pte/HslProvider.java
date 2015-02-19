@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2014 the original author or authors.
+ * Copyright 2010-2015 the original author or authors.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,6 +33,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.HashSet;
+
+import com.google.common.base.Joiner;
 
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Line;
@@ -50,6 +53,7 @@ import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.SuggestLocationsResult;
 import de.schildbach.pte.dto.SuggestedLocation;
 import de.schildbach.pte.dto.Trip;
+import de.schildbach.pte.dto.Style;
 
 import de.schildbach.pte.exception.ParserException;
 
@@ -70,12 +74,15 @@ public class HslProvider extends AbstractNetworkProvider
 	private static final String SERVER_PRODUCT = "hsl";
 	private static final String SERVER_VERSION = "1_2_0";
 	private static String API_BASE;
+	private static final int EARLIER_TRIPS_MINUTE_OFFSET = 10;
+	private static final int EARLIER_TRIPS_MINIMUM = 3;
 
 	private final XmlPullParserFactory parserFactory;
 
 	public HslProvider(String user, String pass)
 	{
-		API_BASE = String.format("http://api.reittiopas.fi/hsl/%s/?user=%s&pass=%s", SERVER_VERSION, user, pass);
+		API_BASE = String.format("http://api.reittiopas.fi/hsl/%s/?user=%s&pass=%s",
+					 SERVER_VERSION, user, pass);
 		try
 		{
 			parserFactory = XmlPullParserFactory.
@@ -200,10 +207,12 @@ public class HslProvider extends AbstractNetworkProvider
 		}
 	}
 		
-	// Determine stations near to given location. At least one of stationId or lat/lon pair must be present.
-	// TODO: take types into account
+	// Determine stations near to given location. At least one of
+	// stationId or lat/lon pair must be present.
+	// NOTE: HSL returns only stops, not other locations, so "types" is not honoured.
 	@Override
-	public NearbyLocationsResult queryNearbyLocations(EnumSet<LocationType> types, Location location, int maxDistance, int maxStations)
+	public NearbyLocationsResult queryNearbyLocations(EnumSet<LocationType> types, Location location,
+							  int maxDistance, int maxStations)
 		throws IOException 
 	{
 		final StringBuilder uri = apiUri("stops_area");
@@ -267,31 +276,37 @@ public class HslProvider extends AbstractNetworkProvider
 		String label = code.substring(1, 5).trim().replaceAll("^0+",""); 
 		Product product = Product.BUS;
 
+		int color = 0xFF193695;
+
 		if (label.equals("1300M") || type == 6) {
-			label = "M";
+			label = "Metro";
 			product = Product.SUBWAY;
+			color = 0xFFfb6500;
 		} else if (label.equals("1019") || type == 7) {
 			label = "Ferry";
 			product = Product.FERRY;
 		} else if (type == 2) {
 			product = Product.TRAM;
+			color = 0xFF00ab67;
 		} else if (type == 12) {
 			product = Product.REGIONAL_TRAIN;
+			color = 0xFF2cbe2c;
+			if (label.charAt(0) == '2' && label.length() == 2)
+				label = label.substring(1);
 		}
 
-		label = product.code + label;
-		Line line = new Line(code, product, label, null, message);
+		Style style = new Style(color, Style.deriveForegroundColor(color));
+		Line line = new Line(code, product, label, style, message);
 
 		return line;
 	}
 
 	// Get departures at a given station, probably live
 	@Override
-	public QueryDeparturesResult queryDepartures(String stationId, Date queryDate, int maxDepartures, boolean equivs)
-		throws IOException
+	public QueryDeparturesResult queryDepartures(String stationId, Date queryDate, int maxDepartures, 
+						     boolean equivs)
+	    throws IOException
 	{
-		//FIXME equivs not taken into account yet
-
 		final StringBuilder uri = apiUri("stop");
 
 		uri.append("&code=").append(stationId);
@@ -395,14 +410,18 @@ public class HslProvider extends AbstractNetworkProvider
 			is = ParserUtils.scrapeInputStream(uri.toString());
 			firstChars = ParserUtils.peekFirstChars(is);
 
+			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
+			final List<SuggestedLocation> locations = new ArrayList<SuggestedLocation>();
+
+			if (firstChars.isEmpty())
+			    return new SuggestLocationsResult(header, locations);
+
 			final XmlPullParser pp = parserFactory.newPullParser();
 			pp.setInput(is, null);
 
 
 			XmlPullUtil.enter(pp, "response"); 
 
-			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
-			final List<SuggestedLocation> locations = new ArrayList<SuggestedLocation>();
 			int weight = 10000;
 
 			while (XmlPullUtil.test(pp, "node")) 
@@ -430,7 +449,7 @@ public class HslProvider extends AbstractNetworkProvider
 				XmlPullUtil.skipExit(pp, "node");
 
 				if (shortCode != null)
-					name = name + " " + shortCode;
+					name = name + " (" + shortCode + ")";
 
 				locations.add(new SuggestedLocation(new Location(type, id, pt.lat, pt.lon,
 										 null, name),
@@ -486,6 +505,7 @@ public class HslProvider extends AbstractNetworkProvider
 
 
 	// Query trips, asking for any ambiguousnesses
+	// NOTE: HSL ignores accessibility
 	@Override
 	public QueryTripsResult queryTrips(Location from, Location via, Location to, Date date, boolean dep, 
 				    Set<Product> products, WalkSpeed walkSpeed,
@@ -497,7 +517,7 @@ public class HslProvider extends AbstractNetworkProvider
 		{
 			final List<Location> locations = suggestLocations(from.name).getLocations();
 			if (locations.isEmpty())
-				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS); // TODO
+				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS);
 			if (locations.size() > 1)
 				return new QueryTripsResult(header, locations, null, null);
 			from = locations.get(0);
@@ -507,7 +527,7 @@ public class HslProvider extends AbstractNetworkProvider
 		{
 			final List<Location> locations = suggestLocations(via.name).getLocations();
 			if (locations.isEmpty())
-				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS); // TODO
+				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS);
 			if (locations.size() > 1)
 				return new QueryTripsResult(header, null, locations, null);
 			via = locations.get(0);
@@ -517,7 +537,7 @@ public class HslProvider extends AbstractNetworkProvider
 		{
 			final List<Location> locations = suggestLocations(to.name).getLocations();
 			if (locations.isEmpty())
-				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS); // TODO
+				return new QueryTripsResult(header, QueryTripsResult.Status.NO_TRIPS);
 			if (locations.size() > 1)
 				return new QueryTripsResult(header, null, null, locations);
 			to = locations.get(0);
@@ -537,10 +557,25 @@ public class HslProvider extends AbstractNetworkProvider
 						 walkSpeed == WalkSpeed.SLOW ? 30 : 100));
 		uri.append("&show=5");
 
-		// products?
-		// accessibility
-		// options
+		if (products.size() > 0) {
+			List<String> tt = new ArrayList<String>();
+			if (products.contains(Product.HIGH_SPEED_TRAIN) ||
+			    products.contains(Product.REGIONAL_TRAIN) ||
+			    products.contains(Product.SUBURBAN_TRAIN))
+				tt.add("train");
+			if (products.contains(Product.SUBWAY))
+				tt.add("metro");
+			if (products.contains(Product.TRAM))
+				tt.add("tram");
+			if (products.contains(Product.BUS))
+				tt.add("bus");
+			if (products.contains(Product.FERRY))
+				tt.add("ferry");
 
+			if (tt.size() > 0)
+				uri.append("&transport_types=" + Joiner.on("|").join(tt));
+		}
+		
 		QueryTripsHslContext context = new QueryTripsHslContext(uri.toString(), from, via, to, date);
 
 		return queryHslTrips(from, via, to, context, date, true);
@@ -560,20 +595,36 @@ public class HslProvider extends AbstractNetworkProvider
 	public QueryTripsResult queryMoreTrips(QueryTripsContext contextObj, boolean later) throws IOException 
 	{
 		final QueryTripsHslContext context = (QueryTripsHslContext)contextObj;
-
 		Date date = context.nextDate;
-		if (!later) {
-			final Calendar cal = new GregorianCalendar(timeZone);
-			cal.setTime(context.prevDate);
-			cal.add(Calendar.MINUTE, -10);
-			date = cal.getTime();
-		}
+		int context_trips = context.trips.size();
 
-		return queryHslTrips(context.from, context.via, context.to, context, date, later);
+		int tries = 0;
+		QueryTripsResult result;
+		do {
+			// if we are fetching earlier trips, we have
+			// to do a hack to search backwards in small 5
+			// minute steps
+			if (!later) {
+				final Calendar cal = new GregorianCalendar(timeZone);
+				cal.setTime(context.prevDate);
+				cal.add(Calendar.MINUTE, -EARLIER_TRIPS_MINUTE_OFFSET);
+				date = cal.getTime();
+			}
+
+			result = queryHslTrips(context.from, context.via, context.to, context, date, later);
+
+			tries += 1;
+			
+			// keep trying if we are fetching earlier
+			// trips and the list of trips hasn't grown enough
+		} while (!later && (result.trips.size() - context_trips < EARLIER_TRIPS_MINIMUM) && tries < 10);
+
+		return result;
 	}
 
 	private QueryTripsResult queryHslTrips(final Location from, final Location via, final Location to,
-					       QueryTripsHslContext context, Date date, boolean later) throws IOException 
+					       QueryTripsHslContext context, Date date, boolean later) 
+	    throws IOException 
 	{
 		final StringBuilder uri = new StringBuilder(context.uri);
 
@@ -598,6 +649,11 @@ public class HslProvider extends AbstractNetworkProvider
 			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
 
 			final List<Trip> trips = new ArrayList<Trip>(context.trips);
+
+			// we use this for quick checking if trip already exists
+			Set<String> tripSet = new HashSet<String>();
+			for (Trip t : trips) tripSet.add(t.getId());
+			
 			int insert = later ? trips.size() : 0;
 
 			while (XmlPullUtil.test(pp, "node")) 
@@ -641,7 +697,8 @@ public class HslProvider extends AbstractNetworkProvider
 						String name = XmlPullUtil.optValueTag(pp, "name", null);
 						String code = XmlPullUtil.optValueTag(pp, "code", null);
 						String shortCode = XmlPullUtil.optValueTag(pp, "shortCode", null);
-						String stopAddress = XmlPullUtil.optValueTag(pp, "stopAddress", null);
+						String stopAddress = 
+						    XmlPullUtil.optValueTag(pp, "stopAddress", null);
 
 						if (name == null) {
 							name = (path.size() == 0 && from != null &&
@@ -682,6 +739,13 @@ public class HslProvider extends AbstractNetworkProvider
 					XmlPullUtil.skipExit(pp, "node");
 
 					if (legType.equals("walk")) {
+						// ugly hack to set the name of the last arrival
+						if (arrival.name.isEmpty()) {
+							arrival = new Location(arrival.type, arrival.id, 
+									       arrival.lat, arrival.lon,
+									       arrival.place, to.name);
+						}
+
 						legs.add(new Trip.Individual(Trip.Individual.Type.WALK,
 									     departure, departureTime,
 									     arrival, arrivalTime, path,
@@ -712,7 +776,10 @@ public class HslProvider extends AbstractNetworkProvider
 				XmlPullUtil.skipExit(pp, "node");
 
 				Trip t = new Trip(null, from, to, legs, null, null, numTransfers-1);
-				trips.add(insert++, t);
+				if (!tripSet.contains(t.getId())) {
+					trips.add(insert++, t);
+					tripSet.add(t.getId());
+				}
 			}
 
 			Date lastDate = trips.get(trips.size()-1).legs.get(0).getDepartureTime();
