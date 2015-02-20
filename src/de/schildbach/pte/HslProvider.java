@@ -24,7 +24,6 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.GregorianCalendar;
@@ -240,7 +239,7 @@ public class HslProvider extends AbstractNetworkProvider
 			final XmlPullParser pp = parserFactory.newPullParser();
 			pp.setInput(is, null);
 
-			final List<Location> stations = new ArrayList<Location>();
+			final List<Location> stations = new ArrayList<>();
 			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
 
 			XmlPullUtil.enter(pp, "response");		
@@ -296,9 +295,8 @@ public class HslProvider extends AbstractNetworkProvider
 		}
 
 		Style style = new Style(color, Style.deriveForegroundColor(color));
-		Line line = new Line(code, product, label, style, message);
 
-		return line;
+		return new Line(code, product, label, style, message);
 	}
 
 	// Get departures at a given station, probably live
@@ -330,10 +328,11 @@ public class HslProvider extends AbstractNetworkProvider
 			XmlPullUtil.enter(pp, "response"); 
 			XmlPullUtil.enter(pp, "node");
 
+			// FIXME: id is never used!?
 			final String id = xmlValueTag(pp, "code");
 			final String name = xmlValueTag(pp, "name_fi");
 
-			final Map<String, Line> lines = new HashMap<String, Line>();
+			final Map<String, Line> lines = new HashMap<>();
 
 			xmlSkipUntil(pp, "lines");
 			XmlPullUtil.enter(pp, "lines");
@@ -350,7 +349,7 @@ public class HslProvider extends AbstractNetworkProvider
 			xmlSkipUntil(pp, "departures");
 			XmlPullUtil.enter(pp, "departures");
 
-			final List<Departure> departures = new ArrayList<Departure>(maxDepartures);
+			final List<Departure> departures = new ArrayList<>(maxDepartures);
 			while (XmlPullUtil.test(pp, "node")) 
 			{
 				XmlPullUtil.enter(pp, "node");
@@ -411,7 +410,7 @@ public class HslProvider extends AbstractNetworkProvider
 			firstChars = ParserUtils.peekFirstChars(is);
 
 			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
-			final List<SuggestedLocation> locations = new ArrayList<SuggestedLocation>();
+			final List<SuggestedLocation> locations = new ArrayList<>();
 
 			if (firstChars.isEmpty())
 			    return new SuggestLocationsResult(header, locations);
@@ -442,7 +441,7 @@ public class HslProvider extends AbstractNetworkProvider
 				xmlSkipUntil(pp, "details");
 				XmlPullUtil.enter(pp, "details");
 				XmlPullUtil.optSkip(pp, "address");
-				final String id = XmlPullUtil.optValueTag(pp, "code", "");
+				final String id = XmlPullUtil.optValueTag(pp, "code", null);
 				final String shortCode = XmlPullUtil.optValueTag(pp, "shortCode", null);
 				XmlPullUtil.skipExit(pp, "details");
 
@@ -489,7 +488,7 @@ public class HslProvider extends AbstractNetworkProvider
 			this.via = via;
 			this.to = to;
 			this.date = date;
-			this.trips = new ArrayList<Trip>();
+			this.trips = new ArrayList<>();
 		}
 
 		public boolean canQueryLater()
@@ -558,7 +557,7 @@ public class HslProvider extends AbstractNetworkProvider
 		uri.append("&show=5");
 
 		if (products.size() > 0) {
-			List<String> tt = new ArrayList<String>();
+			List<String> tt = new ArrayList<>();
 			if (products.contains(Product.HIGH_SPEED_TRAIN) ||
 			    products.contains(Product.REGIONAL_TRAIN) ||
 			    products.contains(Product.SUBURBAN_TRAIN))
@@ -573,7 +572,7 @@ public class HslProvider extends AbstractNetworkProvider
 				tt.add("ferry");
 
 			if (tt.size() > 0)
-				uri.append("&transport_types=" + Joiner.on("|").join(tt));
+				uri.append("&transport_types=").append(Joiner.on("|").join(tt));
 		}
 		
 		QueryTripsHslContext context = new QueryTripsHslContext(uri.toString(), from, via, to, date);
@@ -648,10 +647,10 @@ public class HslProvider extends AbstractNetworkProvider
 
 			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
 
-			final List<Trip> trips = new ArrayList<Trip>(context.trips);
+			final List<Trip> trips = new ArrayList<>(context.trips);
 
 			// we use this for quick checking if trip already exists
-			Set<String> tripSet = new HashSet<String>();
+			Set<String> tripSet = new HashSet<>();
 			for (Trip t : trips) tripSet.add(t.getId());
 			
 			int insert = later ? trips.size() : 0;
@@ -662,7 +661,7 @@ public class HslProvider extends AbstractNetworkProvider
 
 				XmlPullUtil.enter(pp, "node");
 
-				List<Trip.Leg> legs = new ArrayList<Trip.Leg>();
+				List<Trip.Leg> legs = new ArrayList<>();
 
 				xmlSkipUntil(pp, "legs");
 				XmlPullUtil.enter(pp, "legs");
@@ -675,7 +674,7 @@ public class HslProvider extends AbstractNetworkProvider
 					String legType = xmlValueTag(pp, "type");
 					String lineCode = XmlPullUtil.optValueTag(pp, "code", null);
 
-					List<Point> path = new ArrayList<Point>();
+					List<Point> path = new ArrayList<>();
 
 					Location departure = null;
 					Date departureTime = null;
@@ -684,7 +683,7 @@ public class HslProvider extends AbstractNetworkProvider
 					Location arrival = null;
 					Date arrivalTime = null;
 
-					LinkedList<Stop> stops = new LinkedList<Stop>();
+					LinkedList<Stop> stops = new LinkedList<>();
 					
 					xmlSkipUntil(pp, "locs");
 					XmlPullUtil.enter(pp, "locs");
@@ -696,6 +695,7 @@ public class HslProvider extends AbstractNetworkProvider
 						String depTime = xmlValueTag(pp, "depTime");
 						String name = XmlPullUtil.optValueTag(pp, "name", null);
 						String code = XmlPullUtil.optValueTag(pp, "code", null);
+						// FIXME: shortCode is never used
 						String shortCode = XmlPullUtil.optValueTag(pp, "shortCode", null);
 						String stopAddress = 
 						    XmlPullUtil.optValueTag(pp, "stopAddress", null);

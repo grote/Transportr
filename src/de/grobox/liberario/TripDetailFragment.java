@@ -333,7 +333,7 @@ public class TripDetailFragment extends LiberarioFragment {
 				if(individual.distance > 0) walk += Integer.toString(individual.distance) + " m";
 				((TextView) legViewOld.findViewById(R.id.dDestinationView)).setText(walk);
 
-				((TextView) legViewNew.findViewById(R.id.dDestinationView)).setText(individual.arrival.uniqueShortName());
+				// set arrival station name
 				dDepartureViewNew.setText(individual.arrival.uniqueShortName());
 
 				// show map button
