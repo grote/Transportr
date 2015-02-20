@@ -9,7 +9,7 @@ cp test/de/schildbach/pte/live/Secrets.java.template src/de/schildbach/pte/live/
 
 # add non-upstream providers
 git checkout -- src/de/schildbach/pte/NetworkId.java
-sed -i "s#SYDNEY, MET#SYDNEY, HSL, USNY, NZ, MET#" src/de/schildbach/pte/NetworkId.java
+sed -i "s#SYDNEY, MET#SYDNEY, HSL, USNY, NZ, SPAIN, MET#" src/de/schildbach/pte/NetworkId.java
 
 mvn clean package -DskipTests
 

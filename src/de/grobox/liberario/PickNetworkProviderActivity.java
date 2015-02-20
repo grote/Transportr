@@ -330,6 +330,11 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		List<NetworkItem> nz = new ArrayList<>();
 		nz.add(new NetworkItem(NetworkId.NZ, "NZ", getString(R.string.np_desc_nz), true));
 		listNetwork.put(getString(R.string.np_region_nz), nz);
+
+		listRegion.add(getString(R.string.np_region_spain));
+		List<NetworkItem> es = new ArrayList<>();
+		es.add(new NetworkItem(NetworkId.SPAIN, getString(R.string.np_name_spain), getString(R.string.np_desc_spain), true));
+		listNetwork.put(getString(R.string.np_region_spain), es);
 	}
 
 

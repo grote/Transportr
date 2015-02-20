@@ -196,5 +196,8 @@
     <string name="np_desc_usny">MTA, CDTA, Long Island Rail Road, Metro North Railroad, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester genesee Regional Transportation Authority</string>
     <string name="action_show_on_external_map">Show on External Map</string>
     <string name="action_copy">Copy</string>
+    <string name="np_region_spain">Spain</string>
+    <string name="np_name_spain">Spain</string>
+    <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Vasca (Moveuskadi)</string>
 
 </resources>

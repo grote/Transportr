@@ -93,6 +93,7 @@ public final class NetworkProviderFactory
 	private static Reference<ParisProvider> parisProviderRef;
 	private static Reference<NavitiaProvider> usnyProviderRef;
 	private static Reference<NavitiaProvider> nzProviderRef;
+	private static Reference<NavitiaProvider> spainProviderRef;
 
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 
@@ -954,6 +955,19 @@ public final class NetworkProviderFactory
 
 			final NavitiaProvider provider = new NavitiaProvider(NAVITIA, "nz", NetworkId.NZ);
 			nzProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.SPAIN))
+		{
+			if (spainProviderRef != null)
+			{
+				final NavitiaProvider provider = spainProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final NavitiaProvider provider = new NavitiaProvider(NAVITIA, "es", NetworkId.SPAIN);
+			spainProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else
