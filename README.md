@@ -12,7 +12,7 @@ Contributions are both encouraged and appreciated. If you like to contribute ple
 If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Liberario/issues).
 
 [![Flattr me](art/flattr.png)](https://flattr.com/thing/1921242)
-[![Follow @LibearioApp](art/twitter.png)](https://twitter.com/LiberarioApp)
+[![Follow @LiberarioApp](art/twitter.png)](https://twitter.com/LiberarioApp)
 
 Get Liberario
 -------------
@@ -49,6 +49,9 @@ In order to access public transport data, Liberario is using the [public transpo
 * Poland (long-distance, regional and local, e.g. Warsaw)
 * U.K. (long-distance, regional and local, e.g. London)
 * Ireland (long-distance, regional and local, e.g. Dublin)
+* France (regional and local, e.g. Paris)
+* New Zealand (regional and local, e.g. Wellington, Auckland)
+* Spain (regional and local, e.g. Madrid, Barcelona, Euskadi)
 
 ### Local and Regional ###
 
@@ -82,6 +85,8 @@ In order to access public transport data, Liberario is using the [public transpo
 * Dublin (local and regional)
 * Maribor (local and regional)
 * Philadelphia (local and regional)
+* San Francisco (local)
+* New York (local and regional)
 * Sydney (local and regional)
 * Melbourne (local and regional)
 * Dubai (local)
