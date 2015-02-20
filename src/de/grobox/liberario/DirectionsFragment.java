@@ -120,10 +120,17 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			}
 		});
 
-		Button plus10Button = (Button) mView.findViewById(R.id.plus15Button);
-		plus10Button.setOnClickListener(new View.OnClickListener() {
+		Button plus15Button = (Button) mView.findViewById(R.id.plus15Button);
+		plus15Button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				addToTime(15);
+			}
+		});
+		plus15Button.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View view) {
+				addToTime(60);
+				return true;
 			}
 		});
 
