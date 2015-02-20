@@ -21,7 +21,6 @@ import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
-import de.schildbach.pte.dto.Product;
 
 import android.content.Context;
 import android.content.Intent;
@@ -29,19 +28,18 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import java.util.EnumSet;
-import java.util.Set;
 
 public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLocationsResult> {
-	private StationsFragment fragment;
+	private StationsFragment fragment = null;
 	private Context context;
 	private Location loc;
+	private boolean gps = false;
 	private String error = null;
 	int maxDistance;
 	int maxStations;
 
-	public AsyncQueryNearbyStationsTask(StationsFragment fragment, Location loc, int maxDistance, int maxStations) {
-		this.fragment = fragment;
-		this.context = fragment.getActivity();
+	public AsyncQueryNearbyStationsTask(Context context, Location loc, int maxDistance, int maxStations) {
+		this.context = context;
 		this.loc = loc;
 		this.maxDistance = maxDistance;
 		this.maxStations = maxStations;
@@ -75,7 +73,7 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLo
 
 	@Override
 	protected void onPostExecute(NearbyLocationsResult result) {
-		if(fragment.pd != null) {
+		if(fragment != null && fragment.pd != null) {
 			fragment.pd.dismiss();
 		}
 
@@ -92,7 +90,15 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLo
 		intent.setAction("de.grobox.liberario.LIST_NEARBY_STATIONS");
 		intent.putExtra("de.schildbach.pte.dto.NearbyStationsResult", result);
 		intent.putExtra("de.schildbach.pte.dto.Location", loc);
+		intent.putExtra("de.grobox.liberario.StationsListActivity.gps", gps);
 		context.startActivity(intent);
 	}
 
+	public void setFragment(StationsFragment fragment) {
+		this.fragment = fragment;
+	}
+
+	public void setGPS(boolean gps) {
+		this.gps = gps;
+	}
 }

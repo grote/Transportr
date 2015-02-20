@@ -5,10 +5,12 @@
         <change>Redesigned start screen for better usability</change>
         <change>Favorite trips can be sorted by last used</change>
         <change>Improved trip list with better contrasts and popup menu (try long touch)</change>
-        <change>You can now share parts of trips, show stations on map or copy their names to clipboard</change>
+        <change>You can now share parts of trips or copy their names to clipboard</change>
+        <change>Stations can be shown on integrated and external map</change>
+        <change>Show departures and other nearby stations for locations in your trip</change>
         <change>Show logos of transportation networks in settings dialog (send me the missing ones!)</change>
-        <change>Added support for Paris, New Zealand, Helsinki and New York</change>
-        <change>Added Spanish, Dutch and Turkish Translation. Thanks to Adolfo Jayme Barrientos and Emre Deniz</change>
+        <change>Added support for Paris, New Zealand, Helsinki, Spain and New York</change>
+        <change>Added Spanish, Dutch, Portuguese (Brasil) and Turkish Translation. Thanks to Adolfo Jayme Barrientos, Emre Deniz and Gislene Kucker Arantes</change>
         <change>Many smaller bug fixes</change>
     </release>
 

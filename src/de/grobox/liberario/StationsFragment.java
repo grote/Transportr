@@ -40,7 +40,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -245,10 +244,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		// Location is valid, so make it a favorite or increase counter
 		FavDB.updateFavLocation(getActivity(), location, FavLocation.LOC_TYPE.FROM);
 
-		// start StationsListActivity with given location
-		Intent intent = new Intent(getActivity(), StationsListActivity.class);
-		intent.putExtra("de.schildbach.pte.dto.Location", location);
-		startActivity(intent);
+		LiberarioUtils.findDepartures(getActivity(), location);
 	}
 
 	private void setNearbyStationsView() {
@@ -347,7 +343,9 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 			// Query for nearby stations
 			Location loc = new Location(LocationType.ANY, (int) Math.round(location.getLatitude() * 1E6), (int) Math.round(location.getLongitude() * 1E6));
-			AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(this, loc, maxDistance, maxStations);
+			AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(getActivity(), loc, maxDistance, maxStations);
+			query_stations.setFragment(this);
+			query_stations.setGPS(true);
 			query_stations.execute();
 		}
 		loc_found = true;

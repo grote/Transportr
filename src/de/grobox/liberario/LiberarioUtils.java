@@ -21,6 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.content.ClipData;
@@ -38,6 +39,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
@@ -54,7 +58,7 @@ public class LiberarioUtils {
 			// loop through all line boxes in the linearLayout
 			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
 				// check if current line box is the same as the one we are about to add
-				if(line.label.equals(((TextView)lineLayout.getChildAt(i)).getText())) {
+				if(line.label != null && line.label.equals(((TextView)lineLayout.getChildAt(i)).getText())) {
 					// lines are equal, so bail out from here and don't add new line box
 					return;
 				}
@@ -225,6 +229,40 @@ public class LiberarioUtils {
 		else
 			return "";
 
+	}
+
+	static void findDepartures(Context context, Location loc) {
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
+
+		if(np.hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
+			// start StationsListActivity with given location
+			Intent intent = new Intent(context, StationsListActivity.class);
+			intent.putExtra("de.schildbach.pte.dto.Location", loc);
+			context.startActivity(intent);
+		} else {
+			Toast.makeText(context, context.getString(R.string.error_no_departures_capability), Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	static void findNearbyStations(Context context, Location loc, int maxDistance, int maxStations) {
+		AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(context, loc, maxDistance, maxStations);
+		query_stations.execute();
+	}
+
+	static void findNearbyStations(Context context, Location loc) {
+		findNearbyStations(context, loc, 2000, 5);
+	}
+
+	static void showLocationsOnMap(Context context, ArrayList<Location> loc_list, Location my_loc) {
+		// show station on internal map
+		Intent intent = new Intent(context, MapStationsActivity.class);
+		intent.putExtra("List<de.schildbach.pte.dto.Location>", loc_list);
+		if(my_loc != null) intent.putExtra("de.schildbach.pte.dto.Location", my_loc);
+		context.startActivity(intent);
+	}
+
+	static void showLocationsOnMap(Context context, ArrayList<Location> loc_list) {
+		showLocationsOnMap(context, loc_list, null);
 	}
 
 	static void startGeoIntent(Context context, Location loc) {

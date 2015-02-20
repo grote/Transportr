@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Individual;
@@ -185,6 +186,7 @@ public class TripDetailFragment extends LiberarioFragment {
 			if(i >= legs.size()) {
 				// hide arrow for last stop (destination)
 				legViewNew.findViewById(R.id.dArrowView).setVisibility(View.GONE);
+				// TODO make a special popup menu for trip destination
 			}
 
 			// Creating PopupMenu for leg
@@ -195,8 +197,28 @@ public class TripDetailFragment extends LiberarioFragment {
 					// handle presses on menu items
 					switch(item.getItemId()) {
 						// Show On Map
+						case R.id.action_show_on_map:
+							// remember station to arrive at
+							ArrayList<Location> loc_list = new ArrayList<>();
+							loc_list.add(leg.arrival);
+							loc_list.add(leg.departure);
+
+							LiberarioUtils.showLocationsOnMap(getActivity(), loc_list, leg.departure);
+
+							return true;
+						// Show On External Map
 						case R.id.action_show_on_external_map:
 							LiberarioUtils.startGeoIntent(getActivity(), leg.departure);
+
+							return true;
+						// Show Departures
+						case R.id.action_show_departures:
+							LiberarioUtils.findDepartures(getActivity(), leg.departure);
+
+							return true;
+						// Show Nearby Stations
+						case R.id.action_show_nearby_stations:
+							LiberarioUtils.findNearbyStations(getActivity(), leg.departure);
 
 							return true;
 						// Share Leg
@@ -221,6 +243,11 @@ public class TripDetailFragment extends LiberarioFragment {
 				}
 			});
 			LiberarioUtils.showPopupIcons(popup);
+
+			// don't show departure query menu item, if not a station
+			if(!leg.departure.hasId()) {
+				popup.getMenu().findItem(R.id.action_show_departures).setVisible(false);
+			}
 
 			legViewOld.setOnLongClickListener(new View.OnLongClickListener() {
 				@Override
@@ -344,17 +371,11 @@ public class TripDetailFragment extends LiberarioFragment {
 				dShowMapView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						// remember arrival station
-/*						List<Location> loc_list = new ArrayList<Location>();
+						// remember station to arrive at
+						ArrayList<Location> loc_list = new ArrayList<>();
 						loc_list.add(individual.arrival);
 
-						// show station on internal map
-						Intent intent = new Intent(getActivity(), MapStationsActivity.class);
-						intent.putExtra("List<de.schildbach.pte.dto.Location>", (ArrayList<Location>) loc_list);
-						intent.putExtra("de.schildbach.pte.dto.Location", individual.departure);
-						startActivity(intent);
-*/
-						LiberarioUtils.startGeoIntent(getActivity(), individual.arrival);
+						LiberarioUtils.showLocationsOnMap(getActivity(), loc_list, individual.departure);
 					}
 				});
 
@@ -428,8 +449,27 @@ public class TripDetailFragment extends LiberarioFragment {
 						// handle presses on menu items
 						switch(item.getItemId()) {
 							// Show On Map
+							case R.id.action_show_on_map:
+								// remember station to arrive at
+								ArrayList<Location> loc_list = new ArrayList<>();
+								loc_list.add(stop.location);
+
+								LiberarioUtils.showLocationsOnMap(getActivity(), loc_list);
+
+								return true;
+							// Show On External Map
 							case R.id.action_show_on_external_map:
 								LiberarioUtils.startGeoIntent(getActivity(), stop.location);
+
+								return true;
+							// Show Departures
+							case R.id.action_show_departures:
+								LiberarioUtils.findDepartures(getActivity(), stop.location);
+
+								return true;
+							// Show Nearby Stations
+							case R.id.action_show_nearby_stations:
+								LiberarioUtils.findNearbyStations(getActivity(), stop.location);
 
 								return true;
 							// Share Stop

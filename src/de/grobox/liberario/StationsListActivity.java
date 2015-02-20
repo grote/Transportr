@@ -52,7 +52,7 @@ public class StationsListActivity extends Activity {
 	private LocationManager locationManager;
 	private Menu mMenu;
 	private List<Location> mStations;
-	boolean gps;
+	private boolean gps;
 	private Location mMyLocation;
 	private int max_departures = 12;
 
@@ -70,7 +70,7 @@ public class StationsListActivity extends Activity {
 		if(intent.getAction() != null && intent.getAction().equals("de.grobox.liberario.LIST_NEARBY_STATIONS")) {
 			NearbyLocationsResult stations = (NearbyLocationsResult) intent.getSerializableExtra("de.schildbach.pte.dto.NearbyStationsResult");
 			mMyLocation = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
-			gps = true;
+			gps = intent.getBooleanExtra("de.grobox.liberario.StationsListActivity.gps", false);
 
 			mStations = stations.locations;
 		}
@@ -78,7 +78,7 @@ public class StationsListActivity extends Activity {
 			final Location station = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
 			gps = false;
 
-			mStations = new ArrayList<Location>();
+			mStations = new ArrayList<>();
 			mStations.add(station);
 
 			// Set a listener to be invoked when the list should be refreshed.
@@ -198,7 +198,11 @@ public class StationsListActivity extends Activity {
 
 				TextView distanceView = (TextView) stationView.findViewById(R.id.distanceView);
 				distanceView.setText(String.valueOf(Math.round(cur_loc.distanceTo(sta_loc))) + " m");
+			}
 
+			LinearLayout depList = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.departure_list, null);
+
+			if(mStations.size() > 1) {
 				stationView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
@@ -214,9 +218,12 @@ public class StationsListActivity extends Activity {
 						}
 					}
 				});
-			}
-			else {
+			} else {
+				// only one station, so don't allow folding
 				stationView.setClickable(false);
+
+				// show departures right away if we only have one station
+				depList.setVisibility(View.VISIBLE);
 			}
 
 			main.addView(stationView);
@@ -224,11 +231,7 @@ public class StationsListActivity extends Activity {
 			AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id, max_departures);
 			query_stations.execute();
 
-			LinearLayout depList = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.departure_list, null);
-			if(!gps) {
-				// show departures right away if we only have one station
-				depList.setVisibility(View.VISIBLE);
-			}
+
 			main.addView(depList);
 
 			main.addView(LiberarioUtils.getDivider(this));
@@ -281,7 +284,10 @@ public class StationsListActivity extends Activity {
 				timeView.setText(DateUtils.getTime(this, dep.plannedTime));
 
 				if(dep.predictedTime != null) {
-					long delay = dep.predictedTime.getTime() - dep.plannedTime.getTime();
+					long delay = 0;
+					if(dep.plannedTime != null) {
+						delay = dep.predictedTime.getTime() - dep.plannedTime.getTime();
+					}
 
 					if(delay != 0) {
 						TextView delayView = (TextView) view.findViewById(R.id.delayView);
@@ -300,8 +306,10 @@ public class StationsListActivity extends Activity {
 					}
 				}
 
-				TextView destinationView = (TextView) view.findViewById(R.id.destinationView);
-				destinationView.setText(dep.destination.uniqueShortName());
+				if(dep.destination != null) {
+					TextView destinationView = (TextView) view.findViewById(R.id.destinationView);
+					destinationView.setText(dep.destination.uniqueShortName());
+				}
 
 				// show platform/position according to user preference and availability
 				if(dep.position != null) {
