@@ -369,7 +369,7 @@ public class HslProvider extends AbstractNetworkProvider
 				departures.add(departure);
 			}
 
-			Location station = new Location(LocationType.STATION, stationId, null, name);
+			Location station = new Location(LocationType.STATION, id, null, name);
 			result.stationDepartures.add(new StationDepartures(station, departures, null));
 
 			return result;
