@@ -369,7 +369,7 @@ public class HslProvider extends AbstractNetworkProvider
 				departures.add(departure);
 			}
 
-			Location station = new Location(LocationType.STATION, stationId, null, name);
+			Location station = new Location(LocationType.STATION, id, null, name);
 			result.stationDepartures.add(new StationDepartures(station, departures, null));
 
 			return result;
@@ -399,7 +399,13 @@ public class HslProvider extends AbstractNetworkProvider
 	{
 		final StringBuilder uri = apiUri("geocode");
 
-		uri.append("&key=").append(URLEncoder.encode(constraint.toString(), "utf-8"));
+		// Since HSL is picky about the input we clean out any
+		// character that isn't alphabetic, numeral, -, ', /
+		// or a space. Those should be all chars needed for a
+		// name.
+		String constraintStr = 
+		    constraint.toString().replaceAll("[^\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}\\d-'/ ]", "");
+		uri.append("&key=").append(URLEncoder.encode(constraintStr, "utf-8"));
 
 		InputStream is = null;
 		String firstChars = null;
@@ -707,8 +713,8 @@ public class HslProvider extends AbstractNetworkProvider
 							
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 						Date arrDate = sdf.parse(arrTime, new ParsePosition(0));
-						Date depDate = arrTime.equals(depTime) ? null :
-							sdf.parse(depTime, new ParsePosition(0));
+						Date depDate = //arrTime.equals(depTime) ? null :
+						    sdf.parse(depTime, new ParsePosition(0));
 
 						LocationType type = LocationType.ANY;
 						if (code != null)
@@ -718,7 +724,7 @@ public class HslProvider extends AbstractNetworkProvider
 
 						if (path.size() == 0) {
 							departure = loc;
-							departureTime = depDate == null ? arrDate : depDate;
+							departureTime = depDate;
 							if (type == LocationType.STATION)
 								departureStop = new Stop(loc, true, departureTime, 
 											 null, null, null);
