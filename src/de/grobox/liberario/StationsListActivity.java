@@ -18,7 +18,6 @@
 package de.grobox.liberario;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.LineDestination;
@@ -51,7 +50,7 @@ public class StationsListActivity extends Activity {
 	private LinearLayout main;
 	private LocationManager locationManager;
 	private Menu mMenu;
-	private List<Location> mStations;
+	private ArrayList<Location> mStations = new ArrayList<>();
 	private boolean gps;
 	private Location mMyLocation;
 	private int max_departures = 12;
@@ -72,7 +71,7 @@ public class StationsListActivity extends Activity {
 			mMyLocation = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
 			gps = intent.getBooleanExtra("de.grobox.liberario.StationsListActivity.gps", false);
 
-			mStations = stations.locations;
+			mStations.addAll(stations.locations);
 		}
 		else {
 			final Location station = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
@@ -142,7 +141,7 @@ public class StationsListActivity extends Activity {
 				if(hasLocation) {
 					// show stations on map
 					Intent intent = new Intent(this, MapStationsActivity.class);
-					intent.putExtra("List<de.schildbach.pte.dto.Location>", (ArrayList<Location>) mStations);
+					intent.putExtra("List<de.schildbach.pte.dto.Location>", mStations);
 					intent.putExtra("de.schildbach.pte.dto.Location", mMyLocation);
 					startActivity(intent);
 				}

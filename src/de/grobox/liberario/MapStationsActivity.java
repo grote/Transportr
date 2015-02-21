@@ -21,12 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.osmdroid.api.IMapController;
-import org.osmdroid.bonuspack.overlays.ExtendedOverlayItem;
 import org.osmdroid.bonuspack.overlays.InfoWindow;
-import org.osmdroid.bonuspack.overlays.ItemizedOverlayWithBubble;
+import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
@@ -34,17 +32,15 @@ import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 public class MapStationsActivity extends Activity {
@@ -53,7 +49,6 @@ public class MapStationsActivity extends Activity {
 	private GpsMyLocationProvider mLocProvider;
 	private MyLocationNewOverlay mMyLocationOverlay;
 	private boolean mGps;
-	private ArrayList<StationOverlayItem> mStations = new ArrayList<StationOverlayItem>();
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -68,6 +63,8 @@ public class MapStationsActivity extends Activity {
 		mMapView.setBuiltInZoomControls(true);
 		mMapView.setMultiTouchControls(true);
 
+		setContentView(mMapView);
+
 		Intent intent = getIntent();
 		List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra("List<de.schildbach.pte.dto.Location>");
 		Location myLoc = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
@@ -77,6 +74,8 @@ public class MapStationsActivity extends Activity {
 		int minLon = Integer.MAX_VALUE;
 		int maxLon = Integer.MIN_VALUE;
 
+		int count = 0;
+
 		// find location area and mark locations on map
 		for(Location loc : locations) {
 			if(loc.hasLocation()){
@@ -85,30 +84,30 @@ public class MapStationsActivity extends Activity {
 				maxLon = Math.max(loc.lon, maxLon);
 				minLon = Math.min(loc.lon, minLon);
 
+				count += 1;
+
+				// TODO: actually use the real lines here
 				markLocation(loc, new ArrayList<Line>());
 			}
+		}
+
+		// include my location in center calculation if available
+		if(myLoc != null) {
+			maxLat = Math.max(myLoc.lat, maxLat);
+			minLat = Math.min(myLoc.lat, minLat);
+			maxLon = Math.max(myLoc.lon, maxLon);
+			minLon = Math.min(myLoc.lon, minLon);
+			count += 1;
 		}
 
 		final GeoPoint center = new GeoPoint( (maxLat + minLat)/2, (maxLon + minLon)/2 );
 
 		IMapController mapController = mMapView.getController();
 		mapController.setCenter(center);
-		mapController.setZoom(15);
-
-		// work around for center issue: https://github.com/osmdroid/osmdroid/issues/22
-		mMapView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-			@Override
-			public void onGlobalLayout() {
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-					mMapView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-				else
-					mMapView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-				mMapView.getController().setCenter(center);
-			}
-		});
-
-		ItemizedOverlayWithBubble<StationOverlayItem> stationMarkers = new ItemizedOverlayWithBubble<StationOverlayItem>(this, mStations, mMapView, new StationInfoWindow(mMapView));
-		mMapView.getOverlays().add(stationMarkers);
+		mapController.setZoom(18);
+		if(count > 1) {
+			mapController.zoomToSpan(maxLat - minLat, maxLon - minLon);
+		}
 
 		mLocProvider = new GpsMyLocationProvider(this);
 
@@ -126,7 +125,6 @@ public class MapStationsActivity extends Activity {
 		// create my location overlay that shows the current position and updates automatically
 		mMyLocationOverlay = new MyLocationNewOverlay(this, mMapView);
 		mMyLocationOverlay.enableMyLocation(mLocProvider);
-		mMyLocationOverlay.enableFollowLocation(); // without this there's no position marker!?
 		mMyLocationOverlay.setDrawAccuracyEnabled(true);
 
 		mMapView.getOverlays().add(mMyLocationOverlay);
@@ -134,8 +132,6 @@ public class MapStationsActivity extends Activity {
 		// turn GPS off by default
 		mGps = false;
 		mLocProvider.stopLocationProvider();
-
-		setContentView(mMapView);
 	}
 
 	@Override
@@ -178,10 +174,16 @@ public class MapStationsActivity extends Activity {
 	private void markLocation(Location loc, List<Line> lines) {
 		GeoPoint pos = new GeoPoint(loc.lat / 1E6, loc.lon / 1E6);
 
-		StationOverlayItem station = new StationOverlayItem(loc.name, lines, pos, this);
-		station.setMarker(getResources().getDrawable(R.drawable.ic_marker_station));
-		station.setMarkerHotspot(OverlayItem.HotspotPlace.CENTER);
-		mStations.add(station);
+		Log.d(getClass().getSimpleName(), "Mark location: " + loc.toString());
+
+		Marker marker = new Marker(mMapView);
+		marker.setIcon(getResources().getDrawable(R.drawable.ic_marker_station));
+		marker.setPosition(pos);
+		marker.setTitle(loc.uniqueShortName());
+		marker.setInfoWindow(new StationInfoWindow(mMapView));
+		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
+		marker.setRelatedObject(lines);
+		mMapView.getOverlays().add(marker);
 	}
 
 	private void toggleGPS() {
@@ -197,22 +199,6 @@ public class MapStationsActivity extends Activity {
 			gpsItem.setIcon(R.drawable.ic_gps_off);
 		}
 	}
-
-	public class StationOverlayItem extends ExtendedOverlayItem {
-		List<Line> mLines;
-
-		public StationOverlayItem(String aTitle, List<Line> lines, GeoPoint aGeoPoint, Context context) {
-			super(aTitle, null, aGeoPoint);
-
-			mLines = lines;
-		}
-
-		public List<Line> getLines() {
-			return mLines;
-		}
-	}
-
-
 
 	public class StationInfoWindow extends InfoWindow {
 
@@ -230,14 +216,15 @@ public class MapStationsActivity extends Activity {
 			});
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public void onOpen(Object item) {
-			StationOverlayItem stationOverlayItem = (StationOverlayItem) item;
+			Marker marker = (Marker) item;
 
-			((TextView) mView.findViewById(R.id.bubble_title)).setText(stationOverlayItem.getTitle());
+			((TextView) mView.findViewById(R.id.bubble_title)).setText(marker.getTitle());
 
 			ViewGroup bubble_lines = (ViewGroup) mView.findViewById(R.id.bubble_lines);
-			for(Line line : stationOverlayItem.getLines()) {
+			for(Line line : (List<Line>) marker.getRelatedObject()) {
 				LiberarioUtils.addLineBox(mMapView.getContext(), bubble_lines, line);
 			}
 		}
