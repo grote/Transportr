@@ -50,6 +50,9 @@ public class MainActivity extends FragmentActivity {
 
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 
+		// don't recreate the fragments when changing tabs
+		mViewPager.setOffscreenPageLimit(3);
+
 		final ActionBar actionBar = getActionBar();
 
 		// Specify that tabs should be displayed in the action bar.
@@ -72,7 +75,7 @@ public class MainActivity extends FragmentActivity {
 			}
 		};
 
-		List<String> fragments = new ArrayList<String>();
+		List<String> fragments = new ArrayList<>();
 
 		fragments.add(DirectionsFragment.class.getName());
 		actionBar.addTab(actionBar.newTab().setIcon(android.R.drawable.ic_menu_directions).setTabListener(tabListener));
