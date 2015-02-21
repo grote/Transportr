@@ -399,7 +399,13 @@ public class HslProvider extends AbstractNetworkProvider
 	{
 		final StringBuilder uri = apiUri("geocode");
 
-		uri.append("&key=").append(URLEncoder.encode(constraint.toString(), "utf-8"));
+		// Since HSL is picky about the input we clean out any
+		// character that isn't alphabetic, numeral, -, ', /
+		// or a space. Those should be all chars needed for a
+		// name.
+		String constraintStr = 
+		    constraint.toString().replaceAll("[^\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}\\d-'/ ]", "");
+		uri.append("&key=").append(URLEncoder.encode(constraintStr, "utf-8"));
 
 		InputStream is = null;
 		String firstChars = null;
