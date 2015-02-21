@@ -191,7 +191,7 @@
     <string name="np_desc_paris">Paris</string>
     <string name="np_desc_nz">Wellington, Auckland</string>
     <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
-    <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Vasca (Moveuskadi)</string>
+    <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
 
     <string name="np_name_db">Deutsche Bahn</string>
     <string name="np_name_bayern">BAVARIA</string>
