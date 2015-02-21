@@ -5,7 +5,9 @@ DIR=$PWD
 cd sublibs/public-transport-enabler/enabler/
 mkdir -p src/de/schildbach/pte/live
 
-cp test/de/schildbach/pte/live/Secrets.java.template src/de/schildbach/pte/live/Secrets.java
+if [ ! -f src/de/schildbach/pte/live/Secrets.java ]; then
+	cp test/de/schildbach/pte/live/Secrets.java.template src/de/schildbach/pte/live/Secrets.java
+fi
 
 # add non-upstream providers
 git checkout -- src/de/schildbach/pte/NetworkId.java
