@@ -713,8 +713,8 @@ public class HslProvider extends AbstractNetworkProvider
 							
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 						Date arrDate = sdf.parse(arrTime, new ParsePosition(0));
-						Date depDate = arrTime.equals(depTime) ? null :
-							sdf.parse(depTime, new ParsePosition(0));
+						Date depDate = //arrTime.equals(depTime) ? null :
+						    sdf.parse(depTime, new ParsePosition(0));
 
 						LocationType type = LocationType.ANY;
 						if (code != null)
@@ -724,7 +724,7 @@ public class HslProvider extends AbstractNetworkProvider
 
 						if (path.size() == 0) {
 							departure = loc;
-							departureTime = depDate == null ? arrDate : depDate;
+							departureTime = depDate;
 							if (type == LocationType.STATION)
 								departureStop = new Stop(loc, true, departureTime, 
 											 null, null, null);
