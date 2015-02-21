@@ -8,18 +8,21 @@
   <string name="action_settings">Paramètres</string>
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
   <string name="action_switch_locations">Inverser les points de départ et d\'arrivée</string>
-  <string name="action_show_extra_info">Montrer/cacher les quais</string>
+  <string name="action_show_extra_info">Montrer/cacher les informations</string>
   <string name="action_refresh">Rafraîchir</string>
-  <string name="action_navigation_expand">Montrer plus</string>
-  <string name="action_location_map">Afficher les stations/arrêts sur la carte</string>
+  <string name="action_navigation_expand">En montrer plus</string>
+  <string name="action_location_map">Montrer les stations/arrêts sur la carte</string>
   <string name="action_use_gps">Activer le GPS</string>
   <string name="action_trip_share">Partager</string>
   <string name="action_trip_calendar">Calendrier infos</string>
-  <string name="action_trip_details">Montrer séparer</string>
+  <string name="action_trip_details">Montrer séparé</string>
   <string name="action_trip_delete">Supprimer le trajet</string>
+  <string name="action_show_on_external_map">Montrer sur une carte externe</string>
+  <string name="action_copy">Copier</string>
+  <string name="action_show_on_map"></string>
   <string name="tab_directions">Itinéraires</string>
   <string name="tab_fav_trips">Favoris</string>
-  <string name="about_top">© 2013 - 2014 Torsten Grote\nLicence logiciel libre : GPLv3</string>
+  <string name="about_top"></string>
   <string name="about">
 <![CDATA[
 <p>Liberario est une appli de transport public que l\'on peut librement utiliser, étudier, partager et améliorer.</p>
@@ -54,7 +57,7 @@
   <string name="find_departures">Trouver des départs</string>
   <string name="share_trip_via">Partager ce trajet par...</string>
   <string name="error_pick_network">Veuillez choisir un réseau de transport !</string>
-  <string name="error_no_internet">Acune connexion Internet suffisante disponible.</string>
+  <string name="error_no_internet">Aucune connexion Internet suffisante disponible.</string>
   <string name="error_invalid_from">Point de départ invalide</string>
   <string name="error_invalid_to">Point d\'arrivée invalide</string>
   <string name="error_no_favs">Aucun emplacement favori enregistré</string>
@@ -65,6 +68,7 @@
   <string name="error_only_autocomplete_station">Veuillez choisir une station/arrêt dans la liste de saisie automatique ! </string>
   <string name="error_no_station_location">Impossible de trouver l\'emplacement de cette/ces station(s)/arrêt(s)</string>
   <string name="error_no_trips_capability">Le réseau de transport ne prend pas en charge la demande d\'itinéraire.</string>
+  <string name="error_no_departures_capability"></string>
   <string name="number_of_stations">Nombre de stations/arrêts</string>
   <string name="meter">m</string>
   <string name="max_distance">Distance maximum</string>
@@ -107,16 +111,14 @@
   <string name="np_desc_vms">Saxe centrale, Chemnitz</string>
   <string name="np_desc_nasa">Saxe, Leipzig, Saxe-Anhalt, Magdebourg, Halle</string>
   <string name="np_desc_vrr">Rhénanie-du-Nord-Westphalie, Cologne, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
-  <string name="np_desc_vrt">Région métropolitaine Rhin-Neckar</string>
   <string name="np_desc_mvg">Arrondissement de la Mark, Lüdenscheid</string>
   <string name="np_desc_nvv">Hesse, Francfort-sur-le-Main, Cassel</string>
   <string name="np_desc_vrn">Bade-Wurtemberg, Rhénanie-Palatinat, Mannheim, Mayence, Trèves</string>
   <string name="np_desc_vvs">Bade-Wurtemberg, Stuttgart</string>
-  <string name="np_desc_naldo">Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_ding">Bade-Wurtemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_kvv">Bade-Wurtemberg, Karlsruhe</string>
   <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Fribourg-en-Brisgau</string>
-  <string name="np_desc_nvbw">Bade-Wurtemberg, Constance, Bâle, canton de Bâle-Ville</string>
+  <string name="np_desc_nvbw">Bade-Wurtemberg, Constance, Bâle, Bâle-Ville, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
   <string name="np_desc_vgs">Sarre, Sarrebruck</string>
   <string name="np_region_austria">Autriche</string>
@@ -149,12 +151,14 @@
   <string name="np_region_israel">Israël</string>
   <string name="np_region_france">France</string>
   <string name="np_region_finland">Finlande</string>
+  <string name="np_region_nz">Nouvelle-Zélande</string>
+  <string name="np_region_spain"></string>
   <string name="np_desc_ns">Pays-Bas, Amsterdam</string>
   <string name="np_desc_dsb">Danemark, Copenhague</string>
   <string name="np_desc_se">Suède, Stockholm</string>
   <string name="np_desc_stockholm">Stockholm</string>
   <string name="np_desc_nri">Norvège, Oslo, Bergen</string>
-  <string name="np_desc_tlem">Grand Londres, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, Sussex de l\'Est, Hampshire, Île de Wight, Kent, Oxfordshire, Surrey, Sussex de l\'Ouest, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornouailles, Devon de l\'Ouest, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
+  <string name="np_desc_tlem">Grand Londres, Derbyshire, Birmingham, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, Sussex de l\'Est, Hampshire, Île de Wight, Kent, Oxfordshire, Surrey, Sussex de l\'Ouest, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornouailles, Devon de l\'Ouest, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
   <string name="np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irlande, Dublin, Belfast</string>
   <string name="np_desc_atc">Émilie-Romagne, Bologne</string>
@@ -168,10 +172,15 @@
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_desc_paris">Paris</string>
+  <string name="np_desc_nz">Wellington, Auckland</string>
+  <string name="np_desc_usny"></string>
+  <string name="np_desc_spain"></string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAVIÈRE</string>
   <string name="np_name_paris">PARIS</string>
   <string name="np_name_sydney">SYDNEY</string>
   <string name="np_name_stockholm">STOCKHOLM</string>
   <string name="np_name_wien">VIENNE</string>
+  <string name="np_name_spain"></string>
+  <string name="np_name_usny">États de New York et New Jersey</string>
 </resources>
