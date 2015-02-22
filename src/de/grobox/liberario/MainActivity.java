@@ -27,6 +27,7 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -98,6 +99,9 @@ public class MainActivity extends FragmentActivity {
 
 		mViewPager.setAdapter(mainPagerAdapter);
 
+		// show about screen and make sure a transport network is selected
+		checkFirstRun();
+
 		// show Changelog
 		HoloChangeLog cl = new HoloChangeLog(this);
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
@@ -145,14 +149,45 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void onNetworkProviderChanged(NetworkProvider np) {
-		// call this method for each fragment
-		for(final Fragment fragment : getSupportFragmentManager().getFragments()) {
-			if(fragment instanceof LiberarioFragment) {
-				((LiberarioFragment) fragment).onNetworkProviderChanged(np);
-			} else if(fragment instanceof LiberarioListFragment) {
-				((LiberarioListFragment) fragment).onNetworkProviderChanged(np);
+		// get and set new network name for action bar
+		SharedPreferences settings = getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
+		getActionBar().setSubtitle(settings.getString("NetworkId", "???"));
+
+		if(getSupportFragmentManager().getFragments() != null) {
+			// call this method for each fragment
+			for(final Fragment fragment : getSupportFragmentManager().getFragments()) {
+				if(fragment instanceof LiberarioFragment) {
+					((LiberarioFragment) fragment).onNetworkProviderChanged(np);
+				} else if(fragment instanceof LiberarioListFragment) {
+					((LiberarioListFragment) fragment).onNetworkProviderChanged(np);
+				}
 			}
 		}
+	}
+
+	private void checkFirstRun() {
+		SharedPreferences settings = getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
+		boolean firstRun = settings.getBoolean("FirstRun", true);
+
+		// show about page at first run
+		if(firstRun) {
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("FirstRun", false);
+			editor.apply();
+
+			startActivity(new Intent(this, AboutActivity.class));
+		}
+
+		String network = settings.getString("NetworkId", null);
+
+		// return if no network is set
+		if(network == null) {
+			startActivityForResult(new Intent(this, PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
+		}
+		else {
+			getActionBar().setSubtitle(network);
+		}
+
 	}
 
 

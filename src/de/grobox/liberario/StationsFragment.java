@@ -20,6 +20,7 @@ package de.grobox.liberario;
 import java.util.List;
 
 import de.grobox.liberario.data.FavDB;
+import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.NetworkProvider.Capability;
 import de.schildbach.pte.dto.Location;
@@ -62,16 +63,21 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_stations, container, false);
 
-		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getActivity()));
+		NetworkId networkId = Preferences.getNetworkId(getActivity());
+		NetworkProvider np = null;
 
-		if(np.hasCapabilities(Capability.DEPARTURES)) {
+		if(networkId != null) {
+			np = NetworkProviderFactory.provider(networkId);
+		}
+
+		if(np != null && np.hasCapabilities(Capability.DEPARTURES)) {
 			setDeparturesView();
 		} else {
 			LinearLayout departuresLayout = (LinearLayout) mView.findViewById(R.id.departuresLayout);
 			departuresLayout.setVisibility(View.GONE);
 		}
 
-		if(np.hasCapabilities(Capability.NEARBY_LOCATIONS)) {
+		if(np != null && np.hasCapabilities(Capability.NEARBY_LOCATIONS)) {
 			setNearbyStationsView();
 		} else {
 			LinearLayout nearbyStationsLayout = (LinearLayout) mView.findViewById(R.id.nearbyStationsLayout);

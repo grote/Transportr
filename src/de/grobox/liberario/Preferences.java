@@ -38,6 +38,10 @@ public class Preferences {
 	public static NetworkId getNetworkId(Context context) {
 		String network = getNetwork(context);
 
+		if(network == null) {
+			return null;
+		}
+
 		// construct NetworkId object from network string
 		NetworkId network_id = null;
 		try {

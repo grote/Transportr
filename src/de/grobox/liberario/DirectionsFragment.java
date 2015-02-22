@@ -19,7 +19,6 @@ package de.grobox.liberario;
 
 import java.util.Calendar;
 import java.util.EnumSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -79,7 +78,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	private Location gps_loc = null;
 	private boolean mGpsPressed = false;
 	private AsyncQueryTripsTask mAfterGpsTask = null;
-	private Set<Product> mProducts = EnumSet.allOf(Product.class);;
+	private Set<Product> mProducts = EnumSet.allOf(Product.class);
 	public ProgressDialog pd;
 
 	@Override
@@ -93,8 +92,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_directions, container, false);
 		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-		checkPreferences();
 
 		setFromUI();
 		setToUI();
@@ -343,10 +340,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	@Override
 	// change things for a different network provider
 	public void onNetworkProviderChanged(NetworkProvider np) {
-		// get and set new network name for action bar
-		SharedPreferences settings = getActivity().getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
-		getActivity().getActionBar().setSubtitle(settings.getString("NetworkId", "???"));
-
 		refreshFavs();
 
 		// remove old text from TextViews
@@ -578,34 +571,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		mHomeClicked = home_clicked;
 
 		startActivityForResult(intent, MainActivity.CHANGED_HOME);
-	}
-
-	private void checkPreferences() {
-		SharedPreferences settings = getActivity().getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
-		boolean firstRun = settings.getBoolean("FirstRun", true);
-
-		// show about page at first run
-		if(firstRun) {
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putBoolean("FirstRun", false);
-			editor.apply();
-
-			startActivity(new Intent(getActivity(), AboutActivity.class));
-		}
-
-		String network = settings.getString("NetworkId", null);
-
-		// return if no network is set
-		if(network == null) {
-			Intent intent = new Intent(getActivity(), PickNetworkProviderActivity.class);
-			intent.putExtra("FirstRun", true);
-
-			startActivityForResult(intent, MainActivity.CHANGED_NETWORK_PROVIDER);
-		}
-		else {
-			getActivity().getActionBar().setSubtitle(network);
-		}
-
 	}
 
 	public void handleInputClick(FavLocation.LOC_TYPE loc_type) {
