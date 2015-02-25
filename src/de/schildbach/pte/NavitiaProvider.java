@@ -24,20 +24,13 @@ import de.schildbach.pte.dto.Style;
 
 public class NavitiaProvider extends AbstractNavitiaProvider
 {
-	public static NetworkId NETWORK_ID;
 	private static String API_REGION;
 
 	public NavitiaProvider(final String authorization, final String apiRegion, final NetworkId networkId)
 	{
-		super(authorization);
+		super(networkId, authorization);
 
 		API_REGION = apiRegion;
-		NETWORK_ID = networkId;
-	}
-
-	public NetworkId id()
-	{
-		return NETWORK_ID;
 	}
 
 	@Override

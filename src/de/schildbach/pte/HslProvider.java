@@ -68,7 +68,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
  */
 public class HslProvider extends AbstractNetworkProvider 
 {
-	public static final NetworkId NETWORK_ID = NetworkId.HSL;
 	private static final int COORD_MUL = 1000000;
 	private static final String SERVER_PRODUCT = "hsl";
 	private static final String SERVER_VERSION = "1_2_0";
@@ -80,6 +79,7 @@ public class HslProvider extends AbstractNetworkProvider
 
 	public HslProvider(String user, String pass)
 	{
+		super(NetworkId.HSL);
 		API_BASE = String.format("http://api.reittiopas.fi/hsl/%s/?user=%s&pass=%s",
 					 SERVER_VERSION, user, pass);
 		try
@@ -91,11 +91,6 @@ public class HslProvider extends AbstractNetworkProvider
 		{
 			throw new RuntimeException(x);
 		}
-	}
-
-	@Override
-	public NetworkId id() {
-		return NETWORK_ID;
 	}
 
 	@Override
@@ -240,7 +235,7 @@ public class HslProvider extends AbstractNetworkProvider
 			pp.setInput(is, null);
 
 			final List<Location> stations = new ArrayList<>();
-			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
+			final ResultHeader header = new ResultHeader(network, SERVER_PRODUCT);
 
 			XmlPullUtil.enter(pp, "response");		
 
@@ -343,7 +338,7 @@ public class HslProvider extends AbstractNetworkProvider
 			}
 			XmlPullUtil.skipExit(pp, "lines");
 				
-			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
+			final ResultHeader header = new ResultHeader(network, SERVER_PRODUCT);
 			final QueryDeparturesResult result = new QueryDeparturesResult(header);
 
 			xmlSkipUntil(pp, "departures");
@@ -415,7 +410,7 @@ public class HslProvider extends AbstractNetworkProvider
 			is = ParserUtils.scrapeInputStream(uri.toString());
 			firstChars = ParserUtils.peekFirstChars(is);
 
-			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
+			final ResultHeader header = new ResultHeader(network, SERVER_PRODUCT);
 			final List<SuggestedLocation> locations = new ArrayList<>();
 
 			if (firstChars.isEmpty())
@@ -516,7 +511,7 @@ public class HslProvider extends AbstractNetworkProvider
 				    Set<Product> products, WalkSpeed walkSpeed,
 				    Accessibility accessibility, Set<Option> options) throws IOException 
 	{
-		final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
+		final ResultHeader header = new ResultHeader(network, SERVER_PRODUCT);
 
 		if (!from.isIdentified())
 		{
@@ -651,7 +646,7 @@ public class HslProvider extends AbstractNetworkProvider
 
 			XmlPullUtil.enter(pp, "response"); 
 
-			final ResultHeader header = new ResultHeader(SERVER_PRODUCT);
+			final ResultHeader header = new ResultHeader(network, SERVER_PRODUCT);
 
 			final List<Trip> trips = new ArrayList<>(context.trips);
 
