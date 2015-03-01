@@ -26,7 +26,6 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +70,11 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 
 	@Override
 	public Location getItem(int index) {
-		return filteredList.get(index);
+		if(filteredList.get(index) != null) {
+			return filteredList.get(index);
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -91,9 +94,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 					if(constraint.length() > 2) {
 						try {
 							resultList = autocomplete.execute().get().getLocations();
-						} catch(InterruptedException e) {
-							e.printStackTrace();
-						} catch(ExecutionException e) {
+						} catch(InterruptedException | ExecutionException e) {
 							e.printStackTrace();
 						}
 					}
