@@ -33,7 +33,7 @@ Screenshots
 Coverage
 --------
 
-In order to access public transport data, Liberario is using the [public transport enabler](http://code.google.com/p/public-transport-enabler/) library. So it supports all areas that this library also supports.
+In order to access public transport data, Liberario is using the [public transport enabler](https://github.com/schildbach/public-transport-enabler) library. So it supports all areas that this library also supports.
 
 ### Continents and Countries ###
 
