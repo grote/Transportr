@@ -269,6 +269,7 @@ public class HslProvider extends AbstractNetworkProvider
 	private Line newLine(String code, int type, String message) {
 		String label = code.substring(1, 5).trim().replaceAll("^0+",""); 
 		Product product = Product.BUS;
+		char acode = code.substring(0, 1).charAt(0);
 
 		int color = 0xFF193695;
 
@@ -282,11 +283,12 @@ public class HslProvider extends AbstractNetworkProvider
 		} else if (type == 2) {
 			product = Product.TRAM;
 			color = 0xFF00ab67;
-		} else if (type == 12) {
+		} else if (type == 12 || (type == 0 && acode == '3')) {
 			product = Product.REGIONAL_TRAIN;
 			color = 0xFF2cbe2c;
-			if (label.charAt(0) == '2' && label.length() == 2)
-				label = label.substring(1);
+			if ((label.charAt(0) == '1' ||
+			     label.charAt(0) == '2') && label.length() == 2)
+				label = label.substring(1) + "-train";
 		}
 
 		Style style = new Style(color, Style.deriveForegroundColor(color));
