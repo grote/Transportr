@@ -59,6 +59,7 @@ In order to access public transport data, Liberario is using the [public transpo
 * Frankfurt/Rhine-Main, Kassel & Hesse (local and regional)
 * Munich (local and regional)
 * North Rhine-Westphalia (Cologne, Dortmund, Düsseldorf, Münster, ...) (local and regional)
+* Cologne & Bonn (local and regional)
 * Lüdenscheid & Märkischer Kreis (local and regional)
 * Paderborn & Höxter (local and regional)
 * Mannheim, Rhine-Neckar & Rhein-Nahe (local and regional)

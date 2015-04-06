@@ -348,7 +348,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			}
 
 			// Query for nearby stations
-			Location loc = new Location(LocationType.ANY, (int) Math.round(location.getLatitude() * 1E6), (int) Math.round(location.getLongitude() * 1E6));
+			Location loc = Location.coord((int) Math.round(location.getLatitude() * 1E6), (int) Math.round(location.getLongitude() * 1E6));
 			AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(getActivity(), loc, maxDistance, maxStations);
 			query_stations.setFragment(this);
 			query_stations.setGPS(true);

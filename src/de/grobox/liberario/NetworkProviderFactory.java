@@ -47,6 +47,7 @@ public final class NetworkProviderFactory
 	private static Reference<VvoProvider> vvoProviderRef;
 	private static Reference<VmsProvider> vmsProviderRef;
 	private static Reference<VrrProvider> vrrProviderRef;
+	private static Reference<VrsProvider> vrsProviderRef;
 	private static Reference<MvgProvider> mvgProviderRef;
 	private static Reference<VrnProvider> vrnProviderRef;
 	private static Reference<VvsProvider> vvsProviderRef;
@@ -358,6 +359,19 @@ public final class NetworkProviderFactory
 
 			final VrrProvider provider = new VrrProvider();
 			vrrProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.VRS))
+		{
+			if (vrsProviderRef != null)
+			{
+				final VrsProvider provider = vrsProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final VrsProvider provider = new VrsProvider();
+			vrsProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.MVG))

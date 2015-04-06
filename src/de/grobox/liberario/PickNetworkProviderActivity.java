@@ -213,6 +213,7 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		de.add(new NetworkItem(NetworkId.NVBW, "NVBW", getString(R.string.np_desc_nvbw)));
 		de.add(new NetworkItem(NetworkId.VVV, "VVV", getString(R.string.np_desc_vvv)));
 		de.add(new NetworkItem(NetworkId.VGS, "VGS", getString(R.string.np_desc_vgs)));
+		de.add(new NetworkItem(NetworkId.VRS, "VRS", getString(R.string.np_desc_vrs)));
 		listNetwork.put(getString(R.string.np_region_germany), de);
 
 		listRegion.add(getString(R.string.np_region_austria));

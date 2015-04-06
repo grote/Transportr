@@ -293,7 +293,7 @@ public class HslProvider extends AbstractNetworkProvider
 
 		Style style = new Style(color, Style.deriveForegroundColor(color));
 
-		return new Line(code, product, label, style, message);
+		return new Line(code, network.toString(), product, label, style, message);
 	}
 
 	// Get departures at a given station, probably live
