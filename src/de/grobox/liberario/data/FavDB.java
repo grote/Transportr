@@ -89,7 +89,7 @@ public class FavDB {
 	}
 
 	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
-		if(loc.place != null && loc.place.equals("GPS")) {
+		if(loc == null || (loc.place != null && loc.place.equals("GPS"))) {
 			// don't store GPS locations
 			return;
 		}
