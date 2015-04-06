@@ -15,7 +15,7 @@ apply plugin: 'com.android.application'
 
 dependencies {
 	//compile "com.android.support:appcompat-v7:21.0.0"
-	compile 'com.android.support:support-v4:21.0.3'
+	compile 'com.android.support:support-v4:22.0.0'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	compile project(':sublibs:Android-PullToRefresh:library')
 	compile project(':sublibs:OSMBonusPack')
@@ -30,9 +30,9 @@ android {
 		versionCode 13
 		versionName "0.6-beta1"
 
-		compileSdkVersion 21
-		targetSdkVersion 21
-		buildToolsVersion "21.1.2"
+		compileSdkVersion 22
+		targetSdkVersion 22
+		buildToolsVersion "22.0.1"
 		minSdkVersion 11
 	}
 
