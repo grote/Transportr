@@ -79,7 +79,7 @@ public class TripDetailActivity extends FragmentActivity {
 	private void addHeader(Trip trip) {
 		Date d = trip.getFirstDepartureTime();
 
-		((TextView) findViewById(R.id.tripDetailsDurationView)).setText(DateUtils.getDuration(trip.getFirstDepartureTime(), trip.getLastArrivalTime()));
+		((TextView) findViewById(R.id.tripDetailsDurationView)).setText(DateUtils.getDuration(trip.getDuration()));
 		((TextView) findViewById(R.id.tripDetailsDateView)).setText(DateUtils.formatDate(this, d.getYear()+1900, d.getMonth(), d.getDate()));
 	}
 

@@ -122,10 +122,7 @@ public class LiberarioUtils {
 		if(stop.isArrivalTimePredicted() && stop.getArrivalDelay() != null) {
 			long delay = stop.getArrivalDelay();
 			time.setTime(time.getTime() - delay);
-
-			if(delay > 0) {
-				delayView.setText("+" + Long.toString(delay / 1000 / 60));
-			}
+			delayView.setText(getDelayText(delay));
 		}
 		timeView.setText(DateUtils.getTime(context, time));
 	}
@@ -136,12 +133,20 @@ public class LiberarioUtils {
 		if(stop.isDepartureTimePredicted() && stop.getDepartureDelay() != null) {
 			long delay = stop.getDepartureDelay();
 			time.setTime(time.getTime() - delay);
-
-			if(delay > 0) {
-				delayView.setText("+" + Long.toString(delay / 1000 / 60));
-			}
+			delayView.setText(getDelayText(delay));
 		}
 		timeView.setText(DateUtils.getTime(context, time));
+	}
+
+	static public String getDelayText(long delay) {
+		if(delay > 0) {
+			return "+" + Long.toString(delay / 1000 / 60);
+		}
+		else if(delay < 0) {
+			return Long.toString(delay / 1000 / 60);
+		} else {
+			return "";
+		}
 	}
 
 	static public String tripToSubject(Context context, Trip trip, boolean tag) {

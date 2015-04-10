@@ -208,24 +208,35 @@ public class TripsActivity extends FragmentActivity {
 				// Departure Time and Delay
 				TextView departureTimeView  = (TextView) row.findViewById(R.id.departureTimeView);
 				TextView departureDelayView = (TextView) row.findViewById(R.id.departureDelayView);
-				if(trip.getFirstPublicLeg() != null) {
-					LiberarioUtils.setDepartureTimes(this, departureTimeView, departureDelayView, trip.getFirstPublicLeg().departureStop);
+				if(trip.legs.size() > 0 && trip.legs.get(0) instanceof Trip.Public) {
+					LiberarioUtils.setDepartureTimes(this, departureTimeView, departureDelayView, ((Public) trip.legs.get(0)).departureStop);
 				} else {
 					departureTimeView.setText(DateUtils.getTime(this, trip.getFirstDepartureTime()));
+					// show delay for last public leg
+					final Public pleg = trip.getFirstPublicLeg();
+					if(pleg != null && pleg.getDepartureDelay() != null) {
+						departureDelayView.setText(LiberarioUtils.getDelayText(pleg.getDepartureDelay()));
+					}
 				}
 
 				// Arrival Time and Delay
 				TextView arrivalTimeView = (TextView) row.findViewById(R.id.arrivalTimeView);
 				TextView arrivalDelayView = (TextView) row.findViewById(R.id.arrivalDelayView);
-				if(trip.getLastPublicLeg() != null) {
-					LiberarioUtils.setArrivalTimes(this, arrivalTimeView, arrivalDelayView, trip.getLastPublicLeg().arrivalStop);
+				final Leg last_leg = trip.legs.get(trip.legs.size() - 1);
+				if(last_leg != null && last_leg instanceof Trip.Public) {
+					LiberarioUtils.setArrivalTimes(this, arrivalTimeView, arrivalDelayView, ((Public) last_leg).arrivalStop);
 				} else {
 					arrivalTimeView.setText(DateUtils.getTime(this, trip.getLastArrivalTime()));
+					// show delay for last public leg
+					final Public pleg = trip.getLastPublicLeg();
+					if(pleg != null && pleg.getArrivalDelay() != null) {
+						arrivalDelayView.setText(LiberarioUtils.getDelayText(pleg.getArrivalDelay()));
+					}
 				}
 
 				// Duration
 				TextView durationView = (TextView) trip_layout.findViewById(R.id.durationView);
-				durationView.setText(DateUtils.getDuration(trip.getFirstDepartureTime(), trip.getLastArrivalTime()));
+				durationView.setText(DateUtils.getDuration(trip.getDuration()));
 
 				// Transports
 				FlowLayout lineLayout = (FlowLayout) trip_layout.findViewById(R.id.lineLayout);
@@ -298,9 +309,7 @@ public class TripsActivity extends FragmentActivity {
 								return true;
 							// Show Trip Details on Separate Screen
 							case R.id.action_trip_details:
-								if(trip != null) {
-									showTripDetails(trip);
-								}
+								showTripDetails(trip);
 								return true;
 							default:
 								return false;

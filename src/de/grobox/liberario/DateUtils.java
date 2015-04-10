@@ -118,24 +118,16 @@ public class DateUtils {
 	}
 
 
-	static public String getDuration(Date start, Date end) {
-		String duration;
+	static public String getDuration(long duration) {
+		String str;
 
-		long min = (end.getTime() - start.getTime()) / 1000 / 60;
+		// get duration in minutes
+		duration = duration / 1000 / 60;
 
-		int hours = (int) (min / 60);
-		int minutes = (int) (min % 60);
+		long m = duration % 60;
+		long h = duration / 60;
 
-		duration = Integer.toString(hours) + ":";
-
-		if(minutes > 9) {
-			duration += Integer.toString(minutes);
-		}
-		else {
-			duration += "0" + Integer.toString(minutes);
-		}
-
-		return duration;
+		return Long.toString(h) + ":" + (m < 10 ? "0" : "") + Long.toString(m);
 	}
 
 }
