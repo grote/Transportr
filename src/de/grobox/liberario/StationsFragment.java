@@ -20,11 +20,11 @@ package de.grobox.liberario;
 import java.util.List;
 
 import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.ui.DelayAutoCompleteTextView;
 import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.NetworkProvider.Capability;
 import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.LocationType;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -42,7 +42,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -97,7 +96,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			departuresLayout.setVisibility(View.VISIBLE);
 
 			// clear favorites for auto-complete
-			AutoCompleteTextView stationView = ((AutoCompleteTextView) mView.findViewById(R.id.stationView));
+			DelayAutoCompleteTextView stationView = ((DelayAutoCompleteTextView) mView.findViewById(R.id.stationView));
 			if(stationView.getAdapter() != null) {
 				((LocationAdapter) stationView.getAdapter()).resetList();
 			}
@@ -131,10 +130,11 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 	private void setDeparturesView() {
 		// station name TextView
-		final AutoCompleteTextView stationView = (AutoCompleteTextView) mView.findViewById(R.id.stationView);
+		final DelayAutoCompleteTextView stationView = (DelayAutoCompleteTextView) mView.findViewById(R.id.stationView);
 		LocationAdapter locAdapter = new LocationAdapter(getActivity(), FavLocation.LOC_TYPE.FROM, true);
 		locAdapter.setFavs(true);
 		stationView.setAdapter(locAdapter);
+		stationView.setLoadingIndicator((android.widget.ProgressBar) mView.findViewById(R.id.stationProgress));
 		stationView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
@@ -265,7 +265,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 	}
 
 	private void setStation(Location station) {
-		AutoCompleteTextView stationView = (AutoCompleteTextView) mView.findViewById(R.id.stationView);
+		DelayAutoCompleteTextView stationView = (DelayAutoCompleteTextView) mView.findViewById(R.id.stationView);
 		ImageButton stationClearButton = (ImageButton) mView.findViewById(R.id.stationClearButton);
 
 		if(station != null) {

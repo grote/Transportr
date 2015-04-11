@@ -32,7 +32,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1" >
 
-                    <AutoCompleteTextView
+                    <de.grobox.liberario.ui.DelayAutoCompleteTextView
                         android:id="@+id/stationView"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -42,21 +42,34 @@
                         android:inputType="textNoSuggestions" >
 
                         <requestFocus />
-                    </AutoCompleteTextView>
+                    </de.grobox.liberario.ui.DelayAutoCompleteTextView>
 
-                    <ImageButton
-                        android:id="@+id/stationClearButton"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_vertical|end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right|center_vertical"
                         android:paddingBottom="3dp"
                         android:paddingLeft="1dp"
                         android:paddingRight="0dp"
-                        android:paddingTop="3dp"
-                        android:background="@color/transparent"
-                        android:src="@drawable/ic_action_content_remove"
-                        android:visibility="gone" />
+                        android:paddingTop="3dp">
 
+                        <ProgressBar
+                            android:id="@+id/stationProgress"
+                            style="?android:attr/progressBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:visibility="gone"/>
+
+                        <ImageButton
+                            android:id="@+id/stationClearButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:src="@drawable/ic_action_content_remove"
+                            android:visibility="gone" />
+                    </LinearLayout>
                 </FrameLayout>
 
                 <ImageButton
