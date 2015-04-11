@@ -236,7 +236,7 @@ public class LiberarioUtils {
 
 	}
 
-	static void findDepartures(Context context, Location loc) {
+	static public void findDepartures(Context context, Location loc) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
 
 		if(np.hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
@@ -249,16 +249,16 @@ public class LiberarioUtils {
 		}
 	}
 
-	static void findNearbyStations(Context context, Location loc, int maxDistance, int maxStations) {
+	static public void findNearbyStations(Context context, Location loc, int maxDistance, int maxStations) {
 		AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(context, loc, maxDistance, maxStations);
 		query_stations.execute();
 	}
 
-	static void findNearbyStations(Context context, Location loc) {
+	static public void findNearbyStations(Context context, Location loc) {
 		findNearbyStations(context, loc, 2000, 5);
 	}
 
-	static void showLocationsOnMap(Context context, ArrayList<Location> loc_list, Location my_loc) {
+	static public void showLocationsOnMap(Context context, ArrayList<Location> loc_list, Location my_loc) {
 		// show station on internal map
 		Intent intent = new Intent(context, MapStationsActivity.class);
 		intent.putExtra("List<de.schildbach.pte.dto.Location>", loc_list);
@@ -266,11 +266,11 @@ public class LiberarioUtils {
 		context.startActivity(intent);
 	}
 
-	static void showLocationsOnMap(Context context, ArrayList<Location> loc_list) {
+	static public void showLocationsOnMap(Context context, ArrayList<Location> loc_list) {
 		showLocationsOnMap(context, loc_list, null);
 	}
 
-	static void startGeoIntent(Context context, Location loc) {
+	static public void startGeoIntent(Context context, Location loc) {
 		String lat = Double.toString(loc.lat / 1E6);
 		String lon = Double.toString(loc.lon / 1E6);
 
@@ -295,13 +295,13 @@ public class LiberarioUtils {
 		}
 	}
 
-	static void copyToClipboard(Context context, String text) {
+	static public void copyToClipboard(Context context, String text) {
 		ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 		ClipData clip = ClipData.newPlainText("label", text);
 		clipboard.setPrimaryClip(clip);
 	}
 
-	static void showPopupIcons(PopupMenu popup) {
+	static public void showPopupIcons(PopupMenu popup) {
 		// very ugly hack to show icons in PopupMenu
 		// see: http://stackoverflow.com/a/18431605
 		try {

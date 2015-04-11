@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.grobox.liberario.ui.LegPopupMenu;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
@@ -28,7 +29,6 @@ import de.schildbach.pte.dto.Trip.Individual;
 import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -38,7 +38,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -186,63 +185,26 @@ public class TripDetailFragment extends LiberarioFragment {
 			if(i >= legs.size()) {
 				// hide arrow for last stop (destination)
 				legViewNew.findViewById(R.id.dArrowView).setVisibility(View.GONE);
-				// TODO make a special popup menu for trip destination
+
+				// show special popup on long and normal click
+				final LegPopupMenu popup_last = new LegPopupMenu(getActivity(), legViewNew, leg, true);
+				legViewNew.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						popup_last.show();
+					}
+				});
+				legViewNew.setOnLongClickListener(new View.OnLongClickListener() {
+					@Override
+					public boolean onLongClick(View view) {
+						popup_last.show();
+						return true;
+					}
+				});
 			}
 
 			// Creating PopupMenu for leg
-			final PopupMenu popup = new PopupMenu(getActivity(), legViewOld);
-			popup.getMenuInflater().inflate(R.menu.leg_actions, popup.getMenu());
-			popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-				public boolean onMenuItemClick(MenuItem item) {
-					// handle presses on menu items
-					switch(item.getItemId()) {
-						// Show On Map
-						case R.id.action_show_on_map:
-							// remember station to arrive at
-							ArrayList<Location> loc_list = new ArrayList<>();
-							loc_list.add(leg.arrival);
-							loc_list.add(leg.departure);
-
-							LiberarioUtils.showLocationsOnMap(getActivity(), loc_list, leg.departure);
-
-							return true;
-						// Show On External Map
-						case R.id.action_show_on_external_map:
-							LiberarioUtils.startGeoIntent(getActivity(), leg.departure);
-
-							return true;
-						// Show Departures
-						case R.id.action_show_departures:
-							LiberarioUtils.findDepartures(getActivity(), leg.departure);
-
-							return true;
-						// Show Nearby Stations
-						case R.id.action_show_nearby_stations:
-							LiberarioUtils.findNearbyStations(getActivity(), leg.departure);
-
-							return true;
-						// Share Leg
-						case R.id.action_leg_share:
-							Intent sendIntent = new Intent()
-									                    .setAction(Intent.ACTION_SEND)
-									                    .putExtra(Intent.EXTRA_SUBJECT, leg.departure.uniqueShortName())
-									                    .putExtra(Intent.EXTRA_TEXT, LiberarioUtils.legToString(getActivity(), leg))
-									                    .setType("text/plain")
-									                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-							startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.action_trip_share)));
-
-							return true;
-						// Copy Leg to Clipboard
-						case R.id.action_copy:
-							LiberarioUtils.copyToClipboard(getActivity(), leg.departure.uniqueShortName());
-
-							return true;
-						default:
-							return false;
-					}
-				}
-			});
-			LiberarioUtils.showPopupIcons(popup);
+			final LegPopupMenu popup = new LegPopupMenu(getActivity(), legViewOld, leg);
 
 			// don't show departure query menu item, if not a station
 			if(!leg.departure.hasId()) {
@@ -442,58 +404,7 @@ public class TripDetailFragment extends LiberarioFragment {
 				}
 
 				// Creating PopupMenu for stop
-				final PopupMenu popup = new PopupMenu(getActivity(), stopView);
-				popup.getMenuInflater().inflate(R.menu.leg_actions, popup.getMenu());
-				popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-					public boolean onMenuItemClick(MenuItem item) {
-						// handle presses on menu items
-						switch(item.getItemId()) {
-							// Show On Map
-							case R.id.action_show_on_map:
-								// remember station to arrive at
-								ArrayList<Location> loc_list = new ArrayList<>();
-								loc_list.add(stop.location);
-
-								LiberarioUtils.showLocationsOnMap(getActivity(), loc_list);
-
-								return true;
-							// Show On External Map
-							case R.id.action_show_on_external_map:
-								LiberarioUtils.startGeoIntent(getActivity(), stop.location);
-
-								return true;
-							// Show Departures
-							case R.id.action_show_departures:
-								LiberarioUtils.findDepartures(getActivity(), stop.location);
-
-								return true;
-							// Show Nearby Stations
-							case R.id.action_show_nearby_stations:
-								LiberarioUtils.findNearbyStations(getActivity(), stop.location);
-
-								return true;
-							// Share Stop
-							case R.id.action_leg_share:
-								Intent sendIntent = new Intent()
-										                    .setAction(Intent.ACTION_SEND)
-										                    .putExtra(Intent.EXTRA_SUBJECT, stop.location.uniqueShortName())
-										                    .putExtra(Intent.EXTRA_TEXT, DateUtils.getTime(getActivity(), stop.getArrivalTime()) + " " + stop.location.uniqueShortName())
-										                    .setType("text/plain")
-										                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-								startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.action_trip_share)));
-
-								return true;
-							// Copy Stop to Clipboard
-							case R.id.action_copy:
-								LiberarioUtils.copyToClipboard(getActivity(), stop.location.uniqueShortName());
-
-								return true;
-							default:
-								return false;
-						}
-					}
-				});
-				LiberarioUtils.showPopupIcons(popup);
+				final LegPopupMenu popup = new LegPopupMenu(getActivity(), stopView, stop);
 
 				// show popup on click
 				stopView.setOnClickListener(new View.OnClickListener() {
