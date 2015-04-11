@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.ui.DelayAutoCompleteTextView;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -60,7 +61,6 @@ import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
@@ -361,7 +361,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	private void setFromUI() {
 		// From text input
-		final AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
+		final DelayAutoCompleteTextView from = (DelayAutoCompleteTextView) mView.findViewById(R.id.from);
 		final TextView fromText = (TextView) mView.findViewById(R.id.fromText);
 
 		OnClickListener fromListener = new OnClickListener() {
@@ -384,12 +384,14 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		locAdapter.setHome(true);
 		locAdapter.setGPS(true);
 		from.setAdapter(locAdapter);
+		from.setLoadingIndicator((android.widget.ProgressBar) mView.findViewById(R.id.fromProgress));
 		from.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
 				handleLocationItemClick(locAdapter.getItem(position), view, FavLocation.LOC_TYPE.FROM);
 			}
 		});
+
 
 		final ImageView fromStatusButton = (ImageView) mView.findViewById(R.id.fromStatusButton);
 		fromStatusButton.setImageDrawable(null);
@@ -440,7 +442,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	private void setToUI() {
 		// To text input
-		final AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
+		final DelayAutoCompleteTextView to = (DelayAutoCompleteTextView) mView.findViewById(R.id.to);
 		final TextView toText = (TextView) mView.findViewById(R.id.toText);
 
 		OnClickListener toListener = new OnClickListener() {
@@ -462,6 +464,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		locAdapter.setFavs(true);
 		locAdapter.setHome(true);
 		to.setAdapter(locAdapter);
+		to.setLoadingIndicator((android.widget.ProgressBar) mView.findViewById(R.id.toProgress));
 		to.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
@@ -516,10 +519,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	private Location getLocation(FavLocation.LOC_TYPE loc_type) {
 		if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
-			AutoCompleteTextView fromView = (AutoCompleteTextView) mView.findViewById(R.id.from);
+			DelayAutoCompleteTextView fromView = (DelayAutoCompleteTextView) mView.findViewById(R.id.from);
 			return (Location) fromView.getTag();
 		} else {
-			AutoCompleteTextView toView = (AutoCompleteTextView) mView.findViewById(R.id.to);
+			DelayAutoCompleteTextView toView = (DelayAutoCompleteTextView) mView.findViewById(R.id.to);
 			return (Location) toView.getTag();
 		}
 	}
@@ -528,14 +531,14 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		if(!mChange) {
 			mChange = true;
 			final ImageView statusButton;
-			AutoCompleteTextView textView;
+			DelayAutoCompleteTextView textView;
 
 			if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
 				statusButton = (ImageView) mView.findViewById(R.id.fromStatusButton);
-				textView = (AutoCompleteTextView) mView.findViewById(R.id.from);
+				textView = (DelayAutoCompleteTextView) mView.findViewById(R.id.from);
 			} else {
 				statusButton = (ImageView) mView.findViewById(R.id.toStatusButton);
-				textView = (AutoCompleteTextView) mView.findViewById(R.id.to);
+				textView = (DelayAutoCompleteTextView) mView.findViewById(R.id.to);
 			}
 
 			textView.setTag(loc);
@@ -573,12 +576,12 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	}
 
 	public void handleInputClick(FavLocation.LOC_TYPE loc_type) {
-		AutoCompleteTextView textView;
+		DelayAutoCompleteTextView textView;
 
 		if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
-			textView = ((AutoCompleteTextView) mView.findViewById(R.id.from));
+			textView = ((DelayAutoCompleteTextView) mView.findViewById(R.id.from));
 		} else {
-			textView = ((AutoCompleteTextView) mView.findViewById(R.id.to));
+			textView = ((DelayAutoCompleteTextView) mView.findViewById(R.id.to));
 		}
 
 		LocationAdapter locAdapter = (LocationAdapter) textView.getAdapter();
@@ -594,10 +597,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	public void refreshFavs() {
 		if(mView != null) {
-			AutoCompleteTextView from = ((AutoCompleteTextView) mView.findViewById(R.id.from));
+			DelayAutoCompleteTextView from = ((DelayAutoCompleteTextView) mView.findViewById(R.id.from));
 			((LocationAdapter) from.getAdapter()).resetList();
 
-			AutoCompleteTextView to = ((AutoCompleteTextView) mView.findViewById(R.id.to));
+			DelayAutoCompleteTextView to = ((DelayAutoCompleteTextView) mView.findViewById(R.id.to));
 			((LocationAdapter) to.getAdapter()).resetList();
 		}
 	}
@@ -605,11 +608,11 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	private Boolean checkLocation(FavLocation.LOC_TYPE loc_type) {
 		Location loc = getLocation(loc_type);
 
-		AutoCompleteTextView view;
+		DelayAutoCompleteTextView view;
 		if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
-			view = (AutoCompleteTextView) mView.findViewById(R.id.from);
+			view = (DelayAutoCompleteTextView) mView.findViewById(R.id.from);
 		} else {
-			view = (AutoCompleteTextView) mView.findViewById(R.id.to);
+			view = (DelayAutoCompleteTextView) mView.findViewById(R.id.to);
 		}
 
 		if(loc == null) {
@@ -632,8 +635,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	private void handleLocationItemClick(Location loc, View view, FavLocation.LOC_TYPE loc_type) {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
-		AutoCompleteTextView from = (AutoCompleteTextView) mView.findViewById(R.id.from);
-		AutoCompleteTextView to = (AutoCompleteTextView) mView.findViewById(R.id.to);
+		DelayAutoCompleteTextView from = (DelayAutoCompleteTextView) mView.findViewById(R.id.from);
+		DelayAutoCompleteTextView to = (DelayAutoCompleteTextView) mView.findViewById(R.id.to);
 
 		if(loc.id != null && loc.id.equals("Liberario.GPS")) {
 			if(mGpsPressed) {

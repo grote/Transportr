@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;

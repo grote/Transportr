@@ -26,6 +26,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
+import de.grobox.liberario.ui.FlowLayout;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;

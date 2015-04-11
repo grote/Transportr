@@ -95,7 +95,7 @@
         android:orientation="horizontal"
         android:padding="2dp" >
 
-        <de.grobox.liberario.FlowLayout
+        <de.grobox.liberario.ui.FlowLayout
             android:id="@+id/lineLayout"
             android:layout_width="0dip"
             android:layout_height="wrap_content"

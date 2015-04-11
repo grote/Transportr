@@ -19,9 +19,9 @@ package de.grobox.liberario;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import de.grobox.liberario.data.FavDB;
+import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
@@ -86,15 +86,15 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 				FilterResults filterResults = new FilterResults();
 
 				if(constraint != null) {
-					AsyncLocationAutoCompleteTask autocomplete = new AsyncLocationAutoCompleteTask(getContext(), constraint.toString());
-
 					List<Location> resultList = null;
+					NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
 
-					// Retrieve the auto-complete results
+					// get the auto-complete results
 					if(constraint.length() > 2) {
 						try {
-							resultList = autocomplete.execute().get().getLocations();
-						} catch(InterruptedException | ExecutionException e) {
+							// get locations from network provider
+							resultList = np.suggestLocations(constraint.toString()).getLocations();
+						} catch(Exception e) {
 							e.printStackTrace();
 						}
 					}
@@ -132,6 +132,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 			@Override
 			protected void publishResults(CharSequence constraint, FilterResults results) {
 				if(results != null && results.count > 0) {
+					filteredList = (List<Location>) results.values;
 					notifyDataSetChanged();
 				} else {
 					notifyDataSetInvalidated();

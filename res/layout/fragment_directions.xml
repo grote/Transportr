@@ -37,7 +37,7 @@
                 android:animateLayoutChanges="true"
                 >
 
-                <AutoCompleteTextView
+                <de.grobox.liberario.ui.DelayAutoCompleteTextView
                     android:id="@+id/from"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -47,18 +47,32 @@
                     android:completionThreshold="1"
                     android:layout_gravity="bottom"/>
 
-                <ImageButton
-                    android:id="@+id/fromClearButton"
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_vertical|end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|center_vertical"
-                    android:background="@color/transparent"
                     android:paddingBottom="3dp"
                     android:paddingLeft="1dp"
                     android:paddingRight="0dp"
-                    android:paddingTop="3dp"
-                    android:src="@drawable/ic_action_content_remove"
-                    android:visibility="gone" />
+                    android:paddingTop="3dp">
+
+                    <ProgressBar
+                        android:id="@+id/fromProgress"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:visibility="gone" />
+
+                    <ImageButton
+                        android:id="@+id/fromClearButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_action_content_remove"
+                        android:visibility="gone" />
+                </LinearLayout>
 
             </FrameLayout>
 
@@ -93,7 +107,7 @@
                 android:animateLayoutChanges="true"
                 >
 
-                <AutoCompleteTextView
+                <de.grobox.liberario.ui.DelayAutoCompleteTextView
                     android:id="@+id/to"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -103,19 +117,32 @@
                     android:completionThreshold="1"
                     android:layout_gravity="bottom"/>
 
-                <ImageButton
-                    android:id="@+id/toClearButton"
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_vertical|end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|center_vertical"
-                    android:background="@color/transparent"
                     android:paddingBottom="3dp"
                     android:paddingLeft="1dp"
                     android:paddingRight="0dp"
-                    android:paddingTop="3dp"
-                    android:src="@drawable/ic_action_content_remove"
-                    android:visibility="gone" />
+                    android:paddingTop="3dp">
 
+                    <ProgressBar
+                        android:id="@+id/toProgress"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:visibility="gone"/>
+
+                    <ImageButton
+                        android:id="@+id/toClearButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:src="@drawable/ic_action_content_remove"
+                        android:visibility="gone" />
+                </LinearLayout>
             </FrameLayout>
 
         </LinearLayout>

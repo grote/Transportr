@@ -22,7 +22,7 @@
             tools:text="Station Name"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <de.grobox.liberario.FlowLayout
+        <de.grobox.liberario.ui.FlowLayout
             android:id="@+id/lineLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
