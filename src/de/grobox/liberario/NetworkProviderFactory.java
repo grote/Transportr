@@ -93,9 +93,8 @@ public final class NetworkProviderFactory
 	private static Reference<RsagProvider> rsagProviderRef;
 	private static Reference<MerseyProvider> merseyProviderRef;
 	private static Reference<ParisProvider> parisProviderRef;
-	private static Reference<NavitiaProvider> usnyProviderRef;
-	private static Reference<NavitiaProvider> nzProviderRef;
-	private static Reference<NavitiaProvider> spainProviderRef;
+	private static Reference<NzProvider> nzProviderRef;
+	private static Reference<SpainProvider> spainProviderRef;
 
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 
@@ -959,29 +958,16 @@ public final class NetworkProviderFactory
 			parisProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-		else if (networkId.equals(NetworkId.USNY))
-		{
-			if (usnyProviderRef != null)
-			{
-				final NavitiaProvider provider = usnyProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final NavitiaProvider provider = new NavitiaProvider(NAVITIA, "us-ny", NetworkId.USNY);
-			usnyProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
 		else if (networkId.equals(NetworkId.NZ))
 		{
 			if (nzProviderRef != null)
 			{
-				final NavitiaProvider provider = nzProviderRef.get();
+				final NzProvider provider = nzProviderRef.get();
 				if (provider != null)
 					return provider;
 			}
 
-			final NavitiaProvider provider = new NavitiaProvider(NAVITIA, "nz", NetworkId.NZ);
+			final NzProvider provider = new NzProvider(NAVITIA);
 			nzProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -989,12 +975,12 @@ public final class NetworkProviderFactory
 		{
 			if (spainProviderRef != null)
 			{
-				final NavitiaProvider provider = spainProviderRef.get();
+				final SpainProvider provider = spainProviderRef.get();
 				if (provider != null)
 					return provider;
 			}
 
-			final NavitiaProvider provider = new NavitiaProvider(NAVITIA, "es", NetworkId.SPAIN);
+			final SpainProvider provider = new SpainProvider(NAVITIA);
 			spainProviderRef = new SoftReference<>(provider);
 			return provider;
 		}

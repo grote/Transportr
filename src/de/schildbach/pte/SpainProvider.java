@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2015 the original author or authors.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,16 +21,20 @@ import android.util.Log;
 
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Style;
+import de.schildbach.pte.dto.Style.Shape;
 
-public class NavitiaProvider extends AbstractNavitiaProvider
+/**
+ * @author Torsten Grote
+ */
+public class SpainProvider extends AbstractNavitiaProvider
 {
-	private static String API_REGION;
+	private static String API_REGION = "es";
 
-	public NavitiaProvider(final String authorization, final String apiRegion, final NetworkId networkId)
+	public SpainProvider(final String authorization)
 	{
-		super(networkId, authorization);
+		super(NetworkId.NZ, authorization);
 
-		API_REGION = apiRegion;
+		setTimeZone("Pacific/Auckland");
 	}
 
 	@Override
@@ -42,15 +46,10 @@ public class NavitiaProvider extends AbstractNavitiaProvider
 	@Override
 	protected Style getLineStyle(final Product product, final String code, final String color)
 	{
-		Log.d("Navitia", "Product: " + product);
-		Log.d("Navitia", "code: " + code);
-		Log.d("Navitia", "color: " + color);
-
 		int bc = Style.RED;
 		if(!color.equals("#")) {
 			bc = Style.parseColor(color);
 		}
-
 		int fc = Style.WHITE;
 		if(!color.equals("#")) {
 			fc = computeForegroundColor(color);
@@ -60,31 +59,23 @@ public class NavitiaProvider extends AbstractNavitiaProvider
 		{
 			case SUBURBAN_TRAIN:
 			{
-				if (code.compareTo("F") < 0)
-				{
-					return new Style(Style.Shape.CIRCLE, Style.TRANSPARENT, bc, bc);
-				}
-				else
-				{
-					return new Style(Style.Shape.ROUNDED, Style.TRANSPARENT, bc, bc);
-				}
+				return new Style(Shape.CIRCLE, bc, fc);
 			}
 			case SUBWAY:
 			{
-				return new Style(Style.Shape.CIRCLE, bc, fc);
+				return new Style(Shape.CIRCLE, bc, fc);
 			}
 			case TRAM:
 			{
-				return new Style(Style.Shape.RECT, bc, fc);
+				return new Style(Shape.RECT, bc, fc);
 			}
 			case BUS:
 			{
-				return new Style(Style.Shape.RECT, bc, fc);
+				return new Style(Shape.RECT, bc, fc);
 			}
 			default:
-				Log.d("Navitia", "Unhandled Product");
+				Log.d("NzProvider", "Unhandled Product: " + product.toString());
 				return new Style(bc, fc);
 		}
-
 	}
 }

@@ -9,7 +9,7 @@
         <change>Stations can be shown on integrated and external map</change>
         <change>Show departures and other nearby stations for locations in your trip</change>
         <change>Show logos of transportation networks in settings dialog (send me the missing ones!)</change>
-        <change>Added support for Paris, New Zealand, Helsinki, Spain, New York and Cologne/Bonn</change>
+        <change>Added support for Paris, New Zealand, Helsinki, Spain and Cologne/Bonn</change>
         <change>Added Spanish, Dutch, Portuguese (Brasil) and Turkish Translation. Thanks to Adolfo Jayme Barrientos, Emre Deniz and Gislene Kucker Arantes</change>
         <change>Many smaller bug fixes</change>
     </release>
