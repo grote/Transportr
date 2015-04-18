@@ -83,10 +83,21 @@ public class TripsActivity extends FragmentActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		// TODO activate PullToRefresh only if provider has the capability
+
+		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_trips);
+
+		if(trips.context.canQueryEarlier() && trips.context.canQueryEarlier()) {
+			pullToRefreshView.setMode(Mode.BOTH);
+		} else if(trips.context.canQueryEarlier()) {
+			pullToRefreshView.setMode(Mode.PULL_FROM_START);
+		} else if(trips.context.canQueryLater()) {
+			pullToRefreshView.setMode(Mode.PULL_FROM_END);
+		} else {
+			pullToRefreshView.setMode(Mode.DISABLED);
+			return;
+		}
 
 		// Set a listener to be invoked when the list should be refreshed.
-		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_trips);
 		pullToRefreshView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 			@Override
 			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
@@ -402,6 +413,8 @@ public class TripsActivity extends FragmentActivity {
 					// only add trip if not a duplicate
 					if(add) trips_new.add(trip);
 				}
+			} else {
+				trips_new = trip_results.trips;
 			}
 
 			// save trip results to have context for next query
