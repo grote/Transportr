@@ -114,7 +114,8 @@ public class DateUtils {
 	static public String getTime(Context context, Date date) {
 		DateFormat tf = android.text.format.DateFormat.getTimeFormat(context);
 
-		return tf.format(date);
+		if(date == null) return "";
+		else return tf.format(date);
 	}
 
 
