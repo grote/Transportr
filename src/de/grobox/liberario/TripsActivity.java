@@ -19,6 +19,7 @@ package de.grobox.liberario;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -52,7 +53,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 public class TripsActivity extends FragmentActivity {
-	private QueryTripsResult trips;
+	private List<Trip> trips;
+	private QueryTripsResult start_context;
+	private QueryTripsResult end_context;
 	private Menu mMenu;
 	private Location from;
 	private Location to;
@@ -71,13 +74,15 @@ public class TripsActivity extends FragmentActivity {
 		main.addView(LiberarioUtils.getDivider(this));
 
 		Intent intent = getIntent();
-		trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
+		start_context = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
+		end_context = start_context;
 		// also get locations, because the trip locations are sometimes still ambiguous
 		from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.from");
 		to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.to");
 
 		setHeader();
-		addTrips(main, trips.trips);
+
+		addTrips(main, start_context.trips);
 	}
 
 	@Override
@@ -86,11 +91,11 @@ public class TripsActivity extends FragmentActivity {
 
 		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_trips);
 
-		if(trips.context.canQueryEarlier() && trips.context.canQueryEarlier()) {
+		if(start_context.context.canQueryEarlier() && end_context.context.canQueryLater()) {
 			pullToRefreshView.setMode(Mode.BOTH);
-		} else if(trips.context.canQueryEarlier()) {
+		} else if(start_context.context.canQueryEarlier()) {
 			pullToRefreshView.setMode(Mode.PULL_FROM_START);
-		} else if(trips.context.canQueryLater()) {
+		} else if(end_context.context.canQueryLater()) {
 			pullToRefreshView.setMode(Mode.PULL_FROM_END);
 		} else {
 			pullToRefreshView.setMode(Mode.DISABLED);
@@ -181,17 +186,18 @@ public class TripsActivity extends FragmentActivity {
 	}
 
 	public void startGetMoreTrips(boolean later) {
-		(new AsyncQueryMoreTripsTask(this, trips.context, later)).execute();
+		if(later) (new AsyncQueryMoreTripsTask(this, end_context.context, true)).execute();
+		else (new AsyncQueryMoreTripsTask(this, start_context.context, false)).execute();
 	}
 
 	private void setHeader() {
-		if(trips != null) {
-			((TextView) findViewById(R.id.tripStartTextView)).setText(trips.from.uniqueShortName());
-			((TextView) findViewById(R.id.tripDestinationTextView)).setText(trips.to.uniqueShortName());
+		if(start_context != null) {
+			((TextView) findViewById(R.id.tripStartTextView)).setText(start_context.from.uniqueShortName());
+			((TextView) findViewById(R.id.tripDestinationTextView)).setText(start_context.to.uniqueShortName());
 
-			if(trips.trips.get(0) != null) {
+			if(start_context.trips.get(0) != null) {
 				// add Date on top
-				((TextView) findViewById(R.id.dateView2)).setText(DateUtils.getDate(this, trips.trips.get(0).getFirstDepartureTime()));
+				((TextView) findViewById(R.id.dateView2)).setText(DateUtils.getDate(this, start_context.trips.get(0).getFirstDepartureTime()));
 			} else {
 				((TextView) findViewById(R.id.dateView2)).setText("???");
 			}
@@ -200,14 +206,21 @@ public class TripsActivity extends FragmentActivity {
 
 	private void addTrips(final TableLayout main, List<Trip> trip_list, boolean append) {
 		if(trip_list != null) {
+			// sorting trips by departure time
+			Comparator<Trip> comp = new Comparator<Trip>() {
+				public int compare(Trip trip1, Trip trip2) {
+					return trip1.getFirstDepartureTime().compareTo(trip2.getFirstDepartureTime());
+				}
+			};
+			Collections.sort(trip_list, comp);
+
 			// reverse order of trips if they should be prepended
 			if(!append) {
-				ArrayList<Trip> tempResults = new ArrayList<>(trip_list);
-				Collections.reverse(tempResults);
-				trip_list = tempResults;
+				Collections.reverse(trip_list);
 			}
 
-			for(final Trip trip : trip_list) {
+			ArrayList<Trip> new_trip_list = new ArrayList<>(trip_list);
+			for(final Trip trip : new_trip_list) {
 				final LinearLayout trip_layout = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.trip, null);
 				TableRow row = (TableRow) trip_layout.findViewById(R.id.tripTableRow);
 
@@ -370,11 +383,19 @@ public class TripsActivity extends FragmentActivity {
 					trip_layout.addView(LiberarioUtils.getDivider(this));
 					main.addView(trip_layout);
 					main.addView(fragmentContainer);
+
+					// save complete list of trips
+					if(trips == null) trips = trip_list;
+					else trips.addAll(new ArrayList<>(trip_list));
 				}
 				else {
 					trip_layout.addView(LiberarioUtils.getDivider(this), 0);
 					main.addView(trip_layout, 0);
 					main.addView(fragmentContainer, 1);
+
+					// save complete list of trips
+					if(trips == null) trips = trip_list;
+					else trips.addAll(0, new ArrayList<>(trip_list));
 				}
 			} // end foreach trip
 		}
@@ -398,27 +419,29 @@ public class TripsActivity extends FragmentActivity {
 	}
 
 	public void addMoreTrips(QueryTripsResult trip_results, boolean later) {
-		if(trips != null) {
+		QueryTripsResult trips_context;
+
+		if(later) trips_context = end_context;
+		else trips_context = start_context;
+
+		if(trips_context != null) {
 			// remove old trips for providers that return them
 			List<Trip> trips_new = new ArrayList<>();
-			if(trip_results.trips.size() > trips.trips.size()) {
-				for(Trip trip : trip_results.trips) {
-					boolean add = true;
-					for(Trip trip_old : trips.trips) {
-						if(trip.getId().equals(trip_old.getId())) {
-							add = false;
-							break;
-						}
+			for(Trip trip : trip_results.trips) {
+				boolean add = true;
+				for(Trip trip_old : trips_context.trips) {
+					if(trip.equals(trip_old)) {
+						add = false;
+						break;
 					}
-					// only add trip if not a duplicate
-					if(add) trips_new.add(trip);
 				}
-			} else {
-				trips_new = trip_results.trips;
+				// only add trip if not a duplicate
+				if(add) trips_new.add(trip);
 			}
 
 			// save trip results to have context for next query
-			trips = trip_results;
+			if(later) end_context = trip_results;
+			else start_context = trip_results;
 
 			addTrips((TableLayout) findViewById(R.id.activity_trips), trips_new, later);
 		}
