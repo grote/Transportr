@@ -1,8 +1,9 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:de.grobox.liberario="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_settings"
-        android:showAsAction="ifRoom"
+        de.grobox.liberario:showAsAction="ifRoom"
         android:menuCategory="system"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/action_settings" />
@@ -11,13 +12,13 @@
         android:id="@+id/action_changelog"
         android:title="@string/action_changelog"
         android:menuCategory="system"
-        android:showAsAction="never" />
+        de.grobox.liberario:showAsAction="never" />
 
     <item
         android:id="@+id/action_about"
         android:title="@string/action_about"
         android:menuCategory="system"
         android:icon="@android:drawable/ic_menu_info_details"
-        android:showAsAction="ifRoom" />
+        de.grobox.liberario:showAsAction="ifRoom" />
 
 </menu>

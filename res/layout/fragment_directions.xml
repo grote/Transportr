@@ -39,8 +39,8 @@
 
                 <de.grobox.liberario.ui.DelayAutoCompleteTextView
                     android:id="@+id/from"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:inputType="textNoSuggestions|textAutoComplete"
                     android:paddingRight="30dp"
                     android:singleLine="true"
@@ -109,8 +109,8 @@
 
                 <de.grobox.liberario.ui.DelayAutoCompleteTextView
                     android:id="@+id/to"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:paddingRight="30dp"
                     android:inputType="textNoSuggestions|textAutoComplete"
                     android:singleLine="true"
@@ -159,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/trip_dep"
                 android:textAppearance="?android:attr/textAppearanceButton"
-                />
+                android:layout_weight="1"/>
 
             <Button
                 android:id="@+id/timeView"
@@ -290,7 +290,8 @@
             android:layout_marginTop="10dp"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:text="@android:string/search_go" />
+            android:text="@android:string/search_go"
+            />
 
     </LinearLayout>
 

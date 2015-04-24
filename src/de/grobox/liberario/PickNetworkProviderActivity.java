@@ -27,7 +27,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +39,7 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
-public class PickNetworkProviderActivity extends FragmentActivity {
+public class PickNetworkProviderActivity extends AppCompatActivity {
 	private NetworkProviderListAdapter listAdapter;
 	private ExpandableListView expListView;
 	private List<String> listRegion;
@@ -50,6 +52,11 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pick_network_provider);
 
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		if(toolbar != null) {
+			setSupportActionBar(toolbar);
+		}
+
 		Intent intent = getIntent();
 		if(intent.getBooleanExtra("FirstRun", false)) {
 			// hide cancel button on first run
@@ -60,7 +67,8 @@ public class PickNetworkProviderActivity extends FragmentActivity {
 			findViewById(R.id.firstRunTextView).setVisibility(View.VISIBLE);
 		}
 		else {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
+			ActionBar actionBar = getSupportActionBar();
+			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 
 		expListView = (ExpandableListView) findViewById(R.id.expandableNetworkProviderListView);

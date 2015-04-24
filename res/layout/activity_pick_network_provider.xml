@@ -1,66 +1,76 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/pickBottomLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical" >
+    <include layout="@layout/toolbar"/>
 
-        <include layout="@layout/divider_horizontal"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
         <LinearLayout
+            android:id="@+id/pickBottomLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
 
-            <Button
-                android:id="@+id/cancelNetworkProviderButton"
-                style="?android:attr/buttonBarButtonStyle"
+            <include layout="@layout/divider_horizontal"/>
+
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@android:string/cancel" />
+                android:orientation="horizontal" >
 
-            <View
-                android:layout_width="1dip"
-                android:layout_height="fill_parent"
-                android:background="?android:attr/dividerVertical" />
+                <Button
+                    android:id="@+id/cancelNetworkProviderButton"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@android:string/cancel" />
 
-            <Button
-                android:id="@+id/pickNetworkProviderButton"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@android:string/ok" />
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="fill_parent"
+                    android:background="?android:attr/dividerVertical" />
+
+                <Button
+                    android:id="@+id/pickNetworkProviderButton"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@android:string/ok" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/firstRunTextView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:padding="5dp"
-        android:text="@string/pick_network_first_run"
-        android:visibility="gone" />
-    <View
-        android:id="@+id/firstRunSeparator"
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:layout_below="@id/firstRunTextView"
-        android:background="?android:attr/dividerHorizontal" />
+        <TextView
+            android:id="@+id/firstRunTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:padding="5dp"
+            android:text="@string/pick_network_first_run"
+            android:visibility="gone" />
+        <View
+            android:id="@+id/firstRunSeparator"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@id/firstRunTextView"
+            android:background="?android:attr/dividerHorizontal" />
 
-    <ExpandableListView
-        android:id="@+id/expandableNetworkProviderListView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/pickBottomLayout"
-        android:layout_below="@id/firstRunSeparator"
-        android:choiceMode="singleChoice" />
+        <ExpandableListView
+            android:id="@+id/expandableNetworkProviderListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/pickBottomLayout"
+            android:layout_below="@id/firstRunSeparator"
+            android:choiceMode="singleChoice" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

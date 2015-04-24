@@ -37,7 +37,9 @@ import de.schildbach.pte.dto.Trip.Public;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -52,7 +54,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class TripsActivity extends FragmentActivity {
+public class TripsActivity extends AppCompatActivity {
 	private List<Trip> trips;
 	private QueryTripsResult start_context;
 	private QueryTripsResult end_context;
@@ -66,7 +68,14 @@ public class TripsActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trips);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		if(toolbar != null) {
+			toolbar.setSubtitle(Preferences.getNetwork(this));
+			setSupportActionBar(toolbar);
+
+			ActionBar actionBar = getSupportActionBar();
+			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+		}
 
 		final TableLayout main = (TableLayout) findViewById(R.id.activity_trips);
 

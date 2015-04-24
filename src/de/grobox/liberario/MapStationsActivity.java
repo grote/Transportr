@@ -31,9 +31,11 @@ import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,9 +43,10 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MapStationsActivity extends Activity {
+public class MapStationsActivity extends AppCompatActivity {
 	private MapView mMapView;
 	Menu mMenu;
 	private GpsMyLocationProvider mLocProvider;
@@ -54,8 +57,16 @@ public class MapStationsActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_stations_map);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		if(toolbar != null) {
+			toolbar.setSubtitle(Preferences.getNetwork(this));
+			setSupportActionBar(toolbar);
+
+			ActionBar actionBar = getSupportActionBar();
+			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+		}
 
 		mMapView = new MapView(this, 256);
 
@@ -63,7 +74,7 @@ public class MapStationsActivity extends Activity {
 		mMapView.setBuiltInZoomControls(true);
 		mMapView.setMultiTouchControls(true);
 
-		setContentView(mMapView);
+		((LinearLayout) findViewById(R.id.root)).addView(mMapView);
 
 		Intent intent = getIntent();
 		List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra("List<de.schildbach.pte.dto.Location>");

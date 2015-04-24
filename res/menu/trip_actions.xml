@@ -1,21 +1,22 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:de.grobox.liberario="http://schemas.android.com/apk/res-auto" >
 
     <item
         android:id="@+id/action_trip_share"
         android:icon="@android:drawable/ic_menu_share"
-        android:showAsAction="always"
+        de.grobox.liberario:showAsAction="always"
         android:title="@string/action_trip_share"/>
 
     <item
         android:id="@+id/action_trip_calender"
         android:icon="@android:drawable/ic_menu_my_calendar"
-        android:showAsAction="always"
+        de.grobox.liberario:showAsAction="always"
         android:title="@string/action_trip_calendar"/>
 
     <item
         android:id="@+id/action_trip_details"
         android:icon="@drawable/ic_action_trip_details"
-        android:showAsAction="always"
+        de.grobox.liberario:showAsAction="always"
         android:title="@string/action_trip_details"/>
 
 </menu>

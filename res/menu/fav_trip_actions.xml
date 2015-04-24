@@ -1,9 +1,10 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:de.grobox.liberario="http://schemas.android.com/apk/res-auto" >
 
     <item
         android:id="@+id/action_fav_trips_sort"
         android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:showAsAction="always"
+        de.grobox.liberario:showAsAction="always"
         android:title="@string/action_fav_trips_sort"/>
 
 </menu>

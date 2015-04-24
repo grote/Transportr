@@ -24,15 +24,17 @@ import java.util.List;
 import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class AmbiguousLocationActivity extends Activity {
+public class AmbiguousLocationActivity extends AppCompatActivity {
 	private Date date;
 	private Boolean departure;
 
@@ -41,7 +43,14 @@ public class AmbiguousLocationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ambiguous_location);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		if(toolbar != null) {
+			toolbar.setSubtitle(Preferences.getNetwork(this));
+			setSupportActionBar(toolbar);
+
+			ActionBar actionBar = getSupportActionBar();
+			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+		}
 
 		Intent intent = getIntent();
 		QueryTripsResult trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
@@ -56,7 +65,7 @@ public class AmbiguousLocationActivity extends Activity {
 			from_spinner.setAdapter(new LocationAdapter(this, FavLocation.LOC_TYPE.FROM, trips.ambiguousFrom));
 		}
 		else {
-			List<Location> list = new ArrayList<Location>();
+			List<Location> list = new ArrayList<>();
 			list.add(from);
 			from_spinner.setAdapter(new LocationAdapter(this, FavLocation.LOC_TYPE.FROM, list));
 			from_spinner.setEnabled(false);
@@ -68,7 +77,7 @@ public class AmbiguousLocationActivity extends Activity {
 			to_spinner.setAdapter(new LocationAdapter(this, FavLocation.LOC_TYPE.TO, trips.ambiguousTo));
 		}
 		else {
-			List<Location> list = new ArrayList<Location>();
+			List<Location> list = new ArrayList<>();
 			list.add(to);
 			to_spinner.setAdapter(new LocationAdapter(this, FavLocation.LOC_TYPE.TO, list));
 			to_spinner.setEnabled(false);

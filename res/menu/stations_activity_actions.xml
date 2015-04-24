@@ -1,21 +1,22 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:de.grobox.liberario="http://schemas.android.com/apk/res-auto" >
 
     <item
         android:id="@+id/action_refresh"
         android:icon="@drawable/ic_action_navigation_refresh"
-        android:showAsAction="ifRoom"
+        de.grobox.liberario:showAsAction="ifRoom"
         android:title="@string/action_refresh"/>
 
     <item
         android:id="@+id/action_location_map"
         android:icon="@android:drawable/ic_menu_mapmode"
-        android:showAsAction="ifRoom"
+        de.grobox.liberario:showAsAction="ifRoom"
         android:title="@string/action_location_map"/>
 
     <item
         android:id="@+id/action_show_extra_info"
         android:icon="@drawable/ic_action_navigation_expand"
-        android:showAsAction="ifRoom"
+        de.grobox.liberario:showAsAction="ifRoom"
         android:title="@string/action_show_extra_info"/>
 
 </menu>

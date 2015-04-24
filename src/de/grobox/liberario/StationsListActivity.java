@@ -26,11 +26,13 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,7 +48,7 @@ import android.widget.Toast;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
-public class StationsListActivity extends Activity {
+public class StationsListActivity extends AppCompatActivity {
 	private LinearLayout main;
 	private LocationManager locationManager;
 	private Menu mMenu;
@@ -60,7 +62,14 @@ public class StationsListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stations_list);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		if(toolbar != null) {
+			toolbar.setSubtitle(Preferences.getNetwork(this));
+			setSupportActionBar(toolbar);
+
+			ActionBar actionBar = getSupportActionBar();
+			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+		}
 
 		main = (LinearLayout) findViewById(R.id.activity_stations_list);
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

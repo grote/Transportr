@@ -17,29 +17,29 @@
 
 package de.grobox.liberario;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.cketti.library.changelog.ChangeLog;
+import de.grobox.liberario.ui.SlidingTabLayout;
 import de.schildbach.pte.NetworkProvider;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
-public class MainActivity extends FragmentActivity {
-	private MainPagerAdapter mainPagerAdapter;
-	private ViewPager mViewPager;
+public class MainActivity extends AppCompatActivity {
+	MainPagerAdapter mPagerAdapter;
 
 	static final int CHANGED_NETWORK_PROVIDER = 1;
 	static final int CHANGED_HOME = 2;
@@ -49,55 +49,28 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		mViewPager = (ViewPager) findViewById(R.id.pager);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) toolbar.setLogo(R.drawable.ic_launcher);
+		toolbar.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivityForResult(new Intent(view.getContext(), PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
+			}
+		});
+		setSupportActionBar(toolbar);
+
+		ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
 
 		// don't recreate the fragments when changing tabs
 		mViewPager.setOffscreenPageLimit(3);
 
-		final ActionBar actionBar = getActionBar();
+		mPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
+		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager.setAdapter(mPagerAdapter);
 
-		// Specify that tabs should be displayed in the action bar.
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-		// Create a tab listener that is called when the user changes tabs.
-		ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-			@Override
-			public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-				// show the given tab
-				mViewPager.setCurrentItem(tab.getPosition());
-			}
-			@Override
-			public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-				// hide the given tab
-			}
-			@Override
-			public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-				// probably ignore this event
-			}
-		};
-
-		List<String> fragments = new ArrayList<>();
-
-		fragments.add(DirectionsFragment.class.getName());
-		actionBar.addTab(actionBar.newTab().setIcon(android.R.drawable.ic_menu_directions).setTabListener(tabListener));
-
-		actionBar.addTab(actionBar.newTab().setIcon(R.drawable.ic_action_star).setTabListener(tabListener));
-		fragments.add(FavTripsFragment.class.getName());
-
-		actionBar.addTab(actionBar.newTab().setIcon(R.drawable.ic_tab_stations).setTabListener(tabListener));
-		fragments.add(StationsFragment.class.getName());
-
-		mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), this, fragments);
-
-		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-			@Override
-			public void onPageSelected(int position) {
-				// When swiping between pages, select the corresponding tab.
-				getActionBar().setSelectedNavigationItem(position);
-			}
-		});
-
-		mViewPager.setAdapter(mainPagerAdapter);
+		SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+		mSlidingTabLayout.setCustomTabView(R.layout.tab, R.id.tabimage);
+		mSlidingTabLayout.setViewPager(mViewPager);
 
 		// show about screen and make sure a transport network is selected
 		checkFirstRun();
@@ -107,7 +80,6 @@ public class MainActivity extends FragmentActivity {
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
 		}
-
 	}
 
 	@Override
@@ -149,9 +121,11 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void onNetworkProviderChanged(NetworkProvider np) {
-		// get and set new network name for action bar
-		SharedPreferences settings = getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
-		getActionBar().setSubtitle(settings.getString("NetworkId", "???"));
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		if(toolbar != null) {
+			// get and set new network name for app bar
+			toolbar.setSubtitle(Preferences.getNetwork(this));
+		}
 
 		if(getSupportFragmentManager().getFragments() != null) {
 			// call this method for each fragment
@@ -187,7 +161,8 @@ public class MainActivity extends FragmentActivity {
 			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
 		}
 		else {
-			getActionBar().setSubtitle(network);
+			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+			if(toolbar != null) toolbar.setSubtitle(network);
 		}
 
 	}
@@ -202,4 +177,37 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
+
+	class MainPagerAdapter extends FragmentStatePagerAdapter {
+		// Since this is an object collection, use a FragmentStatePagerAdapter,
+		// and NOT a FragmentPagerAdapter.
+		public MainPagerAdapter(FragmentManager fm) {
+			super(fm);
+		}
+
+		@Override
+		public Fragment getItem(int i) {
+			if(i == 1) {
+				return new FavTripsFragment();
+			} else if(i == 2) {
+				return new StationsFragment();
+			}
+			return new DirectionsFragment();
+		}
+
+		@Override
+		public int getCount() {
+			return 3;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int i) {
+			if(i == 1) {
+				return String.valueOf(R.drawable.ic_action_star);
+			} else if(i == 2) {
+				return String.valueOf(R.drawable.ic_tab_stations);
+			}
+			return String.valueOf(android.R.drawable.ic_menu_directions);
+		}
+	}
 }

@@ -54,7 +54,7 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 				error = activity.getResources().getString(R.string.error_no_internet);
 				return null;
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 
 			if(e.getCause() != null) {

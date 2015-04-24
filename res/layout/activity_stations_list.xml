@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.handmark.pulltorefresh.library.PullToRefreshScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ptr="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/pull_to_refresh_departures"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    ptr:ptrMode="disabled"
-    ptr:ptrListViewExtrasEnabled="true"
-    ptr:ptrScrollingWhileRefreshingEnabled="true" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/activity_stations_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:orientation="vertical" />
+    <include layout="@layout/toolbar"/>
 
-</com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pull_to_refresh_departures"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        ptr:ptrMode="disabled"
+        ptr:ptrListViewExtrasEnabled="true"
+        ptr:ptrScrollingWhileRefreshingEnabled="true" >
+
+        <LinearLayout
+            android:id="@+id/activity_stations_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical" />
+
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+</LinearLayout>

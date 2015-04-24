@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/titletab"
+              android:layout_weight="1" >
+
+    <ImageView
+        android:id="@+id/tabimage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_tab_stations"
+        android:layout_margin="6dp"/>
+
+</LinearLayout>

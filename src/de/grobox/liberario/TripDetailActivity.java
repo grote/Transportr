@@ -22,19 +22,28 @@ import java.util.Date;
 import de.schildbach.pte.dto.Trip;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class TripDetailActivity extends FragmentActivity {
+public class TripDetailActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trip_details);
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		if(toolbar != null) {
+			toolbar.setSubtitle(Preferences.getNetwork(this));
+			setSupportActionBar(toolbar);
+
+			ActionBar actionBar = getSupportActionBar();
+			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+		}
 
 		// If we're being restored from a previous state, then we don't need to do anything and
 		// should return or else we could end up with overlapping fragments.
