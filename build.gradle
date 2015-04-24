@@ -15,7 +15,7 @@ apply plugin: 'com.android.application'
 
 dependencies {
 	//compile "com.android.support:appcompat-v7:21.0.0"
-	compile 'com.android.support:support-v4:22.0.0'
+	compile 'com.android.support:support-v4:22.1.0'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	compile project(':sublibs:Android-PullToRefresh:library')
 	compile project(':sublibs:OSMBonusPack')
@@ -27,8 +27,8 @@ dependencies {
 
 android {
 	defaultConfig {
-		versionCode 14
-		versionName "0.6-beta2"
+		versionCode 15
+		versionName "0.6"
 
 		compileSdkVersion 22
 		targetSdkVersion 22

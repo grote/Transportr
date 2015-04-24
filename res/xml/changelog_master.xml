@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="0.6" versioncode="14">
+    <release version="0.6" versioncode="15">
         <change>Redesigned start screen for better usability</change>
         <change>Favorite trips can be sorted by last used</change>
         <change>Improved trip list with better contrasts and popup menu (try long touch)</change>
