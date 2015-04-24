@@ -182,7 +182,9 @@ public class MainActivity extends FragmentActivity {
 
 		// return if no network is set
 		if(network == null) {
-			startActivityForResult(new Intent(this, PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
+			Intent intent = new Intent(this, PickNetworkProviderActivity.class);
+			intent.putExtra("FirstRun", true);
+			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
 		}
 		else {
 			getActionBar().setSubtitle(network);
