@@ -175,6 +175,7 @@
   <string name="np_desc_nz">Wellington, Auckland</string>
   <string name="np_desc_usny"></string>
   <string name="np_desc_spain"></string>
+  <string name="np_desc_mersey"></string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAVARIA</string>
   <string name="np_name_paris">PARÍS</string>
@@ -183,4 +184,5 @@
   <string name="np_name_wien">VIENA</string>
   <string name="np_name_spain"></string>
   <string name="np_name_usny">Estados de Nueva York y Nueva Jersey</string>
+  <string name="np_desc_vrs"></string>
 </resources>

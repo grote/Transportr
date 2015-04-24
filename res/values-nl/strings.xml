@@ -19,10 +19,10 @@
   <string name="action_trip_delete">Verbinding verwijderen</string>
   <string name="action_show_on_external_map">Laat op externe kaart zien</string>
   <string name="action_copy">Kopieëren</string>
-  <string name="action_show_on_map"></string>
+  <string name="action_show_on_map">Laat op kaart zien</string>
   <string name="tab_directions">Verbindingen</string>
   <string name="tab_fav_trips">Favorieten</string>
-  <string name="about_top"></string>
+  <string name="about_top">© 2013 – 2015 Torsten Grote\nVrije Software licentie: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Liberario is een app voor het openbaar vervoer, die u vrij kunt gebruiken, bestuderen, verbeteren en delen kunt.</p>
@@ -68,7 +68,7 @@
   <string name="error_only_autocomplete_station">U moet een station uit de suggestielijst kiezen</string>
   <string name="error_no_station_location">Kan de locatie van dit/deze station(en) niet bepalen</string>
   <string name="error_no_trips_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het zoeken naar verbindingen.</string>
-  <string name="error_no_departures_capability"></string>
+  <string name="error_no_departures_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het vinden van verterkken.</string>
   <string name="number_of_stations">Aantal stations</string>
   <string name="meter">m</string>
   <string name="max_distance">Maximale afstand</string>
@@ -152,7 +152,7 @@
   <string name="np_region_france">Frankrijk</string>
   <string name="np_region_finland">Finland</string>
   <string name="np_region_nz">Nieuw-Zeeland</string>
-  <string name="np_region_spain"></string>
+  <string name="np_region_spain">Spanje</string>
   <string name="np_desc_ns">Nederlands, Amsterdam</string>
   <string name="np_desc_dsb">Denemarken, Kopenhagen</string>
   <string name="np_desc_se">Zweden, Stockholm</string>
@@ -173,14 +173,16 @@
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_desc_paris">Parijs</string>
   <string name="np_desc_nz">Wellington, Auckland</string>
-  <string name="np_desc_usny"></string>
-  <string name="np_desc_spain"></string>
+  <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+  <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
+  <string name="np_desc_mersey">Liverpool Stad Regio</string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BEIEREN</string>
   <string name="np_name_paris">PARIJS</string>
   <string name="np_name_sydney">SYDNEY</string>
   <string name="np_name_stockholm">STOCKHOLM</string>
   <string name="np_name_wien">WENEN</string>
-  <string name="np_name_spain"></string>
+  <string name="np_name_spain">Spanje</string>
   <string name="np_name_usny">New York en New-Jersey staten</string>
+  <string name="np_desc_vrs"></string>
 </resources>

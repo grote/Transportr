@@ -176,6 +176,7 @@
   <string name="np_desc_nz"></string>
   <string name="np_desc_usny"></string>
   <string name="np_desc_spain"></string>
+  <string name="np_desc_mersey"></string>
   <string name="np_name_db"></string>
   <string name="np_name_bayern"></string>
   <string name="np_name_paris"></string>
@@ -184,4 +185,5 @@
   <string name="np_name_wien"></string>
   <string name="np_name_spain"></string>
   <string name="np_name_usny"></string>
+  <string name="np_desc_vrs"></string>
 </resources>
