@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/location_input_view"
+    android:layout_width="match_parent"
+    android:layout_height="38dp"
+    android:layout_weight="1">
+
+    <ImageView
+        android:id="@+id/statusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:src="@drawable/ic_action_star"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+
+        <de.grobox.liberario.ui.DelayAutoCompleteTextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="30dp"
+            android:inputType="textNoSuggestions|textAutoComplete"
+            android:singleLine="true"
+            android:completionThreshold="1"
+            android:layout_gravity="bottom"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical|end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="3dp"
+            android:paddingLeft="1dp"
+            android:paddingRight="0dp"
+            android:paddingTop="3dp">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:visibility="gone"/>
+
+            <ImageButton
+                android:id="@+id/clearButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_action_content_remove"
+                android:visibility="gone" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

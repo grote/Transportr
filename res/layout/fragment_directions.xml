@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="10dp" >
@@ -17,66 +18,9 @@
             android:text="@string/from"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="38dp">
-
-            <ImageView
-                android:id="@+id/fromStatusButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:src="@drawable/ic_action_star"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"/>
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:animateLayoutChanges="true"
-                >
-
-                <de.grobox.liberario.ui.DelayAutoCompleteTextView
-                    android:id="@+id/from"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textNoSuggestions|textAutoComplete"
-                    android:paddingRight="30dp"
-                    android:singleLine="true"
-                    android:completionThreshold="1"
-                    android:layout_gravity="bottom"/>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_vertical|end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="3dp"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="0dp"
-                    android:paddingTop="3dp">
-
-                    <ProgressBar
-                        android:id="@+id/fromProgress"
-                        style="?android:attr/progressBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:visibility="gone" />
-
-                    <ImageButton
-                        android:id="@+id/fromClearButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent"
-                        android:src="@drawable/ic_action_content_remove"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-            </FrameLayout>
-
-        </LinearLayout>
+        <include
+            layout="@layout/location_input_view"
+            android:id="@+id/fromLocation" />
 
         <TextView
             android:id="@+id/toText"
@@ -86,116 +30,61 @@
             android:text="@string/to"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <include
+            layout="@layout/location_input_view"
+            android:id="@+id/toLocation" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/toStatusButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:src="@drawable/ic_action_star"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"/>
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:animateLayoutChanges="true"
-                >
-
-                <de.grobox.liberario.ui.DelayAutoCompleteTextView
-                    android:id="@+id/to"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingRight="30dp"
-                    android:inputType="textNoSuggestions|textAutoComplete"
-                    android:singleLine="true"
-                    android:completionThreshold="1"
-                    android:layout_gravity="bottom"/>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_vertical|end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="3dp"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="0dp"
-                    android:paddingTop="3dp">
-
-                    <ProgressBar
-                        android:id="@+id/toProgress"
-                        style="?android:attr/progressBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:visibility="gone"/>
-
-                    <ImageButton
-                        android:id="@+id/toClearButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent"
-                        android:src="@drawable/ic_action_content_remove"
-                        android:visibility="gone" />
-                </LinearLayout>
-            </FrameLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            >
 
             <Button
                 android:id="@+id/dateType"
-                android:layout_width="48dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/trip_dep"
-                android:textAppearance="?android:attr/textAppearanceButton"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                />
 
             <Button
                 android:id="@+id/timeView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1 "
-                android:textAppearance="?android:attr/textAppearanceButton"
+                android:layout_weight="1"
+                tools:text="23:42"
                 />
 
             <Button
                 android:id="@+id/plus15Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="+15"
-                android:textAppearance="?android:attr/textAppearanceButton"
                 />
 
             <Button
                 android:id="@+id/dateView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceButton"
+                android:layout_weight="0"
+                tools:text="1337/23/42"
                 />
         </LinearLayout>
 
         <HorizontalScrollView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/productsScrollView">
+            android:id="@+id/productsScrollView"
+            android:layout_gravity="center_horizontal">
 
             <LinearLayout
                 android:id="@+id/productsLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/ic_product_high_speed_train"
@@ -222,8 +111,7 @@
                     android:layout_weight="1"
                     android:tag="S"
                     android:src="@drawable/ic_product_suburban_train"
-                    android:scaleType="center"
-                    android:clickable="true"/>
+                    android:scaleType="center"/>
 
                 <ImageButton
                     android:id="@+id/ic_product_subway"

@@ -2,17 +2,17 @@
       xmlns:de.grobox.liberario="http://schemas.android.com/apk/res-auto" >
 
     <item
-        android:id="@+id/action_navigation_expand"
-        de.grobox.liberario:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_navigation_expand"
-        android:title="@string/action_navigation_expand"
-        android:orderInCategory="1" />
-
-    <item
         android:id="@+id/action_swap_locations"
         de.grobox.liberario:showAsAction="ifRoom"
         android:icon="@drawable/ic_menu_swap_location"
         android:title="@string/action_switch_locations"
+        android:orderInCategory="1" />
+
+    <item
+        android:id="@+id/action_navigation_expand"
+        de.grobox.liberario:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_navigation_expand"
+        android:title="@string/action_navigation_expand"
         android:orderInCategory="1" />
 
 </menu>

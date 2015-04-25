@@ -3,6 +3,7 @@ package de.grobox.liberario.ui;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -33,6 +34,13 @@ public class DelayAutoCompleteTextView extends AutoCompleteTextView {
 
 	public void setAutoCompleteDelay(int autoCompleteDelay) {
 		mAutoCompleteDelay = autoCompleteDelay;
+	}
+
+	public void cancelFiltering() {
+		mHandler.removeMessages(MESSAGE_TEXT_CHANGED);
+		if(mLoadingIndicator != null) {
+			mLoadingIndicator.setVisibility(View.GONE);
+		}
 	}
 
 	@Override
