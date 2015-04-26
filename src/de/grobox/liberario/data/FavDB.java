@@ -202,6 +202,11 @@ public class FavDB {
 	}
 
 	public static void updateFavTrip(Context context, FavTrip fav) {
+		if(fav.getFrom() == null || fav.getTo() == null) {
+			// this should never happen, but well...
+			return;
+		}
+
 		if(fav.getFrom().place != null && fav.getFrom().place.equals("GPS")) {
 			// don't store GPS locations
 			return;
