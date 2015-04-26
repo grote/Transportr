@@ -24,6 +24,7 @@ import java.util.Set;
 
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.ui.DelayAutoCompleteTextView;
+import de.grobox.liberario.ui.LocationInputView;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -42,11 +43,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -60,8 +58,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
@@ -74,7 +70,6 @@ import android.widget.Toast;
 public class DirectionsFragment extends LiberarioFragment implements LocationListener {
 	private View mView;
 	private ViewHolder ui = new ViewHolder();
-	private boolean mChange = false;
 	private FavLocation.LOC_TYPE mHomeClicked;
 	private LocationManager locationManager;
 	private Location gps_loc = null;
@@ -82,6 +77,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	private AsyncQueryTripsTask mAfterGpsTask = null;
 	private Set<Product> mProducts = EnumSet.allOf(Product.class);
 	public ProgressDialog pd;
+	private LocationInputView from;
+	private LocationInputView to;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -97,8 +94,11 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		populateViewHolders();
 
-		setLocationInputUI(FavLocation.LOC_TYPE.FROM, ui.from);
-		setLocationInputUI(FavLocation.LOC_TYPE.TO, ui.to);
+		from = new FromInputView(getActivity(), ui.from);
+		to = new ToInputView(getActivity(), ui.to);
+
+		ui.fromText.setOnClickListener(from.onClickListener);
+		ui.toText.setOnClickListener(to.onClickListener);
 
 		// timeView
 		ui.time.setText(DateUtils.getcurrentTime(getActivity()));
@@ -216,8 +216,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 
 				// check and set to location
-				if(checkLocation(FavLocation.LOC_TYPE.TO)) {
-					query_trips.setTo(getLocation(FavLocation.LOC_TYPE.TO));
+				if(checkLocation(to)) {
+					query_trips.setTo(to.getLocation());
 				} else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), Toast.LENGTH_SHORT).show();
 					return;
@@ -225,8 +225,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 				// check and set from location
 				if(mGpsPressed) {
-					if(getLocation(FavLocation.LOC_TYPE.FROM) != null) {
-						query_trips.setFrom(getLocation(FavLocation.LOC_TYPE.FROM));
+					if(from.getLocation() != null) {
+						query_trips.setFrom(from.getLocation());
 					} else {
 						mAfterGpsTask = query_trips;
 
@@ -244,8 +244,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 						pd.show();
 					}
 				} else {
-					if(checkLocation(FavLocation.LOC_TYPE.FROM)) {
-						query_trips.setFrom(getLocation(FavLocation.LOC_TYPE.FROM));
+					if(checkLocation(from)) {
+						query_trips.setFrom(from.getLocation());
 					} else {
 						Toast.makeText(getActivity(), getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
 						return;
@@ -253,7 +253,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				}
 
 				// remember trip
-				FavDB.updateFavTrip(getActivity(), new FavTrip(getLocation(FavLocation.LOC_TYPE.FROM), getLocation(FavLocation.LOC_TYPE.TO)));
+				FavDB.updateFavTrip(getActivity(), new FavTrip(from.getLocation(), to.getLocation()));
 
 				// set date
 				query_trips.setDate(DateUtils.mergeDateTime(getActivity(), ui.date.getText(), ui.time.getText()));
@@ -314,14 +314,14 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			case R.id.action_swap_locations:
 				// swap location objects and drawables
 				final Drawable icon = ui.to.status.getDrawable();
-				Location tmp = getLocation(FavLocation.LOC_TYPE.TO);
+				Location tmp = to.getLocation();
 				if(!mGpsPressed) {
-					setLocation(getLocation(FavLocation.LOC_TYPE.FROM), FavLocation.LOC_TYPE.TO, ui.from.status.getDrawable());
+					to.setLocation(from.getLocation(), ui.from.status.getDrawable());
 				} else {
 					// TODO: GPS currently only supports from location, so don't swap it for now
-					clearLocation(FavLocation.LOC_TYPE.TO);
+					to.clearLocation();
 				}
-				setLocation(tmp, FavLocation.LOC_TYPE.FROM, icon);
+				from.setLocation(tmp, icon);
 
 				return true;
 			default:
@@ -337,10 +337,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// remove old text from TextViews
 		if(mView != null) {
 			ui.from.clear.setVisibility(View.GONE);
-			clearLocation(FavLocation.LOC_TYPE.FROM);
+			from.clearLocation();
 
 			ui.to.clear.setVisibility(View.GONE);
-			clearLocation(FavLocation.LOC_TYPE.TO);
+			to.clearLocation();
 		}
 	}
 
@@ -348,140 +348,12 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// after new home location was selected, put it right into the input field
 		if(resultCode == AppCompatActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
-			setLocation(FavDB.getHome(getActivity()), mHomeClicked, getResources().getDrawable(R.drawable.ic_action_home));
+			if(mHomeClicked.equals(FavLocation.LOC_TYPE.FROM)) {
+				from.setLocation(FavDB.getHome(getActivity()), getResources().getDrawable(R.drawable.ic_action_home));
+			} else if(mHomeClicked.equals(FavLocation.LOC_TYPE.TO)) {
+				to.setLocation(FavDB.getHome(getActivity()), getResources().getDrawable(R.drawable.ic_action_home));
+			}
 		}
-	}
-
-	private void setLocationInputUI(final FavLocation.LOC_TYPE loc_type, final LocationInputViewHolder loc) {
-		// From Location List for Dropdown
-		final LocationAdapter locAdapter = new LocationAdapter(getActivity(), loc_type);
-		locAdapter.setFavs(true);
-		locAdapter.setHome(true);
-		loc.location.setAdapter(locAdapter);
-		loc.location.setLoadingIndicator(loc.progress);
-		loc.location.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				handleLocationItemClick(locAdapter.getItem(position), view, loc_type);
-			}
-		});
-
-		OnClickListener fromListener = new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if(loc.location.getText().length() > 0) {
-					loc.location.showDropDown();
-				} else {
-					handleInputClick(loc);
-				}
-			}
-		};
-		loc.location.setOnClickListener(fromListener);
-		if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
-			ui.fromText.setOnClickListener(fromListener);
-
-			// TODO GPS works only for from location for now
-			locAdapter.setGPS(true);
-		} else if(loc_type.equals(FavLocation.LOC_TYPE.TO)) {
-			ui.toText.setOnClickListener(fromListener);
-		}
-
-		loc.status.setImageDrawable(null);
-		loc.status.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				handleInputClick(loc);
-			}
-		});
-
-		// clear from text button
-		loc.clear.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				loc.location.requestFocus();
-				clearLocation(loc_type);
-				loc.clear.setVisibility(View.GONE);
-			}
-		});
-
-		// From text input changed
-		loc.location.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// show clear button
-				if(s.length() > 0) {
-					loc.clear.setVisibility(View.VISIBLE);
-					// clear location
-					setLocation(null, loc_type, null, false);
-				} else {
-					loc.clear.setVisibility(View.GONE);
-					clearLocation(loc_type);
-					// clear drop-down list
-					locAdapter.resetList();
-				}
-
-				if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) cancelGpsButton();
-			}
-
-			public void afterTextChanged(Editable s) {
-			}
-
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			}
-		});
-	}
-
-	@Nullable
-	private Location getLocation(FavLocation.LOC_TYPE loc_type) {
-		if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
-			return (Location) ui.from.location.getTag();
-		} else if(loc_type.equals(FavLocation.LOC_TYPE.TO)) {
-			return (Location) ui.to.location.getTag();
-		} else {
-			return null;
-		}
-	}
-
-	private void setLocation(Location loc, FavLocation.LOC_TYPE loc_type, Drawable icon, boolean setText) {
-		if(!mChange) {
-			mChange = true;
-			final ImageView statusButton;
-			DelayAutoCompleteTextView textView;
-
-			if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
-				statusButton = ui.from.status;
-				textView = ui.from.location;
-			} else if(loc_type.equals(FavLocation.LOC_TYPE.TO)) {
-				statusButton = ui.to.status;
-				textView = ui.to.location;
-			} else {
-				throw new RuntimeException("Only to and from locations are implemented.");
-			}
-
-			textView.setTag(loc);
-
-			if(setText) {
-				if(loc != null) {
-					textView.setText(loc.uniqueShortName());
-					textView.cancelFiltering();
-				} else {
-					textView.setText(null);
-				}
-				textView.dismissDropDown();
-			}
-
-			statusButton.setImageDrawable(icon);
-
-			mChange = false;
-		}
-	}
-
-	private void setLocation(Location loc, FavLocation.LOC_TYPE loc_type, Drawable icon) {
-		setLocation(loc, loc_type, icon, true);
-	}
-
-	private void clearLocation(FavLocation.LOC_TYPE loc_type) {
-		setLocation(null, loc_type, null);
 	}
 
 	private void startSetHome(boolean new_home, FavLocation.LOC_TYPE home_clicked) {
@@ -493,38 +365,19 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		startActivityForResult(intent, MainActivity.CHANGED_HOME);
 	}
 
-	public void handleInputClick(LocationInputViewHolder loc) {
-		LocationAdapter locAdapter = (LocationAdapter) loc.location.getAdapter();
-		int size = locAdapter.addFavs();
-
-		if(size > 0) {
-			loc.location.showDropDown();
-		}
-		else {
-			Toast.makeText(getActivity(), getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
-		}
-	}
-
 	public void refreshFavs() {
 		if(ui.from != null) ((LocationAdapter) ui.from.location.getAdapter()).resetList();
 		if(ui.to != null) ((LocationAdapter) ui.to.location.getAdapter()).resetList();
 	}
 
-	private Boolean checkLocation(FavLocation.LOC_TYPE loc_type) {
-		Location loc = getLocation(loc_type);
-
-		DelayAutoCompleteTextView view;
-		if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
-			view = ui.from.location;
-		} else {
-			view = ui.to.location;
-		}
+	private Boolean checkLocation(LocationInputView loc_view) {
+		Location loc = loc_view.getLocation();
 
 		if(loc == null) {
 			// no location was selected by user
-			if(!view.getText().toString().equals("")) {
+			if(!loc_view.holder.location.getText().toString().equals("")) {
 				// no location selected, but text entered. So let's try create locations from text
-				setLocation(new Location(LocationType.ANY, null, view.getText().toString(), view.getText().toString()), loc_type, null);
+				loc_view.setLocation(new Location(LocationType.ANY, null, loc_view.holder.location.getText().toString(), loc_view.holder.location.getText().toString()), null);
 
 				return true;
 			}
@@ -532,13 +385,13 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 		// we have a location, so make it a favorite
 		else {
-			FavDB.updateFavLocation(getActivity(), loc, loc_type);
+			FavDB.updateFavLocation(getActivity(), loc, loc_view.getType());
 		}
 
 		return true;
 	}
 
-	private void handleLocationItemClick(Location loc, View view, FavLocation.LOC_TYPE loc_type) {
+	private void handleLocationItemClick(Location loc, FavLocation.LOC_TYPE type, View view) {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
 
 		if(loc.id != null && loc.id.equals("Liberario.GPS")) {
@@ -548,7 +401,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			else {
 				// clear from text
 				ui.from.location.setText(null);
-				setLocation(null, FavLocation.LOC_TYPE.FROM, icon);
+				from.setLocation(null, icon);
 				ui.from.clear.setVisibility(View.VISIBLE);
 
 				ui.to.location.requestFocus();
@@ -562,27 +415,35 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				Location home = FavDB.getHome(getActivity());
 
 				if(home != null) {
-					setLocation(home, loc_type, icon);
+					if(type.equals(FavLocation.LOC_TYPE.FROM)) {
+						from.setLocation(home, icon);
+					} else if(type.equals(FavLocation.LOC_TYPE.TO)) {
+						to.setLocation(home, icon);
+					}
 				} else {
 					// prevent home.toString() from being shown in the TextView
-					if (loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
+					if (type.equals(FavLocation.LOC_TYPE.FROM)) {
 						ui.from.location.setText("");
 					} else {
 						ui.to.location.setText("");
 					}
 					// show dialog to set home screen
-					startSetHome(true, loc_type);
+					startSetHome(true, type);
 				}
 			}
 			// locations from favorites or auto-complete
 			else {
-				setLocation(loc, loc_type, icon);
+				if(type.equals(FavLocation.LOC_TYPE.FROM)) {
+					from.setLocation(loc, icon);
+				}  else if(type.equals(FavLocation.LOC_TYPE.TO)) {
+					to.setLocation(loc, icon);
+				}
 			}
 
 			// prepare to hide soft-keyboard
 			InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
-			if(loc_type.equals(FavLocation.LOC_TYPE.FROM)) {
+			if(type.equals(FavLocation.LOC_TYPE.FROM)) {
 				// cancel GPS Button if different from location was clicked
 				cancelGpsButton();
 				imm.hideSoftInputFromWindow(ui.from.location.getWindowToken(), 0);
@@ -592,7 +453,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			}
 		}
 	}
-
 
 	private void pressGpsButton() {
 		List<String> providers = locationManager.getProviders(true);
@@ -656,7 +516,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 			// create location based on GPS coordinates
 			gps_loc = new Location(LocationType.ADDRESS, null, lat, lon, "GPS", lat_str + "/" + lon_str);
-			setLocation(gps_loc, FavLocation.LOC_TYPE.FROM, getResources().getDrawable(R.drawable.ic_gps));
+			from.setLocation(gps_loc, getResources().getDrawable(R.drawable.ic_gps));
 
 			if(pd != null) {
 				pd.dismiss();
@@ -763,13 +623,48 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		dateView.setTag(c);
 	}
 
+	class FromInputView extends LocationInputView {
+		public FromInputView(Context context, LocationInputViewHolder holder) {
+			super(context, holder);
+			setType(FavLocation.LOC_TYPE.FROM);
+			setHome(true);
+			setFavs(true);
+			setGPS(true);
+		}
+
+		@Override
+		public void onLocationItemClick(Location loc, View view) {
+			handleLocationItemClick(loc, FavLocation.LOC_TYPE.FROM, view);
+		}
+
+		public void handleTextChanged(CharSequence s) {
+			super.handleTextChanged(s);
+
+			cancelGpsButton();
+		}
+	}
+
+	class ToInputView extends LocationInputView {
+		public ToInputView(Context context, LocationInputViewHolder holder) {
+			super(context, holder);
+			setType(FavLocation.LOC_TYPE.TO);
+			setHome(true);
+			setFavs(true);
+		}
+
+		@Override
+		public void onLocationItemClick(Location loc, View view) {
+			handleLocationItemClick(loc, FavLocation.LOC_TYPE.TO, view);
+		}
+	}
+
 	static class ViewHolder {
 		TextView fromText;
 		ViewGroup fromLocation;
-		LocationInputViewHolder from;
+		LocationInputView.LocationInputViewHolder from;
 		TextView toText;
 		ViewGroup toLocation;
-		LocationInputViewHolder to;
+		LocationInputView.LocationInputViewHolder to;
 		Button type;
 		Button time;
 		Button plus15;
@@ -788,17 +683,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		Button search;
 	}
 
-	static class LocationInputViewHolder {
-		ImageView status;
-		DelayAutoCompleteTextView location;
-		ProgressBar progress;
-		ImageButton clear;
-	}
-
 	private void populateViewHolders() {
 		ui.fromText = (TextView) mView.findViewById(R.id.fromText);
 		ui.fromLocation = (ViewGroup) mView.findViewById(R.id.fromLocation);
-		ui.from = new LocationInputViewHolder();
+		ui.from = new LocationInputView.LocationInputViewHolder();
 		ui.from.status = (ImageView) ui.fromLocation.findViewById(R.id.statusButton);
 		ui.from.location = (DelayAutoCompleteTextView) ui.fromLocation.findViewById(R.id.location);
 		ui.from.progress = (ProgressBar) ui.fromLocation.findViewById(R.id.progress);
@@ -806,7 +694,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		ui.toText = (TextView) mView.findViewById(R.id.toText);
 		ui.toLocation = (ViewGroup) mView.findViewById(R.id.toLocation);
-		ui.to = new LocationInputViewHolder();
+		ui.to = new LocationInputView.LocationInputViewHolder();
 		ui.to.status = (ImageView) ui.toLocation.findViewById(R.id.statusButton);
 		ui.to.location = (DelayAutoCompleteTextView) ui.toLocation.findViewById(R.id.location);
 		ui.to.progress = (ProgressBar) ui.toLocation.findViewById(R.id.progress);

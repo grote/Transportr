@@ -62,24 +62,32 @@ public class AmbiguousLocationActivity extends AppCompatActivity {
 		final Spinner from_spinner = ((Spinner) findViewById(R.id.fromSpinner));
 
 		if(trips.ambiguousFrom != null) {
-			from_spinner.setAdapter(new LocationAdapter(this, FavLocation.LOC_TYPE.FROM, trips.ambiguousFrom));
+			LocationAdapter loca = new LocationAdapter(this, trips.ambiguousFrom);
+			loca.setSort(FavLocation.LOC_TYPE.FROM);
+			from_spinner.setAdapter(loca);
 		}
 		else {
 			List<Location> list = new ArrayList<>();
 			list.add(from);
-			from_spinner.setAdapter(new LocationAdapter(this, FavLocation.LOC_TYPE.FROM, list));
+			LocationAdapter loca = new LocationAdapter(this, list);
+			loca.setSort(FavLocation.LOC_TYPE.FROM);
+			from_spinner.setAdapter(loca);
 			from_spinner.setEnabled(false);
 		}
 
 		final Spinner to_spinner = ((Spinner) findViewById(R.id.toSpinner));
 
 		if(trips.ambiguousTo != null) {
-			to_spinner.setAdapter(new LocationAdapter(this, FavLocation.LOC_TYPE.TO, trips.ambiguousTo));
+			LocationAdapter loca = new LocationAdapter(this, trips.ambiguousTo);
+			loca.setSort(FavLocation.LOC_TYPE.TO);
+			to_spinner.setAdapter(loca);
 		}
 		else {
 			List<Location> list = new ArrayList<>();
 			list.add(to);
-			to_spinner.setAdapter(new LocationAdapter(this, FavLocation.LOC_TYPE.TO, list));
+			LocationAdapter loca = new LocationAdapter(this, list);
+			loca.setSort(FavLocation.LOC_TYPE.TO);
+			to_spinner.setAdapter(loca);
 			to_spinner.setEnabled(false);
 		}
 

@@ -21,6 +21,7 @@ import java.util.List;
 
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.ui.DelayAutoCompleteTextView;
+import de.grobox.liberario.ui.LocationInputView;
 import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.NetworkProvider.Capability;
@@ -33,27 +34,27 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class StationsFragment extends LiberarioFragment implements LocationListener {
 	private View mView;
 	private LocationManager locationManager;
 	private boolean loc_found = false;
 	public ProgressDialog pd;
+	LocationInputView.LocationInputViewHolder holder;
+	LocationInputView loc;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -96,17 +97,12 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 			departuresLayout.setVisibility(View.VISIBLE);
 
 			// clear favorites for auto-complete
-			DelayAutoCompleteTextView stationView = ((DelayAutoCompleteTextView) mView.findViewById(R.id.stationView));
-			if(stationView.getAdapter() != null) {
-				((LocationAdapter) stationView.getAdapter()).resetList();
+			if(holder.location.getAdapter() != null) {
+				((LocationAdapter) holder.location.getAdapter()).resetList();
 			}
 
 			// clear text view
-			setStation(null);
-
-			// hide text clear button
-			ImageButton stationClearButton = (ImageButton) mView.findViewById(R.id.stationClearButton);
-			stationClearButton.setVisibility(View.GONE);
+			loc.clearLocation();
 		} else {
 			departuresLayout.setVisibility(View.GONE);
 		}
@@ -129,71 +125,14 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 	}
 
 	private void setDeparturesView() {
-		// station name TextView
-		final DelayAutoCompleteTextView stationView = (DelayAutoCompleteTextView) mView.findViewById(R.id.stationView);
-		LocationAdapter locAdapter = new LocationAdapter(getActivity(), FavLocation.LOC_TYPE.FROM, true);
-		locAdapter.setFavs(true);
-		stationView.setAdapter(locAdapter);
-		stationView.setLoadingIndicator((android.widget.ProgressBar) mView.findViewById(R.id.stationProgress));
-		stationView.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				Location loc = (Location) parent.getItemAtPosition(position);
-				setStation(loc);
+		holder = new LocationInputView.LocationInputViewHolder();
+		holder.location = (DelayAutoCompleteTextView) mView.findViewById(R.id.location);
+		holder.clear = (ImageButton) mView.findViewById(R.id.clearButton);
+		holder.progress = (ProgressBar) mView.findViewById(R.id.progress);
+		holder.status = (ImageView) mView.findViewById(R.id.statusButton);
 
-				if(!loc.hasId()) {
-					Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
-					return;
-				}
-				queryForStations(loc);
-			}
-		});
-
-		// clear from text button
-		final ImageButton stationClearButton = (ImageButton) mView.findViewById(R.id.stationClearButton);
-		stationClearButton.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				setStation(null);
-				stationView.requestFocus();
-			}
-		});
-
-		// When text changed
-		stationView.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// clear saved station
-				stationView.setTag(null);
-
-				// show clear button
-				if(s.length() > 0) {
-					stationClearButton.setVisibility(View.VISIBLE);
-				} else {
-					stationClearButton.setVisibility(View.GONE);
-				}
-			}
-			public void afterTextChanged(Editable s) {}
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-		});
-
-		// TODO adapt like in DirectionsFragment
-		// station name favorites button
-		OnClickListener stationViewListener = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				int size = ((LocationAdapter) stationView.getAdapter()).addFavs();
-
-				if(size > 0) {
-					stationView.showDropDown();
-				}
-				else {
-					Toast.makeText(getActivity(), getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
-				}
-			}
-		};
-		mView.findViewById(R.id.stationFavButton).setOnClickListener(stationViewListener);
-		stationView.setOnClickListener(stationViewListener);
+		loc = new LocationInputView(getActivity(), holder, true);
+		loc.setFavs(true);
 
 		// home station button
 		ImageButton stationHomeButton = (ImageButton) mView.findViewById(R.id.stationHomeButton);
@@ -230,15 +169,14 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		stationButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				if(stationView.getTag() != null && stationView.getTag() instanceof Location) {
+				if(loc.getLocation() != null) {
 					// use location to query departures
-					Location location = (Location) stationView.getTag();
 
-					if(!location.hasId()) {
+					if(!loc.getLocation().hasId()) {
 						Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
 						return;
 					}
-					queryForStations(location);
+					queryForStations(loc.getLocation());
 				} else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
 				}
@@ -256,28 +194,12 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 	private void setNearbyStationsView() {
 		// Find Nearby Stations Search Button
 		ImageButton btn = (ImageButton) mView.findViewById(R.id.findNearbyStationsButton);
-		btn.setOnClickListener(new OnClickListener(){
+		btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				getLocation();
 			}
 		});
-	}
-
-	private void setStation(Location station) {
-		DelayAutoCompleteTextView stationView = (DelayAutoCompleteTextView) mView.findViewById(R.id.stationView);
-		ImageButton stationClearButton = (ImageButton) mView.findViewById(R.id.stationClearButton);
-
-		if(station != null) {
-			stationView.setText(station.uniqueShortName());
-			stationView.setTag(station);
-			stationClearButton.setVisibility(View.VISIBLE);
-		} else {
-			stationView.setText("");
-			stationView.setTag(null);
-			stationClearButton.setVisibility(View.GONE);
-		}
-		stationView.dismissDropDown();
 	}
 
 	private void getLocation() {

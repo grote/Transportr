@@ -22,63 +22,12 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:visibility="visible" />
 
-            <LinearLayout
+            <include
+                layout="@layout/location_input_view"
+                android:id="@+id/location_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
-
-                    <de.grobox.liberario.ui.DelayAutoCompleteTextView
-                        android:id="@+id/stationView"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:paddingRight="25dp"
-                        android:paddingLeft="5dp"
-                        android:inputType="textNoSuggestions" >
-
-                        <requestFocus />
-                    </de.grobox.liberario.ui.DelayAutoCompleteTextView>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_vertical|end"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="3dp"
-                        android:paddingLeft="1dp"
-                        android:paddingRight="0dp"
-                        android:paddingTop="3dp">
-
-                        <ProgressBar
-                            android:id="@+id/stationProgress"
-                            style="?android:attr/progressBarStyleSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:visibility="gone"/>
-
-                        <ImageButton
-                            android:id="@+id/stationClearButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/transparent"
-                            android:src="@drawable/ic_action_content_remove"
-                            android:visibility="gone" />
-                    </LinearLayout>
-                </FrameLayout>
-
-                <ImageButton
-                    android:id="@+id/stationFavButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_star" />
-
-            </LinearLayout>
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"

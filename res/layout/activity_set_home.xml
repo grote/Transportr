@@ -16,51 +16,12 @@
         android:padding="10dp"
         android:text="@string/home_dialog_msg" />
 
-    <LinearLayout
+    <include
+        layout="@layout/location_input_view"
+        android:id="@+id/location_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal" >
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" >
-
-            <AutoCompleteTextView
-                android:id="@+id/homeView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:inputType="textNoSuggestions"
-                android:paddingLeft="5dp"
-                android:paddingRight="25dp" >
-
-                <requestFocus />
-            </AutoCompleteTextView>
-
-            <ImageButton
-                android:id="@+id/homeClearButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:background="@color/transparent"
-                android:paddingBottom="3dp"
-                android:paddingLeft="1dp"
-                android:paddingRight="0dp"
-                android:paddingTop="3dp"
-                android:src="@drawable/ic_action_content_remove"
-                android:visibility="gone" />
-
-        </FrameLayout>
-
-        <ImageButton
-            android:id="@+id/homeFavButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_star" />
-
-    </LinearLayout>
+        android:layout_margin="10dp"/>
 
     <include layout="@layout/divider_horizontal" />
 
@@ -71,7 +32,6 @@
 
         <Button
             android:id="@+id/cancelButton"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -84,7 +44,6 @@
 
         <Button
             android:id="@+id/okButton"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

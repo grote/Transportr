@@ -43,23 +43,20 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 	private boolean favs = false;
 	private boolean home = false;
 	private boolean gps = false;
-	private FavLocation.LOC_TYPE sort;
+	private FavLocation.LOC_TYPE sort = FavLocation.LOC_TYPE.FROM;
 
-	public LocationAdapter(Context context, FavLocation.LOC_TYPE sort) {
+	public LocationAdapter(Context context) {
 		super(context, R.layout.location_item);
-		this.sort = sort;
 	}
 
-	public LocationAdapter(Context context, FavLocation.LOC_TYPE sort, boolean onlyIDs) {
+	public LocationAdapter(Context context, boolean onlyIDs) {
 		super(context, R.layout.location_item);
 		this.onlyIDs = onlyIDs;
-		this.sort = sort;
 	}
 
 	// constructor that enables reuse of this class by AmbiguousLocationActivity
-	public LocationAdapter(Context context, FavLocation.LOC_TYPE sort, List<Location> filteredList) {
+	public LocationAdapter(Context context, List<Location> filteredList) {
 		super(context, R.layout.location_item);
-		this.sort = sort;
 		this.filteredList = filteredList;
 	}
 
@@ -200,6 +197,10 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 	@Override
 	public View getDropDownView(int position, View convertView, ViewGroup parent) {
 		return getView(position, convertView, parent);
+	}
+
+	public void setSort(FavLocation.LOC_TYPE loc_type) {
+		sort = loc_type;
 	}
 
 	public void setFavs(boolean favs) {
