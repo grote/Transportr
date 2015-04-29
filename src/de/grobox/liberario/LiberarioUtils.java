@@ -321,4 +321,12 @@ public class LiberarioUtils {
 		}
 	}
 
+	static public String getLocName(Location l) {
+		if(l.hasName()) {
+			return l.place == null ? l.uniqueShortName() : l.name + ", " + l.place;
+		} else {
+			return l.uniqueShortName();
+		}
+	}
+
 }

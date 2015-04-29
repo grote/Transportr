@@ -176,7 +176,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 		// locations from favorites and auto-complete
 		else if(favList.contains(l)) {
 			imageView.setImageResource(R.drawable.ic_action_star);
-			textView.setText(l.uniqueShortName());
+			textView.setText(LiberarioUtils.getLocName(l));
 		}
 		else {
 			if(l.type.equals(LocationType.ADDRESS)) {
@@ -188,7 +188,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 			} else {
 				imageView.setImageDrawable(null);
 			}
-			textView.setText(l.uniqueShortName());
+			textView.setText(LiberarioUtils.getLocName(l));
 		}
 
 		return view;
