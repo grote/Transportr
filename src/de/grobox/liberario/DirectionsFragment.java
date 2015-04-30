@@ -153,13 +153,20 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			}
 		});
 
+		// Set Type to Departure=True
+		ui.type.setTag(true);
+
 		// Trip Date Type Spinner (departure or arrival)
 		ui.type.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if(ui.type.getText().equals(getString(R.string.trip_dep))) {
+				if((boolean) ui.type.getTag()) {
+					// departure is set, so set arrival now
 					ui.type.setText(getString(R.string.trip_arr));
+					ui.type.setTag(false);
 				} else {
+					// departure is not set, so set it now
 					ui.type.setText(getString(R.string.trip_dep));
+					ui.type.setTag(true);
 				}
 			}
 		});
@@ -259,7 +266,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				query_trips.setDate(DateUtils.mergeDateTime(getActivity(), ui.date.getText(), ui.time.getText()));
 
 				// set departure to true of first item is selected in spinner
-				query_trips.setDeparture(ui.type.getText().equals(getString(R.string.trip_dep)));
+				query_trips.setDeparture((boolean) ui.type.getTag());
 
 				// set products
 				query_trips.setProducts(mProducts);
