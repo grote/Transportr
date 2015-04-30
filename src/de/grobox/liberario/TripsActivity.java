@@ -94,7 +94,7 @@ public class TripsActivity extends AppCompatActivity {
 
 	public void startGetMoreTrips(boolean later) {
 		if(later) (new AsyncQueryMoreTripsTask(this, end_context.context, true)).execute();
-		else (new AsyncQueryMoreTripsTask(this, start_context.context, false)).execute();
+		else    (new AsyncQueryMoreTripsTask(this, start_context.context, false)).execute();
 	}
 
 	public void addMoreTrips(QueryTripsResult trip_results, boolean later) {

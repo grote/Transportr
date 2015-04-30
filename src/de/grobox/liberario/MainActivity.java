@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_settings:
-				startActivityForResult(new Intent(this, PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
+				startActivity(new Intent(this, PrefsActivity.class));
 
 				return true;
 			case R.id.action_changelog:

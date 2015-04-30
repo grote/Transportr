@@ -75,6 +75,10 @@
             android:name="de.grobox.liberario.AboutActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />
 
+        <activity
+            android:name="de.grobox.liberario.PrefsActivity"
+            android:parentActivityName="de.grobox.liberario.MainActivity" />
+
     </application>
 
 </manifest>
