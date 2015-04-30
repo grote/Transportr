@@ -27,6 +27,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
@@ -90,6 +91,16 @@ public class TripsActivity extends AppCompatActivity {
 				startGetMoreTrips(direction != SwipyRefreshLayoutDirection.TOP);
 			}
 		});
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId() == android.R.id.home) {
+			onBackPressed();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void startGetMoreTrips(boolean later) {
