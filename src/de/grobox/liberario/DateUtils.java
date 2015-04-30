@@ -59,7 +59,7 @@ public class DateUtils {
 		DateFormat df = android.text.format.DateFormat.getDateFormat(context);
 
 		try {
-			return df.parse((String) date_string);
+			return df.parse(date_string.toString());
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return null;
@@ -70,7 +70,7 @@ public class DateUtils {
 		DateFormat tf = android.text.format.DateFormat.getTimeFormat(context);
 
 		try {
-			return tf.parse((String) time_string);
+			return tf.parse(time_string.toString());
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return null;

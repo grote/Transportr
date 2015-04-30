@@ -153,12 +153,16 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		// Trip Date Type Spinner (departure or arrival)
 		final TextView dateType = (TextView) mView.findViewById(R.id.dateType);
+		// Set Type to Departure=True
+		dateType.setTag(true);
 		dateType.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if(dateType.getText().equals(getString(R.string.trip_dep))) {
+				if((boolean) dateType.getTag()) {
 					dateType.setText(getString(R.string.trip_arr));
+					dateType.setTag(false);
 				} else {
 					dateType.setText(getString(R.string.trip_dep));
+					dateType.setTag(true);
 				}
 			}
 		});
@@ -261,7 +265,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				query_trips.setDate(DateUtils.mergeDateTime(getActivity(), dateView.getText(), timeView.getText()));
 
 				// set departure to true of first item is selected in spinner
-				query_trips.setDeparture(dateType.getText().equals(getString(R.string.trip_dep)));
+				query_trips.setDeparture((boolean) dateType.getTag());
 
 				// set products
 				query_trips.setProducts(mProducts);
