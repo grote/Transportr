@@ -1,111 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical" >
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <include layout="@layout/toolbar"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TableLayout
-            android:id="@+id/headerTableLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/holo_blue_very_light"
-            android:padding="3dp" >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/trips_recycler_view"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp" />
 
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:animateLayoutChanges="true" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/trip_start" />
-
-                <TextView
-                    android:id="@+id/tripStartTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
-                    tools:text="Zoologischer Garten (S+U)"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_date"
-                    android:id="@+id/dateView1"/>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:animateLayoutChanges="true" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/trip_destination" />
-
-                <TextView
-                    android:id="@+id/tripDestinationTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:textStyle="bold"
-                    android:layout_weight="1"
-                    tools:text="Schönefeld Flughafen Berlin (S)"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/dateView2"
-                    android:textStyle="bold"
-                    tools:text="13.03.2015"
-                    />
-
-            </TableRow>
-        </TableLayout>
-
-        <View
-            android:id="@+id/headerSeparatorView"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/headerTableLayout"
-            android:background="@color/holo_blue_light" />
-
-        <com.handmark.pulltorefresh.library.PullToRefreshScrollView
-            xmlns:ptr="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/pull_to_refresh_trips"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@id/headerSeparatorView"
-            ptr:ptrListViewExtrasEnabled="true"
-            ptr:ptrMode="both"
-            ptr:ptrScrollingWhileRefreshingEnabled="true" >
-
-            <TableLayout
-                android:id="@+id/activity_trips"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:animateLayoutChanges="true"
-                android:shrinkColumns="2"
-                android:stretchColumns="2" />
-
-        </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
-
-    </RelativeLayout>
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
 </LinearLayout>
