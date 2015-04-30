@@ -15,28 +15,13 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.fragments;
 
-import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import de.schildbach.pte.NetworkProvider;
+import android.support.v4.app.Fragment;
 
-public class PrefsActivity extends AppCompatActivity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_prefs);
-
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		if(toolbar != null) {
-			setSupportActionBar(toolbar);
-
-			ActionBar actionBar = getSupportActionBar();
-			if(actionBar != null) {
-				actionBar.setDisplayHomeAsUpEnabled(true);
-			}
-		}
-	}
+public class LiberarioFragment extends Fragment {
+	public void onNetworkProviderChanged(NetworkProvider np) { }
 }
+

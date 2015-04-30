@@ -15,8 +15,9 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.activities;
 
+import de.grobox.liberario.R;
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.ui.DelayAutoCompleteTextView;
 import de.grobox.liberario.ui.LocationInputView;

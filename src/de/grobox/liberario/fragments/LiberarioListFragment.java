@@ -15,34 +15,13 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.fragments;
 
-import java.util.List;
+import de.schildbach.pte.NetworkProvider;
+import android.support.v4.app.ListFragment;
 
-import android.content.Context;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-
-public class MainPagerAdapter extends FragmentPagerAdapter {
-	private List<String> fragments;
-	private Context context;
-
-	public MainPagerAdapter(FragmentManager fm, Context context, List<String> fragments) {
-		super(fm);
-		this.context = context;
-		this.fragments = fragments;
-	}
-
-	@Override
-	public Fragment getItem(int position) {
-		return Fragment.instantiate(context, fragments.get(position));
-
-	}
-
-	@Override
-	public int getCount() {
-		return fragments.size();
-	}
+public class LiberarioListFragment extends ListFragment {
+	public void onNetworkProviderChanged(NetworkProvider np) { }
 }
+

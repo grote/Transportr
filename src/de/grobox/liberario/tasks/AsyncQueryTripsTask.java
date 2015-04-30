@@ -15,11 +15,10 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.tasks;
 
 import java.util.Date;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Set;
 
 import android.app.ProgressDialog;
@@ -31,6 +30,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import de.grobox.liberario.NetworkProviderFactory;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.activities.AmbiguousLocationActivity;
+import de.grobox.liberario.activities.TripsActivity;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;

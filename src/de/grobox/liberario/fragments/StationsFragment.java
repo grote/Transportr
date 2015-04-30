@@ -15,13 +15,22 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.fragments;
 
 import java.util.List;
 
+import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
+import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.adapters.LocationAdapter;
+import de.grobox.liberario.NetworkProviderFactory;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.activities.SetHomeActivity;
+import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.ui.DelayAutoCompleteTextView;
 import de.grobox.liberario.ui.LocationInputView;
+import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.NetworkProvider.Capability;

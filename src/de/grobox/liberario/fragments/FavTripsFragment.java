@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.fragments;
 
 import java.util.List;
 
@@ -39,6 +39,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import de.grobox.liberario.tasks.AsyncQueryTripsTask;
+import de.grobox.liberario.FavTrip;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
 import de.grobox.liberario.data.FavDB;
 
 public class FavTripsFragment extends LiberarioListFragment {

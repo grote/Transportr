@@ -15,8 +15,13 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.tasks;
 
+import de.grobox.liberario.NetworkProviderFactory;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.activities.StationsListActivity;
+import de.grobox.liberario.fragments.StationsFragment;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -90,7 +95,7 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLo
 		intent.setAction("de.grobox.liberario.LIST_NEARBY_STATIONS");
 		intent.putExtra("de.schildbach.pte.dto.NearbyStationsResult", result);
 		intent.putExtra("de.schildbach.pte.dto.Location", loc);
-		intent.putExtra("de.grobox.liberario.StationsListActivity.gps", gps);
+		intent.putExtra("de.grobox.liberario.activities.StationsListActivity.gps", gps);
 		context.startActivity(intent);
 	}
 

@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.activities;
 
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
@@ -25,6 +25,8 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+
+import de.grobox.liberario.R;
 
 public class AboutActivity extends AppCompatActivity {
 

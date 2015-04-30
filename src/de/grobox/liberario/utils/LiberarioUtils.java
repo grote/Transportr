@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
@@ -41,6 +41,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
+import de.grobox.liberario.activities.MapStationsActivity;
+import de.grobox.liberario.NetworkProviderFactory;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.activities.StationsListActivity;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;

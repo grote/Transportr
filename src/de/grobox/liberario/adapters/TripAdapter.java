@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +30,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import de.grobox.liberario.R;
+import de.grobox.liberario.activities.TripDetailActivity;
 import de.grobox.liberario.ui.FlowLayout;
+import de.grobox.liberario.utils.DateUtils;
+import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Trip;
 
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder>{

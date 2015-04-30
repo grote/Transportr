@@ -15,10 +15,15 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.activities;
 
 import java.util.ArrayList;
 
+import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
+import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.utils.DateUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.LineDestination;
 import de.schildbach.pte.dto.Location;
@@ -78,7 +83,7 @@ public class StationsListActivity extends AppCompatActivity {
 		if(intent.getAction() != null && intent.getAction().equals("de.grobox.liberario.LIST_NEARBY_STATIONS")) {
 			NearbyLocationsResult stations = (NearbyLocationsResult) intent.getSerializableExtra("de.schildbach.pte.dto.NearbyStationsResult");
 			mMyLocation = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
-			gps = intent.getBooleanExtra("de.grobox.liberario.StationsListActivity.gps", false);
+			gps = intent.getBooleanExtra("de.grobox.liberario.activities.StationsListActivity.gps", false);
 
 			mStations.addAll(stations.locations);
 		}

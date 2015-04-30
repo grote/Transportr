@@ -19,7 +19,6 @@ package de.grobox.liberario.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -28,8 +27,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import de.grobox.liberario.DateUtils;
-import de.grobox.liberario.LiberarioUtils;
+import de.grobox.liberario.utils.DateUtils;
+import de.grobox.liberario.utils.LiberarioUtils;
 import de.grobox.liberario.R;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;

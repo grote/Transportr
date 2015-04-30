@@ -15,12 +15,16 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.activities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import de.grobox.liberario.NetworkItem;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.adapters.NetworkProviderListAdapter;
 import de.schildbach.pte.NetworkId;
 
 import android.content.Context;

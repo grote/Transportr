@@ -15,10 +15,14 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.activities;
 
 import java.util.Date;
 
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.fragments.TripDetailFragment;
+import de.grobox.liberario.utils.DateUtils;
 import de.schildbach.pte.dto.Trip;
 
 import android.os.Bundle;

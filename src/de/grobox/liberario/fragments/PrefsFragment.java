@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,6 +23,12 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
+import de.grobox.liberario.NetworkProviderFactory;
+import de.grobox.liberario.activities.PickNetworkProviderActivity;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.activities.SetHomeActivity;
+import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 

@@ -15,46 +15,46 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.tasks;
 
 import java.io.IOException;
-import java.util.Date;
 
+import de.grobox.liberario.NetworkProviderFactory;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.activities.TripsActivity;
 import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.dto.QueryDeparturesResult;
+import de.schildbach.pte.dto.QueryTripsContext;
+import de.schildbach.pte.dto.QueryTripsResult;
 
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.Toast;
 
-public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDeparturesResult> {
-	private StationsListActivity activity;
-	private View view;
-	private String station;
+public class AsyncQueryMoreTripsTask extends AsyncTask<Void, Void, QueryTripsResult> {
+	private TripsActivity activity;
+	private QueryTripsContext qtcontext;
+	private Boolean later;
 	private String error = null;
-	private int max_departures;
 
-	public AsyncQueryDeparturesTask(StationsListActivity activity, View view, String station, int max_departures) {
+	public AsyncQueryMoreTripsTask(TripsActivity activity, QueryTripsContext qtcontext, Boolean later) {
 		this.activity = activity;
-		this.view = view;
-		this.station = station;
-		this.max_departures = max_departures;
+		this.qtcontext = qtcontext;
+		this.later = later;
 	}
 
 	@Override
-	protected QueryDeparturesResult doInBackground(Void... params) {
-		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(activity));
+	protected QueryTripsResult doInBackground(Void... params) {
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(activity.getBaseContext()));
 
 		try {
-			if(AsyncQueryTripsTask.isNetworkAvailable(activity)) {
-				// TODO allow for custom time/date to be specified
-				return np.queryDepartures(station, new Date(), max_departures, true);
+			if(AsyncQueryTripsTask.isNetworkAvailable(activity.getBaseContext())) {
+				return np.queryMoreTrips(qtcontext, later);
 			}
 			else {
 				error = activity.getResources().getString(R.string.error_no_internet);
 				return null;
 			}
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 
 			if(e.getCause() != null) {
@@ -67,20 +67,18 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 	}
 
 	@Override
-	protected void onPostExecute(QueryDeparturesResult result) {
-		if(result == null || result.status != QueryDeparturesResult.Status.OK) {
+	protected void onPostExecute(QueryTripsResult result) {
+		if(result == null || result.trips == null) {
 			if(error == null) {
-				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_departures_found), Toast.LENGTH_LONG).show();
+				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
 			} else {
 				Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
 			}
-			// although not successful, we are still done
-			activity.noDepartures(view);
-
-			return;
 		}
-
-		activity.addDepartures(view, result);
+		else {
+			activity.addMoreTrips(result, later);
+		}
+		activity.onRefreshComplete(later);
 	}
 
 }

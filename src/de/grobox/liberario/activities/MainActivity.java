@@ -15,9 +15,17 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.activities;
 
 import de.cketti.library.changelog.ChangeLog;
+import de.grobox.liberario.fragments.DirectionsFragment;
+import de.grobox.liberario.fragments.FavTripsFragment;
+import de.grobox.liberario.fragments.LiberarioFragment;
+import de.grobox.liberario.fragments.LiberarioListFragment;
+import de.grobox.liberario.NetworkProviderFactory;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.fragments.StationsFragment;
 import de.grobox.liberario.ui.SlidingTabLayout;
 import de.schildbach.pte.NetworkProvider;
 
@@ -41,8 +49,8 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 	MainPagerAdapter mPagerAdapter;
 
-	static final int CHANGED_NETWORK_PROVIDER = 1;
-	static final int CHANGED_HOME = 2;
+	static final public int CHANGED_NETWORK_PROVIDER = 1;
+	static final public int CHANGED_HOME = 2;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

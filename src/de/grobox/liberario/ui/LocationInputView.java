@@ -31,7 +31,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.LocationAdapter;
+import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.R;
 import de.schildbach.pte.dto.Location;
 

@@ -30,7 +30,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name="de.grobox.liberario.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden" >
 
@@ -41,23 +41,23 @@
         </activity>
 
         <activity
-            android:name="de.grobox.liberario.TripsActivity"
-            android:parentActivityName="de.grobox.liberario.MainActivity" />
+            android:name=".activities.TripsActivity"
+            android:parentActivityName=".activities.MainActivity" />
 
         <activity
-            android:name="de.grobox.liberario.TripDetailActivity"
-            android:parentActivityName="de.grobox.liberario.TripsActivity" />
+            android:name=".activities.TripDetailActivity"
+            android:parentActivityName=".activities.TripsActivity" />
 
         <activity
-            android:name="de.grobox.liberario.AmbiguousLocationActivity" />
+            android:name=".activities.AmbiguousLocationActivity" />
 
         <activity
-            android:name="de.grobox.liberario.PickNetworkProviderActivity"
+            android:name=".activities.PickNetworkProviderActivity"
              android:label="@string/pick_network_activity" />
 
         <activity
-            android:name="de.grobox.liberario.StationsListActivity"
-            android:parentActivityName="de.grobox.liberario.MainActivity"
+            android:name=".activities.StationsListActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:uiOptions="splitActionBarWhenNarrow">
 
             <meta-data android:name="android.support.UI_OPTIONS"
@@ -65,19 +65,19 @@
         </activity>
 
         <activity
-            android:name="de.grobox.liberario.SetHomeActivity"
+            android:name=".activities.SetHomeActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name="de.grobox.liberario.MapStationsActivity" />
+            android:name=".activities.MapStationsActivity" />
 
         <activity
-            android:name="de.grobox.liberario.AboutActivity"
+            android:name=".activities.AboutActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name="de.grobox.liberario.PrefsActivity"
-            android:parentActivityName="de.grobox.liberario.MainActivity" />
+            android:name=".activities.PrefsActivity"
+            android:parentActivityName=".activities.MainActivity" />
 
     </application>
 

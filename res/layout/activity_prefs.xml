@@ -10,7 +10,7 @@
         android:id="@+id/prefs"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="de.grobox.liberario.PrefsFragment"
+        android:name="de.grobox.liberario.fragments.PrefsFragment"
         />
 
 </LinearLayout>

@@ -15,12 +15,18 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.activities;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.grobox.liberario.tasks.AsyncQueryTripsTask;
+import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.FavTrip;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;

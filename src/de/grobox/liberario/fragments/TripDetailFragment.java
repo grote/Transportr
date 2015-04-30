@@ -15,13 +15,17 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.fragments;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
 import de.grobox.liberario.ui.LegPopupMenu;
+import de.grobox.liberario.utils.DateUtils;
+import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;

@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.activities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,9 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 

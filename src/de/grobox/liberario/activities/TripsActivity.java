@@ -15,8 +15,12 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.activities;
 
+import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.adapters.TripAdapter;
 import de.schildbach.pte.dto.QueryTripsResult;
 
 import android.content.Intent;
