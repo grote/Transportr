@@ -20,113 +20,47 @@
         android:orientation="vertical"
         >
 
-        <TableLayout
+        <LinearLayout
+            android:id="@+id/legsView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:padding="8dp">
 
-            <TableRow
+            <include
+                android:id="@+id/firstLegView"
+                layout="@layout/leg"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/departureTimeView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    tools:text="9:15"
-                    android:layout_gravity="end"/>
-
-                <TextView
-                    android:id="@+id/departureDelayView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    tools:text="+10"
-                    android:padding="2dp"
-                    android:textColor="@color/holo_red_light"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"/>
-
-                <TextView
-                    android:id="@+id/fromView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    tools:text="From Station with a long station name"
-                    />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <de.grobox.liberario.ui.FlowLayout
-                    android:id="@+id/lineLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_column="2"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:id="@+id/durationView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="3:33"
-                    />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/arrivalTimeView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="10:20"
-                    android:layout_gravity="end"/>
-
-                <TextView
-                    android:id="@+id/arrivalDelayView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    tools:text="+2"
-                    android:textColor="@color/holo_red_light"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"/>
-
-                <TextView
-                    android:id="@+id/toView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="To Station with a shorter name" />
-            </TableRow>
-        </TableLayout>
+        <include
+            android:id="@+id/dividerView"
+            layout="@layout/divider_horizontal"
+            />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:background="@color/ripple_material_dark">
 
             <ImageView
                 android:id="@+id/shareView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_menu_share"
-                android:padding="8dp"/>
+                android:padding="8dp"
+                android:contentDescription="@string/action_trip_share"/>
 
             <ImageView
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_menu_my_calendar"
-                android:padding="8dp"/>
+                android:padding="8dp"
+                android:contentDescription="@string/action_trip_calendar"/>
 
             <View
                 android:layout_width="0dp"
@@ -137,9 +71,9 @@
                 android:id="@+id/expandView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_more"
+                android:src="@drawable/ic_action_navigation_unfold_more"
                 android:padding="8dp"
-                android:visibility="invisible"/>
+                android:contentDescription="@string/action_navigation_expand"/>
 
         </LinearLayout>
     </LinearLayout>

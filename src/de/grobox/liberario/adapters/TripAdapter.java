@@ -19,6 +19,7 @@ package de.grobox.liberario.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -28,8 +29,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import de.grobox.liberario.ListTrip;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TripDetailActivity;
 import de.grobox.liberario.ui.FlowLayout;
@@ -37,9 +40,9 @@ import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Trip;
 
-public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder>{
+public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
-	private SortedList<Trip> trips = new SortedList<Trip>(Trip.class, new SortedList.Callback<Trip>(){
+	private SortedList<ListTrip> trips = new SortedList<>(ListTrip.class, new SortedList.Callback<ListTrip>(){
 		@Override
 		public void onInserted(int position, int count) {
 			notifyItemRangeInserted(position, count);
@@ -61,85 +64,90 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder>{
 		}
 
 		@Override
-		 public int compare(Trip t1, Trip t2) {
-			return t1.getFirstDepartureTime().compareTo(t2.getFirstDepartureTime());
+		 public int compare(ListTrip t1, ListTrip t2) {
+			return t1.trip.getFirstDepartureTime().compareTo(t2.trip.getFirstDepartureTime());
 		}
 
 		@Override
-		public boolean areItemsTheSame(Trip t1, Trip t2) {
-			return t1.equals(t2);
+		public boolean areItemsTheSame(ListTrip t1, ListTrip t2) {
+			return t1.trip.equals(t2.trip);
 		}
 
 		@Override
-		 public boolean areContentsTheSame(Trip t_old, Trip t_new) {
+		 public boolean areContentsTheSame(ListTrip t_old, ListTrip t_new) {
+			// keep expanded state when trip is updated in case Provider returns same trips
+			t_new.expanded = t_old.expanded;
+
 			// return whether the trips' visual representations are the same or not
-			return t_old.equals(t_new);
+			return t_old.trip.equals(t_new.trip);
 		}
 	});
 	private int rowLayout;
 	private Context context;
 
-	public TripAdapter(List<Trip> trips, int rowLayout, Context context) {
+	public TripAdapter(List<ListTrip> trips, int rowLayout, Context context) {
 		addAll(trips);
 		this.rowLayout = rowLayout;
 		this.context = context;
 	}
 
 	@Override
-	public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-		View v = LayoutInflater.from(viewGroup.getContext()).inflate(rowLayout, viewGroup, false);
-
-		return new ViewHolder(v);
+	public int getItemViewType(int position) {
+		return trips.get(position).trip.legs.size();
 	}
 
 	@Override
-	public void onBindViewHolder(ViewHolder ui, int i) {
-		final Trip trip = trips.get(i);
+	public TripHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+		View v = LayoutInflater.from(viewGroup.getContext()).inflate(rowLayout, viewGroup, false);
 
-		// Locations
-		ui.from.setText(trip.from.uniqueShortName());
-		ui.to.setText(trip.to.uniqueShortName());
+		return new TripHolder(v, i);
+	}
 
-		// Departure Time and Delay
-		final Trip.Leg first_leg = trip.legs.get(0);
-		if(trip.legs.size() > 0 && first_leg instanceof Trip.Public) {
-			LiberarioUtils.setDepartureTimes(context, ui.departureTime, ui.departureDelay, ((Trip.Public) first_leg).departureStop);
-		} else {
-			ui.departureTime.setText(DateUtils.getTime(context, trip.getFirstDepartureTime()));
-			// show delay for last public leg
-			final Trip.Public pleg = trip.getFirstPublicLeg();
-			if(pleg != null && pleg.getDepartureDelay() != null) {
-				ui.departureDelay.setText(LiberarioUtils.getDelayText(pleg.getDepartureDelay()));
-			}
-		}
+	@Override
+	public void onBindViewHolder(final TripHolder ui, final int position) {
+		final ListTrip trip = trips.get(position);
 
-		// Arrival Time and Delay
-		final Trip.Leg last_leg = trip.legs.get(trip.legs.size() - 1);
-		if(last_leg != null && last_leg instanceof Trip.Public) {
-			LiberarioUtils.setArrivalTimes(context, ui.arrivalTime, ui.arrivalDelay, ((Trip.Public) last_leg).arrivalStop);
-		} else {
-			ui.arrivalTime.setText(DateUtils.getTime(context, trip.getLastArrivalTime()));
-			// show delay for last public leg
-			final Trip.Public pleg = trip.getLastPublicLeg();
-			if(pleg != null && pleg.getArrivalDelay() != null) {
-				ui.arrivalDelay.setText(LiberarioUtils.getDelayText(pleg.getArrivalDelay()));
-			}
-		}
+		// re-apply current expansion saved in trip
+		expandTrip(ui, !trip.expanded);
 
-		// Duration
-		ui.duration.setText(DateUtils.getDuration(trip.getDuration()));
+		int i = 0;
+		for(final Trip.Leg leg : trip.trip.legs) {
+			LegHolder leg_holder = ui.legs.get(i);
 
-		// Clear Transport Icons to avoid accumulation when same trips are returned
-		ui.lines.removeAllViews();
+			// Locations
+			leg_holder.departureLocation.setText(leg.departure.uniqueShortName());
+			leg_holder.arrivalLocation.setText(leg.arrival.uniqueShortName());
 
-		// Transport Line Icons
-		for(final Trip.Leg leg : trip.legs) {
+			// Clear Transport Icons to avoid accumulation when same trips are returned
+			leg_holder.line.removeAllViews();
+
 			if(leg instanceof Trip.Public) {
-				LiberarioUtils.addLineBox(context, ui.lines, ((Trip.Public) leg).line);
+				LiberarioUtils.setArrivalTimes(context, leg_holder.arrivalTime, leg_holder.arrivalDelay, ((Trip.Public) leg).arrivalStop);
+				LiberarioUtils.setDepartureTimes(context, leg_holder.departureTime, leg_holder.departureDelay, ((Trip.Public) leg).departureStop);
+
+				LiberarioUtils.addLineBox(context, leg_holder.line, ((Trip.Public) leg).line);
 			}
 			else if(leg instanceof Trip.Individual) {
-				LiberarioUtils.addWalkingBox(context, ui.lines);
+				leg_holder.arrivalTime.setText(DateUtils.getTime(context, ((Trip.Individual) leg).arrivalTime));
+				leg_holder.departureTime.setText(DateUtils.getTime(context, ((Trip.Individual) leg).departureTime));
+/*
+				// TODO needs adapting
+				// show delay for last public leg
+				final Trip.Public fpleg = trip.getFirstPublicLeg();
+				if(fpleg != null && fpleg.getDepartureDelay() != null) {
+					leg_holder.departureDelay.setText(LiberarioUtils.getDelayText(fpleg.getDepartureDelay()));
+				}
+
+				// TODO needs adapting
+				// show delay for last public leg
+				final Trip.Public lpleg = trip.getLastPublicLeg();
+				if(lpleg != null && lpleg.getArrivalDelay() != null) {
+					leg_holder.arrivalDelay.setText(LiberarioUtils.getDelayText(lpleg.getArrivalDelay()));
+				}
+*/
+				LiberarioUtils.addWalkingBox(context, leg_holder.line);
 			}
+			i += 1;
 		}
 
 		// Share Trip
@@ -148,8 +156,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder>{
 			public void onClick(View view) {
 				Intent sendIntent = new Intent()
 						                    .setAction(Intent.ACTION_SEND)
-						                    .putExtra(Intent.EXTRA_SUBJECT, LiberarioUtils.tripToSubject(context, trip, true))
-						                    .putExtra(Intent.EXTRA_TEXT, LiberarioUtils.tripToString(context, trip))
+						                    .putExtra(Intent.EXTRA_SUBJECT, LiberarioUtils.tripToSubject(context, trip.trip, true))
+						                    .putExtra(Intent.EXTRA_TEXT, LiberarioUtils.tripToString(context, trip.trip))
 						                    .setType("text/plain")
 						                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 				context.startActivity(Intent.createChooser(sendIntent, context.getResources().getText(R.string.share_trip_via)));
@@ -162,12 +170,22 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder>{
 			public void onClick(View view) {
 				Intent intent = new Intent(Intent.ACTION_EDIT)
 						                .setType("vnd.android.cursor.item/event")
-						                .putExtra("beginTime", trip.getFirstDepartureTime().getTime())
-						                .putExtra("endTime", trip.getLastArrivalTime().getTime())
-						                .putExtra("title", trip.from.name + " → " + trip.to.name)
-						                .putExtra("description", LiberarioUtils.tripToString(context, trip));
-				if(trip.from.place != null) intent.putExtra("eventLocation", trip.from.place);
+						                .putExtra("beginTime", trip.trip.getFirstDepartureTime().getTime())
+						                .putExtra("endTime", trip.trip.getLastArrivalTime().getTime())
+						                .putExtra("title", trip.trip.from.name + " → " + trip.trip.to.name)
+						                .putExtra("description", LiberarioUtils.tripToString(context, trip.trip));
+				if(trip.trip.from.place != null) intent.putExtra("eventLocation", trip.trip.from.place);
 				context.startActivity(intent);
+			}
+		});
+
+		// Expand Card
+		ui.expand.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				ListTrip t = trips.get(position);
+				expandTrip(ui, t.expanded);
+				t.expanded = !t.expanded;
 			}
 		});
 
@@ -175,9 +193,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder>{
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(context, TripDetailActivity.class);
-				intent.putExtra("de.schildbach.pte.dto.Trip", trip);
-				intent.putExtra("de.schildbach.pte.dto.Trip.from", trip.from);
-				intent.putExtra("de.schildbach.pte.dto.Trip.to", trip.to);
+				intent.putExtra("de.schildbach.pte.dto.Trip", trip.trip);
+				intent.putExtra("de.schildbach.pte.dto.Trip.from", trip.trip.from);
+				intent.putExtra("de.schildbach.pte.dto.Trip.to", trip.trip.to);
 				context.startActivity(intent);
 			}
 		});
@@ -188,52 +206,124 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.ViewHolder>{
 		return trips == null ? 0 : trips.size();
 	}
 
-	public void addAll(final List<Trip> trips) {
+	public void addAll(final List<ListTrip> trips) {
 		this.trips.beginBatchedUpdates();
-		for(final Trip item : trips) {
+		for(final ListTrip item : trips) {
 			this.trips.add(item);
 		}
 		this.trips.endBatchedUpdates();
 	}
 
-	public boolean remove(Trip trip) {
+	public boolean remove(ListTrip trip) {
 		return this.trips.remove(trip);
 	}
 
-	public Trip removeItemAt(int index) {
+	public ListTrip removeItemAt(int index) {
 		return this.trips.removeItemAt(index);
 	}
 
-	public static class ViewHolder extends RecyclerView.ViewHolder {
+	public void expandTrip(TripHolder ui, boolean expand) {
+		Drawable icon;
+		int state;
+
+		if(expand) {
+			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_more);
+			state = View.GONE;
+		}
+		else {
+			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_less);
+			state = View.VISIBLE;
+		}
+		ui.expand.setImageDrawable(icon);
+
+		if(ui.legs.size() <= 1) return;
+
+		int i = 0;
+		for(LegHolder leg : ui.legs) {
+			if(i == 0) {
+				// first leg
+				leg.arrival.setVisibility(state);
+			} else if(i == ui.legs.size() - 1) {
+				// last leg
+				leg.departure.setVisibility(state);
+			} else {
+				// middle legs
+				leg.departure.setVisibility(state);
+				leg.arrival.setVisibility(state);
+			}
+			i += 1;
+		}
+	}
+
+	public static class TripHolder extends RecyclerView.ViewHolder {
 		public CardView card;
-		public TextView departureTime;
-		public TextView arrivalTime;
-		public TextView departureDelay;
-		public TextView arrivalDelay;
-		public TextView from;
-		public TextView to;
+		public ViewGroup legsView;
+		public ViewGroup firstLeg;
 		public FlowLayout lines;
 		public TextView duration;
 		public ImageView share;
 		public ImageView calendar;
 		public ImageView expand;
+		List<LegHolder> legs;
 
-		public ViewHolder(View itemView) {
-			super(itemView);
+		public TripHolder(View v, int size) {
+			super(v);
 
-			card = (CardView) itemView.findViewById(R.id.cardView);
-			departureTime = (TextView) itemView.findViewById(R.id.departureTimeView);
-			arrivalTime = (TextView) itemView.findViewById(R.id.arrivalTimeView);
-			departureDelay = (TextView) itemView.findViewById(R.id.departureDelayView);
-			arrivalDelay = (TextView) itemView.findViewById(R.id.arrivalDelayView);
-			from = (TextView) itemView.findViewById(R.id.fromView);
-			to = (TextView) itemView.findViewById(R.id.toView);
-			lines = (FlowLayout) itemView.findViewById(R.id.lineLayout);
-			duration = (TextView) itemView.findViewById(R.id.durationView);
-			share = (ImageView) itemView.findViewById(R.id.shareView);
-			calendar = (ImageView) itemView.findViewById(R.id.calendarView);
-			expand = (ImageView) itemView.findViewById(R.id.expandView);
+			card = (CardView) v.findViewById(R.id.cardView);
+			legsView = (ViewGroup) v.findViewById(R.id.legsView);
+			firstLeg = (ViewGroup) v.findViewById(R.id.firstLegView);
+			lines = (FlowLayout) v.findViewById(R.id.lineLayout);
+			duration = (TextView) v.findViewById(R.id.durationView);
+			share = (ImageView) v.findViewById(R.id.shareView);
+			calendar = (ImageView) v.findViewById(R.id.calendarView);
+			expand = (ImageView) v.findViewById(R.id.expandView);
+
+			LegHolder firstLegHolder = new LegHolder(firstLeg);
+			firstLegHolder.departure.setVisibility(View.VISIBLE);
+			if(size == 1) firstLegHolder.arrival.setVisibility(View.VISIBLE);
+			legs = new ArrayList<>();
+			legs.add(firstLegHolder);
+
+			// add more leg views for number of legs
+			for(int i = 1; i < size; i++) {
+				View legView = LayoutInflater.from(v.getContext()).inflate(R.layout.leg, legsView, false);
+				legsView.addView(legView);
+
+				LegHolder legHolder = new LegHolder(legView);
+
+				if(i == size - 1) legHolder.arrival.setVisibility(View.VISIBLE);
+
+				legs.add(legHolder);
+			}
 		}
+	}
 
+	public static class LegHolder extends RecyclerView.ViewHolder {
+		public ViewGroup departure;
+		public ViewGroup arrival;
+		public TextView departureTime;
+		public TextView departureDelay;
+		public TextView arrivalTime;
+		public TextView arrivalDelay;
+		public TextView departureLocation;
+		public TextView arrivalLocation;
+		public FlowLayout line;
+
+		public LegHolder(View v) {
+			super(v);
+
+			departure = (ViewGroup) v.findViewById(R.id.departureView);
+			arrival = (ViewGroup) v.findViewById(R.id.arrivalView);
+			departureTime = (TextView) v.findViewById(R.id.departureTimeView);
+			departureDelay = (TextView) v.findViewById(R.id.departureDelayView);
+			arrivalTime = (TextView) v.findViewById(R.id.arrivalTimeView);
+			arrivalDelay = (TextView) v.findViewById(R.id.arrivalDelayView);
+			departureLocation = (TextView) v.findViewById(R.id.departureLocationView);
+			arrivalLocation =  (TextView) v.findViewById(R.id.arrivalLocationView);
+			line = (FlowLayout) v.findViewById(R.id.lineLayout);
+
+			arrival.setVisibility(View.GONE);
+			departure.setVisibility(View.GONE);
+		}
 	}
 }

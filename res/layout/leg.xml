@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    tools:showIn="@layout/trip">
+
+    <LinearLayout
+        android:id="@+id/departureView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/departureTimeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            tools:text="9:15"
+            android:layout_gravity="end"/>
+
+        <TextView
+            android:id="@+id/departureDelayView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            tools:text="+10"
+            android:padding="2dp"
+            android:textColor="@color/holo_red_light"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"/>
+
+        <TextView
+            android:id="@+id/departureLocationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Departure Station with a longer name"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/infoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <de.grobox.liberario.ui.FlowLayout
+            android:id="@+id/lineLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:layout_marginLeft="50dp"/>
+
+        <TextView
+            android:id="@+id/durationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="3:33"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/arrivalView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/arrivalTimeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            tools:text="9:15"
+            android:layout_gravity="end"/>
+
+        <TextView
+            android:id="@+id/arrivalDelayView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            tools:text="+10"
+            android:padding="2dp"
+            android:textColor="@color/holo_red_light"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"/>
+
+        <TextView
+            android:id="@+id/arrivalLocationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Arrival Station with a name"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+</LinearLayout>

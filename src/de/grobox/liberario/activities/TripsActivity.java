@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.activities;
 
+import de.grobox.liberario.ListTrip;
 import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
@@ -66,7 +67,8 @@ public class TripsActivity extends AppCompatActivity {
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 		mRecyclerView.setHasFixedSize(true);
 
-		mAdapter = new TripAdapter(start_context.trips, R.layout.trip, this);
+		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), R.layout.trip, this);
+		mAdapter.setHasStableIds(false);
 		mRecyclerView.setAdapter(mAdapter);
 
 		swipeRefresh = (SwipyRefreshLayout) findViewById(R.id.swipe_refresh_layout);
@@ -114,7 +116,7 @@ public class TripsActivity extends AppCompatActivity {
 
 	public void addMoreTrips(QueryTripsResult trip_results, boolean later) {
 		if(trip_results != null) {
-			mAdapter.addAll(trip_results.trips);
+			mAdapter.addAll(ListTrip.getList(trip_results.trips));
 
 			// save trip results to have context for next query
 			if(later) end_context = trip_results;
