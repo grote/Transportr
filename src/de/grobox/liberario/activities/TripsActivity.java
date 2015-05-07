@@ -17,13 +17,6 @@
 
 package de.grobox.liberario.activities;
 
-import de.grobox.liberario.ListTrip;
-import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
-import de.grobox.liberario.Preferences;
-import de.grobox.liberario.R;
-import de.grobox.liberario.adapters.TripAdapter;
-import de.schildbach.pte.dto.QueryTripsResult;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -34,8 +27,20 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.nispok.snackbar.Snackbar;
+import com.nispok.snackbar.SnackbarManager;
+import com.nispok.snackbar.listeners.ActionClickListener;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+
+import de.grobox.liberario.ListTrip;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.adapters.TripAdapter;
+import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
+import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
+import de.schildbach.pte.dto.QueryTripsResult;
+import de.schildbach.pte.dto.Trip;
 
 public class TripsActivity extends AppCompatActivity {
 	private QueryTripsResult start_context;
@@ -62,16 +67,57 @@ public class TripsActivity extends AppCompatActivity {
 		start_context = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
 		end_context = start_context;
 
+		swipeRefresh = (SwipyRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+
 		mRecyclerView = (RecyclerView) findViewById(R.id.trips_recycler_view);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 		mRecyclerView.setHasFixedSize(true);
 
-		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), R.layout.trip, this);
+		final SwipeDismissRecyclerViewTouchListener touchListener = new SwipeDismissRecyclerViewTouchListener(mRecyclerView,
+             new SwipeDismissRecyclerViewTouchListener.DismissCallbacks() {
+                 @Override
+                 public boolean canDismiss(int position) {
+                     return true;
+                 }
+
+                 @Override
+                 public void onDismiss(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                     for (int position : reverseSortedPositions) {
+                         mAdapter.removeItemAt(position);
+	                     SnackbarManager.show(Snackbar.with(TripsActivity.this)
+			                                          .text(getString(R.string.trip_removed))
+			                                          .actionLabel(getString(R.string.undo))
+			                                          .actionListener(new ActionClickListener() {
+				                                          @Override
+				                                          public void onActionClicked(Snackbar snackbar) {
+					                                          mAdapter.undo();
+				                                          }
+			                                          })
+			                                          .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
+	                     );
+                     }
+                 }
+
+	             @Override
+	             public void onItemClick(int position) {
+		             Trip trip = mAdapter.getItem(position).trip;
+
+		             Intent intent = new Intent(TripsActivity.this, TripDetailActivity.class);
+		             intent.putExtra("de.schildbach.pte.dto.Trip", trip);
+		             intent.putExtra("de.schildbach.pte.dto.Trip.from", trip.from);
+		             intent.putExtra("de.schildbach.pte.dto.Trip.to", trip.to);
+
+		             startActivity(intent);
+	             }
+             });
+
+		// Setting this scroll listener is required to ensure that during ListView scrolling, we don't look for swipes.
+		mRecyclerView.setOnScrollListener(touchListener.makeScrollListener());
+
+		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), R.layout.trip, touchListener, this);
 		mAdapter.setHasStableIds(false);
 		mRecyclerView.setAdapter(mAdapter);
-
-		swipeRefresh = (SwipyRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 	}
 
 	@Override

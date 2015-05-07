@@ -19,6 +19,7 @@ dependencies {
 	compile 'com.android.support:recyclerview-v7:22.1.0'
 	compile 'com.github.orangegangsters:swipy:1.2.0'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
+	compile 'com.nispok:snackbar:2.10.7'
 	compile project(':sublibs:Android-PullToRefresh:library')
 	compile project(':sublibs:OSMBonusPack')
 
@@ -35,7 +36,7 @@ android {
 		compileSdkVersion 22
 		targetSdkVersion 22
 		buildToolsVersion "22.0.1"
-		minSdkVersion 11
+		minSdkVersion 12
 	}
 
 	sourceSets {

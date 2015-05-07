@@ -41,6 +41,7 @@
     <string name="trip_arr">arr</string>
     <string name="trip_start">Start:</string>
     <string name="trip_destination">Dest.:</string>
+    <string name="trip_removed">Removed Trip</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="time">Time</string>
@@ -63,6 +64,7 @@
     <string name="find_nearby_stations">Find Nearby Stations</string>
     <string name="find_departures">Find Departures</string>
     <string name="share_trip_via">Share Trip Via&#8230;</string>
+    <string name="undo">Undo</string>
 
     <string name="error_pick_network">Please select one transportation network!</string>
     <string name="error_no_internet">No sufficient internet connection available</string>

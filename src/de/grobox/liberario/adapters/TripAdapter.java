@@ -34,8 +34,8 @@ import java.util.List;
 
 import de.grobox.liberario.ListTrip;
 import de.grobox.liberario.R;
-import de.grobox.liberario.activities.TripDetailActivity;
 import de.grobox.liberario.ui.FlowLayout;
+import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
 import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Trip;
@@ -83,12 +83,17 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		}
 	});
 	private int rowLayout;
+	private SwipeDismissRecyclerViewTouchListener touchListener;
 	private Context context;
+	private List<ListTrip> removed;
 
-	public TripAdapter(List<ListTrip> trips, int rowLayout, Context context) {
-		addAll(trips);
+	public TripAdapter(List<ListTrip> trips, int rowLayout, SwipeDismissRecyclerViewTouchListener touchListener, Context context) {
 		this.rowLayout = rowLayout;
+		this.touchListener = touchListener;
 		this.context = context;
+		this.removed = new ArrayList<>();
+
+		addAll(trips);
 	}
 
 	@Override
@@ -106,6 +111,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 	@Override
 	public void onBindViewHolder(final TripHolder ui, final int position) {
 		final ListTrip trip = trips.get(position);
+
+		// listen to touches also in the card, because it does not work only in the RecyclerView
+		ui.card.setOnTouchListener(touchListener);
 
 		// re-apply current expansion saved in trip
 		expandTrip(ui, !trip.expanded);
@@ -188,17 +196,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				t.expanded = !t.expanded;
 			}
 		});
-
-		ui.card.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent intent = new Intent(context, TripDetailActivity.class);
-				intent.putExtra("de.schildbach.pte.dto.Trip", trip.trip);
-				intent.putExtra("de.schildbach.pte.dto.Trip.from", trip.trip.from);
-				intent.putExtra("de.schildbach.pte.dto.Trip.to", trip.trip.to);
-				context.startActivity(intent);
-			}
-		});
 	}
 
 	@Override
@@ -206,20 +203,34 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		return trips == null ? 0 : trips.size();
 	}
 
+	public ListTrip getItem(int position) {
+		return trips.get(position);
+	}
+
 	public void addAll(final List<ListTrip> trips) {
 		this.trips.beginBatchedUpdates();
-		for(final ListTrip item : trips) {
-			this.trips.add(item);
+		for(final ListTrip trip : trips) {
+			// TODO make sure to only add trips that have not been removed already
+			this.trips.add(trip);
 		}
 		this.trips.endBatchedUpdates();
 	}
 
 	public boolean remove(ListTrip trip) {
+		removed.add(trip);
+
 		return this.trips.remove(trip);
 	}
 
 	public ListTrip removeItemAt(int index) {
-		return this.trips.removeItemAt(index);
+		ListTrip trip = this.trips.removeItemAt(index);
+		removed.add(trip);
+
+		return trip;
+	}
+
+	public void undo() {
+		trips.add(removed.remove(removed.size() - 1));
 	}
 
 	public void expandTrip(TripHolder ui, boolean expand) {
