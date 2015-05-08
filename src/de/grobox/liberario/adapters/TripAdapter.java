@@ -110,7 +110,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 	@Override
 	public void onBindViewHolder(final TripHolder ui, final int position) {
-		final ListTrip trip = trips.get(position);
+		// get trip with position from View Holder as this one gets updated when trips are removed
+		final ListTrip trip = trips.get(ui.getAdapterPosition());
 
 		// listen to touches also in the card, because it does not work only in the RecyclerView
 		ui.card.setOnTouchListener(touchListener);
@@ -191,9 +192,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		ui.expand.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				ListTrip t = trips.get(position);
-				expandTrip(ui, t.expanded);
-				t.expanded = !t.expanded;
+				expandTrip(ui, trip.expanded);
+				trip.expanded = !trip.expanded;
 			}
 		});
 	}
