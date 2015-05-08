@@ -127,8 +127,8 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 			return;
 		}
 
-		if(result.status == QueryTripsResult.Status.OK) {
-			Log.d(getClass().getSimpleName(), "QueryTripsResult is OK");
+		if(result.status == QueryTripsResult.Status.OK && result.trips.size() > 0) {
+			Log.d(getClass().getSimpleName(), result.toString());
 
 			Intent intent = new Intent(context, TripsActivity.class);
 			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult", result);
@@ -147,7 +147,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult.departure", departure);
 			context.startActivity(intent);
 		}
-		else if(result.status == QueryTripsResult.Status.NO_TRIPS) {
+		else {
 			Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
 		}
 	}
