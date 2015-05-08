@@ -3,7 +3,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:1.1.0'
+		classpath 'com.android.tools.build:gradle:1.2.2'
 	}
 }
 
@@ -15,7 +15,7 @@ apply plugin: 'com.android.application'
 
 dependencies {
 	//compile "com.android.support:appcompat-v7:21.0.0"
-	compile 'com.android.support:support-v4:22.1.0'
+	compile 'com.android.support:support-v4:22.1.1'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	compile project(':sublibs:Android-PullToRefresh:library')
 	compile project(':sublibs:OSMBonusPack')
