@@ -254,7 +254,7 @@ public class SwipeDismissRecyclerViewTouchListener implements View.OnTouchListen
                     // dismiss only if flinging in the same direction as dragging
                     dismiss = (velocityX < 0) == (deltaX < 0);
                     dismissRight = mVelocityTracker.getXVelocity() > 0;
-                } else if(velocityX == 0) {
+                } else if(Math.abs(deltaX) < mViewWidth / 20) {
                     // this is just a simple click, catch it!
                     mCallbacks.onItemClick(mDownPosition);
                 }
