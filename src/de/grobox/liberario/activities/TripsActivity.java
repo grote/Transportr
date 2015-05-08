@@ -114,6 +114,7 @@ public class TripsActivity extends AppCompatActivity {
 
 		// Setting this scroll listener is required to ensure that during ListView scrolling, we don't look for swipes.
 		mRecyclerView.setOnScrollListener(touchListener.makeScrollListener());
+		// TODO also make sure a swipe prevents scrolling
 
 		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), R.layout.trip, touchListener, this);
 		mAdapter.setHasStableIds(false);

@@ -43,4 +43,18 @@ public class ListTrip {
 
 		return new_list;
 	}
+
+	// used when checking list.contains(trip)
+	// ignores expand state
+	public boolean equals(Object o) {
+		if(o == this) {
+			return true;
+		}
+		if(!(o instanceof ListTrip)) {
+			return false;
+		}
+		final ListTrip other = (ListTrip) o;
+
+		return trip.equals(other.trip);
+	}
 }
