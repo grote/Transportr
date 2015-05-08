@@ -27,8 +27,8 @@ dependencies {
 
 android {
 	defaultConfig {
-		versionCode 15
-		versionName "0.6"
+		versionCode 16
+		versionName "0.6.1"
 
 		compileSdkVersion 22
 		targetSdkVersion 22
