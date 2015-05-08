@@ -14,7 +14,7 @@ repositories {
 apply plugin: 'com.android.application'
 
 dependencies {
-	compile "com.android.support:appcompat-v7:22.1.1"
+	compile 'com.android.support:appcompat-v7:22.1.1'
 	compile 'com.android.support:cardview-v7:22.1.0'
 	compile 'com.android.support:recyclerview-v7:22.1.0'
 	compile 'com.github.orangegangsters:swipy:1.2.0'
@@ -25,7 +25,7 @@ dependencies {
 
 	compile files('libs/public-transport-enabler.jar')
 	// needed by PTE to avoid ClassNotFound error
-	compile group: 'com.google.guava', name: 'guava', version: '18.0'
+	compile 'com.google.guava:guava:18.0'
 }
 
 android {
@@ -37,6 +37,18 @@ android {
 		targetSdkVersion 22
 		buildToolsVersion "22.0.1"
 		minSdkVersion 12
+	}
+
+	buildTypes {
+		release {
+			resValue "string", "app_name", "Liberario"
+		}
+
+		debug {
+			applicationIdSuffix ".debug"
+			versionNameSuffix "-debug"
+			resValue "string", "app_name", "Liberario Devel"
+		}
 	}
 
 	sourceSets {
