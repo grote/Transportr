@@ -95,6 +95,7 @@ public class TripsActivity extends AppCompatActivity {
 					                                          mAdapter.undo();
 				                                          }
 			                                          })
+													  .colorResource(R.color.primary_dark)
 			                                          .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
 	                     );
                      }
