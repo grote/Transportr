@@ -18,33 +18,3 @@ mvn clean package -DskipTests
 cd $DIR
 cp sublibs/public-transport-enabler/enabler/target/public-transport-enabler*.jar libs/public-transport-enabler.jar
 
-##############
-### Gradle ###
-##############
-
-### Android-PullToRefresh ###
-
-cat > sublibs/Android-PullToRefresh/library/build.gradle <<EOF
-apply plugin: 'android-library'
-
-android {
-  compileSdkVersion 22
-  buildToolsVersion '22.0.1'
-
-  sourceSets {
-    main {
-      manifest.srcFile 'AndroidManifest.xml'
-      java.srcDirs = ['src']
-      res.srcDirs = ['res']
-    }
-  }
-
-  // Do not abort build if lint finds errors
-  lintOptions {
-    abortOnError false
-  }
-}
-
-archivesBaseName = 'PullToRefresh'
-EOF
-

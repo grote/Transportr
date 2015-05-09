@@ -1,2 +1,1 @@
 include ':sublibs:OSMBonusPack'
-include ':sublibs:Android-PullToRefresh:library'

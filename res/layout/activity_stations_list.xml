@@ -7,22 +7,25 @@
 
     <include layout="@layout/toolbar"/>
 
-    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
         android:id="@+id/pull_to_refresh_departures"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        ptr:ptrMode="disabled"
-        ptr:ptrListViewExtrasEnabled="true"
-        ptr:ptrScrollingWhileRefreshingEnabled="true" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/activity_stations_list"
+        <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:orientation="vertical" />
+            android:layout_height="match_parent">
 
-    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+            <LinearLayout
+                android:id="@+id/activity_stations_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical" />
+
+        </ScrollView>
+
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
 </LinearLayout>

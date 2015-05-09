@@ -1,7 +1,3 @@
-[submodule "sublibs/Android-PullToRefresh"]
-	path = sublibs/Android-PullToRefresh
-	url = https://github.com/chrisbanes/Android-PullToRefresh.git
-	ignore = dirty
 [submodule "sublibs/public-transport-enabler"]
 	path = sublibs/public-transport-enabler
 	url = https://github.com/schildbach/public-transport-enabler.git

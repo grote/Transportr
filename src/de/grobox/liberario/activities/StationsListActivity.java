@@ -50,8 +50,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 public class StationsListActivity extends AppCompatActivity {
 	private LinearLayout main;
@@ -61,6 +61,7 @@ public class StationsListActivity extends AppCompatActivity {
 	private boolean gps;
 	private Location mMyLocation;
 	private int max_departures = 12;
+	private SwipyRefreshLayout pullToRefreshView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +96,13 @@ public class StationsListActivity extends AppCompatActivity {
 			mStations.add(station);
 
 			// Set a listener to be invoked when the list should be refreshed.
-			PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_departures);
-			pullToRefreshView.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
-			pullToRefreshView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
+			pullToRefreshView = (SwipyRefreshLayout) findViewById(R.id.pull_to_refresh_departures);
+			pullToRefreshView.setDirection(SwipyRefreshLayoutDirection.BOTTOM);
+			pullToRefreshView.setDistanceToTriggerSync(150);
+			pullToRefreshView.setColorSchemeResources(R.color.accent);
+			pullToRefreshView.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
 				@Override
-				public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				public void onRefresh(final SwipyRefreshLayoutDirection direction) {
 					startGetDepartures(station, 0, true);
 				}
 			});
@@ -379,7 +382,11 @@ public class StationsListActivity extends AppCompatActivity {
 	}
 
 	public void onRefreshComplete() {
-		PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.pull_to_refresh_departures);
-		pullToRefreshView.onRefreshComplete();
+		// hide progress indicator
+		pullToRefreshView.setRefreshing(false);
+
+		// scroll smoothly up when we have new departures
+		//ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+		//scrollView.smoothScrollTo(0, 200);
 	}
 }

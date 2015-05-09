@@ -68,6 +68,7 @@ public class TripsActivity extends AppCompatActivity {
 		end_context = start_context;
 
 		swipeRefresh = (SwipyRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+		swipeRefresh.setColorSchemeResources(R.color.accent);
 
 		mRecyclerView = (RecyclerView) findViewById(R.id.trips_recycler_view);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
