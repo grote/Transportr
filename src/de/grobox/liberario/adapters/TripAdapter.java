@@ -17,11 +17,14 @@
 
 package de.grobox.liberario.adapters;
 
+import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -119,6 +122,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		// re-apply current expansion saved in trip
 		expandTrip(ui, !trip.expanded);
 
+		// Clear Transport Icons to avoid accumulation when same trips are returned
+		ui.lines.removeAllViews();
+
 		int i = 0;
 		for(final Trip.Leg leg : trip.trip.legs) {
 			LegHolder leg_holder = ui.legs.get(i);
@@ -135,6 +141,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				LiberarioUtils.setDepartureTimes(context, leg_holder.departureTime, leg_holder.departureDelay, ((Trip.Public) leg).departureStop);
 
 				LiberarioUtils.addLineBox(context, leg_holder.line, ((Trip.Public) leg).line);
+				LiberarioUtils.addLineBox(context, ui.lines, ((Trip.Public) leg).line);
 			}
 			else if(leg instanceof Trip.Individual) {
 				leg_holder.arrivalTime.setText(DateUtils.getTime(context, ((Trip.Individual) leg).arrivalTime));
@@ -155,6 +162,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				}
 */
 				LiberarioUtils.addWalkingBox(context, leg_holder.line);
+				LiberarioUtils.addWalkingBox(context, ui.lines);
 			}
 			i += 1;
 		}
@@ -235,17 +243,19 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		trips.add(removed.remove(removed.size() - 1));
 	}
 
-	public void expandTrip(TripHolder ui, boolean expand) {
+	public void expandTrip(final TripHolder ui, boolean expand) {
 		Drawable icon;
 		int state;
 
 		if(expand) {
 			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_more);
 			state = View.GONE;
+			ui.linesView.setVisibility(View.VISIBLE);
 		}
 		else {
 			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_less);
 			state = View.VISIBLE;
+			ui.linesView.setVisibility(View.GONE);
 		}
 		ui.expand.setImageDrawable(icon);
 
@@ -255,14 +265,25 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		for(LegHolder leg : ui.legs) {
 			if(i == 0) {
 				// first leg
-				leg.arrival.setVisibility(state);
+				leg.arrivalTime.setVisibility(state);
+				leg.arrivalDelay.setVisibility(state);
+				leg.arrivalLocation.setVisibility(state);
+				leg.info.setVisibility(state);
 			} else if(i == ui.legs.size() - 1) {
 				// last leg
-				leg.departure.setVisibility(state);
+				leg.departureTime.setVisibility(state);
+				leg.departureDelay.setVisibility(state);
+				leg.departureLocation.setVisibility(state);
+				leg.info.setVisibility(state);
 			} else {
-				// middle legs
-				leg.departure.setVisibility(state);
-				leg.arrival.setVisibility(state);
+				// all middle legs
+				leg.arrivalTime.setVisibility(state);
+				leg.arrivalDelay.setVisibility(state);
+				leg.arrivalLocation.setVisibility(state);
+				leg.info.setVisibility(state);
+				leg.departureTime.setVisibility(state);
+				leg.departureDelay.setVisibility(state);
+				leg.departureLocation.setVisibility(state);
 			}
 			i += 1;
 		}
@@ -271,7 +292,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 	public static class TripHolder extends RecyclerView.ViewHolder {
 		public CardView card;
 		public ViewGroup legsView;
-		public ViewGroup firstLeg;
+		public GridLayout firstLeg;
+		public ViewGroup linesView;
 		public FlowLayout lines;
 		public TextView duration;
 		public ImageView share;
@@ -284,59 +306,68 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 			card = (CardView) v.findViewById(R.id.cardView);
 			legsView = (ViewGroup) v.findViewById(R.id.legsView);
-			firstLeg = (ViewGroup) v.findViewById(R.id.firstLegView);
-			lines = (FlowLayout) v.findViewById(R.id.lineLayout);
+			firstLeg = (GridLayout) v.findViewById(R.id.firstLegView);
 			duration = (TextView) v.findViewById(R.id.durationView);
 			share = (ImageView) v.findViewById(R.id.shareView);
 			calendar = (ImageView) v.findViewById(R.id.calendarView);
 			expand = (ImageView) v.findViewById(R.id.expandView);
 
+			LayoutTransition transition = new LayoutTransition();
+			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+				transition.enableTransitionType(LayoutTransition.CHANGING);
+				transition.enableTransitionType(LayoutTransition.APPEARING);
+				transition.enableTransitionType(LayoutTransition.CHANGE_APPEARING);
+				transition.enableTransitionType(LayoutTransition.DISAPPEARING);
+				transition.enableTransitionType(LayoutTransition.CHANGE_DISAPPEARING);
+			}
+			legsView.setLayoutTransition(transition);
+
 			LegHolder firstLegHolder = new LegHolder(firstLeg);
-			firstLegHolder.departure.setVisibility(View.VISIBLE);
-			if(size == 1) firstLegHolder.arrival.setVisibility(View.VISIBLE);
 			legs = new ArrayList<>();
 			legs.add(firstLegHolder);
 
+			linesView = (ViewGroup) LayoutInflater.from(v.getContext()).inflate(R.layout.line, firstLeg, false);
+			GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+			params.columnSpec = GridLayout.spec(2);
+			linesView.setLayoutParams(params);
+			firstLeg.setRowCount(4);
+			firstLeg.addView(linesView);
+			lines = (FlowLayout) linesView.findViewById(R.id.lineLayout);
+
 			// add more leg views for number of legs
 			for(int i = 1; i < size; i++) {
-				View legView = LayoutInflater.from(v.getContext()).inflate(R.layout.leg, legsView, false);
+				ViewGroup legView = (ViewGroup) LayoutInflater.from(v.getContext()).inflate(R.layout.leg, legsView, false);
 				legsView.addView(legView);
 
 				LegHolder legHolder = new LegHolder(legView);
-
-				if(i == size - 1) legHolder.arrival.setVisibility(View.VISIBLE);
-
 				legs.add(legHolder);
 			}
 		}
 	}
 
 	public static class LegHolder extends RecyclerView.ViewHolder {
-		public ViewGroup departure;
-		public ViewGroup arrival;
+		public GridLayout layout;
 		public TextView departureTime;
 		public TextView departureDelay;
 		public TextView arrivalTime;
 		public TextView arrivalDelay;
 		public TextView departureLocation;
 		public TextView arrivalLocation;
+		public ViewGroup info;
 		public FlowLayout line;
 
-		public LegHolder(View v) {
+		public LegHolder(ViewGroup v) {
 			super(v);
 
-			departure = (ViewGroup) v.findViewById(R.id.departureView);
-			arrival = (ViewGroup) v.findViewById(R.id.arrivalView);
+			layout = (GridLayout) v;
 			departureTime = (TextView) v.findViewById(R.id.departureTimeView);
 			departureDelay = (TextView) v.findViewById(R.id.departureDelayView);
 			arrivalTime = (TextView) v.findViewById(R.id.arrivalTimeView);
 			arrivalDelay = (TextView) v.findViewById(R.id.arrivalDelayView);
 			departureLocation = (TextView) v.findViewById(R.id.departureLocationView);
 			arrivalLocation =  (TextView) v.findViewById(R.id.arrivalLocationView);
+			info = (ViewGroup) v.findViewById(R.id.infoView);
 			line = (FlowLayout) v.findViewById(R.id.lineLayout);
-
-			arrival.setVisibility(View.GONE);
-			departure.setVisibility(View.GONE);
 		}
 	}
 }
