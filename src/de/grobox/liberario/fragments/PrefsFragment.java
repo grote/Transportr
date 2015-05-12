@@ -62,6 +62,13 @@ public class PrefsFragment extends PreferenceFragment {
 		home.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			public boolean onPreferenceClick(Preference preference) {
 				Intent intent = new Intent(getActivity(), SetHomeActivity.class);
+
+				if(FavDB.getHome(getActivity()) != null) {
+					intent.putExtra("new", false);
+				} else {
+					intent.putExtra("new", true);
+				}
+
 				startActivityForResult(intent, MainActivity.CHANGED_HOME);
 
 				return true;
