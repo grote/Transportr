@@ -52,6 +52,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -71,6 +72,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -289,6 +291,15 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	}
 
 	@Override
+	public void onStart() {
+		super.onStart();
+
+		if(ui.productsScrollView.getVisibility() == View.VISIBLE) {
+			indicateProductScrolling();
+		}
+	}
+
+	@Override
 	public void onResume() {
 		super.onResume();
 
@@ -318,6 +329,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 					ui.productsScrollView.setVisibility(View.VISIBLE);
 					item.setIcon(R.drawable.ic_action_navigation_collapse);
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, true);
+					indicateProductScrolling();
 				} else {
 					ui.productsScrollView.setVisibility(View.GONE);
 					item.setIcon(R.drawable.ic_action_navigation_expand);
@@ -465,6 +477,17 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			} else {
 				imm.hideSoftInputFromWindow(ui.to.location.getWindowToken(), 0);
 			}
+		}
+	}
+
+	private void indicateProductScrolling() {
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			ui.productsScrollView.animate().setDuration(750).translationXBy(200).withEndAction(new Runnable() {
+				@Override
+				public void run() {
+					ui.productsScrollView.animate().setDuration(750).translationXBy(-200);
+				}
+			});
 		}
 	}
 
@@ -685,7 +708,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		Button time;
 		Button plus15;
 		Button date;
-		ViewGroup productsScrollView;
+		HorizontalScrollView productsScrollView;
 		ViewGroup productsLayout;
 		ImageView high_speed_train;
 		ImageView regional_train;
@@ -719,7 +742,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		ui.plus15 = (Button) mView.findViewById(R.id.plus15Button);
 		ui.date = (Button) mView.findViewById(R.id.dateView);
 
-		ui.productsScrollView = (ViewGroup) mView.findViewById(R.id.productsScrollView);
+		ui.productsScrollView = (HorizontalScrollView) mView.findViewById(R.id.productsScrollView);
 		ui.productsLayout = (ViewGroup) mView.findViewById(R.id.productsLayout);
 		ui.high_speed_train = (ImageView) mView.findViewById(R.id.ic_product_high_speed_train);
 		ui.regional_train = (ImageView) mView.findViewById(R.id.ic_product_regional_train);
