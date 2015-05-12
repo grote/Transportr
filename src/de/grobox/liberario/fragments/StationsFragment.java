@@ -143,6 +143,8 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		loc = new LocationInputView(getActivity(), holder, true);
 		loc.setFavs(true);
 
+		holder.location.setHint(R.string.departure_station);
+
 		// home station button
 		ImageButton stationHomeButton = (ImageButton) mView.findViewById(R.id.stationHomeButton);
 		stationHomeButton.setOnClickListener(new OnClickListener(){

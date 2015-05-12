@@ -74,7 +74,6 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -107,9 +106,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		from = new FromInputView(getActivity(), ui.from);
 		to = new ToInputView(getActivity(), ui.to);
-
-		ui.fromText.setOnClickListener(from.onClickListener);
-		ui.toText.setOnClickListener(to.onClickListener);
 
 		// timeView
 		ui.time.setText(DateUtils.getcurrentTime(getActivity()));
@@ -648,6 +644,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			setHome(true);
 			setFavs(true);
 			setGPS(true);
+
+			holder.location.setHint(R.string.from);
 		}
 
 		@Override
@@ -668,6 +666,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			setType(FavLocation.LOC_TYPE.TO);
 			setHome(true);
 			setFavs(true);
+
+			holder.location.setHint(R.string.to);
 		}
 
 		@Override
@@ -677,10 +677,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	}
 
 	static class ViewHolder {
-		TextView fromText;
 		ViewGroup fromLocation;
 		LocationInputView.LocationInputViewHolder from;
-		TextView toText;
 		ViewGroup toLocation;
 		LocationInputView.LocationInputViewHolder to;
 		Button type;
@@ -702,7 +700,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	}
 
 	private void populateViewHolders() {
-		ui.fromText = (TextView) mView.findViewById(R.id.fromText);
 		ui.fromLocation = (ViewGroup) mView.findViewById(R.id.fromLocation);
 		ui.from = new LocationInputView.LocationInputViewHolder();
 		ui.from.status = (ImageView) ui.fromLocation.findViewById(R.id.statusButton);
@@ -710,7 +707,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		ui.from.progress = (ProgressBar) ui.fromLocation.findViewById(R.id.progress);
 		ui.from.clear = (ImageButton) ui.fromLocation.findViewById(R.id.clearButton);
 
-		ui.toText = (TextView) mView.findViewById(R.id.toText);
 		ui.toLocation = (ViewGroup) mView.findViewById(R.id.toLocation);
 		ui.to = new LocationInputView.LocationInputViewHolder();
 		ui.to.status = (ImageView) ui.toLocation.findViewById(R.id.statusButton);

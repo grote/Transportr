@@ -61,6 +61,8 @@ public class SetHomeActivity extends AppCompatActivity {
 		final LocationInputView loc = new LocationInputView(this, holder, true);
 		loc.setFavs(true);
 
+		holder.location.setHint(R.string.home);
+
 		// OK Button
 		Button okButton = (Button) findViewById(R.id.okButton);
 		okButton.setOnClickListener(new OnClickListener() {

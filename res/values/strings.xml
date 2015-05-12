@@ -60,6 +60,7 @@
     <string name="stations_searching_stations">Searching for nearby stations&#8230;</string>
     <string name="find_nearby_stations">Find Nearby Stations</string>
     <string name="find_departures">Find Departures</string>
+    <string name="departure_station">Departure Station</string>
     <string name="share_trip_via">Share Trip Via&#8230;</string>
     <string name="undo">Undo</string>
 
