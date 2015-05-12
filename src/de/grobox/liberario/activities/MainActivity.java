@@ -180,8 +180,19 @@ public class MainActivity extends AppCompatActivity {
 		public static final String DARK_THEME_CSS =
 				"body { color: #f3f3f3; font-size: 0.9em; background-color: #282828; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
 
+		public static final String MATERIAL_THEME_CSS =
+				"body { color: #f3f3f3; font-size: 0.9em; background-color: #424242; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
+
 		public HoloChangeLog(Context context) {
-			super(new ContextThemeWrapper(context, R.style.AppTheme), DARK_THEME_CSS);
+			super(new ContextThemeWrapper(context, R.style.DialogTheme), theme());
+		}
+
+		private static String theme() {
+			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				return MATERIAL_THEME_CSS;
+			} else {
+				return DARK_THEME_CSS;
+			}
 		}
 	}
 

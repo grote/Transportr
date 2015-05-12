@@ -68,14 +68,14 @@
 
         <activity
             android:name=".activities.SetHomeActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/DialogTheme" />
 
         <activity
             android:name=".activities.MapStationsActivity" />
 
         <activity
             android:name=".activities.AboutActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/DialogTheme" />
 
         <activity
             android:name=".activities.PrefsActivity"
