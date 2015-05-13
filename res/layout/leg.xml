@@ -3,18 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:showIn="@layout/trip"
     app:orientation="horizontal"
     app:columnCount="3"
+    app:useDefaultMargins="true"
+    app:columnOrderPreserved="false"
     >
 
     <TextView
         android:id="@+id/departureTimeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="2dp"
         tools:text="9:15"
         app:layout_row="0"
         app:layout_column="0"
@@ -25,10 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="bottom"
-        android:padding="2dp"
         android:textColor="@color/holo_red_light"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
         tools:text="+10"
         app:layout_row="0"
         app:layout_column="1"
@@ -45,18 +43,17 @@
 
     <include
         android:id="@+id/infoView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         layout="@layout/line"
         app:layout_row="1"
         app:layout_column="2"
-        />
+        app:layout_gravity="fill_horizontal"/>
 
     <TextView
         android:id="@+id/arrivalTimeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="2dp"
         tools:text="9:15"
         app:layout_row="2"
         app:layout_column="0"
@@ -67,10 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="bottom"
-        android:padding="2dp"
         android:textColor="@color/holo_red_light"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
         tools:text="+10"
         app:layout_row="2"
         app:layout_column="1"

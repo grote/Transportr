@@ -131,4 +131,8 @@ public class DateUtils {
 		return Long.toString(h) + ":" + (m < 10 ? "0" : "") + Long.toString(m);
 	}
 
+	static public String getDuration(Date start, Date end) {
+		return getDuration(end.getTime() - start.getTime());
+	}
+
 }

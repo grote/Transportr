@@ -34,9 +34,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,7 +62,7 @@ public class LiberarioUtils {
 			// loop through all line boxes in the linearLayout
 			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
 				// check if current line box is the same as the one we are about to add
-				if(line.label != null && line.label.equals(((TextView)lineLayout.getChildAt(i)).getText())) {
+				if(line.label != null && line.label.equals(((TextView) lineLayout.getChildAt(i)).getText())) {
 					// lines are equal, so bail out from here and don't add new line box
 					return;
 				}
@@ -86,11 +84,6 @@ public class LiberarioUtils {
 			transportsView.setTextColor(line.style.foregroundColor);
 		}
 
-		// set margin, because setting in in xml didn't work
-		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		llp.setMargins(3, 0, 3, 0);
-		transportsView.setLayoutParams(llp);
-
 		lineLayout.addView(transportsView, index);
 	}
 
@@ -108,11 +101,6 @@ public class LiberarioUtils {
 
 	static public void addWalkingBox(Context context, ViewGroup lineLayout) {
 		ImageView transportsView = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
-
-		// set margin, because setting in in xml didn't work
-		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		llp.setMargins(3, 0, 3, 0);
-		transportsView.setLayoutParams(llp);
 
 		lineLayout.addView(transportsView);
 	}

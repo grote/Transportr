@@ -19,6 +19,7 @@ package de.grobox.liberario.ui;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,8 @@ public class FlowLayout extends ViewGroup {
 	public FlowLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		mHorizontalSpacing = 7;
-		mVerticalSpacing = 7;
+		mHorizontalSpacing = 15;
+		mVerticalSpacing = 15;
 
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
@@ -42,7 +43,7 @@ public class FlowLayout extends ViewGroup {
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		int widthSize = MeasureSpec.getSize(widthMeasureSpec) - getPaddingRight();
+		int widthSize = MeasureSpec.getSize(widthMeasureSpec) - getPaddingRight() - 200; // last is dirty hack
 		int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 
 		boolean growHeight = widthMode != MeasureSpec.UNSPECIFIED;
@@ -108,7 +109,7 @@ public class FlowLayout extends ViewGroup {
 	}
 
 	@Override
-	protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
+	protected boolean drawChild(@NonNull Canvas canvas, @NonNull View child, long drawingTime) {
 		boolean more = super.drawChild(canvas, child, drawingTime);
 		LayoutParams lp = (LayoutParams) child.getLayoutParams();
 		if (lp.horizontalSpacing > 0) {
@@ -159,7 +160,7 @@ public class FlowLayout extends ViewGroup {
 		public LayoutParams(Context context, AttributeSet attrs) {
 			super(context, attrs);
 
-			horizontalSpacing = 7;
+			horizontalSpacing = 15;
 			breakLine = true;
 		}
 

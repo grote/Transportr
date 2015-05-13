@@ -26,6 +26,7 @@ import android.support.v7.util.SortedList;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayout;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,6 +126,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		// Clear Transport Icons to avoid accumulation when same trips are returned
 		ui.lines.removeAllViews();
 
+		// Show Trip Duration
+		ui.duration.setText(DateUtils.getDuration(trip.trip.getDuration()));
+
 		int i = 0;
 		for(final Trip.Leg leg : trip.trip.legs) {
 			LegHolder leg_holder = ui.legs.get(i);
@@ -133,15 +137,27 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			leg_holder.departureLocation.setText(leg.departure.uniqueShortName());
 			leg_holder.arrivalLocation.setText(leg.arrival.uniqueShortName());
 
+			// Leg duration
+			leg_holder.duration.setText(DateUtils.getDuration(leg.getDepartureTime(), leg.getArrivalTime()));
+
 			// Clear Transport Icons to avoid accumulation when same trips are returned
 			leg_holder.line.removeAllViews();
 
 			if(leg instanceof Trip.Public) {
-				LiberarioUtils.setArrivalTimes(context, leg_holder.arrivalTime, leg_holder.arrivalDelay, ((Trip.Public) leg).arrivalStop);
-				LiberarioUtils.setDepartureTimes(context, leg_holder.departureTime, leg_holder.departureDelay, ((Trip.Public) leg).departureStop);
+				Trip.Public public_leg = ((Trip.Public) leg);
 
-				LiberarioUtils.addLineBox(context, leg_holder.line, ((Trip.Public) leg).line);
-				LiberarioUtils.addLineBox(context, ui.lines, ((Trip.Public) leg).line);
+				LiberarioUtils.setArrivalTimes(context, leg_holder.arrivalTime, leg_holder.arrivalDelay, public_leg.arrivalStop);
+				LiberarioUtils.setDepartureTimes(context, leg_holder.departureTime, leg_holder.departureDelay, public_leg.departureStop);
+
+				LiberarioUtils.addLineBox(context, leg_holder.line, public_leg.line);
+				LiberarioUtils.addLineBox(context, ui.lines, public_leg.line);
+
+				if(public_leg.destination != null) {
+					leg_holder.lineDestination.setText(public_leg.destination.uniqueShortName());
+				} else {
+					// hide arrow because this line has no destination
+					leg_holder.arrow.setVisibility(View.GONE);
+				}
 			}
 			else if(leg instanceof Trip.Individual) {
 				leg_holder.arrivalTime.setText(DateUtils.getTime(context, ((Trip.Individual) leg).arrivalTime));
@@ -163,6 +179,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 */
 				LiberarioUtils.addWalkingBox(context, leg_holder.line);
 				LiberarioUtils.addWalkingBox(context, ui.lines);
+
+				// hide arrow because this line has no destination
+				leg_holder.arrow.setVisibility(View.GONE);
 			}
 			i += 1;
 		}
@@ -307,7 +326,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			card = (CardView) v.findViewById(R.id.cardView);
 			legsView = (ViewGroup) v.findViewById(R.id.legsView);
 			firstLeg = (GridLayout) v.findViewById(R.id.firstLegView);
-			duration = (TextView) v.findViewById(R.id.durationView);
 			share = (ImageView) v.findViewById(R.id.shareView);
 			calendar = (ImageView) v.findViewById(R.id.calendarView);
 			expand = (ImageView) v.findViewById(R.id.expandView);
@@ -326,13 +344,24 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			legs = new ArrayList<>();
 			legs.add(firstLegHolder);
 
+			// inflate special view that contains all lines on that trip
 			linesView = (ViewGroup) LayoutInflater.from(v.getContext()).inflate(R.layout.line, firstLeg, false);
+
+			// set layout parameters for GridLayout
 			GridLayout.LayoutParams params = new GridLayout.LayoutParams();
 			params.columnSpec = GridLayout.spec(2);
+			params.rowSpec = GridLayout.spec(1);
+			params.setGravity(Gravity.FILL_HORIZONTAL);
 			linesView.setLayoutParams(params);
 			firstLeg.setRowCount(4);
 			firstLeg.addView(linesView);
+
+			// hide arrow view since we are just interested in line icons here
+			linesView.findViewById(R.id.arrowView).setVisibility(View.GONE);
+
+			// remember where the lines are inserted and the trip duration
 			lines = (FlowLayout) linesView.findViewById(R.id.lineLayout);
+			duration = (TextView) linesView.findViewById(R.id.durationView);
 
 			// add more leg views for number of legs
 			for(int i = 1; i < size; i++) {
@@ -355,6 +384,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		public TextView arrivalLocation;
 		public ViewGroup info;
 		public FlowLayout line;
+		public ImageView arrow;
+		public TextView lineDestination;
+		public TextView	duration;
 
 		public LegHolder(ViewGroup v) {
 			super(v);
@@ -368,6 +400,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			arrivalLocation =  (TextView) v.findViewById(R.id.arrivalLocationView);
 			info = (ViewGroup) v.findViewById(R.id.infoView);
 			line = (FlowLayout) v.findViewById(R.id.lineLayout);
+			arrow = (ImageView) v.findViewById(R.id.arrowView);
+			lineDestination = (TextView) v.findViewById(R.id.lineDestinationView);
+			duration = (TextView) v.findViewById(R.id.durationView);
 		}
 	}
 }

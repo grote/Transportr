@@ -9,8 +9,8 @@
 	    android:radius="3dp" />
 
 	<padding
-	    android:left="3dp"
-	    android:top="1dp"
-	    android:right="3dp"
-	    android:bottom="0dp" />
+		android:left="3dp"
+		android:top="1dp"
+		android:right="3dp"
+		android:bottom="1dp" />
 </shape>
