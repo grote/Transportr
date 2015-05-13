@@ -264,21 +264,29 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 	public void expandTrip(final TripHolder ui, boolean expand) {
 		Drawable icon;
-		int state;
+		int state, ostate;
 
 		if(expand) {
 			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_more);
 			state = View.GONE;
-			ui.linesView.setVisibility(View.VISIBLE);
+			ostate = View.VISIBLE;
 		}
 		else {
 			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_less);
 			state = View.VISIBLE;
-			ui.linesView.setVisibility(View.GONE);
+			ostate = View.GONE;
 		}
 		ui.expand.setImageDrawable(icon);
 
-		if(ui.legs.size() <= 1) return;
+		// show view with all trip lines if everything else is gone
+		ui.linesView.setVisibility(ostate);
+
+		if(ui.legs.size() <= 1) {
+			// show/hide additional trip info
+			ui.legs.get(0).info.setVisibility(state);
+
+			return;
+		}
 
 		int i = 0;
 		for(LegHolder leg : ui.legs) {
@@ -358,6 +366,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 			// hide arrow view since we are just interested in line icons here
 			linesView.findViewById(R.id.arrowView).setVisibility(View.GONE);
+			linesView.findViewById(R.id.lineDestinationView).setVisibility(View.GONE);
 
 			// remember where the lines are inserted and the trip duration
 			lines = (FlowLayout) linesView.findViewById(R.id.lineLayout);
