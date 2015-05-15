@@ -23,6 +23,7 @@
 
     <string name="tab_directions">Directions</string>
     <string name="tab_fav_trips">Favorites</string>
+    <string name="tab_departures">Departures</string>
 
     <string name="tab_libraries">Libraries</string>
     <string name="tab_devs">Developers</string>

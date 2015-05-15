@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 import de.schildbach.pte.NetworkId;
+import de.schildbach.pte.NetworkProvider;
 
 public class Preferences {
 
@@ -52,6 +53,10 @@ public class Preferences {
 		}
 
 		return network_id;
+	}
+
+	public static NetworkProvider getNetworkProvider(Context context) {
+		return NetworkProviderFactory.provider(getNetworkId(context));
 	}
 
 

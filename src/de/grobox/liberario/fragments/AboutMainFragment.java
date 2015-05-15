@@ -15,68 +15,52 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.activities;
+package de.grobox.liberario.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.fragments.FragmentAbout;
 import de.grobox.liberario.ui.SlidingTabLayout;
+import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutMainFragment extends Fragment {
 	AboutPagerAdapter mPagerAdapter;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_about);
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_main_about, container, false);
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = ((MaterialNavigationDrawer) getActivity()).getToolbar();
 		if(toolbar != null) {
-			setSupportActionBar(toolbar);
-
-			ActionBar actionBar = getSupportActionBar();
-			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+			toolbar.setSubtitle(null);
 		}
 
-		setTitle(getResources().getString(R.string.action_about) + " " + getResources().getString(R.string.app_name));
-
-		ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+		ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
 
 		// don't recreate the fragments when changing tabs
 		viewPager.setOffscreenPageLimit(3);
 
-		mPagerAdapter = new AboutPagerAdapter(getSupportFragmentManager());
+		mPagerAdapter = new AboutPagerAdapter(getChildFragmentManager());
 		viewPager.setAdapter(mPagerAdapter);
 
-		SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+		SlidingTabLayout slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
 		slidingTabLayout.setDistributeEvenly(true);
 		slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.accent));
 		slidingTabLayout.setViewPager(viewPager);
+
+		return view;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if(item.getItemId() == android.R.id.home) {
-			onBackPressed();
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-
-	class AboutPagerAdapter extends FragmentStatePagerAdapter {
-		// Since this is an object collection, use a FragmentStatePagerAdapter,
-		// and NOT a FragmentPagerAdapter.
+	class AboutPagerAdapter extends FragmentPagerAdapter {
 		public AboutPagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
@@ -85,12 +69,12 @@ public class AboutActivity extends AppCompatActivity {
 		public Fragment getItem(int i) {
 			if(i == 1) {
 				// TODO: Developers
-				return new FragmentAbout();
+				return new AboutFragment();
 			} else if(i == 2) {
 				// TODO: Libraries
-				return new FragmentAbout();
+				return new AboutFragment();
 			}
-			return new FragmentAbout();
+			return new AboutFragment();
 		}
 
 		@Override

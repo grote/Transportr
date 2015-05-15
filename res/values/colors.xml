@@ -1,20 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="highlight">#cc222222</color>
+    <color name="transparent">#00000000</color>
+    <color name="holo_blue_very_light">#1533b5e5</color>
+    <color name="holo_blue_bright">#ff00ddff</color>
+    <color name="holo_blue_light">#ff33b5e5</color>
+    <color name="holo_blue_dark">#ff0099cc</color>
+    <color name="holo_blue_very_dark">#ff006699</color>
+    <color name="holo_red_light">#ffff4444</color>
+    <color name="holo_green_light">#ff99cc00</color>
+    <color name="holo_gray_bright">#33CCCCCC</color>
+    <color name="holo_gray_light">#33999999</color>
+    <color name="holo_gray_dark">#33666666</color>
 
-    <resources>
-        <color name="highlight">#cc222222</color>
-        <color name="transparent">#00000000</color>
-        <color name="holo_blue_very_light">#1533b5e5</color>
-        <color name="holo_blue_bright">#ff00ddff</color>
-        <color name="holo_blue_light">#ff33b5e5</color>
-        <color name="holo_blue_dark">#ff0099cc</color>
-        <color name="holo_blue_very_dark">#ff006699</color>
-        <color name="holo_red_light">#ffff4444</color>
-        <color name="holo_green_light">#ff99cc00</color>
-        <color name="holo_gray_bright">#33CCCCCC</color>
-        <color name="holo_gray_light">#33999999</color>
-        <color name="holo_gray_dark">#33666666</color>
-
-        <!-- material theme colors -->
-        <color name="primary">#ff5722</color>
-        <color name="primary_dark">#bf360c</color>
-        <color name="accent">#ff5722</color>
-    </resources>
+    <!-- material theme colors -->
+    <color name="primary">#ff5722</color>
+    <color name="primary_dark">#bf360c</color>
+    <color name="accent">#ff5722</color>
+</resources>

@@ -29,7 +29,7 @@ import android.widget.TextView;
 
 import de.grobox.liberario.R;
 
-public class FragmentAbout extends Fragment {
+public class AboutFragment extends Fragment {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

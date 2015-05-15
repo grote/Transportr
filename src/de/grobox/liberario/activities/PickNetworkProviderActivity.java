@@ -27,6 +27,7 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.adapters.NetworkProviderListAdapter;
 import de.schildbach.pte.NetworkId;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -97,6 +98,7 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 		// on OK click
 		Button button = (Button) findViewById(R.id.pickNetworkProviderButton);
 		button.setOnClickListener(new OnClickListener() {
+			@SuppressLint("CommitPrefEdits")
 			@Override
 			public void onClick(View v) {
 				if(expListView.getCheckedItemPosition() >= 0) {

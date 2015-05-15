@@ -44,6 +44,7 @@ import de.grobox.liberario.FavTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.FavDB;
+import de.schildbach.pte.NetworkProvider;
 
 public class FavTripsFragment extends LiberarioListFragment {
 	private FavTripArrayAdapter adapter;
@@ -74,9 +75,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 	public void onResume() {
 		super.onResume();
 
-		// reload data because it might have changed
-		adapter.clear();
-		adapter.addAll(FavDB.getFavTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)));
+		onNetworkProviderChanged(Preferences.getNetworkProvider(getActivity()));
 	}
 
 	@Override
@@ -107,6 +106,16 @@ public class FavTripsFragment extends LiberarioListFragment {
 		}
 	}
 
+	@Override
+	// change things for a different network provider
+	public void onNetworkProviderChanged(NetworkProvider np) {
+		// reload data because it has changed
+		if(getActivity() != null && adapter != null) {
+			adapter.clear();
+			adapter.addAll(FavDB.getFavTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)));
+		}
+	}
+
 	private void checkTrip(View v, int position) {
 		getListView().setItemChecked(position, true);
 
@@ -124,10 +133,10 @@ public class FavTripsFragment extends LiberarioListFragment {
 		CheckBox checkBox = (CheckBox) v.findViewById(R.id.checkBox);
 		checkBox.setChecked(false);
 
-		if (mActionMode == null) {
+		if(mActionMode == null) {
 			mActionMode = getActivity().startActionMode(mFavTripActionMode);
 		}
-		else if (mActionMode != null && getListView().getCheckedItemCount() == 0) {
+		else if(getListView().getCheckedItemCount() == 0) {
 			mActionMode.finish();
 		}
 	}
@@ -192,7 +201,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 				}
 			});
 
-			FavTrip trip = (FavTrip) this.getItem(position);
+			FavTrip trip = this.getItem(position);
 
 			TextView favFromView = (TextView) v.findViewById(R.id.favFromView);
 			favFromView.setText(trip.getFrom().uniqueShortName());

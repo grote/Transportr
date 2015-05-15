@@ -21,15 +21,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceFragment;
 
-import de.grobox.liberario.NetworkProviderFactory;
+import com.github.machinarius.preferencefragment.PreferenceFragment;
+
 import de.grobox.liberario.activities.PickNetworkProviderActivity;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.data.FavDB;
+import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 
 public class PrefsFragment extends PreferenceFragment {
@@ -92,13 +93,19 @@ public class PrefsFragment extends PreferenceFragment {
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if(requestCode == MainActivity.CHANGED_NETWORK_PROVIDER && resultCode == Activity.RESULT_OK) {
-			// set new network name
-			network.setSummary(NetworkProviderFactory.provider(Preferences.getNetworkId(getActivity())).id().name());
-
-			setHome();
+			((MainActivity) getActivity()).onNetworkProviderChanged(Preferences.getNetworkProvider(getActivity()));
 		}
 		else if(requestCode == MainActivity.CHANGED_HOME && resultCode == Activity.RESULT_OK) {
 			// set new home
+			setHome();
+		}
+	}
+
+	public void onNetworkProviderChanged(NetworkProvider np) {
+		if(getActivity() != null) {
+			// set new network name
+			network.setSummary(np.id().name());
+
 			setHome();
 		}
 	}

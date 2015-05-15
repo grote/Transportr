@@ -18,70 +18,81 @@
 package de.grobox.liberario.activities;
 
 import de.cketti.library.changelog.ChangeLog;
+import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.FavTripsFragment;
 import de.grobox.liberario.fragments.LiberarioFragment;
 import de.grobox.liberario.fragments.LiberarioListFragment;
-import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.fragments.PrefsFragment;
 import de.grobox.liberario.fragments.StationsFragment;
-import de.grobox.liberario.ui.SlidingTabLayout;
 import de.schildbach.pte.NetworkProvider;
 
+import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
+import it.neokree.materialnavigationdrawer.elements.MaterialAccount;
+import it.neokree.materialnavigationdrawer.elements.MaterialSection;
+import it.neokree.materialnavigationdrawer.elements.listeners.MaterialAccountListener;
+import it.neokree.materialnavigationdrawer.elements.listeners.MaterialSectionListener;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
-	MainPagerAdapter mPagerAdapter;
-
+public class MainActivity extends MaterialNavigationDrawer {
 	static final public int CHANGED_NETWORK_PROVIDER = 1;
 	static final public int CHANGED_HOME = 2;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+	public void init(Bundle savedInstanceState) {
+		String network = Preferences.getNetwork(this);
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) toolbar.setLogo(R.drawable.ic_launcher);
-		toolbar.setOnClickListener(new View.OnClickListener() {
+		checkFirstRun(network);
+
+		MaterialAccount account = new MaterialAccount(this.getResources(), network, null, R.drawable.ic_placeholder, null);
+		addAccount(account);
+
+		addSection(newSection(getString(R.string.tab_directions), getResources().getDrawable(android.R.drawable.ic_menu_directions), new DirectionsFragment()));
+		addSection(newSection(getString(R.string.tab_fav_trips), getResources().getDrawable(R.drawable.ic_action_star), new FavTripsFragment()));
+		addSection(newSection(getString(R.string.tab_departures), getResources().getDrawable(R.drawable.ic_tab_stations), new StationsFragment()));
+
+		addBottomSection(newSection(getString(R.string.action_settings), getResources().getDrawable(android.R.drawable.ic_menu_preferences), new PrefsFragment()));
+		addBottomSection(newSection(getResources().getString(R.string.action_about) + " " + getResources().getString(R.string.app_name), getResources().getDrawable(android.R.drawable.ic_menu_info_details), new AboutMainFragment()));
+		addBottomSection(newSection(getString(R.string.action_changelog), getResources().getDrawable(R.drawable.ic_action_changelog), new MaterialSectionListener() {
 			@Override
-			public void onClick(View view) {
-				startActivityForResult(new Intent(view.getContext(), PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
+			public void onClick(MaterialSection materialSection) {
+				new HoloChangeLog(getContext()).getFullLogDialog().show();
+				materialSection.unSelect();
+			}
+		}));
+
+		setAccountListener(new MaterialAccountListener() {
+			@Override
+			public void onAccountOpening(MaterialAccount materialAccount) {
+				startActivityForResult(new Intent(getContext(), PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
+			}
+
+			@SuppressLint("CommitPrefEdits")
+			@Override
+			public void onChangeAccount(MaterialAccount materialAccount) {
+				SharedPreferences settings = getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
+				SharedPreferences.Editor editor = settings.edit();
+
+				// TODO fix region
+//				editor.putString("NetworkRegion", materialAccount.getSubTitle());
+				editor.putString("NetworkId", materialAccount.getTitle());
+
+				editor.commit();
+
+				onNetworkProviderChanged(Preferences.getNetworkProvider(getContext()));
 			}
 		});
-		setSupportActionBar(toolbar);
 
-		ViewPager mViewPager = (ViewPager) findViewById(R.id.pager);
-
-		// don't recreate the fragments when changing tabs
-		mViewPager.setOffscreenPageLimit(3);
-
-		mPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
-		mViewPager.setAdapter(mPagerAdapter);
-
-		SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-		slidingTabLayout.setDistributeEvenly(true);
-		slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.accent));
-		slidingTabLayout.setViewPager(mViewPager);
-
-		// show about screen and make sure a transport network is selected
-		checkFirstRun();
 
 		// show Changelog
 		HoloChangeLog cl = new HoloChangeLog(this);
@@ -90,89 +101,56 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu items for use in the action bar
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle presses on the action bar items
-		switch (item.getItemId()) {
-			case R.id.action_settings:
-				startActivity(new Intent(this, PrefsActivity.class));
-
-				return true;
-			case R.id.action_changelog:
-				new HoloChangeLog(this).getFullLogDialog().show();
-
-				return true;
-			case R.id.action_about:
-				startActivity(new Intent(this, AboutActivity.class));
-
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-	}
-
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if(requestCode == CHANGED_NETWORK_PROVIDER && resultCode == RESULT_OK) {
-			NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(this));
-			onNetworkProviderChanged(np);
+			onNetworkProviderChanged(Preferences.getNetworkProvider(this));
 		}
 	}
 
 	public void onNetworkProviderChanged(NetworkProvider np) {
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = getToolbar();
 		if(toolbar != null) {
 			// get and set new network name for app bar
 			toolbar.setSubtitle(Preferences.getNetwork(this));
 		}
 
-		if(getSupportFragmentManager().getFragments() != null) {
-			// call this method for each fragment
-			for(final Fragment fragment : getSupportFragmentManager().getFragments()) {
-				if(fragment instanceof LiberarioFragment) {
-					((LiberarioFragment) fragment).onNetworkProviderChanged(np);
-				} else if(fragment instanceof LiberarioListFragment) {
-					((LiberarioListFragment) fragment).onNetworkProviderChanged(np);
-				}
+		getCurrentAccount().setTitle(np.id().name());
+		notifyAccountDataChanged();
+
+		// call this method for each fragment
+		for(Object section : getSectionList()) {
+			MaterialSection sec = (MaterialSection) section;
+
+			if(sec.getTargetFragment() instanceof LiberarioFragment) {
+				((LiberarioFragment) sec.getTargetFragment()).onNetworkProviderChanged(np);
+			}
+			else if(sec.getTargetFragment() instanceof LiberarioListFragment) {
+				((LiberarioListFragment) sec.getTargetFragment()).onNetworkProviderChanged(np);
+			}
+			else if(sec.getTargetFragment() instanceof PrefsFragment) {
+				((PrefsFragment) sec.getTargetFragment()).onNetworkProviderChanged(np);
 			}
 		}
 	}
 
-	private void checkFirstRun() {
-		SharedPreferences settings = getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
-		boolean firstRun = settings.getBoolean("FirstRun", true);
-
-		// show about page at first run
-		if(firstRun) {
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putBoolean("FirstRun", false);
-			editor.apply();
-
-			startActivity(new Intent(this, AboutActivity.class));
-		}
-
-		String network = settings.getString("NetworkId", null);
-
+	private void checkFirstRun(String network) {
 		// return if no network is set
 		if(network == null) {
 			Intent intent = new Intent(this, PickNetworkProviderActivity.class);
-			intent.putExtra("FirstRun", true);
 			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
 		}
 		else {
 			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 			if(toolbar != null) toolbar.setSubtitle(network);
-		}
 
+			disableLearningPattern();
+		}
+	}
+
+	private Context getContext() {
+		return this;
 	}
 
 
@@ -193,40 +171,6 @@ public class MainActivity extends AppCompatActivity {
 			} else {
 				return DARK_THEME_CSS;
 			}
-		}
-	}
-
-
-	class MainPagerAdapter extends FragmentStatePagerAdapter {
-		// Since this is an object collection, use a FragmentStatePagerAdapter,
-		// and NOT a FragmentPagerAdapter.
-		public MainPagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public Fragment getItem(int i) {
-			if(i == 1) {
-				return new FavTripsFragment();
-			} else if(i == 2) {
-				return new StationsFragment();
-			}
-			return new DirectionsFragment();
-		}
-
-		@Override
-		public int getCount() {
-			return 3;
-		}
-
-		@Override
-		public CharSequence getPageTitle(int i) {
-			if(i == 1) {
-				return "STAR";
-			} else if(i == 2) {
-				return "STATIONS";
-			}
-			return "DIRECTIONS";
 		}
 	}
 }
