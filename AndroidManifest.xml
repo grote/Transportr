@@ -75,7 +75,7 @@
 
         <activity
             android:name=".activities.AboutActivity"
-            android:theme="@style/DialogTheme" />
+            />
 
         <activity
             android:name=".activities.PrefsActivity"

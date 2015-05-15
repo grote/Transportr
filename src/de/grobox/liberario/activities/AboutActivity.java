@@ -17,50 +17,95 @@
 
 package de.grobox.liberario.activities;
 
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
-import android.view.View;
-import android.view.Window;
-import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import de.grobox.liberario.R;
+import de.grobox.liberario.fragments.FragmentAbout;
+import de.grobox.liberario.ui.SlidingTabLayout;
 
 public class AboutActivity extends AppCompatActivity {
+	AboutPagerAdapter mPagerAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		getWindow().requestFeature(Window.FEATURE_LEFT_ICON);
-		getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, android.R.drawable.ic_dialog_info);
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
 
-		setTitle(getResources().getString(R.string.action_about) + " " + getResources().getString(R.string.app_name));
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		if(toolbar != null) {
+			setSupportActionBar(toolbar);
 
-		String versionName;
-		try {
-			versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-		} catch (NameNotFoundException e) {
-			versionName = "?.?";
+			ActionBar actionBar = getSupportActionBar();
+			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 
-		// add app name and version
-		TextView aboutApp = (TextView) findViewById(R.id.aboutApp);
-		aboutApp.setText(getResources().getString(R.string.app_name) + "  " + versionName);
+		setTitle(getResources().getString(R.string.action_about) + " " + getResources().getString(R.string.app_name));
 
-		// create real paragraphs
-		TextView t = (TextView) findViewById(R.id.aboutTextView);
-		t.setText(Html.fromHtml(getString(R.string.about)));
+		ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
 
-		// make links in about text clickable
-		t.setMovementMethod(LinkMovementMethod.getInstance());
+		// don't recreate the fragments when changing tabs
+		viewPager.setOffscreenPageLimit(3);
+
+		mPagerAdapter = new AboutPagerAdapter(getSupportFragmentManager());
+		viewPager.setAdapter(mPagerAdapter);
+
+		SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+		slidingTabLayout.setDistributeEvenly(true);
+		slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.accent));
+		slidingTabLayout.setViewPager(viewPager);
 	}
 
-	public void close(View v) {
-		finish();
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId() == android.R.id.home) {
+			onBackPressed();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
+
+	class AboutPagerAdapter extends FragmentStatePagerAdapter {
+		// Since this is an object collection, use a FragmentStatePagerAdapter,
+		// and NOT a FragmentPagerAdapter.
+		public AboutPagerAdapter(FragmentManager fm) {
+			super(fm);
+		}
+
+		@Override
+		public Fragment getItem(int i) {
+			if(i == 1) {
+				// TODO: Developers
+				return new FragmentAbout();
+			} else if(i == 2) {
+				// TODO: Libraries
+				return new FragmentAbout();
+			}
+			return new FragmentAbout();
+		}
+
+		@Override
+		public int getCount() {
+			return 3;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int i) {
+			if(i == 1) {
+				return getString(R.string.tab_devs);
+			} else if(i == 2) {
+				return getString(R.string.tab_libraries);
+			}
+			return getString(R.string.tab_about);
+		}
+	}
 }

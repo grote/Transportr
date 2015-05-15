@@ -73,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
 		mViewPager.setOffscreenPageLimit(3);
 
 		mPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
-		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mPagerAdapter);
 
-		SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-		mSlidingTabLayout.setCustomTabView(R.layout.tab, R.id.tabimage);
-		mSlidingTabLayout.setViewPager(mViewPager);
+		SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+		slidingTabLayout.setDistributeEvenly(true);
+		slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.accent));
+		slidingTabLayout.setViewPager(mViewPager);
 
 		// show about screen and make sure a transport network is selected
 		checkFirstRun();
@@ -222,11 +222,11 @@ public class MainActivity extends AppCompatActivity {
 		@Override
 		public CharSequence getPageTitle(int i) {
 			if(i == 1) {
-				return String.valueOf(R.drawable.ic_action_star);
+				return "STAR";
 			} else if(i == 2) {
-				return String.valueOf(R.drawable.ic_tab_stations);
+				return "STATIONS";
 			}
-			return String.valueOf(android.R.drawable.ic_menu_directions);
+			return "DIRECTIONS";
 		}
 	}
 }
