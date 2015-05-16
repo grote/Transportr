@@ -75,22 +75,24 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 
 		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
 
-		((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(network.getName());
+		if(network != null) {
+			((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(network.getName());
 
-		NetworkProvider np = network.getNetworkProvider();
+			NetworkProvider np = network.getNetworkProvider();
 
-		if(np != null && np.hasCapabilities(Capability.DEPARTURES)) {
-			setDeparturesView();
-		} else {
-			LinearLayout departuresLayout = (LinearLayout) mView.findViewById(R.id.departuresLayout);
-			departuresLayout.setVisibility(View.GONE);
-		}
+			if(np.hasCapabilities(Capability.DEPARTURES)) {
+				setDeparturesView();
+			} else {
+				LinearLayout departuresLayout = (LinearLayout) mView.findViewById(R.id.departuresLayout);
+				departuresLayout.setVisibility(View.GONE);
+			}
 
-		if(np != null && np.hasCapabilities(Capability.NEARBY_LOCATIONS)) {
-			setNearbyStationsView();
-		} else {
-			LinearLayout nearbyStationsLayout = (LinearLayout) mView.findViewById(R.id.nearbyStationsLayout);
-			nearbyStationsLayout.setVisibility(View.GONE);
+			if(np.hasCapabilities(Capability.NEARBY_LOCATIONS)) {
+				setNearbyStationsView();
+			} else {
+				LinearLayout nearbyStationsLayout = (LinearLayout) mView.findViewById(R.id.nearbyStationsLayout);
+				nearbyStationsLayout.setVisibility(View.GONE);
+			}
 		}
 
 		return mView;

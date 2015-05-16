@@ -63,7 +63,10 @@ public class FavTripsFragment extends LiberarioListFragment {
 		adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)));
 		setListAdapter(adapter);
 
-		((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(Preferences.getTransportNetwork(getActivity()).getName());
+		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
+		if(network != null) {
+			((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(network.getName());
+		}
 
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}

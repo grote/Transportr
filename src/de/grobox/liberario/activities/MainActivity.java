@@ -54,10 +54,14 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 
 		checkFirstRun(network);
 
-		assert(network != null);
-
-		MaterialAccount account = new MaterialAccount(this.getResources(), network.getName(), network.getRegion(), network.getLogo(), network.getBackground());
-		addAccount(account);
+		if(network != null) {
+			MaterialAccount account = new MaterialAccount(this.getResources(), network.getName(), network.getRegion(), network.getLogo(), network.getBackground());
+			addAccount(account);
+		} else {
+			// add fake account, so there's something to be changed later. Otherwise crashes
+			MaterialAccount account = new MaterialAccount(this.getResources(), "null", "null", R.drawable.ic_placeholder, null);
+			addAccount(account);
+		}
 
 		addSection(newSection(getString(R.string.tab_directions), getResources().getDrawable(android.R.drawable.ic_menu_directions), new DirectionsFragment()));
 		addSection(newSection(getString(R.string.tab_fav_trips), getResources().getDrawable(R.drawable.ic_action_star), new FavTripsFragment()));
@@ -109,10 +113,12 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 		}
 
 		// TODO take the last two used networks into consideration and display them
-		getCurrentAccount().setTitle(network.getName());
-		getCurrentAccount().setSubTitle(network.getRegion());
-		getCurrentAccount().setPhoto(network.getLogo());
-		getCurrentAccount().setBackground(network.getBackground());
+		MaterialAccount account = getCurrentAccount();
+		account.setTitle(network.getName());
+		account.setSubTitle(network.getRegion());
+		account.setPhoto(network.getLogo());
+		account.setBackground(network.getBackground());
+
 		notifyAccountDataChanged();
 
 		// call this method for each fragment
@@ -129,6 +135,10 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 		// return if no network is set
 		if(network == null) {
 			Intent intent = new Intent(this, PickNetworkProviderActivity.class);
+
+			// force choosing a network provider
+			intent.putExtra("FirstRun", true);
+
 			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
 		}
 		else {

@@ -106,7 +106,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		mView = inflater.inflate(R.layout.fragment_directions, container, false);
 		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-		((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(Preferences.getTransportNetwork(getActivity()).getName());
+		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
+		if(network != null) {
+			((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(network.getName());
+		}
 
 		populateViewHolders();
 
