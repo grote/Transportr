@@ -41,6 +41,7 @@ import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
+import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -104,6 +105,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_directions, container, false);
 		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+		((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(Preferences.getTransportNetwork(getActivity()).getName());
 
 		populateViewHolders();
 

@@ -23,7 +23,6 @@ import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.adapters.LocationAdapter;
-import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.SetHomeActivity;
@@ -32,10 +31,11 @@ import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.ui.DelayAutoCompleteTextView;
 import de.grobox.liberario.ui.LocationInputView;
 import de.grobox.liberario.utils.LiberarioUtils;
-import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.NetworkProvider.Capability;
 import de.schildbach.pte.dto.Location;
+import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -73,12 +73,11 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_stations, container, false);
 
-		NetworkId networkId = Preferences.getNetworkId(getActivity());
-		NetworkProvider np = null;
+		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
 
-		if(networkId != null) {
-			np = NetworkProviderFactory.provider(networkId);
-		}
+		((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(network.getName());
+
+		NetworkProvider np = network.getNetworkProvider();
 
 		if(np != null && np.hasCapabilities(Capability.DEPARTURES)) {
 			setDeparturesView();

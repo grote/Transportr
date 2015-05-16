@@ -46,6 +46,7 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.NetworkProvider;
+import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
 public class FavTripsFragment extends LiberarioListFragment {
 	private FavTripArrayAdapter adapter;
@@ -61,6 +62,8 @@ public class FavTripsFragment extends LiberarioListFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)));
 		setListAdapter(adapter);
+
+		((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(Preferences.getTransportNetwork(getActivity()).getName());
 
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}

@@ -132,7 +132,7 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
 		}
 		else {
-			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+			Toolbar toolbar = getToolbar();
 			if(toolbar != null) toolbar.setSubtitle(network.getName());
 
 			disableLearningPattern();
