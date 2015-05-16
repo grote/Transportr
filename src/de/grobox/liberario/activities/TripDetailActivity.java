@@ -42,7 +42,7 @@ public class TripDetailActivity extends AppCompatActivity {
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			toolbar.setSubtitle(Preferences.getNetwork(this));
+			toolbar.setSubtitle(Preferences.getTransportNetwork(this).getName());
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();

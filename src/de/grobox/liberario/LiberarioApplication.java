@@ -17,39 +17,17 @@
 
 package de.grobox.liberario;
 
-import de.schildbach.pte.NetworkId;
+import android.app.Application;
+import android.content.Context;
 
-public class NetworkItem {
-	public NetworkId id;
-	public String name;
-	public String description;
-	public boolean beta;
+public class LiberarioApplication extends Application {
+	private TransportNetworks networks;
 
-	public NetworkItem(NetworkId id, String text) {
-		this.id = id;
-		this.name = text;
-		this.description = "";
-		this.beta = false;
+	public void initilize(Context context) {
+		if(networks == null) networks = new TransportNetworks(context);
 	}
 
-	public NetworkItem(NetworkId id, String text, boolean beta) {
-		this.id = id;
-		this.name = text;
-		this.description = "";
-		this.beta = beta;
-	}
-
-	public NetworkItem(NetworkId id, String text, String description) {
-		this.id = id;
-		this.name = text;
-		this.description = description;
-		this.beta = false;
-	}
-
-	public NetworkItem(NetworkId id, String text, String description, boolean beta) {
-		this.id = id;
-		this.name = text;
-		this.description = description;
-		this.beta = beta;
+	public TransportNetworks getTransportNetworks() {
+		return networks;
 	}
 }

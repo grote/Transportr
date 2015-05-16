@@ -18,16 +18,15 @@
 package de.grobox.liberario.activities;
 
 import de.cketti.library.changelog.ChangeLog;
+import de.grobox.liberario.LiberarioApplication;
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.FavTripsFragment;
-import de.grobox.liberario.fragments.LiberarioFragment;
-import de.grobox.liberario.fragments.LiberarioListFragment;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.fragments.PrefsFragment;
 import de.grobox.liberario.fragments.StationsFragment;
-import de.schildbach.pte.NetworkProvider;
 
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 import it.neokree.materialnavigationdrawer.elements.MaterialAccount;
@@ -35,26 +34,29 @@ import it.neokree.materialnavigationdrawer.elements.MaterialSection;
 import it.neokree.materialnavigationdrawer.elements.listeners.MaterialAccountListener;
 import it.neokree.materialnavigationdrawer.elements.listeners.MaterialSectionListener;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 
-public class MainActivity extends MaterialNavigationDrawer {
+public class MainActivity extends MaterialNavigationDrawer implements TransportNetwork.Handler {
 	static final public int CHANGED_NETWORK_PROVIDER = 1;
 	static final public int CHANGED_HOME = 2;
 
 	@Override
 	public void init(Bundle savedInstanceState) {
-		String network = Preferences.getNetwork(this);
+		// Initialize Application Context with all Transport Networks
+		((LiberarioApplication) getApplicationContext()).initilize(this);
+
+		TransportNetwork network = Preferences.getTransportNetwork(this);
 
 		checkFirstRun(network);
 
-		MaterialAccount account = new MaterialAccount(this.getResources(), network, null, R.drawable.ic_placeholder, null);
+		assert(network != null);
+
+		MaterialAccount account = new MaterialAccount(this.getResources(), network.getName(), network.getRegion(), network.getLogo(), network.getBackground());
 		addAccount(account);
 
 		addSection(newSection(getString(R.string.tab_directions), getResources().getDrawable(android.R.drawable.ic_menu_directions), new DirectionsFragment()));
@@ -77,19 +79,9 @@ public class MainActivity extends MaterialNavigationDrawer {
 				startActivityForResult(new Intent(getContext(), PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
 			}
 
-			@SuppressLint("CommitPrefEdits")
 			@Override
 			public void onChangeAccount(MaterialAccount materialAccount) {
-				SharedPreferences settings = getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
-				SharedPreferences.Editor editor = settings.edit();
-
-				// TODO fix region
-//				editor.putString("NetworkRegion", materialAccount.getSubTitle());
-				editor.putString("NetworkId", materialAccount.getTitle());
-
-				editor.commit();
-
-				onNetworkProviderChanged(Preferences.getNetworkProvider(getContext()));
+				// nop
 			}
 		});
 
@@ -105,37 +97,35 @@ public class MainActivity extends MaterialNavigationDrawer {
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if(requestCode == CHANGED_NETWORK_PROVIDER && resultCode == RESULT_OK) {
-			onNetworkProviderChanged(Preferences.getNetworkProvider(this));
+			onNetworkProviderChanged(Preferences.getTransportNetwork(this));
 		}
 	}
 
-	public void onNetworkProviderChanged(NetworkProvider np) {
+	public void onNetworkProviderChanged(TransportNetwork network) {
 		Toolbar toolbar = getToolbar();
 		if(toolbar != null) {
 			// get and set new network name for app bar
-			toolbar.setSubtitle(Preferences.getNetwork(this));
+			toolbar.setSubtitle(network.getName());
 		}
 
-		getCurrentAccount().setTitle(np.id().name());
+		// TODO take the last two used networks into consideration and display them
+		getCurrentAccount().setTitle(network.getName());
+		getCurrentAccount().setSubTitle(network.getRegion());
+		getCurrentAccount().setPhoto(network.getLogo());
+		getCurrentAccount().setBackground(network.getBackground());
 		notifyAccountDataChanged();
 
 		// call this method for each fragment
 		for(Object section : getSectionList()) {
-			MaterialSection sec = (MaterialSection) section;
+			Object obj = ((MaterialSection) section).getTargetFragment();
 
-			if(sec.getTargetFragment() instanceof LiberarioFragment) {
-				((LiberarioFragment) sec.getTargetFragment()).onNetworkProviderChanged(np);
-			}
-			else if(sec.getTargetFragment() instanceof LiberarioListFragment) {
-				((LiberarioListFragment) sec.getTargetFragment()).onNetworkProviderChanged(np);
-			}
-			else if(sec.getTargetFragment() instanceof PrefsFragment) {
-				((PrefsFragment) sec.getTargetFragment()).onNetworkProviderChanged(np);
+			if(obj instanceof TransportNetwork.Handler) {
+				((TransportNetwork.Handler) obj).onNetworkProviderChanged(network);
 			}
 		}
 	}
 
-	private void checkFirstRun(String network) {
+	private void checkFirstRun(TransportNetwork network) {
 		// return if no network is set
 		if(network == null) {
 			Intent intent = new Intent(this, PickNetworkProviderActivity.class);
@@ -143,7 +133,7 @@ public class MainActivity extends MaterialNavigationDrawer {
 		}
 		else {
 			Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-			if(toolbar != null) toolbar.setSubtitle(network);
+			if(toolbar != null) toolbar.setSubtitle(network.getName());
 
 			disableLearningPattern();
 		}

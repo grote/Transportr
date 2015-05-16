@@ -20,7 +20,7 @@ package de.grobox.liberario.adapters;
 import java.util.HashMap;
 import java.util.List;
 
-import de.grobox.liberario.NetworkItem;
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.R;
 import de.schildbach.pte.NetworkId;
 
@@ -36,9 +36,9 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	private Context _context;
 	private List<String> _listRegion;
-	private HashMap<String, List<NetworkItem>> _listNetwork;
+	private HashMap<String, List<TransportNetwork>> _listNetwork;
 
-	public NetworkProviderListAdapter(Context context, List<String> listRegion,	HashMap<String, List<NetworkItem>> listNetwork) {
+	public NetworkProviderListAdapter(Context context, List<String> listRegion,	HashMap<String, List<TransportNetwork>> listNetwork) {
 		this._context = context;
 		this._listRegion = listRegion;
 		this._listNetwork = listNetwork;
@@ -55,10 +55,10 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 	}
 
 	public int getChildPos(String region, NetworkId network_id) {
-		List<NetworkItem> networks = this._listNetwork.get(region);
+		List<TransportNetwork> networks = this._listNetwork.get(region);
 		if(networks != null) {
-			for(final NetworkItem network : networks) {
-				if(network.id.equals(network_id)) {
+			for(final TransportNetwork network : networks) {
+				if(network.getId().equals(network_id)) {
 					return networks.indexOf(network);
 				}
 			}
@@ -68,19 +68,18 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public View getChildView(int groupPos, final int childPos, boolean isLastChild, View convertView, ViewGroup parent) {
-		NetworkItem network = ((NetworkItem) getChild(groupPos, childPos));
+		TransportNetwork network = ((TransportNetwork) getChild(groupPos, childPos));
 
 		LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		convertView = infalInflater.inflate(R.layout.network_provider_item, null);
 
-		((TextView) convertView.findViewById(R.id.networkName)).setText(network.name);
-		((TextView) convertView.findViewById(R.id.networkDescription)).setText(network.description);
-		convertView.findViewById(R.id.networkBeta).setVisibility(network.beta ? View.VISIBLE : View.GONE);
+		((TextView) convertView.findViewById(R.id.networkName)).setText(network.getName());
+		((TextView) convertView.findViewById(R.id.networkDescription)).setText(network.getDescription());
+		convertView.findViewById(R.id.networkBeta).setVisibility(network.getStatus() == TransportNetwork.Status.BETA ? View.VISIBLE : View.GONE);
 
 		// set logo of provider if we have one
-		int resourceID = _context.getResources().getIdentifier("network_"+network.id.toString().toLowerCase()+"_logo", "drawable", _context.getPackageName());
-		if(resourceID != 0) {
-			((ImageView) convertView.findViewById(R.id.icon)).setImageDrawable(_context.getResources().getDrawable(resourceID));
+		if(network.getLogo() != 0) {
+			((ImageView) convertView.findViewById(R.id.icon)).setImageDrawable(_context.getResources().getDrawable(network.getLogo()));
 		}
 
 		// remember region name of this child
@@ -91,7 +90,7 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPos) {
-		List<NetworkItem> region = this._listNetwork.get(this._listRegion.get(groupPos));
+		List<TransportNetwork> region = this._listNetwork.get(this._listRegion.get(groupPos));
 
 		if(region != null) {
 			return region.size();

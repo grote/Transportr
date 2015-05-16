@@ -17,11 +17,11 @@
 
 package de.grobox.liberario.fragments;
 
+import de.grobox.liberario.TransportNetwork;
 import de.schildbach.pte.NetworkProvider;
 import android.support.v4.app.Fragment;
 
 
-public class LiberarioFragment extends Fragment {
-	public void onNetworkProviderChanged(NetworkProvider np) { }
+public class LiberarioFragment extends Fragment implements TransportNetwork.Handler {
+	public void onNetworkProviderChanged(TransportNetwork network) { }
 }
-

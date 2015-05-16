@@ -19,6 +19,7 @@ package de.grobox.liberario.fragments;
 
 import java.util.List;
 
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.adapters.LocationAdapter;
@@ -97,10 +98,12 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 	}
 
 	@Override
-	public void onNetworkProviderChanged(NetworkProvider np) {
+	public void onNetworkProviderChanged(TransportNetwork network) {
 		if(mView == null) return;
 
 		LinearLayout departuresLayout = (LinearLayout) mView.findViewById(R.id.departuresLayout);
+
+		NetworkProvider np = network.getNetworkProvider();
 
 		if(np.hasCapabilities(Capability.DEPARTURES)) {
 			departuresLayout.setVisibility(View.VISIBLE);

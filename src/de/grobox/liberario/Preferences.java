@@ -19,9 +19,9 @@ package de.grobox.liberario;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import de.schildbach.pte.NetworkId;
-import de.schildbach.pte.NetworkProvider;
 
 public class Preferences {
 
@@ -34,6 +34,16 @@ public class Preferences {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 
 		return settings.getString("NetworkId", null);
+	}
+
+	public static @Nullable TransportNetwork getTransportNetwork(Context context) {
+		String id = getNetwork(context);
+
+		if(id != null) {
+			return ((LiberarioApplication) context.getApplicationContext()).getTransportNetworks().getTransportNetwork(id);
+		} else {
+			return null;
+		}
 	}
 
 	public static NetworkId getNetworkId(Context context) {
@@ -49,14 +59,10 @@ public class Preferences {
 			network_id = NetworkId.valueOf(network);
 		}
 		catch (IllegalArgumentException e) {
-			Log.d(context.getClass().getSimpleName(), "Invalid NetworkId in Settings.");
+			Log.e(context.getClass().getSimpleName(), "Invalid NetworkId in Settings.");
 		}
 
 		return network_id;
-	}
-
-	public static NetworkProvider getNetworkProvider(Context context) {
-		return NetworkProviderFactory.provider(getNetworkId(context));
 	}
 
 
@@ -72,6 +78,14 @@ public class Preferences {
 		SharedPreferences.Editor editor = settings.edit();
 
 		editor.putBoolean(pref, value);
+		editor.commit();
+	}
+
+	public static void setNetworkId(Context context, NetworkId id) {
+		SharedPreferences settings = context.getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = settings.edit();
+
+		editor.putString("NetworkId", id.name());
 		editor.commit();
 	}
 }

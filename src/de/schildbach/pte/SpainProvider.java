@@ -23,18 +23,15 @@ import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Style;
 import de.schildbach.pte.dto.Style.Shape;
 
-/**
- * @author Torsten Grote
- */
 public class SpainProvider extends AbstractNavitiaProvider
 {
 	private static String API_REGION = "es";
 
 	public SpainProvider(final String authorization)
 	{
-		super(NetworkId.NZ, authorization);
+		super(NetworkId.SPAIN, authorization);
 
-		setTimeZone("Pacific/Auckland");
+		setTimeZone("Europe/Spain");
 	}
 
 	@Override
@@ -74,7 +71,7 @@ public class SpainProvider extends AbstractNavitiaProvider
 				return new Style(Shape.RECT, bc, fc);
 			}
 			default:
-				Log.d("NzProvider", "Unhandled Product: " + product.toString());
+				Log.d("SpainProvider", "Unhandled Product: " + product.toString());
 				return new Style(bc, fc);
 		}
 	}

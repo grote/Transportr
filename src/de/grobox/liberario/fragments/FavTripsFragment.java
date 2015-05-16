@@ -39,6 +39,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.FavTrip;
 import de.grobox.liberario.Preferences;
@@ -75,7 +76,8 @@ public class FavTripsFragment extends LiberarioListFragment {
 	public void onResume() {
 		super.onResume();
 
-		onNetworkProviderChanged(Preferences.getNetworkProvider(getActivity()));
+		// although the network provider has not changed, other things might have, so reload data
+		onNetworkProviderChanged(Preferences.getTransportNetwork(getActivity()));
 	}
 
 	@Override
@@ -108,7 +110,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 
 	@Override
 	// change things for a different network provider
-	public void onNetworkProviderChanged(NetworkProvider np) {
+	public void onNetworkProviderChanged(TransportNetwork network) {
 		// reload data because it has changed
 		if(getActivity() != null && adapter != null) {
 			adapter.clear();

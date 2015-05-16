@@ -22,6 +22,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.FavTrip;
@@ -357,7 +358,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	@Override
 	// change things for a different network provider
-	public void onNetworkProviderChanged(NetworkProvider np) {
+	public void onNetworkProviderChanged(TransportNetwork network) {
 		refreshFavs();
 
 		// remove old text from TextViews

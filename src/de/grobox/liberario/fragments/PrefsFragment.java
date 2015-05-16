@@ -24,16 +24,16 @@ import android.preference.Preference;
 
 import com.github.machinarius.preferencefragment.PreferenceFragment;
 
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.PickNetworkProviderActivity;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.data.FavDB;
-import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 
-public class PrefsFragment extends PreferenceFragment {
+public class PrefsFragment extends PreferenceFragment implements TransportNetwork.Handler {
 
 	Preference network;
 	Preference home;
@@ -47,7 +47,7 @@ public class PrefsFragment extends PreferenceFragment {
 
 		// Fill in current home location if available
 		network = findPreference("pref_key_network");
-		network.setSummary(Preferences.getNetwork(getActivity()));
+		network.setSummary(Preferences.getTransportNetwork(getActivity()).getName());
 
 		network.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
@@ -93,7 +93,7 @@ public class PrefsFragment extends PreferenceFragment {
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if(requestCode == MainActivity.CHANGED_NETWORK_PROVIDER && resultCode == Activity.RESULT_OK) {
-			((MainActivity) getActivity()).onNetworkProviderChanged(Preferences.getNetworkProvider(getActivity()));
+			((MainActivity) getActivity()).onNetworkProviderChanged(Preferences.getTransportNetwork(getActivity()));
 		}
 		else if(requestCode == MainActivity.CHANGED_HOME && resultCode == Activity.RESULT_OK) {
 			// set new home
@@ -101,10 +101,10 @@ public class PrefsFragment extends PreferenceFragment {
 		}
 	}
 
-	public void onNetworkProviderChanged(NetworkProvider np) {
+	public void onNetworkProviderChanged(TransportNetwork network) {
 		if(getActivity() != null) {
 			// set new network name
-			network.setSummary(np.id().name());
+			this.network.setSummary(network.getName());
 
 			setHome();
 		}
