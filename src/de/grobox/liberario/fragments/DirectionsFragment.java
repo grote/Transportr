@@ -59,6 +59,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -224,7 +225,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			});
 		}
 
-		if(!Preferences.getPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS)) {
+		if(!Preferences.getPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false)) {
 			ui.productsScrollView.setVisibility(View.GONE);
 		}
 
@@ -300,10 +301,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	@Override
 	public void onStart() {
 		super.onStart();
-
-		if(ui.productsScrollView.getVisibility() == View.VISIBLE) {
-			indicateProductScrolling();
-		}
 	}
 
 	@Override
@@ -333,10 +330,9 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		switch (item.getItemId()) {
 			case R.id.action_navigation_expand:
 				if(ui.productsScrollView.getVisibility() == View.GONE) {
-					ui.productsScrollView.setVisibility(View.VISIBLE);
 					item.setIcon(R.drawable.ic_action_navigation_collapse);
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, true);
-					indicateProductScrolling();
+					showMore();
 				} else {
 					ui.productsScrollView.setVisibility(View.GONE);
 					item.setIcon(R.drawable.ic_action_navigation_expand);
@@ -487,12 +483,21 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 	}
 
-	private void indicateProductScrolling() {
+	private void showMore() {
+		ui.productsScrollView.setVisibility(View.VISIBLE);
+
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			ui.productsScrollView.animate().setDuration(750).translationXBy(200).withEndAction(new Runnable() {
+			DisplayMetrics dm = new DisplayMetrics();
+			getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+			final int distance = dm.widthPixels;
+			final int slide = distance / 10;
+
+			ui.productsScrollView.setX(distance);
+			ui.productsScrollView.animate().setDuration(750).translationXBy(-1 * distance - slide).withEndAction(new Runnable() {
 				@Override
 				public void run() {
-					ui.productsScrollView.animate().setDuration(750).translationXBy(-200);
+					ui.productsScrollView.animate().setDuration(250).translationXBy(slide);
 				}
 			});
 		}

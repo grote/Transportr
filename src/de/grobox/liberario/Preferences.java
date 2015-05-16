@@ -67,10 +67,14 @@ public class Preferences {
 
 
 	public static boolean getPref(Context context, String pref) {
+		// prefs are enabled by default (if never used before, for example)
+		return getPref(context, pref, true);
+	}
+
+	public static boolean getPref(Context context, String pref, boolean defValue) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 
-		// prefs are enabled by default (if never used before, for example)
-		return settings.getBoolean(pref, true);
+		return settings.getBoolean(pref, defValue);
 	}
 
 	public static void setPref(Context context, String pref, boolean value) {
