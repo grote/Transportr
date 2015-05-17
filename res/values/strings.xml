@@ -22,7 +22,7 @@
     <string name="action_show_on_map">Show on Map</string>
 
     <string name="tab_directions">Directions</string>
-    <string name="tab_fav_trips">Favorites</string>
+    <string name="tab_fav_trips">Last Trips</string>
     <string name="tab_departures">Departures</string>
 
     <string name="tab_libraries">Libraries</string>
@@ -64,7 +64,7 @@
     <string name="trip_searching">Searching for connections&#8230;</string>
     <string name="stations_searching_position">Searching for current position&#8230;</string>
     <string name="stations_searching_stations">Searching for nearby stations&#8230;</string>
-    <string name="find_nearby_stations">Find Nearby Stations</string>
+    <string name="nearby_stations">Nearby Stations</string>
     <string name="find_departures">Find Departures</string>
     <string name="departure_station">Departure Station</string>
     <string name="share_trip_via">Share Trip Via&#8230;</string>

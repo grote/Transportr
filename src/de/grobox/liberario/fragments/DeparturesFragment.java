@@ -58,7 +58,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StationsFragment extends LiberarioFragment implements LocationListener {
+public class DeparturesFragment extends LiberarioFragment implements LocationListener {
 	private View mView;
 	private LocationManager locationManager;
 	private boolean loc_found = false;
@@ -71,7 +71,7 @@ public class StationsFragment extends LiberarioFragment implements LocationListe
 		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
 		// remember view for UI changes when fragment is not active
-		mView = inflater.inflate(R.layout.fragment_stations, container, false);
+		mView = inflater.inflate(R.layout.fragment_departures, container, false);
 
 		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
 

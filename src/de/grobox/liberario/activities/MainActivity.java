@@ -26,7 +26,7 @@ import de.grobox.liberario.fragments.FavTripsFragment;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.fragments.PrefsFragment;
-import de.grobox.liberario.fragments.StationsFragment;
+import de.grobox.liberario.fragments.DeparturesFragment;
 
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 import it.neokree.materialnavigationdrawer.elements.MaterialAccount;
@@ -64,10 +64,11 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 
 		addSection(newSection(getString(R.string.tab_directions), getResources().getDrawable(android.R.drawable.ic_menu_directions), new DirectionsFragment()));
 		addSection(newSection(getString(R.string.tab_fav_trips), getResources().getDrawable(R.drawable.ic_action_star), new FavTripsFragment()));
-		addSection(newSection(getString(R.string.tab_departures), getResources().getDrawable(R.drawable.ic_tab_stations), new StationsFragment()));
+		addSection(newSection(getString(R.string.tab_departures), getResources().getDrawable(R.drawable.ic_action_departures), new DeparturesFragment()));
+		addSection(newSection(getString(R.string.nearby_stations), getResources().getDrawable(R.drawable.ic_tab_stations), new DeparturesFragment()));
 
-		addBottomSection(newSection(getString(R.string.action_settings), getResources().getDrawable(android.R.drawable.ic_menu_preferences), new PrefsFragment()));
-		addBottomSection(newSection(getResources().getString(R.string.action_about) + " " + getResources().getString(R.string.app_name), getResources().getDrawable(android.R.drawable.ic_menu_info_details), new AboutMainFragment()));
+		addBottomSection(newSection(getString(R.string.action_settings), getResources().getDrawable(R.drawable.ic_action_settings), new PrefsFragment()));
+		addBottomSection(newSection(getResources().getString(R.string.action_about) + " " + getResources().getString(R.string.app_name), getResources().getDrawable(R.drawable.ic_action_about), new AboutMainFragment()));
 		addBottomSection(newSection(getString(R.string.action_changelog), getResources().getDrawable(R.drawable.ic_action_changelog), new MaterialSectionListener() {
 			@Override
 			public void onClick(MaterialSection materialSection) {

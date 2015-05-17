@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/find_nearby_stations"
+                android:text="@string/nearby_stations"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TableLayout

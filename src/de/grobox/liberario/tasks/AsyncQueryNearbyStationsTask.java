@@ -21,7 +21,7 @@ import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.StationsListActivity;
-import de.grobox.liberario.fragments.StationsFragment;
+import de.grobox.liberario.fragments.DeparturesFragment;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -35,7 +35,7 @@ import android.widget.Toast;
 import java.util.EnumSet;
 
 public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLocationsResult> {
-	private StationsFragment fragment = null;
+	private DeparturesFragment fragment = null;
 	private Context context;
 	private Location loc;
 	private boolean gps = false;
@@ -99,7 +99,7 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLo
 		context.startActivity(intent);
 	}
 
-	public void setFragment(StationsFragment fragment) {
+	public void setFragment(DeparturesFragment fragment) {
 		this.fragment = fragment;
 	}
 

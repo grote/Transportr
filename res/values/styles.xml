@@ -44,10 +44,16 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
+        <item name="sectionStyle">@style/DrawerSectionTheme</item>
+
         <item name="singleAccount">true</item>
         <item name="multipaneSupport">true</item>
         <item name="toolbarElevation">true</item>
         <item name="rippleBackport">true</item>
+    </style>
+
+    <style name="DrawerSectionTheme" parent="MaterialSectionTheme">
+        <item name="sectionBackgroundColorSelected">@color/accent</item>
     </style>
 
 </resources>
