@@ -128,6 +128,9 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 			toolbar.setSubtitle(network.getName());
 		}
 
+		// nothing changed, so bail out
+		if(network.equals(anet1)) return;
+
 		// switch around the current networks
 		if(anet2 != network) {
 			anet3 = anet2;
