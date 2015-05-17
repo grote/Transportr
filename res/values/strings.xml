@@ -106,6 +106,8 @@
     <string name="product_on_demand">On Demand</string>
     <string name="action_fav_trips_sort">Sort List</string>
 
+    <string name="what_here">Let me know what you would like to see here!</string>
+
     <string name="np_region_europe">Europe</string>
     <string name="np_name_rt">Europe</string>
     <string name="np_desc_rt">long-distance only</string>

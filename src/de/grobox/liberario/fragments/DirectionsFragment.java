@@ -54,6 +54,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -226,7 +227,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 
 		if(!Preferences.getPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false)) {
-			ui.productsScrollView.setVisibility(View.GONE);
+			showLess();
 		}
 
 		ui.search.setOnClickListener(new View.OnClickListener() {
@@ -295,6 +296,16 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			}
 		});
 
+		ui.whatHere.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "t+liberario@grobox.de", null));
+				intent.putExtra(Intent.EXTRA_SUBJECT, "[Liberario] Below Directions Form");
+				intent.putExtra(Intent.EXTRA_TEXT, "Hi,\nI like to see");
+				startActivity(Intent.createChooser(intent, "Send Email"));
+			}
+		});
+
 		return mView;
 	}
 
@@ -334,9 +345,9 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, true);
 					showMore();
 				} else {
-					ui.productsScrollView.setVisibility(View.GONE);
 					item.setIcon(R.drawable.ic_action_navigation_expand);
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false);
+					showLess();
 				}
 
 				return true;
@@ -485,6 +496,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	private void showMore() {
 		ui.productsScrollView.setVisibility(View.VISIBLE);
+		ui.whatHere.setVisibility(View.VISIBLE);
 
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			DisplayMetrics dm = new DisplayMetrics();
@@ -493,13 +505,33 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			final int distance = dm.widthPixels;
 			final int slide = distance / 10;
 
-			ui.productsScrollView.setX(distance);
+			ui.productsScrollView.setTranslationX(distance);
 			ui.productsScrollView.animate().setDuration(750).translationXBy(-1 * distance - slide).withEndAction(new Runnable() {
 				@Override
 				public void run() {
 					ui.productsScrollView.animate().setDuration(250).translationXBy(slide);
 				}
 			});
+
+			ui.whatHere.setAlpha(0f);
+			ui.whatHere.animate().setDuration(750).alpha(1f);
+		}
+	}
+
+	private void showLess() {
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			ui.whatHere.setAlpha(1f);
+			ui.whatHere.animate().setDuration(500).alpha(0f).withEndAction(new Runnable() {
+				@Override
+				public void run() {
+					ui.productsScrollView.setVisibility(View.GONE);
+					ui.whatHere.setVisibility(View.GONE);
+				}
+			});
+		}
+		else {
+			ui.productsScrollView.setVisibility(View.GONE);
+			ui.whatHere.setVisibility(View.GONE);
 		}
 	}
 
@@ -732,6 +764,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		ImageView ferry;
 		ImageView cablecar;
 		Button search;
+		View whatHere;
 	}
 
 	private void populateViewHolders() {
@@ -766,6 +799,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		ui.ferry = (ImageView) mView.findViewById(R.id.ic_product_ferry);
 		ui.cablecar = (ImageView) mView.findViewById(R.id.ic_product_cablecar);
 		ui.search = (Button) mView.findViewById(R.id.searchButton);
+
+		ui.whatHere = mView.findViewById(R.id.whatHereView);
 	}
 }
 
