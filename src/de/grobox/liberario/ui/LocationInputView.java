@@ -78,7 +78,6 @@ public class LocationInputView {
 		};
 		holder.location.setOnClickListener(onClickListener);
 
-		holder.status.setImageDrawable(null);
 		holder.status.setOnClickListener(onClickListener);
 
 		// clear from text button
@@ -122,7 +121,11 @@ public class LocationInputView {
 				holder.location.dismissDropDown();
 			}
 
-			holder.status.setImageDrawable(icon);
+			if(icon != null) {
+				holder.status.setImageDrawable(icon);
+			} else {
+				holder.status.setImageResource(R.drawable.ic_location);
+			}
 
 			is_changing = false;
 		}
