@@ -29,8 +29,8 @@ public class TransportNetwork {
 	@Nullable private String description;
 	@Nullable private String region;
 	private Status status = Status.STABLE;
-	private int logo = 0;
-	private int background = 0;
+	private int logo = R.drawable.ic_placeholder;
+	private int background = R.drawable.background_default;
 
 	public enum Status { APLHA, BETA, STABLE }
 

@@ -45,6 +45,12 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 	static final public int CHANGED_NETWORK_PROVIDER = 1;
 	static final public int CHANGED_HOME = 2;
 
+	private TransportNetwork anet1;
+	private TransportNetwork anet2;
+	private TransportNetwork anet3;
+
+	private boolean clicked_account = false;
+
 	@Override
 	public void init(Bundle savedInstanceState) {
 		// Initialize Application Context with all Transport Networks
@@ -54,14 +60,7 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 
 		checkFirstRun(network);
 
-		if(network != null) {
-			MaterialAccount account = new MaterialAccount(this.getResources(), network.getName(), network.getRegion(), network.getLogo(), network.getBackground());
-			addAccount(account);
-		} else {
-			// add fake account, so there's something to be changed later. Otherwise crashes
-			MaterialAccount account = new MaterialAccount(this.getResources(), "null", "null", R.drawable.ic_placeholder, null);
-			addAccount(account);
-		}
+		addAccounts(network);
 
 		addSection(newSection(getString(R.string.tab_directions), getResources().getDrawable(android.R.drawable.ic_menu_directions), new DirectionsFragment()));
 		addSection(newSection(getString(R.string.tab_fav_trips), getResources().getDrawable(R.drawable.ic_action_star), new FavTripsFragment()));
@@ -85,10 +84,26 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 
 			@Override
 			public void onChangeAccount(MaterialAccount materialAccount) {
-				// nop
+				// remember that this change came from the drawer
+				clicked_account = true;
+
+				// find out to which network we just switched
+				TransportNetwork network;
+				if(materialAccount.getTitle().equals(anet1.getName())) {
+					network = anet1;
+				} else if(materialAccount.getTitle().equals(anet2.getName())) {
+					network = anet2;
+				} else {
+					network = anet3;
+				}
+
+				// save new network
+				Preferences.setNetworkId(getContext(), network.getId());
+
+				// notify everybody of this change
+				onNetworkProviderChanged(network);
 			}
 		});
-
 
 		// show Changelog
 		HoloChangeLog cl = new HoloChangeLog(this);
@@ -112,16 +127,71 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 			toolbar.setSubtitle(network.getName());
 		}
 
-		// TODO take the last two used networks into consideration and display them
-		MaterialAccount account = getCurrentAccount();
-		account.setTitle(network.getName());
-		account.setSubTitle(network.getRegion());
-		account.setPhoto(network.getLogo());
-		account.setBackground(network.getBackground());
+		// switch around the current networks
+		if(anet2 != network) {
+			anet3 = anet2;
+		}
+		if(anet1 != network) {
+			anet2 = anet1;
+		}
+		anet1 = network;
 
-		notifyAccountDataChanged();
+		// switching accounts ourselves is not possible, so do this nasty workaround
+		if(!clicked_account) {
+			// the material drawer does not return null, but an exception...
+			MaterialAccount account3;
+			try {
+				account3 = getAccountAtCurrentPosition(2);
+			} catch(RuntimeException e) {
+				account3 = null;
+			}
+			// the material drawer does not return null, but an exception...
+			MaterialAccount account2;
+			try {
+				account2 = getAccountAtCurrentPosition(1);
+			} catch(RuntimeException e) {
+				account2 = null;
+			}
+			MaterialAccount account1 = getAccountAtCurrentPosition(0);
 
-		// call this method for each fragment
+			// move second account to last
+			if(account2 != null && !account2.getTitle().equals(network.getName())) {
+				if(account3 != null) {
+					account3.setTitle(anet3.getName());
+					account3.setSubTitle(anet3.getRegion());
+					account3.setPhoto(anet3.getLogo());
+					account3.setBackground(anet3.getBackground());
+				} else if(anet3 != null) {
+					addAccount(new MaterialAccount(this.getResources(), anet3.getName(), anet3.getRegion(), anet3.getLogo(), anet3.getBackground()));
+				}
+			}
+
+			// move former first account to second
+			if(!account1.getTitle().equals(network.getName())) {
+				if(account2 != null) {
+					account2.setTitle(anet2.getName());
+					account2.setSubTitle(anet2.getRegion());
+					account2.setPhoto(anet2.getLogo());
+					account2.setBackground(anet2.getBackground());
+				} else if(anet2 != null) {
+					addAccount(new MaterialAccount(this.getResources(), anet2.getName(), anet2.getRegion(), anet2.getLogo(), anet2.getBackground()));
+				}
+			}
+
+			// set data for new first account
+			account1.setTitle(anet1.getName());
+			account1.setSubTitle(anet1.getRegion());
+			account1.setPhoto(anet1.getLogo());
+			account1.setBackground(anet1.getBackground());
+
+			// notify the drawer that accounts changed
+			notifyAccountDataChanged();
+		}
+
+		// reset state, so we know how accounts will be changed next time
+		clicked_account = false;
+
+		// notify the others of change, so call this method for each fragment
 		for(Object section : getSectionList()) {
 			Object obj = ((MaterialSection) section).getTargetFragment();
 
@@ -146,6 +216,33 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 			if(toolbar != null) toolbar.setSubtitle(network.getName());
 
 			disableLearningPattern();
+		}
+	}
+
+	private void addAccounts(TransportNetwork network) {
+		if(network == null) {
+			// add fake account, so there's something to be changed later. Otherwise crashes
+			MaterialAccount account = new MaterialAccount(this.getResources(), "null", "null", R.drawable.ic_placeholder, R.drawable.background_default);
+			addAccount(account);
+		} else {
+			// add current network as first account
+			MaterialAccount account = new MaterialAccount(this.getResources(), network.getName(), network.getRegion(), network.getLogo(), network.getBackground());
+			addAccount(account);
+			anet1 = network;
+
+			TransportNetwork network2 = Preferences.getTransportNetwork(getContext(), 2);
+			if(network2 != null) {
+				MaterialAccount account2 = new MaterialAccount(this.getResources(), network2.getName(), network2.getRegion(), network2.getLogo(), network2.getBackground());
+				addAccount(account2);
+				anet2 = network2;
+			}
+
+			TransportNetwork network3 = Preferences.getTransportNetwork(getContext(), 3);
+			if(network3 != null) {
+				MaterialAccount account3 = new MaterialAccount(this.getResources(), network3.getName(), network3.getRegion(), network3.getLogo(), network3.getBackground());
+				addAccount(account3);
+				anet3 = network3;
+			}
 		}
 	}
 

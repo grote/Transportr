@@ -30,14 +30,26 @@ public class Preferences {
 	public final static String SHOW_ADV_DIRECTIONS = "ShowAdvDirections";
 	public final static String SORT_FAV_TRIPS_COUNT = "SortFavTripsCount";
 
-	public static String getNetwork(Context context) {
+	public static String getNetwork(Context context, int i) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 
-		return settings.getString("NetworkId", null);
+		String str = "";
+		if(i == 2) str = "2";
+		else if (i == 3) str= "3";
+
+		return settings.getString("NetworkId" + str, null);
+	}
+
+	public static String getNetwork(Context context) {
+		return getNetwork(context, 0);
 	}
 
 	public static @Nullable TransportNetwork getTransportNetwork(Context context) {
-		String id = getNetwork(context);
+		return getTransportNetwork(context, 0);
+	}
+
+	public static @Nullable TransportNetwork getTransportNetwork(Context context, int i) {
+		String id = getNetwork(context, i);
 
 		if(id != null) {
 			return ((LiberarioApplication) context.getApplicationContext()).getTransportNetworks().getTransportNetwork(id);
@@ -89,7 +101,20 @@ public class Preferences {
 		SharedPreferences settings = context.getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
 
+		String id1 = settings.getString("NetworkId", "");
+		String id2 = settings.getString("NetworkId2", "");
+		String id3 = settings.getString("NetworkId3", "");
+
+		if(!id2.equals(id.name())) {
+			editor.putString("NetworkId3", id2);
+		}
+
+		if(!id1.equals(id.name())) {
+			editor.putString("NetworkId2", id1);
+		}
+
 		editor.putString("NetworkId", id.name());
+
 		editor.commit();
 	}
 }
