@@ -11,7 +11,7 @@ fi
 
 # add non-upstream providers
 git checkout -- src/de/schildbach/pte/NetworkId.java
-sed -i "s#SYDNEY, MET#SYDNEY, HSL, NZ, SPAIN, MET#" src/de/schildbach/pte/NetworkId.java
+sed -i "s#SYDNEY, MET#SYDNEY, HSL, NZ, SPAIN, BR, MET#" src/de/schildbach/pte/NetworkId.java
 
 mvn clean package -DskipTests
 

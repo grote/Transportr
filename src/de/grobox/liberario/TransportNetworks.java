@@ -468,6 +468,15 @@ public class TransportNetworks {
 				         .setStatus(TransportNetwork.Status.BETA)
 		);
 
+		// Brazil
+
+		list.add(new TransportNetwork(context, NetworkId.BR)
+				         .setName(getString(R.string.np_name_br))
+				         .setDescription(getString(R.string.np_desc_br))
+				         .setRegion(getString(R.string.np_region_br))
+				         .setStatus(TransportNetwork.Status.APLHA)
+		);
+
 		return list;
 	}
 

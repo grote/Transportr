@@ -75,7 +75,17 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 		((TextView) convertView.findViewById(R.id.networkName)).setText(network.getName());
 		((TextView) convertView.findViewById(R.id.networkDescription)).setText(network.getDescription());
-		convertView.findViewById(R.id.networkBeta).setVisibility(network.getStatus() == TransportNetwork.Status.BETA ? View.VISIBLE : View.GONE);
+
+		// set alpha/beta state of transport network
+		TextView beta = (TextView) convertView.findViewById(R.id.networkBeta);
+		if(network.getStatus() == TransportNetwork.Status.STABLE) {
+			beta.setVisibility(View.GONE);
+		} else {
+			beta.setVisibility(View.VISIBLE);
+			if(network.getStatus() == TransportNetwork.Status.APLHA) {
+				beta.setText(_context.getString(R.string.alpha));
+			}
+		}
 
 		// set logo of provider if we have one
 		if(network.getLogo() != 0) {
