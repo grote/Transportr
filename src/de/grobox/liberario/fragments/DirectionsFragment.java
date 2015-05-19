@@ -227,7 +227,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 
 		if(!Preferences.getPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false)) {
-			showLess();
+			// don't animate here, since this method is called on each fragment change from the drawer
+			showLess(false);
 		}
 
 		ui.search.setOnClickListener(new View.OnClickListener() {
@@ -343,11 +344,11 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				if(ui.productsScrollView.getVisibility() == View.GONE) {
 					item.setIcon(R.drawable.ic_action_navigation_collapse);
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, true);
-					showMore();
+					showMore(true);
 				} else {
 					item.setIcon(R.drawable.ic_action_navigation_expand);
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false);
-					showLess();
+					showLess(true);
 				}
 
 				return true;
@@ -494,11 +495,11 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 	}
 
-	private void showMore() {
+	private void showMore(boolean animate) {
 		ui.productsScrollView.setVisibility(View.VISIBLE);
 		ui.whatHere.setVisibility(View.VISIBLE);
 
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+		if(animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			DisplayMetrics dm = new DisplayMetrics();
 			getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -518,8 +519,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 	}
 
-	private void showLess() {
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+	private void showLess(boolean animate) {
+		if(animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			ui.whatHere.setAlpha(1f);
 			ui.whatHere.animate().setDuration(500).alpha(0f).withEndAction(new Runnable() {
 				@Override
