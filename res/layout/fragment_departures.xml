@@ -1,136 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="5dp">
 
-        <LinearLayout
-            android:id="@+id/departuresLayout"
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cardView"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/find_departures"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:visibility="visible" />
-
-            <include
-                layout="@layout/location_input_view"
-                android:id="@+id/location_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardBackgroundColor="@color/cardview_dark_background"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="2dp"
+            >
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="15dp"
-                android:orientation="horizontal"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp" >
+                android:orientation="vertical"
+                android:padding="5dp" >
 
-                <ImageButton
-                    android:id="@+id/stationHomeButton"
-                    android:layout_width="wrap_content"
+                <include
+                    layout="@layout/location_input_view"
+                    android:id="@+id/location_input"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_home" />
+                    />
 
-                <Button
-                    android:id="@+id/stationButton"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:text="@android:string/search_go" />
+                    android:orientation="horizontal"
+                    >
+
+                    <include
+                        layout="@layout/time_and_date"/>
+
+                    <Button
+                        android:id="@+id/stationButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@android:string/search_go"
+                        android:backgroundTint="@color/primary"
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-        <LinearLayout
-            android:id="@+id/nearbyStationsLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/nearby_stations"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp" >
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="3dp"
-                        android:text="@string/max_distance" />
-
-                    <EditText
-                        android:id="@+id/distanceView"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        android:text="1000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/meter" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="3dp"
-                        android:text="@string/number_of_stations" />
-
-                    <EditText
-                        android:id="@+id/numStationsView"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:inputType="number"
-                        android:maxLength="1"
-                        android:text="3" />
-                </TableRow>
-            </TableLayout>
-
-            <ImageButton
-                android:id="@+id/findNearbyStationsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="15dp"
-                android:contentDescription="@android:string/search_go"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:src="@drawable/ic_gps" />
-
-        </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>

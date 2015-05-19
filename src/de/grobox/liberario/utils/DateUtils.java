@@ -22,7 +22,13 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
+import android.view.View;
+import android.widget.Button;
+
+import de.grobox.liberario.R;
 
 public class DateUtils {
 
@@ -120,8 +126,6 @@ public class DateUtils {
 
 
 	static public String getDuration(long duration) {
-		String str;
-
 		// get duration in minutes
 		duration = duration / 1000 / 60;
 
@@ -133,6 +137,180 @@ public class DateUtils {
 
 	static public String getDuration(Date start, Date end) {
 		return getDuration(end.getTime() - start.getTime());
+	}
+
+	static public void addToTime(Context context, Button timeView, Button dateView, int min) {
+		Calendar c = (Calendar) timeView.getTag();
+		Calendar c_date = (Calendar) dateView.getTag();
+
+		// set the date to the calendar, so it can calculate a day overflow
+		c.set(Calendar.YEAR, c_date.get(Calendar.YEAR));
+		c.set(Calendar.MONTH, c_date.get(Calendar.MONTH));
+		c.set(Calendar.DAY_OF_MONTH, c_date.get(Calendar.DAY_OF_MONTH));
+
+		// add min minutes
+		c.add(Calendar.MINUTE, min);
+
+		timeView.setText(getTime(context, c));
+		timeView.setTag(c);
+		dateView.setText(getDate(context, c.getTime()));
+		dateView.setTag(c);
+	}
+
+	static public void setUpTimeDateUi(final View view) {
+		// Time
+
+		final Button time = (Button) view.findViewById(R.id.timeView);
+		final DateUtils.TimePicker timePicker = new DateUtils.TimePicker(view.getContext(), time);
+		time.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				timePicker.show();
+			}
+		});
+		// set current time on long click
+		time.setOnLongClickListener(new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View view) {
+				time.setText(DateUtils.getcurrentTime(view.getContext()));
+				time.setTag(Calendar.getInstance());
+				return true;
+			}
+		});
+
+		// Date
+
+		final Button date = (Button) view.findViewById(R.id.dateView);
+		final DateUtils.DatePicker datePicker = new DateUtils.DatePicker(view.getContext(), date);
+		date.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				datePicker.show();
+			}
+		});
+		// set current date on long click
+		date.setOnLongClickListener(new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View view) {
+				date.setText(DateUtils.getcurrentDate(view.getContext()));
+				date.setTag(Calendar.getInstance());
+				return true;
+			}
+		});
+
+		// Plus 15
+
+		final Button plus15 = (Button) view.findViewById(R.id.plus15Button);
+		plus15.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				DateUtils.addToTime(view.getContext(), time, date, 15);
+			}
+		});
+		// plus 1 hour on long click
+		plus15.setOnLongClickListener(new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View view) {
+				DateUtils.addToTime(view.getContext(), time, date, 60);
+				return true;
+			}
+		});
+	}
+
+	static public class TimePicker extends TimePickerDialog {
+
+		private Button button;
+
+		public TimePicker(final Context context, final Button button) {
+			super(context, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
+				@Override
+				public void onTimeSet(android.widget.TimePicker timePicker, int selectedHour, int selectedMinute) {
+					button.setText(formatTime(context, selectedHour, selectedMinute));
+
+					// store Calendar instance with Button
+					Calendar c = Calendar.getInstance();
+					c.set(Calendar.HOUR_OF_DAY, selectedHour);
+					c.set(Calendar.MINUTE, selectedHour);
+					button.setTag(c);
+				}
+			}, 0, 0, android.text.format.DateFormat.is24HourFormat(context));
+
+			// initialize button
+			button.setText(getcurrentTime(context));
+			button.setTag(Calendar.getInstance());
+
+			this.button = button;
+
+			update();
+		}
+
+		@Override
+		public void show() {
+			update();
+
+			super.show();
+		}
+
+		private void update() {
+			Calendar c;
+
+			if(button.getTag() != null) {
+				c = (Calendar) button.getTag();
+			} else {
+				c = Calendar.getInstance();
+			}
+
+			updateTime(c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE));
+		}
+
+	}
+
+	static public class DatePicker extends DatePickerDialog {
+
+		private Button button;
+
+		public DatePicker(final Context context, final Button button) {
+			super(context, R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
+				@Override
+				public void onDateSet(android.widget.DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+					button.setText(DateUtils.formatDate(context, year, monthOfYear, dayOfMonth));
+
+					// store Calendar instance with Button
+					Calendar c = Calendar.getInstance();
+					c.set(Calendar.YEAR, year);
+					c.set(Calendar.MONTH, monthOfYear);
+					c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+					button.setTag(c);
+				}
+			}, 2015, 1, 1);
+
+			// initialize button
+			button.setText(getcurrentDate(context));
+			button.setTag(Calendar.getInstance());
+
+			this.button = button;
+
+			update();
+		}
+
+		@Override
+		public void show() {
+			update();
+
+			super.show();
+		}
+
+		private void update() {
+			Calendar c;
+
+			if(button.getTag() != null) {
+				c = (Calendar) button.getTag();
+			} else {
+				c = Calendar.getInstance();
+			}
+
+			updateDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+		}
+
 	}
 
 }

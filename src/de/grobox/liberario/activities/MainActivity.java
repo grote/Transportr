@@ -25,9 +25,11 @@ import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.FavTripsFragment;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.PrefsFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 
+import de.schildbach.pte.NetworkProvider;
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 import it.neokree.materialnavigationdrawer.elements.MaterialAccount;
 import it.neokree.materialnavigationdrawer.elements.MaterialSection;
@@ -62,10 +64,20 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 
 		addAccounts(network);
 
-		addSection(newSection(getString(R.string.tab_directions), getResources().getDrawable(android.R.drawable.ic_menu_directions), new DirectionsFragment()));
-		addSection(newSection(getString(R.string.tab_fav_trips), getResources().getDrawable(R.drawable.ic_action_star), new FavTripsFragment()));
-		addSection(newSection(getString(R.string.tab_departures), getResources().getDrawable(R.drawable.ic_action_departures), new DeparturesFragment()));
-		addSection(newSection(getString(R.string.nearby_stations), getResources().getDrawable(R.drawable.ic_tab_stations), new DeparturesFragment()));
+		// TODO make this work on first run when network == null
+
+		if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS)) {
+			addSection(newSection(getString(R.string.tab_directions), getResources().getDrawable(android.R.drawable.ic_menu_directions), new DirectionsFragment()));
+			addSection(newSection(getString(R.string.tab_fav_trips), getResources().getDrawable(R.drawable.ic_action_star), new FavTripsFragment()));
+		}
+
+		if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
+			addSection(newSection(getString(R.string.tab_departures), getResources().getDrawable(R.drawable.ic_action_departures), new DeparturesFragment()));
+		}
+
+		if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
+			addSection(newSection(getString(R.string.nearby_stations), getResources().getDrawable(R.drawable.ic_tab_stations), new NearbyStationsFragment()));
+		}
 
 		addBottomSection(newSection(getString(R.string.action_settings), getResources().getDrawable(R.drawable.ic_action_settings), new PrefsFragment()));
 		addBottomSection(newSection(getResources().getString(R.string.action_about) + " " + getResources().getString(R.string.app_name), getResources().getDrawable(R.drawable.ic_action_about), new AboutMainFragment()));
@@ -139,6 +151,8 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 			anet2 = anet1;
 		}
 		anet1 = network;
+
+		// TODO remove sections not supported by new network
 
 		// switching accounts ourselves is not possible, so do this nasty workaround
 		if(!clicked_account) {

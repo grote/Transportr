@@ -140,13 +140,13 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		ui.plus15.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				addToTime(15);
+				DateUtils.addToTime(getActivity(), ui.time, ui.date, 15);
 			}
 		});
 		ui.plus15.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View view) {
-				addToTime(60);
+				DateUtils.addToTime(getActivity(), ui.time, ui.date, 60);
 				return true;
 			}
 		});
@@ -683,26 +683,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			c.set(Calendar.DAY_OF_MONTH, day);
 			dateView.setTag(c);
 		}
-	}
-
-	private void addToTime(int min) {
-		Button timeView = (Button) getActivity().findViewById(R.id.timeView);
-		Button dateView = (Button) getActivity().findViewById(R.id.dateView);
-		Calendar c = (Calendar) timeView.getTag();
-		Calendar c_date = (Calendar) dateView.getTag();
-
-		// set the date to the calendar, so it can calculate a day overflow
-		c.set(Calendar.YEAR, c_date.get(Calendar.YEAR));
-		c.set(Calendar.MONTH, c_date.get(Calendar.MONTH));
-		c.set(Calendar.DAY_OF_MONTH, c_date.get(Calendar.DAY_OF_MONTH));
-
-		// add min minutes
-		c.add(Calendar.MINUTE, min);
-
-		timeView.setText(DateUtils.getTime(getActivity(), c));
-		timeView.setTag(c);
-		dateView.setText(DateUtils.getDate(getActivity(), c.getTime()));
-		dateView.setTag(c);
 	}
 
 	class FromInputView extends LocationInputView {
