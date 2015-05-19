@@ -17,7 +17,6 @@
 
 package de.grobox.liberario.fragments;
 
-import java.util.Calendar;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -43,10 +42,7 @@ import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -57,8 +53,6 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -75,12 +69,10 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class DirectionsFragment extends LiberarioFragment implements LocationListener {
@@ -118,59 +110,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		from = new FromInputView(getActivity(), ui.from);
 		to = new ToInputView(getActivity(), ui.to);
 
-		// timeView
-		ui.time.setText(DateUtils.getcurrentTime(getActivity()));
-		ui.time.setTag(Calendar.getInstance());
-		ui.time.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				showTimePickerDialog();
-			}
-		});
-
-		// set current time on long click
-		ui.time.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View view) {
-				ui.time.setText(DateUtils.getcurrentTime(getActivity()));
-				ui.time.setTag(Calendar.getInstance());
-				return true;
-			}
-		});
-
-		ui.plus15.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				DateUtils.addToTime(getActivity(), ui.time, ui.date, 15);
-			}
-		});
-		ui.plus15.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View view) {
-				DateUtils.addToTime(getActivity(), ui.time, ui.date, 60);
-				return true;
-			}
-		});
-
-		// dateView
-		ui.date.setText(DateUtils.getcurrentDate(getActivity()));
-		ui.date.setTag(Calendar.getInstance());
-		ui.date.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				showDatePickerDialog();
-			}
-		});
-
-		// set current date on long click
-		ui.date.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View view) {
-				ui.date.setText(DateUtils.getcurrentDate(getActivity()));
-				ui.date.setTag(Calendar.getInstance());
-				return true;
-			}
-		});
-
 		// Set Type to Departure=True
 		ui.type.setTag(true);
 
@@ -188,6 +127,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				}
 			}
 		});
+
+		DateUtils.setUpTimeDateUi(mView);
 
 		// Products
 		for(int i = 0; i < ui.productsLayout.getChildCount(); ++i) {
@@ -390,8 +331,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		// after new home location was selected, put it right into the input field
 		if(resultCode == AppCompatActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
 			if(mHomeClicked.equals(FavLocation.LOC_TYPE.FROM)) {
+				//noinspection deprecation
 				from.setLocation(FavDB.getHome(getActivity()), getResources().getDrawable(R.drawable.ic_action_home));
 			} else if(mHomeClicked.equals(FavLocation.LOC_TYPE.TO)) {
+				//noinspection deprecation
 				to.setLocation(FavDB.getHome(getActivity()), getResources().getDrawable(R.drawable.ic_action_home));
 			}
 		}
@@ -598,6 +541,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 			// create location based on GPS coordinates
 			gps_loc = new Location(LocationType.ADDRESS, null, lat, lon, "GPS", lat_str + "/" + lon_str);
+			//noinspection deprecation
 			from.setLocation(gps_loc, getResources().getDrawable(R.drawable.ic_gps));
 
 			if(pd != null) {
@@ -618,72 +562,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	public void onProviderDisabled(String provider) {}
 
-
-	public void showTimePickerDialog() {
-		DialogFragment newFragment = new TimePickerFragment();
-		newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
-	}
-
-	public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
-		@NonNull
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			Button timeView = (Button) getActivity().findViewById(R.id.timeView);
-			Calendar c = (Calendar) timeView.getTag();
-
-			// set time for picker
-			int hour = c.get(Calendar.HOUR_OF_DAY);
-			int minute = c.get(Calendar.MINUTE);
-
-			// Create a new instance of TimePickerDialog and return it
-			return new TimePickerDialog(getActivity(), this, hour, minute, android.text.format.DateFormat.is24HourFormat(getActivity()));
-		}
-
-		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-			Button timeView = (Button) getActivity().findViewById(R.id.timeView);
-			timeView.setText(DateUtils.formatTime(getActivity().getApplicationContext(), hourOfDay, minute));
-
-			// store Calendar instance with Button
-			Calendar c = Calendar.getInstance();
-			c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-			c.set(Calendar.MINUTE, minute);
-			timeView.setTag(c);
-		}
-	}
-
-	public void showDatePickerDialog() {
-		DialogFragment newFragment = new DatePickerFragment();
-		newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
-	}
-
-	public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-		@NonNull
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			Button dateView = (Button) getActivity().findViewById(R.id.dateView);
-			Calendar c = (Calendar) dateView.getTag();
-
-			// set date for picker
-			int year = c.get(Calendar.YEAR);
-			int month = c.get(Calendar.MONTH);
-			int day = c.get(Calendar.DAY_OF_MONTH);
-
-			// Create a new instance of DatePickerDialog and return it
-			return new DatePickerDialog(getActivity(), this, year, month, day);
-		}
-
-		public void onDateSet(DatePicker view, int year, int month, int day) {
-			Button dateView = (Button) getActivity().findViewById(R.id.dateView);
-			dateView.setText(DateUtils.formatDate(getActivity().getApplicationContext(), year, month, day));
-
-			// store Calendar instance with Button
-			Calendar c = Calendar.getInstance();
-			c.set(Calendar.YEAR, year);
-			c.set(Calendar.MONTH, month);
-			c.set(Calendar.DAY_OF_MONTH, day);
-			dateView.setTag(c);
-		}
-	}
 
 	class FromInputView extends LocationInputView {
 		public FromInputView(Context context, LocationInputViewHolder holder) {
