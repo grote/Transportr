@@ -233,6 +233,9 @@ public class LiberarioUtils {
 	static public void findDepartures(Context context, Location loc) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
 
+		// TODO adapt this to new DeparturesFragment
+		Toast.makeText(context, "Out of service!", Toast.LENGTH_SHORT);
+
 		if(np.hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
 			// start StationsListActivity with given location
 			Intent intent = new Intent(context, StationsListActivity.class);

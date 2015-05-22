@@ -22,39 +22,39 @@ import java.util.Date;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.activities.StationsListActivity;
+import de.grobox.liberario.fragments.DeparturesFragment;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.Toast;
 
 public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDeparturesResult> {
-	private StationsListActivity activity;
-	private View view;
-	private String station;
-	private String error = null;
+	private DeparturesFragment fragment;
+	private String stationId;
+	private Date date;
+	private boolean later;
 	private int max_departures;
+	private String error = null;
 
-	public AsyncQueryDeparturesTask(StationsListActivity activity, View view, String station, int max_departures) {
-		this.activity = activity;
-		this.view = view;
-		this.station = station;
+	public AsyncQueryDeparturesTask(DeparturesFragment fragment, String stationId, Date date, boolean later, int max_departures) {
+		this.fragment = fragment;
+		this.stationId = stationId;
+		this.date = date;
+		this.later = later;
 		this.max_departures = max_departures;
 	}
 
 	@Override
 	protected QueryDeparturesResult doInBackground(Void... params) {
-		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(activity));
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(fragment.getActivity()));
 
 		try {
-			if(AsyncQueryTripsTask.isNetworkAvailable(activity)) {
-				// TODO allow for custom time/date to be specified
-				return np.queryDepartures(station, new Date(), max_departures, true);
+			if(AsyncQueryTripsTask.isNetworkAvailable(fragment.getActivity())) {
+				return np.queryDepartures(stationId, date, max_departures, true);
 			}
 			else {
-				error = activity.getResources().getString(R.string.error_no_internet);
+				error = fragment.getResources().getString(R.string.error_no_internet);
 				return null;
 			}
 		} catch (Exception e) {
@@ -71,19 +71,19 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 
 	@Override
 	protected void onPostExecute(QueryDeparturesResult result) {
-		if(result == null || result.status != QueryDeparturesResult.Status.OK) {
+		if(result == null || result.status != QueryDeparturesResult.Status.OK || result.stationDepartures.size() == 0) {
 			if(error == null) {
-				Toast.makeText(activity, activity.getResources().getString(R.string.error_no_departures_found), Toast.LENGTH_LONG).show();
+				Toast.makeText(fragment.getActivity(), fragment.getResources().getString(R.string.error_no_departures_found), Toast.LENGTH_LONG).show();
 			} else {
-				Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
+				Toast.makeText(fragment.getActivity(), error, Toast.LENGTH_LONG).show();
 			}
 			// although not successful, we are still done
-			activity.noDepartures(view);
+			fragment.onNoResults(later);
 
 			return;
 		}
 
-		activity.addDepartures(view, result);
+		fragment.addDepartures(result, later);
 	}
 
 }

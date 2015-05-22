@@ -216,6 +216,13 @@ public class DateUtils {
 		});
 	}
 
+	static public Date getDateFromUi(final View view) {
+		final Button time = (Button) view.findViewById(R.id.timeView);
+		final Button date = (Button) view.findViewById(R.id.dateView);
+
+		return DateUtils.mergeDateTime(view.getContext(), date.getText(), time.getText());
+	}
+
 	static public class TimePicker extends TimePickerDialog {
 
 		private Button button;

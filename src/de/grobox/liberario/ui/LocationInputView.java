@@ -18,6 +18,7 @@
 package de.grobox.liberario.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -31,8 +32,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.R;
+import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 
 public class LocationInputView {
@@ -167,8 +170,25 @@ public class LocationInputView {
 
 	public void onLocationItemClick(Location loc, View view) {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
-		setLocation(loc, icon);
-		holder.location.requestFocus();
+
+		// special case: home location
+		if(loc.id != null && loc.id.equals("Liberario.HOME")) {
+			Location home = FavDB.getHome(context);
+
+			if(home != null) {
+				setLocation(home, icon);
+			} else {
+				// prevent home.toString() from being shown in the TextView
+				holder.location.setText("");
+
+				selectHomeLocation();
+			}
+		}
+		// all other cases
+		else {
+			setLocation(loc, icon);
+			holder.location.requestFocus();
+		}
 
 		// hide soft-keyboard
 		InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -200,10 +220,25 @@ public class LocationInputView {
 		}
 	}
 
+	public void selectHomeLocation() {
+		// show dialog to set home screen
+		Intent intent = new Intent(context, SetHomeActivity.class);
+		intent.putExtra("new", true);
+		context.startActivity(intent);
+	}
+
 	public static class LocationInputViewHolder {
 		public ImageView status;
 		public DelayAutoCompleteTextView location;
 		public ProgressBar progress;
 		public ImageButton clear;
+
+		public LocationInputViewHolder(View view) {
+			status = (ImageView) view.findViewById(R.id.statusButton);
+			location = (DelayAutoCompleteTextView) view.findViewById(R.id.location);
+			clear = (ImageButton) view.findViewById(R.id.clearButton);
+			progress = (ProgressBar) view.findViewById(R.id.progress);
+		}
+
 	}
 }

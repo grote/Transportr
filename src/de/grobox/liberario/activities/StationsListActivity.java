@@ -53,6 +53,7 @@ import android.widget.Toast;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
+@Deprecated
 public class StationsListActivity extends AppCompatActivity {
 	private LinearLayout main;
 	private LocationManager locationManager;
@@ -216,7 +217,7 @@ public class StationsListActivity extends AppCompatActivity {
 				distanceView.setText(String.valueOf(Math.round(cur_loc.distanceTo(sta_loc))) + " m");
 			}
 
-			LinearLayout depList = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.departure_list, null);
+			View depList = LayoutInflater.from(this).inflate(R.layout.departure_list, null);
 
 			if(mStations.size() > 1) {
 				stationView.setOnClickListener(new View.OnClickListener() {
@@ -244,9 +245,9 @@ public class StationsListActivity extends AppCompatActivity {
 
 			main.addView(stationView);
 
-			AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id, max_departures);
+/*			AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id, max_departures);
 			query_stations.execute();
-
+*/
 
 			main.addView(depList);
 
@@ -347,7 +348,7 @@ public class StationsListActivity extends AppCompatActivity {
 		// loop over each station
 		for(int i = 0; i < main.getChildCount(); ++i) {
 			View v = main.getChildAt(i);
-			if(v instanceof LinearLayout && v.getId() == R.id.departureListLayout) {
+/*			if(v instanceof LinearLayout && v.getId() == R.id.departureListLayout) {
 				LinearLayout dep = (LinearLayout) v;
 				// loop over each departure
 				for(int j = 0; j < dep.getChildCount(); ++j) {
@@ -358,7 +359,7 @@ public class StationsListActivity extends AppCompatActivity {
 					}
 				}
 			}
-		}
+*/		}
 	}
 
 	private void startGetDepartures(Location station, int viewID, boolean pull) {
@@ -377,8 +378,8 @@ public class StationsListActivity extends AppCompatActivity {
 		}
 
 		// get new departures
-		AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id, max_departures);
-		query_stations.execute();
+//		AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(this, stationView, station.id, max_departures);
+//		query_stations.execute();
 	}
 
 	public void onRefreshComplete() {

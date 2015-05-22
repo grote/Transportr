@@ -32,6 +32,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// TODO change this to RecyclerView and use TransportNetwork class
 public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	private Context _context;

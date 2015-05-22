@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/departureListLayout"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:baselineAligned="false"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:visibility="gone" >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardBackgroundColor="@color/cardview_dark_background"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="2dp"
+    tools:showIn="@layout/fragment_departures"
+    >
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -13,7 +19,24 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_margin="15dp"
-        android:indeterminate="true" />
+        android:indeterminate="true"
+        android:padding="25dp"
+        android:visibility="gone"/>
 
-</LinearLayout>
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/departures_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:padding="5dp"
+            />
+
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
+</android.support.v7.widget.CardView>
 

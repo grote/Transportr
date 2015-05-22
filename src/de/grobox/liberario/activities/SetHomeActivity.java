@@ -52,11 +52,7 @@ public class SetHomeActivity extends AppCompatActivity {
 			findViewById(R.id.homeMsgView).setVisibility(View.GONE);
 		}
 
-		final LocationInputView.LocationInputViewHolder holder = new LocationInputView.LocationInputViewHolder();
-		holder.location = (DelayAutoCompleteTextView) findViewById(R.id.location);
-		holder.clear = (ImageButton) findViewById(R.id.clearButton);
-		holder.progress = (ProgressBar) findViewById(R.id.progress);
-		holder.status = (ImageView) findViewById(R.id.statusButton);
+		final LocationInputView.LocationInputViewHolder holder = new LocationInputView.LocationInputViewHolder(findViewById(R.id.setHomeView));
 
 		final LocationInputView loc = new LocationInputView(this, holder, true);
 		loc.setFavs(true);

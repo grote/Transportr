@@ -32,7 +32,6 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.data.FavDB;
-import de.grobox.liberario.ui.DelayAutoCompleteTextView;
 import de.grobox.liberario.ui.LocationInputView;
 import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.LiberarioUtils;
@@ -70,9 +69,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class DirectionsFragment extends LiberarioFragment implements LocationListener {
@@ -223,7 +220,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				FavDB.updateFavTrip(getActivity(), new FavTrip(from.getLocation(), to.getLocation()));
 
 				// set date
-				query_trips.setDate(DateUtils.mergeDateTime(getActivity(), ui.date.getText(), ui.time.getText()));
+				query_trips.setDate(DateUtils.getDateFromUi(mView));
 
 				// set departure to true of first item is selected in spinner
 				query_trips.setDeparture((boolean) ui.type.getTag());
@@ -628,18 +625,10 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 	private void populateViewHolders() {
 		ui.fromLocation = (ViewGroup) mView.findViewById(R.id.fromLocation);
-		ui.from = new LocationInputView.LocationInputViewHolder();
-		ui.from.status = (ImageView) ui.fromLocation.findViewById(R.id.statusButton);
-		ui.from.location = (DelayAutoCompleteTextView) ui.fromLocation.findViewById(R.id.location);
-		ui.from.progress = (ProgressBar) ui.fromLocation.findViewById(R.id.progress);
-		ui.from.clear = (ImageButton) ui.fromLocation.findViewById(R.id.clearButton);
+		ui.from = new LocationInputView.LocationInputViewHolder(ui.fromLocation);
 
 		ui.toLocation = (ViewGroup) mView.findViewById(R.id.toLocation);
-		ui.to = new LocationInputView.LocationInputViewHolder();
-		ui.to.status = (ImageView) ui.toLocation.findViewById(R.id.statusButton);
-		ui.to.location = (DelayAutoCompleteTextView) ui.toLocation.findViewById(R.id.location);
-		ui.to.progress = (ProgressBar) ui.toLocation.findViewById(R.id.progress);
-		ui.to.clear = (ImageButton) ui.toLocation.findViewById(R.id.clearButton);
+		ui.to = new LocationInputView.LocationInputViewHolder(ui.toLocation);
 
 		ui.type = (Button) mView.findViewById(R.id.dateType);
 		ui.time = (Button) mView.findViewById(R.id.timeView);
