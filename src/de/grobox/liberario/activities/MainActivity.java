@@ -40,6 +40,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 
@@ -54,10 +55,22 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 	private boolean clicked_account = false;
 
 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		if(Preferences.darkThemeEnabled(this)) {
+			setTheme(R.style.NavigationDrawerTheme);
+		} else {
+			setTheme(R.style.NavigationDrawerTheme_Light);
+		}
+
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
 	public void init(Bundle savedInstanceState) {
 		// Initialize Application Context with all Transport Networks
 		((LiberarioApplication) getApplicationContext()).initilize(this);
 
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		TransportNetwork network = Preferences.getTransportNetwork(this);
 
 		checkFirstRun(network);

@@ -51,6 +51,12 @@ public class TripsActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		if(Preferences.darkThemeEnabled(this)) {
+			setTheme(R.style.AppTheme);
+		} else {
+			setTheme(R.style.AppTheme_Light);
+		}
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trips);
 
@@ -118,7 +124,7 @@ public class TripsActivity extends AppCompatActivity {
 		mRecyclerView.setOnScrollListener(touchListener.makeScrollListener());
 		// TODO also make sure a swipe prevents scrolling
 
-		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), R.layout.trip, touchListener, this);
+		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), touchListener, this);
 		mAdapter.setHasStableIds(false);
 		mRecyclerView.setAdapter(mAdapter);
 	}

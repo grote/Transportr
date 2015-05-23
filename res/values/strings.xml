@@ -70,6 +70,13 @@
     <string name="share_trip_via">Share Trip Via&#8230;</string>
     <string name="undo">Undo</string>
 
+    <string name="pref_transport_network">Transport Network</string>
+    <string name="pref_home">Home Location</string>
+    <string name="pref_display">Display</string>
+    <string name="pref_theme_title">Theme</string>
+    <string name="pref_theme_light">Light</string>
+    <string name="pref_theme_dark">Dark</string>
+
     <string name="error_pick_network">Please select one transportation network!</string>
     <string name="error_no_internet">No sufficient internet connection available</string>
     <string name="error_invalid_from">Invalid From Location</string>

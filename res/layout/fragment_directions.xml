@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
         android:animateLayoutChanges="true"
-        card_view:cardBackgroundColor="@color/cardview_dark_background"
+        card_view:cardBackgroundColor="?attr/cardBackgroundColor"
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="2dp"
         >
@@ -177,7 +177,7 @@
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
-        card_view:cardBackgroundColor="@color/cardview_dark_background"
+        card_view:cardBackgroundColor="?attr/cardBackgroundColor"
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="2dp"
         android:layout_below="@+id/cardView"

@@ -19,8 +19,10 @@ package de.grobox.liberario;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
+
 import de.schildbach.pte.NetworkId;
 
 public class Preferences {
@@ -29,6 +31,7 @@ public class Preferences {
 	public final static String SHOW_EXTRA_INFO = "ShowPlatform";
 	public final static String SHOW_ADV_DIRECTIONS = "ShowAdvDirections";
 	public final static String SORT_FAV_TRIPS_COUNT = "SortFavTripsCount";
+	public final static String THEME = "pref_key_theme";
 
 	public static String getNetwork(Context context, int i) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -116,5 +119,11 @@ public class Preferences {
 		editor.putString("NetworkId", id.name());
 
 		editor.commit();
+	}
+
+	public static boolean darkThemeEnabled(Context context) {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+
+		return settings.getString(THEME, context.getString(R.string.pref_theme_value_light)).equals(context.getString(R.string.pref_theme_value_dark));
 	}
 }

@@ -59,6 +59,12 @@ public class MapStationsActivity extends AppCompatActivity {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		if(Preferences.darkThemeEnabled(this)) {
+			setTheme(R.style.AppTheme);
+		} else {
+			setTheme(R.style.AppTheme_Light);
+		}
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_stations_map);
 

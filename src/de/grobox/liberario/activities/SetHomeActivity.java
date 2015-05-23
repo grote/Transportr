@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.activities;
 
+import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.ui.DelayAutoCompleteTextView;
@@ -38,9 +39,18 @@ public class SetHomeActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
+		if(Preferences.darkThemeEnabled(this)) {
+			setTheme(R.style.DialogTheme);
+		} else {
+			setTheme(R.style.DialogTheme_Light);
+		}
+
 		getWindow().requestFeature(Window.FEATURE_LEFT_ICON);
 		getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_action_home);
+
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_set_home);
 
 		setTitle(getString(R.string.home_dialog_title));

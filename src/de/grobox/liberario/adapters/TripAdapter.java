@@ -86,13 +86,11 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			return t_old.trip.equals(t_new.trip);
 		}
 	});
-	private int rowLayout;
 	private SwipeDismissRecyclerViewTouchListener touchListener;
 	private Context context;
 	private List<ListTrip> removed;
 
-	public TripAdapter(List<ListTrip> trips, int rowLayout, SwipeDismissRecyclerViewTouchListener touchListener, Context context) {
-		this.rowLayout = rowLayout;
+	public TripAdapter(List<ListTrip> trips, SwipeDismissRecyclerViewTouchListener touchListener, Context context) {
 		this.touchListener = touchListener;
 		this.context = context;
 		this.removed = new ArrayList<>();
@@ -107,7 +105,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 	@Override
 	public TripHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-		View v = LayoutInflater.from(viewGroup.getContext()).inflate(rowLayout, viewGroup, false);
+		View v = LayoutInflater.from(context).inflate(R.layout.trip, viewGroup, false);
 
 		return new TripHolder(v, i);
 	}
@@ -267,11 +265,13 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		int state, ostate;
 
 		if(expand) {
+			//noinspection deprecation
 			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_more);
 			state = View.GONE;
 			ostate = View.VISIBLE;
 		}
 		else {
+			//noinspection deprecation
 			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_less);
 			state = View.VISIBLE;
 			ostate = View.GONE;

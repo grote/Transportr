@@ -2,16 +2,37 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference
-        android:key="pref_key_network"
-        android:title="@string/network"
-        android:summary="@string/pick_network_activity"
-        />
+    <PreferenceCategory
+        android:title="@string/pref_transport_network"
+        android:key="pref_key_transport_network">
 
-    <Preference
-        android:key="pref_key_home"
-        android:title="@string/home"
-        android:summary="@string/location_home"
-        />
+        <Preference
+            android:key="pref_key_network"
+            android:title="@string/network"
+            android:summary="@string/pick_network_activity"
+            />
+
+        <Preference
+            android:key="pref_key_home"
+            android:title="@string/pref_home"
+            android:summary="@string/location_home"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_display"
+        android:key="pref_key_display">
+
+        <ListPreference
+            android:key="pref_key_theme"
+            android:title="@string/pref_theme_title"
+            android:entries="@array/pref_theme_options"
+            android:entryValues="@array/pref_theme_values"
+            android:defaultValue="@string/pref_theme_value_light"
+            android:summary="%s"
+            />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

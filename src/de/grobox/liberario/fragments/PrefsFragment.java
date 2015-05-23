@@ -19,8 +19,11 @@ package de.grobox.liberario.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.Preference;
+import android.support.v4.content.IntentCompat;
 
 import com.github.machinarius.preferencefragment.PreferenceFragment;
 
@@ -33,7 +36,7 @@ import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 
-public class PrefsFragment extends PreferenceFragment implements TransportNetwork.Handler {
+public class PrefsFragment extends PreferenceFragment implements TransportNetwork.Handler, SharedPreferences.OnSharedPreferenceChangeListener {
 
 	Preference network;
 	Preference home;
@@ -78,6 +81,33 @@ public class PrefsFragment extends PreferenceFragment implements TransportNetwor
 
 		// Fill in current home location if available
 		setHome();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		if (key.equals(Preferences.THEME)) {
+			ListPreference themePref = (ListPreference) findPreference(key);
+			themePref.setSummary(themePref.getEntry());
+
+			getActivity().finish();
+			final Intent intent = getActivity().getIntent();
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+			getActivity().startActivity(intent);
+
+			// TODO switch back to this fragment
+		}
 	}
 
 	private void setHome() {
