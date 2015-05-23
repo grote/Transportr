@@ -76,7 +76,9 @@
                     android:layout_weight="1"
                     android:tag="I"
                     android:src="@drawable/ic_product_high_speed_train"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:elevation="2dp"
+                    />
 
                 <ImageButton
                     android:id="@+id/ic_product_regional_train"
@@ -85,7 +87,9 @@
                     android:layout_weight="1"
                     android:tag="R"
                     android:src="@drawable/ic_product_regional_train"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:elevation="2dp"
+                    />
 
                 <ImageButton
                     android:id="@+id/ic_product_suburban_train"
@@ -94,7 +98,9 @@
                     android:layout_weight="1"
                     android:tag="S"
                     android:src="@drawable/ic_product_suburban_train"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:elevation="2dp"
+                    />
 
                 <ImageButton
                     android:id="@+id/ic_product_subway"
@@ -103,7 +109,9 @@
                     android:layout_weight="1"
                     android:tag="U"
                     android:src="@drawable/ic_product_subway"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:elevation="2dp"
+                    />
 
                 <ImageButton
                     android:id="@+id/ic_product_tram"
@@ -112,7 +120,9 @@
                     android:layout_weight="1"
                     android:tag="T"
                     android:src="@drawable/ic_product_tram"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:elevation="2dp"
+                    />
 
                 <ImageButton
                     android:id="@+id/ic_product_bus"
@@ -121,7 +131,9 @@
                     android:layout_weight="1"
                     android:tag="B"
                     android:src="@drawable/ic_product_bus"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:elevation="2dp"
+                    />
 
                 <ImageButton
                     android:id="@+id/ic_product_on_demand"
@@ -130,7 +142,9 @@
                     android:layout_weight="1"
                     android:tag="P"
                     android:src="@drawable/ic_product_on_demand"
-                    android:scaleType="center" />
+                    android:scaleType="center"
+                    android:elevation="2dp"
+                    />
 
                 <ImageButton
                     android:id="@+id/ic_product_ferry"
@@ -139,7 +153,9 @@
                     android:layout_weight="1"
                     android:tag="F"
                     android:src="@drawable/ic_product_ferry"
-                    android:scaleType="center" />
+                    android:scaleType="center"
+                    android:elevation="2dp"
+                    />
 
                 <ImageButton
                     android:id="@+id/ic_product_cablecar"
@@ -148,7 +164,9 @@
                     android:layout_weight="1"
                     android:tag="C"
                     android:src="@drawable/ic_product_cablecar"
-                    android:scaleType="center" />
+                    android:scaleType="center"
+                    android:elevation="2dp"
+                    />
 
             </LinearLayout>
         </HorizontalScrollView>

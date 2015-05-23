@@ -56,6 +56,9 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// Initialize Application Context with all Transport Networks
+		((LiberarioApplication) getApplicationContext()).initilize(this);
+
 		if(Preferences.darkThemeEnabled(this)) {
 			setTheme(R.style.NavigationDrawerTheme);
 		} else {
@@ -67,9 +70,6 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 
 	@Override
 	public void init(Bundle savedInstanceState) {
-		// Initialize Application Context with all Transport Networks
-		((LiberarioApplication) getApplicationContext()).initilize(this);
-
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		TransportNetwork network = Preferences.getTransportNetwork(this);
 
@@ -80,19 +80,25 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 		// TODO make this work on first run when network == null
 
 		if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS)) {
+			//noinspection deprecation
 			addSection(newSection(getString(R.string.tab_directions), getResources().getDrawable(android.R.drawable.ic_menu_directions), new DirectionsFragment()));
+			//noinspection deprecation
 			addSection(newSection(getString(R.string.tab_fav_trips), getResources().getDrawable(R.drawable.ic_action_star), new FavTripsFragment()));
 		}
 
 		if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
+			//noinspection deprecation
 			addSection(newSection(getString(R.string.tab_departures), getResources().getDrawable(R.drawable.ic_action_departures), new DeparturesFragment()));
 		}
 
 		if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
+			//noinspection deprecation
 			addSection(newSection(getString(R.string.nearby_stations), getResources().getDrawable(R.drawable.ic_tab_stations), new NearbyStationsFragment()));
 		}
 
+		//noinspection deprecation
 		addBottomSection(newSection(getString(R.string.action_settings), getResources().getDrawable(R.drawable.ic_action_settings), new PrefsFragment()));
+		//noinspection deprecation
 		addBottomSection(newSection(getResources().getString(R.string.action_about) + " " + getResources().getString(R.string.app_name), getResources().getDrawable(R.drawable.ic_action_about), new AboutMainFragment()));
 		addBottomSection(newSection(getString(R.string.action_changelog), getResources().getDrawable(R.drawable.ic_action_changelog), new MaterialSectionListener() {
 			@Override

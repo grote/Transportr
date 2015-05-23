@@ -17,4 +17,7 @@
     <color name="primary">#ff5722</color>
     <color name="primary_dark">#bf360c</color>
     <color name="accent">#ff5722</color>
+
+    <color name="drawableTintDark">#ffffffff</color>
+    <color name="drawableTintLite">#8a000000</color>
 </resources>

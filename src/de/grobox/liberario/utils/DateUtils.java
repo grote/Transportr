@@ -228,7 +228,7 @@ public class DateUtils {
 		private Button button;
 
 		public TimePicker(final Context context, final Button button) {
-			super(context, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
+			super(context, new TimePickerDialog.OnTimeSetListener() {
 				@Override
 				public void onTimeSet(android.widget.TimePicker timePicker, int selectedHour, int selectedMinute) {
 					button.setText(formatTime(context, selectedHour, selectedMinute));
@@ -276,7 +276,7 @@ public class DateUtils {
 		private Button button;
 
 		public DatePicker(final Context context, final Button button) {
-			super(context, R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
+			super(context, new DatePickerDialog.OnDateSetListener() {
 				@Override
 				public void onDateSet(android.widget.DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
 					button.setText(DateUtils.formatDate(context, year, monthOfYear, dayOfMonth));

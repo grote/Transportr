@@ -43,6 +43,7 @@
         <item name="cardBackgroundColor">@color/cardview_dark_background</item>
         <item name="android:dialogTheme">@style/DialogTheme</item>
         <item name="android:alertDialogTheme">@style/DialogTheme</item>
+        <item name="drawableTint">@color/drawableTintDark</item>
 
         <item name="sectionStyle">@style/DrawerSectionTheme</item>
 
@@ -60,8 +61,9 @@
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
         <item name="android:dialogTheme">@style/DialogTheme.Light</item>
         <item name="android:alertDialogTheme">@style/DialogTheme.Light</item>
+        <item name="drawableTint">@color/drawableTintLite</item>
 
-        <item name="sectionStyle">@style/DrawerSectionTheme</item>
+        <item name="sectionStyle">@style/DrawerSectionTheme.Light</item>
 
         <item name="singleAccount">true</item>
         <item name="multipaneSupport">true</item>
@@ -71,6 +73,10 @@
 
 
     <style name="DrawerSectionTheme" parent="MaterialSectionTheme">
+        <item name="sectionBackgroundColorSelected">@color/accent</item>
+    </style>
+
+    <style name="DrawerSectionTheme.Light" parent="MaterialSectionTheme.Light">
         <item name="sectionBackgroundColorSelected">@color/accent</item>
     </style>
 

@@ -28,9 +28,13 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -324,6 +328,19 @@ public class LiberarioUtils {
 		} else {
 			return l.uniqueShortName();
 		}
+	}
+
+	static public Drawable tintDrawable(Context context, int res) {
+		//noinspection deprecation
+		Drawable drawable = DrawableCompat.wrap(context.getResources().getDrawable(res));
+
+		TypedValue v = new TypedValue();
+		context.getTheme().resolveAttribute(R.attr.drawableTint, v, true);
+
+		DrawableCompat.setTint(drawable, v.data);
+		DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+
+		return drawable;
 	}
 
 }
