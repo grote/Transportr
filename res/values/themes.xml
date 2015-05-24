@@ -72,6 +72,9 @@
         <item name="multipaneSupport">true</item>
         <item name="toolbarElevation">true</item>
         <item name="rippleBackport">true</item>
+
+        <!-- ugly hack to prevent theme from being light/dark mix in API 19, loses DarkActionBar -->
+        <item name="theme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 
 
