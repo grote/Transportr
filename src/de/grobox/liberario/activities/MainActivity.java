@@ -150,6 +150,19 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 		if(requestCode == CHANGED_NETWORK_PROVIDER && resultCode == RESULT_OK) {
 			onNetworkProviderChanged(Preferences.getTransportNetwork(this));
 		}
+
+		// bounce home location change back to PrefsFragment since it uses animation to call the activity
+		// and can't get the result itself at the moment
+		if(requestCode == CHANGED_HOME && resultCode == RESULT_OK) {
+			for(Object section : getSectionList()) {
+				Object obj = ((MaterialSection) section).getTargetFragment();
+
+				if(obj instanceof PrefsFragment) {
+					((PrefsFragment) obj).onActivityResult(requestCode, resultCode, intent);
+				}
+			}
+		}
+
 	}
 
 	public void onNetworkProviderChanged(TransportNetwork network) {

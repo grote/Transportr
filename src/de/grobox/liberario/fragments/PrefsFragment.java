@@ -23,7 +23,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.IntentCompat;
+import android.view.View;
 
 import com.github.machinarius.preferencefragment.PreferenceFragment;
 
@@ -73,7 +76,9 @@ public class PrefsFragment extends PreferenceFragment implements TransportNetwor
 					intent.putExtra("new", true);
 				}
 
-				startActivityForResult(intent, MainActivity.CHANGED_HOME);
+				View view = preference.getView(null, null);
+				ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
+				ActivityCompat.startActivityForResult(getActivity(), intent, MainActivity.CHANGED_HOME, options.toBundle());
 
 				return true;
 			}

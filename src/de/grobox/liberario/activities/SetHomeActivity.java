@@ -20,19 +20,16 @@ package de.grobox.liberario.activities;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.FavDB;
-import de.grobox.liberario.ui.DelayAutoCompleteTextView;
 import de.grobox.liberario.ui.LocationInputView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class SetHomeActivity extends AppCompatActivity {
@@ -102,7 +99,11 @@ public class SetHomeActivity extends AppCompatActivity {
 	}
 
 	public void close(View v) {
-		finish();
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			finishAfterTransition();
+		} else {
+			finish();
+		}
 	}
 
 }
