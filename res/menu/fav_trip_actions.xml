@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/action_fav_trips_sort"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:icon="@drawable/ic_action_content_sort"
         de.grobox.liberario:showAsAction="always"
         android:title="@string/action_fav_trips_sort"/>
 

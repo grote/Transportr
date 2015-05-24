@@ -135,20 +135,20 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 			// make inactive products gray
 			if(mProducts.contains(product)) {
-				productView.getDrawable().setColorFilter(getProductColor(true), PorterDuff.Mode.SRC_IN);
+				productView.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity(), true), PorterDuff.Mode.SRC_IN);
 			} else {
-				productView.getDrawable().setColorFilter(getProductColor(false), PorterDuff.Mode.SRC_IN);
+				productView.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity(), false), PorterDuff.Mode.SRC_IN);
 			}
 
 			// handle click on product icon
 			productView.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					if(mProducts.contains(product)) {
-						productView.getDrawable().setColorFilter(getProductColor(false), PorterDuff.Mode.SRC_IN);
+						productView.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity(), false), PorterDuff.Mode.SRC_IN);
 						mProducts.remove(product);
 						Toast.makeText(v.getContext(), LiberarioUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
 					} else {
-						productView.getDrawable().setColorFilter(getProductColor(true), PorterDuff.Mode.SRC_IN);
+						productView.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity(), true), PorterDuff.Mode.SRC_IN);
 						mProducts.add(product);
 						Toast.makeText(v.getContext(), LiberarioUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
 					}
@@ -335,16 +335,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				//noinspection deprecation
 				to.setLocation(FavDB.getHome(getActivity()), getResources().getDrawable(R.drawable.ic_action_home));
 			}
-		}
-	}
-
-	private int getProductColor(boolean on) {
-		if(Preferences.darkThemeEnabled(getActivity())) {
-			if(on) return getResources().getColor(R.color.drawableTintDark);
-			else return getResources().getColor(R.color.drawableTintLite);
-		} else {
-			if(on) return Color.BLACK;
-			else return getResources().getColor(R.color.drawableTintLite);
 		}
 	}
 

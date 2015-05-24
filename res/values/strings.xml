@@ -22,7 +22,7 @@
     <string name="action_show_on_map">Show on Map</string>
 
     <string name="tab_directions">Directions</string>
-    <string name="tab_fav_trips">Last Trips</string>
+    <string name="tab_fav_trips">Favourite Trips</string>
     <string name="tab_departures">Departures</string>
 
     <string name="tab_libraries">Libraries</string>
@@ -69,6 +69,7 @@
     <string name="departure_station">Departure Station</string>
     <string name="share_trip_via">Share Trip Via&#8230;</string>
     <string name="undo">Undo</string>
+    <string name="fav_trips_empty">Your recent trips will appear here once you start searching for directions.\n\n\nYou will be able to sort them by most fequently or most recently used.</string>
 
     <string name="pref_transport_network">Transport Network</string>
     <string name="pref_home">Home Location</string>

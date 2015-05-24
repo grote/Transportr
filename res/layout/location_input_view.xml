@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:src="@drawable/ic_location"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"/>
 

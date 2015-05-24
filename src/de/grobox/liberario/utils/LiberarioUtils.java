@@ -28,6 +28,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -341,6 +342,20 @@ public class LiberarioUtils {
 		DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
 
 		return drawable;
+	}
+
+	static public int getButtonIconColor(Context context, boolean on) {
+		if(Preferences.darkThemeEnabled(context)) {
+			if(on) return context.getResources().getColor(R.color.drawableTintDark);
+			else return context.getResources().getColor(R.color.drawableTintLite);
+		} else {
+			if(on) return Color.BLACK;
+			else return context.getResources().getColor(R.color.drawableTintLite);
+		}
+	}
+
+	static public int getButtonIconColor(Context context) {
+		return getButtonIconColor(context, true);
 	}
 
 }

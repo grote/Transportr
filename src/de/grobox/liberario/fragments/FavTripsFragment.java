@@ -22,7 +22,9 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -45,12 +47,14 @@ import de.grobox.liberario.FavTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.FavDB;
-import de.schildbach.pte.NetworkProvider;
+import de.grobox.liberario.utils.LiberarioUtils;
+
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
 public class FavTripsFragment extends LiberarioListFragment {
 	private FavTripArrayAdapter adapter;
-	private ActionMode mActionMode = null;
+	private ActionMode mActionMode;
+	private Toolbar toolbar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,8 @@ public class FavTripsFragment extends LiberarioListFragment {
 
 		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
 		if(network != null) {
-			((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(network.getName());
+			toolbar = ((MaterialNavigationDrawer) getActivity()).getToolbar();
+			toolbar.setSubtitle(network.getName());
 		}
 
 		return super.onCreateView(inflater, container, savedInstanceState);
@@ -81,6 +86,8 @@ public class FavTripsFragment extends LiberarioListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+
+		setEmptyText(getString(R.string.fav_trips_empty));
 
 		// although the network provider has not changed, other things might have, so reload data
 		onNetworkProviderChanged(Preferences.getTransportNetwork(getActivity()));
@@ -131,7 +138,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 		checkBox.setChecked(true);
 
 		if(mActionMode == null) {
-			mActionMode = getActivity().startActionMode(mFavTripActionMode);
+			mActionMode = toolbar.startActionMode(mFavTripActionMode);
 		}
 	}
 
@@ -142,7 +149,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 		checkBox.setChecked(false);
 
 		if(mActionMode == null) {
-			mActionMode = getActivity().startActionMode(mFavTripActionMode);
+			mActionMode = toolbar.startActionMode(mFavTripActionMode);
 		}
 		else if(getListView().getCheckedItemCount() == 0) {
 			mActionMode.finish();
@@ -195,6 +202,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 					queryFavTrip(v, position, true);
 				}
 			});
+			swapButton.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity()), PorterDuff.Mode.SRC_IN);
 
 			// select trip on long click
 			v.setOnLongClickListener(new OnLongClickListener() {
