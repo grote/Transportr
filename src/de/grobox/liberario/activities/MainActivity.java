@@ -41,6 +41,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 
@@ -111,7 +113,9 @@ public class MainActivity extends MaterialNavigationDrawer implements TransportN
 		setAccountListener(new MaterialAccountListener() {
 			@Override
 			public void onAccountOpening(MaterialAccount materialAccount) {
-				startActivityForResult(new Intent(getContext(), PickNetworkProviderActivity.class), CHANGED_NETWORK_PROVIDER);
+				Intent intent = new Intent(getContext(), PickNetworkProviderActivity.class);
+				ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
+				ActivityCompat.startActivityForResult(MainActivity.this, intent, CHANGED_NETWORK_PROVIDER, options.toBundle());
 			}
 
 			@Override

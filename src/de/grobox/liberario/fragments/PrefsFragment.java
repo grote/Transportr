@@ -58,7 +58,10 @@ public class PrefsFragment extends PreferenceFragment implements TransportNetwor
 		network.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				startActivityForResult(new Intent(getActivity(), PickNetworkProviderActivity.class), MainActivity.CHANGED_NETWORK_PROVIDER);
+				Intent intent = new Intent(getActivity(), PickNetworkProviderActivity.class);
+				View view = preference.getView(null, null);
+				ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
+				ActivityCompat.startActivityForResult(getActivity(), intent, MainActivity.CHANGED_NETWORK_PROVIDER, options.toBundle());
 
 				return true;
 			}

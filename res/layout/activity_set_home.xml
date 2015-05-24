@@ -26,42 +26,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"/>
 
-    <include layout="@layout/divider_horizontal" />
-
-    <LinearLayout
+    <include
+        layout="@layout/ok_cancel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <Button
-            android:id="@+id/cancelButton"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@android:string/cancel"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:textColor="@color/accent"
-            style="?android:attr/buttonBarButtonStyle"
-            />
-
-        <View
-            android:layout_width="1dip"
-            android:layout_height="fill_parent"
-            android:background="?android:attr/dividerVertical" />
-
-        <Button
-            android:id="@+id/okButton"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@android:string/ok"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:textColor="@color/accent"
-            style="?android:attr/buttonBarButtonStyle"
-            />
-    </LinearLayout>
+        />
 
 </LinearLayout>

@@ -25,6 +25,7 @@ import de.grobox.liberario.ui.LocationInputView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -99,11 +100,7 @@ public class SetHomeActivity extends AppCompatActivity {
 	}
 
 	public void close(View v) {
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			finishAfterTransition();
-		} else {
-			finish();
-		}
+		ActivityCompat.finishAfterTransition(this);
 	}
 
 }

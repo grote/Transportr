@@ -32,22 +32,21 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-// TODO change this to RecyclerView and use TransportNetwork class
 public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	private Context _context;
-	private List<String> _listRegion;
-	private HashMap<String, List<TransportNetwork>> _listNetwork;
+	private List<String> regions;
+	private HashMap<String, List<TransportNetwork>> networks;
 
 	public NetworkProviderListAdapter(Context context, List<String> listRegion,	HashMap<String, List<TransportNetwork>> listNetwork) {
 		this._context = context;
-		this._listRegion = listRegion;
-		this._listNetwork = listNetwork;
+		this.regions = listRegion;
+		this.networks = listNetwork;
 	}
 
 	@Override
 	public Object getChild(int groupPosition, int childPosititon) {
-		return this._listNetwork.get(this._listRegion.get(groupPosition)).get(childPosititon);
+		return this.networks.get(this.regions.get(groupPosition)).get(childPosititon);
 	}
 
 	@Override
@@ -56,7 +55,7 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 	}
 
 	public int getChildPos(String region, NetworkId network_id) {
-		List<TransportNetwork> networks = this._listNetwork.get(region);
+		List<TransportNetwork> networks = this.networks.get(region);
 		if(networks != null) {
 			for(final TransportNetwork network : networks) {
 				if(network.getId().equals(network_id)) {
@@ -101,7 +100,7 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPos) {
-		List<TransportNetwork> region = this._listNetwork.get(this._listRegion.get(groupPos));
+		List<TransportNetwork> region = this.networks.get(this.regions.get(groupPos));
 
 		if(region != null) {
 			return region.size();
@@ -113,12 +112,12 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public String getGroup(int groupPos) {
-		return this._listRegion.get(groupPos);
+		return this.regions.get(groupPos);
 	}
 
 	@Override
 	public int getGroupCount() {
-		return this._listRegion.size();
+		return this.regions.size();
 	}
 
 	@Override
@@ -127,7 +126,7 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 	}
 
 	public int getGroupPos(String group) {
-		return this._listRegion.indexOf(group);
+		return this.regions.indexOf(group);
 	}
 
 	@Override

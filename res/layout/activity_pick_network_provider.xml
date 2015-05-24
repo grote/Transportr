@@ -11,42 +11,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
-        <LinearLayout
+        <include
+            layout="@layout/ok_cancel"
             android:id="@+id/pickBottomLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="vertical" >
-
-            <include layout="@layout/divider_horizontal"/>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/cancelNetworkProviderButton"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@android:string/cancel" />
-
-                <View
-                    android:layout_width="1dip"
-                    android:layout_height="fill_parent"
-                    android:background="?android:attr/dividerVertical" />
-
-                <Button
-                    android:id="@+id/pickNetworkProviderButton"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@android:string/ok" />
-            </LinearLayout>
-        </LinearLayout>
+            />
 
         <TextView
             android:id="@+id/firstRunTextView"

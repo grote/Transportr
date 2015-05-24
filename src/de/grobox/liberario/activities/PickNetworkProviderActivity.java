@@ -30,7 +30,9 @@ import de.grobox.liberario.adapters.NetworkProviderListAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -67,7 +69,7 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 		Intent intent = getIntent();
 		if(intent.getBooleanExtra("FirstRun", false)) {
 			// hide cancel button on first run
-			findViewById(R.id.cancelNetworkProviderButton).setVisibility(View.GONE);
+			findViewById(R.id.cancelButton).setVisibility(View.GONE);
 			// prevent going back
 			back = false;
 			// show first time notice
@@ -99,7 +101,7 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 		});
 
 		// on OK click
-		Button button = (Button) findViewById(R.id.pickNetworkProviderButton);
+		Button button = (Button) findViewById(R.id.okButton);
 		button.setOnClickListener(new OnClickListener() {
 			@SuppressLint("CommitPrefEdits")
 			@Override
@@ -111,7 +113,7 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 
 					Intent returnIntent = new Intent();
 					setResult(RESULT_OK, returnIntent);
-					finish();
+					close();
 				}
 				else {
 					Toast.makeText(getBaseContext(), getResources().getText(R.string.error_pick_network), Toast.LENGTH_SHORT).show();
@@ -120,13 +122,13 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 		});
 
 		// on Cancel click
-		Button button_cancel = (Button) findViewById(R.id.cancelNetworkProviderButton);
+		Button button_cancel = (Button) findViewById(R.id.cancelButton);
 		button_cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent returnIntent = new Intent();
 				setResult(RESULT_CANCELED, returnIntent);
-				finish();
+				close();
 			}
 		});
 	}
@@ -136,7 +138,7 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 		if(back) {
 			Intent returnIntent = new Intent();
 			setResult(RESULT_CANCELED, returnIntent);
-			finish();
+			close();
 		}
 	}
 
@@ -166,6 +168,10 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 			int index = expListView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(region, network));
 			expListView.setItemChecked(index, true);
 		}
+	}
+
+	public void close() {
+		ActivityCompat.finishAfterTransition(this);
 	}
 
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:color="@color/holo_red_light"
+        android:state_activated="false" />
+    <item
+        android:color="@android:color/white"
+        android:state_activated="true" />
+
+</selector>
