@@ -19,6 +19,7 @@ package de.grobox.liberario.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -94,6 +95,7 @@ public class LocationInputView {
 				holder.clear.setVisibility(View.GONE);
 			}
 		});
+		holder.clear.setColorFilter(LiberarioUtils.getButtonIconColor(context), PorterDuff.Mode.SRC_IN);
 
 		// From text input changed
 		holder.location.addTextChangedListener(new TextWatcher() {

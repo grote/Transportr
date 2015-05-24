@@ -53,7 +53,7 @@
                 android:id="@+id/clearButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/transparent"
+                android:background="?android:attr/selectableItemBackground"
                 android:src="@drawable/ic_action_content_remove"
                 android:visibility="gone" />
         </LinearLayout>

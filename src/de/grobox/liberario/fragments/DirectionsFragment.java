@@ -503,6 +503,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		animation.setRepeatMode(Animation.REVERSE);
 		ui.from.status.setAnimation(animation);
 
+		ui.from.location.setHint(R.string.stations_searching_position);
+
 		mGpsPressed = true;
 		gps_loc = null;
 	}
@@ -512,6 +514,8 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 		// deactivate button
 		ui.from.status.clearAnimation();
+
+		ui.from.location.setHint(R.string.from);
 
 		removeUpdates();
 	}
