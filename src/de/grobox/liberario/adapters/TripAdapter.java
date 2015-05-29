@@ -185,6 +185,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		}
 
 		// Share Trip
+		ui.share.setImageDrawable(LiberarioUtils.getTintedDrawable(context, ui.share.getDrawable()));
 		ui.share.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -199,6 +200,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		});
 
 		// Add Trip to Calendar
+		ui.calendar.setImageDrawable(LiberarioUtils.getTintedDrawable(context, ui.calendar.getDrawable()));
 		ui.calendar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -266,13 +268,13 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 		if(expand) {
 			//noinspection deprecation
-			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_more);
+			icon = LiberarioUtils.getTintedDrawable(context, R.drawable.ic_action_navigation_unfold_more);
 			state = View.GONE;
 			ostate = View.VISIBLE;
 		}
 		else {
 			//noinspection deprecation
-			icon = context.getResources().getDrawable(R.drawable.ic_action_navigation_unfold_less);
+			icon = LiberarioUtils.getTintedDrawable(context, R.drawable.ic_action_navigation_unfold_less);
 			state = View.VISIBLE;
 			ostate = View.GONE;
 		}

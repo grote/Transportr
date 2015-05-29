@@ -160,7 +160,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 		Location l = getItem(position);
 
 		if(l.id != null && l.id.equals("Liberario.HOME")) {
-			imageView.setImageDrawable(LiberarioUtils.tintDrawable(getContext(), R.drawable.ic_action_home));
+			imageView.setImageDrawable(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 			Location home = FavDB.getHome(parent.getContext());
 			if(home != null) {
 				textView.setText(home.uniqueShortName());
@@ -174,22 +174,22 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 			}
 		}
 		else if(l.id != null && l.id.equals("Liberario.GPS")) {
-			imageView.setImageDrawable(LiberarioUtils.tintDrawable(getContext(), R.drawable.ic_gps));
+			imageView.setImageDrawable(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_gps));
 			textView.setText(parent.getContext().getString(R.string.location_gps));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 		}
 		// locations from favorites and auto-complete
 		else if(favList.contains(l)) {
-			imageView.setImageDrawable(LiberarioUtils.tintDrawable(getContext(), R.drawable.ic_action_star));
+			imageView.setImageDrawable(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star));
 			textView.setText(LiberarioUtils.getLocName(l));
 		}
 		else {
 			if(l.type.equals(LocationType.ADDRESS)) {
-				imageView.setImageDrawable(LiberarioUtils.tintDrawable(getContext(), R.drawable.ic_location_address));
+				imageView.setImageDrawable(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_location_address));
 			} else if(l.type.equals(LocationType.POI)) {
-				imageView.setImageDrawable(LiberarioUtils.tintDrawable(getContext(), R.drawable.ic_action_about));
+				imageView.setImageDrawable(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_about));
 			} else if(l.type.equals(LocationType.STATION)) {
-				imageView.setImageDrawable(LiberarioUtils.tintDrawable(getContext(), R.drawable.ic_tab_stations));
+				imageView.setImageDrawable(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations));
 			} else {
 				imageView.setImageDrawable(null);
 			}

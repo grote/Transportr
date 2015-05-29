@@ -331,17 +331,27 @@ public class LiberarioUtils {
 		}
 	}
 
-	static public Drawable tintDrawable(Context context, int res) {
+	static public Drawable getTintedDrawable(Context context, Drawable d) {
 		//noinspection deprecation
-		Drawable drawable = DrawableCompat.wrap(context.getResources().getDrawable(res));
+		Drawable drawable = DrawableCompat.wrap(d);
 
 		TypedValue v = new TypedValue();
 		context.getTheme().resolveAttribute(R.attr.drawableTint, v, true);
 
-		DrawableCompat.setTint(drawable, v.data);
-		DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+		if(Preferences.darkThemeEnabled(context)) {
+			DrawableCompat.setTint(drawable, R.color.drawableTintDark);
+		}
+		else {
+			DrawableCompat.setTint(drawable, R.color.drawableTintLite);
+		}
 
+		DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
 		return drawable;
+	}
+
+	static public Drawable getTintedDrawable(Context context, int res) {
+		//noinspection deprecation
+		return getTintedDrawable(context, context.getResources().getDrawable(res));
 	}
 
 	static public int getButtonIconColor(Context context, boolean on) {

@@ -84,7 +84,7 @@ public class LocationInputView {
 		holder.location.setOnClickListener(onClickListener);
 
 		holder.status.setOnClickListener(onClickListener);
-		holder.status.setImageDrawable(LiberarioUtils.tintDrawable(context, R.drawable.ic_location));
+		holder.status.setImageDrawable(LiberarioUtils.getTintedDrawable(context, R.drawable.ic_location));
 
 		// clear from text button
 		holder.clear.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +131,7 @@ public class LocationInputView {
 			if(icon != null) {
 				holder.status.setImageDrawable(icon);
 			} else {
-				holder.status.setImageDrawable(LiberarioUtils.tintDrawable(context, R.drawable.ic_location));
+				holder.status.setImageDrawable(LiberarioUtils.getTintedDrawable(context, R.drawable.ic_location));
 			}
 
 			is_changing = false;

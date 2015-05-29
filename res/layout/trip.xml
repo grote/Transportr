@@ -49,7 +49,7 @@
                 android:id="@+id/shareView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_share"
+                android:src="@drawable/ic_action_social_share"
                 android:padding="8dp"
                 android:contentDescription="@string/action_trip_share"/>
 
@@ -57,7 +57,7 @@
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_my_calendar"
+                android:src="@drawable/ic_action_calendar"
                 android:padding="8dp"
                 android:contentDescription="@string/action_trip_calendar"/>
 
