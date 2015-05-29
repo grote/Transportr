@@ -14,14 +14,14 @@ repositories {
 apply plugin: 'com.android.application'
 
 dependencies {
-	compile 'com.android.support:appcompat-v7:22.1.1'
-	compile 'com.android.support:cardview-v7:22.1.1'
-	compile 'com.android.support:recyclerview-v7:22.1.1'
-	compile "com.android.support:gridlayout-v7:22.1.1"
+	compile 'com.android.support:appcompat-v7:22.2.0'
+	compile "com.android.support:design:22.2.0"
+	compile 'com.android.support:cardview-v7:22.2.0'
+	compile 'com.android.support:recyclerview-v7:22.2.0'
+	compile "com.android.support:gridlayout-v7:22.2.0"
 
 	compile 'com.github.orangegangsters:swipy:1.2.0'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
-	compile 'com.nispok:snackbar:2.10.7'
 	compile 'com.koenv:MaterialNavigationDrawer:1.3.5'
 	compile 'com.github.machinarius:preferencefragment:0.1.1'
 	compile project(':sublibs:OSMBonusPack')

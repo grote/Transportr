@@ -19,6 +19,7 @@ package de.grobox.liberario.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -26,10 +27,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.nispok.snackbar.Snackbar;
-import com.nispok.snackbar.SnackbarManager;
-import com.nispok.snackbar.listeners.ActionClickListener;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
@@ -82,43 +81,39 @@ public class TripsActivity extends AppCompatActivity {
 		mRecyclerView.setHasFixedSize(true);
 
 		final SwipeDismissRecyclerViewTouchListener touchListener = new SwipeDismissRecyclerViewTouchListener(mRecyclerView,
-             new SwipeDismissRecyclerViewTouchListener.DismissCallbacks() {
-                 @Override
-                 public boolean canDismiss(int position) {
-                     return true;
-                 }
+			new SwipeDismissRecyclerViewTouchListener.DismissCallbacks() {
+			 @Override
+			 public boolean canDismiss(int position) {
+			     return true;
+			 }
 
-                 @Override
-                 public void onDismiss(RecyclerView recyclerView, int[] reverseSortedPositions) {
-                     for (int position : reverseSortedPositions) {
-                         mAdapter.removeItemAt(position);
-	                     SnackbarManager.show(Snackbar.with(TripsActivity.this)
-			                                          .text(getString(R.string.trip_removed))
-			                                          .actionLabel(getString(R.string.undo))
-			                                          .actionListener(new ActionClickListener() {
-				                                          @Override
-				                                          public void onActionClicked(Snackbar snackbar) {
-					                                          mAdapter.undo();
-				                                          }
-			                                          })
-													  .colorResource(R.color.primary_dark)
-			                                          .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
-	                     );
-                     }
-                 }
+			 @Override
+			 public void onDismiss(RecyclerView recyclerView, int[] reverseSortedPositions) {
+			     for (int position : reverseSortedPositions) {
+			         mAdapter.removeItemAt(position);
+			         Snackbar snackbar = Snackbar.make(recyclerView, R.string.trip_removed, Snackbar.LENGTH_LONG);
+			         snackbar.setAction(R.string.undo, new View.OnClickListener() {
+			             @Override
+			             public void onClick(View view) {
+			                 mAdapter.undo();
+			             }
+			         });
+			         snackbar.show();
+			     }
+			 }
 
-	             @Override
-	             public void onItemClick(int position) {
-		             Trip trip = mAdapter.getItem(position).trip;
+			 @Override
+			 public void onItemClick(int position) {
+			     Trip trip = mAdapter.getItem(position).trip;
 
-		             Intent intent = new Intent(TripsActivity.this, TripDetailActivity.class);
-		             intent.putExtra("de.schildbach.pte.dto.Trip", trip);
-		             intent.putExtra("de.schildbach.pte.dto.Trip.from", trip.from);
-		             intent.putExtra("de.schildbach.pte.dto.Trip.to", trip.to);
+			     Intent intent = new Intent(TripsActivity.this, TripDetailActivity.class);
+			     intent.putExtra("de.schildbach.pte.dto.Trip", trip);
+			     intent.putExtra("de.schildbach.pte.dto.Trip.from", trip.from);
+			     intent.putExtra("de.schildbach.pte.dto.Trip.to", trip.to);
 
-		             startActivity(intent);
-	             }
-             });
+			     startActivity(intent);
+			 }
+		});
 
 		// Setting this scroll listener is required to ensure that during ListView scrolling, we don't look for swipes.
 		mRecyclerView.setOnScrollListener(touchListener.makeScrollListener());
