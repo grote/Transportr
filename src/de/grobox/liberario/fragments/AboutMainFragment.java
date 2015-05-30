@@ -19,6 +19,7 @@ package de.grobox.liberario.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -28,7 +29,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.ui.SlidingTabLayout;
 
 public class AboutMainFragment extends Fragment {
 	AboutPagerAdapter mPagerAdapter;
@@ -45,10 +45,10 @@ public class AboutMainFragment extends Fragment {
 		mPagerAdapter = new AboutPagerAdapter(getChildFragmentManager());
 		viewPager.setAdapter(mPagerAdapter);
 
-		SlidingTabLayout slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
-		slidingTabLayout.setDistributeEvenly(true);
-		slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.accent));
-		slidingTabLayout.setViewPager(viewPager);
+		TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+		tabLayout.setupWithViewPager(viewPager);
+		tabLayout.setTabsFromPagerAdapter(mPagerAdapter);
+		tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
 		return view;
 	}
