@@ -11,7 +11,6 @@
         <item name="cardBackgroundColor">@color/cardview_dark_background</item>
         <item name="android:dialogTheme">@style/DialogTheme</item>
         <item name="android:alertDialogTheme">@style/DialogTheme</item>
-        <item name="drawableTint">@color/drawableTintDark</item>
     </style>
 
     <style name="AppTheme.Light" parent="MaterialDrawerTheme.Light.DarkToolbar">
@@ -23,7 +22,6 @@
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
         <item name="android:dialogTheme">@style/DialogTheme.Light</item>
         <item name="android:alertDialogTheme">@style/DialogTheme.Light</item>
-        <item name="drawableTint">@color/drawableTintLite</item>
     </style>
 
 
@@ -33,16 +31,12 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-
-        <item name="drawableTint">@color/drawableTintDark</item>
     </style>
 
     <style name="DialogTheme.Light" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-
-        <item name="drawableTint">@color/drawableTintLite</item>
     </style>
 
 

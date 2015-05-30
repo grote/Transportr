@@ -19,5 +19,5 @@
     <color name="accent">#ff5722</color>
 
     <color name="drawableTintDark">#ffffffff</color>
-    <color name="drawableTintLite">#8a000000</color>
+    <color name="drawableTintLight">#8a000000</color>
 </resources>

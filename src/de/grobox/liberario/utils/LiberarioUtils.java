@@ -33,9 +33,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -331,21 +329,13 @@ public class LiberarioUtils {
 		}
 	}
 
-	static public Drawable getTintedDrawable(Context context, Drawable d) {
-		//noinspection deprecation
-		Drawable drawable = DrawableCompat.wrap(d);
-
-		TypedValue v = new TypedValue();
-		context.getTheme().resolveAttribute(R.attr.drawableTint, v, true);
-
+	static public Drawable getTintedDrawable(Context context, Drawable drawable) {
 		if(Preferences.darkThemeEnabled(context)) {
-			DrawableCompat.setTint(drawable, R.color.drawableTintDark);
+			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
 		}
 		else {
-			DrawableCompat.setTint(drawable, R.color.drawableTintLite);
+			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintLight), PorterDuff.Mode.SRC_IN);
 		}
-
-		DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
 		return drawable;
 	}
 
@@ -357,10 +347,10 @@ public class LiberarioUtils {
 	static public int getButtonIconColor(Context context, boolean on) {
 		if(Preferences.darkThemeEnabled(context)) {
 			if(on) return context.getResources().getColor(R.color.drawableTintDark);
-			else return context.getResources().getColor(R.color.drawableTintLite);
+			else return context.getResources().getColor(R.color.drawableTintLight);
 		} else {
 			if(on) return Color.BLACK;
-			else return context.getResources().getColor(R.color.drawableTintLite);
+			else return context.getResources().getColor(R.color.drawableTintLight);
 		}
 	}
 
