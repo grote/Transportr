@@ -2,22 +2,28 @@
 
     <!-- App Theme -->
 
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="MaterialDrawerTheme">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
+        <item name="windowActionModeOverlay">true</item>
         <item name="cardBackgroundColor">@color/cardview_dark_background</item>
+        <item name="android:dialogTheme">@style/DialogTheme</item>
+        <item name="android:alertDialogTheme">@style/DialogTheme</item>
         <item name="drawableTint">@color/drawableTintDark</item>
     </style>
 
-    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.Light" parent="MaterialDrawerTheme.Light.DarkToolbar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
+        <item name="windowActionModeOverlay">true</item>
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
-        <item name="drawableTint">@color/drawableTintDark</item>
+        <item name="android:dialogTheme">@style/DialogTheme.Light</item>
+        <item name="android:alertDialogTheme">@style/DialogTheme.Light</item>
+        <item name="drawableTint">@color/drawableTintLite</item>
     </style>
 
 
@@ -37,59 +43,6 @@
         <item name="colorAccent">@color/accent</item>
 
         <item name="drawableTint">@color/drawableTintLite</item>
-    </style>
-
-
-    <!-- Navigation Drawer Theme -->
-
-    <style name="NavigationDrawerTheme" parent="MaterialNavigationDrawerTheme.TranslucentKitKatStatusBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-
-        <item name="windowActionModeOverlay">true</item>
-        <item name="cardBackgroundColor">@color/cardview_dark_background</item>
-        <item name="android:dialogTheme">@style/DialogTheme</item>
-        <item name="android:alertDialogTheme">@style/DialogTheme</item>
-        <item name="drawableTint">@color/drawableTintDark</item>
-
-        <item name="sectionStyle">@style/DrawerSectionTheme</item>
-
-        <item name="singleAccount">true</item>
-        <item name="multipaneSupport">true</item>
-        <item name="toolbarElevation">true</item>
-        <item name="rippleBackport">true</item>
-    </style>
-
-    <style name="NavigationDrawerTheme.Light" parent="MaterialNavigationDrawerTheme.Light.DarkActionBar.TranslucentKitKatStatusBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-
-        <item name="windowActionModeOverlay">true</item>
-        <item name="cardBackgroundColor">@color/cardview_light_background</item>
-        <item name="android:dialogTheme">@style/DialogTheme.Light</item>
-        <item name="android:alertDialogTheme">@style/DialogTheme.Light</item>
-        <item name="drawableTint">@color/drawableTintLite</item>
-
-        <item name="sectionStyle">@style/DrawerSectionTheme.Light</item>
-
-        <item name="singleAccount">true</item>
-        <item name="multipaneSupport">true</item>
-        <item name="toolbarElevation">true</item>
-        <item name="rippleBackport">true</item>
-
-        <!-- ugly hack to prevent theme from being light/dark mix in API 19, loses DarkActionBar -->
-        <item name="theme">@style/ThemeOverlay.AppCompat.Light</item>
-    </style>
-
-
-    <style name="DrawerSectionTheme" parent="MaterialSectionTheme">
-        <item name="sectionBackgroundColorSelected">@color/accent</item>
-    </style>
-
-    <style name="DrawerSectionTheme.Light" parent="MaterialSectionTheme.Light">
-        <item name="sectionBackgroundColorSelected">@color/accent</item>
     </style>
 
 

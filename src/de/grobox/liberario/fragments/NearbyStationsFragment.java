@@ -35,14 +35,12 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.NetworkProvider.Capability;
 import de.schildbach.pte.dto.Location;
-import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
 public class NearbyStationsFragment extends LiberarioFragment implements LocationListener {
 	private View mView;
@@ -57,13 +55,7 @@ public class NearbyStationsFragment extends LiberarioFragment implements Locatio
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_nearbystations, container, false);
 
-		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
-
-		if(network != null) {
-			((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(network.getName());
-
-			setNearbyStationsView();
-		}
+		setNearbyStationsView();
 
 		return mView;
 	}

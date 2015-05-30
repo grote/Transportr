@@ -106,16 +106,17 @@ public class Preferences {
 
 		String id1 = settings.getString("NetworkId", "");
 		String id2 = settings.getString("NetworkId2", "");
-		String id3 = settings.getString("NetworkId3", "");
+
+		if(id1.equals(id.name())) {
+			// same network selected
+			return;
+		}
 
 		if(!id2.equals(id.name())) {
 			editor.putString("NetworkId3", id2);
 		}
 
-		if(!id1.equals(id.name())) {
-			editor.putString("NetworkId2", id1);
-		}
-
+		editor.putString("NetworkId2", id1);
 		editor.putString("NetworkId", id.name());
 
 		editor.commit();

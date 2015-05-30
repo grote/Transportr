@@ -23,14 +23,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.ui.SlidingTabLayout;
-import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
 public class AboutMainFragment extends Fragment {
 	AboutPagerAdapter mPagerAdapter;
@@ -38,11 +36,6 @@ public class AboutMainFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_main_about, container, false);
-
-		Toolbar toolbar = ((MaterialNavigationDrawer) getActivity()).getToolbar();
-		if(toolbar != null) {
-			toolbar.setSubtitle(null);
-		}
 
 		ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
 

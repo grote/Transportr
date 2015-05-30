@@ -22,8 +22,10 @@ dependencies {
 
 	compile 'com.github.orangegangsters:swipy:1.2.0'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
-	compile 'com.koenv:MaterialNavigationDrawer:1.3.5'
 	compile 'com.github.machinarius:preferencefragment:0.1.1'
+	compile('com.mikepenz:materialdrawer:3.0.4') {
+		transitive = true
+	}
 	compile project(':sublibs:OSMBonusPack')
 
 	compile files('libs/public-transport-enabler.jar')

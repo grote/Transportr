@@ -49,8 +49,6 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.utils.LiberarioUtils;
 
-import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
-
 public class FavTripsFragment extends LiberarioListFragment {
 	private FavTripArrayAdapter adapter;
 	private ActionMode mActionMode;
@@ -67,11 +65,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 		adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)));
 		setListAdapter(adapter);
 
-		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
-		if(network != null) {
-			toolbar = ((MaterialNavigationDrawer) getActivity()).getToolbar();
-			toolbar.setSubtitle(network.getName());
-		}
+		toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
 
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
@@ -91,6 +85,13 @@ public class FavTripsFragment extends LiberarioListFragment {
 
 		// although the network provider has not changed, other things might have, so reload data
 		onNetworkProviderChanged(Preferences.getTransportNetwork(getActivity()));
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+
+		if(mActionMode != null) mActionMode.finish();
 	}
 
 	@Override

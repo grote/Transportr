@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
@@ -54,7 +53,6 @@ import de.grobox.liberario.utils.DateUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
-import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
 public class DeparturesFragment extends LiberarioFragment {
 	private View mView;
@@ -71,11 +69,6 @@ public class DeparturesFragment extends LiberarioFragment {
 		mView = inflater.inflate(R.layout.fragment_departures, container, false);
 
 		ui = new ViewHolder(mView);
-
-		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
-		if(network != null) {
-			((MaterialNavigationDrawer) getActivity()).getToolbar().setSubtitle(network.getName());
-		}
 
 		// Location Input View
 
