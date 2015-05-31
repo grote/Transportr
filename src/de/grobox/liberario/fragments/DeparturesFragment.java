@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
 import de.grobox.liberario.ui.LocationInputView;
 import de.grobox.liberario.utils.DateUtils;
+import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
@@ -83,8 +85,8 @@ public class DeparturesFragment extends LiberarioFragment {
 
 		// Find Departures Search Button
 
-		Button stationButton = (Button) mView.findViewById(R.id.stationButton);
-		stationButton.setOnClickListener(new OnClickListener() {
+		ui.search.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity()));
+		ui.search.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if(loc.getLocation() != null) {
@@ -235,9 +237,11 @@ public class DeparturesFragment extends LiberarioFragment {
 		// timespan covered by currently retrieved departures
 		long span = latest.getTime() - earliest.getTime();
 
-		// make span smaller to get value for one retrieval of max_departures - 3 to not loose departures
-		// FIXME reduce probility that departures are not shown
-		span = span / (count / (max_departures - 3));
+		if(count / (max_departures - 3) != 0) {
+			// make span smaller to get value for one retrieval of max_departures - 3 to not loose departures
+			// FIXME reduce probility that departures are not shown
+			span = span / (count / (max_departures - 3));
+		}
 
 		Date new_date = new Date();
 
@@ -256,7 +260,7 @@ public class DeparturesFragment extends LiberarioFragment {
 	private static class ViewHolder {
 
 		public LocationInputView.LocationInputViewHolder station;
-		public Button search;
+		public ImageButton search;
 		public CardView departure_list;
 		public SwipyRefreshLayout swipe_refresh;
 		public ProgressBar progress;
@@ -264,7 +268,7 @@ public class DeparturesFragment extends LiberarioFragment {
 
 		public ViewHolder(View view) {
 			station = new LocationInputView.LocationInputViewHolder(view);
-			search = (Button) view.findViewById(R.id.stationButton);
+			search = (ImageButton) view.findViewById(R.id.stationButton);
 			departure_list = (CardView) view.findViewById(R.id.departure_list);
 			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 			progress = (ProgressBar) view.findViewById(R.id.progressBar);

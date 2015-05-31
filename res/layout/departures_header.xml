@@ -38,13 +38,8 @@
             <include
                 layout="@layout/time_and_date"/>
 
-            <Button
-                android:id="@+id/stationButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@android:string/search_go"
-                android:backgroundTint="@color/primary"
-                />
+            <include
+                layout="@layout/search_button"/>
 
         </LinearLayout>
 

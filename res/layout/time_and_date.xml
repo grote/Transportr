@@ -9,15 +9,13 @@
         android:id="@+id/timeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         tools:text="23:42"
         />
 
     <Button
         android:id="@+id/plus15Button"
-        android:layout_width="wrap_content"
+        android:layout_width="52dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="+15"
         />
 
@@ -25,7 +23,8 @@
         android:id="@+id/dateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        android:singleLine="true"
+        android:layout_weight="1"
         tools:text="1337/23/42"
         />
 
