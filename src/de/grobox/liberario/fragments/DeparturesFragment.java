@@ -29,7 +29,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -213,19 +212,22 @@ public class DeparturesFragment extends LiberarioFragment {
 		ui.progress.setVisibility(View.GONE);
 	}
 
-	public void onNoResults(boolean later) {
+	public void onNoResults(boolean later, boolean more) {
 		onRefreshComplete(later);
 
-		// fade out departure list
-		ui.departure_list.animate().alpha(0f).setDuration(750);
-		// can't use withEndAction() in this API level
-		final Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				ui.departure_list.setVisibility(View.GONE);
-			}
-		}, 750);
+		if(!more) {
+			// fade out departure list
+			ui.departure_list.animate().alpha(0f).setDuration(750);
+			// can't use withEndAction() in this API level
+			final Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
+				                    @Override
+				                    public void run() {
+					                    ui.departure_list.setVisibility(View.GONE);
+				                    }
+			                    }, 750
+			);
+		}
 	}
 
 	public void startGetMoreDepartures(boolean later) {
@@ -254,7 +256,7 @@ public class DeparturesFragment extends LiberarioFragment {
 
 		date = new_date;
 
-		new AsyncQueryDeparturesTask(this, stationId, date, later, max_departures).execute();
+		new AsyncQueryDeparturesTask(this, stationId, date, later, max_departures, true).execute();
 	}
 
 	private static class ViewHolder {

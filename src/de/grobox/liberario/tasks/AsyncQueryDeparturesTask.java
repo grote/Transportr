@@ -34,15 +34,21 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 	private String stationId;
 	private Date date;
 	private boolean later;
+	private boolean more;
 	private int max_departures;
 	private String error = null;
 
-	public AsyncQueryDeparturesTask(DeparturesFragment fragment, String stationId, Date date, boolean later, int max_departures) {
+	public AsyncQueryDeparturesTask(DeparturesFragment fragment, String stationId, Date date, boolean later, int max_departures, boolean more) {
 		this.fragment = fragment;
 		this.stationId = stationId;
 		this.date = date;
 		this.later = later;
 		this.max_departures = max_departures;
+		this.more = more;
+	}
+
+	public AsyncQueryDeparturesTask(DeparturesFragment fragment, String stationId, Date date, boolean later, int max_departures) {
+		this(fragment, stationId, date, later, max_departures, false);
 	}
 
 	@Override
@@ -78,7 +84,7 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 				Toast.makeText(fragment.getActivity(), error, Toast.LENGTH_LONG).show();
 			}
 			// although not successful, we are still done
-			fragment.onNoResults(later);
+			fragment.onNoResults(later, more);
 
 			return;
 		}
