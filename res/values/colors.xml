@@ -14,9 +14,9 @@
     <color name="holo_gray_dark">#33666666</color>
 
     <!-- material theme colors -->
-    <color name="primary">#ff5722</color>
-    <color name="primary_dark">#bf360c</color>
-    <color name="accent">#ff5722</color>
+    <color name="primary">#f44336</color>
+    <color name="primary_dark">#b71c1c</color>
+    <color name="accent">#e53935</color>
 
     <color name="drawableTintDark">#ffffffff</color>
     <color name="drawableTintLight">#8a000000</color>
