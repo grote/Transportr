@@ -17,29 +17,6 @@
 
 package de.grobox.liberario.fragments;
 
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
-
-import de.grobox.liberario.TransportNetwork;
-import de.grobox.liberario.tasks.AsyncQueryTripsTask;
-import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.FavTrip;
-import de.grobox.liberario.adapters.LocationAdapter;
-import de.grobox.liberario.NetworkProviderFactory;
-import de.grobox.liberario.Preferences;
-import de.grobox.liberario.R;
-import de.grobox.liberario.activities.SetHomeActivity;
-import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.data.FavDB;
-import de.grobox.liberario.ui.LocationInputView;
-import de.grobox.liberario.utils.DateUtils;
-import de.grobox.liberario.utils.LiberarioUtils;
-import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.LocationType;
-import de.schildbach.pte.dto.Product;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -70,6 +47,29 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
+
+import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.FavTrip;
+import de.grobox.liberario.NetworkProviderFactory;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.activities.MainActivity;
+import de.grobox.liberario.activities.SetHomeActivity;
+import de.grobox.liberario.adapters.LocationAdapter;
+import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.tasks.AsyncQueryTripsTask;
+import de.grobox.liberario.ui.LocationInputView;
+import de.grobox.liberario.utils.DateUtils;
+import de.grobox.liberario.utils.LiberarioUtils;
+import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
+import de.schildbach.pte.dto.Product;
 
 public class DirectionsFragment extends LiberarioFragment implements LocationListener {
 	private View mView;
@@ -240,6 +240,48 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		});
 
 		return mView;
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		if(savedInstanceState != null) {
+			// TODO restore more values here
+
+			Location from_loc = (Location) savedInstanceState.getSerializable("from");
+			if(from_loc != null) {
+				from.setLocation(from_loc, null);
+			}
+
+			Location to_loc = (Location) savedInstanceState.getSerializable("to");
+			if(to_loc != null) {
+				to.setLocation(to_loc, null);
+			}
+
+			String time = savedInstanceState.getString("time", null);
+			if(time != null) {
+				ui.time.setText(time);
+			}
+		}
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		// TODO save more values here
+
+		if(from != null) {
+			outState.putSerializable("from", from.getLocation());
+		}
+		if(to != null) {
+			outState.putSerializable("to", to.getLocation());
+		}
+
+		if(ui.time != null) {
+			outState.putCharSequence("time", ui.time.getText());
+		}
 	}
 
 	@Override

@@ -17,7 +17,6 @@
 
 package de.grobox.liberario.activities;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -26,6 +25,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
@@ -44,8 +44,6 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
-
-import java.util.LinkedList;
 
 import de.cketti.library.changelog.ChangeLog;
 import de.grobox.liberario.LiberarioApplication;
@@ -69,9 +67,8 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 	private AccountHeader accountHeader;
 	private Toolbar toolbar;
 
-	private LinkedList<Integer> selectedItemStack = new LinkedList<>();
+	private int selectedItem;
 
-	@SuppressLint("MissingSuperCall")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		if(Preferences.darkThemeEnabled(this)) {
@@ -126,41 +123,16 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 			})
              .build();
 
-		// Fragments
-
-		final Fragment directionsFragment = new DirectionsFragment();
-		final PrimaryDrawerItem directionsItem = new PrimaryDrawerItem()
-				                                         .withName(R.string.tab_directions)
-				                                         .withIcon(LiberarioUtils.getTintedDrawable(getContext(), android.R.drawable.ic_menu_directions));
-
-		final Fragment favTripsFragment = new FavTripsFragment();
-		final PrimaryDrawerItem favTripsItem = new PrimaryDrawerItem()
-				                                       .withName(R.string.tab_fav_trips)
-				                                       .withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star));
-
-		final Fragment departuresFragment = new DeparturesFragment();
-		final PrimaryDrawerItem departuresItem = new PrimaryDrawerItem()
-				                                         .withName(R.string.tab_departures)
-				                                         .withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures));
-
-		final Fragment nearbyStationsFragment = new NearbyStationsFragment();
-		final PrimaryDrawerItem nearbyStationsItem = new PrimaryDrawerItem()
-				                                             .withName(R.string.nearby_stations)
-				                                             .withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations));
-
-		final Fragment prefsFragment = new PrefsFragment();
-		final Fragment aboutFragment = new AboutMainFragment();
-
 		// Drawer
 		drawer = new DrawerBuilder()
             .withActivity(this)
             .withToolbar(toolbar)
             .withAccountHeader(accountHeader)
             .addDrawerItems(
-                   directionsItem,
-                   favTripsItem,
-                   departuresItem,
-                   nearbyStationsItem,
+		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIcon(LiberarioUtils.getTintedDrawable(getContext(), android.R.drawable.ic_menu_directions)),
+		           new PrimaryDrawerItem().withName(R.string.tab_fav_trips).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star)),
+		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
+		           new PrimaryDrawerItem().withName(R.string.nearby_stations).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
                    new DividerDrawerItem(),
                    new PrimaryDrawerItem().withName(R.string.action_settings).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_settings)),
                    new PrimaryDrawerItem().withName(R.string.action_changelog).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_changelog)),
@@ -179,8 +151,10 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
                   public void onDrawerSlide(View drawerView, float slideOffset) {}
               }
             )
-            .withFireOnInitialOnClick(true)
+            .withFireOnInitialOnClick(false)
             .withSavedInstance(savedInstanceState)
+            .withShowDrawerOnFirstLaunch(true)
+            .withAnimateDrawerItems(true)
             .build();
 
 		drawer.setOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -192,39 +166,72 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 				}
 
 				if(drawerItem != null && drawerItem instanceof Nameable) {
-					switch(((Nameable) drawerItem).getNameRes()) {
-						case R.string.tab_directions:
-							switchItem(directionsFragment, position, drawerItem);
-							break;
-						case R.string.tab_fav_trips:
-							switchItem(favTripsFragment, position, drawerItem);
-							break;
-						case R.string.tab_departures:
-							switchItem(departuresFragment, position, drawerItem);
-							break;
-						case R.string.nearby_stations:
-							switchItem(nearbyStationsFragment, position, drawerItem);
-							break;
-						case R.string.action_settings:
-							switchItem(prefsFragment, position, drawerItem);
-							break;
-						case R.string.action_changelog:
-							// don't select changelog item
-							drawer.setSelection(selectedItemStack.peekLast());
+					int res = ((Nameable) drawerItem).getNameRes();
 
-							new HoloChangeLog(getContext()).getFullLogDialog().show();
-							break;
-						case R.string.action_about:
-							switchItem(aboutFragment, position, drawerItem);
-							break;
+					if(res == R.string.action_changelog) {
+						// don't select changelog item
+						drawer.setSelection(selectedItem, false);
+
+						new HoloChangeLog(getContext()).getFullLogDialog().show();
+					} else {
+						switchFragment(getString(res));
+
+						// remember selected drawer item
+						selectedItem = position;
 					}
 				}
+
 				return false;
 			}
 		});
 
-		// select first item for start
-		drawer.setSelection(0, false);
+		// Fragments
+		if(savedInstanceState == null) {
+			final Fragment directionsFragment = new DirectionsFragment();
+			final Fragment favTripsFragment = new FavTripsFragment();
+			final Fragment departuresFragment = new DeparturesFragment();
+			final Fragment nearbyStationsFragment = new NearbyStationsFragment();
+			final Fragment prefsFragment = new PrefsFragment();
+			final Fragment aboutFragment = new AboutMainFragment();
+
+			// add initial fragment
+			getSupportFragmentManager().beginTransaction()
+			                           .add(R.id.fragment_container, directionsFragment, getString(R.string.tab_directions))
+			                           .addToBackStack(getString(R.string.tab_directions))
+			                           .commit();
+
+			// add all other fragments hidden
+			getSupportFragmentManager().beginTransaction()
+			                           .add(R.id.fragment_container, favTripsFragment, getString(R.string.tab_fav_trips))
+			                           .hide(favTripsFragment)
+			                           .add(R.id.fragment_container, departuresFragment, getString(R.string.tab_departures))
+			                           .hide(departuresFragment)
+			                           .add(R.id.fragment_container, nearbyStationsFragment, getString(R.string.nearby_stations))
+			                           .hide(nearbyStationsFragment)
+			                           .add(R.id.fragment_container, prefsFragment, getString(R.string.action_settings))
+			                           .hide(prefsFragment)
+			                           .add(R.id.fragment_container, aboutFragment, getString(R.string.action_about))
+			                           .hide(aboutFragment)
+			                           .commit();
+		} else {
+			// find currently active fragment
+			String fragment_tag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
+			Fragment fragment_old = getSupportFragmentManager().findFragmentByTag(fragment_tag);
+
+			// hide inactive fragments when restoring state
+			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+			for(Fragment fragment : getSupportFragmentManager().getFragments()) {
+				if(fragment != fragment_old) {
+					transaction.hide(fragment);
+				}
+			}
+			transaction.commit();
+
+			// restore selected drawer item
+			selectedItem = savedInstanceState.getInt("selectedItem");
+			drawer.setSelection(selectedItem, false);
+		}
+
 		if(network != null) {
 			toolbar.setSubtitle(network.getName());
 			updateDrawerItems(network);
@@ -242,17 +249,23 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 	}
 
 	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		// remember selected drawer item
+		outState.putInt("selectedItem", selectedItem);
+	}
+
+	@Override
 	public void onBackPressed() {
 		// close the drawer first
 		if(drawer != null && drawer.isDrawerOpen()) {
 			drawer.closeDrawer();
 		}
-		// go back to previous item
-		else if(selectedItemStack.size() > 1) {
-			selectedItemStack.removeLast();
-			drawer.setSelection(selectedItemStack.removeLast());
+		else if(getSupportFragmentManager().getBackStackEntryCount() == 1) {
+			// don't remove last fragment, leave before
+			finish();
 		}
-		// if there is no back stack, close the activity
 		else {
 			super.onBackPressed();
 		}
@@ -284,9 +297,6 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		// update accounts the lazy way
 		accountHeader.clear();
 		addAccounts(network);
-
-		// clear back stack
-		selectedItemStack.clear();
 
 		// update drawer items based on network capabilities
 		updateDrawerItems(network);
@@ -324,22 +334,20 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 		if(drawer.getDrawerItems().get(drawer.getCurrentSelection()).isEnabled()) {
 			// this is somehow necessary to show enabled/disabled state
-			drawer.setSelection(drawer.getCurrentSelection());
+			// make sure to use fireOnClick=false
+			drawer.setSelection(drawer.getCurrentSelection(), false);
 		} else {
 			// select last section if this one is not supported by current network
 			drawer.setSelection(drawer.getDrawerItems().size() - 1);
 		}
 	}
 
-	private void switchItem(Fragment f, int position, IDrawerItem drawerItem) {
-		// add new position to fragment stack
-		selectedItemStack.add(position);
-
+	private void switchFragment(String f) {
 		// set fragment name in toolbar
-		toolbar.setTitle(getString(((Nameable) drawerItem).getNameRes()));
+		toolbar.setTitle(f);
 
 		// set network name in toolbar
-		if(f instanceof TransportNetwork.Handler && !(f instanceof PrefsFragment)) {
+		if( !(f.equals(getString(R.string.action_settings)) || f.equals(getString(R.string.action_about)) )) {
 			TransportNetwork network = Preferences.getTransportNetwork(getContext());
 			if(network != null) {
 				toolbar.setSubtitle(network.getName());
@@ -349,9 +357,22 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		}
 
 		// switch to fragment
-		getSupportFragmentManager().beginTransaction()
-		                           .replace(R.id.fragment_container, f)
-		                           .commit();
+		Fragment fragment = getSupportFragmentManager().findFragmentByTag(f);
+		if(fragment != null) {
+			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
+			                           .show(fragment)
+			                           .addToBackStack(f);
+
+			if(getSupportFragmentManager().getBackStackEntryCount() > 0) {
+				String fragment_tag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
+				Fragment fragment_old = getSupportFragmentManager().findFragmentByTag(fragment_tag);
+
+				if(fragment_old != null) {
+					transaction.hide(fragment_old);
+				}
+			}
+			transaction.commit();
+		}
 	}
 
 	private void checkFirstRun(TransportNetwork network) {
