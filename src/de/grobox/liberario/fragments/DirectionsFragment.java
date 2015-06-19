@@ -23,14 +23,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,9 +36,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
@@ -49,7 +43,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Set;
 
 import de.grobox.liberario.FavLocation;
@@ -63,6 +56,7 @@ import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
+import de.grobox.liberario.ui.LocationInputGPSView;
 import de.grobox.liberario.ui.LocationInputView;
 import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.LiberarioUtils;
@@ -71,17 +65,14 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 
-public class DirectionsFragment extends LiberarioFragment implements LocationListener {
+public class DirectionsFragment extends LiberarioFragment {
 	private View mView;
 	private ViewHolder ui = new ViewHolder();
 	private FavLocation.LOC_TYPE mHomeClicked;
-	private LocationManager locationManager;
-	private Location gps_loc = null;
-	private boolean mGpsPressed = false;
 	private AsyncQueryTripsTask mAfterGpsTask = null;
 	private Set<Product> mProducts = EnumSet.allOf(Product.class);
 	public ProgressDialog pd;
-	private LocationInputView from;
+	private LocationInputGPSView from;
 	private LocationInputView to;
 
 	@Override
@@ -94,7 +85,6 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_directions, container, false);
-		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
 		populateViewHolders();
 
@@ -182,7 +172,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				}
 
 				// check and set from location
-				if(mGpsPressed) {
+				if(from.isSearching()) {
 					if(from.getLocation() != null) {
 						query_trips.setFrom(from.getLocation());
 					} else {
@@ -330,7 +320,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 				// swap location objects and drawables
 				final Drawable icon = ui.to.status.getDrawable();
 				Location tmp = to.getLocation();
-				if(!mGpsPressed) {
+				if(!from.isSearching()) {
 					to.setLocation(from.getLocation(), ui.from.status.getDrawable());
 				} else {
 					// TODO: GPS currently only supports from location, so don't swap it for now
@@ -408,23 +398,13 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		return true;
 	}
 
+	// TODO use method from LocationInputView and kill this
 	private void handleLocationItemClick(Location loc, FavLocation.LOC_TYPE type, View view) {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
 
 		if(loc.id != null && loc.id.equals("Liberario.GPS")) {
-			if(mGpsPressed) {
-				cancelGpsButton();
-			}
-			else {
-				// clear from text
-				ui.from.location.setText(null);
-				from.setLocation(null, icon);
-				ui.from.clear.setVisibility(View.VISIBLE);
-
-				ui.to.location.requestFocus();
-
-				pressGpsButton();
-			}
+			from.activateGPS();
+			ui.to.location.requestFocus();
 		}
 		else {
 			// home location
@@ -462,7 +442,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 
 			if(type.equals(FavLocation.LOC_TYPE.FROM)) {
 				// cancel GPS Button if different from location was clicked
-				cancelGpsButton();
+				from.deactivateGPS();
 				imm.hideSoftInputFromWindow(ui.from.location.getWindowToken(), 0);
 				ui.to.location.requestFocus();
 			} else {
@@ -512,103 +492,15 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 		}
 	}
 
-	private void pressGpsButton() {
-		List<String> providers = locationManager.getProviders(true);
 
-		for(String provider : providers) {
-			// Register the listener with the Location Manager to receive location updates
-			locationManager.requestSingleUpdate(provider, this, null);
-
-			Log.d(getClass().getSimpleName(), "Register provider for location updates: " + provider);
-		}
-
-		// check if there is a non-passive provider available
-		if(providers.size() == 0 || (providers.size() == 1 && providers.get(0).equals(LocationManager.PASSIVE_PROVIDER)) ) {
-			removeUpdates();
-			Toast.makeText(getActivity(), getResources().getString(R.string.error_no_location_provider), Toast.LENGTH_LONG).show();
-
-			return;
-		}
-
-		// show GPS button blinking
-		final Animation animation = new AlphaAnimation(1, 0);
-		animation.setDuration(500);
-		animation.setInterpolator(new LinearInterpolator());
-		animation.setRepeatCount(Animation.INFINITE);
-		animation.setRepeatMode(Animation.REVERSE);
-		ui.from.status.setAnimation(animation);
-
-		ui.from.location.setHint(R.string.stations_searching_position);
-
-		mGpsPressed = true;
-		gps_loc = null;
-	}
-
-	private void cancelGpsButton() {
-		mGpsPressed = false;
-
-		// deactivate button
-		ui.from.status.clearAnimation();
-
-		ui.from.location.setHint(R.string.from);
-
-		removeUpdates();
-	}
-
-	private void removeUpdates() {
-		locationManager.removeUpdates(this);
-	}
-
-	// Called when a new location is found by the network location provider.
-	public void onLocationChanged(android.location.Location location) {
-		// no more updates to prevent this method from being called more than once
-		removeUpdates();
-
-		// only execute if we still do not have a location to make super sure this is not run twice
-		if(gps_loc == null) {
-			Log.d(getClass().getSimpleName(), "Found location: " + location.toString());
-
-			int lat = (int) Math.round(location.getLatitude() * 1E6);
-			int lon = (int) Math.round(location.getLongitude() * 1E6);
-
-			String lat_str = String.valueOf(location.getLatitude());
-			if(lat_str.length() > 9) lat_str = lat_str.substring(0, 8);
-			String lon_str = String.valueOf(location.getLongitude());
-			if(lon_str.length() > 9) lon_str = lon_str.substring(0, 8);
-
-			// create location based on GPS coordinates
-			gps_loc = new Location(LocationType.ADDRESS, null, lat, lon, "GPS", lat_str + "/" + lon_str);
-			//noinspection deprecation
-			from.setLocation(gps_loc, getResources().getDrawable(R.drawable.ic_gps));
-
-			if(pd != null) {
-				pd.dismiss();
-			}
-
-			// query for trips if user pressed search already and we just have been waiting for the location
-			if(mAfterGpsTask != null) {
-				mAfterGpsTask.setFrom(gps_loc);
-				mAfterGpsTask.execute();
-			}
-		}
-	}
-
-	public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-	public void onProviderEnabled(String provider) {}
-
-	public void onProviderDisabled(String provider) {}
-
-
-	class FromInputView extends LocationInputView {
+	class FromInputView extends LocationInputGPSView {
 		public FromInputView(Context context, LocationInputViewHolder holder) {
 			super(context, holder);
 			setType(FavLocation.LOC_TYPE.FROM);
 			setHome(true);
 			setFavs(true);
-//			setGPS(true);
 
-			holder.location.setHint(R.string.from);
+			setHint(R.string.from);
 		}
 
 		@Override
@@ -616,10 +508,19 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			handleLocationItemClick(loc, FavLocation.LOC_TYPE.FROM, view);
 		}
 
-		public void handleTextChanged(CharSequence s) {
-			super.handleTextChanged(s);
+		@Override
+		public void onLocationChanged(Location location) {
+			super.onLocationChanged(location);
 
-			cancelGpsButton();
+			if(pd != null) {
+				pd.dismiss();
+			}
+
+			// query for trips if user pressed search already and we just have been waiting for the location
+			if(mAfterGpsTask != null) {
+				mAfterGpsTask.setFrom(location);
+				mAfterGpsTask.execute();
+			}
 		}
 	}
 
@@ -630,7 +531,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			setHome(true);
 			setFavs(true);
 
-			holder.location.setHint(R.string.to);
+			setHint(R.string.to);
 		}
 
 		@Override
