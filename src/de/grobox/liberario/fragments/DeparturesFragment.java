@@ -76,7 +76,6 @@ public class DeparturesFragment extends LiberarioFragment {
 		loc = new DepartureInputView(this, ui.station, true);
 		loc.setFavs(true);
 		loc.setHome(true);
-		loc.setGPS(false);
 
 		ui.station.location.setHint(R.string.departure_station);
 

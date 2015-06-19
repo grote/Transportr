@@ -86,6 +86,7 @@
     <string name="error_no_trips_found">No directions found</string>
     <string name="error_no_location_provider">Cannot find position. Please turn on GPS!</string>
     <string name="error_no_departures_found">No departures found</string>
+    <string name="error_no_stations_found">No stations found</string>
     <string name="error_no_proper_station">The provided location is no proper station</string>
     <string name="error_only_autocomplete_station">Please select a station from the autocompletion list!</string>
     <string name="error_no_station_location">Cannot find the location of the(se) station(s)</string>
@@ -100,6 +101,7 @@
     <string name="home_dialog_title">Your Home Location</string>
     <string name="home_dialog_new_msg">There is no home location set for the current transportation network.</string>
     <string name="home_dialog_msg">Please give a location below by selecting one from the list.</string>
+    <string name="location">Location</string>
     <string name="location_home">Click to set Home Location</string>
     <string name="location_gps">Use Current Position</string>
 

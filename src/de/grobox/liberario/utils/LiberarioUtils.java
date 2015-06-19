@@ -250,8 +250,11 @@ public class LiberarioUtils {
 	}
 
 	static public void findNearbyStations(Context context, Location loc, int maxDistance, int maxStations) {
-		AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(context, loc, maxDistance, maxStations);
-		query_stations.execute();
+		// TODO adapt this to new NearbyStationsFragment
+		Toast.makeText(context, "Out of service!", Toast.LENGTH_SHORT);
+
+		//AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(context, loc, maxDistance, maxStations);
+		//query_stations.execute();
 	}
 
 	static public void findNearbyStations(Context context, Location loc) {
@@ -293,6 +296,18 @@ public class LiberarioUtils {
 		if (intent.resolveActivity(context.getPackageManager()) != null) {
 			context.startActivity(intent);
 		}
+	}
+
+	static public int computeDistance(Location location1, Location location2) {
+		android.location.Location loc1 = new android.location.Location("");
+		loc1.setLatitude(location1.lat / 1E6);
+		loc1.setLongitude(location1.lon / 1E6);
+
+		android.location.Location loc2 = new android.location.Location("");
+		loc2.setLatitude(location2.lat / 1E6);
+		loc2.setLongitude(location2.lon / 1E6);
+
+		return Math.round(loc1.distanceTo(loc2));
 	}
 
 	static public void copyToClipboard(Context context, String text) {

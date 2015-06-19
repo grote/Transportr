@@ -606,7 +606,7 @@ public class DirectionsFragment extends LiberarioFragment implements LocationLis
 			setType(FavLocation.LOC_TYPE.FROM);
 			setHome(true);
 			setFavs(true);
-			setGPS(true);
+//			setGPS(true);
 
 			holder.location.setHint(R.string.from);
 		}

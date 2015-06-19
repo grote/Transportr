@@ -1,78 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selector_list_item"
-    android:baselineAligned="false"
-    android:clickable="true"
-    android:orientation="horizontal"
-    android:padding="5dp" >
+    android:padding="8dp">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/stationNameView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Station Name"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <de.grobox.liberario.ui.FlowLayout
-            android:id="@+id/lineLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="3dp"
-            android:orientation="horizontal"
-            android:visibility="gone" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/stationNameView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Station Name"
+        />
 
-        <TextView
-            android:id="@+id/flex1View"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/flex2View"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/distanceView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        tools:text="2200m"
+        />
 
-        <TextView
-            android:id="@+id/distanceView"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="right"
-            tools:text="2200m"
-            android:gravity="bottom" />
-
-        <TextView
-            android:id="@+id/timeDistanceView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            tools:text="20min"
-            android:visibility="gone" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

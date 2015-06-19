@@ -17,45 +17,110 @@
 
 package de.grobox.liberario.fragments;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import java.util.List;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+
+import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.activities.MainActivity;
+import de.grobox.liberario.activities.SetHomeActivity;
+import de.grobox.liberario.adapters.StationAdapter;
+import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
-import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.NetworkProvider.Capability;
+import de.grobox.liberario.ui.LocationInputGPSView;
+import de.grobox.liberario.ui.LocationInputView;
+import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
+import de.schildbach.pte.dto.NearbyLocationsResult;
 
-public class NearbyStationsFragment extends LiberarioFragment implements LocationListener {
+public class NearbyStationsFragment extends LiberarioFragment {
 	private View mView;
-	private LocationManager locationManager;
-	private boolean loc_found = false;
-	public ProgressDialog pd;
+	private ViewHolder ui;
+	private NearbyStationsInputView loc;
+	private StationAdapter stationAdapter;
+
+	// TODO: allow user to specify location types
+	EnumSet<LocationType> types = EnumSet.of(LocationType.STATION);
+
+	private static int MAX_STATIONS = 5;
+	private int maxStations = MAX_STATIONS;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_nearbystations, container, false);
 
-		setNearbyStationsView();
+		ui = new ViewHolder(mView);
+
+		// Location Input View
+
+		loc = new NearbyStationsInputView(this, ui.station);
+		loc.setFavs(true);
+		loc.setHome(true);
+		loc.setHint(R.string.location);
+
+		// Find Nearby Stations GPS Search Button
+
+		ui.gps.setOnClickListener(new OnClickListener() {
+			                          @Override
+			                          public void onClick(View v) {
+				                          loc.activateGPS();
+			                          }
+		                          });
+		ui.gps.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity()));
+
+		// Find Nearby Stations Search Button
+
+		ui.search.setOnClickListener(new OnClickListener() {
+			                             @Override
+			                             public void onClick(View v) {
+				                             search();
+			                             }
+		                             });
+
+		// hide departure list initially
+		ui.stations_card.setVisibility(View.GONE);
+
+		ui.recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+		ui.recycler.setItemAnimator(new DefaultItemAnimator());
+
+		stationAdapter = new StationAdapter(new ArrayList<Location>(), R.layout.station);
+		ui.recycler.setAdapter(stationAdapter);
+
+		// Swipe to Refresh
+
+		ui.swipe_refresh.setColorSchemeResources(R.color.accent);
+		ui.swipe_refresh.setDirection(SwipyRefreshLayoutDirection.BOTTOM);
+		ui.swipe_refresh.setDistanceToTriggerSync(150);
+		ui.swipe_refresh.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
+			                                      @Override
+			                                      public void onRefresh(final SwipyRefreshLayoutDirection direction) {
+				                                      maxStations += MAX_STATIONS;
+
+				                                      AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(NearbyStationsFragment.this, types, stationAdapter.getLocation(), 0, maxStations);
+				                                      task.execute();
+			                                      }
+		                                      });
 
 		return mView;
 	}
@@ -64,109 +129,146 @@ public class NearbyStationsFragment extends LiberarioFragment implements Locatio
 	public void onNetworkProviderChanged(TransportNetwork network) {
 		if(mView == null) return;
 
-		NetworkProvider np = network.getNetworkProvider();
+		stationAdapter.clear();
+		ui.stations_card.setVisibility(View.GONE);
+		loc.setLocation(null, null);
+	}
 
-		LinearLayout nearbyStationsLayout = (LinearLayout) mView.findViewById(R.id.nearbyStationsLayout);
+	private void search() {
+		if(loc.getLocation() != null) {
+			// use location to query nearby stations
 
-		if(np.hasCapabilities(Capability.NEARBY_LOCATIONS)) {
-			nearbyStationsLayout.setVisibility(View.VISIBLE);
+			if(!loc.getLocation().hasId() && !loc.getLocation().hasLocation()) {
+				Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
+				return;
+			}
+
+			if(loc.getLocation().hasId()) {
+				// Location is valid, so make it a favorite or increase counter
+				FavDB.updateFavLocation(getActivity(), loc.getLocation(), FavLocation.LOC_TYPE.FROM);
+			}
+
+			// play animations before clearing departures list
+			onRefreshStart();
+
+			// clear old list
+			stationAdapter.clear();
+
+			// set location origin
+			stationAdapter.setLocation(loc.getLocation());
+
+			// reset number of stations to retrieve
+			maxStations = MAX_STATIONS;
+
+			AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(this, types, loc.getLocation(), 0, maxStations);
+			task.execute();
 		} else {
-			nearbyStationsLayout.setVisibility(View.GONE);
+			Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
 		}
 	}
 
-	private void setNearbyStationsView() {
-		// Find Nearby Stations Search Button
-		ImageButton btn = (ImageButton) mView.findViewById(R.id.findNearbyStationsButton);
-		btn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				getLocation();
-			}
-		});
+	public void addStations(NearbyLocationsResult result) {
+		stationAdapter.addAll(result.locations);
+
+		onRefreshComplete();
 	}
 
-	private void getLocation() {
-		pd = new ProgressDialog(getActivity());
-		pd.setMessage(getResources().getString(R.string.stations_searching_position));
-		pd.setCancelable(false);
-		pd.setIndeterminate(true);
-		pd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				removeUpdates();
-				dialog.dismiss();
-			}
-		});
-		pd.show();
-
-		List<String> providers = locationManager.getProviders(true);
-
-		for(String provider : providers) {
-			// Register the listener with the Location Manager to receive location updates
-			locationManager.requestSingleUpdate(provider, this, null);
-
-			Log.d(getClass().getSimpleName(), "Register provider for location updates: " + provider);
+	public void onRefreshStart() {
+		if(ui.stations_card.getVisibility() == View.GONE) {
+			// only fade in departure list on first search
+			ui.stations_card.setAlpha(0f);
+			ui.stations_card.setVisibility(View.VISIBLE);
+			ui.stations_card.animate().alpha(1f).setDuration(750);
 		}
 
-		// check if there is a non-passive provider available
-		if(providers.size() == 0 || (providers.size() == 1 && providers.get(0).equals(LocationManager.PASSIVE_PROVIDER)) ) {
-			removeUpdates();
-			pd.dismiss();
-			Toast.makeText(getActivity(), getResources().getString(R.string.error_no_location_provider), Toast.LENGTH_LONG).show();
+		// fade out recycler view
+		ui.recycler.animate().alpha(0f).setDuration(750);
+		ui.recycler.setVisibility(View.GONE);
+
+		// fade in progress bar
+		ui.progress.setAlpha(0f);
+		ui.progress.setVisibility(View.VISIBLE);
+		ui.progress.animate().alpha(1f).setDuration(750);
+	}
+
+	public void onRefreshComplete() {
+		if(ui.progress.getVisibility() == View.VISIBLE) {
+			// fade departures in and progress out
+			ui.recycler.setAlpha(0f);
+			ui.recycler.setVisibility(View.VISIBLE);
+			ui.recycler.animate().alpha(1f).setDuration(750);
+			ui.progress.animate().alpha(0f).setDuration(750);
+		} else {
+			// hide progress indicator
+			ui.swipe_refresh.setRefreshing(false);
+
+			// scroll smoothly up or down when we have new trips
+			ui.recycler.smoothScrollBy(0, 150);
 		}
 
-		loc_found = false;
+		ui.progress.setVisibility(View.GONE);
 	}
 
-	private void removeUpdates() {
-		locationManager.removeUpdates(this);
-	}
+	private static class ViewHolder {
 
-	// Called when a new location is found by the network location provider.
-	public void onLocationChanged(android.location.Location location) {
-		// no more updates to prevent this method from being called more than once
-		removeUpdates();
+		public LocationInputView.LocationInputViewHolder station;
+		public ImageButton gps;
+		public Button search;
+		public CardView stations_card;
+		public ProgressBar progress;
+		public SwipyRefreshLayout swipe_refresh;
+		public RecyclerView recycler;
 
-		if(!loc_found) {
-			Log.d(getClass().getSimpleName(), "Found location: " + location.toString());
-
-			// Change progress dialog, because we will now be looking for nearby stations
-			pd.setMessage(getResources().getString(R.string.stations_searching_stations));
-			pd.getButton(ProgressDialog.BUTTON_NEGATIVE).setEnabled(false);
-
-			int maxDistance;
-			int maxStations;
-
-			TextView distanceView = (TextView) mView.findViewById(R.id.distanceView);
-			TextView numStationsView = (TextView) mView.findViewById(R.id.numStationsView);
-
-			// Get values from form
-			if(distanceView.getText().length() > 0) {
-				maxDistance = Integer.valueOf(distanceView.getText().toString());
-			} else {
-				maxDistance = 1000;
-			}
-			if(numStationsView.getText().length() > 0) {
-				maxStations = Integer.valueOf(numStationsView.getText().toString());
-			} else{
-				maxStations = 3;
-			}
-
-			// Query for nearby stations
-			Location loc = Location.coord((int) Math.round(location.getLatitude() * 1E6), (int) Math.round(location.getLongitude() * 1E6));
-			AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(getActivity(), loc, maxDistance, maxStations);
-			query_stations.setGPS(true);
-			query_stations.execute();
+		public ViewHolder(View view) {
+			station = new LocationInputView.LocationInputViewHolder(view);
+			search = (Button) view.findViewById(R.id.searchButton);
+			gps = (ImageButton) view.findViewById(R.id.gpsButton);
+			stations_card = (CardView) view.findViewById(R.id.nearbystations_list);
+			progress = (ProgressBar) view.findViewById(R.id.progressBar);
+			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+			recycler = (RecyclerView) view.findViewById(R.id.departures_recycler_view);
 		}
-		loc_found = true;
 	}
 
-	public void onStatusChanged(String provider, int status, Bundle extras) {}
+	private static class NearbyStationsInputView extends LocationInputGPSView {
 
-	public void onProviderEnabled(String provider) {}
+		NearbyStationsFragment fragment;
 
-	public void onProviderDisabled(String provider) {}
+		public NearbyStationsInputView(NearbyStationsFragment fragment, LocationInputViewHolder holder) {
+			super(fragment.getActivity(), holder);
 
+			this.fragment = fragment;
+		}
+
+		@Override
+		public void activateGPS() {
+			super.activateGPS();
+
+			fragment.onRefreshStart();
+		}
+
+		@Override
+		public void deactivateGPS() {
+			super.deactivateGPS();
+			fragment.ui.stations_card.setVisibility(View.GONE);
+		}
+
+		@Override
+		public void onLocationChanged(Location location) {
+			super.onLocationChanged(location);
+
+			fragment.search();
+		}
+
+		@Override
+		public void selectHomeLocation() {
+			// show dialog to set home screen
+			Intent intent = new Intent(fragment.getActivity(), SetHomeActivity.class);
+			intent.putExtra("new", true);
+
+			fragment.startActivityForResult(intent, MainActivity.CHANGED_HOME);
+		}
+
+	}
 }
 

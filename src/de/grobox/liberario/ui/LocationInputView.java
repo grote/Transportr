@@ -32,21 +32,24 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.R;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
-import de.grobox.liberario.R;
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Location;
 
 public class LocationInputView {
-	Context context;
-	private LocationAdapter locAdapter;
-	public LocationInputViewHolder holder;
 	public View.OnClickListener onClickListener;
-	Location loc;
+	public LocationInputViewHolder holder;
+
+	protected Context context;
+	protected LocationAdapter locAdapter;
+	protected Location loc;
+	protected String hint;
+
+	private boolean is_changing = false;
 	private FavLocation.LOC_TYPE type;
-	boolean is_changing = false;
 
 	public LocationInputView(Context context, LocationInputViewHolder holder) {
 		this.context = context;
@@ -167,8 +170,9 @@ public class LocationInputView {
 		locAdapter.setHome(activate);
 	}
 
-	public void setGPS(boolean activate) {
-		locAdapter.setGPS(activate);
+	public void setHint(int hint) {
+		this.hint = context.getString(hint);
+		holder.location.setHint(this.hint);
 	}
 
 	public void onLocationItemClick(Location loc, View view) {

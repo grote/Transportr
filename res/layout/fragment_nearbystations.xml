@@ -1,90 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:padding="5dp">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <include
+        layout="@layout/nearbystations_header"
+        android:id="@+id/nearbyStationsForm"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp" >
+        android:layout_width="match_parent"
+        />
 
-        <LinearLayout
-            android:id="@+id/nearbyStationsLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+    <include
+        layout="@layout/nearbystations_list"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/nearbystations_list"
+        android:layout_below="@+id/nearbyStationsForm"
+        />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/nearby_stations"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp" >
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="3dp"
-                        android:text="@string/max_distance" />
-
-                    <EditText
-                        android:id="@+id/distanceView"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        android:text="1000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/meter" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="3dp"
-                        android:text="@string/number_of_stations" />
-
-                    <EditText
-                        android:id="@+id/numStationsView"
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|right"
-                        android:inputType="number"
-                        android:maxLength="1"
-                        android:text="3" />
-                </TableRow>
-            </TableLayout>
-
-            <ImageButton
-                android:id="@+id/findNearbyStationsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="15dp"
-                android:contentDescription="@android:string/search_go"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:src="@drawable/ic_gps" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

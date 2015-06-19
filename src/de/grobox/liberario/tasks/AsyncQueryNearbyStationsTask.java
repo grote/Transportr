@@ -22,6 +22,7 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.StationsListActivity;
 import de.grobox.liberario.fragments.DeparturesFragment;
+import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -35,15 +36,16 @@ import android.widget.Toast;
 import java.util.EnumSet;
 
 public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLocationsResult> {
-	private Context context;
+	private NearbyStationsFragment fragment;
 	private Location loc;
-	private boolean gps = false;
 	private String error = null;
+	EnumSet<LocationType> types;
 	int maxDistance;
 	int maxStations;
 
-	public AsyncQueryNearbyStationsTask(Context context, Location loc, int maxDistance, int maxStations) {
-		this.context = context;
+	public AsyncQueryNearbyStationsTask(NearbyStationsFragment fragment, EnumSet<LocationType> types, Location loc, int maxDistance, int maxStations) {
+		this.fragment = fragment;
+		this.types = types;
 		this.loc = loc;
 		this.maxDistance = maxDistance;
 		this.maxStations = maxStations;
@@ -51,16 +53,14 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLo
 
 	@Override
 	protected NearbyLocationsResult doInBackground(Void... params) {
-		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
-		// TODO: allow user to specify location types
-		EnumSet<LocationType> types = EnumSet.of(LocationType.STATION);
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(fragment.getActivity()));
 
 		try {
-			if(AsyncQueryTripsTask.isNetworkAvailable(context)) {
+			if(AsyncQueryTripsTask.isNetworkAvailable(fragment.getActivity())) {
 				return np.queryNearbyLocations(types, loc, maxDistance, maxStations);
 			}
 			else {
-				error = context.getResources().getString(R.string.error_no_internet);
+				error = fragment.getActivity().getResources().getString(R.string.error_no_internet);
 				return null;
 			}
 		} catch (Exception e) {
@@ -79,26 +79,14 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLo
 	protected void onPostExecute(NearbyLocationsResult result) {
 		if(result == null || result.status != NearbyLocationsResult.Status.OK) {
 			if(error == null) {
-				Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
+				Toast.makeText(fragment.getActivity(), fragment.getActivity().getResources().getString(R.string.error_no_stations_found), Toast.LENGTH_LONG).show();
 			} else {
-				Toast.makeText(context, error, Toast.LENGTH_LONG).show();
+				Toast.makeText(fragment.getActivity(), error, Toast.LENGTH_LONG).show();
 			}
 			return;
 		}
 
-		Intent intent = new Intent(context, StationsListActivity.class);
-		intent.setAction("de.grobox.liberario.LIST_NEARBY_STATIONS");
-		intent.putExtra("de.schildbach.pte.dto.NearbyStationsResult", result);
-		intent.putExtra("de.schildbach.pte.dto.Location", loc);
-		intent.putExtra("de.grobox.liberario.activities.StationsListActivity.gps", gps);
-		context.startActivity(intent);
+		fragment.addStations(result);
 	}
 
-	public void setFragment(DeparturesFragment fragment) {
-
-	}
-
-	public void setGPS(boolean gps) {
-		this.gps = gps;
-	}
 }

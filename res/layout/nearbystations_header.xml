@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/departureForm"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardBackgroundColor="?attr/cardBackgroundColor"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="2dp"
+    tools:showIn="@layout/fragment_nearbystations"
+    >
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <include
+            layout="@layout/location_input_view"
+            android:id="@+id/location_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageButton
+            android:id="@+id/gpsButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_gps"
+            android:scaleType="center"
+            android:contentDescription="@string/location_gps"
+            android:elevation="2dp"
+            android:backgroundTint="@color/primary"
+            android:layout_below="@+id/location_input"
+            android:layout_toLeftOf="@+id/searchButton"
+            android:layout_toStartOf="@+id/searchButton"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="@android:string/search_go"
+            android:backgroundTint="@color/primary"
+            android:layout_below="@+id/location_input"
+            android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
+
+</android.support.v7.widget.CardView>
