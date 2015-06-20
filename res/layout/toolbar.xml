@@ -10,4 +10,5 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+    app:layout_scrollFlags="scroll|enterAlways"
     />
