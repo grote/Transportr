@@ -61,8 +61,7 @@ public class AboutMainFragment extends Fragment {
 		@Override
 		public Fragment getItem(int i) {
 			if(i == 1) {
-				// TODO: Developers
-				return new AboutFragment();
+				return new AboutDevelopersFragment();
 			} else if(i == 2) {
 				// TODO: Libraries
 				return new AboutFragment();

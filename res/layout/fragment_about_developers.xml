@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/navigation_separator_vertical_padding"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/navigation_separator_vertical_padding"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/maintainer"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/navigation_padding_bottom"
+            android:padding="@dimen/navigation_separator_vertical_padding"
+            tools:ignore="HardcodedText"
+            android:text="Torsten Grote"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/navigation_separator_vertical_padding"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/contributers"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/navigation_padding_bottom"
+            android:padding="@dimen/navigation_separator_vertical_padding"
+            tools:ignore="HardcodedText"
+            android:text="Jochen Sprickerhof"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/navigation_padding_bottom"
+            android:padding="@dimen/navigation_separator_vertical_padding"
+            tools:ignore="HardcodedText"
+            android:text="Mats Sjöberg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/navigation_padding_bottom"
+            android:padding="@dimen/navigation_separator_vertical_padding"
+            tools:ignore="HardcodedText"
+            android:text="mray"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/navigation_padding_bottom"
+            android:padding="@dimen/navigation_separator_vertical_padding"
+            tools:ignore="HardcodedText"
+            android:text="Paspartout"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/navigation_padding_bottom"
+            android:padding="@dimen/navigation_separator_vertical_padding"
+            tools:ignore="HardcodedText"
+            android:text="Simó Albert i Beltran"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/navigation_separator_vertical_padding"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/translators"
+            android:textStyle="bold"/>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/navigation_padding_bottom">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:textStyle="bold"
+                    android:text="@string/dutch"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    tools:ignore="HardcodedText"
+                    android:text="TheLastProject"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:textStyle="bold"
+                    android:text="@string/french"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    tools:ignore="HardcodedText"
+                    android:text="Cryptie, Alain-Olivier"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:textStyle="bold"
+                    android:text="@string/german"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    tools:ignore="HardcodedText"
+                    android:text="Benedikt Volkmer, Torsten Grote"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:textStyle="bold"
+                    android:text="@string/italian"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    tools:ignore="HardcodedText"
+                    android:text="Giuseppe Pignataro"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:textStyle="bold"
+                    android:text="@string/portuguese_br"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    tools:ignore="HardcodedText"
+                    android:text="Gislene Kucker Arantes, Paulo Martins"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:textStyle="bold"
+                    android:text="@string/spanish"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    tools:ignore="HardcodedText"
+                    android:text="Adolfo Jayme Barrientos"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:textStyle="bold"
+                    android:text="@string/turkish"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:text="Emre Deniz"
+                    tools:ignore="HardcodedText"/>
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+</ScrollView>

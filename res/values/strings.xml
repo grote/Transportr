@@ -228,4 +228,15 @@
     <string name="np_name_usny">New York and New-Jersey States</string>
     <string name="np_name_br">SPTRANS EPTC</string>
 
+    <string name="maintainer">Maintainer</string>
+    <string name="contributers">Contributors</string>
+    <string name="translators">Translators</string>
+    <string name="dutch">Dutch</string>
+    <string name="french">French</string>
+    <string name="german">German</string>
+    <string name="italian">Italian</string>
+    <string name="portuguese_br">Portuguese\n(Brazil)</string>
+    <string name="spanish">Spanish</string>
+    <string name="turkish">Turkish</string>
+
 </resources>
