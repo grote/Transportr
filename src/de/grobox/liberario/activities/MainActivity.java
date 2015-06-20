@@ -367,7 +367,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 				String fragment_tag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
 				Fragment fragment_old = getSupportFragmentManager().findFragmentByTag(fragment_tag);
 
-				if(fragment_old != null) {
+				if(fragment_old != null && fragment_old != fragment) {
 					transaction.hide(fragment_old);
 				}
 			}
