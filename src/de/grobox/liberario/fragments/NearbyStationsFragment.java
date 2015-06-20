@@ -115,7 +115,7 @@ public class NearbyStationsFragment extends LiberarioFragment {
 			                                      public void onRefresh(final SwipyRefreshLayoutDirection direction) {
 				                                      maxStations += MAX_STATIONS;
 
-				                                      AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(NearbyStationsFragment.this, types, stationAdapter.getLocation(), 0, maxStations);
+				                                      AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(NearbyStationsFragment.this, types, stationAdapter.getStart(), 0, maxStations);
 				                                      task.execute();
 			                                      }
 		                                      });
@@ -157,7 +157,7 @@ public class NearbyStationsFragment extends LiberarioFragment {
 					// show stations on map
 					Intent intent = new Intent(getActivity(), MapStationsActivity.class);
 					intent.putExtra("List<de.schildbach.pte.dto.Location>", stations);
-					intent.putExtra("de.schildbach.pte.dto.Location", stationAdapter.getLocation());
+					intent.putExtra("de.schildbach.pte.dto.Location", stationAdapter.getStart());
 					startActivity(intent);
 				}
 				else {
@@ -200,7 +200,7 @@ public class NearbyStationsFragment extends LiberarioFragment {
 			stationAdapter.clear();
 
 			// set location origin
-			stationAdapter.setLocation(loc.getLocation());
+			stationAdapter.setStart(loc.getLocation());
 
 			// reset number of stations to retrieve
 			maxStations = MAX_STATIONS;

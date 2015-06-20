@@ -239,7 +239,7 @@ public class LiberarioUtils {
 		// TODO adapt this to new DeparturesFragment
 		Toast.makeText(context, "Out of service!", Toast.LENGTH_SHORT);
 
-		if(np.hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
+/*		if(np.hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
 			// start StationsListActivity with given location
 			Intent intent = new Intent(context, StationsListActivity.class);
 			intent.putExtra("de.schildbach.pte.dto.Location", loc);
@@ -247,7 +247,7 @@ public class LiberarioUtils {
 		} else {
 			Toast.makeText(context, context.getString(R.string.error_no_departures_capability), Toast.LENGTH_SHORT).show();
 		}
-	}
+*/	}
 
 	static public void findNearbyStations(Context context, Location loc, int maxDistance, int maxStations) {
 		// TODO adapt this to new NearbyStationsFragment
@@ -271,6 +271,17 @@ public class LiberarioUtils {
 
 	static public void showLocationsOnMap(Context context, ArrayList<Location> loc_list) {
 		showLocationsOnMap(context, loc_list, null);
+	}
+
+	static public void showLocationOnMap(Context context, Location loc, Location loc2) {
+		ArrayList<Location> loc_list = new ArrayList<Location>(1);
+		loc_list.add(loc);
+
+		showLocationsOnMap(context, loc_list, loc2);
+	}
+
+	static public void showLocationOnMap(Context context, Location loc) {
+		showLocationOnMap(context, loc, null);
 	}
 
 	static public void startGeoIntent(Context context, Location loc) {

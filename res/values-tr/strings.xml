@@ -13,7 +13,7 @@
   <string name="action_navigation_expand">Daha Fazla Göster</string>
   <string name="action_location_map">Haritada İstasyonları Göster</string>
   <string name="action_use_gps">GPS aç</string>
-  <string name="action_trip_share">Paylaş</string>
+  <string name="action_share">Paylaş</string>
   <string name="action_trip_calendar">Takvime</string>
   <string name="action_trip_details">Ayrı Göster</string>
   <string name="action_trip_delete">Geziyi Sil</string>

@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_action_social_share"
                 android:padding="8dp"
-                android:contentDescription="@string/action_trip_share"/>
+                android:contentDescription="@string/action_share"/>
 
             <ImageView
                 android:id="@+id/calendarView"

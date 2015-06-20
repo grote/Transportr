@@ -13,7 +13,7 @@
   <string name="action_navigation_expand">Mostra altro</string>
   <string name="action_location_map"></string>
   <string name="action_use_gps"></string>
-  <string name="action_trip_share"></string>
+  <string name="action_share"></string>
   <string name="action_trip_calendar"></string>
   <string name="action_trip_details"></string>
   <string name="action_trip_delete"></string>

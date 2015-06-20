@@ -13,7 +13,7 @@
   <string name="action_navigation_expand">Meer laten zien</string>
   <string name="action_location_map">Laat stations op kaart zien</string>
   <string name="action_use_gps">GPS inschakelen</string>
-  <string name="action_trip_share">Delen</string>
+  <string name="action_share">Delen</string>
   <string name="action_trip_calendar">Naar kalender</string>
   <string name="action_trip_details">Apart laten zien</string>
   <string name="action_trip_delete">Verbinding verwijderen</string>

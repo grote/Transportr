@@ -13,7 +13,7 @@
   <string name="action_navigation_expand">En montrer plus</string>
   <string name="action_location_map">Montrer les stations/arrêts sur la carte</string>
   <string name="action_use_gps">Activer le GPS</string>
-  <string name="action_trip_share">Partager</string>
+  <string name="action_share">Partager</string>
   <string name="action_trip_calendar">Calendrier infos</string>
   <string name="action_trip_details">Montrer séparé</string>
   <string name="action_trip_delete">Supprimer le trajet</string>

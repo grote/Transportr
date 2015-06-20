@@ -13,7 +13,7 @@
   <string name="action_navigation_expand">Mostrar Mais</string>
   <string name="action_location_map">Exibir Estações no Mapa</string>
   <string name="action_use_gps">Ligar GPS</string>
-  <string name="action_trip_share">Compartilhar</string>
+  <string name="action_share">Compartilhar</string>
   <string name="action_trip_calendar">Para a Agenda</string>
   <string name="action_trip_details">Mostrar Separado</string>
   <string name="action_trip_delete">Excluir Viagem</string>

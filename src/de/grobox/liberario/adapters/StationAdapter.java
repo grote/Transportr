@@ -28,12 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.grobox.liberario.R;
+import de.grobox.liberario.ui.StationPopupMenu;
 import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Location;
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationHolder>{
 
-	private Location location;
+	private Location start;
 	private SortedList<Location> stations = new SortedList<>(Location.class, new SortedList.Callback<Location>(){
 		@Override
 		public void onInserted(int position, int count) {
@@ -57,8 +58,8 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 
 		@Override
 		public int compare(Location s1, Location s2) {
-			int d1 = LiberarioUtils.computeDistance(location, s1);
-			int d2 = LiberarioUtils.computeDistance(location, s2);
+			int d1 = LiberarioUtils.computeDistance(start, s1);
+			int d2 = LiberarioUtils.computeDistance(start, s2);
 
 			return d1 - d2;
 		}
@@ -93,8 +94,16 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 	public void onBindViewHolder(final StationHolder ui, final int position) {
 		final Location loc = getItem(position);
 
+		ui.item.setOnClickListener(new View.OnClickListener() {
+			                           @Override
+			                           public void onClick(View v) {
+				                           StationPopupMenu popup = new StationPopupMenu(ui.item.getContext(), ui.item, loc, start);
+				                           popup.show();
+			                           }
+		                           }
+		);
 		ui.station.setText(loc.uniqueShortName());
-		ui.distance.setText(String.valueOf(LiberarioUtils.computeDistance(location, loc)) + "m");
+		ui.distance.setText(String.valueOf(LiberarioUtils.computeDistance(start, loc)) + "m");
 	}
 
 	@Override
@@ -102,12 +111,12 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 		return stations == null ? 0 : stations.size();
 	}
 
-	public void setLocation(Location loc) {
-		location = loc;
+	public void setStart(Location loc) {
+		start = loc;
 	}
 
-	public Location getLocation() {
-		return location;
+	public Location getStart() {
+		return start;
 	}
 
 	public ArrayList<Location> getStations() {
@@ -145,12 +154,14 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 	}
 
 	public static class StationHolder extends RecyclerView.ViewHolder {
+		public ViewGroup item;
 		public TextView station;
 		public TextView distance;
 
 		public StationHolder(View v) {
 			super(v);
 
+			item = (ViewGroup) v.findViewById(R.id.stationView);
 			station = (TextView) v.findViewById(R.id.stationNameView);
 			distance = (TextView) v.findViewById(R.id.distanceView);
 		}
