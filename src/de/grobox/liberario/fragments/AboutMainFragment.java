@@ -28,6 +28,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
+
 import de.grobox.liberario.R;
 
 public class AboutMainFragment extends Fragment {
@@ -63,8 +66,11 @@ public class AboutMainFragment extends Fragment {
 			if(i == 1) {
 				return new AboutDevelopersFragment();
 			} else if(i == 2) {
-				// TODO: Libraries
-				return new AboutFragment();
+				return new LibsBuilder()
+						       // Pass the fields of your application to the lib so it can find all external lib information
+						       .withFields(R.string.class.getFields())
+						       // get the fragment
+						       .fragment();
 			}
 			return new AboutFragment();
 		}

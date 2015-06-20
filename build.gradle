@@ -26,6 +26,9 @@ dependencies {
 	compile('com.mikepenz:materialdrawer:3.0.7') {
 		transitive = true
 	}
+	compile('com.mikepenz:aboutlibraries:5.0.5') {
+		transitive = true
+	}
 	compile project(':sublibs:OSMBonusPack')
 
 	compile files('libs/public-transport-enabler.jar')

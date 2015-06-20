@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<string name="define_public_transport_enabler"></string>
+	<!-- Author section -->
+	<string name="library_public_transport_enabler_author">Andreas Schildbach</string>
+	<string name="library_public_transport_enabler_authorWebsite">http://schildbach.de/</string>
+	<!-- Library section -->
+	<string name="library_public_transport_enabler_libraryName">Public Transport Enabler</string>
+	<string name="library_public_transport_enabler_libraryDescription">This library provides a connection to many public transport providers world wide.</string>
+	<string name="library_public_transport_enabler_libraryWebsite"></string>
+	<string name="library_public_transport_enabler_libraryVersion">1.0-SNAPSHOT</string>
+	<!-- OpenSource section -->
+	<string name="library_public_transport_enabler_isOpenSource">true</string>
+	<string name="library_public_transport_enabler_repositoryLink">https://github.com/schildbach/public-transport-enabler</string>
+	<!-- ClassPath for autoDetect section -->
+	<string name="library_public_transport_enabler_classPath">de.schildbach.pte</string>
+	<!-- License section -->
+	<string name="libray_public_transport_enabler_licenseVersion">3.0</string>
+	<string name="libray_public_transport_enabler_licenseLink">https://raw.githubusercontent.com/schildbach/public-transport-enabler/master/enabler/COPYING</string>
+	<string name="libray_public_transport_enabler_licenseContent">GPL</string>
+	<!-- Custom variables section -->
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<string name="define_osmdroid"></string>
+	<!-- Author section -->
+	<string name="library_osmdroid_author">Neil Boyd</string>
+	<string name="library_osmdroid_authorWebsite">http://l6n.org/</string>
+	<!-- Library section -->
+	<string name="library_osmdroid_libraryName">osmdroid</string>
+	<string name="library_osmdroid_libraryDescription">osmdroid is a (almost) full/free replacement for Android\'s MapView (v1 API) class. It also includes a modular tile provider system with support for numerous online and offline tile sources and overlay support with built-in overlays for plotting icons, tracking location, and drawing shapes.</string>
+	<string name="library_osmdroid_libraryWebsite"></string>
+	<string name="library_osmdroid_libraryVersion">0.1.1</string>
+	<!-- OpenSource section -->
+	<string name="library_osmdroid_isOpenSource">true</string>
+	<string name="library_osmdroid_repositoryLink">https://github.com/osmdroid/osmdroid</string>
+	<!-- ClassPath for autoDetect section -->
+	<string name="library_osmdroid_classPath"></string>
+	<!-- License section -->
+	<string name="library_osmdroid_licenseId">apache_2_0</string>
+	<!-- Custom variables section -->
+</resources>
