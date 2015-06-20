@@ -24,11 +24,13 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -42,13 +44,13 @@ import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
+import de.grobox.liberario.activities.MapStationsActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.StationAdapter;
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
 import de.grobox.liberario.ui.LocationInputGPSView;
 import de.grobox.liberario.ui.LocationInputView;
-import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
@@ -66,6 +68,12 @@ public class NearbyStationsFragment extends LiberarioFragment {
 	private int maxStations = MAX_STATIONS;
 
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// remember view for UI changes when fragment is not active
 		mView = inflater.inflate(R.layout.fragment_nearbystations, container, false);
@@ -78,16 +86,6 @@ public class NearbyStationsFragment extends LiberarioFragment {
 		loc.setFavs(true);
 		loc.setHome(true);
 		loc.setHint(R.string.location);
-
-		// Find Nearby Stations GPS Search Button
-
-		ui.gps.setOnClickListener(new OnClickListener() {
-			                          @Override
-			                          public void onClick(View v) {
-				                          loc.activateGPS();
-			                          }
-		                          });
-		ui.gps.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity()));
 
 		// Find Nearby Stations Search Button
 
@@ -123,6 +121,53 @@ public class NearbyStationsFragment extends LiberarioFragment {
 		                                      });
 
 		return mView;
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		// Inflate the menu items for use in the action bar
+		inflater.inflate(R.menu.nearbystations, menu);
+
+		ui.menu_map = menu.findItem(R.id.action_location_map);
+		ui.menu_map.setVisible(false);
+
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+			case R.id.action_location_map:
+				ArrayList<Location> stations = stationAdapter.getStations();
+
+				if(stations == null) return false;
+
+				boolean hasLocation = false;
+
+				// check if at least one station has a location attached to it
+				for(Location station : stations) {
+					if(station.hasLocation()) {
+						hasLocation = true;
+						break;
+					}
+				}
+
+				if(hasLocation) {
+					// show stations on map
+					Intent intent = new Intent(getActivity(), MapStationsActivity.class);
+					intent.putExtra("List<de.schildbach.pte.dto.Location>", stations);
+					intent.putExtra("de.schildbach.pte.dto.Location", stationAdapter.getLocation());
+					startActivity(intent);
+				}
+				else {
+					Toast.makeText(getActivity(), getString(R.string.error_no_station_location), Toast.LENGTH_SHORT).show();
+				}
+
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@Override
@@ -162,7 +207,7 @@ public class NearbyStationsFragment extends LiberarioFragment {
 
 			AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(this, types, loc.getLocation(), 0, maxStations);
 			task.execute();
-		} else {
+		} else if(!loc.isSearching()) {
 			Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
 		}
 	}
@@ -189,6 +234,8 @@ public class NearbyStationsFragment extends LiberarioFragment {
 		ui.progress.setAlpha(0f);
 		ui.progress.setVisibility(View.VISIBLE);
 		ui.progress.animate().alpha(1f).setDuration(750);
+
+		ui.menu_map.setVisible(false);
 	}
 
 	public void onRefreshComplete() {
@@ -207,22 +254,22 @@ public class NearbyStationsFragment extends LiberarioFragment {
 		}
 
 		ui.progress.setVisibility(View.GONE);
+		ui.menu_map.setVisible(true);
 	}
 
 	private static class ViewHolder {
 
 		public LocationInputView.LocationInputViewHolder station;
-		public ImageButton gps;
 		public Button search;
 		public CardView stations_card;
 		public ProgressBar progress;
 		public SwipyRefreshLayout swipe_refresh;
 		public RecyclerView recycler;
+		public MenuItem menu_map;
 
 		public ViewHolder(View view) {
 			station = new LocationInputView.LocationInputViewHolder(view);
 			search = (Button) view.findViewById(R.id.searchButton);
-			gps = (ImageButton) view.findViewById(R.id.gpsButton);
 			stations_card = (CardView) view.findViewById(R.id.nearbystations_list);
 			progress = (ProgressBar) view.findViewById(R.id.progressBar);
 			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
@@ -256,6 +303,13 @@ public class NearbyStationsFragment extends LiberarioFragment {
 		@Override
 		public void onLocationChanged(Location location) {
 			super.onLocationChanged(location);
+
+			fragment.search();
+		}
+
+		@Override
+		public void onLocationItemClick(Location loc, View view) {
+			super.onLocationItemClick(loc, view);
 
 			fragment.search();
 		}

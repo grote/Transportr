@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.grobox.liberario.R;
@@ -107,6 +108,16 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 
 	public Location getLocation() {
 		return location;
+	}
+
+	public ArrayList<Location> getStations() {
+		ArrayList<Location> list = new ArrayList<>(stations.size());
+
+		for(int i = 0; i < stations.size(); i++) {
+			list.add(getItem(i));
+		}
+
+		return list;
 	}
 
 	public Location getItem(int position) {

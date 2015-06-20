@@ -27,19 +27,6 @@
             android:layout_height="wrap_content"
             />
 
-        <ImageButton
-            android:id="@+id/gpsButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_gps"
-            android:scaleType="center"
-            android:contentDescription="@string/location_gps"
-            android:elevation="2dp"
-            android:backgroundTint="@color/primary"
-            android:layout_below="@+id/location_input"
-            android:layout_toLeftOf="@+id/searchButton"
-            android:layout_toStartOf="@+id/searchButton"/>
-
         <Button
             android:id="@+id/searchButton"
             android:layout_width="wrap_content"
@@ -50,7 +37,8 @@
             android:text="@android:string/search_go"
             android:backgroundTint="@color/primary"
             android:layout_below="@+id/location_input"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
 
 </RelativeLayout>
 
