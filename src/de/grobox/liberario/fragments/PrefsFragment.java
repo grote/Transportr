@@ -41,7 +41,7 @@ import de.schildbach.pte.dto.Location;
 
 public class PrefsFragment extends PreferenceFragment implements TransportNetwork.Handler, SharedPreferences.OnSharedPreferenceChangeListener {
 
-	Preference network;
+	Preference network_pref;
 	Preference home;
 
 	@Override
@@ -51,14 +51,16 @@ public class PrefsFragment extends PreferenceFragment implements TransportNetwor
 		// Load the preferences from an XML resource
 		addPreferencesFromResource(R.xml.preferences);
 
-		// Fill in current home location if available
-		network = findPreference("pref_key_network");
-		network.setSummary(Preferences.getTransportNetwork(getActivity()).getName());
+		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
 
-		network.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+		// Fill in current home location if available
+		network_pref = findPreference("pref_key_network");
+		if(network != null) network_pref.setSummary(network.getName());
+
+		network_pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				Intent intent = new Intent(getActivity(), PickNetworkProviderActivity.class);
+			    Intent intent = new Intent(getActivity(), PickNetworkProviderActivity.class);
 				View view = preference.getView(null, null);
 				ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
 				ActivityCompat.startActivityForResult(getActivity(), intent, MainActivity.CHANGED_NETWORK_PROVIDER, options.toBundle());
@@ -66,7 +68,6 @@ public class PrefsFragment extends PreferenceFragment implements TransportNetwor
 				return true;
 			}
 		});
-
 
 		home = findPreference("pref_key_home");
 		home.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -88,7 +89,7 @@ public class PrefsFragment extends PreferenceFragment implements TransportNetwor
 		});
 
 		// Fill in current home location if available
-		setHome();
+		if(network != null) setHome();
 	}
 
 	@Override
@@ -141,8 +142,8 @@ public class PrefsFragment extends PreferenceFragment implements TransportNetwor
 
 	public void onNetworkProviderChanged(TransportNetwork network) {
 		if(getActivity() != null) {
-			// set new network name
-			this.network.setSummary(network.getName());
+			// set new network_pref name
+			this.network_pref.setSummary(network.getName());
 
 			setHome();
 		}
