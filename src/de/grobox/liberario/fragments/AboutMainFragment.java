@@ -28,7 +28,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
 import de.grobox.liberario.R;
@@ -38,7 +37,7 @@ public class AboutMainFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_main_about, container, false);
+		View view = inflater.inflate(R.layout.fragment_about_main, container, false);
 
 		ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
 

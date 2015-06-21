@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,6 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/navigation_padding_bottom"
+                    android:layout_marginStart="@dimen/navigation_padding_bottom"
                     android:padding="@dimen/navigation_separator_vertical_padding"
                     tools:ignore="HardcodedText"
                     android:text="Torsten Grote"/>
@@ -70,6 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/navigation_padding_bottom"
+                    android:layout_marginStart="@dimen/navigation_padding_bottom"
                     android:padding="@dimen/navigation_separator_vertical_padding"
                     tools:ignore="HardcodedText"
                     android:text="Jochen Sprickerhof"/>
@@ -78,6 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/navigation_padding_bottom"
+                    android:layout_marginStart="@dimen/navigation_padding_bottom"
                     android:padding="@dimen/navigation_separator_vertical_padding"
                     tools:ignore="HardcodedText"
                     android:text="Mats Sjöberg"/>
@@ -86,6 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/navigation_padding_bottom"
+                    android:layout_marginStart="@dimen/navigation_padding_bottom"
                     android:padding="@dimen/navigation_separator_vertical_padding"
                     tools:ignore="HardcodedText"
                     android:text="mray"/>
@@ -94,6 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/navigation_padding_bottom"
+                    android:layout_marginStart="@dimen/navigation_padding_bottom"
                     android:padding="@dimen/navigation_separator_vertical_padding"
                     tools:ignore="HardcodedText"
                     android:text="Paspartout"/>
@@ -102,6 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/navigation_padding_bottom"
+                    android:layout_marginStart="@dimen/navigation_padding_bottom"
                     android:padding="@dimen/navigation_separator_vertical_padding"
                     tools:ignore="HardcodedText"
                     android:text="Simó Albert i Beltran"/>
@@ -134,7 +142,8 @@
                 <TableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/navigation_padding_bottom">
+                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
+                    android:layout_marginStart="@dimen/navigation_padding_bottom">
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -287,4 +296,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>
