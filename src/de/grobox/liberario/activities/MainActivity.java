@@ -22,6 +22,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -370,6 +372,8 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 				if(fragment_old != null && fragment_old != fragment) {
 					transaction.hide(fragment_old);
 				}
+
+				showToolbar();
 			}
 			transaction.commit();
 		}
@@ -387,6 +391,18 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		}
 		else if(toolbar != null) {
 			toolbar.setSubtitle(network.getName());
+		}
+	}
+
+	private void showToolbar() {
+		CoordinatorLayout coordinator = (CoordinatorLayout) findViewById(R.id.coordinator);
+		AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
+		CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appbar.getLayoutParams();
+		AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
+
+		if(behavior != null && behavior.getTopAndBottomOffset() < 0) {
+			behavior.setTopAndBottomOffset(0);
+			behavior.onNestedPreScroll(coordinator, appbar, null, 0, 1, new int[2]);
 		}
 	}
 
