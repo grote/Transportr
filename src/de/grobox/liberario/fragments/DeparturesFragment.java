@@ -62,7 +62,9 @@ public class DeparturesFragment extends LiberarioFragment {
 	private LocationInputView loc;
 	private String stationId;
 	private Date date;
-	private int max_departures = 12;
+
+	private static final int MAX_DEPARTURES = 12;
+	private static final int SAFETY_MARGIN = 6;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -107,7 +109,7 @@ public class DeparturesFragment extends LiberarioFragment {
 					// clear old list
 					departureAdapter.clear();
 
-					AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(DeparturesFragment.this, stationId, date, true, max_departures);
+					AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(DeparturesFragment.this, stationId, date, true, MAX_DEPARTURES);
 					query_stations.execute();
 				} else {
 					Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
@@ -167,9 +169,17 @@ public class DeparturesFragment extends LiberarioFragment {
 		loc.clearLocation();
 	}
 
-	public void addDepartures(QueryDeparturesResult result, boolean later) {
+	public void addDepartures(QueryDeparturesResult result, boolean later, boolean more) {
+		int count = 0;
+
 		for(final StationDepartures stadep : result.stationDepartures) {
 			departureAdapter.addAll(stadep.departures);
+
+			if(more) count += stadep.departures.size();
+		}
+
+		if(more && count < MAX_DEPARTURES) {
+			Toast.makeText(getActivity(), R.string.warning_departure_gap, Toast.LENGTH_LONG).show();
 		}
 
 		onRefreshComplete(later);
@@ -230,30 +240,35 @@ public class DeparturesFragment extends LiberarioFragment {
 	}
 
 	public void startGetMoreDepartures(boolean later) {
-		// get information about currently retrieved departures
-		Date earliest = departureAdapter.getEarliestItem().getTime();
-		Date latest = departureAdapter.getLatestItem().getTime();
-		int count = departureAdapter.getItemCount();
+		int item_pos;
+		int max_departures = MAX_DEPARTURES;
 
-		// timespan covered by currently retrieved departures
-		long span = latest.getTime() - earliest.getTime();
-
-		if(count / (max_departures - 3) != 0) {
-			// make span smaller to get value for one retrieval of max_departures - 3 to not loose departures
-			// FIXME reduce probility that departures are not shown
-			span = span / (count / (max_departures - 3));
-		}
-
-		Date new_date = new Date();
-
-		// calculate new approximate time for new query
+		// search from end + safety margin
 		if(later) {
-			new_date.setTime(latest.getTime() + span);
-		} else {
-			new_date.setTime(earliest.getTime() - span);
+			if(departureAdapter.getItemCount() - SAFETY_MARGIN > 0) {
+				item_pos = departureAdapter.getItemCount() - SAFETY_MARGIN;
+				max_departures = MAX_DEPARTURES + SAFETY_MARGIN;
+			} else {
+				item_pos = departureAdapter.getItemCount() - 1;
+			}
+			date = departureAdapter.getItem(item_pos).getTime();
 		}
+		// search from beginning + safety margin
+		else {
+			Date earliest = departureAdapter.getItem(0).getTime();
+			Date latest;
+			long span;
 
-		date = new_date;
+			if(departureAdapter.getItemCount() >= MAX_DEPARTURES) {
+				latest = departureAdapter.getItem(MAX_DEPARTURES - 1).getTime();
+			} else {
+				latest = departureAdapter.getItem(departureAdapter.getItemCount() - 1).getTime();
+			}
+			span = latest.getTime() - earliest.getTime();
+			date.setTime(earliest.getTime() - span);
+
+			max_departures = MAX_DEPARTURES + SAFETY_MARGIN;
+		}
 
 		new AsyncQueryDeparturesTask(this, stationId, date, later, max_departures, true).execute();
 	}

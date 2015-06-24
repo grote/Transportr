@@ -138,14 +138,6 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		return departures.get(position);
 	}
 
-	public Departure getEarliestItem() {
-		return departures.get(0);
-	}
-
-	public Departure getLatestItem() {
-		return departures.get(departures.size() - 1);
-	}
-
 	public void addAll(final List<Departure> departures) {
 		this.departures.beginBatchedUpdates();
 

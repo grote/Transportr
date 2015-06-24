@@ -89,7 +89,7 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 			return;
 		}
 
-		fragment.addDepartures(result, later);
+		fragment.addDepartures(result, later, more);
 	}
 
 }
