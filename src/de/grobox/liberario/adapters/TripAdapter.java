@@ -124,64 +124,18 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		// Clear Transport Icons to avoid accumulation when same trips are returned
 		ui.lines.removeAllViews();
 
-		// Show Trip Duration
-		ui.duration.setText(DateUtils.getDuration(trip.trip.getDuration()));
-
 		int i = 0;
 		for(final Trip.Leg leg : trip.trip.legs) {
-			LegHolder leg_holder = ui.legs.get(i);
-
-			// Locations
-			leg_holder.departureLocation.setText(leg.departure.uniqueShortName());
-			leg_holder.arrivalLocation.setText(leg.arrival.uniqueShortName());
-
-			// Leg duration
-			leg_holder.duration.setText(DateUtils.getDuration(leg.getDepartureTime(), leg.getArrivalTime()));
-
-			// Clear Transport Icons to avoid accumulation when same trips are returned
-			leg_holder.line.removeAllViews();
-
-			if(leg instanceof Trip.Public) {
-				Trip.Public public_leg = ((Trip.Public) leg);
-
-				LiberarioUtils.setArrivalTimes(context, leg_holder.arrivalTime, leg_holder.arrivalDelay, public_leg.arrivalStop);
-				LiberarioUtils.setDepartureTimes(context, leg_holder.departureTime, leg_holder.departureDelay, public_leg.departureStop);
-
-				LiberarioUtils.addLineBox(context, leg_holder.line, public_leg.line);
-				LiberarioUtils.addLineBox(context, ui.lines, public_leg.line);
-
-				if(public_leg.destination != null) {
-					leg_holder.lineDestination.setText(public_leg.destination.uniqueShortName());
-				} else {
-					// hide arrow because this line has no destination
-					leg_holder.arrow.setVisibility(View.GONE);
-				}
-			}
-			else if(leg instanceof Trip.Individual) {
-				leg_holder.arrivalTime.setText(DateUtils.getTime(context, ((Trip.Individual) leg).arrivalTime));
-				leg_holder.departureTime.setText(DateUtils.getTime(context, ((Trip.Individual) leg).departureTime));
-/*
-				// TODO needs adapting
-				// show delay for last public leg
-				final Trip.Public fpleg = trip.getFirstPublicLeg();
-				if(fpleg != null && fpleg.getDepartureDelay() != null) {
-					leg_holder.departureDelay.setText(LiberarioUtils.getDelayText(fpleg.getDepartureDelay()));
-				}
-
-				// TODO needs adapting
-				// show delay for last public leg
-				final Trip.Public lpleg = trip.getLastPublicLeg();
-				if(lpleg != null && lpleg.getArrivalDelay() != null) {
-					leg_holder.arrivalDelay.setText(LiberarioUtils.getDelayText(lpleg.getArrivalDelay()));
-				}
-*/
-				LiberarioUtils.addWalkingBox(context, leg_holder.line);
-				LiberarioUtils.addWalkingBox(context, ui.lines);
-
-				// hide arrow because this line has no destination
-				leg_holder.arrow.setVisibility(View.GONE);
-			}
+			bindLeg(context, ui.legs.get(i), leg, ui.lines);
 			i += 1;
+		}
+
+		if(ui.lines.getChildCount() > 4) {
+			// Show Trip Duration and Number of Changes
+			ui.duration.setText(trip.trip.numChanges + "\n" + DateUtils.getDuration(trip.trip.getDuration()));
+		} else {
+			// Show Trip Duration
+			ui.duration.setText(DateUtils.getDuration(trip.trip.getDuration()));
 		}
 
 		// Share Trip
@@ -228,6 +182,50 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 	@Override
 	public int getItemCount() {
 		return trips == null ? 0 : trips.size();
+	}
+
+	static public void bindLeg(Context context, LegHolder leg_holder, Trip.Leg leg, FlowLayout lines) {
+		// Locations
+		leg_holder.departureLocation.setText(leg.departure.uniqueShortName());
+		leg_holder.arrivalLocation.setText(leg.arrival.uniqueShortName());
+
+		// Leg duration
+		leg_holder.duration.setText(DateUtils.getDuration(leg.getDepartureTime(), leg.getArrivalTime()));
+
+		// Clear Transport Icons to avoid accumulation when same trips are returned
+		leg_holder.line.removeAllViews();
+
+		if(leg instanceof Trip.Public) {
+			Trip.Public public_leg = ((Trip.Public) leg);
+
+			LiberarioUtils.setArrivalTimes(context, leg_holder.arrivalTime, leg_holder.arrivalDelay, public_leg.arrivalStop);
+			LiberarioUtils.setDepartureTimes(context, leg_holder.departureTime, leg_holder.departureDelay, public_leg.departureStop);
+
+			LiberarioUtils.addLineBox(context, leg_holder.line, public_leg.line);
+			if(lines != null) LiberarioUtils.addLineBox(context, lines, public_leg.line);
+
+			if(public_leg.destination != null) {
+				leg_holder.lineDestination.setText(public_leg.destination.uniqueShortName());
+				leg_holder.arrow.setImageDrawable(LiberarioUtils.getTintedDrawable(context, leg_holder.arrow.getDrawable()));
+			} else {
+				// hide arrow because this line has no destination
+				leg_holder.arrow.setVisibility(View.GONE);
+			}
+		}
+		else if(leg instanceof Trip.Individual) {
+			leg_holder.arrivalTime.setText(DateUtils.getTime(context, ((Trip.Individual) leg).arrivalTime));
+			leg_holder.departureTime.setText(DateUtils.getTime(context, ((Trip.Individual) leg).departureTime));
+
+			LiberarioUtils.addWalkingBox(context, leg_holder.line);
+			if(lines != null) LiberarioUtils.addWalkingBox(context, lines);
+
+			// hide arrow because this line has no destination
+			leg_holder.arrow.setVisibility(View.GONE);
+		}
+	}
+
+	static public void bindLeg(Context context, LegHolder leg_holder, Trip.Leg leg) {
+		bindLeg(context, leg_holder, leg, null);
 	}
 
 	public ListTrip getItem(int position) {
