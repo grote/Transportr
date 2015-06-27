@@ -1,82 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.GridLayout
+<TableLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:showIn="@layout/trip"
-    app:orientation="horizontal"
-    app:columnCount="3"
-    app:useDefaultMargins="true"
-    app:columnOrderPreserved="false"
     >
 
-    <TextView
-        android:id="@+id/departureTimeView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="9:15"
-        app:layout_row="0"
-        app:layout_column="0"
-        />
+    <TableRow
+        android:id="@+id/departureView">
 
-    <TextView
-        android:id="@+id/departureDelayView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:textColor="@color/holo_red_light"
-        tools:text="+10"
-        app:layout_row="0"
-        app:layout_column="1"
-        />
+        <TextView
+            android:id="@+id/departureTimeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="9:15"
+            android:padding="3dp"/>
 
-    <TextView
-        android:id="@+id/departureLocationView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Departure Station with a longer name"
-        app:layout_row="0"
-        app:layout_column="2"
-        />
+        <TextView
+            android:id="@+id/departureDelayView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:textColor="@color/holo_red_light"
+            tools:text="+10"
+            android:padding="3dp"/>
 
-    <include
-        android:id="@+id/infoView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        layout="@layout/line"
-        app:layout_row="1"
-        app:layout_column="2"
-        app:layout_gravity="fill_horizontal"/>
+        <TextView
+            android:id="@+id/departureLocationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Departure Station with a name"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:background="?selectableItemBackgroundBorderless"/>
 
-    <TextView
-        android:id="@+id/arrivalTimeView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="9:15"
-        app:layout_row="2"
-        app:layout_column="0"
-        />
+        <TextView
+            android:id="@+id/departurePlatformView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="13b"
+            android:layout_gravity="right"
+            android:padding="3dp"/>
 
-    <TextView
-        android:id="@+id/arrivalDelayView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:textColor="@color/holo_red_light"
-        tools:text="+10"
-        app:layout_row="2"
-        app:layout_column="1"
-        />
+    </TableRow>
 
-    <TextView
-        android:id="@+id/arrivalLocationView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Arrival Station with a name"
-        app:layout_row="2"
-        app:layout_column="2"
-        />
+    <TableRow
+        android:id="@+id/infoView">
 
-</android.support.v7.widget.GridLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            />
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/leg_details"
+            android:layout_span="2"
+            android:layout_column="0"
+            android:layout_weight="1"/>
+
+    </TableRow>
+
+    <TableRow>
+        <TableLayout
+            android:id="@+id/stopsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="4"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/arrivalView">
+
+        <TextView
+            android:id="@+id/arrivalTimeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="9:15"
+            android:padding="3dp"/>
+
+        <TextView
+            android:id="@+id/arrivalDelayView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:textColor="@color/holo_red_light"
+            tools:text="+10"
+            android:padding="3dp"/>
+
+        <TextView
+            android:id="@+id/arrivalLocationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Arrival Station with a name"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:background="?selectableItemBackgroundBorderless"/>
+
+        <TextView
+            android:id="@+id/arrivalPlatformView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="5"
+            android:layout_gravity="right"
+            android:padding="3dp"/>
+
+    </TableRow>
+
+</TableLayout>

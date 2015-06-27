@@ -1,57 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar"/>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#1533b5e5"
-        android:padding="3dp"
-        android:weightSum="2" >
+        <include
+            layout="@layout/toolbar"
+            android:transitionName="toolbar" />
 
-        <TextView
-            android:layout_width="wrap_content"
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/detail_duration" />
+            android:transitionName="card"
+            card_view:cardBackgroundColor="?attr/cardBackgroundColor"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="2dp">
 
-        <TextView
-            android:id="@+id/tripDetailsDurationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="5dp"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:id="@+id/legsView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="@string/detail_date" />
+        </android.support.v7.widget.CardView>
 
-        <TextView
-            android:id="@+id/tripDetailsDateView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="3dp"
-            android:paddingLeft="5dp"
-            android:textStyle="bold" />
+    </android.support.v4.widget.NestedScrollView>
 
-    </LinearLayout>
-
-    <View
-        android:id="@+id/headerSeparatorView"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/holo_blue_light" />
-
-    <ScrollView
-        android:id="@+id/tripDetailsScrollView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

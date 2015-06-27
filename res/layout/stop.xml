@@ -1,8 +1,9 @@
-<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selector_trip_details"
+    android:background="?selectableItemBackground"
     android:paddingLeft="10dp"
     android:paddingRight="10dp" >
 
@@ -12,14 +13,14 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/sArrivalTimeView"
+            android:id="@+id/arrivalTimeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="20:15"
             android:padding="2dp" />
 
         <TextView
-            android:id="@+id/sDepartureTimeView"
+            android:id="@+id/departureTimeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="20:20"
@@ -32,7 +33,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/sArrivalDelayView"
+            android:id="@+id/arrivalDelayView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
@@ -40,7 +41,7 @@
             android:textColor="@color/holo_red_light" />
 
         <TextView
-            android:id="@+id/sDepartureDelayView"
+            android:id="@+id/departureDelayView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
@@ -50,7 +51,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/sLocationView"
+        android:id="@+id/locationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center_vertical"
@@ -59,13 +60,13 @@
         android:padding="2dp" />
 
     <LinearLayout
-        android:id="@+id/PositionLayout"
+        android:id="@+id/platformView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/sArrivalPositionView"
+            android:id="@+id/arrivalPlatformView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -73,7 +74,7 @@
             android:padding="2dp" />
 
         <TextView
-            android:id="@+id/sDeparturePositionView"
+            android:id="@+id/departurePlatformView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="right"

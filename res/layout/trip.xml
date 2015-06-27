@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:orientation="vertical"
@@ -9,6 +8,7 @@
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
+    android:transitionName="card"
     card_view:cardBackgroundColor="?attr/cardBackgroundColor"
     card_view:cardUseCompatPadding="true"
     card_view:cardCornerRadius="2dp">
@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
+
         </LinearLayout>
 
         <include
@@ -39,42 +40,10 @@
             layout="@layout/divider_horizontal"
             />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/ripple_material_dark">
+        <include
+            layout="@layout/trip_card_actions"
+            />
 
-            <ImageView
-                android:id="@+id/shareView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_social_share"
-                android:padding="8dp"
-                android:contentDescription="@string/action_share"/>
-
-            <ImageView
-                android:id="@+id/calendarView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_calendar"
-                android:padding="8dp"
-                android:contentDescription="@string/action_trip_calendar"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
-            <ImageView
-                android:id="@+id/expandView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_navigation_unfold_more"
-                android:padding="8dp"
-                android:contentDescription="@string/action_navigation_expand"/>
-
-        </LinearLayout>
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

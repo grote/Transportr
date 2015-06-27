@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:de.grobox.liberario="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_action_social_share"
+        de.grobox.liberario:showAsAction="ifRoom"
+        android:title="@string/action_share"/>
+
+    <item
+        android:id="@+id/action_calendar"
+        android:icon="@drawable/ic_action_calendar"
+        de.grobox.liberario:showAsAction="ifRoom"
+        android:title="@string/action_trip_calendar"/>
+
+</menu>

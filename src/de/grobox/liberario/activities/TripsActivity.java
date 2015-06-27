@@ -17,7 +17,9 @@
 
 package de.grobox.liberario.activities;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -26,6 +28,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -59,7 +62,7 @@ public class TripsActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trips);
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
 			toolbar.setSubtitle(Preferences.getTransportNetwork(this).getName());
 			setSupportActionBar(toolbar);
@@ -111,7 +114,15 @@ public class TripsActivity extends AppCompatActivity {
 			     intent.putExtra("de.schildbach.pte.dto.Trip.from", trip.from);
 			     intent.putExtra("de.schildbach.pte.dto.Trip.to", trip.to);
 
-			     startActivity(intent);
+				 if(false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+					 // TODO make shared activity transition work
+					 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(TripsActivity.this,
+					                                                                        Pair.create((View) toolbar, "toolbar"),
+					                                                                        Pair.create(mRecyclerView.getChildAt(position), "card"));
+					 startActivity(intent, options.toBundle());
+				 } else {
+					 startActivity(intent);
+				 }
 			 }
 		});
 

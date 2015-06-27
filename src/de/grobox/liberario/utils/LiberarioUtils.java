@@ -233,11 +233,33 @@ public class LiberarioUtils {
 
 	}
 
+	static public void share(Context context, Trip trip) {
+		//noinspection deprecation
+		Intent sendIntent = new Intent()
+				                    .setAction(Intent.ACTION_SEND)
+				                    .putExtra(Intent.EXTRA_SUBJECT, tripToSubject(context, trip, true))
+				                    .putExtra(Intent.EXTRA_TEXT, tripToString(context, trip))
+				                    .setType("text/plain")
+				                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		context.startActivity(Intent.createChooser(sendIntent, context.getResources().getText(R.string.share_trip_via)));
+	}
+
+	static public void intoCalendar(Context context, Trip trip) {
+		Intent intent = new Intent(Intent.ACTION_EDIT)
+				                .setType("vnd.android.cursor.item/event")
+				                .putExtra("beginTime", trip.getFirstDepartureTime().getTime())
+				                .putExtra("endTime", trip.getLastArrivalTime().getTime())
+				                .putExtra("title", trip.from.name + " → " + trip.to.name)
+				                .putExtra("description", LiberarioUtils.tripToString(context, trip));
+		if(trip.from.place != null) intent.putExtra("eventLocation", trip.from.place);
+		context.startActivity(intent);
+	}
+
 	static public void findDepartures(Context context, Location loc) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
 
 		// TODO adapt this to new DeparturesFragment
-		Toast.makeText(context, "Out of service!", Toast.LENGTH_SHORT);
+		Toast.makeText(context, "Out of service! " + loc.toString(), Toast.LENGTH_SHORT).show();
 
 /*		if(np.hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
 			// start StationsListActivity with given location
@@ -251,7 +273,7 @@ public class LiberarioUtils {
 
 	static public void findNearbyStations(Context context, Location loc, int maxDistance, int maxStations) {
 		// TODO adapt this to new NearbyStationsFragment
-		Toast.makeText(context, "Out of service!", Toast.LENGTH_SHORT);
+		Toast.makeText(context, "Out of service! " + loc.toString(), Toast.LENGTH_SHORT).show();
 
 		//AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(context, loc, maxDistance, maxStations);
 		//query_stations.execute();

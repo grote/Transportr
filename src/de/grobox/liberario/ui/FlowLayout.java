@@ -43,7 +43,7 @@ public class FlowLayout extends ViewGroup {
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		int widthSize = MeasureSpec.getSize(widthMeasureSpec) - getPaddingRight() - 200; // last is dirty hack
+		int widthSize = MeasureSpec.getSize(widthMeasureSpec) - getPaddingRight() - 150; // last is dirty hack
 		int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 
 		boolean growHeight = widthMode != MeasureSpec.UNSPECIFIED;

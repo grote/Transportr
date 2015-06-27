@@ -2,7 +2,7 @@
 
     <!-- App Theme -->
 
-    <style name="AppTheme" parent="MaterialDrawerTheme">
+    <style name="AppBaseTheme" parent="MaterialDrawerTheme">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
@@ -13,7 +13,7 @@
         <item name="android:alertDialogTheme">@style/DialogTheme</item>
     </style>
 
-    <style name="AppTheme.Light" parent="MaterialDrawerTheme.Light.DarkToolbar">
+    <style name="AppBaseTheme.Light" parent="MaterialDrawerTheme.Light.DarkToolbar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
@@ -24,6 +24,11 @@
         <item name="android:alertDialogTheme">@style/DialogTheme.Light</item>
     </style>
 
+    <style name="AppTheme" parent="AppBaseTheme">
+    </style>
+
+    <style name="AppTheme.Light" parent="AppBaseTheme.Light">
+    </style>
 
     <!-- Dialog Theme -->
 

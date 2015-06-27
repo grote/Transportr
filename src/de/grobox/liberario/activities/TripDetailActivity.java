@@ -17,23 +17,24 @@
 
 package de.grobox.liberario.activities;
 
-import java.util.Date;
-
-import de.grobox.liberario.Preferences;
-import de.grobox.liberario.R;
-import de.grobox.liberario.fragments.TripDetailFragment;
-import de.grobox.liberario.utils.DateUtils;
-import de.schildbach.pte.dto.Trip;
-
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
+
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.adapters.TripAdapter;
+import de.grobox.liberario.utils.LiberarioUtils;
+import de.schildbach.pte.dto.Trip;
 
 public class TripDetailActivity extends AppCompatActivity {
+
+	private Trip trip;
+	private TripAdapter.BaseTripHolder ui;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,23 +62,23 @@ public class TripDetailActivity extends AppCompatActivity {
 			return;
 		}
 
-		// Create a new Fragment to be placed in the activity layout
-		TripDetailFragment tripDetailFragment = new TripDetailFragment();
-		tripDetailFragment.setEmbedded(false);
+		trip = (Trip) getIntent().getSerializableExtra("de.schildbach.pte.dto.Trip");
+		ui = new TripAdapter.BaseTripHolder(findViewById(R.id.cardView), trip.legs.size());
 
-		// In case this activity was started with special instructions from an
-		// Intent, pass the Intent's extras to the fragment as arguments
-		tripDetailFragment.setArguments(getIntent().getExtras());
+		int i = 0;
+		for(final Trip.Leg leg : trip.legs) {
+			TripAdapter.bindLeg(this, ui.legs.get(i), leg, true);
+			i += 1;
+		}
 
-		// Add the fragment to the 'tripDetailsScrollView' FrameLayout
-		getSupportFragmentManager().beginTransaction().add(R.id.tripDetailsScrollView, tripDetailFragment).commit();
-
-		addHeader((Trip) getIntent().getSerializableExtra("de.schildbach.pte.dto.Trip"));
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		return super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.trip_details, menu);
+		return true;
+
 	}
 
 	@Override
@@ -88,18 +89,19 @@ public class TripDetailActivity extends AppCompatActivity {
 				onBackPressed();
 
 				return true;
+			case R.id.action_share:
+				LiberarioUtils.share(this, trip);
+
+				return true;
+			case R.id.action_calendar:
+				LiberarioUtils.intoCalendar(this, trip);
+
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}
 
-	// TODO remove deprecated code
-	@SuppressWarnings("deprecation")
-	private void addHeader(Trip trip) {
-		Date d = trip.getFirstDepartureTime();
 
-		((TextView) findViewById(R.id.tripDetailsDurationView)).setText(DateUtils.getDuration(trip.getDuration()));
-		((TextView) findViewById(R.id.tripDetailsDateView)).setText(DateUtils.formatDate(this, d.getYear()+1900, d.getMonth(), d.getDate()));
-	}
 
 }

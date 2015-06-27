@@ -36,25 +36,24 @@ public class LegPopupMenu extends BasePopupMenu {
 	private Location loc2 = null;
 	private String text;
 
-	public LegPopupMenu(Context context, View anchor, Trip.Leg leg) {
+	public LegPopupMenu(Context context, View anchor, Trip.Leg leg, boolean is_last) {
 		super(context, anchor);
 
-		this.loc1 = leg.departure;
-		this.loc2 = leg.arrival;
+		if(is_last) {
+			this.loc1 = leg.arrival;
+			this.loc2 = leg.departure;
+		} else {
+			this.loc1 = leg.departure;
+			this.loc2 = leg.arrival;
+		}
 		this.text = LiberarioUtils.legToString(context, leg);
 		this.getMenuInflater().inflate(R.menu.location_actions, getMenu());
 
 		showIcons();
 	}
 
-	public LegPopupMenu(Context context, View anchor, Trip.Leg leg, boolean is_last) {
-		super(context, anchor);
-
-		this.loc1 = leg.arrival;
-		this.text = DateUtils.getTime(context, leg.getArrivalTime()) + " " + leg.arrival.uniqueShortName();
-		this.getMenuInflater().inflate(R.menu.location_actions, getMenu());
-
-		showIcons();
+	public LegPopupMenu(Context context, View anchor, Trip.Leg leg) {
+		this(context, anchor, leg, false);
 	}
 
 	public LegPopupMenu(Context context, View anchor, Stop stop) {

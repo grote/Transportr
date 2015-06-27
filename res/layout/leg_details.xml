@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/infoView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="fill_horizontal"
+    android:background="?selectableItemBackgroundBorderless"
+    tools:showIn="@layout/leg">
+
+    <LinearLayout
+        android:id="@+id/lineView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.grobox.liberario.ui.FlowLayout
+            android:id="@+id/lineLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <include
+                layout="@layout/line_box"
+                />
+
+        </de.grobox.liberario.ui.FlowLayout>
+
+        <ImageView
+            android:id="@+id/arrowView"
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_right_arrow"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/lineDestinationView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="Destination of Line"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"/>
+
+
+        <TextView
+            android:id="@+id/durationView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="3:33"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/messageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lineView"
+        android:textColor="@color/holo_red_light"
+        android:textSize="11sp"
+        tools:text="This is an important message for this trip. It may contain a lot of text."/>
+
+</RelativeLayout>
