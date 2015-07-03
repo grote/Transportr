@@ -24,10 +24,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.adapters.TripAdapter;
+import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Trip;
 
@@ -71,6 +73,7 @@ public class TripDetailActivity extends AppCompatActivity {
 			i += 1;
 		}
 
+		setHeader();
 	}
 
 	@Override
@@ -102,6 +105,11 @@ public class TripDetailActivity extends AppCompatActivity {
 		}
 	}
 
-
+	private void setHeader() {
+		((TextView) findViewById(R.id.departureView)).setText(trip.from.uniqueShortName());
+		((TextView) findViewById(R.id.arrivalView)).setText(trip.to.uniqueShortName());
+		((TextView) findViewById(R.id.durationView)).setText(DateUtils.getDuration(trip.getDuration()));
+		((TextView) findViewById(R.id.dateView)).setText(DateUtils.getDate(this, trip.getFirstDepartureTime()));
+	}
 
 }
