@@ -30,7 +30,7 @@ public class TransportNetwork {
 	@Nullable private String region;
 	private Status status = Status.STABLE;
 	private int logo = R.drawable.ic_placeholder;
-	private int background = R.drawable.background_default;
+	private int background = R.drawable.account_header_background;
 
 	public enum Status { APLHA, BETA, STABLE }
 

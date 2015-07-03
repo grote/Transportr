@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		// Accounts aka TransportNetworks
 		accountHeader = new AccountHeaderBuilder()
              .withActivity(this)
-             .withHeaderBackground(R.drawable.background_default)
+             .withHeaderBackground(R.drawable.account_header_background)
              .withSelectionListEnabled(false)
 			 .withThreeSmallProfileImages(true)
              .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {

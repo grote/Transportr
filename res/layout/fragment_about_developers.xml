@@ -112,6 +112,15 @@
                     android:layout_marginStart="@dimen/navigation_padding_bottom"
                     android:padding="@dimen/navigation_separator_vertical_padding"
                     tools:ignore="HardcodedText"
+                    android:text="Sebastian Grote"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
+                    android:layout_marginStart="@dimen/navigation_padding_bottom"
+                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    tools:ignore="HardcodedText"
                     android:text="Simó Albert i Beltran"/>
 
             </LinearLayout>
