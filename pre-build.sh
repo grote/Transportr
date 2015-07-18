@@ -13,8 +13,3 @@ fi
 git checkout -- src/de/schildbach/pte/NetworkId.java
 sed -i "s#SYDNEY, MET#SYDNEY, HSL, NZ, SPAIN, BR, MET#" src/de/schildbach/pte/NetworkId.java
 
-mvn clean package -DskipTests
-
-cd $DIR
-cp sublibs/public-transport-enabler/enabler/target/public-transport-enabler*.jar libs/public-transport-enabler.jar
-

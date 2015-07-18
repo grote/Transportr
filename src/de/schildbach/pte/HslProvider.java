@@ -510,7 +510,7 @@ public class HslProvider extends AbstractNetworkProvider
 	// NOTE: HSL ignores accessibility
 	@Override
 	public QueryTripsResult queryTrips(Location from, Location via, Location to, Date date, boolean dep, 
-				    Set<Product> products, WalkSpeed walkSpeed,
+				    Set<Product> products, Optimize optimize, WalkSpeed walkSpeed,
 				    Accessibility accessibility, Set<Option> options) throws IOException 
 	{
 		final ResultHeader header = new ResultHeader(network, SERVER_PRODUCT);

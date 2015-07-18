@@ -1,6 +1,6 @@
 buildscript {
 	repositories {
-		mavenCentral()
+		jcenter()
 	}
 	dependencies {
 		classpath 'com.android.tools.build:gradle:1.2.3'
@@ -15,10 +15,10 @@ apply plugin: 'com.android.application'
 
 dependencies {
 	compile 'com.android.support:appcompat-v7:22.2.1'
-	compile "com.android.support:design:22.2.1"
+	compile 'com.android.support:design:22.2.1'
 	compile 'com.android.support:cardview-v7:22.2.1'
 	compile 'com.android.support:recyclerview-v7:22.2.1'
-	compile "com.android.support:gridlayout-v7:22.2.1"
+	compile 'com.android.support:gridlayout-v7:22.2.1'
 
 	compile 'com.github.orangegangsters:swipy:1.2.0'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
@@ -30,10 +30,13 @@ dependencies {
 		transitive = true
 	}
 	compile project(':sublibs:OSMBonusPack')
+	compile project(':sublibs:public-transport-enabler:enabler')
+}
 
-	compile files('libs/public-transport-enabler.jar')
-	// needed by PTE to avoid ClassNotFound error
-	compile 'com.google.guava:guava:18.0'
+project(':sublibs:public-transport-enabler:enabler') {
+	repositories {
+		jcenter()
+	}
 }
 
 android {
