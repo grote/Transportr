@@ -139,13 +139,7 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 	}
 
 	public void addAll(final List<Departure> departures) {
-		this.departures.beginBatchedUpdates();
-
-		for(final Departure departure : departures) {
-			this.departures.add(departure);
-		}
-
-		this.departures.endBatchedUpdates();
+		this.departures.addAll(departures);
 	}
 
 	public void clear() {

@@ -364,14 +364,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 	}
 
 	public void addAll(final List<ListTrip> trips) {
-		this.trips.beginBatchedUpdates();
-		for(final ListTrip trip : trips) {
-			if(!removed.contains(trip)) {
-				this.trips.add(trip);
-			}
-		}
-
-		this.trips.endBatchedUpdates();
+		this.trips.addAll(trips);
 	}
 
 	public boolean remove(ListTrip trip) {

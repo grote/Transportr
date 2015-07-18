@@ -134,13 +134,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 	}
 
 	public void addAll(final List<Location> stations) {
-		this.stations.beginBatchedUpdates();
-
-		for(final Location station : stations) {
-			this.stations.add(station);
-		}
-
-		this.stations.endBatchedUpdates();
+		this.stations.addAll(stations);
 	}
 
 	public void clear() {
