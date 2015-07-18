@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardBackgroundColor="?attr/cardBackgroundColor"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="2dp"
     >
 
-    <LinearLayout
-        android:id="@+id/lineLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal" >
+        android:padding="5dp"
+        >
 
         <TextView
-            android:id="@+id/timeView"
+            android:id="@+id/depTimeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             tools:text="23:42"
-            android:layout_marginRight="5dp"/>
+            android:paddingRight="5dp"/>
 
         <TextView
             android:id="@+id/delayView"
@@ -30,47 +33,73 @@
             android:layout_gravity="center_vertical"
             android:textColor="@color/holo_red_light"
             tools:text="+3"
-            android:layout_marginRight="5dp"/>
+            android:layout_below="@+id/positionView"
+            android:layout_alignRight="@+id/depTimeView"
+            android:layout_alignEnd="@+id/depTimeView"
+            android:paddingRight="5dp"/>
 
-        <include
-            layout="@layout/line_box"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
-
-        <TextView
-            android:id="@+id/destinationView"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Zoologischer Garten (S+U)"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"/>
+            android:layout_toRightOf="@+id/depTimeView"
+            android:id="@+id/lineLayout"
+            android:layout_alignBottom="@+id/depTimeView"
+            android:layout_alignParentTop="true">
+
+            <include
+                layout="@layout/line_box"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/line_box"
+                />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/positionView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="13b"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
 
-    </LinearLayout>
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:id="@+id/arrowView"
+            android:src="@drawable/ic_right_arrow"
+            android:layout_toRightOf="@+id/delayView"
+            android:layout_toEndOf="@+id/depTimeView"
+            android:layout_below="@+id/lineLayout"
+            android:layout_alignBottom="@+id/destinationView"/>
 
-    <TextView
-        android:id="@+id/messageView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        tools:text="This is a message that would be displayed and might be potentially very long."
-        android:layout_below="@+id/lineLayout"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentEnd="false"
-        android:textColor="@color/holo_red_light"
-        android:layout_marginLeft="50dp"/>
+        <TextView
+            android:id="@+id/destinationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Zoologischer Garten (S+U)"
+            android:layout_gravity="center_vertical"
+            android:layout_below="@+id/lineLayout"
+            android:layout_toRightOf="@+id/arrowView"
+            android:layout_toEndOf="@+id/arrowView"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"/>
 
-    <include
-        layout="@layout/divider_horizontal"
-        android:layout_below="@+id/messageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/lineLayout"/>
+        <TextView
+            android:id="@+id/messageView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            tools:text="This is a message that would be displayed and might be potentially very long."
+            android:textColor="@color/holo_red_light"
+            android:layout_alignParentTop="false"
+            android:layout_alignLeft="@+id/delayView"
+            android:layout_alignStart="@+id/delayView"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/destinationView"/>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

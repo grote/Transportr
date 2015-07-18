@@ -123,7 +123,7 @@ public class DeparturesFragment extends LiberarioFragment {
 		ui.recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 		ui.recycler.setItemAnimator(new DefaultItemAnimator());
 
-		departureAdapter = new DepartureAdapter(new ArrayList<Departure>(), R.layout.departure);
+		departureAdapter = new DepartureAdapter(getActivity(), new ArrayList<Departure>(), R.layout.departure);
 		ui.recycler.setAdapter(departureAdapter);
 
 		// Swipe to Refresh
@@ -277,7 +277,7 @@ public class DeparturesFragment extends LiberarioFragment {
 
 		public LocationInputView.LocationInputViewHolder station;
 		public ImageButton search;
-		public CardView departure_list;
+		public ViewGroup departure_list;
 		public SwipyRefreshLayout swipe_refresh;
 		public ProgressBar progress;
 		public RecyclerView recycler;
@@ -285,7 +285,7 @@ public class DeparturesFragment extends LiberarioFragment {
 		public ViewHolder(View view) {
 			station = new LocationInputView.LocationInputViewHolder(view);
 			search = (ImageButton) view.findViewById(R.id.stationButton);
-			departure_list = (CardView) view.findViewById(R.id.departure_list);
+			departure_list = (ViewGroup) view.findViewById(R.id.departure_list);
 			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 			progress = (ProgressBar) view.findViewById(R.id.progressBar);
 			recycler = (RecyclerView) view.findViewById(R.id.departures_recycler_view);

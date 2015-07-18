@@ -17,11 +17,13 @@
 
 package de.grobox.liberario.adapters;
 
+import android.content.Context;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -73,9 +75,11 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		}
 	});
 	private int rowLayout;
+	private Context context;
 
-	public DepartureAdapter(List<Departure> departures, int rowLayout) {
+	public DepartureAdapter(Context context, List<Departure> departures, int rowLayout) {
 		this.rowLayout = rowLayout;
+		this.context = context;
 
 		addAll(departures);
 	}
@@ -104,12 +108,14 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 			}
 		}
 
-		ui.line.removeViewAt(2);
+		ui.line.removeViewAt(0);
 		if(dep.line != null) {
-			LiberarioUtils.addLineBox(ui.line.getContext(), ui.line, dep.line, 2);
+			LiberarioUtils.addLineBox(ui.line.getContext(), ui.line, dep.line, 0);
 
-			ui.line.getChildAt(2).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+			ui.line.getChildAt(0).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
 		}
+
+		ui.arrow.setImageDrawable(LiberarioUtils.getTintedDrawable(context, ui.arrow.getDrawable()));
 
 		if(dep.destination != null) {
 			ui.destination.setText(dep.destination.uniqueShortName());
@@ -156,6 +162,7 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		public ViewGroup line;
 		public TextView time;
 		public TextView delay;
+		public ImageView arrow;
 		public TextView destination;
 		public TextView position;
 		public TextView message;
@@ -164,8 +171,9 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 			super(v);
 
 			line = (ViewGroup) v.findViewById(R.id.lineLayout);
-			time = (TextView) v.findViewById(R.id.timeView);
+			time = (TextView) v.findViewById(R.id.depTimeView);
 			delay = (TextView) v.findViewById(R.id.delayView);
+			arrow = (ImageView) v.findViewById(R.id.arrowView);
 			destination = (TextView) v.findViewById(R.id.destinationView);
 			position = (TextView) v.findViewById(R.id.positionView);
 			message = (TextView) v.findViewById(R.id.messageView);
