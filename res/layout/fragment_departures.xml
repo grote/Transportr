@@ -3,14 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp">
-
-    <include
-        layout="@layout/departures_header"
-        android:id="@+id/departureForm"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        />
+    android:padding="5dp"
+    android:layout_marginBottom="?android:attr/actionBarSize">
 
     <include
         layout="@layout/departure_list"
@@ -18,6 +12,13 @@
         android:layout_width="match_parent"
         android:id="@+id/departure_list"
         android:layout_below="@+id/departureForm"
+        />
+
+    <include
+        layout="@layout/departures_header"
+        android:id="@+id/departureForm"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         />
 
 </RelativeLayout>
