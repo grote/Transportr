@@ -2,6 +2,6 @@
 <View
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="1dp"
+    android:layout_height="1px"
     android:background="@color/about_libraries_dividerLight_openSource"
     />
