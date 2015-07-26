@@ -24,6 +24,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import de.grobox.liberario.Preferences;
@@ -72,6 +73,9 @@ public class TripDetailActivity extends AppCompatActivity {
 			TripAdapter.bindLeg(this, ui.legs.get(i), leg, true);
 			i += 1;
 		}
+
+		// hide last divider
+		ui.legs.get(trip.legs.size() - 1).divider.setVisibility(View.GONE);
 
 		setHeader();
 	}

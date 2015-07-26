@@ -30,7 +30,7 @@
             android:id="@+id/departureLocationView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Departure Station with a name"
+            tools:text="Departure Station with a very long name"
             android:layout_weight="1"
             android:padding="3dp"
             android:background="?selectableItemBackground"/>
@@ -102,7 +102,7 @@
             android:id="@+id/arrivalLocationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Arrival Station with a name"
+            tools:text="Arrival Station with also a long name"
             android:layout_weight="1"
             android:padding="3dp"
             android:background="?selectableItemBackground"/>
@@ -114,6 +114,18 @@
             tools:text="5"
             android:layout_gravity="right"
             android:padding="3dp"/>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/dividerView">
+
+        <include
+            layout="@layout/divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_span="4"
+            android:layout_weight="1"/>
 
     </TableRow>
 

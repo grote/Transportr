@@ -280,8 +280,11 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			// show distance
 			if(individual.distance > 0) {
 				leg_holder.lineDestination.setText(Integer.toString(individual.distance) + " " + context.getString(R.string.meter));
+			} else {
+				leg_holder.lineDestination.setVisibility(View.GONE);
 			}
 		}
+		leg_holder.divider.setVisibility(detail ? View.VISIBLE : View.GONE);
 	}
 
 	static public void bindLeg(Context context, LegHolder leg_holder, Trip.Leg leg, boolean detail) {
@@ -529,6 +532,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		public ImageView arrow;
 		public TextView lineDestination;
 		public TextView	duration;
+		public View divider;
 
 		public LegHolder(ViewGroup v) {
 			super(v);
@@ -551,6 +555,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			arrow = (ImageView) v.findViewById(R.id.arrowView);
 			lineDestination = (TextView) v.findViewById(R.id.lineDestinationView);
 			duration = (TextView) v.findViewById(R.id.durationView);
+			divider = v.findViewById(R.id.dividerView);
 
 			message.setVisibility(View.GONE);
 		}

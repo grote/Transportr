@@ -29,38 +29,51 @@
 
         </de.grobox.liberario.ui.FlowLayout>
 
-        <ImageView
-            android:id="@+id/arrowView"
-            android:layout_width="15dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_right_arrow"
-            android:layout_gravity="center_vertical"/>
-
-        <TextView
-            android:id="@+id/lineDestinationView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            tools:text="Destination of Line"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"/>
-
-        <TextView
-            android:id="@+id/durationView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            tools:text="3:33"
-            android:layout_weight="1"
-            android:gravity="center_vertical|right"/>
-
     </LinearLayout>
 
     <TextView
         android:id="@+id/messageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lineView"
         android:textColor="@color/holo_red_light"
         android:textSize="11sp"
-        tools:text="This is an important message for this trip. It may contain a lot of text."/>
+        tools:text="This is an important message for this trip. It may contain a lot of text."
+        android:layout_below="@+id/arrowView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <ImageView
+        android:id="@+id/arrowView"
+        android:layout_width="20dp"
+        android:layout_height="17dp"
+        android:src="@drawable/ic_right_arrow"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@+id/lineView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/lineDestinationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Destination of Line with long name"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/lineView"
+        android:layout_toRightOf="@+id/arrowView"
+        android:layout_toEndOf="@+id/arrowView"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:id="@+id/durationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3:33"
+        android:gravity="center_vertical|right"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toLeftOf="@+id/lineView"
+        android:layout_marginRight="20dp"
+        />
 
 </RelativeLayout>
