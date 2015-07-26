@@ -142,7 +142,7 @@ public class LiberarioUtils {
 		else if(delay < 0) {
 			return Long.toString(delay / 1000 / 60);
 		} else {
-			return "";
+			return null;
 		}
 	}
 

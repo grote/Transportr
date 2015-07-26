@@ -25,6 +25,7 @@ import android.support.v7.util.SortedList;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -213,6 +214,11 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			LiberarioUtils.setArrivalTimes(context, leg_holder.arrivalTime, leg_holder.arrivalDelay, public_leg.arrivalStop);
 			LiberarioUtils.setDepartureTimes(context, leg_holder.departureTime, leg_holder.departureDelay, public_leg.departureStop);
 
+			if(leg_holder.arrivalDelay.getText() == null || leg_holder.arrivalDelay.getText().equals("")) {
+				// hide delay view if there's no delay
+				leg_holder.arrivalDelay.setVisibility(View.GONE);
+			}
+
 			// Departure Platform
 			if(detail && public_leg.getDeparturePosition() != null) {
 				leg_holder.departurePlatform.setText(public_leg.getDeparturePosition().toString());
@@ -259,6 +265,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 			leg_holder.arrivalTime.setText(DateUtils.getTime(context, individual.arrivalTime));
 			leg_holder.departureTime.setText(DateUtils.getTime(context, individual.departureTime));
+
+			// TODO carry over delay from last leg somehow?
+			leg_holder.arrivalDelay.setVisibility(View.GONE);
 
 			LiberarioUtils.addWalkingBox(context, leg_holder.line);
 			if(lines != null) LiberarioUtils.addWalkingBox(context, lines);
@@ -496,8 +505,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 			// set layout parameters for TableRow
 			TableRow.LayoutParams params = new TableRow.LayoutParams();
-			params.column = 2;
-			params.span = 2;
+			params.column = 1;
+			params.span = 1;
 			params.weight = 1;
 			linesView.setLayoutParams(params);
 

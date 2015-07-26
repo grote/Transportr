@@ -29,7 +29,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical" >
 
         <TextView
@@ -38,7 +38,10 @@
             android:layout_height="wrap_content"
             android:padding="2dp"
             tools:text="+5"
-            android:textColor="@color/holo_red_light" />
+            android:textColor="@color/holo_red_light"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:id="@+id/departureDelayView"
@@ -46,7 +49,10 @@
             android:layout_height="wrap_content"
             android:padding="2dp"
             tools:text="+10"
-            android:textColor="@color/holo_red_light" />
+            android:textColor="@color/holo_red_light"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 

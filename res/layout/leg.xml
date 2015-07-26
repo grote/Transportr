@@ -15,25 +15,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="9:15"
-            android:padding="3dp"/>
-
-        <TextView
-            android:id="@+id/departureDelayView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:textColor="@color/holo_red_light"
-            tools:text="+10"
-            android:padding="3dp"/>
+            android:paddingLeft="3dp"
+            android:paddingTop="3dp"
+            android:paddingRight="3dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="?android:attr/textColorPrimary"/>
 
         <TextView
             android:id="@+id/departureLocationView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Departure Station with a very long name"
+            tools:text="Departure Station with a name"
             android:layout_weight="1"
-            android:padding="3dp"
-            android:background="?selectableItemBackground"/>
+            android:paddingLeft="3dp"
+            android:paddingTop="3dp"
+            android:paddingRight="3dp"
+            android:background="?selectableItemBackground"
+            android:textColor="?android:attr/textColorPrimary"/>
 
         <TextView
             android:id="@+id/departurePlatformView"
@@ -41,7 +39,11 @@
             android:layout_height="wrap_content"
             tools:text="13b"
             android:layout_gravity="right"
-            android:padding="3dp"/>
+            android:paddingLeft="3dp"
+            android:paddingTop="3dp"
+            android:paddingRight="3dp"
+            android:layout_marginRight="10dp"
+            />
 
     </TableRow>
 
@@ -49,16 +51,14 @@
         android:id="@+id/infoView">
 
         <TextView
+            android:id="@+id/departureDelayView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            />
+            android:layout_height="match_parent"
+            android:gravity="top|right"
+            android:textColor="@color/holo_red_light"
+            android:textSize="12sp"
+            tools:text="+10"
+            android:layout_marginRight="4dp"/>
 
         <include
             android:layout_width="match_parent"
@@ -75,28 +75,41 @@
             android:id="@+id/stopsView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_span="4"
+            android:layout_span="3"
             android:layout_weight="1"/>
     </TableRow>
 
     <TableRow
         android:id="@+id/arrivalView">
 
-        <TextView
-            android:id="@+id/arrivalTimeView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="9:15"
-            android:padding="3dp"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/arrivalDelayView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:textColor="@color/holo_red_light"
-            tools:text="+10"
-            android:padding="3dp"/>
+            <TextView
+                android:id="@+id/arrivalTimeView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="9:15"
+                android:paddingLeft="3dp"
+                android:paddingTop="3dp"
+                android:paddingRight="3dp"
+                android:textColor="?android:attr/textColorPrimary"/>
+
+            <TextView
+                android:id="@+id/arrivalDelayView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:textColor="@color/holo_red_light"
+                tools:text="+10"
+                android:paddingBottom="3dp"
+                android:textSize="12sp"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="4dp"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/arrivalLocationView"
@@ -105,7 +118,8 @@
             tools:text="Arrival Station with also a long name"
             android:layout_weight="1"
             android:padding="3dp"
-            android:background="?selectableItemBackground"/>
+            android:background="?selectableItemBackground"
+            android:textColor="?android:attr/textColorPrimary"/>
 
         <TextView
             android:id="@+id/arrivalPlatformView"
@@ -113,7 +127,8 @@
             android:layout_height="wrap_content"
             tools:text="5"
             android:layout_gravity="right"
-            android:padding="3dp"/>
+            android:padding="3dp"
+            android:layout_marginRight="10dp"/>
 
     </TableRow>
 
@@ -124,7 +139,7 @@
             layout="@layout/divider_horizontal"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_span="4"
+            android:layout_span="3"
             android:layout_weight="1"/>
 
     </TableRow>
