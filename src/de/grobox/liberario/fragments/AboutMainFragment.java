@@ -23,6 +23,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class AboutMainFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_about_main, container, false);
 
-		ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
+		final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
 
 		// don't recreate the fragments when changing tabs
 		viewPager.setOffscreenPageLimit(3);
@@ -47,10 +48,23 @@ public class AboutMainFragment extends Fragment {
 		mPagerAdapter = new AboutPagerAdapter(getChildFragmentManager());
 		viewPager.setAdapter(mPagerAdapter);
 
-		TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-		tabLayout.setupWithViewPager(viewPager);
+		final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+//		tabLayout.setupWithViewPager(viewPager);
 		tabLayout.setTabsFromPagerAdapter(mPagerAdapter);
 		tabLayout.setTabMode(TabLayout.MODE_FIXED);
+
+		// hack due to bug in library: https://code.google.com/p/android/issues/detail?id=180462#c17
+		if (ViewCompat.isLaidOut(tabLayout)) {
+			tabLayout.setupWithViewPager(viewPager);
+		} else {
+			tabLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+				                                    @Override
+				                                    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+					                                    tabLayout.setupWithViewPager(viewPager);
+					                                    tabLayout.removeOnLayoutChangeListener(this);
+				                                    }
+			                                    });
+		}
 
 		return view;
 	}
