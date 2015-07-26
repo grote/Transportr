@@ -134,6 +134,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			i += 1;
 		}
 
+		// hide last divider
+		ui.legs.get(trip.trip.legs.size() - 1).divider.setVisibility(View.GONE);
+
 		// Show Number of Changes for long trips
 		if(ui.lines.getChildCount() > 4) {
 			ui.changes.setText(String.valueOf(trip.trip.numChanges));
@@ -293,7 +296,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				leg_holder.lineDestination.setVisibility(View.GONE);
 			}
 		}
-		leg_holder.divider.setVisibility(detail ? View.VISIBLE : View.GONE);
 	}
 
 	static public void bindLeg(Context context, LegHolder leg_holder, Trip.Leg leg, boolean detail) {
@@ -430,6 +432,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				// first leg
 				leg.arrival.setVisibility(state);
 				leg.info.setVisibility(state);
+				leg.divider.setVisibility(state);
 			} else if(i == ui.legs.size() - 1) {
 				// last leg
 				leg.departure.setVisibility(state);
@@ -439,6 +442,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				leg.arrival.setVisibility(state);
 				leg.info.setVisibility(state);
 				leg.departure.setVisibility(state);
+				leg.divider.setVisibility(state);
 			}
 			i += 1;
 		}
