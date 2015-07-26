@@ -26,7 +26,7 @@ dependencies {
 	compile('com.mikepenz:materialdrawer:3.1.2') {
 		transitive = true
 	}
-	compile('com.mikepenz:aboutlibraries:5.0.8') {
+	compile('com.mikepenz:aboutlibraries:5.0.9') {
 		transitive = true
 	}
 	compile project(':sublibs:OSMBonusPack')
