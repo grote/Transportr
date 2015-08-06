@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 	static final public int CHANGED_NETWORK_PROVIDER = 1;
 	static final public int CHANGED_HOME = 2;
 
+	static final public String ACTION_DIRECTIONS = "de.grobox.liberario.directions";
 	static final public String ACTION_DEPARTURES = "de.grobox.liberario.departures";
 	static final public String ACTION_NEARBY_LOCATIONS = "de.grobox.liberario.nearby_locations";
 
@@ -462,12 +463,35 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		if(intent != null) {
 			final String action = intent.getAction();
 
-			if(action.equals(ACTION_DEPARTURES)) {
-				findDepartures((Location) intent.getSerializableExtra("location"));
+			switch(action) {
+				case ACTION_DIRECTIONS:
+					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"));
+					break;
+				case ACTION_DEPARTURES:
+					findDepartures((Location) intent.getSerializableExtra("location"));
+					break;
+				case ACTION_NEARBY_LOCATIONS:
+					findNearbyStations((Location) intent.getSerializableExtra("location"));
+					break;
 			}
-			else if(action.equals(ACTION_NEARBY_LOCATIONS)) {
-				findNearbyStations((Location) intent.getSerializableExtra("location"));
-			}
+		}
+	}
+
+	private void findDirections(Location from, Location to) {
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
+
+		if(!np.hasCapabilities(NetworkProvider.Capability.TRIPS)) {
+			Toast.makeText(getContext(), getString(R.string.error_no_trips_capability), Toast.LENGTH_SHORT).show();
+		}
+
+		DirectionsFragment f = (DirectionsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_directions));
+
+		if(f != null) {
+			f.searchFromTo(from, to);
+			switchFragment(getString(R.string.tab_directions));
+		}
+		else {
+			Toast.makeText(getContext(), R.string.error_please_file_ticket, Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -493,7 +517,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
 
 		if(!np.hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
-			Toast.makeText(getContext(), getString(R.string.error_no_departures_capability), Toast.LENGTH_SHORT).show();
+			Toast.makeText(getContext(), getString(R.string.error_no_nearby_locations_capability), Toast.LENGTH_SHORT).show();
 		}
 
 		NearbyStationsFragment f = (NearbyStationsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_nearby_stations));

@@ -17,8 +17,6 @@
 
 package de.grobox.liberario.fragments;
 
-import java.util.List;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -41,11 +39,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import de.grobox.liberario.TransportNetwork;
-import de.grobox.liberario.tasks.AsyncQueryTripsTask;
+import java.util.List;
+
 import de.grobox.liberario.FavTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.utils.LiberarioUtils;
 
@@ -165,19 +164,12 @@ public class FavTripsFragment extends LiberarioListFragment {
 		private void queryFavTrip(View v, final int position, final boolean swap) {
 			FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
 
-			AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 			if(swap) {
-				query_trips.setFrom(trip.getTo());
-				query_trips.setTo(trip.getFrom());
-			} else {
-				query_trips.setFrom(trip.getFrom());
-				query_trips.setTo(trip.getTo());
+				LiberarioUtils.findDirections(getActivity(), trip.getTo(), trip.getFrom());
 			}
-
-			// remember trip
-			FavDB.updateFavTrip(getActivity(), trip);
-
-			query_trips.execute();
+			else {
+				LiberarioUtils.findDirections(getActivity(), trip.getFrom(), trip.getTo());
+			}
 		}
 
 		@Override

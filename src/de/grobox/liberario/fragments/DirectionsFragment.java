@@ -155,67 +155,7 @@ public class DirectionsFragment extends LiberarioFragment {
 
 		ui.search.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getActivity()));
-				if(!np.hasCapabilities(NetworkProvider.Capability.TRIPS)) {
-					Toast.makeText(v.getContext(), v.getContext().getString(R.string.error_no_trips_capability), Toast.LENGTH_SHORT).show();
-					return;
-				}
-
-				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
-
-				// check and set to location
-				if(checkLocation(to)) {
-					query_trips.setTo(to.getLocation());
-				} else {
-					Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), Toast.LENGTH_SHORT).show();
-					return;
-				}
-
-				// check and set from location
-				if(from.isSearching()) {
-					if(from.getLocation() != null) {
-						query_trips.setFrom(from.getLocation());
-					} else {
-						mAfterGpsTask = query_trips;
-
-						pd = new ProgressDialog(getActivity());
-						pd.setMessage(getResources().getString(R.string.stations_searching_position));
-						pd.setCancelable(false);
-						pd.setIndeterminate(true);
-						pd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								mAfterGpsTask = null;
-								dialog.dismiss();
-							}
-						});
-						pd.show();
-					}
-				} else {
-					if(checkLocation(from)) {
-						query_trips.setFrom(from.getLocation());
-					} else {
-						Toast.makeText(getActivity(), getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
-						return;
-					}
-				}
-
-				// remember trip
-				FavDB.updateFavTrip(getActivity(), new FavTrip(from.getLocation(), to.getLocation()));
-
-				// set date
-				query_trips.setDate(DateUtils.getDateFromUi(mView));
-
-				// set departure to true of first item is selected in spinner
-				query_trips.setDeparture((boolean) ui.type.getTag());
-
-				// set products
-				query_trips.setProducts(mProducts);
-
-				// don't execute if we still have to wait for GPS position
-				if(mAfterGpsTask != null) return;
-
-				query_trips.execute();
+				search();
 			}
 		});
 
@@ -361,6 +301,77 @@ public class DirectionsFragment extends LiberarioFragment {
 				to.setLocation(FavDB.getHome(getActivity()), getResources().getDrawable(R.drawable.ic_action_home));
 			}
 		}
+	}
+
+	private void search() {
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getActivity()));
+		if(!np.hasCapabilities(NetworkProvider.Capability.TRIPS)) {
+			Toast.makeText(getActivity(), getString(R.string.error_no_trips_capability), Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(getActivity());
+
+		// check and set to location
+		if(checkLocation(to)) {
+			query_trips.setTo(to.getLocation());
+		} else {
+			Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		// check and set from location
+		if(from.isSearching()) {
+			if(from.getLocation() != null) {
+				query_trips.setFrom(from.getLocation());
+			} else {
+				mAfterGpsTask = query_trips;
+
+				pd = new ProgressDialog(getActivity());
+				pd.setMessage(getResources().getString(R.string.stations_searching_position));
+				pd.setCancelable(false);
+				pd.setIndeterminate(true);
+				pd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+					             @Override
+					             public void onClick(DialogInterface dialog, int which) {
+						             mAfterGpsTask = null;
+						             dialog.dismiss();
+					             }
+				             });
+				pd.show();
+			}
+		} else {
+			if(checkLocation(from)) {
+				query_trips.setFrom(from.getLocation());
+			} else {
+				Toast.makeText(getActivity(), getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
+				return;
+			}
+		}
+
+		// remember trip
+		FavDB.updateFavTrip(getActivity(), new FavTrip(from.getLocation(), to.getLocation()));
+
+		// set date
+		query_trips.setDate(DateUtils.getDateFromUi(mView));
+
+		// set departure to true of first item is selected in spinner
+		query_trips.setDeparture((boolean) ui.type.getTag());
+
+		// set products
+		query_trips.setProducts(mProducts);
+
+		// don't execute if we still have to wait for GPS position
+		if(mAfterGpsTask != null) return;
+
+		query_trips.execute();
+	}
+
+	public void searchFromTo(Location from, Location to) {
+		this.from.setLocation(from, null);
+		this.to.setLocation(to, null);
+
+		search();
 	}
 
 	private void startSetHome(boolean new_home, FavLocation.LOC_TYPE home_clicked) {

@@ -95,6 +95,7 @@
     <string name="error_no_station_location">Cannot find the location of the(se) station(s)</string>
     <string name="error_no_trips_capability">This transportation network does not support querying for directions.</string>
     <string name="error_no_departures_capability">The current transportation network does not support finding departures.</string>
+    <string name="error_no_nearby_locations_capability">The current transportation network does not support finding nearby stations.</string>
 
     <string name="number_of_stations">Number of Stations</string>
     <string name="meter">m</string>

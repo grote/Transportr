@@ -254,8 +254,16 @@ public class LiberarioUtils {
 		context.startActivity(intent);
 	}
 
+	static public void findDirections(Context context, Location from, Location to) {
+		Intent intent = new Intent(context, MainActivity.class);
+		intent.setAction(MainActivity.ACTION_DIRECTIONS);
+		intent.putExtra("from", from);
+		intent.putExtra("to", to);
+
+		context.startActivity(intent);
+	}
+
 	static public void findDepartures(Context context, Location loc) {
-		// start StationsListActivity with given location
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(MainActivity.ACTION_DEPARTURES);
 		intent.putExtra("location", loc);
@@ -264,7 +272,6 @@ public class LiberarioUtils {
 	}
 
 	static public void findNearbyStations(Context context, Location loc) {
-		// start StationsListActivity with given location
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(MainActivity.ACTION_NEARBY_LOCATIONS);
 		intent.putExtra("location", loc);
