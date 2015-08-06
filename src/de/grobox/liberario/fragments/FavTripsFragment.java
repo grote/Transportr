@@ -161,7 +161,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 			super(context, textViewResourceId, objects);
 		}
 
-		private void queryFavTrip(View v, final int position, final boolean swap) {
+		private void queryFavTrip(final int position, final boolean swap) {
 			FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
 
 			if(swap) {
@@ -183,7 +183,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 			v.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					queryFavTrip(v, position, false);
+					queryFavTrip(position, false);
 				}
 			});
 
@@ -192,7 +192,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 			swapButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					queryFavTrip(v, position, true);
+					queryFavTrip(position, true);
 				}
 			});
 			swapButton.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity()), PorterDuff.Mode.SRC_IN);

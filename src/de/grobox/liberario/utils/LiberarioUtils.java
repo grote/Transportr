@@ -33,7 +33,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
@@ -42,12 +41,10 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 
-import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapStationsActivity;
-import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
@@ -251,6 +248,15 @@ public class LiberarioUtils {
 				                .putExtra("title", trip.from.name + " → " + trip.to.name)
 				                .putExtra("description", LiberarioUtils.tripToString(context, trip));
 		if(trip.from.place != null) intent.putExtra("eventLocation", trip.from.place);
+		context.startActivity(intent);
+	}
+
+	static public void presetDirections(Context context, Location from, Location to) {
+		Intent intent = new Intent(context, MainActivity.class);
+		intent.setAction(MainActivity.ACTION_DIRECTIONS_PRESET);
+		intent.putExtra("from", from);
+		intent.putExtra("to", to);
+
 		context.startActivity(intent);
 	}
 

@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 	static final public int CHANGED_HOME = 2;
 
 	static final public String ACTION_DIRECTIONS = "de.grobox.liberario.directions";
+	static final public String ACTION_DIRECTIONS_PRESET = "de.grobox.liberario.directions.preset";
 	static final public String ACTION_DEPARTURES = "de.grobox.liberario.departures";
 	static final public String ACTION_NEARBY_LOCATIONS = "de.grobox.liberario.nearby_locations";
 
@@ -138,14 +139,14 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
             .withToolbar(toolbar)
             .withAccountHeader(accountHeader)
             .addDrawerItems(
-		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIcon(LiberarioUtils.getTintedDrawable(getContext(), android.R.drawable.ic_menu_directions)),
-		           new PrimaryDrawerItem().withName(R.string.tab_fav_trips).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star)),
-		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
-		           new PrimaryDrawerItem().withName(R.string.tab_nearby_stations).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
+		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIdentifier(R.string.tab_directions).withIcon(LiberarioUtils.getTintedDrawable(getContext(), android.R.drawable.ic_menu_directions)),
+		           new PrimaryDrawerItem().withName(R.string.tab_fav_trips).withIdentifier(R.string.tab_fav_trips).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star)),
+		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIdentifier(R.string.tab_departures).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
+		           new PrimaryDrawerItem().withName(R.string.tab_nearby_stations).withIdentifier(R.string.tab_nearby_stations).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
                    new DividerDrawerItem(),
-                   new PrimaryDrawerItem().withName(R.string.action_settings).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_settings)),
+                   new PrimaryDrawerItem().withName(R.string.action_settings).withIdentifier(R.string.action_settings).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_settings)),
                    new PrimaryDrawerItem().withName(R.string.action_changelog).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_changelog)),
-                   new PrimaryDrawerItem().withName(R.string.action_about).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_about))
+                   new PrimaryDrawerItem().withName(R.string.action_about).withIdentifier(R.string.action_about).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_about))
             )
             .withOnDrawerListener(new Drawer.OnDrawerListener() {
                   @Override
@@ -183,10 +184,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 						new HoloChangeLog(getContext()).getFullLogDialog().show();
 					} else {
-						switchFragment(getString(res));
-
-						// remember selected drawer item
-						selectedItem = position;
+						switchFragment(res);
 					}
 				}
 
@@ -361,7 +359,12 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		}
 	}
 
-	private void switchFragment(String f) {
+	private void switchFragment(int res) {
+		String f = getString(res);
+
+		// remember selected drawer item
+		selectedItem = drawer.getCurrentSelection();
+
 		// set fragment name in toolbar
 		toolbar.setTitle(f);
 
@@ -393,6 +396,9 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 				showToolbar();
 			}
 			transaction.commit();
+
+			// select the proper drawer item in the drawer
+			drawer.setSelectionByIdentifier(res, false);
 		}
 	}
 
@@ -465,7 +471,10 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 			switch(action) {
 				case ACTION_DIRECTIONS:
-					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"));
+					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"), false);
+					break;
+				case ACTION_DIRECTIONS_PRESET:
+					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"), true);
 					break;
 				case ACTION_DEPARTURES:
 					findDepartures((Location) intent.getSerializableExtra("location"));
@@ -477,7 +486,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		}
 	}
 
-	private void findDirections(Location from, Location to) {
+	private void findDirections(Location from, Location to, boolean preset) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
 
 		if(!np.hasCapabilities(NetworkProvider.Capability.TRIPS)) {
@@ -487,8 +496,12 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		DirectionsFragment f = (DirectionsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_directions));
 
 		if(f != null) {
-			f.searchFromTo(from, to);
-			switchFragment(getString(R.string.tab_directions));
+			if(preset) {
+				f.presetFromTo(from, to);
+			} else {
+				f.searchFromTo(from, to);
+			}
+			switchFragment(R.string.tab_directions);
 		}
 		else {
 			Toast.makeText(getContext(), R.string.error_please_file_ticket, Toast.LENGTH_LONG).show();
@@ -506,7 +519,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 		if(f != null) {
 			f.searchByLocation(loc);
-			switchFragment(getString(R.string.tab_departures));
+			switchFragment(R.string.tab_departures);
 		}
 		else {
 			Toast.makeText(getContext(), R.string.error_please_file_ticket, Toast.LENGTH_LONG).show();
@@ -524,7 +537,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 		if(f != null) {
 			f.searchByLocation(loc);
-			switchFragment(getString(R.string.tab_nearby_stations));
+			switchFragment(R.string.tab_nearby_stations);
 		}
 		else {
 			Toast.makeText(getContext(), R.string.error_please_file_ticket, Toast.LENGTH_LONG).show();

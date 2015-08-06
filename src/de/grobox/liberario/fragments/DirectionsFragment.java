@@ -367,10 +367,13 @@ public class DirectionsFragment extends LiberarioFragment {
 		query_trips.execute();
 	}
 
-	public void searchFromTo(Location from, Location to) {
+	public void presetFromTo(Location from, Location to) {
 		this.from.setLocation(from, null);
 		this.to.setLocation(to, null);
+	}
 
+	public void searchFromTo(Location from, Location to) {
+		presetFromTo(from, to);
 		search();
 	}
 
