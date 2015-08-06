@@ -33,6 +33,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -49,6 +50,7 @@ import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import de.cketti.library.changelog.ChangeLog;
 import de.grobox.liberario.LiberarioApplication;
+import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
@@ -60,10 +62,14 @@ import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.PrefsFragment;
 import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.dto.Location;
 
 public class MainActivity extends AppCompatActivity implements TransportNetwork.Handler {
 	static final public int CHANGED_NETWORK_PROVIDER = 1;
 	static final public int CHANGED_HOME = 2;
+
+	static final public String ACTION_DEPARTURES = "de.grobox.liberario.departures";
+	static final public String ACTION_NEARBY_LOCATIONS = "de.grobox.liberario.nearby_locations";
 
 	private Drawer drawer;
 	private AccountHeader accountHeader;
@@ -134,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIcon(LiberarioUtils.getTintedDrawable(getContext(), android.R.drawable.ic_menu_directions)),
 		           new PrimaryDrawerItem().withName(R.string.tab_fav_trips).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star)),
 		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
-		           new PrimaryDrawerItem().withName(R.string.nearby_stations).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
+		           new PrimaryDrawerItem().withName(R.string.tab_nearby_stations).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
                    new DividerDrawerItem(),
                    new PrimaryDrawerItem().withName(R.string.action_settings).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_settings)),
                    new PrimaryDrawerItem().withName(R.string.action_changelog).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_changelog)),
@@ -208,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 			                           .hide(favTripsFragment)
 			                           .add(R.id.fragment_container, departuresFragment, getString(R.string.tab_departures))
 			                           .hide(departuresFragment)
-			                           .add(R.id.fragment_container, nearbyStationsFragment, getString(R.string.nearby_stations))
+			                           .add(R.id.fragment_container, nearbyStationsFragment, getString(R.string.tab_nearby_stations))
 			                           .hide(nearbyStationsFragment)
 			                           .add(R.id.fragment_container, prefsFragment, getString(R.string.action_settings))
 			                           .hide(prefsFragment)
@@ -243,6 +249,8 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 		addAccounts(network);
 
+		processIntent();
+
 		// show Changelog
 		HoloChangeLog cl = new HoloChangeLog(this);
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
@@ -271,6 +279,14 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		else {
 			super.onBackPressed();
 		}
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		setIntent(intent);
+
+		processIntent();
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -327,7 +343,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 					case R.string.tab_departures:
 						item.setEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES));
 						break;
-					case R.string.nearby_stations:
+					case R.string.tab_nearby_stations:
 						item.setEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS));
 						break;
 				}
@@ -437,6 +453,57 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 					                          .withIcon(getResources().getDrawable(network3.getLogo()));
 			item3.setTag(network3);
 			accountHeader.addProfile(item3, accountHeader.getProfiles().size());
+		}
+	}
+
+	private void processIntent() {
+		final Intent intent = getIntent();
+
+		if(intent != null) {
+			final String action = intent.getAction();
+
+			if(action.equals(ACTION_DEPARTURES)) {
+				findDepartures((Location) intent.getSerializableExtra("location"));
+			}
+			else if(action.equals(ACTION_NEARBY_LOCATIONS)) {
+				findNearbyStations((Location) intent.getSerializableExtra("location"));
+			}
+		}
+	}
+
+	private void findDepartures(Location loc) {
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
+
+		if(!np.hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
+			Toast.makeText(getContext(), getString(R.string.error_no_departures_capability), Toast.LENGTH_SHORT).show();
+		}
+
+		DeparturesFragment f = (DeparturesFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_departures));
+
+		if(f != null) {
+			f.searchByLocation(loc);
+			switchFragment(getString(R.string.tab_departures));
+		}
+		else {
+			Toast.makeText(getContext(), R.string.error_please_file_ticket, Toast.LENGTH_LONG).show();
+		}
+	}
+
+	private void findNearbyStations(Location loc) {
+		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
+
+		if(!np.hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
+			Toast.makeText(getContext(), getString(R.string.error_no_departures_capability), Toast.LENGTH_SHORT).show();
+		}
+
+		NearbyStationsFragment f = (NearbyStationsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_nearby_stations));
+
+		if(f != null) {
+			f.searchByLocation(loc);
+			switchFragment(getString(R.string.tab_nearby_stations));
+		}
+		else {
+			Toast.makeText(getContext(), R.string.error_please_file_ticket, Toast.LENGTH_LONG).show();
 		}
 	}
 

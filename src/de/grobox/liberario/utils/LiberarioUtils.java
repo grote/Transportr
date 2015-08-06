@@ -17,13 +17,6 @@
 
 package de.grobox.liberario.utils;
 
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Date;
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -42,12 +35,18 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
-import de.grobox.liberario.activities.MapStationsActivity;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Date;
+
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.activities.StationsListActivity;
+import de.grobox.liberario.activities.MainActivity;
+import de.grobox.liberario.activities.MapStationsActivity;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
@@ -256,31 +255,21 @@ public class LiberarioUtils {
 	}
 
 	static public void findDepartures(Context context, Location loc) {
-		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
+		// start StationsListActivity with given location
+		Intent intent = new Intent(context, MainActivity.class);
+		intent.setAction(MainActivity.ACTION_DEPARTURES);
+		intent.putExtra("location", loc);
 
-		// TODO adapt this to new DeparturesFragment
-		Toast.makeText(context, "Out of service! " + loc.toString(), Toast.LENGTH_SHORT).show();
-
-/*		if(np.hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
-			// start StationsListActivity with given location
-			Intent intent = new Intent(context, StationsListActivity.class);
-			intent.putExtra("de.schildbach.pte.dto.Location", loc);
-			context.startActivity(intent);
-		} else {
-			Toast.makeText(context, context.getString(R.string.error_no_departures_capability), Toast.LENGTH_SHORT).show();
-		}
-*/	}
-
-	static public void findNearbyStations(Context context, Location loc, int maxDistance, int maxStations) {
-		// TODO adapt this to new NearbyStationsFragment
-		Toast.makeText(context, "Out of service! " + loc.toString(), Toast.LENGTH_SHORT).show();
-
-		//AsyncQueryNearbyStationsTask query_stations = new AsyncQueryNearbyStationsTask(context, loc, maxDistance, maxStations);
-		//query_stations.execute();
+		context.startActivity(intent);
 	}
 
 	static public void findNearbyStations(Context context, Location loc) {
-		findNearbyStations(context, loc, 2000, 5);
+		// start StationsListActivity with given location
+		Intent intent = new Intent(context, MainActivity.class);
+		intent.setAction(MainActivity.ACTION_NEARBY_LOCATIONS);
+		intent.putExtra("location", loc);
+
+		context.startActivity(intent);
 	}
 
 	static public void showLocationsOnMap(Context context, ArrayList<Location> loc_list, Location my_loc) {

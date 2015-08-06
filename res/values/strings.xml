@@ -64,7 +64,7 @@
     <string name="trip_searching">Searching for connections&#8230;</string>
     <string name="stations_searching_position">Searching for current position&#8230;</string>
     <string name="stations_searching_stations">Searching for nearby stations&#8230;</string>
-    <string name="nearby_stations">Nearby Stations</string>
+    <string name="tab_nearby_stations">Nearby Stations</string>
     <string name="find_nearby_stations">Find Nearby Stations</string>
     <string name="find_departures">Find Departures</string>
     <string name="departure_station">Departure Station</string>
@@ -240,5 +240,6 @@
     <string name="portuguese_br">Portuguese\n(Brazil)</string>
     <string name="spanish">Spanish</string>
     <string name="turkish">Turkish</string>
+    <string name="error_please_file_ticket">Something went wrong. Please create an issue ticket explaining what you did.</string>
 
 </resources>

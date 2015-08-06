@@ -212,6 +212,11 @@ public class NearbyStationsFragment extends LiberarioFragment {
 		}
 	}
 
+	public void searchByLocation(Location loc) {
+		this.loc.setLocation(loc, null);
+		search();
+	}
+
 	public void addStations(NearbyLocationsResult result) {
 		stationAdapter.addAll(result.locations);
 
@@ -235,7 +240,7 @@ public class NearbyStationsFragment extends LiberarioFragment {
 		ui.progress.setVisibility(View.VISIBLE);
 		ui.progress.animate().alpha(1f).setDuration(750);
 
-		ui.menu_map.setVisible(false);
+		if(ui.menu_map != null) ui.menu_map.setVisible(false);
 	}
 
 	public void onRefreshComplete() {

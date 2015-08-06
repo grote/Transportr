@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -52,6 +51,7 @@ import de.grobox.liberario.ui.LocationInputView;
 import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.LiberarioUtils;
 import de.schildbach.pte.dto.Departure;
+import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
@@ -89,31 +89,7 @@ public class DeparturesFragment extends LiberarioFragment {
 		ui.search.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(loc.getLocation() != null) {
-					// use location to query departures
-
-					if(!loc.getLocation().hasId()) {
-						Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
-						return;
-					}
-
-					// Location is valid, so make it a favorite or increase counter
-					FavDB.updateFavLocation(getActivity(), loc.getLocation(), FavLocation.LOC_TYPE.FROM);
-
-					date = DateUtils.getDateFromUi(mView);
-					stationId = loc.getLocation().id;
-
-					// play animations before clearing departures list
-					onRefreshStart();
-
-					// clear old list
-					departureAdapter.clear();
-
-					AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(DeparturesFragment.this, stationId, date, true, MAX_DEPARTURES);
-					query_stations.execute();
-				} else {
-					Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
-				}
+				search();
 			}
 		});
 
@@ -134,7 +110,7 @@ public class DeparturesFragment extends LiberarioFragment {
 		ui.swipe_refresh.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh(final SwipyRefreshLayoutDirection direction) {
-				startGetMoreDepartures(direction != SwipyRefreshLayoutDirection.TOP);
+				searchMore(direction != SwipyRefreshLayoutDirection.TOP);
 			}
 		});
 
@@ -167,6 +143,34 @@ public class DeparturesFragment extends LiberarioFragment {
 
 		// clear text view
 		loc.clearLocation();
+	}
+
+	public void search() {
+		if(loc.getLocation() != null) {
+			// use location to query departures
+
+			if(!loc.getLocation().hasId()) {
+				Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
+				return;
+			}
+
+			// Location is valid, so make it a favorite or increase counter
+			FavDB.updateFavLocation(getActivity(), loc.getLocation(), FavLocation.LOC_TYPE.FROM);
+
+			date = DateUtils.getDateFromUi(mView);
+			stationId = loc.getLocation().id;
+
+			// play animations before clearing departures list
+			onRefreshStart();
+
+			// clear old list
+			departureAdapter.clear();
+
+			AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(DeparturesFragment.this, stationId, date, true, MAX_DEPARTURES);
+			query_stations.execute();
+		} else {
+			Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	public void addDepartures(QueryDeparturesResult result, boolean later, boolean more) {
@@ -239,7 +243,7 @@ public class DeparturesFragment extends LiberarioFragment {
 		}
 	}
 
-	public void startGetMoreDepartures(boolean later) {
+	public void searchMore(boolean later) {
 		int item_pos;
 		int max_departures = MAX_DEPARTURES;
 
@@ -271,6 +275,11 @@ public class DeparturesFragment extends LiberarioFragment {
 		}
 
 		new AsyncQueryDeparturesTask(this, stationId, date, later, max_departures, true).execute();
+	}
+
+	public void searchByLocation(Location loc) {
+		this.loc.setLocation(loc, null);
+		search();
 	}
 
 	private static class ViewHolder {
