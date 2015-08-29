@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/navigation_separator_vertical_padding">
+        android:padding="7dp">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -42,9 +42,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
-                    android:layout_marginStart="@dimen/navigation_padding_bottom"
-                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
                     tools:ignore="HardcodedText"
                     android:text="Torsten Grote"/>
 
@@ -80,54 +80,54 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
-                    android:layout_marginStart="@dimen/navigation_padding_bottom"
-                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
                     tools:ignore="HardcodedText"
                     android:text="Jochen Sprickerhof"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
-                    android:layout_marginStart="@dimen/navigation_padding_bottom"
-                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
                     tools:ignore="HardcodedText"
                     android:text="Mats Sjöberg"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
-                    android:layout_marginStart="@dimen/navigation_padding_bottom"
-                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
                     tools:ignore="HardcodedText"
                     android:text="mray"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
-                    android:layout_marginStart="@dimen/navigation_padding_bottom"
-                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
                     tools:ignore="HardcodedText"
                     android:text="Paspartout"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
-                    android:layout_marginStart="@dimen/navigation_padding_bottom"
-                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
                     tools:ignore="HardcodedText"
                     android:text="Sebastian Grote"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
-                    android:layout_marginStart="@dimen/navigation_padding_bottom"
-                    android:padding="@dimen/navigation_separator_vertical_padding"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
                     tools:ignore="HardcodedText"
                     android:text="Simó Albert i Beltran"/>
 
@@ -163,8 +163,8 @@
                 <TableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/navigation_padding_bottom"
-                    android:layout_marginStart="@dimen/navigation_padding_bottom">
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp">
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -173,7 +173,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/dutch"/>
 
@@ -181,7 +181,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             tools:ignore="HardcodedText"
                             android:text="TheLastProject"/>
                     </TableRow>
@@ -193,7 +193,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/french"/>
 
@@ -201,7 +201,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             tools:ignore="HardcodedText"
                             android:text="Cryptie, Alain-Olivier"/>
                     </TableRow>
@@ -213,7 +213,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/german"
                             />
@@ -222,7 +222,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             tools:ignore="HardcodedText"
                             android:text="Benedikt Volkmer, Torsten Grote"/>
 
@@ -235,7 +235,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/italian"/>
 
@@ -243,7 +243,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             tools:ignore="HardcodedText"
                             android:text="Giuseppe Pignataro"/>
                     </TableRow>
@@ -256,7 +256,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/portuguese_br"/>
 
@@ -264,7 +264,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             tools:ignore="HardcodedText"
                             android:text="Gislene Kucker Arantes, Paulo Martins"/>
                     </TableRow>
@@ -276,7 +276,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/spanish"/>
 
@@ -284,7 +284,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             tools:ignore="HardcodedText"
                             android:text="Adolfo Jayme Barrientos"/>
                     </TableRow>
@@ -296,7 +296,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/turkish"/>
 
@@ -304,7 +304,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:padding="@dimen/navigation_separator_vertical_padding"
+                            android:padding="7dp"
                             android:text="Emre Deniz"
                             tools:ignore="HardcodedText"/>
                     </TableRow>

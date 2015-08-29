@@ -49,22 +49,9 @@ public class AboutMainFragment extends Fragment {
 		viewPager.setAdapter(mPagerAdapter);
 
 		final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-//		tabLayout.setupWithViewPager(viewPager);
+		tabLayout.setupWithViewPager(viewPager);
 		tabLayout.setTabsFromPagerAdapter(mPagerAdapter);
 		tabLayout.setTabMode(TabLayout.MODE_FIXED);
-
-		// hack due to bug in library: https://code.google.com/p/android/issues/detail?id=180462#c17
-		if (ViewCompat.isLaidOut(tabLayout)) {
-			tabLayout.setupWithViewPager(viewPager);
-		} else {
-			tabLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-				                                    @Override
-				                                    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-					                                    tabLayout.setupWithViewPager(viewPager);
-					                                    tabLayout.removeOnLayoutChangeListener(this);
-				                                    }
-			                                    });
-		}
 
 		return view;
 	}

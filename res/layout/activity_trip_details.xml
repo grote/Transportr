@@ -20,9 +20,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginBottom="32dp"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
+            app:titleEnabled="false"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <include layout="@layout/trip_details_header"/>

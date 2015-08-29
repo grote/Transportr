@@ -21,14 +21,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.IntentCompat;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
-
-import com.github.machinarius.preferencefragment.PreferenceFragment;
 
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.PickNetworkProviderActivity;
@@ -39,15 +38,13 @@ import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Location;
 
-public class PrefsFragment extends PreferenceFragment implements TransportNetwork.Handler, SharedPreferences.OnSharedPreferenceChangeListener {
+public class PrefsFragment extends PreferenceFragmentCompat implements TransportNetwork.Handler, SharedPreferences.OnSharedPreferenceChangeListener {
 
 	Preference network_pref;
 	Preference home;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
+	public void onCreatePreferences(Bundle savedInstanceState, String s) {
 		// Load the preferences from an XML resource
 		addPreferencesFromResource(R.xml.preferences);
 
@@ -61,7 +58,11 @@ public class PrefsFragment extends PreferenceFragment implements TransportNetwor
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 			    Intent intent = new Intent(getActivity(), PickNetworkProviderActivity.class);
-				View view = preference.getView(null, null);
+
+//				View view = preference.getView(null, null);
+				View view = getView();
+				if(view != null) view = view.findFocus();
+
 				ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
 				ActivityCompat.startActivityForResult(getActivity(), intent, MainActivity.CHANGED_NETWORK_PROVIDER, options.toBundle());
 
@@ -80,7 +81,10 @@ public class PrefsFragment extends PreferenceFragment implements TransportNetwor
 					intent.putExtra("new", true);
 				}
 
-				View view = preference.getView(null, null);
+//				View view = preference.getView(null, null);
+				View view = getView();
+				if(view != null) view = view.findFocus();
+
 				ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
 				ActivityCompat.startActivityForResult(getActivity(), intent, MainActivity.CHANGED_HOME, options.toBundle());
 

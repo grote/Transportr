@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="cardBackgroundColor">@color/cardview_dark_background</item>
         <item name="android:dialogTheme">@style/DialogTheme</item>
@@ -18,6 +19,7 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
         <item name="android:dialogTheme">@style/DialogTheme.Light</item>
@@ -29,6 +31,7 @@
 
     <style name="AppTheme.Light" parent="AppBaseTheme.Light">
     </style>
+
 
     <!-- Dialog Theme -->
 
