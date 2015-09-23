@@ -2,7 +2,7 @@
 <resources>
     <string name="action_earlier">Find Earlier Trips</string>
     <string name="action_later">Find Later Trips</string>
-    <string name="action_changelog">Change Log</string>
+    <string name="action_changelog">Changelog</string>
     <string name="action_about">About</string>
     <string name="action_clear_favs">Clear Favorites</string>
     <string name="action_settings">Settings</string>
@@ -83,11 +83,11 @@
 
     <string name="error_pick_network">Please select one transportation network!</string>
     <string name="error_no_internet">No sufficient internet connection available</string>
-    <string name="error_invalid_from">Invalid From Location</string>
-    <string name="error_invalid_to">Invalid To Location</string>
+    <string name="error_invalid_from">Invalid Start Location (From)</string>
+    <string name="error_invalid_to">Invalid Destination (To)</string>
     <string name="error_no_favs">No favorite locations saved</string>
     <string name="error_no_trips_found">No directions found</string>
-    <string name="error_no_location_provider">Cannot find position. Please turn on GPS!</string>
+    <string name="error_no_location_provider">Cannot locate your position. Please turn on GPS!</string>
     <string name="error_no_departures_found">No departures found</string>
     <string name="error_no_stations_found">No stations found</string>
     <string name="error_no_proper_station">The provided location is no proper station</string>
