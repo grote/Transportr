@@ -27,4 +27,7 @@ local.properties
 .idea/
 *.iml
 .gradle/
+gradle/
 manifest-merger-release-report.txt
+gradlew
+gradlew.bat
