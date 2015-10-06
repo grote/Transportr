@@ -98,6 +98,12 @@ public class FavTripsFragment extends LiberarioListFragment {
 		// Inflate the menu items for use in the action bar
 		inflater.inflate(R.menu.fav_trip_actions, menu);
 
+		if(Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)) {
+			menu.findItem(R.id.action_fav_trips_sort_count).setChecked(true);
+		} else {
+			menu.findItem(R.id.action_fav_trips_sort_recent).setChecked(true);
+		}
+
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -105,16 +111,17 @@ public class FavTripsFragment extends LiberarioListFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
-			case R.id.action_fav_trips_sort:
-				if(Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)) {
-					adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), false));
-					Preferences.setPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT, false);
-				} else {
-					adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), true));
-					Preferences.setPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT, true);
-				}
+			case R.id.action_fav_trips_sort_count:
+				adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), true));
+				Preferences.setPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT, true);
 				setListAdapter(adapter);
-
+				item.setChecked(true);
+				return true;
+			case R.id.action_fav_trips_sort_recent:
+				adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), false));
+				Preferences.setPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT, false);
+				setListAdapter(adapter);
+				item.setChecked(true);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
