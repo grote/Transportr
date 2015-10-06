@@ -36,10 +36,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.EnumSet;
@@ -257,17 +260,7 @@ public class DirectionsFragment extends LiberarioFragment {
 
 				return true;
 			case R.id.action_swap_locations:
-				// swap location objects and drawables
-				final Drawable icon = ui.to.status.getDrawable();
-				Location tmp = to.getLocation();
-				if(!from.isSearching()) {
-					to.setLocation(from.getLocation(), ui.from.status.getDrawable());
-				} else {
-					// TODO: GPS currently only supports from location, so don't swap it for now
-					to.clearLocation();
-				}
-				from.setLocation(tmp, icon);
-
+				swapLocations();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -604,6 +597,52 @@ public class DirectionsFragment extends LiberarioFragment {
 		ui.search = (Button) mView.findViewById(R.id.searchButton);
 
 		ui.whatHere = mView.findViewById(R.id.whatHereView);
+	}
+
+	public void swapLocations() {
+		Animation slideUp = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+				0.0f, Animation.RELATIVE_TO_SELF, -1.0f);
+
+		slideUp.setDuration(400);
+		slideUp.setFillAfter(true);
+		slideUp.setFillEnabled(true);
+		ui.toLocation.startAnimation(slideUp);
+
+		Animation slideDown = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+				0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
+
+		slideDown.setDuration(400);
+		slideDown.setFillAfter(true);
+		slideDown.setFillEnabled(true);
+		ui.fromLocation.startAnimation(slideDown);
+
+		slideUp.setAnimationListener(new Animation.AnimationListener() {
+
+			@Override
+			public void onAnimationStart(Animation animation) { }
+
+			@Override
+			public void onAnimationRepeat(Animation animation) { }
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				// swap location objects and drawables
+				final Drawable icon = ui.to.status.getDrawable();
+				Location tmp = to.getLocation();
+				if(!from.isSearching()) {
+					to.setLocation(from.getLocation(), ui.from.status.getDrawable());
+				} else {
+					// TODO: GPS currently only supports from location, so don't swap it for now
+					to.clearLocation();
+				}
+				from.setLocation(tmp, icon);
+
+				ui.fromLocation.clearAnimation();
+				ui.toLocation.clearAnimation();
+			}
+		});
 	}
 }
 
