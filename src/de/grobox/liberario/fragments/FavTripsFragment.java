@@ -74,6 +74,8 @@ public class FavTripsFragment extends LiberarioListFragment {
 		super.onActivityCreated(savedState);
 
 		getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		getListView().setDividerHeight(0);
+		getListView().setDivider(null);
 	}
 
 	@Override
