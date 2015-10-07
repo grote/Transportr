@@ -32,13 +32,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
-import com.mikepenz.materialdrawer.accountswitcher.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.BaseDrawerItem;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
@@ -143,40 +142,38 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		           new PrimaryDrawerItem().withName(R.string.tab_fav_trips).withIdentifier(R.string.tab_fav_trips).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star)),
 		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIdentifier(R.string.tab_departures).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
 		           new PrimaryDrawerItem().withName(R.string.tab_nearby_stations).withIdentifier(R.string.tab_nearby_stations).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
-                   new DividerDrawerItem(),
-                   new PrimaryDrawerItem().withName(R.string.action_settings).withIdentifier(R.string.action_settings).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_settings)),
-                   new PrimaryDrawerItem().withName(R.string.action_changelog).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_changelog)),
-                   new PrimaryDrawerItem().withName(R.string.action_about).withIdentifier(R.string.action_about).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_about))
+		           new DividerDrawerItem(),
+		           new PrimaryDrawerItem().withName(R.string.action_settings).withIdentifier(R.string.action_settings).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_settings)),
+		           new PrimaryDrawerItem().withName(R.string.action_changelog).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_changelog)),
+		           new PrimaryDrawerItem().withName(R.string.action_about).withIdentifier(R.string.action_about).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_about))
             )
             .withOnDrawerListener(new Drawer.OnDrawerListener() {
-                  @Override
-                  public void onDrawerOpened(View drawerView) {
-                      KeyboardUtil.hideKeyboard(MainActivity.this);
-                  }
+	                                  @Override
+	                                  public void onDrawerOpened(View drawerView) {
+		                                  KeyboardUtil.hideKeyboard(MainActivity.this);
+	                                  }
 
-                  @Override
-                  public void onDrawerClosed(View drawerView) {}
+	                                  @Override
+	                                  public void onDrawerClosed(View drawerView) {}
 
-                  @Override
-                  public void onDrawerSlide(View drawerView, float slideOffset) {}
-              }
-            )
+	                                  @Override
+	                                  public void onDrawerSlide(View drawerView, float slideOffset) {}
+                                  })
             .withFireOnInitialOnClick(false)
             .withSavedInstance(savedInstanceState)
             .withShowDrawerOnFirstLaunch(true)
-            .withAnimateDrawerItems(true)
             .build();
 
 		drawer.setOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 			@Override
-			public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+			public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 				if(position == -1) {
 					// adjust position to first item when -1 for some reason
 					position = 0;
 				}
 
 				if(drawerItem != null && drawerItem instanceof Nameable) {
-					int res = ((Nameable) drawerItem).getNameRes();
+					int res = ((Nameable) drawerItem).getName().getTextRes();
 
 					if(res == R.string.action_changelog) {
 						// don't select changelog item
@@ -334,28 +331,28 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 			if(i instanceof BaseDrawerItem) {
 				BaseDrawerItem item = (BaseDrawerItem) i;
 
-				switch(item.getNameRes()) {
+				switch(item.getName().getTextRes()) {
 					case R.string.tab_directions:
 					case R.string.tab_fav_trips:
-						item.setEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS));
+						item.withEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS));
 						break;
 					case R.string.tab_departures:
-						item.setEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES));
+						item.withEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES));
 						break;
 					case R.string.tab_nearby_stations:
-						item.setEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS));
+						item.withEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS));
 						break;
 				}
 			}
 		}
 
-		if(drawer.getDrawerItems().get(drawer.getCurrentSelection()).isEnabled()) {
+		if(drawer.getCurrentSelectedPosition() < drawer.getDrawerItems().size() && drawer.getDrawerItem(drawer.getCurrentSelection()).isEnabled()) {
 			// this is somehow necessary to show enabled/disabled state
 			// make sure to use fireOnClick=false
 			drawer.setSelection(drawer.getCurrentSelection(), false);
 		} else {
 			// select last section if this one is not supported by current network
-			drawer.setSelection(drawer.getDrawerItems().size() - 1);
+			drawer.setSelectionAtPosition(drawer.getDrawerItems().size() - 1);
 		}
 	}
 
@@ -398,7 +395,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 			transaction.commit();
 
 			// select the proper drawer item in the drawer
-			drawer.setSelectionByIdentifier(res, false);
+			drawer.setSelection(res, false);
 		}
 	}
 
@@ -436,7 +433,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 					                          .withName(network.getName())
 					                          .withEmail(network.getDescription())
 					                          .withIcon(getResources().getDrawable(network.getLogo()));
-			item1.setTag(network);
+			item1.withTag(network);
 			accountHeader.addProfile(item1, accountHeader.getProfiles().size());
 		}
 
@@ -447,7 +444,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 					                          .withName(network2.getName())
 					                          .withEmail(network2.getDescription())
 					                          .withIcon(getResources().getDrawable(network2.getLogo()));
-			item2.setTag(network2);
+			item2.withTag(network2);
 			accountHeader.addProfile(item2, accountHeader.getProfiles().size());
 		}
 
@@ -458,7 +455,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 					                          .withName(network3.getName())
 					                          .withEmail(network3.getDescription())
 					                          .withIcon(getResources().getDrawable(network3.getLogo()));
-			item3.setTag(network3);
+			item3.withTag(network3);
 			accountHeader.addProfile(item3, accountHeader.getProfiles().size());
 		}
 	}
