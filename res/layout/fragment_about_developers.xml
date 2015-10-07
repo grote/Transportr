@@ -84,6 +84,15 @@
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
                     tools:ignore="HardcodedText"
+                    android:text="ByteHamster"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
+                    tools:ignore="HardcodedText"
                     android:text="Jochen Sprickerhof"/>
 
                 <TextView
