@@ -278,7 +278,7 @@ public class NearbyStationsFragment extends LiberarioFragment {
 			stations_card = (CardView) view.findViewById(R.id.nearbystations_list);
 			progress = (ProgressBar) view.findViewById(R.id.progressBar);
 			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
-			recycler = (RecyclerView) view.findViewById(R.id.departures_recycler_view);
+			recycler = (RecyclerView) view.findViewById(R.id.nearbystations_recycler_view);
 		}
 	}
 

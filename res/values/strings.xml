@@ -119,6 +119,8 @@
     <string name="product_cablecar">Cablecar</string>
     <string name="product_on_demand">On Demand</string>
     <string name="action_fav_trips_sort">Sort List</string>
+    <string name="action_fav_trips_sort_recent">Last used</string>
+    <string name="action_fav_trips_sort_most">Most used</string>
 
     <string name="what_here">Let me know what you would like to see here!</string>
 
