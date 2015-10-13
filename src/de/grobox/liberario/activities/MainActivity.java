@@ -264,16 +264,17 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 	@Override
 	public void onBackPressed() {
+		String fragment_tag = getSupportFragmentManager().getBackStackEntryAt(
+				getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
+		Fragment fragment_current = getSupportFragmentManager().findFragmentByTag(fragment_tag);
+
 		// close the drawer first
 		if(drawer != null && drawer.isDrawerOpen()) {
 			drawer.closeDrawer();
-		}
-		else if(getSupportFragmentManager().getBackStackEntryCount() == 1) {
-			// don't remove last fragment, leave before
+		} else if(fragment_current.getTag().equals(getString(R.string.tab_directions))) {
 			finish();
-		}
-		else {
-			super.onBackPressed();
+		} else {
+			switchFragment(R.string.tab_directions);
 		}
 	}
 
