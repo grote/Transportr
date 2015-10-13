@@ -25,7 +25,6 @@ import android.support.v7.util.SortedList;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -208,9 +207,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		// Leg duration
 		leg_holder.duration.setText(DateUtils.getDuration(leg.getDepartureTime(), leg.getArrivalTime()));
 
-		// Clear Transport Icons to avoid accumulation when same trips are returned
-		leg_holder.line.removeAllViews();
-
 		if(leg instanceof Trip.Public) {
 			Trip.Public public_leg = ((Trip.Public) leg);
 
@@ -236,7 +232,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				leg_holder.arrivalPlatform.setVisibility(View.GONE);
 			}
 
-			LiberarioUtils.addLineBox(context, leg_holder.line, public_leg.line);
+			leg_holder.line.removeViewAt(0);
+			LiberarioUtils.addLineBox(context, leg_holder.line, public_leg.line, 0);
 			if(lines != null) LiberarioUtils.addLineBox(context, lines, public_leg.line);
 
 			if(public_leg.destination != null) {
@@ -272,7 +269,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			// TODO carry over delay from last leg somehow?
 			leg_holder.arrivalDelay.setVisibility(View.GONE);
 
-			LiberarioUtils.addWalkingBox(context, leg_holder.line);
+			leg_holder.line.removeViewAt(0);
+			LiberarioUtils.addWalkingBox(context, leg_holder.line, 0);
 			if(lines != null) LiberarioUtils.addWalkingBox(context, lines);
 
 			if(detail) {
@@ -541,7 +539,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		public ViewGroup info;
 		public TextView message;
 		public ViewGroup stops;
-		public FlowLayout line;
+		public ViewGroup line;
 		public ImageView arrow;
 		public TextView lineDestination;
 		public TextView	duration;
@@ -564,7 +562,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			info = (ViewGroup) v.findViewById(R.id.infoView);
 			message =  (TextView) v.findViewById(R.id.messageView);
 			stops = (ViewGroup) v.findViewById(R.id.stopsView);
-			line = (FlowLayout) v.findViewById(R.id.lineLayout);
+			line = (ViewGroup) v.findViewById(R.id.lineView);
 			arrow = (ImageView) v.findViewById(R.id.arrowView);
 			lineDestination = (TextView) v.findViewById(R.id.lineDestinationView);
 			duration = (TextView) v.findViewById(R.id.durationView);

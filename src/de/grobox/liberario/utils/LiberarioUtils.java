@@ -98,10 +98,14 @@ public class LiberarioUtils {
 		addLineBox(context, lineLayout, line, index, false);
 	}
 
-	static public void addWalkingBox(Context context, ViewGroup lineLayout) {
+	static public void addWalkingBox(Context context, ViewGroup lineLayout, int index) {
 		ImageView transportsView = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
 
-		lineLayout.addView(transportsView);
+		lineLayout.addView(transportsView, index);
+	}
+
+	static public void addWalkingBox(Context context, ViewGroup lineLayout) {
+		addWalkingBox(context, lineLayout, lineLayout.getChildCount());
 	}
 
 	static public View getDivider(Context context) {

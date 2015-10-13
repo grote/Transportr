@@ -16,27 +16,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <de.grobox.liberario.ui.FlowLayout
-            android:id="@+id/lineLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            >
-
-            <include
-                layout="@layout/line_box"
-                />
-
-        </de.grobox.liberario.ui.FlowLayout>
+        <include
+            layout="@layout/line_box"
+            />
 
         <ImageView
             android:id="@+id/arrowView"
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_right_arrow"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/to"/>
 
         <TextView
             android:id="@+id/lineDestinationView"
