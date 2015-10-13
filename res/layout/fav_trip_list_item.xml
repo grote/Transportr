@@ -47,12 +47,14 @@
                     android:id="@+id/favFromView"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?android:attr/textColorPrimary"
                     tools:text="Turmstr. (U)" />
 
                 <TextView
                     android:id="@+id/favToView"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="?android:attr/textColorPrimary"
                     tools:text="Zoologischer Garten (S+U)" />
 
             </LinearLayout>

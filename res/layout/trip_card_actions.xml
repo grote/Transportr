@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_action_social_share"
+        android:background="?attr/actionBarItemBackground"
         android:padding="8dp"
         android:contentDescription="@string/action_share"/>
 
@@ -19,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_action_calendar"
+        android:background="?attr/actionBarItemBackground"
         android:padding="8dp"
         android:contentDescription="@string/action_trip_calendar"/>
 
@@ -32,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_action_navigation_unfold_more"
+        android:background="?attr/actionBarItemBackground"
         android:padding="8dp"
         android:contentDescription="@string/action_navigation_expand"/>
 
