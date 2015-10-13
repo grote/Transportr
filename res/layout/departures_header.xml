@@ -1,47 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/departureForm"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardBackgroundColor="?attr/cardBackgroundColor"
-    card_view:cardUseCompatPadding="true"
-    card_view:cardCornerRadius="2dp"
-    tools:showIn="@layout/fragment_departures"
-    >
+    android:padding="5dp">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/departureForm"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-
-        <include
-            layout="@layout/location_input_view"
-            android:id="@+id/location_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+        card_view:cardBackgroundColor="?attr/cardBackgroundColor"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="2dp"
+        tools:showIn="@layout/fragment_departures"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
 
             <include
-                layout="@layout/time_and_date"/>
+                layout="@layout/location_input_view"
+                android:id="@+id/location_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
-            <include
-                layout="@layout/search_button"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <include
+                    layout="@layout/time_and_date"/>
+
+                <include
+                    layout="@layout/search_button"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </android.support.v7.widget.CardView>
 
-</android.support.v7.widget.CardView>
+</LinearLayout>

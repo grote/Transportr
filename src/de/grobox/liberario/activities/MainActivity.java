@@ -391,7 +391,8 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 					transaction.hide(fragment_old);
 				}
 
-				showToolbar();
+				// Only relevant when CoordinatorLayout is used
+				//showToolbar();
 			}
 			transaction.commit();
 
@@ -415,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		}
 	}
 
-	private void showToolbar() {
+/*	private void showToolbar() {
 		CoordinatorLayout coordinator = (CoordinatorLayout) findViewById(R.id.coordinator);
 		AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
 		CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appbar.getLayoutParams();
@@ -426,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 			behavior.onNestedPreScroll(coordinator, appbar, null, 0, 1, new int[2]);
 		}
 	}
-
+*/
 	private void addAccounts(TransportNetwork network) {
 		if(network != null) {
 			//noinspection deprecation
