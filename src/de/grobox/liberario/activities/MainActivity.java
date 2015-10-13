@@ -22,8 +22,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -71,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 	static final public String ACTION_DIRECTIONS_PRESET = "de.grobox.liberario.directions.preset";
 	static final public String ACTION_DEPARTURES = "de.grobox.liberario.departures";
 	static final public String ACTION_NEARBY_LOCATIONS = "de.grobox.liberario.nearby_locations";
+	static final public String ACTION_SETTINGS = "de.grobox.liberario.settings";
 
 	private Drawer drawer;
 	private AccountHeader accountHeader;
@@ -264,8 +263,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 	@Override
 	public void onBackPressed() {
-		String fragment_tag = getSupportFragmentManager().getBackStackEntryAt(
-				getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
+		String fragment_tag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
 		Fragment fragment_current = getSupportFragmentManager().findFragmentByTag(fragment_tag);
 
 		// close the drawer first
@@ -367,7 +365,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		toolbar.setTitle(f);
 
 		// set network name in toolbar
-		if( !(f.equals(getString(R.string.action_settings)) || f.equals(getString(R.string.action_about)) )) {
+		if(res != R.string.action_settings && res != R.string.action_about) {
 			TransportNetwork network = Preferences.getTransportNetwork(getContext());
 			if(network != null) {
 				toolbar.setSubtitle(network.getName());
@@ -378,6 +376,8 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 		// switch to fragment
 		Fragment fragment = getSupportFragmentManager().findFragmentByTag(f);
+
+
 		if(fragment != null) {
 			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
 			                           .show(fragment)
@@ -480,6 +480,9 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 					break;
 				case ACTION_NEARBY_LOCATIONS:
 					findNearbyStations((Location) intent.getSerializableExtra("location"));
+					break;
+				case ACTION_SETTINGS:
+					switchFragment(R.string.action_settings);
 					break;
 			}
 		}
