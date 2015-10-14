@@ -261,11 +261,12 @@ public class TransportNetworks {
 
 		// Liechtenstein
 
-		list.add(new TransportNetwork(context, NetworkId.VMOBIL)
+		// TODO: Get the secret
+/*		list.add(new TransportNetwork(context, NetworkId.VAO)
 				         .setDescription(getString(R.string.np_desc_vmobil))
 				         .setRegion(getString(R.string.np_region_liechtenstein))
 		);
-
+*/
 		// Switzerland
 		region = getString(R.string.np_region_switzerland);
 

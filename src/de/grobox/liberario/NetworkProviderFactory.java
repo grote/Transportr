@@ -61,7 +61,7 @@ public final class NetworkProviderFactory
 	private static Reference<LinzProvider> linzProviderRef;
 	private static Reference<SvvProvider> svvProviderRef;
 	private static Reference<VvtProvider> vvtProviderRef;
-	private static Reference<VmobilProvider> vmobilProviderRef;
+//	private static Reference<VaoProvider> vaoProviderRef;
 	private static Reference<IvbProvider> ivbProviderRef;
 	private static Reference<StvProvider> stvProviderRef;
 	private static Reference<SbbProvider> sbbProviderRef;
@@ -543,20 +543,20 @@ public final class NetworkProviderFactory
 			vvtProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-		else if (networkId.equals(NetworkId.VMOBIL))
+/*		else if (networkId.equals(NetworkId.VAO))
 		{
-			if (vmobilProviderRef != null)
+			if (vaoProviderRef != null)
 			{
-				final VmobilProvider provider = vmobilProviderRef.get();
+				final VaoProvider provider = vaoProviderRef.get();
 				if (provider != null)
 					return provider;
 			}
 
-			final VmobilProvider provider = new VmobilProvider();
-			vmobilProviderRef = new SoftReference<>(provider);
+			final VaoProvider provider = new VaoProvider("secret");
+			vaoProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-		else if (networkId.equals(NetworkId.IVB))
+*/		else if (networkId.equals(NetworkId.IVB))
 		{
 			if (ivbProviderRef != null)
 			{
