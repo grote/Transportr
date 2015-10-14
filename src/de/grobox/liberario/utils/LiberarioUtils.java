@@ -114,6 +114,8 @@ public class LiberarioUtils {
 
 
 	static public void setArrivalTimes(Context context, TextView timeView, TextView delayView, Stop stop) {
+		if(stop.getArrivalTime() == null) return;
+
 		Date time = new Date(stop.getArrivalTime().getTime());
 
 		if(stop.isArrivalTimePredicted() && stop.getArrivalDelay() != null) {
@@ -125,6 +127,8 @@ public class LiberarioUtils {
 	}
 
 	static public void setDepartureTimes(Context context, TextView timeView, TextView delayView, Stop stop) {
+		if(stop.getDepartureTime() == null) return;
+
 		Date time = new Date(stop.getDepartureTime().getTime());
 
 		if(stop.isDepartureTimePredicted() && stop.getDepartureDelay() != null) {

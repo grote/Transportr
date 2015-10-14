@@ -52,13 +52,8 @@
 
         <TextView
             android:id="@+id/departureDelayView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="top|right"
-            android:textColor="@color/holo_red_light"
-            android:textSize="12sp"
-            tools:text="+10"
-            android:layout_marginRight="4dp"/>
+            style="@style/Delay"
+            tools:text="+10"/>
 
         <include
             android:layout_width="match_parent"
@@ -99,15 +94,9 @@
 
             <TextView
                 android:id="@+id/arrivalDelayView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:textColor="@color/holo_red_light"
-                tools:text="+10"
-                android:paddingBottom="3dp"
-                android:textSize="12sp"
-                android:layout_gravity="right|top"
-                android:layout_marginRight="4dp"/>
+                android:layout_gravity="right"
+                style="@style/Delay"
+                tools:text="+10"/>
 
         </LinearLayout>
 

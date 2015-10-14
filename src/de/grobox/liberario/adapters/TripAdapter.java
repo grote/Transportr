@@ -130,6 +130,12 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		int i = 0;
 		for(final Trip.Leg leg : trip.trip.legs) {
 			bindLeg(context, ui.legs.get(i), leg, false, ui.lines);
+
+			// show departure delay also on overview when trip is folded
+			if(i == 0 && leg instanceof Trip.Public) {
+				LiberarioUtils.setDepartureTimes(context, ui.legs.get(i).departureTime, ui.departureDelay, ((Trip.Public)leg).departureStop);
+			}
+
 			i += 1;
 		}
 
@@ -473,7 +479,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 	protected static class TripHolder extends BaseTripHolder {
 		public TableLayout firstLeg;
-		public ViewGroup linesView;
+		public TableRow linesView;
+		public TextView departureDelay;
 		public FlowLayout lines;
 		public TextView changes;
 		public TextView duration;
@@ -503,21 +510,12 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			legs.add(0, firstLegHolder);
 
 			// inflate special view that contains all lines on that trip
-			linesView = (ViewGroup) LayoutInflater.from(v.getContext()).inflate(R.layout.lines, firstLeg, false);
+			linesView = (TableRow) LayoutInflater.from(v.getContext()).inflate(R.layout.lines, firstLeg, false);
 
-			// set layout parameters for TableRow
-			TableRow.LayoutParams params = new TableRow.LayoutParams();
-			params.column = 1;
-			params.span = 1;
-			params.weight = 1;
-			linesView.setLayoutParams(params);
-
-			// add view for all lines to new Table Row
-			TableRow tableRow = new TableRow(v.getContext());
-			tableRow.addView(linesView, params);
-			firstLeg.addView(tableRow, 1);
+			firstLeg.addView(linesView, 1);
 
 			// remember where the lines are inserted and the trip duration
+			departureDelay = (TextView) linesView.findViewById(R.id.departureDelayView);
 			lines = (FlowLayout) linesView.findViewById(R.id.lineLayout);
 			changes = (TextView) linesView.findViewById(R.id.changesView);
 			duration = (TextView) linesView.findViewById(R.id.durationView);

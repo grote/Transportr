@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<TableRow
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lineView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:baselineAligned="false">
+
+    <TextView
+        android:id="@+id/departureDelayView"
+        style="@style/Delay"
+        tools:text="+10"/>
 
     <de.grobox.liberario.ui.FlowLayout
         android:id="@+id/lineLayout"
@@ -45,4 +50,4 @@
             android:layout_gravity="bottom|right"/>
     </LinearLayout>
 
-</LinearLayout>
+</TableRow>
