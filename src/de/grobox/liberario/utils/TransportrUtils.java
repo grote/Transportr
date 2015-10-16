@@ -40,13 +40,17 @@ import java.lang.reflect.Method;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapStationsActivity;
+import de.grobox.liberario.data.FavDB;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Style.Shape;
@@ -417,6 +421,35 @@ public class TransportrUtils {
 
 	static public int getButtonIconColor(Context context) {
 		return getButtonIconColor(context, true);
+	}
+
+	static public Drawable getDrawableForLocation(Context context, Location l, boolean is_fav) {
+		if( (l.id != null && l.id.equals("Transportr.HOME")) || l.equals(FavDB.getHome(context))) {
+			return getTintedDrawable(context, R.drawable.ic_action_home);
+		}
+		else if(l.id != null && l.id.equals("Transportr.GPS")) {
+			return getTintedDrawable(context, R.drawable.ic_gps);
+		}
+		else if(is_fav) {
+			return getTintedDrawable(context, R.drawable.ic_action_star);
+		}
+		else {
+			if(l.type.equals(LocationType.ADDRESS)) {
+				return getTintedDrawable(context, R.drawable.ic_location_address);
+			} else if(l.type.equals(LocationType.POI)) {
+				return getTintedDrawable(context, R.drawable.ic_action_about);
+			} else if(l.type.equals(LocationType.STATION)) {
+				return getTintedDrawable(context, R.drawable.ic_tab_stations);
+			} else {
+				return null;
+			}
+		}
+	}
+
+	static public Drawable getDrawableForLocation(Context context, Location l) {
+		List<Location> fav_list = FavDB.getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
+
+		return getDrawableForLocation(context, l, fav_list.contains(l));
 	}
 
 }

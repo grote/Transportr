@@ -42,7 +42,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.EnumSet;
@@ -184,12 +183,12 @@ public class DirectionsFragment extends TransportrFragment {
 
 			Location from_loc = (Location) savedInstanceState.getSerializable("from");
 			if(from_loc != null) {
-				from.setLocation(from_loc, null);
+				from.setLocation(from_loc, TransportrUtils.getDrawableForLocation(getContext(), from_loc));
 			}
 
 			Location to_loc = (Location) savedInstanceState.getSerializable("to");
 			if(to_loc != null) {
-				to.setLocation(to_loc, null);
+				to.setLocation(to_loc, TransportrUtils.getDrawableForLocation(getContext(), to_loc));
 			}
 
 			String time = savedInstanceState.getString("time", null);
@@ -288,10 +287,10 @@ public class DirectionsFragment extends TransportrFragment {
 		if(resultCode == AppCompatActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
 			if(mHomeClicked.equals(FavLocation.LOC_TYPE.FROM)) {
 				//noinspection deprecation
-				from.setLocation(FavDB.getHome(getActivity()), getResources().getDrawable(R.drawable.ic_action_home));
+				from.setLocation(FavDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 			} else if(mHomeClicked.equals(FavLocation.LOC_TYPE.TO)) {
 				//noinspection deprecation
-				to.setLocation(FavDB.getHome(getActivity()), getResources().getDrawable(R.drawable.ic_action_home));
+				to.setLocation(FavDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 			}
 		}
 	}
@@ -361,8 +360,8 @@ public class DirectionsFragment extends TransportrFragment {
 	}
 
 	public void presetFromTo(Location from, Location to) {
-		this.from.setLocation(from, null);
-		this.to.setLocation(to, null);
+		this.from.setLocation(from, TransportrUtils.getDrawableForLocation(getContext(), from));
+		this.to.setLocation(to, TransportrUtils.getDrawableForLocation(getContext(), to));
 	}
 
 	public void searchFromTo(Location from, Location to) {

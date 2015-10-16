@@ -122,7 +122,7 @@ public class DeparturesFragment extends TransportrFragment {
 		// after new home location was selected, put it right into the input field
 		if(resultCode == AppCompatActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
 			//noinspection deprecation
-			loc.setLocation(FavDB.getHome(getActivity()), getResources().getDrawable(R.drawable.ic_action_home));
+			loc.setLocation(FavDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 		}
 	}
 
