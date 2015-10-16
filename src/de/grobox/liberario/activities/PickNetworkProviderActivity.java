@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -22,7 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import de.grobox.liberario.LiberarioApplication;
+import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
@@ -82,7 +82,7 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 
 		expListView = (ExpandableListView) findViewById(R.id.expandableNetworkProviderListView);
 
-		HashMap<String, List<TransportNetwork>> listNetwork = ((LiberarioApplication) getApplicationContext()).getTransportNetworks().getHashMapByRegion();
+		HashMap<String, List<TransportNetwork>> listNetwork = ((TransportrApplication) getApplicationContext()).getTransportNetworks().getHashMapByRegion();
 		List<String> listRegion = new ArrayList<>(listNetwork.keySet());
 		Collections.sort(listRegion);
 

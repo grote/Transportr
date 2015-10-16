@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -32,7 +32,7 @@ import java.util.List;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.utils.DateUtils;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
 
 public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.DepartureHolder>{
@@ -110,12 +110,12 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 
 		ui.line.removeViewAt(0);
 		if(dep.line != null) {
-			LiberarioUtils.addLineBox(ui.line.getContext(), ui.line, dep.line, 0);
+			TransportrUtils.addLineBox(ui.line.getContext(), ui.line, dep.line, 0);
 
 			ui.line.getChildAt(0).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
 		}
 
-		ui.arrow.setImageDrawable(LiberarioUtils.getTintedDrawable(context, ui.arrow.getDrawable()));
+		ui.arrow.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.arrow.getDrawable()));
 
 		if(dep.destination != null) {
 			ui.destination.setText(dep.destination.uniqueShortName());

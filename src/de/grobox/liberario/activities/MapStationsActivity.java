@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -30,7 +30,7 @@ import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 
@@ -245,7 +245,7 @@ public class MapStationsActivity extends AppCompatActivity {
 
 			ViewGroup bubble_lines = (ViewGroup) mView.findViewById(R.id.bubble_lines);
 			for(Line line : (List<Line>) marker.getRelatedObject()) {
-				LiberarioUtils.addLineBox(mMapView.getContext(), bubble_lines, line);
+				TransportrUtils.addLineBox(mMapView.getContext(), bubble_lines, line);
 			}
 		}
 

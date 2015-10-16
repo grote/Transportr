@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -24,7 +24,7 @@ import android.widget.PopupMenu;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 
 abstract public class BasePopupMenu extends PopupMenu {
 
@@ -60,7 +60,7 @@ abstract public class BasePopupMenu extends PopupMenu {
 
 		// colorize icons according to theme
 		for(int i = 0; i < getMenu().size(); i++) {
-			getMenu().getItem(i).setIcon(LiberarioUtils.getTintedDrawable(context, getMenu().getItem(i).getIcon()));
+			getMenu().getItem(i).setIcon(TransportrUtils.getTintedDrawable(context, getMenu().getItem(i).getIcon()));
 		}
 	}
 }

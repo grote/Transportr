@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -29,7 +29,7 @@ import java.util.List;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.ui.StationPopupMenu;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationHolder>{
@@ -58,8 +58,8 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 
 		@Override
 		public int compare(Location s1, Location s2) {
-			int d1 = LiberarioUtils.computeDistance(start, s1);
-			int d2 = LiberarioUtils.computeDistance(start, s2);
+			int d1 = TransportrUtils.computeDistance(start, s1);
+			int d2 = TransportrUtils.computeDistance(start, s2);
 
 			return d1 - d2;
 		}
@@ -103,7 +103,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 		                           }
 		);
 		ui.station.setText(loc.uniqueShortName());
-		ui.distance.setText(String.valueOf(LiberarioUtils.computeDistance(start, loc)) + "m");
+		ui.distance.setText(String.valueOf(TransportrUtils.computeDistance(start, loc)) + "m");
 	}
 
 	@Override

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.0" versioncode="17">
+        <change>Renamed app from Liberario to Transportr</change>
+        <change>New Logo</change>
+        <change>New user interface in material design</change>
+    </release>
+
     <release version="0.6.1" versioncode="16">
         <change>Added Portuguese (Brazil) translation. Thanks to Gislene Kucker Arantes!</change>
         <change>Show place names in location auto-completion to prevent ambiguities.</change>

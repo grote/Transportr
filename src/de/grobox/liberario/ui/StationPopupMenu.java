@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -23,7 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
 public class StationPopupMenu extends BasePopupMenu {
@@ -46,28 +46,28 @@ public class StationPopupMenu extends BasePopupMenu {
 		return new OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
-				String text = start.uniqueShortName() + " " + LiberarioUtils.computeDistance(start, station) + "m → " + station.uniqueShortName();
+				String text = start.uniqueShortName() + " " + TransportrUtils.computeDistance(start, station) + "m → " + station.uniqueShortName();
 
 				// handle presses on menu items
 				switch(item.getItemId()) {
 					// Show On Map
 					case R.id.action_show_on_map:
-						LiberarioUtils.showLocationOnMap(context, station, start);
+						TransportrUtils.showLocationOnMap(context, station, start);
 
 						return true;
 					// Show On External Map
 					case R.id.action_show_on_external_map:
-						LiberarioUtils.startGeoIntent(context, station);
+						TransportrUtils.startGeoIntent(context, station);
 
 						return true;
 					// Show Departures
 					case R.id.action_show_departures:
-						LiberarioUtils.findDepartures(context, station);
+						TransportrUtils.findDepartures(context, station);
 
 						return true;
 					// Show Nearby Stations
 					case R.id.action_show_nearby_stations:
-						LiberarioUtils.findNearbyStations(context, station);
+						TransportrUtils.findNearbyStations(context, station);
 
 						return true;
 					// Share Station
@@ -83,7 +83,7 @@ public class StationPopupMenu extends BasePopupMenu {
 						return true;
 					// Copy Station to Clipboard
 					case R.id.action_copy:
-						LiberarioUtils.copyToClipboard(context, text);
+						TransportrUtils.copyToClipboard(context, text);
 
 						return true;
 					default:

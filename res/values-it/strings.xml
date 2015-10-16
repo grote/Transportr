@@ -25,10 +25,10 @@
   <string name="about_top"></string>
   <string name="about">
 <![CDATA[
-<p>Liberario è un app per il trasporto pubblico, che puoi usare, condividere e migliorare gratuitamente.</p>
+<p>Transportr è un app per il trasporto pubblico, che puoi usare, condividere e migliorare gratuitamente.</p>
 <p>Non c\'è nessuna garanzia sulla correttezza dei dati. Usate questa applicazione a vostro rischio..</p>
-<p><b>La collaborazione</b> è incoraggiata e apprezzata. Se Vuoi contribuire vai su <a href=\"https://github.com/grote/Liberario/#contributing\">github</a> per avere maggiori informazioni.</p>
-<p>Se noti qualche problema con questa app, segnalalo su <a href=\"https://github.com/grote/Liberario/issues\">il segnalatore di problemi</a>.</p>
+<p><b>La collaborazione</b> è incoraggiata e apprezzata. Se Vuoi contribuire vai su <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> per avere maggiori informazioni.</p>
+<p>Se noti qualche problema con questa app, segnalalo su <a href=\"https://github.com/grote/Transportr/issues\">il segnalatore di problemi</a>.</p>
 ]]>
 </string>
   <string name="trip_dep">part</string>
@@ -47,7 +47,7 @@
   <string name="detail_date">Data:</string>
   <string name="beta">beta</string>
   <string name="pick_network_activity">Scegli una rete di trasporto</string>
-  <string name="pick_network_first_run">Questa è la prima volta che hai avviato Liberario. Seleziona una rete di trasporto per continuare!</string>
+  <string name="pick_network_first_run">Questa è la prima volta che hai avviato Transportr. Seleziona una rete di trasporto per continuare!</string>
   <string name="clear_favs">Sei sicuro di voler eliminare i tuoi favoriti dalla rete di trasporto corrente?</string>
   <string name="clear_fav_trips"></string>
   <string name="trip_searching">Ricerca connessioni...</string>

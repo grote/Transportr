@@ -25,10 +25,10 @@
   <string name="about_top">© 2013 - 2015 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
   <string name="about">
 <![CDATA[
-<p>Liberario est une appli de transport public que l\'on peut librement utiliser, étudier, partager et améliorer.</p>
+<p>Transportr est une appli de transport public que l\'on peut librement utiliser, étudier, partager et améliorer.</p>
 <p>La justesse des données n\'est pas garantie. Utilisez cette appli à vos propres risques.</p>
-<p><b>Les contributions</b> sont encouragées et appréciées. Si vous désirez contribuer, rendez-vous sur <a href=\"https://github.com/grote/Liberario/#contributing\">github</a>.</p>
-<p>Si vous éprouvez un problème avec cette appli, rapporter le avec <a href=\"https://github.com/grote/Liberario/issues\">notre gestionnaire de problèmes</a>.</p>
+<p><b>Les contributions</b> sont encouragées et appréciées. Si vous désirez contribuer, rendez-vous sur <a href=\"https://github.com/grote/Transportr/#contributing\">github</a>.</p>
+<p>Si vous éprouvez un problème avec cette appli, rapporter le avec <a href=\"https://github.com/grote/Transportr/issues\">notre gestionnaire de problèmes</a>.</p>
 ]]>
 </string>
   <string name="trip_dep">dép.</string>
@@ -47,7 +47,7 @@
   <string name="detail_date">Date :</string>
   <string name="beta">bêta</string>
   <string name="pick_network_activity">Choisir un réseau de transport</string>
-  <string name="pick_network_first_run">C\'est la première fois que vous lancez Liberario. Veuillez choisir votre réseau de transport pour continuer !</string>
+  <string name="pick_network_first_run">C\'est la première fois que vous lancez Transportr. Veuillez choisir votre réseau de transport pour continuer !</string>
   <string name="clear_favs">Êtes-vous certain de vouloir supprimer vos favoris pour le réseau de transport actuel ?</string>
   <string name="clear_fav_trips">Êtes-vous certain de vouloir supprimer %1$d trajet(s) de vos favoris ? Le nombre d\'utilisation sera perdu.</string>
   <string name="trip_searching">Recherche de correspondances…</string>

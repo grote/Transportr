@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -49,13 +49,13 @@ import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
 import de.grobox.liberario.ui.LocationInputView;
 import de.grobox.liberario.utils.DateUtils;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
-public class DeparturesFragment extends LiberarioFragment {
+public class DeparturesFragment extends TransportrFragment {
 	private View mView;
 	private ViewHolder ui;
 	private DepartureAdapter departureAdapter;
@@ -85,7 +85,7 @@ public class DeparturesFragment extends LiberarioFragment {
 
 		// Find Departures Search Button
 
-		ui.search.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity()));
+		ui.search.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()));
 		ui.search.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

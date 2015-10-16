@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -50,7 +50,7 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 
 	@Override
 	public void onLocationItemClick(Location loc, View view) {
-		if(loc.id != null && loc.id.equals("Liberario.GPS")) {
+		if(loc.id != null && loc.id.equals("Transportr.GPS")) {
 			activateGPS();
 		} else {
 			super.onLocationItemClick(loc, view);

@@ -40,8 +40,8 @@ project(':sublibs:public-transport-enabler:enabler') {
 
 android {
 	defaultConfig {
-		versionCode 16
-		versionName "0.6.1"
+		versionCode 17
+		versionName "1.0.0-alpha1"
 
 		compileSdkVersion 23
 		targetSdkVersion 23
@@ -51,13 +51,13 @@ android {
 
 	buildTypes {
 		release {
-			resValue "string", "app_name", "Liberario"
+			resValue "string", "app_name", "Transportr"
 		}
 
 		debug {
 			applicationIdSuffix ".debug"
 			versionNameSuffix "-debug"
-			resValue "string", "app_name", "Liberario Devel"
+			resValue "string", "app_name", "Transportr Devel"
 		}
 	}
 

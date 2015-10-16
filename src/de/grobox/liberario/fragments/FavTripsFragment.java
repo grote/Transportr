@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -46,9 +46,9 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.data.FavDB;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 
-public class FavTripsFragment extends LiberarioListFragment {
+public class FavTripsFragment extends TransportrListFragment {
 	private FavTripArrayAdapter adapter;
 	private ActionMode mActionMode;
 	private Toolbar toolbar;
@@ -174,10 +174,10 @@ public class FavTripsFragment extends LiberarioListFragment {
 			FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
 
 			if(swap) {
-				LiberarioUtils.findDirections(getActivity(), trip.getTo(), trip.getFrom());
+				TransportrUtils.findDirections(getActivity(), trip.getTo(), trip.getFrom());
 			}
 			else {
-				LiberarioUtils.findDirections(getActivity(), trip.getFrom(), trip.getTo());
+				TransportrUtils.findDirections(getActivity(), trip.getFrom(), trip.getTo());
 			}
 		}
 
@@ -204,7 +204,7 @@ public class FavTripsFragment extends LiberarioListFragment {
 					queryFavTrip(position, true);
 				}
 			});
-			swapButton.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity()), PorterDuff.Mode.SRC_IN);
+			swapButton.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()), PorterDuff.Mode.SRC_IN);
 
 			// select trip on long click
 			v.setOnLongClickListener(new OnLongClickListener() {

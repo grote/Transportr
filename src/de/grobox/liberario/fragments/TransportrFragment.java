@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -19,10 +19,9 @@ package de.grobox.liberario.fragments;
 
 import de.grobox.liberario.TransportNetwork;
 import de.schildbach.pte.NetworkProvider;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 
 
-public class LiberarioListFragment extends ListFragment implements TransportNetwork.Handler {
+public class TransportrFragment extends Fragment implements TransportNetwork.Handler {
 	public void onNetworkProviderChanged(TransportNetwork network) { }
 }
-

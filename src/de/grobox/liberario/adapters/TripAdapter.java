@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -43,7 +43,7 @@ import de.grobox.liberario.ui.FlowLayout;
 import de.grobox.liberario.ui.LegPopupMenu;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
 import de.grobox.liberario.utils.DateUtils;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 
@@ -133,7 +133,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 			// show departure delay also on overview when trip is folded
 			if(i == 0 && leg instanceof Trip.Public) {
-				LiberarioUtils.setDepartureTimes(context, ui.legs.get(i).departureTime, ui.departureDelay, ((Trip.Public)leg).departureStop);
+				TransportrUtils.setDepartureTimes(context, ui.legs.get(i).departureTime, ui.departureDelay, ((Trip.Public)leg).departureStop);
 			}
 
 			i += 1;
@@ -154,20 +154,20 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		ui.duration.setText(DateUtils.getDuration(trip.trip.getDuration()));
 
 		// Share Trip
-		ui.share.setImageDrawable(LiberarioUtils.getTintedDrawable(context, ui.share.getDrawable()));
+		ui.share.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.share.getDrawable()));
 		ui.share.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				LiberarioUtils.share(context, trip.trip);
+				TransportrUtils.share(context, trip.trip);
 			}
 		});
 
 		// Add Trip to Calendar
-		ui.calendar.setImageDrawable(LiberarioUtils.getTintedDrawable(context, ui.calendar.getDrawable()));
+		ui.calendar.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.calendar.getDrawable()));
 		ui.calendar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				LiberarioUtils.intoCalendar(context, trip.trip);
+				TransportrUtils.intoCalendar(context, trip.trip);
 			}
 		});
 
@@ -216,8 +216,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		if(leg instanceof Trip.Public) {
 			Trip.Public public_leg = ((Trip.Public) leg);
 
-			LiberarioUtils.setArrivalTimes(context, leg_holder.arrivalTime, leg_holder.arrivalDelay, public_leg.arrivalStop);
-			LiberarioUtils.setDepartureTimes(context, leg_holder.departureTime, leg_holder.departureDelay, public_leg.departureStop);
+			TransportrUtils.setArrivalTimes(context, leg_holder.arrivalTime, leg_holder.arrivalDelay, public_leg.arrivalStop);
+			TransportrUtils.setDepartureTimes(context, leg_holder.departureTime, leg_holder.departureDelay, public_leg.departureStop);
 
 			if(leg_holder.arrivalDelay.getText() == null || leg_holder.arrivalDelay.getText().equals("")) {
 				// hide delay view if there's no delay
@@ -239,12 +239,12 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			}
 
 			leg_holder.line.removeViewAt(0);
-			LiberarioUtils.addLineBox(context, leg_holder.line, public_leg.line, 0);
-			if(lines != null) LiberarioUtils.addLineBox(context, lines, public_leg.line);
+			TransportrUtils.addLineBox(context, leg_holder.line, public_leg.line, 0);
+			if(lines != null) TransportrUtils.addLineBox(context, lines, public_leg.line);
 
 			if(public_leg.destination != null) {
 				leg_holder.lineDestination.setText(public_leg.destination.uniqueShortName());
-				leg_holder.arrow.setImageDrawable(LiberarioUtils.getTintedDrawable(context, leg_holder.arrow.getDrawable()));
+				leg_holder.arrow.setImageDrawable(TransportrUtils.getTintedDrawable(context, leg_holder.arrow.getDrawable()));
 			} else {
 				// hide arrow because this line has no destination
 				leg_holder.arrow.setVisibility(View.GONE);
@@ -276,8 +276,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			leg_holder.arrivalDelay.setVisibility(View.GONE);
 
 			leg_holder.line.removeViewAt(0);
-			LiberarioUtils.addWalkingBox(context, leg_holder.line, 0);
-			if(lines != null) LiberarioUtils.addWalkingBox(context, lines);
+			TransportrUtils.addWalkingBox(context, leg_holder.line, 0);
+			if(lines != null) TransportrUtils.addWalkingBox(context, lines);
 
 			if(detail) {
 				final LegPopupMenu walkPopup = new LegPopupMenu(context, leg_holder.line, leg);
@@ -330,7 +330,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			Date departureTime = stop.getDepartureTime();
 
 			if(arrivalTime != null) {
-				LiberarioUtils.setArrivalTimes(context, stopHolder.arrivalTime, stopHolder.arrivalDelay, stop);
+				TransportrUtils.setArrivalTimes(context, stopHolder.arrivalTime, stopHolder.arrivalDelay, stop);
 			}
 			else {
 				stopHolder.arrivalTime.setVisibility(View.GONE);
@@ -338,7 +338,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			}
 
 			if(departureTime != null) {
-				LiberarioUtils.setDepartureTimes(context, stopHolder.departureTime, stopHolder.departureDelay, stop);
+				TransportrUtils.setDepartureTimes(context, stopHolder.departureTime, stopHolder.departureDelay, stop);
 			}
 			else {
 				stopHolder.departureTime.setVisibility(View.GONE);
@@ -408,13 +408,13 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 		if(expand) {
 			//noinspection deprecation
-			icon = LiberarioUtils.getTintedDrawable(context, R.drawable.ic_action_navigation_unfold_more);
+			icon = TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_navigation_unfold_more);
 			state = View.GONE;
 			ostate = View.VISIBLE;
 		}
 		else {
 			//noinspection deprecation
-			icon = LiberarioUtils.getTintedDrawable(context, R.drawable.ic_action_navigation_unfold_less);
+			icon = TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_navigation_unfold_less);
 			state = View.VISIBLE;
 			ostate = View.GONE;
 		}

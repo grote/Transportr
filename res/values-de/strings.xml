@@ -25,10 +25,10 @@
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
   <string name="about">
 <![CDATA[
-<p>Liberario ist eine App für den öffentlichen Personenverkehr, die du frei verwenden, verstehen, verbessern und verbreiten kannst.</p>
+<p>Transportr ist eine App für den öffentlichen Personenverkehr, die du frei verwenden, verstehen, verbessern und verbreiten kannst.</p>
 <p>Es gibt keine Garantie für Funktion und Korrektheit der Daten. Du nutzt diese Software auf eigene Gefahr.</p>
-<p><b>Mitmachen</b> ist explizit erwünscht und wird dankend angenommen. Wenn du mithelfen möchtest, besuche <a href=\"https://github.com/grote/Liberario/#contributing\">github</a> für weitere Infos.</p>
-<p>Falls du irgendwelche Probleme mit dieser App feststellst, melde sie bitte <a href=\"https://github.com/grote/Liberario/issues\">im Tracker</a>.</p>
+<p><b>Mitmachen</b> ist explizit erwünscht und wird dankend angenommen. Wenn du mithelfen möchtest, besuche <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> für weitere Infos.</p>
+<p>Falls du irgendwelche Probleme mit dieser App feststellst, melde sie bitte <a href=\"https://github.com/grote/Transportr/issues\">im Tracker</a>.</p>
 ]]>
 </string>
   <string name="trip_dep">ab</string>
@@ -47,7 +47,7 @@
   <string name="detail_date">Datum:</string>
   <string name="beta">beta</string>
   <string name="pick_network_activity">Wähle ein Verkehrs-Netzwerk</string>
-  <string name="pick_network_first_run">Dies ist das erste Mal, dass Du Liberario gestartet hast. Bitte wähle deinen Verkehrsverbund um fortzufahren!</string>
+  <string name="pick_network_first_run">Dies ist das erste Mal, dass Du Transportr gestartet hast. Bitte wähle deinen Verkehrsverbund um fortzufahren!</string>
   <string name="clear_favs">Bist du sicher, dass Du deine Favoriten im aktuellen Netzwerk löschen willst?</string>
   <string name="clear_fav_trips">Sind Sie sicher, dass Sie %1$d Verbindung(en) aus den Favoriten löschen wollen? Die Nutzungshäufigkeit geht dabei verloren.</string>
   <string name="trip_searching">Suche nach Verbindungen…</string>

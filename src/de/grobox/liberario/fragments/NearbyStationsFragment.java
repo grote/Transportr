@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -55,7 +55,7 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
-public class NearbyStationsFragment extends LiberarioFragment {
+public class NearbyStationsFragment extends TransportrFragment {
 	private View mView;
 	private ViewHolder ui;
 	private NearbyStationsInputView loc;

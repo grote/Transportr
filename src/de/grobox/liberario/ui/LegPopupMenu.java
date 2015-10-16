@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -25,7 +25,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 import de.grobox.liberario.utils.DateUtils;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.grobox.liberario.R;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;
@@ -46,7 +46,7 @@ public class LegPopupMenu extends BasePopupMenu {
 			this.loc1 = leg.departure;
 			this.loc2 = leg.arrival;
 		}
-		this.text = LiberarioUtils.legToString(context, leg);
+		this.text = TransportrUtils.legToString(context, leg);
 		this.getMenuInflater().inflate(R.menu.location_actions, getMenu());
 
 		showIcons();
@@ -79,22 +79,22 @@ public class LegPopupMenu extends BasePopupMenu {
 						if(loc2 != null) loc_list.add(loc2);
 						loc_list.add(loc1);
 
-						LiberarioUtils.showLocationsOnMap(context, loc_list, loc1);
+						TransportrUtils.showLocationsOnMap(context, loc_list, loc1);
 
 						return true;
 					// Show On External Map
 					case R.id.action_show_on_external_map:
-						LiberarioUtils.startGeoIntent(context, loc1);
+						TransportrUtils.startGeoIntent(context, loc1);
 
 						return true;
 					// Show Departures
 					case R.id.action_show_departures:
-						LiberarioUtils.findDepartures(context, loc1);
+						TransportrUtils.findDepartures(context, loc1);
 
 						return true;
 					// Show Nearby Stations
 					case R.id.action_show_nearby_stations:
-						LiberarioUtils.findNearbyStations(context, loc1);
+						TransportrUtils.findNearbyStations(context, loc1);
 
 						return true;
 					// Share Leg
@@ -110,7 +110,7 @@ public class LegPopupMenu extends BasePopupMenu {
 						return true;
 					// Copy Leg to Clipboard
 					case R.id.action_copy:
-						LiberarioUtils.copyToClipboard(context, loc1.uniqueShortName());
+						TransportrUtils.copyToClipboard(context, loc1.uniqueShortName());
 
 						return true;
 					default:

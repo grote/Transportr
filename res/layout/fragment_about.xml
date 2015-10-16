@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    tools:text="Liberario 0.6"/>
+                    tools:text="Transportr 0.6"/>
 
                 <TextView
                     android:id="@+id/aboutTopTextView"

@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -55,7 +55,7 @@ public class Preferences {
 		String id = getNetwork(context, i);
 
 		if(id != null) {
-			return ((LiberarioApplication) context.getApplicationContext()).getTransportNetworks().getTransportNetwork(id);
+			return ((TransportrApplication) context.getApplicationContext()).getTransportNetworks().getTransportNetwork(id);
 		} else {
 			return null;
 		}

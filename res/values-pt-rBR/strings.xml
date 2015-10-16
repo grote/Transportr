@@ -25,10 +25,10 @@
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFree Software License: GPLv3</string>
   <string name="about">
 <![CDATA[
-<p>Liberario é um aplicativo de transporte público que se pode livremente utilisar, estudar, compartilhar e melhorar.</p>
+<p>Transportr é um aplicativo de transporte público que se pode livremente utilisar, estudar, compartilhar e melhorar.</p>
 <p>Não há garantia na exatidão dos dados. Utilise este aplicativo a seu próprio risco.</p>
-<p><b>As contribuições</b> são incentivadas e apreciadas. Se desejar contribuir, entre em <a href=\"https://github.com/grote/Liberario/#contributing\">github</a> para maiores informações.</p>
-<p>Se localizar algum problema neste aplicativo, relate a <a href=\"https://github.com/grote/Liberario/issues\">nossa gestão de problemas</a>.</p>
+<p><b>As contribuições</b> são incentivadas e apreciadas. Se desejar contribuir, entre em <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> para maiores informações.</p>
+<p>Se localizar algum problema neste aplicativo, relate a <a href=\"https://github.com/grote/Transportr/issues\">nossa gestão de problemas</a>.</p>
 ]]>
 </string>
   <string name="trip_dep">par</string>
@@ -47,7 +47,7 @@
   <string name="detail_date">Data:</string>
   <string name="beta">beta</string>
   <string name="pick_network_activity">Escolha uma Rede de Transporte</string>
-  <string name="pick_network_first_run">Esta é a primeira vez que você inicia Liberario. Selecione sua rede de transporte para continuar!</string>
+  <string name="pick_network_first_run">Esta é a primeira vez que você inicia Transportr. Selecione sua rede de transporte para continuar!</string>
   <string name="clear_favs">Tem certeza que você quer excluir seus favoritos pela rede de transporte atual?</string>
   <string name="clear_fav_trips">Tem certeza que você quer excluir %1$d viagem(ns) de seus favoritos? A contagem de uso será perdida.</string>
   <string name="trip_searching">Pesquisando por conexões ...</string>

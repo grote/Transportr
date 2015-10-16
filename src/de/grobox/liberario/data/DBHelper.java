@@ -1,4 +1,4 @@
-/*    Liberario
+/*    Transportr
  *    Copyright (C) 2013-2014 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify

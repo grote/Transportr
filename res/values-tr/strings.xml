@@ -25,10 +25,10 @@
   <string name="about_top"></string>
   <string name="about">
 <![CDATA[
-<p>Liberario özgürce kullanabileceğiniz, çalışabileceğiniz, paylaşabileceğiniz ve geliştirebileceğiniz bir toplu taşıma uygulamasıdır.</p>
+<p>Transportr özgürce kullanabileceğiniz, çalışabileceğiniz, paylaşabileceğiniz ve geliştirebileceğiniz bir toplu taşıma uygulamasıdır.</p>
 <p>Verilerin doğruluğu garanti edilmez. Uygulamayı kullanmak kendi sorumluluğunuzdadır.</p>
-<p><b>Katkılar</b> teşvik etmekte ve takdir edilmektedir. Eğer katkıda bulunmak isterseniz daha fazla bilgi için <a href=\"https://github.com/grote/Liberario/#contributing\">github</a>\'a gidiniz.</p>
-<p>Bu uygulamada herhangi bir sorun bulursanız <a href=\"https://github.com/grote/Liberario/issues\">sorun izleyici</a>ye rapor ediniz.</p>
+<p><b>Katkılar</b> teşvik etmekte ve takdir edilmektedir. Eğer katkıda bulunmak isterseniz daha fazla bilgi için <a href=\"https://github.com/grote/Transportr/#contributing\">github</a>\'a gidiniz.</p>
+<p>Bu uygulamada herhangi bir sorun bulursanız <a href=\"https://github.com/grote/Transportr/issues\">sorun izleyici</a>ye rapor ediniz.</p>
 ]]>
 </string>
   <string name="trip_dep">klk</string>
@@ -47,7 +47,7 @@
   <string name="detail_date">Tarih:</string>
   <string name="beta">beta</string>
   <string name="pick_network_activity">Bir Ulaşım Ağı Seçiniz</string>
-  <string name="pick_network_first_run">Bu Liberario\'yu ilk başlatışınız. Lütfen devam etmek için bir ulaşım ağı seçiniz!</string>
+  <string name="pick_network_first_run">Bu Transportr\'yu ilk başlatışınız. Lütfen devam etmek için bir ulaşım ağı seçiniz!</string>
   <string name="clear_favs">Mevcut ulaşım ağınızdan favorilerinizi silmek istediğinize emin misiniz?</string>
   <string name="clear_fav_trips">Favorilerinizden %1$d gezi silmek istediğinize emin misiniz? Kullanım sayısı kaybedilecek.</string>
   <string name="trip_searching">Bağlantılar aranıyor...</string>

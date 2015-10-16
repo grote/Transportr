@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -32,7 +32,7 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.adapters.TripAdapter;
 import de.grobox.liberario.utils.DateUtils;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Trip;
 
 public class TripDetailActivity extends AppCompatActivity {
@@ -100,11 +100,11 @@ public class TripDetailActivity extends AppCompatActivity {
 
 				return true;
 			case R.id.action_share:
-				LiberarioUtils.share(this, trip);
+				TransportrUtils.share(this, trip);
 
 				return true;
 			case R.id.action_calendar:
-				LiberarioUtils.intoCalendar(this, trip);
+				TransportrUtils.intoCalendar(this, trip);
 
 				return true;
 			default:

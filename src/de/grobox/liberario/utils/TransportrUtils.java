@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -53,7 +53,7 @@ import de.schildbach.pte.dto.Style.Shape;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 
-public class LiberarioUtils {
+public class TransportrUtils {
 
 	@SuppressWarnings("deprecation")
 	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index, boolean check_duplicates) {
@@ -254,7 +254,7 @@ public class LiberarioUtils {
 				                .putExtra("beginTime", trip.getFirstDepartureTime().getTime())
 				                .putExtra("endTime", trip.getLastArrivalTime().getTime())
 				                .putExtra("title", trip.from.name + " → " + trip.to.name)
-				                .putExtra("description", LiberarioUtils.tripToString(context, trip));
+				                .putExtra("description", TransportrUtils.tripToString(context, trip));
 		if(trip.from.place != null) intent.putExtra("eventLocation", trip.from.place);
 		context.startActivity(intent);
 	}

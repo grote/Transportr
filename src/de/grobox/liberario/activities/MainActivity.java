@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -46,7 +46,7 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import de.cketti.library.changelog.ChangeLog;
-import de.grobox.liberario.LiberarioApplication;
+import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
@@ -57,7 +57,7 @@ import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.FavTripsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.PrefsFragment;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		setContentView(R.layout.activity_main);
 
 		// Initialize Application Context with all Transport Networks
-		((LiberarioApplication) getApplicationContext()).initilize(this);
+		((TransportrApplication) getApplicationContext()).initilize(this);
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		final TransportNetwork network = Preferences.getTransportNetwork(this);
 
@@ -137,14 +137,14 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
             .withToolbar(toolbar)
             .withAccountHeader(accountHeader)
             .addDrawerItems(
-		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIdentifier(R.string.tab_directions).withIcon(LiberarioUtils.getTintedDrawable(getContext(), android.R.drawable.ic_menu_directions)),
-		           new PrimaryDrawerItem().withName(R.string.tab_fav_trips).withIdentifier(R.string.tab_fav_trips).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star)),
-		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIdentifier(R.string.tab_departures).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
-		           new PrimaryDrawerItem().withName(R.string.tab_nearby_stations).withIdentifier(R.string.tab_nearby_stations).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
+		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIdentifier(R.string.tab_directions).withIcon(TransportrUtils.getTintedDrawable(getContext(), android.R.drawable.ic_menu_directions)),
+		           new PrimaryDrawerItem().withName(R.string.tab_fav_trips).withIdentifier(R.string.tab_fav_trips).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star)),
+		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIdentifier(R.string.tab_departures).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
+		           new PrimaryDrawerItem().withName(R.string.tab_nearby_stations).withIdentifier(R.string.tab_nearby_stations).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
 		           new DividerDrawerItem(),
-		           new PrimaryDrawerItem().withName(R.string.action_settings).withIdentifier(R.string.action_settings).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_settings)),
-		           new PrimaryDrawerItem().withName(R.string.action_changelog).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_changelog)),
-		           new PrimaryDrawerItem().withName(R.string.action_about).withIdentifier(R.string.action_about).withIcon(LiberarioUtils.getTintedDrawable(getContext(), R.drawable.ic_action_about))
+		           new PrimaryDrawerItem().withName(R.string.action_settings).withIdentifier(R.string.action_settings).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_settings)),
+		           new PrimaryDrawerItem().withName(R.string.action_changelog).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_changelog)),
+		           new PrimaryDrawerItem().withName(R.string.action_about).withIdentifier(R.string.action_about).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_about))
             )
             .withOnDrawerListener(new Drawer.OnDrawerListener() {
 	                                  @Override

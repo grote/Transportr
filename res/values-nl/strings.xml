@@ -25,10 +25,10 @@
   <string name="about_top">© 2013 – 2015 Torsten Grote\nVrije Software licentie: GPLv3</string>
   <string name="about">
 <![CDATA[
-<p>Liberario is een app voor het openbaar vervoer, die u vrij kunt gebruiken, bestuderen, verbeteren en delen kunt.</p>
+<p>Transportr is een app voor het openbaar vervoer, die u vrij kunt gebruiken, bestuderen, verbeteren en delen kunt.</p>
 <p>Er is geen garantie voor functionaliteit en correctheid van data. U gebruikt dit programma op eigen risico.</p>
-<p><b>Hulp</b> is expliciet gewenst en wordt met dank aangenomen. Indien u kunt helpen, vragen wij u op <a href=\"https://github.com/grote/Liberario/#contributing\">github</a> te kijken voor verdere informatie.</p>
-<p>Indien u tegen problemen aan loopt in deze app, vragen wij u deze <a href=\"https://github.com/grote/Liberario/issues\">aan ons te rapporteren</a>.</p>
+<p><b>Hulp</b> is expliciet gewenst en wordt met dank aangenomen. Indien u kunt helpen, vragen wij u op <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> te kijken voor verdere informatie.</p>
+<p>Indien u tegen problemen aan loopt in deze app, vragen wij u deze <a href=\"https://github.com/grote/Transportr/issues\">aan ons te rapporteren</a>.</p>
 ]]>
 </string>
   <string name="trip_dep">van</string>
@@ -47,7 +47,7 @@
   <string name="detail_date">Datum:</string>
   <string name="beta">beta</string>
   <string name="pick_network_activity">Kies een vervoersnetwerk</string>
-  <string name="pick_network_first_run">Dit is de eerste keer dat u Liberario start. Gelieve uw vervoersnetwerk te kiezen om door te gaan.</string>
+  <string name="pick_network_first_run">Dit is de eerste keer dat u Transportr start. Gelieve uw vervoersnetwerk te kiezen om door te gaan.</string>
   <string name="clear_favs">Weet u zeker dat u al uw favorieten voor dit vervoersnetwerk wilt verwijderen?</string>
   <string name="clear_fav_trips">Weet u zeker, dat u %1$d verbinding(en) uit uw favorieten wilt verwijderen? De gebruiksteller zal ook verwijderd worden.</string>
   <string name="trip_searching">Zoeken naar verbindingen…</string>

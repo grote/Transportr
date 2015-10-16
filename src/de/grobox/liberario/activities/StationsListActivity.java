@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -20,7 +20,7 @@ package de.grobox.liberario.activities;
 import java.util.ArrayList;
 
 import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.utils.DateUtils;
@@ -257,7 +257,7 @@ public class StationsListActivity extends AppCompatActivity {
 
 			main.addView(depList);
 
-			main.addView(LiberarioUtils.getDivider(this));
+			main.addView(TransportrUtils.getDivider(this));
 		}
 	}
 
@@ -294,7 +294,7 @@ public class StationsListActivity extends AppCompatActivity {
 			// add line boxes if available
 			if(stat_dep.lines != null) {
 				for(LineDestination line : stat_dep.lines) {
-					LiberarioUtils.addLineBox(this, stationLineLayout, line.line, true);
+					TransportrUtils.addLineBox(this, stationLineLayout, line.line, true);
 				}
 				stationLineLayout.setVisibility(View.VISIBLE);
 				have_lines = true;
@@ -320,11 +320,11 @@ public class StationsListActivity extends AppCompatActivity {
 
 				if(dep.line != null) {
 					LinearLayout lineLayout = (LinearLayout) view.findViewById(R.id.lineLayout);
-					LiberarioUtils.addLineBox(this, lineLayout, dep.line, 0);
+					TransportrUtils.addLineBox(this, lineLayout, dep.line, 0);
 
 					// add lines also to departing station row
 					if(!have_lines) {
-						LiberarioUtils.addLineBox(this, stationLineLayout, dep.line, true);
+						TransportrUtils.addLineBox(this, stationLineLayout, dep.line, true);
 						stationLineLayout.setVisibility(View.VISIBLE);
 					}
 				}

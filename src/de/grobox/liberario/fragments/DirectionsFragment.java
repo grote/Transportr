@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -62,13 +62,13 @@ import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.ui.LocationInputGPSView;
 import de.grobox.liberario.ui.LocationInputView;
 import de.grobox.liberario.utils.DateUtils;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 
-public class DirectionsFragment extends LiberarioFragment {
+public class DirectionsFragment extends TransportrFragment {
 	private View mView;
 	private ViewHolder ui = new ViewHolder();
 	private FavLocation.LOC_TYPE mHomeClicked;
@@ -121,22 +121,22 @@ public class DirectionsFragment extends LiberarioFragment {
 
 			// make inactive products gray
 			if(mProducts.contains(product)) {
-				productView.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity(), true), PorterDuff.Mode.SRC_IN);
+				productView.setColorFilter(TransportrUtils.getButtonIconColor(getActivity(), true), PorterDuff.Mode.SRC_IN);
 			} else {
-				productView.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity(), false), PorterDuff.Mode.SRC_IN);
+				productView.setColorFilter(TransportrUtils.getButtonIconColor(getActivity(), false), PorterDuff.Mode.SRC_IN);
 			}
 
 			// handle click on product icon
 			productView.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					if(mProducts.contains(product)) {
-						productView.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity(), false), PorterDuff.Mode.SRC_IN);
+						productView.setColorFilter(TransportrUtils.getButtonIconColor(getActivity(), false), PorterDuff.Mode.SRC_IN);
 						mProducts.remove(product);
-						Toast.makeText(v.getContext(), LiberarioUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
+						Toast.makeText(v.getContext(), TransportrUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
 					} else {
-						productView.setColorFilter(LiberarioUtils.getButtonIconColor(getActivity(), true), PorterDuff.Mode.SRC_IN);
+						productView.setColorFilter(TransportrUtils.getButtonIconColor(getActivity(), true), PorterDuff.Mode.SRC_IN);
 						mProducts.add(product);
-						Toast.makeText(v.getContext(), LiberarioUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
+						Toast.makeText(v.getContext(), TransportrUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
@@ -145,7 +145,7 @@ public class DirectionsFragment extends LiberarioFragment {
 			productView.setOnLongClickListener(new OnLongClickListener() {
 				@Override
 				public boolean onLongClick(View view) {
-					Toast.makeText(view.getContext(), LiberarioUtils.productToString(view.getContext(), product), Toast.LENGTH_SHORT).show();
+					Toast.makeText(view.getContext(), TransportrUtils.productToString(view.getContext(), product), Toast.LENGTH_SHORT).show();
 					return true;
 				}
 			});
@@ -165,8 +165,8 @@ public class DirectionsFragment extends LiberarioFragment {
 		ui.whatHere.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "t+liberario@grobox.de", null));
-				intent.putExtra(Intent.EXTRA_SUBJECT, "[Liberario] Below Directions Form");
+				Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "t+transportr@grobox.de", null));
+				intent.putExtra(Intent.EXTRA_SUBJECT, "[Transportr] Below Directions Form");
 				intent.putExtra(Intent.EXTRA_TEXT, "Hi,\nI like to see");
 				startActivity(Intent.createChooser(intent, "Send Email"));
 			}
@@ -409,13 +409,13 @@ public class DirectionsFragment extends LiberarioFragment {
 	private void handleLocationItemClick(Location loc, FavLocation.LOC_TYPE type, View view) {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
 
-		if(loc.id != null && loc.id.equals("Liberario.GPS")) {
+		if(loc.id != null && loc.id.equals("Transportr.GPS")) {
 			from.activateGPS();
 			ui.to.location.requestFocus();
 		}
 		else {
 			// home location
-			if (loc.id != null && loc.id.equals("Liberario.HOME")) {
+			if (loc.id != null && loc.id.equals("Transportr.HOME")) {
 				Location home = FavDB.getHome(getActivity());
 
 				if(home != null) {

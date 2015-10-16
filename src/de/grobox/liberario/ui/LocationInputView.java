@@ -1,5 +1,5 @@
-/*    Liberario
- *    Copyright (C) 2013 Torsten Grote
+/*    Transportr
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -36,7 +36,7 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.FavDB;
-import de.grobox.liberario.utils.LiberarioUtils;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
 public class LocationInputView {
@@ -86,7 +86,7 @@ public class LocationInputView {
 		holder.location.setOnClickListener(onClickListener);
 
 		holder.status.setOnClickListener(onClickListener);
-		holder.status.setImageDrawable(LiberarioUtils.getTintedDrawable(context, R.drawable.ic_location));
+		holder.status.setImageDrawable(TransportrUtils.getTintedDrawable(context, R.drawable.ic_location));
 
 		// clear from text button
 		holder.clear.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +97,7 @@ public class LocationInputView {
 				holder.clear.setVisibility(View.GONE);
 			}
 		});
-		holder.clear.setImageDrawable(LiberarioUtils.getTintedDrawable(context, holder.clear.getDrawable()));
+		holder.clear.setImageDrawable(TransportrUtils.getTintedDrawable(context, holder.clear.getDrawable()));
 
 		// From text input changed
 		holder.location.addTextChangedListener(new TextWatcher() {
@@ -133,7 +133,7 @@ public class LocationInputView {
 			if(icon != null) {
 				holder.status.setImageDrawable(icon);
 			} else {
-				holder.status.setImageDrawable(LiberarioUtils.getTintedDrawable(context, R.drawable.ic_location));
+				holder.status.setImageDrawable(TransportrUtils.getTintedDrawable(context, R.drawable.ic_location));
 			}
 
 			is_changing = false;
@@ -179,7 +179,7 @@ public class LocationInputView {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
 
 		// special case: home location
-		if(loc.id != null && loc.id.equals("Liberario.HOME")) {
+		if(loc.id != null && loc.id.equals("Transportr.HOME")) {
 			Location home = FavDB.getHome(context);
 
 			if(home != null) {
