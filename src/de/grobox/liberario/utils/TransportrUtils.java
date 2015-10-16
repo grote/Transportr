@@ -73,13 +73,16 @@ public class TransportrUtils {
 
 		if(line.style != null) {
 			GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
-			line_box.setColor(line.style.backgroundColor);
 
-			// change shape and mutate before to not share state with other instances
-			line_box.mutate();
-			if(line.style.shape == Shape.CIRCLE) line_box.setShape(GradientDrawable.OVAL);
+			if(line_box != null) {
+				// change shape and mutate before to not share state with other instances
+				line_box.mutate();
 
-			transportsView.setBackgroundDrawable(line_box);
+				line_box.setColor(line.style.backgroundColor);
+				if(line.style.shape == Shape.CIRCLE) line_box.setShape(GradientDrawable.OVAL);
+
+				transportsView.setBackgroundDrawable(line_box);
+			}
 			transportsView.setTextColor(line.style.foregroundColor);
 		}
 
@@ -99,9 +102,9 @@ public class TransportrUtils {
 	}
 
 	static public void addWalkingBox(Context context, ViewGroup lineLayout, int index) {
-		ImageView transportsView = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
+		ImageView v = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
 
-		lineLayout.addView(transportsView, index);
+		lineLayout.addView(v, index);
 	}
 
 	static public void addWalkingBox(Context context, ViewGroup lineLayout) {
