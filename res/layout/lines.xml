@@ -5,6 +5,7 @@
     android:id="@+id/lineView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
     android:baselineAligned="false">
 
     <TextView
@@ -19,6 +20,7 @@
         android:gravity="center_vertical"
         android:layout_gravity="center_vertical"
         android:orientation="horizontal"
+        android:layout_weight="1"
         >
 
         <include
@@ -29,7 +31,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|end"
         android:layout_weight="1"
@@ -47,7 +49,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="3:33"
-            android:layout_gravity="bottom|right"/>
+            android:layout_gravity="bottom|right"
+            android:lines="1"
+            android:maxLines="1"/>
     </LinearLayout>
 
 </TableRow>
