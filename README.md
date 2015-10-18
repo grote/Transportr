@@ -20,6 +20,8 @@ Get Transportr
 [![Available on F-Droid](https://f-droid.org/wiki/images/c/c4/F-Droid-button_available-on.png)](https://f-droid.org/repository/browse/?fdid=de.grobox.liberario)
 [![Available on Google Play](https://developer.android.com/images/brand/en_app_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=de.grobox.liberario)
 
+Pre-releases and beta versions for advanced users are available via [a special F-Droid repository](http://grobox.de/fdroid/).
+
 Screenshots
 -----------
 [<img src="art/screenshots/directions.png" width="200">](art/screenshots/directions.png)
