@@ -28,11 +28,17 @@ dependencies {
 	compile('com.mikepenz:aboutlibraries:5.2.5') {
 		transitive = true
 	}
-	compile project(':sublibs:OSMBonusPack')
+	compile project(':sublibs:OSMBonusPack:OSMBonusPack')
 	compile project(':sublibs:public-transport-enabler:enabler')
 }
 
 project(':sublibs:public-transport-enabler:enabler') {
+	repositories {
+		jcenter()
+	}
+}
+
+project(':sublibs:OSMBonusPack:OSMBonusPack') {
 	repositories {
 		jcenter()
 	}

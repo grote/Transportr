@@ -56,7 +56,7 @@ import de.schildbach.pte.dto.Style;
 
 import de.schildbach.pte.exception.ParserException;
 
-import de.schildbach.pte.util.ParserUtils;
+import de.schildbach.pte.util.HttpClient;
 import de.schildbach.pte.util.XmlPullUtil;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -175,8 +175,8 @@ public class HslProvider extends AbstractNetworkProvider
 
 		try
 		{
-			is = ParserUtils.scrapeInputStream(uri.toString());
-			firstChars = ParserUtils.peekFirstChars(is);
+			is = httpClient.getInputStream(uri.toString());
+			firstChars = HttpClient.peekFirstChars(is);
 
 			final XmlPullParser pp = parserFactory.newPullParser();
 			pp.setInput(is, null);
@@ -228,8 +228,8 @@ public class HslProvider extends AbstractNetworkProvider
 
 		try
 		{
-			is = ParserUtils.scrapeInputStream(uri.toString());
-			firstChars = ParserUtils.peekFirstChars(is);
+			is = httpClient.getInputStream(uri.toString());
+			firstChars = HttpClient.peekFirstChars(is);
 
 			final XmlPullParser pp = parserFactory.newPullParser();
 			pp.setInput(is, null);
@@ -316,8 +316,8 @@ public class HslProvider extends AbstractNetworkProvider
 
 		try
 		{
-			is = ParserUtils.scrapeInputStream(uri.toString());
-			firstChars = ParserUtils.peekFirstChars(is);
+			is = httpClient.getInputStream(uri.toString());
+			firstChars = HttpClient.peekFirstChars(is);
 
 			final XmlPullParser pp = parserFactory.newPullParser();
 			pp.setInput(is, null);
@@ -409,8 +409,8 @@ public class HslProvider extends AbstractNetworkProvider
 
 		try
 		{
-			is = ParserUtils.scrapeInputStream(uri.toString());
-			firstChars = ParserUtils.peekFirstChars(is);
+			is = httpClient.getInputStream(uri.toString());
+			firstChars = HttpClient.peekFirstChars(is);
 
 			final ResultHeader header = new ResultHeader(network, SERVER_PRODUCT);
 			final List<SuggestedLocation> locations = new ArrayList<>();
@@ -640,8 +640,8 @@ public class HslProvider extends AbstractNetworkProvider
 
 		try
 		{
-			is = ParserUtils.scrapeInputStream(uri.toString());
-			firstChars = ParserUtils.peekFirstChars(is);
+			is = httpClient.getInputStream(uri.toString());
+			firstChars = HttpClient.peekFirstChars(is);
 
 			final XmlPullParser pp = parserFactory.newPullParser();
 			pp.setInput(is, null);

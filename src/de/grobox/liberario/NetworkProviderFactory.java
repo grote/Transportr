@@ -61,7 +61,7 @@ public final class NetworkProviderFactory
 	private static Reference<LinzProvider> linzProviderRef;
 	private static Reference<SvvProvider> svvProviderRef;
 	private static Reference<VvtProvider> vvtProviderRef;
-//	private static Reference<VaoProvider> vaoProviderRef;
+	private static Reference<VaoProvider> vaoProviderRef;
 	private static Reference<IvbProvider> ivbProviderRef;
 	private static Reference<StvProvider> stvProviderRef;
 	private static Reference<SbbProvider> sbbProviderRef;
@@ -543,7 +543,7 @@ public final class NetworkProviderFactory
 			vvtProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-/*		else if (networkId.equals(NetworkId.VAO))
+		else if (networkId.equals(NetworkId.VAO))
 		{
 			if (vaoProviderRef != null)
 			{
@@ -552,11 +552,12 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
+			// TODO what is the secret?
 			final VaoProvider provider = new VaoProvider("secret");
 			vaoProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-*/		else if (networkId.equals(NetworkId.IVB))
+		else if (networkId.equals(NetworkId.IVB))
 		{
 			if (ivbProviderRef != null)
 			{

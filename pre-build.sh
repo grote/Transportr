@@ -2,6 +2,11 @@
 
 DIR=$PWD
 
+# remove conflicting dependencies in OSMBonusPack
+sed -i "/org.slf4j/d" sublibs/OSMBonusPack/OSMBonusPack/build.gradle
+
+# PTE
+
 cd sublibs/public-transport-enabler/enabler/
 mkdir -p src/de/schildbach/pte/live
 
