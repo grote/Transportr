@@ -2,7 +2,7 @@
 <resources>
   <string name="action_earlier">Vroegere verbindingen zoeken</string>
   <string name="action_later">Latere verbindingen zoeken</string>
-  <string name="action_changelog">Updateinformatie laten zien</string>
+  <string name="action_changelog">Lijst van veranderingen</string>
   <string name="action_about">Over</string>
   <string name="action_clear_favs">Favorieten wissen</string>
   <string name="action_settings">Instellingen</string>
@@ -13,7 +13,7 @@
   <string name="action_navigation_expand">Meer laten zien</string>
   <string name="action_location_map">Laat stations op kaart zien</string>
   <string name="action_use_gps">GPS inschakelen</string>
-  <string name="action_share">Delen</string>
+  <string name="action_share">Deel</string>
   <string name="action_trip_calendar">Naar kalender</string>
   <string name="action_trip_details">Apart laten zien</string>
   <string name="action_trip_delete">Verbinding verwijderen</string>
@@ -21,20 +21,24 @@
   <string name="action_copy">Kopieëren</string>
   <string name="action_show_on_map">Laat op kaart zien</string>
   <string name="tab_directions">Verbindingen</string>
-  <string name="tab_fav_trips">Favorieten</string>
+  <string name="tab_fav_trips">Favoriete Reizen</string>
+  <string name="tab_departures">Vertrekken</string>
+  <string name="tab_libraries"></string>
+  <string name="tab_devs">Ontwikkelaars</string>
+  <string name="tab_about">Over</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nVrije Software licentie: GPLv3</string>
   <string name="about">
 <![CDATA[
-<p>Transportr is een app voor het openbaar vervoer, die u vrij kunt gebruiken, bestuderen, verbeteren en delen kunt.</p>
-<p>Er is geen garantie voor functionaliteit en correctheid van data. U gebruikt dit programma op eigen risico.</p>
-<p><b>Hulp</b> is expliciet gewenst en wordt met dank aangenomen. Indien u kunt helpen, vragen wij u op <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> te kijken voor verdere informatie.</p>
-<p>Indien u tegen problemen aan loopt in deze app, vragen wij u deze <a href=\"https://github.com/grote/Transportr/issues\">aan ons te rapporteren</a>.</p>
-]]>
-</string>
-  <string name="trip_dep">van</string>
-  <string name="trip_arr">naar</string>
+<p>Transportr is een app voor het openbare vervoer die je vrij kan gebruiken, bestuderen, delen en verbeteren.</p>
+<p>Er is geen garantie voor de correctheid van de data. Gebruik van deze app is op eigen risico.</p>
+<p><b>Bijdragen</b> worden aangemoedigd en gewaardeerd. Als je een bijdrage wilt leveren kan je op <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> meer informatie vinden.</p>
+<p>Rapporteer eventuele problemen waar je tegen aan loopt bij het gebruiken van deze app op <a href=\"https://github.com/grote/Transportr/issues\">de issue tracker</a>.</p>
+]]></string>
+  <string name="trip_dep">v.</string>
+  <string name="trip_arr">a.</string>
   <string name="trip_start">Van:</string>
   <string name="trip_destination">Naar:</string>
+  <string name="trip_removed">Reis Verwijderd</string>
   <string name="from">van</string>
   <string name="to">naar</string>
   <string name="time">Tijd</string>
@@ -45,36 +49,53 @@
   <string name="destination">Eindbestemming</string>
   <string name="detail_duration">Duur:</string>
   <string name="detail_date">Datum:</string>
+  <string name="alpha">alpha</string>
   <string name="beta">beta</string>
+  <string name="network">Netwerk</string>
   <string name="pick_network_activity">Kies een vervoersnetwerk</string>
-  <string name="pick_network_first_run">Dit is de eerste keer dat u Transportr start. Gelieve uw vervoersnetwerk te kiezen om door te gaan.</string>
+  <string name="pick_network_first_run">Dit is de eerste keer dat je Transportr start. Kies je transportnetwerk om door te gaan.</string>
   <string name="clear_favs">Weet u zeker dat u al uw favorieten voor dit vervoersnetwerk wilt verwijderen?</string>
   <string name="clear_fav_trips">Weet u zeker, dat u %1$d verbinding(en) uit uw favorieten wilt verwijderen? De gebruiksteller zal ook verwijderd worden.</string>
   <string name="trip_searching">Zoeken naar verbindingen…</string>
   <string name="stations_searching_position">Uw positie wordt bepaald…</string>
   <string name="stations_searching_stations">Naar stations in de buurt zoeken…</string>
+  <string name="tab_nearby_stations">Dichtbijzijnde Stations</string>
   <string name="find_nearby_stations">Zoek naar stations in de buurt</string>
   <string name="find_departures">Zoek vertrekken</string>
+  <string name="departure_station">Vertrekstation</string>
   <string name="share_trip_via">Verbindingen delen via…</string>
+  <string name="undo">Ongedaan maken</string>
+  <string name="fav_trips_empty">Recente reizen zullen hier getoond worden zodra je naar verbindingen zoekt.\n\n\nJe kunt deze sorteren op hoe vaak je ze gebruikt of op de tijd van laatste gebruik.</string>
+  <string name="pref_transport_network">Transportatienetwerk</string>
+  <string name="pref_home">Thuislocatie</string>
+  <string name="pref_display">Scherm</string>
+  <string name="pref_theme_title">Thema</string>
+  <string name="pref_theme_light">Licht</string>
+  <string name="pref_theme_dark">Donker</string>
+  <string name="warning_departure_gap">Te weinig vertrekken gevonden. Er kunnen meer verborgen zijn. Zoek op de exacte tijd om zeker te zijn dat er geen vertrekken missen.</string>
   <string name="error_pick_network">U moet een verkeersnetwerk kiezen</string>
   <string name="error_no_internet">Geen bruikbare internetverbinding beschikbaar</string>
-  <string name="error_invalid_from">Ongeldige vertreklocatie</string>
-  <string name="error_invalid_to">Ongeldige eindbestemming</string>
+  <string name="error_invalid_from">Ongeldig Vertrekpunt (Van)</string>
+  <string name="error_invalid_to">Ongeldig Aankomstpunt (Naar)</string>
   <string name="error_no_favs">Geen favorieten beschikbaar</string>
   <string name="error_no_trips_found">Geen verbindingen gevonden</string>
-  <string name="error_no_location_provider">Uw positie kan niet bepaald worden. Staat GPS aan?</string>
+  <string name="error_no_location_provider">Kan positie niet bepalen. Zet a.u.b. GPS aan!</string>
   <string name="error_no_departures_found">Geen vertrekken gevonden</string>
+  <string name="error_no_stations_found">Geen stations gevonden</string>
   <string name="error_no_proper_station">De ingevoerde naam is geen geldig station</string>
   <string name="error_only_autocomplete_station">U moet een station uit de suggestielijst kiezen</string>
   <string name="error_no_station_location">Kan de locatie van dit/deze station(en) niet bepalen</string>
   <string name="error_no_trips_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het zoeken naar verbindingen.</string>
   <string name="error_no_departures_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het vinden van verterkken.</string>
+  <string name="error_no_nearby_locations_capability">Het huidige transportnetwerk ondersteund het vinden van dichtbijzijnde stations niet.</string>
   <string name="number_of_stations">Aantal stations</string>
   <string name="meter">m</string>
   <string name="max_distance">Maximale afstand</string>
+  <string name="home">Thuis</string>
   <string name="home_dialog_title">Uw thuisstation</string>
   <string name="home_dialog_new_msg">Er is geen thuisstation ingesteld voor dit verkeersnetwerk.</string>
   <string name="home_dialog_msg">Gelieve een thuisstation uit de lijst te kiezen</string>
+  <string name="location">Locatie</string>
   <string name="location_home">Klik om uw thuisstation in te stellen</string>
   <string name="location_gps">Gebruik huidige locatie</string>
   <string name="product_high_speed_train">Hogesnelheidstrein</string>
@@ -87,6 +108,9 @@
   <string name="product_cablecar">Kabelbaan</string>
   <string name="product_on_demand">On Demand</string>
   <string name="action_fav_trips_sort">Sorteer lijst</string>
+  <string name="action_fav_trips_sort_recent">Laatst gebruikt</string>
+  <string name="action_fav_trips_sort_most">Meestgebruikt</string>
+  <string name="what_here">Laat me weten wat je hier graag zou willen zien!</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">enkel lange-afstand</string>
@@ -153,6 +177,7 @@
   <string name="np_region_finland">Finland</string>
   <string name="np_region_nz">Nieuw-Zeeland</string>
   <string name="np_region_spain">Spanje</string>
+  <string name="np_region_br">Brazilië</string>
   <string name="np_desc_ns">Nederlands, Amsterdam</string>
   <string name="np_desc_dsb">Denemarken, Kopenhagen</string>
   <string name="np_desc_se">Zweden, Stockholm</string>
@@ -176,6 +201,8 @@
   <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool Stad Regio</string>
+  <string name="np_desc_br"></string>
+  <string name="np_desc_vrs"></string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BEIEREN</string>
   <string name="np_name_paris">PARIJS</string>
@@ -184,5 +211,16 @@
   <string name="np_name_wien">WENEN</string>
   <string name="np_name_spain">Spanje</string>
   <string name="np_name_usny">New York en New-Jersey staten</string>
-  <string name="np_desc_vrs"></string>
+  <string name="np_name_br"></string>
+  <string name="maintainer">Onderhouder</string>
+  <string name="contributers">Bijdragers</string>
+  <string name="translators">Vertalers</string>
+  <string name="dutch">Nederlands</string>
+  <string name="french">Frans</string>
+  <string name="german">Duits</string>
+  <string name="italian">Italiaans</string>
+  <string name="portuguese_br">Portugees\n(Brazilië)</string>
+  <string name="spanish">Spaans</string>
+  <string name="turkish">Turks</string>
+  <string name="error_please_file_ticket">Er geen iets mis. Maak a.u.b. een foutrapport aan met een uitleg van wat je doet voordat dit probleem op trad.</string>
 </resources>

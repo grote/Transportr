@@ -2,7 +2,7 @@
 <resources>
   <string name="action_earlier">Localizar Voos Anteriores</string>
   <string name="action_later">Localizar Voos Posteriores</string>
-  <string name="action_changelog">Alterar Sessão</string>
+  <string name="action_changelog"></string>
   <string name="action_about">Sobre</string>
   <string name="action_clear_favs">Limpar Favoritos</string>
   <string name="action_settings">Configurações</string>
@@ -13,7 +13,7 @@
   <string name="action_navigation_expand">Mostrar Mais</string>
   <string name="action_location_map">Exibir Estações no Mapa</string>
   <string name="action_use_gps">Ligar GPS</string>
-  <string name="action_share">Compartilhar</string>
+  <string name="action_share"></string>
   <string name="action_trip_calendar">Para a Agenda</string>
   <string name="action_trip_details">Mostrar Separado</string>
   <string name="action_trip_delete">Excluir Viagem</string>
@@ -21,20 +21,18 @@
   <string name="action_copy">Copiar</string>
   <string name="action_show_on_map">Exibir no Mapa</string>
   <string name="tab_directions">Direções</string>
-  <string name="tab_fav_trips">Favoritos</string>
+  <string name="tab_fav_trips"></string>
+  <string name="tab_departures"></string>
+  <string name="tab_libraries"></string>
+  <string name="tab_devs"></string>
+  <string name="tab_about"></string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFree Software License: GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>Transportr é um aplicativo de transporte público que se pode livremente utilisar, estudar, compartilhar e melhorar.</p>
-<p>Não há garantia na exatidão dos dados. Utilise este aplicativo a seu próprio risco.</p>
-<p><b>As contribuições</b> são incentivadas e apreciadas. Se desejar contribuir, entre em <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> para maiores informações.</p>
-<p>Se localizar algum problema neste aplicativo, relate a <a href=\"https://github.com/grote/Transportr/issues\">nossa gestão de problemas</a>.</p>
-]]>
-</string>
+  <string name="about"></string>
   <string name="trip_dep">par</string>
   <string name="trip_arr">che</string>
   <string name="trip_start">Início:</string>
   <string name="trip_destination">Dest.:</string>
+  <string name="trip_removed"></string>
   <string name="from">De</string>
   <string name="to">Para</string>
   <string name="time">Horário</string>
@@ -45,36 +43,53 @@
   <string name="destination">Destino</string>
   <string name="detail_duration">Duração:</string>
   <string name="detail_date">Data:</string>
+  <string name="alpha"></string>
   <string name="beta">beta</string>
+  <string name="network"></string>
   <string name="pick_network_activity">Escolha uma Rede de Transporte</string>
-  <string name="pick_network_first_run">Esta é a primeira vez que você inicia Transportr. Selecione sua rede de transporte para continuar!</string>
+  <string name="pick_network_first_run"></string>
   <string name="clear_favs">Tem certeza que você quer excluir seus favoritos pela rede de transporte atual?</string>
   <string name="clear_fav_trips">Tem certeza que você quer excluir %1$d viagem(ns) de seus favoritos? A contagem de uso será perdida.</string>
   <string name="trip_searching">Pesquisando por conexões ...</string>
   <string name="stations_searching_position">Pesquisando por posição atual...</string>
   <string name="stations_searching_stations">Pesquisando por estações próximas...</string>
+  <string name="tab_nearby_stations"></string>
   <string name="find_nearby_stations">Localizar Estações Próximas</string>
   <string name="find_departures">Localizar Partidas</string>
+  <string name="departure_station"></string>
   <string name="share_trip_via">Compartilhar Viagem Via...</string>
+  <string name="undo"></string>
+  <string name="fav_trips_empty"></string>
+  <string name="pref_transport_network"></string>
+  <string name="pref_home"></string>
+  <string name="pref_display"></string>
+  <string name="pref_theme_title"></string>
+  <string name="pref_theme_light"></string>
+  <string name="pref_theme_dark"></string>
+  <string name="warning_departure_gap"></string>
   <string name="error_pick_network">Selecione uma rede de transporte!</string>
   <string name="error_no_internet">Conexão de internet disponível insuficiente</string>
-  <string name="error_invalid_from">Inválido De Local</string>
-  <string name="error_invalid_to">Inválido Para Local</string>
+  <string name="error_invalid_from"></string>
+  <string name="error_invalid_to"></string>
   <string name="error_no_favs">Nenhum local favorito salvo</string>
   <string name="error_no_trips_found">Nenhuma direção localizada</string>
-  <string name="error_no_location_provider">Posição não localizada. Ligue o GPS!</string>
+  <string name="error_no_location_provider"></string>
   <string name="error_no_departures_found">Nenhuma partida localizada</string>
+  <string name="error_no_stations_found"></string>
   <string name="error_no_proper_station">O local fornecido não é uma estação</string>
   <string name="error_only_autocomplete_station">Selecione um estação da lista de auto completar!</string>
   <string name="error_no_station_location">Nào localizado o local dessa(s) estação(ões)</string>
   <string name="error_no_trips_capability">Esta rede de transporte não suporta consulta por direções.</string>
   <string name="error_no_departures_capability">A atual rede de transportes não suporta localização de saídas.</string>
+  <string name="error_no_nearby_locations_capability"></string>
   <string name="number_of_stations">Número de Estações</string>
   <string name="meter">m</string>
   <string name="max_distance">Distância Máxima</string>
+  <string name="home"></string>
   <string name="home_dialog_title">Seu Local Inicial</string>
   <string name="home_dialog_new_msg">Não existe local inicial definido para a rede de transporte atual.</string>
   <string name="home_dialog_msg">Escolha um local abaixo selecionando um da lista.</string>
+  <string name="location"></string>
   <string name="location_home">Clique para definir Local Inicial</string>
   <string name="location_gps">Use Posição Atual</string>
   <string name="product_high_speed_train">Trem de Alta Velocidade</string>
@@ -87,6 +102,9 @@
   <string name="product_cablecar">Teleférico</string>
   <string name="product_on_demand">Por demanda</string>
   <string name="action_fav_trips_sort">Listagem</string>
+  <string name="action_fav_trips_sort_recent"></string>
+  <string name="action_fav_trips_sort_most"></string>
+  <string name="what_here"></string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">longa distância apenas</string>
@@ -153,6 +171,7 @@
   <string name="np_region_finland">Finlândia</string>
   <string name="np_region_nz">Nova Zelândia</string>
   <string name="np_region_spain">Espanha</string>
+  <string name="np_region_br"></string>
   <string name="np_desc_ns">Países Baixos, Amsterdã</string>
   <string name="np_desc_dsb">Dinamarca, Copenhague</string>
   <string name="np_desc_se">Suécia, Estocolmo</string>
@@ -176,6 +195,8 @@
   <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">ônibus em Madri (EMT), Barcelona (TMB), Basco (Moveuskadi)</string>
   <string name="np_desc_mersey">Região da cidade de Liverpool</string>
+  <string name="np_desc_br"></string>
+  <string name="np_desc_vrs"></string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAVÁRIA</string>
   <string name="np_name_paris">PARIS</string>
@@ -184,5 +205,16 @@
   <string name="np_name_wien">VIENA</string>
   <string name="np_name_spain">Espanha</string>
   <string name="np_name_usny">Estados de Nova York e Nova Jersey</string>
-  <string name="np_desc_vrs">Colônia, Bonn&gt;</string>
+  <string name="np_name_br"></string>
+  <string name="maintainer"></string>
+  <string name="contributers"></string>
+  <string name="translators"></string>
+  <string name="dutch"></string>
+  <string name="french"></string>
+  <string name="german"></string>
+  <string name="italian"></string>
+  <string name="portuguese_br"></string>
+  <string name="spanish"></string>
+  <string name="turkish"></string>
+  <string name="error_please_file_ticket"></string>
 </resources>
