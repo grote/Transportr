@@ -5,7 +5,6 @@
     android:id="@+id/lineView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
     android:baselineAligned="false">
 
     <TextView
@@ -16,10 +15,11 @@
     <de.grobox.liberario.ui.FlowLayout
         android:id="@+id/lineLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:layout_gravity="center_vertical"
         android:orientation="horizontal"
+        android:layout_marginTop="1dp"
         android:layout_weight="1"
         >
 
@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical|end"
         android:layout_weight="1"
+        android:layout_marginTop="1dp"
         android:layout_marginLeft="10dp">
 
         <TextView
