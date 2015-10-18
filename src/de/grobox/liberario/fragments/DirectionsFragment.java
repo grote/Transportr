@@ -44,6 +44,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -224,6 +225,14 @@ public class DirectionsFragment extends TransportrFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+
+		long date = DateUtils.getDateFromUi(mView).getTime();
+		long now = new Date().getTime();
+
+		// reset date and time if older than 2 hours, so user doesn't search in the past by accident
+		if( (now - date) / (60*60*1000) > 2) {
+			DateUtils.resetTime(getContext(), ui.time, ui.date);
+		}
 
 		mAfterGpsTask = null;
 	}

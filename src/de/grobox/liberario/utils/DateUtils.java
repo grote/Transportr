@@ -157,6 +157,15 @@ public class DateUtils {
 		dateView.setTag(c);
 	}
 
+	static public void resetTime(Context context, Button timeView, Button dateView) {
+		Calendar c = Calendar.getInstance();
+
+		timeView.setText(getTime(context, c));
+		timeView.setTag(c);
+		dateView.setText(getDate(context, c.getTime()));
+		dateView.setTag(c);
+	}
+
 	static public void setUpTimeDateUi(final View view) {
 		// Time
 

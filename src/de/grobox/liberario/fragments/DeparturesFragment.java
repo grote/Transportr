@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -144,6 +145,20 @@ public class DeparturesFragment extends TransportrFragment {
 		// clear text view
 		loc.clearLocation();
 	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		long date = DateUtils.getDateFromUi(mView).getTime();
+		long now = new Date().getTime();
+
+		// reset date and time if older than 2 hours, so user doesn't search in the past by accident
+		if( (now - date) / (60*60*1000) > 2) {
+			DateUtils.resetTime(getContext(), ui.time, ui.date);
+		}
+	}
+
 
 	public void search() {
 		if(loc.getLocation() != null) {
@@ -285,6 +300,8 @@ public class DeparturesFragment extends TransportrFragment {
 	private static class ViewHolder {
 
 		public LocationInputView.LocationInputViewHolder station;
+		Button time;
+		Button date;
 		public ImageButton search;
 		public ViewGroup departure_list;
 		public SwipyRefreshLayout swipe_refresh;
@@ -293,6 +310,8 @@ public class DeparturesFragment extends TransportrFragment {
 
 		public ViewHolder(View view) {
 			station = new LocationInputView.LocationInputViewHolder(view);
+			time = (Button) view.findViewById(R.id.timeView);
+			date = (Button) view.findViewById(R.id.dateView);
 			search = (ImageButton) view.findViewById(R.id.stationButton);
 			departure_list = (ViewGroup) view.findViewById(R.id.departure_list);
 			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
