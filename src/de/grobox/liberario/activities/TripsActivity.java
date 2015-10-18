@@ -150,8 +150,6 @@ public class TripsActivity extends AppCompatActivity {
 			return;
 		}
 
-		swipeRefresh.setDistanceToTriggerSync(150);
-
 		swipeRefresh.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh(final SwipyRefreshLayoutDirection direction) {

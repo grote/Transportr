@@ -107,7 +107,6 @@ public class DeparturesFragment extends TransportrFragment {
 
 		ui.swipe_refresh.setColorSchemeResources(R.color.accent);
 		ui.swipe_refresh.setDirection(SwipyRefreshLayoutDirection.BOTH);
-		ui.swipe_refresh.setDistanceToTriggerSync(150);
 		ui.swipe_refresh.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh(final SwipyRefreshLayoutDirection direction) {
