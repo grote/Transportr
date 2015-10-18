@@ -1,22 +1,18 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:de.grobox.liberario="http://schemas.android.com/apk/res-auto" >
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_fav_trips_sort"
-        android:icon="@drawable/ic_action_content_sort"
-        de.grobox.liberario:showAsAction="always"
-        android:title="@string/action_fav_trips_sort">
+        android:id="@+id/action_swap_locations"
+        android:icon="@drawable/ic_menu_swap_location"
+        app:showAsAction="always"
+        android:title="@string/action_swap_locations"/>
 
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/action_fav_trips_sort_recent"
-                    android:title="@string/action_fav_trips_sort_recent"/>
-                <item
-                    android:id="@+id/action_fav_trips_sort_count"
-                    android:title="@string/action_fav_trips_sort_most"/>
-            </group>
-        </menu>
+    <item
+        android:id="@+id/action_set_locations"
+        android:icon="@drawable/ic_mode_edit"
+        app:showAsAction="always"
+        android:title="@string/action_set_locations"/>
 
-    </item>
 </menu>

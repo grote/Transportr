@@ -46,6 +46,7 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.ui.FavPopupMenu;
 import de.grobox.liberario.utils.TransportrUtils;
 
 public class FavTripsFragment extends TransportrListFragment {
@@ -98,7 +99,7 @@ public class FavTripsFragment extends TransportrListFragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// Inflate the menu items for use in the action bar
-		inflater.inflate(R.menu.fav_trip_actions, menu);
+		inflater.inflate(R.menu.fav_trip_list_actions, menu);
 
 		if(Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)) {
 			menu.findItem(R.id.action_fav_trips_sort_count).setChecked(true);
@@ -170,17 +171,6 @@ public class FavTripsFragment extends TransportrListFragment {
 			super(context, textViewResourceId, objects);
 		}
 
-		private void queryFavTrip(final int position, final boolean swap) {
-			FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
-
-			if(swap) {
-				TransportrUtils.findDirections(getActivity(), trip.getTo(), trip.getFrom());
-			}
-			else {
-				TransportrUtils.findDirections(getActivity(), trip.getFrom(), trip.getTo());
-			}
-		}
-
 		@Override
 		public View getView(final int position, View v, ViewGroup parent) {
 			if(v == null) {
@@ -192,19 +182,22 @@ public class FavTripsFragment extends TransportrListFragment {
 			v.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					queryFavTrip(position, false);
+					FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
+					TransportrUtils.findDirections(getActivity(), trip.getFrom(), trip.getTo());
 				}
 			});
 
-			// handle click on direction swap button
-			ImageButton swapButton = (ImageButton) v.findViewById(R.id.swapButton);
-			swapButton.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					queryFavTrip(position, true);
-				}
-			});
-			swapButton.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()), PorterDuff.Mode.SRC_IN);
+			// handle click on more button
+			ImageButton moreButton = (ImageButton) v.findViewById(R.id.moreButton);
+			final FavPopupMenu favPopup = new FavPopupMenu(getContext(), moreButton,(FavTrip) getListView().getItemAtPosition(position));
+			moreButton.setOnClickListener(new OnClickListener() {
+				                              @Override
+				                              public void onClick(View v) {
+					                              favPopup.show();
+				                              }
+			                              }
+			);
+			moreButton.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()), PorterDuff.Mode.SRC_IN);
 
 			// select trip on long click
 			v.setOnLongClickListener(new OnLongClickListener() {

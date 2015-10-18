@@ -71,11 +71,11 @@
             <ImageButton
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:id="@+id/swapButton"
-                android:src="@drawable/ic_menu_swap_location"
+                android:id="@+id/moreButton"
+                android:src="@drawable/ic_action_core_overflow"
                 android:scaleType="centerCrop"
                 android:elevation="2dp"
-                android:contentDescription="@string/action_switch_locations" />
+                android:contentDescription="@string/more" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

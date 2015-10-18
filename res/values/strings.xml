@@ -71,6 +71,7 @@
     <string name="share_trip_via">Share Trip Via&#8230;</string>
     <string name="undo">Undo</string>
     <string name="fav_trips_empty">Your recent trips will appear here once you start searching for directions.\n\n\nYou will be able to sort them by most fequently or most recently used.</string>
+    <string name="more">More</string>
 
     <string name="pref_transport_network">Transport Network</string>
     <string name="pref_home">Home Location</string>
@@ -121,6 +122,8 @@
     <string name="action_fav_trips_sort">Sort List</string>
     <string name="action_fav_trips_sort_recent">Last used</string>
     <string name="action_fav_trips_sort_most">Most used</string>
+    <string name="action_set_locations">Edit search</string>
+    <string name="action_swap_locations">Search return trip</string>
 
     <string name="what_here">Let me know what you would like to see here!</string>
 
