@@ -54,7 +54,7 @@ public class Preferences {
 	public static @Nullable TransportNetwork getTransportNetwork(Context context, int i) {
 		String id = getNetwork(context, i);
 
-		if(id != null) {
+		if(id != null && context.getApplicationContext() != null) {
 			return ((TransportrApplication) context.getApplicationContext()).getTransportNetworks().getTransportNetwork(id);
 		} else {
 			return null;
