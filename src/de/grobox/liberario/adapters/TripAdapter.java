@@ -172,13 +172,18 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		});
 
 		// Expand Card
-		ui.expand.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				expandTrip(ui, trip.expanded);
-				trip.expanded = !trip.expanded;
-			}
-		});
+		if(trip.trip.legs.size() == 1) {
+			ui.expand.setVisibility(View.GONE);
+		} else {
+			ui.expand.setOnClickListener(new View.OnClickListener() {
+				                             @Override
+				                             public void onClick(View view) {
+					                             expandTrip(ui, trip.expanded);
+					                             trip.expanded = !trip.expanded;
+				                             }
+			                             }
+			);
+		}
 	}
 
 	@Override
