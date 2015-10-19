@@ -140,28 +140,16 @@ public class NearbyStationsFragment extends TransportrFragment {
 			case R.id.action_location_map:
 				ArrayList<Location> stations = stationAdapter.getStations();
 
-				if(stations == null) return false;
-
-				boolean hasLocation = false;
-
-				// check if at least one station has a location attached to it
-				for(Location station : stations) {
-					if(station.hasLocation()) {
-						hasLocation = true;
-						break;
-					}
-				}
-
-				if(hasLocation) {
-					// show stations on map
-					Intent intent = new Intent(getActivity(), MapStationsActivity.class);
-					intent.putExtra("List<de.schildbach.pte.dto.Location>", stations);
-					intent.putExtra("de.schildbach.pte.dto.Location", stationAdapter.getStart());
-					startActivity(intent);
-				}
-				else {
+				if(stations == null) {
 					Toast.makeText(getActivity(), getString(R.string.error_no_station_location), Toast.LENGTH_SHORT).show();
+					return false;
 				}
+
+				// show stations on map
+				Intent intent = new Intent(getActivity(), MapStationsActivity.class);
+				intent.putExtra("List<de.schildbach.pte.dto.Location>", stations);
+				intent.putExtra("de.schildbach.pte.dto.Location", stationAdapter.getStart());
+				startActivity(intent);
 
 				return true;
 			default:
@@ -258,7 +246,23 @@ public class NearbyStationsFragment extends TransportrFragment {
 		}
 
 		ui.progress.setVisibility(View.GONE);
-		ui.menu_map.setVisible(true);
+
+		ArrayList<Location> stations = stationAdapter.getStations();
+		if(stations != null) {
+			boolean hasLocation = false;
+
+			// check if at least one station has a location attached to it
+			for(Location station : stations) {
+				if(station.hasLocation()) {
+					hasLocation = true;
+					break;
+				}
+			}
+
+			if(hasLocation) {
+				ui.menu_map.setVisible(true);
+			}
+		}
 	}
 
 	private static class ViewHolder {

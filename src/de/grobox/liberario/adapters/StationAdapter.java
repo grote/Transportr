@@ -103,7 +103,15 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 		                           }
 		);
 		ui.station.setText(loc.uniqueShortName());
-		ui.distance.setText(String.valueOf(TransportrUtils.computeDistance(start, loc)) + "m");
+
+		int dist = TransportrUtils.computeDistance(start, loc);
+
+		if(dist >= 0) {
+			ui.distance.setText(String.valueOf(dist) + "m");
+			ui.distance.setVisibility(View.VISIBLE);
+		} else {
+			ui.distance.setVisibility(View.GONE);
+		}
 	}
 
 	@Override

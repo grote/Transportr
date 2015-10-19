@@ -38,6 +38,11 @@ public class StationPopupMenu extends BasePopupMenu {
 		this.station = station;
 		this.start = start;
 
+		if(!station.hasLocation()) {
+			getMenu().removeItem(R.id.action_show_on_map);
+			getMenu().removeItem(R.id.action_show_on_external_map);
+		}
+
 		showIcons();
 	}
 

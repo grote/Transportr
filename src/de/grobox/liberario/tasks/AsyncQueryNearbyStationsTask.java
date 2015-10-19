@@ -17,23 +17,19 @@
 
 package de.grobox.liberario.tasks;
 
+import android.os.AsyncTask;
+import android.widget.Toast;
+
+import java.util.EnumSet;
+
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.activities.StationsListActivity;
-import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
-
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.widget.Toast;
-
-import java.util.EnumSet;
 
 public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLocationsResult> {
 	private NearbyStationsFragment fragment;
