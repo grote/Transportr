@@ -51,6 +51,7 @@ import de.grobox.liberario.data.FavDB;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
 import de.grobox.liberario.ui.LocationInputGPSView;
 import de.grobox.liberario.ui.LocationInputView;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
@@ -120,6 +121,48 @@ public class NearbyStationsFragment extends TransportrFragment {
 		                                      });
 
 		return mView;
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		if(ui.menu_map != null) {
+			outState.putBoolean("menu_map", ui.menu_map.isVisible());
+		}
+
+		if(stationAdapter != null && stationAdapter.getStart() != null) {
+			// don't ask me why loc.getLocation() returns null and stationAdapter.getStart() doesn't
+			outState.putSerializable("loc", stationAdapter.getStart());
+		}
+
+		if(stationAdapter != null && stationAdapter.getItemCount() > 0) {
+			outState.putSerializable("stations", stationAdapter.getStations());
+		}
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		if(savedInstanceState != null) {
+			if(ui.menu_map != null) {
+				// TODO find out why menu_map does not yet exist
+				ui.menu_map.setVisible(savedInstanceState.getBoolean("menu_map"));
+			}
+
+			Location location = (Location) savedInstanceState.getSerializable("loc");
+			if(location != null) {
+				loc.setLocation(location, TransportrUtils.getDrawableForLocation(getContext(), location));
+				stationAdapter.setStart(location);
+			}
+
+			ArrayList<Location> stations = (ArrayList<Location>) savedInstanceState.getSerializable("stations");
+			if(stations != null && stations.size() > 0) {
+				stationAdapter.addAll(stations);
+				ui.stations_card.setVisibility(View.VISIBLE);
+			}
+		}
 	}
 
 	@Override
@@ -200,7 +243,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 	}
 
 	public void searchByLocation(Location loc) {
-		this.loc.setLocation(loc, null);
+		this.loc.setLocation(loc, TransportrUtils.getDrawableForLocation(getContext(), loc));
 		search();
 	}
 
@@ -248,7 +291,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		ui.progress.setVisibility(View.GONE);
 
 		ArrayList<Location> stations = stationAdapter.getStations();
-		if(stations != null) {
+		if(ui.menu_map != null && stations != null) {
 			boolean hasLocation = false;
 
 			// check if at least one station has a location attached to it
