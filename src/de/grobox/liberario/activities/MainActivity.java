@@ -244,7 +244,9 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 		addAccounts(network);
 
-		processIntent();
+		if(savedInstanceState != null) {
+			processIntent();
+		}
 
 		// show Changelog
 		HoloChangeLog cl = new HoloChangeLog(this);

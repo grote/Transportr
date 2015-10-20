@@ -62,12 +62,6 @@ public class TripDetailActivity extends AppCompatActivity {
 			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 
-		// If we're being restored from a previous state, then we don't need to do anything and
-		// should return or else we could end up with overlapping fragments.
-		if (savedInstanceState != null) {
-			return;
-		}
-
 		trip = (Trip) getIntent().getSerializableExtra("de.schildbach.pte.dto.Trip");
 		ui = new TripAdapter.BaseTripHolder(findViewById(R.id.cardView), trip.legs.size());
 

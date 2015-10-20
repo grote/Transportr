@@ -292,8 +292,10 @@ public class DeparturesFragment extends TransportrFragment {
 	}
 
 	public void searchByLocation(Location loc) {
-		this.loc.setLocation(loc, null);
-		search();
+		if(this.loc != null) {
+			this.loc.setLocation(loc, null);
+			search();
+		}
 	}
 
 	private static class ViewHolder {
