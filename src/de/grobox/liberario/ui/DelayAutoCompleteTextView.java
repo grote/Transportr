@@ -26,6 +26,9 @@ public class DelayAutoCompleteTextView extends AutoCompleteTextView {
 
 	public DelayAutoCompleteTextView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+
+		// don't let the system try to save the state of this view, we do it ourselves
+		setSaveEnabled(false);
 	}
 
 	public void setLoadingIndicator(ProgressBar progressBar) {
@@ -58,5 +61,10 @@ public class DelayAutoCompleteTextView extends AutoCompleteTextView {
 			mLoadingIndicator.setVisibility(View.GONE);
 		}
 		super.onFilterComplete(count);
+	}
+
+	@Override
+	protected void replaceText(CharSequence text) {
+		// do nothing so that the text stays the same, because we will set it ourselves later
 	}
 }

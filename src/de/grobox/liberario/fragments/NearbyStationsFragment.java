@@ -131,9 +131,8 @@ public class NearbyStationsFragment extends TransportrFragment {
 			outState.putBoolean("menu_map", ui.menu_map.isVisible());
 		}
 
-		if(stationAdapter != null && stationAdapter.getStart() != null) {
-			// don't ask me why loc.getLocation() returns null and stationAdapter.getStart() doesn't
-			outState.putSerializable("loc", stationAdapter.getStart());
+		if(loc != null && loc.getLocation() != null) {
+			outState.putSerializable("loc", loc.getLocation());
 		}
 
 		if(stationAdapter != null && stationAdapter.getItemCount() > 0) {
@@ -147,7 +146,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 		if(savedInstanceState != null) {
 			if(ui.menu_map != null) {
-				// TODO find out why menu_map does not yet exist
+				// TODO do this later, because onCreateOptionsMenu will be called later, so menu_map does not yet exist
 				ui.menu_map.setVisible(savedInstanceState.getBoolean("menu_map"));
 			}
 

@@ -20,6 +20,7 @@ package de.grobox.liberario.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -122,8 +123,13 @@ public class LocationInputView {
 
 			if(setText) {
 				if(loc != null) {
-					holder.location.setText(loc.uniqueShortName());
-					holder.location.cancelFiltering();
+					// set text
+					if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+						holder.location.setText(loc.uniqueShortName(), false);
+					} else {
+						holder.location.setText(loc.uniqueShortName());
+						holder.location.cancelFiltering();
+					}
 				} else {
 					holder.location.setText(null);
 				}
@@ -214,6 +220,8 @@ public class LocationInputView {
 	}
 
 	public void handleTextChanged(CharSequence s) {
+		if(is_changing) return;
+
 		// show clear button
 		if(s.length() > 0) {
 			holder.clear.setVisibility(View.VISIBLE);

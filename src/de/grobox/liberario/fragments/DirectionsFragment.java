@@ -77,6 +77,7 @@ public class DirectionsFragment extends TransportrFragment {
 	public ProgressDialog pd;
 	private LocationInputGPSView from;
 	private LocationInputView to;
+	private boolean restart = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -100,15 +101,7 @@ public class DirectionsFragment extends TransportrFragment {
 		// Trip Date Type Spinner (departure or arrival)
 		ui.type.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if((boolean) ui.type.getTag()) {
-					// departure is set, so set arrival now
-					ui.type.setText(getString(R.string.trip_arr));
-					ui.type.setTag(false);
-				} else {
-					// departure is not set, so set it now
-					ui.type.setText(getString(R.string.trip_dep));
-					ui.type.setTag(true);
-				}
+				setType(!(boolean) ui.type.getTag());
 			}
 		});
 
@@ -179,9 +172,9 @@ public class DirectionsFragment extends TransportrFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		if(savedInstanceState != null) {
-			// TODO restore more values here
+		restart = true;
 
+		if(savedInstanceState != null) {
 			Location from_loc = (Location) savedInstanceState.getSerializable("from");
 			if(from_loc != null) {
 				from.setLocation(from_loc, TransportrUtils.getDrawableForLocation(getContext(), from_loc));
@@ -192,9 +185,16 @@ public class DirectionsFragment extends TransportrFragment {
 				to.setLocation(to_loc, TransportrUtils.getDrawableForLocation(getContext(), to_loc));
 			}
 
+			setType(savedInstanceState.getBoolean("type"));
+
 			String time = savedInstanceState.getString("time", null);
 			if(time != null) {
 				ui.time.setText(time);
+			}
+
+			String date = savedInstanceState.getString("date", null);
+			if(date != null) {
+				ui.date.setText(date);
 			}
 		}
 	}
@@ -203,8 +203,6 @@ public class DirectionsFragment extends TransportrFragment {
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		// TODO save more values here
-
 		if(from != null) {
 			outState.putSerializable("from", from.getLocation());
 		}
@@ -212,8 +210,15 @@ public class DirectionsFragment extends TransportrFragment {
 			outState.putSerializable("to", to.getLocation());
 		}
 
+		if(ui.type != null) {
+			outState.putBoolean("type", (boolean) ui.type.getTag());
+		}
+
 		if(ui.time != null) {
 			outState.putCharSequence("time", ui.time.getText());
+		}
+		if(ui.date != null) {
+			outState.putCharSequence("date", ui.date.getText());
 		}
 	}
 
@@ -226,12 +231,16 @@ public class DirectionsFragment extends TransportrFragment {
 	public void onResume() {
 		super.onResume();
 
-		long date = DateUtils.getDateFromUi(mView).getTime();
-		long now = new Date().getTime();
+		if(!restart) {
+			long date = DateUtils.getDateFromUi(mView).getTime();
+			long now = new Date().getTime();
 
-		// reset date and time if older than 2 hours, so user doesn't search in the past by accident
-		if( (now - date) / (60*60*1000) > 2) {
-			DateUtils.resetTime(getContext(), ui.time, ui.date);
+			// reset date and time if older than 2 hours, so user doesn't search in the past by accident
+			if((now - date) / (60 * 60 * 1000) > 2) {
+				DateUtils.resetTime(getContext(), ui.time, ui.date);
+			}
+		} else {
+			restart = false;
 		}
 
 		mAfterGpsTask = null;
@@ -369,8 +378,13 @@ public class DirectionsFragment extends TransportrFragment {
 	}
 
 	public void presetFromTo(Location from, Location to) {
-		this.from.setLocation(from, TransportrUtils.getDrawableForLocation(getContext(), from));
-		this.to.setLocation(to, TransportrUtils.getDrawableForLocation(getContext(), to));
+		if(this.from != null) {
+			this.from.setLocation(from, TransportrUtils.getDrawableForLocation(getContext(), from));
+		}
+
+		if(this.to != null) {
+			this.to.setLocation(to, TransportrUtils.getDrawableForLocation(getContext(), to));
+		}
 	}
 
 	public void searchFromTo(Location from, Location to) {
@@ -504,6 +518,16 @@ public class DirectionsFragment extends TransportrFragment {
 		else {
 			ui.productsScrollView.setVisibility(View.GONE);
 			ui.whatHere.setVisibility(View.GONE);
+		}
+	}
+
+	private void setType(boolean departure) {
+		if(departure) {
+			ui.type.setText(getString(R.string.trip_dep));
+			ui.type.setTag(true);
+		} else {
+			ui.type.setText(getString(R.string.trip_arr));
+			ui.type.setTag(false);
 		}
 	}
 
