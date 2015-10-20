@@ -79,6 +79,7 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLo
 			} else {
 				Toast.makeText(fragment.getActivity(), error, Toast.LENGTH_LONG).show();
 			}
+			fragment.onRefreshError();
 			return;
 		}
 

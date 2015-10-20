@@ -243,8 +243,10 @@ public class NearbyStationsFragment extends TransportrFragment {
 	}
 
 	public void searchByLocation(Location loc) {
-		this.loc.setLocation(loc, TransportrUtils.getDrawableForLocation(getContext(), loc));
-		search();
+		if(this.loc != null) {
+			this.loc.setLocation(loc, TransportrUtils.getDrawableForLocation(getContext(), loc));
+			search();
+		}
 	}
 
 	public void addStations(NearbyLocationsResult result) {
@@ -305,6 +307,19 @@ public class NearbyStationsFragment extends TransportrFragment {
 			if(hasLocation) {
 				ui.menu_map.setVisible(true);
 			}
+		}
+	}
+
+	public void onRefreshError() {
+		//ui.recycler.setVisibility(View.GONE);
+		ui.stations_card.setVisibility(View.GONE);
+
+		// hide progress indicator
+		ui.swipe_refresh.setRefreshing(false);
+		ui.progress.setVisibility(View.GONE);
+
+		if(ui.menu_map != null) {
+			ui.menu_map.setVisible(false);
 		}
 	}
 
