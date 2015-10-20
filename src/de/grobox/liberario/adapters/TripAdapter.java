@@ -213,6 +213,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				                                                }
 			                                                }
 			);
+		} else {
+			leg_holder.departureLocation.setBackgroundResource(android.R.color.transparent);
+			leg_holder.arrivalLocation.setBackgroundResource(android.R.color.transparent);
 		}
 
 		// Leg duration
@@ -293,6 +296,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 					                                                }
 				                                                }
 				);
+			} else {
+				leg_holder.info.setBackgroundResource(android.R.color.transparent);
 			}
 
 			// hide arrow because this line has no destination
