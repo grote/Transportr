@@ -27,7 +27,6 @@
   <string name="tab_devs">Entwickler</string>
   <string name="tab_about">Über</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
-  <string name="about"></string>
   <string name="trip_dep">ab</string>
   <string name="trip_arr">an</string>
   <string name="trip_start">Start:</string>
@@ -47,7 +46,7 @@
   <string name="beta">beta</string>
   <string name="network">Netzwerk</string>
   <string name="pick_network_activity">Verkehrsverbund auswählen</string>
-  <string name="pick_network_first_run"></string>
+  <string name="pick_network_first_run">Dies ist das erste Mal, dass Sie Transportr gestartet haben. Bitte wählen Sie Ihren Verkehrsverbund aus, um fortzufahren!</string>
   <string name="clear_favs">Sind Sie sicher, dass Sie Ihre Favoriten für den aktuellen Verkehrsverbund löschen möchten?</string>
   <string name="clear_fav_trips">Sind Sie sicher, dass Sie %1$d Verbindung(en) aus den Favoriten löschen wollen? Die Nutzungshäufigkeit geht dabei verloren.</string>
   <string name="trip_searching">Suche nach Verbindungen…</string>
@@ -60,6 +59,7 @@
   <string name="share_trip_via">Verbindungen teilen mit...</string>
   <string name="undo">Rückgängig</string>
   <string name="fav_trips_empty">Deine letzten Fahrten werden hier angezeigt nachdem du angefangen hast, nach Verbindungen zu suchen.\n\n\nEine Sortierung ist sowohl nach Nutzungshäufigkeit (wie oft eine Verbindung angezeigt wurde) als auch nach der letzten Verwendung (welche Verbindung als letztes angezeigt wurde) möglich.</string>
+  <string name="more">Mehr</string>
   <string name="pref_transport_network">Verkehrsverbund</string>
   <string name="pref_home">Heimatadresse</string>
   <string name="pref_display">Anzeige</string>
@@ -104,6 +104,7 @@
   <string name="action_fav_trips_sort">Liste sortieren</string>
   <string name="action_fav_trips_sort_recent">kürzlich genutzte</string>
   <string name="action_fav_trips_sort_most">meist genutzte</string>
+  <string name="action_set_locations">Suche bearbeiten</string>
   <string name="what_here">Teilen Sie mir mit, was Sie hier gerne sehen möchten!</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>

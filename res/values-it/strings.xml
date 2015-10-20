@@ -2,7 +2,6 @@
 <resources>
   <string name="action_earlier">Trova viaggi precedenti</string>
   <string name="action_later">Trova viaggi successivi</string>
-  <string name="action_changelog"></string>
   <string name="action_about">Info</string>
   <string name="action_clear_favs">Pulisci favoriti</string>
   <string name="action_settings">Impostazioni</string>
@@ -27,7 +26,6 @@
   <string name="tab_devs">Sviluppatori</string>
   <string name="tab_about">Info</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFree Software License: GPLv3</string>
-  <string name="about"></string>
   <string name="trip_dep">part</string>
   <string name="trip_arr">arr</string>
   <string name="trip_start">Inizio:</string>
@@ -47,7 +45,6 @@
   <string name="beta">beta</string>
   <string name="network">Rete</string>
   <string name="pick_network_activity">Scegli una rete di trasporto</string>
-  <string name="pick_network_first_run"></string>
   <string name="clear_favs">Sei sicuro di voler eliminare i tuoi favoriti dalla rete di trasporto corrente?</string>
   <string name="clear_fav_trips">Sei sicuro di voler eliminare il viaggio(i) %1$d dai tuoi preferiti? I dati di utilizzo verranno persi.</string>
   <string name="trip_searching">Ricerca connessioni...</string>
@@ -69,11 +66,8 @@
   <string name="warning_departure_gap">Trovate troppe poche partenze. Potrebbero essercene molte altre nascoste. Cerca per l\'orario esatto per assicurarti di non perderne nessuna.</string>
   <string name="error_pick_network">Seleziona una rete di trasporto!</string>
   <string name="error_no_internet">Nessuna connessione internet disponibile</string>
-  <string name="error_invalid_from"></string>
-  <string name="error_invalid_to"></string>
   <string name="error_no_favs">Nessuna località favorita salvata</string>
   <string name="error_no_trips_found">Nessuna indicazione trovata</string>
-  <string name="error_no_location_provider"></string>
   <string name="error_no_departures_found">Nessuna partenza trovata</string>
   <string name="error_no_stations_found">Nessuna stazione trovata</string>
   <string name="error_no_proper_station">Il luogo fornito non ha nessuna stazione valida</string>
@@ -103,8 +97,6 @@
   <string name="product_cablecar">Funivia</string>
   <string name="product_on_demand">Su richiesta</string>
   <string name="action_fav_trips_sort">Ordina elenco</string>
-  <string name="action_fav_trips_sort_recent"></string>
-  <string name="action_fav_trips_sort_most"></string>
   <string name="what_here">Fammi sapere cosa vorresti vedere qui!</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>

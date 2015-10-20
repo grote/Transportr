@@ -23,24 +23,25 @@
   <string name="tab_directions">Verbindingen</string>
   <string name="tab_fav_trips">Favoriete Reizen</string>
   <string name="tab_departures">Vertrekken</string>
-  <string name="tab_libraries"></string>
+  <string name="tab_libraries">Hulpprogramma\'s</string>
   <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nVrije Software licentie: GPLv3</string>
   <string name="about">
 <![CDATA[
-<p>Transportr is een app voor het openbare vervoer die je vrij kan gebruiken, bestuderen, delen en verbeteren.</p>
-<p>Er is geen garantie voor de correctheid van de data. Gebruik van deze app is op eigen risico.</p>
-<p><b>Bijdragen</b> worden aangemoedigd en gewaardeerd. Als je een bijdrage wilt leveren kan je op <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> meer informatie vinden.</p>
-<p>Rapporteer eventuele problemen waar je tegen aan loopt bij het gebruiken van deze app op <a href=\"https://github.com/grote/Transportr/issues\">de issue tracker</a>.</p>
-]]></string>
+<p>Transportr is een app voor het openbaar vervoer welke je vrij kunt gebruiken, bestuderen, delen en verbeteren.</p>
+<p>Er is geen garantie voor de correctheid van data. Het gebruik van deze app is voor eigen risico.</p>
+<p><b>Bijdragen</b> zijn zeer welkom. Als je een bijdrage wilt leveren, kijk op <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> voor meer informatie.</p>
+<p>Indien je tegen problemen aan loopt, meld deze a.u.b. op <a href=\"https://github.com/grote/Transportr/issues\">de issues tracker</a>.</p>
+]]>
+</string>
   <string name="trip_dep">v.</string>
   <string name="trip_arr">a.</string>
   <string name="trip_start">Van:</string>
   <string name="trip_destination">Naar:</string>
   <string name="trip_removed">Reis Verwijderd</string>
-  <string name="from">van</string>
-  <string name="to">naar</string>
+  <string name="from">Van</string>
+  <string name="to">Naar</string>
   <string name="time">Tijd</string>
   <string name="date">Datum</string>
   <string name="min"> min</string>
@@ -66,6 +67,7 @@
   <string name="share_trip_via">Verbindingen delen via…</string>
   <string name="undo">Ongedaan maken</string>
   <string name="fav_trips_empty">Recente reizen zullen hier getoond worden zodra je naar verbindingen zoekt.\n\n\nJe kunt deze sorteren op hoe vaak je ze gebruikt of op de tijd van laatste gebruik.</string>
+  <string name="more">Meer</string>
   <string name="pref_transport_network">Transportatienetwerk</string>
   <string name="pref_home">Thuislocatie</string>
   <string name="pref_display">Scherm</string>
@@ -110,6 +112,8 @@
   <string name="action_fav_trips_sort">Sorteer lijst</string>
   <string name="action_fav_trips_sort_recent">Laatst gebruikt</string>
   <string name="action_fav_trips_sort_most">Meestgebruikt</string>
+  <string name="action_set_locations">Bewerk zoekopdracht</string>
+  <string name="action_swap_locations">Zoek naar terugreis</string>
   <string name="what_here">Laat me weten wat je hier graag zou willen zien!</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
@@ -201,8 +205,6 @@
   <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool Stad Regio</string>
-  <string name="np_desc_br"></string>
-  <string name="np_desc_vrs"></string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BEIEREN</string>
   <string name="np_name_paris">PARIJS</string>
@@ -211,7 +213,6 @@
   <string name="np_name_wien">WENEN</string>
   <string name="np_name_spain">Spanje</string>
   <string name="np_name_usny">New York en New-Jersey staten</string>
-  <string name="np_name_br"></string>
   <string name="maintainer">Onderhouder</string>
   <string name="contributers">Bijdragers</string>
   <string name="translators">Vertalers</string>

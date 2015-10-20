@@ -12,3 +12,5 @@ trans.it = res/values-it/strings.xml
 trans.nl = res/values-nl/strings.xml
 trans.tr = res/values-tr/strings.xml
 trans.pt_BR = res/values-pt-rBR/strings.xml
+trans.eu = res/values-eu/strings.xml
+trans.nb = res/values-nb/strings.xml

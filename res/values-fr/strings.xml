@@ -27,7 +27,13 @@
   <string name="tab_devs">Développeurs</string>
   <string name="tab_about">À propos</string>
   <string name="about_top">© 2013 - 2015 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
-  <string name="about"></string>
+  <string name="about">
+<![CDATA[ <p>Transportr est une appli de transport public que vous pouvez utiliser, étudier, partager et améliorer librement.</p>
+<p>La justesse des données n\'est pas garantie. Utilisez cette appli à vos risques.</p>
+<p>Nous encourageons et apprécions les <b>contributions</b>. Si vous désirez contribuer, rendez-vous sur <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> pour de plus amples informations.</p>
+<p>Si vous rencontrez un problème avec cette appli, rapportez-le grâce à <a href=\"https://github.com/grote/Transportr/issues\">notre gestionnaire de problèmes</a>.
+</p> ]]>.
+</string>
   <string name="trip_dep">dép.</string>
   <string name="trip_arr">arr.</string>
   <string name="trip_start">Départ :</string>
@@ -47,7 +53,7 @@
   <string name="beta">bêta</string>
   <string name="network">Réseau</string>
   <string name="pick_network_activity">Choisir un réseau de transport</string>
-  <string name="pick_network_first_run"></string>
+  <string name="pick_network_first_run">C\'est la première fois que vous lancez Transportr. Veuillez choisir votre réseau de transport afin de continuer !</string>
   <string name="clear_favs">Êtes-vous certain de vouloir supprimer vos favoris pour le réseau de transport actuel ?</string>
   <string name="clear_fav_trips">Êtes-vous certain de vouloir supprimer %1$d trajet(s) de vos favoris ? Le nombre d\'utilisation sera perdu.</string>
   <string name="trip_searching">Recherche de correspondances…</string>
@@ -60,6 +66,7 @@
   <string name="share_trip_via">Partager ce trajet par...</string>
   <string name="undo">Annuler</string>
   <string name="fav_trips_empty">Vos trajets récents apparaîtrons ici dès que vous commencerez à chercher le chemin.\n\n\nVous pourrez les trier par fréquence d\'utilisation ou dernière date d\'utilisation.</string>
+  <string name="more">Plus</string>
   <string name="pref_transport_network">Réseau de transport</string>
   <string name="pref_home">Point d\'origine</string>
   <string name="pref_display">Affichage</string>
@@ -69,11 +76,11 @@
   <string name="warning_departure_gap">Trop peu de départs ont été trouvés. Il pourrait y en avoir d\'autres cachés. Recherchez l\'heure exacte pour vous assurez qu\'il n\'en manque pas.</string>
   <string name="error_pick_network">Veuillez choisir un réseau de transport !</string>
   <string name="error_no_internet">Aucune connexion Internet suffisante disponible.</string>
-  <string name="error_invalid_from"></string>
-  <string name="error_invalid_to"></string>
+  <string name="error_invalid_from">Point de départ invalide (de)</string>
+  <string name="error_invalid_to">Point d\'arrivée invalide (vers)</string>
   <string name="error_no_favs">Aucun lieu favori enregistré</string>
   <string name="error_no_trips_found">Aucun itinéraire n\'a été trouvé</string>
-  <string name="error_no_location_provider"></string>
+  <string name="error_no_location_provider">Impossible de trouver votre position. Veuillez activer le GPS !</string>
   <string name="error_no_departures_found">Aucun départ n\'a été trouvé</string>
   <string name="error_no_stations_found">Aucun arrêt/station trouvé</string>
   <string name="error_no_proper_station">Le lieu fourni n\'est pas un arrêt/station valide</string>
@@ -102,8 +109,10 @@
   <string name="product_cablecar">Funiculaire</string>
   <string name="product_on_demand">À la demande</string>
   <string name="action_fav_trips_sort">Trier la liste</string>
-  <string name="action_fav_trips_sort_recent"></string>
-  <string name="action_fav_trips_sort_most"></string>
+  <string name="action_fav_trips_sort_recent">Dernière utilisation</string>
+  <string name="action_fav_trips_sort_most">Les plus utilisés</string>
+  <string name="action_set_locations">Modifier la recherche</string>
+  <string name="action_swap_locations">Rechercher le trajet de retour</string>
   <string name="what_here">Dites-moi ce que vous aimeriez voir ici !</string>
   <string name="np_region_europe">Europe</string>
   <string name="np_name_rt">Europe</string>
