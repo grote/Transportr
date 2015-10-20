@@ -342,14 +342,11 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 						item.withEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS));
 						break;
 				}
+				drawer.updateItem(item);
 			}
 		}
 
-		if(drawer.getCurrentSelectedPosition() < drawer.getDrawerItems().size() && drawer.getDrawerItem(drawer.getCurrentSelection()) != null && drawer.getDrawerItem(drawer.getCurrentSelection()).isEnabled()) {
-			// this is somehow necessary to show enabled/disabled state
-			// make sure to use fireOnClick=false
-			drawer.setSelection(drawer.getCurrentSelection(), false);
-		} else {
+		if(drawer.getCurrentSelectedPosition() <= drawer.getDrawerItems().size() && drawer.getDrawerItem(drawer.getCurrentSelection()) != null && !drawer.getDrawerItem(drawer.getCurrentSelection()).isEnabled()) {
 			// select last section if this one is not supported by current network
 			drawer.setSelectionAtPosition(drawer.getDrawerItems().size());
 		}
