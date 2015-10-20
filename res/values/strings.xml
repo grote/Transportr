@@ -127,6 +127,11 @@
 
     <string name="what_here">Let me know what you would like to see here!</string>
 
+    <!-- ckChangeLog -->
+    <string name="changelog_full_title">Changelog</string>
+    <string name="changelog_title">What\'s New</string>
+    <string name="changelog_show_full">More…</string>
+
     <string name="np_region_europe">Europe</string>
     <string name="np_name_rt">Europe</string>
     <string name="np_desc_rt">long-distance only</string>
