@@ -27,7 +27,10 @@ public class TransportrApplication extends Application {
 		if(networks == null) networks = new TransportNetworks(context);
 	}
 
-	public TransportNetworks getTransportNetworks() {
+	public TransportNetworks getTransportNetworks(Context context) {
+		// sometimes we need to reinitialize for some reason
+		if(networks == null) initilize(context);
+
 		return networks;
 	}
 }

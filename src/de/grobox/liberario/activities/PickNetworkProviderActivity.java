@@ -82,7 +82,7 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 
 		expListView = (ExpandableListView) findViewById(R.id.expandableNetworkProviderListView);
 
-		HashMap<String, List<TransportNetwork>> listNetwork = ((TransportrApplication) getApplicationContext()).getTransportNetworks().getHashMapByRegion();
+		HashMap<String, List<TransportNetwork>> listNetwork = ((TransportrApplication) getApplicationContext()).getTransportNetworks(this).getHashMapByRegion();
 		List<String> listRegion = new ArrayList<>(listNetwork.keySet());
 		Collections.sort(listRegion);
 

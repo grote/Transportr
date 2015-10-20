@@ -55,7 +55,7 @@ public class Preferences {
 		String id = getNetwork(context, i);
 
 		if(id != null && context.getApplicationContext() != null) {
-			return ((TransportrApplication) context.getApplicationContext()).getTransportNetworks().getTransportNetwork(id);
+			return ((TransportrApplication) context.getApplicationContext()).getTransportNetworks(context).getTransportNetwork(id);
 		} else {
 			return null;
 		}
