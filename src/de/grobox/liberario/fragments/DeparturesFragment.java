@@ -63,6 +63,7 @@ public class DeparturesFragment extends TransportrFragment {
 	private LocationInputView loc;
 	private String stationId;
 	private Date date;
+	private boolean restart = false;
 
 	private static final int MAX_DEPARTURES = 12;
 	private static final int SAFETY_MARGIN = 6;
@@ -118,6 +119,58 @@ public class DeparturesFragment extends TransportrFragment {
 	}
 
 	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		if(loc != null) {
+			outState.putSerializable("loc", loc.getLocation());
+		}
+
+		if(ui.time != null) {
+			outState.putCharSequence("time", ui.time.getText());
+		}
+
+		if(ui.date != null) {
+			outState.putCharSequence("date", ui.date.getText());
+		}
+
+		if(departureAdapter != null && departureAdapter.getItemCount() > 0) {
+			outState.putSerializable("departures", departureAdapter.getDepartures());
+		}
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		restart = true;
+
+		if(savedInstanceState != null) {
+			Location from_loc = (Location) savedInstanceState.getSerializable("loc");
+			if(from_loc != null) {
+				loc.setLocation(from_loc, TransportrUtils.getDrawableForLocation(getContext(), from_loc));
+				stationId = from_loc.id;
+			}
+
+			String time = savedInstanceState.getString("time", null);
+			if(time != null) {
+				ui.time.setText(time);
+			}
+
+			String date = savedInstanceState.getString("date", null);
+			if(date != null) {
+				ui.date.setText(date);
+			}
+
+			ArrayList<Departure> departures = (ArrayList<Departure>) savedInstanceState.getSerializable("departures");
+			if(departures != null && departures.size() > 0) {
+				departureAdapter.addAll(departures);
+				ui.departure_list.setVisibility(View.VISIBLE);
+			}
+		}
+	}
+
+	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// after new home location was selected, put it right into the input field
 		if(resultCode == AppCompatActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
@@ -149,12 +202,16 @@ public class DeparturesFragment extends TransportrFragment {
 	public void onResume() {
 		super.onResume();
 
-		long date = DateUtils.getDateFromUi(mView).getTime();
-		long now = new Date().getTime();
+		if(!restart) {
+			long date = DateUtils.getDateFromUi(mView).getTime();
+			long now = new Date().getTime();
 
-		// reset date and time if older than 2 hours, so user doesn't search in the past by accident
-		if( (now - date) / (60*60*1000) > 2) {
-			DateUtils.resetTime(getContext(), ui.time, ui.date);
+			// reset date and time if older than 2 hours, so user doesn't search in the past by accident
+			if( (now - date) / (60*60*1000) > 2) {
+				DateUtils.resetTime(getContext(), ui.time, ui.date);
+			}
+		} else {
+			restart = false;
 		}
 	}
 
@@ -293,7 +350,7 @@ public class DeparturesFragment extends TransportrFragment {
 
 	public void searchByLocation(Location loc) {
 		if(this.loc != null) {
-			this.loc.setLocation(loc, null);
+			this.loc.setLocation(loc, TransportrUtils.getDrawableForLocation(getContext(), loc));
 			search();
 		}
 	}

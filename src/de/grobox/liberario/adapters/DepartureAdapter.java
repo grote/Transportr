@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.grobox.liberario.Preferences;
@@ -142,6 +143,16 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 
 	public Departure getItem(int position) {
 		return departures.get(position);
+	}
+
+	public ArrayList<Departure> getDepartures() {
+		ArrayList<Departure> list = new ArrayList<>(departures.size());
+
+		for(int i = 0; i < departures.size(); i++) {
+			list.add(getItem(i));
+		}
+
+		return list;
 	}
 
 	public void addAll(final List<Departure> departures) {
