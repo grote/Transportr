@@ -122,6 +122,7 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 
 			// switch back to this fragment, because it doesn't work the first time where fragment is not yet found
 			final Intent intent2 = new Intent(getActivity(), MainActivity.class);
+			intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			intent2.setAction(MainActivity.ACTION_SETTINGS);
 			startActivity(intent2);
 		}

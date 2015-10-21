@@ -269,6 +269,7 @@ public class TransportrUtils {
 	static public void presetDirections(Context context, Location from, Location to) {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(MainActivity.ACTION_DIRECTIONS_PRESET);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("from", from);
 		intent.putExtra("to", to);
 
@@ -278,6 +279,7 @@ public class TransportrUtils {
 	static public void findDirections(Context context, Location from, Location to) {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(MainActivity.ACTION_DIRECTIONS);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("from", from);
 		intent.putExtra("to", to);
 
@@ -287,6 +289,7 @@ public class TransportrUtils {
 	static public void findDepartures(Context context, Location loc) {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(MainActivity.ACTION_DEPARTURES);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("location", loc);
 
 		context.startActivity(intent);
@@ -295,6 +298,7 @@ public class TransportrUtils {
 	static public void findNearbyStations(Context context, Location loc) {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(MainActivity.ACTION_NEARBY_LOCATIONS);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("location", loc);
 
 		context.startActivity(intent);
