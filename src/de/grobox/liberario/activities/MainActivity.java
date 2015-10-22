@@ -324,6 +324,9 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 				}
 			}
 		}
+
+		// close drawer
+		drawer.closeDrawer();
 	}
 
 	private void updateDrawerItems(TransportNetwork network) {
