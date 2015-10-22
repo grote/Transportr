@@ -19,7 +19,6 @@ package de.grobox.liberario.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -98,7 +97,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		                             });
 
 		// hide departure list initially
-		ui.stations_card.setVisibility(View.GONE);
+		ui.stations_area.setVisibility(View.GONE);
 
 		ui.recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 		ui.recycler.setItemAnimator(new DefaultItemAnimator());
@@ -159,7 +158,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 			ArrayList<Location> stations = (ArrayList<Location>) savedInstanceState.getSerializable("stations");
 			if(stations != null && stations.size() > 0) {
 				stationAdapter.addAll(stations);
-				ui.stations_card.setVisibility(View.VISIBLE);
+				ui.stations_area.setVisibility(View.VISIBLE);
 			}
 		}
 	}
@@ -204,7 +203,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		if(mView == null) return;
 
 		stationAdapter.clear();
-		ui.stations_card.setVisibility(View.GONE);
+		ui.stations_area.setVisibility(View.GONE);
 		loc.setLocation(null, null);
 	}
 
@@ -255,11 +254,11 @@ public class NearbyStationsFragment extends TransportrFragment {
 	}
 
 	public void onRefreshStart() {
-		if(ui.stations_card.getVisibility() == View.GONE) {
+		if(ui.stations_area.getVisibility() == View.GONE) {
 			// only fade in departure list on first search
-			ui.stations_card.setAlpha(0f);
-			ui.stations_card.setVisibility(View.VISIBLE);
-			ui.stations_card.animate().alpha(1f).setDuration(750);
+			ui.stations_area.setAlpha(0f);
+			ui.stations_area.setVisibility(View.VISIBLE);
+			ui.stations_area.animate().alpha(1f).setDuration(750);
 		}
 
 		// fade out recycler view
@@ -311,7 +310,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 	public void onRefreshError() {
 		//ui.recycler.setVisibility(View.GONE);
-		ui.stations_card.setVisibility(View.GONE);
+		ui.stations_area.setVisibility(View.GONE);
 
 		// hide progress indicator
 		ui.swipe_refresh.setRefreshing(false);
@@ -326,7 +325,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 		public LocationInputView.LocationInputViewHolder station;
 		public Button search;
-		public CardView stations_card;
+		public ViewGroup stations_area;
 		public ProgressBar progress;
 		public SwipyRefreshLayout swipe_refresh;
 		public RecyclerView recycler;
@@ -335,7 +334,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		public ViewHolder(View view) {
 			station = new LocationInputView.LocationInputViewHolder(view);
 			search = (Button) view.findViewById(R.id.searchButton);
-			stations_card = (CardView) view.findViewById(R.id.nearbystations_list);
+			stations_area = (ViewGroup) view.findViewById(R.id.nearbystations_list);
 			progress = (ProgressBar) view.findViewById(R.id.progressBar);
 			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 			recycler = (RecyclerView) view.findViewById(R.id.nearbystations_recycler_view);
@@ -362,7 +361,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		@Override
 		public void deactivateGPS() {
 			super.deactivateGPS();
-			fragment.ui.stations_card.setVisibility(View.GONE);
+			fragment.ui.stations_area.setVisibility(View.GONE);
 		}
 
 		@Override

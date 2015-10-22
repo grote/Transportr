@@ -22,6 +22,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.ui.StationPopupMenu;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.Product;
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationHolder>{
 
@@ -112,6 +114,16 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 		} else {
 			ui.distance.setVisibility(View.GONE);
 		}
+
+		// Show products if available for location
+		ui.products.removeAllViews();
+		if(loc.products != null && loc.products.size() > 0) {
+			for(Product product : loc.products) {
+				ImageView image = new ImageView(ui.products.getContext());
+				image.setImageDrawable(TransportrUtils.getTintedDrawable(ui.products.getContext(), TransportrUtils.getDrawableForProduct(product)));
+				ui.products.addView(image);
+			}
+		}
 	}
 
 	@Override
@@ -159,6 +171,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 		public ViewGroup item;
 		public TextView station;
 		public TextView distance;
+		public ViewGroup products;
 
 		public StationHolder(View v) {
 			super(v);
@@ -166,6 +179,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 			item = (ViewGroup) v.findViewById(R.id.stationView);
 			station = (TextView) v.findViewById(R.id.stationNameView);
 			distance = (TextView) v.findViewById(R.id.distanceView);
+			products = (ViewGroup) v.findViewById(R.id.productsView);
 		}
 	}
 }

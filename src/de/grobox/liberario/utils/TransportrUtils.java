@@ -244,6 +244,42 @@ public class TransportrUtils {
 
 	}
 
+	static public int getDrawableForProduct(Product p) {
+		int image_res = R.drawable.ic_product_bus;
+
+		switch(p) {
+			case HIGH_SPEED_TRAIN:
+				image_res = R.drawable.ic_product_high_speed_train;
+				break;
+			case REGIONAL_TRAIN:
+				image_res = R.drawable.ic_product_regional_train;
+				break;
+			case SUBURBAN_TRAIN:
+				image_res = R.drawable.ic_product_suburban_train;
+				break;
+			case SUBWAY:
+				image_res = R.drawable.ic_product_subway;
+				break;
+			case TRAM:
+				image_res = R.drawable.ic_product_tram;
+				break;
+			case BUS:
+				image_res = R.drawable.ic_product_bus;
+				break;
+			case FERRY:
+				image_res = R.drawable.ic_product_ferry;
+				break;
+			case CABLECAR:
+				image_res = R.drawable.ic_product_cablecar;
+				break;
+			case ON_DEMAND:
+				image_res = R.drawable.ic_product_on_demand;
+				break;
+		}
+
+		return image_res;
+	}
+
 	static public void share(Context context, Trip trip) {
 		//noinspection deprecation
 		Intent sendIntent = new Intent()
