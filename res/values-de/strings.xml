@@ -102,8 +102,8 @@
   <string name="product_cablecar">Cablecar</string>
   <string name="product_on_demand">Auf Nachfrage</string>
   <string name="action_fav_trips_sort">Liste sortieren</string>
-  <string name="action_fav_trips_sort_recent">kürzlich genutzte</string>
-  <string name="action_fav_trips_sort_most">meist genutzte</string>
+  <string name="action_fav_trips_sort_recent">Kürzlich genutzte</string>
+  <string name="action_fav_trips_sort_most">Meist genutzte</string>
   <string name="what_here">Teilen Sie mir mit, was Sie hier gerne sehen möchten!</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
