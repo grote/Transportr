@@ -74,7 +74,7 @@
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:id="@+id/moreButton"
-                android:src="@drawable/ic_action_core_overflow"
+                android:src="@drawable/ic_more_vert"
                 android:scaleType="centerCrop"
                 android:contentDescription="@string/more"
                 android:background="?attr/actionBarItemBackground"/>
