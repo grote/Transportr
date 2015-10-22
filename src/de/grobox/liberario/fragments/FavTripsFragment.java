@@ -197,7 +197,7 @@ public class FavTripsFragment extends TransportrListFragment {
 				                              }
 			                              }
 			);
-			moreButton.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()), PorterDuff.Mode.SRC_IN);
+			moreButton.setImageDrawable(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_more_vert));
 
 			// select trip on long click
 			v.setOnLongClickListener(new OnLongClickListener() {
