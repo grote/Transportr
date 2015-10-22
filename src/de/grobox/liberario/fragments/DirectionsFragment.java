@@ -411,9 +411,9 @@ public class DirectionsFragment extends TransportrFragment {
 
 		if(loc == null) {
 			// no location was selected by user
-			if(!loc_view.holder.location.getText().toString().equals("")) {
+			if(!loc_view.ui.location.getText().toString().equals("")) {
 				// no location selected, but text entered. So let's try create locations from text
-				loc_view.setLocation(new Location(LocationType.ANY, null, loc_view.holder.location.getText().toString(), loc_view.holder.location.getText().toString()), null);
+				loc_view.setLocation(new Location(LocationType.ANY, null, loc_view.ui.location.getText().toString(), loc_view.ui.location.getText().toString()), null);
 
 				return true;
 			}

@@ -86,7 +86,7 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		// clear input
 		//noinspection deprecation
 		setLocation(null, context.getResources().getDrawable(R.drawable.ic_gps));
-		holder.clear.setVisibility(View.VISIBLE);
+		ui.clear.setVisibility(View.VISIBLE);
 
 		// show GPS button blinking
 		final Animation animation = new AlphaAnimation(1, 0);
@@ -94,10 +94,10 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		animation.setInterpolator(new LinearInterpolator());
 		animation.setRepeatCount(Animation.INFINITE);
 		animation.setRepeatMode(Animation.REVERSE);
-		holder.status.setAnimation(animation);
+		ui.status.setAnimation(animation);
 
-		holder.location.setHint(R.string.stations_searching_position);
-		holder.location.clearFocus();
+		ui.location.setHint(R.string.stations_searching_position);
+		ui.location.clearFocus();
 
 		searching = true;
 	}
@@ -108,8 +108,8 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		locationManager.removeUpdates(this);
 
 		// deactivate button
-		holder.status.clearAnimation();
-		holder.location.setHint(hint);
+		ui.status.clearAnimation();
+		ui.location.setHint(hint);
 	}
 
 	public boolean isSearching() {

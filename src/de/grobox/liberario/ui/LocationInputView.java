@@ -42,7 +42,7 @@ import de.schildbach.pte.dto.Location;
 
 public class LocationInputView {
 	public View.OnClickListener onClickListener;
-	public LocationInputViewHolder holder;
+	public LocationInputViewHolder ui;
 
 	protected Context context;
 	protected LocationAdapter locAdapter;
@@ -52,26 +52,26 @@ public class LocationInputView {
 	private boolean is_changing = false;
 	private FavLocation.LOC_TYPE type;
 
-	public LocationInputView(Context context, LocationInputViewHolder holder) {
+	public LocationInputView(Context context, LocationInputViewHolder ui) {
 		this.context = context;
 		this.locAdapter = new LocationAdapter(context);
-		this.holder = holder;
+		this.ui = ui;
 
 		setLocationInputUI();
 	}
 
-	public LocationInputView(Context context, LocationInputViewHolder holder, boolean onlyIDs) {
+	public LocationInputView(Context context, LocationInputViewHolder ui, boolean onlyIDs) {
 		this.context = context;
 		this.locAdapter = new LocationAdapter(context, onlyIDs);
-		this.holder = holder;
+		this.ui = ui;
 
 		setLocationInputUI();
 	}
 
 	private void setLocationInputUI() {
-		holder.location.setAdapter(locAdapter);
-		holder.location.setLoadingIndicator(holder.progress);
-		holder.location.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		ui.location.setAdapter(locAdapter);
+		ui.location.setLoadingIndicator(ui.progress);
+		ui.location.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
 				onLocationItemClick(locAdapter.getItem(position), view);
@@ -84,24 +84,24 @@ public class LocationInputView {
 				LocationInputView.this.onClick();
 			}
 		};
-		holder.location.setOnClickListener(onClickListener);
+		ui.location.setOnClickListener(onClickListener);
 
-		holder.status.setOnClickListener(onClickListener);
-		holder.status.setImageDrawable(TransportrUtils.getTintedDrawable(context, R.drawable.ic_location));
+		ui.status.setOnClickListener(onClickListener);
+		ui.status.setImageDrawable(TransportrUtils.getTintedDrawable(context, R.drawable.ic_location));
 
 		// clear from text button
-		holder.clear.setOnClickListener(new View.OnClickListener() {
+		ui.clear.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				holder.location.requestFocus();
+				ui.location.requestFocus();
 				clearLocation();
-				holder.clear.setVisibility(View.GONE);
+				ui.clear.setVisibility(View.GONE);
 			}
 		});
-		holder.clear.setImageDrawable(TransportrUtils.getTintedDrawable(context, holder.clear.getDrawable()));
+		ui.clear.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.clear.getDrawable()));
 
 		// From text input changed
-		holder.location.addTextChangedListener(new TextWatcher() {
+		ui.location.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				handleTextChanged(s);
@@ -125,21 +125,22 @@ public class LocationInputView {
 				if(loc != null) {
 					// set text
 					if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-						holder.location.setText(loc.uniqueShortName(), false);
+						ui.location.setText(loc.uniqueShortName(), false);
 					} else {
-						holder.location.setText(loc.uniqueShortName());
-						holder.location.cancelFiltering();
+						ui.location.setText(loc.uniqueShortName());
+						ui.location.cancelFiltering();
 					}
+					ui.clear.setVisibility(View.VISIBLE);
 				} else {
-					holder.location.setText(null);
+					ui.location.setText(null);
 				}
-				holder.location.dismissDropDown();
+				ui.location.dismissDropDown();
 			}
 
 			if(icon != null) {
-				holder.status.setImageDrawable(icon);
+				ui.status.setImageDrawable(icon);
 			} else {
-				holder.status.setImageDrawable(TransportrUtils.getTintedDrawable(context, R.drawable.ic_location));
+				ui.status.setImageDrawable(TransportrUtils.getTintedDrawable(context, R.drawable.ic_location));
 			}
 
 			is_changing = false;
@@ -178,7 +179,7 @@ public class LocationInputView {
 
 	public void setHint(int hint) {
 		this.hint = context.getString(hint);
-		holder.location.setHint(this.hint);
+		ui.location.setHint(this.hint);
 	}
 
 	public void onLocationItemClick(Location loc, View view) {
@@ -192,7 +193,7 @@ public class LocationInputView {
 				setLocation(home, icon);
 			} else {
 				// prevent home.toString() from being shown in the TextView
-				holder.location.setText("");
+				ui.location.setText("");
 
 				selectHomeLocation();
 			}
@@ -200,19 +201,19 @@ public class LocationInputView {
 		// all other cases
 		else {
 			setLocation(loc, icon);
-			holder.location.requestFocus();
+			ui.location.requestFocus();
 		}
 
 		// hide soft-keyboard
 		InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(holder.location.getWindowToken(), 0);
+		imm.hideSoftInputFromWindow(ui.location.getWindowToken(), 0);
 	}
 
 	public void onClick() {
 		int size = locAdapter.addFavs();
 
 		if(size > 0) {
-			holder.location.showDropDown();
+			ui.location.showDropDown();
 		}
 		else {
 			Toast.makeText(context, context.getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
@@ -224,11 +225,11 @@ public class LocationInputView {
 
 		// show clear button
 		if(s.length() > 0) {
-			holder.clear.setVisibility(View.VISIBLE);
+			ui.clear.setVisibility(View.VISIBLE);
 			// clear location
 			setLocation(null, null, false);
 		} else {
-			holder.clear.setVisibility(View.GONE);
+			ui.clear.setVisibility(View.GONE);
 			clearLocation();
 			// clear drop-down list
 			locAdapter.resetList();
