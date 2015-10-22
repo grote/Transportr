@@ -16,7 +16,7 @@
 
     <item
         android:id="@+id/action_show_extra_info"
-        android:icon="@drawable/ic_action_navigation_expand"
+        android:icon="@drawable/ic_action_navigation_unfold_more"
         de.grobox.liberario:showAsAction="ifRoom"
         android:title="@string/action_show_extra_info"/>
 

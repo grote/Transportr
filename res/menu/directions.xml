@@ -12,7 +12,7 @@
     <item
         android:id="@+id/action_navigation_expand"
         de.grobox.liberario:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_navigation_expand"
+        android:icon="@drawable/ic_action_navigation_unfold_more"
         android:title="@string/action_navigation_expand"
         android:orderInCategory="1" />
 

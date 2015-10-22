@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
             .withToolbar(toolbar)
             .withAccountHeader(accountHeader)
             .addDrawerItems(
-		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIdentifier(R.string.tab_directions).withIcon(TransportrUtils.getTintedDrawable(getContext(), android.R.drawable.ic_menu_directions)),
+		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIdentifier(R.string.tab_directions).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_menu_directions)),
 		           new PrimaryDrawerItem().withName(R.string.tab_fav_trips).withIdentifier(R.string.tab_fav_trips).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star)),
 		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIdentifier(R.string.tab_departures).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
 		           new PrimaryDrawerItem().withName(R.string.tab_nearby_stations).withIdentifier(R.string.tab_nearby_stations).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),

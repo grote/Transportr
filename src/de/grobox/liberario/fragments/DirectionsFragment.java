@@ -252,9 +252,9 @@ public class DirectionsFragment extends TransportrFragment {
 		inflater.inflate(R.menu.directions, menu);
 
 		if(ui.productsScrollView.getVisibility() == View.GONE) {
-			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_expand);
+			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_unfold_more);
 		} else {
-			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_collapse);
+			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_unfold_less);
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
@@ -266,11 +266,11 @@ public class DirectionsFragment extends TransportrFragment {
 		switch (item.getItemId()) {
 			case R.id.action_navigation_expand:
 				if(ui.productsScrollView.getVisibility() == View.GONE) {
-					item.setIcon(R.drawable.ic_action_navigation_collapse);
+					item.setIcon(R.drawable.ic_action_navigation_unfold_less);
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, true);
 					showMore(true);
 				} else {
-					item.setIcon(R.drawable.ic_action_navigation_expand);
+					item.setIcon(R.drawable.ic_action_navigation_unfold_more);
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false);
 					showLess(true);
 				}
