@@ -34,6 +34,8 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import org.apmem.tools.layouts.FlowLayout;
+
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -90,6 +92,11 @@ public class TransportrUtils {
 			transportsView.setTextColor(line.style.foregroundColor);
 		}
 
+		// set margin, because setting in in xml does not work
+		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		llp.setMargins(0, 5, 15, 5);
+		transportsView.setLayoutParams(llp);
+
 		lineLayout.addView(transportsView, index);
 	}
 
@@ -107,6 +114,11 @@ public class TransportrUtils {
 
 	static public void addWalkingBox(Context context, ViewGroup lineLayout, int index) {
 		ImageView v = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
+
+		// set margin, because setting in in xml does not work
+		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		llp.setMargins(0, 5, 15, 5);
+		v.setLayoutParams(llp);
 
 		lineLayout.addView(v, index);
 	}

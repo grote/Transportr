@@ -33,13 +33,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import org.apmem.tools.layouts.FlowLayout;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import de.grobox.liberario.ListTrip;
 import de.grobox.liberario.R;
-import de.grobox.liberario.ui.FlowLayout;
 import de.grobox.liberario.ui.LegPopupMenu;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
 import de.grobox.liberario.utils.DateUtils;
