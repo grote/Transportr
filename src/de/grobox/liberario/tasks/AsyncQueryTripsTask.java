@@ -114,8 +114,12 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 
 	@Override
 	protected void onPostExecute(QueryTripsResult result) {
-		if(pd != null) {
-			pd.dismiss();
+		try {
+			if(pd != null) {
+				pd.dismiss();
+			}
+		} catch(final IllegalArgumentException e) {
+			// don't crash when dialog is no longer attached to window due to configuration change
 		}
 
 		if(result == null) {

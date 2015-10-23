@@ -320,6 +320,11 @@ public class DirectionsFragment extends TransportrFragment {
 			return;
 		}
 
+		if(to == null && from == null) {
+			// the activity is most likely being recreated after configuration change, don't search again
+			return;
+		}
+
 		AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(getActivity());
 
 		// check and set to location
