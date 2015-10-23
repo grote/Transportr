@@ -24,12 +24,15 @@ Pre-releases and beta versions for advanced users are available via [a special F
 
 Screenshots
 -----------
+[<img src="art/screenshots/drawer.png" width="200">](art/screenshots/drawer.png)
 [<img src="art/screenshots/directions.png" width="200">](art/screenshots/directions.png)
 [<img src="art/screenshots/trips.png" width="200">](art/screenshots/trips.png)
 [<img src="art/screenshots/trip_details.png" width="200">](art/screenshots/trip_details.png)
 [<img src="art/screenshots/favorite_trips.png" width="200">](art/screenshots/favorite_trips.png)
-[<img src="art/screenshots/stations.png" width="200">](art/screenshots/stations.png)
+[<img src="art/screenshots/departures.png" width="200">](art/screenshots/departures.png)
 [<img src="art/screenshots/nearby_stations.png" width="200">](art/screenshots/nearby_stations.png)
+[<img src="art/screenshots/nearby_stations_map.png" width="200">](art/screenshots/nearby_stations_map.png)
+[<img src="art/screenshots/about.png" width="200">](art/screenshots/about.png)
 
 
 Coverage
