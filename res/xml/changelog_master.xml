@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.0.0" versioncode="17">
+    <release version="1.0.0" versioncode="18">
         <change>Renamed app from Liberario to Transportr</change>
         <change>New Logo</change>
         <change>New user interface in material design</change>
