@@ -23,11 +23,11 @@ import java.util.List;
 
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.FavTrip;
+import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.adapters.LocationAdapter;
-import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.data.RecentsDB;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsResult;
 import android.content.Intent;
@@ -110,9 +110,9 @@ public class AmbiguousLocationActivity extends AppCompatActivity {
 				Location to = (Location) to_spinner.getSelectedItem();
 
 				// remember location and trip
-				FavDB.updateFavLocation(getApplicationContext(), from, FavLocation.LOC_TYPE.FROM);
-				FavDB.updateFavLocation(getApplicationContext(), to, FavLocation.LOC_TYPE.TO);
-				FavDB.updateFavTrip(getApplicationContext(), new FavTrip(from, to));
+				RecentsDB.updateFavLocation(getApplicationContext(), from, FavLocation.LOC_TYPE.FROM);
+				RecentsDB.updateFavLocation(getApplicationContext(), to, FavLocation.LOC_TYPE.TO);
+				RecentsDB.updateRecentTrip(getApplicationContext(), new RecentTrip(from, to));
 
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
 

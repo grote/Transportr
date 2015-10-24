@@ -2,7 +2,7 @@
       xmlns:de.grobox.liberario="http://schemas.android.com/apk/res-auto" >
 
     <item
-        android:id="@+id/action_fav_trips_sort"
+        android:id="@+id/action_recent_trips_sort"
         android:icon="@drawable/ic_action_content_sort"
         de.grobox.liberario:showAsAction="always"
         android:title="@string/action_fav_trips_sort">
@@ -10,10 +10,10 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/action_fav_trips_sort_recent"
+                    android:id="@+id/action_recent_trips_sort_recent"
                     android:title="@string/action_fav_trips_sort_recent"/>
                 <item
-                    android:id="@+id/action_fav_trips_sort_count"
+                    android:id="@+id/action_recent_trips_sort_count"
                     android:title="@string/action_fav_trips_sort_most"/>
             </group>
         </menu>

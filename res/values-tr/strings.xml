@@ -31,8 +31,8 @@
   <string name="detail_date">Tarih:</string>
   <string name="beta">beta</string>
   <string name="pick_network_activity">Bir Ulaşım Ağı Seçiniz</string>
-  <string name="clear_favs">Mevcut ulaşım ağınızdan favorilerinizi silmek istediğinize emin misiniz?</string>
-  <string name="clear_fav_trips">Favorilerinizden %1$d gezi silmek istediğinize emin misiniz? Kullanım sayısı kaybedilecek.</string>
+  <string name="clear_recent">Mevcut ulaşım ağınızdan favorilerinizi silmek istediğinize emin misiniz?</string>
+  <string name="clear_recent_trips">Favorilerinizden %1$d gezi silmek istediğinize emin misiniz? Kullanım sayısı kaybedilecek.</string>
   <string name="trip_searching">Bağlantılar aranıyor...</string>
   <string name="stations_searching_position">Mevcut konum aranıyor...</string>
   <string name="stations_searching_stations">Yakındaki istasyonlar aranıyor...</string>

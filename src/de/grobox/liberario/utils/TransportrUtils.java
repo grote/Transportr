@@ -49,7 +49,7 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapStationsActivity;
-import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.data.RecentsDB;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -478,7 +478,7 @@ public class TransportrUtils {
 	}
 
 	static public Drawable getDrawableForLocation(Context context, Location l, boolean is_fav) {
-		if( (l.id != null && l.id.equals("Transportr.HOME")) || l.equals(FavDB.getHome(context))) {
+		if( (l.id != null && l.id.equals("Transportr.HOME")) || l.equals(RecentsDB.getHome(context))) {
 			return getTintedDrawable(context, R.drawable.ic_action_home);
 		}
 		else if(l.id != null && l.id.equals("Transportr.GPS")) {
@@ -501,7 +501,7 @@ public class TransportrUtils {
 	}
 
 	static public Drawable getDrawableForLocation(Context context, Location l) {
-		List<Location> fav_list = FavDB.getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
+		List<Location> fav_list = RecentsDB.getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
 
 		return getDrawableForLocation(context, l, fav_list.contains(l));
 	}

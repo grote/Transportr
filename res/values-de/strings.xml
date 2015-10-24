@@ -22,6 +22,7 @@
   <string name="action_show_on_map">Auf Karte anzeigen</string>
   <string name="tab_directions">Richtungen</string>
   <string name="tab_fav_trips">Bevorzugte Verbindungen</string>
+  <string name="tab_recent_trips">Letzte Verbindungen</string>
   <string name="tab_departures">Abfahrten</string>
   <string name="tab_libraries">Bibliotheken</string>
   <string name="tab_devs">Entwickler</string>
@@ -45,13 +46,15 @@
   <string name="current_time_set">Aktuelle Zeit wurde eingestellt.</string>
   <string name="current_date_set">Aktuelles Datum wurde eingestellt.</string>
   <string name="added_1h">Es wurde 1 Stunde hinzugefügt.</string>
+  <string name="no_favourites">Keine bevorzugten Verbindungen.\n\nVerwaltung über die Seite \"Letzte Verbindungen\".</string>
+  <string name="removing_from_favourites">Eine der ausgewählten Verbindungen wird als bevorzugte Verbindung angezeigt. Sie wird von dieser Liste auch entfernt.</string>
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Netzwerk</string>
   <string name="pick_network_activity">Verkehrsverbund auswählen</string>
   <string name="pick_network_first_run">Dies ist das erste Mal, dass Sie Transportr gestartet haben. Bitte wählen Sie Ihren Verkehrsverbund aus, um fortzufahren!</string>
-  <string name="clear_favs">Sind Sie sicher, dass Sie Ihre Favoriten für den aktuellen Verkehrsverbund löschen möchten?</string>
-  <string name="clear_fav_trips">Sind Sie sicher, dass Sie %1$d Verbindung(en) aus den Favoriten löschen wollen? Die Nutzungshäufigkeit geht dabei verloren.</string>
+  <string name="clear_recent">Sind Sie sicher, dass Sie Ihre Favoriten für den aktuellen Verkehrsverbund löschen möchten?</string>
+  <string name="clear_recent_trips">Sind Sie sicher, dass Sie %1$d Verbindung(en) aus dem Verlauf löschen wollen? Die Nutzungshäufigkeit geht dabei verloren.</string>
   <string name="trip_searching">Suche nach Verbindungen…</string>
   <string name="stations_searching_position">Suche nach aktueller Position…</string>
   <string name="stations_searching_stations">Suche nach Stationen in der Nähe…</string>

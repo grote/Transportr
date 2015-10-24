@@ -19,11 +19,10 @@ package de.grobox.liberario.activities;
 
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.ui.LocationInputView;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -74,7 +73,7 @@ public class SetHomeActivity extends AppCompatActivity {
 			public void onClick(View v) {
 				if(loc.getLocation() != null) {
 					// save home location in file
-					FavDB.setHome(v.getContext(), loc.getLocation());
+					RecentsDB.setHome(v.getContext(), loc.getLocation());
 
 					Intent returnIntent = new Intent();
 					setResult(RESULT_OK, returnIntent);

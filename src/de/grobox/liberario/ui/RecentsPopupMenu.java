@@ -18,29 +18,30 @@
 package de.grobox.liberario.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.ArrayList;
-
-import de.grobox.liberario.FavTrip;
+import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.R;
-import de.grobox.liberario.utils.DateUtils;
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
-import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.Stop;
-import de.schildbach.pte.dto.Trip;
 
-public class FavPopupMenu extends BasePopupMenu {
+public class RecentsPopupMenu extends BasePopupMenu {
 
-	private FavTrip trip;
+	private RecentTrip trip;
+	private FavouriteRemovedListener removedListener = null;
 
-	public FavPopupMenu(Context context, View anchor, FavTrip trip) {
+	public RecentsPopupMenu(Context context, View anchor, RecentTrip trip) {
 		super(context, anchor);
 
 		this.trip = trip;
-		this.getMenuInflater().inflate(R.menu.fav_trip_actions, getMenu());
+		this.getMenuInflater().inflate(R.menu.recent_trip_actions, getMenu());
+
+		if(trip.isFavourite()) {
+			getMenu().findItem(R.id.action_mark_favourite).setIcon(R.drawable.ic_action_star);
+		} else {
+			getMenu().findItem(R.id.action_mark_favourite).setIcon(R.drawable.ic_action_star_empty);
+		}
 
 		showIcons();
 	}
@@ -61,11 +62,31 @@ public class FavPopupMenu extends BasePopupMenu {
 						TransportrUtils.presetDirections(context, trip.getFrom(), trip.getTo());
 
 						return true;
+					case R.id.action_mark_favourite:
+						RecentsDB.toggleFavouriteTrip(context, trip);
+						trip.setFavourite(!trip.isFavourite());
+						if(trip.isFavourite()) {
+							item.setIcon(TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star));
+						} else {
+							item.setIcon(TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star_empty));
+						}
+						if (removedListener != null) {
+							removedListener.onFavouriteRemoved();
+						}
+						return true;
 					default:
 						return false;
 				}
 			}
 		};
+	}
+
+	public void setRemovedListener(FavouriteRemovedListener l) {
+		this.removedListener = l;
+	}
+
+	public static abstract class FavouriteRemovedListener {
+		public abstract void onFavouriteRemoved();
 	}
 
 }
