@@ -28,7 +28,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -114,11 +113,11 @@ public class TripsActivity extends AppCompatActivity {
 			     intent.putExtra("de.schildbach.pte.dto.Trip.from", trip.from);
 			     intent.putExtra("de.schildbach.pte.dto.Trip.to", trip.to);
 
-				 if(false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-					 // TODO make shared activity transition work
-					 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(TripsActivity.this,
-					                                                                        Pair.create((View) toolbar, "toolbar"),
-					                                                                        Pair.create(mRecyclerView.getChildAt(position), "card"));
+				 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+					 LinearLayoutManager layoutManager = ((LinearLayoutManager)mRecyclerView.getLayoutManager());
+					 int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
+					 ActivityOptions options = ActivityOptions.
+							 makeSceneTransitionAnimation(TripsActivity.this, mRecyclerView.getChildAt(position-firstVisiblePosition), "card");
 					 startActivity(intent, options.toBundle());
 				 } else {
 					 startActivity(intent);

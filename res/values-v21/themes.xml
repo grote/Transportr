@@ -5,24 +5,24 @@
         <item name="android:windowContentTransitions">true</item>
 
         <!-- specify enter and exit transitions -->
-        <item name="android:windowEnterTransition">@android:transition/explode</item>
-        <item name="android:windowExitTransition">@android:transition/explode</item>
+        <item name="android:windowEnterTransition">@transition/window</item>
+        <item name="android:windowExitTransition">@transition/window</item>
 
         <!-- specify shared element transitions -->
-        <item name="android:windowSharedElementEnterTransition">@android:transition/slide_left</item>
-        <item name="android:windowSharedElementExitTransition">@android:transition/slide_right</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/element</item>
+        <item name="android:windowSharedElementExitTransition">@transition/element</item>
     </style>
 
     <style name="AppTheme.Light" parent="AppBaseTheme.Light">
         <item name="android:windowContentTransitions">true</item>
 
         <!-- specify enter and exit transitions -->
-        <item name="android:windowEnterTransition">@android:transition/explode</item>
-        <item name="android:windowExitTransition">@android:transition/explode</item>
+        <item name="android:windowEnterTransition">@transition/window</item>
+        <item name="android:windowExitTransition">@transition/window</item>
 
         <!-- specify shared element transitions -->
-        <item name="android:windowSharedElementEnterTransition">@android:transition/slide_left</item>
-        <item name="android:windowSharedElementExitTransition">@android:transition/slide_right</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/element</item>
+        <item name="android:windowSharedElementExitTransition">@transition/element</item>
     </style>
 
 </resources>
