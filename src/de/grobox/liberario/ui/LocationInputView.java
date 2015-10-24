@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -44,7 +45,7 @@ public class LocationInputView {
 	public View.OnClickListener onClickListener;
 	public LocationInputViewHolder ui;
 
-	protected Context context;
+	protected Activity context;
 	protected LocationAdapter locAdapter;
 	protected Location loc;
 	protected String hint;
@@ -52,7 +53,7 @@ public class LocationInputView {
 	private boolean is_changing = false;
 	private FavLocation.LOC_TYPE type;
 
-	public LocationInputView(Context context, LocationInputViewHolder ui) {
+	public LocationInputView(Activity context, LocationInputViewHolder ui) {
 		this.context = context;
 		this.locAdapter = new LocationAdapter(context);
 		this.ui = ui;
@@ -60,7 +61,7 @@ public class LocationInputView {
 		setLocationInputUI();
 	}
 
-	public LocationInputView(Context context, LocationInputViewHolder ui, boolean onlyIDs) {
+	public LocationInputView(Activity context, LocationInputViewHolder ui, boolean onlyIDs) {
 		this.context = context;
 		this.locAdapter = new LocationAdapter(context, onlyIDs);
 		this.ui = ui;

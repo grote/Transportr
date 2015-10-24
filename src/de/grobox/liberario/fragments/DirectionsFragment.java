@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -411,6 +412,12 @@ public class DirectionsFragment extends TransportrFragment {
 		if(ui.to != null) ((LocationAdapter) ui.to.location.getAdapter()).resetList();
 	}
 
+	public void activateGPS() {
+		if(from != null) {
+			from.activateGPS();
+		}
+	}
+
 	private Boolean checkLocation(LocationInputView loc_view) {
 		Location loc = loc_view.getLocation();
 
@@ -513,12 +520,13 @@ public class DirectionsFragment extends TransportrFragment {
 		if(animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			ui.whatHere.setAlpha(1f);
 			ui.whatHere.animate().setDuration(500).alpha(0f).withEndAction(new Runnable() {
-				@Override
-				public void run() {
-					ui.productsScrollView.setVisibility(View.GONE);
-					ui.whatHere.setVisibility(View.GONE);
-				}
-			});
+				                                                               @Override
+				                                                               public void run() {
+					                                                               ui.productsScrollView.setVisibility(View.GONE);
+					                                                               ui.whatHere.setVisibility(View.GONE);
+				                                                               }
+			                                                               }
+			);
 		}
 		else {
 			ui.productsScrollView.setVisibility(View.GONE);
@@ -538,8 +546,8 @@ public class DirectionsFragment extends TransportrFragment {
 
 
 	class FromInputView extends LocationInputGPSView {
-		public FromInputView(Context context, LocationInputViewHolder holder) {
-			super(context, holder);
+		public FromInputView(Activity context, LocationInputViewHolder holder) {
+			super(context, holder, MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS);
 			setType(FavLocation.LOC_TYPE.FROM);
 			setHome(true);
 			setFavs(true);
@@ -569,7 +577,8 @@ public class DirectionsFragment extends TransportrFragment {
 	}
 
 	class ToInputView extends LocationInputView {
-		public ToInputView(Context context, LocationInputViewHolder holder) {
+		// adapt activateGPS if you ever make this a LocationInputGPSView
+		public ToInputView(Activity context, LocationInputViewHolder holder) {
 			super(context, holder);
 			setType(FavLocation.LOC_TYPE.TO);
 			setHome(true);

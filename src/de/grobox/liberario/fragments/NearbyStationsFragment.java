@@ -247,6 +247,13 @@ public class NearbyStationsFragment extends TransportrFragment {
 		}
 	}
 
+	public void activateGPS() {
+		if(this.loc != null) {
+			this.loc.activateGPS();
+			search();
+		}
+	}
+
 	public void addStations(NearbyLocationsResult result) {
 		stationAdapter.addAll(result.locations);
 
@@ -346,7 +353,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		NearbyStationsFragment fragment;
 
 		public NearbyStationsInputView(NearbyStationsFragment fragment, LocationInputViewHolder holder) {
-			super(fragment.getActivity(), holder);
+			super(fragment.getActivity(), holder, MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
 
 			this.fragment = fragment;
 		}
@@ -355,7 +362,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		public void activateGPS() {
 			super.activateGPS();
 
-			fragment.onRefreshStart();
+			if(!isRequestingPermission()) fragment.onRefreshStart();
 		}
 
 		@Override
@@ -368,14 +375,14 @@ public class NearbyStationsFragment extends TransportrFragment {
 		public void onLocationChanged(Location location) {
 			super.onLocationChanged(location);
 
-			fragment.search();
+			if(!isRequestingPermission()) fragment.search();
 		}
 
 		@Override
 		public void onLocationItemClick(Location loc, View view) {
 			super.onLocationItemClick(loc, view);
 
-			fragment.search();
+			if(!isRequestingPermission()) fragment.search();
 		}
 
 		@Override

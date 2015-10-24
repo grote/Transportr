@@ -17,10 +17,15 @@
 
 package de.grobox.liberario.ui;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -39,10 +44,13 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 	private LocationManager locationManager;
 	private boolean searching = false;
 	private Location gps_location = null;
+	private int caller;
+	private boolean request_permission = false;
 
-	public LocationInputGPSView(Context context, LocationInputViewHolder ui) {
+	public LocationInputGPSView(Activity context, LocationInputViewHolder ui, int caller) {
 		super(context, ui, false);
 
+		this.caller = caller;
 		this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
 		locAdapter.setGPS(true);
@@ -68,6 +76,25 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 	public void activateGPS() {
 		if(isSearching()) return;
 
+		// check permissions
+		if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+			// we don't have a permission, so store the information that we are requesting it
+			request_permission = true;
+
+			// Should we show an explanation?
+			if(ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.ACCESS_FINE_LOCATION)) {
+				Toast.makeText(context, R.string.error_no_gps_permission, Toast.LENGTH_LONG).show();
+			} else {
+				// No explanation needed, we can request the permission
+				ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, caller);
+			}
+
+			return;
+		}
+
+		// we arrive here only once we have got the permission and are not longer requesting it
+		request_permission = false;
+
 		List<String> providers = locationManager.getProviders(true);
 
 		for(String provider : providers) {
@@ -78,7 +105,8 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		}
 
 		// check if there is a non-passive provider available
-		if(providers.size() == 0 || (providers.size() == 1 && providers.get(0).equals(LocationManager.PASSIVE_PROVIDER)) ) {
+		if(providers.size() == 0 || (providers.size() == 1 && providers.get(0).equals(LocationManager.PASSIVE_PROVIDER))) {
+
 			locationManager.removeUpdates(this);
 			Toast.makeText(context, context.getResources().getString(R.string.error_no_location_provider), Toast.LENGTH_LONG).show();
 
@@ -110,7 +138,9 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 	public void deactivateGPS() {
 		searching = false;
 
-		locationManager.removeUpdates(this);
+		if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+			locationManager.removeUpdates(this);
+		}
 
 		// deactivate button
 		ui.status.clearAnimation();
@@ -121,6 +151,10 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		return searching;
 	}
 
+	public boolean isRequestingPermission() {
+		return request_permission;
+	}
+
 	public void onLocationChanged(Location location) {
 		//noinspection deprecation
 		setLocation(location, context.getResources().getDrawable(R.drawable.ic_gps));
@@ -129,7 +163,9 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 	// Called when a new location is found by the network location provider.
 	public void onLocationChanged(android.location.Location location) {
 		// no more updates to prevent this method from being called more than once
-		locationManager.removeUpdates(this);
+		if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+			locationManager.removeUpdates(this);
+		}
 
 		// only execute if we still do not have a location to make super sure this is not run twice
 		if(gps_location == null) {

@@ -252,5 +252,6 @@
     <string name="spanish">Spanish</string>
     <string name="turkish">Turkish</string>
     <string name="error_please_file_ticket">Something went wrong. Please create an issue ticket explaining what you did.</string>
+    <string name="error_no_gps_permission">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
 
 </resources>

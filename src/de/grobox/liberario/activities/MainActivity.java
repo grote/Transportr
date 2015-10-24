@@ -19,9 +19,11 @@ package de.grobox.liberario.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -32,10 +34,10 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.BaseDrawerItem;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
@@ -46,11 +48,11 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import de.cketti.library.changelog.ChangeLog;
-import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
@@ -70,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 	static final public String ACTION_DEPARTURES = "de.grobox.liberario.departures";
 	static final public String ACTION_NEARBY_LOCATIONS = "de.grobox.liberario.nearby_locations";
 	static final public String ACTION_SETTINGS = "de.grobox.liberario.settings";
+
+	static final public int PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS = 0;
+	static final public int PR_ACCESS_FINE_LOCATION_DIRECTIONS = 1;
 
 	private Drawer drawer;
 	private AccountHeader accountHeader;
@@ -284,6 +289,28 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		setIntent(intent);
 
 		processIntent();
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+		switch(requestCode) {
+			case PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS: {
+				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					// activate GPS again
+					NearbyStationsFragment f = (NearbyStationsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_nearby_stations));
+					f.activateGPS();
+				}
+				break;
+			}
+			case PR_ACCESS_FINE_LOCATION_DIRECTIONS: {
+				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					// activate GPS again
+					DirectionsFragment f = (DirectionsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_directions));
+					f.activateGPS();
+				}
+				break;
+			}
+		}
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
