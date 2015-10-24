@@ -49,6 +49,10 @@ public class LegPopupMenu extends BasePopupMenu {
 		this.text = TransportrUtils.legToString(context, leg);
 		this.getMenuInflater().inflate(R.menu.location_actions, getMenu());
 
+		if(!loc1.hasId()) {
+			getMenu().removeItem(R.id.action_show_departures);
+		}
+
 		showIcons();
 	}
 
