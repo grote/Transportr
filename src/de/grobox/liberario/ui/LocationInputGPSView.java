@@ -66,6 +66,8 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 	}
 
 	public void activateGPS() {
+		if(isSearching()) return;
+
 		List<String> providers = locationManager.getProviders(true);
 
 		for(String provider : providers) {
@@ -87,6 +89,9 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		//noinspection deprecation
 		setLocation(null, context.getResources().getDrawable(R.drawable.ic_gps));
 		ui.clear.setVisibility(View.VISIBLE);
+
+		// clear current GPS location, because we are looking to find a new one
+		gps_location = null;
 
 		// show GPS button blinking
 		final Animation animation = new AlphaAnimation(1, 0);
