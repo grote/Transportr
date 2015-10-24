@@ -32,8 +32,8 @@
   <string name="detail_date">Fecha:</string>
   <string name="beta">beta</string>
   <string name="pick_network_activity">Elige una red de transporte</string>
-  <string name="clear_favs">¿Es seguro que quieres eliminar los favoritos de la red de transporte actual?</string>
-  <string name="clear_fav_trips">¿Es seguro que quieres eliminar %1$d viajes de tus favoritos? El contador de usos se restablecerá.</string>
+  <string name="clear_recent">¿Es seguro que quieres eliminar los favoritos de la red de transporte actual?</string>
+  <string name="clear_recent_trips">¿Es seguro que quieres eliminar %1$d viajes de tus favoritos? El contador de usos se restablecerá.</string>
   <string name="trip_searching">Buscando conexiones…</string>
   <string name="stations_searching_position">Buscando la posición actual…</string>
   <string name="stations_searching_stations">Buscando estaciones cercanas…</string>

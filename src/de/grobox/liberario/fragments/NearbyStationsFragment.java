@@ -46,7 +46,7 @@ import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapStationsActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.StationAdapter;
-import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
 import de.grobox.liberario.ui.LocationInputGPSView;
 import de.grobox.liberario.ui.LocationInputView;
@@ -218,7 +218,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 			if(loc.getLocation().hasId()) {
 				// Location is valid, so make it a favorite or increase counter
-				FavDB.updateFavLocation(getActivity(), loc.getLocation(), FavLocation.LOC_TYPE.FROM);
+				RecentsDB.updateFavLocation(getActivity(), loc.getLocation(), FavLocation.LOC_TYPE.FROM);
 			}
 
 			// play animations before clearing departures list

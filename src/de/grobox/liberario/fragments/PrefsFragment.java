@@ -35,7 +35,7 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.data.RecentsDB;
 import de.schildbach.pte.dto.Location;
 
 public class PrefsFragment extends PreferenceFragmentCompat implements TransportNetwork.Handler, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -75,7 +75,7 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 			public boolean onPreferenceClick(Preference preference) {
 				Intent intent = new Intent(getActivity(), SetHomeActivity.class);
 
-				if(FavDB.getHome(getActivity()) != null) {
+				if(RecentsDB.getHome(getActivity()) != null) {
 					intent.putExtra("new", false);
 				} else {
 					intent.putExtra("new", true);
@@ -129,7 +129,7 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 	}
 
 	private void setHome() {
-		Location home_loc = FavDB.getHome(getActivity());
+		Location home_loc = RecentsDB.getHome(getActivity());
 		if(home_loc != null) {
 			home.setSummary(home_loc.uniqueShortName());
 		} else {

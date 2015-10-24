@@ -37,7 +37,7 @@ import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
-import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
@@ -188,7 +188,7 @@ public class LocationInputView {
 
 		// special case: home location
 		if(loc.id != null && loc.id.equals("Transportr.HOME")) {
-			Location home = FavDB.getHome(context);
+			Location home = RecentsDB.getHome(context);
 
 			if(home != null) {
 				setLocation(home, icon);

@@ -24,7 +24,7 @@ import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
@@ -160,7 +160,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 		Location l = getItem(position);
 
 		if(l.id != null && l.id.equals("Transportr.HOME")) {
-			Location home = FavDB.getHome(parent.getContext());
+			Location home = RecentsDB.getHome(parent.getContext());
 			if(home != null) {
 				textView.setText(home.uniqueShortName());
 				textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
@@ -217,7 +217,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 		Location home_loc = null;
 
 		if(home) {
-			home_loc = FavDB.getHome(getContext());
+			home_loc = RecentsDB.getHome(getContext());
 			if(home_loc != null) {
 				favList.add(new Location(LocationType.ANY, "Transportr.HOME", home_loc.place, home_loc.name));
 			} else {
@@ -227,7 +227,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 		if(gps) favList.add(new Location(LocationType.ANY, "Transportr.GPS"));
 
 		if(favs) {
-			List<Location> tmpList = FavDB.getFavLocationList(getContext(), sort, onlyIDs);
+			List<Location> tmpList = RecentsDB.getFavLocationList(getContext(), sort, onlyIDs);
 			// remove home location from favorites if it is set
 			if(home && home_loc != null) {
 				tmpList.remove(home_loc);

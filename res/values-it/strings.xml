@@ -45,8 +45,8 @@
   <string name="beta">beta</string>
   <string name="network">Rete</string>
   <string name="pick_network_activity">Scegli una rete di trasporto</string>
-  <string name="clear_favs">Sei sicuro di voler eliminare i tuoi favoriti dalla rete di trasporto corrente?</string>
-  <string name="clear_fav_trips">Sei sicuro di voler eliminare il viaggio(i) %1$d dai tuoi preferiti? I dati di utilizzo verranno persi.</string>
+  <string name="clear_recent">Sei sicuro di voler eliminare i tuoi favoriti dalla rete di trasporto corrente?</string>
+  <string name="clear_recent_trips">Sei sicuro di voler eliminare il viaggio(i) %1$d dai tuoi preferiti? I dati di utilizzo verranno persi.</string>
   <string name="trip_searching">Ricerca connessioni...</string>
   <string name="stations_searching_position">Ricerca posizione corrente...</string>
   <string name="stations_searching_stations">Ricerca stazioni vicine...</string>

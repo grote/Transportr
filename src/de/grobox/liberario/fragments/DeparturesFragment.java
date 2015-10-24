@@ -46,7 +46,7 @@ import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.DepartureAdapter;
 import de.grobox.liberario.adapters.LocationAdapter;
-import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
 import de.grobox.liberario.ui.LocationInputView;
 import de.grobox.liberario.utils.DateUtils;
@@ -175,7 +175,7 @@ public class DeparturesFragment extends TransportrFragment {
 		// after new home location was selected, put it right into the input field
 		if(resultCode == AppCompatActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
 			//noinspection deprecation
-			loc.setLocation(FavDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
+			loc.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 		}
 	}
 
@@ -226,7 +226,7 @@ public class DeparturesFragment extends TransportrFragment {
 			}
 
 			// Location is valid, so make it a favorite or increase counter
-			FavDB.updateFavLocation(getActivity(), loc.getLocation(), FavLocation.LOC_TYPE.FROM);
+			RecentsDB.updateFavLocation(getActivity(), loc.getLocation(), FavLocation.LOC_TYPE.FROM);
 
 			date = DateUtils.getDateFromUi(mView);
 			stationId = loc.getLocation().id;

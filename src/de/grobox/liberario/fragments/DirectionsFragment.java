@@ -18,23 +18,25 @@
 package de.grobox.liberario.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -43,22 +45,26 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.FavTrip;
+import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
+import de.grobox.liberario.adapters.FavouritesAdapter;
 import de.grobox.liberario.adapters.LocationAdapter;
-import de.grobox.liberario.data.FavDB;
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.ui.LocationInputGPSView;
 import de.grobox.liberario.ui.LocationInputView;
@@ -79,6 +85,8 @@ public class DirectionsFragment extends TransportrFragment {
 	private LocationInputGPSView from;
 	private LocationInputView to;
 	private boolean restart = false;
+	private boolean showingMore = false;
+	private FavouritesAdapter mFavAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -145,26 +153,30 @@ public class DirectionsFragment extends TransportrFragment {
 			});
 		}
 
-		if(!Preferences.getPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false)) {
-			// don't animate here, since this method is called on each fragment change from the drawer
-			showLess(false);
-		}
-
 		ui.search.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				search();
 			}
 		});
 
-		ui.whatHere.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "t+transportr@grobox.de", null));
-				intent.putExtra(Intent.EXTRA_SUBJECT, "[Transportr] Below Directions Form");
-				intent.putExtra(Intent.EXTRA_TEXT, "Hi,\nI like to see");
-				startActivity(Intent.createChooser(intent, "Send Email"));
-			}
-		});
+		ui.fav_trips_separator_star.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()));
+		ui.fav_trips_separator_line.setBackgroundColor(TransportrUtils.getButtonIconColor(getActivity()));
+		ui.fav_trips_separator_star.setAlpha(0.5f);
+		ui.fav_trips_separator_line.setAlpha(0.5f);
+
+		List<RecentTrip> favourites = RecentsDB.getFavouriteTripList(getContext());
+		mFavAdapter = new FavouritesAdapter(getContext(), favourites);
+		ui.favourites.setAdapter(mFavAdapter);
+		final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		ui.favourites.setLayoutManager(layoutManager);
+
+		if(!Preferences.getPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false)) {
+			// don't animate here, since this method is called on each fragment change from the drawer
+			showLess(false);
+		} else {
+			showingMore = true;
+		}
 
 		return mView;
 	}
@@ -245,6 +257,8 @@ public class DirectionsFragment extends TransportrFragment {
 		}
 
 		mAfterGpsTask = null;
+
+		displayFavourites();
 	}
 
 	@Override
@@ -289,6 +303,7 @@ public class DirectionsFragment extends TransportrFragment {
 	// change things for a different network provider
 	public void onNetworkProviderChanged(TransportNetwork network) {
 		refreshFavs();
+		displayFavourites();
 
 		// remove old text from TextViews
 		if(mView != null) {
@@ -306,11 +321,29 @@ public class DirectionsFragment extends TransportrFragment {
 		if(resultCode == AppCompatActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
 			if(mHomeClicked.equals(FavLocation.LOC_TYPE.FROM)) {
 				//noinspection deprecation
-				from.setLocation(FavDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
+				from.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 			} else if(mHomeClicked.equals(FavLocation.LOC_TYPE.TO)) {
 				//noinspection deprecation
-				to.setLocation(FavDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
+				to.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 			}
+		}
+	}
+
+	private void displayFavourites() {
+		mFavAdapter.clear();
+		mFavAdapter.addAll(RecentsDB.getFavouriteTripList(getContext()));
+
+		if(showingMore && mFavAdapter.getItemCount() == 0) {
+			ui.no_favourites.setVisibility(View.VISIBLE);
+		} else {
+			ui.no_favourites.setVisibility(View.GONE);
+		}
+
+		if(showingMore || mFavAdapter.getItemCount() != 0) {
+			ui.fav_trips_separator.setVisibility(View.VISIBLE);
+			ui.fav_trips_separator.setAlpha(1f);
+		} else {
+			ui.fav_trips_separator.setVisibility(View.GONE);
 		}
 	}
 
@@ -366,7 +399,7 @@ public class DirectionsFragment extends TransportrFragment {
 		}
 
 		// remember trip
-		FavDB.updateFavTrip(getActivity(), new FavTrip(from.getLocation(), to.getLocation()));
+		RecentsDB.updateRecentTrip(getActivity(), new RecentTrip(from.getLocation(), to.getLocation()));
 
 		// set date
 		query_trips.setDate(DateUtils.getDateFromUi(mView));
@@ -433,7 +466,7 @@ public class DirectionsFragment extends TransportrFragment {
 		}
 		// we have a location, so make it a favorite
 		else {
-			FavDB.updateFavLocation(getActivity(), loc, loc_view.getType());
+			RecentsDB.updateFavLocation(getActivity(), loc, loc_view.getType());
 		}
 
 		return true;
@@ -450,7 +483,7 @@ public class DirectionsFragment extends TransportrFragment {
 		else {
 			// home location
 			if (loc.id != null && loc.id.equals("Transportr.HOME")) {
-				Location home = FavDB.getHome(getActivity());
+				Location home = RecentsDB.getHome(getActivity());
 
 				if(home != null) {
 					if(type.equals(FavLocation.LOC_TYPE.FROM)) {
@@ -493,8 +526,13 @@ public class DirectionsFragment extends TransportrFragment {
 	}
 
 	private void showMore(boolean animate) {
+		showingMore = true;
 		ui.productsScrollView.setVisibility(View.VISIBLE);
-		ui.whatHere.setVisibility(View.VISIBLE);
+		ui.fav_trips_separator.setVisibility(View.VISIBLE);
+
+		if(mFavAdapter.getItemCount() == 0) {
+			ui.no_favourites.setVisibility(View.VISIBLE);
+		}
 
 		if(animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			DisplayMetrics dm = new DisplayMetrics();
@@ -511,26 +549,35 @@ public class DirectionsFragment extends TransportrFragment {
 				}
 			});
 
-			ui.whatHere.setAlpha(0f);
-			ui.whatHere.animate().setDuration(750).alpha(1f);
+			if(mFavAdapter.getItemCount() == 0) {
+				ui.no_favourites.setAlpha(0f);
+				ui.no_favourites.animate().setDuration(500).alpha(1f);
+				ui.fav_trips_separator.setAlpha(0f);
+				ui.fav_trips_separator.animate().setDuration(500).alpha(1f);
+			}
 		}
 	}
 
 	private void showLess(boolean animate) {
-		if(animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			ui.whatHere.setAlpha(1f);
-			ui.whatHere.animate().setDuration(500).alpha(0f).withEndAction(new Runnable() {
-				                                                               @Override
-				                                                               public void run() {
-					                                                               ui.productsScrollView.setVisibility(View.GONE);
-					                                                               ui.whatHere.setVisibility(View.GONE);
-				                                                               }
-			                                                               }
-			);
-		}
-		else {
-			ui.productsScrollView.setVisibility(View.GONE);
-			ui.whatHere.setVisibility(View.GONE);
+		showingMore = false;
+		ui.productsScrollView.setVisibility(View.GONE);
+
+		if(mFavAdapter.getItemCount() == 0) {
+			if (animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+				ui.no_favourites.setAlpha(1f);
+				ui.fav_trips_separator.setAlpha(1f);
+				ui.fav_trips_separator.animate().setDuration(500).alpha(0f);
+				ui.no_favourites.animate().setDuration(500).alpha(0f).withEndAction(new Runnable() {
+					@Override
+					public void run() {
+						ui.no_favourites.setVisibility(View.GONE);
+						ui.fav_trips_separator.setVisibility(View.GONE);
+					}
+				});
+			} else {
+				ui.no_favourites.setVisibility(View.GONE);
+				ui.fav_trips_separator.setVisibility(View.GONE);
+			}
 		}
 	}
 
@@ -614,7 +661,11 @@ public class DirectionsFragment extends TransportrFragment {
 		ImageView ferry;
 		ImageView cablecar;
 		Button search;
-		View whatHere;
+		RecyclerView favourites;
+		CardView no_favourites;
+		LinearLayout fav_trips_separator;
+		View fav_trips_separator_line;
+		ImageView fav_trips_separator_star;
 	}
 
 	private void populateViewHolders() {
@@ -642,7 +693,12 @@ public class DirectionsFragment extends TransportrFragment {
 		ui.cablecar = (ImageView) mView.findViewById(R.id.ic_product_cablecar);
 		ui.search = (Button) mView.findViewById(R.id.searchButton);
 
-		ui.whatHere = mView.findViewById(R.id.whatHereView);
+		ui.favourites = (RecyclerView) mView.findViewById(R.id.favourites);
+		ui.no_favourites = (CardView) mView.findViewById(R.id.no_favourites);
+		ui.fav_trips_separator = (LinearLayout) mView.findViewById(R.id.fav_trips_separator);
+		ui.fav_trips_separator = (LinearLayout) mView.findViewById(R.id.fav_trips_separator);
+		ui.fav_trips_separator_line = mView.findViewById(R.id.fav_trips_separator_line);
+		ui.fav_trips_separator_star = (ImageView) mView.findViewById(R.id.fav_trips_separator_star);
 	}
 
 	public void swapLocations() {
