@@ -18,7 +18,7 @@ dependencies {
 	compile 'com.android.support:design:23.1.0'
 	compile 'com.android.support:cardview-v7:23.1.0'
 	compile 'com.android.support:recyclerview-v7:23.1.0'
-	compile 'com.android.support:preference-v7:23.1.0'
+	compile 'com.android.support:preference-v14:23.1.0'
 
 	compile 'com.github.orangegangsters:swipy:1.2.0'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'

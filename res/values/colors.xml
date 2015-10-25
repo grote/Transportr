@@ -18,6 +18,9 @@
     <color name="primary_dark">#b71c1c</color>
     <color name="accent">#e53935</color>
 
+    <!-- To enable accent color in settings for devices with API <21 -->
+    <color name="preference_fallback_accent_color">@color/accent</color>
+
     <color name="drawableTintDark">#ffffffff</color>
     <color name="drawableTintLight">#8a000000</color>
 </resources>
