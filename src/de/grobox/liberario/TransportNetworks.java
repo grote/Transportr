@@ -96,12 +96,12 @@ public class TransportNetworks {
 						 .setStatus(TransportNetwork.Status.BETA)
 		);
 
-/*		list.add(new TransportNetwork(context, NetworkId.VGN)
+		list.add(new TransportNetwork(context, NetworkId.VGN)
 				         .setDescription(getString(R.string.np_desc_vgn))
 				         .setRegion(region)
 						 .setStatus(TransportNetwork.Status.BETA)
 		);
-*/
+
 		list.add(new TransportNetwork(context, NetworkId.VVM)
 				         .setDescription(getString(R.string.np_desc_vvm))
 				         .setRegion(region)
@@ -260,13 +260,11 @@ public class TransportNetworks {
 		);
 
 		// Liechtenstein
-
-		// TODO: Get the secret
-/*		list.add(new TransportNetwork(context, NetworkId.VAO)
+		list.add(new TransportNetwork(context, NetworkId.VAO)
 				         .setDescription(getString(R.string.np_desc_vmobil))
 				         .setRegion(getString(R.string.np_region_liechtenstein))
 		);
-*/
+
 		// Switzerland
 		region = getString(R.string.np_region_switzerland);
 

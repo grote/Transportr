@@ -227,7 +227,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VgnProvider provider = new VgnProvider("no secret");
+			final VgnProvider provider = new VgnProvider("http://212.114.197.7/vgnExt_oeffi/");
 			vgnProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -552,8 +552,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			// TODO what is the secret?
-			final VaoProvider provider = new VaoProvider("secret");
+			final VaoProvider provider = new VaoProvider("{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}");
 			vaoProviderRef = new SoftReference<>(provider);
 			return provider;
 		}

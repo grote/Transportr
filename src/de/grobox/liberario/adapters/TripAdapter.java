@@ -146,7 +146,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		ui.legs.get(trip.trip.legs.size() - 1).divider.setVisibility(View.GONE);
 
 		// Show Number of Changes for long trips
-		if(ui.lines.getChildCount() > 4) {
+		if(trip.trip.numChanges != null && trip.trip.numChanges > 3) {
 			ui.changes.setText(String.valueOf(trip.trip.numChanges));
 			ui.changes.setVisibility(View.VISIBLE);
 		} else {
@@ -307,7 +307,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 			// show distance
 			if(individual.distance > 0) {
-				leg_holder.lineDestination.setText(Integer.toString(individual.distance) + " " + context.getString(R.string.meter));
+				leg_holder.lineDestination.setText("  " + Integer.toString(individual.distance) + " " + context.getString(R.string.meter));
 			} else {
 				leg_holder.lineDestination.setVisibility(View.GONE);
 			}
