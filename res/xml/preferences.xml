@@ -33,6 +33,13 @@
             android:summary="%s"
             />
 
+        <CheckBoxPreference
+            android:key="pref_key_hide_departure_time"
+            android:title="@string/pref_hide_departure_time"
+            android:summary="@string/pref_hide_departure_time_summary"
+            android:defaultValue="false"
+            />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

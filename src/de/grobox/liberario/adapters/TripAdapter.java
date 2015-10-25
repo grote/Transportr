@@ -19,8 +19,10 @@ package de.grobox.liberario.adapters;
 
 import android.animation.LayoutTransition;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -40,6 +42,7 @@ import java.util.Date;
 import java.util.List;
 
 import de.grobox.liberario.ListTrip;
+import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.ui.LegPopupMenu;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
@@ -363,6 +366,13 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			}
 			if(stop.plannedDeparturePosition != null) {
 				stopHolder.departurePlatform.setText(stop.plannedDeparturePosition.name);
+			}
+
+			SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+			if(settings.getBoolean("pref_key_hide_departure_time", false)) {
+				stopHolder.departureTime.setVisibility(View.GONE);
+				stopHolder.departureDelay.setVisibility(View.GONE);
+				stopHolder.departurePlatform.setVisibility(View.GONE);
 			}
 
 			// Creating PopupMenu for stop

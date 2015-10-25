@@ -66,6 +66,8 @@
   <string name="pref_theme_title">Theme</string>
   <string name="pref_theme_light">Hell</string>
   <string name="pref_theme_dark">Dunkel</string>
+  <string name="pref_hide_departure_time">Verstecke Ankunftszeit</string>
+  <string name="pref_hide_departure_time_summary">Bei der Anzeige von Haltestellen nur Abfahrt anstatt Abfahrt und Ankunft zeigen</string>
   <string name="warning_departure_gap">Zu wenige Abfahrten gefunden. Es könnte mehr geben. Suche nach einer genauen Abfahrtszeit um sicher zu gehen, dass alle Abfahrten angezeigt werden.</string>
   <string name="error_pick_network">Bitte wählen Sie genau einen Verkehrsverbund aus!</string>
   <string name="error_no_internet">Keine ausreichende Internetverbindung verfügbar</string>

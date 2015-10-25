@@ -74,6 +74,8 @@
     <string name="more">More</string>
 
     <string name="pref_transport_network">Transport Network</string>
+    <string name="pref_hide_departure_time">Hide departure time</string>
+    <string name="pref_hide_departure_time_summary">Only show arrival time when displaying stops instead of both arrival and departure</string>
     <string name="pref_home">Home Location</string>
     <string name="pref_display">Display</string>
     <string name="pref_theme_title">Theme</string>
