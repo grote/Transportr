@@ -56,7 +56,7 @@
   <string name="find_nearby_stations">Stationen in der Umgebung suchen</string>
   <string name="find_departures">Abfahrten suchen</string>
   <string name="departure_station">Abfahrtsstation</string>
-  <string name="share_trip_via">Verbindungen teilen mit...</string>
+  <string name="share_trip_via">Verbindungen teilen mit…</string>
   <string name="undo">Rückgängig</string>
   <string name="fav_trips_empty">Deine letzten Fahrten werden hier angezeigt nachdem du angefangen hast, nach Verbindungen zu suchen.\n\n\nEine Sortierung ist sowohl nach Nutzungshäufigkeit (wie oft eine Verbindung angezeigt wurde) als auch nach der letzten Verwendung (welche Verbindung als letztes angezeigt wurde) möglich.</string>
   <string name="more">Mehr</string>
@@ -67,7 +67,7 @@
   <string name="pref_theme_light">Hell</string>
   <string name="pref_theme_dark">Dunkel</string>
   <string name="pref_hide_departure_time">Verstecke Ankunftszeit</string>
-  <string name="pref_hide_departure_time_summary">Bei der Anzeige von Haltestellen nur Abfahrt anstatt Abfahrt und Ankunft zeigen</string>
+  <string name="pref_hide_departure_time_summary">Bei Zwischenhalten nur die Abfahrtszeit anzeigen</string>
   <string name="warning_departure_gap">Zu wenige Abfahrten gefunden. Es könnte mehr geben. Suche nach einer genauen Abfahrtszeit um sicher zu gehen, dass alle Abfahrten angezeigt werden.</string>
   <string name="error_pick_network">Bitte wählen Sie genau einen Verkehrsverbund aus!</string>
   <string name="error_no_internet">Keine ausreichende Internetverbindung verfügbar</string>
