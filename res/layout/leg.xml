@@ -17,7 +17,7 @@
             tools:text="9:15"
             android:paddingLeft="3dp"
             android:paddingTop="3dp"
-            android:paddingRight="3dp"
+            android:paddingRight="5dp"
             android:layout_gravity="center_vertical"
             android:textColor="?android:attr/textColorPrimary"/>
 
@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             tools:text="Departure Station with a name"
             android:layout_weight="1"
-            android:paddingLeft="3dp"
             android:paddingTop="3dp"
             android:paddingRight="3dp"
             android:background="?selectableItemBackground"
@@ -42,7 +41,6 @@
             android:paddingLeft="3dp"
             android:paddingTop="3dp"
             android:paddingRight="3dp"
-            android:layout_marginRight="10dp"
             />
 
     </TableRow>
@@ -89,7 +87,7 @@
                 tools:text="9:15"
                 android:paddingLeft="3dp"
                 android:paddingTop="3dp"
-                android:paddingRight="3dp"
+                android:paddingRight="5dp"
                 android:textColor="?android:attr/textColorPrimary"/>
 
             <TextView
@@ -106,7 +104,8 @@
             android:layout_height="wrap_content"
             tools:text="Arrival Station with also a long name"
             android:layout_weight="1"
-            android:padding="3dp"
+            android:paddingTop="3dp"
+            android:paddingRight="3dp"
             android:background="?selectableItemBackground"
             android:textColor="?android:attr/textColorPrimary"/>
 
@@ -116,8 +115,7 @@
             android:layout_height="wrap_content"
             tools:text="5"
             android:layout_gravity="right"
-            android:padding="3dp"
-            android:layout_marginRight="10dp"/>
+            android:padding="3dp"/>
 
     </TableRow>
 

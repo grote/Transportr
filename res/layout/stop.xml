@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp" >
+    android:paddingLeft="25dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -58,7 +57,7 @@
 
     <TextView
         android:id="@+id/locationView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center_vertical"
         android:layout_weight="1"

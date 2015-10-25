@@ -42,7 +42,6 @@ import java.util.Date;
 import java.util.List;
 
 import de.grobox.liberario.ListTrip;
-import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.ui.LegPopupMenu;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
@@ -262,12 +261,11 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				leg_holder.arrow.setVisibility(View.GONE);
 			}
 
-			if(detail && public_leg.intermediateStops != null) {
-				bindStops(context, leg_holder, public_leg.intermediateStops);
-			}
-
-			// optional trip message
 			if(detail) {
+				// show intermediate stops and leg duration
+				bindStops(context, leg_holder, public_leg.intermediateStops);
+
+				// optional trip message
 				if(public_leg.message != null) {
 					leg_holder.message.setVisibility(View.VISIBLE);
 					leg_holder.message.setText(Html.fromHtml(public_leg.message).toString());
@@ -322,18 +320,28 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 	static public void bindStops(Context context, final LegHolder leg_holder, List<Stop> stops) {
 		leg_holder.stops.setVisibility(View.GONE);
+		leg_holder.duration.setVisibility(View.GONE);
 
 		leg_holder.info.setOnClickListener(new View.OnClickListener() {
 			                                   @Override
 			                                   public void onClick(View v) {
 				                                   if(leg_holder.stops.getVisibility() == View.GONE) {
 					                                   leg_holder.stops.setVisibility(View.VISIBLE);
+					                                   leg_holder.duration.setVisibility(View.VISIBLE);
 				                                   } else {
 					                                   leg_holder.stops.setVisibility(View.GONE);
+					                                   leg_holder.duration.setVisibility(View.GONE);
+
 				                                   }
 			                                   }
 		                                   }
 		);
+
+		// highlight duration to set it apart from platforms/positions
+		leg_holder.duration.setTextColor(leg_holder.departureLocation.getCurrentTextColor());
+
+		// stop here, if there are no stops
+		if(stops == null) return;
 
 		for(final Stop stop : stops) {
 			TableRow stopView = (TableRow) LayoutInflater.from(context).inflate(R.layout.stop, leg_holder.stops, false);
