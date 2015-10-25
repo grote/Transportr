@@ -20,6 +20,7 @@ package de.grobox.liberario.utils;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 
@@ -183,6 +184,7 @@ public class DateUtils {
 			public boolean onLongClick(View view) {
 				time.setText(DateUtils.getcurrentTime(view.getContext()));
 				time.setTag(Calendar.getInstance());
+				((Vibrator)view.getContext().getSystemService(Context.VIBRATOR_SERVICE)).vibrate(80);
 				return true;
 			}
 		});
@@ -203,6 +205,7 @@ public class DateUtils {
 			public boolean onLongClick(View view) {
 				date.setText(DateUtils.getcurrentDate(view.getContext()));
 				date.setTag(Calendar.getInstance());
+				((Vibrator)view.getContext().getSystemService(Context.VIBRATOR_SERVICE)).vibrate(80);
 				return true;
 			}
 		});
@@ -220,6 +223,7 @@ public class DateUtils {
 			@Override
 			public boolean onLongClick(View view) {
 				DateUtils.addToTime(view.getContext(), time, date, 60);
+				((Vibrator)view.getContext().getSystemService(Context.VIBRATOR_SERVICE)).vibrate(80);
 				return true;
 			}
 		});
