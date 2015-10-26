@@ -238,7 +238,7 @@ public class DirectionsFragment extends TransportrFragment {
 	public void onResume() {
 		super.onResume();
 
-		if(!restart) {
+		if(!restart && mView != null) {
 			long date = DateUtils.getDateFromUi(mView).getTime();
 			long now = new Date().getTime();
 
@@ -324,6 +324,8 @@ public class DirectionsFragment extends TransportrFragment {
 	}
 
 	private void displayFavourites() {
+		if(mFavAdapter == null) return;
+
 		mFavAdapter.clear();
 		mFavAdapter.addAll(RecentsDB.getFavouriteTripList(getContext()));
 
