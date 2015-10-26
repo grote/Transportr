@@ -39,9 +39,9 @@ public class SetHomeActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.DialogTheme);
+			setTheme(R.style.SetHomeDialogTheme);
 		} else {
-			setTheme(R.style.DialogTheme_Light);
+			setTheme(R.style.SetHomeDialogTheme_Light);
 		}
 
 		getWindow().requestFeature(Window.FEATURE_LEFT_ICON);

@@ -81,13 +81,16 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 	private Toolbar toolbar;
 
 	private int selectedItem;
+	private boolean dark_theme;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		if(Preferences.darkThemeEnabled(this)) {
 			setTheme(R.style.AppTheme);
+			dark_theme = true;
 		} else {
 			setTheme(R.style.AppTheme_Light);
+			dark_theme = false;
 		}
 
 		super.onCreate(savedInstanceState);
@@ -183,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 						// don't select changelog item
 						drawer.setSelection(selectedItem, false);
 
-						new HoloChangeLog(getContext()).getFullLogDialog().show();
+						new HoloChangeLog(getContext(), dark_theme).getFullLogDialog().show();
 					} else {
 						switchFragment(res);
 					}
@@ -254,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		}
 
 		// show Changelog
-		HoloChangeLog cl = new HoloChangeLog(this);
+		HoloChangeLog cl = new HoloChangeLog(this, dark_theme);
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
 		}
@@ -581,21 +584,35 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 
 	public static class HoloChangeLog extends ChangeLog {
-		public static final String DARK_THEME_CSS =
-				"body { color: #f3f3f3; font-size: 0.9em; background-color: #282828; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-
-		public static final String MATERIAL_THEME_CSS =
-				"body { color: #f3f3f3; font-size: 0.9em; background-color: #424242; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-
-		public HoloChangeLog(Context context) {
-			super(new ContextThemeWrapper(context, R.style.DialogTheme), theme());
+		public HoloChangeLog(Context context, boolean dark) {
+				super(new ContextThemeWrapper(context, getDialogTheme(dark)), theme(dark));
 		}
 
-		private static String theme() {
-			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-				return MATERIAL_THEME_CSS;
+		private static int getDialogTheme(boolean dark) {
+			if(dark) {
+				return R.style.DialogTheme;
 			} else {
-				return DARK_THEME_CSS;
+				return R.style.DialogTheme_Light;
+			}
+		}
+
+		private static String theme(boolean dark) {
+			if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+				if(dark) {
+					// holo dark
+					return "body { color: #e7e3e7; font-size: 0.9em; background-color: #292829; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
+				} else {
+					// holo light
+					return "body { color: #212421; font-size: 0.9em; background-color: #f7f7f7; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
+				}
+			} else {
+				if(dark) {
+					// material dark
+					return "body { color: #f3f3f3; font-size: 0.9em; background-color: #424242; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
+				} else {
+					// material light
+					return "body { color: #202020; font-size: 0.9em; background-color: #ffffff; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
+				}
 			}
 		}
 	}
