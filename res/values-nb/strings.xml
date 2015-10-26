@@ -46,8 +46,8 @@
   <string name="beta">beta</string>
   <string name="network">Nettverk</string>
   <string name="pick_network_activity">Velg et transportnettverk</string>
-  <string name="clear_favs">Bekreft sletting av favoritter for gjeldende transportnettverk.</string>
-  <string name="clear_fav_trips">Ønsker du å slette %1$d tur(er) fra dine favoritter? Bruksopptellingen vil gå tapt.</string>
+  <string name="clear_recent">Bekreft sletting av favoritter for gjeldende transportnettverk.</string>
+  <string name="clear_recent_trips">Ønsker du å slette %1$d tur(er) fra dine favoritter? Bruksopptellingen vil gå tapt.</string>
   <string name="trip_searching">Søker etter overganger...</string>
   <string name="stations_searching_position">Søker etter gjeldende plassering...</string>
   <string name="stations_searching_stations">Søker etter stasjoner i nærheten...</string>

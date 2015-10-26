@@ -31,12 +31,12 @@ import java.util.Collections;
 import java.util.List;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.FavTrip;
+import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.Preferences;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
-public class FavDB {
+public class RecentsDB {
 
 	/* FavLocation */
 
@@ -165,49 +165,85 @@ public class FavDB {
 	}
 
 
-	/* FavTrip */
+	/* RecentTrip */
 
-	public static List<FavTrip> getFavTripList(Context context, final boolean sort_count) {
-		List<FavTrip> fav_list = new ArrayList<>();
+	public static List<RecentTrip> getRecentTripList(Context context, final boolean sort_count) {
+		List<RecentTrip> recent_list = new ArrayList<>();
 
 		// when the app starts for the first time, no network is selected
-		if(Preferences.getNetwork(context) == null)  return fav_list;
+		if(Preferences.getNetwork(context) == null)  return recent_list;
 
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-		final String FAV_TRIPS =
-			"SELECT f.count, f.last_used, " +
+		final String RECENT_TRIPS =
+			"SELECT r.count, r.last_used, r.is_favourite, " +
 			"l1.type AS from_type, l1.id AS from_id, l1.lat AS from_lat, l1.lon AS from_lon, l1.place AS from_place, l1.name AS from_name, " +
 			"l2.type AS to_type,   l2.id AS to_id,   l2.lat AS to_lat,   l2.lon AS to_lon,   l2.place AS to_place,   l2.name AS to_name " +
-			"FROM " + DBHelper.TABLE_FAV_TRIPS + " f " +
-			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l1 ON f.from_loc = l1._id " +
-			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l2 ON f.to_loc = l2._id " +
-			"WHERE f.network = ? " +
-			"ORDER BY " + (sort_count ? "f.count" : "f.last_used") + " DESC";
+			"FROM " + DBHelper.TABLE_RECENT_TRIPS + " r " +
+			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l1 ON r.from_loc = l1._id " +
+			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l2 ON r.to_loc = l2._id " +
+			"WHERE r.network = ? " +
+			"ORDER BY " + (sort_count ? "r.count" : "r.last_used") + " DESC";
 
-		Cursor c = db.rawQuery(FAV_TRIPS, new String[]{ Preferences.getNetwork(context) });
+		Cursor c = db.rawQuery(RECENT_TRIPS, new String[]{ Preferences.getNetwork(context) });
 
 		while(c.moveToNext()) {
 			Location from = getLocation(c, "from_");
 			Location to = getLocation(c, "to_");
-			FavTrip trip = new FavTrip(from, to, c.getInt(c.getColumnIndex("count")), c.getString(c.getColumnIndex("last_used")));
-			fav_list.add(trip);
+			RecentTrip trip = new RecentTrip(from, to, c.getInt(c.getColumnIndex("count")),
+					c.getString(c.getColumnIndex("last_used")), c.getInt(c.getColumnIndex("is_favourite")) > 0);
+			recent_list.add(trip);
 		}
 
 		c.close();
 		db.close();
 
-		return fav_list;
+		return recent_list;
 	}
 
-	public static void updateFavTrip(Context context, FavTrip fav) {
-		if(fav.getFrom() == null || fav.getTo() == null) {
+	public static List<RecentTrip> getFavouriteTripList(Context context) {
+		List<RecentTrip> favourite_list = new ArrayList<>();
+
+		// when the app starts for the first time, no network is selected
+		if(Preferences.getNetwork(context) == null)  return favourite_list;
+
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+		final String FAVOURITE_TRIPS =
+			"SELECT r.count, r.last_used, r.is_favourite, " +
+			"l1.type AS from_type, l1.id AS from_id, l1.lat AS from_lat, l1.lon AS from_lon, l1.place AS from_place, l1.name AS from_name, " +
+			"l2.type AS to_type,   l2.id AS to_id,   l2.lat AS to_lat,   l2.lon AS to_lon,   l2.place AS to_place,   l2.name AS to_name " +
+			"FROM " + DBHelper.TABLE_RECENT_TRIPS + " r " +
+			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l1 ON r.from_loc = l1._id " +
+			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l2 ON r.to_loc = l2._id " +
+			"WHERE r.network = ? AND r.is_favourite > 0 " +
+			"ORDER BY r.count DESC";
+
+		Cursor c = db.rawQuery(FAVOURITE_TRIPS, new String[]{ Preferences.getNetwork(context) });
+
+		while(c.moveToNext()) {
+			Location from = getLocation(c, "from_");
+			Location to = getLocation(c, "to_");
+			RecentTrip trip = new RecentTrip(from, to, c.getInt(c.getColumnIndex("count")),
+					c.getString(c.getColumnIndex("last_used")), c.getInt(c.getColumnIndex("is_favourite")) > 0);
+			favourite_list.add(trip);
+		}
+
+		c.close();
+		db.close();
+
+		return favourite_list;
+	}
+
+	public static void updateRecentTrip(Context context, RecentTrip recent) {
+		if(recent.getFrom() == null || recent.getTo() == null) {
 			// this should never happen, but well...
 			return;
 		}
 
-		if(fav.getFrom().place != null && fav.getFrom().place.equals("GPS")) {
+		if(recent.getFrom().place != null && recent.getFrom().place.equals("GPS")) {
 			// don't store GPS locations
 			return;
 		}
@@ -215,17 +251,17 @@ public class FavDB {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		int from_id = getLocationId(db, fav.getFrom(), Preferences.getNetwork(context));
-		int to_id = getLocationId(db, fav.getTo(), Preferences.getNetwork(context));
+		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
+		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) {
 			db.close();
 			return;
 		}
 
-		// try to find a fav trip with these locations
+		// try to find a recent trip with these locations
 		Cursor c = db.query(
-				DBHelper.TABLE_FAV_TRIPS,    // The table to query
+				DBHelper.TABLE_RECENT_TRIPS,    // The table to query
 				new String[] { "_id", "count" },
 				"network = ? AND from_loc = ? AND to_loc = ?",
 				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) },
@@ -237,45 +273,85 @@ public class FavDB {
 		ContentValues values = new ContentValues();
 
 		if(c.moveToFirst()) {
-			// increase counter by one for existing fav trip
+			// increase counter by one for existing recent trip
 			values.put("count", c.getInt(c.getColumnIndex("count")) + 1);
 
 			// update last_used time
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			values.put("last_used", df.format(Calendar.getInstance().getTime()));
 
-			db.update(DBHelper.TABLE_FAV_TRIPS, values, "_id = ?", new String[] { c.getString(c.getColumnIndex("_id")) });
+			db.update(DBHelper.TABLE_RECENT_TRIPS, values, "_id = ?", new String[] { c.getString(c.getColumnIndex("_id")) });
 		}
 		else {
-			// add new fav trip trip database
+			// add new recent trip trip database
 			values.put("network", Preferences.getNetwork(context));
 			values.put("from_loc", from_id);
 			values.put("to_loc", to_id);
 			values.put("count", 1);
+			values.put("is_favourite", 0);
 
 			// insert current time as last_used
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			values.put("last_used", df.format(Calendar.getInstance().getTime()));
 
-			db.insert(DBHelper.TABLE_FAV_TRIPS, null, values);
+			db.insert(DBHelper.TABLE_RECENT_TRIPS, null, values);
 		}
 
 		c.close();
 		db.close();
 	}
 
-	public static boolean isFavTrip(Context context, FavTrip fav) {
+	public static void toggleFavouriteTrip(Context context, RecentTrip recent) {
+		if(recent.getFrom() == null || recent.getTo() == null) {
+			// this should never happen, but well...
+			return;
+		}
+
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		int from_id = getLocationId(db, fav.getFrom(), Preferences.getNetwork(context));
-		int to_id = getLocationId(db, fav.getTo(), Preferences.getNetwork(context));
+		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
+		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
+
+		if(from_id < 0 || to_id < 0) {
+			db.close();
+			return;
+		}
+
+		// try to find a recent trip with these locations
+		Cursor c = db.query(
+				DBHelper.TABLE_RECENT_TRIPS,    // The table to query
+				new String[] { "_id", "count" },
+				"network = ? AND from_loc = ? AND to_loc = ?",
+				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) },
+				null,   // don't group the rows
+				null,   // don't filter by row groups
+				null    // The sort order
+		);
+
+		ContentValues values = new ContentValues();
+
+		if(c.moveToFirst()) {
+			values.put("is_favourite", recent.isFavourite() ? 0 : 1); // Toggle
+			db.update(DBHelper.TABLE_RECENT_TRIPS, values, "_id = ?", new String[]{c.getString(c.getColumnIndex("_id")) });
+		}
+
+		c.close();
+		db.close();
+	}
+
+	public static boolean isRecentTrip(Context context, RecentTrip recent) {
+		DBHelper mDbHelper = new DBHelper(context);
+		SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
+		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) return false;
 
-		// try to find a fav trip with these locations
+		// try to find a recent trip with these locations
 		Cursor c = db.query(
-				DBHelper.TABLE_FAV_TRIPS,    // The table to query
+				DBHelper.TABLE_RECENT_TRIPS,    // The table to query
 				new String[] { "_id", "count" },
 				"network = ? AND from_loc = ? AND to_loc = ?",
 				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) },
@@ -287,19 +363,20 @@ public class FavDB {
 		return c.moveToFirst();
 	}
 
-	public static void unfavTrip(Context context, FavTrip fav) {
+	public static void deleteRecentTrip(Context context, RecentTrip recent) {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		int from_id = getLocationId(db, fav.getFrom(), Preferences.getNetwork(context));
-		int to_id = getLocationId(db, fav.getTo(), Preferences.getNetwork(context));
+		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
+		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) {
 			db.close();
 			return;
 		}
 
-		db.delete(DBHelper.TABLE_FAV_TRIPS, "network = ? AND from_loc = ? AND to_loc =? ", new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) });
+		db.delete(DBHelper.TABLE_RECENT_TRIPS, "network = ? AND from_loc = ? AND to_loc =? ",
+				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) });
 
 		db.close();
 	}

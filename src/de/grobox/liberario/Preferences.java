@@ -30,7 +30,7 @@ public class Preferences {
 	public final static String PREFS = "LiberarioPrefs";
 	public final static String SHOW_EXTRA_INFO = "ShowPlatform";
 	public final static String SHOW_ADV_DIRECTIONS = "ShowAdvDirections";
-	public final static String SORT_FAV_TRIPS_COUNT = "SortFavTripsCount";
+	public final static String SORT_RECENT_TRIPS_COUNT = "SortRecentTripsCount";
 	public final static String THEME = "pref_key_theme";
 
 	public static String getNetwork(Context context, int i) {

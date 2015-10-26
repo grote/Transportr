@@ -24,7 +24,7 @@ import java.util.Date;
 
 import de.schildbach.pte.dto.Location;
 
-public class FavTrip implements Serializable, Comparable<FavTrip> {
+public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 
 	private static final long serialVersionUID = 1690558255337614838L;
 
@@ -33,21 +33,22 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 	private Location via;
 	private int count;
 	private Date last_used;
+	private boolean is_favourite;
 
-	public FavTrip(Location from, Location to) {
+	public RecentTrip(Location from, Location to) {
 		this.from = from;
 		this.to = to;
 		this.count = 1;
 	}
 
-	public FavTrip(Location from, Location to, Location via) {
+	public RecentTrip(Location from, Location to, Location via) {
 		this.from = from;
 		this.to = to;
 		this.via = via;
 		this.count = 1;
 	}
 
-	public FavTrip(Location from, Location to, int count, String last_used) {
+	public RecentTrip(Location from, Location to, int count, String last_used) {
 		this.from = from;
 		this.to = to;
 		this.count = count;
@@ -57,6 +58,19 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 			e.printStackTrace();
 			this.last_used = new Date();
 		}
+	}
+
+	public RecentTrip(Location from, Location to, int count, String last_used, boolean is_favourite) {
+		this(from, to, count, last_used);
+		this.is_favourite = is_favourite;
+	}
+
+	public boolean isFavourite() {
+		return is_favourite;
+	}
+
+	public void setFavourite(boolean is_favourite) {
+		this.is_favourite = is_favourite;
 	}
 
 	public Location getFrom() {
@@ -81,9 +95,9 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 			return true;
 		}
 
-		if(o instanceof FavTrip) {
-			if(getFrom().equals(((FavTrip) o).getFrom()) &&
-					getTo().equals(((FavTrip) o).getTo())) {
+		if(o instanceof RecentTrip) {
+			if(getFrom().equals(((RecentTrip) o).getFrom()) &&
+					getTo().equals(((RecentTrip) o).getTo())) {
 				return true;
 			}
 		}
@@ -91,7 +105,7 @@ public class FavTrip implements Serializable, Comparable<FavTrip> {
 	}
 
 	@Override
-	public int compareTo(FavTrip other) {
+	public int compareTo(RecentTrip other) {
 		return other.getCount() - getCount();
 	}
 

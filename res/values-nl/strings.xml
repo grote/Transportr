@@ -55,8 +55,8 @@
   <string name="network">Netwerk</string>
   <string name="pick_network_activity">Kies een vervoersnetwerk</string>
   <string name="pick_network_first_run">Dit is de eerste keer dat je Transportr start. Kies je transportnetwerk om door te gaan.</string>
-  <string name="clear_favs">Weet u zeker dat u al uw favorieten voor dit vervoersnetwerk wilt verwijderen?</string>
-  <string name="clear_fav_trips">Weet u zeker, dat u %1$d verbinding(en) uit uw favorieten wilt verwijderen? De gebruiksteller zal ook verwijderd worden.</string>
+  <string name="clear_recent">Weet u zeker dat u al uw favorieten voor dit vervoersnetwerk wilt verwijderen?</string>
+  <string name="clear_recent_trips">Weet u zeker, dat u %1$d verbinding(en) uit uw favorieten wilt verwijderen? De gebruiksteller zal ook verwijderd worden.</string>
   <string name="trip_searching">Zoeken naar verbindingen…</string>
   <string name="stations_searching_position">Uw positie wordt bepaald…</string>
   <string name="stations_searching_stations">Naar stations in de buurt zoeken…</string>

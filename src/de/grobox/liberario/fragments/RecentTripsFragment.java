@@ -20,7 +20,6 @@ package de.grobox.liberario.fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseBooleanArray;
@@ -41,15 +40,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import de.grobox.liberario.FavTrip;
+import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
-import de.grobox.liberario.data.FavDB;
-import de.grobox.liberario.ui.FavPopupMenu;
+import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.ui.RecentsPopupMenu;
 import de.grobox.liberario.utils.TransportrUtils;
 
-public class FavTripsFragment extends TransportrListFragment {
+public class RecentTripsFragment extends TransportrListFragment {
 	private FavTripArrayAdapter adapter;
 	private ActionMode mActionMode;
 	private Toolbar toolbar;
@@ -62,7 +61,7 @@ public class FavTripsFragment extends TransportrListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)));
+		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT)));
 		setListAdapter(adapter);
 
 		toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
@@ -99,12 +98,12 @@ public class FavTripsFragment extends TransportrListFragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// Inflate the menu items for use in the action bar
-		inflater.inflate(R.menu.fav_trip_list_actions, menu);
+		inflater.inflate(R.menu.recent_trip_list_actions, menu);
 
-		if(Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)) {
-			menu.findItem(R.id.action_fav_trips_sort_count).setChecked(true);
+		if(Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT)) {
+			menu.findItem(R.id.action_recent_trips_sort_count).setChecked(true);
 		} else {
-			menu.findItem(R.id.action_fav_trips_sort_recent).setChecked(true);
+			menu.findItem(R.id.action_recent_trips_sort_recent).setChecked(true);
 		}
 
 		super.onCreateOptionsMenu(menu, inflater);
@@ -114,15 +113,15 @@ public class FavTripsFragment extends TransportrListFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
-			case R.id.action_fav_trips_sort_count:
-				adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), true));
-				Preferences.setPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT, true);
+			case R.id.action_recent_trips_sort_count:
+				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), true));
+				Preferences.setPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, true);
 				setListAdapter(adapter);
 				item.setChecked(true);
 				return true;
-			case R.id.action_fav_trips_sort_recent:
-				adapter = new FavTripArrayAdapter(getActivity(), R.layout.fav_trip_list_item, FavDB.getFavTripList(getActivity(), false));
-				Preferences.setPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT, false);
+			case R.id.action_recent_trips_sort_recent:
+				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), false));
+				Preferences.setPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false);
 				setListAdapter(adapter);
 				item.setChecked(true);
 				return true;
@@ -137,7 +136,7 @@ public class FavTripsFragment extends TransportrListFragment {
 		// reload data because it has changed
 		if(getActivity() != null && adapter != null) {
 			adapter.clear();
-			adapter.addAll(FavDB.getFavTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_FAV_TRIPS_COUNT)));
+			adapter.addAll(RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT)));
 		}
 	}
 
@@ -166,8 +165,8 @@ public class FavTripsFragment extends TransportrListFragment {
 		}
 	}
 
-	private class FavTripArrayAdapter extends ArrayAdapter<FavTrip> {
-		public FavTripArrayAdapter(Context context, int textViewResourceId,	List<FavTrip> objects) {
+	private class FavTripArrayAdapter extends ArrayAdapter<RecentTrip> {
+		public FavTripArrayAdapter(Context context, int textViewResourceId,	List<RecentTrip> objects) {
 			super(context, textViewResourceId, objects);
 		}
 
@@ -175,25 +174,25 @@ public class FavTripsFragment extends TransportrListFragment {
 		public View getView(final int position, View v, ViewGroup parent) {
 			if(v == null) {
 				LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				v = inflater.inflate(R.layout.fav_trip_list_item, parent, false);
+				v = inflater.inflate(R.layout.recent_trip_list_item, parent, false);
 			}
 
 			// handle click on row
 			v.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					FavTrip trip = (FavTrip) getListView().getItemAtPosition(position);
+					RecentTrip trip = (RecentTrip) getListView().getItemAtPosition(position);
 					TransportrUtils.findDirections(getActivity(), trip.getFrom(), trip.getTo());
 				}
 			});
 
 			// handle click on more button
 			ImageButton moreButton = (ImageButton) v.findViewById(R.id.moreButton);
-			final FavPopupMenu favPopup = new FavPopupMenu(getContext(), moreButton,(FavTrip) getListView().getItemAtPosition(position));
+			final RecentsPopupMenu recentsPopup = new RecentsPopupMenu(getContext(), moreButton,(RecentTrip) getListView().getItemAtPosition(position));
 			moreButton.setOnClickListener(new OnClickListener() {
 				                              @Override
 				                              public void onClick(View v) {
-					                              favPopup.show();
+												  recentsPopup.show();
 				                              }
 			                              }
 			);
@@ -212,13 +211,13 @@ public class FavTripsFragment extends TransportrListFragment {
 				}
 			});
 
-			FavTrip trip = this.getItem(position);
+			RecentTrip trip = this.getItem(position);
 
-			TextView favFromView = (TextView) v.findViewById(R.id.favFromView);
+			TextView favFromView = (TextView) v.findViewById(R.id.recentFromView);
 			favFromView.setText(trip.getFrom().uniqueShortName());
-			TextView favToView = (TextView) v.findViewById(R.id.favToView);
+			TextView favToView = (TextView) v.findViewById(R.id.recentToView);
 			favToView.setText(trip.getTo().uniqueShortName());
-			TextView favCountView = (TextView) v.findViewById(R.id.favCountView);
+			TextView favCountView = (TextView) v.findViewById(R.id.recentCountView);
 			favCountView.setText(String.valueOf(trip.getCount()));
 
 			// handle click on check box
@@ -244,13 +243,39 @@ public class FavTripsFragment extends TransportrListFragment {
 		}
 	}
 
+	private void deleteSelected() {
+		SparseBooleanArray tmp = getListView().getCheckedItemPositions();
+
+		// loop over selected items and delete associated trips
+		for(int i = tmp.size()-1; i >= 0; i--) {
+			if(tmp.valueAt(i)) {
+				int pos = tmp.keyAt(i);
+				RecentTrip trip = adapter.getItem(pos);
+				RecentsDB.deleteRecentTrip(getActivity(), trip);
+				adapter.remove(trip);
+			}
+		}
+	}
+
+	private boolean isFavouriteSelected() {
+		SparseBooleanArray tmp = getListView().getCheckedItemPositions();
+		for(int i = tmp.size()-1; i >= 0; i--) {
+			if(tmp.valueAt(i)) {
+				if(adapter.getItem(tmp.keyAt(i)).isFavourite()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	private ActionMode.Callback mFavTripActionMode = new ActionMode.Callback() {
 		// Called when the action mode is created; startActionMode() was called
 		@Override
 		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 			// Inflate a menu resource providing context menu items
 			MenuInflater inflater = mode.getMenuInflater();
-			inflater.inflate(R.menu.fav_trip_select_actions, menu);
+			inflater.inflate(R.menu.recent_trip_select_actions, menu);
 			return true;
 		}
 
@@ -267,21 +292,26 @@ public class FavTripsFragment extends TransportrListFragment {
 			switch(item.getItemId()) {
 				case R.id.action_trip_delete:
 					new AlertDialog.Builder(getActivity())
-					.setMessage(getActivity().getResources().getString(R.string.clear_fav_trips, getListView().getCheckedItemCount()))
+					.setMessage(getActivity().getResources().getString(R.string.clear_recent_trips, getListView().getCheckedItemCount()))
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							SparseBooleanArray tmp = getListView().getCheckedItemPositions();
+							if(isFavouriteSelected()) {
 
-							// loop over selected items and delete associated trips
-							for(int i = tmp.size()-1; i >= 0; i--) {
-								if(tmp.valueAt(i)) {
-									int pos = tmp.keyAt(i);
-									FavTrip trip = adapter.getItem(pos);
-									FavDB.unfavTrip(getActivity(), trip);
-									adapter.remove(trip);
-								}
+								new AlertDialog.Builder(getActivity())
+								.setMessage(R.string.removing_from_favourites)
+								.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										deleteSelected();
+										mode.finish();
+									}
+								})
+										.setNegativeButton(android.R.string.cancel, null)
+								.show();
+
+							} else {
+								deleteSelected();
+								mode.finish();
 							}
-							mode.finish();
 						}
 					})
 					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

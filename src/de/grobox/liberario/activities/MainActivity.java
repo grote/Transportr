@@ -56,7 +56,7 @@ import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
-import de.grobox.liberario.fragments.FavTripsFragment;
+import de.grobox.liberario.fragments.RecentTripsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.PrefsFragment;
 import de.grobox.liberario.utils.TransportrUtils;
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
             .withAccountHeader(accountHeader)
             .addDrawerItems(
 		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIdentifier(R.string.tab_directions).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_menu_directions)),
-		           new PrimaryDrawerItem().withName(R.string.tab_fav_trips).withIdentifier(R.string.tab_fav_trips).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_star)),
+		           new PrimaryDrawerItem().withName(R.string.tab_recent_trips).withIdentifier(R.string.tab_recent_trips).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_recents)),
 		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIdentifier(R.string.tab_departures).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
 		           new PrimaryDrawerItem().withName(R.string.tab_nearby_stations).withIdentifier(R.string.tab_nearby_stations).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
 		           new DividerDrawerItem(),
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 		// Fragments
 		if(savedInstanceState == null) {
 			final Fragment directionsFragment = new DirectionsFragment();
-			final Fragment favTripsFragment = new FavTripsFragment();
+			final Fragment recentTripsFragment = new RecentTripsFragment();
 			final Fragment departuresFragment = new DeparturesFragment();
 			final Fragment nearbyStationsFragment = new NearbyStationsFragment();
 			final Fragment prefsFragment = new PrefsFragment();
@@ -213,8 +213,8 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 			// add all other fragments hidden
 			getSupportFragmentManager().beginTransaction()
-			                           .add(R.id.fragment_container, favTripsFragment, getString(R.string.tab_fav_trips))
-			                           .hide(favTripsFragment)
+			                           .add(R.id.fragment_container, recentTripsFragment, getString(R.string.tab_recent_trips))
+			                           .hide(recentTripsFragment)
 			                           .add(R.id.fragment_container, departuresFragment, getString(R.string.tab_departures))
 			                           .hide(departuresFragment)
 			                           .add(R.id.fragment_container, nearbyStationsFragment, getString(R.string.tab_nearby_stations))
@@ -367,7 +367,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 				switch(item.getName().getTextRes()) {
 					case R.string.tab_directions:
-					case R.string.tab_fav_trips:
+					case R.string.tab_recent_trips:
 						item.withEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS));
 						break;
 					case R.string.tab_departures:
@@ -430,6 +430,7 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 			// select the proper drawer item in the drawer
 			drawer.setSelection(res, false);
+			fragment.onResume();
 		}
 	}
 

@@ -54,8 +54,8 @@
   <string name="network">Réseau</string>
   <string name="pick_network_activity">Choisir un réseau de transport</string>
   <string name="pick_network_first_run">C\'est la première fois que vous lancez Transportr. Veuillez choisir votre réseau de transport afin de continuer !</string>
-  <string name="clear_favs">Êtes-vous certain de vouloir supprimer vos favoris pour le réseau de transport actuel ?</string>
-  <string name="clear_fav_trips">Êtes-vous certain de vouloir supprimer %1$d trajet(s) de vos favoris ? Le nombre d\'utilisation sera perdu.</string>
+  <string name="clear_recent">Êtes-vous certain de vouloir supprimer vos favoris pour le réseau de transport actuel ?</string>
+  <string name="clear_recent_trips">Êtes-vous certain de vouloir supprimer %1$d trajet(s) de vos favoris ? Le nombre d\'utilisation sera perdu.</string>
   <string name="trip_searching">Recherche de correspondances…</string>
   <string name="stations_searching_position">Recherche de la position actuelle...</string>
   <string name="stations_searching_stations">Recherche d\'arrêts/stations à proximité...</string>
