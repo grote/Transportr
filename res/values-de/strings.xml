@@ -42,6 +42,9 @@
   <string name="destination">Ziel</string>
   <string name="detail_duration">Dauer:</string>
   <string name="detail_date">Datum:</string>
+  <string name="current_time_set">Aktuelle Zeit wurde eingestellt.</string>
+  <string name="current_date_set">Aktuelles Datum wurde eingestellt.</string>
+  <string name="added_1h">Es wurde 1 Stunde hinzugefügt.</string>
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Netzwerk</string>
