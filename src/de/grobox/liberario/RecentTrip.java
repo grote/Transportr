@@ -17,6 +17,8 @@
 
 package de.grobox.liberario;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,32 +38,21 @@ public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 	private boolean is_favourite;
 
 	public RecentTrip(Location from, Location to) {
-		this.from = from;
-		this.to = to;
-		this.count = 1;
+		this(from, to, 1, null, false);
 	}
 
-	public RecentTrip(Location from, Location to, Location via) {
-		this.from = from;
-		this.to = to;
-		this.via = via;
-		this.count = 1;
-	}
-
-	public RecentTrip(Location from, Location to, int count, String last_used) {
+	public RecentTrip(Location from, Location to, int count, String last_used, boolean is_favourite) {
 		this.from = from;
 		this.to = to;
 		this.count = count;
+
 		try {
 			this.last_used = last_used == null ? new Date() : (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).parse(last_used);
 		} catch(ParseException e) {
 			e.printStackTrace();
 			this.last_used = new Date();
 		}
-	}
 
-	public RecentTrip(Location from, Location to, int count, String last_used, boolean is_favourite) {
-		this(from, to, count, last_used);
 		this.is_favourite = is_favourite;
 	}
 
@@ -105,7 +96,7 @@ public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 	}
 
 	@Override
-	public int compareTo(RecentTrip other) {
+	public int compareTo(@NonNull RecentTrip other) {
 		return other.getCount() - getCount();
 	}
 

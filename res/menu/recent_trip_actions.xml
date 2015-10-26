@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/action_mark_favourite"
-        android:icon="@drawable/ic_mode_edit"
+        android:icon="@drawable/ic_action_star"
         app:showAsAction="always"
         android:title="@string/action_fav_trip"/>
 

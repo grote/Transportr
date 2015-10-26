@@ -18,7 +18,6 @@
 package de.grobox.liberario.fragments;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -46,19 +45,17 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Set;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
@@ -164,12 +161,9 @@ public class DirectionsFragment extends TransportrFragment {
 		ui.fav_trips_separator_star.setAlpha(0.5f);
 		ui.fav_trips_separator_line.setAlpha(0.5f);
 
-		List<RecentTrip> favourites = RecentsDB.getFavouriteTripList(getContext());
-		mFavAdapter = new FavouritesAdapter(getContext(), favourites);
+		mFavAdapter = new FavouritesAdapter(getContext());
 		ui.favourites.setAdapter(mFavAdapter);
-		final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-		ui.favourites.setLayoutManager(layoutManager);
+		ui.favourites.setLayoutManager(new LinearLayoutManager(getContext()));
 
 		if(!Preferences.getPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false)) {
 			// don't animate here, since this method is called on each fragment change from the drawer

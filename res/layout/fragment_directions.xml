@@ -212,15 +212,13 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         android:orientation="horizontal"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:padding="5dp"
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/fav_trips_separator_star"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_action_star"
             android:contentDescription="@string/tab_fav_trips"/>
 
@@ -261,9 +259,9 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/favourites"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/favourites">
+        android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

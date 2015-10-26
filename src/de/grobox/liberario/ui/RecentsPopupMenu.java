@@ -37,11 +37,7 @@ public class RecentsPopupMenu extends BasePopupMenu {
 		this.trip = trip;
 		this.getMenuInflater().inflate(R.menu.recent_trip_actions, getMenu());
 
-		if(trip.isFavourite()) {
-			getMenu().findItem(R.id.action_mark_favourite).setIcon(R.drawable.ic_action_star);
-		} else {
-			getMenu().findItem(R.id.action_mark_favourite).setIcon(R.drawable.ic_action_star_empty);
-		}
+		setFavState(getMenu().findItem(R.id.action_mark_favourite));
 
 		showIcons();
 	}
@@ -65,12 +61,10 @@ public class RecentsPopupMenu extends BasePopupMenu {
 					case R.id.action_mark_favourite:
 						RecentsDB.toggleFavouriteTrip(context, trip);
 						trip.setFavourite(!trip.isFavourite());
-						if(trip.isFavourite()) {
-							item.setIcon(TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star));
-						} else {
-							item.setIcon(TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star_empty));
-						}
-						if (removedListener != null) {
+
+						setFavState(item);
+
+						if(removedListener != null) {
 							removedListener.onFavouriteRemoved();
 						}
 						return true;
@@ -87,6 +81,16 @@ public class RecentsPopupMenu extends BasePopupMenu {
 
 	public static abstract class FavouriteRemovedListener {
 		public abstract void onFavouriteRemoved();
+	}
+
+	private void setFavState(MenuItem item) {
+		if(trip.isFavourite()) {
+			item.setTitle(R.string.action_unfav_trip);
+			item.setIcon(TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star));
+		} else {
+			item.setTitle(R.string.action_fav_trip);
+			item.setIcon(TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star_empty));
+		}
 	}
 
 }

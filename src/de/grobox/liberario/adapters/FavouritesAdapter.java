@@ -19,6 +19,7 @@ package de.grobox.liberario.adapters;
 
 import android.content.Context;
 import android.support.v7.util.SortedList;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,8 +75,12 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 	});
 	private Context context;
 
-	public FavouritesAdapter(Context context, List<RecentTrip> favourites) {
+	public FavouritesAdapter(Context context) {
 		this.context = context;
+	}
+
+	public FavouritesAdapter(Context context, List<RecentTrip> favourites) {
+		this(context);
 
 		addAll(favourites);
 	}
@@ -91,13 +96,13 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 	public void onBindViewHolder(final FavouriteHolder ui, final int position) {
 		final RecentTrip fav = getItem(position);
 
-		ui.favouriteFromView.setText(fav.getFrom().uniqueShortName());
-		ui.favouriteToView.setText(fav.getTo().uniqueShortName());
+		ui.favFrom.setText(fav.getFrom().uniqueShortName());
+		ui.favTo.setText(fav.getTo().uniqueShortName());
 
-		ui.rootView.setOnClickListener(new View.OnClickListener() {
+		ui.root.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				TransportrUtils.findDirections(context, fav.getFrom(), fav.getTo());
+			   TransportrUtils.findDirections(context, fav.getFrom(), fav.getTo());
 			}
 		});
 
@@ -108,13 +113,13 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 				favourites.remove(fav);
 			}
 		});
+
 		ui.moreButton.setOnClickListener(new View.OnClickListener() {
 			  @Override
 			  public void onClick(View v) {
 				  favPopup.show();
 			  }
-		  }
-		);
+		});
 		ui.moreButton.setImageDrawable(TransportrUtils.getTintedDrawable(context, R.drawable.ic_more_vert));
 	}
 
@@ -142,16 +147,16 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 	}
 
 	public static class FavouriteHolder extends RecyclerView.ViewHolder {
-		public TextView favouriteFromView;
-		public TextView favouriteToView;
+		public TextView favFrom;
+		public TextView favTo;
 		public ImageView moreButton;
-		public View rootView;
+		public View root;
 
 		public FavouriteHolder(View v) {
 			super(v);
-			rootView = v;
-			favouriteFromView = (TextView) v.findViewById(R.id.favouriteFromView);
-			favouriteToView = (TextView) v.findViewById(R.id.favouriteToView);
+			root = v;
+			favFrom = (TextView) v.findViewById(R.id.favouriteFromView);
+			favTo = (TextView) v.findViewById(R.id.favouriteToView);
 			moreButton = (ImageView) v.findViewById(R.id.moreButton);
 		}
 	}
