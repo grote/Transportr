@@ -166,6 +166,7 @@ public class MapStationsActivity extends AppCompatActivity {
 		mMapView.setClickable(true);
 		mMapView.setBuiltInZoomControls(true);
 		mMapView.setMultiTouchControls(true);
+		mMapView.setTilesScaledToDpi(true);
 
 		((LinearLayout) findViewById(R.id.root)).addView(mMapView);
 
