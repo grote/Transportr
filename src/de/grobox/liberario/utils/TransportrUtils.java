@@ -501,6 +501,8 @@ public class TransportrUtils {
 	}
 
 	static public Drawable getDrawableForLocation(Context context, Location l) {
+		if(l == null) return getTintedDrawable(context, R.drawable.ic_location);
+
 		List<Location> fav_list = RecentsDB.getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
 
 		return getDrawableForLocation(context, l, fav_list.contains(l));

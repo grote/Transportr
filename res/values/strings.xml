@@ -48,6 +48,8 @@
     <string name="trip_removed">Removed Trip</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="from_here">From Here</string>
+    <string name="to_here">To Here</string>
     <string name="time">Time</string>
     <string name="date">Date</string>
     <string name="min"> min</string>

@@ -34,6 +34,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,8 +53,8 @@ import java.util.List;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.utils.TransportrUtils;
-import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.Product;
 
 public class MapStationsActivity extends AppCompatActivity {
 	private MapView mMapView;
@@ -191,8 +192,7 @@ public class MapStationsActivity extends AppCompatActivity {
 
 				count += 1;
 
-				// TODO: show products here instead of lines (which are not available)
-				markLocation(loc, new ArrayList<Line>());
+				markLocation(loc);
 			}
 		}
 
@@ -245,7 +245,7 @@ public class MapStationsActivity extends AppCompatActivity {
 		mLocProvider.stopLocationProvider();
 	}
 
-	private void markLocation(Location loc, List<Line> lines) {
+	private void markLocation(Location loc) {
 		GeoPoint pos = new GeoPoint(loc.lat / 1E6, loc.lon / 1E6);
 
 		Log.d(getClass().getSimpleName(), "Mark location: " + loc.toString());
@@ -256,7 +256,7 @@ public class MapStationsActivity extends AppCompatActivity {
 		marker.setTitle(loc.uniqueShortName());
 		marker.setInfoWindow(new StationInfoWindow(mMapView));
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
-		marker.setRelatedObject(lines);
+		marker.setRelatedObject(loc);
 		mMapView.getOverlays().add(marker);
 	}
 
@@ -294,7 +294,7 @@ public class MapStationsActivity extends AppCompatActivity {
 			// close it when clicking on the bubble
 			mView.setOnTouchListener(new View.OnTouchListener() {
 				@Override public boolean onTouch(View v, MotionEvent e) {
-					if (e.getAction() == MotionEvent.ACTION_UP) {
+					if(e.getAction() == MotionEvent.ACTION_UP) {
 						close();
 					}
 					return true;
@@ -309,10 +309,59 @@ public class MapStationsActivity extends AppCompatActivity {
 
 			((TextView) mView.findViewById(R.id.bubble_title)).setText(marker.getTitle());
 
-			ViewGroup bubble_lines = (ViewGroup) mView.findViewById(R.id.bubble_lines);
-			for(Line line : (List<Line>) marker.getRelatedObject()) {
-				TransportrUtils.addLineBox(mMapView.getContext(), bubble_lines, line);
+			final Location loc = (Location) marker.getRelatedObject();
+
+			ViewGroup productsView = (ViewGroup) mView.findViewById(R.id.productsView);
+			productsView.removeAllViews();
+
+			// Add product icons if available
+			if(loc.products != null && loc.products.size() > 0) {
+				for(Product product : loc.products) {
+					ImageView image = new ImageView(productsView.getContext());
+					image.setImageDrawable(TransportrUtils.getTintedDrawable(productsView.getContext(), TransportrUtils.getDrawableForProduct(product)));
+					productsView.addView(image);
+				}
 			}
+
+			// From Here
+			TextView fromHere = ((TextView) mView.findViewById(R.id.fromHere));
+			fromHere.setOnClickListener(new View.OnClickListener() {
+				                            @Override
+				                            public void onClick(View v) {
+					                            TransportrUtils.presetDirections(MapStationsActivity.this, loc, null);
+				                            }
+			                            }
+			);
+
+			// To Here
+			TextView toHere = ((TextView) mView.findViewById(R.id.toHere));
+			toHere.setOnClickListener(new View.OnClickListener() {
+				                            @Override
+				                            public void onClick(View v) {
+					                            TransportrUtils.presetDirections(MapStationsActivity.this, null, loc);
+				                            }
+			                            }
+			);
+
+			// Departures
+			TextView departures = ((TextView) mView.findViewById(R.id.departures));
+			departures.setOnClickListener(new View.OnClickListener() {
+				                          @Override
+				                          public void onClick(View v) {
+					                          TransportrUtils.findDepartures(MapStationsActivity.this, loc);
+				                          }
+			                          }
+			);
+
+			// Nearby Stations
+			TextView nearbyStations = ((TextView) mView.findViewById(R.id.nearbyStations));
+			nearbyStations.setOnClickListener(new View.OnClickListener() {
+				                              @Override
+				                              public void onClick(View v) {
+					                              TransportrUtils.findNearbyStations(MapStationsActivity.this, loc);
+				                              }
+			                              }
+			);
 		}
 
 		@Override
