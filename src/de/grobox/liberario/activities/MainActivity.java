@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 	static final public int PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS = 0;
 	static final public int PR_ACCESS_FINE_LOCATION_DIRECTIONS = 1;
+	static final public int PR_ACCESS_FINE_LOCATION_MAPS = 2;
+	static final public int PR_WRITE_EXTERNAL_STORAGE = 3;
 
 	private Drawer drawer;
 	private AccountHeader accountHeader;

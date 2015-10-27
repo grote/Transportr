@@ -107,6 +107,7 @@
     <string name="error_no_trips_capability">This transportation network does not support querying for directions.</string>
     <string name="error_no_departures_capability">The current transportation network does not support finding departures.</string>
     <string name="error_no_nearby_locations_capability">The current transportation network does not support finding nearby stations.</string>
+    <string name="error_please_file_ticket">Something went wrong. Please create an issue ticket explaining what you did.</string>
 
     <string name="number_of_stations">Number of Stations</string>
     <string name="meter">m</string>
@@ -135,7 +136,9 @@
     <string name="action_set_locations">Edit search</string>
     <string name="action_swap_locations">Search return trip</string>
 
-    <string name="what_here">Let me know what you would like to see here!</string>
+    <string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
+    <string name="permission_explanation_map">Map tiles need to be stored/cached on your devices\' storage. The Map will not work without it.</string>
+    <string name="permission_denied_map">Showing the map requires tiles to be stored on your devices\' storage. Please grant the storage permission in order to use the map.</string>
 
     <!-- ckChangeLog -->
     <string name="changelog_full_title">Changelog</string>
@@ -261,7 +264,5 @@
     <string name="portuguese_br">Portuguese\n(Brazil)</string>
     <string name="spanish">Spanish</string>
     <string name="turkish">Turkish</string>
-    <string name="error_please_file_ticket">Something went wrong. Please create an issue ticket explaining what you did.</string>
-    <string name="error_no_gps_permission">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
 
 </resources>

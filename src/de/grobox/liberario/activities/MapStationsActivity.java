@@ -17,25 +17,13 @@
 
 package de.grobox.liberario.activities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.osmdroid.api.IMapController;
-import org.osmdroid.bonuspack.overlays.InfoWindow;
-import org.osmdroid.bonuspack.overlays.Marker;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
-
-import de.grobox.liberario.Preferences;
-import de.grobox.liberario.R;
-import de.grobox.liberario.utils.TransportrUtils;
-import de.schildbach.pte.dto.Line;
-import de.schildbach.pte.dto.Location;
-
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -48,6 +36,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.overlays.InfoWindow;
+import org.osmdroid.bonuspack.overlays.Marker;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.utils.TransportrUtils;
+import de.schildbach.pte.dto.Line;
+import de.schildbach.pte.dto.Location;
 
 public class MapStationsActivity extends AppCompatActivity {
 	private MapView mMapView;
@@ -56,7 +62,6 @@ public class MapStationsActivity extends AppCompatActivity {
 	private MyLocationNewOverlay mMyLocationOverlay;
 	private boolean mGps;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		if(Preferences.darkThemeEnabled(this)) {
@@ -66,6 +71,7 @@ public class MapStationsActivity extends AppCompatActivity {
 		}
 
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_stations_map);
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -77,81 +83,44 @@ public class MapStationsActivity extends AppCompatActivity {
 			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 
-		mMapView = new MapView(this, 256);
+		if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+			// Should we show an explanation?
+			if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+				Toast.makeText(this, R.string.permission_denied_map, Toast.LENGTH_LONG).show();
+				supportFinishAfterTransition();
+			} else {
+				Toast.makeText(this, R.string.permission_explanation_map, Toast.LENGTH_LONG).show();
+				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MainActivity.PR_WRITE_EXTERNAL_STORAGE);
+			}
+		} else {
+			setupMap();
+		}
+	}
 
-		mMapView.setClickable(true);
-		mMapView.setBuiltInZoomControls(true);
-		mMapView.setMultiTouchControls(true);
-
-		((LinearLayout) findViewById(R.id.root)).addView(mMapView);
-
-		Intent intent = getIntent();
-		List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra("List<de.schildbach.pte.dto.Location>");
-		Location myLoc = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
-
-		int minLat = Integer.MAX_VALUE;
-		int maxLat = Integer.MIN_VALUE;
-		int minLon = Integer.MAX_VALUE;
-		int maxLon = Integer.MIN_VALUE;
-
-		int count = 0;
-
-		// find location area and mark locations on map
-		for(Location loc : locations) {
-			if(loc.hasLocation()){
-				maxLat = Math.max(loc.lat, maxLat);
-				minLat = Math.min(loc.lat, minLat);
-				maxLon = Math.max(loc.lon, maxLon);
-				minLon = Math.min(loc.lon, minLon);
-
-				count += 1;
-
-				// TODO: actually use the real lines here
-				markLocation(loc, new ArrayList<Line>());
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+		switch (requestCode) {
+			case MainActivity.PR_WRITE_EXTERNAL_STORAGE:{
+				// If request is cancelled, the result arrays are empty.
+				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					// FIXME: For some reason, there are no tiles shown after permission is first granted
+					setupMap();
+				} else {
+					Toast.makeText(this, R.string.permission_denied_map, Toast.LENGTH_LONG).show();
+					supportFinishAfterTransition();
+				}
+				break;
+			}
+			case MainActivity.PR_ACCESS_FINE_LOCATION_MAPS:{
+				// If request is cancelled, the result arrays are empty.
+				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					toggleGPS();
+				} else {
+					Toast.makeText(this, R.string.permission_denied_gps, Toast.LENGTH_LONG).show();
+				}
+				break;
 			}
 		}
-
-		// include my location in center calculation if available
-		if(myLoc != null) {
-			maxLat = Math.max(myLoc.lat, maxLat);
-			minLat = Math.min(myLoc.lat, minLat);
-			maxLon = Math.max(myLoc.lon, maxLon);
-			minLon = Math.min(myLoc.lon, minLon);
-			count += 1;
-		}
-
-		final GeoPoint center = new GeoPoint( (maxLat + minLat)/2, (maxLon + minLon)/2 );
-
-		IMapController mapController = mMapView.getController();
-		mapController.setCenter(center);
-		mapController.setZoom(18);
-		if(count > 1) {
-			mapController.zoomToSpan(maxLat - minLat, maxLon - minLon);
-		}
-
-		mLocProvider = new GpsMyLocationProvider(this);
-
-		// show last known position on map
-		if(myLoc != null) {
-			// create temporary location object with last known position
-			android.location.Location tmp_loc = new android.location.Location("");
-			tmp_loc.setLatitude(myLoc.lat / 1E6);
-			tmp_loc.setLongitude(myLoc.lon / 1E6);
-
-			// set last known position
-			mLocProvider.onLocationChanged(tmp_loc);
-		}
-
-		// create my location overlay that shows the current position and updates automatically
-		mMyLocationOverlay = new MyLocationNewOverlay(this, mMapView);
-		mMyLocationOverlay.enableMyLocation(mLocProvider);
-		mMyLocationOverlay.setDrawAccuracyEnabled(true);
-
-		mMapView.getOverlays().add(mMyLocationOverlay);
-
-		// turn GPS off by default
-		mGps = false;
-		mLocProvider.stopLocationProvider();
 	}
 
 	@Override
@@ -191,6 +160,90 @@ public class MapStationsActivity extends AppCompatActivity {
 		}
 	}
 
+	private void setupMap() {
+		mMapView = new MapView(this, 256);
+
+		mMapView.setClickable(true);
+		mMapView.setBuiltInZoomControls(true);
+		mMapView.setMultiTouchControls(true);
+
+		((LinearLayout) findViewById(R.id.root)).addView(mMapView);
+
+		Intent intent = getIntent();
+		List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra("List<de.schildbach.pte.dto.Location>");
+		Location myLoc = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
+
+		int minLat = Integer.MAX_VALUE;
+		int maxLat = Integer.MIN_VALUE;
+		int minLon = Integer.MAX_VALUE;
+		int maxLon = Integer.MIN_VALUE;
+
+		int count = 0;
+
+		// find location area and mark locations on map
+		for(Location loc : locations) {
+			if(loc.hasLocation()){
+				maxLat = Math.max(loc.lat, maxLat);
+				minLat = Math.min(loc.lat, minLat);
+				maxLon = Math.max(loc.lon, maxLon);
+				minLon = Math.min(loc.lon, minLon);
+
+				count += 1;
+
+				// TODO: show products here instead of lines (which are not available)
+				markLocation(loc, new ArrayList<Line>());
+			}
+		}
+
+		// include my location in center calculation if available
+		if(myLoc != null) {
+			maxLat = Math.max(myLoc.lat, maxLat);
+			minLat = Math.min(myLoc.lat, minLat);
+			maxLon = Math.max(myLoc.lon, maxLon);
+			minLon = Math.min(myLoc.lon, minLon);
+			count += 1;
+		}
+
+		final GeoPoint center = new GeoPoint( (maxLat + minLat)/2, (maxLon + minLon)/2 );
+
+		IMapController mapController = mMapView.getController();
+		mapController.setCenter(center);
+		mapController.setZoom(18);
+		if(count > 1) {
+			mapController.zoomToSpan(maxLat - minLat, maxLon - minLon);
+		}
+
+		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+			setupGPS(myLoc);
+		}
+	}
+
+	private void setupGPS(Location myLoc) {
+		mLocProvider = new GpsMyLocationProvider(this);
+
+		// show last known position on map
+		if(myLoc != null) {
+			// create temporary location object with last known position
+			android.location.Location tmp_loc = new android.location.Location("");
+			tmp_loc.setLatitude(myLoc.lat / 1E6);
+			tmp_loc.setLongitude(myLoc.lon / 1E6);
+
+			// set last known position
+			mLocProvider.onLocationChanged(tmp_loc);
+		}
+
+		// create my location overlay that shows the current position and updates automatically
+		mMyLocationOverlay = new MyLocationNewOverlay(this, mMapView);
+		mMyLocationOverlay.enableMyLocation(mLocProvider);
+		mMyLocationOverlay.setDrawAccuracyEnabled(true);
+
+		mMapView.getOverlays().add(mMyLocationOverlay);
+
+		// turn GPS off by default
+		mGps = false;
+		mLocProvider.stopLocationProvider();
+	}
+
 	private void markLocation(Location loc, List<Line> lines) {
 		GeoPoint pos = new GeoPoint(loc.lat / 1E6, loc.lon / 1E6);
 
@@ -207,6 +260,18 @@ public class MapStationsActivity extends AppCompatActivity {
 	}
 
 	private void toggleGPS() {
+		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+			// Should we show an explanation?
+			if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+				Toast.makeText(this, "You need to grant the location permission in order to see your current position on the map.", Toast.LENGTH_LONG).show();
+			} else {
+				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MainActivity.PR_ACCESS_FINE_LOCATION_MAPS);
+			}
+			return;
+		}
+
+		if(mLocProvider == null) setupGPS(null);
+
 		MenuItem gpsItem = mMenu.findItem(R.id.action_use_gps);
 
 		if(mGps) {

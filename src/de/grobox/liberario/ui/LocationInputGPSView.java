@@ -83,7 +83,7 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 
 			// Should we show an explanation?
 			if(ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.ACCESS_FINE_LOCATION)) {
-				Toast.makeText(context, R.string.error_no_gps_permission, Toast.LENGTH_LONG).show();
+				Toast.makeText(context, R.string.permission_denied_gps, Toast.LENGTH_LONG).show();
 			} else {
 				// No explanation needed, we can request the permission
 				ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, caller);
