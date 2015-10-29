@@ -31,6 +31,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,6 +48,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
@@ -57,8 +59,10 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.activities.AmbiguousLocationActivity;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
+import de.grobox.liberario.activities.TripsActivity;
 import de.grobox.liberario.adapters.FavouritesAdapter;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
@@ -71,8 +75,9 @@ import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
+import de.schildbach.pte.dto.QueryTripsResult;
 
-public class DirectionsFragment extends TransportrFragment {
+public class DirectionsFragment extends TransportrFragment implements AsyncQueryTripsTask.TripHandler {
 	private View mView;
 	private ViewHolder ui = new ViewHolder();
 	private FavLocation.LOC_TYPE mHomeClicked;
@@ -323,6 +328,32 @@ public class DirectionsFragment extends TransportrFragment {
 		}
 	}
 
+	@Override
+	public void onTripRetrieved(QueryTripsResult result) {
+		if(result.status == QueryTripsResult.Status.OK && result.trips.size() > 0) {
+			Log.d(getClass().getSimpleName(), result.toString());
+
+			Intent intent = new Intent(getContext(), TripsActivity.class);
+			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult", result);
+			fillIntent(intent);
+			startActivity(intent);
+		}
+		else if(result.status == QueryTripsResult.Status.AMBIGUOUS) {
+			Log.d(getClass().getSimpleName(), "QueryTripsResult is AMBIGUOUS");
+
+			Intent intent = new Intent(getContext(), AmbiguousLocationActivity.class);
+			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult", result);
+			fillIntent(intent);
+			startActivity(intent);
+		}
+		else {
+			Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
+		}
+	}
+
+	@Override
+	public void onTripRetrievalError(String error) { }
+
 	private void displayFavourites() {
 		if(mFavAdapter == null) return;
 
@@ -355,7 +386,7 @@ public class DirectionsFragment extends TransportrFragment {
 			return;
 		}
 
-		AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(getActivity());
+		AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(getActivity(), this);
 
 		// check and set to location
 		if(checkLocation(to)) {
@@ -585,6 +616,14 @@ public class DirectionsFragment extends TransportrFragment {
 			ui.type.setText(getString(R.string.trip_arr));
 			ui.type.setTag(false);
 		}
+	}
+
+	private void fillIntent(Intent intent) {
+		intent.putExtra("de.schildbach.pte.dto.Trip.from", from.getLocation());
+		intent.putExtra("de.schildbach.pte.dto.Trip.to", to.getLocation());
+		intent.putExtra("de.schildbach.pte.dto.Trip.date", DateUtils.getDateFromUi(mView));
+		intent.putExtra("de.schildbach.pte.dto.Trip.departure", (boolean) ui.type.getTag());
+		intent.putExtra("de.schildbach.pte.dto.Trip.products", new ArrayList<>(mProducts));
 	}
 
 

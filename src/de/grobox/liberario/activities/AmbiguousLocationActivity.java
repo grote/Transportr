@@ -17,32 +17,40 @@
 
 package de.grobox.liberario.activities;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import de.grobox.liberario.tasks.AsyncQueryTripsTask;
-import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.RecentTrip;
-import de.grobox.liberario.Preferences;
-import de.grobox.liberario.R;
-import de.grobox.liberario.adapters.LocationAdapter;
-import de.grobox.liberario.data.RecentsDB;
-import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.QueryTripsResult;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class AmbiguousLocationActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+
+import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.RecentTrip;
+import de.grobox.liberario.adapters.LocationAdapter;
+import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.tasks.AsyncQueryTripsTask;
+import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.Product;
+import de.schildbach.pte.dto.QueryTripsResult;
+
+public class AmbiguousLocationActivity extends AppCompatActivity implements AsyncQueryTripsTask.TripHandler {
+	private Location from;
+	private Location to;
 	private Date date;
 	private Boolean departure;
+	private ArrayList<Product> products;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +74,11 @@ public class AmbiguousLocationActivity extends AppCompatActivity {
 
 		Intent intent = getIntent();
 		QueryTripsResult trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
-		Location from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult.from");
-		Location to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult.to");
-		date = (Date) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult.date");
-		departure = intent.getBooleanExtra("de.schildbach.pte.dto.QueryTripsResult.departure", true);
+		from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.from");
+		to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.to");
+		date = (Date) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.date");
+		departure = intent.getBooleanExtra("de.schildbach.pte.dto.Trip.departure", true);
+		products = (ArrayList<Product>) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.products");
 
 		final Spinner from_spinner = ((Spinner) findViewById(R.id.fromSpinner));
 
@@ -114,17 +123,44 @@ public class AmbiguousLocationActivity extends AppCompatActivity {
 				RecentsDB.updateFavLocation(getApplicationContext(), to, FavLocation.LOC_TYPE.TO);
 				RecentsDB.updateRecentTrip(getApplicationContext(), new RecentTrip(from, to));
 
-				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext());
+				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext(), AmbiguousLocationActivity.this);
 
-				query_trips.setDate(date);
-				query_trips.setDeparture(departure);
 				query_trips.setFrom(from);
 				query_trips.setTo(to);
+				query_trips.setDate(date);
+				query_trips.setDeparture(departure);
+				query_trips.setProducts(new HashSet<>(products));
 
 				query_trips.execute();
 			}
 		});
 	}
+
+	@Override
+	public void onTripRetrieved(QueryTripsResult result) {
+		if(result.status == QueryTripsResult.Status.OK && result.trips.size() > 0) {
+			Log.d(getClass().getSimpleName(), result.toString());
+
+			Intent intent = new Intent(this, TripsActivity.class);
+			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult", result);
+			fillIntent(intent);
+			startActivity(intent);
+		}
+		else if(result.status == QueryTripsResult.Status.AMBIGUOUS) {
+			Log.d(getClass().getSimpleName(), "QueryTripsResult is AMBIGUOUS");
+
+			Intent intent = new Intent(this, AmbiguousLocationActivity.class);
+			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult", result);
+			fillIntent(intent);
+			startActivity(intent);
+		}
+		else {
+			Toast.makeText(this, getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
+		}
+	}
+
+	@Override
+	public void onTripRetrievalError(String error) { }
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -139,5 +175,12 @@ public class AmbiguousLocationActivity extends AppCompatActivity {
 		}
 	}
 
+	private void fillIntent(Intent intent) {
+		intent.putExtra("de.schildbach.pte.dto.Trip.from", from);
+		intent.putExtra("de.schildbach.pte.dto.Trip.to", to);
+		intent.putExtra("de.schildbach.pte.dto.Trip.date", date);
+		intent.putExtra("de.schildbach.pte.dto.Trip.departure", departure);
+		intent.putExtra("de.schildbach.pte.dto.Trip.products", products);
+	}
 
 }

@@ -343,6 +343,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		// stop here, if there are no stops
 		if(stops == null) return;
 
+		// Remove previous stops in case we are refreshing the view.
+		leg_holder.stops.removeAllViews();
+
 		for(final Stop stop : stops) {
 			TableRow stopView = (TableRow) LayoutInflater.from(context).inflate(R.layout.stop, leg_holder.stops, false);
 

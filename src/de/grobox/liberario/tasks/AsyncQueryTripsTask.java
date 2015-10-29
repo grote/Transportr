@@ -17,24 +17,22 @@
 
 package de.grobox.liberario.tasks;
 
-import java.util.Date;
-import java.util.EnumSet;
-import java.util.Set;
-
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.Date;
+import java.util.EnumSet;
+import java.util.Set;
+
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.activities.AmbiguousLocationActivity;
-import de.grobox.liberario.activities.TripsActivity;
+import de.grobox.liberario.activities.TripDetailActivity;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
@@ -43,6 +41,7 @@ import de.schildbach.pte.dto.QueryTripsResult;
 public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult> {
 
 	private Context context;
+	private TripHandler tripHandler;
 	private ProgressDialog pd;
 	private Location from;
 	private Location to;
@@ -51,8 +50,9 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	private Set<Product> mProducts = EnumSet.allOf(Product.class);
 	private String error = null;
 
-	public AsyncQueryTripsTask(Context context) {
+	public AsyncQueryTripsTask(Context context, TripHandler tripHandler) {
 		this.context = context;
+		this.tripHandler = tripHandler;
 	}
 
 	public void setFrom(Location from) {
@@ -77,6 +77,8 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 
 	@Override
 	protected void onPreExecute() {
+		if(tripHandler instanceof TripDetailActivity) return;
+
 		pd = new ProgressDialog(context);
 		pd.setMessage(context.getResources().getString(R.string.trip_searching));
 		pd.setCancelable(false);
@@ -128,32 +130,13 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 			} else {
 				Toast.makeText(context, error, Toast.LENGTH_LONG).show();
 			}
+
+			tripHandler.onTripRetrievalError(error);
+
 			return;
 		}
 
-		if(result.status == QueryTripsResult.Status.OK && result.trips.size() > 0) {
-			Log.d(getClass().getSimpleName(), result.toString());
-
-			Intent intent = new Intent(context, TripsActivity.class);
-			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult", result);
-			intent.putExtra("de.schildbach.pte.dto.Trip.from", from);
-			intent.putExtra("de.schildbach.pte.dto.Trip.to", to);
-			context.startActivity(intent);
-		}
-		else if(result.status == QueryTripsResult.Status.AMBIGUOUS) {
-			Log.d(getClass().getSimpleName(), "QueryTripsResult is AMBIGUOUS");
-
-			Intent intent = new Intent(context, AmbiguousLocationActivity.class);
-			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult", result);
-			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult.from", from);
-			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult.to", to);
-			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult.date", date);
-			intent.putExtra("de.schildbach.pte.dto.QueryTripsResult.departure", departure);
-			context.startActivity(intent);
-		}
-		else {
-			Toast.makeText(context, context.getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
-		}
+		tripHandler.onTripRetrieved(result);
 	}
 
 	static public boolean isNetworkAvailable(Context context) {
@@ -161,4 +144,11 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
+
+
+	public interface TripHandler {
+		void onTripRetrieved(QueryTripsResult result);
+		void onTripRetrievalError(String error);
+	}
+
 }

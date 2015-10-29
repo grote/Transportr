@@ -3,6 +3,12 @@
       xmlns:de.grobox.liberario="http://schemas.android.com/apk/res-auto" >
 
     <item
+        android:id="@+id/action_reload"
+        android:icon="@drawable/ic_action_navigation_refresh"
+        de.grobox.liberario:showAsAction="ifRoom"
+        android:title="@string/action_refresh"/>
+
+    <item
         android:id="@+id/action_share"
         android:icon="@drawable/ic_action_social_share"
         de.grobox.liberario:showAsAction="ifRoom"

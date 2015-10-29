@@ -34,12 +34,16 @@ import android.view.View;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
+import java.util.ArrayList;
+
 import de.grobox.liberario.ListTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.adapters.TripAdapter;
 import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
+import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
 
@@ -49,6 +53,9 @@ public class TripsActivity extends AppCompatActivity {
 	private RecyclerView mRecyclerView;
 	private TripAdapter mAdapter;
 	private SwipyRefreshLayout swipeRefresh;
+	private Location from;
+	private Location to;
+	private ArrayList<Product> products;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +77,14 @@ public class TripsActivity extends AppCompatActivity {
 			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 
-		Intent intent = getIntent();
+		final Intent intent = getIntent();
 		start_context = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
 		end_context = start_context;
+
+		// retrieve trip data from intent that is not stored properly in trip object
+		from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.from");
+		to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.to");
+		products = (ArrayList<Product>) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.products");
 
 		swipeRefresh = (SwipyRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 		swipeRefresh.setColorSchemeResources(R.color.accent);
@@ -110,8 +122,9 @@ public class TripsActivity extends AppCompatActivity {
 
 			     Intent intent = new Intent(TripsActivity.this, TripDetailActivity.class);
 			     intent.putExtra("de.schildbach.pte.dto.Trip", trip);
-			     intent.putExtra("de.schildbach.pte.dto.Trip.from", trip.from);
-			     intent.putExtra("de.schildbach.pte.dto.Trip.to", trip.to);
+			     intent.putExtra("de.schildbach.pte.dto.Trip.from", from);
+			     intent.putExtra("de.schildbach.pte.dto.Trip.to", to);
+				 intent.putExtra("de.schildbach.pte.dto.Trip.products", products);
 
 				 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 					 LinearLayoutManager layoutManager = ((LinearLayoutManager)mRecyclerView.getLayoutManager());
