@@ -52,7 +52,9 @@ import java.util.List;
 
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.utils.TransportrUtils;
+import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 
@@ -62,6 +64,7 @@ public class MapStationsActivity extends AppCompatActivity {
 	private GpsMyLocationProvider mLocProvider;
 	private MyLocationNewOverlay mMyLocationOverlay;
 	private boolean mGps;
+	private TransportNetwork network;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -75,9 +78,11 @@ public class MapStationsActivity extends AppCompatActivity {
 
 		setContentView(R.layout.activity_stations_map);
 
+		network = Preferences.getTransportNetwork(this);
+
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			toolbar.setSubtitle(Preferences.getTransportNetwork(this).getName());
+			toolbar.setSubtitle(network.getName());
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();
@@ -323,45 +328,58 @@ public class MapStationsActivity extends AppCompatActivity {
 				}
 			}
 
-			// From Here
 			TextView fromHere = ((TextView) mView.findViewById(R.id.fromHere));
-			fromHere.setOnClickListener(new View.OnClickListener() {
-				                            @Override
-				                            public void onClick(View v) {
-					                            TransportrUtils.presetDirections(MapStationsActivity.this, loc, null);
-				                            }
-			                            }
-			);
-
-			// To Here
 			TextView toHere = ((TextView) mView.findViewById(R.id.toHere));
-			toHere.setOnClickListener(new View.OnClickListener() {
-				                            @Override
-				                            public void onClick(View v) {
-					                            TransportrUtils.presetDirections(MapStationsActivity.this, null, loc);
+			if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS)) {
+				// From Here
+				fromHere.setOnClickListener(new View.OnClickListener() {
+					                            @Override
+					                            public void onClick(View v) {
+						                            TransportrUtils.presetDirections(MapStationsActivity.this, loc, null);
+					                            }
 				                            }
-			                            }
-			);
+				);
+
+				// To Here
+				toHere.setOnClickListener(new View.OnClickListener() {
+					                          @Override
+					                          public void onClick(View v) {
+						                          TransportrUtils.presetDirections(MapStationsActivity.this, null, loc);
+					                          }
+				                          }
+				);
+			} else {
+				fromHere.setVisibility(View.GONE);
+				toHere.setVisibility(View.GONE);
+			}
 
 			// Departures
 			TextView departures = ((TextView) mView.findViewById(R.id.departures));
-			departures.setOnClickListener(new View.OnClickListener() {
-				                          @Override
-				                          public void onClick(View v) {
-					                          TransportrUtils.findDepartures(MapStationsActivity.this, loc);
-				                          }
-			                          }
-			);
+			if(loc.hasId() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
+				departures.setOnClickListener(new View.OnClickListener() {
+					                              @Override
+					                              public void onClick(View v) {
+						                              TransportrUtils.findDepartures(MapStationsActivity.this, loc);
+					                              }
+				                              }
+				);
+			} else {
+				departures.setVisibility(View.GONE);
+			}
 
 			// Nearby Stations
 			TextView nearbyStations = ((TextView) mView.findViewById(R.id.nearbyStations));
-			nearbyStations.setOnClickListener(new View.OnClickListener() {
-				                              @Override
-				                              public void onClick(View v) {
-					                              TransportrUtils.findNearbyStations(MapStationsActivity.this, loc);
-				                              }
-			                              }
-			);
+			if(loc.hasLocation() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
+				nearbyStations.setOnClickListener(new View.OnClickListener() {
+					                                  @Override
+					                                  public void onClick(View v) {
+						                                  TransportrUtils.findNearbyStations(MapStationsActivity.this, loc);
+					                                  }
+				                                  }
+				);
+			} else {
+				nearbyStations.setVisibility(View.GONE);
+			}
 		}
 
 		@Override
