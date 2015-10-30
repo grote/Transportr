@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.0.0" versioncode="18">
+    <release version="1.0.0-beta" versioncode="19">
         <change>Renamed app from Liberario to Transportr</change>
         <change>New Logo</change>
-        <change>New user interface in material design</change>
+        <change>New user interface in material design with navigation drawer</change>
+        <change>Lots of new features like trip refresh, favorites on start screen, interactions with stations on the map and many more</change>
+        <change>Added Norwegian Bokmål translation. Thanks to Allan Nordhøy!</change>
+        <change>Added Basque translation. Thanks to Aitor Beriain!</change>
     </release>
 
     <release version="0.6.1" versioncode="16">
