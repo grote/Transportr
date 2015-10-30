@@ -5,7 +5,6 @@
   <string name="action_about">Hakkında</string>
   <string name="action_clear_favs">Favorileri Temzile</string>
   <string name="action_settings">Ayarlar</string>
-  <string name="action_fav_trip">Geziyi Favori Olarak İşaretle</string>
   <string name="action_switch_locations">Nereden Nereye konumunu değiştir</string>
   <string name="action_refresh">Tazele</string>
   <string name="action_navigation_expand">Daha Fazla Göster</string>
@@ -31,8 +30,6 @@
   <string name="detail_date">Tarih:</string>
   <string name="beta">beta</string>
   <string name="pick_network_activity">Bir Ulaşım Ağı Seçiniz</string>
-  <string name="clear_recent">Mevcut ulaşım ağınızdan favorilerinizi silmek istediğinize emin misiniz?</string>
-  <string name="clear_recent_trips">Favorilerinizden %1$d gezi silmek istediğinize emin misiniz? Kullanım sayısı kaybedilecek.</string>
   <string name="trip_searching">Bağlantılar aranıyor...</string>
   <string name="stations_searching_position">Mevcut konum aranıyor...</string>
   <string name="stations_searching_stations">Yakındaki istasyonlar aranıyor...</string>
@@ -66,6 +63,7 @@
   <string name="product_cablecar">Teleferik</string>
   <string name="product_on_demand">Talep Üzerine</string>
   <string name="action_fav_trips_sort">Sıralama Listesi</string>
+  <!--ckChangeLog-->
   <string name="np_region_europe">Avrupa</string>
   <string name="np_name_rt">Avrupa</string>
   <string name="np_region_germany">Almanya</string>

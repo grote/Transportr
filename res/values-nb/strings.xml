@@ -6,7 +6,6 @@
   <string name="action_about">Om</string>
   <string name="action_clear_favs">Tøm favoritter</string>
   <string name="action_settings">Innstillinger</string>
-  <string name="action_fav_trip">Merk tur som favoritt</string>
   <string name="action_switch_locations">Bytt til og fra</string>
   <string name="action_show_extra_info">Vis/gjem informasjon</string>
   <string name="action_refresh">Gjenoppfrisk</string>
@@ -46,8 +45,6 @@
   <string name="beta">beta</string>
   <string name="network">Nettverk</string>
   <string name="pick_network_activity">Velg et transportnettverk</string>
-  <string name="clear_recent">Bekreft sletting av favoritter for gjeldende transportnettverk.</string>
-  <string name="clear_recent_trips">Ønsker du å slette %1$d tur(er) fra dine favoritter? Bruksopptellingen vil gå tapt.</string>
   <string name="trip_searching">Søker etter overganger...</string>
   <string name="stations_searching_position">Søker etter gjeldende plassering...</string>
   <string name="stations_searching_stations">Søker etter stasjoner i nærheten...</string>
@@ -57,7 +54,6 @@
   <string name="departure_station">Avgangsstasjon</string>
   <string name="share_trip_via">Del tur via...</string>
   <string name="undo">Angre</string>
-  <string name="fav_trips_empty">Dine nylige turer vil vises her når du begynner søk etter veibeskrivinger.\n\n\nDu vil kunne sortere dem etter mest og minst brukt.</string>
   <string name="pref_transport_network">Transportnettverk</string>
   <string name="pref_home">Hjemmehørende plassering</string>
   <string name="pref_display">Visning</string>
@@ -80,6 +76,7 @@
   <string name="error_no_trips_capability">Transportnettverket støtter ikke å spørre seg frem.</string>
   <string name="error_no_departures_capability">Gjeldende transportnettverk støtter ikke oppdagelse av avganger.</string>
   <string name="error_no_nearby_locations_capability">Gjeldende transportnettverk støtter ikke oppdagelse av stasjoner i nærheten.</string>
+  <string name="error_please_file_ticket">Noe gikk galt. Opprett en brukerstøttebillett der du forklarer hvordan det gitt til.</string>
   <string name="number_of_stations">Antall stasjoner</string>
   <string name="meter">m</string>
   <string name="max_distance">Maksimal distanse</string>
@@ -100,7 +97,7 @@
   <string name="product_cablecar">Gondolbane</string>
   <string name="product_on_demand">Ved behov</string>
   <string name="action_fav_trips_sort">Sorter liste</string>
-  <string name="what_here">Gi tilbakemeldinger om hva du ønsker å se her!</string>
+  <!--ckChangeLog-->
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">bare langdistanse</string>
@@ -169,5 +166,4 @@
   <string name="portuguese_br">Portugisisk\n(Brasil)</string>
   <string name="spanish">Spansk</string>
   <string name="turkish">Tyrkisk</string>
-  <string name="error_please_file_ticket">Noe gikk galt. Opprett en brukerstøttebillett der du forklarer hvordan det gitt til.</string>
 </resources>

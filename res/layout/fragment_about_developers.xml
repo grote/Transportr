@@ -184,6 +184,26 @@
                             android:layout_height="wrap_content"
                             android:padding="7dp"
                             android:textColor="?android:attr/textColorPrimary"
+                            android:text="@string/basque"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="7dp"
+                            tools:ignore="HardcodedText"
+                            android:text="Aitor Beriain"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="7dp"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/dutch"/>
 
                         <TextView
@@ -233,7 +253,7 @@
                             android:layout_weight="1"
                             android:padding="7dp"
                             tools:ignore="HardcodedText"
-                            android:text="Benedikt Volkmer, Torsten Grote"/>
+                            android:text="Benedikt Volkmer, Ettore Atalan, dktz"/>
 
                     </TableRow>
 
@@ -255,6 +275,26 @@
                             android:padding="7dp"
                             tools:ignore="HardcodedText"
                             android:text="Giuseppe Pignataro"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="7dp"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:text="@string/norwegian_bokmal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="7dp"
+                            tools:ignore="HardcodedText"
+                            android:text="Allan Nordhøy"/>
                     </TableRow>
 
                     <TableRow

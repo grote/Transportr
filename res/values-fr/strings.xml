@@ -7,6 +7,7 @@
   <string name="action_clear_favs">Vider les favoris</string>
   <string name="action_settings">Paramètres</string>
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
+  <string name="action_unfav_trip">Supprimer la marque de trajet favori</string>
   <string name="action_switch_locations">Inverser les points de départ et d\'arrivée</string>
   <string name="action_show_extra_info">Montrer/cacher les informations</string>
   <string name="action_refresh">Rafraîchir</string>
@@ -23,6 +24,7 @@
   <string name="tab_directions">Itinéraires</string>
   <string name="tab_fav_trips">Trajets favoris</string>
   <string name="tab_departures">Départs</string>
+  <string name="tab_recent_trips">Trajets récents</string>
   <string name="tab_libraries">Bibliothèques</string>
   <string name="tab_devs">Développeurs</string>
   <string name="tab_about">À propos</string>
@@ -41,6 +43,8 @@
   <string name="trip_removed">Trajet supprimé</string>
   <string name="from">De</string>
   <string name="to">À</string>
+  <string name="from_here">D\'ici</string>
+  <string name="to_here">À ici</string>
   <string name="time">Heure</string>
   <string name="date">Date</string>
   <string name="min">min</string>
@@ -54,8 +58,8 @@
   <string name="network">Réseau</string>
   <string name="pick_network_activity">Choisir un réseau de transport</string>
   <string name="pick_network_first_run">C\'est la première fois que vous lancez Transportr. Veuillez choisir votre réseau de transport afin de continuer !</string>
-  <string name="clear_recent">Êtes-vous certain de vouloir supprimer vos favoris pour le réseau de transport actuel ?</string>
-  <string name="clear_recent_trips">Êtes-vous certain de vouloir supprimer %1$d trajet(s) de vos favoris ? Le nombre d\'utilisation sera perdu.</string>
+  <string name="clear_recent">Voulez-vous vraiment supprimer vos trajets récents pour le réseau de transport actuel ?</string>
+  <string name="clear_recent_trips">Voulez-vous vraiment supprimer %1$d trajet(s) de vos trajets récents ? Le compte d\'utilisation sera perdu.</string>
   <string name="trip_searching">Recherche de correspondances…</string>
   <string name="stations_searching_position">Recherche de la position actuelle...</string>
   <string name="stations_searching_stations">Recherche d\'arrêts/stations à proximité...</string>
@@ -65,9 +69,16 @@
   <string name="departure_station">Arrêt/station de départ</string>
   <string name="share_trip_via">Partager ce trajet par...</string>
   <string name="undo">Annuler</string>
-  <string name="fav_trips_empty">Vos trajets récents apparaîtrons ici dès que vous commencerez à chercher le chemin.\n\n\nVous pourrez les trier par fréquence d\'utilisation ou dernière date d\'utilisation.</string>
+  <string name="fav_trips_empty">Vos trajets récents apparaîtront ici dès que vous commencerez à chercher le chemin.\n\n\nVous pourrez les trier par fréquence d\'utilisation ou dernière date d\'utilisation.</string>
   <string name="more">Plus</string>
+  <string name="no_favourites">Aucun trajet favori.\n\nAjoutez-en sur la page « Trajets récents ».</string>
+  <string name="removing_from_favourites">Un trajet que vous avez sélectionné est marqué comme favori. Il sera aussi supprimé comme tel.</string>
+  <string name="current_time_set">Heure réglée sur l\'heure actuelle.</string>
+  <string name="current_date_set">Date réglée sur la date actuelle.</string>
+  <string name="added_1h">1 heure a été ajoutée.</string>
   <string name="pref_transport_network">Réseau de transport</string>
+  <string name="pref_hide_departure_time">Cacher l\'heure de départ</string>
+  <string name="pref_hide_departure_time_summary">Ne montrer l\'heure d\'arriver que lors de l\'affichage des arrêts intermédiaires</string>
   <string name="pref_home">Point d\'origine</string>
   <string name="pref_display">Affichage</string>
   <string name="pref_theme_title">Thème</string>
@@ -78,7 +89,7 @@
   <string name="error_no_internet">Aucune connexion Internet suffisante disponible.</string>
   <string name="error_invalid_from">Point de départ invalide (de)</string>
   <string name="error_invalid_to">Point d\'arrivée invalide (vers)</string>
-  <string name="error_no_favs">Aucun lieu favori enregistré</string>
+  <string name="error_no_favs">Aucun lieu favori n\'est enregistré</string>
   <string name="error_no_trips_found">Aucun itinéraire n\'a été trouvé</string>
   <string name="error_no_location_provider">Impossible de trouver votre position. Veuillez activer le GPS !</string>
   <string name="error_no_departures_found">Aucun départ n\'a été trouvé</string>
@@ -89,6 +100,7 @@
   <string name="error_no_trips_capability">Le réseau de transport ne prend pas en charge la demande d\'itinéraire.</string>
   <string name="error_no_departures_capability">Le réseau de transport sélectionné ne prend pas en charge la recherche de départs.</string>
   <string name="error_no_nearby_locations_capability">Le réseau de transport sélectionné ne prend pas en charge la recherche d\'arrêts/stations à proximité.</string>
+  <string name="error_please_file_ticket">Il y a eu un problème. Veuillez le signaler en expliquant ce que vous avez fait.</string>
   <string name="number_of_stations">Nombre d\'arrêts/stations</string>
   <string name="meter">m</string>
   <string name="max_distance">Distance maximum</string>
@@ -113,7 +125,13 @@
   <string name="action_fav_trips_sort_most">Les plus utilisés</string>
   <string name="action_set_locations">Modifier la recherche</string>
   <string name="action_swap_locations">Rechercher le trajet de retour</string>
-  <string name="what_here">Dites-moi ce que vous aimeriez voir ici !</string>
+  <string name="permission_denied_gps">Vous devez autoriser l\'accès à votre position pour que ceci fonctionne. Veuillez donner la permission dans les paramètres de l\'appli.</string>
+  <string name="permission_explanation_map">Les carrés de la carte doivent être stockés/mis en cache sur votre appareil. Sans ça, la carte ne fonctionnera pas.</string>
+  <string name="permission_denied_map">L\'affichage de la carte exige que les carrés soient stockés sur votre appareil. Veuillez donner la permission de stockage afin d\'utiliser la carte.</string>
+  <!--ckChangeLog-->
+  <string name="changelog_full_title">Journal des changements</string>
+  <string name="changelog_title">Nouveautés</string>
+  <string name="changelog_show_full">Plus...</string>
   <string name="np_region_europe">Europe</string>
   <string name="np_name_rt">Europe</string>
   <string name="np_desc_rt">longue distance seulement</string>
@@ -225,5 +243,4 @@
   <string name="portuguese_br">Portugais\n(Brésil)</string>
   <string name="spanish">Espagnol</string>
   <string name="turkish">Turc</string>
-  <string name="error_please_file_ticket">Il y a eu un problème. Veuillez le signaler en expliquant ce que vous avez fait.</string>
 </resources>

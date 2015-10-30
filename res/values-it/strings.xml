@@ -5,7 +5,6 @@
   <string name="action_about">Info</string>
   <string name="action_clear_favs">Pulisci favoriti</string>
   <string name="action_settings">Impostazioni</string>
-  <string name="action_fav_trip">Segna viaggio come favorito</string>
   <string name="action_switch_locations">Scambia da e a luogo</string>
   <string name="action_show_extra_info">Mostra/Nascondi Informazioni</string>
   <string name="action_refresh">Ricarica</string>
@@ -45,8 +44,6 @@
   <string name="beta">beta</string>
   <string name="network">Rete</string>
   <string name="pick_network_activity">Scegli una rete di trasporto</string>
-  <string name="clear_recent">Sei sicuro di voler eliminare i tuoi favoriti dalla rete di trasporto corrente?</string>
-  <string name="clear_recent_trips">Sei sicuro di voler eliminare il viaggio(i) %1$d dai tuoi preferiti? I dati di utilizzo verranno persi.</string>
   <string name="trip_searching">Ricerca connessioni...</string>
   <string name="stations_searching_position">Ricerca posizione corrente...</string>
   <string name="stations_searching_stations">Ricerca stazioni vicine...</string>
@@ -56,7 +53,6 @@
   <string name="departure_station">Stazioni di partenza</string>
   <string name="share_trip_via">Condividi viaggio tramite...</string>
   <string name="undo">Undo</string>
-  <string name="fav_trips_empty">I tuoi viaggi recenti appariranno quando inizierai a cercare una direzione.\n\n\n Avrai la possibilità di ordinarli dal più frequente o dal più recente. </string>
   <string name="pref_transport_network">Rete di trasporto</string>
   <string name="pref_home">Luogo iniziale</string>
   <string name="pref_display">Visualizza</string>
@@ -77,6 +73,7 @@
   <string name="error_no_trips_capability">Questa rete di trasporto non supporta l\'esecuzione di query per le direzioni.</string>
   <string name="error_no_departures_capability">La rete di trasporto corrente non supporta la ricerca partenze.</string>
   <string name="error_no_nearby_locations_capability">La corrente rete di trasporti non supporta la ricerca di stazioni vicine.</string>
+  <string name="error_please_file_ticket">Qualcosa è andato storto. Crea una segnalazione e spiegaci cosa è successo.</string>
   <string name="number_of_stations">Numero di stazioni</string>
   <string name="meter">m</string>
   <string name="max_distance">Distanza massima</string>
@@ -97,7 +94,7 @@
   <string name="product_cablecar">Funivia</string>
   <string name="product_on_demand">Su richiesta</string>
   <string name="action_fav_trips_sort">Ordina elenco</string>
-  <string name="what_here">Fammi sapere cosa vorresti vedere qui!</string>
+  <!--ckChangeLog-->
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">solo lunga distanza</string>
@@ -209,5 +206,4 @@
   <string name="portuguese_br">Portoghese\n(Brasile)</string>
   <string name="spanish">Spagnolo</string>
   <string name="turkish">Turco</string>
-  <string name="error_please_file_ticket">Qualcosa è andato storto. Crea una segnalazione e spiegaci cosa è successo.</string>
 </resources>

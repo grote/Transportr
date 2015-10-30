@@ -6,7 +6,8 @@
   <string name="action_about">Over</string>
   <string name="action_clear_favs">Favorieten wissen</string>
   <string name="action_settings">Instellingen</string>
-  <string name="action_fav_trip">Verbinding als favoriet toevoegen</string>
+  <string name="action_fav_trip">Markeer Reis als Favoriet</string>
+  <string name="action_unfav_trip">Verwijder Rijs uit Favorieten</string>
   <string name="action_switch_locations">Begin- en eindpunt omwisselen</string>
   <string name="action_show_extra_info">Toon/Verberg Informatie</string>
   <string name="action_refresh">Vernieuwen</string>
@@ -23,6 +24,7 @@
   <string name="tab_directions">Verbindingen</string>
   <string name="tab_fav_trips">Favoriete Reizen</string>
   <string name="tab_departures">Vertrekken</string>
+  <string name="tab_recent_trips">Recente Reizen</string>
   <string name="tab_libraries">Hulpprogramma\'s</string>
   <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
@@ -42,6 +44,8 @@
   <string name="trip_removed">Reis Verwijderd</string>
   <string name="from">Van</string>
   <string name="to">Naar</string>
+  <string name="from_here">Vanaf Hier</string>
+  <string name="to_here">Naar Hier</string>
   <string name="time">Tijd</string>
   <string name="date">Datum</string>
   <string name="min"> min</string>
@@ -55,8 +59,8 @@
   <string name="network">Netwerk</string>
   <string name="pick_network_activity">Kies een vervoersnetwerk</string>
   <string name="pick_network_first_run">Dit is de eerste keer dat je Transportr start. Kies je transportnetwerk om door te gaan.</string>
-  <string name="clear_recent">Weet u zeker dat u al uw favorieten voor dit vervoersnetwerk wilt verwijderen?</string>
-  <string name="clear_recent_trips">Weet u zeker, dat u %1$d verbinding(en) uit uw favorieten wilt verwijderen? De gebruiksteller zal ook verwijderd worden.</string>
+  <string name="clear_recent">Weet je zeker dat je de lijst van recente reizen voor dit transportnetwerk wilt verwijderen?</string>
+  <string name="clear_recent_trips">Weet je zeker dat je %1$d reis/reizen uit de lijst van recente reizen wilt verwijderen? De teller zal ook gereset worden.</string>
   <string name="trip_searching">Zoeken naar verbindingen…</string>
   <string name="stations_searching_position">Uw positie wordt bepaald…</string>
   <string name="stations_searching_stations">Naar stations in de buurt zoeken…</string>
@@ -66,9 +70,16 @@
   <string name="departure_station">Vertrekstation</string>
   <string name="share_trip_via">Verbindingen delen via…</string>
   <string name="undo">Ongedaan maken</string>
-  <string name="fav_trips_empty">Recente reizen zullen hier getoond worden zodra je naar verbindingen zoekt.\n\n\nJe kunt deze sorteren op hoe vaak je ze gebruikt of op de tijd van laatste gebruik.</string>
+  <string name="fav_trips_empty">Je recente reizen zullen hier verschijnen zodra je naar verbindingen zoekt.\n\n\nJe kunt deze sorteren op hoeveelheid of recentheid van gebruik.</string>
   <string name="more">Meer</string>
+  <string name="no_favourites">Geen favoriete reizen.\n\nVoeg er een toe op de \"Recente Reizen\" pagina.</string>
+  <string name="removing_from_favourites">Een reis die je geselecteerd hebt is ook gemarkeerd als favoriete reis. De reis zal ook uit je favorieten verwijderd worden.</string>
+  <string name="current_time_set">Tijd is ingesteld op nu.</string>
+  <string name="current_date_set">Datum is ingesteld op vandaag.</string>
+  <string name="added_1h">1 uur was toegevoegd.</string>
   <string name="pref_transport_network">Transportatienetwerk</string>
+  <string name="pref_hide_departure_time">Verberg vertrektijd</string>
+  <string name="pref_hide_departure_time_summary">Toon aankomsttijd alleen bij het tonen van overstappen</string>
   <string name="pref_home">Thuislocatie</string>
   <string name="pref_display">Scherm</string>
   <string name="pref_theme_title">Thema</string>
@@ -90,6 +101,7 @@
   <string name="error_no_trips_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het zoeken naar verbindingen.</string>
   <string name="error_no_departures_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het vinden van verterkken.</string>
   <string name="error_no_nearby_locations_capability">Het huidige transportnetwerk ondersteund het vinden van dichtbijzijnde stations niet.</string>
+  <string name="error_please_file_ticket">Er geen iets mis. Maak a.u.b. een foutrapport aan met een uitleg van wat je doet voordat dit probleem op trad.</string>
   <string name="number_of_stations">Aantal stations</string>
   <string name="meter">m</string>
   <string name="max_distance">Maximale afstand</string>
@@ -114,7 +126,13 @@
   <string name="action_fav_trips_sort_most">Meestgebruikt</string>
   <string name="action_set_locations">Bewerk zoekopdracht</string>
   <string name="action_swap_locations">Zoek naar terugreis</string>
-  <string name="what_here">Laat me weten wat je hier graag zou willen zien!</string>
+  <string name="permission_denied_gps">Je hebt geen toegang tot je locatie gegeven, dus deze functionaliteit zal niet werken. Geef toestemming in de applicatieinstellingen.</string>
+  <string name="permission_explanation_map">Kaartstukken moeten op het apparaat opgeslagen worden. De kaart kan niet zonder deze kaartstukken werken.</string>
+  <string name="permission_denied_map">Om de kaart te tonen moeten kaartstukken op het apparaat opgeslagen worden. Sta toestemming tot opslaan om de kaart te gebruiken.</string>
+  <!--ckChangeLog-->
+  <string name="changelog_full_title">Lijst van veranderingen</string>
+  <string name="changelog_title">Veranderingen</string>
+  <string name="changelog_show_full">Meer...</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">enkel lange-afstand</string>
@@ -223,5 +241,4 @@
   <string name="portuguese_br">Portugees\n(Brazilië)</string>
   <string name="spanish">Spaans</string>
   <string name="turkish">Turks</string>
-  <string name="error_please_file_ticket">Er geen iets mis. Maak a.u.b. een foutrapport aan met een uitleg van wat je doet voordat dit probleem op trad.</string>
 </resources>

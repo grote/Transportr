@@ -267,5 +267,7 @@
     <string name="portuguese_br">Portuguese\n(Brazil)</string>
     <string name="spanish">Spanish</string>
     <string name="turkish">Turkish</string>
+    <string name="norwegian_bokmal">Norwegian\nBokmål</string>
+    <string name="basque">Basque</string>
 
 </resources>

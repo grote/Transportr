@@ -5,7 +5,6 @@
   <string name="action_about">Honi buruz</string>
   <string name="action_clear_favs">Gogokoenak garbitu</string>
   <string name="action_settings">Ezarpenak</string>
-  <string name="action_fav_trip">Bidaia gogokoen bezala markatu</string>
   <string name="action_switch_locations">Nondik eta nora kokapenak trukatu</string>
   <string name="action_show_extra_info">Informazioa erakutsi/ezkutatu</string>
   <string name="action_refresh">Freskatu</string>
@@ -60,6 +59,7 @@
   <string name="product_ferry">Ferrya</string>
   <string name="product_cablecar">Teleferiko</string>
   <string name="action_fav_trips_sort">Zerrenda laburra</string>
+  <!--ckChangeLog-->
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">distantzia handikoak soilik</string>

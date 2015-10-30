@@ -5,7 +5,6 @@
   <string name="action_about">Sobre</string>
   <string name="action_clear_favs">Limpar Favoritos</string>
   <string name="action_settings">Configurações</string>
-  <string name="action_fav_trip">Marcar Viagem como Favorita</string>
   <string name="action_switch_locations">Trocar local De e Para</string>
   <string name="action_show_extra_info">Mostrar/Ocultar Informação</string>
   <string name="action_refresh">Atualizar</string>
@@ -36,8 +35,6 @@
   <string name="detail_date">Data:</string>
   <string name="beta">beta</string>
   <string name="pick_network_activity">Escolha uma Rede de Transporte</string>
-  <string name="clear_recent">Tem certeza que você quer excluir seus favoritos pela rede de transporte atual?</string>
-  <string name="clear_recent_trips">Tem certeza que você quer excluir %1$d viagem(ns) de seus favoritos? A contagem de uso será perdida.</string>
   <string name="trip_searching">Pesquisando por conexões ...</string>
   <string name="stations_searching_position">Pesquisando por posição atual...</string>
   <string name="stations_searching_stations">Pesquisando por estações próximas...</string>
@@ -72,6 +69,7 @@
   <string name="product_cablecar">Teleférico</string>
   <string name="product_on_demand">Por demanda</string>
   <string name="action_fav_trips_sort">Listagem</string>
+  <!--ckChangeLog-->
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">longa distância apenas</string>
