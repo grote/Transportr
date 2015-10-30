@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="3:33"
-        android:gravity="center_vertical|right"
+        android:gravity="center_vertical|end"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"/>
@@ -58,9 +58,9 @@
         android:textColor="@color/holo_red_light"
         android:textSize="12sp"
         tools:text="This is an important message for this trip. It may contain a lot of text."
-        android:layout_below="@+id/durationView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lineView"
+        android:layout_alignRight="@+id/lineView"
+        android:layout_alignEnd="@+id/lineView"
         android:layout_marginTop="10dp"/>
 
 </RelativeLayout>

@@ -23,7 +23,7 @@ dependencies {
 	compile 'com.github.orangegangsters:swipy:1.2.0'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	compile 'org.apmem.tools:layouts:1.10'
-	compile('com.mikepenz:materialdrawer:4.3.7') {
+	compile('com.mikepenz:materialdrawer:4.4.2') {
 		transitive = true
 	}
 	compile('com.mikepenz:aboutlibraries:5.2.5') {
