@@ -1,18 +1,19 @@
 Transportr
 ==========
 
-A Free Software public transport app for Android which you can freely use, study, share and improve.
+The public transport companion that respects your privacy and your freedom.
+Transportr is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. 
 
-![Transportr Logo](/res/drawable-xhdpi/ic_launcher.png)
+[![Transportr Logo](/res/drawable-xhdpi/ic_launcher.png)](http://transportr.grobox.de)
 
-**Attention:** There is no guarantee for the correctness of the data. Please only use this app at your own risk.
+Please **[visit the website](http://transportr.grobox.de)** for more information!
 
-Contributions are both encouraged and appreciated. If you like to contribute please [see below](#contributing) for more information.
+If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues). Contributions are both encouraged and appreciated. If you like to contribute please [check the website](http://transportr.grobox.de/#contribute) for more information.
 
-If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues).
+The upstream repository is at: https://github.com/grote/Transportr
 
-[![Flattr me](art/flattr.png)](https://flattr.com/thing/1921242)
 [![Follow @TransportrApp](art/twitter.png)](https://twitter.com/TransportrApp)
+[![Flattr me](art/flattr.png)](https://flattr.com/thing/1921242)
 
 Get Transportr
 --------------
@@ -35,85 +36,8 @@ Screenshots
 [<img src="art/screenshots/about.png" width="200">](art/screenshots/about.png)
 
 
-Coverage
---------
-
-In order to access public transport data, Transportr is using the [public transport enabler](https://github.com/schildbach/public-transport-enabler) library. So it supports all areas that this library also supports.
-
-### Continents and Countries ###
-
-* Europe (mostly long-distance)
-* Germany (long-distance, regional and local, e.g. Berlin, Hamburg, Munich, Cologne, Frankfurt, Stuttgart)
-* Austria (long-distance, regional and local, e.g. Vienna, Graz, Linz, Salzburg, Innsbruck)
-* Switzerland (long-distance, regional and local, e.g. Zürich, Geneva, Basel, Bern)
-* Belgium (long-distance, regional and local, e.g. Antwerp, Ghent, Charleroi, Brussels)
-* Luxembourg (long-distance, regional and local)
-* Denmark (long-distance, regional and local, e.g. Copenhagen)
-* Sweden (long-distance, regional and local, e.g. Stockholm)
-* Norwegen (long-distance, regional and local, e.g. Oslo, Bergen)
-* Poland (long-distance, regional and local, e.g. Warsaw)
-* U.K. (long-distance, regional and local, e.g. London)
-* Ireland (long-distance, regional and local, e.g. Dublin)
-* France (regional and local, e.g. Paris)
-* New Zealand (regional and local, e.g. Wellington, Auckland)
-* Spain (regional and local, e.g. Madrid, Barcelona, Euskadi)
-
-### Local and Regional ###
-
-* Berlin & Brandenburg (local and regional)
-* Frankfurt/Rhine-Main, Kassel & Hesse (local and regional)
-* Munich (local and regional)
-* North Rhine-Westphalia (Cologne, Dortmund, Düsseldorf, Münster, ...) (local and regional)
-* Cologne & Bonn (local and regional)
-* Lüdenscheid & Märkischer Kreis (local and regional)
-* Paderborn & Höxter (local and regional)
-* Mannheim, Rhine-Neckar & Rhein-Nahe (local and regional)
-* Stuttgart (local and regional)
-* Neckar-Alb-Donau (Reutlingen, Tübingen, ...) (local and regional)
-* Ulm (local and regional)
-* Karlsruhe (local and regional)
-* Trier (local and regional)
-* Nuremberg, Fürth & Erlangen (local and regional)
-* Würzburg & Regensburg (local and regional)
-* Strasbourg & Freiburg (local and regional)
-* Baden-Württemberg, Constance & Basel (local and regional)
-* Kiel, Lübeck & Schleswig-Holstein (local and regional)
-* Hannover & Lower Saxony (local and regional)
-* Göttingen & South Lower Saxony (local and regional)
-* Bremen (local and regional)
-* Bremen, Bremerhaven & Oldenburg (local and regional)
-* Schwerin & Mecklenburg-Vorpommern (local and regional)
-* Rostock (local and regional)
-* Leipzig, Halle & Saxony-Anhalt (local and regional)
-* Plauen & Vogtland (local and regional)
-* Vienna (local and regional)
-* Linz (bus, tram and cablecar)
-* Graz & Styria (local and regional)
-* Tyrol (local and regional)
-* Philadelphia (local and regional)
-* San Francisco (local)
-* New York (local and regional)
-* Sydney (local and regional)
-* Melbourne (local and regional)
-* Dubai (local)
-* Jerusalem (local)
-* Provence-Alpes-Côte d'Azur (local and regional)
-* Paris (local and regional)
-
-Contributing
-------------
-
-There is a lot to do to make this app better and more complete. So contributions are both encouraged and appreciated. If you want to do more than fixing bugs, please talk to me *before* doing any major work so that we can coordinate, prevent duplicated work and discuss the best approach for your undertaking.
-
-Missing features are documented in the [issue tracker](https://github.com/grote/Transportr/issues?labels=enhancement&state=open). Feel free to look there for ideas or to add your own.
-
-### Translate Transportr Into Your Language ###
-
-Translating Transportr is very easy. Just sign up for an account at [Transifex](https://www.transifex.com). After you are logged in, go to the [Transportr translation project](https://www.transifex.com/projects/p/transportr/). There you can click the "Request language" button if your language does not exist, or if you want to improve existing translations, apply for the respective language team.
-
-What you translate there will then be included in the next release of Transportr.
-
-### Building From Source ###
+Building From Source
+--------------------
 
 If you want to start working on Transportr and if you haven't done already, you should [familiarize yourself with Android development](https://developer.android.com/training/basics/firstapp/index.html) and [set up a development environment](https://developer.android.com/sdk/index.html).
 
@@ -131,12 +55,6 @@ If you don't want to use an IDE like Android Studio, you can build Transportr on
     $ gradle assembleRelease
 
 The resulting unsigned apk file will be found at `build/outputs/apk/transportr-release-unsigned.apk`.
-
-
-### Adding Support For A New Area ###
-
-Ideally, Transportr will cover the whole world some day. To achieve this, we need more people adding support for other public transport networks. However, this is out of the scope of this app. It uses the [public transport enabler](http://code.google.com/p/public-transport-enabler/) library. This is the place where to add new transport networks. This way not only Transportr will benefit from your work, but also other apps using this library.
-
 
 License
 -------
