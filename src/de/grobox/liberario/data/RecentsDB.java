@@ -35,6 +35,7 @@ import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.Preferences;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
+import de.schildbach.pte.dto.Trip;
 
 public class RecentsDB {
 
@@ -340,7 +341,7 @@ public class RecentsDB {
 		db.close();
 	}
 
-	public static boolean isRecentTrip(Context context, RecentTrip recent) {
+	public static boolean isFavedRecentTrip(Context context, RecentTrip recent) {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -352,7 +353,7 @@ public class RecentsDB {
 		// try to find a recent trip with these locations
 		Cursor c = db.query(
 				DBHelper.TABLE_RECENT_TRIPS,    // The table to query
-				new String[] { "_id", "count" },
+				new String[] { "_id", "is_favourite" },
 				"network = ? AND from_loc = ? AND to_loc = ?",
 				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) },
 				null,   // don't group the rows
@@ -360,7 +361,18 @@ public class RecentsDB {
 				null    // The sort order
 		);
 
-		return c.moveToFirst();
+		boolean is_fav = false;
+
+		if(c.moveToFirst()) {
+			if(c.getInt(c.getColumnIndex("is_favourite")) > 0) {
+				is_fav = true;
+			}
+		}
+
+		c.close();
+		db.close();
+
+		return is_fav;
 	}
 
 	public static void deleteRecentTrip(Context context, RecentTrip recent) {

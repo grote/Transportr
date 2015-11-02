@@ -28,6 +28,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -39,9 +41,12 @@ import java.util.ArrayList;
 import de.grobox.liberario.ListTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.adapters.TripAdapter;
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
@@ -56,6 +61,7 @@ public class TripsActivity extends AppCompatActivity {
 	private Location from;
 	private Location to;
 	private ArrayList<Product> products;
+	private boolean is_fav;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +151,8 @@ public class TripsActivity extends AppCompatActivity {
 		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), touchListener, this);
 		mAdapter.setHasStableIds(false);
 		mRecyclerView.setAdapter(mAdapter);
+
+		is_fav = RecentsDB.isFavedRecentTrip(this, new RecentTrip(from, to));
 	}
 
 	@Override
@@ -171,11 +179,29 @@ public class TripsActivity extends AppCompatActivity {
 	}
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.trips_activity_actions, menu);
+
+		TransportrUtils.setFavState(this, menu.findItem(R.id.action_fav_trip), is_fav, true);
+
+		return true;
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(item.getItemId() == android.R.id.home) {
 			onBackPressed();
 			return true;
-		} else {
+		}
+		else if(item.getItemId() == R.id.action_fav_trip) {
+			RecentsDB.toggleFavouriteTrip(this, new RecentTrip(from, to, is_fav));
+			is_fav = !is_fav;
+			TransportrUtils.setFavState(this, item, is_fav, true);
+
+			return true;
+		}
+		else {
 			return false;
 		}
 	}

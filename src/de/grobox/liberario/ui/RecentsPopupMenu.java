@@ -37,7 +37,7 @@ public class RecentsPopupMenu extends BasePopupMenu {
 		this.trip = trip;
 		this.getMenuInflater().inflate(R.menu.recent_trip_actions, getMenu());
 
-		setFavState(getMenu().findItem(R.id.action_mark_favourite));
+		TransportrUtils.setFavState(context, getMenu().findItem(R.id.action_mark_favourite), trip.isFavourite(), false);
 
 		showIcons();
 	}
@@ -62,7 +62,7 @@ public class RecentsPopupMenu extends BasePopupMenu {
 						RecentsDB.toggleFavouriteTrip(context, trip);
 						trip.setFavourite(!trip.isFavourite());
 
-						setFavState(item);
+						TransportrUtils.setFavState(context, item, trip.isFavourite(), false);
 
 						if(removedListener != null) {
 							removedListener.onFavouriteRemoved();
@@ -81,16 +81,6 @@ public class RecentsPopupMenu extends BasePopupMenu {
 
 	public static abstract class FavouriteRemovedListener {
 		public abstract void onFavouriteRemoved();
-	}
-
-	private void setFavState(MenuItem item) {
-		if(trip.isFavourite()) {
-			item.setTitle(R.string.action_unfav_trip);
-			item.setIcon(TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star));
-		} else {
-			item.setTitle(R.string.action_fav_trip);
-			item.setIcon(TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star_empty));
-		}
 	}
 
 }

@@ -38,7 +38,11 @@ public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 	private boolean is_favourite;
 
 	public RecentTrip(Location from, Location to) {
-		this(from, to, 1, null, false);
+		this(from, to, false);
+	}
+
+	public RecentTrip(Location from, Location to, boolean is_favourite) {
+		this(from, to, 1, null, is_favourite);
 	}
 
 	public RecentTrip(Location from, Location to, int count, String last_used, boolean is_favourite) {

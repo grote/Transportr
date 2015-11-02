@@ -28,6 +28,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -463,6 +464,16 @@ public class TransportrUtils {
 		return getTintedDrawable(context, context.getResources().getDrawable(res));
 	}
 
+	static public Drawable getToolbarDrawable(Context context, int res) {
+		//noinspection deprecation
+		Drawable drawable = context.getResources().getDrawable(res);
+		if(drawable != null) {
+			//noinspection deprecation
+			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
+		}
+		return drawable;
+	}
+
 	static public int getButtonIconColor(Context context, boolean on) {
 		if(Preferences.darkThemeEnabled(context)) {
 			if(on) return context.getResources().getColor(R.color.drawableTintDark);
@@ -506,6 +517,17 @@ public class TransportrUtils {
 		List<Location> fav_list = RecentsDB.getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
 
 		return getDrawableForLocation(context, l, fav_list.contains(l));
+	}
+
+
+	static public void setFavState(Context context, MenuItem item, boolean is_fav, boolean is_toolbar) {
+		if(is_fav) {
+			item.setTitle(R.string.action_unfav_trip);
+			item.setIcon(is_toolbar ? TransportrUtils.getToolbarDrawable(context, R.drawable.ic_action_star) : TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star));
+		} else {
+			item.setTitle(R.string.action_fav_trip);
+			item.setIcon(is_toolbar ? TransportrUtils.getToolbarDrawable(context, R.drawable.ic_action_star_empty) : TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star_empty));
+		}
 	}
 
 }
