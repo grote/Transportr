@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    tools:text="Transportr 0.6"/>
+                    tools:text="Transportr 1.0.0"/>
 
                 <TextView
                     android:id="@+id/aboutTopTextView"
@@ -56,6 +56,14 @@
             android:linksClickable="true"
             android:padding="10dp"
             android:text="@string/about" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visit Website"
+            android:id="@+id/websiteButton"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/primary"/>
 
     </LinearLayout>
 </ScrollView>

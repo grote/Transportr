@@ -17,7 +17,9 @@
 
 package de.grobox.liberario.fragments;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -25,6 +27,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import de.grobox.liberario.R;
@@ -58,6 +61,15 @@ public class AboutFragment extends Fragment {
 		// make links in about text clickable
 		t.setMovementMethod(LinkMovementMethod.getInstance());
 		t.setLinkTextColor(getResources().getColor(R.color.accent));
+
+		Button website = (Button) view.findViewById(R.id.websiteButton);
+		website.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website)));
+				startActivity(launchBrowser);
+			}
+		});
 
 		return view;
 	}

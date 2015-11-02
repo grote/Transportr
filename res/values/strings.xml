@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="website" translatable="false">http://transportr.grobox.de</string>
+
     <string name="action_earlier">Find Earlier Trips</string>
     <string name="action_later">Find Later Trips</string>
     <string name="action_changelog">Changelog</string>
@@ -34,10 +36,11 @@
     <string name="about_top">© 2013 &#8211; 2015 Torsten Grote\nFree Software License: GPLv3</string>
     <string name="about">
 <![CDATA[
-<p>Transportr is a public transport app which you can freely use, study, share and improve.</p>
+<p>Transportr is a public transport companion that respects your privacy and your freedom. It is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. This app is Free Software, so you can freely use, study, share and improve it.</p>
 <p>There is no guarantee for the correctness of the data. Please only use this app at your own risk.</p>
-<p><b>Contributions</b> are encouraged and appreciated. If you would like to contribute please go to <a href="https://github.com/grote/Transportr/#contributing">github</a> for more information.</p>
+<p><b>Contributions</b> are encouraged and appreciated. If you would like to contribute please go to <a href="http://transportr.grobox.de/">the Transportr homepage</a> for more information.</p>
 <p>If you find any issues with this app, please report them at <a href="https://github.com/grote/Transportr/issues">the issue tracker</a>.</p>
+<p><b>Donations</b> options are listed on <a href="http://transportr.grobox.de/#donate">the Transportr website</a>.</p>
 ]]>
 </string>
 
