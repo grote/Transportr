@@ -115,8 +115,8 @@ public class AmbiguousLocationActivity extends AppCompatActivity implements Asyn
 		Button button = (Button) findViewById(R.id.button1);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Location from = (Location) from_spinner.getSelectedItem();
-				Location to = (Location) to_spinner.getSelectedItem();
+				from = (Location) from_spinner.getSelectedItem();
+				to = (Location) to_spinner.getSelectedItem();
 
 				// remember location and trip
 				RecentsDB.updateFavLocation(getApplicationContext(), from, FavLocation.LOC_TYPE.FROM);
