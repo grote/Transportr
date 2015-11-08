@@ -72,7 +72,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 
 	@Override
 	public Location getItem(int index) {
-		if(filteredList.get(index) != null) {
+		if(filteredList.size() > 0 && filteredList.get(index) != null) {
 			return filteredList.get(index);
 		} else {
 			return null;
