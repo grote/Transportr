@@ -86,11 +86,9 @@ public final class NetworkProviderFactory
 	private static Reference<SydneyProvider> sydneyProviderRef;
 	private static Reference<MetProvider> metProviderRef;
 	private static Reference<VgsProvider> vgsProviderRef;
-	private static Reference<VsnProvider> vsnProviderRef;
 	private static Reference<WienProvider> wienProviderRef;
 	private static Reference<JetProvider> jetProviderRef;
 	private static Reference<PacaProvider> pacaProviderRef;
-	private static Reference<RsagProvider> rsagProviderRef;
 	private static Reference<MerseyProvider> merseyProviderRef;
 	private static Reference<ParisProvider> parisProviderRef;
 	private static Reference<NzProvider> nzProviderRef;
@@ -305,7 +303,8 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VbnProvider provider = new VbnProvider();
+			// TODO get API authorization
+			final VbnProvider provider = new VbnProvider("");
 			vbnProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -868,19 +867,6 @@ public final class NetworkProviderFactory
 			vgsProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-		else if (networkId.equals(NetworkId.VSN))
-		{
-			if (vsnProviderRef != null)
-			{
-				final VsnProvider provider = vsnProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final VsnProvider provider = new VsnProvider();
-			vsnProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
 		else if (networkId.equals(NetworkId.WIEN))
 		{
 			if (wienProviderRef != null)
@@ -918,19 +904,6 @@ public final class NetworkProviderFactory
 
 			final PacaProvider provider = new PacaProvider();
 			pacaProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
-		else if (networkId.equals(NetworkId.RSAG))
-		{
-			if (rsagProviderRef != null)
-			{
-				final RsagProvider provider = rsagProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final RsagProvider provider = new RsagProvider();
-			rsagProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.MERSEY))

@@ -85,11 +85,6 @@ public class TransportNetworks {
 				         .setRegion(getString(R.string.np_region_germany))
 		);
 
-		list.add(new TransportNetwork(context, NetworkId.RSAG)
-				         .setDescription(getString(R.string.np_desc_rsag))
-				         .setRegion(region)
-		);
-
 		list.add(new TransportNetwork(context, NetworkId.INVG)
 				         .setDescription(getString(R.string.np_desc_invg))
 				         .setRegion(region)
