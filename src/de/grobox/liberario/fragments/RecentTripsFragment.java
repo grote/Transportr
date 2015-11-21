@@ -140,22 +140,16 @@ public class RecentTripsFragment extends TransportrListFragment {
 		}
 	}
 
-	private void checkTrip(View v, int position) {
+	private void checkTrip(int position) {
 		getListView().setItemChecked(position, true);
-
-		CheckBox checkBox = (CheckBox) v.findViewById(R.id.checkBox);
-		checkBox.setChecked(true);
 
 		if(mActionMode == null) {
 			mActionMode = toolbar.startActionMode(mFavTripActionMode);
 		}
 	}
 
-	private void uncheckTrip(View v, int position) {
+	private void uncheckTrip(int position) {
 		getListView().setItemChecked(position, false);
-
-		CheckBox checkBox = (CheckBox) v.findViewById(R.id.checkBox);
-		checkBox.setChecked(false);
 
 		if(mActionMode == null) {
 			mActionMode = toolbar.startActionMode(mFavTripActionMode);
@@ -203,9 +197,9 @@ public class RecentTripsFragment extends TransportrListFragment {
 				@Override
 				public boolean onLongClick(View v) {
 					if(getListView().getCheckedItemPositions().get(position)) {
-						uncheckTrip(v, position);
+						uncheckTrip(position);
 					} else {
-						checkTrip(v, position);
+						checkTrip(position);
 					}
 					return true;
 				}
@@ -225,11 +219,10 @@ public class RecentTripsFragment extends TransportrListFragment {
 			checkBox.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					View parent = (View) v.getParent();
 					if(getListView().getCheckedItemPositions().get(position)) {
-						uncheckTrip(parent, position);
+						uncheckTrip(position);
 					} else {
-						checkTrip(parent, position);
+						checkTrip(position);
 					}
 				}
 			});
@@ -259,6 +252,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 
 	private boolean isFavouriteSelected() {
 		SparseBooleanArray tmp = getListView().getCheckedItemPositions();
+
 		for(int i = tmp.size()-1; i >= 0; i--) {
 			if(tmp.valueAt(i)) {
 				if(adapter.getItem(tmp.keyAt(i)).isFavourite()) {
@@ -296,7 +290,6 @@ public class RecentTripsFragment extends TransportrListFragment {
 					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
 							if(isFavouriteSelected()) {
-
 								new AlertDialog.Builder(getActivity())
 								.setMessage(R.string.removing_from_favourites)
 								.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -307,7 +300,6 @@ public class RecentTripsFragment extends TransportrListFragment {
 								})
 										.setNegativeButton(android.R.string.cancel, null)
 								.show();
-
 							} else {
 								deleteSelected();
 								mode.finish();
@@ -334,11 +326,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 			// loop over checked items and deselect them
 			for(int i = tmp.size()-1; i >= 0; i--) {
 				if(tmp.valueAt(i)) {
-					int pos = tmp.keyAt(i);
-
-					if(getListView().getChildAt(pos) != null) {
-						uncheckTrip(getListView().getChildAt(pos), pos);
-					}
+					uncheckTrip(tmp.keyAt(i));
 				}
 			}
 			mActionMode = null;

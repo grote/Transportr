@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<de.grobox.liberario.ui.RecentTripsLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -81,4 +81,4 @@
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
-</LinearLayout>
+</de.grobox.liberario.ui.RecentTripsLayout>
