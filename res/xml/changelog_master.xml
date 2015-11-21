@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.0-rc" versioncode="20">
+        <change>Trips can now be favorited directly from the search results</change>
+        <change>Add icon for GVH provider. Thanks to Sebastian!</change>
+        <change>Fix search loop when having two ambiguous stations</change>
+        <change>Fix issue with removing recent trips</change>
+        <change>Fix VRR transport network. Thanks Andreas!</change>
+        <change>Fix spurious crashes in the input fields</change>
+    </release>
+
     <release version="1.0.0-beta" versioncode="19">
         <change>Renamed app from Liberario to Transportr</change>
         <change>New Logo</change>
