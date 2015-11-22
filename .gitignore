@@ -24,7 +24,8 @@ local.properties
 .settings
 
 # Android Studio files
-.idea/
+.idea/*
+!.idea/codeStyleSettings.xml
 *.iml
 .gradle/
 gradle/
