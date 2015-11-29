@@ -29,14 +29,6 @@
   <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nVrije Software licentie: GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>Transportr is een app voor het openbaar vervoer welke je vrij kunt gebruiken, bestuderen, delen en verbeteren.</p>
-<p>Er is geen garantie voor de correctheid van data. Het gebruik van deze app is voor eigen risico.</p>
-<p><b>Bijdragen</b> zijn zeer welkom. Als je een bijdrage wilt leveren, kijk op <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> voor meer informatie.</p>
-<p>Indien je tegen problemen aan loopt, meld deze a.u.b. op <a href=\"https://github.com/grote/Transportr/issues\">de issues tracker</a>.</p>
-]]>
-</string>
   <string name="trip_dep">v.</string>
   <string name="trip_arr">a.</string>
   <string name="trip_start">Van:</string>

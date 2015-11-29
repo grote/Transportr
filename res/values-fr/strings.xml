@@ -29,13 +29,6 @@
   <string name="tab_devs">Développeurs</string>
   <string name="tab_about">À propos</string>
   <string name="about_top">© 2013 - 2015 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
-  <string name="about">
-<![CDATA[ <p>Transportr est une appli de transport public que vous pouvez utiliser, étudier, partager et améliorer librement.</p>
-<p>La justesse des données n\'est pas garantie. Utilisez cette appli à vos risques.</p>
-<p>Nous encourageons et apprécions les <b>contributions</b>. Si vous désirez contribuer, rendez-vous sur <a href=\"https://github.com/grote/Transportr/#contributing\">github</a> pour de plus amples informations.</p>
-<p>Si vous rencontrez un problème avec cette appli, rapportez-le grâce à <a href=\"https://github.com/grote/Transportr/issues\">notre gestionnaire de problèmes</a>.
-</p> ]]>.
-</string>
   <string name="trip_dep">dép.</string>
   <string name="trip_arr">arr.</string>
   <string name="trip_start">Départ :</string>
@@ -101,6 +94,7 @@
   <string name="error_no_departures_capability">Le réseau de transport sélectionné ne prend pas en charge la recherche de départs.</string>
   <string name="error_no_nearby_locations_capability">Le réseau de transport sélectionné ne prend pas en charge la recherche d\'arrêts/stations à proximité.</string>
   <string name="error_please_file_ticket">Il y a eu un problème. Veuillez le signaler en expliquant ce que vous avez fait.</string>
+  <string name="error_trip_refresh_failed">Impossible de rafraîchir les données pour le trajet actuel.</string>
   <string name="number_of_stations">Nombre d\'arrêts/stations</string>
   <string name="meter">m</string>
   <string name="max_distance">Distance maximum</string>
