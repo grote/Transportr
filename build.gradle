@@ -101,7 +101,6 @@ android {
 				keyAlias signingKeyAlias
 				keyPassword signingKeyPassword
 			}
-			debug = release
 		}
 
 		buildTypes.release.signingConfig = signingConfigs.release

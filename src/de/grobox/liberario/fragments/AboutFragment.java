@@ -56,7 +56,10 @@ public class AboutFragment extends Fragment {
 
 		// create real paragraphs
 		TextView t = (TextView) view.findViewById(R.id.aboutTextView);
-		t.setText(Html.fromHtml(getString(R.string.about)));
+		t.setText(Html.fromHtml(
+				getString(R.string.about) +
+				String.format(getString(R.string.about_bottom), getString(R.string.website), getString(R.string.bugtracker), getString(R.string.website)+"#donate")
+		));
 
 		// make links in about text clickable
 		t.setMovementMethod(LinkMovementMethod.getInstance());

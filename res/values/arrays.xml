@@ -9,7 +9,7 @@
         <item>@string/pref_theme_value_light</item>
         <item>@string/pref_theme_value_dark</item>
     </string-array>
-    <string name="pref_theme_value_light">light</string>
-    <string name="pref_theme_value_dark">dark</string>
+    <string name="pref_theme_value_light" translatable="false">light</string>
+    <string name="pref_theme_value_dark" translatable="false">dark</string>
 
 </resources>
