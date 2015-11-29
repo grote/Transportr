@@ -47,6 +47,9 @@
         <AndroidXmlCodeStyleSettings>
           <option name="USE_CUSTOM_SETTINGS" value="true" />
         </AndroidXmlCodeStyleSettings>
+        <JavaCodeStyleSettings>
+          <option name="SPACE_AFTER_CLOSING_ANGLE_BRACKET_IN_TYPE_ARGUMENT" value="true" />
+        </JavaCodeStyleSettings>
         <Objective-C-extensions>
           <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />
           <option name="RELEASE_STYLE" value="IVAR" />
@@ -86,6 +89,7 @@
           <option name="SPACE_BEFORE_CATCH_PARENTHESES" value="false" />
           <option name="SPACE_BEFORE_SWITCH_PARENTHESES" value="false" />
           <option name="SPACE_BEFORE_SYNCHRONIZED_PARENTHESES" value="false" />
+          <option name="SPACE_BEFORE_ARRAY_INITIALIZER_LBRACE" value="true" />
           <option name="KEEP_MULTIPLE_EXPRESSIONS_IN_ONE_LINE" value="true" />
           <indentOptions>
             <option name="USE_TAB_CHARACTER" value="true" />

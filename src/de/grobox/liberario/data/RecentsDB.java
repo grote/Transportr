@@ -31,11 +31,10 @@ import java.util.Collections;
 import java.util.List;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.Preferences;
+import de.grobox.liberario.RecentTrip;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
-import de.schildbach.pte.dto.Trip;
 
 public class RecentsDB {
 
@@ -95,6 +94,11 @@ public class RecentsDB {
 			return;
 		}
 
+		if(loc.id != null && loc.id.equals("IS_AMBIGUOUS")) {
+			// don't store ambiguous locations
+			return;
+		}
+
 		String whereClause;
 		String[] whereArgs;
 
@@ -119,7 +123,7 @@ public class RecentsDB {
 		// get location that needs to be updated from database
 		Cursor c = db.query(
 				DBHelper.TABLE_FAV_LOCS,    // The table to query
-				new String[] { "_id", "from_count", "to_count" },
+				new String[] {"_id", "from_count", "to_count"},
 				whereClause,
 				whereArgs,
 				null,   // don't group the rows
@@ -246,6 +250,12 @@ public class RecentsDB {
 
 		if(recent.getFrom().place != null && recent.getFrom().place.equals("GPS")) {
 			// don't store GPS locations
+			return;
+		}
+
+		if( (recent.getFrom().id != null && recent.getFrom().id.equals("IS_AMBIGUOUS")) ||
+				(recent.getTo().id != null && recent.getTo().id.equals("IS_AMBIGUOUS")) ) {
+			// don't store trips with ambiguous locations
 			return;
 		}
 
