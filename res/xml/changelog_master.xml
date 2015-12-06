@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.1" versioncode="22">
+        <change>Fixed bug with KVV network!</change>
+    </release>
+
     <release version="1.0.0" versioncode="21">
         <change>Renamed app from Liberario to Transportr</change>
         <change>New Logo</change>
