@@ -127,10 +127,11 @@ public class TransportNetworks {
 				         .setRegion(region)
 		);
 
-		list.add(new TransportNetwork(context, NetworkId.VBN)
-				         .setDescription(getString(R.string.np_desc_vbn))
-				         .setRegion(region)
-		);
+		// No secret
+//		list.add(new TransportNetwork(context, NetworkId.VBN)
+//				         .setDescription(getString(R.string.np_desc_vbn))
+//				         .setRegion(region)
+//		);
 
 		list.add(new TransportNetwork(context, NetworkId.VVO)
 				         .setDescription(getString(R.string.np_desc_vvo))
