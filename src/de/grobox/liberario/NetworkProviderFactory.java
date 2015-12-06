@@ -277,7 +277,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final GvhProvider provider = new GvhProvider("C2C_User=ASB");
+			final GvhProvider provider = new GvhProvider();
 			gvhProviderRef = new SoftReference<>(provider);
 			return provider;
 		}

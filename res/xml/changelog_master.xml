@@ -3,7 +3,8 @@
 
     <release version="1.0.1" versioncode="22">
         <change>Added "From Here" and "To Here" to Location Popup Menu. Thanks Rob!</change>
-        <change>Fixed bug with KVV network!</change>
+        <change>Fixed KVV network!</change>
+        <change>Fixed GVH network!</change>
         <change>Disabled VBN network, because now requires API secret</change>
         <change>Fixed rare crash</change>
         <change>Added logo for AVV provider. Thanks to Vinzenz!</change>
