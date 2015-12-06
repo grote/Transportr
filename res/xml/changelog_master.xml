@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.0.1" versioncode="22">
+        <change>Added "From Here" and "To Here" to Location Popup Menu. Thanks Rob!</change>
         <change>Fixed bug with KVV network!</change>
     </release>
 
