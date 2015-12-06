@@ -91,6 +91,16 @@ public class LegPopupMenu extends BasePopupMenu {
 						TransportrUtils.startGeoIntent(context, loc1);
 
 						return true;
+					// From Here
+					case R.id.action_from_here:
+						TransportrUtils.presetDirections(context, loc1, null);
+
+						return true;
+					// To Here
+					case R.id.action_to_here:
+						TransportrUtils.presetDirections(context, null, loc1);
+
+						return true;
 					// Show Departures
 					case R.id.action_show_departures:
 						TransportrUtils.findDepartures(context, loc1);

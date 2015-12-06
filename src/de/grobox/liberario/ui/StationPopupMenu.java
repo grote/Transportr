@@ -65,6 +65,16 @@ public class StationPopupMenu extends BasePopupMenu {
 						TransportrUtils.startGeoIntent(context, station);
 
 						return true;
+					// From Here
+					case R.id.action_from_here:
+						TransportrUtils.presetDirections(context, station, null);
+
+						return true;
+					// To Here
+					case R.id.action_to_here:
+						TransportrUtils.presetDirections(context, null, station);
+
+						return true;
 					// Show Departures
 					case R.id.action_show_departures:
 						TransportrUtils.findDepartures(context, station);
