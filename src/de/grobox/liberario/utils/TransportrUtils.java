@@ -442,7 +442,10 @@ public class TransportrUtils {
 	}
 
 	static public String getLocName(Location l) {
-		if(l.hasName()) {
+		if(l == null) {
+			return "";
+		}
+		else if(l.hasName()) {
 			return l.place == null ? l.uniqueShortName() : l.name + ", " + l.place;
 		} else {
 			return l.uniqueShortName();

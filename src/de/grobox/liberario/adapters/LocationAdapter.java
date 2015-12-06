@@ -32,6 +32,7 @@ import de.schildbach.pte.dto.LocationType;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +72,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 	}
 
 	@Override
-	public Location getItem(int index) {
+	public @Nullable Location getItem(int index) {
 		if(filteredList.size() > 0 && filteredList.get(index) != null) {
 			return filteredList.get(index);
 		} else {
@@ -159,7 +160,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 
 		Location l = getItem(position);
 
-		if(l.id != null && l.id.equals("Transportr.HOME")) {
+		if(l != null && l.id != null && l.id.equals("Transportr.HOME")) {
 			Location home = RecentsDB.getHome(parent.getContext());
 			if(home != null) {
 				textView.setText(home.uniqueShortName());
@@ -172,7 +173,7 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 				textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 			}
 		}
-		else if(l.id != null && l.id.equals("Transportr.GPS")) {
+		else if(l != null && l.id != null && l.id.equals("Transportr.GPS")) {
 			textView.setText(parent.getContext().getString(R.string.location_gps));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 		}
