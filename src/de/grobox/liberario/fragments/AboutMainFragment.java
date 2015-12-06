@@ -70,7 +70,7 @@ public class AboutMainFragment extends Fragment {
 						       // Pass the fields of your application to the lib so it can find all external lib information
 						       .withFields(R.string.class.getFields())
 						       // get the fragment
-						       .fragment();
+						       .supportFragment();
 			}
 			return new AboutFragment();
 		}
