@@ -29,6 +29,19 @@
   <string name="tab_devs">Développeurs</string>
   <string name="tab_about">À propos</string>
   <string name="about_top">© 2013 - 2015 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
+  <string name="about">
+<![CDATA[
+<p>Transportr est un compagnon de transport collectif qui respecte votre confidentialité et votre liberté. C\'est une appli sans but lucratif, développée par des personnes dans le monde entier pour faciliter autant que possible l\'utilisation des transports collectifs, où que vous soyez. Cette appli est un logiciel libre et ouvert. Vous pouvez donc l\'utiliser gratuitement, l\'étudier, la partager et l\'améliorer.</p>
+<p>Il n\'y a aucune garantie de justesse des données. Veuillez utiliser cette appli à vos propres risques.</p>
+]]>
+</string>
+  <string name="about_bottom">
+<![CDATA[
+<p>Nous encourageons et apprécions les <b>contributions</b>. Si vous voulez contribuer à Transportr, veuillez visiter la page <a href="%1$s">la page d\'accueil de Transportr</a> pour de plus amples informations.</p>
+<p>Si vous découvrez quelques problèmes avec cette appli, veuillez les rapporter grâce au <a href="%2$s">gestionnaire de problèmes</a>.</p>
+<p>Les options de <b>don</b> sont listées sur <a href="%3$s">le site Web de Transportr</a>.</p>
+]]>
+</string>
   <string name="trip_dep">dép.</string>
   <string name="trip_arr">arr.</string>
   <string name="trip_start">Départ :</string>
@@ -237,4 +250,6 @@
   <string name="portuguese_br">Portugais\n(Brésil)</string>
   <string name="spanish">Espagnol</string>
   <string name="turkish">Turc</string>
+  <string name="norwegian_bokmal">Norvégien\nBokmål</string>
+  <string name="basque">Basque</string>
 </resources>
