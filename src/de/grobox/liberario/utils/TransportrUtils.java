@@ -492,6 +492,8 @@ public class TransportrUtils {
 	}
 
 	static public Drawable getDrawableForLocation(Context context, Location l, boolean is_fav) {
+		if(l == null) return null;
+
 		if( (l.id != null && l.id.equals("Transportr.HOME")) || l.equals(RecentsDB.getHome(context))) {
 			return getTintedDrawable(context, R.drawable.ic_action_home);
 		}
