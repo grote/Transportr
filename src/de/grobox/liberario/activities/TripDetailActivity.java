@@ -169,6 +169,8 @@ public class TripDetailActivity extends AppCompatActivity implements AsyncQueryT
 	}
 
 	private void setTrip(Trip trip) {
+		this.trip = trip;
+
 		int i = 0;
 		for(final Trip.Leg leg : trip.legs) {
 			TripAdapter.bindLeg(this, ui.legs.get(i), leg, true);

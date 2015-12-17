@@ -186,7 +186,7 @@ public class TransportrUtils {
 	}
 
 	static public String tripToString(Context context, Trip trip) {
-		String str = "";
+		String str = context.getString(R.string.times_include_delays) + "\n\n";
 
 		for(Leg leg : trip.legs) {
 			str += legToString(context, leg) + "\n\n";

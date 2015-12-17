@@ -277,5 +277,6 @@
     <string name="turkish">Turkish</string>
     <string name="norwegian_bokmal">Norwegian\nBokmål</string>
     <string name="basque">Basque</string>
+    <string name="times_include_delays">(Attention: Times include reported delays)</string>
 
 </resources>
