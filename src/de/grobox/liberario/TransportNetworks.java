@@ -366,10 +366,17 @@ public class TransportNetworks {
 		);
 */
 		// Italy
+		region = getString(R.string.np_region_italy);
+
+		list.add(new TransportNetwork(context, NetworkId.IT)
+						.setDescription(getString(R.string.np_desc_it) + "\n(" + getString(R.string.np_desc_it_networks) + ")")
+						.setRegion(region)
+						.setStatus(TransportNetwork.Status.BETA)
+		);
 
 		list.add(new TransportNetwork(context, NetworkId.ATC)
 				         .setDescription(getString(R.string.np_desc_atc))
-				         .setRegion(getString(R.string.np_region_italy))
+				         .setRegion(region)
 				         .setStatus(TransportNetwork.Status.BETA)
 		);
 
@@ -444,6 +451,13 @@ public class TransportNetworks {
 				         .setDescription(getString(R.string.np_desc_paca))
 				         .setRegion(region)
 				         .setStatus(TransportNetwork.Status.BETA)
+		);
+
+		list.add(new TransportNetwork(context, NetworkId.FRENCHSOUTHWEST)
+						.setName(getString(R.string.np_name_frenchsouthwest))
+						.setDescription(getString(R.string.np_desc_frenchsouthwest) + "\n(" + getString(R.string.np_desc_frenchsouthwest_networks) + ")")
+						.setRegion(region)
+						.setStatus(TransportNetwork.Status.BETA)
 		);
 
 		// New Zealand

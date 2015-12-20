@@ -254,6 +254,10 @@
     <string name="np_desc_mersey">Liverpool City Region</string>
     <string name="np_desc_br">São Paulo and Porto Alegre</string>
     <string name="np_desc_vrs">Cologne, Bonn</string>
+    <string name="np_desc_frenchsouthwest">Poitou-Charente, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+    <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
+    <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
+    <string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
 
     <string name="np_name_db">Deutsche Bahn</string>
     <string name="np_name_bayern">BAVARIA</string>
@@ -264,6 +268,7 @@
     <string name="np_name_spain">Spain</string>
     <string name="np_name_usny">New York and New-Jersey States</string>
     <string name="np_name_br">SPTRANS EPTC</string>
+    <string name="np_name_frenchsouthwest">FR-SW</string>
 
     <string name="maintainer">Maintainer</string>
     <string name="contributers">Contributors</string>

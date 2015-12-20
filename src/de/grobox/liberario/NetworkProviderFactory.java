@@ -94,6 +94,8 @@ public final class NetworkProviderFactory
 	private static Reference<NzProvider> nzProviderRef;
 	private static Reference<SpainProvider> spainProviderRef;
 	private static Reference<BrProvider> brProviderRef;
+	private static Reference<ItalyProvider> italyProviderRef;
+	private static Reference<FrenchSouthWestProvider> frenchSouthWestProviderRef;
 
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 
@@ -969,6 +971,32 @@ public final class NetworkProviderFactory
 
 			final BrProvider provider = new BrProvider(NAVITIA);
 			brProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.IT))
+		{
+			if (italyProviderRef != null)
+			{
+				final ItalyProvider provider = italyProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final ItalyProvider provider = new ItalyProvider(NAVITIA);
+			italyProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.FRENCHSOUTHWEST))
+		{
+			if (frenchSouthWestProviderRef != null)
+			{
+				final FrenchSouthWestProvider provider = frenchSouthWestProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final FrenchSouthWestProvider provider = new FrenchSouthWestProvider(NAVITIA);
+			frenchSouthWestProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else
