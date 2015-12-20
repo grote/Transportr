@@ -262,7 +262,7 @@
                             android:layout_weight="1"
                             android:padding="7dp"
                             tools:ignore="HardcodedText"
-                            android:text="Benedikt Volkmer, Ettore Atalan, dktz"/>
+                            android:text="Martin Riesner, Benedikt Volkmer, Ettore Atalan, dktz, ..."/>
 
                     </TableRow>
 
