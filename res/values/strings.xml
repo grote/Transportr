@@ -254,7 +254,7 @@
     <string name="np_desc_mersey">Liverpool City Region</string>
     <string name="np_desc_br">São Paulo and Porto Alegre</string>
     <string name="np_desc_vrs">Cologne, Bonn</string>
-    <string name="np_desc_frenchsouthwest">Poitou-Charente, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+    <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
     <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
     <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
     <string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
