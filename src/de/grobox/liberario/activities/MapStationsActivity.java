@@ -167,10 +167,10 @@ public class MapStationsActivity extends AppCompatActivity {
 	}
 
 	private void setupMap() {
-		mMapView = new MapView(this, 256);
+		mMapView = new MapView(this);
 
 		mMapView.setClickable(true);
-		mMapView.setBuiltInZoomControls(true);
+//		mMapView.setBuiltInZoomControls(true);
 		mMapView.setMultiTouchControls(true);
 		mMapView.setTilesScaledToDpi(true);
 
