@@ -43,6 +43,17 @@ project(':sublibs:OSMBonusPack:OSMBonusPack') {
 	repositories {
 		jcenter()
 	}
+	buildscript.repositories {
+		jcenter()
+	}
+	buildscript.dependencies {
+		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+	}
+	android {
+	lintOptions {
+		abortOnError false
+	}
+	}
 }
 
 android {
@@ -52,7 +63,7 @@ android {
 
 		compileSdkVersion 23
 		targetSdkVersion 23
-		buildToolsVersion "23.0.2"
+		buildToolsVersion "23.0.1"
 		minSdkVersion 14
 	}
 
