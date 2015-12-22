@@ -1,6 +1,3 @@
 language: android
-script: ./pre-build.sh
-android:
-  components:
-    - build-tools-23.0.2
-    - android-23
+before_script: ./pre-build.sh
+
