@@ -5,6 +5,7 @@ The public transport companion that respects your privacy and your freedom.
 Transportr is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. 
 
 [![Transportr Logo](/res/drawable-xhdpi/ic_launcher.png)](http://transportr.grobox.de)
+[![Build Status](https://travis-ci.org/grote/Transportr.svg?branch=master)](https://travis-ci.org/grote/Transportr)
 
 Please **[visit the website](http://transportr.grobox.de)** for more information!
 
