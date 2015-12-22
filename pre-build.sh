@@ -7,12 +7,7 @@ sed -i "/org.slf4j/d" sublibs/OSMBonusPack/OSMBonusPack/build.gradle
 
 # PTE
 
-cd sublibs/public-transport-enabler/enabler/
-mkdir -p src/de/schildbach/pte/live
-
-if [ ! -f src/de/schildbach/pte/live/Secrets.java ]; then
-	cp test/de/schildbach/pte/live/Secrets.java.template src/de/schildbach/pte/live/Secrets.java
-fi
+cd sublibs/public-transport-enabler/enabler
 
 # add non-upstream providers
 git checkout -- src/de/schildbach/pte/NetworkId.java
