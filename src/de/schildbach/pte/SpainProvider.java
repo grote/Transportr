@@ -27,9 +27,9 @@ public class SpainProvider extends AbstractNavitiaProvider
 {
 	private static String API_REGION = "es";
 
-	public SpainProvider(final String authorization)
+	public SpainProvider(final String api, final String authorization)
 	{
-		super(NetworkId.SPAIN, authorization);
+		super(NetworkId.SPAIN, api, authorization);
 
 		setTimeZone("Europe/Spain");
 	}

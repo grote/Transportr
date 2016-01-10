@@ -97,6 +97,7 @@ public final class NetworkProviderFactory
 	private static Reference<ItalyProvider> italyProviderRef;
 	private static Reference<FrenchSouthWestProvider> frenchSouthWestProviderRef;
 
+	private static final String NAVITIA_API = "https://api.navitia.io/v1/";
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
@@ -943,7 +944,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final NzProvider provider = new NzProvider(NAVITIA);
+			final NzProvider provider = new NzProvider(NAVITIA_API, NAVITIA);
 			nzProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -956,7 +957,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final SpainProvider provider = new SpainProvider(NAVITIA);
+			final SpainProvider provider = new SpainProvider(NAVITIA_API, NAVITIA);
 			spainProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -969,7 +970,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final BrProvider provider = new BrProvider(NAVITIA);
+			final BrProvider provider = new BrProvider(NAVITIA_API, NAVITIA);
 			brProviderRef = new SoftReference<>(provider);
 			return provider;
 		}

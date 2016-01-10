@@ -31,9 +31,9 @@ public class NzProvider extends AbstractNavitiaProvider
 {
 	private static String API_REGION = "nz";
 
-	public NzProvider(final String authorization)
+	public NzProvider(final String api, final String authorization)
 	{
-		super(NetworkId.NZ, authorization);
+		super(NetworkId.NZ, api, authorization);
 
 		setTimeZone("Pacific/Auckland");
 		setStyles(STYLES);

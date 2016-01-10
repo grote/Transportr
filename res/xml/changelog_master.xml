@@ -5,6 +5,9 @@
         <change>Added Italy (Thanks Antonio!)</change>
         <change>Added South West of France (Thanks Nicolas!)</change>
         <change>Include updated delays when exporting/sharing trips</change>
+        <change>Shorten long location names in the middle, not at the end</change>
+        <change>Show toolbar icons in white even on old devices</change>
+        <change>Fix issues with KVV, AVV and VMS networks</change>
     </release>
 
     <release version="1.0.1" versioncode="22">
