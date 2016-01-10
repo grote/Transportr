@@ -19,5 +19,6 @@
         android:text="Medium Text"
         android:gravity="center_vertical"
         android:padding="3dp"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:ellipsize="middle"/>
 </LinearLayout>
