@@ -4,6 +4,7 @@
     <release version="1.0.2" versioncode="23">
         <change>Added Italy (Thanks Antonio!)</change>
         <change>Added South West of France (Thanks Nicolas!)</change>
+        <change>New setting to change app language</change>
         <change>Include updated delays when exporting/sharing trips</change>
         <change>Shorten long location names in the middle, not at the end</change>
         <change>Show toolbar icons in white even on old devices</change>

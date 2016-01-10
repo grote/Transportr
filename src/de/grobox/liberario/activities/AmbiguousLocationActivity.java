@@ -20,7 +20,6 @@ package de.grobox.liberario.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -45,7 +44,7 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
-public class AmbiguousLocationActivity extends AppCompatActivity implements AsyncQueryTripsTask.TripHandler {
+public class AmbiguousLocationActivity extends TransportrActivity implements AsyncQueryTripsTask.TripHandler {
 	private Location from;
 	private Location to;
 	private Date date;
@@ -54,12 +53,6 @@ public class AmbiguousLocationActivity extends AppCompatActivity implements Asyn
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.AppTheme);
-		} else {
-			setTheme(R.style.AppTheme_Light);
-		}
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ambiguous_location);
 

@@ -17,24 +17,11 @@
 
 package de.grobox.liberario.activities;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
-import de.grobox.liberario.TransportrApplication;
-import de.grobox.liberario.TransportNetwork;
-import de.grobox.liberario.Preferences;
-import de.grobox.liberario.R;
-import de.grobox.liberario.adapters.NetworkProviderListAdapter;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -42,22 +29,27 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.Toast;
 
-public class PickNetworkProviderActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
+import de.grobox.liberario.Preferences;
+import de.grobox.liberario.R;
+import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.TransportrApplication;
+import de.grobox.liberario.adapters.NetworkProviderListAdapter;
+
+public class PickNetworkProviderActivity extends TransportrActivity {
 	private NetworkProviderListAdapter listAdapter;
 	private ExpandableListView expListView;
 	private boolean back = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.AppTheme);
-		} else {
-			setTheme(R.style.AppTheme_Light);
-		}
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pick_network_provider);
 

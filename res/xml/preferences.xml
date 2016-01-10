@@ -33,6 +33,15 @@
             android:summary="%s"
             />
 
+        <ListPreference
+            android:key="pref_key_language"
+            android:title="@string/pref_language_title"
+            android:entries="@array/pref_language_options"
+            android:entryValues="@array/pref_language_values"
+            android:defaultValue="@string/pref_language_value_default"
+            android:summary="%s"
+            />
+
         <CheckBoxPreference
             android:key="pref_key_hide_departure_time"
             android:title="@string/pref_hide_departure_time"

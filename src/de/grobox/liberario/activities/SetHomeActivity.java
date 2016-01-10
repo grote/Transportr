@@ -17,32 +17,23 @@
 
 package de.grobox.liberario.activities;
 
-import de.grobox.liberario.Preferences;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.Toast;
+
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.ui.LocationInputView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Toast;
-
-public class SetHomeActivity extends AppCompatActivity {
+public class SetHomeActivity extends TransportrActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.SetHomeDialogTheme);
-		} else {
-			setTheme(R.style.SetHomeDialogTheme_Light);
-		}
-
 		getWindow().requestFeature(Window.FEATURE_LEFT_ICON);
 		getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_action_home);
 

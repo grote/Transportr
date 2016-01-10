@@ -25,7 +25,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -58,7 +57,7 @@ import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 
-public class MapStationsActivity extends AppCompatActivity {
+public class MapStationsActivity extends TransportrActivity {
 	private MapView mMapView;
 	Menu mMenu;
 	private GpsMyLocationProvider mLocProvider;
@@ -68,12 +67,6 @@ public class MapStationsActivity extends AppCompatActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.AppTheme);
-		} else {
-			setTheme(R.style.AppTheme_Light);
-		}
-
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_stations_map);

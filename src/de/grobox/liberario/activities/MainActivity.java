@@ -28,7 +28,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -56,14 +55,14 @@ import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
-import de.grobox.liberario.fragments.RecentTripsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.PrefsFragment;
+import de.grobox.liberario.fragments.RecentTripsFragment;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 
-public class MainActivity extends AppCompatActivity implements TransportNetwork.Handler {
+public class MainActivity extends TransportrActivity implements TransportNetwork.Handler {
 	static final public int CHANGED_NETWORK_PROVIDER = 1;
 	static final public int CHANGED_HOME = 2;
 
@@ -87,14 +86,6 @@ public class MainActivity extends AppCompatActivity implements TransportNetwork.
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.AppTheme);
-			dark_theme = true;
-		} else {
-			setTheme(R.style.AppTheme_Light);
-			dark_theme = false;
-		}
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 

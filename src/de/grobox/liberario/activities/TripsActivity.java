@@ -23,7 +23,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -52,7 +51,7 @@ import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
 
-public class TripsActivity extends AppCompatActivity {
+public class TripsActivity extends TransportrActivity {
 	private QueryTripsResult start_context;
 	private QueryTripsResult end_context;
 	private RecyclerView mRecyclerView;
@@ -65,12 +64,6 @@ public class TripsActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.AppTheme);
-		} else {
-			setTheme(R.style.AppTheme_Light);
-		}
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trips);
 

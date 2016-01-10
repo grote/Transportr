@@ -12,4 +12,31 @@
     <string name="pref_theme_value_light" translatable="false">light</string>
     <string name="pref_theme_value_dark" translatable="false">dark</string>
 
+    <!-- Language -->
+    <string-array name="pref_language_options">
+        <item>@string/system_default</item>
+        <item>@string/german</item>
+        <item>@string/spanish</item>
+        <item>@string/basque</item>
+        <item>@string/french</item>
+        <item>@string/italian</item>
+        <item>@string/norwegian_bokmal</item>
+        <item>@string/dutch</item>
+        <item>@string/portuguese_br</item>
+        <item>@string/turkish</item>
+    </string-array>
+    <string-array name="pref_language_values">
+        <item>@string/pref_language_value_default</item>
+        <item>de</item>
+        <item>es</item>
+        <item>eu</item>
+        <item>fr</item>
+        <item>it</item>
+        <item>nb</item>
+        <item>nl</item>
+        <item>pt_BR</item>
+        <item>tr</item>
+    </string-array>
+    <string name="pref_language_value_default" translatable="false">default</string>
+
 </resources>

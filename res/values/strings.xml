@@ -99,6 +99,7 @@
     <string name="pref_theme_title">Theme</string>
     <string name="pref_theme_light">Light</string>
     <string name="pref_theme_dark">Dark</string>
+    <string name="pref_language_title">Language</string>
 
     <string name="warning_departure_gap">Found too few departures. There might be more hidden. Search for exact time to be sure none is missing.</string>
 
@@ -123,6 +124,7 @@
     <string name="number_of_stations">Number of Stations</string>
     <string name="meter">m</string>
     <string name="max_distance">Maximum Distance</string>
+    <string name="system_default">System Default</string>
 
     <string name="home">Home</string>
     <string name="home_dialog_title">Your Home Location</string>

@@ -110,21 +110,17 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		if (key.equals(Preferences.THEME)) {
+		if(key.equals(Preferences.THEME)) {
 			ListPreference themePref = (ListPreference) findPreference(key);
 			themePref.setSummary(themePref.getEntry());
 
-			getActivity().finish();
-			final Intent intent = getActivity().getIntent();
-			intent.setAction(MainActivity.ACTION_SETTINGS);
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
-			getActivity().startActivity(intent);
+			reload();
+		}
+		else if(key.equals(Preferences.LANGUAGE)) {
+			ListPreference langPref = (ListPreference) findPreference(key);
+			langPref.setSummary(langPref.getEntry());
 
-			// switch back to this fragment, because it doesn't work the first time where fragment is not yet found
-			final Intent intent2 = new Intent(getActivity(), MainActivity.class);
-			intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-			intent2.setAction(MainActivity.ACTION_SETTINGS);
-			startActivity(intent2);
+			reload();
 		}
 	}
 
@@ -156,5 +152,19 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 
 			setHome();
 		}
+	}
+
+	private void reload() {
+		getActivity().finish();
+		final Intent intent = getActivity().getIntent();
+		intent.setAction(MainActivity.ACTION_SETTINGS);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+		getActivity().startActivity(intent);
+
+		// switch back to this fragment, because it doesn't work the first time where fragment is not yet found
+		final Intent intent2 = new Intent(getActivity(), MainActivity.class);
+		intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		intent2.setAction(MainActivity.ACTION_SETTINGS);
+		startActivity(intent2);
 	}
 }
