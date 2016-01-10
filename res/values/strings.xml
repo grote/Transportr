@@ -265,6 +265,7 @@
     <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
     <string name="np_desc_mersey">Liverpool City Region</string>
     <string name="np_desc_br">São Paulo and Porto Alegre</string>
+    <string name="np_desc_br_floripa">SIM</string>
     <string name="np_desc_vrs">Cologne, Bonn</string>
     <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
     <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
@@ -280,6 +281,7 @@
     <string name="np_name_spain">Spain</string>
     <string name="np_name_usny">New York and New-Jersey States</string>
     <string name="np_name_br">SPTRANS EPTC</string>
+    <string name="np_name_br_floripa">Florianópolis</string>
     <string name="np_name_frenchsouthwest">FR-SW</string>
 
     <string name="maintainer">Maintainer</string>

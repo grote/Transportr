@@ -94,6 +94,7 @@ public final class NetworkProviderFactory
 	private static Reference<NzProvider> nzProviderRef;
 	private static Reference<SpainProvider> spainProviderRef;
 	private static Reference<BrProvider> brProviderRef;
+	private static Reference<BrFloripaProvider> brFloripaProviderRef;
 	private static Reference<ItalyProvider> italyProviderRef;
 	private static Reference<FrenchSouthWestProvider> frenchSouthWestProviderRef;
 
@@ -972,6 +973,19 @@ public final class NetworkProviderFactory
 
 			final BrProvider provider = new BrProvider(NAVITIA_API, NAVITIA);
 			brProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.BRFLORIPA))
+		{
+			if (brFloripaProviderRef != null)
+			{
+				final BrFloripaProvider provider = brFloripaProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final BrFloripaProvider provider = new BrFloripaProvider("https://transportr.grobox.de/api/v1/", null);
+			brFloripaProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.IT))

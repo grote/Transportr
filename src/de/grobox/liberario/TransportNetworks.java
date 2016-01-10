@@ -478,12 +478,19 @@ public class TransportNetworks {
 		);
 
 		// Brazil
+		region = getString(R.string.np_region_br);
 
 		list.add(new TransportNetwork(context, NetworkId.BR)
 				         .setName(getString(R.string.np_name_br))
 				         .setDescription(getString(R.string.np_desc_br))
-				         .setRegion(getString(R.string.np_region_br))
+				         .setRegion(region)
 				         .setStatus(TransportNetwork.Status.APLHA)
+		);
+		list.add(new TransportNetwork(context, NetworkId.BRFLORIPA)
+						.setName(context.getString(R.string.np_name_br_floripa))
+						.setDescription("SIM")
+						.setRegion(region)
+						.setStatus(TransportNetwork.Status.APLHA)
 		);
 
 		return list;

@@ -4,6 +4,7 @@
     <release version="1.0.4" versioncode="25">
         <change>You can now optimize the directions for certain criteria</change>
         <change>You can now also set your preferred walking speed in the settings</change>
+        <change>Add experimental support for Florianópolis, Brazil</change>
         <change>Only show departures from given station, not also from stations in the area</change>
         <change>Fix exotic bug when turning phone and closing physical keyboard at the same time</change>
         <change>Added logo for VRN and VVS network (Thanks Robert!)</change>
