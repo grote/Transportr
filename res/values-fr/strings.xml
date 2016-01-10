@@ -15,7 +15,7 @@
   <string name="action_location_map">Montrer les arrêts/stations sur la carte</string>
   <string name="action_use_gps">Activer le GPS</string>
   <string name="action_share">Partager</string>
-  <string name="action_trip_calendar">Calendrier infos</string>
+  <string name="action_trip_calendar">Ajouter au calendrier</string>
   <string name="action_trip_details">Montrer séparé</string>
   <string name="action_trip_delete">Supprimer le trajet</string>
   <string name="action_show_on_external_map">Montrer sur une carte externe</string>
@@ -37,9 +37,9 @@
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p>Nous encourageons et apprécions les <b>contributions</b>. Si vous voulez contribuer à Transportr, veuillez visiter la page <a href="%1$s">la page d\'accueil de Transportr</a> pour de plus amples informations.</p>
-<p>Si vous découvrez quelques problèmes avec cette appli, veuillez les rapporter grâce au <a href="%2$s">gestionnaire de problèmes</a>.</p>
-<p>Les options de <b>don</b> sont listées sur <a href="%3$s">le site Web de Transportr</a>.</p>
+<p>Nous encourageons et apprécions les <b>contributions</b>. Si vous voulez contribuer à Transportr, veuillez visiter la page <a href=\"%1$s\">la page d\'accueil de Transportr</a> pour de plus amples informations.</p>
+<p>Si vous découvrez quelques problèmes avec cette appli, veuillez les rapporter grâce au <a href=\"%2$s\">gestionnaire de problèmes</a>.</p>
+<p>Les options de <b>don</b> sont listées sur <a href=\"%3$s\">le site Web de Transportr</a>.</p>
 ]]>
 </string>
   <string name="trip_dep">dép.</string>
@@ -84,7 +84,7 @@
   <string name="added_1h">1 heure a été ajoutée.</string>
   <string name="pref_transport_network">Réseau de transport</string>
   <string name="pref_hide_departure_time">Cacher l\'heure de départ</string>
-  <string name="pref_hide_departure_time_summary">Ne montrer l\'heure d\'arriver que lors de l\'affichage des arrêts intermédiaires</string>
+  <string name="pref_hide_departure_time_summary">Ne montrer l\'heure d\'arrivée que lors de l\'affichage des arrêts intermédiaires</string>
   <string name="pref_home">Point d\'origine</string>
   <string name="pref_display">Affichage</string>
   <string name="pref_theme_title">Thème</string>
@@ -231,6 +231,8 @@
   <string name="np_desc_mersey">Région métropolitaine de Liverpool</string>
   <string name="np_desc_br">São Paulo et Porto Alegre</string>
   <string name="np_desc_vrs">Cologne, Bonn</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+  <string name="np_desc_it">Rome, Milan, Turin, Venise, Palerme, Trente</string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAVIÈRE</string>
   <string name="np_name_paris">PARIS</string>
@@ -240,6 +242,7 @@
   <string name="np_name_spain">Espagne</string>
   <string name="np_name_usny">États de New York et New Jersey</string>
   <string name="np_name_br">SPTRANS EPTC</string>
+  <string name="np_name_frenchsouthwest">FR-SO</string>
   <string name="maintainer">Mainteneur</string>
   <string name="contributers">Contributeurs</string>
   <string name="translators">Traducteurs</string>
@@ -252,4 +255,5 @@
   <string name="turkish">Turc</string>
   <string name="norwegian_bokmal">Norvégien\nBokmål</string>
   <string name="basque">Basque</string>
+  <string name="times_include_delays">(Avertissement : les heures incluent les retards signalés)</string>
 </resources>

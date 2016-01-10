@@ -8,14 +8,13 @@
   <string name="action_settings">Einstellungen</string>
   <string name="action_fav_trip">Verbindung als Favorit markieren</string>
   <string name="action_unfav_trip">Markierung der Verbindung als Favorit aufheben</string>
-  <string name="action_switch_locations">Start und Ziel vertauschen</string>
+  <string name="action_switch_locations">Start und Ziel tauschen</string>
   <string name="action_show_extra_info">Informationen anzeigen/ausblenden</string>
   <string name="action_refresh">Aktualisieren</string>
   <string name="action_navigation_expand">Mehr anzeigen</string>
   <string name="action_location_map">Haltestellen auf der Karte anzeigen</string>
   <string name="action_use_gps">GPS einschalten</string>
   <string name="action_share">Teilen</string>
-  <string name="action_trip_calendar">In den Kalender</string>
   <string name="action_trip_details">Getrennt anzeigen</string>
   <string name="action_trip_delete">Verbindung löschen</string>
   <string name="action_show_on_external_map">Auf externer Karte anzeigen</string>
@@ -31,8 +30,15 @@
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
   <string name="about">
 <![CDATA[
-<p>Transportr ist eine ÖPNV App, die Ihre Privatsphäre und Freiheit respektiert. Es ist eine gemeinnützige App, die von vielen Menschen auf der ganzen Welt entwickelt wird, um öffentlichen Nahverkehr so einfach wie möglich zu machen, egal wo man sich befindet. Diese App ist Freie Software. Sie können sie ohne Einschränkungen benutzen, verstehen, weitergeben und verbessern.</p> <p>Es gibt keine Garantie, dass die Daten korrekt Sind. Bitte nutzen Sie diese App auf eigenes Risiko.</p> <p><b>Mitmachen</b> ist ausdrücklich erwünscht und wird sehr geschätzt. Wenn Sie mitmachen wollen, schauen Sie bitte auf <a href=\"http://transportr.grobox.de/\">die Homepage</a> für weitere Informationen.</p> <p>Falls Sie Fehler finden, melden Sie diese bitte im<a href=\"https://github.com/grote/Transportr/issues\">Bugtracker</a>.</p>
-<p>Optionen für <b>Spenden</b> finden sich ebenfalls auf der <a href=\"http://transportr.grobox.de/#donate\">Transportr Homepage</a>.</p>
+<p>Transportr ist ein Begleiter für den öffentlichen Nah- und Fernverkehr der deine Privatsphäre und Freiheit respektiert. Es ist eine gemeinnützige App entwickelt von Menschen aus aller Welt mit dem Ziel öffentlichen Verkehr so einfach wie möglich zu machen, ganz gleich wo du bist. Diese App ist Freie Software, es steht dir also frei sie zu nutzen, zu untersuchen, zu verteilen und zu verbessern.</p>
+<p>Auf die Korrektheit der Daten besteht keine Garantie. Bitte verwende die App nur auf eigene Verantwortung.</p>
+]]>
+</string>
+  <string name="about_bottom">
+<![CDATA[
+<p><b>Beiträge</b> sind ausdrücklich erwünscht und werden dankbar entgegen genommen. Falls du etwas beitragen möchtest besuche bitte <a href=\"%1$s\">die Transportr Webseite</a> für mehr Informationen.</p>
+<p>Falls du irgendwelche Probleme in der App entdeckst, melde diese bitte im <a href=\"%2$s\">Issue Tracker</a>.</p>
+<p><b>Spendenmöglichkteien</b> sind auf <a href=\"%3$s\">der Transportr Webseite</a> aufgeführt.</p>
 ]]>
 </string>
   <string name="trip_dep">ab</string>
@@ -224,6 +230,7 @@
   <string name="np_desc_mersey">Region Liverpool</string>
   <string name="np_desc_br">São Paulo und Porto Alegre</string>
   <string name="np_desc_vrs">Köln, Bonn</string>
+  <string name="np_desc_it">Rom, Mailand, Turin, Venedig, Palermo, Trient</string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAYERN</string>
   <string name="np_name_paris">PARIS</string>
@@ -233,6 +240,7 @@
   <string name="np_name_spain">Spanien</string>
   <string name="np_name_usny">New York und New-Jersey (Staaten)</string>
   <string name="np_name_br">SPTrans (Sao Paulo) und EPTC (Porto Alegre)</string>
+  <string name="np_name_frenchsouthwest">FR-SW</string>
   <string name="maintainer">Maintainer</string>
   <string name="contributers">Beitragende</string>
   <string name="translators">Übersetzer</string>
@@ -245,4 +253,5 @@
   <string name="turkish">Türkisch</string>
   <string name="norwegian_bokmal">Norwegische\nBuchsprache</string>
   <string name="basque">Baskisch</string>
+  <string name="times_include_delays">(Achtung: Zeiten beinhalten gemeldete Verspätungen)</string>
 </resources>
