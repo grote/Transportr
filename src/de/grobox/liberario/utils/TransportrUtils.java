@@ -467,14 +467,17 @@ public class TransportrUtils {
 		return getTintedDrawable(context, context.getResources().getDrawable(res));
 	}
 
-	static public Drawable getToolbarDrawable(Context context, int res) {
-		//noinspection deprecation
-		Drawable drawable = context.getResources().getDrawable(res);
+	static public Drawable getToolbarDrawable(Context context, Drawable drawable) {
 		if(drawable != null) {
 			//noinspection deprecation
 			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
 		}
 		return drawable;
+	}
+
+	static public Drawable getToolbarDrawable(Context context, int res) {
+		//noinspection deprecation
+		return getToolbarDrawable(context, context.getResources().getDrawable(res));
 	}
 
 	static public int getButtonIconColor(Context context, boolean on) {

@@ -265,11 +265,15 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		// Inflate the menu items for use in the action bar
 		inflater.inflate(R.menu.directions, menu);
 
+		MenuItem expandItem = menu.findItem(R.id.action_navigation_expand);
 		if(ui.productsScrollView.getVisibility() == View.GONE) {
-			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_unfold_more);
+			expandItem.setIcon(TransportrUtils.getToolbarDrawable(getActivity(), R.drawable.ic_action_navigation_unfold_more));
 		} else {
-			menu.findItem(R.id.action_navigation_expand).setIcon(R.drawable.ic_action_navigation_unfold_less);
+			expandItem.setIcon(TransportrUtils.getToolbarDrawable(getActivity(), R.drawable.ic_action_navigation_unfold_less));
 		}
+
+		MenuItem swapItem = menu.findItem(R.id.action_swap_locations);
+		swapItem.setIcon(TransportrUtils.getToolbarDrawable(getActivity(), swapItem.getIcon()));
 
 		super.onCreateOptionsMenu(menu, inflater);
 	}
