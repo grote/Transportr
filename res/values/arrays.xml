@@ -15,6 +15,7 @@
     <!-- Language -->
     <string-array name="pref_language_options">
         <item>@string/system_default</item>
+        <item>@string/english</item>
         <item>@string/german</item>
         <item>@string/spanish</item>
         <item>@string/basque</item>
@@ -27,6 +28,7 @@
     </string-array>
     <string-array name="pref_language_values">
         <item>@string/pref_language_value_default</item>
+        <item>en</item>
         <item>de</item>
         <item>es</item>
         <item>eu</item>

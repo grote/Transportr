@@ -3,6 +3,7 @@
 
     <release version="1.0.3" versioncode="24">
         <change>Fix for broken dark theme</change>
+        <change>Allow English to be selected as app language</change>
     </release>
 
     <release version="1.0.2" versioncode="23">

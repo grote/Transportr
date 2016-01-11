@@ -125,6 +125,7 @@
     <string name="meter">m</string>
     <string name="max_distance">Maximum Distance</string>
     <string name="system_default">System Default</string>
+    <string name="times_include_delays">(Attention: Times include reported delays)</string>
 
     <string name="home">Home</string>
     <string name="home_dialog_title">Your Home Location</string>
@@ -284,6 +285,6 @@
     <string name="turkish">Turkish</string>
     <string name="norwegian_bokmal">Norwegian\nBokmål</string>
     <string name="basque">Basque</string>
-    <string name="times_include_delays">(Attention: Times include reported delays)</string>
+    <string name="english">English</string>
 
 </resources>
