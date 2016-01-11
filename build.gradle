@@ -58,8 +58,8 @@ project(':sublibs:OSMBonusPack:OSMBonusPack') {
 
 android {
 	defaultConfig {
-		versionCode 23
-		versionName "1.0.2"
+		versionCode 24
+		versionName "1.0.3"
 
 		compileSdkVersion 23
 		targetSdkVersion 23
