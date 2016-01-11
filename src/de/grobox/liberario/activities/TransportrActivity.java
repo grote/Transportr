@@ -31,14 +31,14 @@ public class TransportrActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
 		// Use current theme
 		if(Preferences.darkThemeEnabled(this)) {
 			setTheme(R.style.AppTheme);
 		} else {
 			setTheme(R.style.AppTheme_Light);
 		}
+
+		super.onCreate(savedInstanceState);
 
 		// Use current language
 		String lang = Preferences.getLanguage(this);

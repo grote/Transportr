@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.3" versioncode="24">
+        <change>Fix for broken dark theme</change>
+    </release>
+
     <release version="1.0.2" versioncode="23">
         <change>Added Italy (Thanks Antonio!)</change>
         <change>Added South West of France (Thanks Nicolas!)</change>
