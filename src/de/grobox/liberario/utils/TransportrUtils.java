@@ -402,6 +402,7 @@ public class TransportrUtils {
 	}
 
 	static public int computeDistance(Location location1, Location location2) {
+		if(location1 == null || location2 == null) return -1;
 		if(!location1.hasLocation() || !location2.hasLocation()) return -1;
 
 		android.location.Location loc1 = new android.location.Location("");
