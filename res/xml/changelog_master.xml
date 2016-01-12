@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.4" versioncode="25">
+        <change>Added logo for VRN and VVS network (Thanks Robert!)</change>
+    </release>
+
     <release version="1.0.3" versioncode="24">
         <change>Fix for broken dark theme</change>
         <change>Allow English to be selected as app language</change>
