@@ -100,7 +100,10 @@ public class RecentTripsFragment extends TransportrListFragment {
 		// Inflate the menu items for use in the action bar
 		inflater.inflate(R.menu.recent_trip_list_actions, menu);
 
-		if(Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false)) {
+		// in some cases getActivity() and getContext() can be null, so get it somewhere else
+		Context context = toolbar.getContext();
+
+		if(Preferences.getPref(context, Preferences.SORT_RECENT_TRIPS_COUNT, false)) {
 			menu.findItem(R.id.action_recent_trips_sort_count).setChecked(true);
 		} else {
 			menu.findItem(R.id.action_recent_trips_sort_recent).setChecked(true);
