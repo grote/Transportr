@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.0.4" versioncode="25">
+        <change>Only show departures from given station, not also from stations in the area</change>
         <change>Added logo for VRN and VVS network (Thanks Robert!)</change>
         <change>Added logo for BSVAG and NASA network (Thanks 0x11de784a!)</change>
     </release>

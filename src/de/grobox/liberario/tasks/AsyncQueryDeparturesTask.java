@@ -63,7 +63,7 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(fragment.getActivity())) {
-				return np.queryDepartures(stationId, date, max_departures, true);
+				return np.queryDepartures(stationId, date, max_departures, false);
 			}
 			else {
 				error = fragment.getResources().getString(R.string.error_no_internet);
