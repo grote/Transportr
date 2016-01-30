@@ -18,9 +18,24 @@
             android:summary="@string/location_home"
             />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_directions_routing"
+        android:key="pref_key_directions">
+
+        <ListPreference
+            android:key="pref_key_optimize"
+            android:title="@string/pref_optimize"
+            android:entries="@array/pref_optimize_options"
+            android:entryValues="@array/pref_optimize_values"
+            android:defaultValue="@string/pref_optimize_value_default"
+            android:summary="%s"
+            />
+
         <ListPreference
             android:key="pref_key_walk_speed"
-            android:title="Walk Speed"
+            android:title="@string/pref_walk_speed"
             android:entries="@array/pref_walk_speed_options"
             android:entryValues="@array/pref_walk_speed_values"
             android:defaultValue="@string/pref_walk_speed_value_default"

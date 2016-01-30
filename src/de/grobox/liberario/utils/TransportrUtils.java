@@ -541,6 +541,12 @@ public class TransportrUtils {
 		}
 	}
 
+	static public NetworkProvider.Optimize getOptimize(Context context) {
+		String optimizeString = Preferences.getOptimize(context).toUpperCase();
+
+		return NetworkProvider.Optimize.valueOf(optimizeString);
+	}
+
 	static public NetworkProvider.WalkSpeed getWalkSpeed(Context context) {
 		String walkString = Preferences.getWalkSpeed(context).toUpperCase();
 

@@ -41,6 +41,19 @@
     </string-array>
     <string name="pref_language_value_default" translatable="false">default</string>
 
+    <!-- Optimize -->
+    <string-array name="pref_optimize_options">
+        <item>@string/pref_optimize_least_duration</item>
+        <item>@string/pref_optimize_least_changes</item>
+        <item>@string/pref_optimize_least_walking</item>
+    </string-array>
+    <string-array name="pref_optimize_values">
+        <item>@string/pref_optimize_value_default</item>
+        <item>LEAST_CHANGES</item>
+        <item>LEAST_WALKING</item>
+    </string-array>
+    <string name="pref_optimize_value_default" translatable="false">LEAST_DURATION</string>
+
     <!-- Walk Speed -->
     <string-array name="pref_walk_speed_options">
         <item>@string/pref_walk_speed_slow</item>

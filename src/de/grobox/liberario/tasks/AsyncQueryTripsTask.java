@@ -93,16 +93,18 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	protected QueryTripsResult doInBackground(Void... params) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
 
+		NetworkProvider.Optimize optimize = TransportrUtils.getOptimize(context);
 		NetworkProvider.WalkSpeed walkSpeed = TransportrUtils.getWalkSpeed(context);
 
 		Log.d(TAG, "From: " + from.toString());
 		Log.d(TAG, "To: " + to.toString());
 		Log.d(TAG, "Date: " + date.toString());
+		Log.d(TAG, "Optimize for: " + optimize.toString());
 		Log.d(TAG, "Walk Speed: " + walkSpeed.toString());
 
 		try {
 			if(isNetworkAvailable(context)) {
-				return np.queryTrips(from, null, to, date, departure, mProducts, NetworkProvider.Optimize.LEAST_DURATION, walkSpeed, null, null);
+				return np.queryTrips(from, null, to, date, departure, mProducts, optimize, walkSpeed, null, null);
 			}
 			else {
 				error = context.getResources().getString(R.string.error_no_internet);

@@ -100,6 +100,12 @@
     <string name="pref_theme_light">Light</string>
     <string name="pref_theme_dark">Dark</string>
     <string name="pref_language_title">Language</string>
+    <string name="pref_directions_routing">Directions and Trip Routing</string>
+    <string name="pref_optimize">Optimize for</string>
+    <string name="pref_optimize_least_duration">Least Duration</string>
+    <string name="pref_optimize_least_changes">Least Changes</string>
+    <string name="pref_optimize_least_walking">Least Walking</string>
+    <string name="pref_walk_speed">Walk Speed</string>
     <string name="pref_walk_speed_slow">Slow</string>
     <string name="pref_walk_speed_normal">Normal</string>
     <string name="pref_walk_speed_fast">Fast</string>
