@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -67,6 +68,8 @@ public class DeparturesFragment extends TransportrFragment {
 
 	private static final int MAX_DEPARTURES = 12;
 	private static final int SAFETY_MARGIN = 6;
+
+	private static final String TAG = DeparturesFragment.class.toString();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -248,6 +251,10 @@ public class DeparturesFragment extends TransportrFragment {
 		int count = 0;
 
 		for(final StationDepartures stadep : result.stationDepartures) {
+			String loc = "???";
+			if(stadep.location != null) loc = stadep.location.toString();
+			Log.d(TAG, "Departures from " + loc + ": " + stadep.departures.toString());
+
 			departureAdapter.addAll(stadep.departures);
 
 			if(more) count += stadep.departures.size();

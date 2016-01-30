@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,8 +65,11 @@ public class NearbyStationsFragment extends TransportrFragment {
 	// TODO: allow user to specify location types
 	EnumSet<LocationType> types = EnumSet.of(LocationType.STATION);
 
-	private static int MAX_STATIONS = 5;
+	private static final int MAX_DISTANCE = 0;
+	private static final int MAX_STATIONS = 5;
 	private int maxStations = MAX_STATIONS;
+
+	private static final String TAG = NearbyStationsFragment.class.toString();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -114,7 +118,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 			                                      public void onRefresh(final SwipyRefreshLayoutDirection direction) {
 				                                      maxStations += MAX_STATIONS;
 
-				                                      AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(NearbyStationsFragment.this, types, stationAdapter.getStart(), 0, maxStations);
+				                                      AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(NearbyStationsFragment.this, types, stationAdapter.getStart(), MAX_DISTANCE, maxStations);
 				                                      task.execute();
 			                                      }
 		                                      });
@@ -233,7 +237,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 			// reset number of stations to retrieve
 			maxStations = MAX_STATIONS;
 
-			AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(this, types, loc.getLocation(), 0, maxStations);
+			AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(this, types, loc.getLocation(), MAX_DISTANCE, maxStations);
 			task.execute();
 		} else if(!loc.isSearching()) {
 			Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
@@ -255,6 +259,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 	}
 
 	public void addStations(NearbyLocationsResult result) {
+		Log.d(TAG, "Nearby Stations: " + result.locations.toString());
 		stationAdapter.addAll(result.locations);
 
 		onRefreshComplete();

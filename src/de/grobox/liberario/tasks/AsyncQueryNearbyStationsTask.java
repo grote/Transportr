@@ -18,6 +18,7 @@
 package de.grobox.liberario.tasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.EnumSet;
@@ -39,6 +40,8 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLo
 	int maxDistance;
 	int maxStations;
 
+	private final static String TAG = AsyncQueryNearbyStationsTask.class.getSimpleName();
+
 	public AsyncQueryNearbyStationsTask(NearbyStationsFragment fragment, EnumSet<LocationType> types, Location loc, int maxDistance, int maxStations) {
 		this.fragment = fragment;
 		this.types = types;
@@ -50,6 +53,8 @@ public class AsyncQueryNearbyStationsTask extends AsyncTask<Void, Void, NearbyLo
 	@Override
 	protected NearbyLocationsResult doInBackground(Void... params) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(fragment.getActivity()));
+
+		Log.d(TAG, "NearbyStation from (" + String.valueOf(maxDistance) + "m #" + maxStations + "): " + loc.toString());
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(fragment.getActivity())) {
