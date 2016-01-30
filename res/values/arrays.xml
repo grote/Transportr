@@ -41,4 +41,17 @@
     </string-array>
     <string name="pref_language_value_default" translatable="false">default</string>
 
+    <!-- Walk Speed -->
+    <string-array name="pref_walk_speed_options">
+        <item>@string/pref_walk_speed_slow</item>
+        <item>@string/pref_walk_speed_normal</item>
+        <item>@string/pref_walk_speed_fast</item>
+    </string-array>
+    <string-array name="pref_walk_speed_values">
+        <item>slow</item>
+        <item>@string/pref_walk_speed_value_default</item>
+        <item>fast</item>
+    </string-array>
+    <string name="pref_walk_speed_value_default" translatable="false">normal</string>
+
 </resources>

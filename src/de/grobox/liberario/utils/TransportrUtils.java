@@ -21,6 +21,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -51,6 +52,7 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapStationsActivity;
 import de.grobox.liberario.data.RecentsDB;
+import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -537,6 +539,12 @@ public class TransportrUtils {
 			item.setTitle(R.string.action_fav_trip);
 			item.setIcon(is_toolbar ? TransportrUtils.getToolbarDrawable(context, R.drawable.ic_action_star_empty) : TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star_empty));
 		}
+	}
+
+	static public NetworkProvider.WalkSpeed getWalkSpeed(Context context) {
+		String walkString = Preferences.getWalkSpeed(context).toUpperCase();
+
+		return NetworkProvider.WalkSpeed.valueOf(walkString);
 	}
 
 }

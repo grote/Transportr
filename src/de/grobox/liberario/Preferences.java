@@ -33,6 +33,7 @@ public class Preferences {
 	public final static String SORT_RECENT_TRIPS_COUNT = "SortRecentTripsCount";
 	public final static String THEME = "pref_key_theme";
 	public final static String LANGUAGE = "pref_key_language";
+	public final static String WALK_SPEED = "pref_key_walk_speed";
 
 	public static String getNetwork(Context context, int i) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -133,5 +134,11 @@ public class Preferences {
 		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
 
 		return settings.getString(LANGUAGE, context.getString(R.string.pref_language_value_default));
+	}
+
+	public static String getWalkSpeed(Context context) {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+
+		return settings.getString(WALK_SPEED, context.getString(R.string.pref_walk_speed_value_default));
 	}
 }

@@ -33,6 +33,7 @@ import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TripDetailActivity;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
@@ -49,6 +50,8 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	private boolean departure = true;
 	private Set<Product> mProducts = EnumSet.allOf(Product.class);
 	private String error = null;
+
+	private final String TAG = getClass().getSimpleName().toString();
 
 	public AsyncQueryTripsTask(Context context, TripHandler tripHandler) {
 		this.context = context;
@@ -90,13 +93,16 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	protected QueryTripsResult doInBackground(Void... params) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(context));
 
-		Log.d(getClass().getSimpleName(), "From: " + from.toString());
-		Log.d(getClass().getSimpleName(), "To: " + to.toString());
-		Log.d(getClass().getSimpleName(), "Date: " + date.toString());
+		NetworkProvider.WalkSpeed walkSpeed = TransportrUtils.getWalkSpeed(context);
+
+		Log.d(TAG, "From: " + from.toString());
+		Log.d(TAG, "To: " + to.toString());
+		Log.d(TAG, "Date: " + date.toString());
+		Log.d(TAG, "Walk Speed: " + walkSpeed.toString());
 
 		try {
 			if(isNetworkAvailable(context)) {
-				return np.queryTrips(from, null, to, date, departure, mProducts, NetworkProvider.Optimize.LEAST_DURATION, NetworkProvider.WalkSpeed.NORMAL, null, null);
+				return np.queryTrips(from, null, to, date, departure, mProducts, NetworkProvider.Optimize.LEAST_DURATION, walkSpeed, null, null);
 			}
 			else {
 				error = context.getResources().getString(R.string.error_no_internet);

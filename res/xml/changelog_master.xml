@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="1.0.4" versioncode="25">
+        <change>You can now set your preferred walking speed in the settings</change>
         <change>Only show departures from given station, not also from stations in the area</change>
         <change>Fix exotic bug when turning phone and closing physical keyboard at the same time</change>
         <change>Added logo for VRN and VVS network (Thanks Robert!)</change>

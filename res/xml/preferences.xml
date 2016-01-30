@@ -18,6 +18,15 @@
             android:summary="@string/location_home"
             />
 
+        <ListPreference
+            android:key="pref_key_walk_speed"
+            android:title="Walk Speed"
+            android:entries="@array/pref_walk_speed_options"
+            android:entryValues="@array/pref_walk_speed_values"
+            android:defaultValue="@string/pref_walk_speed_value_default"
+            android:summary="%s"
+            />
+
     </PreferenceCategory>
 
     <PreferenceCategory
