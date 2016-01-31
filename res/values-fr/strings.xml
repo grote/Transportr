@@ -90,6 +90,7 @@
   <string name="pref_theme_title">Thème</string>
   <string name="pref_theme_light">Clair</string>
   <string name="pref_theme_dark">Sombre</string>
+  <string name="pref_language_title">Langue</string>
   <string name="warning_departure_gap">Trop peu de départs ont été trouvés. Il pourrait y en avoir d\'autres cachés. Recherchez l\'heure exacte pour vous assurez qu\'il n\'en manque pas.</string>
   <string name="error_pick_network">Veuillez choisir un réseau de transport !</string>
   <string name="error_no_internet">Aucune connexion Internet suffisante disponible.</string>
@@ -111,6 +112,8 @@
   <string name="number_of_stations">Nombre d\'arrêts/stations</string>
   <string name="meter">m</string>
   <string name="max_distance">Distance maximum</string>
+  <string name="system_default">Valeur par défaut du système</string>
+  <string name="times_include_delays">(Avertissement : les heures incluent les retards signalés)</string>
   <string name="home">Origine</string>
   <string name="home_dialog_title">Votre point d\'origine</string>
   <string name="home_dialog_new_msg">Aucun point d\'origine n\'est défini pour le réseau de transport actuel.</string>
@@ -255,5 +258,5 @@
   <string name="turkish">Turc</string>
   <string name="norwegian_bokmal">Norvégien\nBokmål</string>
   <string name="basque">Basque</string>
-  <string name="times_include_delays">(Avertissement : les heures incluent les retards signalés)</string>
+  <string name="english">Anglais</string>
 </resources>

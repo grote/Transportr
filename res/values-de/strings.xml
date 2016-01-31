@@ -15,7 +15,8 @@
   <string name="action_location_map">Haltestellen auf der Karte anzeigen</string>
   <string name="action_use_gps">GPS einschalten</string>
   <string name="action_share">Teilen</string>
-  <string name="action_trip_details">Getrennt anzeigen</string>
+  <string name="action_trip_calendar">Zum Kalender hinzufügen</string>
+  <string name="action_trip_details">Nur diese Verbindung anzeigen</string>
   <string name="action_trip_delete">Verbindung löschen</string>
   <string name="action_show_on_external_map">Auf externer Karte anzeigen</string>
   <string name="action_copy">Kopieren</string>
@@ -27,16 +28,16 @@
   <string name="tab_libraries">Bibliotheken</string>
   <string name="tab_devs">Entwickler</string>
   <string name="tab_about">Über</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
+  <string name="about_top">© 2013 – 2016 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
   <string name="about">
 <![CDATA[
-<p>Transportr ist ein Begleiter für den öffentlichen Nah- und Fernverkehr der deine Privatsphäre und Freiheit respektiert. Es ist eine gemeinnützige App entwickelt von Menschen aus aller Welt mit dem Ziel öffentlichen Verkehr so einfach wie möglich zu machen, ganz gleich wo du bist. Diese App ist Freie Software, es steht dir also frei sie zu nutzen, zu untersuchen, zu verteilen und zu verbessern.</p>
+<p>Transportr ist dein Begleiter für den öffentlichen Nah- und Fernverkehr der deine Privatsphäre und Freiheit respektiert. Es ist eine gemeinnützige App entwickelt von Menschen aus aller Welt mit dem Ziel die Benutzung des öffentlichen Verkehrs so einfach wie möglich zu machen, ganz gleich wo du bist. Diese App ist Freie Software, es steht dir also frei sie zu nutzen, zu verstehen wie sie funktioniert, sie zu verteilen und zu verbessern.</p>
 <p>Auf die Korrektheit der Daten besteht keine Garantie. Bitte verwende die App nur auf eigene Verantwortung.</p>
 ]]>
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p><b>Beiträge</b> sind ausdrücklich erwünscht und werden dankbar entgegen genommen. Falls du etwas beitragen möchtest besuche bitte <a href=\"%1$s\">die Transportr Webseite</a> für mehr Informationen.</p>
+<p><b>Beiträge</b> sind ausdrücklich erwünscht und werden dankbar entgegen genommen. Falls du etwas beitragen möchtest, besuche bitte <a href=\"%1$s\">die Transportr Webseite</a> für mehr Informationen.</p>
 <p>Falls du irgendwelche Probleme in der App entdeckst, melde diese bitte im <a href=\"%2$s\">Issue Tracker</a>.</p>
 <p><b>Spendenmöglichkteien</b> sind auf <a href=\"%3$s\">der Transportr Webseite</a> aufgeführt.</p>
 ]]>
@@ -62,9 +63,9 @@
   <string name="beta">beta</string>
   <string name="network">Netzwerk</string>
   <string name="pick_network_activity">Verkehrsverbund auswählen</string>
-  <string name="pick_network_first_run">Dies ist das erste Mal, dass Sie Transportr gestartet haben. Bitte wählen Sie Ihren Verkehrsverbund aus, um fortzufahren!</string>
-  <string name="clear_recent">Sind Sie sicher, dass Sie ihre kürzlichen Verbindungen für den aktuellen Verkehrsverbund löschen wollen?</string>
-  <string name="clear_recent_trips">Sind Sie sicher, dass Sie %1$d Verbindung(en) aus den Favoriten löschen wollen? Die Nutzungshäufigkeit geht dabei verloren.</string>
+  <string name="pick_network_first_run">Dies ist das erste Mal, dass Du Transportr startest. Bitte wähle einen Verkehrsverbund aus, um fortzufahren!</string>
+  <string name="clear_recent">Bist Du sicher, dass Du Deine letzten Verbindungen für den aktuellen Verkehrsverbund löschen willst?</string>
+  <string name="clear_recent_trips">Bist Du sicher, dass Du %1$d Verbindung(en) aus den Favoriten löschen willst? Die Nutzungshäufigkeit der Verbindungen geht dabei verloren.</string>
   <string name="trip_searching">Suche nach Verbindungen…</string>
   <string name="stations_searching_position">Suche nach aktueller Position…</string>
   <string name="stations_searching_stations">Suche nach Haltestellen in der Nähe…</string>
@@ -74,21 +75,22 @@
   <string name="departure_station">Abfahrtsstation</string>
   <string name="share_trip_via">Verbindungen teilen mit…</string>
   <string name="undo">Rückgängig</string>
-  <string name="fav_trips_empty">Ihre letzten Fahrten werden hier angezeigt.\n\n\nSie haben die Möglichkeit diese nach der Gesamtnutzungsanzahl oder der letzten Verwendung zu sortieren.</string>
+  <string name="fav_trips_empty">Deine letzten Fahrten werden hier angezeigt.\n\n\nDu hast die Möglichkeit diese nach der Gesamtnutzungsanzahl oder der letzten Verwendung zu sortieren.</string>
   <string name="more">Mehr</string>
-  <string name="no_favourites">Keine Favoriten vorhanden.\n\nSie können unter \"kürzliche Verbindungen\" welche hinzufügen.</string>
+  <string name="no_favourites">Keine Favoriten vorhanden.\n\nDu kannst unter \"kürzliche Verbindungen\" welche hinzufügen.</string>
   <string name="removing_from_favourites">Eine markierte Verbindung ist als Favorit gekennzeichnet. Sie wird auch aus den Favoriten gelöscht werden.</string>
-  <string name="current_time_set">Aktuelle Uhrzeit wurde ausgewählt</string>
-  <string name="current_date_set">Aktuelles Datum wurde für die Suche ausgewählt</string>
+  <string name="current_time_set">Aktuelle Uhrzeit wurde ausgewählt.</string>
+  <string name="current_date_set">Aktuelles Datum wurde für die Suche ausgewählt.</string>
   <string name="added_1h">1 Stunde wurde hinzugefügt.</string>
   <string name="pref_transport_network">Verkehrsverbund</string>
   <string name="pref_hide_departure_time">Abfahrtszeit ausblenden</string>
   <string name="pref_hide_departure_time_summary">Ankunftszeit nur anzeigen, wenn Zwischenhalte angezeigt werden</string>
   <string name="pref_home">Heimatadresse</string>
   <string name="pref_display">Anzeige</string>
-  <string name="pref_theme_title">Theme</string>
+  <string name="pref_theme_title">Thema</string>
   <string name="pref_theme_light">Hell</string>
   <string name="pref_theme_dark">Dunkel</string>
+  <string name="pref_language_title">Sprache</string>
   <string name="warning_departure_gap">Zu wenige Abfahrten gefunden. Es könnte mehr geben. Suche nach einer genauen Abfahrtszeit um sicher zu gehen, dass alle Abfahrten angezeigt werden.</string>
   <string name="error_pick_network">Bitte wählen Sie genau einen Verkehrsverbund aus!</string>
   <string name="error_no_internet">Keine ausreichende Internetverbindung verfügbar</string>
@@ -98,24 +100,26 @@
   <string name="error_no_trips_found">Keine Verbindungen gefunden</string>
   <string name="error_no_location_provider">Aktuelle Position kann nicht bestimmt werden. Bitte GPS anschalten.</string>
   <string name="error_no_departures_found">Keine Abfahrten gefunden</string>
-  <string name="error_no_stations_found">keine Haltestellen gefunden</string>
+  <string name="error_no_stations_found">Keine Haltestellen gefunden</string>
   <string name="error_no_proper_station">Der angegebene Name ist keine gültige Station</string>
-  <string name="error_only_autocomplete_station">Bitte wählen Sie eine Station aus der Autovervollständigen-Liste aus!</string>
+  <string name="error_only_autocomplete_station">Bitte wähle eine Station aus der Autovervollständigungs-Liste!</string>
   <string name="error_no_station_location">Kann die Position dieser Haltestelle(n) nicht finden.</string>
-  <string name="error_no_trips_capability">Dieser Verkehrsverbund unterstützt keine Routen-Anfragen</string>
+  <string name="error_no_trips_capability">Dieser Verkehrsverbund unterstützt keine Routen-Anfragen.</string>
   <string name="error_no_departures_capability">Der aktuelle Verkehrsverbund unterstützt keine Suche nach Abfahrten.</string>
   <string name="error_no_nearby_locations_capability">Vom aktuellen Verkehrsverbund wird die Suche nach Haltestellen in der Umgebung nicht unterstützt.</string>
-  <string name="error_please_file_ticket">Es ist etwas schief gelaufen. Bitte erstellen Sie ein Problemticket mit einer Beschreibung des Hergangs.</string>
-  <string name="error_trip_refresh_failed">Es war nicht möglich die aktuelle Verbindung zu aktualisieren</string>
+  <string name="error_please_file_ticket">Es ist etwas schief gelaufen. Bitte erstelle Sie einen Problembericht mit der Beschreibung des Hergangs. (Link findest du unter \"Über\")</string>
+  <string name="error_trip_refresh_failed">Es war nicht möglich die aktuelle Verbindung zu aktualisieren.</string>
   <string name="number_of_stations">Anzahl der Zwischenhalte</string>
   <string name="meter">m</string>
   <string name="max_distance">Maximale Entfernung</string>
+  <string name="system_default">Systemstandard</string>
+  <string name="times_include_delays">(Achtung: Zeiten beinhalten gemeldete Verspätungen)</string>
   <string name="home">Zuhause</string>
   <string name="home_dialog_title">Ihre Heimatadresse</string>
   <string name="home_dialog_new_msg">Für den aktuellen Verkehrsverbund ist keine Heimatadresse festgelegt.</string>
-  <string name="home_dialog_msg">Bitte geben Sie unten einen Ort an, indem Sie einen aus der Liste auswählen.</string>
+  <string name="home_dialog_msg">Bitte gib unten einen Ort an, indem Du einen aus der Liste auswählen.</string>
   <string name="location">Position</string>
-  <string name="location_home">Klicken Sie, um eine Heimatadresse festzulegen</string>
+  <string name="location_home">Klicken um eine Heimatadresse festzulegen</string>
   <string name="location_gps">Aktuelle Position verwenden</string>
   <string name="product_high_speed_train">Hochgeschwindigkeitszug</string>
   <string name="product_regional_train">Regionalbahn</string>
@@ -124,16 +128,16 @@
   <string name="product_tram">Straßenbahn</string>
   <string name="product_bus">Bus</string>
   <string name="product_ferry">Fähre</string>
-  <string name="product_cablecar">Cablecar</string>
+  <string name="product_cablecar">Seilbahn</string>
   <string name="product_on_demand">Auf Nachfrage</string>
   <string name="action_fav_trips_sort">Liste sortieren</string>
   <string name="action_fav_trips_sort_recent">Zuletzt genutzte</string>
   <string name="action_fav_trips_sort_most">Meist genutzte</string>
   <string name="action_set_locations">Suche bearbeiten</string>
   <string name="action_swap_locations">Rückfahrt suchen</string>
-  <string name="permission_denied_gps">Da Sie den Zugriff auf Ihren aktuellen Standort nicht freigegeben haben wird diese Funktion nicht funktionieren. Bitte erlauben Sie den Standortzugriff in den Einstellungen.</string>
+  <string name="permission_denied_gps">Da Du den Zugriff auf Deinen aktuellen Standort nicht freigegeben hast wird diese Funktion nicht funktionieren. Bitte erlaube den Standortzugriff in den Einstellungen.</string>
   <string name="permission_explanation_map">Es ist nötig Kartendaten auf Ihrem Gerät zwischenzuspeichern. Die Karte wird sonst nicht funktionieren.</string>
-  <string name="permission_denied_map">Um die Karte anzeigen zu können, ist es nötig Kartendaten auf Ihrem Gerät zu speichern. Bitte erlauben Sie den Speicherzugriff um die Karte zu benutzen.</string>
+  <string name="permission_denied_map">Um die Karte anzeigen zu können, ist es nötig Kartendaten auf Ihrem Gerät zu speichern. Bitte erlaube den Speicherzugriff um die Karte zu benutzen.</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">Änderungsprotokoll</string>
   <string name="changelog_title">Was gibt\'s Neues</string>
@@ -210,7 +214,7 @@
   <string name="np_desc_se">Schweden, Stockholm</string>
   <string name="np_desc_stockholm">Stockholm</string>
   <string name="np_desc_nri">Norwegen, Oslo, Bergen</string>
-  <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
+  <string name="np_desc_tlem">Großraum London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
   <string name="np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
@@ -230,6 +234,7 @@
   <string name="np_desc_mersey">Region Liverpool</string>
   <string name="np_desc_br">São Paulo und Porto Alegre</string>
   <string name="np_desc_vrs">Köln, Bonn</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Rom, Mailand, Turin, Venedig, Palermo, Trient</string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAYERN</string>
@@ -238,10 +243,10 @@
   <string name="np_name_stockholm">STOCKHOLM</string>
   <string name="np_name_wien">WIEN</string>
   <string name="np_name_spain">Spanien</string>
-  <string name="np_name_usny">New York und New-Jersey (Staaten)</string>
+  <string name="np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
   <string name="np_name_br">SPTrans (Sao Paulo) und EPTC (Porto Alegre)</string>
   <string name="np_name_frenchsouthwest">FR-SW</string>
-  <string name="maintainer">Maintainer</string>
+  <string name="maintainer">Koordinator</string>
   <string name="contributers">Beitragende</string>
   <string name="translators">Übersetzer</string>
   <string name="dutch">Niederländisch</string>
@@ -253,5 +258,5 @@
   <string name="turkish">Türkisch</string>
   <string name="norwegian_bokmal">Norwegische\nBuchsprache</string>
   <string name="basque">Baskisch</string>
-  <string name="times_include_delays">(Achtung: Zeiten beinhalten gemeldete Verspätungen)</string>
+  <string name="english">Englisch</string>
 </resources>
