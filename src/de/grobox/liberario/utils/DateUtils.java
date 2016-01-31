@@ -54,6 +54,8 @@ public class DateUtils {
 		Calendar ct = Calendar.getInstance();
 		Calendar cd = Calendar.getInstance();
 
+		if(date == null || time == null) return null;
+
 		ct.setTime(time);
 		cd.setTime(date);
 

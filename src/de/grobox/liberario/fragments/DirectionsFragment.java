@@ -244,12 +244,15 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		super.onResume();
 
 		if(!restart && mView != null) {
-			long date = DateUtils.getDateFromUi(mView).getTime();
-			long now = new Date().getTime();
+			Date date = DateUtils.getDateFromUi(mView);
+			if(date != null) {
+				long time = date.getTime();
+				long now = new Date().getTime();
 
-			// reset date and time if older than 2 hours, so user doesn't search in the past by accident
-			if((now - date) / (60 * 60 * 1000) > 2) {
-				DateUtils.resetTime(getContext(), ui.time, ui.date);
+				// reset date and time if older than 2 hours, so user doesn't search in the past by accident
+				if((now - time) / (60 * 60 * 1000) > 2) {
+					DateUtils.resetTime(getContext(), ui.time, ui.date);
+				}
 			}
 		} else {
 			restart = false;
