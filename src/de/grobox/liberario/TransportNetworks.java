@@ -82,7 +82,7 @@ public class TransportNetworks {
 
 		list.add(new TransportNetwork(context, NetworkId.MVV)
 				         .setDescription(getString(R.string.np_desc_mvv))
-				         .setRegion(getString(R.string.np_region_germany))
+				         .setRegion(region)
 		);
 
 		list.add(new TransportNetwork(context, NetworkId.INVG)
