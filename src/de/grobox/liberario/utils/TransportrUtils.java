@@ -327,14 +327,21 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void findDirections(Context context, Location from, Location to) {
+	static public void findDirections(Context context, Location from, Location to, Date date) {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(MainActivity.ACTION_DIRECTIONS);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("from", from);
 		intent.putExtra("to", to);
+		if (date != null) {
+			intent.putExtra("date", date);
+		}
 
 		context.startActivity(intent);
+	}
+
+	static public void findDirections(Context context, Location from, Location to) {
+		findDirections(context, from, to, null);
 	}
 
 	static public void findDepartures(Context context, Location loc) {

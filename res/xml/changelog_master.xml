@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.5" versioncode="26">
+        <change>Click on departure now searches for this trip</change>
+        <change>Added logo for MVV, INVG and VVM network (Thanks Hartmut!)</change>
+    </release>
+
     <release version="1.0.4" versioncode="25">
         <change>You can now optimize the directions for certain criteria</change>
         <change>You can now also set your preferred walking speed in the settings</change>

@@ -19,6 +19,7 @@ package de.grobox.liberario.adapters;
 
 import android.content.Context;
 import android.support.v7.util.SortedList;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
+import de.schildbach.pte.dto.Location;
 
 public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.DepartureHolder>{
 
@@ -76,6 +78,7 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		}
 	});
 	private int rowLayout;
+	private Location station;
 	private Context context;
 
 	public DepartureAdapter(Context context, List<Departure> departures, int rowLayout) {
@@ -134,6 +137,15 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		} else {
 			ui.message.setVisibility(View.GONE);
 		}
+
+		if (dep.destination != null) {
+			ui.card.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					TransportrUtils.findDirections(context, station, dep.destination, dep.getTime());
+				}
+			});
+		}
 	}
 
 	@Override
@@ -169,7 +181,12 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		this.departures.endBatchedUpdates();
 	}
 
+	public void setStation(Location station) {
+		this.station = station;
+	}
+
 	public static class DepartureHolder extends RecyclerView.ViewHolder {
+		public CardView card;
 		public ViewGroup line;
 		public TextView time;
 		public TextView delay;
@@ -181,6 +198,7 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		public DepartureHolder(View v) {
 			super(v);
 
+			card = (CardView) v;
 			line = (ViewGroup) v.findViewById(R.id.lineLayout);
 			time = (TextView) v.findViewById(R.id.depTimeView);
 			delay = (TextView) v.findViewById(R.id.delayView);

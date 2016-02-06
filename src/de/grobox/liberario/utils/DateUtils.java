@@ -238,6 +238,14 @@ public class DateUtils {
 		return DateUtils.mergeDateTime(view.getContext(), date.getText(), time.getText());
 	}
 
+	static public void setDateInUi(final View view, final Date date) {
+		final Button timeButton = (Button) view.findViewById(R.id.timeView);
+		final Button dateButton = (Button) view.findViewById(R.id.dateView);
+
+		timeButton.setText(getTime(view.getContext(), date));
+		dateButton.setText(getDate(view.getContext(), date));
+	}
+
 	static public class TimePicker extends TimePickerDialog {
 
 		private Button button;

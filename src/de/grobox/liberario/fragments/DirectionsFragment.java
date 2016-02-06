@@ -453,7 +453,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		query_trips.execute();
 	}
 
-	public void presetFromTo(Location from, Location to) {
+	public void presetFromTo(Location from, Location to, Date date) {
 		if(this.from != null) {
 			this.from.setLocation(from, TransportrUtils.getDrawableForLocation(getContext(), from));
 		}
@@ -461,10 +461,14 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		if(this.to != null) {
 			this.to.setLocation(to, TransportrUtils.getDrawableForLocation(getContext(), to));
 		}
+
+		if (date != null) {
+			DateUtils.setDateInUi(mView, date);
+		}
 	}
 
-	public void searchFromTo(Location from, Location to) {
-		presetFromTo(from, to);
+	public void searchFromTo(Location from, Location to, Date date) {
+		presetFromTo(from, to, date);
 		search();
 	}
 

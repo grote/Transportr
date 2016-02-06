@@ -240,6 +240,9 @@ public class DeparturesFragment extends TransportrFragment {
 			// clear old list
 			departureAdapter.clear();
 
+			// let list know where we start for trip/line search
+			departureAdapter.setStation(loc.getLocation());
+
 			AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(DeparturesFragment.this, stationId, date, true, MAX_DEPARTURES);
 			query_stations.execute();
 		} else {

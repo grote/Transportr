@@ -46,6 +46,8 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
+import java.util.Date;
+
 import de.cketti.library.changelog.ChangeLog;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
@@ -496,10 +498,10 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 
 			switch(action) {
 				case ACTION_DIRECTIONS:
-					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"), false);
+					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"), (Date) intent.getSerializableExtra("date"), false);
 					break;
 				case ACTION_DIRECTIONS_PRESET:
-					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"), true);
+					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"), (Date) intent.getSerializableExtra("date"), true);
 					break;
 				case ACTION_DEPARTURES:
 					findDepartures((Location) intent.getSerializableExtra("location"));
@@ -514,7 +516,7 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 		}
 	}
 
-	private void findDirections(Location from, Location to, boolean preset) {
+	private void findDirections(Location from, Location to, Date date, boolean preset) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
 
 		if(!np.hasCapabilities(NetworkProvider.Capability.TRIPS)) {
@@ -525,9 +527,9 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 
 		if(f != null) {
 			if(preset) {
-				f.presetFromTo(from, to);
+				f.presetFromTo(from, to, date);
 			} else {
-				f.searchFromTo(from, to);
+				f.searchFromTo(from, to, date);
 			}
 			switchFragment(R.string.tab_directions);
 		}
