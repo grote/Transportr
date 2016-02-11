@@ -144,7 +144,7 @@ public class MapActivity extends TransportrActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.map_stations_activity_actions, menu);
+		inflater.inflate(R.menu.map_actions, menu);
 		mMenu = menu;
 
 		MenuItem gpsItem = mMenu.findItem(R.id.action_use_gps);
@@ -170,6 +170,10 @@ public class MapActivity extends TransportrActivity {
 				return true;
 			case R.id.action_use_gps:
 				toggleGPS();
+
+				return true;
+			case R.id.action_show_all:
+				setViewSpan();
 
 				return true;
 			default:

@@ -8,4 +8,10 @@
         de.grobox.liberario:showAsAction="ifRoom"
         android:title="@string/action_use_gps"/>
 
+    <item
+        android:id="@+id/action_show_all"
+        android:icon="@drawable/ic_action_show_all"
+        de.grobox.liberario:showAsAction="ifRoom"
+        android:title="@string/action_show_all"/>
+
 </menu>

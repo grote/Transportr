@@ -24,6 +24,7 @@
     <string name="action_show_on_external_map">Show on External Map</string>
     <string name="action_copy">Copy</string>
     <string name="action_show_on_map">Show on Map</string>
+    <string name="action_show_all">Show All</string>
 
     <string name="tab_directions">Directions</string>
     <string name="tab_fav_trips">Favourite Trips</string>
