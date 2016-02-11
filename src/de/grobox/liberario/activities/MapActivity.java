@@ -20,7 +20,9 @@ package de.grobox.liberario.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -43,6 +45,8 @@ import android.widget.Toast;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.InfoWindow;
+import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
+import org.osmdroid.bonuspack.overlays.MapEventsReceiver;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.util.GeoPoint;
@@ -60,18 +64,20 @@ import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 
-public class MapActivity extends TransportrActivity {
-	private MapView mMapView;
-	private Menu mMenu;
+@SuppressWarnings("deprecation")
+public class MapActivity extends TransportrActivity implements MapEventsReceiver {
+	private MapView map;
+	private Menu menu;
 	private List<GeoPoint> points = new ArrayList<>();
-	private GpsMyLocationProvider mLocProvider;
-	private MyLocationNewOverlay mMyLocationOverlay;
-	private boolean mGps;
+	private GpsMyLocationProvider locationProvider;
+	private MyLocationNewOverlay myLocationOverlay;
+	private boolean gps;
 	private TransportNetwork network;
 
 	public final static String SHOW_LOCATIONS = "de.grobox.liberario.MapActivity.SHOW_LOCATIONS";
@@ -145,12 +151,12 @@ public class MapActivity extends TransportrActivity {
 		// Inflate the menu items for use in the action bar
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.map_actions, menu);
-		mMenu = menu;
+		this.menu = menu;
 
-		MenuItem gpsItem = mMenu.findItem(R.id.action_use_gps);
+		MenuItem gpsItem = this.menu.findItem(R.id.action_use_gps);
 
-		if(mLocProvider != null) {
-			if(mGps) {
+		if(locationProvider != null) {
+			if(gps) {
 				gpsItem.setIcon(R.drawable.ic_gps_off);
 			} else {
 				gpsItem.setIcon(R.drawable.ic_gps);
@@ -181,15 +187,40 @@ public class MapActivity extends TransportrActivity {
 		}
 	}
 
+	@Override
+	public boolean singleTapConfirmedHelper(GeoPoint p) {
+		InfoWindow.closeAllInfoWindowsOn(map);
+		return true;
+	}
+
+	@Override
+	public boolean longPressHelper(GeoPoint p) {
+		String loc_str = String.valueOf(p.getLatitude()).substring(0, 7) +"/"+ String.valueOf(p.getLongitude()).substring(0, 7);
+		Marker marker = new Marker(map);
+		marker.setIcon(new ColorDrawable(Color.TRANSPARENT));
+		marker.setPosition(p);
+		marker.setTitle(getString(R.string.location)+ ": " + loc_str);
+		marker.setInfoWindow(new StationInfoWindow(map));
+		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
+		marker.setRelatedObject(new Location(LocationType.POI, null, p.getLatitudeE6(), p.getLongitudeE6(), "GPS", loc_str));
+		map.getOverlays().add(marker);
+		marker.showInfoWindow();
+
+		return true;
+	}
+
 	private void setupMap() {
-		mMapView = new MapView(this);
+		map = new MapView(this);
 
-		mMapView.setClickable(true);
-//		mMapView.setBuiltInZoomControls(true);
-		mMapView.setMultiTouchControls(true);
-		mMapView.setTilesScaledToDpi(true);
+		map.setClickable(true);
+//		map.setBuiltInZoomControls(true);
+		map.setMultiTouchControls(true);
+		map.setTilesScaledToDpi(true);
 
-		((LinearLayout) findViewById(R.id.root)).addView(mMapView);
+		MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(this, this);
+		map.getOverlays().add(0, mapEventsOverlay);
+
+		((LinearLayout) findViewById(R.id.root)).addView(map);
 
 		Intent intent = getIntent();
 		if(intent != null) {
@@ -249,7 +280,7 @@ public class MapActivity extends TransportrActivity {
 					polyline.setColor(getBackgroundColor(MarkerType.WALK, null));
 					polyline.setTitle(getString(R.string.walk));
 				}
-				mMapView.getOverlays().add(polyline);
+				map.getOverlays().add(polyline);
 				havePolyLine = true;
 			}
 		}
@@ -305,7 +336,7 @@ public class MapActivity extends TransportrActivity {
 		// turn off hardware rendering to work around this issue:
 		// https://github.com/MKergall/osmbonuspack/issues/168
 		if(havePolyLine) {
-			mMapView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+			map.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 		}
 	}
 
@@ -379,7 +410,7 @@ public class MapActivity extends TransportrActivity {
 
 		final GeoPoint center = new GeoPoint( (maxLat + minLat)/2, (maxLon + minLon)/2 );
 
-		IMapController mapController = mMapView.getController();
+		IMapController mapController = map.getController();
 		mapController.setCenter(center);
 		mapController.setZoom(18);
 		if(points.size() > 1) {
@@ -388,7 +419,7 @@ public class MapActivity extends TransportrActivity {
 	}
 
 	private void setupGPS(Location myLoc) {
-		mLocProvider = new GpsMyLocationProvider(this);
+		locationProvider = new GpsMyLocationProvider(this);
 
 		// show last known position on map
 		if(myLoc != null) {
@@ -398,19 +429,19 @@ public class MapActivity extends TransportrActivity {
 			tmp_loc.setLongitude(myLoc.lon / 1E6);
 
 			// set last known position
-			mLocProvider.onLocationChanged(tmp_loc);
+			locationProvider.onLocationChanged(tmp_loc);
 		}
 
 		// create my location overlay that shows the current position and updates automatically
-		mMyLocationOverlay = new MyLocationNewOverlay(this, mMapView);
-		mMyLocationOverlay.enableMyLocation(mLocProvider);
-		mMyLocationOverlay.setDrawAccuracyEnabled(true);
+		myLocationOverlay = new MyLocationNewOverlay(this, map);
+		myLocationOverlay.enableMyLocation(locationProvider);
+		myLocationOverlay.setDrawAccuracyEnabled(true);
 
-		mMapView.getOverlays().add(mMyLocationOverlay);
+		map.getOverlays().add(myLocationOverlay);
 
 		// turn GPS off by default
-		mGps = false;
-		mLocProvider.stopLocationProvider();
+		gps = false;
+		locationProvider.stopLocationProvider();
 	}
 
 	private void markLocation(Location loc, Drawable drawable) {
@@ -419,14 +450,14 @@ public class MapActivity extends TransportrActivity {
 		Log.d(getClass().getSimpleName(), "Mark location: " + loc.toString());
 
 		points.add(pos);
-		Marker marker = new Marker(mMapView);
+		Marker marker = new Marker(map);
 		marker.setIcon(drawable);
 		marker.setPosition(pos);
 		marker.setTitle(loc.uniqueShortName());
-		marker.setInfoWindow(new StationInfoWindow(mMapView));
+		marker.setInfoWindow(new StationInfoWindow(map));
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
 		marker.setRelatedObject(loc);
-		mMapView.getOverlays().add(marker);
+		map.getOverlays().add(marker);
 	}
 
 	private void toggleGPS() {
@@ -440,17 +471,17 @@ public class MapActivity extends TransportrActivity {
 			return;
 		}
 
-		if(mLocProvider == null) setupGPS(null);
+		if(locationProvider == null) setupGPS(null);
 
-		MenuItem gpsItem = mMenu.findItem(R.id.action_use_gps);
+		MenuItem gpsItem = menu.findItem(R.id.action_use_gps);
 
-		if(mGps) {
-			mGps = false;
-			mLocProvider.stopLocationProvider();
+		if(gps) {
+			gps = false;
+			locationProvider.stopLocationProvider();
 			gpsItem.setIcon(R.drawable.ic_gps);
 		} else {
-			mGps = true;
-			mLocProvider.startLocationProvider(mMyLocationOverlay);
+			gps = true;
+			locationProvider.startLocationProvider(myLocationOverlay);
 			gpsItem.setIcon(R.drawable.ic_gps_off);
 		}
 	}
@@ -471,10 +502,12 @@ public class MapActivity extends TransportrActivity {
 			});
 		}
 
-		@SuppressWarnings("unchecked")
 		@Override
 		public void onOpen(Object item) {
 			Marker marker = (Marker) item;
+
+			// close all other windows before opening this one
+			closeAllInfoWindowsOn(mMapView);
 
 			((TextView) mView.findViewById(R.id.bubble_title)).setText(marker.getTitle());
 
