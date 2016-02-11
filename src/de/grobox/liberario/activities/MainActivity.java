@@ -84,7 +84,7 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 	private Toolbar toolbar;
 
 	private int selectedItem;
-	private boolean dark_theme;
+	private boolean dark_theme = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -249,6 +249,10 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 
 		if(savedInstanceState != null) {
 			processIntent();
+		}
+
+		if(Preferences.darkThemeEnabled(this)) {
+			dark_theme = true;
 		}
 
 		// show Changelog
