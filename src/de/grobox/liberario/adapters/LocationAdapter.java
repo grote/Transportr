@@ -29,10 +29,12 @@ import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
+import de.schildbach.pte.dto.SuggestLocationsResult;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,8 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 	private boolean home = false;
 	private boolean gps = false;
 	private FavLocation.LOC_TYPE sort = FavLocation.LOC_TYPE.FROM;
+
+	private static final String TAG = LocationAdapter.class.toString();
 
 	public LocationAdapter(Context context) {
 		super(context, R.layout.location_item);
@@ -96,7 +100,9 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 					if(constraint.length() > 2) {
 						try {
 							// get locations from network provider
-							resultList = np.suggestLocations(constraint.toString()).getLocations();
+							SuggestLocationsResult result = np.suggestLocations(constraint.toString());
+							resultList = result.getLocations();
+//							Log.d(TAG, resultList.toString());
 						} catch(Exception e) {
 							e.printStackTrace();
 						}
