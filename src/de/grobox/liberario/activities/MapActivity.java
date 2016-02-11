@@ -230,6 +230,7 @@ public class MapActivity extends TransportrActivity {
 	private void showTrip(Trip trip) {
 		// draw leg path first, so it is always at the bottom
 		int width = getResources().getDisplayMetrics().densityDpi / 32;
+		boolean havePolyLine = false;
 		for(Trip.Leg leg : trip.legs) {
 			// draw leg path first, so it is always at the bottom
 			if(leg.path != null) {
@@ -249,6 +250,7 @@ public class MapActivity extends TransportrActivity {
 					polyline.setTitle(getString(R.string.walk));
 				}
 				mMapView.getOverlays().add(polyline);
+				havePolyLine = true;
 			}
 		}
 
@@ -299,6 +301,11 @@ public class MapActivity extends TransportrActivity {
 			}
 
 			i += 1;
+		}
+		// turn off hardware rendering to work around this issue:
+		// https://github.com/MKergall/osmbonuspack/issues/168
+		if(havePolyLine) {
+			mMapView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 		}
 	}
 
