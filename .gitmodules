@@ -2,7 +2,3 @@
 	path = sublibs/public-transport-enabler
 	url = https://github.com/schildbach/public-transport-enabler.git
 	ignore = dirty
-[submodule "sublibs/OSMBonusPack"]
-	path = sublibs/OSMBonusPack
-	url = https://github.com/MKergall/osmbonuspack.git
-	ignore = dirty

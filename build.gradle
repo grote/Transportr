@@ -3,56 +3,73 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
+//		classpath 'com.android.tools.build:gradle:2.0.0-beta2'
 		classpath 'com.android.tools.build:gradle:1.5.0'
+		classpath files('libs/gradle-witness.jar')
 	}
-}
-
-repositories {
-	jcenter()
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'witness'
 
 dependencies {
-	compile 'com.android.support:appcompat-v7:23.1.1'
-	compile 'com.android.support:design:23.1.1'
-	compile 'com.android.support:cardview-v7:23.1.1'
-	compile 'com.android.support:recyclerview-v7:23.1.1'
-	compile 'com.android.support:preference-v14:23.1.1'
+	def supportVersion = '23.1.1'
+	compile "com.android.support:support-v4:$supportVersion"
+	compile "com.android.support:appcompat-v7:$supportVersion"
+	compile "com.android.support:design:$supportVersion"
+	compile "com.android.support:cardview-v7:$supportVersion"
+	compile "com.android.support:recyclerview-v7:$supportVersion"
+	compile "com.android.support:preference-v14:$supportVersion"
 
-	compile 'com.github.orangegangsters:swipy:1.2.1'
+	compile 'com.github.orangegangsters:swipy:1.2.2'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	compile 'org.apmem.tools:layouts:1.10'
-	compile('com.mikepenz:materialdrawer:4.5.6') {
-		transitive = true
-	}
-	compile('com.mikepenz:aboutlibraries:5.3.3') {
-		transitive = true
-	}
-	compile project(':sublibs:OSMBonusPack:OSMBonusPack')
+	compile 'com.mikepenz:materialdrawer:4.6.4'
+	compile 'com.mikepenz:aboutlibraries:5.5.1'
+	compile 'com.github.MKergall.osmbonuspack:OSMBonusPack:v5.7'
+
 	compile project(':sublibs:public-transport-enabler:enabler')
+	debugCompile 'org.slf4j:slf4j-api:1.7.14'
+	debugCompile 'com.github.tony19:logback-android-classic:1.1.1-4'
+	debugCompile 'com.github.tony19:logback-android-core:1.1.1-4'
 }
 
-project(':sublibs:public-transport-enabler:enabler') {
-	repositories {
-		jcenter()
-	}
+dependencyVerification {
+	verify = [
+			'com.android.support:support-v4:5c7dceb6c824089fe80f502e5206264048ef8bffa4e8ddeab180b81723e79b7f',
+			'com.android.support:appcompat-v7:0a8762214382b7e8d4b989b4ac10b5c846b957d767ccb7bccbc6be5afa885a82',
+			'com.android.support:design:41a9cd75ca78f25df5f573db7cedf8bb66beae00c330943923ba9f3e2051736d',
+			'com.android.support:cardview-v7:5a5bc04a278662bfafdea5b11b2108a4b354dca6c68958b312f6f45cc5fe2e38',
+			'com.android.support:recyclerview-v7:7606373da0931a1e62588335465a0e390cd676c98117edab29220317495faefd',
+			'com.android.support:preference-v14:a69906c2b29b315ac3c1fdf01537a7557660a65b8ea1cf891baa8665e1197459',
+			'com.github.orangegangsters:swipy:ce01ea72347087ad60fcaefe88c6cf88b23b23916cd4abd676f8dc168c0bae87',
+			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
+			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
+			'com.mikepenz:materialdrawer:47cfc89ce7e06fc3c4d90f9f119e70549352c7346a336cee2ed8205e788ff986',
+			'com.mikepenz:aboutlibraries:1f824e8d5fb71b27a43c1cda6956838ecc133beaf97fb13b3e37cb0e53bc2044',
+			'com.github.MKergall.osmbonuspack:OSMBonusPack:1d8a5ad2785a45ca15bb468a354bccaac8880db06630cc37b7e102d3857ae206',
+			'com.android.support:support-annotations:f347a35b9748a4103b39a6714a77e2100f488d623fd6268e259c177b200e9d82',
+			'com.android.support:preference-v7:4b6dabaa4400cbed885c7edc885aa6372468f48d628cc0d4a04b9ccd128ed324',
+			'com.mikepenz:materialize:2457dbe0b874a422c0a21bc6716cf5af1d5a8d39387857ff7c20855ab5543bf8',
+			'com.mikepenz:fastadapter:9f9ad027052febd3faa8b5f6aa35a6a8f11f24fdf83fede89c89e3e23a7a2ad4',
+			'org.apache.commons:commons-lang3:6b81d10754dadf184d386011486e6509c2cc0c3d33565ced4fb4402b9413d47d',
+			'com.google.code.gson:gson:a35abbcf689eb3d60a2959e83a624831658b023220cd2edb66350993ebfdc025',
+			'com.squareup.okhttp:okhttp:a0e0e67ea9c111abd8e037469630f748badf04eb79d04c019a7b0459fd792b92',
+			'org.osmdroid:osmdroid-android:abd15a0295b68b81d9f72586583e21c063d750ddc0799336d17762555e1e67f2',
+			'com.google.guava:guava:d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99',
+			'org.slf4j:slf4j-api:0aee9a77a4940d72932b0d0d9557793f872e66a03f598e473f45e7efecdccf99',
+			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
+			'org.json:json:055be110a570f9cda3eba8d70a006ff46c77a048bc67868524879211c48b330a',
+			'net.sf.kxml:kxml2:f264dd9f79a1fde10ce5ecc53221eff24be4c9331c830b7d52f2f08a7b633de2',
+			'com.squareup.okio:okio:114bdc1f47338a68bcbc95abf2f5cdc72beeec91812f2fcd7b521c1937876266',
+			'com.mikepenz:iconics-core:0e2237181d07478181ddae4083976bf211f591bb4b514cb51d6b4d328a90d35c',
+	]
 }
 
-project(':sublibs:OSMBonusPack:OSMBonusPack') {
+allprojects {
 	repositories {
 		jcenter()
-	}
-	buildscript.repositories {
-		jcenter()
-	}
-	buildscript.dependencies {
-		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
-	}
-	android {
-		lintOptions {
-			abortOnError false
-		}
+//		maven { url "https://jitpack.io" }
 	}
 }
 
@@ -63,7 +80,7 @@ android {
 
 		compileSdkVersion 23
 		targetSdkVersion 23
-		buildToolsVersion "23.0.1"
+		buildToolsVersion "23.0.2"
 		minSdkVersion 14
 	}
 
