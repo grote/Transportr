@@ -21,7 +21,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -50,7 +49,7 @@ import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.activities.MapStationsActivity;
+import de.grobox.liberario.activities.MapActivity;
 import de.grobox.liberario.data.RecentsDB;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
@@ -364,9 +363,12 @@ public class TransportrUtils {
 
 	static public void showLocationsOnMap(Context context, ArrayList<Location> loc_list, Location my_loc) {
 		// show station on internal map
-		Intent intent = new Intent(context, MapStationsActivity.class);
-		intent.putExtra("List<de.schildbach.pte.dto.Location>", loc_list);
-		if(my_loc != null) intent.putExtra("de.schildbach.pte.dto.Location", my_loc);
+		Intent intent = new Intent(context, MapActivity.class);
+		intent.setAction(MapActivity.SHOW_LOCATIONS);
+		intent.putExtra(MapActivity.LOCATIONS, loc_list);
+		if(my_loc != null) {
+			intent.putExtra(MapActivity.LOCATION, my_loc);
+		}
 		context.startActivity(intent);
 	}
 
@@ -383,6 +385,13 @@ public class TransportrUtils {
 
 	static public void showLocationOnMap(Context context, Location loc) {
 		showLocationOnMap(context, loc, null);
+	}
+
+	static public void showTripOnMap(Context context, Trip trip) {
+		Intent intent = new Intent(context, MapActivity.class);
+		intent.setAction(MapActivity.SHOW_TRIP);
+		intent.putExtra(MapActivity.TRIP, trip);
+		context.startActivity(intent);
 	}
 
 	static public void startGeoIntent(Context context, Location loc) {

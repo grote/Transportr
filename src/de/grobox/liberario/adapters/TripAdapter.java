@@ -156,6 +156,15 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		// Show Trip Duration
 		ui.duration.setText(DateUtils.getDuration(trip.trip.getDuration()));
 
+		// Show Trip on Map
+		ui.map.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.map.getDrawable()));
+		ui.map.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				TransportrUtils.showTripOnMap(context, trip.trip);
+			}
+		});
+
 		// Share Trip
 		ui.share.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.share.getDrawable()));
 		ui.share.setOnClickListener(new View.OnClickListener() {
@@ -516,6 +525,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		public FlowLayout lines;
 		public TextView changes;
 		public TextView duration;
+		public ImageView map;
 		public ImageView share;
 		public ImageView calendar;
 		public ImageView expand;
@@ -524,6 +534,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			super(v, size - 1);
 
 			firstLeg = (TableLayout) v.findViewById(R.id.firstLegView);
+			map = (ImageView) v.findViewById(R.id.mapView);
 			share = (ImageView) v.findViewById(R.id.shareView);
 			calendar = (ImageView) v.findViewById(R.id.calendarView);
 			expand = (ImageView) v.findViewById(R.id.expandView);

@@ -44,7 +44,7 @@ import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.activities.MapStationsActivity;
+import de.grobox.liberario.activities.MapActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.StationAdapter;
 import de.grobox.liberario.data.RecentsDB;
@@ -191,10 +191,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 				}
 
 				// show stations on map
-				Intent intent = new Intent(getActivity(), MapStationsActivity.class);
-				intent.putExtra("List<de.schildbach.pte.dto.Location>", stations);
-				intent.putExtra("de.schildbach.pte.dto.Location", stationAdapter.getStart());
-				startActivity(intent);
+				TransportrUtils.showLocationsOnMap(getContext(), stations, stationAdapter.getStart());
 
 				return true;
 			default:

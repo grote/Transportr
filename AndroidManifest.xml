@@ -65,7 +65,7 @@
             android:theme="@style/DialogTheme.Light" />
 
         <activity
-            android:name=".activities.MapStationsActivity" />
+            android:name=".activities.MapActivity" />
 
     </application>
 

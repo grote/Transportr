@@ -20,6 +20,9 @@ package de.grobox.liberario.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -41,6 +44,7 @@ import android.widget.Toast;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.InfoWindow;
 import org.osmdroid.bonuspack.overlays.Marker;
+import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
@@ -54,16 +58,30 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Product;
+import de.schildbach.pte.dto.Stop;
+import de.schildbach.pte.dto.Trip;
 
-public class MapStationsActivity extends TransportrActivity {
+public class MapActivity extends TransportrActivity {
 	private MapView mMapView;
-	Menu mMenu;
+	private Menu mMenu;
+	private List<GeoPoint> points = new ArrayList<>();
 	private GpsMyLocationProvider mLocProvider;
 	private MyLocationNewOverlay mMyLocationOverlay;
 	private boolean mGps;
 	private TransportNetwork network;
+
+	public final static String SHOW_LOCATIONS = "de.grobox.liberario.MapActivity.SHOW_LOCATIONS";
+	public final static String SHOW_TRIP = "de.grobox.liberario.MapActivity.SHOW_TRIP";
+
+	public final static String LOCATION = "de.schildbach.pte.dto.Location";
+	public final static String LOCATIONS = "List<de.schildbach.pte.dto.Location>";
+	public final static String TRIP = "de.schildbach.pte.dto.Trip";
+
+	private enum MarkerType { BEGIN, CHANGE, STOP, END, WALK }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -170,37 +188,182 @@ public class MapStationsActivity extends TransportrActivity {
 		((LinearLayout) findViewById(R.id.root)).addView(mMapView);
 
 		Intent intent = getIntent();
-		List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra("List<de.schildbach.pte.dto.Location>");
-		Location myLoc = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
-
-		int minLat = Integer.MAX_VALUE;
-		int maxLat = Integer.MIN_VALUE;
-		int minLon = Integer.MAX_VALUE;
-		int maxLon = Integer.MIN_VALUE;
-
-		int count = 0;
-
-		// find location area and mark locations on map
-		for(Location loc : locations) {
-			if(loc.hasLocation()){
-				maxLat = Math.max(loc.lat, maxLat);
-				minLat = Math.min(loc.lat, minLat);
-				maxLon = Math.max(loc.lon, maxLon);
-				minLon = Math.min(loc.lon, minLon);
-
-				count += 1;
-
-				markLocation(loc);
+		if(intent != null) {
+			String action = intent.getAction();
+			if(action != null) {
+				if(action.equals(SHOW_LOCATIONS)) {
+					List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra("List<de.schildbach.pte.dto.Location>");
+					Location myLoc = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
+					showLocations(locations, myLoc);
+				} else if(action.equals(SHOW_TRIP)) {
+					Trip trip = (Trip) intent.getSerializableExtra(TRIP);
+					showTrip(trip);
+				}
 			}
 		}
 
-		// include my location in center calculation if available
-		if(myLoc != null) {
-			maxLat = Math.max(myLoc.lat, maxLat);
-			minLat = Math.min(myLoc.lat, minLat);
-			maxLon = Math.max(myLoc.lon, maxLon);
-			minLon = Math.min(myLoc.lon, minLon);
-			count += 1;
+		setViewSpan();
+	}
+
+	private void showLocations(List<Location> locations, Location myLocation) {
+		// mark locations on map
+		for(Location loc : locations) {
+			if(loc.hasLocation()){
+				markLocation(loc, getResources().getDrawable(R.drawable.ic_marker_station));
+			}
+		}
+
+		// include my location in view span calculation if available
+		if(myLocation != null) {
+			points.add(new GeoPoint(myLocation.getLatAsDouble(), myLocation.getLonAsDouble()));
+		}
+
+		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+			setupGPS(myLocation);
+		}
+	}
+
+	private void showTrip(Trip trip) {
+		// draw leg path first, so it is always at the bottom
+		int width = getResources().getDisplayMetrics().densityDpi / 32;
+		for(Trip.Leg leg : trip.legs) {
+			// draw leg path first, so it is always at the bottom
+			if(leg.path != null) {
+				Polyline polyline = new Polyline(this);
+				List<GeoPoint> geoPoints = new ArrayList<>(leg.path.size());
+				for(Point point : leg.path) {
+					geoPoints.add(new GeoPoint(point.getLatAsDouble(), point.getLonAsDouble()));
+				}
+				polyline.setPoints(geoPoints);
+				polyline.setWidth(width);
+				if(leg instanceof Trip.Public) {
+					Line line = ((Trip.Public) leg).line;
+					polyline.setColor(getBackgroundColor(MarkerType.CHANGE, line));
+					if(line != null) polyline.setTitle(line.id);
+				} else {
+					polyline.setColor(getBackgroundColor(MarkerType.WALK, null));
+					polyline.setTitle(getString(R.string.walk));
+				}
+				mMapView.getOverlays().add(polyline);
+			}
+		}
+
+		// Now draw intermediate stops on top of path
+		for(Trip.Leg leg : trip.legs) {
+			if (leg instanceof Trip.Public) {
+				Trip.Public public_leg = (Trip.Public) leg;
+
+				if(public_leg.intermediateStops != null) {
+					Drawable stop_drawable = getMarkerDrawable(MarkerType.STOP, public_leg.line);
+					for(Stop stop : public_leg.intermediateStops) {
+						if(stop.location != null) {
+							markLocation(stop.location, stop_drawable);
+						}
+					}
+				}
+			}
+		}
+
+		// At last, draw the beginning, the end and the changing stations
+		int i = 1;
+		for(Trip.Leg leg : trip.legs) {
+			// Draw public transportation stations
+			if (leg instanceof Trip.Public) {
+				Trip.Public public_leg = (Trip.Public) leg;
+
+				// Draw first station or change station
+				if(i == 1 || (i == 2 && trip.legs.get(0) instanceof Trip.Individual)) {
+					markLocation(leg.departure, getMarkerDrawable(MarkerType.BEGIN, public_leg.line));
+				} else {
+					markLocation(leg.departure, getMarkerDrawable(MarkerType.CHANGE, public_leg.line));
+				}
+
+				// Draw final station only at the end or if end is walking
+				if(i == trip.legs.size() || (i == trip.legs.size()-1 && trip.legs.get(i) instanceof Trip.Individual)) {
+					markLocation(leg.arrival, getMarkerDrawable(MarkerType.END, public_leg.line));
+				}
+			}
+			// Walking
+			else if(leg instanceof Trip.Individual) {
+				if(i != trip.legs.size() || trip.legs.size() == 1) {
+					markLocation(leg.departure, getMarkerDrawable(MarkerType.WALK, null));
+				}
+				// draw walking icon for arrival only at the end of the trip
+				if(i == trip.legs.size()) {
+					markLocation(leg.arrival, getMarkerDrawable(MarkerType.WALK, null));
+				}
+			}
+
+			i += 1;
+		}
+	}
+
+	private Drawable getMarkerDrawable(MarkerType type, Line line) {
+		// Get colors
+		int bg = getBackgroundColor(type, line);
+		int fg = getForegroundColor(type, line);
+
+		// Get Drawable
+		int res;
+		if(type == MarkerType.BEGIN) {
+			res = R.drawable.ic_marker_trip_begin;
+		} else if(type == MarkerType.CHANGE) {
+			res = R.drawable.ic_marker_trip_change;
+		} else if(type == MarkerType.END) {
+			res = R.drawable.ic_marker_trip_end;
+		} else if(type == MarkerType.WALK) {
+			res = R.drawable.ic_marker_trip_walk;
+		} else {
+			res = R.drawable.ic_marker_intermediate_stop;
+		}
+		LayerDrawable drawable = (LayerDrawable) getResources().getDrawable(res);
+		if(drawable != null) {
+			drawable.getDrawable(0).mutate().setColorFilter(bg, PorterDuff.Mode.MULTIPLY);
+			drawable.getDrawable(1).mutate().setColorFilter(fg, PorterDuff.Mode.SRC_IN);
+		}
+
+		return drawable;
+	}
+
+	private int getBackgroundColor(MarkerType type, Line line) {
+		int bg;
+		if(type != MarkerType.WALK) {
+			if(line != null && line.style != null && line.style.backgroundColor != 0) {
+				bg = line.style.backgroundColor;
+			} else {
+				bg = getResources().getColor(R.color.accent);
+			}
+		} else {
+			bg = getResources().getColor(R.color.walking);
+		}
+		return bg;
+	}
+
+	private int getForegroundColor(MarkerType type, Line line) {
+		int fg;
+		if(type != MarkerType.WALK) {
+			if(line != null && line.style != null && line.style.foregroundColor != 0) {
+				fg = line.style.foregroundColor;
+			} else {
+				fg = getResources().getColor(android.R.color.white);
+			}
+		} else {
+			fg = getResources().getColor(android.R.color.black);
+		}
+		return fg;
+	}
+
+	private void setViewSpan() {
+		int maxLat = Integer.MIN_VALUE;
+		int minLat = Integer.MAX_VALUE;
+		int maxLon = Integer.MIN_VALUE;
+		int minLon = Integer.MAX_VALUE;
+
+		for(GeoPoint point : points) {
+			maxLat = Math.max(point.getLatitudeE6(), maxLat);
+			minLat = Math.min(point.getLatitudeE6(), minLat);
+			maxLon = Math.max(point.getLongitudeE6(), maxLon);
+			minLon = Math.min(point.getLongitudeE6(), minLon);
 		}
 
 		final GeoPoint center = new GeoPoint( (maxLat + minLat)/2, (maxLon + minLon)/2 );
@@ -208,12 +371,8 @@ public class MapStationsActivity extends TransportrActivity {
 		IMapController mapController = mMapView.getController();
 		mapController.setCenter(center);
 		mapController.setZoom(18);
-		if(count > 1) {
+		if(points.size() > 1) {
 			mapController.zoomToSpan(maxLat - minLat, maxLon - minLon);
-		}
-
-		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-			setupGPS(myLoc);
 		}
 	}
 
@@ -243,13 +402,14 @@ public class MapStationsActivity extends TransportrActivity {
 		mLocProvider.stopLocationProvider();
 	}
 
-	private void markLocation(Location loc) {
-		GeoPoint pos = new GeoPoint(loc.lat / 1E6, loc.lon / 1E6);
+	private void markLocation(Location loc, Drawable drawable) {
+		GeoPoint pos = new GeoPoint(loc.getLatAsDouble(), loc.getLonAsDouble());
 
 		Log.d(getClass().getSimpleName(), "Mark location: " + loc.toString());
 
+		points.add(pos);
 		Marker marker = new Marker(mMapView);
-		marker.setIcon(getResources().getDrawable(R.drawable.ic_marker_station));
+		marker.setIcon(drawable);
 		marker.setPosition(pos);
 		marker.setTitle(loc.uniqueShortName());
 		marker.setInfoWindow(new StationInfoWindow(mMapView));
@@ -328,7 +488,7 @@ public class MapStationsActivity extends TransportrActivity {
 				fromHere.setOnClickListener(new View.OnClickListener() {
 					                            @Override
 					                            public void onClick(View v) {
-						                            TransportrUtils.presetDirections(MapStationsActivity.this, loc, null);
+						                            TransportrUtils.presetDirections(MapActivity.this, loc, null);
 					                            }
 				                            }
 				);
@@ -337,7 +497,7 @@ public class MapStationsActivity extends TransportrActivity {
 				toHere.setOnClickListener(new View.OnClickListener() {
 					                          @Override
 					                          public void onClick(View v) {
-						                          TransportrUtils.presetDirections(MapStationsActivity.this, null, loc);
+						                          TransportrUtils.presetDirections(MapActivity.this, null, loc);
 					                          }
 				                          }
 				);
@@ -352,7 +512,7 @@ public class MapStationsActivity extends TransportrActivity {
 				departures.setOnClickListener(new View.OnClickListener() {
 					                              @Override
 					                              public void onClick(View v) {
-						                              TransportrUtils.findDepartures(MapStationsActivity.this, loc);
+						                              TransportrUtils.findDepartures(MapActivity.this, loc);
 					                              }
 				                              }
 				);
@@ -366,7 +526,7 @@ public class MapStationsActivity extends TransportrActivity {
 				nearbyStations.setOnClickListener(new View.OnClickListener() {
 					                                  @Override
 					                                  public void onClick(View v) {
-						                                  TransportrUtils.findNearbyStations(MapStationsActivity.this, loc);
+						                                  TransportrUtils.findNearbyStations(MapActivity.this, loc);
 					                                  }
 				                                  }
 				);

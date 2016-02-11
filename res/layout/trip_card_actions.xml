@@ -7,6 +7,15 @@
     android:background="@color/ripple_material_dark">
 
     <ImageView
+        android:id="@+id/mapView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_location_map"
+        android:background="?attr/actionBarItemBackground"
+        android:padding="8dp"
+        android:contentDescription="@string/action_show_on_map"/>
+
+    <ImageView
         android:id="@+id/shareView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

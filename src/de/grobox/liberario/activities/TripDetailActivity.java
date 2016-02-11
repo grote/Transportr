@@ -105,6 +105,10 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 				reload();
 
 				return true;
+			case R.id.action_show_on_map:
+				TransportrUtils.showTripOnMap(this, trip);
+
+				return true;
 			case R.id.action_share:
 				TransportrUtils.share(this, trip);
 

@@ -9,6 +9,12 @@
         android:title="@string/action_refresh"/>
 
     <item
+        android:id="@+id/action_show_on_map"
+        android:icon="@drawable/ic_action_location_map"
+        de.grobox.liberario:showAsAction="ifRoom"
+        android:title="@string/action_show_on_map"/>
+
+    <item
         android:id="@+id/action_share"
         android:icon="@drawable/ic_action_social_share"
         de.grobox.liberario:showAsAction="ifRoom"

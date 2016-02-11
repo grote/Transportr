@@ -12,6 +12,7 @@
     <color name="holo_gray_bright">#33CCCCCC</color>
     <color name="holo_gray_light">#33999999</color>
     <color name="holo_gray_dark">#33666666</color>
+    <color name="walking">#ffea00</color>
 
     <!-- material theme colors -->
     <color name="primary">#f44336</color>
