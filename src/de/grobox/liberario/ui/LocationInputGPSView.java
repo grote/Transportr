@@ -174,13 +174,8 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 			int lat = (int) Math.round(location.getLatitude() * 1E6);
 			int lon = (int) Math.round(location.getLongitude() * 1E6);
 
-			String lat_str = String.valueOf(location.getLatitude());
-			if(lat_str.length() > 9) lat_str = lat_str.substring(0, 8);
-			String lon_str = String.valueOf(location.getLongitude());
-			if(lon_str.length() > 9) lon_str = lon_str.substring(0, 8);
-
 			// create location based on GPS coordinates
-			gps_location = new Location(LocationType.ADDRESS, null, lat, lon, "GPS", lat_str + "/" + lon_str);
+			gps_location = Location.coord(lat, lon);
 
 			onLocationChanged(gps_location);
 		}

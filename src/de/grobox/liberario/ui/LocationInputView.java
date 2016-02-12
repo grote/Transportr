@@ -126,9 +126,9 @@ public class LocationInputView {
 				if(loc != null) {
 					// set text
 					if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-						ui.location.setText(loc.uniqueShortName(), false);
+						ui.location.setText(TransportrUtils.getLocName(loc), false);
 					} else {
-						ui.location.setText(loc.uniqueShortName());
+						ui.location.setText(TransportrUtils.getLocName(loc));
 						ui.location.cancelFiltering();
 					}
 					ui.clear.setVisibility(View.VISIBLE);

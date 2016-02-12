@@ -202,9 +202,12 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		marker.setTitle(getString(R.string.location)+ ": " + loc_str);
 		marker.setInfoWindow(new StationInfoWindow(map));
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
-		marker.setRelatedObject(new Location(LocationType.POI, null, p.getLatitudeE6(), p.getLongitudeE6(), "GPS", loc_str));
+		marker.setRelatedObject(Location.coord(p.getLatitudeE6(), p.getLongitudeE6()));
 		map.getOverlays().add(marker);
 		marker.showInfoWindow();
+
+		// center map smoothly where clicked
+		map.getController().animateTo(p);
 
 		return true;
 	}
@@ -520,7 +523,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			if(loc.products != null && loc.products.size() > 0) {
 				for(Product product : loc.products) {
 					ImageView image = new ImageView(productsView.getContext());
-					image.setImageDrawable(TransportrUtils.getTintedDrawable(productsView.getContext(), TransportrUtils.getDrawableForProduct(product)));
+					image.setImageDrawable(TransportrUtils.getTintedDrawable(productsView.getContext(), false, TransportrUtils.getDrawableForProduct(product)));
 					productsView.addView(image);
 				}
 			}
@@ -529,6 +532,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			TextView toHere = ((TextView) mView.findViewById(R.id.toHere));
 			if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS)) {
 				// From Here
+				fromHere.setCompoundDrawables(TransportrUtils.getTintedDrawable(fromHere.getContext(), false, fromHere.getCompoundDrawables()[0].mutate()), null, null, null);
 				fromHere.setOnClickListener(new View.OnClickListener() {
 					                            @Override
 					                            public void onClick(View v) {
@@ -538,6 +542,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				);
 
 				// To Here
+				toHere.setCompoundDrawables(fromHere.getCompoundDrawables()[0], null, null, null);
 				toHere.setOnClickListener(new View.OnClickListener() {
 					                          @Override
 					                          public void onClick(View v) {
@@ -553,6 +558,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			// Departures
 			TextView departures = ((TextView) mView.findViewById(R.id.departures));
 			if(loc.hasId() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
+				departures.setCompoundDrawables(TransportrUtils.getTintedDrawable(departures.getContext(), false, departures.getCompoundDrawables()[0].mutate()), null, null, null);
 				departures.setOnClickListener(new View.OnClickListener() {
 					                              @Override
 					                              public void onClick(View v) {
@@ -567,6 +573,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			// Nearby Stations
 			TextView nearbyStations = ((TextView) mView.findViewById(R.id.nearbyStations));
 			if(loc.hasLocation() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
+				nearbyStations.setCompoundDrawables(TransportrUtils.getTintedDrawable(nearbyStations.getContext(), false, nearbyStations.getCompoundDrawables()[0].mutate()), null, null, null);
 				nearbyStations.setOnClickListener(new View.OnClickListener() {
 					                                  @Override
 					                                  public void onClick(View v) {

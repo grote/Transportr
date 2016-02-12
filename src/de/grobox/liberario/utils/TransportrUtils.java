@@ -463,22 +463,37 @@ public class TransportrUtils {
 	static public String getLocName(Location l) {
 		if(l == null) {
 			return "";
-		}
-		else if(l.hasName()) {
+		} else if(l.hasName()) {
 			return l.place == null ? l.uniqueShortName() : l.name + ", " + l.place;
+		} else if(l.type.equals(LocationType.COORD)) {
+			return String.valueOf(l.getLatAsDouble()).substring(0, 8) + "/" + String.valueOf(l.getLonAsDouble()).substring(0, 8);
 		} else {
 			return l.uniqueShortName();
 		}
 	}
 
-	static public Drawable getTintedDrawable(Context context, Drawable drawable) {
-		if(Preferences.darkThemeEnabled(context)) {
+	static public Drawable getTintedDrawable(Context context, boolean dark, Drawable drawable) {
+		if(dark) {
 			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
 		}
 		else {
 			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintLight), PorterDuff.Mode.SRC_IN);
 		}
 		return drawable;
+	}
+
+	static public Drawable getTintedDrawable(Context context, Drawable drawable) {
+		if(Preferences.darkThemeEnabled(context)) {
+			return getTintedDrawable(context, true, drawable);
+		}
+		else {
+			return getTintedDrawable(context, false, drawable);
+		}
+	}
+
+	static public Drawable getTintedDrawable(Context context, boolean dark, int res) {
+		//noinspection deprecation
+		return getTintedDrawable(context, dark, context.getResources().getDrawable(res));
 	}
 
 	static public Drawable getTintedDrawable(Context context, int res) {
@@ -532,6 +547,8 @@ public class TransportrUtils {
 				return getTintedDrawable(context, R.drawable.ic_action_about);
 			} else if(l.type.equals(LocationType.STATION)) {
 				return getTintedDrawable(context, R.drawable.ic_tab_stations);
+			} else if(l.type.equals(LocationType.COORD)) {
+				return getTintedDrawable(context, R.drawable.ic_gps);
 			} else {
 				return null;
 			}

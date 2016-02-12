@@ -505,8 +505,8 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 			}
 			return false;
 		}
-		// we have a location, so make it a favorite
-		else {
+		// we have a location, so make it a favorite (if it is not a coordinate)
+		else if(!loc.type.equals(LocationType.COORD)){
 			RecentsDB.updateFavLocation(getActivity(), loc, loc_view.getType());
 		}
 
