@@ -61,8 +61,7 @@
              android:label="@string/pick_network_activity" />
 
         <activity
-            android:name=".activities.SetHomeActivity"
-            android:excludeFromRecents="true" />
+            android:name=".activities.SetHomeActivity" />
 
         <activity
             android:name=".activities.MapActivity" />

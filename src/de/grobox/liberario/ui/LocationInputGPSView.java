@@ -127,7 +127,7 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		animation.setInterpolator(new LinearInterpolator());
 		animation.setRepeatCount(Animation.INFINITE);
 		animation.setRepeatMode(Animation.REVERSE);
-		ui.status.setAnimation(animation);
+		ui.status.startAnimation(animation);
 
 		ui.location.setHint(R.string.stations_searching_position);
 		ui.location.clearFocus();

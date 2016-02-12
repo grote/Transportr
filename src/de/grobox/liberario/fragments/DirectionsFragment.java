@@ -26,7 +26,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,7 +40,6 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -77,10 +75,10 @@ import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
-public class DirectionsFragment extends TransportrFragment implements AsyncQueryTripsTask.TripHandler {
+public class DirectionsFragment extends TransportrFragment implements TransportNetwork.HomeChangeInterface, AsyncQueryTripsTask.TripHandler {
 	private View mView;
 	private ViewHolder ui = new ViewHolder();
-	private FavLocation.LOC_TYPE mHomeClicked;
+	private FavLocation.LOC_TYPE mHomeClicked = null;
 	private AsyncQueryTripsTask mAfterGpsTask = null;
 	private Set<Product> mProducts = EnumSet.allOf(Product.class);
 	public ProgressDialog pd;
@@ -325,22 +323,21 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 	}
 
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// after new home location was selected, put it right into the input field
-		if(resultCode == AppCompatActivity.RESULT_OK && requestCode == MainActivity.CHANGED_HOME) {
-			if(mHomeClicked.equals(FavLocation.LOC_TYPE.FROM)) {
-				//noinspection deprecation
-				from.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
-			} else if(mHomeClicked.equals(FavLocation.LOC_TYPE.TO)) {
-				//noinspection deprecation
-				to.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
-			}
+	public void onHomeChanged() {
+		if(mHomeClicked == null) return;
+		if(mHomeClicked.equals(FavLocation.LOC_TYPE.FROM)) {
+			//noinspection deprecation
+			from.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
+		} else if(mHomeClicked.equals(FavLocation.LOC_TYPE.TO)) {
+			//noinspection deprecation
+			to.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 		}
+		mHomeClicked = null;
 	}
 
 	@Override
 	public void onTripRetrieved(QueryTripsResult result) {
-		if(result.status == QueryTripsResult.Status.OK && result.trips.size() > 0) {
+		if(result.status == QueryTripsResult.Status.OK && result.trips != null && result.trips.size() > 0) {
 			Log.d(getClass().getSimpleName(), result.toString());
 
 			Intent intent = new Intent(getContext(), TripsActivity.class);
@@ -472,15 +469,6 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		search();
 	}
 
-	private void startSetHome(boolean new_home, FavLocation.LOC_TYPE home_clicked) {
-		Intent intent = new Intent(getActivity(), SetHomeActivity.class);
-		intent.putExtra("new", new_home);
-
-		mHomeClicked = home_clicked;
-
-		startActivityForResult(intent, MainActivity.CHANGED_HOME);
-	}
-
 	public void refreshFavs() {
 		if(ui.from != null) ((LocationAdapter) ui.from.location.getAdapter()).resetList();
 		if(ui.to != null) ((LocationAdapter) ui.to.location.getAdapter()).resetList();
@@ -511,59 +499,6 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 
 		return true;
-	}
-
-	// TODO use method from LocationInputView and kill this
-	private void handleLocationItemClick(Location loc, FavLocation.LOC_TYPE type, View view) {
-		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
-
-		if(loc.id != null && loc.id.equals("Transportr.GPS")) {
-			from.activateGPS();
-			ui.to.location.requestFocus();
-		}
-		else {
-			// home location
-			if (loc.id != null && loc.id.equals("Transportr.HOME")) {
-				Location home = RecentsDB.getHome(getActivity());
-
-				if(home != null) {
-					if(type.equals(FavLocation.LOC_TYPE.FROM)) {
-						from.setLocation(home, icon);
-					} else if(type.equals(FavLocation.LOC_TYPE.TO)) {
-						to.setLocation(home, icon);
-					}
-				} else {
-					// prevent home.toString() from being shown in the TextView
-					if (type.equals(FavLocation.LOC_TYPE.FROM)) {
-						ui.from.location.setText("");
-					} else {
-						ui.to.location.setText("");
-					}
-					// show dialog to set home screen
-					startSetHome(true, type);
-				}
-			}
-			// locations from favorites or auto-complete
-			else {
-				if(type.equals(FavLocation.LOC_TYPE.FROM)) {
-					from.setLocation(loc, icon);
-				}  else if(type.equals(FavLocation.LOC_TYPE.TO)) {
-					to.setLocation(loc, icon);
-				}
-			}
-
-			// prepare to hide soft-keyboard
-			InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-
-			if(type.equals(FavLocation.LOC_TYPE.FROM)) {
-				// cancel GPS Button if different from location was clicked
-				from.deactivateGPS();
-				imm.hideSoftInputFromWindow(ui.from.location.getWindowToken(), 0);
-				ui.to.location.requestFocus();
-			} else {
-				imm.hideSoftInputFromWindow(ui.to.location.getWindowToken(), 0);
-			}
-		}
 	}
 
 	private void showMore(boolean animate) {
@@ -640,7 +575,6 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		intent.putExtra("de.schildbach.pte.dto.Trip.products", new ArrayList<>(mProducts));
 	}
 
-
 	class FromInputView extends LocationInputGPSView {
 		public FromInputView(Activity context, LocationInputViewHolder holder) {
 			super(context, holder, MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS);
@@ -652,8 +586,9 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 
 		@Override
-		public void onLocationItemClick(Location loc, View view) {
-			handleLocationItemClick(loc, FavLocation.LOC_TYPE.FROM, view);
+		public void selectHomeLocation() {
+			mHomeClicked = getType();
+			super.selectHomeLocation();
 		}
 
 		@Override
@@ -684,8 +619,9 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 
 		@Override
-		public void onLocationItemClick(Location loc, View view) {
-			handleLocationItemClick(loc, FavLocation.LOC_TYPE.TO, view);
+		public void selectHomeLocation() {
+			mHomeClicked = getType();
+			super.selectHomeLocation();
 		}
 	}
 

@@ -57,7 +57,7 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
-public class DeparturesFragment extends TransportrFragment {
+public class DeparturesFragment extends TransportrFragment implements TransportNetwork.HomeChangeInterface {
 	private View mView;
 	private ViewHolder ui;
 	private DepartureAdapter departureAdapter;
@@ -65,6 +65,7 @@ public class DeparturesFragment extends TransportrFragment {
 	private String stationId;
 	private Date date;
 	private boolean restart = false;
+	private boolean changingHome = false;
 
 	private static final int MAX_DEPARTURES = 12;
 	private static final int SAFETY_MARGIN = 6;
@@ -215,6 +216,15 @@ public class DeparturesFragment extends TransportrFragment {
 			}
 		} else {
 			restart = false;
+		}
+	}
+
+	@Override
+	public void onHomeChanged() {
+		if(changingHome) {
+			//noinspection deprecation
+			loc.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
+			changingHome = false;
 		}
 	}
 
@@ -388,7 +398,7 @@ public class DeparturesFragment extends TransportrFragment {
 		}
 	}
 
-	private static class DepartureInputView extends LocationInputView {
+	class DepartureInputView extends LocationInputView {
 
 		DeparturesFragment fragment;
 
@@ -400,11 +410,8 @@ public class DeparturesFragment extends TransportrFragment {
 
 		@Override
 		public void selectHomeLocation() {
-			// show dialog to set home screen
-			Intent intent = new Intent(fragment.getActivity(), SetHomeActivity.class);
-			intent.putExtra("new", true);
-
-			fragment.startActivityForResult(intent, MainActivity.CHANGED_HOME);
+			changingHome = true;
+			super.selectHomeLocation();
 		}
 
 	}

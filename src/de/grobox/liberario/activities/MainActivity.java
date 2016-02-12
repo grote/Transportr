@@ -64,7 +64,7 @@ import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 
-public class MainActivity extends TransportrActivity implements TransportNetwork.Handler {
+public class MainActivity extends TransportrActivity implements TransportNetwork.NetworkChangeInterface {
 	static final public int CHANGED_NETWORK_PROVIDER = 1;
 	static final public int CHANGED_HOME = 2;
 
@@ -326,8 +326,8 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 		// and can't get the result itself at the moment
 		if(requestCode == CHANGED_HOME && resultCode == RESULT_OK) {
 			for(Fragment fragment : getSupportFragmentManager().getFragments()) {
-				if(fragment instanceof PrefsFragment) {
-					fragment.onActivityResult(requestCode, resultCode, intent);
+				if(fragment instanceof TransportNetwork.HomeChangeInterface) {
+					((TransportNetwork.HomeChangeInterface) fragment).onHomeChanged();
 				}
 			}
 		}
@@ -348,8 +348,8 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 		// notify the others of change, so call this method for each fragment
 		if(getSupportFragmentManager().getFragments() != null) {
 			for(Fragment fragment : getSupportFragmentManager().getFragments()) {
-				if(fragment instanceof TransportNetwork.Handler) {
-					((TransportNetwork.Handler) fragment).onNetworkProviderChanged(network);
+				if(fragment instanceof TransportNetwork.NetworkChangeInterface) {
+					((TransportNetwork.NetworkChangeInterface) fragment).onNetworkProviderChanged(network);
 				}
 			}
 		}

@@ -29,16 +29,16 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
 
-import de.grobox.liberario.TransportNetwork;
-import de.grobox.liberario.activities.PickNetworkProviderActivity;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.activities.SetHomeActivity;
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
+import de.grobox.liberario.activities.PickNetworkProviderActivity;
+import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.data.RecentsDB;
 import de.schildbach.pte.dto.Location;
 
-public class PrefsFragment extends PreferenceFragmentCompat implements TransportNetwork.Handler, SharedPreferences.OnSharedPreferenceChangeListener {
+public class PrefsFragment extends PreferenceFragmentCompat implements TransportNetwork.NetworkChangeInterface, TransportNetwork.HomeChangeInterface, SharedPreferences.OnSharedPreferenceChangeListener {
 
 	Preference network_pref;
 	Preference home;
@@ -124,6 +124,11 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 		}
 	}
 
+	@Override
+	public void onHomeChanged() {
+		setHome();
+	}
+
 	private void setHome() {
 		Location home_loc = RecentsDB.getHome(getActivity());
 		if(home_loc != null) {
@@ -138,10 +143,6 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 
 		if(requestCode == MainActivity.CHANGED_NETWORK_PROVIDER && resultCode == Activity.RESULT_OK) {
 			((MainActivity) getActivity()).onNetworkProviderChanged(Preferences.getTransportNetwork(getActivity()));
-		}
-		else if(requestCode == MainActivity.CHANGED_HOME && resultCode == Activity.RESULT_OK) {
-			// set new home
-			setHome();
 		}
 	}
 

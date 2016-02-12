@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
+import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
@@ -216,9 +217,6 @@ public class LocationInputView {
 		if(size > 0) {
 			ui.location.showDropDown();
 		}
-		else {
-			Toast.makeText(context, context.getResources().getString(R.string.error_no_favs), Toast.LENGTH_SHORT).show();
-		}
 	}
 
 	public void handleTextChanged(CharSequence s) {
@@ -241,7 +239,7 @@ public class LocationInputView {
 		// show dialog to set home screen
 		Intent intent = new Intent(context, SetHomeActivity.class);
 		intent.putExtra("new", true);
-		context.startActivity(intent);
+		context.startActivityForResult(intent, MainActivity.CHANGED_HOME);
 	}
 
 	public static class LocationInputViewHolder {

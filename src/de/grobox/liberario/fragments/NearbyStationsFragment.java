@@ -56,11 +56,12 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
-public class NearbyStationsFragment extends TransportrFragment {
+public class NearbyStationsFragment extends TransportrFragment implements TransportNetwork.HomeChangeInterface {
 	private View mView;
 	private ViewHolder ui;
 	private NearbyStationsInputView loc;
 	private StationAdapter stationAdapter;
+	private boolean changingHome = false;
 
 	// TODO: allow user to specify location types
 	EnumSet<LocationType> types = EnumSet.of(LocationType.STATION);
@@ -209,6 +210,16 @@ public class NearbyStationsFragment extends TransportrFragment {
 		loc.setLocation(null, null);
 	}
 
+	@Override
+	public void onHomeChanged() {
+		if(changingHome) {
+			//noinspection deprecation
+			loc.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
+			changingHome = false;
+			search();
+		}
+	}
+
 	private void search() {
 		if(loc.getLocation() != null) {
 			// use location to query nearby stations
@@ -351,7 +362,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		}
 	}
 
-	private static class NearbyStationsInputView extends LocationInputGPSView {
+	class NearbyStationsInputView extends LocationInputGPSView {
 
 		NearbyStationsFragment fragment;
 
@@ -390,11 +401,8 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 		@Override
 		public void selectHomeLocation() {
-			// show dialog to set home screen
-			Intent intent = new Intent(fragment.getActivity(), SetHomeActivity.class);
-			intent.putExtra("new", true);
-
-			fragment.startActivityForResult(intent, MainActivity.CHANGED_HOME);
+			changingHome = true;
+			super.selectHomeLocation();
 		}
 
 	}

@@ -133,8 +133,12 @@ public class TransportNetwork {
 		return this;
 	}
 
-	public interface Handler {
+	public interface NetworkChangeInterface {
 		void onNetworkProviderChanged(TransportNetwork network);
+	}
+
+	public interface HomeChangeInterface {
+		void onHomeChanged();
 	}
 
 }
