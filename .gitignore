@@ -28,7 +28,3 @@ local.properties
 !.idea/codeStyleSettings.xml
 *.iml
 .gradle/
-gradle/
-manifest-merger-release-report.txt
-gradlew
-gradlew.bat
