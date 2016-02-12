@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.activities;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -41,8 +42,12 @@ public class TransportrActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 
 		// Use current language
-		String lang = Preferences.getLanguage(this);
-		if(!lang.equals(getString(R.string.pref_language_value_default))) {
+		useLanguage(this);
+	}
+
+	public static void useLanguage(Context context) {
+		String lang = Preferences.getLanguage(context);
+		if(!lang.equals(context.getString(R.string.pref_language_value_default))) {
 			Locale locale;
 			if(lang.contains("_")) {
 				String[] lang_array = lang.split("_");
@@ -53,12 +58,11 @@ public class TransportrActivity extends AppCompatActivity {
 			Locale.setDefault(locale);
 			Configuration config = new Configuration();
 			config.locale = locale;
-			getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+			context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
 		} else {
 			// use default language
-			getResources().updateConfiguration(Resources.getSystem().getConfiguration(), getResources().getDisplayMetrics());
+			context.getResources().updateConfiguration(Resources.getSystem().getConfiguration(), context.getResources().getDisplayMetrics());
 		}
-
 	}
 
 }
