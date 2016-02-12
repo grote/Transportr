@@ -174,6 +174,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 		ui.menu_map = menu.findItem(R.id.action_location_map);
 		ui.menu_map.setVisible(false);
+		TransportrUtils.fixToolbarIcon(getContext(), ui.menu_map);
 
 		super.onCreateOptionsMenu(menu, inflater);
 	}

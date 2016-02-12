@@ -87,8 +87,12 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trip_details, menu);
-
 		mMenu = menu;
+
+		TransportrUtils.fixToolbarIcon(this, menu.findItem(R.id.action_reload));
+		TransportrUtils.fixToolbarIcon(this, menu.findItem(R.id.action_show_on_map));
+		TransportrUtils.fixToolbarIcon(this, menu.findItem(R.id.action_share));
+		TransportrUtils.fixToolbarIcon(this, menu.findItem(R.id.action_calendar));
 
 		return true;
 	}

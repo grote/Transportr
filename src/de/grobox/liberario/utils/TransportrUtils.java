@@ -505,6 +505,7 @@ public class TransportrUtils {
 		if(drawable != null) {
 			//noinspection deprecation
 			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
+			drawable.mutate();
 		}
 		return drawable;
 	}
@@ -512,6 +513,10 @@ public class TransportrUtils {
 	static public Drawable getToolbarDrawable(Context context, int res) {
 		//noinspection deprecation
 		return getToolbarDrawable(context, context.getResources().getDrawable(res));
+	}
+
+	static public void fixToolbarIcon(Context context, MenuItem item) {
+		item.setIcon(getToolbarDrawable(context, item.getIcon()));
 	}
 
 	static public int getButtonIconColor(Context context, boolean on) {

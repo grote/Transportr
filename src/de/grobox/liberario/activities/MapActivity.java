@@ -157,9 +157,9 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 		if(locationProvider != null) {
 			if(gps) {
-				gpsItem.setIcon(R.drawable.ic_gps_off);
+				gpsItem.setIcon(TransportrUtils.getToolbarDrawable(this, R.drawable.ic_gps_off));
 			} else {
-				gpsItem.setIcon(R.drawable.ic_gps);
+				gpsItem.setIcon(TransportrUtils.getToolbarDrawable(this, R.drawable.ic_gps));
 			}
 		}
 

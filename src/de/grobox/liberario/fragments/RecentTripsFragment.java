@@ -103,11 +103,17 @@ public class RecentTripsFragment extends TransportrListFragment {
 		// in some cases getActivity() and getContext() can be null, so get it somewhere else
 		Context context = toolbar.getContext();
 
+		MenuItem sort = menu.findItem(R.id.action_recent_trips_sort);
+		MenuItem count = menu.findItem(R.id.action_recent_trips_sort_count);
+		MenuItem recent = menu.findItem(R.id.action_recent_trips_sort_recent);
+
 		if(Preferences.getPref(context, Preferences.SORT_RECENT_TRIPS_COUNT, false)) {
-			menu.findItem(R.id.action_recent_trips_sort_count).setChecked(true);
+			count.setChecked(true);
 		} else {
-			menu.findItem(R.id.action_recent_trips_sort_recent).setChecked(true);
+			recent.setChecked(true);
 		}
+
+		TransportrUtils.fixToolbarIcon(context, sort);
 
 		super.onCreateOptionsMenu(menu, inflater);
 	}

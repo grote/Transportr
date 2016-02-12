@@ -279,7 +279,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 
 		MenuItem swapItem = menu.findItem(R.id.action_swap_locations);
-		swapItem.setIcon(TransportrUtils.getToolbarDrawable(context, swapItem.getIcon()));
+		TransportrUtils.fixToolbarIcon(context, swapItem);
 
 		super.onCreateOptionsMenu(menu, inflater);
 	}
@@ -290,11 +290,11 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		switch (item.getItemId()) {
 			case R.id.action_navigation_expand:
 				if(ui.productsScrollView.getVisibility() == View.GONE) {
-					item.setIcon(R.drawable.ic_action_navigation_unfold_less);
+					item.setIcon(TransportrUtils.getToolbarDrawable(getContext(), R.drawable.ic_action_navigation_unfold_less));
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, true);
 					showMore(true);
 				} else {
-					item.setIcon(R.drawable.ic_action_navigation_unfold_more);
+					item.setIcon(TransportrUtils.getToolbarDrawable(getContext(), R.drawable.ic_action_navigation_unfold_more));
 					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false);
 					showLess(true);
 				}
