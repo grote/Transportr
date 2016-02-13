@@ -19,6 +19,7 @@ package de.grobox.liberario.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -137,6 +138,8 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 
 		if(loc != null && loc.getLocation() != null) {
 			outState.putSerializable("loc", loc.getLocation());
+		} else {
+			outState.putSerializable("loc_text", ui.station.location.getText().toString());
 		}
 
 		if(stationAdapter != null && stationAdapter.getItemCount() > 0) {
@@ -158,6 +161,10 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 			if(location != null) {
 				loc.setLocation(location, TransportrUtils.getDrawableForLocation(getContext(), location));
 				stationAdapter.setStart(location);
+			} else {
+				loc.blockOnTextChanged();
+				ui.station.location.setText(savedInstanceState.getString("loc_text"));
+				loc.unblockOnTextChanged();
 			}
 
 			ArrayList<Location> stations = (ArrayList<Location>) savedInstanceState.getSerializable("stations");
@@ -165,6 +172,9 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 				stationAdapter.addAll(stations);
 				ui.stations_area.setVisibility(View.VISIBLE);
 			}
+
+			// Important: Restart Loader, because it holds a reference to the old LocationInputView
+			loc.restartLoader();
 		}
 	}
 
@@ -207,6 +217,7 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 
 		stationAdapter.clear();
 		ui.stations_area.setVisibility(View.GONE);
+		loc.reset();
 		loc.setLocation(null, null);
 	}
 
@@ -367,7 +378,7 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 		NearbyStationsFragment fragment;
 
 		public NearbyStationsInputView(NearbyStationsFragment fragment, LocationInputViewHolder holder) {
-			super(fragment.getActivity(), holder, MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
+			super(getActivity(), holder, NEARBY_STATIONS, MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
 
 			this.fragment = fragment;
 		}

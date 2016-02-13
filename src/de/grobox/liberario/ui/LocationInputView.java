@@ -17,12 +17,15 @@
 
 package de.grobox.liberario.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -31,73 +34,76 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
+import java.util.List;
 
 import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.NetworkProviderFactory;
+import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
+import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.SuggestLocationsResult;
 
-public class LocationInputView {
-	public View.OnClickListener onClickListener;
+public class LocationInputView implements LoaderManager.LoaderCallbacks {
+
+	// define loader IDs
+	public final static int DIRECTIONS_FROM = 0;
+	public final static int DIRECTIONS_TO = 2;
+	public final static int DEPARTURES = 3;
+	public final static int NEARBY_STATIONS = 4;
+	public final static int SET_HOME = 5;
+
 	public LocationInputViewHolder ui;
 
-	protected Activity context;
-	protected LocationAdapter locAdapter;
+	protected FragmentActivity context;
 	protected Location loc;
 	protected String hint;
 
 	private boolean is_changing = false;
+	private int loaderId;
 	private FavLocation.LOC_TYPE type;
 
-	public LocationInputView(Activity context, LocationInputViewHolder ui) {
+	public LocationInputView(final FragmentActivity context, LocationInputViewHolder ui, int loaderId, boolean onlyIDs) {
 		this.context = context;
-		this.locAdapter = new LocationAdapter(context);
 		this.ui = ui;
+		this.loaderId = loaderId;
 
-		setLocationInputUI();
-	}
+		context.getSupportLoaderManager().initLoader(getLoaderId(), null, this);
 
-	public LocationInputView(Activity context, LocationInputViewHolder ui, boolean onlyIDs) {
-		this.context = context;
-		this.locAdapter = new LocationAdapter(context, onlyIDs);
-		this.ui = ui;
-
-		setLocationInputUI();
-	}
-
-	private void setLocationInputUI() {
-		ui.location.setAdapter(locAdapter);
-		ui.location.setLoadingIndicator(ui.progress);
+		ui.location.setAdapter(new LocationAdapter(context, onlyIDs));
 		ui.location.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				onLocationItemClick(locAdapter.getItem(position), view);
+				onLocationItemClick(getAdapter().getItem(position), view);
 			}
 		});
-
-		onClickListener = new View.OnClickListener() {
+		ui.location.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				LocationInputView.this.onClick();
 			}
-		};
-		ui.location.setOnClickListener(onClickListener);
+		});
 
-		ui.status.setOnClickListener(onClickListener);
+		ui.status.setOnClickListener(new View.OnClickListener() {
+			                             @Override
+			                             public void onClick(View v) {
+				                             getAdapter().setDefaultLocations(false);
+				                             LocationInputView.this.onClick();
+			                             }
+		                             });
 		ui.status.setImageDrawable(TransportrUtils.getTintedDrawable(context, R.drawable.ic_location));
 
-		// clear from text button
+		// clear text button
 		ui.clear.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ui.location.requestFocus();
-				clearLocation();
-				ui.clear.setVisibility(View.GONE);
+				clearLocationAndShowDropDown();
 			}
 		});
 		ui.clear.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.clear.getDrawable()));
@@ -117,6 +123,60 @@ public class LocationInputView {
 		});
 	}
 
+	@Override
+	public AsyncTaskLoader onCreateLoader(int id, Bundle args) {
+		AsyncTaskLoader loader = new AsyncTaskLoader<List<Location>>(context) {
+			@Override
+			public List<Location> loadInBackground() {
+				String search = getText();
+				if(search.length() < LocationAdapter.THRESHOLD) return null;
+
+				NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
+				try {
+					// get locations from network provider
+					SuggestLocationsResult result = np.suggestLocations(search);
+					return result.getLocations();
+				} catch(Exception e) {
+					e.printStackTrace();
+					return null;
+				}
+			}
+		};
+		loader.setUpdateThrottle(750);
+		return loader;
+	}
+
+	@Override
+	public void onLoadFinished(Loader loader, final Object data) {
+		ui.progress.setVisibility(View.GONE);
+		if(data == null) return;
+
+		getAdapter().swapSuggestedLocations((List<Location>) data, ui.location.getText().toString());
+	}
+
+	@Override
+	public void onLoaderReset(Loader loader) {
+		getAdapter().swapSuggestedLocations(null, null);
+		ui.progress.setVisibility(View.GONE);
+	}
+
+	public void restartLoader() {
+		context.getSupportLoaderManager().restartLoader(getLoaderId(), null, this);
+	}
+
+	private void onContentChanged() {
+		ui.progress.setVisibility(View.VISIBLE);
+		context.getSupportLoaderManager().getLoader(getLoaderId()).onContentChanged();
+	}
+
+	private int getLoaderId() {
+		return loaderId;
+	}
+
+	protected LocationAdapter getAdapter() {
+		return (LocationAdapter) ui.location.getAdapter();
+	}
+
 	public void setLocation(Location loc, Drawable icon, boolean setText) {
 		if(!is_changing) {
 			is_changing = true;
@@ -125,18 +185,12 @@ public class LocationInputView {
 
 			if(setText) {
 				if(loc != null) {
-					// set text
-					if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-						ui.location.setText(TransportrUtils.getLocName(loc), false);
-					} else {
-						ui.location.setText(TransportrUtils.getLocName(loc));
-						ui.location.cancelFiltering();
-					}
+					ui.location.setText(TransportrUtils.getLocName(loc));
 					ui.clear.setVisibility(View.VISIBLE);
+					ui.location.dismissDropDown();
 				} else {
 					ui.location.setText(null);
 				}
-				ui.location.dismissDropDown();
 			}
 
 			if(icon != null) {
@@ -158,8 +212,32 @@ public class LocationInputView {
 		return loc;
 	}
 
+	public String getText() {
+		if(ui.location != null) {
+			return ui.location.getText().toString();
+		} else {
+			return null;
+		}
+	}
+
 	public void clearLocation() {
 		setLocation(null, null);
+		if(getAdapter() != null) {
+			getAdapter().clearSearchTerm();
+		}
+	}
+
+	private void clearLocationAndShowDropDown() {
+		clearLocation();
+		ui.clear.setVisibility(View.GONE);
+		ui.location.requestFocus();
+		ui.location.showDropDown();
+	}
+
+	public void reset() {
+		if(getAdapter() != null) {
+			getAdapter().setDefaultLocations(true);
+		}
 	}
 
 	public void setType(FavLocation.LOC_TYPE type) {
@@ -167,16 +245,16 @@ public class LocationInputView {
 	}
 
 	public FavLocation.LOC_TYPE getType() {
-		locAdapter.setSort(type);
+		getAdapter().setSort(type);
 		return this.type;
 	}
 
 	public void setFavs(boolean activate) {
-		locAdapter.setFavs(activate);
+		getAdapter().setFavs(activate);
 	}
 
 	public void setHome(boolean activate) {
-		locAdapter.setHome(activate);
+		getAdapter().setHome(activate);
 	}
 
 	public void setHint(int hint) {
@@ -212,9 +290,10 @@ public class LocationInputView {
 	}
 
 	public void onClick() {
-		int size = locAdapter.addFavs();
-
-		if(size > 0) {
+		if(ui.location.getText().length() == 0) {
+			getAdapter().setDefaultLocations(false);
+		}
+		if(getAdapter().getCount() > 0) {
 			ui.location.showDropDown();
 		}
 	}
@@ -225,14 +304,23 @@ public class LocationInputView {
 		// show clear button
 		if(s.length() > 0) {
 			ui.clear.setVisibility(View.VISIBLE);
-			// clear location
+			// clear location tag
 			setLocation(null, null, false);
+
+			if(s.length() >= LocationAdapter.THRESHOLD) {
+				onContentChanged();
+			}
 		} else {
-			ui.clear.setVisibility(View.GONE);
-			clearLocation();
-			// clear drop-down list
-			locAdapter.resetList();
+			clearLocationAndShowDropDown();
 		}
+	}
+
+	public void blockOnTextChanged() {
+		is_changing = true;
+	}
+
+	public void unblockOnTextChanged() {
+		is_changing = false;
 	}
 
 	public void selectHomeLocation() {
@@ -244,13 +332,13 @@ public class LocationInputView {
 
 	public static class LocationInputViewHolder {
 		public ImageView status;
-		public DelayAutoCompleteTextView location;
+		public NoTextChangeAutoCompleteTextView location;
 		public ProgressBar progress;
 		public ImageButton clear;
 
 		public LocationInputViewHolder(View view) {
 			status = (ImageView) view.findViewById(R.id.statusButton);
-			location = (DelayAutoCompleteTextView) view.findViewById(R.id.location);
+			location = (NoTextChangeAutoCompleteTextView) view.findViewById(R.id.location);
 			clear = (ImageButton) view.findViewById(R.id.clearButton);
 			progress = (ProgressBar) view.findViewById(R.id.progress);
 		}

@@ -128,6 +128,8 @@ public class DeparturesFragment extends TransportrFragment implements TransportN
 
 		if(loc != null) {
 			outState.putSerializable("loc", loc.getLocation());
+		} else {
+			outState.putSerializable("loc_text", ui.station.location.getText().toString());
 		}
 
 		if(ui.time != null) {
@@ -154,6 +156,10 @@ public class DeparturesFragment extends TransportrFragment implements TransportN
 			if(from_loc != null) {
 				loc.setLocation(from_loc, TransportrUtils.getDrawableForLocation(getContext(), from_loc));
 				stationId = from_loc.id;
+			} else {
+				loc.blockOnTextChanged();
+				ui.station.location.setText(savedInstanceState.getString("loc_text"));
+				loc.unblockOnTextChanged();
 			}
 
 			String time = savedInstanceState.getString("time", null);
@@ -171,6 +177,9 @@ public class DeparturesFragment extends TransportrFragment implements TransportN
 				departureAdapter.addAll(departures);
 				ui.departure_list.setVisibility(View.VISIBLE);
 			}
+
+			// Important: Restart Loader, because it holds a reference to the old LocationInputView
+			loc.restartLoader();
 		}
 	}
 
@@ -194,9 +203,7 @@ public class DeparturesFragment extends TransportrFragment implements TransportN
 		ui.departure_list.setVisibility(View.GONE);
 
 		//clear favorites for auto-complete
-		if(ui.station.location.getAdapter() != null) {
-			((LocationAdapter) ui.station.location.getAdapter()).resetList();
-		}
+		loc.reset();
 
 		// clear text view
 		loc.clearLocation();
@@ -400,12 +407,8 @@ public class DeparturesFragment extends TransportrFragment implements TransportN
 
 	class DepartureInputView extends LocationInputView {
 
-		DeparturesFragment fragment;
-
 		public DepartureInputView(DeparturesFragment fragment, LocationInputViewHolder holder, boolean onlyIDs) {
-			super(fragment.getActivity(), holder, onlyIDs);
-
-			this.fragment = fragment;
+			super(getActivity(), holder, DEPARTURES, onlyIDs);
 		}
 
 		@Override

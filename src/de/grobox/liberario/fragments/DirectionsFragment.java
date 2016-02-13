@@ -17,7 +17,6 @@
 
 package de.grobox.liberario.fragments;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,6 +25,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -59,10 +59,8 @@ import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.AmbiguousLocationActivity;
 import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.activities.TripsActivity;
 import de.grobox.liberario.adapters.FavouritesAdapter;
-import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.ui.LocationInputGPSView;
@@ -101,8 +99,8 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 
 		populateViewHolders();
 
-		from = new FromInputView(getActivity(), ui.from);
-		to = new ToInputView(getActivity(), ui.to);
+		from = new FromInputView(ui.from);
+		to = new ToInputView(ui.to);
 
 		// Set Type to Departure=True
 		ui.type.setTag(true);
@@ -188,11 +186,19 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 			Location from_loc = (Location) savedInstanceState.getSerializable("from");
 			if(from_loc != null) {
 				from.setLocation(from_loc, TransportrUtils.getDrawableForLocation(getContext(), from_loc));
+			} else {
+				from.blockOnTextChanged();
+				ui.from.location.setText(savedInstanceState.getString("from_text"));
+				from.unblockOnTextChanged();
 			}
 
 			Location to_loc = (Location) savedInstanceState.getSerializable("to");
 			if(to_loc != null) {
 				to.setLocation(to_loc, TransportrUtils.getDrawableForLocation(getContext(), to_loc));
+			} else {
+				to.blockOnTextChanged();
+				ui.to.location.setText(savedInstanceState.getString("to_text"));
+				to.unblockOnTextChanged();
 			}
 
 			setType(savedInstanceState.getBoolean("type"));
@@ -206,6 +212,10 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 			if(date != null) {
 				ui.date.setText(date);
 			}
+
+			// Important: Restart Loader, because it holds a reference to the old LocationInputView
+			from.restartLoader();
+			to.restartLoader();
 		}
 	}
 
@@ -213,11 +223,15 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		if(from != null) {
+		if(from != null && from.getLocation() != null) {
 			outState.putSerializable("from", from.getLocation());
+		} else {
+			outState.putSerializable("from_text", ui.from.location.getText().toString());
 		}
-		if(to != null) {
+		if(to != null && to.getLocation() != null) {
 			outState.putSerializable("to", to.getLocation());
+		} else {
+			outState.putSerializable("to_text", ui.to.location.getText().toString());
 		}
 
 		if(ui.type != null) {
@@ -470,8 +484,8 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 	}
 
 	public void refreshFavs() {
-		if(ui.from != null) ((LocationAdapter) ui.from.location.getAdapter()).resetList();
-		if(ui.to != null) ((LocationAdapter) ui.to.location.getAdapter()).resetList();
+		if(ui.from != null) from.reset();
+		if(ui.to != null) to.reset();
 	}
 
 	public void activateGPS() {
@@ -576,8 +590,8 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 	}
 
 	class FromInputView extends LocationInputGPSView {
-		public FromInputView(Activity context, LocationInputViewHolder holder) {
-			super(context, holder, MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS);
+		public FromInputView(LocationInputViewHolder holder) {
+			super(getActivity(), holder, DIRECTIONS_FROM, MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS);
 			setType(FavLocation.LOC_TYPE.FROM);
 			setHome(true);
 			setFavs(true);
@@ -609,8 +623,8 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 
 	class ToInputView extends LocationInputView {
 		// adapt activateGPS if you ever make this a LocationInputGPSView
-		public ToInputView(Activity context, LocationInputViewHolder holder) {
-			super(context, holder);
+		public ToInputView(LocationInputViewHolder holder) {
+			super(getActivity(), holder, DIRECTIONS_TO, false);
 			setType(FavLocation.LOC_TYPE.TO);
 			setHome(true);
 			setFavs(true);

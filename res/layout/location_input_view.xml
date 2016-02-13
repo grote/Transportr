@@ -22,7 +22,7 @@
         android:layout_weight="1"
         >
 
-        <de.grobox.liberario.ui.DelayAutoCompleteTextView
+        <de.grobox.liberario.ui.NoTextChangeAutoCompleteTextView
             android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

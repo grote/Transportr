@@ -63,7 +63,7 @@ public class SetHomeActivity extends AppCompatActivity {
 
 		final LocationInputView.LocationInputViewHolder holder = new LocationInputView.LocationInputViewHolder(findViewById(R.id.setHomeView));
 
-		final LocationInputView loc = new LocationInputView(this, holder, true);
+		final LocationInputView loc = new LocationInputView(this, holder, LocationInputView.SET_HOME, true);
 		loc.setFavs(true);
 
 		holder.location.setHint(R.string.home);

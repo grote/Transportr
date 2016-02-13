@@ -18,13 +18,13 @@
 package de.grobox.liberario.ui;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +37,6 @@ import java.util.List;
 
 import de.grobox.liberario.R;
 import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.LocationType;
 
 public class LocationInputGPSView extends LocationInputView implements LocationListener {
 
@@ -47,13 +46,13 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 	private int caller;
 	private boolean request_permission = false;
 
-	public LocationInputGPSView(Activity context, LocationInputViewHolder ui, int caller) {
-		super(context, ui, false);
+	public LocationInputGPSView(FragmentActivity context, LocationInputViewHolder ui, int loaderId, int caller) {
+		super(context, ui, loaderId, false);
 
 		this.caller = caller;
 		this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
-		locAdapter.setGPS(true);
+		getAdapter().setGPS(true);
 	}
 
 	@Override
