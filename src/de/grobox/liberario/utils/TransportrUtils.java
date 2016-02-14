@@ -50,6 +50,7 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapActivity;
+import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
@@ -361,6 +362,13 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
+	static public void showMap(Context context) {
+		Intent intent = new Intent(context, MapActivity.class);
+		intent.setAction(MapActivity.SHOW_AREA);
+
+		context.startActivity(intent);
+	}
+
 	static public void showLocationsOnMap(Context context, ArrayList<Location> loc_list, Location my_loc) {
 		// show station on internal map
 		Intent intent = new Intent(context, MapActivity.class);
@@ -538,11 +546,14 @@ public class TransportrUtils {
 	static public Drawable getDrawableForLocation(Context context, Location l, boolean is_fav) {
 		if(l == null) return null;
 
-		if( (l.id != null && l.id.equals("Transportr.HOME")) || l.equals(RecentsDB.getHome(context))) {
+		if( (l.id != null && l.id.equals(LocationAdapter.HOME)) || l.equals(RecentsDB.getHome(context))) {
 			return getTintedDrawable(context, R.drawable.ic_action_home);
 		}
-		else if(l.id != null && l.id.equals("Transportr.GPS")) {
+		else if(l.id != null && l.id.equals(LocationAdapter.GPS)) {
 			return getTintedDrawable(context, R.drawable.ic_gps);
+		}
+		else if(l.id != null && l.id.equals(LocationAdapter.MAP)) {
+			return getTintedDrawable(context, R.drawable.ic_action_location_map);
 		}
 		else if(is_fav) {
 			return getTintedDrawable(context, R.drawable.ic_action_star);

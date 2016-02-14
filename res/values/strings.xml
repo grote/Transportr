@@ -144,6 +144,7 @@
     <string name="location">Location</string>
     <string name="location_home">Click to set Home Location</string>
     <string name="location_gps">Use Current Position</string>
+    <string name="location_map">Get Location from Map</string>
 
     <string name="product_high_speed_train">High-Speed Train</string>
     <string name="product_regional_train">Regional Train</string>

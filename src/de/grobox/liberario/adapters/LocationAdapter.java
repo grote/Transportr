@@ -52,7 +52,12 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 	private boolean includeFavLocations = false;
 	private boolean includeHomeLocation = false;
 	private boolean includeGpsLocation = false;
+	private boolean includeMapLocation = false;
 	private FavLocation.LOC_TYPE sort = FavLocation.LOC_TYPE.FROM;
+
+	public static final String HOME = "Transportr.HOME";
+	public static final String GPS = "Transportr.GPS";
+	public static final String MAP = "Transportr.MAP";
 
 	public static final int THRESHOLD = 3;
 
@@ -159,7 +164,9 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 
 		Location l = getItem(position);
 
-		if(l != null && l.id != null && l.id.equals("Transportr.HOME")) {
+		if(l == null) return view;
+
+		if(l.id != null && l.id.equals(HOME)) {
 			Location home = RecentsDB.getHome(parent.getContext());
 			if(home != null) {
 				textView.setText(getHighlightedText(home));
@@ -172,8 +179,12 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 				textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 			}
 		}
-		else if(l != null && l.id != null && l.id.equals("Transportr.GPS")) {
+		else if(l.id != null && l.id.equals(GPS)) {
 			textView.setText(parent.getContext().getString(R.string.location_gps));
+			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+		}
+		else if(l.id != null && l.id.equals(MAP)) {
+			textView.setText(parent.getContext().getString(R.string.location_map));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 		}
 		// locations from favorites and auto-complete
@@ -211,13 +222,15 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 			if(includeHomeLocation) {
 				home_loc = RecentsDB.getHome(getContext());
 				if(home_loc != null) {
-					defaultLocations.add(new Location(LocationType.ANY, "Transportr.HOME", home_loc.place, home_loc.name));
+					defaultLocations.add(new Location(LocationType.ANY, HOME, home_loc.place, home_loc.name));
 				} else {
-					defaultLocations.add(new Location(LocationType.ANY, "Transportr.HOME"));
+					defaultLocations.add(new Location(LocationType.ANY, HOME));
 				}
 			}
 			if(includeGpsLocation)
-				defaultLocations.add(new Location(LocationType.ANY, "Transportr.GPS"));
+				defaultLocations.add(new Location(LocationType.ANY, GPS));
+			if(includeMapLocation)
+				defaultLocations.add(new Location(LocationType.ANY, MAP));
 
 			if(includeFavLocations) {
 				List<Location> tmpList = RecentsDB.getFavLocationList(getContext(), sort, onlyIDs);
@@ -264,6 +277,10 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 		this.includeGpsLocation = gps;
 	}
 
+	public void setMap(boolean map) {
+		this.includeMapLocation = map;
+	}
+
 	private Spanned getHighlightedText(Location l) {
 		if(search != null && search.length() >= THRESHOLD) {
 			String regex = "(?i)(" + Pattern.quote(search.toString()) + ")";
@@ -273,5 +290,4 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 			return Html.fromHtml(TransportrUtils.getLocName(l));
 		}
 	}
-
 }

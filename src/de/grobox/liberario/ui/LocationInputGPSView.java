@@ -36,6 +36,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.grobox.liberario.R;
+import de.grobox.liberario.adapters.LocationAdapter;
 import de.schildbach.pte.dto.Location;
 
 public class LocationInputGPSView extends LocationInputView implements LocationListener {
@@ -57,7 +58,7 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 
 	@Override
 	public void onLocationItemClick(Location loc, View view) {
-		if(loc.id != null && loc.id.equals("Transportr.GPS")) {
+		if(loc.id != null && loc.id.equals(LocationAdapter.GPS)) {
 			activateGPS();
 		} else {
 			super.onLocationItemClick(loc, view);

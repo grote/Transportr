@@ -595,6 +595,7 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 			setType(FavLocation.LOC_TYPE.FROM);
 			setHome(true);
 			setFavs(true);
+			setMap(true);
 
 			setHint(R.string.from);
 		}
@@ -628,6 +629,7 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 			setType(FavLocation.LOC_TYPE.TO);
 			setHome(true);
 			setFavs(true);
+			setMap(true);
 
 			setHint(R.string.to);
 		}

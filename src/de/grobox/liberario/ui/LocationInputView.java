@@ -257,6 +257,10 @@ public class LocationInputView implements LoaderManager.LoaderCallbacks {
 		getAdapter().setHome(activate);
 	}
 
+	public void setMap(boolean activate) {
+		getAdapter().setMap(activate);
+	}
+
 	public void setHint(int hint) {
 		this.hint = context.getString(hint);
 		ui.location.setHint(this.hint);
@@ -266,7 +270,7 @@ public class LocationInputView implements LoaderManager.LoaderCallbacks {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
 
 		// special case: home location
-		if(loc.id != null && loc.id.equals("Transportr.HOME")) {
+		if(loc.id != null && loc.id.equals(LocationAdapter.HOME)) {
 			Location home = RecentsDB.getHome(context);
 
 			if(home != null) {
@@ -277,6 +281,9 @@ public class LocationInputView implements LoaderManager.LoaderCallbacks {
 
 				selectHomeLocation();
 			}
+		}
+		else if(loc.id != null && loc.id.equals(LocationAdapter.MAP)) {
+			TransportrUtils.showMap(context);
 		}
 		// all other cases
 		else {

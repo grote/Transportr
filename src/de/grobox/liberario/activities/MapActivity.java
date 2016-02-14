@@ -54,9 +54,11 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
@@ -80,6 +82,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	private boolean gps;
 	private TransportNetwork network;
 
+	public final static String SHOW_AREA = "de.grobox.liberario.MapActivity.SHOW_AREA";
 	public final static String SHOW_LOCATIONS = "de.grobox.liberario.MapActivity.SHOW_LOCATIONS";
 	public final static String SHOW_TRIP = "de.grobox.liberario.MapActivity.SHOW_TRIP";
 
@@ -229,9 +232,11 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		if(intent != null) {
 			String action = intent.getAction();
 			if(action != null) {
-				if(action.equals(SHOW_LOCATIONS)) {
-					List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra("List<de.schildbach.pte.dto.Location>");
-					Location myLoc = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Location");
+				if(action.equals(SHOW_AREA)) {
+					showArea();
+				} else if(action.equals(SHOW_LOCATIONS)) {
+					List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra(LOCATIONS);
+					Location myLoc = (Location) intent.getSerializableExtra(LOCATION);
 					showLocations(locations, myLoc);
 				} else if(action.equals(SHOW_TRIP)) {
 					Trip trip = (Trip) intent.getSerializableExtra(TRIP);
@@ -241,6 +246,13 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 
 		setViewSpan();
+	}
+
+	private void showArea() {
+		// TODO implement loader that calls np.getArea()
+		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+			setupGPS(null);
+		}
 	}
 
 	private void showLocations(List<Location> locations, Location myLocation) {
@@ -399,6 +411,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	}
 
 	private void setViewSpan() {
+		if(points.size() == 0) return;
+
 		int maxLat = Integer.MIN_VALUE;
 		int minLat = Integer.MAX_VALUE;
 		int maxLon = Integer.MIN_VALUE;
@@ -411,7 +425,9 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			minLon = Math.min(point.getLongitudeE6(), minLon);
 		}
 
-		final GeoPoint center = new GeoPoint( (maxLat + minLat)/2, (maxLon + minLon)/2 );
+		int center_lat = (maxLat + minLat)/2;
+		int center_lon = (maxLon + minLon)/2;
+		final GeoPoint center = new GeoPoint(center_lat, center_lon);
 
 		IMapController mapController = map.getController();
 		mapController.setCenter(center);
@@ -422,7 +438,13 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	}
 
 	private void setupGPS(Location myLoc) {
-		locationProvider = new GpsMyLocationProvider(this);
+		locationProvider = new GpsMyLocationProvider(this) {
+			@Override
+			public void onLocationChanged(final android.location.Location location) {
+				super.onLocationChanged(location);
+				points.add(new GeoPoint(location));
+			}
+		};
 
 		// show last known position on map
 		if(myLoc != null) {

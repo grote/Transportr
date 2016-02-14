@@ -91,6 +91,7 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 		loc = new NearbyStationsInputView(this, ui.station);
 		loc.setFavs(true);
 		loc.setHome(true);
+		loc.setMap(true);
 		loc.setHint(R.string.location);
 
 		// Find Nearby Stations Search Button
