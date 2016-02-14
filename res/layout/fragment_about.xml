@@ -60,7 +60,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Visit Website"
+            android:text="@string/visit_website"
             android:id="@+id/websiteButton"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="@color/primary"/>

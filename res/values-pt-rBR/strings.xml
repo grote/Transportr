@@ -43,6 +43,7 @@
 <p><b> Doações</b> Veja as opções disponíveis no <a href=\"%3$s\"> Transportr website</a>.</p>
 ]]>
 </string>
+  <string name="visit_website">Visite o Website</string>
   <string name="trip_dep">De</string>
   <string name="trip_arr">Para</string>
   <string name="trip_start">Início:</string>
@@ -67,14 +68,14 @@
   <string name="pick_network_first_run">Esta é a primeira vez que você inicia o Transportr. Selecione sua rede de transporte para continuar!</string>
   <string name="clear_recent">Você tem certeza que quer deletar as suas partidas recentes da atual rede de transporte?</string>
   <string name="clear_recent_trips">Tem certeza que você quer excluir %1$d viagem(ns) de seus favoritos? As partidas selecionadas serão excluídas.</string>
-  <string name="trip_searching">Pesquisando por conexões ...</string>
-  <string name="stations_searching_position">Pesquisando por posição atual...</string>
-  <string name="stations_searching_stations">Pesquisando por estações próximas...</string>
+  <string name="trip_searching">Pesquisando por conexões…</string>
+  <string name="stations_searching_position">Pesquisando por posição atual…</string>
+  <string name="stations_searching_stations">Pesquisando por estações próximas…</string>
   <string name="tab_nearby_stations">Estações Próximas</string>
   <string name="find_nearby_stations">Localizar Estações Próximas</string>
   <string name="find_departures">Localizar Partidas</string>
   <string name="departure_station">Estação de Partida</string>
-  <string name="share_trip_via">Compartilhar Viagem Via...</string>
+  <string name="share_trip_via">Compartilhar Viagem Via…</string>
   <string name="undo">Voltar</string>
   <string name="fav_trips_empty">Suas partidas recentes irão aparecer aqui quando começar a pesquisar por direções.\n\n\n Você poderá ordená-las como \"mais frequentes\" ou \"mais usadas\".</string>
   <string name="more">Mais</string>
@@ -131,6 +132,7 @@
   <string name="location">Local</string>
   <string name="location_home">Clique para definir Local Inicial</string>
   <string name="location_gps">Use Posição Atual</string>
+  <string name="location_map">Obter localização do Mapa</string>
   <string name="product_high_speed_train">Trem de Alta Velocidade</string>
   <string name="product_regional_train">Trem Regional</string>
   <string name="product_suburban_train">Trem Suburbano</string>

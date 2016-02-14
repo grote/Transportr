@@ -21,6 +21,7 @@
   <string name="action_show_on_external_map">Auf externer Karte anzeigen</string>
   <string name="action_copy">Kopieren</string>
   <string name="action_show_on_map">Auf Karte anzeigen</string>
+  <string name="action_show_all">Alles anzeigen</string>
   <string name="tab_directions">Verbindungen</string>
   <string name="tab_fav_trips">Favoriten</string>
   <string name="tab_departures">Abfahrten</string>
@@ -42,6 +43,7 @@
 <p><b>Spendenmöglichkteien</b> sind auf <a href=\"%3$s\">der Transportr Webseite</a> aufgeführt.</p>
 ]]>
 </string>
+  <string name="visit_website">Zur Webseite</string>
   <string name="trip_dep">ab</string>
   <string name="trip_arr">an</string>
   <string name="trip_start">Start:</string>
@@ -130,6 +132,7 @@
   <string name="location">Position</string>
   <string name="location_home">Klicken um eine Heimatadresse festzulegen</string>
   <string name="location_gps">Aktuelle Position verwenden</string>
+  <string name="location_map">Ort auf der Karte suchen</string>
   <string name="product_high_speed_train">Hochgeschwindigkeitszug</string>
   <string name="product_regional_train">Regionalbahn</string>
   <string name="product_suburban_train">S-Bahn</string>

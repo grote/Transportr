@@ -49,6 +49,7 @@
 <p><b>Donations</b> options are listed on <a href="%3$s">the Transportr website</a>.</p>
 ]]>
 </string>
+    <string name="visit_website">Visit Website</string>
 
     <string name="trip_dep">dep</string>
     <string name="trip_arr">arr</string>
