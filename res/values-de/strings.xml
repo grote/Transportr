@@ -77,7 +77,7 @@
   <string name="undo">Rückgängig</string>
   <string name="fav_trips_empty">Deine letzten Fahrten werden hier angezeigt.\n\n\nDu hast die Möglichkeit diese nach der Gesamtnutzungsanzahl oder der letzten Verwendung zu sortieren.</string>
   <string name="more">Mehr</string>
-  <string name="no_favourites">Keine Favoriten vorhanden.\n\nDu kannst unter \"kürzliche Verbindungen\" welche hinzufügen.</string>
+  <string name="no_favourites">Keine Favoriten vorhanden.\n\nDu kannst diese unter \"kürzliche Verbindungen\" hinzufügen.</string>
   <string name="removing_from_favourites">Eine markierte Verbindung ist als Favorit gekennzeichnet. Sie wird auch aus den Favoriten gelöscht werden.</string>
   <string name="current_time_set">Aktuelle Uhrzeit wurde ausgewählt.</string>
   <string name="current_date_set">Aktuelles Datum wurde für die Suche ausgewählt.</string>
@@ -91,6 +91,15 @@
   <string name="pref_theme_light">Hell</string>
   <string name="pref_theme_dark">Dunkel</string>
   <string name="pref_language_title">Sprache</string>
+  <string name="pref_directions_routing">Verbindungen und Routenkriterien</string>
+  <string name="pref_optimize">Optimiert für</string>
+  <string name="pref_optimize_least_duration">Geringste Dauer</string>
+  <string name="pref_optimize_least_changes">Wenigste Umstiege</string>
+  <string name="pref_optimize_least_walking">Kürzester Fußweg</string>
+  <string name="pref_walk_speed">Laufgeschwindigkeit</string>
+  <string name="pref_walk_speed_slow">Langsam</string>
+  <string name="pref_walk_speed_normal">Normal</string>
+  <string name="pref_walk_speed_fast">Schnell</string>
   <string name="warning_departure_gap">Zu wenige Abfahrten gefunden. Es könnte mehr geben. Suche nach einer genauen Abfahrtszeit um sicher zu gehen, dass alle Abfahrten angezeigt werden.</string>
   <string name="error_pick_network">Bitte wählen Sie genau einen Verkehrsverbund aus!</string>
   <string name="error_no_internet">Keine ausreichende Internetverbindung verfügbar</string>
@@ -104,10 +113,10 @@
   <string name="error_no_proper_station">Der angegebene Name ist keine gültige Station</string>
   <string name="error_only_autocomplete_station">Bitte wähle eine Station aus der Autovervollständigungs-Liste!</string>
   <string name="error_no_station_location">Kann die Position dieser Haltestelle(n) nicht finden.</string>
-  <string name="error_no_trips_capability">Dieser Verkehrsverbund unterstützt keine Routen-Anfragen.</string>
+  <string name="error_no_trips_capability">Dieser Verkehrsverbund unterstützt keine Routenanfragen.</string>
   <string name="error_no_departures_capability">Der aktuelle Verkehrsverbund unterstützt keine Suche nach Abfahrten.</string>
   <string name="error_no_nearby_locations_capability">Vom aktuellen Verkehrsverbund wird die Suche nach Haltestellen in der Umgebung nicht unterstützt.</string>
-  <string name="error_please_file_ticket">Es ist etwas schief gelaufen. Bitte erstelle Sie einen Problembericht mit der Beschreibung des Hergangs. (Link findest du unter \"Über\")</string>
+  <string name="error_please_file_ticket">Es ist etwas schief gelaufen. Bitte erstelle einen Fehlerbericht mit der Beschreibung des Hergangs. (Link findest Du unter \"Über\")</string>
   <string name="error_trip_refresh_failed">Es war nicht möglich die aktuelle Verbindung zu aktualisieren.</string>
   <string name="number_of_stations">Anzahl der Zwischenhalte</string>
   <string name="meter">m</string>
@@ -117,7 +126,7 @@
   <string name="home">Zuhause</string>
   <string name="home_dialog_title">Ihre Heimatadresse</string>
   <string name="home_dialog_new_msg">Für den aktuellen Verkehrsverbund ist keine Heimatadresse festgelegt.</string>
-  <string name="home_dialog_msg">Bitte gib unten einen Ort an, indem Du einen aus der Liste auswählen.</string>
+  <string name="home_dialog_msg">Bitte gib unten einen Ort an, indem Du einen aus der Liste auswählst.</string>
   <string name="location">Position</string>
   <string name="location_home">Klicken um eine Heimatadresse festzulegen</string>
   <string name="location_gps">Aktuelle Position verwenden</string>
@@ -135,9 +144,9 @@
   <string name="action_fav_trips_sort_most">Meist genutzte</string>
   <string name="action_set_locations">Suche bearbeiten</string>
   <string name="action_swap_locations">Rückfahrt suchen</string>
-  <string name="permission_denied_gps">Da Du den Zugriff auf Deinen aktuellen Standort nicht freigegeben hast wird diese Funktion nicht funktionieren. Bitte erlaube den Standortzugriff in den Einstellungen.</string>
-  <string name="permission_explanation_map">Es ist nötig Kartendaten auf Ihrem Gerät zwischenzuspeichern. Die Karte wird sonst nicht funktionieren.</string>
-  <string name="permission_denied_map">Um die Karte anzeigen zu können, ist es nötig Kartendaten auf Ihrem Gerät zu speichern. Bitte erlaube den Speicherzugriff um die Karte zu benutzen.</string>
+  <string name="permission_denied_gps">Da Du den Zugriff auf Deinen aktuellen Standort nicht freigegeben hast, wird diese Funktion nicht funktionieren. Bitte erlaube den Standortzugriff in den Einstellungen.</string>
+  <string name="permission_explanation_map">Es ist nötig Kartendaten auf deinem Gerät zwischenzuspeichern. Die Karte wird sonst nicht funktionieren.</string>
+  <string name="permission_denied_map">Um die Karte anzeigen zu können, ist es nötig Kartendaten auf deinem Gerät zu speichern. Bitte erlaube den Speicherzugriff, um die Karte zu benutzen.</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">Änderungsprotokoll</string>
   <string name="changelog_title">Was gibt\'s Neues</string>
@@ -233,6 +242,7 @@
   <string name="np_desc_spain">Busse in Madrid (EMT), Barcelona (TMB), Baskenland (Moveuskadi)</string>
   <string name="np_desc_mersey">Region Liverpool</string>
   <string name="np_desc_br">São Paulo und Porto Alegre</string>
+  <string name="np_desc_br_floripa">SIM</string>
   <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Rom, Mailand, Turin, Venedig, Palermo, Trient</string>
@@ -245,6 +255,7 @@
   <string name="np_name_spain">Spanien</string>
   <string name="np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
   <string name="np_name_br">SPTrans (Sao Paulo) und EPTC (Porto Alegre)</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_name_frenchsouthwest">FR-SW</string>
   <string name="maintainer">Koordinator</string>
   <string name="contributers">Beitragende</string>

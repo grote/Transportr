@@ -91,6 +91,15 @@
   <string name="pref_theme_light">Clair</string>
   <string name="pref_theme_dark">Sombre</string>
   <string name="pref_language_title">Langue</string>
+  <string name="pref_directions_routing">Indications et itinéraires</string>
+  <string name="pref_optimize">Optimiser pour</string>
+  <string name="pref_optimize_least_duration">Une durée moindre</string>
+  <string name="pref_optimize_least_changes">Le moins de changements</string>
+  <string name="pref_optimize_least_walking">Le moins de marche</string>
+  <string name="pref_walk_speed">Vitesse de marche</string>
+  <string name="pref_walk_speed_slow">Lente</string>
+  <string name="pref_walk_speed_normal">Normale</string>
+  <string name="pref_walk_speed_fast">Rapide</string>
   <string name="warning_departure_gap">Trop peu de départs ont été trouvés. Il pourrait y en avoir d\'autres cachés. Recherchez l\'heure exacte pour vous assurez qu\'il n\'en manque pas.</string>
   <string name="error_pick_network">Veuillez choisir un réseau de transport !</string>
   <string name="error_no_internet">Aucune connexion Internet suffisante disponible.</string>
@@ -233,6 +242,7 @@
   <string name="np_desc_spain">Madrid (EMT), Barcelone (TMB), Basque (moveuskadi)</string>
   <string name="np_desc_mersey">Région métropolitaine de Liverpool</string>
   <string name="np_desc_br">São Paulo et Porto Alegre</string>
+  <string name="np_desc_br_floripa">SIM</string>
   <string name="np_desc_vrs">Cologne, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Rome, Milan, Turin, Venise, Palerme, Trente</string>
@@ -245,6 +255,7 @@
   <string name="np_name_spain">Espagne</string>
   <string name="np_name_usny">États de New York et New Jersey</string>
   <string name="np_name_br">SPTRANS EPTC</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_name_frenchsouthwest">FR-SO</string>
   <string name="maintainer">Mainteneur</string>
   <string name="contributers">Contributeurs</string>
