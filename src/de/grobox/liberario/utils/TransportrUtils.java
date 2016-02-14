@@ -467,8 +467,10 @@ public class TransportrUtils {
 			return l.place == null ? l.uniqueShortName() : l.name + ", " + l.place;
 		} else if(l.type.equals(LocationType.COORD)) {
 			return String.valueOf(l.getLatAsDouble()).substring(0, 8) + "/" + String.valueOf(l.getLonAsDouble()).substring(0, 8);
-		} else {
+		} else if(l.uniqueShortName() != null) {
 			return l.uniqueShortName();
+		} else {
+			return "";
 		}
 	}
 
