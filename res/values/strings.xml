@@ -226,6 +226,7 @@
     <string name="np_region_nz">New Zealand</string>
     <string name="np_region_spain">Spain</string>
     <string name="np_region_br">Brazil</string>
+    <string name="np_region_canada">Canada</string>
 
     <string name="np_desc_ns">Netherlands, Amsterdam</string>
     <string name="np_desc_dsb">Denmark, Copenhagen</string>
