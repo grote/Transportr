@@ -465,6 +465,7 @@ public class RecentsDB {
 			db.insert(DBHelper.TABLE_HOME_LOCS, null, values);
 		}
 
+		c.close();
 		db.close();
 	}
 

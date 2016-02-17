@@ -51,7 +51,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	private Set<Product> mProducts = EnumSet.allOf(Product.class);
 	private String error = null;
 
-	private final String TAG = getClass().getSimpleName().toString();
+	private final String TAG = getClass().getSimpleName();
 
 	public AsyncQueryTripsTask(Context context, TripHandler tripHandler) {
 		this.context = context;

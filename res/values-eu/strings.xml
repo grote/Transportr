@@ -1,22 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_earlier">Lehenagoko bidaiak aurkitu</string>
-  <string name="action_later">Beranduagoko bidaiak aurkitu</string>
   <string name="action_changelog">Aldaketen zerrenda</string>
   <string name="action_about">Honi buruz</string>
-  <string name="action_clear_favs">Gogokoenak garbitu</string>
   <string name="action_settings">Ezarpenak</string>
   <string name="action_fav_trip">Bidaia gogokoen bezala markatu</string>
   <string name="action_unfav_trip">Bidaia gogokoen bezala desmarkatu</string>
   <string name="action_switch_locations">Nondik eta nora kokapenak trukatu</string>
-  <string name="action_show_extra_info">Informazioa erakutsi/ezkutatu</string>
   <string name="action_refresh">Freskatu</string>
   <string name="action_navigation_expand">Gehiago erakutsi</string>
   <string name="action_location_map">Geltokiak mapan erakutsi</string>
   <string name="action_use_gps">GPSa aktibatu</string>
   <string name="action_share">Partekatu</string>
   <string name="action_trip_calendar">Egutegian</string>
-  <string name="action_trip_details">Banatuta erakutsi</string>
   <string name="action_trip_delete">Bidaia ezabatu</string>
   <string name="action_show_on_external_map">Kanpoko mapan erakutsi</string>
   <string name="action_copy">Kopiatu</string>
@@ -31,21 +26,14 @@
   <string name="about_top">© 2013 – 2015 Torsten Grote\nSoftware askeko lizentzia: GPLv3</string>
   <string name="trip_dep">irt</string>
   <string name="trip_arr">hel</string>
-  <string name="trip_start">Hasiera:</string>
-  <string name="trip_destination">Helb.:</string>
   <string name="trip_removed">Bidaia ezabatuta</string>
   <string name="from">Nondik</string>
   <string name="to">Nora</string>
   <string name="from_here">Hemendik</string>
   <string name="to_here">Hona</string>
-  <string name="time">Denbora</string>
-  <string name="date">Data</string>
   <string name="min"> min</string>
   <string name="walk">Ibili</string>
   <string name="position">Plataforma</string>
-  <string name="destination">Helmuga</string>
-  <string name="detail_duration">Iraupena:</string>
-  <string name="detail_date">Data:</string>
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Sarea</string>
@@ -53,7 +41,6 @@
   <string name="pick_network_first_run">Hau da Transportr abiarazi duzun lehen aldia. Mesedez hautatu zure garraio sarea jarraitu baino lehen!</string>
   <string name="trip_searching">Loturak bilatzen...</string>
   <string name="stations_searching_position">Uneko kokapena bilatzen...</string>
-  <string name="stations_searching_stations">Hurbileko geltokiak bilatzen...</string>
   <string name="tab_nearby_stations">Hurbileko geltokiak</string>
   <string name="find_nearby_stations">Hurbileko geltokiak aurkitu</string>
   <string name="find_departures">Irteerak aurkitu</string>
@@ -80,7 +67,6 @@
   <string name="error_no_internet">Interneteko konexio nahikorik ez eskuragarri</string>
   <string name="error_invalid_from">Hasiera kokapen baliogabea (Nondik)</string>
   <string name="error_invalid_to">Helbide baliogabea (Nora)</string>
-  <string name="error_no_favs">Ez duzu gogoko kokapenik gordeta</string>
   <string name="error_no_trips_found">Ez da norabiderik aurkitu</string>
   <string name="error_no_location_provider">Ezin da zure kokapena lortu. Mesedez piztu GPSa!</string>
   <string name="error_no_departures_found">Ez da irteerarik aurkitu</string>
@@ -93,9 +79,7 @@
   <string name="error_no_nearby_locations_capability">Uneko garraio sareak ez du gertuko geltokiak aurkitzea baimentzen.</string>
   <string name="error_please_file_ticket">Zerbait oker joan da. Mesedez sortu ezazu arazo tiket bat egin duzuna azaltzen.</string>
   <string name="error_trip_refresh_failed">Ezin izan dira datuak freskatu uneko bidairako.</string>
-  <string name="number_of_stations">Geltoki kopurua</string>
   <string name="meter">m</string>
-  <string name="max_distance">Gehienezko distantzia</string>
   <string name="home">Etxea</string>
   <string name="home_dialog_title">Zure etxeko kokalekua</string>
   <string name="home_dialog_new_msg">Ez dago etxeko kokapenik uneko garraio sarerako.</string>

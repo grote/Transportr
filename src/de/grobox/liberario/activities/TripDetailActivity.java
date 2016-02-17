@@ -128,7 +128,7 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 
 	@Override
 	public void onTripRetrieved(QueryTripsResult result) {
-		if(result.status == QueryTripsResult.Status.OK) {
+		if(result.status == QueryTripsResult.Status.OK && result.trips != null) {
 			Log.d(getClass().getSimpleName(), result.toString());
 
 			Log.d("TEST", "OLD TRIP: " + trip.toString());

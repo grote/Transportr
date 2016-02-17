@@ -1,19 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_earlier">Trova viaggi precedenti</string>
-  <string name="action_later">Trova viaggi successivi</string>
   <string name="action_about">Info</string>
-  <string name="action_clear_favs">Pulisci favoriti</string>
   <string name="action_settings">Impostazioni</string>
   <string name="action_switch_locations">Scambia da e a luogo</string>
-  <string name="action_show_extra_info">Mostra/Nascondi Informazioni</string>
   <string name="action_refresh">Ricarica</string>
   <string name="action_navigation_expand">Mostra altro</string>
   <string name="action_location_map">Mostra stazioni sulla mappa</string>
   <string name="action_use_gps">Accendi GPS</string>
   <string name="action_share">Condividi</string>
   <string name="action_trip_calendar">Nel calendario</string>
-  <string name="action_trip_details">Mostra Separato</string>
   <string name="action_trip_delete">Elimina viaggio</string>
   <string name="action_show_on_external_map">Mostra su mappa esterna</string>
   <string name="action_copy">Copia</string>
@@ -27,26 +22,18 @@
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFree Software License: GPLv3</string>
   <string name="trip_dep">part</string>
   <string name="trip_arr">arr</string>
-  <string name="trip_start">Inizio:</string>
-  <string name="trip_destination">Dest:</string>
   <string name="trip_removed">Viaggi eliminati</string>
   <string name="from">Da</string>
   <string name="to">A</string>
-  <string name="time">Tempo</string>
-  <string name="date">Data</string>
   <string name="min">min</string>
   <string name="walk">Cammina</string>
   <string name="position">Piattaforma</string>
-  <string name="destination">Destinazione</string>
-  <string name="detail_duration">Durata:</string>
-  <string name="detail_date">Data:</string>
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Rete</string>
   <string name="pick_network_activity">Scegli una rete di trasporto</string>
   <string name="trip_searching">Ricerca connessioni...</string>
   <string name="stations_searching_position">Ricerca posizione corrente...</string>
-  <string name="stations_searching_stations">Ricerca stazioni vicine...</string>
   <string name="tab_nearby_stations">Stazioni vicine</string>
   <string name="find_nearby_stations">Cerca stazioni vicine</string>
   <string name="find_departures">Cerca partenze</string>
@@ -62,7 +49,6 @@
   <string name="warning_departure_gap">Trovate troppe poche partenze. Potrebbero essercene molte altre nascoste. Cerca per l\'orario esatto per assicurarti di non perderne nessuna.</string>
   <string name="error_pick_network">Seleziona una rete di trasporto!</string>
   <string name="error_no_internet">Nessuna connessione internet disponibile</string>
-  <string name="error_no_favs">Nessuna località favorita salvata</string>
   <string name="error_no_trips_found">Nessuna indicazione trovata</string>
   <string name="error_no_departures_found">Nessuna partenza trovata</string>
   <string name="error_no_stations_found">Nessuna stazione trovata</string>
@@ -74,9 +60,7 @@
   <string name="error_no_departures_capability">La rete di trasporto corrente non supporta la ricerca partenze.</string>
   <string name="error_no_nearby_locations_capability">La corrente rete di trasporti non supporta la ricerca di stazioni vicine.</string>
   <string name="error_please_file_ticket">Qualcosa è andato storto. Crea una segnalazione e spiegaci cosa è successo.</string>
-  <string name="number_of_stations">Numero di stazioni</string>
   <string name="meter">m</string>
-  <string name="max_distance">Distanza massima</string>
   <string name="home">Casa</string>
   <string name="home_dialog_title">Luogo iniziale</string>
   <string name="home_dialog_new_msg">Non è presente nessun luogo iniziale per la rete di trasporto corrente.</string>

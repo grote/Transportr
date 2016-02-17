@@ -131,7 +131,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 
 	@Override
 	public void onTripRetrieved(QueryTripsResult result) {
-		if(result.status == QueryTripsResult.Status.OK && result.trips.size() > 0) {
+		if(result.status == QueryTripsResult.Status.OK && result.trips != null && result.trips.size() > 0) {
 			Log.d(getClass().getSimpleName(), result.toString());
 
 			Intent intent = new Intent(this, TripsActivity.class);

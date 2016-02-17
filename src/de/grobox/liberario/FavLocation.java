@@ -17,6 +17,8 @@
 
 package de.grobox.liberario;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.Comparator;
 
@@ -24,10 +26,7 @@ import de.schildbach.pte.dto.Location;
 
 public class FavLocation implements Serializable, Comparable<FavLocation> {
 	private static final long serialVersionUID = 3542146506031067901L;
-	static public enum LOC_TYPE
-	{
-		FROM, TO
-	}
+	public enum LOC_TYPE { FROM, TO }
 
 	private Location loc;
 	private int from_count;
@@ -86,7 +85,7 @@ public class FavLocation implements Serializable, Comparable<FavLocation> {
 	}
 
 	@Override
-	public int compareTo(FavLocation other) {
+	public int compareTo(@NonNull FavLocation other) {
 		return (other.getFromCount() + other.getToCount()) - (this.getFromCount() + this.getToCount());
 	}
 

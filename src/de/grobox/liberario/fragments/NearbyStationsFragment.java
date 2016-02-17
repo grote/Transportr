@@ -17,9 +17,7 @@
 
 package de.grobox.liberario.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -45,8 +43,6 @@ import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.activities.MapActivity;
-import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.StationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
@@ -280,8 +276,10 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 	}
 
 	public void addStations(NearbyLocationsResult result) {
-		Log.d(TAG, "Nearby Stations: " + result.locations.toString());
-		stationAdapter.addAll(result.locations);
+		if(result.locations != null) {
+			Log.d(TAG, "Nearby Stations: " + result.locations.toString());
+			stationAdapter.addAll(result.locations);
+		}
 
 		onRefreshComplete();
 	}

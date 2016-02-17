@@ -1,20 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="action_earlier">Finn tidligere turer</string>
-  <string name="action_later">Finn senere turer</string>
   <string name="action_changelog">Endringslogg</string>
   <string name="action_about">Om</string>
-  <string name="action_clear_favs">Tøm favoritter</string>
   <string name="action_settings">Innstillinger</string>
   <string name="action_switch_locations">Bytt til og fra</string>
-  <string name="action_show_extra_info">Vis/gjem informasjon</string>
   <string name="action_refresh">Gjenoppfrisk</string>
   <string name="action_navigation_expand">Vis mer</string>
   <string name="action_location_map">Vis stasjoner i kart</string>
   <string name="action_use_gps">Skru på GPS</string>
   <string name="action_share">Del</string>
   <string name="action_trip_calendar">Inn i kalender</string>
-  <string name="action_trip_details">Vis separat</string>
   <string name="action_trip_delete">Slett tur</string>
   <string name="action_show_on_external_map">Vis på eksternt kart</string>
   <string name="action_copy">Kopier</string>
@@ -28,26 +23,18 @@
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFriproglisens: GPLv3</string>
   <string name="trip_dep">avg</string>
   <string name="trip_arr">ank</string>
-  <string name="trip_start">Start:</string>
-  <string name="trip_destination">Mål:</string>
   <string name="trip_removed">Fjernet  tur</string>
   <string name="from">Fra</string>
   <string name="to">Til</string>
-  <string name="time">Tid</string>
-  <string name="date">Dato</string>
   <string name="min">min</string>
   <string name="walk">Gå</string>
   <string name="position">Plattform</string>
-  <string name="destination">Mål</string>
-  <string name="detail_duration">Tidsforløp:</string>
-  <string name="detail_date">Dato:</string>
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Nettverk</string>
   <string name="pick_network_activity">Velg et transportnettverk</string>
   <string name="trip_searching">Søker etter overganger...</string>
   <string name="stations_searching_position">Søker etter gjeldende plassering...</string>
-  <string name="stations_searching_stations">Søker etter stasjoner i nærheten...</string>
   <string name="tab_nearby_stations">Stasjoner i nærheten</string>
   <string name="find_nearby_stations">Finn stasjoner i nærheten</string>
   <string name="find_departures">Finn avganger</string>
@@ -65,7 +52,6 @@
   <string name="error_no_internet">Mangler tilstrekkelig internettilknytning</string>
   <string name="error_invalid_from">Ugyldig utreisested (fra)</string>
   <string name="error_invalid_to">Ugyldig destinasjon (til)</string>
-  <string name="error_no_favs">Ingen favorittplasseringer lagret</string>
   <string name="error_no_trips_found">Ingen veivisninger funnet</string>
   <string name="error_no_location_provider">Kan ikke finne din plassering. Skru på GPS.</string>
   <string name="error_no_departures_found">Fant ingen avganger</string>
@@ -77,9 +63,7 @@
   <string name="error_no_departures_capability">Gjeldende transportnettverk støtter ikke oppdagelse av avganger.</string>
   <string name="error_no_nearby_locations_capability">Gjeldende transportnettverk støtter ikke oppdagelse av stasjoner i nærheten.</string>
   <string name="error_please_file_ticket">Noe gikk galt. Opprett en brukerstøttebillett der du forklarer hvordan det gitt til.</string>
-  <string name="number_of_stations">Antall stasjoner</string>
   <string name="meter">m</string>
-  <string name="max_distance">Maksimal distanse</string>
   <string name="home">Hjem</string>
   <string name="home_dialog_title">Hvor du holder hus</string>
   <string name="home_dialog_new_msg">Mangler hjemmehørende plassering for valgt transportnettverk.</string>

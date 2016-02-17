@@ -385,7 +385,7 @@ public class TransportrUtils {
 	}
 
 	static public void showLocationOnMap(Context context, Location loc, Location loc2) {
-		ArrayList<Location> loc_list = new ArrayList<Location>(1);
+		ArrayList<Location> loc_list = new ArrayList<>(1);
 		loc_list.add(loc);
 
 		showLocationsOnMap(context, loc_list, loc2);

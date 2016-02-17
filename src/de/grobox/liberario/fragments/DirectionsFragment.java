@@ -25,7 +25,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -244,11 +243,6 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 		if(ui.date != null) {
 			outState.putCharSequence("date", ui.date.getText());
 		}
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
 	}
 
 	@Override

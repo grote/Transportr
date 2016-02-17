@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -28,6 +29,7 @@ import java.util.Locale;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 
+@SuppressLint("Registered")
 public class TransportrActivity extends AppCompatActivity {
 
 	@Override
