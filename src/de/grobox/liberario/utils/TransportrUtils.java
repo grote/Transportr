@@ -489,7 +489,7 @@ public class TransportrUtils {
 		else {
 			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintLight), PorterDuff.Mode.SRC_IN);
 		}
-		return drawable;
+		return drawable.mutate();
 	}
 
 	static public Drawable getTintedDrawable(Context context, Drawable drawable) {
