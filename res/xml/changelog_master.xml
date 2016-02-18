@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.6" versioncode="27">
+        <change>Added Ontario, Canada (Thanks Chimo!)</change>
+    </release>
+
     <release version="1.0.5" versioncode="26">
         <change>Entire trips can now be shown on the map</change>
         <change>Major improvements when auto-completing entered locations</change>

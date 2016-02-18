@@ -493,6 +493,16 @@ public class TransportNetworks {
 						.setStatus(TransportNetwork.Status.APLHA)
 		);
 
+		// Canada
+		region = getString(R.string.np_region_canada);
+
+		list.add(new TransportNetwork(context, NetworkId.ONTARIO)
+				         .setName("Ontario")
+				         .setDescription("Ottawa, Toronto")
+				         .setRegion(region)
+				         .setStatus(TransportNetwork.Status.APLHA)
+		);
+
 		return list;
 	}
 
