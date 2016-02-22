@@ -488,7 +488,7 @@ public class TransportNetworks {
 		);
 		list.add(new TransportNetwork(context, NetworkId.BRFLORIPA)
 						.setName(context.getString(R.string.np_name_br_floripa))
-						.setDescription("SIM")
+						.setDescription(context.getString(R.string.np_desc_br_floripa))
 						.setRegion(region)
 						.setStatus(TransportNetwork.Status.APLHA)
 		);
@@ -497,8 +497,8 @@ public class TransportNetworks {
 		region = getString(R.string.np_region_canada);
 
 		list.add(new TransportNetwork(context, NetworkId.ONTARIO)
-				         .setName("Ontario")
-				         .setDescription("Ottawa, Toronto")
+				         .setName(context.getString(R.string.np_name_ontario))
+				         .setDescription(context.getString(R.string.np_desc_ontario))
 				         .setRegion(region)
 				         .setStatus(TransportNetwork.Status.APLHA)
 		);

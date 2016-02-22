@@ -3,6 +3,22 @@
     <string name="website" translatable="false">https://transportr.grobox.de/?utm_source=app</string>
     <string name="bugtracker" translatable="false">https://github.com/grote/Transportr/issues</string>
 
+    <string name="google_play_short_desc">The public transport companion that respects your privacy and your freedom.</string>
+    <string name="google_play_full_desc">Transportr is a non-profit app developed by people around the world to make
+using public transport as easy as possible wherever you are.
+
+Currently, it works best in Europe, but also supports many places world-wide. If
+you live in an unsupported area, consider adding it to Transportr.
+Instructions are available on the homepage.
+
+Transportr finds directions from your home, your current position or a given station to
+wherever you want to go. You can also save entire trips as favorites and find
+next trips with one swipe. Of course, you can also show your trip on the map
+and follow your progress via GPS.
+
+You can also discover nearby stations and show upcoming departures including the delays (if
+there are any).</string>
+
     <string name="action_changelog">Changelog</string>
     <string name="action_about">About</string>
     <string name="action_settings">Settings</string>
@@ -252,12 +268,13 @@
     <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
     <string name="np_desc_mersey">Liverpool City Region</string>
     <string name="np_desc_br">São Paulo and Porto Alegre</string>
-    <string name="np_desc_br_floripa" tools:keep="@string/np_desc_br_floripa">SIM</string>
+    <string name="np_desc_br_floripa" translatable="false">SIM</string>
     <string name="np_desc_vrs">Cologne, Bonn</string>
     <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
     <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
     <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
     <string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
+    <string name="np_desc_ontario">Ottawa, Toronto</string>
 
     <string name="np_name_db">Deutsche Bahn</string>
     <string name="np_name_bayern">BAVARIA</string>
@@ -270,6 +287,7 @@
     <string name="np_name_br">SPTRANS EPTC</string>
     <string name="np_name_br_floripa">Florianópolis</string>
     <string name="np_name_frenchsouthwest">FR-SW</string>
+    <string name="np_name_ontario">Ontario</string>
 
     <string name="maintainer">Maintainer</string>
     <string name="contributers">Contributors</string>
