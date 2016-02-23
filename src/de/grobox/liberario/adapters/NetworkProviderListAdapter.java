@@ -25,6 +25,7 @@ import de.grobox.liberario.R;
 import de.schildbach.pte.NetworkId;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +90,7 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 		// set logo of provider if we have one
 		if(network.getLogo() != 0) {
-			((ImageView) convertView.findViewById(R.id.icon)).setImageDrawable(_context.getResources().getDrawable(network.getLogo()));
+			((ImageView) convertView.findViewById(R.id.icon)).setImageDrawable(ContextCompat.getDrawable(_context, network.getLogo()));
 		}
 
 		// remember region name of this child

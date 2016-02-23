@@ -28,6 +28,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -462,33 +463,30 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 */
 	private void addAccounts(TransportNetwork network) {
 		if(network != null) {
-			//noinspection deprecation
 			ProfileDrawerItem item1 = new ProfileDrawerItem()
 					                          .withName(network.getName())
 					                          .withEmail(network.getDescription())
-					                          .withIcon(getResources().getDrawable(network.getLogo()));
+					                          .withIcon(ContextCompat.getDrawable(this, network.getLogo()));
 			item1.withTag(network);
 			accountHeader.addProfile(item1, accountHeader.getProfiles().size());
 		}
 
 		TransportNetwork network2 = Preferences.getTransportNetwork(getContext(), 2);
 		if(network2 != null) {
-			//noinspection deprecation
 			ProfileDrawerItem item2 = new ProfileDrawerItem()
 					                          .withName(network2.getName())
 					                          .withEmail(network2.getDescription())
-					                          .withIcon(getResources().getDrawable(network2.getLogo()));
+					                          .withIcon(ContextCompat.getDrawable(this, network2.getLogo()));
 			item2.withTag(network2);
 			accountHeader.addProfile(item2, accountHeader.getProfiles().size());
 		}
 
 		TransportNetwork network3 = Preferences.getTransportNetwork(getContext(), 3);
 		if(network3 != null) {
-			//noinspection deprecation
 			ProfileDrawerItem item3 = new ProfileDrawerItem()
 					                          .withName(network3.getName())
 					                          .withEmail(network3.getDescription())
-					                          .withIcon(getResources().getDrawable(network3.getLogo()));
+					                          .withIcon(ContextCompat.getDrawable(this, network3.getLogo()));
 			item3.withTag(network3);
 			accountHeader.addProfile(item3, accountHeader.getProfiles().size());
 		}

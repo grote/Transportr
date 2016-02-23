@@ -82,7 +82,7 @@ public class TransportrUtils {
 		transportsView.setText(line.label);
 
 		if(line.style != null) {
-			GradientDrawable line_box = (GradientDrawable) context.getResources().getDrawable(R.drawable.line_box);
+			GradientDrawable line_box = (GradientDrawable) ContextCompat.getDrawable(context, R.drawable.line_box);
 
 			if(line_box != null) {
 				// change shape and mutate before to not share state with other instances
@@ -503,13 +503,11 @@ public class TransportrUtils {
 	}
 
 	static public Drawable getTintedDrawable(Context context, boolean dark, int res) {
-		//noinspection deprecation
-		return getTintedDrawable(context, dark, context.getResources().getDrawable(res));
+		return getTintedDrawable(context, dark, ContextCompat.getDrawable(context, res));
 	}
 
 	static public Drawable getTintedDrawable(Context context, int res) {
-		//noinspection deprecation
-		return getTintedDrawable(context, context.getResources().getDrawable(res));
+		return getTintedDrawable(context, ContextCompat.getDrawable(context, res));
 	}
 
 	static public Drawable getToolbarDrawable(Context context, Drawable drawable) {
@@ -521,8 +519,7 @@ public class TransportrUtils {
 	}
 
 	static public Drawable getToolbarDrawable(Context context, int res) {
-		//noinspection deprecation
-		return getToolbarDrawable(context, context.getResources().getDrawable(res));
+		return getToolbarDrawable(context, ContextCompat.getDrawable(context, res));
 	}
 
 	static public void fixToolbarIcon(Context context, MenuItem item) {

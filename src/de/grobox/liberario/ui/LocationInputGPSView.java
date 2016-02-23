@@ -114,8 +114,7 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		}
 
 		// clear input
-		//noinspection deprecation
-		setLocation(null, context.getResources().getDrawable(R.drawable.ic_gps));
+		setLocation(null, ContextCompat.getDrawable(context, R.drawable.ic_gps));
 		ui.clear.setVisibility(View.VISIBLE);
 
 		// clear current GPS location, because we are looking to find a new one
@@ -156,8 +155,7 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 	}
 
 	public void onLocationChanged(Location location) {
-		//noinspection deprecation
-		setLocation(location, context.getResources().getDrawable(R.drawable.ic_gps));
+		setLocation(location, ContextCompat.getDrawable(context, R.drawable.ic_gps));
 	}
 
 	// Called when a new location is found by the network location provider.
