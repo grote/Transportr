@@ -256,7 +256,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		// mark locations on map
 		for(Location loc : locations) {
 			if(loc.hasLocation()){
-				markLocation(loc, getResources().getDrawable(R.drawable.ic_marker_station));
+				markLocation(loc, ContextCompat.getDrawable(this, R.drawable.ic_marker_station));
 			}
 		}
 
@@ -370,7 +370,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		} else {
 			res = R.drawable.ic_marker_intermediate_stop;
 		}
-		LayerDrawable drawable = (LayerDrawable) getResources().getDrawable(res);
+		LayerDrawable drawable = (LayerDrawable) ContextCompat.getDrawable(this, res);
 		if(drawable != null) {
 			drawable.getDrawable(0).mutate().setColorFilter(bg, PorterDuff.Mode.MULTIPLY);
 			drawable.getDrawable(1).mutate().setColorFilter(fg, PorterDuff.Mode.SRC_IN);
