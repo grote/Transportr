@@ -26,6 +26,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -484,10 +485,10 @@ public class TransportrUtils {
 
 	static public Drawable getTintedDrawable(Context context, boolean dark, Drawable drawable) {
 		if(dark) {
-			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
+			drawable.setColorFilter(ContextCompat.getColor(context, R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
 		}
 		else {
-			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintLight), PorterDuff.Mode.SRC_IN);
+			drawable.setColorFilter(ContextCompat.getColor(context, R.color.drawableTintLight), PorterDuff.Mode.SRC_IN);
 		}
 		return drawable.mutate();
 	}
@@ -513,8 +514,7 @@ public class TransportrUtils {
 
 	static public Drawable getToolbarDrawable(Context context, Drawable drawable) {
 		if(drawable != null) {
-			//noinspection deprecation
-			drawable.setColorFilter(context.getResources().getColor(R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
+			drawable.setColorFilter(ContextCompat.getColor(context, R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
 			drawable.mutate();
 		}
 		return drawable;
@@ -531,11 +531,11 @@ public class TransportrUtils {
 
 	static public int getButtonIconColor(Context context, boolean on) {
 		if(Preferences.darkThemeEnabled(context)) {
-			if(on) return context.getResources().getColor(R.color.drawableTintDark);
-			else return context.getResources().getColor(R.color.drawableTintLight);
+			if(on) return ContextCompat.getColor(context, R.color.drawableTintDark);
+			else return ContextCompat.getColor(context, R.color.drawableTintLight);
 		} else {
 			if(on) return Color.BLACK;
-			else return context.getResources().getColor(R.color.drawableTintLight);
+			else return ContextCompat.getColor(context, R.color.drawableTintLight);
 		}
 	}
 

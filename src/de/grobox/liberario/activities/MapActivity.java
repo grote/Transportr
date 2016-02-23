@@ -385,10 +385,10 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			if(line != null && line.style != null && line.style.backgroundColor != 0) {
 				bg = line.style.backgroundColor;
 			} else {
-				bg = getResources().getColor(R.color.accent);
+				bg = ContextCompat.getColor(this, R.color.accent);
 			}
 		} else {
-			bg = getResources().getColor(R.color.walking);
+			bg = ContextCompat.getColor(this, R.color.walking);
 		}
 		return bg;
 	}
@@ -399,10 +399,10 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			if(line != null && line.style != null && line.style.foregroundColor != 0) {
 				fg = line.style.foregroundColor;
 			} else {
-				fg = getResources().getColor(android.R.color.white);
+				fg = ContextCompat.getColor(this, android.R.color.white);
 			}
 		} else {
-			fg = getResources().getColor(android.R.color.black);
+			fg = ContextCompat.getColor(this, android.R.color.black);
 		}
 		return fg;
 	}
