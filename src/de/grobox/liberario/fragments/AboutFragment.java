@@ -17,11 +17,13 @@
 
 package de.grobox.liberario.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -37,10 +39,11 @@ public class AboutFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_about, container, false);
+		Activity activity = getActivity();
 
 		String versionName;
 		try {
-			versionName = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName;
+			versionName = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
 		} catch (PackageManager.NameNotFoundException e) {
 			versionName = "?.?";
 		}
@@ -58,7 +61,7 @@ public class AboutFragment extends Fragment {
 
 		// make links in about text clickable
 		t.setMovementMethod(LinkMovementMethod.getInstance());
-		t.setLinkTextColor(getResources().getColor(R.color.accent));
+		t.setLinkTextColor(ContextCompat.getColor(activity, R.color.accent));
 
 		Button website = (Button) view.findViewById(R.id.websiteButton);
 		website.setOnClickListener(new View.OnClickListener() {
