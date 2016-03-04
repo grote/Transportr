@@ -59,9 +59,11 @@
 
             <Button
                 android:id="@+id/dateType"
-                android:layout_width="52dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="52dp"
                 android:text="@string/trip_dep"
+                android:singleLine="true"
                 />
 
             <include
