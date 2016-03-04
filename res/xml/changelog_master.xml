@@ -4,6 +4,7 @@
     <release version="1.0.6" versioncode="27">
         <change>Added Ontario, Canada (Thanks Chimo!)</change>
         <change>Improve start screen for devices with small screens</change>
+        <change>Improve usability for network provider selection</change>
     </release>
 
     <release version="1.0.5" versioncode="26">
