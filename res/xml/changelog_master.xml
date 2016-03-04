@@ -6,6 +6,7 @@
         <change>Improve start screen for devices with small screens</change>
         <change>Improve usability for network provider selection</change>
         <change>Do not remove other location when choosing "To here" or "From here"</change>
+        <change>Fix rare crash when reloading trip</change>
     </release>
 
     <release version="1.0.5" versioncode="26">

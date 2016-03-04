@@ -208,6 +208,8 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 	}
 
 	private boolean isTheSameTrip(Trip old_trip, Trip new_trip) {
+		if(old_trip == null || new_trip == null || new_trip.legs == null) return false;
+
 		// check number of changes and legs
 		if(old_trip.numChanges.equals(new_trip.numChanges) && old_trip.legs.size() == new_trip.legs.size()) {
 			// check departure times
