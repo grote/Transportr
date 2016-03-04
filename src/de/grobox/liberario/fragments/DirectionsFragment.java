@@ -459,11 +459,11 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 	}
 
 	public void presetFromTo(Location from, Location to, Date date) {
-		if(this.from != null) {
+		if(this.from != null && from != null) {
 			this.from.setLocation(from, TransportrUtils.getDrawableForLocation(getContext(), from));
 		}
 
-		if(this.to != null) {
+		if(this.to != null && to != null) {
 			this.to.setLocation(to, TransportrUtils.getDrawableForLocation(getContext(), to));
 		}
 
