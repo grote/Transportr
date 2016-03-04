@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="action_changelog">Registro de cambios</string>
   <string name="action_about">Acerca de</string>
   <string name="action_settings">Ajustes</string>
@@ -11,7 +11,6 @@
   <string name="action_location_map">Mostrar estaciones en el mapa</string>
   <string name="action_use_gps">Activar GPS</string>
   <string name="action_share">Compartir</string>
-  <string name="action_trip_calendar">En el calendario</string>
   <string name="action_trip_delete">Eliminar viaje</string>
   <string name="action_show_on_external_map">Mostrar en mapa externo</string>
   <string name="action_copy">Copiar</string>
@@ -24,15 +23,6 @@
   <string name="tab_devs">Desarrolladores</string>
   <string name="tab_about">A cerca de</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nLicencia de software libre: GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>Transportr es un asistente de transporte público que respeta tu privacidad y tu libertad. Se trata de una aplicación sin fines lucrativos creada por gente de todo el mundo para hacer el uso del transporte público lo más fácil posible dondequiera que estés. Esta aplicación es software libre, así que puedes utilizala libremente, estudiarla, compartirla y mejorarla</p>
-<p>No hay ninguna garantía sobre la exactitud de los datos. Por favor, utiliza esta aplicación bajo tu responsabilidad.</p>
-<p><b>Las colaboraciones</b> son estimulantes y apreciadas. Si quieres colaborar, por favor, visita <a href=\"http://transportr.grobox.de/\">la we de Transportr</a> para más información.</p>
-<p>Si tienes algún problema con la app, por favor, informanos en <a href=\"https://github.com/grote/Transportr/issues\">el gestor de incidencias</a>.</p>
-<p>Puedes ver las formas de <b>donar</b> en <a href=\"http://transportr.grobox.de/#donate\">la web de Transportr</a>.</p>
-]]>
-</string>
   <string name="trip_dep">sal</string>
   <string name="trip_arr">lle</string>
   <string name="trip_removed">Viaje eliminado</string>
@@ -132,12 +122,12 @@
   <string name="np_desc_vgn">Núremberg, Fürth, Erlangen</string>
   <string name="np_desc_vvm">Suabia, Mittelschwaben, Krumbach, Gunzburgo, Memmingen</string>
   <string name="np_desc_vmv">Mecklemburgo-Antepomerania, Schwerin</string>
-  <string name="np_desc_rsag">Rostock</string>
-  <string name="np_desc_hvv">Hamburgo</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburgo</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburgo</string>
   <string name="np_desc_gvh">Baja Sajonia, Hanóver, Hamburgo</string>
   <string name="np_desc_bsvag">Brunswick, Wolfsburgo</string>
-  <string name="np_desc_vbn">Baja Sajonia, Bremen, Bremerhaven, Oldemburgo (Oldemburgo), Osnabrück</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baja Sajonia, Bremen, Bremerhaven, Oldemburgo (Oldemburgo), Osnabrück</string>
   <string name="np_desc_vvo">Sajonia, Dresde</string>
   <string name="np_desc_vms">Distrito central de Sajonia, Chemnitz</string>
   <string name="np_desc_nasa">Sajonia, Leipzig, Sajonia-Anhalt, Magdeburgo, Halle</string>
@@ -191,7 +181,7 @@
   <string name="np_desc_stockholm">Estocolmo</string>
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
   <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
-  <string name="np_desc_tlwm">Birmingham</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irlanda, Dublín, Belfast</string>
   <string name="np_desc_atc">Emilia-Romaña, Bolonia</string>
   <string name="np_desc_pl">Polonia, Varsovia</string>
@@ -205,7 +195,7 @@
   <string name="np_desc_hsl">Hélsinki</string>
   <string name="np_desc_paris">París</string>
   <string name="np_desc_nz">Wellington, Auckland</string>
-  <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+  <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Autobuses de Madrid (EMT), Barcelona (TMB), Euskadi (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool City Region</string>
   <string name="np_desc_br">São Paulo and Porto Alegre</string>
@@ -217,7 +207,7 @@
   <string name="np_name_stockholm">ESTOCOLMO</string>
   <string name="np_name_wien">VIENA</string>
   <string name="np_name_spain">España</string>
-  <string name="np_name_usny">Estados de Nueva York y Nueva Jersey</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nueva York y Nueva Jersey</string>
   <string name="np_name_br">SPTRANS EPTC</string>
   <string name="maintainer">Mantenedor</string>
   <string name="contributers">Colaboradores</string>

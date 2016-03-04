@@ -3,6 +3,8 @@
 
     <release version="1.0.6" versioncode="27">
         <change>Added Ontario, Canada (Thanks Chimo!)</change>
+        <change>Added Catalan translation (Thanks el_libre!)</change>
+        <change>Added Polish translation (Thanks Daniel!)</change>
         <change>Improve start screen for devices with small screens</change>
         <change>Improve usability for network provider selection</change>
         <change>Do not remove other location when choosing "To here" or "From here"</change>

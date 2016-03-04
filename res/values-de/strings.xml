@@ -1,5 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_short_desc">Der Begleiter für öffentliche Verkehrsmittel, der deine Privatsphäre und deine Freiheit respektiert. </string>
+  <string name="google_play_full_desc">Transportr ist eine nicht-kommerzielle Anwendung, welche von Menschen überall auf der Welt entwickelt wird,
+um die Nutzung von öffentlichen Verkehrsmitteln zu erleichtern, egal wo du bist.
+
+Zur Zeit funktioniert dies am besten in Europa, aber es werden auch viele Orte weltweit unterstützt.
+Wenn du in einer nicht unterstützten Region lebst, kannst du sie zu Transportr hinzufügen.
+Eine Anleitung hierzu ist auf der Homepage verfügbar.
+
+Transportr findet Verbindungen von deinem zu Hause, deiner aktuellen Position oder einer bestimmten Haltestelle zu
+einem beliebigen Ziel. Du kannst auch komplette Routen als Favoriten speichern und findest
+somit die nächsten Verbindungen ganz einfach. Selbstverständlich kannst du deine Route auch auf einer Karte
+anzeigen und dem Verlauf über GPS folgen.
+
+Du kannst auch Haltestellen in der Nähe finden und bevorstehende Abfahrten einschliesslich der Verzögerungen (wenn
+es welche gibt) anzeigen lassen.</string>
   <string name="action_changelog">Änderungsprotokoll</string>
   <string name="action_about">Über</string>
   <string name="action_settings">Einstellungen</string>
@@ -24,7 +39,7 @@
   <string name="tab_libraries">Bibliotheken</string>
   <string name="tab_devs">Entwickler</string>
   <string name="tab_about">Über</string>
-  <string name="about_top">© 2013 – 2016 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
+  <string name="about_top">© 2013 – 2015 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr ist dein Begleiter für den öffentlichen Nah- und Fernverkehr der deine Privatsphäre und Freiheit respektiert. Es ist eine gemeinnützige App entwickelt von Menschen aus aller Welt mit dem Ziel die Benutzung des öffentlichen Verkehrs so einfach wie möglich zu machen, ganz gleich wo du bist. Diese App ist Freie Software, es steht dir also frei sie zu nutzen, zu verstehen wie sie funktioniert, sie zu verteilen und zu verbessern.</p>
@@ -151,12 +166,12 @@
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen</string>
   <string name="np_desc_vvm">Schwaben, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
-  <string name="np_desc_rsag">Rostock</string>
-  <string name="np_desc_hvv">Hamburg</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
   <string name="np_desc_gvh">Niedersachsen, Hannover, Hamburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
-  <string name="np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vvo">Sachsen, Dresden</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_nasa">Sachsen, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
@@ -204,13 +219,14 @@
   <string name="np_region_nz">Neuseeland</string>
   <string name="np_region_spain">Spanien</string>
   <string name="np_region_br">Brasilien</string>
+  <string name="np_region_canada">Kanada</string>
   <string name="np_desc_ns">Niederlande, Amsterdam</string>
   <string name="np_desc_dsb">Dänemark, Kopenhagen</string>
   <string name="np_desc_se">Schweden, Stockholm</string>
   <string name="np_desc_stockholm">Stockholm</string>
   <string name="np_desc_nri">Norwegen, Oslo, Bergen</string>
   <string name="np_desc_tlem">Großraum London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
-  <string name="np_desc_tlwm">Birmingham</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
   <string name="np_desc_pl">Polen, Warschau</string>
@@ -224,14 +240,14 @@
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_desc_paris">Paris</string>
   <string name="np_desc_nz">Wellington, Auckland</string>
-  <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+  <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Busse in Madrid (EMT), Barcelona (TMB), Baskenland (Moveuskadi)</string>
   <string name="np_desc_mersey">Region Liverpool</string>
   <string name="np_desc_br">São Paulo und Porto Alegre</string>
-  <string name="np_desc_br_floripa">SIM</string>
   <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Rom, Mailand, Turin, Venedig, Palermo, Trient</string>
+  <string name="np_desc_ontario">Ottawa, Toronto</string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAYERN</string>
   <string name="np_name_paris">PARIS</string>
@@ -239,10 +255,11 @@
   <string name="np_name_stockholm">STOCKHOLM</string>
   <string name="np_name_wien">WIEN</string>
   <string name="np_name_spain">Spanien</string>
-  <string name="np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
   <string name="np_name_br">SPTrans (Sao Paulo) und EPTC (Porto Alegre)</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_name_frenchsouthwest">FR-SW</string>
+  <string name="np_name_ontario">Ontario</string>
   <string name="maintainer">Koordinator</string>
   <string name="contributers">Beitragende</string>
   <string name="translators">Übersetzer</string>

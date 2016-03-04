@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="action_changelog">Endringslogg</string>
   <string name="action_about">Om</string>
   <string name="action_settings">Innstillinger</string>
@@ -9,7 +9,6 @@
   <string name="action_location_map">Vis stasjoner i kart</string>
   <string name="action_use_gps">Skru på GPS</string>
   <string name="action_share">Del</string>
-  <string name="action_trip_calendar">Inn i kalender</string>
   <string name="action_trip_delete">Slett tur</string>
   <string name="action_show_on_external_map">Vis på eksternt kart</string>
   <string name="action_copy">Kopier</string>
@@ -94,10 +93,10 @@
   <string name="np_desc_mvv">Bavaria, München</string>
   <string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_vvm">Schwaben, Mittelschwaben, Krum, Günzburg, Memmingen</string>
-  <string name="np_desc_rsag">Rostock</string>
-  <string name="np_desc_hvv">Hamburg</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
   <string name="np_desc_gvh">Niedersachsen, Hannover, Hamburg</string>
-  <string name="np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vrr">Nordrhein-Westfalen, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_region_austria">Østerrike</string>
@@ -139,7 +138,7 @@
   <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_name_wien">WIEN</string>
   <string name="np_name_spain">Spania</string>
-  <string name="np_name_usny">Statene New York og New-Jersey</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">Statene New York og New-Jersey</string>
   <string name="maintainer">Utgivelsesansvarlig</string>
   <string name="contributers">Bidragsytere</string>
   <string name="translators">Oversettere</string>

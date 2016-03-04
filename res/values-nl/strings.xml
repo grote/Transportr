@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="action_changelog">Lijst van veranderingen</string>
   <string name="action_about">Over</string>
   <string name="action_settings">Instellingen</string>
@@ -11,7 +11,6 @@
   <string name="action_location_map">Laat stations op kaart zien</string>
   <string name="action_use_gps">GPS inschakelen</string>
   <string name="action_share">Deel</string>
-  <string name="action_trip_calendar">Naar kalender</string>
   <string name="action_trip_delete">Verbinding verwijderen</string>
   <string name="action_show_on_external_map">Laat op externe kaart zien</string>
   <string name="action_copy">Kopieëren</string>
@@ -122,12 +121,12 @@
   <string name="np_desc_vgn">Neurenberg, Fürth, Erlangen</string>
   <string name="np_desc_vvm">Zwaben, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
-  <string name="np_desc_rsag">Rostock</string>
-  <string name="np_desc_hvv">Hamburg</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
   <string name="np_desc_gvh">Nedersaksen, Hannover, Hamburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
-  <string name="np_desc_vbn">Nedersaksen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Nedersaksen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vvo">Saksen, Dresden</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_nasa">Saksen, Leipzig, Saksen-Anhalt, Magdeburg, Halle</string>
@@ -181,7 +180,7 @@
   <string name="np_desc_stockholm">Stockholm</string>
   <string name="np_desc_nri">Noorwegen, Oslo, Bergen</string>
   <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
-  <string name="np_desc_tlwm">Birmingham</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Ierland, Dublin, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
   <string name="np_desc_pl">Polen, Warsaw</string>
@@ -195,7 +194,7 @@
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_desc_paris">Parijs</string>
   <string name="np_desc_nz">Wellington, Auckland</string>
-  <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+  <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool Stad Regio</string>
   <string name="np_name_db">Deutsche Bahn</string>
@@ -205,7 +204,7 @@
   <string name="np_name_stockholm">STOCKHOLM</string>
   <string name="np_name_wien">WENEN</string>
   <string name="np_name_spain">Spanje</string>
-  <string name="np_name_usny">New York en New-Jersey staten</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">New York en New-Jersey staten</string>
   <string name="maintainer">Onderhouder</string>
   <string name="contributers">Bijdragers</string>
   <string name="translators">Vertalers</string>

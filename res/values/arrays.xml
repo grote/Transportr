@@ -25,6 +25,8 @@
         <item>@string/dutch</item>
         <item>@string/portuguese_br</item>
         <item>@string/turkish</item>
+        <item>@string/catalan</item>
+        <item>@string/polish</item>
     </string-array>
     <string-array name="pref_language_values">
         <item>@string/pref_language_value_default</item>
@@ -38,6 +40,8 @@
         <item>nl</item>
         <item>pt_BR</item>
         <item>tr</item>
+        <item>ca</item>
+        <item>pl</item>
     </string-array>
     <string name="pref_language_value_default" translatable="false">default</string>
 

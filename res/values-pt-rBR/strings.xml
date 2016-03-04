@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="action_changelog">Alterar login</string>
   <string name="action_about">Sobre</string>
   <string name="action_settings">Configurações</string>
@@ -151,12 +151,12 @@
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen</string>
   <string name="np_desc_vvm">Suábia, </string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
-  <string name="np_desc_rsag">Rostock</string>
-  <string name="np_desc_hvv">Hamburgo</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburgo</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburgo</string>
   <string name="np_desc_gvh">Baixa Saxônia, Hannover, Hamburgo</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
-  <string name="np_desc_vbn">Baixa Saxônia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxônia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vvo">Saxônia, Dresden</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_nasa">Saxônia, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
@@ -210,7 +210,7 @@
   <string name="np_desc_stockholm">Estocolmo</string>
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
   <string name="np_desc_tlem">Grande Londres, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
-  <string name="np_desc_tlwm">Birmingham</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irlanda, Dublin, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bolonha</string>
   <string name="np_desc_pl">Polônia, Varsóvia</string>
@@ -224,11 +224,10 @@
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_desc_paris">Paris</string>
   <string name="np_desc_nz">Wellington, Auckland</string>
-  <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+  <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">ônibus em Madri (EMT), Barcelona (TMB), Basco (Moveuskadi)</string>
   <string name="np_desc_mersey">Região da cidade de Liverpool</string>
   <string name="np_desc_br">São Paulo e Porto Alegre</string>
-  <string name="np_desc_br_floripa">SIM</string>
   <string name="np_desc_vrs">Colônia, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limusino, Aquitânia, Sul Pirineus, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Roma, Milão, Turim, Veneza, Palermo, Trento </string>
@@ -239,7 +238,7 @@
   <string name="np_name_stockholm">ESTOCOLMO</string>
   <string name="np_name_wien">VIENA</string>
   <string name="np_name_spain">Espanha</string>
-  <string name="np_name_usny">Estados de Nova York e Nova Jersey</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nova York e Nova Jersey</string>
   <string name="np_name_br">SPTRANS EPTC</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_name_frenchsouthwest">FR-SW</string>

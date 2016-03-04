@@ -213,6 +213,26 @@
                             android:layout_height="wrap_content"
                             android:padding="7dp"
                             android:textColor="?android:attr/textColorPrimary"
+                            android:text="@string/catalan"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="7dp"
+                            tools:ignore="HardcodedText"
+                            android:text="el_libre"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="7dp"
+                            android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/dutch"/>
 
                         <TextView
@@ -304,6 +324,27 @@
                             android:padding="7dp"
                             tools:ignore="HardcodedText"
                             android:text="Allan Nordhøy"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="7dp"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:text="@string/polish"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="7dp"
+                            tools:ignore="HardcodedText"
+                            android:text="Daniel Koć"/>
                     </TableRow>
 
                     <TableRow

@@ -14,3 +14,5 @@ trans.tr = res/values-tr/strings.xml
 trans.pt_BR = res/values-pt-rBR/strings.xml
 trans.eu = res/values-eu/strings.xml
 trans.nb = res/values-nb/strings.xml
+trans.ca = res/values-ca/strings.xml
+trans.pl = res/values-pl/strings.xml
