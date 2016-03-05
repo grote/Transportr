@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -25,7 +26,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_product_bus"/>
+            app:srcCompat="@drawable/ic_product_bus"/>
     </LinearLayout>
 
 
@@ -35,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:drawableLeft="@drawable/ic_menu_directions"
+        android:drawableLeft="@drawable/ic_menu_directions_proxy"
         android:drawablePadding="5dp"
         android:gravity="center_vertical"
         android:text="@string/from_here"/>
@@ -46,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:drawableLeft="@drawable/ic_menu_directions"
+        android:drawableLeft="@drawable/ic_menu_directions_proxy"
         android:drawablePadding="5dp"
         android:gravity="center_vertical"
         android:text="@string/to_here"/>
@@ -57,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:drawableLeft="@drawable/ic_action_departures"
+        android:drawableLeft="@drawable/ic_action_departures_proxy"
         android:drawablePadding="5dp"
         android:gravity="center_vertical"
         android:text="@string/tab_departures"/>
@@ -68,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:drawableLeft="@drawable/ic_tab_stations"
+        android:drawableLeft="@drawable/ic_tab_stations_proxy"
         android:drawablePadding="5dp"
         android:gravity="center_vertical"
         android:text="@string/tab_nearby_stations"/>

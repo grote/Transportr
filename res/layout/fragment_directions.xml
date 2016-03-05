@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="5dp"
@@ -15,9 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        card_view:cardBackgroundColor="?attr/cardBackgroundColor"
-        card_view:cardUseCompatPadding="true"
-        card_view:cardCornerRadius="2dp"
+        app:cardBackgroundColor="?attr/cardBackgroundColor"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="2dp"
         >
 
     <LinearLayout
@@ -221,7 +221,7 @@
             android:id="@+id/fav_trips_separator_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_star"
+            app:srcCompat="@drawable/ic_action_star"
             android:contentDescription="@string/tab_fav_trips"/>
 
         <View
@@ -241,9 +241,9 @@
         android:id="@+id/no_favourites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="2dp"
-        card_view:cardUseCompatPadding="true"
-        card_view:cardBackgroundColor="?attr/cardBackgroundColor">
+        app:cardCornerRadius="2dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="?attr/cardBackgroundColor">
 
         <TextView
             android:layout_width="fill_parent"

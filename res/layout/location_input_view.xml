@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/location_input_view"
     android:layout_width="match_parent"
     android:layout_height="38dp"
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/ic_location"
+        app:srcCompat="@drawable/ic_location"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"/>
@@ -54,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_action_content_remove"
+                app:srcCompat="@drawable/ic_action_content_remove"
                 android:visibility="gone" />
         </LinearLayout>
     </FrameLayout>

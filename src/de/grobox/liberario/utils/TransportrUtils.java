@@ -513,6 +513,7 @@ public class TransportrUtils {
 	static public Drawable getToolbarDrawable(Context context, Drawable drawable) {
 		if(drawable != null) {
 			drawable.setColorFilter(ContextCompat.getColor(context, R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
+			drawable.setAlpha(255);
 			drawable.mutate();
 		}
 		return drawable;

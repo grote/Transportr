@@ -161,6 +161,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			} else {
 				gpsItem.setIcon(TransportrUtils.getToolbarDrawable(this, R.drawable.ic_gps));
 			}
+		} else {
+			TransportrUtils.fixToolbarIcon(this, gpsItem);
 		}
 
 		return super.onCreateOptionsMenu(menu);
@@ -500,11 +502,11 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		if(gps) {
 			gps = false;
 			locationProvider.stopLocationProvider();
-			gpsItem.setIcon(R.drawable.ic_gps);
+			gpsItem.setIcon(TransportrUtils.getToolbarDrawable(this, R.drawable.ic_gps));
 		} else {
 			gps = true;
 			locationProvider.startLocationProvider(myLocationOverlay);
-			gpsItem.setIcon(R.drawable.ic_gps_off);
+			gpsItem.setIcon(TransportrUtils.getToolbarDrawable(this, R.drawable.ic_gps_off));
 		}
 	}
 

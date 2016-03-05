@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,7 +11,7 @@
         android:id="@+id/mapView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_location_map"
+        app:srcCompat="@drawable/ic_action_location_map"
         android:background="?attr/actionBarItemBackground"
         android:padding="8dp"
         android:contentDescription="@string/action_show_on_map"/>
@@ -19,7 +20,7 @@
         android:id="@+id/shareView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_social_share"
+        app:srcCompat="@drawable/ic_action_social_share"
         android:background="?attr/actionBarItemBackground"
         android:padding="8dp"
         android:contentDescription="@string/action_share"/>
@@ -28,7 +29,7 @@
         android:id="@+id/calendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_calendar"
+        app:srcCompat="@drawable/ic_action_calendar"
         android:background="?attr/actionBarItemBackground"
         android:padding="8dp"
         android:contentDescription="@string/action_trip_calendar"/>
@@ -42,7 +43,7 @@
         android:id="@+id/expandView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_navigation_unfold_more"
+        app:srcCompat="@drawable/ic_action_navigation_unfold_more"
         android:background="?attr/actionBarItemBackground"
         android:padding="8dp"
         android:contentDescription="@string/action_navigation_expand"/>
