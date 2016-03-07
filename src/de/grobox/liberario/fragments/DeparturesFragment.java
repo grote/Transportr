@@ -211,7 +211,7 @@ public class DeparturesFragment extends TransportrFragment implements TransportN
 	public void onResume() {
 		super.onResume();
 
-		if(!restart) {
+		if(!restart && mView != null) {
 			long date = DateUtils.getDateFromUi(mView).getTime();
 			long now = new Date().getTime();
 
