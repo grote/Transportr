@@ -43,12 +43,11 @@ public class SpainProvider extends AbstractNavitiaProvider
 	@Override
 	protected Style getLineStyle(final Product product, final String code, final String color)
 	{
-		int bc = Style.RED;
-		if(!color.equals("#")) {
+		final Style defaultStyle = Standard.STYLES.get(product);
+		int bc = defaultStyle.backgroundColor;
+		int fc = defaultStyle.foregroundColor;
+		if(color != null) {
 			bc = Style.parseColor(color);
-		}
-		int fc = Style.WHITE;
-		if(!color.equals("#")) {
 			fc = computeForegroundColor(color);
 		}
 

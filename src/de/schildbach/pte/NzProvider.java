@@ -48,16 +48,15 @@ public class NzProvider extends AbstractNavitiaProvider
 	@Override
 	protected Style getLineStyle(final Product product, final String code, final String color)
 	{
-		if(color.equals("#")) {
+		if(color != null) {
 			return lineStyle(network.name(), product, code);
 		}
 		else {
-			return super.getLineStyle(product, code, color);
+			return super.getLineStyle(product, code, null);
 		}
 	}
 
 	private static final Map<String, Style> STYLES = new HashMap<>();
-
 	static
 	{
 		// Wellington buses
