@@ -88,8 +88,6 @@ public class DeparturesFragment extends TransportrFragment implements TransportN
 		DateUtils.setUpTimeDateUi(mView);
 
 		// Find Departures Search Button
-
-		ui.search.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()));
 		ui.search.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
