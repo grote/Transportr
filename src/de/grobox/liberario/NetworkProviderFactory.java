@@ -98,6 +98,7 @@ public final class NetworkProviderFactory
 	private static Reference<ItalyProvider> italyProviderRef;
 	private static Reference<FrenchSouthWestProvider> frenchSouthWestProviderRef;
 	private static Reference<OntarioProvider> ontarioProviderRef;
+	private static Reference<QuebecProvider> quebecProviderRef;
 
 	private static final String NAVITIA_API = "https://api.navitia.io/v1/";
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
@@ -1026,6 +1027,19 @@ public final class NetworkProviderFactory
 
 			final OntarioProvider provider = new OntarioProvider(NAVITIA);
 			ontarioProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.QUEBEC))
+		{
+			if (quebecProviderRef != null)
+			{
+				final QuebecProvider provider = quebecProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final QuebecProvider provider = new QuebecProvider(NAVITIA);
+			quebecProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else

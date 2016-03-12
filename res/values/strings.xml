@@ -275,6 +275,7 @@ there are any).</string>
     <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
     <string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
     <string name="np_desc_ontario">Ottawa, Toronto</string>
+    <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
 
     <string name="np_name_db">Deutsche Bahn</string>
     <string name="np_name_bayern">BAVARIA</string>
@@ -288,6 +289,7 @@ there are any).</string>
     <string name="np_name_br_floripa">Florianópolis</string>
     <string name="np_name_frenchsouthwest">FR-SW</string>
     <string name="np_name_ontario">Ontario</string>
+    <string name="np_name_quebec">Quebec</string>
 
     <string name="maintainer">Maintainer</string>
     <string name="contributers">Contributors</string>

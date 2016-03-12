@@ -502,6 +502,12 @@ public class TransportNetworks {
 				         .setRegion(region)
 				         .setStatus(TransportNetwork.Status.APLHA)
 		);
+		list.add(new TransportNetwork(context, NetworkId.QUEBEC)
+				         .setName(context.getString(R.string.np_name_quebec))
+				         .setDescription(context.getString(R.string.np_desc_quebec))
+				         .setRegion(region)
+				         .setStatus(TransportNetwork.Status.APLHA)
+		);
 
 		return list;
 	}
