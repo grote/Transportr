@@ -500,7 +500,7 @@ public class TransportNetworks {
 				         .setName(context.getString(R.string.np_name_ontario))
 				         .setDescription(context.getString(R.string.np_desc_ontario))
 				         .setRegion(region)
-				         .setStatus(TransportNetwork.Status.APLHA)
+				         .setStatus(TransportNetwork.Status.BETA)
 		);
 		list.add(new TransportNetwork(context, NetworkId.QUEBEC)
 				         .setName(context.getString(R.string.np_name_quebec))
