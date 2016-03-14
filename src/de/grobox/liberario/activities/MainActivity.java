@@ -54,7 +54,6 @@ import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
-import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
@@ -92,8 +91,6 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		// Initialize Application Context with all Transport Networks
-		((TransportrApplication) getApplicationContext()).initilize(this);
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		final TransportNetwork network = Preferences.getTransportNetwork(this);
 

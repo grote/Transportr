@@ -19,18 +19,51 @@ package de.grobox.liberario;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+
+import java.util.Locale;
 
 public class TransportrApplication extends Application {
 	private TransportNetworks networks;
 
-	public void initilize(Context context) {
+	@Override
+	public void onCreate() {
+		super.onCreate();
+
+		useLanguage(getBaseContext());
+		initializeNetworks(getBaseContext());
+	}
+
+	public void initializeNetworks(Context context) {
 		if(networks == null) networks = new TransportNetworks(context);
 	}
 
 	public TransportNetworks getTransportNetworks(Context context) {
 		// sometimes we need to reinitialize for some reason
-		if(networks == null) initilize(context);
+		if(networks == null) initializeNetworks(context);
 
 		return networks;
 	}
+
+	public static void useLanguage(Context context) {
+		String lang = Preferences.getLanguage(context);
+		if(!lang.equals(context.getString(R.string.pref_language_value_default))) {
+			Locale locale;
+			if(lang.contains("_")) {
+				String[] lang_array = lang.split("_");
+				locale = new Locale(lang_array[0], lang_array[1]);
+			} else {
+				locale = new Locale(lang);
+			}
+			Locale.setDefault(locale);
+			Configuration config = context.getResources().getConfiguration();
+			config.locale = locale;
+			context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+		} else {
+			// use default language
+			context.getResources().updateConfiguration(Resources.getSystem().getConfiguration(), context.getResources().getDisplayMetrics());
+		}
+	}
+
 }

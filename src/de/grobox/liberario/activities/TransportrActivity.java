@@ -18,13 +18,8 @@
 package de.grobox.liberario.activities;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-import java.util.Locale;
 
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
@@ -42,29 +37,6 @@ public class TransportrActivity extends AppCompatActivity {
 		}
 
 		super.onCreate(savedInstanceState);
-
-		// Use current language
-		useLanguage(this);
-	}
-
-	public static void useLanguage(Context context) {
-		String lang = Preferences.getLanguage(context);
-		if(!lang.equals(context.getString(R.string.pref_language_value_default))) {
-			Locale locale;
-			if(lang.contains("_")) {
-				String[] lang_array = lang.split("_");
-				locale = new Locale(lang_array[0], lang_array[1]);
-			} else {
-				locale = new Locale(lang);
-			}
-			Locale.setDefault(locale);
-			Configuration config = new Configuration();
-			config.locale = locale;
-			context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
-		} else {
-			// use default language
-			context.getResources().updateConfiguration(Resources.getSystem().getConfiguration(), context.getResources().getDisplayMetrics());
-		}
 	}
 
 }

@@ -48,8 +48,6 @@ public class SetHomeActivity extends AppCompatActivity {
 
 		super.onCreate(savedInstanceState);
 
-		TransportrActivity.useLanguage(this);
-
 		setContentView(R.layout.activity_set_home);
 
 		setTitle(getString(R.string.home_dialog_title));

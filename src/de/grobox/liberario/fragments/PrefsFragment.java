@@ -32,6 +32,7 @@ import android.view.View;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.PickNetworkProviderActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
@@ -120,6 +121,7 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 			ListPreference langPref = (ListPreference) findPreference(key);
 			langPref.setSummary(langPref.getEntry());
 
+			TransportrApplication.useLanguage(getActivity().getBaseContext());
 			reload();
 		}
 	}
@@ -163,6 +165,7 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 		getActivity().startActivity(intent);
 
 		// switch back to this fragment, because it doesn't work the first time where fragment is not yet found
+		// FIXME this causes a bug where the fragment is always set back to this when changing orientation
 		final Intent intent2 = new Intent(getActivity(), MainActivity.class);
 		intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent2.setAction(MainActivity.ACTION_SETTINGS);
