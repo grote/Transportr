@@ -176,6 +176,14 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 	}
 
 	@Override
+	public void onResume() {
+		super.onResume();
+
+		// clear favorites for auto-complete
+		loc.resetIfEmpty();
+	}
+
+	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		// Inflate the menu items for use in the action bar
 		inflater.inflate(R.menu.nearbystations, menu);

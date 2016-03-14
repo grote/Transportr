@@ -83,6 +83,14 @@ public class LocationInputView implements LoaderManager.LoaderCallbacks {
 				onLocationItemClick(getAdapter().getItem(position), view);
 			}
 		});
+		ui.location.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(hasFocus && v.isShown() && v instanceof NoTextChangeAutoCompleteTextView) {
+					((NoTextChangeAutoCompleteTextView) v).showDropDown();
+				}
+			}
+		});
 		ui.location.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -229,6 +237,7 @@ public class LocationInputView implements LoaderManager.LoaderCallbacks {
 
 	private void clearLocationAndShowDropDown() {
 		clearLocation();
+		reset();
 		ui.clear.setVisibility(View.GONE);
 		ui.location.requestFocus();
 		ui.location.showDropDown();
@@ -237,6 +246,12 @@ public class LocationInputView implements LoaderManager.LoaderCallbacks {
 	public void reset() {
 		if(getAdapter() != null) {
 			getAdapter().setDefaultLocations(true);
+		}
+	}
+
+	public void resetIfEmpty() {
+		if(ui.location.getText().length() == 0) {
+			reset();
 		}
 	}
 

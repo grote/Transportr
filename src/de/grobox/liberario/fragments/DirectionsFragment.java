@@ -255,8 +255,8 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 				long time = date.getTime();
 				long now = new Date().getTime();
 
-				// reset date and time if older than 2 hours, so user doesn't search in the past by accident
-				if((now - time) / (60 * 60 * 1000) > 2) {
+				// reset date and time if older than 10 minutes, so user doesn't search in the past by accident
+				if((now - time) / (60 * 1000) > 10) {
 					DateUtils.resetTime(getContext(), ui.time, ui.date);
 				}
 			}
@@ -266,7 +266,8 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 
 		mAfterGpsTask = null;
 
-		displayFavourites();
+		displayFavouriteTrips();
+		refreshAutocomplete(false);
 	}
 
 	@Override
@@ -317,8 +318,8 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 	@Override
 	// change things for a different network provider
 	public void onNetworkProviderChanged(TransportNetwork network) {
-		refreshFavs();
-		displayFavourites();
+		refreshAutocomplete(true);
+		displayFavouriteTrips();
 
 		// remove old text from TextViews
 		if(mView != null) {
@@ -369,7 +370,7 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 	@Override
 	public void onTripRetrievalError(String error) { }
 
-	private void displayFavourites() {
+	private void displayFavouriteTrips() {
 		if(mFavAdapter == null) return;
 
 		mFavAdapter.clear();
@@ -477,9 +478,15 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 		search();
 	}
 
-	public void refreshFavs() {
-		if(ui.from != null) from.reset();
-		if(ui.to != null) to.reset();
+	public void refreshAutocomplete(boolean always) {
+		if(ui.from != null) {
+			if(always) from.reset();
+			else from.resetIfEmpty();
+		}
+		if(ui.to != null) {
+			if(always) to.reset();
+			else to.resetIfEmpty();
+		}
 	}
 
 	public void activateGPS() {

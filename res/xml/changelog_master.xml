@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.7" versioncode="28">
+        <change>Added Quebec, Canada (Thanks Chimo!)</change>
+        <change>Improvements for location auto-completion</change>
+        <change>Small visual improvements</change>
+        <change>Improvements for networks provided by Navitia.io</change>
+    </release>
+
     <release version="1.0.6" versioncode="27">
         <change>Added Ontario, Canada (Thanks Chimo!)</change>
         <change>Added Catalan translation (Thanks el_libre!)</change>
