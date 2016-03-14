@@ -61,7 +61,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT)));
+		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false)));
 		setListAdapter(adapter);
 
 		toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
@@ -145,7 +145,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 		// reload data because it has changed
 		if(getActivity() != null && adapter != null) {
 			adapter.clear();
-			adapter.addAll(RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT)));
+			adapter.addAll(RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false)));
 		}
 	}
 
