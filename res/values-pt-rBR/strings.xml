@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="action_changelog">Alterar login</string>
-  <string name="action_about">Sobre</string>
-  <string name="action_settings">Configurações</string>
+  <string name="drawer_changelog">Alterar login</string>
+  <string name="drawer_about">Sobre</string>
+  <string name="drawer_settings">Configurações</string>
   <string name="action_fav_trip">Marcar viagem como favorita</string>
   <string name="action_unfav_trip">Desmarcar viagem como favorita</string>
   <string name="action_switch_locations">Alterar local De e Para</string>
@@ -17,10 +17,10 @@
   <string name="action_copy">Copiar</string>
   <string name="action_show_on_map">Exibir no Mapa</string>
   <string name="action_show_all">Mostrar todos</string>
-  <string name="tab_directions">Direções</string>
+  <string name="drawer_directions">Direções</string>
   <string name="tab_fav_trips">Viagens Favoritas</string>
-  <string name="tab_departures">Partidas</string>
-  <string name="tab_recent_trips">Viagens Recentes</string>
+  <string name="drawer_departures">Partidas</string>
+  <string name="drawer_recent_trips">Viagens Recentes</string>
   <string name="tab_libraries">Bibliotecas</string>
   <string name="tab_devs">Desenvolvedores</string>
   <string name="tab_about">Sobre</string>
@@ -57,7 +57,7 @@
   <string name="clear_recent_trips">Tem certeza que você quer excluir %1$d viagem(ns) de seus favoritos? As partidas selecionadas serão excluídas.</string>
   <string name="trip_searching">Pesquisando por conexões…</string>
   <string name="stations_searching_position">Pesquisando por posição atual…</string>
-  <string name="tab_nearby_stations">Estações Próximas</string>
+  <string name="drawer_nearby_stations">Estações Próximas</string>
   <string name="find_nearby_stations">Localizar Estações Próximas</string>
   <string name="find_departures">Localizar Partidas</string>
   <string name="departure_station">Estação de Partida</string>

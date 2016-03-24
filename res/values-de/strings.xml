@@ -15,9 +15,9 @@ anzeigen und dem Verlauf über GPS folgen.
 
 Du kannst auch Haltestellen in der Nähe finden und bevorstehende Abfahrten einschliesslich der Verzögerungen (wenn
 es welche gibt) anzeigen lassen.</string>
-  <string name="action_changelog">Änderungsprotokoll</string>
-  <string name="action_about">Über</string>
-  <string name="action_settings">Einstellungen</string>
+  <string name="drawer_changelog">Änderungsprotokoll</string>
+  <string name="drawer_about">Über</string>
+  <string name="drawer_settings">Einstellungen</string>
   <string name="action_fav_trip">Verbindung als Favorit markieren</string>
   <string name="action_unfav_trip">Markierung der Verbindung als Favorit aufheben</string>
   <string name="action_switch_locations">Start und Ziel tauschen</string>
@@ -32,10 +32,10 @@ es welche gibt) anzeigen lassen.</string>
   <string name="action_copy">Kopieren</string>
   <string name="action_show_on_map">Auf Karte anzeigen</string>
   <string name="action_show_all">Alles anzeigen</string>
-  <string name="tab_directions">Verbindungen</string>
+  <string name="drawer_directions">Verbindungen</string>
   <string name="tab_fav_trips">Favoriten</string>
-  <string name="tab_departures">Abfahrten</string>
-  <string name="tab_recent_trips">Kürzliche Verbindungen</string>
+  <string name="drawer_departures">Abfahrten</string>
+  <string name="drawer_recent_trips">Kürzliche Verbindungen</string>
   <string name="tab_libraries">Bibliotheken</string>
   <string name="tab_devs">Entwickler</string>
   <string name="tab_about">Über</string>
@@ -72,7 +72,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="clear_recent_trips">Bist Du sicher, dass Du %1$d Verbindung(en) aus den Favoriten löschen willst? Die Nutzungshäufigkeit der Verbindungen geht dabei verloren.</string>
   <string name="trip_searching">Suche nach Verbindungen…</string>
   <string name="stations_searching_position">Suche nach aktueller Position…</string>
-  <string name="tab_nearby_stations">Haltestellen in der Nähe</string>
+  <string name="drawer_nearby_stations">Haltestellen in der Nähe</string>
   <string name="find_nearby_stations">Haltestellen in der Umgebung suchen</string>
   <string name="find_departures">Abfahrten suchen</string>
   <string name="departure_station">Abfahrtsstation</string>

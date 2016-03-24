@@ -15,9 +15,41 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.fragments;
+package de.grobox.liberario;
 
-import android.support.v4.app.Fragment;
+import de.grobox.liberario.utils.TransportrUtils;
+import de.schildbach.pte.dto.Location;
 
+public class WrapLocation {
 
-public abstract class TransportrFragment extends Fragment { }
+	private Location loc;
+
+	public WrapLocation(Location loc) {
+		this.loc = loc;
+	}
+
+	public Location getLocation() {
+		return loc;
+	}
+
+	@Override
+	public boolean equals(Object o)	{
+		if(o == this) {
+			return true;
+		}
+		if(o instanceof WrapLocation) {
+			WrapLocation wLoc = (WrapLocation) o;
+			if(getLocation() == null) {
+				return wLoc.getLocation() == null;
+			}
+			return getLocation().equals(wLoc.getLocation());
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return TransportrUtils.getLocName(getLocation());
+	}
+
+}

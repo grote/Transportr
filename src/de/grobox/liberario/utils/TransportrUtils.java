@@ -30,17 +30,13 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import org.apmem.tools.layouts.FlowLayout;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,10 +45,14 @@ import java.util.List;
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.fragments.DeparturesFragment;
+import de.grobox.liberario.fragments.DirectionsFragment;
+import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
@@ -78,7 +78,7 @@ public class TransportrUtils {
 			}
 		}
 
-		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, null);
+		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, lineLayout, false);
 		transportsView.setText(line.label);
 
 		if(line.style != null) {
@@ -117,7 +117,7 @@ public class TransportrUtils {
 	}
 
 	static public void addWalkingBox(Context context, ViewGroup lineLayout, int index) {
-		ImageView v = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, null);
+		ImageView v = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, lineLayout, false);
 
 		// set margin, because setting in in xml does not work
 		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -129,10 +129,6 @@ public class TransportrUtils {
 
 	static public void addWalkingBox(Context context, ViewGroup lineLayout) {
 		addWalkingBox(context, lineLayout, lineLayout.getChildCount());
-	}
-
-	static public View getDivider(Context context) {
-		return LayoutInflater.from(context).inflate(R.layout.divider_horizontal, null);
 	}
 
 
@@ -320,20 +316,22 @@ public class TransportrUtils {
 
 	static public void presetDirections(Context context, Location from, Location to) {
 		Intent intent = new Intent(context, MainActivity.class);
-		intent.setAction(MainActivity.ACTION_DIRECTIONS_PRESET);
+		intent.setAction(DirectionsFragment.TAG);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("from", from);
 		intent.putExtra("to", to);
+		intent.putExtra("search", false);
 
 		context.startActivity(intent);
 	}
 
 	static public void findDirections(Context context, Location from, Location to, Date date) {
 		Intent intent = new Intent(context, MainActivity.class);
-		intent.setAction(MainActivity.ACTION_DIRECTIONS);
+		intent.setAction(DirectionsFragment.TAG);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("from", from);
 		intent.putExtra("to", to);
+		intent.putExtra("search", true);
 		if (date != null) {
 			intent.putExtra("date", date);
 		}
@@ -347,7 +345,7 @@ public class TransportrUtils {
 
 	static public void findDepartures(Context context, Location loc) {
 		Intent intent = new Intent(context, MainActivity.class);
-		intent.setAction(MainActivity.ACTION_DEPARTURES);
+		intent.setAction(DeparturesFragment.TAG);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("location", loc);
 
@@ -356,7 +354,7 @@ public class TransportrUtils {
 
 	static public void findNearbyStations(Context context, Location loc) {
 		Intent intent = new Intent(context, MainActivity.class);
-		intent.setAction(MainActivity.ACTION_NEARBY_LOCATIONS);
+		intent.setAction(NearbyStationsFragment.TAG);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("location", loc);
 
@@ -367,6 +365,7 @@ public class TransportrUtils {
 		Intent intent = new Intent(context, MapActivity.class);
 		intent.setAction(MapActivity.SHOW_AREA);
 
+		// TODO take fav location area, if area is empty
 		context.startActivity(intent);
 	}
 
@@ -447,26 +446,6 @@ public class TransportrUtils {
 		ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 		ClipData clip = ClipData.newPlainText("label", text);
 		clipboard.setPrimaryClip(clip);
-	}
-
-	static public void showPopupIcons(PopupMenu popup) {
-		// very ugly hack to show icons in PopupMenu
-		// see: http://stackoverflow.com/a/18431605
-		try {
-			Field[] fields = popup.getClass().getDeclaredFields();
-			for(Field field : fields) {
-				if("mPopup".equals(field.getName())) {
-					field.setAccessible(true);
-					Object menuPopupHelper = field.get(popup);
-					Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
-					Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
-					setForceIcons.invoke(menuPopupHelper, true);
-					break;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	static public String getLocName(Location l) {
@@ -574,9 +553,9 @@ public class TransportrUtils {
 	static public Drawable getDrawableForLocation(Context context, Location l) {
 		if(l == null) return getTintedDrawable(context, R.drawable.ic_location);
 
-		List<Location> fav_list = RecentsDB.getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
+		List<WrapLocation> fav_list = RecentsDB.getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
 
-		return getDrawableForLocation(context, l, fav_list.contains(l));
+		return getDrawableForLocation(context, l, fav_list.contains(new WrapLocation(l)));
 	}
 
 

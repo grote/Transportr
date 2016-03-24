@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<merge
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/location_input_view"
-    android:layout_width="match_parent"
-    android:layout_height="38dp"
-    android:layout_weight="1">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/statusButton"
@@ -18,15 +14,14 @@
         android:paddingBottom="3dp"/>
 
     <FrameLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         >
 
-        <de.grobox.liberario.ui.NoTextChangeAutoCompleteTextView
+        <AutoCompleteTextView
             android:id="@+id/location"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingRight="30dp"
             android:paddingEnd="30dp"
             android:inputType="textNoSuggestions|textAutoComplete"
@@ -60,4 +55,4 @@
         </LinearLayout>
     </FrameLayout>
 
-</LinearLayout>
+</merge>

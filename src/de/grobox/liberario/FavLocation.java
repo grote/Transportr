@@ -24,28 +24,17 @@ import java.util.Comparator;
 
 import de.schildbach.pte.dto.Location;
 
-public class FavLocation implements Serializable, Comparable<FavLocation> {
-	private static final long serialVersionUID = 3542146506031067901L;
+public class FavLocation extends WrapLocation implements Serializable, Comparable<FavLocation> {
+	private static final long serialVersionUID = 3542146506031067902L;
 	public enum LOC_TYPE { FROM, TO }
 
-	private Location loc;
 	private int from_count;
 	private int to_count;
 
-	public FavLocation(Location loc) {
-		this.loc = loc;
-		this.from_count = 0;
-		this.to_count = 0;
-	}
-
 	public FavLocation(Location loc, int from, int to) {
-		this.loc = loc;
+		super(loc);
 		from_count = from;
 		to_count = to;
-	}
-
-	public Location getLocation() {
-		return loc;
 	}
 
 	public int getFromCount() {
@@ -54,14 +43,6 @@ public class FavLocation implements Serializable, Comparable<FavLocation> {
 
 	public int getToCount() {
 		return to_count;
-	}
-
-	public void addFrom() {
-		from_count += 1;
-	}
-
-	public void addTo() {
-		to_count += 1;
 	}
 
 	@Override

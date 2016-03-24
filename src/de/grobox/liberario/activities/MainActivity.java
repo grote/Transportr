@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -29,7 +30,9 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Toast;
@@ -44,10 +47,7 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
-
-import java.util.Date;
 
 import de.cketti.library.changelog.ChangeLog;
 import de.grobox.liberario.NetworkProviderFactory;
@@ -58,21 +58,19 @@ import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
-import de.grobox.liberario.fragments.PrefsFragment;
+import de.grobox.liberario.fragments.SettingsFragment;
 import de.grobox.liberario.fragments.RecentTripsFragment;
+import de.grobox.liberario.fragments.TransportrFragment;
+import de.grobox.liberario.fragments.TransportrListFragment;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.dto.Location;
 
-public class MainActivity extends TransportrActivity implements TransportNetwork.NetworkChangeInterface {
+public class MainActivity extends TransportrActivity {
+
+	public static final String TAG = MainActivity.class.toString();
+
 	static final public int CHANGED_NETWORK_PROVIDER = 1;
 	static final public int CHANGED_HOME = 2;
-
-	static final public String ACTION_DIRECTIONS = "de.grobox.liberario.directions";
-	static final public String ACTION_DIRECTIONS_PRESET = "de.grobox.liberario.directions.preset";
-	static final public String ACTION_DEPARTURES = "de.grobox.liberario.departures";
-	static final public String ACTION_NEARBY_LOCATIONS = "de.grobox.liberario.nearby_locations";
-	static final public String ACTION_SETTINGS = "de.grobox.liberario.settings";
 
 	static final public int PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS = 0;
 	static final public int PR_ACCESS_FINE_LOCATION_DIRECTIONS = 1;
@@ -82,9 +80,6 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 	private Drawer drawer;
 	private AccountHeader accountHeader;
 	private Toolbar toolbar;
-
-	private int selectedItem;
-	private boolean dark_theme = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -114,7 +109,7 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 				             Preferences.setNetworkId(getContext(), network.getId());
 
 				             // notify everybody of this change
-				             onNetworkProviderChanged(network);
+				             onNetworkProviderChanged();
 			             }
 		             }
 		             return false;
@@ -138,123 +133,69 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
             .withToolbar(toolbar)
             .withAccountHeader(accountHeader)
             .addDrawerItems(
-		           new PrimaryDrawerItem().withName(R.string.tab_directions).withIdentifier(R.string.tab_directions).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_menu_directions)),
-		           new PrimaryDrawerItem().withName(R.string.tab_recent_trips).withIdentifier(R.string.tab_recent_trips).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_recents)),
-		           new PrimaryDrawerItem().withName(R.string.tab_departures).withIdentifier(R.string.tab_departures).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_departures)),
-		           new PrimaryDrawerItem().withName(R.string.tab_nearby_stations).withIdentifier(R.string.tab_nearby_stations).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_tab_stations)),
-		           new DividerDrawerItem(),
-		           new PrimaryDrawerItem().withName(R.string.action_settings).withIdentifier(R.string.action_settings).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_settings)),
-		           new PrimaryDrawerItem().withName(R.string.action_changelog).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_changelog)),
-		           new PrimaryDrawerItem().withName(R.string.action_about).withIdentifier(R.string.action_about).withIcon(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_about))
+		            getDrawerItem(DirectionsFragment.TAG, R.drawable.ic_menu_directions),
+		            getDrawerItem(RecentTripsFragment.TAG, R.drawable.ic_tab_recents),
+		            getDrawerItem(DeparturesFragment.TAG, R.drawable.ic_action_departures),
+		            getDrawerItem(NearbyStationsFragment.TAG, R.drawable.ic_tab_stations),
+		            new DividerDrawerItem(),
+		            getDrawerItem(SettingsFragment.TAG, R.drawable.ic_action_settings),
+		            getDrawerItem(TransportrChangeLog.TAG, R.drawable.ic_action_changelog),
+		            getDrawerItem(AboutMainFragment.TAG, R.drawable.ic_action_about)
             )
             .withOnDrawerListener(new Drawer.OnDrawerListener() {
-	                                  @Override
-	                                  public void onDrawerOpened(View drawerView) {
-		                                  KeyboardUtil.hideKeyboard(MainActivity.this);
-	                                  }
+	            @Override
+	            public void onDrawerOpened(View drawerView) {
+		            KeyboardUtil.hideKeyboard(MainActivity.this);
+	            }
 
-	                                  @Override
-	                                  public void onDrawerClosed(View drawerView) {}
+	            @Override
+	            public void onDrawerClosed(View drawerView) {
+	            }
 
-	                                  @Override
-	                                  public void onDrawerSlide(View drawerView, float slideOffset) {}
-                                  })
+	            @Override
+	            public void onDrawerSlide(View drawerView, float slideOffset) {
+	            }
+            })
             .withFireOnInitialOnClick(false)
             .withSavedInstance(savedInstanceState)
-            .withShowDrawerOnFirstLaunch(true)
             .build();
 
-		drawer.setOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-			@Override
-			public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-				if(position == -1) {
-					// adjust position to first item when -1 for some reason
-					position = 0;
-				}
-
-				if(drawerItem != null && drawerItem instanceof Nameable) {
-					int res = ((Nameable) drawerItem).getName().getTextRes();
-
-					if(res == R.string.action_changelog) {
-						// don't select changelog item
-						drawer.setSelection(selectedItem, false);
-
-						new HoloChangeLog(getContext(), dark_theme).getFullLogDialog().show();
-					} else {
-						switchFragment(res);
-					}
-				}
-
-				return false;
-			}
-		});
-
-		// Fragments
 		if(savedInstanceState == null) {
-			final Fragment directionsFragment = new DirectionsFragment();
-			final Fragment recentTripsFragment = new RecentTripsFragment();
-			final Fragment departuresFragment = new DeparturesFragment();
-			final Fragment nearbyStationsFragment = new NearbyStationsFragment();
-			final Fragment prefsFragment = new PrefsFragment();
-			final Fragment aboutFragment = new AboutMainFragment();
+			// make the user select a transport network, if none is selected
+			ensureTransportNetworkAvailable(network);
+
+			// update drawer items to reflect network capabilities
+			updateDrawerItems(network);
+
+			// show network name in toolbar subtitle
+			if(network != null) {
+				toolbar.setSubtitle(network.getName());
+			}
 
 			// add initial fragment
-			getSupportFragmentManager().beginTransaction()
-			                           .add(R.id.fragment_container, directionsFragment, getString(R.string.tab_directions))
-			                           .addToBackStack(getString(R.string.tab_directions))
-			                           .commit();
-
-			// add all other fragments hidden
-			getSupportFragmentManager().beginTransaction()
-			                           .add(R.id.fragment_container, recentTripsFragment, getString(R.string.tab_recent_trips))
-			                           .hide(recentTripsFragment)
-			                           .add(R.id.fragment_container, departuresFragment, getString(R.string.tab_departures))
-			                           .hide(departuresFragment)
-			                           .add(R.id.fragment_container, nearbyStationsFragment, getString(R.string.tab_nearby_stations))
-			                           .hide(nearbyStationsFragment)
-			                           .add(R.id.fragment_container, prefsFragment, getString(R.string.action_settings))
-			                           .hide(prefsFragment)
-			                           .add(R.id.fragment_container, aboutFragment, getString(R.string.action_about))
-			                           .hide(aboutFragment)
-			                           .commit();
+			getSupportFragmentManager()
+					.beginTransaction()
+					.add(R.id.fragment_container, new DirectionsFragment(), DirectionsFragment.TAG)
+					.commit();
 		} else {
-			// find currently active fragment
-			String fragment_tag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
-			Fragment fragment_old = getSupportFragmentManager().findFragmentByTag(fragment_tag);
+			// restore toolbar title
+			String tag = getBackStackName();
+			if(tag == null) tag = getFragmentName(DirectionsFragment.TAG);
+			ActionBar actionBar = getSupportActionBar();
+			if(actionBar != null) actionBar.setTitle(getFragmentName(tag));
 
-			// hide inactive fragments when restoring state
-			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-			for(Fragment fragment : getSupportFragmentManager().getFragments()) {
-				if(fragment != fragment_old) {
-					transaction.hide(fragment);
-				}
+			if(network != null && !tag.equals(AboutMainFragment.TAG) && !tag.equals(SettingsFragment.TAG)) {
+				toolbar.setSubtitle(network.getName());
 			}
-			transaction.commit();
 
-			// restore selected drawer item
-			selectedItem = savedInstanceState.getInt("selectedItem");
-			drawer.setSelection(selectedItem, false);
-		}
-
-		if(network != null) {
-			toolbar.setSubtitle(network.getName());
-			updateDrawerItems(network);
-		}
-
-		checkFirstRun(network);
-
-		addAccounts(network);
-
-		if(savedInstanceState != null) {
 			processIntent();
 		}
 
-		if(Preferences.darkThemeEnabled(this)) {
-			dark_theme = true;
-		}
+		// add transport networks to header
+		addAccounts(network);
 
-		// show Changelog
-		HoloChangeLog cl = new HoloChangeLog(this, dark_theme);
+		// show Changelog if something is new
+		TransportrChangeLog cl = new TransportrChangeLog(this, Preferences.darkThemeEnabled(this));
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
 		}
@@ -264,22 +205,25 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		// remember selected drawer item
-		outState.putInt("selectedItem", selectedItem);
+		// remember drawer state such as selected drawer item
+		drawer.saveInstanceState(outState);
 	}
 
 	@Override
 	public void onBackPressed() {
-		String fragment_tag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
-		Fragment fragment_current = getSupportFragmentManager().findFragmentByTag(fragment_tag);
-
-		// close the drawer first
+		// close the drawer first if it is open
 		if(drawer != null && drawer.isDrawerOpen()) {
 			drawer.closeDrawer();
-		} else if(fragment_current.getTag().equals(getString(R.string.tab_directions))) {
+			return;
+		}
+
+		// check if next is start screen or use default action
+		String name = getBackStackName();
+		if(name != null && name.equals(DirectionsFragment.TAG)) {
+			// do not go back further if we are at the start screen
 			finish();
 		} else {
-			switchFragment(R.string.tab_directions);
+			super.onBackPressed();
 		}
 	}
 
@@ -293,22 +237,20 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-		switch(requestCode) {
-			case PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS: {
-				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					// activate GPS again
-					NearbyStationsFragment f = (NearbyStationsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_nearby_stations));
-					f.activateGPS();
+		if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+			switch(requestCode) {
+				case PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS: {
+					NearbyStationsFragment f = (NearbyStationsFragment) getFragment(NearbyStationsFragment.TAG);
+					if(f != null) f.activateGPS();
+					break;
 				}
-				break;
-			}
-			case PR_ACCESS_FINE_LOCATION_DIRECTIONS: {
-				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					// activate GPS again
-					DirectionsFragment f = (DirectionsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_directions));
-					f.activateGPS();
+				case PR_ACCESS_FINE_LOCATION_DIRECTIONS: {
+					DirectionsFragment f = (DirectionsFragment) getFragment(DirectionsFragment.TAG);
+					if(f != null) f.activateGPS();
+					break;
 				}
-				break;
+				default:
+					Toast.makeText(this, R.string.warning_permission_granted_action, Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
@@ -317,10 +259,10 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if(requestCode == CHANGED_NETWORK_PROVIDER && resultCode == RESULT_OK) {
-			onNetworkProviderChanged(Preferences.getTransportNetwork(this));
+			onNetworkProviderChanged();
 		}
 
-		// bounce home location change back to PrefsFragment since it uses animation to call the activity
+		// bounce home location change back to SettingsFragment since it uses animation to call the activity
 		// and can't get the result itself at the moment
 		if(requestCode == CHANGED_HOME && resultCode == RESULT_OK) {
 			for(Fragment fragment : getSupportFragmentManager().getFragments()) {
@@ -332,47 +274,70 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 
 	}
 
-	public void onNetworkProviderChanged(TransportNetwork network) {
-		// get and set new network name for app bar
-		toolbar.setSubtitle(network.getName());
+	public void onNetworkProviderChanged() {
+		// create an intent for restarting this activity
+		Intent intent = new Intent(this, MainActivity.class);
+		String tag = getBackStackName();
+		if(tag == null) intent.setAction(DirectionsFragment.TAG);
+		else intent.setAction(tag);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-		// update accounts the lazy way
-		accountHeader.clear();
-		addAccounts(network);
+		finish();
+		startActivity(intent);
+	}
 
-		// update drawer items based on network capabilities
-		updateDrawerItems(network);
+	private PrimaryDrawerItem getDrawerItem(final String tag, final int icon) {
+		Drawer.OnDrawerItemClickListener onClick;
+		String name;
 
-		// notify the others of change, so call this method for each fragment
-		if(getSupportFragmentManager().getFragments() != null) {
-			for(Fragment fragment : getSupportFragmentManager().getFragments()) {
-				if(fragment instanceof TransportNetwork.NetworkChangeInterface) {
-					((TransportNetwork.NetworkChangeInterface) fragment).onNetworkProviderChanged(network);
+		if(tag.equals(TransportrChangeLog.TAG)) {
+			onClick = new Drawer.OnDrawerItemClickListener() {
+				@Override
+				public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+					new TransportrChangeLog(getContext(), Preferences.darkThemeEnabled(getContext())).getFullLogDialog().show();
+					return true;
 				}
-			}
+			};
+			name = getString(R.string.drawer_changelog);
 		}
-
-		// close drawer
-		drawer.closeDrawer();
+		else {
+			onClick = new Drawer.OnDrawerItemClickListener() {
+				@Override
+				public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+					drawer.closeDrawer();
+					switchFragment(tag);
+					return true;
+				}
+			};
+			name = getFragmentName(tag);
+		}
+		return new PrimaryDrawerItem()
+				.withName(name)
+				.withTag(tag)
+				.withIcon(TransportrUtils.getTintedDrawable(getContext(), icon))
+				.withSelectable(false)
+				.withOnDrawerItemClickListener(onClick);
 	}
 
 	private void updateDrawerItems(TransportNetwork network) {
+		if(network == null) return;
+
+		NetworkProvider provider = network.getNetworkProvider();
+
 		// disable sections not supported by new network
 		for(IDrawerItem i : drawer.getDrawerItems()) {
 			if(i instanceof BaseDrawerItem) {
 				BaseDrawerItem item = (BaseDrawerItem) i;
+				String tag = (String) item.getTag();
 
-				switch(item.getName().getTextRes()) {
-					case R.string.tab_directions:
-					case R.string.tab_recent_trips:
-						item.withEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS));
-						break;
-					case R.string.tab_departures:
-						item.withEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES));
-						break;
-					case R.string.tab_nearby_stations:
-						item.withEnabled(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS));
-						break;
+				if(tag.equals(DirectionsFragment.TAG) || tag.equals(RecentTripsFragment.TAG)) {
+					item.withEnabled(provider.hasCapabilities(NetworkProvider.Capability.TRIPS));
+				}
+				else if(tag.equals(DeparturesFragment.TAG)) {
+					item.withEnabled(provider.hasCapabilities(NetworkProvider.Capability.DEPARTURES));
+				}
+				else if(tag.equals(NearbyStationsFragment.TAG)) {
+					item.withEnabled(provider.hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS));
 				}
 				drawer.updateItem(item);
 			}
@@ -384,17 +349,15 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 		}
 	}
 
-	private void switchFragment(int res) {
-		String f = getString(res);
-
-		// remember selected drawer item
-		selectedItem = drawer.getCurrentSelection();
+	private void switchFragment(String tag) {
+		// get the fragment to switch to
+		Fragment fragment = getFragment(tag);
 
 		// set fragment name in toolbar
-		toolbar.setTitle(f);
+		toolbar.setTitle(getFragmentName(tag));
 
 		// set network name in toolbar
-		if(res != R.string.action_settings && res != R.string.action_about) {
+		if(fragment instanceof TransportrFragment || fragment instanceof TransportrListFragment) {
 			TransportNetwork network = Preferences.getTransportNetwork(getContext());
 			if(network != null) {
 				toolbar.setSubtitle(network.getName());
@@ -403,36 +366,54 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 			toolbar.setSubtitle(null);
 		}
 
-		// switch to fragment
-		Fragment fragment = getSupportFragmentManager().findFragmentByTag(f);
+		// select proper drawer item (even when switch was initiated by intent)
+		drawer.setSelection(drawer.getDrawerItem(tag), false);
 
-
-		if(fragment != null) {
-			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
-			                           .show(fragment)
-			                           .addToBackStack(f);
-
-			if(getSupportFragmentManager().getBackStackEntryCount() > 0) {
-				String fragment_tag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
-				Fragment fragment_old = getSupportFragmentManager().findFragmentByTag(fragment_tag);
-
-				if(fragment_old != null && fragment_old != fragment) {
-					transaction.hide(fragment_old);
-				}
-
-				// Only relevant when CoordinatorLayout is used
-				//showToolbar();
-			}
-			transaction.commit();
-
-			// select the proper drawer item in the drawer
-			drawer.setSelection(res, false);
-			fragment.onResume();
+		// switch the fragment
+		@SuppressLint("CommitTransaction")
+		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
+				.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+				.replace(R.id.fragment_container, fragment, tag);
+		if(getBackStackName() == null || !getBackStackName().equals(tag)) {
+			transaction.addToBackStack(tag);
 		}
+		transaction.commit();
 	}
 
-	private void checkFirstRun(TransportNetwork network) {
-		// return if no network is set
+	private String getBackStackName() {
+		if(getSupportFragmentManager().getBackStackEntryCount() == 0) return null;
+		return getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
+	}
+
+	private Fragment getFragment(String tag) {
+		Fragment fragment = getSupportFragmentManager().findFragmentByTag(tag);
+		if(fragment != null) return fragment;
+
+		if(tag.equals(DirectionsFragment.TAG)) return new DirectionsFragment();
+		if(tag.equals(RecentTripsFragment.TAG)) return new RecentTripsFragment();
+		if(tag.equals(DeparturesFragment.TAG)) return new DeparturesFragment();
+		if(tag.equals(NearbyStationsFragment.TAG)) return new NearbyStationsFragment();
+		if(tag.equals(SettingsFragment.TAG)) return new SettingsFragment();
+		if(tag.equals(AboutMainFragment.TAG)) return new AboutMainFragment();
+
+		Log.w(TAG, "Could not find fragment: " + tag);
+		return null;
+	}
+
+	private String getFragmentName(String tag) {
+		if(tag.equals(DirectionsFragment.TAG)) return getString(R.string.drawer_directions);
+		if(tag.equals(RecentTripsFragment.TAG)) return getString(R.string.drawer_recent_trips);
+		if(tag.equals(DeparturesFragment.TAG)) return getString(R.string.drawer_departures);
+		if(tag.equals(NearbyStationsFragment.TAG)) return getString(R.string.drawer_nearby_stations);
+		if(tag.equals(SettingsFragment.TAG)) return getString(R.string.drawer_settings);
+		if(tag.equals(AboutMainFragment.TAG)) return getString(R.string.drawer_about);
+
+		Log.w(TAG, "Could not find string for fragment: " + tag);
+		return "";
+	}
+
+	private void ensureTransportNetworkAvailable(TransportNetwork network) {
+		// return if a network is set
 		if(network == null) {
 			Intent intent = new Intent(this, PickNetworkProviderActivity.class);
 
@@ -441,23 +422,8 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 
 			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
 		}
-		else if(toolbar != null) {
-			toolbar.setSubtitle(network.getName());
-		}
 	}
 
-/*	private void showToolbar() {
-		CoordinatorLayout coordinator = (CoordinatorLayout) findViewById(R.id.coordinator);
-		AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-		CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appbar.getLayoutParams();
-		AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
-
-		if(behavior != null && behavior.getTopAndBottomOffset() < 0) {
-			behavior.setTopAndBottomOffset(0);
-			behavior.onNestedPreScroll(coordinator, appbar, null, 0, 1, new int[2]);
-		}
-	}
-*/
 	private void addAccounts(TransportNetwork network) {
 		if(network != null) {
 			ProfileDrawerItem item1 = new ProfileDrawerItem()
@@ -494,83 +460,57 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 
 		if(intent != null) {
 			final String action = intent.getAction();
+			if(action == null) return;
 
 			switch(action) {
-				case ACTION_DIRECTIONS:
-					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"), (Date) intent.getSerializableExtra("date"), false);
+				case DirectionsFragment.TAG:
+					findDirections();
 					break;
-				case ACTION_DIRECTIONS_PRESET:
-					findDirections((Location) intent.getSerializableExtra("from"), (Location) intent.getSerializableExtra("to"), (Date) intent.getSerializableExtra("date"), true);
+				case DeparturesFragment.TAG:
+					findDepartures();
 					break;
-				case ACTION_DEPARTURES:
-					findDepartures((Location) intent.getSerializableExtra("location"));
+				case NearbyStationsFragment.TAG:
+					findNearbyStations();
 					break;
-				case ACTION_NEARBY_LOCATIONS:
-					findNearbyStations((Location) intent.getSerializableExtra("location"));
-					break;
-				case ACTION_SETTINGS:
-					switchFragment(R.string.action_settings);
-					break;
+				case RecentTripsFragment.TAG:
+				case SettingsFragment.TAG:
+				case AboutMainFragment.TAG:
+					// these fragments do not have special intent actions, so just switch to them
+					switchFragment(action);
+
+					// remove the intent (and clear its action) since it was already processed
+					// and should not be processed again
+					if(getIntent() != null) getIntent().setAction(null);
+					setIntent(null);
 			}
 		}
 	}
 
-	private void findDirections(Location from, Location to, Date date, boolean preset) {
+	private void findDirections() {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
 
 		if(!np.hasCapabilities(NetworkProvider.Capability.TRIPS)) {
 			Toast.makeText(getContext(), getString(R.string.error_no_trips_capability), Toast.LENGTH_SHORT).show();
 		}
-
-		DirectionsFragment f = (DirectionsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_directions));
-
-		if(f != null) {
-			if(preset) {
-				f.presetFromTo(from, to, date);
-			} else {
-				f.searchFromTo(from, to, date);
-			}
-			switchFragment(R.string.tab_directions);
-		}
-		else {
-			Toast.makeText(getContext(), R.string.error_please_file_ticket, Toast.LENGTH_LONG).show();
-		}
+		switchFragment(DirectionsFragment.TAG);
 	}
 
-	private void findDepartures(Location loc) {
+	private void findDepartures() {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
 
 		if(!np.hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
 			Toast.makeText(getContext(), getString(R.string.error_no_departures_capability), Toast.LENGTH_SHORT).show();
 		}
-
-		DeparturesFragment f = (DeparturesFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_departures));
-
-		if(f != null) {
-			f.searchByLocation(loc);
-			switchFragment(R.string.tab_departures);
-		}
-		else {
-			Toast.makeText(getContext(), R.string.error_please_file_ticket, Toast.LENGTH_LONG).show();
-		}
+		switchFragment(DeparturesFragment.TAG);
 	}
 
-	private void findNearbyStations(Location loc) {
+	private void findNearbyStations() {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
 
 		if(!np.hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
 			Toast.makeText(getContext(), getString(R.string.error_no_nearby_locations_capability), Toast.LENGTH_SHORT).show();
 		}
-
-		NearbyStationsFragment f = (NearbyStationsFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.tab_nearby_stations));
-
-		if(f != null) {
-			f.searchByLocation(loc);
-			switchFragment(R.string.tab_nearby_stations);
-		}
-		else {
-			Toast.makeText(getContext(), R.string.error_please_file_ticket, Toast.LENGTH_LONG).show();
-		}
+		switchFragment(NearbyStationsFragment.TAG);
 	}
 
 	private Context getContext() {
@@ -578,8 +518,10 @@ public class MainActivity extends TransportrActivity implements TransportNetwork
 	}
 
 
-	public static class HoloChangeLog extends ChangeLog {
-		public HoloChangeLog(Context context, boolean dark) {
+	public static class TransportrChangeLog extends ChangeLog {
+		public final static String TAG = TransportrChangeLog.class.getName();
+
+		public TransportrChangeLog(Context context, boolean dark) {
 				super(new ContextThemeWrapper(context, getDialogTheme(dark)), theme(dark));
 		}
 

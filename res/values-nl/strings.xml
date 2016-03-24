@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="action_changelog">Lijst van veranderingen</string>
-  <string name="action_about">Over</string>
-  <string name="action_settings">Instellingen</string>
+  <string name="drawer_changelog">Lijst van veranderingen</string>
+  <string name="drawer_about">Over</string>
+  <string name="drawer_settings">Instellingen</string>
   <string name="action_fav_trip">Markeer Reis als Favoriet</string>
   <string name="action_unfav_trip">Verwijder Rijs uit Favorieten</string>
   <string name="action_switch_locations">Begin- en eindpunt omwisselen</string>
@@ -15,10 +15,10 @@
   <string name="action_show_on_external_map">Laat op externe kaart zien</string>
   <string name="action_copy">Kopieëren</string>
   <string name="action_show_on_map">Laat op kaart zien</string>
-  <string name="tab_directions">Verbindingen</string>
+  <string name="drawer_directions">Verbindingen</string>
   <string name="tab_fav_trips">Favoriete Reizen</string>
-  <string name="tab_departures">Vertrekken</string>
-  <string name="tab_recent_trips">Recente Reizen</string>
+  <string name="drawer_departures">Vertrekken</string>
+  <string name="drawer_recent_trips">Recente Reizen</string>
   <string name="tab_libraries">Hulpprogramma\'s</string>
   <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
@@ -41,7 +41,7 @@
   <string name="clear_recent_trips">Weet je zeker dat je %1$d reis/reizen uit de lijst van recente reizen wilt verwijderen? De teller zal ook gereset worden.</string>
   <string name="trip_searching">Zoeken naar verbindingen…</string>
   <string name="stations_searching_position">Uw positie wordt bepaald…</string>
-  <string name="tab_nearby_stations">Dichtbijzijnde Stations</string>
+  <string name="drawer_nearby_stations">Dichtbijzijnde Stations</string>
   <string name="find_nearby_stations">Zoek naar stations in de buurt</string>
   <string name="find_departures">Zoek vertrekken</string>
   <string name="departure_station">Vertrekstation</string>

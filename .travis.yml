@@ -1,5 +1,5 @@
 language: android
-before_script: ./pre-build.sh && sed -i "s#gradle:2.0.0-beta6#gradle:1.5.0#" build.gradle
+before_script: ./pre-build.sh && sed -i "s#gradle:2.0.0-beta7#gradle:1.5.0#" build.gradle
 jdk: openjdk7
 android:
   components:

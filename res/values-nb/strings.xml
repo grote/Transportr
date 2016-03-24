@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="action_changelog">Endringslogg</string>
-  <string name="action_about">Om</string>
-  <string name="action_settings">Innstillinger</string>
+  <string name="drawer_changelog">Endringslogg</string>
+  <string name="drawer_about">Om</string>
+  <string name="drawer_settings">Innstillinger</string>
   <string name="action_switch_locations">Bytt til og fra</string>
   <string name="action_refresh">Gjenoppfrisk</string>
   <string name="action_navigation_expand">Vis mer</string>
@@ -13,9 +13,9 @@
   <string name="action_show_on_external_map">Vis på eksternt kart</string>
   <string name="action_copy">Kopier</string>
   <string name="action_show_on_map">Vis på kart</string>
-  <string name="tab_directions">Veivisning</string>
+  <string name="drawer_directions">Veivisning</string>
   <string name="tab_fav_trips">Favoritt-turer</string>
-  <string name="tab_departures">Avganger</string>
+  <string name="drawer_departures">Avganger</string>
   <string name="tab_libraries">Bibliotek</string>
   <string name="tab_devs">Utviklere</string>
   <string name="tab_about">Om</string>
@@ -34,7 +34,7 @@
   <string name="pick_network_activity">Velg et transportnettverk</string>
   <string name="trip_searching">Søker etter overganger...</string>
   <string name="stations_searching_position">Søker etter gjeldende plassering...</string>
-  <string name="tab_nearby_stations">Stasjoner i nærheten</string>
+  <string name="drawer_nearby_stations">Stasjoner i nærheten</string>
   <string name="find_nearby_stations">Finn stasjoner i nærheten</string>
   <string name="find_departures">Finn avganger</string>
   <string name="departure_station">Avgangsstasjon</string>

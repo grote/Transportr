@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="action_changelog">Canvis</string>
-  <string name="action_about">Sobre</string>
-  <string name="action_settings">Configuració</string>
+  <string name="drawer_changelog">Canvis</string>
+  <string name="drawer_about">Sobre</string>
+  <string name="drawer_settings">Configuració</string>
   <string name="action_fav_trip">Marcar trajecte com a favorit</string>
   <string name="action_unfav_trip">Desmarcar trajecte com a favorit</string>
   <string name="action_switch_locations">Intercanviar ubicacions de De i Cap a</string>
@@ -17,10 +17,10 @@
   <string name="action_copy">Copiar</string>
   <string name="action_show_on_map">Mostrar al mapa</string>
   <string name="action_show_all">Mostrar tot</string>
-  <string name="tab_directions">Direccions</string>
+  <string name="drawer_directions">Direccions</string>
   <string name="tab_fav_trips">Trajectes favorits</string>
-  <string name="tab_departures">Sortides</string>
-  <string name="tab_recent_trips">Trajectes recents</string>
+  <string name="drawer_departures">Sortides</string>
+  <string name="drawer_recent_trips">Trajectes recents</string>
   <string name="tab_libraries">Biblioteques</string>
   <string name="tab_devs">Desenvolupadors</string>
   <string name="tab_about">Sobre</string>
@@ -42,7 +42,7 @@
   <string name="pick_network_activity">Tria una xarxa de transport</string>
   <string name="trip_searching">Cercant connexions...</string>
   <string name="stations_searching_position">Cercant posició actual...</string>
-  <string name="tab_nearby_stations">Estacions properes</string>
+  <string name="drawer_nearby_stations">Estacions properes</string>
   <string name="find_nearby_stations">Trobar estacions properes</string>
   <string name="find_departures">Trobar sortides</string>
   <string name="departure_station">Estació de sortida</string>

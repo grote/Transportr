@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,7 +28,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -43,20 +43,22 @@ import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
+import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.adapters.StationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
-import de.grobox.liberario.ui.LocationInputGPSView;
-import de.grobox.liberario.ui.LocationInputView;
+import de.grobox.liberario.ui.LocationGpsView;
+import de.grobox.liberario.ui.LocationView;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
 public class NearbyStationsFragment extends TransportrFragment implements TransportNetwork.HomeChangeInterface {
-	private View mView;
+
+	public static final String TAG = "de.grobox.liberario.nearby_locations";
+
 	private ViewHolder ui;
-	private NearbyStationsInputView loc;
 	private StationAdapter stationAdapter;
 	private boolean changingHome = false;
 
@@ -67,7 +69,8 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 	private static final int MAX_STATIONS = 5;
 	private int maxStations = MAX_STATIONS;
 
-	private static final String TAG = NearbyStationsFragment.class.toString();
+	private final String START = "start";
+	private final String STATIONS = "stations";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -78,34 +81,47 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// remember view for UI changes when fragment is not active
-		mView = inflater.inflate(R.layout.fragment_nearbystations, container, false);
+		View v = inflater.inflate(R.layout.fragment_nearbystations, container, false);
 
-		ui = new ViewHolder(mView);
+		ui = new ViewHolder(v);
 
 		// Location Input View
+		ui.station.setCaller(MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
+		ui.station.setOnLocationClickListener(new LocationView.OnLocationClickListener() {
+			@Override
+			public void onLocationItemClick(View view, Location loc) {
+				if(loc != null && loc.id != null && !loc.id.equals(LocationAdapter.MAP)) {
+					search();
+				}
+			}
+		});
+		LocationGpsView.LocationGpsListener listener = new LocationGpsView.LocationGpsListener() {
+			@Override
+			public void activateGPS() {
+				onRefreshStart();
+			}
 
-		loc = new NearbyStationsInputView(this, ui.station);
-		loc.setFavs(true);
-		loc.setHome(true);
-		loc.setMap(true);
-		loc.setHint(R.string.location);
+			@Override
+			public void deactivateGPS() {
+				ui.stations_area.setVisibility(View.GONE);
+			}
 
-		// Find Nearby Stations Search Button
-
-		ui.search.setOnClickListener(new OnClickListener() {
-			                             @Override
-			                             public void onClick(View v) {
-				                             search();
-			                             }
-		                             });
-
-		// hide departure list initially
-		ui.stations_area.setVisibility(View.GONE);
+			@Override
+			public void onLocationChanged(Location location) {
+				search();
+			}
+		};
+		ui.station.setLocationGpsListener(listener);
 
 		ui.recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 		ui.recycler.setItemAnimator(new DefaultItemAnimator());
 
-		stationAdapter = new StationAdapter(new ArrayList<Location>(), R.layout.station);
+		if(stationAdapter == null) {
+			stationAdapter = new StationAdapter(new ArrayList<Location>(), R.layout.station);
+
+			// hide departure list initially
+			ui.stations_area.setVisibility(View.GONE);
+		}
 		ui.recycler.setAdapter(stationAdapter);
 
 		// Swipe to Refresh
@@ -122,25 +138,19 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 			                                      }
 		                                      });
 
-		return mView;
+		return v;
 	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		if(ui.menu_map != null) {
-			outState.putBoolean("menu_map", ui.menu_map.isVisible());
-		}
-
-		if(loc != null && loc.getLocation() != null) {
-			outState.putSerializable("loc", loc.getLocation());
-		} else {
-			outState.putSerializable("loc_text", ui.station.location.getText().toString());
+		if(ui != null && ui.station.getLocation() != null) {
+			outState.putSerializable(START, ui.station.getLocation());
 		}
 
 		if(stationAdapter != null && stationAdapter.getItemCount() > 0) {
-			outState.putSerializable("stations", stationAdapter.getStations());
+			outState.putSerializable(STATIONS, stationAdapter.getStations());
 		}
 	}
 
@@ -149,29 +159,16 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 		super.onActivityCreated(savedInstanceState);
 
 		if(savedInstanceState != null) {
-			if(ui.menu_map != null) {
-				// TODO do this later, because onCreateOptionsMenu will be called later, so menu_map does not yet exist
-				ui.menu_map.setVisible(savedInstanceState.getBoolean("menu_map"));
-			}
+			Location start = (Location) savedInstanceState.getSerializable(START);
+			if(start != null) stationAdapter.setStart(start);
 
-			Location location = (Location) savedInstanceState.getSerializable("loc");
-			if(location != null) {
-				loc.setLocation(location, TransportrUtils.getDrawableForLocation(getContext(), location));
-				stationAdapter.setStart(location);
-			} else {
-				loc.blockOnTextChanged();
-				ui.station.location.setText(savedInstanceState.getString("loc_text"));
-				loc.unblockOnTextChanged();
-			}
-
-			ArrayList<Location> stations = (ArrayList<Location>) savedInstanceState.getSerializable("stations");
+			@SuppressWarnings("unchecked")
+			ArrayList<Location> stations = (ArrayList<Location>) savedInstanceState.getSerializable(STATIONS);
 			if(stations != null && stations.size() > 0) {
 				stationAdapter.addAll(stations);
 				ui.stations_area.setVisibility(View.VISIBLE);
 			}
 
-			// Important: Restart Loader, because it holds a reference to the old LocationInputView
-			loc.restartLoader();
 		}
 	}
 
@@ -180,7 +177,10 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 		super.onResume();
 
 		// clear favorites for auto-complete
-		loc.resetIfEmpty();
+		ui.station.resetIfEmpty();
+
+		// check if there's an intent for us and if so, act on it
+		processIntent();
 	}
 
 	@Override
@@ -189,7 +189,9 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 		inflater.inflate(R.menu.nearbystations, menu);
 
 		ui.menu_map = menu.findItem(R.id.action_location_map);
-		ui.menu_map.setVisible(false);
+		if(stationAdapter != null && stationAdapter.getItemCount() > 0) {
+			ui.menu_map.setVisible(true);
+		} else ui.menu_map.setVisible(false);
 		TransportrUtils.fixToolbarIcon(getContext(), ui.menu_map);
 
 		super.onCreateOptionsMenu(menu, inflater);
@@ -217,37 +219,27 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 	}
 
 	@Override
-	public void onNetworkProviderChanged(TransportNetwork network) {
-		if(mView == null) return;
-
-		stationAdapter.clear();
-		ui.stations_area.setVisibility(View.GONE);
-		loc.reset();
-		loc.setLocation(null, null);
-	}
-
-	@Override
 	public void onHomeChanged() {
 		if(changingHome) {
 			//noinspection deprecation
-			loc.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
+			ui.station.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 			changingHome = false;
 			search();
 		}
 	}
 
 	private void search() {
-		if(loc.getLocation() != null) {
+		if(ui.station.getLocation() != null) {
 			// use location to query nearby stations
 
-			if(!loc.getLocation().hasId() && !loc.getLocation().hasLocation()) {
+			if(!ui.station.getLocation().hasId() && !ui.station.getLocation().hasLocation()) {
 				Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
 				return;
 			}
 
-			if(loc.getLocation().hasId()) {
+			if(ui.station.getLocation().hasId()) {
 				// Location is valid, so make it a favorite or increase counter
-				RecentsDB.updateFavLocation(getActivity(), loc.getLocation(), FavLocation.LOC_TYPE.FROM);
+				RecentsDB.updateFavLocation(getActivity(), ui.station.getLocation(), FavLocation.LOC_TYPE.FROM);
 			}
 
 			// play animations before clearing departures list
@@ -257,35 +249,48 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 			stationAdapter.clear();
 
 			// set location origin
-			stationAdapter.setStart(loc.getLocation());
+			stationAdapter.setStart(ui.station.getLocation());
 
 			// reset number of stations to retrieve
 			maxStations = MAX_STATIONS;
 
-			AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(this, types, loc.getLocation(), MAX_DISTANCE, maxStations);
+			AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(this, types, ui.station.getLocation(), MAX_DISTANCE, maxStations);
 			task.execute();
-		} else if(!loc.isSearching()) {
+		} else if(!ui.station.isSearching()) {
 			Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
 		}
 	}
 
-	public void searchByLocation(Location loc) {
-		if(this.loc != null) {
-			this.loc.setLocation(loc, TransportrUtils.getDrawableForLocation(getContext(), loc));
-			search();
+	private void processIntent() {
+		final Intent intent = getActivity().getIntent();
+		if(intent != null) {
+			final String action = intent.getAction();
+			if(action != null && action.equals(TAG)) {
+				// get location and search departures for it
+				Location loc = (Location) intent.getSerializableExtra("location");
+				if(loc != null) {
+					ui.station.setLocation(loc, TransportrUtils.getDrawableForLocation(getContext(), loc));
+					search();
+				}
+			}
+
+			// remove the intent (and clear its action) since it was already processed
+			// and should not be processed again
+			intent.setAction(null);
+			getActivity().setIntent(null);
 		}
 	}
 
 	public void activateGPS() {
-		if(this.loc != null) {
-			this.loc.activateGPS();
+		if(ui.station != null) {
+			ui.station.activateGPS();
 			search();
 		}
 	}
 
 	public void addStations(NearbyLocationsResult result) {
 		if(result.locations != null) {
-			Log.d(TAG, "Nearby Stations: " + result.locations.toString());
+			Log.d(NearbyStationsFragment.class.getName(), "Nearby Stations: " + result.locations.toString());
 			stationAdapter.addAll(result.locations);
 		}
 
@@ -362,7 +367,7 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 
 	private static class ViewHolder {
 
-		public LocationInputView.LocationInputViewHolder station;
+		public LocationGpsView station;
 		public Button search;
 		public ViewGroup stations_area;
 		public ProgressBar progress;
@@ -371,7 +376,7 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 		public MenuItem menu_map;
 
 		public ViewHolder(View view) {
-			station = new LocationInputView.LocationInputViewHolder(view);
+			station = (LocationGpsView) view.findViewById(R.id.location_input);
 			search = (Button) view.findViewById(R.id.searchButton);
 			stations_area = (ViewGroup) view.findViewById(R.id.nearbystations_list);
 			progress = (ProgressBar) view.findViewById(R.id.progressBar);
@@ -380,49 +385,4 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 		}
 	}
 
-	class NearbyStationsInputView extends LocationInputGPSView {
-
-		NearbyStationsFragment fragment;
-
-		public NearbyStationsInputView(NearbyStationsFragment fragment, LocationInputViewHolder holder) {
-			super(getActivity(), holder, NEARBY_STATIONS, MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
-
-			this.fragment = fragment;
-		}
-
-		@Override
-		public void activateGPS() {
-			super.activateGPS();
-
-			if(!isRequestingPermission()) fragment.onRefreshStart();
-		}
-
-		@Override
-		public void deactivateGPS() {
-			super.deactivateGPS();
-			fragment.ui.stations_area.setVisibility(View.GONE);
-		}
-
-		@Override
-		public void onLocationChanged(Location location) {
-			super.onLocationChanged(location);
-
-			if(!isRequestingPermission()) fragment.search();
-		}
-
-		@Override
-		public void onLocationItemClick(Location loc, View view) {
-			super.onLocationItemClick(loc, view);
-
-			if(!isRequestingPermission()) fragment.search();
-		}
-
-		@Override
-		public void selectHomeLocation() {
-			changingHome = true;
-			super.selectHomeLocation();
-		}
-
-	}
 }
-

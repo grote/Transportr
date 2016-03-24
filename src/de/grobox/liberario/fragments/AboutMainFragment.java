@@ -33,6 +33,8 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import de.grobox.liberario.R;
 
 public class AboutMainFragment extends Fragment {
+
+	public static final String TAG = "de.grobox.liberario.about";
 	AboutPagerAdapter mPagerAdapter;
 
 	@Override

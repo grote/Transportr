@@ -30,12 +30,15 @@ import android.widget.Toast;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.RecentsDB;
-import de.grobox.liberario.ui.LocationInputView;
+import de.grobox.liberario.ui.LocationView;
 
+// TODO turn this into a DialogFragment
 public class SetHomeActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		TransportrActivity.useLanguage(this);
+
 		getWindow().requestFeature(Window.FEATURE_LEFT_ICON);
 		getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_action_home);
 
@@ -56,18 +59,16 @@ public class SetHomeActivity extends AppCompatActivity {
 
 		// show new home text
 		if(!intent.getBooleanExtra("new", true)) {
-			findViewById(R.id.homeMsgView).setVisibility(View.GONE);
+			View msg = findViewById(R.id.homeMsgView);
+			if(msg != null) msg.setVisibility(View.GONE);
 		}
 
-		final LocationInputView.LocationInputViewHolder holder = new LocationInputView.LocationInputViewHolder(findViewById(R.id.setHomeView));
-
-		final LocationInputView loc = new LocationInputView(this, holder, LocationInputView.SET_HOME, true);
-		loc.setFavs(true);
-
-		holder.location.setHint(R.string.home);
+		final LocationView loc = (LocationView) findViewById(R.id.location_input);
+		if(loc == null) return;
 
 		// OK Button
 		Button okButton = (Button) findViewById(R.id.okButton);
+		if(okButton == null) return;
 		okButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -87,6 +88,7 @@ public class SetHomeActivity extends AppCompatActivity {
 
 		// Cancel Button
 		Button cancelButton = (Button) findViewById(R.id.cancelButton);
+		if(cancelButton == null) return;
 		cancelButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {

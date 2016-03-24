@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="action_changelog">Lista zmian</string>
-  <string name="action_about">O</string>
-  <string name="action_settings">Ustawienia</string>
+  <string name="drawer_changelog">Lista zmian</string>
+  <string name="drawer_about">O</string>
+  <string name="drawer_settings">Ustawienia</string>
   <string name="action_fav_trip">Oznacz trasę jako ulubioną</string>
   <string name="action_unfav_trip">Wycofaj oznaczenie trasy jako ulubionej</string>
   <string name="action_refresh">Odśwież</string>
@@ -16,10 +16,10 @@
   <string name="action_copy">Kopiuj</string>
   <string name="action_show_on_map">Pokaż na mapie</string>
   <string name="action_show_all">Pokaż wszystko</string>
-  <string name="tab_directions">Kierunki</string>
+  <string name="drawer_directions">Kierunki</string>
   <string name="tab_fav_trips">Ulubione trasy</string>
-  <string name="tab_departures">Odjazdy</string>
-  <string name="tab_recent_trips">Ostatnie trasy</string>
+  <string name="drawer_departures">Odjazdy</string>
+  <string name="drawer_recent_trips">Ostatnie trasy</string>
   <string name="tab_libraries">Biblioteki</string>
   <string name="tab_devs">Twórcy</string>
   <string name="tab_about">O</string>
@@ -36,7 +36,7 @@
   <string name="beta">beta</string>
   <string name="network">Sieć</string>
   <string name="pick_network_activity">Wybierz sieć transportową</string>
-  <string name="tab_nearby_stations">Pobliskie stacje</string>
+  <string name="drawer_nearby_stations">Pobliskie stacje</string>
   <string name="undo">Cofnij</string>
   <string name="more">Więcej</string>
   <string name="pref_display">Wyświetlanie</string>

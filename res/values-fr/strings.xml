@@ -9,9 +9,9 @@ Vous trouverez des instructions sur la page d\'accueil.
 Transportr trouve des itinéraires de chez vous, de votre emplacement actuel ou d\'un arrêt/station donné vers n\'importe quel lieu. Vous pouvez aussi enregistrer des trajets entiers préférés et y accéder ultérieurement d\'un seul glisser. Bien sûr, vous pouvez aussi faire apparaître votre trajet sur la carte et suivre votre déplacement par GPS.
 
 Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les prochains départs incluant les retards (s\'il y en a). </string>
-  <string name="action_changelog">Journal des changements</string>
-  <string name="action_about">À propos</string>
-  <string name="action_settings">Paramètres</string>
+  <string name="drawer_changelog">Journal des changements</string>
+  <string name="drawer_about">À propos</string>
+  <string name="drawer_settings">Paramètres</string>
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
   <string name="action_unfav_trip">Supprimer la marque de trajet favori</string>
   <string name="action_switch_locations">Inverser les points de départ et d\'arrivée</string>
@@ -26,10 +26,10 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="action_copy">Copier</string>
   <string name="action_show_on_map">Montrer sur la carte</string>
   <string name="action_show_all">Tout montrer</string>
-  <string name="tab_directions">Itinéraires</string>
+  <string name="drawer_directions">Itinéraires</string>
   <string name="tab_fav_trips">Trajets favoris</string>
-  <string name="tab_departures">Départs</string>
-  <string name="tab_recent_trips">Trajets récents</string>
+  <string name="drawer_departures">Départs</string>
+  <string name="drawer_recent_trips">Trajets récents</string>
   <string name="tab_libraries">Bibliothèques</string>
   <string name="tab_devs">Développeurs</string>
   <string name="tab_about">À propos</string>
@@ -66,7 +66,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="clear_recent_trips">Voulez-vous vraiment supprimer %1$d trajet(s) de vos trajets récents ? Le compte d\'utilisation sera perdu.</string>
   <string name="trip_searching">Recherche de correspondances…</string>
   <string name="stations_searching_position">Recherche de l\'emplacement actuel...</string>
-  <string name="tab_nearby_stations">Arrêts/stations à proximité</string>
+  <string name="drawer_nearby_stations">Arrêts/stations à proximité</string>
   <string name="find_nearby_stations">Trouver des arrêts/stations à proximité</string>
   <string name="find_departures">Trouver des départs</string>
   <string name="departure_station">Arrêt/station de départ</string>

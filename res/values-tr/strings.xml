@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="action_about">Hakkında</string>
-  <string name="action_settings">Ayarlar</string>
+  <string name="drawer_about">Hakkında</string>
+  <string name="drawer_settings">Ayarlar</string>
   <string name="action_switch_locations">Nereden Nereye konumunu değiştir</string>
   <string name="action_refresh">Tazele</string>
   <string name="action_navigation_expand">Daha Fazla Göster</string>
   <string name="action_location_map">Haritada İstasyonları Göster</string>
   <string name="action_use_gps">GPS aç</string>
   <string name="action_trip_delete">Geziyi Sil</string>
-  <string name="tab_directions">Yollar</string>
+  <string name="drawer_directions">Yollar</string>
   <string name="trip_dep">klk</string>
   <string name="trip_arr">vrş</string>
   <string name="from">Nereden</string>

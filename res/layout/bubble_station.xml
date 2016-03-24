@@ -61,7 +61,7 @@
         android:drawableLeft="@drawable/ic_action_departures_proxy"
         android:drawablePadding="5dp"
         android:gravity="center_vertical"
-        android:text="@string/tab_departures"/>
+        android:text="@string/drawer_departures"/>
 
     <TextView
         android:id="@+id/nearbyStations"
@@ -72,6 +72,6 @@
         android:drawableLeft="@drawable/ic_tab_stations_proxy"
         android:drawablePadding="5dp"
         android:gravity="center_vertical"
-        android:text="@string/tab_nearby_stations"/>
+        android:text="@string/drawer_nearby_stations"/>
 
 </RelativeLayout>

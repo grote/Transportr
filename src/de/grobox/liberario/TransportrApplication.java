@@ -31,7 +31,6 @@ public class TransportrApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 
-		useLanguage(getBaseContext());
 		initializeNetworks(getBaseContext());
 	}
 
@@ -44,26 +43,6 @@ public class TransportrApplication extends Application {
 		if(networks == null) initializeNetworks(context);
 
 		return networks;
-	}
-
-	public static void useLanguage(Context context) {
-		String lang = Preferences.getLanguage(context);
-		if(!lang.equals(context.getString(R.string.pref_language_value_default))) {
-			Locale locale;
-			if(lang.contains("_")) {
-				String[] lang_array = lang.split("_");
-				locale = new Locale(lang_array[0], lang_array[1]);
-			} else {
-				locale = new Locale(lang);
-			}
-			Locale.setDefault(locale);
-			Configuration config = context.getResources().getConfiguration();
-			config.locale = locale;
-			context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
-		} else {
-			// use default language
-			context.getResources().updateConfiguration(Resources.getSystem().getConfiguration(), context.getResources().getDisplayMetrics());
-		}
 	}
 
 }

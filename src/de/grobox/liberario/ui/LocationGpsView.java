@@ -23,9 +23,10 @@ import android.content.pm.PackageManager;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -37,63 +38,111 @@ import java.util.List;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.adapters.LocationAdapter;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
-public class LocationInputGPSView extends LocationInputView implements LocationListener {
+public class LocationGpsView extends LocationView implements LocationListener {
+
+	private final String SEARCHING = "searching";
 
 	private LocationManager locationManager;
-	private boolean searching = false;
+	private LocationGpsListener gpsListener;
+	private volatile boolean searching = false;
 	private Location gps_location = null;
-	private int caller;
-	private boolean request_permission = false;
+	protected int caller = 0;
 
-	public LocationInputGPSView(FragmentActivity context, LocationInputViewHolder ui, int loaderId, int caller) {
-		super(context, ui, loaderId, false);
+	public LocationGpsView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 
-		this.caller = caller;
-		this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+		if(!isInEditMode()) {
+			this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+		}
 
 		getAdapter().setGPS(true);
 	}
 
 	@Override
+	public Parcelable onSaveInstanceState() {
+		Bundle bundle = (Bundle) super.onSaveInstanceState();
+		bundle.putBoolean(SEARCHING, searching);
+		if(searching) {
+			deactivateGPS();
+		}
+		return bundle;
+	}
+
+	@Override
+	public void onRestoreInstanceState(Parcelable state) {
+		if(state instanceof Bundle) {
+			Bundle bundle = (Bundle) state;
+			if(bundle.getBoolean(SEARCHING)) {
+				activateGPS();
+				// this pass over the LocationView's restoreInstanceState
+				state = bundle.getParcelable(SUPER_STATE);
+			}
+		}
+		super.onRestoreInstanceState(state);
+	}
+
+	@Override
 	public void onLocationItemClick(Location loc, View view) {
 		if(loc.id != null && loc.id.equals(LocationAdapter.GPS)) {
+			// prevent GPS fake name from being shown in the TextView
+			ui.location.setText("");
+
 			activateGPS();
+			if(clickListener != null) clickListener.onLocationItemClick(view, loc);
 		} else {
 			super.onLocationItemClick(loc, view);
 		}
 	}
 
 	@Override
+	protected void onFocusChange(View v, boolean hasFocus) {
+		if(!searching) super.onFocusChange(v, hasFocus);
+	}
+
+	@Override
 	public void handleTextChanged(CharSequence s) {
-		if(isSearching()) {
+		if(searching) {
 			deactivateGPS();
 		}
 		super.handleTextChanged(s);
 	}
 
+	@Override
+	protected void clearLocationAndShowDropDown() {
+		deactivateGPS();
+		super.clearLocationAndShowDropDown();
+	}
+
+	@Override
+	 protected void onDetachedFromWindow() {
+		deactivateGPS();
+		super.onDetachedFromWindow();
+	}
+
+	public void setCaller(int caller) {
+		this.caller = caller;
+	}
+
 	public void activateGPS() {
-		if(isSearching()) return;
+		if(searching) return;
 
 		// check permissions
-		if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-			// we don't have a permission, so store the information that we are requesting it
-			request_permission = true;
-
+		if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 			// Should we show an explanation?
-			if(ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.ACCESS_FINE_LOCATION)) {
-				Toast.makeText(context, R.string.permission_denied_gps, Toast.LENGTH_LONG).show();
+			if(ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)) {
+				Toast.makeText(getContext(), R.string.permission_denied_gps, Toast.LENGTH_LONG).show();
 			} else {
 				// No explanation needed, we can request the permission
-				ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, caller);
+				ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, caller);
 			}
 
 			return;
 		}
 
-		// we arrive here only once we have got the permission and are not longer requesting it
-		request_permission = false;
+		searching = true;
 
 		List<String> providers = locationManager.getProviders(true);
 
@@ -106,15 +155,14 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 
 		// check if there is a non-passive provider available
 		if(providers.size() == 0 || (providers.size() == 1 && providers.get(0).equals(LocationManager.PASSIVE_PROVIDER))) {
-
 			locationManager.removeUpdates(this);
-			Toast.makeText(context, context.getResources().getString(R.string.error_no_location_provider), Toast.LENGTH_LONG).show();
+			Toast.makeText(getContext(), getContext().getString(R.string.error_no_location_provider), Toast.LENGTH_LONG).show();
 
 			return;
 		}
 
 		// clear input
-		setLocation(null, ContextCompat.getDrawable(context, R.drawable.ic_gps));
+		setLocation(null, TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_gps));
 		ui.clear.setVisibility(View.VISIBLE);
 
 		// clear current GPS location, because we are looking to find a new one
@@ -131,37 +179,37 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		ui.location.setHint(R.string.stations_searching_position);
 		ui.location.clearFocus();
 
-		searching = true;
+		if(gpsListener != null) gpsListener.activateGPS();
 	}
 
 	public void deactivateGPS() {
 		searching = false;
 
-		if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+		if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 			locationManager.removeUpdates(this);
 		}
 
 		// deactivate button
 		ui.status.clearAnimation();
 		ui.location.setHint(hint);
+
+		if(gpsListener != null) gpsListener.deactivateGPS();
 	}
 
 	public boolean isSearching() {
 		return searching;
 	}
 
-	public boolean isRequestingPermission() {
-		return request_permission;
-	}
-
 	public void onLocationChanged(Location location) {
-		setLocation(location, ContextCompat.getDrawable(context, R.drawable.ic_gps));
+		setLocation(location, TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_gps));
+		if(gpsListener != null) gpsListener.onLocationChanged(location);
+		deactivateGPS();
 	}
 
 	// Called when a new location is found by the network location provider.
 	public void onLocationChanged(android.location.Location location) {
 		// no more updates to prevent this method from being called more than once
-		if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+		if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 			locationManager.removeUpdates(this);
 		}
 
@@ -179,9 +227,29 @@ public class LocationInputGPSView extends LocationInputView implements LocationL
 		}
 	}
 
-	public void onStatusChanged(String provider, int status, Bundle extras) {}
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
 
-	public void onProviderEnabled(String provider) {}
+	}
 
-	public void onProviderDisabled(String provider) {}
+	@Override
+	public void onProviderEnabled(String provider) {
+
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+
+	}
+
+	public void setLocationGpsListener(LocationGpsListener listener) {
+		this.gpsListener = listener;
+	}
+
+	public interface LocationGpsListener {
+		void activateGPS();
+		void deactivateGPS();
+		void onLocationChanged(Location location);
+	}
+
 }

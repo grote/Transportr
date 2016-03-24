@@ -3,7 +3,7 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.0.0-beta6'
+		classpath 'com.android.tools.build:gradle:2.0.0-beta7'
 		classpath files('libs/gradle-witness.jar')
 	}
 }
@@ -23,8 +23,8 @@ dependencies {
 	compile 'com.github.orangegangsters:swipy:1.2.2'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	compile 'org.apmem.tools:layouts:1.10'
-	compile 'com.mikepenz:materialdrawer:4.6.4'
-	compile 'com.mikepenz:aboutlibraries:5.5.1'
+	compile 'com.mikepenz:materialdrawer:5.1.6'
+	compile 'com.mikepenz:aboutlibraries:5.6.2'
 	compile 'com.github.MKergall.osmbonuspack:OSMBonusPack:v5.7'
 
 	compile project(':sublibs:public-transport-enabler:enabler')
@@ -44,15 +44,15 @@ dependencyVerification {
 			'com.github.orangegangsters:swipy:ce01ea72347087ad60fcaefe88c6cf88b23b23916cd4abd676f8dc168c0bae87',
 			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
 			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
-			'com.mikepenz:materialdrawer:47cfc89ce7e06fc3c4d90f9f119e70549352c7346a336cee2ed8205e788ff986',
-			'com.mikepenz:aboutlibraries:1f824e8d5fb71b27a43c1cda6956838ecc133beaf97fb13b3e37cb0e53bc2044',
+			'com.mikepenz:materialdrawer:d820bbea9a169cd878f38e77e5b6e1a7a6221191ab2a5f7b99d10254bdac20e5',
+			'com.mikepenz:aboutlibraries:9d61dbc43c29359a591552a1e7d9f2789ccf5a882f44a7e76120c5ead32ba2d4',
 			'com.github.MKergall.osmbonuspack:OSMBonusPack:1d8a5ad2785a45ca15bb468a354bccaac8880db06630cc37b7e102d3857ae206',
 			'com.android.support:support-annotations:786ab0d060774fb95cfdaf4878771e14b85733b1af9d72a4aae762dc7c1dff9f',
 			'com.android.support:animated-vector-drawable:06d1963b85aa917099d7757e6a7b3e4dc06889413dc747f625ae8683606db3a1',
 			'com.android.support:support-vector-drawable:799bafe4c3de812386f0b291f744d5d6876452722dd40189b9ab87dbbf594ea1',
 			'com.android.support:preference-v7:775101bd07bd052e455761c5c5d9523d7ad59f2f320e3e8cbde241fd6b1d6025',
-			'com.mikepenz:materialize:2457dbe0b874a422c0a21bc6716cf5af1d5a8d39387857ff7c20855ab5543bf8',
-			'com.mikepenz:fastadapter:9f9ad027052febd3faa8b5f6aa35a6a8f11f24fdf83fede89c89e3e23a7a2ad4',
+			'com.mikepenz:iconics-core:0b95ebfe172f1646c2893f38a6262235c91526925161b3b0c13145195ab73301',
+			'com.mikepenz:materialize:a6ff3073b5ed15d1b84e983af09a09716bb00e481675501fa944dbf0aeaedb87',
 			'org.apache.commons:commons-lang3:6b81d10754dadf184d386011486e6509c2cc0c3d33565ced4fb4402b9413d47d',
 			'com.google.code.gson:gson:a35abbcf689eb3d60a2959e83a624831658b023220cd2edb66350993ebfdc025',
 			'com.squareup.okhttp:okhttp:a0e0e67ea9c111abd8e037469630f748badf04eb79d04c019a7b0459fd792b92',
@@ -63,7 +63,7 @@ dependencyVerification {
 			'org.json:json:055be110a570f9cda3eba8d70a006ff46c77a048bc67868524879211c48b330a',
 			'net.sf.kxml:kxml2:f264dd9f79a1fde10ce5ecc53221eff24be4c9331c830b7d52f2f08a7b633de2',
 			'com.squareup.okio:okio:114bdc1f47338a68bcbc95abf2f5cdc72beeec91812f2fcd7b521c1937876266',
-			'com.mikepenz:iconics-core:0e2237181d07478181ddae4083976bf211f591bb4b514cb51d6b4d328a90d35c',
+			'com.mikepenz:fastadapter:c68b6ad973f71735de9a80fd668ba917aaf443e026fe99258520c2eb0bb2e95c',
 	]
 }
 

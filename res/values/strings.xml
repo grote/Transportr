@@ -19,9 +19,9 @@ and follow your progress via GPS.
 You can also discover nearby stations and show upcoming departures including the delays (if
 there are any).</string>
 
-    <string name="action_changelog">Changelog</string>
-    <string name="action_about">About</string>
-    <string name="action_settings">Settings</string>
+    <string name="drawer_changelog">Changelog</string>
+    <string name="drawer_about">About</string>
+    <string name="drawer_settings">Settings</string>
     <string name="action_fav_trip">Mark Trip as Favourite</string>
     <string name="action_unfav_trip">Unmark Trip as Favourite</string>
     <string name="action_switch_locations">Swap From and To location</string>
@@ -37,10 +37,10 @@ there are any).</string>
     <string name="action_show_on_map">Show on Map</string>
     <string name="action_show_all">Show All</string>
 
-    <string name="tab_directions">Directions</string>
+    <string name="drawer_directions">Directions</string>
     <string name="tab_fav_trips">Favourite Trips</string>
-    <string name="tab_departures">Departures</string>
-    <string name="tab_recent_trips">Recent Trips</string>
+    <string name="drawer_departures">Departures</string>
+    <string name="drawer_recent_trips">Recent Trips</string>
 
     <string name="tab_libraries">Libraries</string>
     <string name="tab_devs">Developers</string>
@@ -80,7 +80,7 @@ there are any).</string>
     <string name="clear_recent_trips">Are you sure that you want to delete %1$d trip(s) from your recent trips? The usage count will be lost.</string>
     <string name="trip_searching">Searching for connections&#8230;</string>
     <string name="stations_searching_position">Searching for current position&#8230;</string>
-    <string name="tab_nearby_stations">Nearby Stations</string>
+    <string name="drawer_nearby_stations">Nearby Stations</string>
     <string name="find_nearby_stations">Find Nearby Stations</string>
     <string name="find_departures">Find Departures</string>
     <string name="departure_station">Departure Station</string>
@@ -115,6 +115,7 @@ there are any).</string>
     <string name="pref_walk_speed_fast">Fast</string>
 
     <string name="warning_departure_gap">Found too few departures. There might be more hidden. Search for exact time to be sure none is missing.</string>
+    <string name="warning_permission_granted_action">Could not repeat last action automatically</string>
 
     <string name="error_pick_network">Please select one transportation network!</string>
     <string name="error_no_internet">No sufficient internet connection available</string>

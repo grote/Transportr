@@ -23,7 +23,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -32,14 +31,15 @@ import android.view.View;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
-import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.PickNetworkProviderActivity;
 import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.data.RecentsDB;
 import de.schildbach.pte.dto.Location;
 
-public class PrefsFragment extends PreferenceFragmentCompat implements TransportNetwork.NetworkChangeInterface, TransportNetwork.HomeChangeInterface, SharedPreferences.OnSharedPreferenceChangeListener {
+public class SettingsFragment extends PreferenceFragmentCompat implements TransportNetwork.HomeChangeInterface, SharedPreferences.OnSharedPreferenceChangeListener {
+
+	public static final String TAG = "de.grobox.liberario.settings";
 
 	Preference network_pref;
 	Preference home;
@@ -121,7 +121,6 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 			ListPreference langPref = (ListPreference) findPreference(key);
 			langPref.setSummary(langPref.getEntry());
 
-			TransportrApplication.useLanguage(getActivity().getBaseContext());
 			reload();
 		}
 	}
@@ -144,31 +143,11 @@ public class PrefsFragment extends PreferenceFragmentCompat implements Transport
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if(requestCode == MainActivity.CHANGED_NETWORK_PROVIDER && resultCode == Activity.RESULT_OK) {
-			((MainActivity) getActivity()).onNetworkProviderChanged(Preferences.getTransportNetwork(getActivity()));
-		}
-	}
-
-	public void onNetworkProviderChanged(TransportNetwork network) {
-		if(getActivity() != null) {
-			// set new network_pref name
-			this.network_pref.setSummary(network.getName());
-
-			setHome();
+			((MainActivity) getActivity()).onNetworkProviderChanged();
 		}
 	}
 
 	private void reload() {
-		getActivity().finish();
-		final Intent intent = getActivity().getIntent();
-		intent.setAction(MainActivity.ACTION_SETTINGS);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
-		getActivity().startActivity(intent);
-
-		// switch back to this fragment, because it doesn't work the first time where fragment is not yet found
-		// FIXME this causes a bug where the fragment is always set back to this when changing orientation
-		final Intent intent2 = new Intent(getActivity(), MainActivity.class);
-		intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent2.setAction(MainActivity.ACTION_SETTINGS);
-		startActivity(intent2);
+		getActivity().recreate();
 	}
 }

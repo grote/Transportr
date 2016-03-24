@@ -33,6 +33,7 @@ import java.util.List;
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.RecentTrip;
+import de.grobox.liberario.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
@@ -68,9 +69,9 @@ public class RecentsDB {
 		return fav_list;
 	}
 
-	public static List<Location> getFavLocationList(Context context, FavLocation.LOC_TYPE sort, boolean onlyIDs) {
+	public static List<WrapLocation> getFavLocationList(Context context, FavLocation.LOC_TYPE sort, boolean onlyIDs) {
 		List<FavLocation> fav_list = getFavLocationList(context);
-		List<Location> list = new ArrayList<>();
+		List<WrapLocation> list = new ArrayList<>();
 
 		if(sort == FavLocation.LOC_TYPE.FROM) {
 			Collections.sort(fav_list, FavLocation.FromComparator);
@@ -81,7 +82,7 @@ public class RecentsDB {
 
 		for(final FavLocation loc : fav_list) {
 			if(!onlyIDs || loc.getLocation().hasId()) {
-				list.add(loc.getLocation());
+				list.add(loc);
 			}
 		}
 

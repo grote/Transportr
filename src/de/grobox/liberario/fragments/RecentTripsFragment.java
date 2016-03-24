@@ -40,15 +40,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.ui.RecentsPopupMenu;
 import de.grobox.liberario.utils.TransportrUtils;
 
 public class RecentTripsFragment extends TransportrListFragment {
+
+	public static final String TAG = "de.grobox.liberario.recent_trips";
+
 	private FavTripArrayAdapter adapter;
 	private ActionMode mActionMode;
 	private Toolbar toolbar;
@@ -83,9 +85,6 @@ public class RecentTripsFragment extends TransportrListFragment {
 		super.onResume();
 
 		setEmptyText(getString(R.string.fav_trips_empty));
-
-		// although the network provider has not changed, other things might have, so reload data
-		onNetworkProviderChanged(Preferences.getTransportNetwork(getActivity()));
 	}
 
 	@Override
@@ -136,16 +135,6 @@ public class RecentTripsFragment extends TransportrListFragment {
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
-		}
-	}
-
-	@Override
-	// change things for a different network provider
-	public void onNetworkProviderChanged(TransportNetwork network) {
-		// reload data because it has changed
-		if(getActivity() != null && adapter != null) {
-			adapter.clear();
-			adapter.addAll(RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false)));
 		}
 	}
 
