@@ -28,6 +28,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -65,7 +66,7 @@ import de.grobox.liberario.fragments.TransportrListFragment;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 
-public class MainActivity extends TransportrActivity {
+public class MainActivity extends TransportrActivity implements FragmentManager.OnBackStackChangedListener {
 
 	public static final String TAG = MainActivity.class.toString();
 
@@ -179,8 +180,7 @@ public class MainActivity extends TransportrActivity {
 					.commit();
 		} else {
 			// restore toolbar title
-			String tag = getBackStackName();
-			if(tag == null) tag = getFragmentName(DirectionsFragment.TAG);
+			String tag = getCurrentFragmentTag();
 			ActionBar actionBar = getSupportActionBar();
 			if(actionBar != null) actionBar.setTitle(getFragmentName(tag));
 
@@ -190,6 +190,8 @@ public class MainActivity extends TransportrActivity {
 
 			processIntent();
 		}
+
+		getSupportFragmentManager().addOnBackStackChangedListener(this);
 
 		// add transport networks to header
 		addAccounts(network);
@@ -218,8 +220,7 @@ public class MainActivity extends TransportrActivity {
 		}
 
 		// check if next is start screen or use default action
-		String name = getBackStackName();
-		if(name != null && name.equals(DirectionsFragment.TAG)) {
+		if(getCurrentFragmentTag().equals(DirectionsFragment.TAG)) {
 			// do not go back further if we are at the start screen
 			finish();
 		} else {
@@ -277,9 +278,7 @@ public class MainActivity extends TransportrActivity {
 	public void onNetworkProviderChanged() {
 		// create an intent for restarting this activity
 		Intent intent = new Intent(this, MainActivity.class);
-		String tag = getBackStackName();
-		if(tag == null) intent.setAction(DirectionsFragment.TAG);
-		else intent.setAction(tag);
+		intent.setAction(getCurrentFragmentTag());
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
 		finish();
@@ -349,22 +348,25 @@ public class MainActivity extends TransportrActivity {
 		}
 	}
 
-	private void switchFragment(String tag) {
-		// get the fragment to switch to
-		Fragment fragment = getFragment(tag);
+	@Override
+	public void onBackStackChanged() {
+		String tag = getCurrentFragmentTag();
 
-		// set fragment name in toolbar
+		// set fragment name as toolbar title
 		toolbar.setTitle(getFragmentName(tag));
 
 		// set network name in toolbar
-		if(fragment instanceof TransportrFragment || fragment instanceof TransportrListFragment) {
-			TransportNetwork network = Preferences.getTransportNetwork(getContext());
-			if(network != null) {
-				toolbar.setSubtitle(network.getName());
-			}
+		TransportNetwork network = Preferences.getTransportNetwork(getContext());
+		if(network != null && !tag.equals(AboutMainFragment.TAG) && !tag.equals(SettingsFragment.TAG)) {
+			toolbar.setSubtitle(network.getName());
 		} else {
 			toolbar.setSubtitle(null);
 		}
+	}
+
+	private void switchFragment(String tag) {
+		// get the fragment to switch to
+		Fragment fragment = getFragment(tag);
 
 		// select proper drawer item (even when switch was initiated by intent)
 		drawer.setSelection(drawer.getDrawerItem(tag), false);
@@ -374,14 +376,15 @@ public class MainActivity extends TransportrActivity {
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
 				.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
 				.replace(R.id.fragment_container, fragment, tag);
-		if(getBackStackName() == null || !getBackStackName().equals(tag)) {
+		if(!getCurrentFragmentTag().equals(tag)) {
+			// don't add the same fragment to the back stack twice in a row
 			transaction.addToBackStack(tag);
 		}
 		transaction.commit();
 	}
 
-	private String getBackStackName() {
-		if(getSupportFragmentManager().getBackStackEntryCount() == 0) return null;
+	private String getCurrentFragmentTag() {
+		if(getSupportFragmentManager().getBackStackEntryCount() == 0) return DirectionsFragment.TAG;
 		return getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
 	}
 
