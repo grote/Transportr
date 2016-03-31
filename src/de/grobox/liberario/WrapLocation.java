@@ -17,6 +17,7 @@
 
 package de.grobox.liberario;
 
+import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
@@ -33,7 +34,7 @@ public class WrapLocation {
 	}
 
 	@Override
-	public boolean equals(Object o)	{
+	public boolean equals(Object o) {
 		if(o == this) {
 			return true;
 		}
@@ -49,6 +50,18 @@ public class WrapLocation {
 
 	@Override
 	public String toString() {
+		if(loc == null) return "";
+
+		if(loc.id != null) {
+			// we do not have a context here, so we can not get proper names
+			if(loc.id.equals(LocationAdapter.HOME)) {
+				return null;
+			} else if(loc.id.equals(LocationAdapter.GPS)) {
+				return null;
+			} else if(loc.id.equals(LocationAdapter.MAP)) {
+				return null;
+			}
+		}
 		return TransportrUtils.getLocName(getLocation());
 	}
 
