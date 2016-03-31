@@ -23,6 +23,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
@@ -63,8 +64,10 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	private final String LOCATION = "location";
 	private final String TEXT = "text";
 	private final String TEXT_POSITION = "textPosition";
+	private final String CHANGING_HOME = "changingHome";
 	protected final String SUPER_STATE = "superState";
 	private Location location;
+	private boolean changingHome = false;
 	protected FragmentActivity activity;
 	protected LoaderManager loaderManager;
 	protected final LocationViewHolder ui;
@@ -176,6 +179,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		if(location == null && ui.location.getText().length() > 0) {
 			bundle.putString(TEXT, ui.location.getText().toString());
 		}
+		bundle.putBoolean(CHANGING_HOME, changingHome);
 		return bundle;
 	}
 
@@ -197,6 +201,17 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 			}
 			int position = bundle.getInt(TEXT_POSITION);
 			ui.location.setSelection(position);
+
+			changingHome = bundle.getBoolean(CHANGING_HOME);
+			if(changingHome) {
+				// re-set OnHomeChangedListener if home picker is shown
+				Fragment homePicker = activity.getSupportFragmentManager().findFragmentByTag(HomePickerDialogFragment.TAG);
+				if(homePicker != null && homePicker.isAdded()) {
+					((HomePickerDialogFragment) homePicker).setOnHomeChangedListener(this);
+				}
+			}
+
+			// replace state by super state
 			state = bundle.getParcelable(SUPER_STATE);
 		}
 		super.onRestoreInstanceState(state);
@@ -437,15 +452,18 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	}
 
 	public void selectHomeLocation() {
+		changingHome = true;
+
 		// show home picker dialog
 		HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
 		setHomeFragment.setOnHomeChangedListener(this);
 		FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-		setHomeFragment.show(ft, "dialog");
+		setHomeFragment.show(ft, HomePickerDialogFragment.TAG);
 	}
 
 	@Override
 	public void onHomeChanged(Location home) {
+		changingHome = false;
 		setLocation(home, TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 	}
 

@@ -40,6 +40,8 @@ import de.schildbach.pte.dto.Location;
 
 public class HomePickerDialogFragment extends DialogFragment {
 
+	public static final String TAG = "de.grobox.liberario.home_picker";
+
 	private OnHomeChangedListener listener;
 
 	public HomePickerDialogFragment() {

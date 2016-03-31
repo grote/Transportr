@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -78,7 +79,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 				HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
 				setHomeFragment.setOnHomeChangedListener(SettingsFragment.this);
 				FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-				setHomeFragment.show(ft, "dialog");
+				setHomeFragment.show(ft, HomePickerDialogFragment.TAG);
 
 				return true;
 			}
@@ -92,6 +93,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 	public void onResume() {
 		super.onResume();
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+
+		Fragment homePicker = getActivity().getSupportFragmentManager().findFragmentByTag(HomePickerDialogFragment.TAG);
+		if(homePicker != null && homePicker.isAdded()) {
+			((HomePickerDialogFragment) homePicker).setOnHomeChangedListener(this);
+		}
 	}
 
 	@Override
