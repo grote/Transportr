@@ -55,7 +55,6 @@ import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.RecentTrip;
-import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.AmbiguousLocationActivity;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.TripsActivity;
@@ -72,7 +71,7 @@ import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
-public class DirectionsFragment extends TransportrFragment implements TransportNetwork.HomeChangeInterface, AsyncQueryTripsTask.TripHandler {
+public class DirectionsFragment extends TransportrFragment implements AsyncQueryTripsTask.TripHandler {
 
 	public final static String TAG = "de.grobox.liberario.directions";
 	public ProgressDialog pd;
@@ -279,12 +278,6 @@ public class DirectionsFragment extends TransportrFragment implements TransportN
 			default:
 				return super.onOptionsItemSelected(item);
 		}
-	}
-
-	@Override
-	public void onHomeChanged() {
-		ui.from.onHomeChanged();
-		ui.to.onHomeChanged();
 	}
 
 	@Override

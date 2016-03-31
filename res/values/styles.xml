@@ -8,4 +8,10 @@
         <item name="android:textSize">12sp</item>
         <item name="android:layout_marginRight">4dp</item>
     </style>
+
+    <style name="DialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/scale_up</item>
+        <item name="android:windowExitAnimation">@anim/scale_down</item>
+    </style>
+
 </resources>

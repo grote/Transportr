@@ -18,13 +18,13 @@
 package de.grobox.liberario.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.ContextCompat;
@@ -50,24 +50,23 @@ import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
-import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.activities.SetHomeActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.fragments.HomePickerDialogFragment;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.SuggestLocationsResult;
 
-public class LocationView extends LinearLayout implements LoaderManager.LoaderCallbacks {
+public class LocationView extends LinearLayout implements LoaderManager.LoaderCallbacks, HomePickerDialogFragment.OnHomeChangedListener {
 
 	private final String LOCATION = "location";
 	private final String TEXT = "text";
 	private final String TEXT_POSITION = "textPosition";
 	protected final String SUPER_STATE = "superState";
 	private Location location;
-	private boolean changingHome = false;
-	protected final FragmentActivity activity;
+	protected FragmentActivity activity;
+	protected LoaderManager loaderManager;
 	protected final LocationViewHolder ui;
 	protected OnLocationClickListener clickListener;
 	protected String hint;
@@ -91,12 +90,9 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		inflater.inflate(R.layout.location_view, this, true);
 		ui = new LocationViewHolder(this);
 
-		if(!isInEditMode()) {
-			activity = (FragmentActivity) context;
-		} else {
-			activity = new FragmentActivity();
+		if(!isInEditMode() && context instanceof FragmentActivity) {
+			initialize((FragmentActivity) context);
 		}
-		activity.getSupportLoaderManager().initLoader(getId(), null, this);
 
 		ui.location.setHint(hint);
 		ui.location.setAdapter(new LocationAdapter(context, onlyIDs));
@@ -165,6 +161,12 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		this(context, null);
 	}
 
+	public void initialize(FragmentActivity a) {
+		loaderManager = a.getSupportLoaderManager();
+		loaderManager.initLoader(getId(), null, this);
+		activity = a;
+	}
+
 	@Override
 	public Parcelable onSaveInstanceState() {
 		Bundle bundle = new Bundle();
@@ -191,7 +193,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 				ui.clear.setVisibility(View.VISIBLE);
 
 				// load the auto-completion results again as they seem to get lost during restart
-				activity.getSupportLoaderManager().getLoader(getId()).onContentChanged();
+				loaderManager.getLoader(getId()).onContentChanged();
 			}
 			int position = bundle.getInt(TEXT_POSITION);
 			ui.location.setSelection(position);
@@ -215,7 +217,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	@Override
 	protected void onDetachedFromWindow() {
 		// Important: Destroy Loader, because it holds a reference to the old LocationView
-		activity.getSupportLoaderManager().destroyLoader(getId());
+		loaderManager.destroyLoader(getId());
 
 		super.onDetachedFromWindow();
 	}
@@ -243,6 +245,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		return loader;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onLoadFinished(Loader loader, final Object data) {
 		ui.progress.setVisibility(View.GONE);
@@ -260,13 +263,13 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	}
 
 	private void stopLoader() {
-		activity.getSupportLoaderManager().getLoader(getId()).cancelLoad();
+		loaderManager.getLoader(getId()).cancelLoad();
 		ui.progress.setVisibility(View.GONE);
 	}
 
 	private void onContentChanged() {
 		ui.progress.setVisibility(View.VISIBLE);
-		activity.getSupportLoaderManager().getLoader(getId()).onContentChanged();
+		loaderManager.getLoader(getId()).onContentChanged();
 	}
 
 	protected void onFocusChange(View v, boolean hasFocus) {
@@ -434,18 +437,16 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	}
 
 	public void selectHomeLocation() {
-		changingHome = true;
-		// show dialog to set home screen
-		Intent intent = new Intent(getContext(), SetHomeActivity.class);
-		intent.putExtra("new", true);
-		activity.startActivityForResult(intent, MainActivity.CHANGED_HOME);
+		// show home picker dialog
+		HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
+		setHomeFragment.setOnHomeChangedListener(this);
+		FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+		setHomeFragment.show(ft, "dialog");
 	}
 
-	public void onHomeChanged() {
-		if(changingHome) {
-			setLocation(RecentsDB.getHome(getContext()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
-			changingHome = false;
-		}
+	@Override
+	public void onHomeChanged(Location home) {
+		setLocation(home, TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
 	}
 
 	public static class LocationViewHolder {

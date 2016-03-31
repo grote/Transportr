@@ -139,9 +139,7 @@ there are any).</string>
     <string name="times_include_delays">(Attention: Times include reported delays)</string>
 
     <string name="home">Home</string>
-    <string name="home_dialog_title">Your Home Location</string>
-    <string name="home_dialog_new_msg">There is no home location set for the current transportation network.</string>
-    <string name="home_dialog_msg">Please give a location below by selecting one from the list.</string>
+    <string name="home_dialog_title">Set Home Location</string>
     <string name="location">Location</string>
     <string name="location_home">Click to set Home Location</string>
     <string name="location_gps">Use Current Position</string>

@@ -133,8 +133,4 @@ public class TransportNetwork {
 		return this;
 	}
 
-	public interface HomeChangeInterface {
-		void onHomeChanged();
-	}
-
 }

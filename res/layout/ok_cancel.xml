@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:showIn="@layout/activity_pick_network_provider"
+    tools:showIn="@layout/fragment_set_home"
     >
 
     <include layout="@layout/divider_horizontal"/>
@@ -13,27 +13,24 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        style="@style/Widget.AppCompat.ButtonBar.AlertDialog">
 
         <Button
             android:id="@+id/cancelButton"
-            style="?android:attr/buttonBarButtonStyle"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@android:string/cancel" />
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="fill_parent"
-            android:background="?android:attr/dividerVertical" />
-
         <Button
             android:id="@+id/okButton"
-            style="?android:attr/buttonBarButtonStyle"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@android:string/ok" />
     </LinearLayout>
+
 </LinearLayout>

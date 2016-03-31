@@ -58,13 +58,13 @@ import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
+import de.grobox.liberario.fragments.HomePickerDialogFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.SettingsFragment;
 import de.grobox.liberario.fragments.RecentTripsFragment;
-import de.grobox.liberario.fragments.TransportrFragment;
-import de.grobox.liberario.fragments.TransportrListFragment;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.dto.Location;
 
 public class MainActivity extends TransportrActivity implements FragmentManager.OnBackStackChangedListener {
 
@@ -262,17 +262,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		if(requestCode == CHANGED_NETWORK_PROVIDER && resultCode == RESULT_OK) {
 			onNetworkProviderChanged();
 		}
-
-		// bounce home location change back to SettingsFragment since it uses animation to call the activity
-		// and can't get the result itself at the moment
-		if(requestCode == CHANGED_HOME && resultCode == RESULT_OK) {
-			for(Fragment fragment : getSupportFragmentManager().getFragments()) {
-				if(fragment instanceof TransportNetwork.HomeChangeInterface) {
-					((TransportNetwork.HomeChangeInterface) fragment).onHomeChanged();
-				}
-			}
-		}
-
 	}
 
 	public void onNetworkProviderChanged() {
@@ -519,7 +508,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	private Context getContext() {
 		return this;
 	}
-
 
 	public static class TransportrChangeLog extends ChangeLog {
 		public final static String TAG = TransportrChangeLog.class.getName();

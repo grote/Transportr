@@ -41,7 +41,6 @@ import java.util.Date;
 
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.adapters.DepartureAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
@@ -53,7 +52,7 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
-public class DeparturesFragment extends TransportrFragment implements TransportNetwork.HomeChangeInterface {
+public class DeparturesFragment extends TransportrFragment {
 
 	public static final String TAG = "de.grobox.liberario.departures";
 
@@ -152,12 +151,6 @@ public class DeparturesFragment extends TransportrFragment implements TransportN
 		// check if there's an intent for us and if so, act on it
 		processIntent();
 	}
-
-	@Override
-	public void onHomeChanged() {
-		ui.station.onHomeChanged();
-	}
-
 
 	public void search() {
 		if(ui.station.getLocation() != null) {

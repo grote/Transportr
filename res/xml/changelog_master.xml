@@ -4,7 +4,7 @@
     <release version="1.1.0-pre1" versioncode="28">
         <change>Added Quebec, Canada (Thanks Chimo!)</change>
         <change>Many changes under the hood that improve performance, memory usage and new multi-window mode</change>
-        <change>Add animation when changing pages</change>
+        <change>Add animation when changing pages and opening dialogs</change>
         <change>Improvements for location auto-completion</change>
         <change>Small visual improvements</change>
         <change>Improvements for networks provided by Navitia.io</change>

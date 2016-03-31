@@ -41,7 +41,6 @@ import java.util.EnumSet;
 
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.adapters.StationAdapter;
@@ -54,7 +53,7 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
-public class NearbyStationsFragment extends TransportrFragment implements TransportNetwork.HomeChangeInterface {
+public class NearbyStationsFragment extends TransportrFragment {
 
 	public static final String TAG = "de.grobox.liberario.nearby_locations";
 
@@ -215,16 +214,6 @@ public class NearbyStationsFragment extends TransportrFragment implements Transp
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
-		}
-	}
-
-	@Override
-	public void onHomeChanged() {
-		if(changingHome) {
-			//noinspection deprecation
-			ui.station.setLocation(RecentsDB.getHome(getActivity()), TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
-			changingHome = false;
-			search();
 		}
 	}
 
