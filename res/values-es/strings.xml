@@ -81,9 +81,6 @@
   <string name="error_trip_refresh_failed">No se han podido actualizar los datos de viaje actual.</string>
   <string name="meter">m</string>
   <string name="home">Inicio</string>
-  <string name="home_dialog_title">Tu ubicación inicial</string>
-  <string name="home_dialog_new_msg">No hay ninguna ubicación de inicio seleccionada para la red de transporte actual.</string>
-  <string name="home_dialog_msg">Por favor, proporciona una ubicación seleccionando una de la lista de abajo.</string>
   <string name="location">Ubicación</string>
   <string name="location_home">Pulsa para fijar la Ubicación inicial</string>
   <string name="location_gps">Usar la posición actual</string>

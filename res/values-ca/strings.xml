@@ -81,7 +81,6 @@
   <string name="meter">m</string>
   <string name="system_default">Per defecte del sistema</string>
   <string name="home">Casa</string>
-  <string name="home_dialog_title">La teva ubicació de Casa</string>
   <string name="location">Ubicació</string>
   <string name="location_home">Clicar per establir ubicació de Casa</string>
   <string name="location_gps">Utilitzar posició actual</string>

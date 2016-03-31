@@ -80,9 +80,6 @@
   <string name="error_please_file_ticket">Er geen iets mis. Maak a.u.b. een foutrapport aan met een uitleg van wat je doet voordat dit probleem op trad.</string>
   <string name="meter">m</string>
   <string name="home">Thuis</string>
-  <string name="home_dialog_title">Uw thuisstation</string>
-  <string name="home_dialog_new_msg">Er is geen thuisstation ingesteld voor dit verkeersnetwerk.</string>
-  <string name="home_dialog_msg">Gelieve een thuisstation uit de lijst te kiezen</string>
   <string name="location">Locatie</string>
   <string name="location_home">Klik om uw thuisstation in te stellen</string>
   <string name="location_gps">Gebruik huidige locatie</string>

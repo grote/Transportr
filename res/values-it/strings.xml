@@ -110,9 +110,6 @@
   <string name="system_default">Default di Sistema</string>
   <string name="times_include_delays">(Attention: Gli orari includono i ritardi riportati)</string>
   <string name="home">Casa</string>
-  <string name="home_dialog_title">Luogo iniziale</string>
-  <string name="home_dialog_new_msg">Non è presente nessun luogo iniziale per la rete di trasporto corrente.</string>
-  <string name="home_dialog_msg">Inserisci un luogo in basso selezionandolo dall\'elenco.</string>
   <string name="location">Luogo</string>
   <string name="location_home">Clicca per impostare il luogo iniziale</string>
   <string name="location_gps">Utilizza posizione corrente</string>

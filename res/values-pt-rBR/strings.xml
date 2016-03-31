@@ -109,9 +109,6 @@
   <string name="system_default">Sistema Padrão</string>
   <string name="times_include_delays">(Atenção: Horários incluem atrasos)</string>
   <string name="home">Página Inicial</string>
-  <string name="home_dialog_title">Seu Local Inicial</string>
-  <string name="home_dialog_new_msg">Não existe local inicial definido para a rede de transporte atual.</string>
-  <string name="home_dialog_msg">Escolha um local da lista abaixo.</string>
   <string name="location">Local</string>
   <string name="location_home">Clique para definir Local Inicial</string>
   <string name="location_gps">Use Posição Atual</string>

@@ -98,6 +98,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Rapide</string>
   <string name="warning_departure_gap">Trop peu de départs ont été trouvés. Il pourrait y en avoir d\'autres cachés. Recherchez l\'heure exacte pour vous assurez qu\'il n\'en manque pas.</string>
+  <string name="warning_permission_granted_action">Impossible de répéter la dernière action automatiquement</string>
   <string name="error_pick_network">Veuillez choisir un réseau de transport !</string>
   <string name="error_no_internet">Aucune connexion Internet suffisante disponible.</string>
   <string name="error_invalid_from">Point de départ invalide (de)</string>
@@ -118,9 +119,6 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="system_default">Valeur par défaut du système</string>
   <string name="times_include_delays">(Avertissement : les heures incluent les retards signalés)</string>
   <string name="home">Origine</string>
-  <string name="home_dialog_title">Votre point d\'origine</string>
-  <string name="home_dialog_new_msg">Aucun point d\'origine n\'est défini pour le réseau de transport actuel.</string>
-  <string name="home_dialog_msg">Veuillez donner un lieu ci-dessous en le choisissant dans la liste.</string>
   <string name="location">Lieu</string>
   <string name="location_home">Cliquer pour définir le point d\'origine</string>
   <string name="location_gps">Utiliser l\'emplacement actuel</string>
@@ -242,6 +240,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Rome, Milan, Turin, Venise, Palerme, Trente</string>
   <string name="np_desc_ontario">Ottawa, Toronto</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Québec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montréal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAVIÈRE</string>
   <string name="np_name_paris">PARIS</string>
@@ -254,6 +253,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_name_frenchsouthwest">FR-SO</string>
   <string name="np_name_ontario">Ontario</string>
+  <string name="np_name_quebec">Québec</string>
   <string name="maintainer">Mainteneur</string>
   <string name="contributers">Contributeurs</string>
   <string name="translators">Traducteurs</string>
@@ -267,4 +267,6 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="norwegian_bokmal">Norvégien\nBokmål</string>
   <string name="basque">Basque</string>
   <string name="english">Anglais</string>
+  <string name="catalan">Catalan</string>
+  <string name="polish">Polonais</string>
 </resources>

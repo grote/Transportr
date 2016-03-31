@@ -9,6 +9,7 @@
   <string name="action_use_gps">GPS aç</string>
   <string name="action_trip_delete">Geziyi Sil</string>
   <string name="drawer_directions">Yollar</string>
+  <string name="tab_about">Hakkında</string>
   <string name="trip_dep">klk</string>
   <string name="trip_arr">vrş</string>
   <string name="from">Nereden</string>
@@ -32,9 +33,6 @@
   <string name="error_no_station_location">İstasyon konumu bulunamadı</string>
   <string name="error_no_trips_capability">Bu ulaşım ağı yol sorgulamayı desteklemiyor.</string>
   <string name="meter">m</string>
-  <string name="home_dialog_title">Ev Konumunuz</string>
-  <string name="home_dialog_new_msg">Mevcut ulaşım ağı için ayarlanmış bir ev konumu yok.</string>
-  <string name="home_dialog_msg">Listeden birini seçerek alt tarafa bir konum verin.</string>
   <string name="location_home">Ev konumunuzu ayarlamak için tıklayın</string>
   <string name="location_gps">Mevcut Konumu Kullan</string>
   <string name="product_high_speed_train">Yüksek Hızlı Tren</string>

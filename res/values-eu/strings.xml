@@ -80,9 +80,6 @@
   <string name="error_trip_refresh_failed">Ezin izan dira datuak freskatu uneko bidairako.</string>
   <string name="meter">m</string>
   <string name="home">Etxea</string>
-  <string name="home_dialog_title">Zure etxeko kokalekua</string>
-  <string name="home_dialog_new_msg">Ez dago etxeko kokapenik uneko garraio sarerako.</string>
-  <string name="home_dialog_msg">Mesedez eman ezazu azpian kokapen bat zerrendatik bat hautatzen. </string>
   <string name="location">Kokapena</string>
   <string name="location_home">Sakatu zure etxeko kokalekua ezartzeko</string>
   <string name="location_gps">Uneko kokapena erabili</string>

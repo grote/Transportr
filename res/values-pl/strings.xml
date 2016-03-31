@@ -57,10 +57,15 @@
   <string name="product_tram">Tramwaj</string>
   <string name="product_bus">Autobus</string>
   <string name="product_ferry">Prom</string>
+  <string name="product_cablecar">Kolej linowa</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">Lista zmian</string>
   <string name="changelog_title">Co nowego</string>
   <string name="changelog_show_full">Więcej...</string>
+  <string name="np_desc_bvg">Berlin</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
+  <string name="np_region_switzerland">Szwajcaria</string>
+  <string name="np_region_belgium">Belgia</string>
   <string name="np_region_ireland">Irlandia</string>
   <string name="np_region_italy">Włochy</string>
   <string name="np_region_poland">Polska</string>

@@ -104,6 +104,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Schnell</string>
   <string name="warning_departure_gap">Zu wenige Abfahrten gefunden. Es könnte mehr geben. Suche nach einer genauen Abfahrtszeit um sicher zu gehen, dass alle Abfahrten angezeigt werden.</string>
+  <string name="warning_permission_granted_action">Konnte letzte Aktion nicht automatisch wiederholen</string>
   <string name="error_pick_network">Bitte wählen Sie genau einen Verkehrsverbund aus!</string>
   <string name="error_no_internet">Keine ausreichende Internetverbindung verfügbar</string>
   <string name="error_invalid_from">Ungültiger Startort (Von)</string>
@@ -124,9 +125,6 @@ es welche gibt) anzeigen lassen.</string>
   <string name="system_default">Systemstandard</string>
   <string name="times_include_delays">(Achtung: Zeiten beinhalten gemeldete Verspätungen)</string>
   <string name="home">Zuhause</string>
-  <string name="home_dialog_title">Ihre Heimatadresse</string>
-  <string name="home_dialog_new_msg">Für den aktuellen Verkehrsverbund ist keine Heimatadresse festgelegt.</string>
-  <string name="home_dialog_msg">Bitte gib unten einen Ort an, indem Du einen aus der Liste auswählst.</string>
   <string name="location">Position</string>
   <string name="location_home">Klicken um eine Heimatadresse festzulegen</string>
   <string name="location_gps">Aktuelle Position verwenden</string>
@@ -248,6 +246,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Rom, Mailand, Turin, Venedig, Palermo, Trient</string>
   <string name="np_desc_ontario">Ottawa, Toronto</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Québec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAYERN</string>
   <string name="np_name_paris">PARIS</string>
@@ -260,6 +259,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_name_frenchsouthwest">FR-SW</string>
   <string name="np_name_ontario">Ontario</string>
+  <string name="np_name_quebec">Québec</string>
   <string name="maintainer">Koordinator</string>
   <string name="contributers">Beitragende</string>
   <string name="translators">Übersetzer</string>
@@ -273,4 +273,6 @@ es welche gibt) anzeigen lassen.</string>
   <string name="norwegian_bokmal">Norwegische\nBuchsprache</string>
   <string name="basque">Baskisch</string>
   <string name="english">Englisch</string>
+  <string name="catalan">Katalanisch</string>
+  <string name="polish">Polnisch</string>
 </resources>
