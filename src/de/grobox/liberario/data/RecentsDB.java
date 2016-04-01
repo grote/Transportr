@@ -43,6 +43,8 @@ public class RecentsDB {
 
 	public static List<FavLocation> getFavLocationList(Context context) {
 		List<FavLocation> fav_list = new ArrayList<>();
+		String network = Preferences.getNetwork(context);
+		if(network == null) return fav_list;
 
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -51,7 +53,7 @@ public class RecentsDB {
 			DBHelper.TABLE_FAV_LOCS,    // The table to query
 			null,                       // The columns to return (null == all)
 			"network = ?",              // The columns for the WHERE clause
-			new String[] { Preferences.getNetwork(context) }, // The values for the WHERE clause
+			new String[] { network }, // The values for the WHERE clause
 			null,   // don't group the rows
 			null,   // don't filter by row groups
 			null    // The sort order
@@ -410,6 +412,9 @@ public class RecentsDB {
 	public static Location getHome(Context context) {
 		Location home = null;
 
+		String network = Preferences.getNetwork(context);
+		if(network == null) return null;
+
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -417,7 +422,7 @@ public class RecentsDB {
 				DBHelper.TABLE_HOME_LOCS,   // The table to query
 				null,                       // The columns to return (null == all)
 				"network = ?",              // The columns for the WHERE clause
-				new String[] { Preferences.getNetwork(context) }, // The values for the WHERE clause
+				new String[] { network }, // The values for the WHERE clause
 				null,   // don't group the rows
 				null,   // don't filter by row groups
 				null    // The sort order
