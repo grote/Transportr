@@ -421,8 +421,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		}
 
 		// hide soft-keyboard
-		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(ui.location.getWindowToken(), 0);
+		hideSoftKeyboard();
 
 		if(clickListener != null) clickListener.onLocationItemClick(view, loc);
 	}
@@ -449,6 +448,11 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		} else {
 			clearLocationAndShowDropDown();
 		}
+	}
+
+	public void hideSoftKeyboard() {
+		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(ui.location.getWindowToken(), 0);
 	}
 
 	public void selectHomeLocation() {

@@ -9,6 +9,18 @@
         <item name="android:layout_marginRight">4dp</item>
     </style>
 
+    <style name="DownArrow">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:src">@drawable/ic_arrow_down</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
     <style name="DialogAnimation" parent="@android:style/Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/scale_up</item>
         <item name="android:windowExitAnimation">@anim/scale_down</item>

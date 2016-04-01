@@ -6,10 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/departureDelayView"
-        style="@style/Delay"
-        tools:text="+10"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/lineArrowDown"
+            style="@style/DownArrow"/>
+
+        <TextView
+            android:id="@+id/departureDelayView"
+            style="@style/Delay"
+            tools:text="+10"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
 
     <org.apmem.tools.layouts.FlowLayout
         android:id="@+id/lineLayout"

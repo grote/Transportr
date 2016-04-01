@@ -156,6 +156,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		// Show Trip Duration
 		ui.duration.setText(DateUtils.getDuration(trip.trip.getDuration()));
 
+		// Re-color arrow down
+		ui.lineArrowDown.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.lineArrowDown.getDrawable()));
+
 		// Show Trip on Map
 		ui.map.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.map.getDrawable()));
 		ui.map.setOnClickListener(new View.OnClickListener() {
@@ -229,6 +232,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			leg_holder.departureLocation.setBackgroundResource(android.R.color.transparent);
 			leg_holder.arrivalLocation.setBackgroundResource(android.R.color.transparent);
 		}
+
+		// Re-color arrow down
+		leg_holder.arrowDown.setImageDrawable(TransportrUtils.getTintedDrawable(context, leg_holder.arrowDown.getDrawable()));
 
 		// Leg duration
 		leg_holder.duration.setText(DateUtils.getDuration(leg.getDepartureTime(), leg.getArrivalTime()));
@@ -522,6 +528,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		public TableLayout firstLeg;
 		public TableRow linesView;
 		public TextView departureDelay;
+		public ImageView lineArrowDown;
 		public FlowLayout lines;
 		public TextView changes;
 		public TextView duration;
@@ -559,6 +566,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 			// remember where the lines are inserted and the trip duration
 			departureDelay = (TextView) linesView.findViewById(R.id.departureDelayView);
+			lineArrowDown = (ImageView) linesView.findViewById(R.id.lineArrowDown);
 			lines = (FlowLayout) linesView.findViewById(R.id.lineLayout);
 			changes = (TextView) linesView.findViewById(R.id.changesView);
 			duration = (TextView) linesView.findViewById(R.id.durationView);
@@ -582,6 +590,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		public ViewGroup stops;
 		public ViewGroup line;
 		public ImageView arrow;
+		public ImageView arrowDown;
 		public TextView lineDestination;
 		public TextView	duration;
 		public View divider;
@@ -605,6 +614,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			stops = (ViewGroup) v.findViewById(R.id.stopsView);
 			line = (ViewGroup) v.findViewById(R.id.lineView);
 			arrow = (ImageView) v.findViewById(R.id.arrowView);
+			arrowDown = (ImageView) v.findViewById(R.id.arrowDown);
 			lineDestination = (TextView) v.findViewById(R.id.lineDestinationView);
 			duration = (TextView) v.findViewById(R.id.durationView);
 			divider = v.findViewById(R.id.dividerView);
