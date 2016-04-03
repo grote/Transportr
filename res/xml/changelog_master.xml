@@ -5,6 +5,7 @@
         <change>Added Quebec, Canada (Thanks Chimo!)</change>
         <change>Many changes under the hood that improve performance, memory usage and new multi-window mode</change>
         <change>Add animation when changing pages and opening dialogs</change>
+        <change>Modern UI for built-in map</change>
         <change>Improvements for location auto-completion</change>
         <change>Small visual improvements</change>
         <change>Improvements for networks provided by Navitia.io</change>

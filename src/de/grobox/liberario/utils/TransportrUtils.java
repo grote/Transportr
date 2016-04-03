@@ -454,12 +454,30 @@ public class TransportrUtils {
 		} else if(l.hasName()) {
 			return l.place == null ? l.uniqueShortName() : l.name + ", " + l.place;
 		} else if(l.type.equals(LocationType.COORD)) {
-			return String.valueOf(l.getLatAsDouble()).substring(0, 8) + "/" + String.valueOf(l.getLonAsDouble()).substring(0, 8);
+			return getCoordinationName(l.getLatAsDouble(), l.getLonAsDouble());
 		} else if(l.uniqueShortName() != null) {
 			return l.uniqueShortName();
 		} else {
 			return "";
 		}
+	}
+
+	static public String getCoordinationName(double lat, double lon) {
+		String latStr;
+		try {
+			latStr = String.valueOf(lat).substring(0, 7);
+		} catch(StringIndexOutOfBoundsException e) {
+			latStr = String.valueOf(lat);
+		}
+
+		String lonStr;
+		try {
+			lonStr = String.valueOf(lon).substring(0, 7);
+		} catch(StringIndexOutOfBoundsException e) {
+			lonStr = String.valueOf(lon);
+		}
+
+		return latStr + "/" + lonStr;
 	}
 
 	static public Drawable getTintedDrawable(Context context, boolean dark, Drawable drawable) {

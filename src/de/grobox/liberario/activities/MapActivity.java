@@ -39,7 +39,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -197,19 +196,21 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 	@Override
 	public boolean longPressHelper(GeoPoint p) {
-		String loc_str = String.valueOf(p.getLatitude()).substring(0, 7) +"/"+ String.valueOf(p.getLongitude()).substring(0, 7);
+		String loc_str = TransportrUtils.getCoordinationName(p.getLatitude(), p.getLongitude());
 		Marker marker = new Marker(map);
 		marker.setIcon(new ColorDrawable(Color.TRANSPARENT));
 		marker.setPosition(p);
 		marker.setTitle(getString(R.string.location)+ ": " + loc_str);
-		marker.setInfoWindow(new StationInfoWindow(map));
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
 		marker.setRelatedObject(Location.coord(p.getLatitudeE6(), p.getLongitudeE6()));
+		marker.setInfoWindow(new LocationInfoWindow(map));
 		map.getOverlays().add(marker);
-		marker.showInfoWindow();
 
 		// center map smoothly where clicked
 		map.getController().animateTo(p);
+
+		// show info window
+		marker.showInfoWindow();
 
 		return true;
 	}
@@ -218,14 +219,16 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		map = new MapView(this);
 
 		map.setClickable(true);
-//		map.setBuiltInZoomControls(true);
 		map.setMultiTouchControls(true);
 		map.setTilesScaledToDpi(true);
 
 		MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(this, this);
 		map.getOverlays().add(0, mapEventsOverlay);
 
-		((LinearLayout) findViewById(R.id.root)).addView(map);
+		// add map to root view
+		ViewGroup root = (ViewGroup) findViewById(R.id.root);
+		if(root == null) return;
+		root.addView(map);
 
 		Intent intent = getIntent();
 		if(intent != null) {
@@ -234,6 +237,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				if(action.equals(SHOW_AREA)) {
 					showArea();
 				} else if(action.equals(SHOW_LOCATIONS)) {
+					@SuppressWarnings("unchecked")
 					List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra(LOCATIONS);
 					Location myLoc = (Location) intent.getSerializableExtra(LOCATION);
 					showLocations(locations, myLoc);
@@ -478,7 +482,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		marker.setIcon(drawable);
 		marker.setPosition(pos);
 		marker.setTitle(loc.uniqueShortName());
-		marker.setInfoWindow(new StationInfoWindow(map));
+		marker.setInfoWindow(new LocationInfoWindow(map));
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
 		marker.setRelatedObject(loc);
 		map.getOverlays().add(marker);
@@ -510,10 +514,10 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 	}
 
-	public class StationInfoWindow extends InfoWindow {
+	public class LocationInfoWindow extends InfoWindow {
 
-		public StationInfoWindow(MapView mapView) {
-			super(R.layout.bubble_station, mapView);
+		public LocationInfoWindow(MapView mapView) {
+			super(R.layout.location_info_window, mapView);
 
 			// close it when clicking on the bubble
 			mView.setOnTouchListener(new View.OnTouchListener() {
@@ -533,7 +537,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			// close all other windows before opening this one
 			closeAllInfoWindowsOn(mMapView);
 
-			((TextView) mView.findViewById(R.id.bubble_title)).setText(marker.getTitle());
+			((TextView) mView.findViewById(R.id.locationTitle)).setText(marker.getTitle());
 
 			final Location loc = (Location) marker.getRelatedObject();
 
@@ -544,7 +548,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			if(loc.products != null && loc.products.size() > 0) {
 				for(Product product : loc.products) {
 					ImageView image = new ImageView(productsView.getContext());
-					image.setImageDrawable(TransportrUtils.getTintedDrawable(productsView.getContext(), false, TransportrUtils.getDrawableForProduct(product)));
+					image.setImageDrawable(TransportrUtils.getTintedDrawable(productsView.getContext(), TransportrUtils.getDrawableForProduct(product)));
 					productsView.addView(image);
 				}
 			}
@@ -553,7 +557,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			TextView toHere = ((TextView) mView.findViewById(R.id.toHere));
 			if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS)) {
 				// From Here
-				fromHere.setCompoundDrawables(TransportrUtils.getTintedDrawable(fromHere.getContext(), false, fromHere.getCompoundDrawables()[0].mutate()), null, null, null);
+				fromHere.setCompoundDrawables(TransportrUtils.getTintedDrawable(fromHere.getContext(), fromHere.getCompoundDrawables()[0].mutate()), null, null, null);
 				fromHere.setOnClickListener(new View.OnClickListener() {
 					                            @Override
 					                            public void onClick(View v) {
@@ -579,7 +583,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			// Departures
 			TextView departures = ((TextView) mView.findViewById(R.id.departures));
 			if(loc.hasId() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
-				departures.setCompoundDrawables(TransportrUtils.getTintedDrawable(departures.getContext(), false, departures.getCompoundDrawables()[0].mutate()), null, null, null);
+				departures.setCompoundDrawables(TransportrUtils.getTintedDrawable(departures.getContext(), departures.getCompoundDrawables()[0].mutate()), null, null, null);
 				departures.setOnClickListener(new View.OnClickListener() {
 					                              @Override
 					                              public void onClick(View v) {
@@ -594,7 +598,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			// Nearby Stations
 			TextView nearbyStations = ((TextView) mView.findViewById(R.id.nearbyStations));
 			if(loc.hasLocation() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
-				nearbyStations.setCompoundDrawables(TransportrUtils.getTintedDrawable(nearbyStations.getContext(), false, nearbyStations.getCompoundDrawables()[0].mutate()), null, null, null);
+				nearbyStations.setCompoundDrawables(TransportrUtils.getTintedDrawable(nearbyStations.getContext(), nearbyStations.getCompoundDrawables()[0].mutate()), null, null, null);
 				nearbyStations.setOnClickListener(new View.OnClickListener() {
 					                                  @Override
 					                                  public void onClick(View v) {

@@ -10,6 +10,8 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="cardBackgroundColor">@color/cardview_dark_background</item>
+        <item name="mapInfoWindow">@drawable/map_info_window_dark</item>
+
         <item name="android:dialogTheme">@style/DialogTheme</item>
         <item name="android:alertDialogTheme">@style/DialogTheme</item>
     </style>
@@ -22,6 +24,7 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
+        <item name="mapInfoWindow">@drawable/map_info_window_light</item>
         <item name="android:dialogTheme">@style/DialogTheme.Light</item>
         <item name="android:alertDialogTheme">@style/DialogTheme.Light</item>
     </style>
