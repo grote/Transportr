@@ -9,7 +9,7 @@
     </item>
 
     <item
-        android:drawable="@drawable/ic_tab_stations"
+        android:drawable="@drawable/ic_tab_stations_small"
         android:gravity="center"/>
 
 </layer-list>
