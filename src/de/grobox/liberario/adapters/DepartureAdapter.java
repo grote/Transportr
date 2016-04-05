@@ -122,7 +122,7 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		ui.arrow.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.arrow.getDrawable()));
 
 		if(dep.destination != null) {
-			ui.destination.setText(dep.destination.uniqueShortName());
+			ui.destination.setText(TransportrUtils.getLocName(dep.destination));
 		}
 
 		// show platform/position according to user preference and availability

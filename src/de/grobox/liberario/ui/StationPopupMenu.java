@@ -51,7 +51,7 @@ public class StationPopupMenu extends BasePopupMenu {
 		return new OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
-				String text = start.uniqueShortName() + " " + TransportrUtils.computeDistance(start, station) + "m → " + station.uniqueShortName();
+				String text = TransportrUtils.getLocName(start) + " " + TransportrUtils.computeDistance(start, station) + "m → " + TransportrUtils.getLocName(station);
 
 				// handle presses on menu items
 				switch(item.getItemId()) {

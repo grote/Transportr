@@ -18,14 +18,14 @@
             android:paddingLeft="3dp"
             android:paddingTop="3dp"
             android:paddingRight="5dp"
-            android:layout_gravity="center_vertical|end"
+            android:layout_gravity="top|center_vertical|end"
             android:textColor="?android:attr/textColorPrimary"/>
 
         <TextView
             android:id="@+id/departureLocationView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Departure Station with a name"
+            tools:text="Departure Station with a long name"
             android:layout_weight="1"
             android:paddingTop="3dp"
             android:paddingRight="3dp"

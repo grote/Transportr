@@ -36,6 +36,7 @@ import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.PickNetworkProviderActivity;
 import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener, HomePickerDialogFragment.OnHomeChangedListener {
@@ -132,7 +133,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 			home = RecentsDB.getHome(getActivity());
 		}
 		if(home != null) {
-			this.home.setSummary(home.uniqueShortName());
+			this.home.setSummary(TransportrUtils.getFullLocName(home));
 		} else {
 			this.home.setSummary(getResources().getString(R.string.location_home));
 		}

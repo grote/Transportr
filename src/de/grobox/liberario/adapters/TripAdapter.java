@@ -208,8 +208,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 	static public void bindLeg(Context context, final LegHolder leg_holder, Trip.Leg leg, boolean detail, FlowLayout lines) {
 		// Locations
-		leg_holder.departureLocation.setText(leg.departure.uniqueShortName());
-		leg_holder.arrivalLocation.setText(leg.arrival.uniqueShortName());
+		leg_holder.departureLocation.setText(TransportrUtils.getLocName(leg.departure));
+		leg_holder.arrivalLocation.setText(TransportrUtils.getLocName(leg.arrival));
 
 		if(detail) {
 			final LegPopupMenu departurePopup = new LegPopupMenu(context, leg_holder.departureLocation, leg);
@@ -269,7 +269,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			if(lines != null) TransportrUtils.addLineBox(context, lines, public_leg.line);
 
 			if(public_leg.destination != null) {
-				leg_holder.lineDestination.setText(public_leg.destination.uniqueShortName());
+				leg_holder.lineDestination.setText(TransportrUtils.getLocName(public_leg.destination));
 				leg_holder.arrow.setImageDrawable(TransportrUtils.getTintedDrawable(context, leg_holder.arrow.getDrawable()));
 			} else {
 				// hide arrow because this line has no destination
@@ -385,7 +385,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				stopHolder.departureDelay.setVisibility(View.GONE);
 			}
 
-			stopHolder.location.setText(stop.location.uniqueShortName());
+			stopHolder.location.setText(TransportrUtils.getLocName(stop.location));
 
 			if(stop.plannedArrivalPosition != null) {
 				stopHolder.arrivalPlatform.setText(stop.plannedArrivalPosition.name);

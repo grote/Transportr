@@ -95,8 +95,8 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 	public void onBindViewHolder(final FavouriteHolder ui, final int position) {
 		final RecentTrip fav = getItem(position);
 
-		ui.favFrom.setText(fav.getFrom().uniqueShortName());
-		ui.favTo.setText(fav.getTo().uniqueShortName());
+		ui.favFrom.setText(TransportrUtils.getLocName(fav.getFrom()));
+		ui.favTo.setText(TransportrUtils.getLocName(fav.getTo()));
 
 		ui.root.setOnClickListener(new View.OnClickListener() {
 			@Override

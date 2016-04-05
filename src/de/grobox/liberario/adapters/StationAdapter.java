@@ -104,7 +104,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 			                           }
 		                           }
 		);
-		ui.station.setText(loc.uniqueShortName());
+		ui.station.setText(TransportrUtils.getLocName(loc));
 
 		int dist = TransportrUtils.computeDistance(start, loc);
 

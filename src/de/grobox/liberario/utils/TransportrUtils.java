@@ -175,9 +175,9 @@ public class TransportrUtils {
 		if(tag) str += "[" + context.getResources().getString(R.string.app_name) + "] ";
 
 		str += DateUtils.getTime(context, trip.getFirstDepartureTime()) + " ";
-		str += trip.from.name;
+		str += getLocName(trip.from);
 		str += " → ";
-		str += trip.to.name + " ";
+		str += getLocName(trip.to) + " ";
 		str += DateUtils.getTime(context, trip.getLastArrivalTime());
 		str += " (" + DateUtils.getDate(context, trip.getFirstDepartureTime()) + ")";
 
@@ -199,13 +199,13 @@ public class TransportrUtils {
 		String apos = "";
 
 		str += DateUtils.getTime(context, leg.getDepartureTime()) + " ";
-		str += leg.departure.name;
+		str += getLocName(leg.departure);
 
 		if(leg instanceof Trip.Public) {
 			Trip.Public pub = (Trip.Public) leg;
 			if(pub.line != null && pub.line.label != null) {
 				str += " (" + pub.line.label;
-				if(pub.destination  != null) str += " → " + pub.destination.uniqueShortName();
+				if(pub.destination  != null) str += " → " + getLocName(pub.destination);
 				str += ")";
 			}
 			// show departure position if existing
@@ -226,7 +226,7 @@ public class TransportrUtils {
 
 		str += "\n";
 		str += DateUtils.getTime(context, leg.getArrivalTime()) + " ";
-		str += leg.arrival.name;
+		str += getLocName(leg.arrival);
 		str += apos;
 
 		return str;
@@ -410,9 +410,9 @@ public class TransportrUtils {
 		String uri2;
 
 		try {
-			uri2 = "(" + URLEncoder.encode(loc.uniqueShortName(), "utf-8") + ")";
+			uri2 = "(" + URLEncoder.encode(TransportrUtils.getLocName(loc), "utf-8") + ")";
 		} catch (UnsupportedEncodingException e) {
-			uri2 = "(" + loc.uniqueShortName() + ")";
+			uri2 = "(" + TransportrUtils.getLocName(loc) + ")";
 		}
 
 		Uri geo = Uri.parse(uri1 + uri2);
@@ -451,14 +451,20 @@ public class TransportrUtils {
 	static public String getLocName(Location l) {
 		if(l == null) {
 			return "";
-		} else if(l.hasName()) {
-			return l.place == null ? l.uniqueShortName() : l.name + ", " + l.place;
 		} else if(l.type.equals(LocationType.COORD)) {
 			return getCoordinationName(l.getLatAsDouble(), l.getLonAsDouble());
 		} else if(l.uniqueShortName() != null) {
 			return l.uniqueShortName();
 		} else {
 			return "";
+		}
+	}
+
+	static public String getFullLocName(Location l) {
+		if(l.hasName()) {
+			return l.place == null ? l.uniqueShortName() : l.name + ", " + l.place;
+		} else {
+			return getLocName(l);
 		}
 	}
 

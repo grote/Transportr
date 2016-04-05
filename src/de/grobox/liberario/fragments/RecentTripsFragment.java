@@ -206,9 +206,9 @@ public class RecentTripsFragment extends TransportrListFragment {
 			RecentTrip trip = this.getItem(position);
 
 			TextView favFromView = (TextView) v.findViewById(R.id.recentFromView);
-			favFromView.setText(trip.getFrom().uniqueShortName());
+			favFromView.setText(TransportrUtils.getLocName(trip.getFrom()));
 			TextView favToView = (TextView) v.findViewById(R.id.recentToView);
-			favToView.setText(trip.getTo().uniqueShortName());
+			favToView.setText(TransportrUtils.getLocName(trip.getTo()));
 			TextView favCountView = (TextView) v.findViewById(R.id.recentCountView);
 			favCountView.setText(String.valueOf(trip.getCount()));
 

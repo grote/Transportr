@@ -62,7 +62,7 @@ public class WrapLocation {
 				return null;
 			}
 		}
-		return TransportrUtils.getLocName(getLocation());
+		return TransportrUtils.getFullLocName(getLocation());
 	}
 
 }

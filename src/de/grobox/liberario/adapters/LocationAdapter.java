@@ -285,10 +285,10 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 	private Spanned getHighlightedText(Location l) {
 		if(search != null && search.length() >= THRESHOLD) {
 			String regex = "(?i)(" + Pattern.quote(search.toString()) + ")";
-			String str = TransportrUtils.getLocName(l).replaceAll(regex, "<b>$1</b>");
+			String str = TransportrUtils.getFullLocName(l).replaceAll(regex, "<b>$1</b>");
 			return Html.fromHtml(str);
 		} else {
-			return Html.fromHtml(TransportrUtils.getLocName(l));
+			return Html.fromHtml(TransportrUtils.getFullLocName(l));
 		}
 	}
 }
