@@ -15,7 +15,7 @@
    viewBox="-1.5928935 -1.5928935 164.17184 164.15652"
    id="svg12259"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="Augsburger_Verkehrsverbund_logo.svg">
+   sodipodi:docname="avv.svg">
   <metadata
      id="metadata3398">
     <rdf:RDF>
@@ -35,10 +35,10 @@
      objecttolerance="10"
      gridtolerance="10"
      guidetolerance="10"
-     inkscape:pageopacity="0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:window-width="1280"
-     inkscape:window-height="744"
+     inkscape:window-width="1920"
+     inkscape:window-height="1012"
      id="namedview3396"
      showgrid="false"
      fit-margin-top="0"
@@ -48,15 +48,22 @@
      inkscape:zoom="1.1240234"
      inkscape:cx="355.13754"
      inkscape:cy="127.17931"
-     inkscape:window-x="0"
+     inkscape:window-x="1440"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg12259" />
   <defs
      id="defs12261" />
+  <rect
+     style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.03600001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect4198"
+     width="164.17184"
+     height="164.17186"
+     x="-1.5928941"
+     y="-1.600558" />
   <g
      id="g3400"
-     transform="translate(0.85151993,-56.438668)">
+     transform="matrix(0.91859813,0,0,0.91859813,7.3344876,-45.292795)">
     <path
        inkscape:connector-curvature="0"
        style="fill:#0070ae;fill-opacity:1;fill-rule:nonzero;stroke:none"
