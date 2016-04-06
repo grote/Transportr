@@ -47,6 +47,7 @@ import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
@@ -60,7 +61,7 @@ public class TripsActivity extends TransportrActivity {
 	private Location from;
 	private Location to;
 	private ArrayList<Product> products;
-	private boolean is_fav;
+	private boolean isFav, isFavable;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +146,13 @@ public class TripsActivity extends TransportrActivity {
 		mAdapter.setHasStableIds(false);
 		mRecyclerView.setAdapter(mAdapter);
 
-		is_fav = RecentsDB.isFavedRecentTrip(this, new RecentTrip(from, to));
+		if(to.type != LocationType.COORD && from.type != LocationType.COORD) {
+			isFav = RecentsDB.isFavedRecentTrip(this, new RecentTrip(from, to));
+			isFavable = true;
+		} else {
+			isFav = false;
+			isFavable = false;
+		}
 	}
 
 	@Override
@@ -176,7 +183,11 @@ public class TripsActivity extends TransportrActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trips_activity_actions, menu);
 
-		TransportrUtils.setFavState(this, menu.findItem(R.id.action_fav_trip), is_fav, true);
+		if(isFavable) {
+			TransportrUtils.setFavState(this, menu.findItem(R.id.action_fav_trip), isFav, true);
+		} else {
+			menu.findItem(R.id.action_fav_trip).setVisible(false);
+		}
 
 		return true;
 	}
@@ -188,9 +199,9 @@ public class TripsActivity extends TransportrActivity {
 			return true;
 		}
 		else if(item.getItemId() == R.id.action_fav_trip) {
-			RecentsDB.toggleFavouriteTrip(this, new RecentTrip(from, to, is_fav));
-			is_fav = !is_fav;
-			TransportrUtils.setFavState(this, item, is_fav, true);
+			RecentsDB.toggleFavouriteTrip(this, new RecentTrip(from, to, isFav));
+			isFav = !isFav;
+			TransportrUtils.setFavState(this, item, isFav, true);
 
 			return true;
 		}

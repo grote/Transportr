@@ -92,7 +92,7 @@ public class RecentsDB {
 	}
 
 	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
-		if(loc == null || (loc.place != null && loc.place.equals("GPS"))) {
+		if(loc == null || loc.type == LocationType.COORD) {
 			// don't store GPS locations
 			return;
 		}
@@ -251,7 +251,7 @@ public class RecentsDB {
 			return;
 		}
 
-		if(recent.getFrom().place != null && recent.getFrom().place.equals("GPS")) {
+		if(recent.getFrom().type == LocationType.COORD) {
 			// don't store GPS locations
 			return;
 		}
