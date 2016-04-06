@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:better="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="NewApi"
+    android:viewportWidth="500"
+    better:viewportWidth="500"
+    android:viewportHeight="500"
+    better:viewportHeight="500"
+    android:width="500dp"
+    android:height="500dp">
+    <group
+        android:translateX="-4.570538"
+        better:translateX="-4.570538"
+        android:translateY="164.5964"
+        better:translateY="164.5964">
+        <group
+            android:scaleX="2.957714"
+            android:scaleY="2.957714"
+            android:translateX="508.0889"
+            better:translateX="508.0889"
+            android:translateY="-475.0981"
+            better:translateY="-475.0981">
+            <group
+                android:scaleX="1.25"
+                android:scaleY="-1.25"
+                android:translateX="-4.570536"
+                better:translateX="-4.570536"
+                android:translateY="192.4819"
+                better:translateY="192.4819">
+                <path
+                    android:pathData="M0 0l0 14.288 -56.163 0 0 14.288 -23.815 -23.813 52.344 0L-32.399 0 0 0z"
+                    better:pathData="M0 0l0 14.288 -56.163 0 0 14.288 -23.815 -23.813 52.344 0L-32.399 0 0 0z"
+                    android:fillColor="#00a650"
+                    better:fillColor="#00a650" />
+            </group>
+            <group
+                android:scaleX="1.25"
+                android:scaleY="-1.25"
+                android:translateX="-39.04803"
+                better:translateX="-39.04803"
+                android:translateY="186.5282"
+                better:translateY="186.5282">
+                <path
+                    android:pathData="M0 0l-102.248 0 0 -14.287 73.671 0 0 -14.289L0 0z"
+                    better:pathData="M0 0l-102.248 0 0 -14.287 73.671 0 0 -14.289L0 0z"
+                    android:fillColor="#005aaa"
+                    better:fillColor="#005aaa" />
+            </group>
+            <group
+                android:scaleX="1.25"
+                android:scaleY="-1.25"
+                android:translateX="-50.71929"
+                better:translateX="-50.71929"
+                android:translateY="186.5282"
+                better:translateY="186.5282">
+                <path
+                    android:pathData="M0 0l-2.381 0 -1.539 -6.544 -0.049 0L-5.46 0l-2.526 0 2.694 -9.116 2.647 0L0 0z"
+                    better:pathData="M0 0l-2.381 0 -1.539 -6.544 -0.049 0L-5.46 0l-2.526 0 2.694 -9.116 2.647 0L0 0z"
+                    android:fillColor="#ffffff"
+                    better:fillColor="#ffffff" />
+            </group>
+            <group
+                android:scaleX="1.25"
+                android:scaleY="-1.25"
+                android:translateX="-62.50554"
+                better:translateX="-62.50554"
+                android:translateY="186.5282"
+                better:translateY="186.5282">
+                <path
+                    android:pathData="M0 0l-2.477 0 -1.469 -6.544 -0.071 0 -1.42 6.544 -2.597 0 2.694 -9.116 2.646 0L0 0z"
+                    better:pathData="M0 0l-2.477 0 -1.469 -6.544 -0.071 0 -1.42 6.544 -2.597 0 2.694 -9.116 2.646 0L0 0z"
+                    android:fillColor="#ffffff"
+                    better:fillColor="#ffffff" />
+            </group>
+            <group
+                android:scaleX="1.25"
+                android:scaleY="-1.25"
+                android:translateX="-74.77179"
+                better:translateX="-74.77179"
+                android:translateY="186.5282"
+                better:translateY="186.5282">
+                <path
+                    android:pathData="M0 0l-2.117 0 0 -6.277 -2.334 6.277 -2.911 0 0 -9.116 2.166 0 0 6.277 0.047 0 2.285 -6.277 2.864 0L0 0z"
+                    better:pathData="M0 0l-2.117 0 0 -6.277 -2.334 6.277 -2.911 0 0 -9.116 2.166 0 0 6.277 0.047 0 2.285 -6.277 2.864 0L0 0z"
+                    android:fillColor="#ffffff"
+                    better:fillColor="#ffffff" />
+            </group>
+        </group>
+    </group>
+</vector>
