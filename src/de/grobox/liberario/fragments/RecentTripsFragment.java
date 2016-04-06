@@ -40,15 +40,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.ui.RecentsPopupMenu;
 import de.grobox.liberario.utils.TransportrUtils;
 
 public class RecentTripsFragment extends TransportrListFragment {
+
+	public static final String TAG = "de.grobox.liberario.recent_trips";
+
 	private FavTripArrayAdapter adapter;
 	private ActionMode mActionMode;
 	private Toolbar toolbar;
@@ -61,7 +63,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT)));
+		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false)));
 		setListAdapter(adapter);
 
 		toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
@@ -83,9 +85,6 @@ public class RecentTripsFragment extends TransportrListFragment {
 		super.onResume();
 
 		setEmptyText(getString(R.string.fav_trips_empty));
-
-		// although the network provider has not changed, other things might have, so reload data
-		onNetworkProviderChanged(Preferences.getTransportNetwork(getActivity()));
 	}
 
 	@Override
@@ -100,11 +99,20 @@ public class RecentTripsFragment extends TransportrListFragment {
 		// Inflate the menu items for use in the action bar
 		inflater.inflate(R.menu.recent_trip_list_actions, menu);
 
-		if(Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false)) {
-			menu.findItem(R.id.action_recent_trips_sort_count).setChecked(true);
+		// in some cases getActivity() and getContext() can be null, so get it somewhere else
+		Context context = toolbar.getContext();
+
+		MenuItem sort = menu.findItem(R.id.action_recent_trips_sort);
+		MenuItem count = menu.findItem(R.id.action_recent_trips_sort_count);
+		MenuItem recent = menu.findItem(R.id.action_recent_trips_sort_recent);
+
+		if(Preferences.getPref(context, Preferences.SORT_RECENT_TRIPS_COUNT, false)) {
+			count.setChecked(true);
 		} else {
-			menu.findItem(R.id.action_recent_trips_sort_recent).setChecked(true);
+			recent.setChecked(true);
 		}
+
+		TransportrUtils.fixToolbarIcon(context, sort);
 
 		super.onCreateOptionsMenu(menu, inflater);
 	}
@@ -127,16 +135,6 @@ public class RecentTripsFragment extends TransportrListFragment {
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
-		}
-	}
-
-	@Override
-	// change things for a different network provider
-	public void onNetworkProviderChanged(TransportNetwork network) {
-		// reload data because it has changed
-		if(getActivity() != null && adapter != null) {
-			adapter.clear();
-			adapter.addAll(RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT)));
 		}
 	}
 
@@ -208,9 +206,9 @@ public class RecentTripsFragment extends TransportrListFragment {
 			RecentTrip trip = this.getItem(position);
 
 			TextView favFromView = (TextView) v.findViewById(R.id.recentFromView);
-			favFromView.setText(trip.getFrom().uniqueShortName());
+			favFromView.setText(TransportrUtils.getLocName(trip.getFrom()));
 			TextView favToView = (TextView) v.findViewById(R.id.recentToView);
-			favToView.setText(trip.getTo().uniqueShortName());
+			favToView.setText(TransportrUtils.getLocName(trip.getTo()));
 			TextView favCountView = (TextView) v.findViewById(R.id.recentCountView);
 			favCountView.setText(String.valueOf(trip.getCount()));
 

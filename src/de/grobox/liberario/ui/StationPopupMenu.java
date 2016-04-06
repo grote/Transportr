@@ -51,7 +51,7 @@ public class StationPopupMenu extends BasePopupMenu {
 		return new OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
-				String text = start.uniqueShortName() + " " + TransportrUtils.computeDistance(start, station) + "m → " + station.uniqueShortName();
+				String text = TransportrUtils.getLocName(start) + " " + TransportrUtils.computeDistance(start, station) + "m → " + TransportrUtils.getLocName(station);
 
 				// handle presses on menu items
 				switch(item.getItemId()) {
@@ -63,6 +63,16 @@ public class StationPopupMenu extends BasePopupMenu {
 					// Show On External Map
 					case R.id.action_show_on_external_map:
 						TransportrUtils.startGeoIntent(context, station);
+
+						return true;
+					// From Here
+					case R.id.action_from_here:
+						TransportrUtils.presetDirections(context, station, null);
+
+						return true;
+					// To Here
+					case R.id.action_to_here:
+						TransportrUtils.presetDirections(context, null, station);
 
 						return true;
 					// Show Departures

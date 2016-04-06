@@ -23,7 +23,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,11 +47,12 @@ import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
 
-public class TripsActivity extends AppCompatActivity {
+public class TripsActivity extends TransportrActivity {
 	private QueryTripsResult start_context;
 	private QueryTripsResult end_context;
 	private RecyclerView mRecyclerView;
@@ -61,16 +61,10 @@ public class TripsActivity extends AppCompatActivity {
 	private Location from;
 	private Location to;
 	private ArrayList<Product> products;
-	private boolean is_fav;
+	private boolean isFav, isFavable;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.AppTheme);
-		} else {
-			setTheme(R.style.AppTheme_Light);
-		}
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trips);
 
@@ -152,7 +146,13 @@ public class TripsActivity extends AppCompatActivity {
 		mAdapter.setHasStableIds(false);
 		mRecyclerView.setAdapter(mAdapter);
 
-		is_fav = RecentsDB.isFavedRecentTrip(this, new RecentTrip(from, to));
+		if(to.type != LocationType.COORD && from.type != LocationType.COORD) {
+			isFav = RecentsDB.isFavedRecentTrip(this, new RecentTrip(from, to));
+			isFavable = true;
+		} else {
+			isFav = false;
+			isFavable = false;
+		}
 	}
 
 	@Override
@@ -183,7 +183,11 @@ public class TripsActivity extends AppCompatActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trips_activity_actions, menu);
 
-		TransportrUtils.setFavState(this, menu.findItem(R.id.action_fav_trip), is_fav, true);
+		if(isFavable) {
+			TransportrUtils.setFavState(this, menu.findItem(R.id.action_fav_trip), isFav, true);
+		} else {
+			menu.findItem(R.id.action_fav_trip).setVisible(false);
+		}
 
 		return true;
 	}
@@ -195,9 +199,9 @@ public class TripsActivity extends AppCompatActivity {
 			return true;
 		}
 		else if(item.getItemId() == R.id.action_fav_trip) {
-			RecentsDB.toggleFavouriteTrip(this, new RecentTrip(from, to, is_fav));
-			is_fav = !is_fav;
-			TransportrUtils.setFavState(this, item, is_fav, true);
+			RecentsDB.toggleFavouriteTrip(this, new RecentTrip(from, to, isFav));
+			isFav = !isFav;
+			TransportrUtils.setFavState(this, item, isFav, true);
 
 			return true;
 		}

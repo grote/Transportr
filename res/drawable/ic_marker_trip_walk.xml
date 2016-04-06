@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <bitmap
+            android:src="@drawable/ic_marker_background_big"
+            android:gravity="center"/>
+    </item>
+
+    <item
+        android:drawable="@drawable/ic_walk"
+        android:top="15dp"
+        android:right="15dp"
+        android:bottom="15dp"
+        android:left="15dp"/>
+
+</layer-list>

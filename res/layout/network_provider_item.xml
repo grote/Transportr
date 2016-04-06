@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@drawable/selector_list_item">
+    android:background="@drawable/selector_list_item_background">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -32,6 +33,7 @@
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:textStyle="bold"
+                tools:text="Network Name"
                 />
 
             <TextView
@@ -51,6 +53,7 @@
             android:layout_marginBottom="3dp"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
+            tools:text="Network Description that can be longer"
             />
     </LinearLayout>
 

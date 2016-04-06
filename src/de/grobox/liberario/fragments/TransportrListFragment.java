@@ -17,12 +17,8 @@
 
 package de.grobox.liberario.fragments;
 
-import de.grobox.liberario.TransportNetwork;
-import de.schildbach.pte.NetworkProvider;
 import android.support.v4.app.ListFragment;
 
 
-public class TransportrListFragment extends ListFragment implements TransportNetwork.Handler {
-	public void onNetworkProviderChanged(TransportNetwork network) { }
-}
+public abstract class TransportrListFragment extends ListFragment { }
 

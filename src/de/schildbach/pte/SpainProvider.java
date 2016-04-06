@@ -27,9 +27,9 @@ public class SpainProvider extends AbstractNavitiaProvider
 {
 	private static String API_REGION = "es";
 
-	public SpainProvider(final String authorization)
+	public SpainProvider(final String api, final String authorization)
 	{
-		super(NetworkId.SPAIN, authorization);
+		super(NetworkId.SPAIN, api, authorization);
 
 		setTimeZone("Europe/Spain");
 	}
@@ -43,12 +43,11 @@ public class SpainProvider extends AbstractNavitiaProvider
 	@Override
 	protected Style getLineStyle(final Product product, final String code, final String color)
 	{
-		int bc = Style.RED;
-		if(!color.equals("#")) {
+		final Style defaultStyle = Standard.STYLES.get(product);
+		int bc = defaultStyle.backgroundColor;
+		int fc = defaultStyle.foregroundColor;
+		if(color != null) {
 			bc = Style.parseColor(color);
-		}
-		int fc = Style.WHITE;
-		if(!color.equals("#")) {
 			fc = computeForegroundColor(color);
 		}
 

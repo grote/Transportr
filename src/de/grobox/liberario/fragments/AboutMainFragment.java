@@ -23,7 +23,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +33,8 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import de.grobox.liberario.R;
 
 public class AboutMainFragment extends Fragment {
+
+	public static final String TAG = "de.grobox.liberario.about";
 	AboutPagerAdapter mPagerAdapter;
 
 	@Override
@@ -70,7 +71,7 @@ public class AboutMainFragment extends Fragment {
 						       // Pass the fields of your application to the lib so it can find all external lib information
 						       .withFields(R.string.class.getFields())
 						       // get the fragment
-						       .fragment();
+						       .supportFragment();
 			}
 			return new AboutFragment();
 		}

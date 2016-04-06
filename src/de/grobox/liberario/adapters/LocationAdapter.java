@@ -17,21 +17,11 @@
 
 package de.grobox.liberario.adapters;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.NetworkProviderFactory;
-import de.grobox.liberario.Preferences;
-import de.grobox.liberario.R;
-import de.grobox.liberario.data.RecentsDB;
-import de.grobox.liberario.utils.TransportrUtils;
-import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.LocationType;
-
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.annotation.Nullable;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,39 +31,61 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class LocationAdapter extends ArrayAdapter<Location> implements Filterable {
-	private List<Location> filteredList = new ArrayList<>();
-	private List<Location> favList = new ArrayList<>();
-	private boolean onlyIDs = false;
-	private boolean favs = false;
-	private boolean home = false;
-	private boolean gps = false;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
+import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.R;
+import de.grobox.liberario.WrapLocation;
+import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.utils.TransportrUtils;
+import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
+
+public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
+	private List<WrapLocation> locations;
+	private List<WrapLocation> defaultLocations;
+	private List<Location> suggestedLocations;
+	private CharSequence search;
+	private Filter filter = null;
+	private boolean onlyIDs;
+	private boolean includeFavLocations = false;
+	private boolean includeHomeLocation = false;
+	private boolean includeGpsLocation = false;
+	private boolean includeMapLocation = false;
 	private FavLocation.LOC_TYPE sort = FavLocation.LOC_TYPE.FROM;
 
-	public LocationAdapter(Context context) {
-		super(context, R.layout.location_item);
-	}
+	public static final String HOME = "Transportr.HOME";
+	public static final String GPS = "Transportr.GPS";
+	public static final String MAP = "Transportr.MAP";
+
+	public static final int THRESHOLD = 3;
 
 	public LocationAdapter(Context context, boolean onlyIDs) {
 		super(context, R.layout.location_item);
 		this.onlyIDs = onlyIDs;
+		this.locations = new ArrayList<>();
+		setDefaultLocations(false);
 	}
 
-	// constructor that enables reuse of this class by AmbiguousLocationActivity
-	public LocationAdapter(Context context, List<Location> filteredList) {
-		super(context, R.layout.location_item);
-		this.filteredList = filteredList;
+	public LocationAdapter(Context context, List<Location> locations) {
+		this(context, false);
+		this.locations = new ArrayList<>(locations.size());
+		for(Location l : locations) {
+			this.locations.add(new WrapLocation(l));
+		}
 	}
 
 	@Override
 	public int getCount() {
-		return filteredList.size();
+		return locations.size();
 	}
 
 	@Override
-	public Location getItem(int index) {
-		if(filteredList.size() > 0 && filteredList.get(index) != null) {
-			return filteredList.get(index);
+	public @Nullable WrapLocation getItem(int index) {
+		if(locations.size() > 0 && locations.get(index) != null) {
+			return locations.get(index);
 		} else {
 			return null;
 		}
@@ -81,66 +93,60 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 
 	@Override
 	public Filter getFilter() {
-		return new Filter() {
-			@Override
-			// This method could be optimized a lot, but hey processors are fast nowadays
-			protected FilterResults performFiltering(final CharSequence constraint) {
-				FilterResults filterResults = new FilterResults();
+		if(filter != null) return filter;
+		else {
+			filter = new Filter() {
+				@Override
+				protected FilterResults performFiltering(final CharSequence constraint) {
+					FilterResults filterResults = new FilterResults();
 
-				if(constraint != null) {
-					List<Location> resultList = null;
-					NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
+					if(constraint != null) {
+						List<WrapLocation> result = new ArrayList<>();
+						search = constraint;
 
-					// get the auto-complete results
-					if(constraint.length() > 2) {
-						try {
-							// get locations from network provider
-							resultList = np.suggestLocations(constraint.toString()).getLocations();
-						} catch(Exception e) {
-							e.printStackTrace();
-						}
-					}
-
-					// reset filtered list
-					resetList();
-
-					// add favorite locations that fulfill constraint
-					for(Location l : favList) {
-						// if we only want locations with ID, make sure the location has one
-						if(!onlyIDs || l.hasId()) {
-							// case-insensitive match of location name and location not already included
-							if(l.name != null && l.name.toLowerCase().contains(constraint.toString().toLowerCase()) && !filteredList.contains(l)) {
-								filteredList.add(l);
+						// add fav locations that fulfill constraint
+						if(defaultLocations != null) {
+							for(WrapLocation l : defaultLocations) {
+								// if we only want locations with ID, make sure the location has one
+								if(!onlyIDs || l.getLocation().hasId()) {
+									// case-insensitive match of location name and location not already included
+									if(l.getLocation().name != null && l.getLocation().name.toLowerCase().contains(constraint.toString().toLowerCase()) && !result.contains(l)) {
+										result.add(l);
+									}
+								}
 							}
 						}
-					}
 
-					if(resultList != null) {
-						// add locations from result that are not already inside
-						for(Location l : resultList) {
-							if((!onlyIDs || l.hasId()) && !filteredList.contains(l)) {
-								filteredList.add(l);
+						// add suggested locations (from network provider) without filtering if not already included
+						if(suggestedLocations != null) {
+							for(Location l : suggestedLocations) {
+								WrapLocation loc = new WrapLocation(l);
+								// prevent duplicates and if we only want locations with ID, make sure the location has one
+								if(!result.contains(loc) && (!onlyIDs || l.hasId())) {
+									result.add(loc);
+								}
 							}
 						}
+
+						// Assign the data to the FilterResults
+						filterResults.values = result;
+						filterResults.count = result.size();
 					}
-
-					// Assign the data to the FilterResults
-					filterResults.values = filteredList;
-					filterResults.count = filteredList.size();
+					return filterResults;
 				}
-				return filterResults;
-			}
 
-			@Override
-			protected void publishResults(CharSequence constraint, FilterResults results) {
-				if(results != null && results.count > 0) {
-					filteredList = (List<Location>) results.values;
-					notifyDataSetChanged();
-				} else {
-					notifyDataSetInvalidated();
+				@Override
+				protected void publishResults(CharSequence constraint, FilterResults results) {
+					if(results != null && results.count > 0) {
+						locations = (List<WrapLocation>) results.values;
+						notifyDataSetChanged();
+					} else {
+						notifyDataSetInvalidated();
+					}
 				}
-			}
-		};
+			};
+			return filter;
+		}
 	}
 
 	@Override
@@ -157,12 +163,14 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 		ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
 		TextView textView = (TextView) view.findViewById(R.id.textView);
 
-		Location l = getItem(position);
+		WrapLocation wrapLocation = getItem(position);
+		if(wrapLocation == null || wrapLocation.getLocation() == null) return view;
+		Location l = wrapLocation.getLocation();
 
-		if(l.id != null && l.id.equals("Transportr.HOME")) {
+		if(l.id != null && l.id.equals(HOME)) {
 			Location home = RecentsDB.getHome(parent.getContext());
 			if(home != null) {
-				textView.setText(home.uniqueShortName());
+				textView.setText(getHighlightedText(home));
 				textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 
 				// change home location on long click does not work here
@@ -172,19 +180,25 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 				textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 			}
 		}
-		else if(l.id != null && l.id.equals("Transportr.GPS")) {
+		else if(l.id != null && l.id.equals(GPS)) {
 			textView.setText(parent.getContext().getString(R.string.location_gps));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 		}
+		else if(l.id != null && l.id.equals(MAP)) {
+			textView.setText(parent.getContext().getString(R.string.location_map));
+			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+		}
 		// locations from favorites and auto-complete
-		else if(favList.contains(l)) {
-			textView.setText(TransportrUtils.getLocName(l));
+		else if(defaultLocations.contains(wrapLocation)) {
+			textView.setText(getHighlightedText(l));
+			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 		}
 		else {
-			textView.setText(TransportrUtils.getLocName(l));
+			textView.setText(getHighlightedText(l));
+			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 		}
 
-		imageView.setImageDrawable(TransportrUtils.getDrawableForLocation(getContext(), l, favList.contains(l)));
+		imageView.setImageDrawable(TransportrUtils.getDrawableForLocation(getContext(), l, defaultLocations.contains(wrapLocation)));
 
 		return view;
 	}
@@ -194,54 +208,87 @@ public class LocationAdapter extends ArrayAdapter<Location> implements Filterabl
 		return getView(position, convertView, parent);
 	}
 
+	public void setDefaultLocations(boolean refresh) {
+		locations = getDefaultLocations(refresh);
+		if(refresh && suggestedLocations != null) {
+			suggestedLocations.clear();
+		}
+	}
+
+	private List<WrapLocation> getDefaultLocations(boolean refresh) {
+		if(refresh || defaultLocations == null || defaultLocations.size() == 0) {
+			defaultLocations = new ArrayList<>();
+			WrapLocation home_loc = null;
+
+			if(includeHomeLocation) {
+				home_loc = new WrapLocation(RecentsDB.getHome(getContext()));
+				if(home_loc.getLocation() != null) {
+					defaultLocations.add(new WrapLocation(new Location(LocationType.ANY, HOME, home_loc.getLocation().place, home_loc.getLocation().name)));
+				} else {
+					defaultLocations.add(new WrapLocation(new Location(LocationType.ANY, HOME)));
+				}
+			}
+			if(includeGpsLocation)
+				defaultLocations.add(new WrapLocation(new Location(LocationType.ANY, GPS)));
+			if(includeMapLocation)
+				defaultLocations.add(new WrapLocation(new Location(LocationType.ANY, MAP)));
+
+			if(includeFavLocations) {
+				List<WrapLocation> tmpList = RecentsDB.getFavLocationList(getContext(), sort, onlyIDs);
+				// remove home location from favorites if it is set
+				if(includeHomeLocation && home_loc != null) {
+					tmpList.remove(home_loc);
+				}
+
+				defaultLocations.addAll(tmpList);
+			}
+		}
+		return defaultLocations;
+	}
+
+	public void clearSearchTerm() {
+		search = null;
+		// when we are clearing the search term, there is no need to keep its results around
+
+		if(suggestedLocations != null) {
+			suggestedLocations.clear();
+		}
+	}
+
+	public void swapSuggestedLocations(List<Location> suggestedLocations, String search) {
+		this.suggestedLocations = suggestedLocations;
+		if(suggestedLocations != null && search != null && search.length() >= THRESHOLD) {
+			getFilter().filter(search);
+		}
+	}
+
 	public void setSort(FavLocation.LOC_TYPE loc_type) {
 		sort = loc_type;
 	}
 
 	public void setFavs(boolean favs) {
-		this.favs = favs;
+		this.includeFavLocations = favs;
 	}
 
 	public void setHome(boolean home) {
-		this.home = home;
+		this.includeHomeLocation = home;
 	}
 
 	public void setGPS(boolean gps) {
-		this.gps = gps;
+		this.includeGpsLocation = gps;
 	}
 
-	public void resetList() {
-		favList.clear();
-		filteredList.clear();
+	public void setMap(boolean map) {
+		this.includeMapLocation = map;
+	}
 
-		Location home_loc = null;
-
-		if(home) {
-			home_loc = RecentsDB.getHome(getContext());
-			if(home_loc != null) {
-				favList.add(new Location(LocationType.ANY, "Transportr.HOME", home_loc.place, home_loc.name));
-			} else {
-				favList.add(new Location(LocationType.ANY, "Transportr.HOME"));
-			}
-		}
-		if(gps) favList.add(new Location(LocationType.ANY, "Transportr.GPS"));
-
-		if(favs) {
-			List<Location> tmpList = RecentsDB.getFavLocationList(getContext(), sort, onlyIDs);
-			// remove home location from favorites if it is set
-			if(home && home_loc != null) {
-				tmpList.remove(home_loc);
-			}
-
-			favList.addAll(tmpList);
+	private Spanned getHighlightedText(Location l) {
+		if(search != null && search.length() >= THRESHOLD) {
+			String regex = "(?i)(" + Pattern.quote(search.toString()) + ")";
+			String str = TransportrUtils.getFullLocName(l).replaceAll(regex, "<b>$1</b>");
+			return Html.fromHtml(str);
+		} else {
+			return Html.fromHtml(TransportrUtils.getFullLocName(l));
 		}
 	}
-
-	public int addFavs() {
-		resetList();
-		filteredList.addAll(favList);
-
-		return filteredList.size();
-	}
-
 }

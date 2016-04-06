@@ -9,7 +9,66 @@
         <item>@string/pref_theme_value_light</item>
         <item>@string/pref_theme_value_dark</item>
     </string-array>
-    <string name="pref_theme_value_light">light</string>
-    <string name="pref_theme_value_dark">dark</string>
+    <string name="pref_theme_value_light" translatable="false">light</string>
+    <string name="pref_theme_value_dark" translatable="false">dark</string>
+
+    <!-- Language -->
+    <string-array name="pref_language_options">
+        <item>@string/system_default</item>
+        <item>@string/english</item>
+        <item>@string/german</item>
+        <item>@string/spanish</item>
+        <item>@string/basque</item>
+        <item>@string/french</item>
+        <item>@string/italian</item>
+        <item>@string/norwegian_bokmal</item>
+        <item>@string/dutch</item>
+        <item>@string/portuguese_br</item>
+        <item>@string/turkish</item>
+        <item>@string/catalan</item>
+        <item>@string/polish</item>
+    </string-array>
+    <string-array name="pref_language_values">
+        <item>@string/pref_language_value_default</item>
+        <item>en</item>
+        <item>de</item>
+        <item>es</item>
+        <item>eu</item>
+        <item>fr</item>
+        <item>it</item>
+        <item>nb</item>
+        <item>nl</item>
+        <item>pt_BR</item>
+        <item>tr</item>
+        <item>ca</item>
+        <item>pl</item>
+    </string-array>
+    <string name="pref_language_value_default" translatable="false">default</string>
+
+    <!-- Optimize -->
+    <string-array name="pref_optimize_options">
+        <item>@string/pref_optimize_least_duration</item>
+        <item>@string/pref_optimize_least_changes</item>
+        <item>@string/pref_optimize_least_walking</item>
+    </string-array>
+    <string-array name="pref_optimize_values">
+        <item>@string/pref_optimize_value_default</item>
+        <item>LEAST_CHANGES</item>
+        <item>LEAST_WALKING</item>
+    </string-array>
+    <string name="pref_optimize_value_default" translatable="false">LEAST_DURATION</string>
+
+    <!-- Walk Speed -->
+    <string-array name="pref_walk_speed_options">
+        <item>@string/pref_walk_speed_slow</item>
+        <item>@string/pref_walk_speed_normal</item>
+        <item>@string/pref_walk_speed_fast</item>
+    </string-array>
+    <string-array name="pref_walk_speed_values">
+        <item>slow</item>
+        <item>@string/pref_walk_speed_value_default</item>
+        <item>fast</item>
+    </string-array>
+    <string name="pref_walk_speed_value_default" translatable="false">normal</string>
 
 </resources>

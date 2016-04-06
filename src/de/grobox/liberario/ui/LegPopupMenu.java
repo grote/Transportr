@@ -64,7 +64,7 @@ public class LegPopupMenu extends BasePopupMenu {
 		super(context, anchor);
 
 		this.loc1 = stop.location;
-		this.text = DateUtils.getTime(context, stop.getArrivalTime()) + " " + stop.location.uniqueShortName();
+		this.text = DateUtils.getTime(context, stop.getArrivalTime()) + " " + TransportrUtils.getLocName(stop.location);
 		this.getMenuInflater().inflate(R.menu.location_actions, getMenu());
 
 		showIcons();
@@ -91,6 +91,16 @@ public class LegPopupMenu extends BasePopupMenu {
 						TransportrUtils.startGeoIntent(context, loc1);
 
 						return true;
+					// From Here
+					case R.id.action_from_here:
+						TransportrUtils.presetDirections(context, loc1, null);
+
+						return true;
+					// To Here
+					case R.id.action_to_here:
+						TransportrUtils.presetDirections(context, null, loc1);
+
+						return true;
 					// Show Departures
 					case R.id.action_show_departures:
 						TransportrUtils.findDepartures(context, loc1);
@@ -105,7 +115,7 @@ public class LegPopupMenu extends BasePopupMenu {
 					case R.id.action_share:
 						Intent sendIntent = new Intent()
 								                    .setAction(Intent.ACTION_SEND)
-								                    .putExtra(Intent.EXTRA_SUBJECT, loc1.uniqueShortName())
+								                    .putExtra(Intent.EXTRA_SUBJECT, TransportrUtils.getLocName(loc1))
 								                    .putExtra(Intent.EXTRA_TEXT, text)
 								                    .setType("text/plain")
 								                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
@@ -114,7 +124,7 @@ public class LegPopupMenu extends BasePopupMenu {
 						return true;
 					// Copy Leg to Clipboard
 					case R.id.action_copy:
-						TransportrUtils.copyToClipboard(context, loc1.uniqueShortName());
+						TransportrUtils.copyToClipboard(context, TransportrUtils.getLocName(loc1));
 
 						return true;
 					default:

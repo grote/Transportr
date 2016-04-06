@@ -27,11 +27,11 @@ public class BrProvider extends AbstractNavitiaProvider
 {
 	private static String API_REGION = "br";
 
-	public BrProvider(final String authorization)
+	public BrProvider(final String api, final String authorization)
 	{
-		super(NetworkId.BR, authorization);
+		super(NetworkId.BR, api, authorization);
 
-		setTimeZone("America/Brazil");
+		setTimeZone("America/Sao_Paulo");
 	}
 
 	@Override
@@ -43,12 +43,11 @@ public class BrProvider extends AbstractNavitiaProvider
 	@Override
 	protected Style getLineStyle(final Product product, final String code, final String color)
 	{
-		int bc = Style.RED;
-		if(!color.equals("#")) {
+		final Style defaultStyle = Standard.STYLES.get(product);
+		int bc = defaultStyle.backgroundColor;
+		int fc = defaultStyle.foregroundColor;
+		if(color != null) {
 			bc = Style.parseColor(color);
-		}
-		int fc = Style.WHITE;
-		if(!color.equals("#")) {
 			fc = computeForegroundColor(color);
 		}
 

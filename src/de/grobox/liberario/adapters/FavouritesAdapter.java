@@ -19,7 +19,6 @@ package de.grobox.liberario.adapters;
 
 import android.content.Context;
 import android.support.v7.util.SortedList;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,8 +95,8 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 	public void onBindViewHolder(final FavouriteHolder ui, final int position) {
 		final RecentTrip fav = getItem(position);
 
-		ui.favFrom.setText(fav.getFrom().uniqueShortName());
-		ui.favTo.setText(fav.getTo().uniqueShortName());
+		ui.favFrom.setText(TransportrUtils.getLocName(fav.getFrom()));
+		ui.favTo.setText(TransportrUtils.getLocName(fav.getTo()));
 
 		ui.root.setOnClickListener(new View.OnClickListener() {
 			@Override

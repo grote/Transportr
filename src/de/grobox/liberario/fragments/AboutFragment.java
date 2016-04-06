@@ -17,11 +17,13 @@
 
 package de.grobox.liberario.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -35,17 +37,13 @@ import de.grobox.liberario.R;
 public class AboutFragment extends Fragment {
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
-
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_about, container, false);
+		Activity activity = getActivity();
 
 		String versionName;
 		try {
-			versionName = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0).versionName;
+			versionName = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
 		} catch (PackageManager.NameNotFoundException e) {
 			versionName = "?.?";
 		}
@@ -56,11 +54,14 @@ public class AboutFragment extends Fragment {
 
 		// create real paragraphs
 		TextView t = (TextView) view.findViewById(R.id.aboutTextView);
-		t.setText(Html.fromHtml(getString(R.string.about)));
+		t.setText(Html.fromHtml(
+				getString(R.string.about) +
+				String.format(getString(R.string.about_bottom), getString(R.string.website), getString(R.string.bugtracker), getString(R.string.website)+"#donate")
+		));
 
 		// make links in about text clickable
 		t.setMovementMethod(LinkMovementMethod.getInstance());
-		t.setLinkTextColor(getResources().getColor(R.color.accent));
+		t.setLinkTextColor(ContextCompat.getColor(activity, R.color.accent));
 
 		Button website = (Button) view.findViewById(R.id.websiteButton);
 		website.setOnClickListener(new View.OnClickListener() {

@@ -18,6 +18,8 @@
 package de.grobox.liberario.ui;
 
 import android.content.Context;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
@@ -38,6 +40,14 @@ abstract public class BasePopupMenu extends PopupMenu {
 	}
 
 	abstract public OnMenuItemClickListener getOnMenuItemClickListener();
+
+	protected void fixIconColors() {
+		Menu menu = getMenu();
+		for(int i = 0; i < menu.size(); i++) {
+			MenuItem item = menu.getItem(i);
+			item.setIcon(TransportrUtils.getTintedDrawable(context, item.getIcon()));
+		}
+	}
 
 	protected void showIcons() {
 		// very ugly hack to show icons in PopupMenu

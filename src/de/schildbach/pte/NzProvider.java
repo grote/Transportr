@@ -31,9 +31,9 @@ public class NzProvider extends AbstractNavitiaProvider
 {
 	private static String API_REGION = "nz";
 
-	public NzProvider(final String authorization)
+	public NzProvider(final String api, final String authorization)
 	{
-		super(NetworkId.NZ, authorization);
+		super(NetworkId.NZ, api, authorization);
 
 		setTimeZone("Pacific/Auckland");
 		setStyles(STYLES);
@@ -48,16 +48,15 @@ public class NzProvider extends AbstractNavitiaProvider
 	@Override
 	protected Style getLineStyle(final Product product, final String code, final String color)
 	{
-		if(color.equals("#")) {
+		if(color != null) {
 			return lineStyle(network.name(), product, code);
 		}
 		else {
-			return super.getLineStyle(product, code, color);
+			return super.getLineStyle(product, code, null);
 		}
 	}
 
 	private static final Map<String, Style> STYLES = new HashMap<>();
-
 	static
 	{
 		// Wellington buses

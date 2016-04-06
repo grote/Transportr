@@ -6,26 +6,32 @@
     >
 
     <Button
-        android:id="@+id/timeView"
+        android:id="@+id/timeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="65dp"
+        android:singleLine="true"
+        android:layout_weight="0.4"
         tools:text="23:42"
         />
 
     <Button
         android:id="@+id/plus15Button"
-        android:layout_width="52dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="52dp"
+        android:singleLine="true"
+        android:layout_weight="0.1"
         android:text="+15"
-        />
+        tools:ignore="HardcodedText"/>
 
     <Button
-        android:id="@+id/dateView"
+        android:id="@+id/dateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         tools:text="1337/23/42"
-        />
+        android:ellipsize="end"/>
 
 </merge>

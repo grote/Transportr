@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
 public class RecentTrip implements Serializable, Comparable<RecentTrip> {
@@ -106,7 +107,7 @@ public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 
 	@Override
 	public String toString() {
-		return getFrom().uniqueShortName() + " → " + getTo().uniqueShortName() + " (" + Integer.toString(getCount()) + ")";
+		return TransportrUtils.getLocName(getFrom()) + " → " + TransportrUtils.getLocName(getTo()) + " (" + Integer.toString(getCount()) + ")";
 	}
 
 }

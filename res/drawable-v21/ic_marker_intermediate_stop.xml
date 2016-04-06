@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <bitmap
+            android:src="@drawable/ic_marker_background"
+            android:gravity="center"/>
+    </item>
+
+    <item
+        android:drawable="@drawable/ic_tab_stations_small"
+        android:gravity="center"/>
+
+</layer-list>

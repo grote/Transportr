@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="website" translatable="false">http://transportr.grobox.de</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="website" translatable="false">https://transportr.grobox.de/?utm_source=app</string>
+    <string name="bugtracker" translatable="false">https://github.com/grote/Transportr/issues</string>
 
-    <string name="action_earlier">Find Earlier Trips</string>
-    <string name="action_later">Find Later Trips</string>
-    <string name="action_changelog">Changelog</string>
-    <string name="action_about">About</string>
-    <string name="action_clear_favs">Clear Favorites</string>
-    <string name="action_settings">Settings</string>
+    <string name="google_play_short_desc">The public transport companion that respects your privacy and your freedom.</string>
+    <string name="google_play_full_desc">Transportr is a non-profit app developed by people around the world to make
+using public transport as easy as possible wherever you are.
+
+Currently, it works best in Europe, but also supports many places world-wide. If
+you live in an unsupported area, consider adding it to Transportr.
+Instructions are available on the homepage.
+
+Transportr finds directions from your home, your current position or a given station to
+wherever you want to go. You can also save entire trips as favorites and find
+next trips with one swipe. Of course, you can also show your trip on the map
+and follow your progress via GPS.
+
+You can also discover nearby stations and show upcoming departures including the delays (if
+there are any).</string>
+
+    <string name="drawer_changelog">Changelog</string>
+    <string name="drawer_about">About</string>
+    <string name="drawer_settings">Settings</string>
     <string name="action_fav_trip">Mark Trip as Favourite</string>
     <string name="action_unfav_trip">Unmark Trip as Favourite</string>
     <string name="action_switch_locations">Swap From and To location</string>
-    <string name="action_show_extra_info">Show/Hide Information</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_navigation_expand">Show More</string>
     <string name="action_location_map">Show Stations on Map</string>
     <string name="action_use_gps">Turn on GPS</string>
     <string name="action_share">Share</string>
-    <string name="action_trip_calendar">Into Calendar</string>
-    <string name="action_trip_details">Show Separate</string>
+    <string name="action_trip_calendar">Add to Calendar</string>
     <string name="action_trip_delete">Delete Trip</string>
     <string name="action_show_on_external_map">Show on External Map</string>
     <string name="action_copy">Copy</string>
     <string name="action_show_on_map">Show on Map</string>
+    <string name="action_show_all">Show All</string>
 
-    <string name="tab_directions">Directions</string>
+    <string name="drawer_directions">Directions</string>
     <string name="tab_fav_trips">Favourite Trips</string>
-    <string name="tab_departures">Departures</string>
-    <string name="tab_recent_trips">Recent Trips</string>
+    <string name="drawer_departures">Departures</string>
+    <string name="drawer_recent_trips">Recent Trips</string>
 
     <string name="tab_libraries">Libraries</string>
     <string name="tab_devs">Developers</string>
@@ -38,40 +51,36 @@
 <![CDATA[
 <p>Transportr is a public transport companion that respects your privacy and your freedom. It is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. This app is Free Software, so you can freely use, study, share and improve it.</p>
 <p>There is no guarantee for the correctness of the data. Please only use this app at your own risk.</p>
-<p><b>Contributions</b> are encouraged and appreciated. If you would like to contribute please go to <a href="http://transportr.grobox.de/">the Transportr homepage</a> for more information.</p>
-<p>If you find any issues with this app, please report them at <a href="https://github.com/grote/Transportr/issues">the issue tracker</a>.</p>
-<p><b>Donations</b> options are listed on <a href="http://transportr.grobox.de/#donate">the Transportr website</a>.</p>
 ]]>
 </string>
+    <string name="about_bottom">
+<![CDATA[
+<p><b>Contributions</b> are encouraged and appreciated. If you would like to contribute please go to <a href="%1$s">the Transportr homepage</a> for more information.</p>
+<p>If you find any issues with this app, please report them at <a href="%2$s">the issue tracker</a>.</p>
+<p><b>Donations</b> options are listed on <a href="%3$s">the Transportr website</a>.</p>
+]]>
+</string>
+    <string name="visit_website">Visit Website</string>
 
     <string name="trip_dep">dep</string>
     <string name="trip_arr">arr</string>
-    <string name="trip_start">Start:</string>
-    <string name="trip_destination">Dest.:</string>
     <string name="trip_removed">Removed Trip</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="from_here">From Here</string>
     <string name="to_here">To Here</string>
-    <string name="time">Time</string>
-    <string name="date">Date</string>
     <string name="min"> min</string>
     <string name="walk">Walk</string>
     <string name="position">Platform</string>
-    <string name="destination">Destination</string>
-    <string name="detail_duration">Duration:</string>
-    <string name="detail_date">Date:</string>
     <string name="alpha">alpha</string>
     <string name="beta">beta</string>
     <string name="network">Network</string>
     <string name="pick_network_activity">Pick a Transportation Network</string>
     <string name="pick_network_first_run">This is the first time you\'ve started Transportr. Please select your transportation network in order to continue!</string>
-    <string name="clear_recent">Are you sure that you want to delete your recent trips for the current transportation network?</string>
     <string name="clear_recent_trips">Are you sure that you want to delete %1$d trip(s) from your recent trips? The usage count will be lost.</string>
     <string name="trip_searching">Searching for connections&#8230;</string>
     <string name="stations_searching_position">Searching for current position&#8230;</string>
-    <string name="stations_searching_stations">Searching for nearby stations&#8230;</string>
-    <string name="tab_nearby_stations">Nearby Stations</string>
+    <string name="drawer_nearby_stations">Nearby Stations</string>
     <string name="find_nearby_stations">Find Nearby Stations</string>
     <string name="find_departures">Find Departures</string>
     <string name="departure_station">Departure Station</string>
@@ -94,14 +103,24 @@
     <string name="pref_theme_title">Theme</string>
     <string name="pref_theme_light">Light</string>
     <string name="pref_theme_dark">Dark</string>
+    <string name="pref_language_title">Language</string>
+    <string name="pref_directions_routing">Directions and Trip Routing</string>
+    <string name="pref_optimize">Optimize for</string>
+    <string name="pref_optimize_least_duration">Least Duration</string>
+    <string name="pref_optimize_least_changes">Least Changes</string>
+    <string name="pref_optimize_least_walking">Least Walking</string>
+    <string name="pref_walk_speed">Walk Speed</string>
+    <string name="pref_walk_speed_slow">Slow</string>
+    <string name="pref_walk_speed_normal">Normal</string>
+    <string name="pref_walk_speed_fast">Fast</string>
 
     <string name="warning_departure_gap">Found too few departures. There might be more hidden. Search for exact time to be sure none is missing.</string>
+    <string name="warning_permission_granted_action">Could not repeat last action automatically</string>
 
     <string name="error_pick_network">Please select one transportation network!</string>
     <string name="error_no_internet">No sufficient internet connection available</string>
     <string name="error_invalid_from">Invalid Start Location (From)</string>
     <string name="error_invalid_to">Invalid Destination (To)</string>
-    <string name="error_no_favs">No favorite locations saved</string>
     <string name="error_no_trips_found">No directions found</string>
     <string name="error_no_location_provider">Cannot locate your position. Please turn on GPS!</string>
     <string name="error_no_departures_found">No departures found</string>
@@ -115,17 +134,16 @@
     <string name="error_please_file_ticket">Something went wrong. Please create an issue ticket explaining what you did.</string>
     <string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
 
-    <string name="number_of_stations">Number of Stations</string>
     <string name="meter">m</string>
-    <string name="max_distance">Maximum Distance</string>
+    <string name="system_default">System Default</string>
+    <string name="times_include_delays">(Attention: Times include reported delays)</string>
 
     <string name="home">Home</string>
-    <string name="home_dialog_title">Your Home Location</string>
-    <string name="home_dialog_new_msg">There is no home location set for the current transportation network.</string>
-    <string name="home_dialog_msg">Please give a location below by selecting one from the list.</string>
+    <string name="home_dialog_title">Set Home Location</string>
     <string name="location">Location</string>
     <string name="location_home">Click to set Home Location</string>
     <string name="location_gps">Use Current Position</string>
+    <string name="location_map">Get Location from Map</string>
 
     <string name="product_high_speed_train">High-Speed Train</string>
     <string name="product_regional_train">Regional Train</string>
@@ -166,12 +184,12 @@
     <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen</string>
     <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
     <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
-    <string name="np_desc_rsag">Rostock</string>
-    <string name="np_desc_hvv">Hamburg</string>
+    <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+    <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
     <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
     <string name="np_desc_gvh">Lower Saxony, Hannover, Hamburg</string>
     <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
-    <string name="np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+    <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
     <string name="np_desc_vvo">Saxony, Dresden</string>
     <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
     <string name="np_desc_nasa">Saxony, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
@@ -223,6 +241,7 @@
     <string name="np_region_nz">New Zealand</string>
     <string name="np_region_spain">Spain</string>
     <string name="np_region_br">Brazil</string>
+    <string name="np_region_canada">Canada</string>
 
     <string name="np_desc_ns">Netherlands, Amsterdam</string>
     <string name="np_desc_dsb">Denmark, Copenhagen</string>
@@ -230,7 +249,7 @@
     <string name="np_desc_stockholm">Stockholm</string>
     <string name="np_desc_nri">Norway, Oslo, Bergen</string>
     <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
-    <string name="np_desc_tlwm">Birmingham</string>
+    <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
     <string name="np_desc_tfi">Ireland, Dublin, Belfast</string>
     <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
     <string name="np_desc_pl">Poland, Warsaw</string>
@@ -244,11 +263,18 @@
     <string name="np_desc_hsl">Helsinki</string>
     <string name="np_desc_paris">Paris</string>
     <string name="np_desc_nz">Wellington, Auckland</string>
-    <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+    <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
     <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
     <string name="np_desc_mersey">Liverpool City Region</string>
     <string name="np_desc_br">São Paulo and Porto Alegre</string>
+    <string name="np_desc_br_floripa" translatable="false">SIM</string>
     <string name="np_desc_vrs">Cologne, Bonn</string>
+    <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+    <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
+    <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
+    <string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
+    <string name="np_desc_ontario">Ottawa, Toronto</string>
+    <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
 
     <string name="np_name_db">Deutsche Bahn</string>
     <string name="np_name_bayern">BAVARIA</string>
@@ -257,8 +283,12 @@
     <string name="np_name_stockholm">STOCKHOLM</string>
     <string name="np_name_wien">VIENNA</string>
     <string name="np_name_spain">Spain</string>
-    <string name="np_name_usny">New York and New-Jersey States</string>
+    <string name="np_name_usny" tools:keep="@string/np_name_usny">New York and New-Jersey States</string>
     <string name="np_name_br">SPTRANS EPTC</string>
+    <string name="np_name_br_floripa">Florianópolis</string>
+    <string name="np_name_frenchsouthwest">FR-SW</string>
+    <string name="np_name_ontario">Ontario</string>
+    <string name="np_name_quebec">Quebec</string>
 
     <string name="maintainer">Maintainer</string>
     <string name="contributers">Contributors</string>
@@ -272,5 +302,8 @@
     <string name="turkish">Turkish</string>
     <string name="norwegian_bokmal">Norwegian\nBokmål</string>
     <string name="basque">Basque</string>
+    <string name="english">English</string>
+    <string name="catalan">Catalan</string>
+    <string name="polish">Polish</string>
 
 </resources>

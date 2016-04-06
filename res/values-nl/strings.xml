@@ -1,62 +1,47 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
-  <string name="action_earlier">Vroegere verbindingen zoeken</string>
-  <string name="action_later">Latere verbindingen zoeken</string>
-  <string name="action_changelog">Lijst van veranderingen</string>
-  <string name="action_about">Over</string>
-  <string name="action_clear_favs">Favorieten wissen</string>
-  <string name="action_settings">Instellingen</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="drawer_changelog">Lijst van veranderingen</string>
+  <string name="drawer_about">Over</string>
+  <string name="drawer_settings">Instellingen</string>
   <string name="action_fav_trip">Markeer Reis als Favoriet</string>
   <string name="action_unfav_trip">Verwijder Rijs uit Favorieten</string>
   <string name="action_switch_locations">Begin- en eindpunt omwisselen</string>
-  <string name="action_show_extra_info">Toon/Verberg Informatie</string>
   <string name="action_refresh">Vernieuwen</string>
   <string name="action_navigation_expand">Meer laten zien</string>
   <string name="action_location_map">Laat stations op kaart zien</string>
   <string name="action_use_gps">GPS inschakelen</string>
   <string name="action_share">Deel</string>
-  <string name="action_trip_calendar">Naar kalender</string>
-  <string name="action_trip_details">Apart laten zien</string>
   <string name="action_trip_delete">Verbinding verwijderen</string>
   <string name="action_show_on_external_map">Laat op externe kaart zien</string>
   <string name="action_copy">Kopieëren</string>
   <string name="action_show_on_map">Laat op kaart zien</string>
-  <string name="tab_directions">Verbindingen</string>
+  <string name="drawer_directions">Verbindingen</string>
   <string name="tab_fav_trips">Favoriete Reizen</string>
-  <string name="tab_departures">Vertrekken</string>
-  <string name="tab_recent_trips">Recente Reizen</string>
+  <string name="drawer_departures">Vertrekken</string>
+  <string name="drawer_recent_trips">Recente Reizen</string>
   <string name="tab_libraries">Hulpprogramma\'s</string>
   <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nVrije Software licentie: GPLv3</string>
   <string name="trip_dep">v.</string>
   <string name="trip_arr">a.</string>
-  <string name="trip_start">Van:</string>
-  <string name="trip_destination">Naar:</string>
   <string name="trip_removed">Reis Verwijderd</string>
   <string name="from">Van</string>
   <string name="to">Naar</string>
   <string name="from_here">Vanaf Hier</string>
   <string name="to_here">Naar Hier</string>
-  <string name="time">Tijd</string>
-  <string name="date">Datum</string>
   <string name="min"> min</string>
   <string name="walk">Loop</string>
   <string name="position">Platform</string>
-  <string name="destination">Eindbestemming</string>
-  <string name="detail_duration">Duur:</string>
-  <string name="detail_date">Datum:</string>
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Netwerk</string>
   <string name="pick_network_activity">Kies een vervoersnetwerk</string>
   <string name="pick_network_first_run">Dit is de eerste keer dat je Transportr start. Kies je transportnetwerk om door te gaan.</string>
-  <string name="clear_recent">Weet je zeker dat je de lijst van recente reizen voor dit transportnetwerk wilt verwijderen?</string>
   <string name="clear_recent_trips">Weet je zeker dat je %1$d reis/reizen uit de lijst van recente reizen wilt verwijderen? De teller zal ook gereset worden.</string>
   <string name="trip_searching">Zoeken naar verbindingen…</string>
   <string name="stations_searching_position">Uw positie wordt bepaald…</string>
-  <string name="stations_searching_stations">Naar stations in de buurt zoeken…</string>
-  <string name="tab_nearby_stations">Dichtbijzijnde Stations</string>
+  <string name="drawer_nearby_stations">Dichtbijzijnde Stations</string>
   <string name="find_nearby_stations">Zoek naar stations in de buurt</string>
   <string name="find_departures">Zoek vertrekken</string>
   <string name="departure_station">Vertrekstation</string>
@@ -82,7 +67,6 @@
   <string name="error_no_internet">Geen bruikbare internetverbinding beschikbaar</string>
   <string name="error_invalid_from">Ongeldig Vertrekpunt (Van)</string>
   <string name="error_invalid_to">Ongeldig Aankomstpunt (Naar)</string>
-  <string name="error_no_favs">Geen favorieten beschikbaar</string>
   <string name="error_no_trips_found">Geen verbindingen gevonden</string>
   <string name="error_no_location_provider">Kan positie niet bepalen. Zet a.u.b. GPS aan!</string>
   <string name="error_no_departures_found">Geen vertrekken gevonden</string>
@@ -94,13 +78,8 @@
   <string name="error_no_departures_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het vinden van verterkken.</string>
   <string name="error_no_nearby_locations_capability">Het huidige transportnetwerk ondersteund het vinden van dichtbijzijnde stations niet.</string>
   <string name="error_please_file_ticket">Er geen iets mis. Maak a.u.b. een foutrapport aan met een uitleg van wat je doet voordat dit probleem op trad.</string>
-  <string name="number_of_stations">Aantal stations</string>
   <string name="meter">m</string>
-  <string name="max_distance">Maximale afstand</string>
   <string name="home">Thuis</string>
-  <string name="home_dialog_title">Uw thuisstation</string>
-  <string name="home_dialog_new_msg">Er is geen thuisstation ingesteld voor dit verkeersnetwerk.</string>
-  <string name="home_dialog_msg">Gelieve een thuisstation uit de lijst te kiezen</string>
   <string name="location">Locatie</string>
   <string name="location_home">Klik om uw thuisstation in te stellen</string>
   <string name="location_gps">Gebruik huidige locatie</string>
@@ -139,12 +118,12 @@
   <string name="np_desc_vgn">Neurenberg, Fürth, Erlangen</string>
   <string name="np_desc_vvm">Zwaben, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
-  <string name="np_desc_rsag">Rostock</string>
-  <string name="np_desc_hvv">Hamburg</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
   <string name="np_desc_gvh">Nedersaksen, Hannover, Hamburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
-  <string name="np_desc_vbn">Nedersaksen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Nedersaksen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vvo">Saksen, Dresden</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_nasa">Saksen, Leipzig, Saksen-Anhalt, Magdeburg, Halle</string>
@@ -198,7 +177,7 @@
   <string name="np_desc_stockholm">Stockholm</string>
   <string name="np_desc_nri">Noorwegen, Oslo, Bergen</string>
   <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
-  <string name="np_desc_tlwm">Birmingham</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Ierland, Dublin, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
   <string name="np_desc_pl">Polen, Warsaw</string>
@@ -212,7 +191,7 @@
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_desc_paris">Parijs</string>
   <string name="np_desc_nz">Wellington, Auckland</string>
-  <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+  <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool Stad Regio</string>
   <string name="np_name_db">Deutsche Bahn</string>
@@ -222,7 +201,7 @@
   <string name="np_name_stockholm">STOCKHOLM</string>
   <string name="np_name_wien">WENEN</string>
   <string name="np_name_spain">Spanje</string>
-  <string name="np_name_usny">New York en New-Jersey staten</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">New York en New-Jersey staten</string>
   <string name="maintainer">Onderhouder</string>
   <string name="contributers">Bijdragers</string>
   <string name="translators">Vertalers</string>

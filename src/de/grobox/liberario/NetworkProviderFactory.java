@@ -94,7 +94,13 @@ public final class NetworkProviderFactory
 	private static Reference<NzProvider> nzProviderRef;
 	private static Reference<SpainProvider> spainProviderRef;
 	private static Reference<BrProvider> brProviderRef;
+	private static Reference<BrFloripaProvider> brFloripaProviderRef;
+	private static Reference<ItalyProvider> italyProviderRef;
+	private static Reference<FrenchSouthWestProvider> frenchSouthWestProviderRef;
+	private static Reference<OntarioProvider> ontarioProviderRef;
+	private static Reference<QuebecProvider> quebecProviderRef;
 
+	private static final String NAVITIA_API = "https://api.navitia.io/v1/";
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
@@ -277,7 +283,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final GvhProvider provider = new GvhProvider("C2C_User=ASB");
+			final GvhProvider provider = new GvhProvider();
 			gvhProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -941,7 +947,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final NzProvider provider = new NzProvider(NAVITIA);
+			final NzProvider provider = new NzProvider(NAVITIA_API, NAVITIA);
 			nzProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -954,7 +960,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final SpainProvider provider = new SpainProvider(NAVITIA);
+			final SpainProvider provider = new SpainProvider(NAVITIA_API, NAVITIA);
 			spainProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -967,8 +973,73 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final BrProvider provider = new BrProvider(NAVITIA);
+			final BrProvider provider = new BrProvider(NAVITIA_API, NAVITIA);
 			brProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.BRFLORIPA))
+		{
+			if (brFloripaProviderRef != null)
+			{
+				final BrFloripaProvider provider = brFloripaProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final BrFloripaProvider provider = new BrFloripaProvider("https://transportr.grobox.de/api/v1/", null);
+			brFloripaProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.IT))
+		{
+			if (italyProviderRef != null)
+			{
+				final ItalyProvider provider = italyProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final ItalyProvider provider = new ItalyProvider(NAVITIA);
+			italyProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.FRENCHSOUTHWEST))
+		{
+			if (frenchSouthWestProviderRef != null)
+			{
+				final FrenchSouthWestProvider provider = frenchSouthWestProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final FrenchSouthWestProvider provider = new FrenchSouthWestProvider(NAVITIA);
+			frenchSouthWestProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.ONTARIO))
+		{
+			if (ontarioProviderRef != null)
+			{
+				final OntarioProvider provider = ontarioProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final OntarioProvider provider = new OntarioProvider(NAVITIA);
+			ontarioProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.QUEBEC))
+		{
+			if (quebecProviderRef != null)
+			{
+				final QuebecProvider provider = quebecProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final QuebecProvider provider = new QuebecProvider(NAVITIA);
+			quebecProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else

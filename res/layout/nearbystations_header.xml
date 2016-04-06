@@ -1,50 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp">
 
     <android.support.v7.widget.CardView
         android:id="@+id/departureForm"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardBackgroundColor="?attr/cardBackgroundColor"
-        card_view:cardUseCompatPadding="true"
-        card_view:cardCornerRadius="2dp"
-        tools:showIn="@layout/fragment_nearbystations"
-        >
+        android:orientation="vertical"
+        app:cardBackgroundColor="?attr/cardBackgroundColor"
+        app:cardCornerRadius="2dp"
+        app:cardUseCompatPadding="true"
+        tools:showIn="@layout/fragment_nearbystations">
 
-        <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <de.grobox.liberario.ui.LocationGpsView
+            android:id="@+id/location_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
-
-            <include
-                layout="@layout/location_input_view"
-                android:id="@+id/location_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-            <Button
-                android:id="@+id/searchButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:text="@android:string/search_go"
-                android:backgroundTint="@color/primary"
-                android:layout_below="@+id/location_input"
-                android:layout_centerHorizontal="true"
-                android:visibility="gone"/>
-
-        </RelativeLayout>
+            android:layout_margin="5dp"
+            app:hint="@string/location"
+            app:homeLocation="true"
+            app:favLocation="true"
+            app:mapLocation="true"
+            app:onlyIds="false"/>
 
     </android.support.v7.widget.CardView>
 

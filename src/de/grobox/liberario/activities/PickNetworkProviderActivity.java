@@ -17,47 +17,35 @@
 
 package de.grobox.liberario.activities;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import de.grobox.liberario.TransportrApplication;
-import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.adapters.NetworkProviderListAdapter;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ExpandableListView;
-import android.widget.Toast;
-import android.widget.ExpandableListView.OnChildClickListener;
-
-public class PickNetworkProviderActivity extends AppCompatActivity {
+public class PickNetworkProviderActivity extends TransportrActivity {
 	private NetworkProviderListAdapter listAdapter;
 	private ExpandableListView expListView;
 	private boolean back = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.AppTheme);
-		} else {
-			setTheme(R.style.AppTheme_Light);
-		}
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pick_network_provider);
 
@@ -68,8 +56,6 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 
 		Intent intent = getIntent();
 		if(intent.getBooleanExtra("FirstRun", false)) {
-			// hide cancel button on first run
-			findViewById(R.id.cancelButton).setVisibility(View.GONE);
 			// prevent going back
 			back = false;
 			// show first time notice
@@ -78,6 +64,7 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 		else {
 			ActionBar actionBar = getSupportActionBar();
 			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+			findViewById(R.id.firstRunTextView).setVisibility(View.GONE);
 		}
 
 		expListView = (ExpandableListView) findViewById(R.id.expandableNetworkProviderListView);
@@ -96,39 +83,19 @@ public class PickNetworkProviderActivity extends AppCompatActivity {
 			public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 				int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 				parent.setItemChecked(index, true);
-				return false;
-			}
-		});
-
-		// on OK click
-		Button button = (Button) findViewById(R.id.okButton);
-		button.setOnClickListener(new OnClickListener() {
-			@SuppressLint("CommitPrefEdits")
-			@Override
-			public void onClick(View v) {
-				if(expListView.getCheckedItemPosition() >= 0) {
-					TransportNetwork network = ((TransportNetwork) expListView.getItemAtPosition(expListView.getCheckedItemPosition()));
+				//if(parent.getCheckedItemPosition() >= 0) {
+				if(index >= 0) {
+					//TransportNetwork network = ((TransportNetwork) parent.getItemAtPosition(parent.getCheckedItemPosition()));
+					TransportNetwork network = ((TransportNetwork) parent.getItemAtPosition(index));
 
 					Preferences.setNetworkId(v.getContext(), network.getId());
 
 					Intent returnIntent = new Intent();
 					setResult(RESULT_OK, returnIntent);
 					close();
+					return true;
 				}
-				else {
-					Toast.makeText(getBaseContext(), getResources().getText(R.string.error_pick_network), Toast.LENGTH_SHORT).show();
-				}
-			}
-		});
-
-		// on Cancel click
-		Button button_cancel = (Button) findViewById(R.id.cancelButton);
-		button_cancel.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent returnIntent = new Intent();
-				setResult(RESULT_CANCELED, returnIntent);
-				close();
+				return false;
 			}
 		});
 	}

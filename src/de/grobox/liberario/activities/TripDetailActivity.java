@@ -20,7 +20,6 @@ package de.grobox.liberario.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -46,7 +45,7 @@ import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
 
-public class TripDetailActivity extends AppCompatActivity implements AsyncQueryTripsTask.TripHandler {
+public class TripDetailActivity extends TransportrActivity implements AsyncQueryTripsTask.TripHandler {
 
 	private Trip trip;
 	private TripAdapter.BaseTripHolder ui;
@@ -57,12 +56,6 @@ public class TripDetailActivity extends AppCompatActivity implements AsyncQueryT
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.AppTheme);
-		} else {
-			setTheme(R.style.AppTheme_Light);
-		}
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trip_details);
 
@@ -94,8 +87,12 @@ public class TripDetailActivity extends AppCompatActivity implements AsyncQueryT
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.trip_details, menu);
-
 		mMenu = menu;
+
+		TransportrUtils.fixToolbarIcon(this, menu.findItem(R.id.action_reload));
+		TransportrUtils.fixToolbarIcon(this, menu.findItem(R.id.action_show_on_map));
+		TransportrUtils.fixToolbarIcon(this, menu.findItem(R.id.action_share));
+		TransportrUtils.fixToolbarIcon(this, menu.findItem(R.id.action_calendar));
 
 		return true;
 	}
@@ -110,6 +107,10 @@ public class TripDetailActivity extends AppCompatActivity implements AsyncQueryT
 				return true;
 			case R.id.action_reload:
 				reload();
+
+				return true;
+			case R.id.action_show_on_map:
+				TransportrUtils.showTripOnMap(this, trip);
 
 				return true;
 			case R.id.action_share:
@@ -127,7 +128,7 @@ public class TripDetailActivity extends AppCompatActivity implements AsyncQueryT
 
 	@Override
 	public void onTripRetrieved(QueryTripsResult result) {
-		if(result.status == QueryTripsResult.Status.OK) {
+		if(result.status == QueryTripsResult.Status.OK && result.trips != null) {
 			Log.d(getClass().getSimpleName(), result.toString());
 
 			Log.d("TEST", "OLD TRIP: " + trip.toString());
@@ -162,13 +163,15 @@ public class TripDetailActivity extends AppCompatActivity implements AsyncQueryT
 	}
 
 	private void setHeader() {
-		((TextView) findViewById(R.id.departureView)).setText(trip.from.uniqueShortName());
-		((TextView) findViewById(R.id.arrivalView)).setText(trip.to.uniqueShortName());
+		((TextView) findViewById(R.id.departureView)).setText(TransportrUtils.getLocName(trip.from));
+		((TextView) findViewById(R.id.arrivalView)).setText(TransportrUtils.getLocName(trip.to));
 		((TextView) findViewById(R.id.durationView)).setText(DateUtils.getDuration(trip.getDuration()));
 		((TextView) findViewById(R.id.dateView)).setText(DateUtils.getDate(this, trip.getFirstDepartureTime()));
 	}
 
 	private void setTrip(Trip trip) {
+		this.trip = trip;
+
 		int i = 0;
 		for(final Trip.Leg leg : trip.legs) {
 			TripAdapter.bindLeg(this, ui.legs.get(i), leg, true);
@@ -205,6 +208,8 @@ public class TripDetailActivity extends AppCompatActivity implements AsyncQueryT
 	}
 
 	private boolean isTheSameTrip(Trip old_trip, Trip new_trip) {
+		if(old_trip == null || new_trip == null || new_trip.legs == null) return false;
+
 		// check number of changes and legs
 		if(old_trip.numChanges.equals(new_trip.numChanges) && old_trip.legs.size() == new_trip.legs.size()) {
 			// check departure times

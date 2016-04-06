@@ -1,2 +1,1 @@
-include ':sublibs:OSMBonusPack:OSMBonusPack'
 include ':sublibs:public-transport-enabler:enabler'

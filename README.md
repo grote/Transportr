@@ -5,6 +5,7 @@ The public transport companion that respects your privacy and your freedom.
 Transportr is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. 
 
 [![Transportr Logo](/res/drawable-xhdpi/ic_launcher.png)](http://transportr.grobox.de)
+[![Build Status](https://travis-ci.org/grote/Transportr.svg?branch=master)](https://travis-ci.org/grote/Transportr)
 
 Please **[visit the website](http://transportr.grobox.de)** for more information!
 
@@ -18,8 +19,8 @@ The upstream repository is at: https://github.com/grote/Transportr
 Get Transportr
 --------------
 
-[![Available on F-Droid](https://f-droid.org/wiki/images/c/c4/F-Droid-button_available-on.png)](https://f-droid.org/repository/browse/?fdid=de.grobox.liberario)
-[![Available on Google Play](https://developer.android.com/images/brand/en_app_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=de.grobox.liberario)
+[![Available on F-Droid](/art/f-droid.png)](https://f-droid.org/repository/browse/?fdid=de.grobox.liberario)
+[![Available on Google Play](/art/google-play.png)](https://play.google.com/store/apps/details?id=de.grobox.liberario)
 
 Pre-releases and beta versions for advanced users are available via [a special F-Droid repository](http://grobox.de/fdroid/).
 

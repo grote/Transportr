@@ -1,64 +1,118 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
-  <string name="action_earlier">Localizar Voos Anteriores</string>
-  <string name="action_later">Localizar Voos Posteriores</string>
-  <string name="action_about">Sobre</string>
-  <string name="action_clear_favs">Limpar Favoritos</string>
-  <string name="action_settings">Configurações</string>
-  <string name="action_switch_locations">Trocar local De e Para</string>
-  <string name="action_show_extra_info">Mostrar/Ocultar Informação</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="drawer_changelog">Alterar login</string>
+  <string name="drawer_about">Sobre</string>
+  <string name="drawer_settings">Configurações</string>
+  <string name="action_fav_trip">Marcar viagem como favorita</string>
+  <string name="action_unfav_trip">Desmarcar viagem como favorita</string>
+  <string name="action_switch_locations">Alterar local De e Para</string>
   <string name="action_refresh">Atualizar</string>
   <string name="action_navigation_expand">Mostrar Mais</string>
   <string name="action_location_map">Exibir Estações no Mapa</string>
   <string name="action_use_gps">Ligar GPS</string>
-  <string name="action_trip_calendar">Para a Agenda</string>
-  <string name="action_trip_details">Mostrar Separado</string>
+  <string name="action_share">Compartilhe</string>
+  <string name="action_trip_calendar">Adicionar ao Calendário</string>
   <string name="action_trip_delete">Excluir Viagem</string>
   <string name="action_show_on_external_map">Mostrar no Mapa Externo</string>
   <string name="action_copy">Copiar</string>
   <string name="action_show_on_map">Exibir no Mapa</string>
-  <string name="tab_directions">Direções</string>
+  <string name="action_show_all">Mostrar todos</string>
+  <string name="drawer_directions">Direções</string>
+  <string name="tab_fav_trips">Viagens Favoritas</string>
+  <string name="drawer_departures">Partidas</string>
+  <string name="drawer_recent_trips">Viagens Recentes</string>
+  <string name="tab_libraries">Bibliotecas</string>
+  <string name="tab_devs">Desenvolvedores</string>
+  <string name="tab_about">Sobre</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFree Software License: GPLv3</string>
-  <string name="trip_dep">par</string>
-  <string name="trip_arr">che</string>
-  <string name="trip_start">Início:</string>
-  <string name="trip_destination">Dest.:</string>
+  <string name="about">
+<![CDATA[
+<p>Transportr é um aplicativo de transporte público que respeita a sua privacidade e liberdade. É um aplicativo sem fins lucrativos, desenvolvido por pessoas ao redor do mundo que querem utilizar o sistema de transporte público, de forma fácil onde quer que esteja. Por ser um aplicativo de software livre, você pode livremente utilizar, estudar, compartilhar e melhorá-lo.</p>
+<p> Não há garantia na exatidão dos dados. Por favor, apenas utilize o aplicativo a seu próprio risco.</p>
+]]>
+</string>
+  <string name="about_bottom">
+<![CDATA[
+<p><b>Contribuições</b> são encorajadas e apreciadas. Se você gostaria de contribuir, por favor, faça isso <a href=\"%1$s\">Transportr  website </a> para maiores informações.</p>
+<p>Se encontrar qualquer problema com esse aplicativo, por favor, reporte isso para <a href=\"%2$s\"> a central de desenvolvimento </a>.</p>
+<p><b> Doações</b> Veja as opções disponíveis no <a href=\"%3$s\"> Transportr website</a>.</p>
+]]>
+</string>
+  <string name="visit_website">Visite o Website</string>
+  <string name="trip_dep">De</string>
+  <string name="trip_arr">Para</string>
+  <string name="trip_removed">Remover viagem</string>
   <string name="from">De</string>
   <string name="to">Para</string>
-  <string name="time">Horário</string>
-  <string name="date">Data</string>
+  <string name="from_here">De</string>
+  <string name="to_here">Para</string>
   <string name="min">min</string>
   <string name="walk">Caminhar</string>
   <string name="position">Plataforma</string>
-  <string name="destination">Destino</string>
-  <string name="detail_duration">Duração:</string>
-  <string name="detail_date">Data:</string>
+  <string name="alpha">alfa</string>
   <string name="beta">beta</string>
+  <string name="network">Rede</string>
   <string name="pick_network_activity">Escolha uma Rede de Transporte</string>
-  <string name="trip_searching">Pesquisando por conexões ...</string>
-  <string name="stations_searching_position">Pesquisando por posição atual...</string>
-  <string name="stations_searching_stations">Pesquisando por estações próximas...</string>
+  <string name="pick_network_first_run">Esta é a primeira vez que você inicia o Transportr. Selecione sua rede de transporte para continuar!</string>
+  <string name="clear_recent_trips">Tem certeza que você quer excluir %1$d viagem(ns) de seus favoritos? As partidas selecionadas serão excluídas.</string>
+  <string name="trip_searching">Pesquisando por conexões…</string>
+  <string name="stations_searching_position">Pesquisando por posição atual…</string>
+  <string name="drawer_nearby_stations">Estações Próximas</string>
   <string name="find_nearby_stations">Localizar Estações Próximas</string>
   <string name="find_departures">Localizar Partidas</string>
-  <string name="share_trip_via">Compartilhar Viagem Via...</string>
+  <string name="departure_station">Estação de Partida</string>
+  <string name="share_trip_via">Compartilhar Viagem Via…</string>
+  <string name="undo">Voltar</string>
+  <string name="fav_trips_empty">Suas partidas recentes irão aparecer aqui quando começar a pesquisar por direções.\n\n\n Você poderá ordená-las como \"mais frequentes\" ou \"mais usadas\".</string>
+  <string name="more">Mais</string>
+  <string name="no_favourites">Não há partidas favoritas.\n\nAdicione uma em \"Viagens Recentes\".</string>
+  <string name="removing_from_favourites">A partida selecionada está marcada como partida favorita. Esta, também, será removida.</string>
+  <string name="current_time_set">O horário foi atualizado.</string>
+  <string name="current_date_set">A data foi atualizada.</string>
+  <string name="added_1h">1 hora adicionada.</string>
+  <string name="pref_transport_network">Rede de Transporte</string>
+  <string name="pref_hide_departure_time">Ocultar horário de saída</string>
+  <string name="pref_hide_departure_time_summary">Mostrar apenas o horário de chegada quando há paradas intermediárias.</string>
+  <string name="pref_home">Localização da casa</string>
+  <string name="pref_display">Exibição</string>
+  <string name="pref_theme_title">Tema</string>
+  <string name="pref_theme_light">Luz</string>
+  <string name="pref_theme_dark">Escuro</string>
+  <string name="pref_language_title">Língua</string>
+  <string name="pref_directions_routing">Direções e Rotas</string>
+  <string name="pref_optimize">Otimize para</string>
+  <string name="pref_optimize_least_duration">Menor Duração</string>
+  <string name="pref_optimize_least_changes">Menos Baldeações</string>
+  <string name="pref_optimize_least_walking">Menor caminhada</string>
+  <string name="pref_walk_speed">Velocidade da caminhada</string>
+  <string name="pref_walk_speed_slow">Lento</string>
+  <string name="pref_walk_speed_normal">Normal</string>
+  <string name="pref_walk_speed_fast">Rápido</string>
+  <string name="warning_departure_gap">Encontre também algumas saídas. Pode haver saídas ocultas. Pesquise pela hora exata para ter certeza de que não está faltando nenhuma.</string>
   <string name="error_pick_network">Selecione uma rede de transporte!</string>
   <string name="error_no_internet">Conexão de internet disponível insuficiente</string>
-  <string name="error_no_favs">Nenhum local favorito salvo</string>
+  <string name="error_invalid_from">Local de início inválido (De)</string>
+  <string name="error_invalid_to">Destino Inválido (Para)</string>
   <string name="error_no_trips_found">Nenhuma direção localizada</string>
+  <string name="error_no_location_provider">Posição não localizada. Por favor, ative o GPS!</string>
   <string name="error_no_departures_found">Nenhuma partida localizada</string>
+  <string name="error_no_stations_found">Estações não localizadas.</string>
   <string name="error_no_proper_station">O local fornecido não é uma estação</string>
-  <string name="error_only_autocomplete_station">Selecione um estação da lista de auto completar!</string>
-  <string name="error_no_station_location">Nào localizado o local dessa(s) estação(ões)</string>
-  <string name="error_no_trips_capability">Esta rede de transporte não suporta consulta por direções.</string>
-  <string name="error_no_departures_capability">A atual rede de transportes não suporta localização de saídas.</string>
-  <string name="number_of_stations">Número de Estações</string>
+  <string name="error_only_autocomplete_station">Selecione uma estação da lista!</string>
+  <string name="error_no_station_location">Não foi possível localizar o local dessa(s) estação(ões)</string>
+  <string name="error_no_trips_capability">Esta rede de transporte não suporta a consulta por direções.</string>
+  <string name="error_no_departures_capability">A atual rede de transporte não localiza a partida selecionada.</string>
+  <string name="error_no_nearby_locations_capability">A atual rede de transporte não suporta localizar estações próximas.</string>
+  <string name="error_please_file_ticket">Alguma coisa deu errado! Por favor, reporte o problema detalhando o que ocorreu.</string>
+  <string name="error_trip_refresh_failed">Não foi possível atualizar os dados para a viagem selecionada.</string>
   <string name="meter">m</string>
-  <string name="max_distance">Distância Máxima</string>
-  <string name="home_dialog_title">Seu Local Inicial</string>
-  <string name="home_dialog_new_msg">Não existe local inicial definido para a rede de transporte atual.</string>
-  <string name="home_dialog_msg">Escolha um local abaixo selecionando um da lista.</string>
+  <string name="system_default">Sistema Padrão</string>
+  <string name="times_include_delays">(Atenção: Horários incluem atrasos)</string>
+  <string name="home">Página Inicial</string>
+  <string name="location">Local</string>
   <string name="location_home">Clique para definir Local Inicial</string>
   <string name="location_gps">Use Posição Atual</string>
+  <string name="location_map">Obter localização do Mapa</string>
   <string name="product_high_speed_train">Trem de Alta Velocidade</string>
   <string name="product_regional_train">Trem Regional</string>
   <string name="product_suburban_train">Trem Suburbano</string>
@@ -69,10 +123,20 @@
   <string name="product_cablecar">Teleférico</string>
   <string name="product_on_demand">Por demanda</string>
   <string name="action_fav_trips_sort">Listagem</string>
+  <string name="action_fav_trips_sort_recent">Último pesquisado</string>
+  <string name="action_fav_trips_sort_most">Mais pesquisado</string>
+  <string name="action_set_locations">Editar pesquisa</string>
+  <string name="action_swap_locations">Pesquisar viagem de retorno.</string>
+  <string name="permission_denied_gps">Você não permitiu o acesso a sua localização, assim esse comando não irá funcionar. Por favor, conceda a permissão nas configurações do aplicativo.</string>
+  <string name="permission_explanation_map">O Mapa precisa ser armazenado na memória de seu dispositivo. Sem isso, o mapa não funcionará. </string>
+  <string name="permission_denied_map">Para a exibição do mapa, este, precisa estar armazenado na memória do seu dispositivo. Por favor, garanta a permissão na configuração para usar o mapa.</string>
   <!--ckChangeLog-->
+  <string name="changelog_full_title">Alterar login</string>
+  <string name="changelog_title">O que é Novo</string>
+  <string name="changelog_show_full">Mais</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
-  <string name="np_desc_rt">longa distância apenas</string>
+  <string name="np_desc_rt">Apenas longa distância</string>
   <string name="np_region_germany">Alemanha</string>
   <string name="np_desc_db">Maior parte da Alemanha</string>
   <string name="np_desc_bvg">Berlim</string>
@@ -84,12 +148,12 @@
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen</string>
   <string name="np_desc_vvm">Suábia, </string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
-  <string name="np_desc_rsag">Rostock</string>
-  <string name="np_desc_hvv">Hamburgo</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburgo</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburgo</string>
   <string name="np_desc_gvh">Baixa Saxônia, Hannover, Hamburgo</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
-  <string name="np_desc_vbn">Baixa Saxônia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxônia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vvo">Saxônia, Dresden</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_nasa">Saxônia, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
@@ -136,13 +200,14 @@
   <string name="np_region_finland">Finlândia</string>
   <string name="np_region_nz">Nova Zelândia</string>
   <string name="np_region_spain">Espanha</string>
+  <string name="np_region_br">Brasil</string>
   <string name="np_desc_ns">Países Baixos, Amsterdã</string>
   <string name="np_desc_dsb">Dinamarca, Copenhague</string>
   <string name="np_desc_se">Suécia, Estocolmo</string>
   <string name="np_desc_stockholm">Estocolmo</string>
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
   <string name="np_desc_tlem">Grande Londres, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
-  <string name="np_desc_tlwm">Birmingham</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irlanda, Dublin, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bolonha</string>
   <string name="np_desc_pl">Polônia, Varsóvia</string>
@@ -156,9 +221,13 @@
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_desc_paris">Paris</string>
   <string name="np_desc_nz">Wellington, Auckland</string>
-  <string name="np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+  <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">ônibus em Madri (EMT), Barcelona (TMB), Basco (Moveuskadi)</string>
   <string name="np_desc_mersey">Região da cidade de Liverpool</string>
+  <string name="np_desc_br">São Paulo e Porto Alegre</string>
+  <string name="np_desc_vrs">Colônia, Bonn</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limusino, Aquitânia, Sul Pirineus, Bordeaux, Toulouse</string>
+  <string name="np_desc_it">Roma, Milão, Turim, Veneza, Palermo, Trento </string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAVÁRIA</string>
   <string name="np_name_paris">PARIS</string>
@@ -166,5 +235,21 @@
   <string name="np_name_stockholm">ESTOCOLMO</string>
   <string name="np_name_wien">VIENA</string>
   <string name="np_name_spain">Espanha</string>
-  <string name="np_name_usny">Estados de Nova York e Nova Jersey</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nova York e Nova Jersey</string>
+  <string name="np_name_br">SPTRANS EPTC</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
+  <string name="np_name_frenchsouthwest">FR-SW</string>
+  <string name="maintainer">Mantenedores</string>
+  <string name="contributers">Colaboradores</string>
+  <string name="translators">Tradutores</string>
+  <string name="dutch">Holandês</string>
+  <string name="french">Francês</string>
+  <string name="german">Alemão</string>
+  <string name="italian">Italiano</string>
+  <string name="portuguese_br">Português\n(Brasil)</string>
+  <string name="spanish">Espanhol</string>
+  <string name="turkish">Turco</string>
+  <string name="norwegian_bokmal">Norueguês\nBokmål</string>
+  <string name="basque">Basco</string>
+  <string name="english">Inglês </string>
 </resources>

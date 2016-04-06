@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp">
@@ -12,9 +12,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardBackgroundColor="?attr/cardBackgroundColor"
-        card_view:cardUseCompatPadding="true"
-        card_view:cardCornerRadius="2dp"
+        app:cardBackgroundColor="?attr/cardBackgroundColor"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="2dp"
         tools:showIn="@layout/fragment_departures"
         >
 
@@ -26,12 +26,14 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true">
 
-            <include
-                layout="@layout/location_input_view"
-                android:id="@+id/location_input"
+            <de.grobox.liberario.ui.LocationView
+                android:id="@+id/stationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                app:hint="@string/departure_station"
+                app:onlyIds="true"
+                app:homeLocation="true"
+                app:favLocation="true"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,8 +41,11 @@
                 android:orientation="horizontal"
                 >
 
-                <include
-                    layout="@layout/time_and_date"/>
+                <de.grobox.liberario.ui.TimeAndDateView
+                    android:id="@+id/dateView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
 
                 <include
                     layout="@layout/search_button"/>

@@ -33,6 +33,7 @@ import java.util.List;
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.RecentTrip;
+import de.grobox.liberario.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
@@ -42,6 +43,8 @@ public class RecentsDB {
 
 	public static List<FavLocation> getFavLocationList(Context context) {
 		List<FavLocation> fav_list = new ArrayList<>();
+		String network = Preferences.getNetwork(context);
+		if(network == null) return fav_list;
 
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -50,7 +53,7 @@ public class RecentsDB {
 			DBHelper.TABLE_FAV_LOCS,    // The table to query
 			null,                       // The columns to return (null == all)
 			"network = ?",              // The columns for the WHERE clause
-			new String[] { Preferences.getNetwork(context) }, // The values for the WHERE clause
+			new String[] { network }, // The values for the WHERE clause
 			null,   // don't group the rows
 			null,   // don't filter by row groups
 			null    // The sort order
@@ -68,9 +71,9 @@ public class RecentsDB {
 		return fav_list;
 	}
 
-	public static List<Location> getFavLocationList(Context context, FavLocation.LOC_TYPE sort, boolean onlyIDs) {
+	public static List<WrapLocation> getFavLocationList(Context context, FavLocation.LOC_TYPE sort, boolean onlyIDs) {
 		List<FavLocation> fav_list = getFavLocationList(context);
-		List<Location> list = new ArrayList<>();
+		List<WrapLocation> list = new ArrayList<>();
 
 		if(sort == FavLocation.LOC_TYPE.FROM) {
 			Collections.sort(fav_list, FavLocation.FromComparator);
@@ -81,7 +84,7 @@ public class RecentsDB {
 
 		for(final FavLocation loc : fav_list) {
 			if(!onlyIDs || loc.getLocation().hasId()) {
-				list.add(loc.getLocation());
+				list.add(loc);
 			}
 		}
 
@@ -89,7 +92,7 @@ public class RecentsDB {
 	}
 
 	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
-		if(loc == null || (loc.place != null && loc.place.equals("GPS"))) {
+		if(loc == null || loc.type == LocationType.COORD) {
 			// don't store GPS locations
 			return;
 		}
@@ -248,7 +251,7 @@ public class RecentsDB {
 			return;
 		}
 
-		if(recent.getFrom().place != null && recent.getFrom().place.equals("GPS")) {
+		if(recent.getFrom().type == LocationType.COORD) {
 			// don't store GPS locations
 			return;
 		}
@@ -409,6 +412,9 @@ public class RecentsDB {
 	public static Location getHome(Context context) {
 		Location home = null;
 
+		String network = Preferences.getNetwork(context);
+		if(network == null) return null;
+
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -416,7 +422,7 @@ public class RecentsDB {
 				DBHelper.TABLE_HOME_LOCS,   // The table to query
 				null,                       // The columns to return (null == all)
 				"network = ?",              // The columns for the WHERE clause
-				new String[] { Preferences.getNetwork(context) }, // The values for the WHERE clause
+				new String[] { network }, // The values for the WHERE clause
 				null,   // don't group the rows
 				null,   // don't filter by row groups
 				null    // The sort order
@@ -465,6 +471,7 @@ public class RecentsDB {
 			db.insert(DBHelper.TABLE_HOME_LOCS, null, values);
 		}
 
+		c.close();
 		db.close();
 	}
 

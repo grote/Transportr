@@ -27,6 +27,7 @@ import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDeparturesResult> {
@@ -37,6 +38,8 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 	private boolean more;
 	private int max_departures;
 	private String error = null;
+
+	private static final String TAG = DeparturesFragment.class.toString();
 
 	public AsyncQueryDeparturesTask(DeparturesFragment fragment, String stationId, Date date, boolean later, int max_departures, boolean more) {
 		this.fragment = fragment;
@@ -55,9 +58,12 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 	protected QueryDeparturesResult doInBackground(Void... params) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(fragment.getActivity()));
 
+		Log.d(getClass().getSimpleName(), "Departures (" + String.valueOf(max_departures) + "): " + stationId);
+		Log.d(getClass().getSimpleName(), "Date: " + date.toString());
+
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(fragment.getActivity())) {
-				return np.queryDepartures(stationId, date, max_departures, true);
+				return np.queryDepartures(stationId, date, max_departures, false);
 			}
 			else {
 				error = fragment.getResources().getString(R.string.error_no_internet);
