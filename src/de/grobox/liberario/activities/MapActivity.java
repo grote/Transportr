@@ -18,8 +18,11 @@
 package de.grobox.liberario.activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -42,6 +45,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.osmdroid.DefaultResourceProxyImpl;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.InfoWindow;
 import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
@@ -68,10 +72,10 @@ import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 
-@SuppressWarnings("deprecation")
 public class MapActivity extends TransportrActivity implements MapEventsReceiver {
 	private MapView map;
 	private Menu menu;
+	private CustomResourceProxy resProxy;
 	private List<GeoPoint> points = new ArrayList<>();
 	private GpsMyLocationProvider locationProvider;
 	private MyLocationNewOverlay myLocationOverlay;
@@ -202,6 +206,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		marker.setPosition(p);
 		marker.setTitle(getString(R.string.location)+ ": " + loc_str);
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
+		marker.setInfoWindowAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
 		marker.setRelatedObject(Location.coord(p.getLatitudeE6(), p.getLongitudeE6()));
 		marker.setInfoWindow(new LocationInfoWindow(map));
 		map.getOverlays().add(marker);
@@ -216,7 +221,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	}
 
 	private void setupMap() {
-		map = new MapView(this);
+		resProxy = new CustomResourceProxy(this);
+		map = new MapView(this, resProxy);
 
 		map.setClickable(true);
 		map.setMultiTouchControls(true);
@@ -461,9 +467,11 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 
 		// create my location overlay that shows the current position and updates automatically
-		myLocationOverlay = new MyLocationNewOverlay(this, map);
+		myLocationOverlay = new MyLocationNewOverlay(locationProvider, map, resProxy);
 		myLocationOverlay.enableMyLocation(locationProvider);
 		myLocationOverlay.setDrawAccuracyEnabled(true);
+		float scale = resProxy.getDisplayMetrics().density;
+		myLocationOverlay.setPersonHotspot(16.0f * scale + 0.5f, 19.0f * scale + 0.5f);
 
 		map.getOverlays().add(myLocationOverlay);
 
@@ -481,9 +489,10 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		Marker marker = new Marker(map);
 		marker.setIcon(drawable);
 		marker.setPosition(pos);
-		marker.setTitle(loc.uniqueShortName());
+		marker.setTitle(TransportrUtils.getLocName(loc));
 		marker.setInfoWindow(new LocationInfoWindow(map));
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
+		marker.setInfoWindowAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
 		marker.setRelatedObject(loc);
 		map.getOverlays().add(marker);
 	}
@@ -616,4 +625,45 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			// do nothing
 		}
 	}
+
+	public class CustomResourceProxy extends DefaultResourceProxyImpl {
+
+		private final Context context;
+
+		public CustomResourceProxy(Context context) {
+			super(context);
+			this.context = context;
+		}
+
+		@Override
+		public Bitmap getBitmap(final bitmap pResId) {
+			switch (pResId){
+				case person:
+					return getBitmap(getDrawable(pResId));
+				case direction_arrow:
+					return getBitmap(getDrawable(pResId));
+			}
+			return super.getBitmap(pResId);
+		}
+
+		@Override
+		public Drawable getDrawable(final bitmap pResId) {
+			switch (pResId){
+				case person:
+					return ContextCompat.getDrawable(context, R.drawable.map_pedestrian_location);
+				case direction_arrow:
+					return ContextCompat.getDrawable(context, R.drawable.map_pedestrian_bearing);
+			}
+			return super.getDrawable(pResId);
+		}
+
+		private Bitmap getBitmap(Drawable drawable) {
+			Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+			Canvas canvas = new Canvas(bitmap);
+			drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+			drawable.draw(canvas);
+			return bitmap;
+		}
+	}
+
 }
