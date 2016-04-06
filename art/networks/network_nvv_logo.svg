@@ -14,7 +14,7 @@
    width="500"
    height="500"
    id="svg2"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="network_nvv_logo.svg"
    inkscape:export-filename="J:\privat\Transportr\res\drawable-xhdpi\network_nvv_logo.png"
    inkscape:export-xdpi="17.280001"
@@ -40,15 +40,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1028"
+     inkscape:window-width="1280"
+     inkscape:window-height="744"
      id="namedview3293"
      showgrid="false"
      inkscape:zoom="0.62225397"
      inkscape:cx="251.97792"
      inkscape:cy="93.61411"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
   <defs
@@ -579,6 +579,13 @@
        gradientTransform="translate(1104.2309,4604.3363)"
        spreadMethod="pad" />
   </defs>
+  <rect
+     style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     id="rect3334"
+     width="500"
+     height="500"
+     x="0"
+     y="4.2632564e-14" />
   <g
      transform="translate(-4.5705376,164.59643)"
      id="layer1">
