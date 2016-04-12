@@ -111,12 +111,12 @@ public class TransportNetworks {
 				         .setDescription(getString(R.string.np_desc_hvv))
 				         .setRegion(region)
 		);
-*/
+
 		list.add(new TransportNetwork(context, NetworkId.SH)
 				         .setDescription(getString(R.string.np_desc_sh))
 				         .setRegion(region)
 		);
-
+*/
 		list.add(new TransportNetwork(context, NetworkId.GVH)
 				         .setDescription(getString(R.string.np_desc_gvh))
 				         .setRegion(region)
@@ -226,11 +226,6 @@ public class TransportNetworks {
 
 		list.add(new TransportNetwork(context, NetworkId.LINZ)
 				         .setDescription(getString(R.string.np_desc_linz))
-				         .setRegion(region)
-		);
-
-		list.add(new TransportNetwork(context, NetworkId.SVV)
-				         .setDescription(getString(R.string.np_desc_svv))
 				         .setRegion(region)
 		);
 

@@ -59,7 +59,6 @@ public final class NetworkProviderFactory
 	private static Reference<OebbProvider> oebbProviderRef;
 	private static Reference<VorProvider> vorProviderRef;
 	private static Reference<LinzProvider> linzProviderRef;
-	private static Reference<SvvProvider> svvProviderRef;
 	private static Reference<VvtProvider> vvtProviderRef;
 	private static Reference<VaoProvider> vaoProviderRef;
 	private static Reference<IvbProvider> ivbProviderRef;
@@ -270,7 +269,8 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final ShProvider provider = new ShProvider();
+			// TODO get API authorization
+			final ShProvider provider = new ShProvider("");
 			shProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -520,19 +520,6 @@ public final class NetworkProviderFactory
 
 			final LinzProvider provider = new LinzProvider();
 			linzProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
-		else if (networkId.equals(NetworkId.SVV))
-		{
-			if (svvProviderRef != null)
-			{
-				final SvvProvider provider = svvProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final SvvProvider provider = new SvvProvider();
-			svvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.VVT))
