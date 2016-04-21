@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
         android:id="@+id/statusButton"
@@ -9,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:srcCompat="@drawable/ic_location"
+        tools:src="@drawable/ic_location"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"/>
@@ -24,7 +26,7 @@
             android:layout_height="wrap_content"
             android:paddingRight="30dp"
             android:paddingEnd="30dp"
-            android:inputType="textNoSuggestions|textAutoComplete"
+            android:inputType="text|textNoSuggestions|textAutoComplete|textFilter"
             android:singleLine="true"
             android:completionThreshold="1"
             android:layout_gravity="bottom"/>
@@ -51,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 app:srcCompat="@drawable/ic_action_content_remove"
+                tools:src="@drawable/ic_action_content_remove"
                 android:visibility="gone" />
         </LinearLayout>
     </FrameLayout>

@@ -12,7 +12,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'witness'
 
 dependencies {
-	def supportVersion = '23.2.1'
+	def supportVersion = '23.3.0'
 	compile "com.android.support:support-v4:$supportVersion"
 	compile "com.android.support:appcompat-v7:$supportVersion"
 	compile "com.android.support:design:$supportVersion"
@@ -35,22 +35,22 @@ dependencies {
 
 dependencyVerification {
 	verify = [
-			'com.android.support:support-v4:81ce890f26d35c75ad17d0f998a7e3230330c3b41e0b629566bc744bee89e448',
-			'com.android.support:appcompat-v7:00f9d93acacd6731f309724054bf51492814b4b2869f16d7d5c0038dcb8c9a0d',
-			'com.android.support:design:003e0c0bea0a6891f8b2bc43f20ae7af2a49a17363e5bb10df5ee0bae12fa686',
-			'com.android.support:cardview-v7:4595f1c4a28cfa083b6c0920ad4d49e1c2ca4b8302a955e548f68eb63b74931b',
-			'com.android.support:recyclerview-v7:44040a888e23e0c93162a3377cfe06751080e3c22d369ab0d4301ef60d63b0fe',
-			'com.android.support:preference-v14:44881bb46094e86d0bc2426f205419674a5b4eb514b44b5a4659b5de29f71eb7',
+			'com.android.support:support-v4:1e8b7cc1cb3d6f6a2fd913791a6313df6bbaa470be450384474e906bc234bd49',
+			'com.android.support:appcompat-v7:dce81c41f76d83fa315617f4bc8ef2f84c5aa54b686f37b559422b939f622490',
+			'com.android.support:design:1023c9d1ca3ecae3e0c54b7678cd275032fe5720bbb4f58e3c8b2f2a595d0051',
+			'com.android.support:cardview-v7:2f592da4dd1db85dab99653474dd139135aa3ca7596dfdbcfef714e0339b603a',
+			'com.android.support:recyclerview-v7:32b98ca177d9352b19a92af80ff9a3c3589b50232b6722d2bce5514abe90be51',
+			'com.android.support:preference-v14:8a421c523462b31aaf2a276b5267f91f6460e33365ec9b87dffeb7e0e429acb9',
 			'com.github.orangegangsters:swipy:ce01ea72347087ad60fcaefe88c6cf88b23b23916cd4abd676f8dc168c0bae87',
 			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
 			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
 			'com.mikepenz:materialdrawer:d820bbea9a169cd878f38e77e5b6e1a7a6221191ab2a5f7b99d10254bdac20e5',
 			'com.mikepenz:aboutlibraries:9d61dbc43c29359a591552a1e7d9f2789ccf5a882f44a7e76120c5ead32ba2d4',
 			'com.github.MKergall.osmbonuspack:OSMBonusPack:1d8a5ad2785a45ca15bb468a354bccaac8880db06630cc37b7e102d3857ae206',
-			'com.android.support:support-annotations:786ab0d060774fb95cfdaf4878771e14b85733b1af9d72a4aae762dc7c1dff9f',
-			'com.android.support:animated-vector-drawable:06d1963b85aa917099d7757e6a7b3e4dc06889413dc747f625ae8683606db3a1',
-			'com.android.support:support-vector-drawable:799bafe4c3de812386f0b291f744d5d6876452722dd40189b9ab87dbbf594ea1',
-			'com.android.support:preference-v7:775101bd07bd052e455761c5c5d9523d7ad59f2f320e3e8cbde241fd6b1d6025',
+			'com.android.support:support-annotations:e9e076f3ea4fb144387c6054a6f69a2f6150ad4b1907897aaf55d6e8f4b8b91e',
+			'com.android.support:support-vector-drawable:a4feae56880e385e147dfed3f73593ce61164ec49bb401f34de9a77a17c68a44',
+			'com.android.support:animated-vector-drawable:ddf1f9dc18d38b21b01c21842d4bdf57613ea86398ede8f914f29b5770f4c32b',
+			'com.android.support:preference-v7:da06f2c34019b5dc667a663ae3e27324d18c802ddfe6fa777a0b1aa1b3703519',
 			'com.mikepenz:iconics-core:0b95ebfe172f1646c2893f38a6262235c91526925161b3b0c13145195ab73301',
 			'com.mikepenz:materialize:a6ff3073b5ed15d1b84e983af09a09716bb00e481675501fa944dbf0aeaedb87',
 			'org.apache.commons:commons-lang3:6b81d10754dadf184d386011486e6509c2cc0c3d33565ced4fb4402b9413d47d',
@@ -81,7 +81,7 @@ android {
 
 		compileSdkVersion 23
 		targetSdkVersion 23
-		buildToolsVersion "23.0.2"
+		buildToolsVersion "23.0.2" // travis does not have >= 23.0.3
 		minSdkVersion 14
 	}
 

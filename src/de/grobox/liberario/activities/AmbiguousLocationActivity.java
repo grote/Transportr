@@ -37,6 +37,7 @@ import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.RecentTrip;
+import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
@@ -73,43 +74,40 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 		departure = intent.getBooleanExtra("de.schildbach.pte.dto.Trip.departure", true);
 		products = (ArrayList<Product>) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.products");
 
-		final Spinner from_spinner = ((Spinner) findViewById(R.id.fromSpinner));
+		final ViewHolder ui = new ViewHolder(findViewById(R.id.layout));
 
 		if(trips.ambiguousFrom != null) {
 			LocationAdapter loca = new LocationAdapter(this, trips.ambiguousFrom);
 			loca.setSort(FavLocation.LOC_TYPE.FROM);
-			from_spinner.setAdapter(loca);
+			ui.fromSpinner.setAdapter(loca);
 		}
 		else {
 			List<Location> list = new ArrayList<>();
 			list.add(from);
 			LocationAdapter loca = new LocationAdapter(this, list);
 			loca.setSort(FavLocation.LOC_TYPE.FROM);
-			from_spinner.setAdapter(loca);
-			from_spinner.setEnabled(false);
+			ui.fromSpinner.setAdapter(loca);
+			ui.fromSpinner.setEnabled(false);
 		}
-
-		final Spinner to_spinner = ((Spinner) findViewById(R.id.toSpinner));
 
 		if(trips.ambiguousTo != null) {
 			LocationAdapter loca = new LocationAdapter(this, trips.ambiguousTo);
 			loca.setSort(FavLocation.LOC_TYPE.TO);
-			to_spinner.setAdapter(loca);
+			ui.toSpinner.setAdapter(loca);
 		}
 		else {
 			List<Location> list = new ArrayList<>();
 			list.add(to);
 			LocationAdapter loca = new LocationAdapter(this, list);
 			loca.setSort(FavLocation.LOC_TYPE.TO);
-			to_spinner.setAdapter(loca);
-			to_spinner.setEnabled(false);
+			ui.toSpinner.setAdapter(loca);
+			ui.toSpinner.setEnabled(false);
 		}
 
-		Button button = (Button) findViewById(R.id.button1);
-		button.setOnClickListener(new View.OnClickListener() {
+		ui.button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				from = (Location) from_spinner.getSelectedItem();
-				to = (Location) to_spinner.getSelectedItem();
+				from = ((WrapLocation) ui.fromSpinner.getSelectedItem()).getLocation();
+				to = ((WrapLocation) ui.toSpinner.getSelectedItem()).getLocation();
 
 				// remember location and trip
 				RecentsDB.updateFavLocation(getApplicationContext(), from, FavLocation.LOC_TYPE.FROM);
@@ -174,6 +172,18 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 		intent.putExtra("de.schildbach.pte.dto.Trip.date", date);
 		intent.putExtra("de.schildbach.pte.dto.Trip.departure", departure);
 		intent.putExtra("de.schildbach.pte.dto.Trip.products", products);
+	}
+
+	private static class ViewHolder {
+		Spinner fromSpinner;
+		Spinner toSpinner;
+		Button button;
+
+		ViewHolder(View v) {
+			fromSpinner = (Spinner) v.findViewById(R.id.fromSpinner);
+			toSpinner = (Spinner) v.findViewById(R.id.toSpinner);
+			button = (Button) v.findViewById(R.id.button);
+		}
 	}
 
 }
