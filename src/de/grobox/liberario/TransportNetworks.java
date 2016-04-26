@@ -312,13 +312,14 @@ public class TransportNetworks {
 				         .setRegion(region)
 		);
 
-		list.add(new TransportNetwork(context, NetworkId.STOCKHOLM)
+		// See https://github.com/grote/Transportr/issues/175
+/*		list.add(new TransportNetwork(context, NetworkId.STOCKHOLM)
 				         .setName(getString(R.string.np_name_stockholm))
 				         .setDescription(getString(R.string.np_desc_stockholm))
 				         .setRegion(region)
 				         .setStatus(TransportNetwork.Status.BETA)
 		);
-
+*/
 		// Norway
 
 		list.add(new TransportNetwork(context, NetworkId.NRI)

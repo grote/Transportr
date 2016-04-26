@@ -50,7 +50,7 @@ es welche gibt) anzeigen lassen.</string>
 <![CDATA[
 <p><b>Beiträge</b> sind ausdrücklich erwünscht und werden dankbar entgegen genommen. Falls du etwas beitragen möchtest, besuche bitte <a href=\"%1$s\">die Transportr Webseite</a> für mehr Informationen.</p>
 <p>Falls du irgendwelche Probleme in der App entdeckst, melde diese bitte im <a href=\"%2$s\">Issue Tracker</a>.</p>
-<p><b>Spendenmöglichkteien</b> sind auf <a href=\"%3$s\">der Transportr Webseite</a> aufgeführt.</p>
+<p><b>Spendenmöglichkeiten</b> sind auf <a href=\"%3$s\">der Transportr Webseite</a> aufgeführt.</p>
 ]]>
 </string>
   <string name="visit_website">Zur Webseite</string>
@@ -125,6 +125,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="system_default">Systemstandard</string>
   <string name="times_include_delays">(Achtung: Zeiten beinhalten gemeldete Verspätungen)</string>
   <string name="home">Zuhause</string>
+  <string name="home_dialog_title">Heimatadresse festlegen</string>
   <string name="location">Position</string>
   <string name="location_home">Klicken um eine Heimatadresse festzulegen</string>
   <string name="location_gps">Aktuelle Position verwenden</string>

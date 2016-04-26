@@ -36,13 +36,13 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="about_top">© 2013 - 2015 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
   <string name="about">
 <![CDATA[
-<p>Transportr est un compagnon de transport en commun qui respecte vos données personnelle et votre liberté. C\'est une appli sans but lucratif, développée par des personnes dans le monde entier pour faciliter autant que possible l\'utilisation des transports collectifs, où que vous soyez. Cette appli est un logiciel libre et ouvert. Vous pouvez donc l\'utiliser gratuitement, l\'étudier, la partager et l\'améliorer.</p>
+<p>Transportr est un compagnon de transport en commun qui respecte vos données personnelles et votre liberté. C\'est une appli sans but lucratif, développée par des personnes dans le monde entier pour faciliter autant que possible l\'utilisation des transports collectifs, où que vous soyez. Cette appli est un logiciel libre et ouvert. Vous pouvez donc l\'utiliser gratuitement, l\'étudier, la partager et l\'améliorer.</p>
 <p>Il n\'y a aucune garantie de justesse des données. Veuillez utiliser cette appli à vos propres risques.</p>
 ]]>
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p>Nous encourageons et apprécions les <b>contributions</b>. Si vous voulez contribuer à Transportr, veuillez visiter la page <a href=\"%1$s\">la page d\'accueil de Transportr</a> pour de plus amples informations.</p>
+<p>Nous encourageons et apprécions les <b>contributions</b>. Si vous voulez participer à Transportr, veuillez visiter <a href=\"%1$s\">la page d\'accueil de Transportr</a> pour de plus amples informations.</p>
 <p>Si vous découvrez quelques problèmes avec cette appli, veuillez les rapporter grâce au <a href=\"%2$s\">gestionnaire de problèmes</a>.</p>
 <p>Les options de <b>don</b> sont listées sur <a href=\"%3$s\">le site Web de Transportr</a>.</p>
 ]]>
@@ -119,6 +119,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="system_default">Valeur par défaut du système</string>
   <string name="times_include_delays">(Avertissement : les heures incluent les retards signalés)</string>
   <string name="home">Origine</string>
+  <string name="home_dialog_title">Définir le point d\'origine</string>
   <string name="location">Lieu</string>
   <string name="location_home">Cliquer pour définir le point d\'origine</string>
   <string name="location_gps">Utiliser l\'emplacement actuel</string>
