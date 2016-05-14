@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.1.0-pre2" versioncode="29">
+    <release version="1.1.0" versioncode="30">
         <change>Added Quebec, Canada (Thanks Chimo!)</change>
         <change>Many changes under the hood that improve performance, memory usage and new multi-window mode</change>
         <change>Add animation when changing pages and opening dialogs</change>
