@@ -1,6 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="drawer_changelog">Alterar login</string>
+  <string name="google_play_short_desc">O aplicativo de transporte publico que respeita sua privacidade e liberdade</string>
+  <string name="google_play_full_desc">Transportr é um aplicativo sem fins lucrativos desenvolvido por pessoas do mundo todo para tornar facilitar o uso de transporte publico independente de onde você esteja. 
+
+Atualmente, funciona melhor na Europa, mas também suporta vários lugares do mundo. Se você vive em uma área não disponível, considere colaborar para o Transportr.
+Instruções disponíveis na homepage. 
+
+Transportr encontra direções até sua casa, sua localização atual ou um terminal 
+para onde você quiser ir. Você também pode salvar viagens inteiras como favoritas e encontrar 
+a próxima com uma deslizada. Obviamente você pode também mostrar sua viagem no mapa.
+e acompanhar seu progresso via GPS.
+
+Você pode também descobrir terminais por perto e visualizar os ônibus que está de saída (se existir algum). 
+</string>
+  <string name="drawer_changelog">Novidades</string>
   <string name="drawer_about">Sobre</string>
   <string name="drawer_settings">Configurações</string>
   <string name="action_fav_trip">Marcar viagem como favorita</string>
@@ -76,7 +89,7 @@
   <string name="pref_home">Localização da casa</string>
   <string name="pref_display">Exibição</string>
   <string name="pref_theme_title">Tema</string>
-  <string name="pref_theme_light">Luz</string>
+  <string name="pref_theme_light">Claro</string>
   <string name="pref_theme_dark">Escuro</string>
   <string name="pref_language_title">Língua</string>
   <string name="pref_directions_routing">Direções e Rotas</string>
@@ -89,6 +102,7 @@
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
   <string name="warning_departure_gap">Encontre também algumas saídas. Pode haver saídas ocultas. Pesquise pela hora exata para ter certeza de que não está faltando nenhuma.</string>
+  <string name="warning_permission_granted_action">Não foi possível repetir automaticamente ultima ação</string>
   <string name="error_pick_network">Selecione uma rede de transporte!</string>
   <string name="error_no_internet">Conexão de internet disponível insuficiente</string>
   <string name="error_invalid_from">Local de início inválido (De)</string>
@@ -109,6 +123,7 @@
   <string name="system_default">Sistema Padrão</string>
   <string name="times_include_delays">(Atenção: Horários incluem atrasos)</string>
   <string name="home">Página Inicial</string>
+  <string name="home_dialog_title">Configurar localização de Casa</string>
   <string name="location">Local</string>
   <string name="location_home">Clique para definir Local Inicial</string>
   <string name="location_gps">Use Posição Atual</string>
@@ -201,6 +216,7 @@
   <string name="np_region_nz">Nova Zelândia</string>
   <string name="np_region_spain">Espanha</string>
   <string name="np_region_br">Brasil</string>
+  <string name="np_region_canada">Canada</string>
   <string name="np_desc_ns">Países Baixos, Amsterdã</string>
   <string name="np_desc_dsb">Dinamarca, Copenhague</string>
   <string name="np_desc_se">Suécia, Estocolmo</string>
@@ -228,6 +244,8 @@
   <string name="np_desc_vrs">Colônia, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limusino, Aquitânia, Sul Pirineus, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Roma, Milão, Turim, Veneza, Palermo, Trento </string>
+  <string name="np_desc_ontario">Ottawa, Toronto</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAVÁRIA</string>
   <string name="np_name_paris">PARIS</string>
@@ -239,6 +257,8 @@
   <string name="np_name_br">SPTRANS EPTC</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_name_frenchsouthwest">FR-SW</string>
+  <string name="np_name_ontario">Ontário </string>
+  <string name="np_name_quebec">Quebec</string>
   <string name="maintainer">Mantenedores</string>
   <string name="contributers">Colaboradores</string>
   <string name="translators">Tradutores</string>
@@ -252,4 +272,6 @@
   <string name="norwegian_bokmal">Norueguês\nBokmål</string>
   <string name="basque">Basco</string>
   <string name="english">Inglês </string>
+  <string name="catalan">Catalão</string>
+  <string name="polish">Polonês </string>
 </resources>

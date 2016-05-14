@@ -365,7 +365,7 @@
                             android:layout_weight="1"
                             android:padding="7dp"
                             tools:ignore="HardcodedText"
-                            android:text="Cibele A. Cambuí, Gislene Kucker Arantes, Paulo Martins"/>
+                            android:text="Gislene Kucker Arantes, Cibele A. Cambuí, Thiago Costa, Paulo Martins, José Victor, Caio Volpato"/>
                     </TableRow>
 
                     <TableRow
