@@ -30,9 +30,7 @@
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingRight="5dp"
-                android:paddingEnd="5dp" />
+                android:layout_height="match_parent"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -43,24 +41,42 @@
 
                 <TextView
                     android:id="@+id/recentFromView"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/trip_from"
+                    android:drawablePadding="2dp"
+                    android:drawableStart="@drawable/trip_from"
+                    android:ellipsize="middle"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
                     android:textColor="?android:attr/textColorPrimary"
-                    tools:text="Turmstr. (U)" />
+                    tools:text="Turmstr. (U)"/>
 
                 <TextView
                     android:id="@+id/recentViaView"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/trip_via"
+                    android:drawablePadding="2dp"
+                    android:drawableStart="@drawable/trip_via"
+                    android:ellipsize="middle"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
                     android:textColor="?android:attr/textColorPrimary"
-                    tools:text="Ostkreuz" />
+                    tools:text="Ostkreuz"/>
 
                 <TextView
                     android:id="@+id/recentToView"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/trip_to"
+                    android:drawablePadding="2dp"
+                    android:drawableStart="@drawable/trip_to"
+                    android:ellipsize="middle"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
                     android:textColor="?android:attr/textColorPrimary"
-                    tools:text="Zoologischer Garten (S+U)" />
+                    tools:text="Zoologischer Garten (S+U)"/>
 
             </LinearLayout>
 
@@ -69,11 +85,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
                 tools:text="142" />
 
             <ImageButton
-                android:layout_width="33dp"
-                android:layout_height="33dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="3dp"
