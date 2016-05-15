@@ -93,12 +93,12 @@ public class LegPopupMenu extends BasePopupMenu {
 						return true;
 					// From Here
 					case R.id.action_from_here:
-						TransportrUtils.presetDirections(context, loc1, null);
+						TransportrUtils.presetDirections(context, loc1, null, null);
 
 						return true;
 					// To Here
 					case R.id.action_to_here:
-						TransportrUtils.presetDirections(context, null, loc1);
+						TransportrUtils.presetDirections(context, null, null, loc1);
 
 						return true;
 					// Show Departures

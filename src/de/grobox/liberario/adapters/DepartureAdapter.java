@@ -143,7 +143,7 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 				@Override
 				public void onClick(View v) {
 					if(station.equals(dep.destination)) return;
-					TransportrUtils.findDirections(context, station, dep.destination, dep.getTime());
+					TransportrUtils.findDirections(context, station, null, dep.destination, dep.getTime());
 				}
 			});
 		}

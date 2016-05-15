@@ -174,7 +174,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 				@Override
 				public void onClick(View v) {
 					RecentTrip trip = (RecentTrip) getListView().getItemAtPosition(position);
-					TransportrUtils.findDirections(getActivity(), trip.getFrom(), trip.getTo());
+					TransportrUtils.findDirections(getActivity(), trip.getFrom(), trip.getVia(), trip.getTo());
 				}
 			});
 
@@ -205,10 +205,21 @@ public class RecentTripsFragment extends TransportrListFragment {
 
 			RecentTrip trip = this.getItem(position);
 
+			// from and to
 			TextView favFromView = (TextView) v.findViewById(R.id.recentFromView);
 			favFromView.setText(TransportrUtils.getLocName(trip.getFrom()));
 			TextView favToView = (TextView) v.findViewById(R.id.recentToView);
 			favToView.setText(TransportrUtils.getLocName(trip.getTo()));
+
+			// via
+			TextView favViaView = (TextView) v.findViewById(R.id.recentViaView);
+			if(trip.getVia() != null) {
+				favViaView.setText(TransportrUtils.getLocName(trip.getVia()));
+			} else {
+				favViaView.setVisibility(View.GONE);
+			}
+
+			// count
 			TextView favCountView = (TextView) v.findViewById(R.id.recentCountView);
 			favCountView.setText(String.valueOf(trip.getCount()));
 

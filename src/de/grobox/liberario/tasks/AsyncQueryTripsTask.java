@@ -45,6 +45,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 	private TripHandler tripHandler;
 	private ProgressDialog pd;
 	private Location from;
+	private Location via;
 	private Location to;
 	private Date date = new Date();
 	private boolean departure = true;
@@ -60,6 +61,10 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 
 	public void setFrom(Location from) {
 		this.from = from;
+	}
+
+	public void setVia(Location via) {
+		this.via = via;
 	}
 
 	public void setTo(Location to) {
@@ -104,7 +109,7 @@ public class AsyncQueryTripsTask extends AsyncTask<Void, Void, QueryTripsResult>
 
 		try {
 			if(isNetworkAvailable(context)) {
-				return np.queryTrips(from, null, to, date, departure, mProducts, optimize, walkSpeed, null, null);
+				return np.queryTrips(from, via, to, date, departure, mProducts, optimize, walkSpeed, null, null);
 			}
 			else {
 				error = context.getResources().getString(R.string.error_no_internet);

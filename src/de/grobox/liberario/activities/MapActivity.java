@@ -570,7 +570,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				fromHere.setOnClickListener(new View.OnClickListener() {
 					                            @Override
 					                            public void onClick(View v) {
-						                            TransportrUtils.presetDirections(MapActivity.this, loc, null);
+						                            TransportrUtils.presetDirections(MapActivity.this, loc, null, null);
 					                            }
 				                            }
 				);
@@ -580,7 +580,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				toHere.setOnClickListener(new View.OnClickListener() {
 					                          @Override
 					                          public void onClick(View v) {
-						                          TransportrUtils.presetDirections(MapActivity.this, null, loc);
+						                          TransportrUtils.presetDirections(MapActivity.this, null, null, loc);
 					                          }
 				                          }
 				);

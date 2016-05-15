@@ -67,12 +67,12 @@ public class StationPopupMenu extends BasePopupMenu {
 						return true;
 					// From Here
 					case R.id.action_from_here:
-						TransportrUtils.presetDirections(context, station, null);
+						TransportrUtils.presetDirections(context, station, null, null);
 
 						return true;
 					// To Here
 					case R.id.action_to_here:
-						TransportrUtils.presetDirections(context, null, station);
+						TransportrUtils.presetDirections(context, null, null, station);
 
 						return true;
 					// Show Departures

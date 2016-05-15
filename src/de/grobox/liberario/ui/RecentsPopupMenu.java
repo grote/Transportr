@@ -50,12 +50,12 @@ public class RecentsPopupMenu extends BasePopupMenu {
 				switch(item.getItemId()) {
 					// Swap Locations
 					case R.id.action_swap_locations:
-						TransportrUtils.findDirections(context, trip.getTo(), trip.getFrom());
+						TransportrUtils.findDirections(context, trip.getTo(), trip.getVia(), trip.getFrom());
 
 						return true;
 					// Preset Locations
 					case R.id.action_set_locations:
-						TransportrUtils.presetDirections(context, trip.getFrom(), trip.getTo());
+						TransportrUtils.presetDirections(context, trip.getFrom(), trip.getVia(), trip.getTo());
 
 						return true;
 					case R.id.action_mark_favourite:

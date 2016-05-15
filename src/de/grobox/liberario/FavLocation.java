@@ -26,19 +26,25 @@ import de.schildbach.pte.dto.Location;
 
 public class FavLocation extends WrapLocation implements Serializable, Comparable<FavLocation> {
 	private static final long serialVersionUID = 3542146506031067902L;
-	public enum LOC_TYPE { FROM, TO }
+	public enum LOC_TYPE { FROM, VIA, TO }
 
 	private int from_count;
+	private int via_count;
 	private int to_count;
 
-	public FavLocation(Location loc, int from, int to) {
+	public FavLocation(Location loc, int from, int via, int to) {
 		super(loc);
 		from_count = from;
+		via_count = via;
 		to_count = to;
 	}
 
 	public int getFromCount() {
 		return from_count;
+	}
+
+	public int getViaCount() {
+		return via_count;
 	}
 
 	public int getToCount() {
@@ -73,6 +79,12 @@ public class FavLocation extends WrapLocation implements Serializable, Comparabl
 	public static Comparator<FavLocation> FromComparator = new Comparator<FavLocation>() {
 		public int compare(FavLocation loc1, FavLocation loc2) {
 			return loc2.getFromCount() - loc1.getFromCount();
+		}
+	};
+
+	public static Comparator<FavLocation> ViaComparator = new Comparator<FavLocation>() {
+		public int compare(FavLocation loc1, FavLocation loc2) {
+			return loc2.getViaCount() - loc1.getViaCount();
 		}
 	};
 

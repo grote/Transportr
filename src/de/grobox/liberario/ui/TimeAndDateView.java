@@ -59,7 +59,7 @@ public class TimeAndDateView extends LinearLayout {
 		ui = new TimeAndDateViewHolder(this);
 
 		// Initialize current Time and Date, display it in UI
-		reset();
+		if(!isInEditMode()) reset();
 
 		// Time
 		ui.time.setOnClickListener(new View.OnClickListener() {

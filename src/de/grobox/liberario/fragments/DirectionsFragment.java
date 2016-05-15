@@ -117,6 +117,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		};
 		ui.from.setLocationGpsListener(listener);
 
+		ui.via.setType(FavLocation.LOC_TYPE.VIA);
 		ui.to.setType(FavLocation.LOC_TYPE.TO);
 
 		// Set Type to Departure=True
@@ -174,8 +175,6 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 
 		ui.fav_trips_separator_star.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()));
 		ui.fav_trips_separator_line.setBackgroundColor(TransportrUtils.getButtonIconColor(getActivity()));
-		ui.fav_trips_separator_star.setAlpha(0.5f);
-		ui.fav_trips_separator_line.setAlpha(0.5f);
 
 		mFavAdapter = new FavouritesAdapter(getContext());
 		ui.favourites.setAdapter(mFavAdapter);
@@ -348,6 +347,11 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 			return;
 		}
 
+		// check and set via location
+		if(checkLocation(ui.via)) {
+			query_trips.setVia(ui.via.getLocation());
+		}
+
 		// check and set from location
 		if(ui.from.isSearching()) {
 			if(ui.from.getLocation() != null) {
@@ -378,7 +382,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 
 		// remember trip
-		RecentsDB.updateRecentTrip(getActivity(), new RecentTrip(ui.from.getLocation(), ui.to.getLocation()));
+		RecentsDB.updateRecentTrip(getActivity(), new RecentTrip(ui.from.getLocation(), ui.via.getLocation(), ui.to.getLocation()));
 
 		// set date
 		query_trips.setDate(ui.date.getDate());
@@ -401,12 +405,13 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 			final String action = intent.getAction();
 			if(action != null && action.equals(TAG)) {
 				Location from = (Location) intent.getSerializableExtra("from");
+				Location via = (Location) intent.getSerializableExtra("via");
 				Location to = (Location) intent.getSerializableExtra("to");
 				Date date = (Date) intent.getSerializableExtra("date");
 				boolean search = intent.getBooleanExtra("search", false);
 
-				if(search) searchFromTo(from, to, date);
-				else presetFromTo(from, to, date);
+				if(search) searchFromTo(from, via, to, date);
+				else presetFromTo(from, via, to, date);
 			}
 
 			// remove the intent (and clear its action) since it was already processed
@@ -416,9 +421,17 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 	}
 
-	public void presetFromTo(Location from, Location to, Date date) {
+	public void presetFromTo(Location from, Location via, Location to, Date date) {
 		if(ui.from != null && from != null) {
 			ui.from.setLocation(from, TransportrUtils.getDrawableForLocation(getContext(), from));
+		}
+
+		if(ui.via != null) {
+			ui.via.setLocation(via, TransportrUtils.getDrawableForLocation(getContext(), via));
+			if(via != null && ui.productsScrollView.getVisibility() == View.GONE) {
+				// if there's a via location, make sure to show it in the UI
+				showMore(true);
+			}
 		}
 
 		if(ui.to != null && to != null) {
@@ -430,8 +443,8 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 	}
 
-	public void searchFromTo(Location from, Location to, Date date) {
-		presetFromTo(from, to, date);
+	public void searchFromTo(Location from, Location via, Location to, Date date) {
+		presetFromTo(from, via, to, date);
 		search();
 	}
 
@@ -475,6 +488,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 
 	private void showMore(boolean animate) {
 		showingMore = true;
+		ui.via.setVisibility(View.VISIBLE);
 		ui.productsScrollView.setVisibility(View.VISIBLE);
 		ui.fav_trips_separator.setVisibility(View.VISIBLE);
 
@@ -508,6 +522,8 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 
 	private void showLess(boolean animate) {
 		showingMore = false;
+		ui.via.setLocation(null);
+		ui.via.setVisibility(View.GONE);
 		ui.productsScrollView.setVisibility(View.GONE);
 
 		if(mFavAdapter.getItemCount() == 0) {
@@ -588,6 +604,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 
 	private void fillIntent(Intent intent) {
 		intent.putExtra("de.schildbach.pte.dto.Trip.from", ui.from.getLocation());
+		intent.putExtra("de.schildbach.pte.dto.Trip.via", ui.via.getLocation());
 		intent.putExtra("de.schildbach.pte.dto.Trip.to", ui.to.getLocation());
 		intent.putExtra("de.schildbach.pte.dto.Trip.date", ui.date.getDate());
 		intent.putExtra("de.schildbach.pte.dto.Trip.departure", (boolean) ui.type.getTag());
@@ -596,6 +613,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 
 	class DirectionsViewHolder {
 		LocationGpsView from;
+		LocationView via;
 		LocationView to;
 		Button type;
 		TimeAndDateView date;
@@ -619,6 +637,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 
 		DirectionsViewHolder(View mView) {
 			from = (LocationGpsView) mView.findViewById(R.id.fromLocation);
+			via = (LocationView) mView.findViewById(R.id.viaLocation);
 			to = (LocationView) mView.findViewById(R.id.toLocation);
 
 			type = (Button) mView.findViewById(R.id.dateType);

@@ -26,4 +26,9 @@
         <item name="android:windowExitAnimation">@anim/scale_down</item>
     </style>
 
+    <style name="Card" parent="CardView">
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardBackgroundColor">?attr/cardBackgroundColor</item>
+    </style>
+
 </resources>

@@ -38,6 +38,19 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/viaView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/via"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/viaSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
                 android:id="@+id/toView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,6 +65,7 @@
 
             <Button
                 android:id="@+id/button"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"

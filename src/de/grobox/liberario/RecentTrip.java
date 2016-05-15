@@ -17,6 +17,7 @@
 
 package de.grobox.liberario;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
@@ -38,16 +39,18 @@ public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 	private Date last_used;
 	private boolean is_favourite;
 
-	public RecentTrip(Location from, Location to) {
-		this(from, to, false);
+	public RecentTrip(Location from, Location via, Location to) {
+		this(from, via, to, false);
 	}
 
-	public RecentTrip(Location from, Location to, boolean is_favourite) {
-		this(from, to, 1, null, is_favourite);
+	public RecentTrip(Location from, Location via, Location to, boolean is_favourite) {
+		this(from, via, to, 1, null, is_favourite);
 	}
 
-	public RecentTrip(Location from, Location to, int count, String last_used, boolean is_favourite) {
+	@SuppressLint("SimpleDateFormat")
+	public RecentTrip(Location from, Location via, Location to, int count, String last_used, boolean is_favourite) {
 		this.from = from;
+		this.via = via;
 		this.to = to;
 		this.count = count;
 
@@ -73,12 +76,12 @@ public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 		return from;
 	}
 
-	public Location getTo() {
-		return to;
-	}
-
 	public Location getVia() {
 		return via;
+	}
+
+	public Location getTo() {
+		return to;
 	}
 
 	public int getCount() {
@@ -92,8 +95,11 @@ public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 		}
 
 		if(o instanceof RecentTrip) {
-			if(getFrom().equals(((RecentTrip) o).getFrom()) &&
-					getTo().equals(((RecentTrip) o).getTo())) {
+			RecentTrip t = (RecentTrip) o;
+			if(getFrom().equals(t.getFrom()) &&
+					getTo().equals(t.getTo()) &&
+					((getVia() == null && t.getVia() == null) || ( getVia() != null && getVia().equals(t.getVia())))
+			) {
 				return true;
 			}
 		}
@@ -107,7 +113,9 @@ public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 
 	@Override
 	public String toString() {
-		return TransportrUtils.getLocName(getFrom()) + " → " + TransportrUtils.getLocName(getTo()) + " (" + Integer.toString(getCount()) + ")";
+		String via = TransportrUtils.getLocName(getTo());
+		String viaStr = via.equals("") ? via : " → " + via;
+		return TransportrUtils.getLocName(getFrom()) + viaStr + " → " + TransportrUtils.getLocName(getTo()) + " (" + Integer.toString(getCount()) + ")";
 	}
 
 }

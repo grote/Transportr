@@ -59,6 +59,7 @@ public class TripsActivity extends TransportrActivity {
 	private TripAdapter mAdapter;
 	private SwipyRefreshLayout swipeRefresh;
 	private Location from;
+	private Location via;
 	private Location to;
 	private ArrayList<Product> products;
 	private boolean isFav, isFavable;
@@ -83,6 +84,7 @@ public class TripsActivity extends TransportrActivity {
 
 		// retrieve trip data from intent that is not stored properly in trip object
 		from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.from");
+		via = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.via");
 		to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.to");
 		products = (ArrayList<Product>) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.products");
 
@@ -123,6 +125,7 @@ public class TripsActivity extends TransportrActivity {
 			     Intent intent = new Intent(TripsActivity.this, TripDetailActivity.class);
 			     intent.putExtra("de.schildbach.pte.dto.Trip", trip);
 			     intent.putExtra("de.schildbach.pte.dto.Trip.from", from);
+				 intent.putExtra("de.schildbach.pte.dto.Trip.via", via);
 			     intent.putExtra("de.schildbach.pte.dto.Trip.to", to);
 				 intent.putExtra("de.schildbach.pte.dto.Trip.products", products);
 
@@ -147,7 +150,7 @@ public class TripsActivity extends TransportrActivity {
 		mRecyclerView.setAdapter(mAdapter);
 
 		if(to.type != LocationType.COORD && from.type != LocationType.COORD) {
-			isFav = RecentsDB.isFavedRecentTrip(this, new RecentTrip(from, to));
+			isFav = RecentsDB.isFavedRecentTrip(this, new RecentTrip(from, via, to));
 			isFavable = true;
 		} else {
 			isFav = false;
@@ -199,7 +202,7 @@ public class TripsActivity extends TransportrActivity {
 			return true;
 		}
 		else if(item.getItemId() == R.id.action_fav_trip) {
-			RecentsDB.toggleFavouriteTrip(this, new RecentTrip(from, to, isFav));
+			RecentsDB.toggleFavouriteTrip(this, new RecentTrip(from, via, to, isFav));
 			isFav = !isFav;
 			TransportrUtils.setFavState(this, item, isFav, true);
 

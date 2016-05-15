@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.data;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -61,7 +62,7 @@ public class RecentsDB {
 
 		while(c.moveToNext()) {
 			Location loc = getLocation(c);
-			FavLocation fav_loc = new FavLocation(loc, c.getInt(c.getColumnIndex("from_count")), c.getInt(c.getColumnIndex("to_count")));
+			FavLocation fav_loc = new FavLocation(loc, c.getInt(c.getColumnIndex("from_count")), c.getInt(c.getColumnIndex("via_count")), c.getInt(c.getColumnIndex("to_count")));
 			fav_list.add(fav_loc);
 		}
 
@@ -77,6 +78,9 @@ public class RecentsDB {
 
 		if(sort == FavLocation.LOC_TYPE.FROM) {
 			Collections.sort(fav_list, FavLocation.FromComparator);
+		}
+		else if(sort == FavLocation.LOC_TYPE.VIA) {
+			Collections.sort(fav_list, FavLocation.ViaComparator);
 		}
 		else if(sort == FavLocation.LOC_TYPE.TO) {
 			Collections.sort(fav_list, FavLocation.ToComparator);
@@ -126,7 +130,7 @@ public class RecentsDB {
 		// get location that needs to be updated from database
 		Cursor c = db.query(
 				DBHelper.TABLE_FAV_LOCS,    // The table to query
-				new String[] {"_id", "from_count", "to_count"},
+				new String[] {"_id", "from_count", "via_count", "to_count"},
 				whereClause,
 				whereArgs,
 				null,   // don't group the rows
@@ -139,6 +143,9 @@ public class RecentsDB {
 			// increase counter by one for existing location
 			if(loc_type == FavLocation.LOC_TYPE.FROM) {
 				values.put("from_count", c.getInt(c.getColumnIndex("from_count")) + 1);
+			}
+			else if(loc_type == FavLocation.LOC_TYPE.VIA) {
+				values.put("via_count", c.getInt(c.getColumnIndex("via_count")) + 1);
 			}
 			else if(loc_type == FavLocation.LOC_TYPE.TO) {
 				values.put("to_count", c.getInt(c.getColumnIndex("to_count")) + 1);
@@ -158,10 +165,17 @@ public class RecentsDB {
 			// set counter to one
 			if(loc_type == FavLocation.LOC_TYPE.FROM) {
 				values.put("from_count", 1);
+				values.put("via_count", 0);
+				values.put("to_count", 0);
+			}
+			else if(loc_type == FavLocation.LOC_TYPE.VIA) {
+				values.put("from_count", 0);
+				values.put("via_count", 1);
 				values.put("to_count", 0);
 			}
 			else if(loc_type == FavLocation.LOC_TYPE.TO) {
 				values.put("from_count", 0);
+				values.put("via_count", 0);
 				values.put("to_count", 1);
 			}
 
@@ -187,10 +201,12 @@ public class RecentsDB {
 		final String RECENT_TRIPS =
 			"SELECT r.count, r.last_used, r.is_favourite, " +
 			"l1.type AS from_type, l1.id AS from_id, l1.lat AS from_lat, l1.lon AS from_lon, l1.place AS from_place, l1.name AS from_name, " +
-			"l2.type AS to_type,   l2.id AS to_id,   l2.lat AS to_lat,   l2.lon AS to_lon,   l2.place AS to_place,   l2.name AS to_name " +
+			"l2.type AS to_type,   l2.id AS to_id,   l2.lat AS to_lat,   l2.lon AS to_lon,   l2.place AS to_place,   l2.name AS to_name, " +
+			"l3.type AS via_type,  l3.id AS via_id,  l3.lat AS via_lat,  l3.lon AS via_lon,  l3.place AS via_place,  l3.name AS via_name " +
 			"FROM " + DBHelper.TABLE_RECENT_TRIPS + " r " +
 			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l1 ON r.from_loc = l1._id " +
 			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l2 ON r.to_loc = l2._id " +
+			"LEFT  JOIN " + DBHelper.TABLE_FAV_LOCS + " l3 ON r.via_loc = l3._id " +
 			"WHERE r.network = ? " +
 			"ORDER BY " + (sort_count ? "r.count" : "r.last_used") + " DESC";
 
@@ -198,8 +214,9 @@ public class RecentsDB {
 
 		while(c.moveToNext()) {
 			Location from = getLocation(c, "from_");
+			Location via = getLocation(c, "via_");
 			Location to = getLocation(c, "to_");
-			RecentTrip trip = new RecentTrip(from, to, c.getInt(c.getColumnIndex("count")),
+			RecentTrip trip = new RecentTrip(from, via, to, c.getInt(c.getColumnIndex("count")),
 					c.getString(c.getColumnIndex("last_used")), c.getInt(c.getColumnIndex("is_favourite")) > 0);
 			recent_list.add(trip);
 		}
@@ -222,10 +239,12 @@ public class RecentsDB {
 		final String FAVOURITE_TRIPS =
 			"SELECT r.count, r.last_used, r.is_favourite, " +
 			"l1.type AS from_type, l1.id AS from_id, l1.lat AS from_lat, l1.lon AS from_lon, l1.place AS from_place, l1.name AS from_name, " +
-			"l2.type AS to_type,   l2.id AS to_id,   l2.lat AS to_lat,   l2.lon AS to_lon,   l2.place AS to_place,   l2.name AS to_name " +
+			"l2.type AS to_type,   l2.id AS to_id,   l2.lat AS to_lat,   l2.lon AS to_lon,   l2.place AS to_place,   l2.name AS to_name, " +
+			"l3.type AS via_type,  l3.id AS via_id,  l3.lat AS via_lat,  l3.lon AS via_lon,  l3.place AS via_place,  l3.name AS via_name " +
 			"FROM " + DBHelper.TABLE_RECENT_TRIPS + " r " +
 			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l1 ON r.from_loc = l1._id " +
 			"INNER JOIN " + DBHelper.TABLE_FAV_LOCS + " l2 ON r.to_loc = l2._id " +
+			"LEFT  JOIN " + DBHelper.TABLE_FAV_LOCS + " l3 ON r.via_loc = l3._id " +
 			"WHERE r.network = ? AND r.is_favourite > 0 " +
 			"ORDER BY r.count DESC";
 
@@ -233,8 +252,9 @@ public class RecentsDB {
 
 		while(c.moveToNext()) {
 			Location from = getLocation(c, "from_");
+			Location via = getLocation(c, "via_");
 			Location to = getLocation(c, "to_");
-			RecentTrip trip = new RecentTrip(from, to, c.getInt(c.getColumnIndex("count")),
+			RecentTrip trip = new RecentTrip(from, via, to, c.getInt(c.getColumnIndex("count")),
 					c.getString(c.getColumnIndex("last_used")), c.getInt(c.getColumnIndex("is_favourite")) > 0);
 			favourite_list.add(trip);
 		}
@@ -257,6 +277,7 @@ public class RecentsDB {
 		}
 
 		if( (recent.getFrom().id != null && recent.getFrom().id.equals("IS_AMBIGUOUS")) ||
+				(recent.getVia() != null && recent.getVia().id != null && recent.getVia().id.equals("IS_AMBIGUOUS")) ||
 				(recent.getTo().id != null && recent.getTo().id.equals("IS_AMBIGUOUS")) ) {
 			// don't store trips with ambiguous locations
 			return;
@@ -266,6 +287,7 @@ public class RecentsDB {
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
 		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
+		int via_id = getLocationId(db, recent.getVia(), Preferences.getNetwork(context));
 		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) {
@@ -273,12 +295,22 @@ public class RecentsDB {
 			return;
 		}
 
+		String from = String.valueOf(from_id);
+		String via = String.valueOf(via_id);
+		String to = String.valueOf(to_id);
+
 		// try to find a recent trip with these locations
 		Cursor c = db.query(
 				DBHelper.TABLE_RECENT_TRIPS,    // The table to query
 				new String[] { "_id", "count" },
-				"network = ? AND from_loc = ? AND to_loc = ?",
-				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) },
+				(via_id < 0 ?
+						"network = ? AND from_loc = ? AND via_loc IS NULL AND to_loc = ?" :
+						"network = ? AND from_loc = ? AND via_loc = ? AND to_loc = ?"
+				),
+				(via_id < 0 ?
+						new String[] { Preferences.getNetwork(context), from, to } :
+						new String[] { Preferences.getNetwork(context), from, via, to }
+				),
 				null,   // don't group the rows
 				null,   // don't filter by row groups
 				null    // The sort order
@@ -291,6 +323,7 @@ public class RecentsDB {
 			values.put("count", c.getInt(c.getColumnIndex("count")) + 1);
 
 			// update last_used time
+			@SuppressLint("SimpleDateFormat")
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			values.put("last_used", df.format(Calendar.getInstance().getTime()));
 
@@ -300,11 +333,14 @@ public class RecentsDB {
 			// add new recent trip trip database
 			values.put("network", Preferences.getNetwork(context));
 			values.put("from_loc", from_id);
+			if(via_id < 0) values.putNull("via_loc");
+			else values.put("via_loc", via_id);
 			values.put("to_loc", to_id);
 			values.put("count", 1);
 			values.put("is_favourite", 0);
 
 			// insert current time as last_used
+			@SuppressLint("SimpleDateFormat")
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			values.put("last_used", df.format(Calendar.getInstance().getTime()));
 
@@ -325,6 +361,7 @@ public class RecentsDB {
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
 		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
+		int via_id = getLocationId(db, recent.getVia(), Preferences.getNetwork(context));
 		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) {
@@ -332,20 +369,29 @@ public class RecentsDB {
 			return;
 		}
 
+		String from = String.valueOf(from_id);
+		String via = String.valueOf(via_id);
+		String to = String.valueOf(to_id);
+
 		// try to find a recent trip with these locations
 		Cursor c = db.query(
 				DBHelper.TABLE_RECENT_TRIPS,    // The table to query
 				new String[] { "_id", "count" },
-				"network = ? AND from_loc = ? AND to_loc = ?",
-				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) },
+				(via_id < 0 ?
+						"network = ? AND from_loc = ? AND via_loc IS NULL AND to_loc = ?" :
+						"network = ? AND from_loc = ? AND via_loc = ? AND to_loc = ?"
+				),
+				(via_id < 0 ?
+						new String[] { Preferences.getNetwork(context), from, to } :
+						new String[] { Preferences.getNetwork(context), from, via, to }
+				),
 				null,   // don't group the rows
 				null,   // don't filter by row groups
 				null    // The sort order
 		);
 
-		ContentValues values = new ContentValues();
-
 		if(c.moveToFirst()) {
+			ContentValues values = new ContentValues();
 			values.put("is_favourite", recent.isFavourite() ? 0 : 1); // Toggle
 			db.update(DBHelper.TABLE_RECENT_TRIPS, values, "_id = ?", new String[]{c.getString(c.getColumnIndex("_id")) });
 		}
@@ -359,16 +405,30 @@ public class RecentsDB {
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
 		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
+		int via_id = getLocationId(db, recent.getVia(), Preferences.getNetwork(context));
 		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
 
-		if(from_id < 0 || to_id < 0) return false;
+		if(from_id < 0 || to_id < 0) {
+			db.close();
+			return false;
+		}
+
+		String from = String.valueOf(from_id);
+		String via = String.valueOf(via_id);
+		String to = String.valueOf(to_id);
 
 		// try to find a recent trip with these locations
 		Cursor c = db.query(
 				DBHelper.TABLE_RECENT_TRIPS,    // The table to query
 				new String[] { "_id", "is_favourite" },
-				"network = ? AND from_loc = ? AND to_loc = ?",
-				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) },
+				(via_id < 0 ?
+						"network = ? AND from_loc = ? AND via_loc IS NULL AND to_loc = ?" :
+						"network = ? AND from_loc = ? AND via_loc = ? AND to_loc = ?"
+				),
+				(via_id < 0 ?
+						new String[] { Preferences.getNetwork(context), from, to } :
+						new String[] { Preferences.getNetwork(context), from, via, to }
+				),
 				null,   // don't group the rows
 				null,   // don't filter by row groups
 				null    // The sort order
@@ -393,6 +453,7 @@ public class RecentsDB {
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
 		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
+		int via_id = getLocationId(db, recent.getVia(), Preferences.getNetwork(context));
 		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) {
@@ -400,8 +461,19 @@ public class RecentsDB {
 			return;
 		}
 
-		db.delete(DBHelper.TABLE_RECENT_TRIPS, "network = ? AND from_loc = ? AND to_loc =? ",
-				new String[] { Preferences.getNetwork(context), String.valueOf(from_id), String.valueOf(to_id) });
+		String from = String.valueOf(from_id);
+		String via = String.valueOf(via_id);
+		String to = String.valueOf(to_id);
+
+		db.delete(DBHelper.TABLE_RECENT_TRIPS,
+				(via_id < 0 ?
+						"network = ? AND from_loc = ? AND via_loc IS NULL AND to_loc = ?" :
+						"network = ? AND from_loc = ? AND via_loc = ? AND to_loc = ?"
+				),
+				(via_id < 0 ?
+						new String[] { Preferences.getNetwork(context), from, to } :
+						new String[] { Preferences.getNetwork(context), from, via, to }
+				));
 
 		db.close();
 	}
@@ -480,6 +552,8 @@ public class RecentsDB {
 	}
 
 	private static Location getLocation(Cursor c, String pre) {
+		if(c.isNull(c.getColumnIndex("pre_type".replace("pre_", pre)))) return null;
+
 		return new Location(
 			LocationType.valueOf(c.getString(c.getColumnIndex("pre_type".replace("pre_", pre)))),
 			c.getString(c.getColumnIndex("pre_id".replace("pre_", pre))),
@@ -494,7 +568,9 @@ public class RecentsDB {
 		String whereClause;
 		String[] whereArgs;
 
-		if(loc.hasId()) {
+		if(loc == null) {
+			return -1;
+		} else if(loc.hasId()) {
 			whereClause = "network = ? AND id = ?";
 			whereArgs = new String[] { network, loc.id };
 		} else {

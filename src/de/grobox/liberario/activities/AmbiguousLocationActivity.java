@@ -46,8 +46,7 @@ import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
 public class AmbiguousLocationActivity extends TransportrActivity implements AsyncQueryTripsTask.TripHandler {
-	private Location from;
-	private Location to;
+	private Location from, via, to;
 	private Date date;
 	private Boolean departure;
 	private ArrayList<Product> products;
@@ -69,6 +68,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 		Intent intent = getIntent();
 		QueryTripsResult trips = (QueryTripsResult) intent.getSerializableExtra("de.schildbach.pte.dto.QueryTripsResult");
 		from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.from");
+		via = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.via");
 		to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.to");
 		date = (Date) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.date");
 		departure = intent.getBooleanExtra("de.schildbach.pte.dto.Trip.departure", true);
@@ -76,10 +76,12 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 
 		final ViewHolder ui = new ViewHolder(findViewById(R.id.layout));
 
+		// From
 		if(trips.ambiguousFrom != null) {
 			LocationAdapter loca = new LocationAdapter(this, trips.ambiguousFrom);
 			loca.setSort(FavLocation.LOC_TYPE.FROM);
 			ui.fromSpinner.setAdapter(loca);
+			if(trips.ambiguousFrom.size() == 1) ui.fromSpinner.setEnabled(false);
 		}
 		else {
 			List<Location> list = new ArrayList<>();
@@ -90,10 +92,30 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 			ui.fromSpinner.setEnabled(false);
 		}
 
+		// Via
+		if(via == null) {
+			ui.viaText.setVisibility(View.GONE);
+			ui.viaSpinner.setVisibility(View.GONE);
+		} else if (trips.ambiguousVia != null) {
+			LocationAdapter loca = new LocationAdapter(this, trips.ambiguousVia);
+			loca.setSort(FavLocation.LOC_TYPE.VIA);
+			ui.viaSpinner.setAdapter(loca);
+			if(trips.ambiguousVia.size() == 1) ui.viaSpinner.setEnabled(false);
+		} else {
+			List<Location> list = new ArrayList<>();
+			list.add(via);
+			LocationAdapter loca = new LocationAdapter(this, list);
+			loca.setSort(FavLocation.LOC_TYPE.VIA);
+			ui.viaSpinner.setAdapter(loca);
+			ui.viaSpinner.setEnabled(false);
+		}
+
+		// To
 		if(trips.ambiguousTo != null) {
 			LocationAdapter loca = new LocationAdapter(this, trips.ambiguousTo);
 			loca.setSort(FavLocation.LOC_TYPE.TO);
 			ui.toSpinner.setAdapter(loca);
+			if(trips.ambiguousTo.size() == 1) ui.toSpinner.setEnabled(false);
 		}
 		else {
 			List<Location> list = new ArrayList<>();
@@ -104,19 +126,23 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 			ui.toSpinner.setEnabled(false);
 		}
 
+		// Search Button
 		ui.button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				from = ((WrapLocation) ui.fromSpinner.getSelectedItem()).getLocation();
+				if(ui.viaSpinner.getSelectedItem() != null) via = ((WrapLocation) ui.viaSpinner.getSelectedItem()).getLocation();
 				to = ((WrapLocation) ui.toSpinner.getSelectedItem()).getLocation();
 
 				// remember location and trip
 				RecentsDB.updateFavLocation(getApplicationContext(), from, FavLocation.LOC_TYPE.FROM);
+				if(via != null) RecentsDB.updateFavLocation(getApplicationContext(), via, FavLocation.LOC_TYPE.VIA);
 				RecentsDB.updateFavLocation(getApplicationContext(), to, FavLocation.LOC_TYPE.TO);
-				RecentsDB.updateRecentTrip(getApplicationContext(), new RecentTrip(from, to));
+				RecentsDB.updateRecentTrip(getApplicationContext(), new RecentTrip(from, via, to));
 
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext(), AmbiguousLocationActivity.this);
 
 				query_trips.setFrom(from);
+				query_trips.setVia(via);
 				query_trips.setTo(to);
 				query_trips.setDate(date);
 				query_trips.setDeparture(departure);
@@ -168,6 +194,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 
 	private void fillIntent(Intent intent) {
 		intent.putExtra("de.schildbach.pte.dto.Trip.from", from);
+		intent.putExtra("de.schildbach.pte.dto.Trip.via", via);
 		intent.putExtra("de.schildbach.pte.dto.Trip.to", to);
 		intent.putExtra("de.schildbach.pte.dto.Trip.date", date);
 		intent.putExtra("de.schildbach.pte.dto.Trip.departure", departure);
@@ -176,11 +203,15 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 
 	private static class ViewHolder {
 		Spinner fromSpinner;
+		View viaText;
+		Spinner viaSpinner;
 		Spinner toSpinner;
 		Button button;
 
 		ViewHolder(View v) {
 			fromSpinner = (Spinner) v.findViewById(R.id.fromSpinner);
+			viaText = v.findViewById(R.id.viaView);
+			viaSpinner = (Spinner) v.findViewById(R.id.viaSpinner);
 			toSpinner = (Spinner) v.findViewById(R.id.toSpinner);
 			button = (Button) v.findViewById(R.id.button);
 		}

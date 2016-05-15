@@ -78,12 +78,6 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 		this.context = context;
 	}
 
-	public FavouritesAdapter(Context context, List<RecentTrip> favourites) {
-		this(context);
-
-		addAll(favourites);
-	}
-
 	@Override
 	public FavouriteHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 		View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.favourite_trip_list_item, viewGroup, false);
@@ -98,10 +92,17 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 		ui.favFrom.setText(TransportrUtils.getLocName(fav.getFrom()));
 		ui.favTo.setText(TransportrUtils.getLocName(fav.getTo()));
 
+		if(fav.getVia() != null) {
+			ui.favVia.setText(TransportrUtils.getLocName(fav.getVia()));
+			ui.favVia.setVisibility(View.VISIBLE);
+		} else {
+			ui.favVia.setVisibility(View.GONE);
+		}
+
 		ui.root.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-			   TransportrUtils.findDirections(context, fav.getFrom(), fav.getTo());
+			   TransportrUtils.findDirections(context, fav.getFrom(), fav.getVia(), fav.getTo());
 			}
 		});
 
@@ -147,6 +148,7 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 
 	public static class FavouriteHolder extends RecyclerView.ViewHolder {
 		public TextView favFrom;
+		public TextView favVia;
 		public TextView favTo;
 		public ImageView moreButton;
 		public View root;
@@ -155,6 +157,7 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 			super(v);
 			root = v;
 			favFrom = (TextView) v.findViewById(R.id.favouriteFromView);
+			favVia = (TextView) v.findViewById(R.id.favouriteViaView);
 			favTo = (TextView) v.findViewById(R.id.favouriteToView);
 			moreButton = (ImageView) v.findViewById(R.id.moreButton);
 		}

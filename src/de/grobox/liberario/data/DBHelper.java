@@ -23,7 +23,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 	public static final String DB_NAME = "liberario.db";
-	private static final int DB_VERSION = 3;
+	private static final int DB_VERSION = 4;
 
 	public static final String TABLE_FAV_LOCS  = "fav_locations";
 	public static final String TABLE_RECENT_TRIPS = "recent_trips";
@@ -45,6 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			NETWORK + ", " +
 			LOCATION + ", " +
 			"from_count INTEGER NOT NULL DEFAULT 0, " +
+			"via_count INTEGER NOT NULL DEFAULT 0" +
 			"to_count INTEGER NOT NULL DEFAULT 0" +
 		" )";
 
@@ -53,6 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			"_id INTEGER PRIMARY KEY, " +
 			NETWORK + ", " +
 			"from_loc INTEGER NOT NULL, " +
+			"via_loc INTEGER DEFAULT NULL, " +
 			"to_loc INTEGER NOT NULL, " +
 			"count INTEGER NOT NULL DEFAULT 0, " +
 			"last_used DATETIME, " +
@@ -88,6 +90,10 @@ public class DBHelper extends SQLiteOpenHelper {
 				case 3:
 					db.execSQL("ALTER TABLE fav_trips RENAME TO "+TABLE_RECENT_TRIPS);
 					db.execSQL("ALTER TABLE " + TABLE_RECENT_TRIPS + " ADD COLUMN is_favourite INTEGER");
+					break;
+				case 4:
+					db.execSQL("ALTER TABLE " + TABLE_FAV_LOCS + " ADD COLUMN via_count INTEGER NOT NULL DEFAULT 0");
+					db.execSQL("ALTER TABLE " + TABLE_RECENT_TRIPS + " ADD COLUMN via_loc INTEGER DEFAULT NULL");
 					break;
 			}
 			upgradeTo++;
