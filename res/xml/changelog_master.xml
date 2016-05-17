@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.1.1-rc1" versioncode="31">
+        <change>Support via/intermediate locations for direction search</change>
+        <change>Show little graphics for favourite and recent trips to better highlight new via locations</change>
+        <change>Do not show keyboard and location list on startup</change>
+        <change>Fix bug where the navigation drawer selection did not update when pressing back button</change>
+    </release>
+
     <release version="1.1.0" versioncode="30">
         <change>Added Quebec, Canada (Thanks Chimo!)</change>
         <change>Many changes under the hood that improve performance, memory usage and new multi-window mode</change>
