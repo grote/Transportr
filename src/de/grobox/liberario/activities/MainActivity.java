@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -51,6 +52,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import de.cketti.library.changelog.ChangeLog;
+import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
@@ -58,20 +60,17 @@ import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
-import de.grobox.liberario.fragments.HomePickerDialogFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
-import de.grobox.liberario.fragments.SettingsFragment;
 import de.grobox.liberario.fragments.RecentTripsFragment;
+import de.grobox.liberario.fragments.SettingsFragment;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.dto.Location;
 
 public class MainActivity extends TransportrActivity implements FragmentManager.OnBackStackChangedListener {
 
 	public static final String TAG = MainActivity.class.toString();
 
 	static final public int CHANGED_NETWORK_PROVIDER = 1;
-	static final public int CHANGED_HOME = 2;
 
 	static final public int PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS = 0;
 	static final public int PR_ACCESS_FINE_LOCATION_DIRECTIONS = 1;
@@ -85,9 +84,11 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		enableStrictMode();
 		setContentView(R.layout.activity_main);
 
-		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+		PreferenceManager.setDefaultValues(MainActivity.this, R.xml.preferences, false);
+
 		final TransportNetwork network = Preferences.getTransportNetwork(this);
 
 		// Handle Toolbar
@@ -507,6 +508,19 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 
 	private Context getContext() {
 		return this;
+	}
+
+	private void enableStrictMode() {
+		if(!BuildConfig.DEBUG) return;
+
+		StrictMode.ThreadPolicy.Builder threadPolicy = new StrictMode.ThreadPolicy.Builder();
+		threadPolicy.detectAll();
+		threadPolicy.penaltyLog();
+		StrictMode.setThreadPolicy(threadPolicy.build());
+		StrictMode.VmPolicy.Builder vmPolicy = new StrictMode.VmPolicy.Builder();
+		vmPolicy.detectAll();
+		vmPolicy.penaltyLog();
+		StrictMode.setVmPolicy(vmPolicy.build());
 	}
 
 	public static class TransportrChangeLog extends ChangeLog {

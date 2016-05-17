@@ -64,4 +64,8 @@ public class TransportrActivity extends AppCompatActivity {
 		}
 	}
 
+	public void runOnThread(final Runnable task) {
+		new Thread(task).start();
+	}
+
 }
