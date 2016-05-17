@@ -342,6 +342,9 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	public void onBackStackChanged() {
 		String tag = getCurrentFragmentTag();
 
+		// select proper drawer item (even when switch was initiated by intent)
+		drawer.setSelection(drawer.getDrawerItem(tag), false);
+
 		// set fragment name as toolbar title
 		toolbar.setTitle(getFragmentName(tag));
 
@@ -357,9 +360,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	private void switchFragment(String tag) {
 		// get the fragment to switch to
 		Fragment fragment = getFragment(tag);
-
-		// select proper drawer item (even when switch was initiated by intent)
-		drawer.setSelection(drawer.getDrawerItem(tag), false);
 
 		// switch the fragment
 		@SuppressLint("CommitTransaction")
