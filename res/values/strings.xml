@@ -99,6 +99,8 @@ there are any).</string>
     <string name="pref_transport_network">Transport Network</string>
     <string name="pref_hide_departure_time">Hide departure time</string>
     <string name="pref_hide_departure_time_summary">Only show arrival time when displaying intermediate stops</string>
+    <string name="pref_exit_app_on_back_press">Close app with back button</string>
+    <string name="pref_exit_app_on_back_press_summary">Always close the app when pressing back button in start screen</string>
     <string name="pref_home">Home Location</string>
     <string name="pref_display">Display</string>
     <string name="pref_theme_title">Theme</string>

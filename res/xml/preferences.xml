@@ -67,6 +67,13 @@
             />
 
         <CheckBoxPreference
+            android:key="pref_key_exit_app_on_back_press"
+            android:title="@string/pref_exit_app_on_back_press"
+            android:summary="@string/pref_exit_app_on_back_press_summary"
+            android:defaultValue="false"
+            />
+
+        <CheckBoxPreference
             android:key="pref_key_hide_departure_time"
             android:title="@string/pref_hide_departure_time"
             android:summary="@string/pref_hide_departure_time_summary"

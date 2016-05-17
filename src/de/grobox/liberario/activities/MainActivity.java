@@ -221,7 +221,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		}
 
 		// check if next is start screen or use default action
-		if(getCurrentFragmentTag().equals(DirectionsFragment.TAG)) {
+		if(getCurrentFragmentTag().equals(DirectionsFragment.TAG) && Preferences.exitOnBack(this)) {
 			// do not go back further if we are at the start screen
 			finish();
 		} else {

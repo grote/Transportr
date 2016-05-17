@@ -11,6 +11,8 @@
     android:focusableInTouchMode="true"
     tools:showIn="@layout/fragment_directions">
 
+    <requestFocus/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -31,7 +31,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.TransportrUtils;
@@ -128,7 +127,9 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		// show platform/position according to user preference and availability
 		if(dep.position != null) {
 			ui.position.setText(dep.position.name);
-			ui.position.setVisibility(Preferences.getPref(ui.position.getContext(), Preferences.SHOW_EXTRA_INFO) ? View.VISIBLE : View.GONE);
+			ui.position.setVisibility(View.VISIBLE);
+		} else {
+			ui.position.setVisibility(View.GONE);
 		}
 
 		// show message if available

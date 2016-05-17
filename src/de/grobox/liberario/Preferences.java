@@ -28,13 +28,13 @@ import de.schildbach.pte.NetworkId;
 public class Preferences {
 
 	public final static String PREFS = "LiberarioPrefs";
-	public final static String SHOW_EXTRA_INFO = "ShowPlatform";
 	public final static String SHOW_ADV_DIRECTIONS = "ShowAdvDirections";
 	public final static String SORT_RECENT_TRIPS_COUNT = "SortRecentTripsCount";
 	public final static String THEME = "pref_key_theme";
 	public final static String LANGUAGE = "pref_key_language";
 	public final static String WALK_SPEED = "pref_key_walk_speed";
 	public final static String OPTIMIZE = "pref_key_optimize";
+	public final static String EXIT_ON_BACK = "pref_key_exit_app_on_back_press";
 
 	public static String getNetwork(Context context, int i) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -83,11 +83,6 @@ public class Preferences {
 		return network_id;
 	}
 
-
-	public static boolean getPref(Context context, String pref) {
-		// prefs are enabled by default (if never used before, for example)
-		return getPref(context, pref, true);
-	}
 
 	public static boolean getPref(Context context, String pref, boolean defValue) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -148,4 +143,11 @@ public class Preferences {
 
 		return settings.getString(OPTIMIZE, context.getString(R.string.pref_optimize_value_default));
 	}
+
+	public static boolean exitOnBack(Context context) {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+
+		return settings.getBoolean(EXIT_ON_BACK, false);
+	}
+
 }
