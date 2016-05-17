@@ -18,7 +18,6 @@
 package de.grobox.liberario.activities;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -45,20 +44,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.osmdroid.DefaultResourceProxyImpl;
 import org.osmdroid.api.IMapController;
-import org.osmdroid.bonuspack.overlays.InfoWindow;
-import org.osmdroid.bonuspack.overlays.MapEventsOverlay;
-import org.osmdroid.bonuspack.overlays.MapEventsReceiver;
-import org.osmdroid.bonuspack.overlays.Marker;
-import org.osmdroid.bonuspack.overlays.Polyline;
+import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.MapEventsOverlay;
+import org.osmdroid.views.overlay.Marker;
+import org.osmdroid.views.overlay.Polyline;
+import org.osmdroid.views.overlay.infowindow.InfoWindow;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
@@ -75,7 +74,6 @@ import de.schildbach.pte.dto.Trip;
 public class MapActivity extends TransportrActivity implements MapEventsReceiver {
 	private MapView map;
 	private Menu menu;
-	private CustomResourceProxy resProxy;
 	private List<GeoPoint> points = new ArrayList<>();
 	private GpsMyLocationProvider locationProvider;
 	private MyLocationNewOverlay myLocationOverlay;
@@ -221,8 +219,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	}
 
 	private void setupMap() {
-		resProxy = new CustomResourceProxy(this);
-		map = new MapView(this, resProxy);
+		map = new MapView(this);
 
 		map.setClickable(true);
 		map.setMultiTouchControls(true);
@@ -467,10 +464,17 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 
 		// create my location overlay that shows the current position and updates automatically
-		myLocationOverlay = new MyLocationNewOverlay(locationProvider, map, resProxy);
+		myLocationOverlay = new MyLocationNewOverlay(locationProvider, map);
 		myLocationOverlay.enableMyLocation(locationProvider);
 		myLocationOverlay.setDrawAccuracyEnabled(true);
-		float scale = resProxy.getDisplayMetrics().density;
+
+		// set new icons
+		Bitmap person = getBitmap(ContextCompat.getDrawable(this, R.drawable.map_pedestrian_location));
+		Bitmap directionArrow = getBitmap(ContextCompat.getDrawable(this, R.drawable.map_pedestrian_bearing));
+		myLocationOverlay.setDirectionArrow(person, directionArrow);
+
+		// properly position person icon
+		float scale = getResources().getDisplayMetrics().density;
 		myLocationOverlay.setPersonHotspot(16.0f * scale + 0.5f, 19.0f * scale + 0.5f);
 
 		map.getOverlays().add(myLocationOverlay);
@@ -566,7 +570,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			TextView toHere = ((TextView) mView.findViewById(R.id.toHere));
 			if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS)) {
 				// From Here
-				fromHere.setCompoundDrawables(TransportrUtils.getTintedDrawable(fromHere.getContext(), fromHere.getCompoundDrawables()[0].mutate()), null, null, null);
+				fromHere.setCompoundDrawables(TransportrUtils.getTintedDrawable(MapActivity.this, fromHere.getCompoundDrawables()[0]), null, null, null);
 				fromHere.setOnClickListener(new View.OnClickListener() {
 					                            @Override
 					                            public void onClick(View v) {
@@ -576,7 +580,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				);
 
 				// To Here
-				toHere.setCompoundDrawables(fromHere.getCompoundDrawables()[0], null, null, null);
+				toHere.setCompoundDrawables(TransportrUtils.getTintedDrawable(MapActivity.this, toHere.getCompoundDrawables()[0]), null, null, null);
 				toHere.setOnClickListener(new View.OnClickListener() {
 					                          @Override
 					                          public void onClick(View v) {
@@ -592,7 +596,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			// Departures
 			TextView departures = ((TextView) mView.findViewById(R.id.departures));
 			if(loc.hasId() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
-				departures.setCompoundDrawables(TransportrUtils.getTintedDrawable(departures.getContext(), departures.getCompoundDrawables()[0].mutate()), null, null, null);
+				departures.setCompoundDrawables(TransportrUtils.getTintedDrawable(MapActivity.this, departures.getCompoundDrawables()[0]), null, null, null);
 				departures.setOnClickListener(new View.OnClickListener() {
 					                              @Override
 					                              public void onClick(View v) {
@@ -607,7 +611,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			// Nearby Stations
 			TextView nearbyStations = ((TextView) mView.findViewById(R.id.nearbyStations));
 			if(loc.hasLocation() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
-				nearbyStations.setCompoundDrawables(TransportrUtils.getTintedDrawable(nearbyStations.getContext(), nearbyStations.getCompoundDrawables()[0].mutate()), null, null, null);
+				nearbyStations.setCompoundDrawables(TransportrUtils.getTintedDrawable(MapActivity.this, nearbyStations.getCompoundDrawables()[0]), null, null, null);
 				nearbyStations.setOnClickListener(new View.OnClickListener() {
 					                                  @Override
 					                                  public void onClick(View v) {
@@ -626,44 +630,12 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 	}
 
-	public class CustomResourceProxy extends DefaultResourceProxyImpl {
-
-		private final Context context;
-
-		public CustomResourceProxy(Context context) {
-			super(context);
-			this.context = context;
-		}
-
-		@Override
-		public Bitmap getBitmap(final bitmap pResId) {
-			switch (pResId){
-				case person:
-					return getBitmap(getDrawable(pResId));
-				case direction_arrow:
-					return getBitmap(getDrawable(pResId));
-			}
-			return super.getBitmap(pResId);
-		}
-
-		@Override
-		public Drawable getDrawable(final bitmap pResId) {
-			switch (pResId){
-				case person:
-					return ContextCompat.getDrawable(context, R.drawable.map_pedestrian_location);
-				case direction_arrow:
-					return ContextCompat.getDrawable(context, R.drawable.map_pedestrian_bearing);
-			}
-			return super.getDrawable(pResId);
-		}
-
-		private Bitmap getBitmap(Drawable drawable) {
-			Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-			Canvas canvas = new Canvas(bitmap);
-			drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-			drawable.draw(canvas);
-			return bitmap;
-		}
+	private Bitmap getBitmap(Drawable drawable) {
+		Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+		drawable.draw(canvas);
+		return bitmap;
 	}
 
 }

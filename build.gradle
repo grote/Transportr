@@ -25,7 +25,7 @@ dependencies {
 	compile 'org.apmem.tools:layouts:1.10'
 	compile 'com.mikepenz:materialdrawer:5.2.6'
 	compile 'com.mikepenz:aboutlibraries:5.6.6'
-	compile 'com.github.MKergall.osmbonuspack:OSMBonusPack:v5.7'
+	compile 'org.osmdroid:osmdroid-android:5.2'
 
 	compile project(':sublibs:public-transport-enabler:enabler')
 	debugCompile 'org.slf4j:slf4j-api:1.7.14'
@@ -46,7 +46,6 @@ dependencyVerification {
 			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
 			'com.mikepenz:materialdrawer:bad5a8622bfa0f1904eb09b562e14c3b02e4682308dfd6a4b88eb28e58550f3a',
 			'com.mikepenz:aboutlibraries:d3e81172e0bfa4aebbc2aed5616a5b2fce8e7b77ed1cb5eab1d95fb5ee9dda20',
-			'com.github.MKergall.osmbonuspack:OSMBonusPack:1d8a5ad2785a45ca15bb468a354bccaac8880db06630cc37b7e102d3857ae206',
 			'com.android.support:support-annotations:e91a88dd0c5e99069b7f09d4a46b5e06f1e9c4c72fc0a8e987e25d86af480f01',
 			'com.android.support:animated-vector-drawable:bcb7ce66a9c629fa7c723a767b6430e1a383e8d4dd543d603dcb0ad1b855b8b2',
 			'com.android.support:support-vector-drawable:150021a89ae6f252415cbfff5c3111bf87433776b997b68e6e71f37e5b696799',
@@ -54,23 +53,18 @@ dependencyVerification {
 			'com.mikepenz:iconics-core:d57c6b0ecb33d9ed9708da62e07ad8993d80a16f374f7a2018be7837a60b7ed7',
 			'com.mikepenz:fastadapter:8cd51739e334a091d84216be74e494b32443b71816e64616412283604d56e7e7',
 			'com.mikepenz:materialize:575195b2fa5b2414fb14a59470ee21d8a8cd8355b651e0cf52e477e3ff1cd96c',
-			'org.apache.commons:commons-lang3:6b81d10754dadf184d386011486e6509c2cc0c3d33565ced4fb4402b9413d47d',
-			'com.google.code.gson:gson:a35abbcf689eb3d60a2959e83a624831658b023220cd2edb66350993ebfdc025',
-			'com.squareup.okhttp:okhttp:a0e0e67ea9c111abd8e037469630f748badf04eb79d04c019a7b0459fd792b92',
-			'org.osmdroid:osmdroid-android:abd15a0295b68b81d9f72586583e21c063d750ddc0799336d17762555e1e67f2',
+			'org.osmdroid:osmdroid-android:22d6aacad7d61f784b4cb849f819751e62f1de87396f21b6b438f24eb02c056a',
 			'com.google.guava:guava:d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99',
 			'org.slf4j:slf4j-api:0aee9a77a4940d72932b0d0d9557793f872e66a03f598e473f45e7efecdccf99',
 			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'org.json:json:055be110a570f9cda3eba8d70a006ff46c77a048bc67868524879211c48b330a',
 			'net.sf.kxml:kxml2:f264dd9f79a1fde10ce5ecc53221eff24be4c9331c830b7d52f2f08a7b633de2',
-			'com.squareup.okio:okio:114bdc1f47338a68bcbc95abf2f5cdc72beeec91812f2fcd7b521c1937876266',
 	]
 }
 
 allprojects {
 	repositories {
 		jcenter()
-//		maven { url "https://jitpack.io" }
 	}
 }
 
