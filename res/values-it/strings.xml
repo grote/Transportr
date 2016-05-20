@@ -1,7 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_short_desc">L\'app di trasporto pubblico che rispetta la tua privacy e la tua libertà.</string>
+  <string name="google_play_full_desc">Transportr è un\'app non-profit sviluppata da persone di tutto il mondo per rendere l\'uso del trasporto pubblico il più semplice possibile ovunque tu sia.
+
+Attualmente l\'app funziona meglio in Europa ma supporta anche altre città del resto del mondo. Se vivi in una zona non supportata, considera l\'idea di aggiungerla su Transportr.
+Le istruzioni sono disponibili sul sito ufficiale.
+
+Transportr trova la direzione da casa tua, dalla tua posizione o da un luogo preciso verso qualunque posto tu voglia andare. Puoi anche salvare il percorso intero tra i preferiti e trovare il prossimo viaggio con una strisciata. Certamente puoi anche visualizzare il tuo percorso sulla mappa e seguirne l\'avanzamento via  GPS.
+
+Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi i ritardi (se ce ne sono).</string>
   <string name="drawer_changelog">Registro delle modifiche</string>
-  <string name="drawer_about">Info</string>
+  <string name="drawer_about">Informazioni</string>
   <string name="drawer_settings">Impostazioni</string>
   <string name="action_fav_trip">Segna viaggio come preferito</string>
   <string name="action_unfav_trip">Rimuovi viaggio dai preferiti</string>
@@ -17,7 +26,7 @@
   <string name="action_copy">Copia</string>
   <string name="action_show_on_map">Mostra sulla mappa</string>
   <string name="action_show_all">Mostra tutto</string>
-  <string name="drawer_directions">Indicazioni</string>
+  <string name="drawer_directions">Direzioni</string>
   <string name="tab_fav_trips">Viaggi preferiti</string>
   <string name="drawer_departures">Partenze</string>
   <string name="drawer_recent_trips">Viaggi recenti</string>
@@ -33,7 +42,7 @@
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p>Ancoraggiamo e apprezziamo i vostri <b>contributi</b>. Se vuoi contribuire al progetto vai sul <a href=\"%1$s\">sito ufficiale di Transportr</a> per maggiori informazioni.</p>
+<p>Incoraggiamo e apprezziamo i vostri <b>contributi</b>. Se vuoi contribuire al progetto vai sul <a href=\"%1$s\">sito ufficiale di Transportr</a> per maggiori informazioni.</p>
 <p>Se hai trovato un problema con quest\'app, segnalalo nell\'<a href=\"%2$s\">apposita sezione</a>.</p>
 <p>Le possibilità di <b>donazioni</b> sono elencate sul <a href=\"%3$s\">sito di Transportr</a>.</p>
 ]]>
@@ -54,7 +63,7 @@
   <string name="network">Rete</string>
   <string name="pick_network_activity">Scegli una rete di trasporto</string>
   <string name="pick_network_first_run">Questa è la prima volta che avvii Transportr. Per favore seleziona la compagnia di trasporti prima di continuare!</string>
-  <string name="clear_recent_trips">Sei sicuro di voler eliminare %1$d viaggio/i dai tuoi viaggi recenti? Il numero di utilizzi andrá perso.</string>
+  <string name="clear_recent_trips">Sei sicuro di voler eliminare %1$d viaggio/i dai tuoi viaggi recenti? Il numero di utilizzi andrà perso.</string>
   <string name="trip_searching">Ricerca connessioni...</string>
   <string name="stations_searching_position">Ricerca posizione corrente...</string>
   <string name="drawer_nearby_stations">Stazioni vicine</string>
@@ -63,38 +72,39 @@
   <string name="departure_station">Stazioni di partenza</string>
   <string name="share_trip_via">Condividi viaggio tramite...</string>
   <string name="undo">Undo</string>
-  <string name="fav_trips_empty">I tuoi viaggi recenti compariranno qui una volta iniziata la ricerca per le indicazioni. \n\nAvrai la possibilitá di ordinarli in base alle piú frequenti o alle piú utilizzate recentemente.</string>
-  <string name="more">Piú</string>
-  <string name="no_favourites">Nessun viaggio preferito.\n\nAggiungine uno nella pagina ¨Viaggi Recenti¨.</string>
-  <string name="removing_from_favourites">Un viaggio da te selezionato é segnato come viaggio preferito. Sará rimosso anche da lí.</string>
-  <string name="current_time_set">L´orario é impostato in corrente.</string>
-  <string name="current_date_set">La data é impostata in corrente.</string>
-  <string name="added_1h">Aggiunto un´ora fa.</string>
+  <string name="fav_trips_empty">I tuoi viaggi recenti compariranno qui una volta iniziata la ricerca per le indicazioni. \n\n\nPotrai riordinarli in base a quelli più frequenti o a quelli più utilizzati recentemente.</string>
+  <string name="more">Più</string>
+  <string name="no_favourites">Nessun viaggio preferito.\n\nAggiungine uno nella pagina ¨Viaggi recenti¨.</string>
+  <string name="removing_from_favourites">Un viaggio che hai selezionato è segnato come viaggio preferito. Sarà rimosso anche da lì.</string>
+  <string name="current_time_set">L\'orario è impostato su quello attuale.</string>
+  <string name="current_date_set">La data è impostata su quella attuale.</string>
+  <string name="added_1h">Aggiunto 1 ora fa.</string>
   <string name="pref_transport_network">Rete di trasporto</string>
   <string name="pref_hide_departure_time">Nascondi orario di partenza</string>
-  <string name="pref_hide_departure_time_summary">Mostra solo l´orario di arrivo quando si visualizzano le fermate intermedie</string>
+  <string name="pref_hide_departure_time_summary">Mostra solo l\'orario di arrivo quando si visualizzano le fermate intermedie</string>
   <string name="pref_home">Luogo iniziale</string>
   <string name="pref_display">Visualizza</string>
   <string name="pref_theme_title">Tema</string>
   <string name="pref_theme_light">Chiaro</string>
   <string name="pref_theme_dark">Scuro</string>
   <string name="pref_language_title">Lingua</string>
-  <string name="pref_directions_routing">Indicazioni e Percorso Itinerario</string>
+  <string name="pref_directions_routing">Direzioni e percorso</string>
   <string name="pref_optimize">Ottimizza per</string>
-  <string name="pref_optimize_least_duration">Ultima durata.</string>
-  <string name="pref_optimize_least_changes">Ultimi Cambiamenti</string>
-  <string name="pref_optimize_least_walking">Ultimo Percorso</string>
-  <string name="pref_walk_speed">Velocitá Percorso</string>
+  <string name="pref_optimize_least_duration">Minore durata</string>
+  <string name="pref_optimize_least_changes">Minori cambi</string>
+  <string name="pref_optimize_least_walking">Minori tratti a piedi</string>
+  <string name="pref_walk_speed">Velocità del percorso</string>
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Veloce</string>
   <string name="warning_departure_gap">Trovate troppe poche partenze. Potrebbero essercene molte altre nascoste. Cerca per l\'orario esatto per assicurarti di non perderne nessuna.</string>
+  <string name="warning_permission_granted_action">Impossibile ripetere l\'ultima azione automaticamente</string>
   <string name="error_pick_network">Seleziona una rete di trasporto!</string>
   <string name="error_no_internet">Nessuna connessione internet disponibile</string>
-  <string name="error_invalid_from">Posizione Iniziale Errata (Da)</string>
-  <string name="error_invalid_to">Destinazione Errata (A)</string>
+  <string name="error_invalid_from">Posizione iniziale (da) non valida</string>
+  <string name="error_invalid_to">Destinazione (a) non valida</string>
   <string name="error_no_trips_found">Nessuna indicazione trovata</string>
-  <string name="error_no_location_provider">Impossibile individuare la posizione. Avviare il GPS!</string>
+  <string name="error_no_location_provider">Impossibile individuare la posizione. Attivare il GPS!</string>
   <string name="error_no_departures_found">Nessuna partenza trovata</string>
   <string name="error_no_stations_found">Nessuna stazione trovata</string>
   <string name="error_no_proper_station">Il luogo fornito non ha nessuna stazione valida</string>

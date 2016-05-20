@@ -53,6 +53,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="trip_removed">Trajet supprimé</string>
   <string name="from">De</string>
   <string name="to">À</string>
+  <string name="via">via</string>
   <string name="from_here">D\'ici</string>
   <string name="to_here">À ici</string>
   <string name="min">min</string>
@@ -82,6 +83,8 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="pref_transport_network">Réseau de transport</string>
   <string name="pref_hide_departure_time">Cacher l\'heure de départ</string>
   <string name="pref_hide_departure_time_summary">Ne montrer l\'heure d\'arrivée que lors de l\'affichage des arrêts intermédiaires</string>
+  <string name="pref_exit_app_on_back_press">Fermer l\'appli avec le bouton Retour</string>
+  <string name="pref_exit_app_on_back_press_summary">Toujours fermer l\'appli en appuyant sur le bouton Retour de l\'accueil</string>
   <string name="pref_home">Point d\'origine</string>
   <string name="pref_display">Affichage</string>
   <string name="pref_theme_title">Thème</string>
