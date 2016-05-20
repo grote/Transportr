@@ -45,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			NETWORK + ", " +
 			LOCATION + ", " +
 			"from_count INTEGER NOT NULL DEFAULT 0, " +
-			"via_count INTEGER NOT NULL DEFAULT 0" +
+			"via_count INTEGER NOT NULL DEFAULT 0, " +
 			"to_count INTEGER NOT NULL DEFAULT 0" +
 		" )";
 
