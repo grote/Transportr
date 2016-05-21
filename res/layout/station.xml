@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView2"
-                android:src="@drawable/ic_product_bus"/>
+                android:src="@drawable/product_bus"/>
         </LinearLayout>
 
     </RelativeLayout>

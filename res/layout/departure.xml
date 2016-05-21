@@ -49,12 +49,9 @@
             android:layout_alignBottom="@+id/depTimeView"
             android:layout_alignParentTop="true">
 
-            <include
-                layout="@layout/line_box"
+            <de.grobox.liberario.ui.LineView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/line_box"
-                />
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <TextView

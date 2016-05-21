@@ -26,8 +26,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_product_bus"
-            tools:src="@drawable/ic_product_bus"/>
+            app:srcCompat="@drawable/product_bus"
+            tools:src="@drawable/product_bus"/>
     </LinearLayout>
 
 

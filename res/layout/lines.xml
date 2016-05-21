@@ -35,9 +35,9 @@
         android:layout_weight="0.85"
         >
 
-        <include
-            layout="@layout/line_box"
-            />
+        <de.grobox.liberario.ui.LineView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </org.apmem.tools.layouts.FlowLayout>
 

@@ -21,6 +21,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -28,6 +29,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -53,63 +55,43 @@ import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
+import de.grobox.liberario.ui.LineView;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Stop;
-import de.schildbach.pte.dto.Style.Shape;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 
 public class TransportrUtils {
 
-	@SuppressWarnings("deprecation")
 	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index, boolean check_duplicates) {
 		if(check_duplicates) {
 			// loop through all line boxes in the linearLayout
 			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
 				// check if current line box is the same as the one we are about to add
-				if(line.label != null && line.label.equals(((TextView) lineLayout.getChildAt(i)).getText())) {
+				if(line.label != null && line.label.equals(((LineView) lineLayout.getChildAt(i)).getLabel())) {
 					// lines are equal, so bail out from here and don't add new line box
 					return;
 				}
 			}
 		}
 
-		TextView transportsView =  (TextView) LayoutInflater.from(context).inflate(R.layout.line_box, lineLayout, false);
-		transportsView.setText(line.label);
-
-		if(line.style != null) {
-			GradientDrawable line_box = (GradientDrawable) ContextCompat.getDrawable(context, R.drawable.line_box);
-
-			if(line_box != null) {
-				// change shape and mutate before to not share state with other instances
-				line_box.mutate();
-
-				line_box.setColor(line.style.backgroundColor);
-				if(line.style.shape == Shape.CIRCLE) line_box.setShape(GradientDrawable.OVAL);
-
-				transportsView.setBackgroundDrawable(line_box);
-			}
-			transportsView.setTextColor(line.style.foregroundColor);
-		}
+		LineView lineView = new LineView(context);
+		lineView.setLine(line);
 
 		// set margin, because setting in in xml does not work
 		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		llp.setMargins(0, 5, 15, 5);
-		transportsView.setLayoutParams(llp);
+		lineView.setLayoutParams(llp);
 
-		lineLayout.addView(transportsView, index);
+		lineLayout.addView(lineView, index);
 	}
 
 	static public void addLineBox(Context context, ViewGroup lineLayout, Line line) {
 		addLineBox(context, lineLayout, line, lineLayout.getChildCount());
-	}
-
-	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, boolean check_duplicates) {
-		addLineBox(context, lineLayout, line, lineLayout.getChildCount(), check_duplicates);
 	}
 
 	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index) {
@@ -257,35 +239,35 @@ public class TransportrUtils {
 	}
 
 	static public int getDrawableForProduct(Product p) {
-		int image_res = R.drawable.ic_product_bus;
+		int image_res = R.drawable.product_bus;
 
 		switch(p) {
 			case HIGH_SPEED_TRAIN:
-				image_res = R.drawable.ic_product_high_speed_train;
+				image_res = R.drawable.product_high_speed_train;
 				break;
 			case REGIONAL_TRAIN:
-				image_res = R.drawable.ic_product_regional_train;
+				image_res = R.drawable.product_regional_train;
 				break;
 			case SUBURBAN_TRAIN:
-				image_res = R.drawable.ic_product_suburban_train;
+				image_res = R.drawable.product_suburban_train;
 				break;
 			case SUBWAY:
-				image_res = R.drawable.ic_product_subway;
+				image_res = R.drawable.product_subway;
 				break;
 			case TRAM:
-				image_res = R.drawable.ic_product_tram;
+				image_res = R.drawable.product_tram;
 				break;
 			case BUS:
-				image_res = R.drawable.ic_product_bus;
+				image_res = R.drawable.product_bus;
 				break;
 			case FERRY:
-				image_res = R.drawable.ic_product_ferry;
+				image_res = R.drawable.product_ferry;
 				break;
 			case CABLECAR:
-				image_res = R.drawable.ic_product_cablecar;
+				image_res = R.drawable.product_cablecar;
 				break;
 			case ON_DEMAND:
-				image_res = R.drawable.ic_product_on_demand;
+				image_res = R.drawable.product_on_demand;
 				break;
 		}
 
