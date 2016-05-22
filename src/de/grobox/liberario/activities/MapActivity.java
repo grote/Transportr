@@ -77,7 +77,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	private List<GeoPoint> points = new ArrayList<>();
 	private GpsMyLocationProvider locationProvider;
 	private MyLocationNewOverlay myLocationOverlay;
-	private boolean gps;
+	private boolean gps = false, gpsWasOn = false;
 	private TransportNetwork network;
 
 	public final static String SHOW_AREA = "de.grobox.liberario.MapActivity.SHOW_AREA";
@@ -87,6 +87,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	public final static String LOCATION = "de.schildbach.pte.dto.Location";
 	public final static String LOCATIONS = "List<de.schildbach.pte.dto.Location>";
 	public final static String TRIP = "de.schildbach.pte.dto.Trip";
+	private final static String GPS_WAS_ON = "de.grobox.liberario.MapActivity.GPS_WAS_ON";
 
 	private enum MarkerType { BEGIN, CHANGE, STOP, END, WALK }
 
@@ -119,6 +120,36 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			}
 		} else {
 			setupMap();
+		}
+
+		if(savedInstanceState != null) {
+			gpsWasOn = savedInstanceState.getBoolean(GPS_WAS_ON);
+		}
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		// remember whether GPS was on or not, so it can be re-activated
+		outState.putBoolean(GPS_WAS_ON, gpsWasOn);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(gpsWasOn) {
+			gpsWasOn = false;
+			toggleGPS();
+		}
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		if(gps) {
+			gpsWasOn = true;
+			toggleGPS();
 		}
 	}
 
