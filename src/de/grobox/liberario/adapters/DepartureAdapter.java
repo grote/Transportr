@@ -116,6 +116,14 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 			TransportrUtils.addLineBox(ui.line.getContext(), ui.line, dep.line, 0);
 
 			ui.line.getChildAt(0).setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
+			if(dep.line.name != null) {
+				ui.lineName.setText(dep.line.name);
+			} else {
+				ui.lineName.setVisibility(View.GONE);
+			}
+		} else {
+			ui.lineName.setVisibility(View.GONE);
 		}
 
 		ui.arrow.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.arrow.getDrawable()));
@@ -187,9 +195,10 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		this.station = station;
 	}
 
-	public static class DepartureHolder extends RecyclerView.ViewHolder {
+	protected static class DepartureHolder extends RecyclerView.ViewHolder {
 		public CardView card;
 		public ViewGroup line;
+		public TextView lineName;
 		public TextView time;
 		public TextView delay;
 		public ImageView arrow;
@@ -202,6 +211,7 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 
 			card = (CardView) v;
 			line = (ViewGroup) v.findViewById(R.id.lineLayout);
+			lineName = (TextView) v.findViewById(R.id.lineNameView);
 			time = (TextView) v.findViewById(R.id.depTimeView);
 			delay = (TextView) v.findViewById(R.id.delayView);
 			arrow = (ImageView) v.findViewById(R.id.arrowView);

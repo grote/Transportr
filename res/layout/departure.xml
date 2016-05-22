@@ -55,6 +55,20 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/lineNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/destinationView"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/lineLayout"
+            android:layout_toLeftOf="@+id/positionView"
+            android:layout_toRightOf="@+id/lineLayout"
+            android:layout_toStartOf="@+id/positionView"
+            tools:text="Line Name Line Name Line Name Line Name Line NameLine NameLine NameLine NameLine NameLine NameLine NameLine NameLine NameLine Name "/>
+
+        <TextView
             android:id="@+id/positionView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -42,6 +42,7 @@ import de.grobox.liberario.ListTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.RecentTrip;
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.adapters.TripAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
@@ -72,9 +73,11 @@ public class TripsActivity extends TransportrActivity {
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
+		TransportNetwork network = Preferences.getTransportNetwork(this);
+
 		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			toolbar.setSubtitle(Preferences.getTransportNetwork(this).getName());
+			if(network != null) toolbar.setSubtitle(network.getName());
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();
@@ -148,7 +151,9 @@ public class TripsActivity extends TransportrActivity {
 		mRecyclerView.setOnScrollListener(touchListener.makeScrollListener());
 		// TODO also make sure a swipe prevents scrolling
 
-		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), touchListener, this);
+		final boolean showLineName = network != null && network.hasGoodLineNames();;
+
+		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), touchListener, this, showLineName);
 		mAdapter.setHasStableIds(false);
 		mRecyclerView.setAdapter(mAdapter);
 

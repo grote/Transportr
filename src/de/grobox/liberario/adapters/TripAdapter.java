@@ -95,11 +95,13 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 	private SwipeDismissRecyclerViewTouchListener touchListener;
 	private Context context;
 	private List<ListTrip> removed;
+	private final boolean showLineName;
 
-	public TripAdapter(List<ListTrip> trips, SwipeDismissRecyclerViewTouchListener touchListener, Context context) {
+	public TripAdapter(List<ListTrip> trips, SwipeDismissRecyclerViewTouchListener touchListener, Context context, boolean showLineName) {
 		this.touchListener = touchListener;
 		this.context = context;
 		this.removed = new ArrayList<>();
+		this.showLineName = showLineName;
 
 		addAll(trips);
 	}
@@ -132,7 +134,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 		int i = 0;
 		for(final Trip.Leg leg : trip.trip.legs) {
-			bindLeg(context, ui.legs.get(i), leg, false, ui.lines);
+			bindLeg(context, ui.legs.get(i), leg, false, ui.lines, showLineName);
 
 			// show departure delay also on overview when trip is folded
 			if(i == 0 && leg instanceof Trip.Public) {
@@ -206,7 +208,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		return trips == null ? 0 : trips.size();
 	}
 
-	static public void bindLeg(Context context, final LegHolder leg_holder, Trip.Leg leg, boolean detail, FlowLayout lines) {
+	static public void bindLeg(Context context, final LegHolder leg_holder, Trip.Leg leg, boolean detail, FlowLayout lines, boolean showLineName) {
 		// Locations
 		leg_holder.departureLocation.setText(TransportrUtils.getLocName(leg.departure));
 		leg_holder.arrivalLocation.setText(TransportrUtils.getLocName(leg.arrival));
@@ -268,11 +270,15 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			TransportrUtils.addLineBox(context, leg_holder.line, public_leg.line, 0);
 			if(lines != null) TransportrUtils.addLineBox(context, lines, public_leg.line);
 
-			if(public_leg.destination != null) {
+			if(showLineName && public_leg.line.name != null) {
+				leg_holder.lineDestination.setText(public_leg.line.name);
+				leg_holder.arrow.setVisibility(View.INVISIBLE);
+			}
+			else if(public_leg.destination != null) {
 				leg_holder.lineDestination.setText(TransportrUtils.getLocName(public_leg.destination));
 				leg_holder.arrow.setImageDrawable(TransportrUtils.getTintedDrawable(context, leg_holder.arrow.getDrawable()));
 			} else {
-				// hide arrow because this line has no destination
+				// hide arrow because this line has no name and no destination
 				leg_holder.arrow.setVisibility(View.GONE);
 			}
 
@@ -329,8 +335,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		}
 	}
 
-	static public void bindLeg(Context context, LegHolder leg_holder, Trip.Leg leg, boolean detail) {
-		bindLeg(context, leg_holder, leg, detail, null);
+	static public void bindLeg(Context context, LegHolder leg_holder, Trip.Leg leg, boolean detail, boolean showLineName) {
+		bindLeg(context, leg_holder, leg, detail, null, showLineName);
 	}
 
 	static public void bindStops(Context context, final LegHolder leg_holder, List<Stop> stops) {

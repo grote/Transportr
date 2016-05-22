@@ -83,7 +83,7 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 			beta.setVisibility(View.GONE);
 		} else {
 			beta.setVisibility(View.VISIBLE);
-			if(network.getStatus() == TransportNetwork.Status.APLHA) {
+			if(network.getStatus() == TransportNetwork.Status.ALPHA) {
 				beta.setText(_context.getString(R.string.alpha));
 			}
 		}

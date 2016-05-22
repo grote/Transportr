@@ -36,6 +36,7 @@ import java.util.HashSet;
 
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.adapters.TripAdapter;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.utils.DateUtils;
@@ -53,6 +54,7 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 	private Location from;
 	private Location to;
 	private ArrayList<Product> products;
+	private boolean showLineName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +63,12 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
+		TransportNetwork network = Preferences.getTransportNetwork(this);
+		showLineName = network != null && network.hasGoodLineNames();
+
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			toolbar.setSubtitle(Preferences.getTransportNetwork(this).getName());
+			if(network != null) toolbar.setSubtitle(network.getName());
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();
@@ -174,7 +179,7 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 
 		int i = 0;
 		for(final Trip.Leg leg : trip.legs) {
-			TripAdapter.bindLeg(this, ui.legs.get(i), leg, true);
+			TripAdapter.bindLeg(this, ui.legs.get(i), leg, true, showLineName);
 			i += 1;
 		}
 

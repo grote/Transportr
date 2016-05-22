@@ -31,8 +31,9 @@ public class TransportNetwork {
 	private Status status = Status.STABLE;
 	private int logo = R.drawable.ic_placeholder;
 	private int background = R.drawable.account_header_background;
+	private boolean goodLineNames = false;
 
-	public enum Status { APLHA, BETA, STABLE }
+	public enum Status { ALPHA, BETA, STABLE }
 
 	public TransportNetwork(Context context, NetworkProvider network) {
 		this.network = network;
@@ -80,6 +81,12 @@ public class TransportNetwork {
 		return this;
 	}
 
+	public TransportNetwork setGoodLineNames(boolean hasGoodLineNames) {
+		this.goodLineNames = hasGoodLineNames;
+
+		return this;
+	}
+
 	public NetworkProvider getNetworkProvider() {
 		return network;
 	}
@@ -118,6 +125,10 @@ public class TransportNetwork {
 
 	public int getBackground() {
 		return background;
+	}
+
+	public boolean hasGoodLineNames() {
+		return goodLineNames;
 	}
 
 

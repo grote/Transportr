@@ -49,6 +49,7 @@
         </AndroidXmlCodeStyleSettings>
         <JavaCodeStyleSettings>
           <option name="SPACE_AFTER_CLOSING_ANGLE_BRACKET_IN_TYPE_ARGUMENT" value="true" />
+          <option name="DO_NOT_WRAP_AFTER_SINGLE_ANNOTATION" value="true" />
         </JavaCodeStyleSettings>
         <Objective-C-extensions>
           <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />
@@ -88,6 +89,7 @@
           </indentOptions>
         </codeStyleSettings>
         <codeStyleSettings language="JAVA">
+          <option name="SPACE_WITHIN_ARRAY_INITIALIZER_BRACES" value="true" />
           <option name="SPACE_BEFORE_IF_PARENTHESES" value="false" />
           <option name="SPACE_BEFORE_WHILE_PARENTHESES" value="false" />
           <option name="SPACE_BEFORE_FOR_PARENTHESES" value="false" />
@@ -97,6 +99,7 @@
           <option name="SPACE_BEFORE_SYNCHRONIZED_PARENTHESES" value="false" />
           <option name="SPACE_BEFORE_ARRAY_INITIALIZER_LBRACE" value="true" />
           <option name="KEEP_MULTIPLE_EXPRESSIONS_IN_ONE_LINE" value="true" />
+          <option name="FIELD_ANNOTATION_WRAP" value="0" />
           <indentOptions>
             <option name="USE_TAB_CHARACTER" value="true" />
             <option name="SMART_TABS" value="true" />
