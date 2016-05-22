@@ -4,6 +4,7 @@
     <release version="1.1.1-rc2" versioncode="32">
         <change>Support via/intermediate locations for direction search</change>
         <change>Show little graphics for favourite and recent trips to better highlight new via locations</change>
+        <change>Allow to navigate trip results and map without entering lockscreen PIN.</change>
         <change>Do not show keyboard and location list on startup</change>
         <change>Add setting for whether app should always exist when pressing back in start screen</change>
         <change>Fix bug where the navigation drawer selection did not update when pressing back button</change>
