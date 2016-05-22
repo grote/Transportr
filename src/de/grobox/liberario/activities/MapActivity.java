@@ -47,6 +47,7 @@ import android.widget.Toast;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.events.MapEventsReceiver;
+import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
@@ -56,12 +57,15 @@ import org.osmdroid.views.overlay.infowindow.InfoWindow;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
@@ -90,6 +94,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	private final static String GPS_WAS_ON = "de.grobox.liberario.MapActivity.GPS_WAS_ON";
 
 	private enum MarkerType { BEGIN, CHANGE, STOP, END, WALK }
+
+	private volatile GeoPoint latestLocation;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -287,10 +293,61 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	}
 
 	private void showArea() {
-		// TODO implement loader that calls np.getArea()
 		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 			setupGPS(null);
 		}
+		getAreaAndZoom();
+	}
+
+	private void getAreaAndZoom() {
+		runOnThread(new Runnable() {
+			@Override
+			public void run() {
+				// first try to get area from favourites
+				List<FavLocation> favs = RecentsDB.getFavLocationList(MapActivity.this);
+				ArrayList<GeoPoint> geoPoints = new ArrayList<>(favs.size());
+				for(FavLocation fav : favs) {
+					Location loc = fav.getLocation();
+					if(loc.hasLocation()) {
+						geoPoints.add(new GeoPoint(loc.lat, loc.lon));
+					}
+				}
+
+				// if two few favourites, get area from network provider
+				if(geoPoints.size() < 2) {
+					Point[] area = null;
+					try {
+						area = network.getNetworkProvider().getArea();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+					if(area != null) {
+						geoPoints = new ArrayList<>(area.length);
+						for(Point point : area) {
+							geoPoints.add(new GeoPoint(point.getLatAsDouble(), point.getLonAsDouble()));
+						}
+					}
+				}
+
+				// display area if there's any
+				if(geoPoints.size() > 1) {
+					BoundingBoxE6 box = BoundingBoxE6.fromGeoPoints(geoPoints);
+					zoomToArea(box);
+				}
+			}
+		});
+	}
+
+	private void zoomToArea(final BoundingBoxE6 box) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				IMapController mapController = map.getController();
+				mapController.setCenter(box.getCenter());
+				mapController.setZoom(16);
+				map.zoomToBoundingBox(box, true);
+			}
+		});
 	}
 
 	private void showLocations(List<Location> locations, Location myLocation) {
@@ -463,6 +520,13 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			minLon = Math.min(point.getLongitudeE6(), minLon);
 		}
 
+		if (latestLocation != null) {
+			maxLat = Math.max(latestLocation.getLatitudeE6(), maxLat);
+			minLat = Math.min(latestLocation.getLatitudeE6(), minLat);
+			maxLon = Math.max(latestLocation.getLongitudeE6(), maxLon);
+			minLon = Math.min(latestLocation.getLongitudeE6(), minLon);
+		}
+
 		int center_lat = (maxLat + minLat)/2;
 		int center_lon = (maxLon + minLon)/2;
 		final GeoPoint center = new GeoPoint(center_lat, center_lon);
@@ -470,9 +534,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		IMapController mapController = map.getController();
 		mapController.setCenter(center);
 		mapController.setZoom(18);
-		if(points.size() > 1) {
-			mapController.zoomToSpan(maxLat - minLat, maxLon - minLon);
-		}
+		mapController.zoomToSpan(maxLat - minLat, maxLon - minLon);
 	}
 
 	private void setupGPS(Location myLoc) {
@@ -480,7 +542,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			@Override
 			public void onLocationChanged(final android.location.Location location) {
 				super.onLocationChanged(location);
-				points.add(new GeoPoint(location));
+				latestLocation = new GeoPoint(location);
 			}
 		};
 

@@ -349,7 +349,6 @@ public class TransportrUtils {
 		Intent intent = new Intent(context, MapActivity.class);
 		intent.setAction(MapActivity.SHOW_AREA);
 
-		// TODO take fav location area, if area is empty
 		context.startActivity(intent);
 	}
 
