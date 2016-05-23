@@ -361,6 +361,8 @@ there are any).</string>
     <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery and Philadelphia Counties</string>
     <string name="np_name_usny" tools:keep="@string/np_name_usny">New York and New-Jersey States</string>
     <string name="np_desc_usny" translatable="false" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+    <string name="np_name_oregon">Oregon</string>
+    <string name="np_desc_oregon">Global Transport in Oregon State (USA)</string>
 
     <string name="maintainer">Maintainer</string>
     <string name="contributors">Contributors</string>

@@ -436,6 +436,12 @@ public class TransportNetworks {
 				.setStatus(BETA)
 		);
 
+		list.add(new TransportNetwork(context, NetworkId.OREGON)
+				.setName(getString(R.string.np_name_oregon))
+				.setDescription(getString(R.string.np_desc_oregon))
+				.setRegion(region)
+				.setStatus(TransportNetwork.Status.ALPHA)
+		);
 /*		list.add(new TransportNetwork(context, NetworkId.USNY)
 				         .setName(getString(R.string.np_name_usny))
 				         .setDescription(getString(R.string.np_desc_usny))
