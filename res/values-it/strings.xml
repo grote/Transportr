@@ -53,6 +53,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="trip_removed">Viaggi eliminati</string>
   <string name="from">Da</string>
   <string name="to">A</string>
+  <string name="via">Per</string>
   <string name="from_here">Da qui</string>
   <string name="to_here">A qui</string>
   <string name="min">min</string>
@@ -71,17 +72,19 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="find_departures">Cerca partenze</string>
   <string name="departure_station">Stazioni di partenza</string>
   <string name="share_trip_via">Condividi viaggio tramite...</string>
-  <string name="undo">Undo</string>
+  <string name="undo">Annulla</string>
   <string name="fav_trips_empty">I tuoi viaggi recenti compariranno qui una volta iniziata la ricerca per le indicazioni. \n\n\nPotrai riordinarli in base a quelli più frequenti o a quelli più utilizzati recentemente.</string>
   <string name="more">Più</string>
   <string name="no_favourites">Nessun viaggio preferito.\n\nAggiungine uno nella pagina ¨Viaggi recenti¨.</string>
   <string name="removing_from_favourites">Un viaggio che hai selezionato è segnato come viaggio preferito. Sarà rimosso anche da lì.</string>
   <string name="current_time_set">L\'orario è impostato su quello attuale.</string>
   <string name="current_date_set">La data è impostata su quella attuale.</string>
-  <string name="added_1h">Aggiunto 1 ora fa.</string>
+  <string name="added_1h">1 ora è stata aggiunta.</string>
   <string name="pref_transport_network">Rete di trasporto</string>
   <string name="pref_hide_departure_time">Nascondi orario di partenza</string>
   <string name="pref_hide_departure_time_summary">Mostra solo l\'orario di arrivo quando si visualizzano le fermate intermedie</string>
+  <string name="pref_exit_app_on_back_press">Chiudi app con il tasto Indietro</string>
+  <string name="pref_exit_app_on_back_press_summary">Chiudi sempre l\'app quando premi il tasto Indietro nella schermata iniziale</string>
   <string name="pref_home">Luogo iniziale</string>
   <string name="pref_display">Visualizza</string>
   <string name="pref_theme_title">Tema</string>
@@ -89,7 +92,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="pref_theme_dark">Scuro</string>
   <string name="pref_language_title">Lingua</string>
   <string name="pref_directions_routing">Direzioni e percorso</string>
-  <string name="pref_optimize">Ottimizza per</string>
+  <string name="pref_optimize">Ottimizza secondo</string>
   <string name="pref_optimize_least_duration">Minore durata</string>
   <string name="pref_optimize_least_changes">Minori cambi</string>
   <string name="pref_optimize_least_walking">Minori tratti a piedi</string>
@@ -115,18 +118,19 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="error_no_departures_capability">La rete di trasporto corrente non supporta la ricerca partenze.</string>
   <string name="error_no_nearby_locations_capability">La corrente rete di trasporti non supporta la ricerca di stazioni vicine.</string>
   <string name="error_please_file_ticket">Qualcosa è andato storto. Crea una segnalazione e spiegaci cosa è successo.</string>
-  <string name="error_trip_refresh_failed">Impossibile aggiornare i dati per l´itinerario corrente.</string>
+  <string name="error_trip_refresh_failed">Impossibile aggiornare i dati per l\'attuale percorso.</string>
   <string name="meter">m</string>
-  <string name="system_default">Default di Sistema</string>
-  <string name="times_include_delays">(Attention: Gli orari includono i ritardi riportati)</string>
+  <string name="system_default">Predefinito di sistema</string>
+  <string name="times_include_delays">(Attenzione: gli orari includono i ritardi riportati)</string>
   <string name="home">Casa</string>
+  <string name="home_dialog_title">Imposta luogo iniziale</string>
   <string name="location">Luogo</string>
   <string name="location_home">Clicca per impostare il luogo iniziale</string>
   <string name="location_gps">Utilizza posizione corrente</string>
-  <string name="location_map">Seleziona la posizione dalla Mappa</string>
+  <string name="location_map">Seleziona la posizione dalla mappa</string>
   <string name="product_high_speed_train">Treno ad alta velocità</string>
   <string name="product_regional_train">Treno regionale</string>
-  <string name="product_suburban_train">Treno periferico</string>
+  <string name="product_suburban_train">Treno suburbano</string>
   <string name="product_subway">Metropolitana</string>
   <string name="product_tram">Tram</string>
   <string name="product_bus">Bus</string>
@@ -135,16 +139,16 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="product_on_demand">Su richiesta</string>
   <string name="action_fav_trips_sort">Ordina elenco</string>
   <string name="action_fav_trips_sort_recent">Ultimo usato</string>
-  <string name="action_fav_trips_sort_most">Piú utilizzato</string>
+  <string name="action_fav_trips_sort_most">Più utilizzato</string>
   <string name="action_set_locations">Modifica ricerca</string>
   <string name="action_swap_locations">Cerca tragitto di ritorno</string>
-  <string name="permission_denied_gps">Non hai il permesso di accedere alla tua posizione, per cui questa funzionalitá non funzionerá. Si prega di abilitare i permessi nelle impostazioni dell´applicazione.</string>
-  <string name="permission_explanation_map">Gli strati della mappa necessitano di essere salvate nel tuo dispositivo. La Mappa non funzionerá senza.</string>
-  <string name="permission_denied_map">Mostrare la mappa richiede che i livelli vengano salvati sulla memoria del tuo dispositivo. Abilita i permessi di storage per usare la mappa.</string>
+  <string name="permission_denied_gps">Non hai permesso di accedere alla tua posizione, per cui questa funzionalità non può funzionare. Si prega di concedere i permessi nelle impostazioni.</string>
+  <string name="permission_explanation_map">Gli elementi della mappa devono essere salvati sul tuo dispositivo. La mappa non può funzionare senza.</string>
+  <string name="permission_denied_map">Mostrare la mappa richiede che gli elementi vengano salvati sulla memoria del tuo dispositivo. Abilita i permessi di memorizzazione per usare la mappa.</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">Registro delle modifiche</string>
-  <string name="changelog_title">Cosa c´é di nuovo</string>
-  <string name="changelog_show_full">Piú...</string>
+  <string name="changelog_title">Novità</string>
+  <string name="changelog_show_full">Più...</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">solo lunga distanza</string>
@@ -154,18 +158,18 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_vbb">Brandeburgo, Berlino</string>
   <string name="np_desc_bayern">Bayern, Würzburg, Regensburg</string>
   <string name="np_desc_avv">Asburgo</string>
-  <string name="np_desc_mvv">Bavaria, Monaco</string>
+  <string name="np_desc_mvv">Baviera, Monaco</string>
   <string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen</string>
-  <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
+  <string name="np_desc_vvm">Svevia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Amburgo</string>
-  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
-  <string name="np_desc_gvh">Lower Saxony, Hannover, Hamburg</string>
+  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Amburgo</string>
+  <string name="np_desc_gvh">Bassa Sassonia, Hannover, Amburgo</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
-  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
-  <string name="np_desc_vvo">Saxony, Dresden</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Bassa Sassonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vvo">Sassonia, Dresda</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_nasa">Saxony, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
   <string name="np_desc_vrr">North Rhine-Westphalia, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
@@ -236,32 +240,38 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool City Region</string>
-  <string name="np_desc_br">San Paulo e Porto Alegre</string>
+  <string name="np_desc_br">San Paolo e Porto Alegre</string>
   <string name="np_desc_vrs">Colonia, Bonn</string>
-  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitania, Midi-Pirenei, Bordeaux, Tolosa</string>
   <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
+  <string name="np_desc_ontario">Ottawa, Toronto</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_db">Deutsche Bahn</string>
-  <string name="np_name_bayern">BAVARIA</string>
+  <string name="np_name_bayern">BAVIERA</string>
   <string name="np_name_paris">PARIGI</string>
   <string name="np_name_sydney">SYDNEY</string>
   <string name="np_name_stockholm">STOCCOLMA</string>
   <string name="np_name_wien">VIENNA</string>
   <string name="np_name_spain">Spagna</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">New York e New-Jersey States</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">Stati di New York e del New Jersey</string>
   <string name="np_name_br">SPTRANS EPTC</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_name_frenchsouthwest">FR-SW</string>
-  <string name="maintainer">Maintainer</string>
+  <string name="np_name_ontario">Ontario</string>
+  <string name="np_name_quebec">Quebec</string>
+  <string name="maintainer">Mantenitori</string>
   <string name="contributers">Contributori</string>
   <string name="translators">Traduttori</string>
-  <string name="dutch">Tedesco</string>
+  <string name="dutch">Olandese</string>
   <string name="french">Francese</string>
   <string name="german">Tedesco</string>
   <string name="italian">Italiano</string>
   <string name="portuguese_br">Portoghese\n(Brasile)</string>
   <string name="spanish">Spagnolo</string>
   <string name="turkish">Turco</string>
-  <string name="norwegian_bokmal">Norwegian\nBokmål</string>
-  <string name="basque">Basque</string>
+  <string name="norwegian_bokmal">Norvegese\nBokmål</string>
+  <string name="basque">Basco</string>
   <string name="english">Inglese</string>
+  <string name="catalan">Catalano</string>
+  <string name="polish">Polacco</string>
 </resources>
