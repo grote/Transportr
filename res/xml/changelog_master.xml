@@ -8,6 +8,7 @@
         <change>Do not show keyboard and location list on startup</change>
         <change>Add setting for whether app should always exist when pressing back in start screen</change>
         <change>Return 10 instead of 5 nearby stations and improve their display</change>
+        <change>Better icons to symbolize start and final station of a trip on the map</change>
         <change>Fix bug where the navigation drawer selection did not update when pressing back button</change>
     </release>
 
