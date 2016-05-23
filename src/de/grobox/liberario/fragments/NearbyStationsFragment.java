@@ -65,7 +65,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 	EnumSet<LocationType> types = EnumSet.of(LocationType.STATION);
 
 	private static final int MAX_DISTANCE = 0;
-	private static final int MAX_STATIONS = 5;
+	private static final int MAX_STATIONS = 10;
 	private int maxStations = MAX_STATIONS;
 
 	private final String START = "start";

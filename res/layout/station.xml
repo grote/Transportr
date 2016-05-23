@@ -22,8 +22,10 @@
 
         <TextView
             android:id="@+id/stationNameView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/distanceView"
+            android:layout_toLeftOf="@+id/distanceView"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="?android:attr/textColorPrimary"
             tools:text="Station Name"
@@ -33,7 +35,8 @@
             android:id="@+id/distanceView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
+            android:paddingLeft="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
