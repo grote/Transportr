@@ -13,4 +13,12 @@
 
     <color name="drawableTintDark">#ffffffff</color>
     <color name="drawableTintLight">#8a000000</color>
+
+    <!-- GPS FAB -->
+    <color name="fabBackground">@color/cardview_light_background</color>
+    <color name="fabBackgroundMoved">@color/md_blue_700</color>
+    <color name="fabForegroundInitial">@color/drawableTintLight</color>
+    <color name="fabForegroundFollow">@color/fabBackgroundMoved</color>
+    <color name="fabForegroundMoved">@color/md_white_1000</color>
+
 </resources>

@@ -18,8 +18,10 @@
 package de.grobox.liberario.activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -27,8 +29,10 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -78,10 +82,11 @@ import de.schildbach.pte.dto.Trip;
 public class MapActivity extends TransportrActivity implements MapEventsReceiver {
 	private MapView map;
 	private Menu menu;
+	private FloatingActionButton fab;
 	private List<GeoPoint> points = new ArrayList<>();
 	private GpsMyLocationProvider locationProvider;
-	private MyLocationNewOverlay myLocationOverlay;
-	private boolean gps = false, gpsWasOn = false;
+	private GpsController gpsController;
+	private FabController fabController;
 	private TransportNetwork network;
 
 	public final static String SHOW_AREA = "de.grobox.liberario.MapActivity.SHOW_AREA";
@@ -91,16 +96,16 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	public final static String LOCATION = "de.schildbach.pte.dto.Location";
 	public final static String LOCATIONS = "List<de.schildbach.pte.dto.Location>";
 	public final static String TRIP = "de.schildbach.pte.dto.Trip";
-	private final static String GPS_WAS_ON = "de.grobox.liberario.MapActivity.GPS_WAS_ON";
 
 	private enum MarkerType { BEGIN, CHANGE, STOP, END, WALK }
+	private enum LocationProvider { NONE, GPS, NETWORK, BOTH }
 
 	private volatile GeoPoint latestLocation;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_stations_map);
+		setContentView(R.layout.activity_map);
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
@@ -115,6 +120,18 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 
+		map = (MapView) findViewById(R.id.map);
+		if(map != null) {
+			map.setMultiTouchControls(true);
+			map.setTilesScaledToDpi(true);
+		}
+
+		fab = (FloatingActionButton) findViewById(R.id.fab);
+		fabController = new FabController();
+
+		gpsController = new GpsController();
+		gpsController.onRestoreInstanceState(savedInstanceState);
+
 		if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 			// Should we show an explanation?
 			if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -124,39 +141,54 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				Toast.makeText(this, R.string.permission_explanation_map, Toast.LENGTH_LONG).show();
 				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MainActivity.PR_WRITE_EXTERNAL_STORAGE);
 			}
-		} else {
-			setupMap();
+			return;
 		}
 
-		if(savedInstanceState != null) {
-			gpsWasOn = savedInstanceState.getBoolean(GPS_WAS_ON);
+		setupMap();
+	}
+
+	private void setupMap() {
+		MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(this, this);
+		map.getOverlays().add(0, mapEventsOverlay);
+
+		Intent intent = getIntent();
+		if(intent != null) {
+			String action = intent.getAction();
+			if(action != null) {
+				//noinspection IfCanBeSwitch
+				if(action.equals(SHOW_AREA)) {
+					showArea();
+				} else if(action.equals(SHOW_LOCATIONS)) {
+					@SuppressWarnings("unchecked")
+					List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra(LOCATIONS);
+					Location myLoc = (Location) intent.getSerializableExtra(LOCATION);
+					showLocations(locations, myLoc);
+				} else if(action.equals(SHOW_TRIP)) {
+					Trip trip = (Trip) intent.getSerializableExtra(TRIP);
+					showTrip(trip);
+				}
+			}
 		}
+		map.getOverlays().add(gpsController.getOverlay());
+		setViewSpan();
 	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-
-		// remember whether GPS was on or not, so it can be re-activated
-		outState.putBoolean(GPS_WAS_ON, gpsWasOn);
+		if(gpsController != null) gpsController.onSaveInstanceState(outState);
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		if(gpsWasOn) {
-			gpsWasOn = false;
-			toggleGPS();
-		}
+		if(gpsController != null) gpsController.onResume();
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		if(gps) {
-			gpsWasOn = true;
-			toggleGPS();
-		}
+		if(gpsController != null) gpsController.onPause();
 	}
 
 	@Override
@@ -165,8 +197,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			case MainActivity.PR_WRITE_EXTERNAL_STORAGE:{
 				// If request is cancelled, the result arrays are empty.
 				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					// FIXME: For some reason, there are no tiles shown after permission is first granted
 					setupMap();
+					setViewSpan();
 				} else {
 					Toast.makeText(this, R.string.permission_denied_map, Toast.LENGTH_LONG).show();
 					supportFinishAfterTransition();
@@ -176,7 +208,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			case MainActivity.PR_ACCESS_FINE_LOCATION_MAPS:{
 				// If request is cancelled, the result arrays are empty.
 				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					toggleGPS();
+					gpsController.toggle();
 				} else {
 					Toast.makeText(this, R.string.permission_denied_gps, Toast.LENGTH_LONG).show();
 				}
@@ -194,8 +226,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 		MenuItem gpsItem = this.menu.findItem(R.id.action_use_gps);
 
-		if(locationProvider != null) {
-			if(gps) {
+		if(gpsController != null) {
+			if(gpsController.isActive()) {
 				gpsItem.setIcon(TransportrUtils.getToolbarDrawable(this, R.drawable.ic_gps_off));
 			} else {
 				gpsItem.setIcon(TransportrUtils.getToolbarDrawable(this, R.drawable.ic_gps));
@@ -216,7 +248,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 				return true;
 			case R.id.action_use_gps:
-				toggleGPS();
+				gpsController.toggle();
 
 				return true;
 			case R.id.action_show_all:
@@ -256,46 +288,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		return true;
 	}
 
-	private void setupMap() {
-		map = new MapView(this);
-
-		map.setClickable(true);
-		map.setMultiTouchControls(true);
-		map.setTilesScaledToDpi(true);
-
-		MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(this, this);
-		map.getOverlays().add(0, mapEventsOverlay);
-
-		// add map to root view
-		ViewGroup root = (ViewGroup) findViewById(R.id.root);
-		if(root == null) return;
-		root.addView(map);
-
-		Intent intent = getIntent();
-		if(intent != null) {
-			String action = intent.getAction();
-			if(action != null) {
-				if(action.equals(SHOW_AREA)) {
-					showArea();
-				} else if(action.equals(SHOW_LOCATIONS)) {
-					@SuppressWarnings("unchecked")
-					List<Location> locations = (ArrayList<Location>) intent.getSerializableExtra(LOCATIONS);
-					Location myLoc = (Location) intent.getSerializableExtra(LOCATION);
-					showLocations(locations, myLoc);
-				} else if(action.equals(SHOW_TRIP)) {
-					Trip trip = (Trip) intent.getSerializableExtra(TRIP);
-					showTrip(trip);
-				}
-			}
-		}
-
-		setViewSpan();
-	}
-
 	private void showArea() {
-		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-			setupGPS(null);
-		}
 		getAreaAndZoom();
 	}
 
@@ -363,9 +356,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			points.add(new GeoPoint(myLocation.getLatAsDouble(), myLocation.getLonAsDouble()));
 		}
 
-		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-			setupGPS(myLocation);
-		}
+		gpsController.setLocation(myLocation);
 	}
 
 	private void showTrip(Trip trip) {
@@ -537,47 +528,6 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		mapController.zoomToSpan(maxLat - minLat, maxLon - minLon);
 	}
 
-	private void setupGPS(Location myLoc) {
-		locationProvider = new GpsMyLocationProvider(this) {
-			@Override
-			public void onLocationChanged(final android.location.Location location) {
-				super.onLocationChanged(location);
-				latestLocation = new GeoPoint(location);
-			}
-		};
-
-		// show last known position on map
-		if(myLoc != null) {
-			// create temporary location object with last known position
-			android.location.Location tmp_loc = new android.location.Location("");
-			tmp_loc.setLatitude(myLoc.lat / 1E6);
-			tmp_loc.setLongitude(myLoc.lon / 1E6);
-
-			// set last known position
-			locationProvider.onLocationChanged(tmp_loc);
-		}
-
-		// create my location overlay that shows the current position and updates automatically
-		myLocationOverlay = new MyLocationNewOverlay(locationProvider, map);
-		myLocationOverlay.enableMyLocation(locationProvider);
-		myLocationOverlay.setDrawAccuracyEnabled(true);
-
-		// set new icons
-		Bitmap person = getBitmap(ContextCompat.getDrawable(this, R.drawable.map_pedestrian_location));
-		Bitmap directionArrow = getBitmap(ContextCompat.getDrawable(this, R.drawable.map_pedestrian_bearing));
-		myLocationOverlay.setDirectionArrow(person, directionArrow);
-
-		// properly position person icon
-		float scale = getResources().getDisplayMetrics().density;
-		myLocationOverlay.setPersonHotspot(16.0f * scale + 0.5f, 19.0f * scale + 0.5f);
-
-		map.getOverlays().add(myLocationOverlay);
-
-		// turn GPS off by default
-		gps = false;
-		locationProvider.stopLocationProvider();
-	}
-
 	private void markLocation(Location loc, Drawable drawable) {
 		GeoPoint pos = new GeoPoint(loc.getLatAsDouble(), loc.getLonAsDouble());
 
@@ -595,35 +545,9 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		map.getOverlays().add(marker);
 	}
 
-	private void toggleGPS() {
-		if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-			// Should we show an explanation?
-			if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-				Toast.makeText(this, "You need to grant the location permission in order to see your current position on the map.", Toast.LENGTH_LONG).show();
-			} else {
-				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MainActivity.PR_ACCESS_FINE_LOCATION_MAPS);
-			}
-			return;
-		}
+	private class LocationInfoWindow extends InfoWindow {
 
-		if(locationProvider == null) setupGPS(null);
-
-		MenuItem gpsItem = menu.findItem(R.id.action_use_gps);
-
-		if(gps) {
-			gps = false;
-			locationProvider.stopLocationProvider();
-			gpsItem.setIcon(TransportrUtils.getToolbarDrawable(this, R.drawable.ic_gps));
-		} else {
-			gps = true;
-			locationProvider.startLocationProvider(myLocationOverlay);
-			gpsItem.setIcon(TransportrUtils.getToolbarDrawable(this, R.drawable.ic_gps_off));
-		}
-	}
-
-	public class LocationInfoWindow extends InfoWindow {
-
-		public LocationInfoWindow(MapView mapView) {
+		LocationInfoWindow(MapView mapView) {
 			super(R.layout.location_info_window, mapView);
 
 			// close it when clicking on the bubble
@@ -719,9 +643,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 
 		@Override
-		public void onClose() {
-			// do nothing
-		}
+		public void onClose() { }
 	}
 
 	private Bitmap getBitmap(Drawable drawable) {
@@ -730,6 +652,213 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
 		drawable.draw(canvas);
 		return bitmap;
+	}
+
+	private class GpsController {
+
+		private final MyLocationNewOverlay myLocationOverlay;
+		private boolean gpsWasOn = false;
+		private final static String GPS_WAS_ON = "de.grobox.liberario.MapActivity.GPS_WAS_ON";
+
+		private GpsController() {
+			locationProvider = new GpsMyLocationProvider(MapActivity.this) {
+				@Override
+				public void onLocationChanged(final android.location.Location location) {
+					super.onLocationChanged(location);
+					fabController.onLocationChanged();
+					latestLocation = new GeoPoint(location);
+				}
+				@Override
+				public void onProviderDisabled(final String provider) {
+					LocationProvider providerState = getActiveLocationProviders();
+					if(providerState == LocationProvider.NONE && isActive()) {
+						turnOff();
+					}
+				}
+			};
+
+			// create my location overlay that shows the current position and updates automatically
+			myLocationOverlay = new MyLocationNewOverlay(locationProvider, map) {
+				@Override
+				public boolean onTouchEvent(final MotionEvent event, final MapView mapView) {
+					if (event.getAction() == MotionEvent.ACTION_MOVE) {
+						fabController.onMapMove();
+					}
+					return super.onTouchEvent(event, mapView);
+				}
+			};
+			myLocationOverlay.setDrawAccuracyEnabled(true);
+
+			// set new icons
+			Bitmap person = getBitmap(ContextCompat.getDrawable(MapActivity.this, R.drawable.map_pedestrian_location));
+			Bitmap directionArrow = getBitmap(ContextCompat.getDrawable(MapActivity.this, R.drawable.map_pedestrian_bearing));
+			myLocationOverlay.setDirectionArrow(person, directionArrow);
+
+			// properly position person icon
+			float scale = getResources().getDisplayMetrics().density;
+			myLocationOverlay.setPersonHotspot(16.0f * scale + 0.5f, 19.0f * scale + 0.5f);
+		}
+
+		private void onResume() {
+			if(gpsWasOn) {
+				gpsWasOn = false;
+				toggle();
+			}
+		}
+
+		private void onPause() {
+			if(myLocationOverlay != null && isActive()) {
+				gpsWasOn = true;
+				toggle();
+			}
+		}
+
+		private void onSaveInstanceState(Bundle state) {
+			// remember whether GPS was on or not, so it can be re-activated
+			state.putBoolean(GPS_WAS_ON, gpsWasOn);
+		}
+
+		private void onRestoreInstanceState(Bundle state) {
+			if(state != null) {
+				gpsWasOn = state.getBoolean(GPS_WAS_ON);
+			}
+		}
+
+		private MyLocationNewOverlay getOverlay() {
+			return myLocationOverlay;
+		}
+
+		private boolean isActive() {
+			return myLocationOverlay.isMyLocationEnabled();
+		}
+
+		private GeoPoint getLocation() {
+			return myLocationOverlay.getMyLocation();
+		}
+
+		private void setLocation(Location l) {
+			if(l != null) {
+				// create temporary location object with last known position
+				android.location.Location tmp_loc = new android.location.Location("");
+				tmp_loc.setLatitude(l.lat / 1E6);
+				tmp_loc.setLongitude(l.lon / 1E6);
+
+				// set last known position
+				locationProvider.onLocationChanged(tmp_loc);
+			}
+		}
+
+		private void toggle() {
+			if(ContextCompat.checkSelfPermission(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+				// Should we show an explanation?
+				if(ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+					Toast.makeText(MapActivity.this, R.string.permission_explanation_gps, Toast.LENGTH_LONG).show();
+				} else {
+					ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MainActivity.PR_ACCESS_FINE_LOCATION_MAPS);
+				}
+				return;
+			}
+
+			// check we have location providers available
+			LocationProvider provider = getActiveLocationProviders();
+			if(provider == LocationProvider.NONE) {
+				Toast.makeText(MapActivity.this, R.string.error_no_location_provider, Toast.LENGTH_SHORT).show();
+				return;
+			} else if(provider == LocationProvider.NETWORK) {
+				Toast.makeText(MapActivity.this, R.string.position_no_gps, Toast.LENGTH_SHORT).show();
+			}
+
+			if(isActive()) {
+				turnOff();
+			} else {
+				turnOn();
+			}
+		}
+
+		private void turnOn() {
+			myLocationOverlay.enableMyLocation();
+			fabController.show();
+			if(menu != null) {
+				MenuItem gpsItem = menu.findItem(R.id.action_use_gps);
+				gpsItem.setIcon(TransportrUtils.getToolbarDrawable(MapActivity.this, R.drawable.ic_gps_off));
+			}
+		}
+
+		private void turnOff() {
+			myLocationOverlay.disableMyLocation();
+			fabController.hide();
+			if(menu != null) {
+				MenuItem gpsItem = menu.findItem(R.id.action_use_gps);
+				gpsItem.setIcon(TransportrUtils.getToolbarDrawable(MapActivity.this, R.drawable.ic_gps));
+			}
+		}
+
+		private LocationProvider getActiveLocationProviders() {
+			LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+			List<String> providers = locationManager.getProviders(true);
+			boolean providerGps = providers.contains(LocationManager.GPS_PROVIDER);
+			boolean providerNetwork = providers.contains(LocationManager.NETWORK_PROVIDER);
+			if(providerGps && providerNetwork) return LocationProvider.BOTH;
+			else if(providerGps) return LocationProvider.GPS;
+			else if(providerNetwork) return LocationProvider.NETWORK;
+			return LocationProvider.NONE;
+		}
+
+	}
+
+	private class FabController implements View.OnClickListener {
+
+		private final ColorStateList fabBg = ColorStateList.valueOf(ContextCompat.getColor(MapActivity.this, R.color.fabBackground));
+		private final ColorStateList fabBgMoved = ColorStateList.valueOf(ContextCompat.getColor(MapActivity.this, R.color.fabBackgroundMoved));
+		private final int fabFg = ContextCompat.getColor(MapActivity.this, R.color.fabForegroundInitial);
+		private final int fabFgMoved = ContextCompat.getColor(MapActivity.this, R.color.fabForegroundMoved);
+		private final int fabFgFollow = ContextCompat.getColor(MapActivity.this, R.color.fabForegroundFollow);
+
+		private FabController() {
+			fab.hide();
+			fab.setOnClickListener(this);
+			init();
+		}
+
+		private void init() {
+			fab.setBackgroundTintList(fabBg);
+			fab.getDrawable().setColorFilter(fabFg, PorterDuff.Mode.SRC_IN);
+		}
+
+		@Override
+		public void onClick(View v) {
+			if(gpsController.getLocation() != null) {
+				map.getController().animateTo(gpsController.getLocation());
+				gpsController.getOverlay().enableFollowLocation();
+				fab.setBackgroundTintList(fabBg);
+				fab.getDrawable().setColorFilter(fabFgFollow, PorterDuff.Mode.SRC_ATOP);
+			} else {
+				Toast.makeText(MapActivity.this, R.string.position_not_yet_known, Toast.LENGTH_SHORT).show();
+			}
+		}
+
+		private void show() {
+			fab.show();
+		}
+
+		private void hide() {
+			fab.hide();
+		}
+
+		private void onMapMove() {
+			if(gpsController.getLocation() != null) {
+				fab.setBackgroundTintList(fabBgMoved);
+				fab.getDrawable().setColorFilter(fabFgMoved, PorterDuff.Mode.SRC_ATOP);
+			} else {
+				init();
+			}
+		}
+
+		private void onLocationChanged() {
+			if(!gpsController.getOverlay().isFollowLocationEnabled()) {
+				onMapMove();
+			}
+		}
 	}
 
 }
