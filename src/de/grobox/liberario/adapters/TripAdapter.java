@@ -208,7 +208,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		return trips == null ? 0 : trips.size();
 	}
 
-	static public void bindLeg(Context context, final LegHolder leg_holder, Trip.Leg leg, boolean detail, FlowLayout lines, boolean showLineName) {
+	private static void bindLeg(Context context, final LegHolder leg_holder, Trip.Leg leg, boolean detail, FlowLayout lines, boolean showLineName) {
 		// Locations
 		leg_holder.departureLocation.setText(TransportrUtils.getLocName(leg.departure));
 		leg_holder.arrivalLocation.setText(TransportrUtils.getLocName(leg.arrival));
@@ -339,7 +339,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		bindLeg(context, leg_holder, leg, detail, null, showLineName);
 	}
 
-	static public void bindStops(Context context, final LegHolder leg_holder, List<Stop> stops) {
+	private static void bindStops(Context context, final LegHolder leg_holder, List<Stop> stops) {
 		leg_holder.stops.setVisibility(View.GONE);
 		leg_holder.duration.setVisibility(View.GONE);
 
@@ -455,7 +455,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		trips.add(removed.remove(removed.size() - 1));
 	}
 
-	public void expandTrip(final TripHolder ui, boolean expand) {
+	private void expandTrip(final TripHolder ui, boolean expand) {
 		Drawable icon;
 		int state, ostate;
 
@@ -508,7 +508,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 	public static class BaseTripHolder extends RecyclerView.ViewHolder {
 		public CardView card;
-		public ViewGroup legsView;
+		ViewGroup legsView;
 		public List<LegHolder> legs;
 
 		public BaseTripHolder(View v, int size) {
@@ -530,20 +530,20 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		}
 	}
 
-	protected static class TripHolder extends BaseTripHolder {
-		public TableLayout firstLeg;
-		public TableRow linesView;
-		public TextView departureDelay;
-		public ImageView lineArrowDown;
+	static class TripHolder extends BaseTripHolder {
+		TableLayout firstLeg;
+		TableRow linesView;
+		TextView departureDelay;
+		ImageView lineArrowDown;
 		public FlowLayout lines;
-		public TextView changes;
-		public TextView duration;
-		public ImageView map;
-		public ImageView share;
-		public ImageView calendar;
-		public ImageView expand;
+		TextView changes;
+		private TextView duration;
+		private ImageView map;
+		private ImageView share;
+		ImageView calendar;
+		ImageView expand;
 
-		public TripHolder(View v, int size) {
+		TripHolder(View v, int size) {
 			super(v, size - 1);
 
 			firstLeg = (TableLayout) v.findViewById(R.id.firstLegView);
@@ -582,26 +582,26 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 	public static class LegHolder extends RecyclerView.ViewHolder {
 		public TableLayout layout;
 		public ViewGroup departure;
-		public TextView departureTime;
-		public TextView departureDelay;
-		public TextView departureLocation;
-		public TextView	departurePlatform;
-		public ViewGroup arrival;
-		public TextView arrivalTime;
-		public TextView arrivalDelay;
-		public TextView arrivalLocation;
-		public TextView arrivalPlatform;
-		public ViewGroup info;
-		public TextView message;
-		public ViewGroup stops;
+		TextView departureTime;
+		TextView departureDelay;
+		TextView departureLocation;
+		TextView departurePlatform;
+		ViewGroup arrival;
+		TextView arrivalTime;
+		TextView arrivalDelay;
+		TextView arrivalLocation;
+		TextView arrivalPlatform;
+		private ViewGroup info;
+		private TextView message;
+		ViewGroup stops;
 		public ViewGroup line;
-		public ImageView arrow;
-		public ImageView arrowDown;
-		public TextView lineDestination;
+		ImageView arrow;
+		ImageView arrowDown;
+		TextView lineDestination;
 		public TextView	duration;
 		public View divider;
 
-		public LegHolder(ViewGroup v) {
+		LegHolder(ViewGroup v) {
 			super(v);
 
 			layout = (TableLayout) v;
@@ -629,20 +629,20 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		}
 	}
 
-	public static class StopHolder {
+	private static class StopHolder {
 		public TableRow layout;
-		public TextView arrivalTime;
-		public TextView departureTime;
-		public TextView arrivalDelay;
-		public TextView departureDelay;
+		TextView arrivalTime;
+		TextView departureTime;
+		TextView arrivalDelay;
+		TextView departureDelay;
 
 		public TextView location;
 
-		public ViewGroup platformView;
-		public TextView arrivalPlatform;
-		public TextView	departurePlatform;
+		ViewGroup platformView;
+		TextView arrivalPlatform;
+		TextView	departurePlatform;
 
-		public StopHolder(TableRow v) {
+		StopHolder(TableRow v) {
 			layout = v;
 			arrivalTime = (TextView) v.findViewById(R.id.arrivalTimeView);
 			departureTime = (TextView) v.findViewById(R.id.departureTimeView);
