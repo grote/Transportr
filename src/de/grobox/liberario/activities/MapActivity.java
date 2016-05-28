@@ -29,8 +29,10 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.location.GpsStatus;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -97,10 +99,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	public final static String LOCATIONS = "List<de.schildbach.pte.dto.Location>";
 	public final static String TRIP = "de.schildbach.pte.dto.Trip";
 
-	private enum MarkerType { BEGIN, CHANGE, STOP, END, WALK }
-	private enum LocationProvider { NONE, GPS, NETWORK, BOTH }
-
-	private volatile GeoPoint latestLocation;
+	private enum MarkerType {BEGIN, CHANGE, STOP, END, WALK}
+	private enum LocationProvider {NONE, GPS, NETWORK, BOTH}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -139,7 +139,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				supportFinishAfterTransition();
 			} else {
 				Toast.makeText(this, R.string.permission_explanation_map, Toast.LENGTH_LONG).show();
-				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MainActivity.PR_WRITE_EXTERNAL_STORAGE);
+				ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, MainActivity.PR_WRITE_EXTERNAL_STORAGE);
 			}
 			return;
 		}
@@ -193,11 +193,12 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-		switch (requestCode) {
-			case MainActivity.PR_WRITE_EXTERNAL_STORAGE:{
+		switch(requestCode) {
+			case MainActivity.PR_WRITE_EXTERNAL_STORAGE: {
 				// If request is cancelled, the result arrays are empty.
 				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 					setupMap();
+					// for some reason, this needs to be called again here
 					setViewSpan();
 				} else {
 					Toast.makeText(this, R.string.permission_denied_map, Toast.LENGTH_LONG).show();
@@ -205,7 +206,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				}
 				break;
 			}
-			case MainActivity.PR_ACCESS_FINE_LOCATION_MAPS:{
+			case MainActivity.PR_ACCESS_FINE_LOCATION_MAPS: {
 				// If request is cancelled, the result arrays are empty.
 				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 					gpsController.toggle();
@@ -242,7 +243,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		// Handle presses on the action bar items
-		switch (item.getItemId()) {
+		switch(item.getItemId()) {
 			case android.R.id.home:
 				onBackPressed();
 
@@ -272,7 +273,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		Marker marker = new Marker(map);
 		marker.setIcon(new ColorDrawable(Color.TRANSPARENT));
 		marker.setPosition(p);
-		marker.setTitle(getString(R.string.location)+ ": " + loc_str);
+		marker.setTitle(getString(R.string.location) + ": " + loc_str);
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
 		marker.setInfoWindowAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
 		marker.setRelatedObject(Location.coord(p.getLatitudeE6(), p.getLongitudeE6()));
@@ -346,7 +347,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	private void showLocations(List<Location> locations, Location myLocation) {
 		// mark locations on map
 		for(Location loc : locations) {
-			if(loc.hasLocation()){
+			if(loc.hasLocation()) {
 				markLocation(loc, ContextCompat.getDrawable(this, R.drawable.ic_marker_station));
 			}
 		}
@@ -388,7 +389,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 		// Now draw intermediate stops on top of path
 		for(Trip.Leg leg : trip.legs) {
-			if (leg instanceof Trip.Public) {
+			if(leg instanceof Trip.Public) {
 				Trip.Public public_leg = (Trip.Public) leg;
 
 				if(public_leg.intermediateStops != null) {
@@ -406,7 +407,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		int i = 1;
 		for(Trip.Leg leg : trip.legs) {
 			// Draw public transportation stations
-			if (leg instanceof Trip.Public) {
+			if(leg instanceof Trip.Public) {
 				Trip.Public public_leg = (Trip.Public) leg;
 
 				// Draw first station or change station
@@ -417,7 +418,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				}
 
 				// Draw final station only at the end or if end is walking
-				if(i == trip.legs.size() || (i == trip.legs.size()-1 && trip.legs.get(i) instanceof Trip.Individual)) {
+				if(i == trip.legs.size() || (i == trip.legs.size() - 1 && trip.legs.get(i) instanceof Trip.Individual)) {
 					markLocation(leg.arrival, getMarkerDrawable(MarkerType.END, public_leg.line));
 				}
 			}
@@ -511,15 +512,15 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			minLon = Math.min(point.getLongitudeE6(), minLon);
 		}
 
-		if (latestLocation != null) {
-			maxLat = Math.max(latestLocation.getLatitudeE6(), maxLat);
-			minLat = Math.min(latestLocation.getLatitudeE6(), minLat);
-			maxLon = Math.max(latestLocation.getLongitudeE6(), maxLon);
-			minLon = Math.min(latestLocation.getLongitudeE6(), minLon);
+		if(gpsController.getLocation() != null) {
+			maxLat = Math.max(gpsController.getLocation().getLatitudeE6(), maxLat);
+			minLat = Math.min(gpsController.getLocation().getLatitudeE6(), minLat);
+			maxLon = Math.max(gpsController.getLocation().getLongitudeE6(), maxLon);
+			minLon = Math.min(gpsController.getLocation().getLongitudeE6(), minLon);
 		}
 
-		int center_lat = (maxLat + minLat)/2;
-		int center_lon = (maxLon + minLon)/2;
+		int center_lat = (maxLat + minLat) / 2;
+		int center_lon = (maxLon + minLon) / 2;
 		final GeoPoint center = new GeoPoint(center_lat, center_lon);
 
 		IMapController mapController = map.getController();
@@ -552,7 +553,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 			// close it when clicking on the bubble
 			mView.setOnTouchListener(new View.OnTouchListener() {
-				@Override public boolean onTouch(View v, MotionEvent e) {
+				@Override
+				public boolean onTouch(View v, MotionEvent e) {
 					if(e.getAction() == MotionEvent.ACTION_UP) {
 						close();
 					}
@@ -643,7 +645,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 
 		@Override
-		public void onClose() { }
+		public void onClose() {
+		}
 	}
 
 	private Bitmap getBitmap(Drawable drawable) {
@@ -654,10 +657,12 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		return bitmap;
 	}
 
-	private class GpsController {
-
+	private class GpsController implements GpsStatus.Listener {
+		private final LocationManager locationManager;
 		private final MyLocationNewOverlay myLocationOverlay;
-		private boolean gpsWasOn = false;
+		private boolean gpsWasOn = false, hasFix = false;
+		private long lastLocationTime = 0;
+		private final static int GPS_FIX_LOST_TIME = 2500;
 		private final static String GPS_WAS_ON = "de.grobox.liberario.MapActivity.GPS_WAS_ON";
 
 		private GpsController() {
@@ -665,8 +670,10 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				@Override
 				public void onLocationChanged(final android.location.Location location) {
 					super.onLocationChanged(location);
+					if (location.getProvider().equals(LocationManager.GPS_PROVIDER)) {
+						lastLocationTime = SystemClock.elapsedRealtime();
+					}
 					fabController.onLocationChanged();
-					latestLocation = new GeoPoint(location);
 				}
 				@Override
 				public void onProviderDisabled(final String provider) {
@@ -677,11 +684,13 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				}
 			};
 
+			locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
 			// create my location overlay that shows the current position and updates automatically
 			myLocationOverlay = new MyLocationNewOverlay(locationProvider, map) {
 				@Override
 				public boolean onTouchEvent(final MotionEvent event, final MapView mapView) {
-					if (event.getAction() == MotionEvent.ACTION_MOVE) {
+					if(event.getAction() == MotionEvent.ACTION_MOVE) {
 						fabController.onMapMove();
 					}
 					return super.onTouchEvent(event, mapView);
@@ -690,13 +699,35 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			myLocationOverlay.setDrawAccuracyEnabled(true);
 
 			// set new icons
-			Bitmap person = getBitmap(ContextCompat.getDrawable(MapActivity.this, R.drawable.map_pedestrian_location));
-			Bitmap directionArrow = getBitmap(ContextCompat.getDrawable(MapActivity.this, R.drawable.map_pedestrian_bearing));
+			Bitmap person = getBitmap(ContextCompat.getDrawable(MapActivity.this, R.drawable.map_position));
+			Bitmap directionArrow = getBitmap(ContextCompat.getDrawable(MapActivity.this, R.drawable.map_position_bearing));
 			myLocationOverlay.setDirectionArrow(person, directionArrow);
 
 			// properly position person icon
 			float scale = getResources().getDisplayMetrics().density;
-			myLocationOverlay.setPersonHotspot(16.0f * scale + 0.5f, 19.0f * scale + 0.5f);
+			myLocationOverlay.setPersonHotspot(12.0f * scale + 0.5f, 12.0f * scale + 0.5f);
+		}
+
+		@Override
+		public void onGpsStatusChanged(int event) {
+			switch (event) {
+				case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+					boolean hasFixNow = false;
+					if(getLocation() != null) {
+						hasFixNow = (SystemClock.elapsedRealtime() - lastLocationTime) < GPS_FIX_LOST_TIME;
+					}
+					if (!hasFixNow && hasFix) {
+						onFixLost();
+					}
+					if (hasFixNow && !hasFix) {
+						onFixReacquired();
+					}
+					hasFix = hasFixNow;
+					break;
+				case GpsStatus.GPS_EVENT_FIRST_FIX:
+					hasFix = true;
+					break;
+			}
 		}
 
 		private void onResume() {
@@ -724,12 +755,27 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			}
 		}
 
+		private void onFixLost() {
+			myLocationOverlay.setPersonIcon(getBitmap(ContextCompat.getDrawable(MapActivity.this, R.drawable.map_position_no_fix)));
+			map.postInvalidate();
+			fabController.onFixLost();
+		}
+
+		private void onFixReacquired() {
+			myLocationOverlay.setPersonIcon(getBitmap(ContextCompat.getDrawable(MapActivity.this, R.drawable.map_position)));
+			map.postInvalidate();
+		}
+
 		private MyLocationNewOverlay getOverlay() {
 			return myLocationOverlay;
 		}
 
 		private boolean isActive() {
 			return myLocationOverlay.isMyLocationEnabled();
+		}
+
+		private boolean hasFix() {
+			return hasFix;
 		}
 
 		private GeoPoint getLocation() {
@@ -740,8 +786,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			if(l != null) {
 				// create temporary location object with last known position
 				android.location.Location tmp_loc = new android.location.Location("");
-				tmp_loc.setLatitude(l.lat / 1E6);
-				tmp_loc.setLongitude(l.lon / 1E6);
+				tmp_loc.setLatitude(l.getLatAsDouble());
+				tmp_loc.setLongitude(l.getLonAsDouble());
 
 				// set last known position
 				locationProvider.onLocationChanged(tmp_loc);
@@ -754,7 +800,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				if(ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
 					Toast.makeText(MapActivity.this, R.string.permission_explanation_gps, Toast.LENGTH_LONG).show();
 				} else {
-					ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MainActivity.PR_ACCESS_FINE_LOCATION_MAPS);
+					ActivityCompat.requestPermissions(MapActivity.this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, MainActivity.PR_ACCESS_FINE_LOCATION_MAPS);
 				}
 				return;
 			}
@@ -776,6 +822,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 
 		private void turnOn() {
+			//noinspection MissingPermission
+			locationManager.addGpsStatusListener(this);
 			myLocationOverlay.enableMyLocation();
 			fabController.show();
 			if(menu != null) {
@@ -785,6 +833,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 
 		private void turnOff() {
+			locationManager.removeGpsStatusListener(this);
 			myLocationOverlay.disableMyLocation();
 			fabController.hide();
 			if(menu != null) {
@@ -794,7 +843,6 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 
 		private LocationProvider getActiveLocationProviders() {
-			LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 			List<String> providers = locationManager.getProviders(true);
 			boolean providerGps = providers.contains(LocationManager.GPS_PROVIDER);
 			boolean providerNetwork = providers.contains(LocationManager.NETWORK_PROVIDER);
@@ -803,11 +851,9 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			else if(providerNetwork) return LocationProvider.NETWORK;
 			return LocationProvider.NONE;
 		}
-
 	}
 
 	private class FabController implements View.OnClickListener {
-
 		private final ColorStateList fabBg = ColorStateList.valueOf(ContextCompat.getColor(MapActivity.this, R.color.fabBackground));
 		private final ColorStateList fabBgMoved = ColorStateList.valueOf(ContextCompat.getColor(MapActivity.this, R.color.fabBackgroundMoved));
 		private final int fabFg = ContextCompat.getColor(MapActivity.this, R.color.fabForegroundInitial);
@@ -830,8 +876,10 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			if(gpsController.getLocation() != null) {
 				map.getController().animateTo(gpsController.getLocation());
 				gpsController.getOverlay().enableFollowLocation();
-				fab.setBackgroundTintList(fabBg);
-				fab.getDrawable().setColorFilter(fabFgFollow, PorterDuff.Mode.SRC_ATOP);
+				if(gpsController.hasFix) {
+					fab.setBackgroundTintList(fabBg);
+					fab.getDrawable().setColorFilter(fabFgFollow, PorterDuff.Mode.SRC_ATOP);
+				}
 			} else {
 				Toast.makeText(MapActivity.this, R.string.position_not_yet_known, Toast.LENGTH_SHORT).show();
 			}
@@ -846,7 +894,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 
 		private void onMapMove() {
-			if(gpsController.getLocation() != null) {
+			if(gpsController.hasFix()) {
 				fab.setBackgroundTintList(fabBgMoved);
 				fab.getDrawable().setColorFilter(fabFgMoved, PorterDuff.Mode.SRC_ATOP);
 			} else {
@@ -854,8 +902,15 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			}
 		}
 
+		private void onFixLost() {
+			init();
+		}
+
 		private void onLocationChanged() {
-			if(!gpsController.getOverlay().isFollowLocationEnabled()) {
+			if(gpsController.hasFix() && gpsController.getOverlay().isFollowLocationEnabled()) {
+				fab.setBackgroundTintList(fabBg);
+				fab.getDrawable().setColorFilter(fabFgFollow, PorterDuff.Mode.SRC_ATOP);
+			} else {
 				onMapMove();
 			}
 		}
