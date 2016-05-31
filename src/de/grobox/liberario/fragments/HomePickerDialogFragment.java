@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
@@ -36,6 +37,7 @@ import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.ui.LocationView;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
 public class HomePickerDialogFragment extends DialogFragment {
@@ -72,6 +74,10 @@ public class HomePickerDialogFragment extends DialogFragment {
 		super.onCreate(savedInstanceState);
 
 		View v = inflater.inflate(R.layout.fragment_set_home, container);
+
+		// Adapt Title Icon
+		final TextView title = (TextView) v.findViewById(R.id.homeTitleView);
+		title.setCompoundDrawables(TransportrUtils.getTintedDrawable(getContext(), title.getCompoundDrawables()[0]), null, null, null);
 
 		// Initialize LocationView
 		final LocationView loc = (LocationView) v.findViewById(R.id.location_input);
