@@ -21,9 +21,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,34 +34,37 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.mikepenz.fastadapter.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter.items.AbstractItem;
+import com.mikepenz.fastadapter.utils.ViewHolderFactory;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumSet;
-import java.util.Set;
 
-import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.activities.AmbiguousLocationActivity;
-import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.TripsActivity;
 import de.grobox.liberario.adapters.FavouritesAdapter;
 import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.fragments.ProductDialogFragment.OnProductsChangedListener;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
+import de.grobox.liberario.tasks.AsyncQueryTripsTask.TripHandler;
 import de.grobox.liberario.ui.LocationGpsView;
 import de.grobox.liberario.ui.LocationView;
 import de.grobox.liberario.ui.TimeAndDateView;
@@ -71,14 +75,27 @@ import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
-public class DirectionsFragment extends TransportrFragment implements AsyncQueryTripsTask.TripHandler {
+import static android.graphics.PorterDuff.Mode.SRC_ATOP;
+import static android.view.MotionEvent.ACTION_UP;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static android.widget.Toast.LENGTH_LONG;
+import static android.widget.Toast.LENGTH_SHORT;
+import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.FavLocation.LOC_TYPE.TO;
+import static de.grobox.liberario.FavLocation.LOC_TYPE.VIA;
+import static de.grobox.liberario.Preferences.SHOW_ADV_DIRECTIONS;
+import static de.grobox.liberario.activities.MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS;
+
+public class DirectionsFragment extends TransportrFragment implements TripHandler, OnProductsChangedListener {
 
 	public final static String TAG = "de.grobox.liberario.directions";
-	public ProgressDialog pd;
+	private ProgressDialog pd;
 
 	private DirectionsViewHolder ui;
 	private AsyncQueryTripsTask mAfterGpsTask = null;
-	private Set<Product> mProducts = EnumSet.allOf(Product.class);
+	private EnumSet<Product> products = EnumSet.allOf(Product.class);
+	private FastItemAdapter<ProductItem> productsAdapter;
 	private boolean restart = false;
 	private boolean showingMore = false;
 	private FavouritesAdapter mFavAdapter;
@@ -95,8 +112,8 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 
 		ui = new DirectionsViewHolder(v);
 
-		ui.from.setType(FavLocation.LOC_TYPE.FROM);
-		ui.from.setCaller(MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS);
+		ui.from.setType(FROM);
+		ui.from.setCaller(PR_ACCESS_FINE_LOCATION_DIRECTIONS);
 		LocationGpsView.LocationGpsListener listener = new LocationGpsView.LocationGpsListener() {
 			@Override
 			public void activateGPS() {	}
@@ -117,8 +134,8 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		};
 		ui.from.setLocationGpsListener(listener);
 
-		ui.via.setType(FavLocation.LOC_TYPE.VIA);
-		ui.to.setType(FavLocation.LOC_TYPE.TO);
+		ui.via.setType(VIA);
+		ui.to.setType(TO);
 
 		// Set Type to Departure=True
 		ui.type.setTag(true);
@@ -131,47 +148,28 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		});
 
 		// Products
-		for(int i = 0; i < ui.productsLayout.getChildCount(); ++i) {
-			final ImageView productView = (ImageView) ui.productsLayout.getChildAt(i);
-			final Product product = Product.fromCode(productView.getTag().toString().charAt(0));
-
-			// make inactive products gray
-			if(mProducts.contains(product)) {
-				productView.setColorFilter(TransportrUtils.getButtonIconColor(getActivity(), true), PorterDuff.Mode.SRC_IN);
-			} else {
-				productView.setColorFilter(TransportrUtils.getButtonIconColor(getActivity(), false), PorterDuff.Mode.SRC_IN);
-			}
-
-			// handle click on product icon
-			productView.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					if(mProducts.contains(product)) {
-						productView.setColorFilter(TransportrUtils.getButtonIconColor(getActivity(), false), PorterDuff.Mode.SRC_IN);
-						mProducts.remove(product);
-						Toast.makeText(v.getContext(), TransportrUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
-					} else {
-						productView.setColorFilter(TransportrUtils.getButtonIconColor(getActivity(), true), PorterDuff.Mode.SRC_IN);
-						mProducts.add(product);
-						Toast.makeText(v.getContext(), TransportrUtils.productToString(v.getContext(), product), Toast.LENGTH_SHORT).show();
-					}
-				}
-			});
-
-			// handle long click on product icon by showing product name
-			productView.setOnLongClickListener(new OnLongClickListener() {
-				@Override
-				public boolean onLongClick(View view) {
-					Toast.makeText(view.getContext(), TransportrUtils.productToString(view.getContext(), product), Toast.LENGTH_SHORT).show();
+		productsAdapter = new FastItemAdapter<>();
+		ui.products.setHasFixedSize(true);
+		ui.products.setAdapter(productsAdapter);
+		onProductsChanged(products);
+		ui.products.getBackground().setColorFilter(TransportrUtils.getButtonIconColor(getActivity()), SRC_ATOP);
+		ui.products.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// onClickListener doesn't work for some reasion, so use touch instead
+				if(event.getAction() == ACTION_UP) {
+					showProductDialog();
 					return true;
 				}
-			});
-		}
-
-		ui.search.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				search();
+				return false;
 			}
 		});
+
+		ui.search.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						search();
+					}
+				});
 
 		ui.fav_trips_separator_star.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()));
 		ui.fav_trips_separator_line.setBackgroundColor(TransportrUtils.getButtonIconColor(getActivity()));
@@ -180,7 +178,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		ui.favourites.setAdapter(mFavAdapter);
 		ui.favourites.setLayoutManager(new LinearLayoutManager(getContext()));
 
-		if(!Preferences.getPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false)) {
+		if(!Preferences.getPref(getActivity(), SHOW_ADV_DIRECTIONS, false)) {
 			// don't animate here, since this method is called on each fragment change from the drawer
 			showLess(false);
 		} else {
@@ -198,6 +196,17 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 
 		if(savedInstanceState != null) {
 			setType(savedInstanceState.getBoolean("type"));
+			Serializable tmpProducts = savedInstanceState.getSerializable("products");
+			if(tmpProducts instanceof EnumSet) {
+				//noinspection unchecked
+				products = (EnumSet<Product>) tmpProducts;
+				onProductsChanged(products);
+			}
+			// re-attach fragment listener
+			Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(ProductDialogFragment.TAG);
+			if(fragment != null && fragment.getUserVisibleHint()) {
+				((ProductDialogFragment) fragment).setOnProductsChangedListener(this);
+			}
 		}
 	}
 
@@ -206,6 +215,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		super.onSaveInstanceState(outState);
 		if(ui != null) {
 			outState.putBoolean("type", (boolean) ui.type.getTag());
+			outState.putSerializable("products", products);
 		}
 	}
 
@@ -243,7 +253,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		Context context = getContext();
 
 		MenuItem expandItem = menu.findItem(R.id.action_navigation_expand);
-		if(ui.productsScrollView.getVisibility() == View.GONE) {
+		if(ui.products.getVisibility() == GONE) {
 			expandItem.setIcon(TransportrUtils.getToolbarDrawable(context, R.drawable.ic_action_navigation_unfold_more));
 		} else {
 			expandItem.setIcon(TransportrUtils.getToolbarDrawable(context, R.drawable.ic_action_navigation_unfold_less));
@@ -260,13 +270,13 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_navigation_expand:
-				if(ui.productsScrollView.getVisibility() == View.GONE) {
+				if(ui.products.getVisibility() == GONE) {
 					item.setIcon(TransportrUtils.getToolbarDrawable(getContext(), R.drawable.ic_action_navigation_unfold_less));
-					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, true);
+					Preferences.setPref(getActivity(), SHOW_ADV_DIRECTIONS, true);
 					showMore(true);
 				} else {
 					item.setIcon(TransportrUtils.getToolbarDrawable(getContext(), R.drawable.ic_action_navigation_unfold_more));
-					Preferences.setPref(getActivity(), Preferences.SHOW_ADV_DIRECTIONS, false);
+					Preferences.setPref(getActivity(), SHOW_ADV_DIRECTIONS, false);
 					showLess(true);
 				}
 
@@ -298,12 +308,28 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 			startActivity(intent);
 		}
 		else {
-			Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_no_trips_found), Toast.LENGTH_LONG).show();
+			Toast.makeText(getContext(), getContext().getResources().getString(R.string.error_no_trips_found), LENGTH_LONG).show();
 		}
 	}
 
 	@Override
 	public void onTripRetrievalError(String error) { }
+
+	@Override
+	public void onProductsChanged(EnumSet<Product> products) {
+		this.products = products;
+		productsAdapter.clear();
+		for(Product product : products) {
+			productsAdapter.add(new ProductItem(product));
+		}
+	}
+
+	private void showProductDialog() {
+		ProductDialogFragment productFragment = ProductDialogFragment.newInstance(products);
+		productFragment.setOnProductsChangedListener(DirectionsFragment.this);
+		FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+		productFragment.show(ft, ProductDialogFragment.TAG);
+	}
 
 	private void displayFavouriteTrips() {
 		if(mFavAdapter == null) return;
@@ -312,23 +338,23 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		mFavAdapter.addAll(RecentsDB.getFavouriteTripList(getContext()));
 
 		if(showingMore && mFavAdapter.getItemCount() == 0) {
-			ui.no_favourites.setVisibility(View.VISIBLE);
+			ui.no_favourites.setVisibility(VISIBLE);
 		} else {
-			ui.no_favourites.setVisibility(View.GONE);
+			ui.no_favourites.setVisibility(GONE);
 		}
 
 		if(showingMore || mFavAdapter.getItemCount() != 0) {
-			ui.fav_trips_separator.setVisibility(View.VISIBLE);
+			ui.fav_trips_separator.setVisibility(VISIBLE);
 			ui.fav_trips_separator.setAlpha(1f);
 		} else {
-			ui.fav_trips_separator.setVisibility(View.GONE);
+			ui.fav_trips_separator.setVisibility(GONE);
 		}
 	}
 
 	private void search() {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getActivity()));
 		if(!np.hasCapabilities(NetworkProvider.Capability.TRIPS)) {
-			Toast.makeText(getActivity(), getString(R.string.error_no_trips_capability), Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), getString(R.string.error_no_trips_capability), LENGTH_SHORT).show();
 			return;
 		}
 
@@ -343,7 +369,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		if(checkLocation(ui.to)) {
 			query_trips.setTo(ui.to.getLocation());
 		} else {
-			Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), LENGTH_SHORT).show();
 			return;
 		}
 
@@ -376,7 +402,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 			if(checkLocation(ui.from)) {
 				query_trips.setFrom(ui.from.getLocation());
 			} else {
-				Toast.makeText(getActivity(), getString(R.string.error_invalid_from), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), getString(R.string.error_invalid_from), LENGTH_SHORT).show();
 				return;
 			}
 		}
@@ -391,7 +417,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		query_trips.setDeparture((boolean) ui.type.getTag());
 
 		// set products
-		query_trips.setProducts(mProducts);
+		query_trips.setProducts(products);
 
 		// don't execute if we still have to wait for GPS position
 		if(mAfterGpsTask != null) return;
@@ -421,14 +447,14 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 	}
 
-	public void presetFromTo(Location from, Location via, Location to, Date date) {
+	private void presetFromTo(Location from, Location via, Location to, Date date) {
 		if(ui.from != null && from != null) {
 			ui.from.setLocation(from, TransportrUtils.getDrawableForLocation(getContext(), from));
 		}
 
 		if(ui.via != null) {
 			ui.via.setLocation(via, TransportrUtils.getDrawableForLocation(getContext(), via));
-			if(via != null && ui.productsScrollView.getVisibility() == View.GONE) {
+			if(via != null && ui.products.getVisibility() == GONE) {
 				// if there's a via location, make sure to show it in the UI
 				showMore(true);
 			}
@@ -443,12 +469,12 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 	}
 
-	public void searchFromTo(Location from, Location via, Location to, Date date) {
+	private void searchFromTo(Location from, Location via, Location to, Date date) {
 		presetFromTo(from, via, to, date);
 		search();
 	}
 
-	public void refreshAutocomplete(boolean always) {
+	private void refreshAutocomplete(boolean always) {
 		if(ui.from != null) {
 			if(always) ui.from.reset();
 			else ui.from.resetIfEmpty();
@@ -488,28 +514,17 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 
 	private void showMore(boolean animate) {
 		showingMore = true;
-		ui.via.setVisibility(View.VISIBLE);
-		ui.productsScrollView.setVisibility(View.VISIBLE);
-		ui.fav_trips_separator.setVisibility(View.VISIBLE);
+		ui.via.setVisibility(VISIBLE);
+		ui.products.setVisibility(VISIBLE);
+		ui.fav_trips_separator.setVisibility(VISIBLE);
 
 		if(mFavAdapter.getItemCount() == 0) {
-			ui.no_favourites.setVisibility(View.VISIBLE);
+			ui.no_favourites.setVisibility(VISIBLE);
 		}
 
 		if(animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			DisplayMetrics dm = new DisplayMetrics();
 			getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-			final int distance = dm.widthPixels;
-			final int slide = distance / 10;
-
-			ui.productsScrollView.setTranslationX(distance);
-			ui.productsScrollView.animate().setDuration(750).translationXBy(-1 * distance - slide).withEndAction(new Runnable() {
-				@Override
-				public void run() {
-					ui.productsScrollView.animate().setDuration(250).translationXBy(slide);
-				}
-			});
 
 			if(mFavAdapter.getItemCount() == 0) {
 				ui.no_favourites.setAlpha(0f);
@@ -523,8 +538,8 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 	private void showLess(boolean animate) {
 		showingMore = false;
 		ui.via.setLocation(null);
-		ui.via.setVisibility(View.GONE);
-		ui.productsScrollView.setVisibility(View.GONE);
+		ui.via.setVisibility(GONE);
+		ui.products.setVisibility(GONE);
 
 		if(mFavAdapter.getItemCount() == 0) {
 			if (animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -534,13 +549,13 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 				ui.no_favourites.animate().setDuration(500).alpha(0f).withEndAction(new Runnable() {
 					@Override
 					public void run() {
-						ui.no_favourites.setVisibility(View.GONE);
-						ui.fav_trips_separator.setVisibility(View.GONE);
+						ui.no_favourites.setVisibility(GONE);
+						ui.fav_trips_separator.setVisibility(GONE);
 					}
 				});
 			} else {
-				ui.no_favourites.setVisibility(View.GONE);
-				ui.fav_trips_separator.setVisibility(View.GONE);
+				ui.no_favourites.setVisibility(GONE);
+				ui.fav_trips_separator.setVisibility(GONE);
 			}
 		}
 	}
@@ -555,7 +570,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		}
 	}
 
-	public void swapLocations() {
+	private void swapLocations() {
 		Animation slideUp = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
 				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
 				0.0f, Animation.RELATIVE_TO_SELF, -1.0f);
@@ -608,26 +623,16 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 		intent.putExtra("de.schildbach.pte.dto.Trip.to", ui.to.getLocation());
 		intent.putExtra("de.schildbach.pte.dto.Trip.date", ui.date.getDate());
 		intent.putExtra("de.schildbach.pte.dto.Trip.departure", (boolean) ui.type.getTag());
-		intent.putExtra("de.schildbach.pte.dto.Trip.products", new ArrayList<>(mProducts));
+		intent.putExtra("de.schildbach.pte.dto.Trip.products", new ArrayList<>(products));
 	}
 
-	class DirectionsViewHolder {
+	private static class DirectionsViewHolder {
 		LocationGpsView from;
 		LocationView via;
 		LocationView to;
 		Button type;
 		TimeAndDateView date;
-		HorizontalScrollView productsScrollView;
-		ViewGroup productsLayout;
-		ImageView high_speed_train;
-		ImageView regional_train;
-		ImageView suburban_train;
-		ImageView subway;
-		ImageView tram;
-		ImageView bus;
-		ImageView on_demand;
-		ImageView ferry;
-		ImageView cablecar;
+		RecyclerView products;
 		Button search;
 		RecyclerView favourites;
 		CardView no_favourites;
@@ -643,17 +648,7 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 			type = (Button) mView.findViewById(R.id.dateType);
 			date = (TimeAndDateView) mView.findViewById(R.id.dateView);
 
-			productsScrollView = (HorizontalScrollView) mView.findViewById(R.id.productsScrollView);
-			productsLayout = (ViewGroup) mView.findViewById(R.id.productsLayout);
-			high_speed_train = (ImageView) mView.findViewById(R.id.ic_product_high_speed_train);
-			regional_train = (ImageView) mView.findViewById(R.id.ic_product_regional_train);
-			suburban_train = (ImageView) mView.findViewById(R.id.ic_product_suburban_train);
-			subway = (ImageView) mView.findViewById(R.id.ic_product_subway);
-			tram = (ImageView) mView.findViewById(R.id.ic_product_tram);
-			bus = (ImageView) mView.findViewById(R.id.ic_product_bus);
-			on_demand = (ImageView) mView.findViewById(R.id.ic_product_on_demand);
-			ferry = (ImageView) mView.findViewById(R.id.ic_product_ferry);
-			cablecar = (ImageView) mView.findViewById(R.id.ic_product_cablecar);
+			products = (RecyclerView) mView.findViewById(R.id.productsList);
 			search = (Button) mView.findViewById(R.id.searchButton);
 
 			favourites = (RecyclerView) mView.findViewById(R.id.favourites);
@@ -664,5 +659,57 @@ public class DirectionsFragment extends TransportrFragment implements AsyncQuery
 			fav_trips_separator_star = (ImageView) mView.findViewById(R.id.fav_trips_separator_star);
 		}
 	}
+
+	class ProductItem extends AbstractItem<ProductDialogFragment.ProductItem, ProductItem.ViewHolder> {
+		private final ViewHolderFactory<? extends ProductItem.ViewHolder> FACTORY = new ProductItem.ItemFactory();
+		private final Product product;
+
+		ProductItem(Product product) {
+			this.product = product;
+		}
+
+		@Override
+		public int getType() {
+			return product.ordinal();
+		}
+
+		@Override
+		public int getLayoutRes() {
+			return R.layout.item_product;
+		}
+
+		@Override
+		public void bindView(final ProductItem.ViewHolder ui) {
+			super.bindView(ui);
+			ui.image.setImageDrawable(TransportrUtils.getTintedDrawable(getContext(), TransportrUtils.getDrawableForProduct(product)));
+			ui.image.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					showProductDialog();
+				}
+			});
+		}
+
+		@Override
+		public ViewHolderFactory<? extends ProductItem.ViewHolder> getFactory() {
+			return FACTORY;
+		}
+
+		class ItemFactory implements ViewHolderFactory<ProductItem.ViewHolder> {
+			public ProductItem.ViewHolder create(View v) {
+				return new ProductItem.ViewHolder(v);
+			}
+		}
+
+		class ViewHolder extends RecyclerView.ViewHolder {
+			private ImageView image;
+
+			ViewHolder(View v) {
+				super(v);
+				image = (ImageView) v.findViewById(R.id.productView);
+			}
+		}
+	}
+
 }
 

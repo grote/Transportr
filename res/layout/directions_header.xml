@@ -20,198 +20,86 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-    <de.grobox.liberario.ui.LocationGpsView
-        android:id="@+id/fromLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        app:favLocation="true"
-        app:hint="@string/from"
-        app:homeLocation="true"
-        app:mapLocation="true"
-        app:onlyIds="false"/>
-
-    <de.grobox.liberario.ui.LocationView
-        android:id="@+id/viaLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fromLocation"
-        app:favLocation="true"
-        app:hint="@string/via"
-        app:homeLocation="true"
-        app:mapLocation="true"
-        app:onlyIds="false"/>
-
-    <de.grobox.liberario.ui.LocationView
-        android:id="@+id/toLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/viaLocation"
-        app:favLocation="true"
-        app:hint="@string/to"
-        app:homeLocation="true"
-        app:mapLocation="true"
-        app:onlyIds="false"/>
-
-    <LinearLayout
-        android:id="@+id/dateLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toLocation"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/dateType"
-            android:layout_width="wrap_content"
+        <de.grobox.liberario.ui.LocationGpsView
+            android:id="@+id/fromLocation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minWidth="52dp"
-            android:singleLine="true"
-            android:text="@string/trip_dep"
-            />
+            android:layout_alignParentTop="true"
+            app:favLocation="true"
+            app:hint="@string/from"
+            app:homeLocation="true"
+            app:mapLocation="true"
+            app:onlyIds="false"/>
 
-        <de.grobox.liberario.ui.TimeAndDateView
-            android:id="@+id/dateView"
-            android:layout_width="0dp"
+        <de.grobox.liberario.ui.LocationView
+            android:id="@+id/viaLocation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
+            android:layout_below="@id/fromLocation"
+            app:favLocation="true"
+            app:hint="@string/via"
+            app:homeLocation="true"
+            app:mapLocation="true"
+            app:onlyIds="false"/>
 
-    </LinearLayout>
-
-    <HorizontalScrollView
-        android:id="@+id/productsScrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dateLine"
-        android:layout_gravity="center_horizontal">
+        <de.grobox.liberario.ui.LocationView
+            android:id="@+id/toLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viaLocation"
+            app:favLocation="true"
+            app:hint="@string/to"
+            app:homeLocation="true"
+            app:mapLocation="true"
+            app:onlyIds="false"/>
 
         <LinearLayout
-            android:id="@+id/productsLayout"
-            android:layout_width="wrap_content"
+            android:id="@+id/dateLine"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/toLocation"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/ic_product_high_speed_train"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/product_high_speed_train"
-                android:elevation="2dp"
-                android:scaleType="center"
-                android:src="@drawable/product_high_speed_train"
-                android:tag="I"
+            <Button
+                android:id="@+id/dateType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:minWidth="52dp"
+                android:text="@string/trip_dep"
                 />
 
-            <ImageButton
-                android:id="@+id/ic_product_regional_train"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+            <de.grobox.liberario.ui.TimeAndDateView
+                android:id="@+id/dateView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:contentDescription="@string/product_regional_train"
-                android:elevation="2dp"
-                android:scaleType="center"
-                android:src="@drawable/product_regional_train"
-                android:tag="R"
-                />
-
-            <ImageButton
-                android:id="@+id/ic_product_suburban_train"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/product_suburban_train"
-                android:elevation="2dp"
-                android:scaleType="center"
-                android:src="@drawable/product_suburban_train"
-                android:tag="S"
-                />
-
-            <ImageButton
-                android:id="@+id/ic_product_subway"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/product_subway"
-                android:elevation="2dp"
-                android:scaleType="center"
-                android:src="@drawable/product_subway"
-                android:tag="U"
-                />
-
-            <ImageButton
-                android:id="@+id/ic_product_tram"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/product_tram"
-                android:elevation="2dp"
-                android:scaleType="center"
-                android:src="@drawable/product_tram"
-                android:tag="T"
-                />
-
-            <ImageButton
-                android:id="@+id/ic_product_bus"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/product_bus"
-                android:elevation="2dp"
-                android:scaleType="center"
-                android:src="@drawable/product_bus"
-                android:tag="B"
-                />
-
-            <ImageButton
-                android:id="@+id/ic_product_on_demand"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/product_on_demand"
-                android:elevation="2dp"
-                android:scaleType="center"
-                android:src="@drawable/product_on_demand"
-                android:tag="P"
-                />
-
-            <ImageButton
-                android:id="@+id/ic_product_ferry"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/product_ferry"
-                android:elevation="2dp"
-                android:scaleType="center"
-                android:src="@drawable/product_ferry"
-                android:tag="F"
-                />
-
-            <ImageButton
-                android:id="@+id/ic_product_cablecar"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/product_cablecar"
-                android:elevation="2dp"
-                android:scaleType="center"
-                android:src="@drawable/product_cablecar"
-                android:tag="C"
                 />
 
         </LinearLayout>
-    </HorizontalScrollView>
 
-    <Button
-        android:id="@+id/searchButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:text="@android:string/search_go"
-        android:layout_below="@+id/productsScrollView"
-        android:layout_centerHorizontal="true"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/productsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dateLine"
+            android:layout_margin="4dp"
+            android:background="@drawable/products_border"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/item_product"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/productsList"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="@android:string/search_go"/>
 
     </RelativeLayout>
 
