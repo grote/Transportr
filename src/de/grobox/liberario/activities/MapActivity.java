@@ -80,6 +80,8 @@ import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
+import de.schildbach.pte.dto.Trip.Leg;
+import de.schildbach.pte.dto.Trip.Public;
 
 public class MapActivity extends TransportrActivity implements MapEventsReceiver {
 	private MapView map;
@@ -361,36 +363,36 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	}
 
 	private void showTrip(Trip trip) {
-		// draw leg path first, so it is always at the bottom
 		int width = getResources().getDisplayMetrics().densityDpi / 32;
-		boolean havePolyLine = false;
-		for(Trip.Leg leg : trip.legs) {
-			// draw leg path first, so it is always at the bottom
-			if(leg.path != null) {
-				Polyline polyline = new Polyline(this);
-				List<GeoPoint> geoPoints = new ArrayList<>(leg.path.size());
-				for(Point point : leg.path) {
-					geoPoints.add(new GeoPoint(point.getLatAsDouble(), point.getLonAsDouble()));
-				}
-				polyline.setPoints(geoPoints);
-				polyline.setWidth(width);
-				if(leg instanceof Trip.Public) {
-					Line line = ((Trip.Public) leg).line;
-					polyline.setColor(getBackgroundColor(MarkerType.CHANGE, line));
-					if(line != null) polyline.setTitle(line.id);
-				} else {
-					polyline.setColor(getBackgroundColor(MarkerType.WALK, null));
-					polyline.setTitle(getString(R.string.walk));
-				}
-				map.getOverlays().add(polyline);
-				havePolyLine = true;
+		// draw leg path first, so it is always at the bottom
+		for(Leg leg : trip.legs) {
+			// add path if it is missing
+			if(leg.path == null) calculatePath(leg);
+			if(leg.path == null) continue;
+
+				// draw leg path first, so it is always at the bottom
+			Polyline polyline = new Polyline(this);
+			List<GeoPoint> geoPoints = new ArrayList<>(leg.path.size());
+			for(Point point : leg.path) {
+				geoPoints.add(new GeoPoint(point.getLatAsDouble(), point.getLonAsDouble()));
 			}
+			polyline.setPoints(geoPoints);
+			polyline.setWidth(width);
+			if(leg instanceof Public) {
+				Line line = ((Public) leg).line;
+				polyline.setColor(getBackgroundColor(MarkerType.CHANGE, line));
+				if(line != null) polyline.setTitle(line.id);
+			} else {
+				polyline.setColor(getBackgroundColor(MarkerType.WALK, null));
+				polyline.setTitle(getString(R.string.walk));
+			}
+			map.getOverlays().add(polyline);
 		}
 
 		// Now draw intermediate stops on top of path
-		for(Trip.Leg leg : trip.legs) {
-			if(leg instanceof Trip.Public) {
-				Trip.Public public_leg = (Trip.Public) leg;
+		for(Leg leg : trip.legs) {
+			if(leg instanceof Public) {
+				Public public_leg = (Public) leg;
 
 				if(public_leg.intermediateStops != null) {
 					Drawable stop_drawable = getMarkerDrawable(MarkerType.STOP, public_leg.line);
@@ -405,10 +407,10 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 		// At last, draw the beginning, the end and the changing stations
 		int i = 1;
-		for(Trip.Leg leg : trip.legs) {
+		for(Leg leg : trip.legs) {
 			// Draw public transportation stations
-			if(leg instanceof Trip.Public) {
-				Trip.Public public_leg = (Trip.Public) leg;
+			if(leg instanceof Public) {
+				Public public_leg = (Public) leg;
 
 				// Draw first station or change station
 				if(i == 1 || (i == 2 && trip.legs.get(0) instanceof Trip.Individual)) {
@@ -437,8 +439,27 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		}
 		// turn off hardware rendering to work around this issue:
 		// https://github.com/MKergall/osmbonuspack/issues/168
-		if(havePolyLine) {
-			map.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+		map.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+	}
+
+	private void calculatePath(Leg leg) {
+		if(leg.path == null) leg.path = new ArrayList<>();
+
+		if(leg.departure != null && leg.departure.hasLocation()) {
+			leg.path.add(new Point(leg.departure.lat, leg.departure.lon));
+		}
+
+		if(leg instanceof Public && ((Public) leg).intermediateStops != null) {
+			//noinspection ConstantConditions
+			for(Stop stop : ((Public) leg).intermediateStops) {
+				if(stop.location != null && stop.location.hasLocation()) {
+					leg.path.add(new Point(stop.location.lat, stop.location.lon));
+				}
+			}
+		}
+
+		if(leg.arrival != null && leg.arrival.hasLocation()) {
+			leg.path.add(new Point(leg.arrival.lat, leg.arrival.lon));
 		}
 	}
 
