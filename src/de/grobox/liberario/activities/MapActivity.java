@@ -710,6 +710,11 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			// create my location overlay that shows the current position and updates automatically
 			myLocationOverlay = new MyLocationNewOverlay(locationProvider, map) {
 				@Override
+				public void setDirectionArrow(final Bitmap personBitmap, final Bitmap directionArrowBitmap) {
+					super.setDirectionArrow(personBitmap, directionArrowBitmap);
+					mCirclePaint.setColor(ContextCompat.getColor(MapActivity.this, R.color.holo_red_light));
+				}
+				@Override
 				public boolean onTouchEvent(final MotionEvent event, final MapView mapView) {
 					if(event.getAction() == MotionEvent.ACTION_MOVE) {
 						fabController.onMapMove();
