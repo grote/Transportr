@@ -6,7 +6,7 @@
 Actuellement, elle fonctionne de manière optimale en Europe, mais prend aussi en charge de nombreux endroits de par le monde. Si vous habitez dans une région qui n\'est pas prise en charge, envisagez de l\'ajouter à Transportr.
 Vous trouverez des instructions sur la page d\'accueil.
 
-Transportr trouve des itinéraires de chez vous, de votre emplacement actuel ou d\'un arrêt/station donné vers n\'importe quel lieu. Vous pouvez aussi enregistrer des trajets entiers préférés et y accéder ultérieurement d\'un seul glisser. Bien sûr, vous pouvez aussi faire apparaître votre trajet sur la carte et suivre votre déplacement par GPS.
+Transportr trouve des itinéraires de chez vous, de votre position actuelle ou d\'un arrêt/station donné vers n\'importe quel lieu. Vous pouvez aussi enregistrer des trajets entiers préférés et y accéder ultérieurement d\'un seul glisser. Bien sûr, vous pouvez aussi faire apparaître votre trajet sur la carte et suivre votre déplacement par GPS.
 
 Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les prochains départs incluant les retards (s\'il y en a). </string>
   <string name="drawer_changelog">Journal des changements</string>
@@ -66,7 +66,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="pick_network_first_run">C\'est la première fois que vous lancez Transportr. Veuillez choisir votre réseau de transport afin de continuer !</string>
   <string name="clear_recent_trips">Voulez-vous vraiment supprimer %1$d trajet(s) de vos trajets récents ? Le compte d\'utilisation sera perdu.</string>
   <string name="trip_searching">Recherche de correspondances…</string>
-  <string name="stations_searching_position">Recherche de l\'emplacement actuel...</string>
+  <string name="stations_searching_position">Recherche de la position actuelle...</string>
   <string name="drawer_nearby_stations">Arrêts/stations à proximité</string>
   <string name="find_nearby_stations">Trouver des arrêts/stations à proximité</string>
   <string name="find_departures">Trouver des départs</string>
@@ -107,7 +107,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="error_invalid_from">Point de départ invalide (de)</string>
   <string name="error_invalid_to">Destination invalide (vers)</string>
   <string name="error_no_trips_found">Aucun itinéraire n\'a été trouvé</string>
-  <string name="error_no_location_provider">Impossible de trouver votre emplacement. Veuillez activer le GPS !</string>
+  <string name="error_no_location_provider">Impossible de trouver votre position. Veuillez activer le GPS !</string>
   <string name="error_no_departures_found">Aucun départ n\'a été trouvé</string>
   <string name="error_no_stations_found">Aucun arrêt/station trouvé</string>
   <string name="error_no_proper_station">Le lieu fourni n\'est pas un arrêt/station valide</string>
@@ -125,8 +125,10 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="home_dialog_title">Définir le point d\'origine</string>
   <string name="location">Lieu</string>
   <string name="location_home">Cliquer pour définir le point d\'origine</string>
-  <string name="location_gps">Utiliser l\'emplacement actuel</string>
+  <string name="location_gps">Utiliser la position actuel</string>
   <string name="location_map">Obtenir l\'emplacement à partir de la carte</string>
+  <string name="position_not_yet_known">La position n\'est pas encore connue</string>
+  <string name="position_no_gps">Le GPS est désactivé. La position sera très imprécise.</string>
   <string name="product_high_speed_train">Train haute-vitesse</string>
   <string name="product_regional_train">Train régional</string>
   <string name="product_suburban_train">Train de banlieue</string>
@@ -141,6 +143,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="action_fav_trips_sort_most">Les plus utilisés</string>
   <string name="action_set_locations">Modifier la recherche</string>
   <string name="action_swap_locations">Rechercher le trajet de retour</string>
+  <string name="permission_explanation_gps">Vous devez autoriser la localisation afin de voir votre position actuelle sur la carte.</string>
   <string name="permission_denied_gps">Vous devez autoriser l\'accès à votre position pour que ceci fonctionne. Veuillez donner la permission dans les paramètres de l\'appli.</string>
   <string name="permission_explanation_map">Les carrés de la carte doivent être stockés/mis en cache sur votre appareil. Sans ça, la carte ne fonctionnera pas.</string>
   <string name="permission_denied_map">L\'affichage de la carte exige que les carrés soient stockés sur votre appareil. Veuillez donner la permission de stockage afin d\'utiliser la carte.</string>

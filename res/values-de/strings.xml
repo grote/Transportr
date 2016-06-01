@@ -59,6 +59,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="trip_removed">Gelöschte Verbindung</string>
   <string name="from">Von</string>
   <string name="to">Nach</string>
+  <string name="via">Über</string>
   <string name="from_here">Von hier</string>
   <string name="to_here">Verbindung zum aktuellen Standort suchen</string>
   <string name="min"> min</string>
@@ -88,6 +89,8 @@ es welche gibt) anzeigen lassen.</string>
   <string name="pref_transport_network">Verkehrsverbund</string>
   <string name="pref_hide_departure_time">Abfahrtszeit ausblenden</string>
   <string name="pref_hide_departure_time_summary">Ankunftszeit nur anzeigen, wenn Zwischenhalte angezeigt werden</string>
+  <string name="pref_exit_app_on_back_press">App mit Schaltfläche Zurück schließen</string>
+  <string name="pref_exit_app_on_back_press_summary">App immer schließen, wenn die Schaltfläche Zurück im Startbildschirm gedrückt wird</string>
   <string name="pref_home">Heimatadresse</string>
   <string name="pref_display">Anzeige</string>
   <string name="pref_theme_title">Thema</string>
@@ -130,6 +133,8 @@ es welche gibt) anzeigen lassen.</string>
   <string name="location_home">Klicken um eine Heimatadresse festzulegen</string>
   <string name="location_gps">Aktuelle Position verwenden</string>
   <string name="location_map">Ort auf der Karte suchen</string>
+  <string name="position_not_yet_known">Position noch nicht bekannt</string>
+  <string name="position_no_gps">GPS ist ausgeschaltet. Position wird sehr ungenau sein.</string>
   <string name="product_high_speed_train">Hochgeschwindigkeitszug</string>
   <string name="product_regional_train">Regionalbahn</string>
   <string name="product_suburban_train">S-Bahn</string>
@@ -144,6 +149,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="action_fav_trips_sort_most">Meist genutzte</string>
   <string name="action_set_locations">Suche bearbeiten</string>
   <string name="action_swap_locations">Rückfahrt suchen</string>
+  <string name="permission_explanation_gps">Sie müssen die Standortbestimmungsberechtigung erteilen, um Ihre aktuelle Position auf der Karte zu sehen.</string>
   <string name="permission_denied_gps">Da Du den Zugriff auf Deinen aktuellen Standort nicht freigegeben hast, wird diese Funktion nicht funktionieren. Bitte erlaube den Standortzugriff in den Einstellungen.</string>
   <string name="permission_explanation_map">Es ist nötig Kartendaten auf deinem Gerät zwischenzuspeichern. Die Karte wird sonst nicht funktionieren.</string>
   <string name="permission_denied_map">Um die Karte anzeigen zu können, ist es nötig Kartendaten auf deinem Gerät zu speichern. Bitte erlaube den Speicherzugriff, um die Karte zu benutzen.</string>

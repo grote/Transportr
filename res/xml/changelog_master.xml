@@ -4,7 +4,7 @@
     <release version="1.1.2-alpha1" versioncode="34">
         <change>New product icons that are now shown for all lines</change>
         <change>Add button to map that shows current position and follows it</change>
-        <change>New product icons that are now shown for all lines</change>
+        <change>New product icons - They shown for all lines and have a selection dialog</change>
         <change>"Get Location from Map" now zooms in to your area</change>
         <change>Turn off GPS when leaving map and turn it back on when you return</change>
         <change>Show the name instead of the destination for lines of selected networks</change>
