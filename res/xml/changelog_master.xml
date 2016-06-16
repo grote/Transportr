@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.1.2-beta1" versioncode="35">
+    <release version="1.1.2" versioncode="36">
         <change>New product icons that are now shown for all lines</change>
         <change>Add button to map that shows current position and follows it</change>
         <change>New product icons - They shown for all lines and have a selection dialog</change>
