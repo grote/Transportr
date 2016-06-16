@@ -11,10 +11,12 @@
   <string name="action_location_map">Geltokiak mapan erakutsi</string>
   <string name="action_use_gps">GPSa aktibatu</string>
   <string name="action_share">Partekatu</string>
+  <string name="action_trip_calendar">Egutegira gehitu</string>
   <string name="action_trip_delete">Bidaia ezabatu</string>
   <string name="action_show_on_external_map">Kanpoko mapan erakutsi</string>
   <string name="action_copy">Kopiatu</string>
   <string name="action_show_on_map">Mapan erakutsi</string>
+  <string name="action_show_all">Guztia erakutsi</string>
   <string name="drawer_directions">Norabideak</string>
   <string name="tab_fav_trips">Bidai gogokoenak</string>
   <string name="drawer_departures">Irteerak</string>
@@ -23,6 +25,7 @@
   <string name="tab_devs">Garatzaileak</string>
   <string name="tab_about">Honi buruz</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nSoftware askeko lizentzia: GPLv3</string>
+  <string name="visit_website">Webgunea bisitatu</string>
   <string name="trip_dep">irt</string>
   <string name="trip_arr">hel</string>
   <string name="trip_removed">Bidaia ezabatuta</string>
@@ -56,11 +59,18 @@
   <string name="pref_transport_network">Garraio sarea</string>
   <string name="pref_hide_departure_time">Irteera ordua ezkutatu</string>
   <string name="pref_hide_departure_time_summary">Helduera denbora erakutsi soilik tarteko geldialdiak daudenean</string>
+  <string name="pref_exit_app_on_back_press">Aplikazioa atzeko botoiarekin itxi</string>
+  <string name="pref_exit_app_on_back_press_summary">Beti aplikazioa itxi hasierako pantailan atzeko botoia sakatzerakoan</string>
   <string name="pref_home">Etxeko kokalekua</string>
   <string name="pref_display">Pantaila</string>
   <string name="pref_theme_title">Gaia</string>
   <string name="pref_theme_light">Argia</string>
   <string name="pref_theme_dark">Iluna</string>
+  <string name="pref_language_title">Hizkuntza</string>
+  <string name="pref_walk_speed">Ibiltze abiadura</string>
+  <string name="pref_walk_speed_slow">Poliki</string>
+  <string name="pref_walk_speed_normal">Arrunta</string>
+  <string name="pref_walk_speed_fast">Bizkor</string>
   <string name="warning_departure_gap">Oso irteera gutxi aurkitu dira. Ezkutuko gehiago egon liteke. Bilatu ezazu denbora zehatza bat ere ez falta ez dela ziurtatzeko</string>
   <string name="error_pick_network">Mesedez garraio sare bat aukeratu!</string>
   <string name="error_no_internet">Interneteko konexio nahikorik ez eskuragarri</string>
@@ -79,6 +89,7 @@
   <string name="error_please_file_ticket">Zerbait oker joan da. Mesedez sortu ezazu arazo tiket bat egin duzuna azaltzen.</string>
   <string name="error_trip_refresh_failed">Ezin izan dira datuak freskatu uneko bidairako.</string>
   <string name="meter">m</string>
+  <string name="system_default">Sistemaren lehenetsia</string>
   <string name="home">Etxea</string>
   <string name="location">Kokapena</string>
   <string name="location_home">Sakatu zure etxeko kokalekua ezartzeko</string>
@@ -145,6 +156,7 @@
   <string name="np_region_nz">Zeelanda Berria</string>
   <string name="np_region_spain">Espainia</string>
   <string name="np_region_br">Brasil</string>
+  <string name="np_region_canada">Kanada</string>
   <string name="np_desc_ns">Herbehereak, Amsterdam</string>
   <string name="np_desc_dsb">Danimarka, Kopenhage</string>
   <string name="np_desc_se">Suedia, Stockholm</string>

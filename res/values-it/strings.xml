@@ -18,7 +18,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="action_refresh">Ricarica</string>
   <string name="action_navigation_expand">Mostra altro</string>
   <string name="action_location_map">Mostra stazioni sulla mappa</string>
-  <string name="action_use_gps">Accendi GPS</string>
+  <string name="action_use_gps">Attiva il GPS</string>
   <string name="action_share">Condividi</string>
   <string name="action_trip_calendar">Aggiungi al calendario</string>
   <string name="action_trip_delete">Elimina viaggio</string>
@@ -32,7 +32,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="drawer_recent_trips">Viaggi recenti</string>
   <string name="tab_libraries">Librerie</string>
   <string name="tab_devs">Sviluppatori</string>
-  <string name="tab_about">Info</string>
+  <string name="tab_about">Informazioni</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nFree Software License: GPLv3</string>
   <string name="about">
 <![CDATA[
@@ -65,12 +65,12 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="pick_network_activity">Scegli una rete di trasporto</string>
   <string name="pick_network_first_run">Questa è la prima volta che avvii Transportr. Per favore seleziona la compagnia di trasporti prima di continuare!</string>
   <string name="clear_recent_trips">Sei sicuro di voler eliminare %1$d viaggio/i dai tuoi viaggi recenti? Il numero di utilizzi andrà perso.</string>
-  <string name="trip_searching">Ricerca connessioni...</string>
-  <string name="stations_searching_position">Ricerca posizione corrente...</string>
+  <string name="trip_searching">Ricerca connessioni in corso...</string>
+  <string name="stations_searching_position">Ricerca posizione corrente in corso...</string>
   <string name="drawer_nearby_stations">Stazioni vicine</string>
   <string name="find_nearby_stations">Cerca stazioni vicine</string>
   <string name="find_departures">Cerca partenze</string>
-  <string name="departure_station">Stazioni di partenza</string>
+  <string name="departure_station">Stazione di partenza</string>
   <string name="share_trip_via">Condividi viaggio tramite...</string>
   <string name="undo">Annulla</string>
   <string name="fav_trips_empty">I tuoi viaggi recenti compariranno qui una volta iniziata la ricerca per le indicazioni. \n\n\nPotrai riordinarli in base a quelli più frequenti o a quelli più utilizzati recentemente.</string>
@@ -100,22 +100,21 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Veloce</string>
-  <string name="warning_departure_gap">Trovate troppe poche partenze. Potrebbero essercene molte altre nascoste. Cerca per l\'orario esatto per assicurarti di non perderne nessuna.</string>
+  <string name="warning_departure_gap">Sono state trovate troppe poche partenze. Potrebbero essercene altre nascoste. Cerca l\'orario esatto per assicurarti di non perderne nessuna.</string>
   <string name="warning_permission_granted_action">Impossibile ripetere l\'ultima azione automaticamente</string>
   <string name="error_pick_network">Seleziona una rete di trasporto!</string>
   <string name="error_no_internet">Nessuna connessione internet disponibile</string>
   <string name="error_invalid_from">Posizione iniziale (da) non valida</string>
   <string name="error_invalid_to">Destinazione (a) non valida</string>
-  <string name="error_no_trips_found">Nessuna indicazione trovata</string>
+  <string name="error_no_trips_found">Nessuna direzione trovata</string>
   <string name="error_no_location_provider">Impossibile individuare la posizione. Attivare il GPS!</string>
   <string name="error_no_departures_found">Nessuna partenza trovata</string>
   <string name="error_no_stations_found">Nessuna stazione trovata</string>
   <string name="error_no_proper_station">Il luogo fornito non ha nessuna stazione valida</string>
-  <string name="error_only_autocomplete_station">Seleziona una stazione dall\'elenco!
-</string>
-  <string name="error_no_station_location">Impossibile trovare la posizione di questa(ste) stazione(i)</string>
+  <string name="error_only_autocomplete_station">Seleziona una stazione dall\'elenco!</string>
+  <string name="error_no_station_location">Impossibile trovare la posizione di questa/e stazione/i</string>
   <string name="error_no_trips_capability">Questa rete di trasporto non supporta l\'esecuzione di query per le direzioni.</string>
-  <string name="error_no_departures_capability">La rete di trasporto corrente non supporta la ricerca partenze.</string>
+  <string name="error_no_departures_capability">La rete di trasporto attuale non supporta la ricerca delle partenze.</string>
   <string name="error_no_nearby_locations_capability">La corrente rete di trasporti non supporta la ricerca di stazioni vicine.</string>
   <string name="error_please_file_ticket">Qualcosa è andato storto. Crea una segnalazione e spiegaci cosa è successo.</string>
   <string name="error_trip_refresh_failed">Impossibile aggiornare i dati per l\'attuale percorso.</string>
@@ -128,12 +127,14 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="location_home">Clicca per impostare il luogo iniziale</string>
   <string name="location_gps">Utilizza posizione corrente</string>
   <string name="location_map">Seleziona la posizione dalla mappa</string>
+  <string name="position_not_yet_known">Posizione non ancora riconosciuta</string>
+  <string name="position_no_gps">Il GPS è disattivato. La posizione sarà molto imprecisa.</string>
   <string name="product_high_speed_train">Treno ad alta velocità</string>
   <string name="product_regional_train">Treno regionale</string>
   <string name="product_suburban_train">Treno suburbano</string>
   <string name="product_subway">Metropolitana</string>
   <string name="product_tram">Tram</string>
-  <string name="product_bus">Bus</string>
+  <string name="product_bus">Autobus</string>
   <string name="product_ferry">Traghetto</string>
   <string name="product_cablecar">Funivia</string>
   <string name="product_on_demand">Su richiesta</string>
@@ -142,6 +143,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="action_fav_trips_sort_most">Più utilizzato</string>
   <string name="action_set_locations">Modifica ricerca</string>
   <string name="action_swap_locations">Cerca tragitto di ritorno</string>
+  <string name="permission_explanation_gps">Devi concedere l\'autorizzazione alla localizzazione per vedere la tua posizione attuale sulla mappa.</string>
   <string name="permission_denied_gps">Non hai permesso di accedere alla tua posizione, per cui questa funzionalità non può funzionare. Si prega di concedere i permessi nelle impostazioni.</string>
   <string name="permission_explanation_map">Gli elementi della mappa devono essere salvati sul tuo dispositivo. La mappa non può funzionare senza.</string>
   <string name="permission_denied_map">Mostrare la mappa richiede che gli elementi vengano salvati sulla memoria del tuo dispositivo. Abilita i permessi di memorizzazione per usare la mappa.</string>
@@ -156,13 +158,13 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_db">Maggior parte della Germania</string>
   <string name="np_desc_bvg">Berlino</string>
   <string name="np_desc_vbb">Brandeburgo, Berlino</string>
-  <string name="np_desc_bayern">Bayern, Würzburg, Regensburg</string>
+  <string name="np_desc_bayern">Baviera, Würzburg, Ratisbona</string>
   <string name="np_desc_avv">Asburgo</string>
   <string name="np_desc_mvv">Baviera, Monaco</string>
   <string name="np_desc_invg">Ingolstadt</string>
-  <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen</string>
-  <string name="np_desc_vvm">Svevia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
-  <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
+  <string name="np_desc_vgn">Norimberga, Fürth, Erlangen</string>
+  <string name="np_desc_vvm">Svevia, Medio Svevia, Krumbach, Günzburg, Memmingen</string>
+  <string name="np_desc_vmv">Meclemburgo-Pomerania anteriore, Schwerin</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Amburgo</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Amburgo</string>
@@ -170,9 +172,9 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Bassa Sassonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vvo">Sassonia, Dresda</string>
-  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
-  <string name="np_desc_nasa">Saxony, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
-  <string name="np_desc_vrr">North Rhine-Westphalia, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vms">Sassonia Centrale, Chemnitz</string>
+  <string name="np_desc_nasa">Sassonia, Lipsia, Sassonia-Anhalt, Magdeburgo, Halle</string>
+  <string name="np_desc_vrr">Renania settentrionale-Vestfalia, Colonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>

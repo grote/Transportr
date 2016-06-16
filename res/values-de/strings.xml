@@ -135,6 +135,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="location_map">Ort auf der Karte suchen</string>
   <string name="position_not_yet_known">Position noch nicht bekannt</string>
   <string name="position_no_gps">GPS ist ausgeschaltet. Position wird sehr ungenau sein.</string>
+  <string name="select_products">Wähle das Verkehrsmittel</string>
   <string name="product_high_speed_train">Hochgeschwindigkeitszug</string>
   <string name="product_regional_train">Regionalbahn</string>
   <string name="product_suburban_train">S-Bahn</string>

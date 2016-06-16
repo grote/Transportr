@@ -16,3 +16,4 @@ trans.eu = res/values-eu/strings.xml
 trans.nb = res/values-nb/strings.xml
 trans.ca = res/values-ca/strings.xml
 trans.pl = res/values-pl/strings.xml
+trans.ta = res/values-ta/strings.xml
