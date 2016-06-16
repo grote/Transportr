@@ -72,7 +72,6 @@ public final class NetworkProviderFactory
 	private static Reference<NsProvider> nsProviderRef;
 	private static Reference<DsbProvider> dsbProviderRef;
 	private static Reference<SeProvider> seProviderRef;
-	private static Reference<StockholmProvider> stockholmProviderRef;
 	private static Reference<NriProvider> nriProviderRef;
 	private static Reference<HslProvider> hslProviderRef;
 	private static Reference<TlemProvider> tlemProviderRef;
@@ -689,19 +688,6 @@ public final class NetworkProviderFactory
 
 			final SeProvider provider = new SeProvider();
 			seProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
-		else if (networkId.equals(NetworkId.STOCKHOLM))
-		{
-			if (stockholmProviderRef != null)
-			{
-				final StockholmProvider provider = stockholmProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final StockholmProvider provider = new StockholmProvider();
-			stockholmProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.NRI))
