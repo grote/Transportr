@@ -151,6 +151,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		productsAdapter = new FastItemAdapter<>();
 		ui.products.setHasFixedSize(true);
 		ui.products.setAdapter(productsAdapter);
+		products = Preferences.getProducts(getContext());
 		onProductsChanged(products);
 		ui.products.getBackground().setColorFilter(TransportrUtils.getButtonIconColor(getActivity()), SRC_ATOP);
 		ui.products.setOnTouchListener(new View.OnTouchListener() {
@@ -390,7 +391,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 				pd.setCancelable(false);
 				pd.setIndeterminate(true);
 				pd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
-					             @Override
+ 					             @Override
 					             public void onClick(DialogInterface dialog, int which) {
 						             mAfterGpsTask = null;
 						             dialog.dismiss();
