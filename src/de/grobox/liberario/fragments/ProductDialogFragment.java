@@ -108,6 +108,7 @@ public class ProductDialogFragment extends DialogFragment {
 				// call listener if set
 				if(listener != null) {
 					EnumSet<Product> products = getProductsFromItems(adapter.getSelectedItems());
+					Preferences.setProducts(getContext(), products);
 					listener.onProductsChanged(products);
 				}
 				getDialog().cancel();

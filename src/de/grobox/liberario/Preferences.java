@@ -23,7 +23,13 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import java.io.Serializable;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Set;
+
 import de.schildbach.pte.NetworkId;
+import de.schildbach.pte.dto.Product;
 
 public class Preferences {
 
@@ -35,6 +41,8 @@ public class Preferences {
 	public final static String WALK_SPEED = "pref_key_walk_speed";
 	public final static String OPTIMIZE = "pref_key_optimize";
 	public final static String EXIT_ON_BACK = "pref_key_exit_app_on_back_press";
+
+	private final static String SELECTED_PRODUCTS = "_selected_products";
 
 	public static String getNetwork(Context context, int i) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -98,8 +106,47 @@ public class Preferences {
 		editor.commit();
 	}
 
+	public static EnumSet<Product> getProducts(Context context) {
+		// check if there's a preference for selected products for the current network
+		TransportNetwork current_network = getTransportNetwork(context);
+		String network_pref = current_network.getId().toString() + SELECTED_PRODUCTS;
+		SharedPreferences sp = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+		// get the selected products from the pref
+		Set<String> string_set = sp.getStringSet(network_pref, null);
+		// if there is no pref for the current network or all products are selected return all
+		if(string_set == null || string_set.size() == 0 || string_set.size() == Product.values().length){
+			return EnumSet.allOf(Product.class);
+		}
+		// if there is a pref, read the selected products and return them
+		else {
+			EnumSet<Product> products = EnumSet.noneOf(Product.class);
+			for(String s : string_set) {
+				products.add(Product.valueOf(s));
+			}
+			return products;
+		}
+	}
+
+	public static void setProducts(Context context, EnumSet<Product> products) {
+		if(products.size() == Product.values().length) return;
+		// get the current network
+		TransportNetwork current_network = getTransportNetwork(context);
+		String network_id = current_network.getId().toString();
+		SharedPreferences sp = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sp.edit();
+		String network_pref = network_id + SELECTED_PRODUCTS;
+		// store the selected products in a string set
+		Set<String> product_set = new HashSet<String>();
+		for(Product p : products) {
+			product_set.add(p.toString());
+		}
+		// set the pref
+		editor.putStringSet(network_pref, product_set);
+		editor.apply();
+	}
+
 	public static void setNetworkId(Context context, NetworkId id) {
-		SharedPreferences settings = context.getSharedPreferences(Preferences.PREFS, Context.MODE_PRIVATE);
+		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
 
 		String id1 = settings.getString("NetworkId", "");
