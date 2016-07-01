@@ -129,6 +129,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="location_map">Seleziona la posizione dalla mappa</string>
   <string name="position_not_yet_known">Posizione non ancora riconosciuta</string>
   <string name="position_no_gps">Il GPS è disattivato. La posizione sarà molto imprecisa.</string>
+  <string name="select_products">Seleziona mezzi di trasporto</string>
   <string name="product_high_speed_train">Treno ad alta velocità</string>
   <string name="product_regional_train">Treno regionale</string>
   <string name="product_suburban_train">Treno suburbano</string>
@@ -176,23 +177,23 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_nasa">Sassonia, Lipsia, Sassonia-Anhalt, Magdeburgo, Halle</string>
   <string name="np_desc_vrr">Renania settentrionale-Vestfalia, Colonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
-  <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
-  <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>
-  <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
-  <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
+  <string name="np_desc_nvv">Assia, Francoforte sul Meno, Kassel</string>
+  <string name="np_desc_vrn">Baden-Württemberg, Renania-Palatinato, Mannheim, Magonza, Treviri</string>
+  <string name="np_desc_vvs">Baden-Württemberg, Stoccarda</string>
+  <string name="np_desc_ding">Baden-Württemberg, Ulma, Nuova Ulma</string>
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
-  <string name="np_desc_vagfr">Elsass, Bas-Rhin, Straßburg, Freiburg im Breisgau</string>
-  <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
+  <string name="np_desc_vagfr">Alsazia, Basso Reno, Strasburgo, Friburgo in Brisgovia</string>
+  <string name="np_desc_nvbw">Baden-Württemberg, Costanza, Basilea, Basilea Città, Reutlingen, Rottweil, Tubinga, Sigmaringa</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_region_austria">Austria</string>
   <string name="np_desc_oebb">Austria</string>
-  <string name="np_desc_vor">Lower Austria, Burgenland, Wien</string>
-  <string name="np_desc_linz">Upper Austria, Linz</string>
+  <string name="np_desc_vor">Bassa Austria, Burgenland, Vienna</string>
+  <string name="np_desc_linz">Alta Austria, Linz</string>
   <string name="np_desc_svv">Salisburgo</string>
   <string name="np_desc_vvt">Tirolo</string>
   <string name="np_desc_ivb">Innsbruck</string>
-  <string name="np_desc_stv">Steiermark, Graz, Marburg, Maribor</string>
+  <string name="np_desc_stv">Stiria, Graz, Marburgo, Maribor</string>
   <string name="np_desc_wien">WIENER LINIEN</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
@@ -224,7 +225,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_se">Svezia, Stoccolma</string>
   <string name="np_desc_stockholm">Stoccolma</string>
   <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
-  <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
+  <string name="np_desc_tlem">Grande Londra, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isola di Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irlanda, Dublino, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
@@ -240,8 +241,8 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_paris">Parigi</string>
   <string name="np_desc_nz">Wellington, Auckland</string>
   <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
-  <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
-  <string name="np_desc_mersey">Liverpool City Region</string>
+  <string name="np_desc_spain">Autobus di Madrid (EMT), di Barcellona (TMB) e dei Paesi Baschi (Moveuskadi)</string>
+  <string name="np_desc_mersey">Città regione di Liverpool</string>
   <string name="np_desc_br">San Paolo e Porto Alegre</string>
   <string name="np_desc_vrs">Colonia, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitania, Midi-Pirenei, Bordeaux, Tolosa</string>
@@ -276,4 +277,5 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="english">Inglese</string>
   <string name="catalan">Catalano</string>
   <string name="polish">Polacco</string>
+  <string name="tamil">Tamil</string>
 </resources>
