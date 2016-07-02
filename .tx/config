@@ -1,19 +1,10 @@
 [main]
 host = https://www.transifex.com
+lang_map = pt_BR: pt-rBR
 
 [transportr.strings]
+file_filter = res/values-<lang>/strings.xml
 source_lang = en
 source_file = res/values/strings.xml
 type = ANDROID
-trans.de = res/values-de/strings.xml
-trans.es = res/values-es/strings.xml
-trans.fr = res/values-fr/strings.xml
-trans.it = res/values-it/strings.xml
-trans.nl = res/values-nl/strings.xml
-trans.tr = res/values-tr/strings.xml
-trans.pt_BR = res/values-pt-rBR/strings.xml
-trans.eu = res/values-eu/strings.xml
-trans.nb = res/values-nb/strings.xml
-trans.ca = res/values-ca/strings.xml
-trans.pl = res/values-pl/strings.xml
-trans.ta = res/values-ta/strings.xml
+minimum_perc = 10

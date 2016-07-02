@@ -292,6 +292,11 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 	@Override
 	public void onTripRetrieved(QueryTripsResult result) {
+		if(getContext() == null) {
+			// FIXME: This is not a proper solution, we need to use a loader instead
+			return;
+		}
+
 		if(result.status == QueryTripsResult.Status.OK && result.trips != null && result.trips.size() > 0) {
 			Log.d(getClass().getSimpleName(), result.toString());
 

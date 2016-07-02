@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="drawer_changelog">Lista zmian</string>
-  <string name="drawer_about">O</string>
+  <string name="drawer_about">O aplikacji</string>
   <string name="drawer_settings">Ustawienia</string>
   <string name="action_fav_trip">Oznacz trasę jako ulubioną</string>
   <string name="action_unfav_trip">Wycofaj oznaczenie trasy jako ulubionej</string>
@@ -27,6 +27,7 @@
   <string name="trip_removed">Usunięta trasa</string>
   <string name="from">Z</string>
   <string name="to">Do</string>
+  <string name="via">Przez</string>
   <string name="from_here">Stąd</string>
   <string name="to_here">Dotąd</string>
   <string name="min">min</string>

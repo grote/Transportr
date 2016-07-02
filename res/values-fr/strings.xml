@@ -129,6 +129,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="location_map">Obtenir l\'emplacement à partir de la carte</string>
   <string name="position_not_yet_known">La position n\'est pas encore connue</string>
   <string name="position_no_gps">Le GPS est désactivé. La position sera très imprécise.</string>
+  <string name="select_products">Choisir un moyen de transport</string>
   <string name="product_high_speed_train">Train haute-vitesse</string>
   <string name="product_regional_train">Train régional</string>
   <string name="product_suburban_train">Train de banlieue</string>
@@ -276,4 +277,5 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="english">Anglais</string>
   <string name="catalan">Catalan</string>
   <string name="polish">Polonais</string>
+  <string name="tamil">Tamoul</string>
 </resources>

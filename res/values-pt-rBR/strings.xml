@@ -87,7 +87,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="pref_transport_network">Rede de Transporte</string>
   <string name="pref_hide_departure_time">Ocultar horário de saída</string>
   <string name="pref_hide_departure_time_summary">Mostrar apenas o horário de chegada quando há paradas intermediárias.</string>
-  <string name="pref_exit_app_on_back_press">fechar o applicativo apartir do botão voltar</string>
+  <string name="pref_exit_app_on_back_press">Fechar o applicativo apartir do botão voltar</string>
   <string name="pref_exit_app_on_back_press_summary">Sempre fechar o app quando precionador o botão de voltar na tela inicial</string>
   <string name="pref_home">Localização da casa</string>
   <string name="pref_display">Exibição</string>
@@ -133,7 +133,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="location_map">Obter localização do Mapa</string>
   <string name="position_not_yet_known">Posição ainda não conhecida</string>
   <string name="position_no_gps">GPS desativado. A posição será muito imprecisa.</string>
-  <string name="select_products">selecione os meios de transporte</string>
+  <string name="select_products">Selecione os meios de transporte</string>
   <string name="product_high_speed_train">Trem de Alta Velocidade</string>
   <string name="product_regional_train">Trem Regional</string>
   <string name="product_suburban_train">Trem Suburbano</string>
@@ -153,7 +153,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="permission_explanation_map">O Mapa precisa ser armazenado na memória de seu dispositivo. Sem isso, o mapa não funcionará. </string>
   <string name="permission_denied_map">Para a exibição do mapa, este, precisa estar armazenado na memória do seu dispositivo. Por favor, garanta a permissão na configuração para usar o mapa.</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Alterar login</string>
+  <string name="changelog_full_title">Novidades</string>
   <string name="changelog_title">O que é Novo</string>
   <string name="changelog_show_full">Mais</string>
   <string name="np_region_europe">Europa</string>
