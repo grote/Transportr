@@ -51,6 +51,7 @@ public class ProductDialogFragment extends DialogFragment {
 	private static final String PRODUCTS = "products";
 	private OnProductsChangedListener listener;
 	private FastItemAdapter<ProductItem> adapter;
+	private static Button fragment_okButton;
 
 	static ProductDialogFragment newInstance(EnumSet<Product> products) {
 		ProductDialogFragment f = new ProductDialogFragment();
@@ -85,6 +86,8 @@ public class ProductDialogFragment extends DialogFragment {
 		adapter = new FastItemAdapter<>();
 		adapter.withSelectable(true);
 		productsView.setAdapter(adapter);
+
+		fragment_okButton = (Button) v.findViewById(R.id.okButton);
 
 		// Add Products and select the ones we got
 		@SuppressWarnings("unchecked")
@@ -183,6 +186,13 @@ public class ProductDialogFragment extends DialogFragment {
 				public void onClick(View v) {
 					int position = adapter.getAdapterPosition(ProductItem.this);
 					adapter.toggleSelection(position);
+					Set products = adapter.getSelectedItems();
+					// if no products are selected, disable the ok-button
+					if (products.size() == 0) {
+						fragment_okButton.setEnabled(false);
+					} else {
+						fragment_okButton.setEnabled(true);
+					}
 				}
 			});
 		}
