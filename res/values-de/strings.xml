@@ -284,4 +284,6 @@ es welche gibt) anzeigen lassen.</string>
   <string name="catalan">Katalanisch</string>
   <string name="polish">Polnisch</string>
   <string name="tamil">Tamil</string>
+  <string name="cancel">Abbrechen</string>
+  <string name="ok">Ok</string>
 </resources>
