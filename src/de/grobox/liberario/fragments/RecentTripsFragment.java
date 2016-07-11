@@ -301,18 +301,18 @@ public class RecentTripsFragment extends TransportrListFragment {
 				case R.id.action_trip_delete:
 					new AlertDialog.Builder(getActivity())
 					.setMessage(getActivity().getResources().getString(R.string.clear_recent_trips, getListView().getCheckedItemCount()))
-					.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
 							if(isFavouriteSelected()) {
 								new AlertDialog.Builder(getActivity())
 								.setMessage(R.string.removing_from_favourites)
-								.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+								.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog, int id) {
 										deleteSelected();
 										mode.finish();
 									}
 								})
-										.setNegativeButton(android.R.string.cancel, null)
+										.setNegativeButton(R.string.cancel, null)
 								.show();
 							} else {
 								deleteSelected();
@@ -320,7 +320,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 							}
 						}
 					})
-					.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+					.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
 							dialog.cancel();
 						}
