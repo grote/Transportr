@@ -127,7 +127,6 @@ public class Preferences {
 	}
 
 	public static void setProducts(Context context, EnumSet<Product> products) {
-		if(products.size() == Product.values().length) return;
 		// get the current network
 		TransportNetwork current_network = getTransportNetwork(context);
 		if (current_network == null) return;
