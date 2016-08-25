@@ -51,7 +51,7 @@ public class ProductDialogFragment extends DialogFragment {
 	private static final String PRODUCTS = "products";
 	private OnProductsChangedListener listener;
 	private FastItemAdapter<ProductItem> adapter;
-	private static Button fragment_okButton;
+	private Button okButton;
 
 	static ProductDialogFragment newInstance(EnumSet<Product> products) {
 		ProductDialogFragment f = new ProductDialogFragment();
@@ -76,8 +76,6 @@ public class ProductDialogFragment extends DialogFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
 		View v = inflater.inflate(R.layout.fragment_product_dialog, container);
 
 		// RecyclerView
@@ -86,8 +84,6 @@ public class ProductDialogFragment extends DialogFragment {
 		adapter = new FastItemAdapter<>();
 		adapter.withSelectable(true);
 		productsView.setAdapter(adapter);
-
-		fragment_okButton = (Button) v.findViewById(R.id.okButton);
 
 		// Add Products and select the ones we got
 		@SuppressWarnings("unchecked")
@@ -104,7 +100,7 @@ public class ProductDialogFragment extends DialogFragment {
 		adapter.withSavedInstanceState(savedInstanceState);
 
 		// OK Button
-		Button okButton = (Button) v.findViewById(R.id.okButton);
+		okButton = (Button) v.findViewById(R.id.okButton);
 		okButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -148,6 +144,10 @@ public class ProductDialogFragment extends DialogFragment {
 		return products;
 	}
 
+	void setOkEnabled(boolean enabled) {
+		okButton.setEnabled(enabled);
+	}
+
 	void setOnProductsChangedListener(OnProductsChangedListener listener) {
 		this.listener = listener;
 	}
@@ -189,9 +189,9 @@ public class ProductDialogFragment extends DialogFragment {
 					Set products = adapter.getSelectedItems();
 					// if no products are selected, disable the ok-button
 					if (products.size() == 0) {
-						fragment_okButton.setEnabled(false);
+						setOkEnabled(false);
 					} else {
-						fragment_okButton.setEnabled(true);
+						setOkEnabled(true);
 					}
 				}
 			});
