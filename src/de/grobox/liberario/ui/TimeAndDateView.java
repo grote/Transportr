@@ -18,8 +18,10 @@
 package de.grobox.liberario.ui;
 
 import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -43,10 +45,11 @@ import java.util.Date;
 
 import de.grobox.liberario.R;
 
-public class TimeAndDateView extends LinearLayout {
+public class TimeAndDateView extends LinearLayout
+		implements OnTimeSetListener, OnDateSetListener {
 
 	private final String SUPER_STATE = "superState";
-	private final String DATE = "date";
+	private static final String DATE = "date";
 	private final TimeAndDateViewHolder ui;
 	private Calendar calendar;
 
@@ -66,7 +69,11 @@ public class TimeAndDateView extends LinearLayout {
 		ui.time.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				DialogFragment newFragment = new TimePickerFragment();
+				TimePickerFragment newFragment = new TimePickerFragment();
+				newFragment.setOnTimeSetListener(TimeAndDateView.this);
+				Bundle bundle = new Bundle();
+				bundle.putSerializable(DATE, calendar);
+				newFragment.setArguments(bundle);
 				newFragment.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "timePicker");
 
 			}
@@ -85,7 +92,11 @@ public class TimeAndDateView extends LinearLayout {
 		ui.date.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				DialogFragment newFragment = new DatePickerFragment();
+				DatePickerFragment newFragment = new DatePickerFragment();
+				newFragment.setOnDateSetListener(TimeAndDateView.this);
+				Bundle bundle = new Bundle();
+				bundle.putSerializable(DATE, calendar);
+				newFragment.setArguments(bundle);
 				newFragment.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "datePicker");
 			}
 		});
@@ -151,6 +162,21 @@ public class TimeAndDateView extends LinearLayout {
 		super.dispatchThawSelfOnly(container);
 	}
 
+	@Override
+	public void onDateSet(DatePicker view, int year, int month, int day) {
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, month);
+		calendar.set(Calendar.DAY_OF_MONTH, day);
+		updateTexts();
+	}
+
+	@Override
+	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+		calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+		calendar.set(Calendar.MINUTE, minute);
+		updateTexts();
+	}
+
 	public Calendar getCalendar() {
 		return calendar;
 	}
@@ -212,58 +238,63 @@ public class TimeAndDateView extends LinearLayout {
 
 	public static class TimeAndDateViewHolder {
 		public Button time;
-		public Button plus15;
+		private Button plus15;
 		public Button date;
 
-		public TimeAndDateViewHolder(View view) {
+		private TimeAndDateViewHolder(View view) {
 			time = (Button) view.findViewById(R.id.timeButton);
 			plus15 = (Button) view.findViewById(R.id.plus15Button);
 			date = (Button) view.findViewById(R.id.dateButton);
 		}
 	}
 
-	class TimePickerFragment extends DialogFragment
-			implements TimePickerDialog.OnTimeSetListener {
+	public static class TimePickerFragment extends DialogFragment {
+
+		OnTimeSetListener listener;
 
 		@NonNull
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			Calendar calendar = (Calendar) getArguments().getSerializable(DATE);
+			if(calendar == null) calendar = Calendar.getInstance();
+
 			int hour = calendar.get(Calendar.HOUR_OF_DAY);
 			int minute = calendar.get(Calendar.MINUTE);
-			TimePickerDialog tpd = new TimePickerDialog(getActivity(), this, hour, minute,
+			TimePickerDialog tpd = new TimePickerDialog(getActivity(), listener, hour, minute,
 					android.text.format.DateFormat.is24HourFormat(getActivity()));
 			tpd.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancel), tpd);
 			tpd.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.ok), tpd);
 			return tpd;
 		}
 
-		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-			calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-			calendar.set(Calendar.MINUTE, minute);
-			updateTexts();
+		public void setOnTimeSetListener(OnTimeSetListener listener) {
+			// TODO this needs to re-attach on configuration changes
+			this.listener = listener;
 		}
 	}
 
-	class DatePickerFragment extends DialogFragment
-			implements DatePickerDialog.OnDateSetListener {
+	public static class DatePickerFragment extends DialogFragment {
+
+		OnDateSetListener listener;
 
 		@NonNull
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			Calendar calendar = (Calendar) getArguments().getSerializable(DATE);
+			if(calendar == null) calendar = Calendar.getInstance();
+
 			int year = calendar.get(Calendar.YEAR);
 			int month = calendar.get(Calendar.MONTH);
 			int day = calendar.get(Calendar.DAY_OF_MONTH);
-			DatePickerDialog dpd = new DatePickerDialog(getActivity(), this, year, month, day);
+			DatePickerDialog dpd = new DatePickerDialog(getActivity(), listener, year, month, day);
 			dpd.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancel), dpd);
 			dpd.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.ok), dpd);
 			return dpd;
 		}
 
-		public void onDateSet(DatePicker view, int year, int month, int day) {
-			calendar.set(Calendar.YEAR, year);
-			calendar.set(Calendar.MONTH, month);
-			calendar.set(Calendar.DAY_OF_MONTH, day);
-			updateTexts();
+		public void setOnDateSetListener(OnDateSetListener listener) {
+			// TODO this needs to re-attach on configuration changes
+			this.listener = listener;
 		}
 	}
 

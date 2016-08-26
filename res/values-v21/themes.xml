@@ -30,6 +30,9 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+
+        <!-- Fix for broken background on ALL devices -->
+        <item name="android:windowBackground">@color/md_grey_800</item>
     </style>
 
     <style name="DialogTheme.Light" parent="Theme.AppCompat.Light.Dialog">

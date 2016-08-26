@@ -53,6 +53,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumSet;
+import java.util.List;
 
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
@@ -685,8 +686,8 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 
 		@Override
-		public void bindView(final ProductItem.ViewHolder ui) {
-			super.bindView(ui);
+		public void bindView(final ProductItem.ViewHolder ui, List payloads) {
+			super.bindView(ui, payloads);
 			ui.image.setImageDrawable(TransportrUtils.getTintedDrawable(getContext(), TransportrUtils.getDrawableForProduct(product)));
 			ui.image.setOnClickListener(new View.OnClickListener() {
 				@Override

@@ -37,6 +37,7 @@ import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 
 import de.grobox.liberario.Preferences;
@@ -175,8 +176,8 @@ public class ProductDialogFragment extends DialogFragment {
 		}
 
 		@Override
-		public void bindView(final ViewHolder ui) {
-			super.bindView(ui);
+		public void bindView(final ViewHolder ui, List payloads) {
+			super.bindView(ui, payloads);
 
 			ui.image.setImageDrawable(TransportrUtils.getTintedDrawable(getContext(), TransportrUtils.getDrawableForProduct(product)));
 			ui.name.setText(TransportrUtils.productToString(getContext(), product));
