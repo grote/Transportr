@@ -197,7 +197,8 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 				ui.clear.setVisibility(View.VISIBLE);
 
 				// load the auto-completion results again as they seem to get lost during restart
-				loaderManager.getLoader(getId()).onContentChanged();
+				Loader loader = loaderManager.getLoader(getId());
+				if(loader != null) loader.onContentChanged();
 			}
 			int position = bundle.getInt(TEXT_POSITION);
 			ui.location.setSelection(position);
@@ -278,13 +279,15 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	}
 
 	private void stopLoader() {
-		loaderManager.getLoader(getId()).cancelLoad();
+		Loader loader = loaderManager.getLoader(getId());
+		if(loader != null) loader.cancelLoad();
 		ui.progress.setVisibility(View.GONE);
 	}
 
 	private void onContentChanged() {
 		ui.progress.setVisibility(View.VISIBLE);
-		loaderManager.getLoader(getId()).onContentChanged();
+		Loader loader = loaderManager.getLoader(getId());
+		if(loader != null) loader.onContentChanged();
 	}
 
 	protected void onFocusChange(View v, boolean hasFocus) {
@@ -477,7 +480,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		public ProgressBar progress;
 		public ImageButton clear;
 
-		public LocationViewHolder(View view) {
+		private LocationViewHolder(View view) {
 			status = (ImageView) view.findViewById(R.id.statusButton);
 			location = (AutoCompleteTextView) view.findViewById(R.id.location);
 			clear = (ImageButton) view.findViewById(R.id.clearButton);
