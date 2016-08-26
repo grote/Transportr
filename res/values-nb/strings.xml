@@ -208,7 +208,6 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_nri">Norge, Oslo, Bergen</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
-  <string name="np_desc_pl">Polen, Warszawa</string>
   <string name="np_desc_dub">De forente arabiske emirater, Dubai</string>
   <string name="np_desc_sf">California, San Francisco</string>
   <string name="np_desc_septa">Samveldet Pennsylvania, Philadelphia</string>

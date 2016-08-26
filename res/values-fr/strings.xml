@@ -229,7 +229,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irlande, Dublin, Belfast</string>
   <string name="np_desc_atc">Émilie-Romagne, Bologne</string>
-  <string name="np_desc_pl">Pologne, Varsovie</string>
+  <string name="np_desc_pl">Pologne, chemins de fer en Pologne</string>
   <string name="np_desc_dub">Émirats arabes unis, Dubaï</string>
   <string name="np_desc_sf">Californie, San Francisco</string>
   <string name="np_desc_septa">Pennsylvanie, Philadelphie</string>

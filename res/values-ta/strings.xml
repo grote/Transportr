@@ -58,6 +58,9 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="to_here">இதுவரை</string>
   <string name="min">நிமிடங்கள்</string>
   <string name="walk">நடை</string>
+  <string name="position">மேடை</string>
+  <string name="alpha">alpha</string>
+  <string name="beta">beta</string>
   <string name="network">பிணைப்பு</string>
   <string name="pick_network_activity">ஒரு போக்குவரத்து பிணையத்தை தேர்ந்தெடுக்கவும்</string>
   <string name="pick_network_first_run">நீங்கள் Transportr-ஐ இயக்குவது இது முதல் முறை எனவே நீங்கள் விரும்பும் ஒரு போக்குவரத்து பிணையத்தை தேர்ந்தெடுக்கவும்!</string>
@@ -106,15 +109,28 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="error_no_departures_found">புறப்பாடு ஏதும் காணவில்லை</string>
   <string name="error_no_stations_found">நிலையங்கள் ஏதும் காணவில்லை</string>
   <string name="error_no_proper_station">நீங்கள் அளித்திருக்கும் இடம் ஏற்புடையதல்ல</string>
+  <string name="error_only_autocomplete_station">தான்நிறைவு பட்டியலில் இருந்து ஒரு நிலையத்தை தேர்ந்தெடுக்கவும்!</string>
+  <string name="error_no_trips_capability">இந்த போக்குவரத்துப் பிணையத்தில் வழிகளை கண்டறியும் வசதி இல்லை.</string>
+  <string name="error_no_departures_capability">இந்த போக்குவரத்துப் பிணையத்தில் புறப்படும் நேரத்தை கண்டறியும் வசதி இல்லை.</string>
+  <string name="error_no_nearby_locations_capability">இந்த போக்குவரத்துப் பிணையத்தில் அருகிலுள்ள நிலையங்களை கண்டறியும் வசதி இல்லை.</string>
+  <string name="error_trip_refresh_failed">தற்போதைய பயணத்திற்கான தரவை புதுப்பிக்க இயலவில்லை.</string>
+  <string name="meter">m</string>
   <string name="home">முகப்பு</string>
+  <string name="home_dialog_title">வசிப்பிடத்தை அமைக்க</string>
   <string name="location">இருப்பிடம்</string>
+  <string name="location_home">வசிப்பிடத்தை அமைக்க சொடுக்கவும்</string>
   <string name="location_gps">தற்சமயம் இருக்குமிடத்தை பயன்படுத்து</string>
   <string name="location_map">வரைபடம் மூலம் இருப்பிடத்தை பெற</string>
   <string name="position_no_gps">GPS அணைக்கப்பட்டுள்ளது. எனவே இருப்பிடத்தை துள்ளியமாக அறிய இயலாது.</string>
   <string name="select_products">போக்குவரத்து முறையை தேர்ந்தெடுக்க</string>
   <string name="product_high_speed_train">அதி-வேக இரயில்</string>
+  <string name="product_regional_train">உள்ளூர் இரயில்</string>
+  <string name="product_subway">சுரங்கப் பாதை</string>
+  <string name="product_bus">பேருந்து</string>
+  <string name="product_on_demand">தேவைக்கேற்ப</string>
   <string name="action_fav_trips_sort_recent">கடைசியாக பயன்படுத்திய</string>
   <string name="action_fav_trips_sort_most">அதிகமாக பயன்படுத்திய</string>
+  <string name="action_set_locations">தேடலை செரிவு செய்</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">மாற்றப்பதிவு</string>
   <string name="changelog_show_full">மேலும்...</string>
@@ -129,8 +145,15 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_desc_mvv">பவரிய, முனிச்</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">ரோஸ்டாக்</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">ஹம்பர்க்</string>
+  <string name="np_desc_vvo">சக்சோனி, ட்ரெஸ்டென்</string>
+  <string name="np_desc_vvv">வோக்ட்லேன்ட், ப்ளவென்</string>
   <string name="np_region_austria">ஆஸ்ட்ரியா</string>
   <string name="np_desc_oebb">ஆஸ்ட்ரியா</string>
+  <string name="np_desc_vor">லோயர் ஆஸ்திரியா, பர்கென்லேன்ட், வியன்</string>
+  <string name="np_desc_linz">அப்பர் ஆஸ்திரியா, லின்ஸ்</string>
+  <string name="np_desc_svv">சல்ஸ்பர்க்</string>
+  <string name="np_desc_vvt">டிரோல்</string>
+  <string name="np_desc_ivb">இன்ஸ்ப்ரக்</string>
   <string name="np_region_switzerland">சுவிச்சர்லாந்து</string>
   <string name="np_desc_zvv">சூரிச்</string>
   <string name="np_region_belgium">பெல்ஜியம்</string>
@@ -154,11 +177,32 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_region_br">பிரேசில்</string>
   <string name="np_region_canada">கனடா</string>
   <string name="np_desc_ns">நெதர்லாந்து, ஆம்ஸ்டர்டாம்</string>
+  <string name="np_desc_dsb">டென்மார்க், கோபன்ஹேகன்</string>
+  <string name="np_desc_se">சுவீடன், ஸ்டாக்ஹோம்</string>
+  <string name="np_desc_stockholm">ஸ்டாக்ஹோம்</string>
+  <string name="np_desc_nri">நார்வே, ஓஸ்லோ, பெர்கென்</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">பிர்மிங்கம்</string>
+  <string name="np_desc_tfi">ஐயர்லாந்து, டப்லின், பெல்ஃபாஸ்ட்</string>
+  <string name="np_desc_dub">யுனைட்டட் அரபு எமிரேட்ஸ்</string>
+  <string name="np_desc_sf">கலிஃபோர்னியா, சான் ஃப்ரான்சிஸ்கோ</string>
+  <string name="np_desc_septa">பென்சில்வேனியா, ஃபிலடெல்ஃபியா</string>
+  <string name="np_desc_sydney">ஆஸ்த்ரேலியா, நியூ சவுத் வேல்ஸ், சிட்னி</string>
+  <string name="np_desc_met">ஆஸ்த்ரேலியா, விக்டோரியா, மெல்போர்ன்</string>
+  <string name="np_desc_jet">இஸ்ரேல், ஜெருசலேம்</string>
+  <string name="np_desc_hsl">ஹெல்சின்கி</string>
   <string name="np_desc_paris">பாரிஸ்</string>
+  <string name="np_desc_nz">வெல்லிங்டன், ஆக்லாந்து</string>
+  <string name="np_desc_mersey">லிவர்பூல் நகரப் பகுதி</string>
+  <string name="np_desc_br">சாவ் பாவ்லோ மற்றும் போர்டோ அலேக்ரி</string>
+  <string name="np_desc_ontario">ஒட்டாவா, டொரொன்டோ</string>
   <string name="np_name_bayern">பவரியா</string>
   <string name="np_name_paris">பாரிஸ்</string>
   <string name="np_name_sydney">சிட்னி</string>
+  <string name="np_name_stockholm">ஸ்டாக்ஹோம்</string>
+  <string name="np_name_wien">வியன்னா</string>
   <string name="np_name_spain">ஸ்பெயின்</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">நியூயார்க் மற்றும் நியு ஜெர்சி மாகாணங்கள்</string>
+  <string name="np_name_br">SPTRANS EPTC</string>
   <string name="maintainer">பராமரிப்பாளர்</string>
   <string name="contributers">பங்களிப்பாளர்கள்</string>
   <string name="translators">மொழிபெயர்பாளர்கள்</string>
@@ -166,8 +210,11 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="french">ஃபிரெஞ்சு</string>
   <string name="german">ஜெர்மன்</string>
   <string name="italian">இத்தாலியன்</string>
+  <string name="portuguese_br">போர்ச்சுகீஸ்\n(பிரேசில்)</string>
   <string name="spanish">ஸ்பானிஷ்</string>
   <string name="turkish">துருக்கி மொழி</string>
   <string name="english">ஆங்கிலம்</string>
+  <string name="catalan">கடலேன்</string>
   <string name="polish">போலிஷ்</string>
+  <string name="tamil">தமிழ்</string>
 </resources>

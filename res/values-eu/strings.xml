@@ -163,7 +163,6 @@
   <string name="np_desc_stockholm">Stockholm</string>
   <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
-  <string name="np_desc_pl">Polonia, Varsovia</string>
   <string name="np_desc_dub">Arabiar Emirerri Batuak, Dubai</string>
   <string name="np_desc_sf">Kalifornia, San Frantzisko</string>
   <string name="np_desc_paris">Paris</string>

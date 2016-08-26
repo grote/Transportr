@@ -233,7 +233,6 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irlanda, Dublin, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bolonha</string>
-  <string name="np_desc_pl">Polônia, Varsóvia</string>
   <string name="np_desc_dub">Emirados Árabes Unidos, Dubai</string>
   <string name="np_desc_sf">Califórnia, São Francisco</string>
   <string name="np_desc_septa">Pensilvânia, Filadélfia</string>

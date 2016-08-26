@@ -235,7 +235,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
-  <string name="np_desc_pl">Polen, Warschau</string>
+  <string name="np_desc_pl">Polen, Eisenbahnen in Polen</string>
   <string name="np_desc_dub">Vereinigte Arabische Emirate, Dubai</string>
   <string name="np_desc_sf">Kalifornien, San Francisco</string>
   <string name="np_desc_septa">Pennsylvania, Philadelphia</string>
@@ -284,6 +284,4 @@ es welche gibt) anzeigen lassen.</string>
   <string name="catalan">Katalanisch</string>
   <string name="polish">Polnisch</string>
   <string name="tamil">Tamil</string>
-  <string name="cancel">Abbrechen</string>
-  <string name="ok">Ok</string>
 </resources>

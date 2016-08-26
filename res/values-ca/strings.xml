@@ -179,7 +179,6 @@
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_desc_tfi">Irlanda, Dublin, Belfast</string>
   <string name="np_desc_atc">Emilia-Romagna, Bolònia</string>
-  <string name="np_desc_pl">Polònia, Varsòvia</string>
   <string name="np_desc_dub">Emirats Àrabs Units, Dubai</string>
   <string name="np_desc_sf">California, San Francisco</string>
   <string name="np_desc_septa">Pennsylvania, Philadelphia</string>

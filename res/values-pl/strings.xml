@@ -1,10 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_short_desc">Asystent transportu publicznego który szanuje Twoją prywatność i wolność.</string>
+  <string name="google_play_full_desc">Transportr jest darmową aplikacją stworzoną przez ludzi z całego świata po to, aby korzystanie z transportu publicznego było jak najłatwiejsze gdziekolwiek jesteś.
+
+Obecnie, działa najlepiej w Europie, ale także inne miejsca na świecie są wspierane. Jeżeli Twój obszar zamieszkania nie jest wspierany, rozważ dodanie go do programu Transportr. Instrukcje znajdziesz na stronie.
+
+Transportr znajduje drogę z Twojego domu, z miejsca gdzie obecnie jesteś, lub z określonego przystanku do dowolnego miejsca gdzie chcesz się dostać. Możesz dodać całe trasy do ulubionych i szukać nowych tras jednym kliknięciem. Oczywiście, możesz zobaczyć swoją trasę na mapie i śledzić swój postęp za pomocą GPS.
+
+Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźnieniami (jeżeli takie wystąpią).</string>
   <string name="drawer_changelog">Lista zmian</string>
   <string name="drawer_about">O aplikacji</string>
   <string name="drawer_settings">Ustawienia</string>
   <string name="action_fav_trip">Oznacz trasę jako ulubioną</string>
   <string name="action_unfav_trip">Wycofaj oznaczenie trasy jako ulubionej</string>
+  <string name="action_switch_locations">Zamień lokalizację początkową i końcową</string>
   <string name="action_refresh">Odśwież</string>
   <string name="action_navigation_expand">Pokaż więcej</string>
   <string name="action_location_map">Pokaż przystanki na mapie</string>
@@ -23,7 +32,24 @@
   <string name="tab_libraries">Biblioteki</string>
   <string name="tab_devs">Twórcy</string>
   <string name="tab_about">O</string>
+  <string name="about_top">© 2013 – 2015 Torsten Grote
+Oprogramowanie na Wolnej Licencji: GPLv3</string>
+  <string name="about">
+<![CDATA[
+<p>Transportr jest asystentem transportu publicznego, który szanuje Twoją prywatność i wolność. Jest darmową aplikacją tworzoną przez ludzi z całego świata mającą na celu ułatwienie korzystania z transportu publicznego jak tylko się da i gdziekolwiek jesteś. To jest Wolne Oprogramowanie, więc możesz z niego dowolnie korzystać, analizować je, kopiować i ulepszać.</p>
+<p>Nie udzielamy gwarancji na poprawność zawartych w nim danych. Używasz tej aplikacji na własne ryzyko.</p>
+]]>
+</string>
+  <string name="about_bottom">
+<![CDATA[
+<p><b>Wsparcie</b> jest bardzo mile widziane. Jeżeli chcesz coś zrobić, prosimy wejść na <a href=\"%1$s\">stronę internetową Transportr</a> po więcej informacji.</p>
+<p>Jeżeli masz jakieś problemy z programem, prosimy je zgłosić na <a href=\"%2$s\">tej stronie</a>.</p>
+<p>Możliwości <b>dotacji</b> są wymienione na <a href=\"%3$s\">stronie internetowej Transportr</a>.</p>
+]]>
+</string>
   <string name="visit_website">Odwiedź stronę</string>
+  <string name="trip_dep">odj</string>
+  <string name="trip_arr">przyj</string>
   <string name="trip_removed">Usunięta trasa</string>
   <string name="from">Z</string>
   <string name="to">Do</string>
@@ -37,20 +63,78 @@
   <string name="beta">beta</string>
   <string name="network">Sieć</string>
   <string name="pick_network_activity">Wybierz sieć transportową</string>
+  <string name="pick_network_first_run">Uruchomiłeś Transportr po raz pierwszy. Prosimy wybrać Twoją sieć transportową aby kontynuować!</string>
+  <string name="clear_recent_trips">Czy chcesz na pewno usunąć %1$d tras ze swoich ostatnich tras? Licznik użycia zostanie zresetowany.</string>
+  <string name="trip_searching">Szukanie połączeń...</string>
+  <string name="stations_searching_position">Szukanie obecnej lokalizacji...</string>
   <string name="drawer_nearby_stations">Pobliskie stacje</string>
+  <string name="find_nearby_stations">Szukaj pobliskich stacji</string>
+  <string name="find_departures">Szukaj odjazdów</string>
+  <string name="departure_station">Odjazdy ze stacji</string>
+  <string name="share_trip_via">Udostępnij trasę przez...</string>
   <string name="undo">Cofnij</string>
+  <string name="fav_trips_empty">Twoje ostatnie trasy pojawią się tutaj po tym jak zaczniesz szukać celów podróży.
+
+
+Będziesz mógł posortować je od ostatnich lub według najczęściej używanych.</string>
   <string name="more">Więcej</string>
+  <string name="no_favourites">Brak ulubionych tras.
+
+Dodaj jakąś na stronie \"Ostatnie trasy\".</string>
+  <string name="removing_from_favourites">Wybrana trasa dostała dodana do ulubionych. Zostanie ona stąd usunięta.</string>
+  <string name="current_time_set">Ustawiono obecny czas.</string>
+  <string name="current_date_set">Ustawiono obecną godzinę.</string>
+  <string name="added_1h">Dodano 1 godzinę.</string>
+  <string name="pref_transport_network">Sieć transportowa</string>
+  <string name="pref_hide_departure_time">Ukryj czasy odjazdów</string>
+  <string name="pref_hide_departure_time_summary">Pokaż tylko czasy przyjazdów podczas wyświetlania przystanków pośrednich</string>
+  <string name="pref_exit_app_on_back_press">Zamknij program przyciskiem wstecz</string>
+  <string name="pref_exit_app_on_back_press_summary">Zawsze zamykaj aplikację przy naciśnięciu przycisku cofania na ekranie głównym</string>
+  <string name="pref_home">Lokalizacja domowa</string>
   <string name="pref_display">Wyświetlanie</string>
   <string name="pref_theme_title">Motyw</string>
   <string name="pref_theme_light">Jasny</string>
   <string name="pref_theme_dark">Ciemny</string>
   <string name="pref_language_title">Język</string>
+  <string name="pref_directions_routing">Trasy i wyznaczanie drogi</string>
+  <string name="pref_optimize">Optymalizuj dla</string>
+  <string name="pref_optimize_least_duration">Najkrótszy czas</string>
+  <string name="pref_optimize_least_changes">Najmniej przesiadek</string>
+  <string name="pref_optimize_least_walking">Najmniej chodzenia</string>
   <string name="pref_walk_speed">Prędkość marszu</string>
   <string name="pref_walk_speed_slow">Powoli</string>
   <string name="pref_walk_speed_normal">Normalnie</string>
   <string name="pref_walk_speed_fast">Szybko</string>
+  <string name="warning_departure_gap">Zbyt mało odjazdów. Być może niektóre są ukryte. Wyszukaj przy użyciu dokładnego czasu, aby być pewnym, że żadnych nie brakuje.</string>
+  <string name="warning_permission_granted_action">Nie można automatycznie powtórzyć ostatniej czynności</string>
+  <string name="error_pick_network">Proszę wybrać jedną sieć transportową!</string>
+  <string name="error_no_internet">Brak sprawnego połączenia internetowego</string>
+  <string name="error_invalid_from">Niepoprawny punkt początkowy (Z)</string>
+  <string name="error_invalid_to">Niepoprawny cel (Do)</string>
+  <string name="error_no_trips_found">Nie znaleziono kierunków</string>
+  <string name="error_no_location_provider">Nie można określić Twojej pozycji. Prosimy włączyć GPS!</string>
+  <string name="error_no_departures_found">Nie znaleziono odjazdów</string>
+  <string name="error_no_stations_found">Nie znaleziono przystanków</string>
+  <string name="error_no_proper_station">Wpisana lokalizacja nie jest prawidłowym przystankiem</string>
+  <string name="error_only_autocomplete_station">Prosimy wybrać przystanek z podanych propozycji!</string>
+  <string name="error_no_station_location">Nie można odnaleźć lokalizacji podanych przystanków</string>
+  <string name="error_no_trips_capability">Wybrana sieć transportowa nie wspiera szukania po kierunkach.</string>
+  <string name="error_no_departures_capability">Wybrana sieć transportowa nie wspiera wyszukiwania odjazdów.</string>
+  <string name="error_no_nearby_locations_capability">Wybrana sieć transportowa nie wspiera wyszukiwania pobliskich stacji.</string>
+  <string name="error_please_file_ticket">Wystąpił błąd. Prosimy zgłosić błąd opisujący co się stało.</string>
+  <string name="error_trip_refresh_failed">Nie można odświeżyć danych dla obecnej trasy.</string>
   <string name="meter">m</string>
+  <string name="system_default">Domyślny systemowy</string>
+  <string name="times_include_delays">(Uwaga: Czasy uwzględniają odnotowane opóźnienia)</string>
+  <string name="home">Dom</string>
+  <string name="home_dialog_title">Ustaw lokalizację domową</string>
   <string name="location">Położenie</string>
+  <string name="location_home">Kliknij aby ustawić lokalizację domową</string>
+  <string name="location_gps">Użyj obecnej pozycji</string>
+  <string name="location_map">Wybierz lokalizację na mapie</string>
+  <string name="position_not_yet_known">Pozycja nie jest jeszcze znana</string>
+  <string name="position_no_gps">GPS jest wyłączony. Pozycja będzie mało precyzyjna.</string>
+  <string name="select_products">Wybierz środki transportu</string>
   <string name="product_high_speed_train">Szybka kolej</string>
   <string name="product_regional_train">Koleje regionalne</string>
   <string name="product_suburban_train">Kolej podmiejska</string>
@@ -59,17 +143,79 @@
   <string name="product_bus">Autobus</string>
   <string name="product_ferry">Prom</string>
   <string name="product_cablecar">Kolej linowa</string>
+  <string name="product_on_demand">Na żądanie</string>
+  <string name="action_fav_trips_sort">Sortuj listę</string>
+  <string name="action_fav_trips_sort_recent">Ostatnio używane</string>
+  <string name="action_fav_trips_sort_most">Najczęściej używane</string>
+  <string name="action_set_locations">Edytuj wyszukiwanie</string>
+  <string name="action_swap_locations">Szukaj drogi powrotnej</string>
+  <string name="permission_explanation_gps">Musisz zezwolić aplikacji na dostęp do lokalizacji, aby wyświetlić swoją obecną pozycję na mapie.</string>
+  <string name="permission_denied_gps">Nie zezwoliłeś na dostęp do lokalizacji, więc ta funkcja nie będzie działała. Prosimy przydzielić uprawnienia w ustawieniach aplikacji.</string>
+  <string name="permission_explanation_map">Kafelki map potrzebują być przechowywane w pamięci urządzenia. Mapa nie będzie działała bez tego.</string>
+  <string name="permission_denied_map">Wyświetlanie mapy wymaga przechowywania plików map w pamięci urządzenia. Prosimy zezwolić aplikacji na zapisywanie do pamięci w ustawieniach aplikacji.</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">Lista zmian</string>
   <string name="changelog_title">Co nowego</string>
   <string name="changelog_show_full">Więcej...</string>
+  <string name="np_region_europe">Europa</string>
+  <string name="np_name_rt">Europa</string>
+  <string name="np_desc_rt">tylko dalekie odległości</string>
+  <string name="np_region_germany">Niemcy</string>
+  <string name="np_desc_db">Większość Niemiec</string>
   <string name="np_desc_bvg">Berlin</string>
+  <string name="np_desc_vbb">Brandenburgia, Berlin</string>
+  <string name="np_desc_bayern">Bawaria, Würzburg, Rytazbona</string>
+  <string name="np_desc_avv">Augsburg</string>
+  <string name="np_desc_mvv">Bawaria, Monachium</string>
+  <string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_vgn">Norymberga, Fürth, Erlangen</string>
+  <string name="np_desc_vvm">Szwabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
+  <string name="np_desc_vmv">Meklemburgia-Pomorze Przednie, Schwerin</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
+  <string name="np_desc_sh">Szlezwik-Holsztyn, Kilonia, Lubeka, Hamburg</string>
+  <string name="np_desc_gvh">Dolna Saksonia, Hanower, Hamburg</string>
+  <string name="np_desc_bsvag">Brunszwik, Wolfsburg</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Dolna Saksonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vvo">Saksonia, Drezno</string>
+  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
+  <string name="np_desc_nasa">Saksonia, Lipsk, Saksonia-Anhalt, Magdeburg, Halle</string>
+  <string name="np_desc_vrr">Nadrenia Północna-Westfalia, Kolonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
+  <string name="np_desc_nvv">Hesja, Frankfurt nad Menem, Kassel</string>
+  <string name="np_desc_vrn">Badenia-Wirtembergia, Nadrenia-Palatynat, Mannheim, Moguncja, Trewir</string>
+  <string name="np_desc_vvs">Badenia-Wirtembergia, Stuttgart</string>
+  <string name="np_desc_ding">Badenia-Wirtembergia, Ulm, Neu-Ulm</string>
+  <string name="np_desc_kvv">Badenia-Wirtembergia, Karlsruhe</string>
+  <string name="np_desc_vagfr">Alzacja, Dolny Ren, Strasburg, Fryburg Bryzgowijski</string>
+  <string name="np_desc_nvbw">Badenia-Wirtembergia, Konstancja, Bazylea, Bazylea-Miasto, Reutlingen, Rottweil, Tybinga, Sigmaringen</string>
+  <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vgs">Saara, Saarbrücken</string>
+  <string name="np_region_austria">Austria</string>
+  <string name="np_desc_oebb">Austria</string>
+  <string name="np_desc_vor">Dolna Austria, Burgenland, Wiedeń</string>
+  <string name="np_desc_linz">Górna Austria, Linz</string>
+  <string name="np_desc_svv">Salzburg</string>
+  <string name="np_desc_vvt">Tyrol</string>
+  <string name="np_desc_ivb">Innsbruck</string>
+  <string name="np_desc_stv">Styria, Graz, Marburg, Maribor</string>
+  <string name="np_desc_wien">WIENER LINIEN</string>
+  <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregencja</string>
   <string name="np_region_switzerland">Szwajcaria</string>
+  <string name="np_desc_vbl">Lucerna</string>
+  <string name="np_desc_zvv">Zurych</string>
   <string name="np_region_belgium">Belgia</string>
+  <string name="np_region_luxembourg">Luksemburg</string>
+  <string name="np_region_netherlands">Holandia</string>
+  <string name="np_region_denmark">Dania</string>
+  <string name="np_region_sweden">Szwecja</string>
+  <string name="np_region_norway">Norwegia</string>
+  <string name="np_region_gb">Wielka Brytania</string>
   <string name="np_region_ireland">Irlandia</string>
   <string name="np_region_italy">Włochy</string>
   <string name="np_region_poland">Polska</string>
+  <string name="np_region_uae">Zjednoczone Emiraty Arabskie</string>
   <string name="np_region_usa">USA</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_region_israel">Izrael</string>
@@ -79,24 +225,64 @@
   <string name="np_region_spain">Hiszpania</string>
   <string name="np_region_br">Brazylia</string>
   <string name="np_region_canada">Kanada</string>
+  <string name="np_desc_ns">Holandia, Amsterdam</string>
+  <string name="np_desc_dsb">Dania, Kopenhaga</string>
   <string name="np_desc_se">Szwecja, Sztokholm</string>
   <string name="np_desc_stockholm">Sztokholm</string>
-  <string name="np_desc_pl">Polska, Warszawa</string>
+  <string name="np_desc_nri">Norwegia, Oslo, Bergen</string>
+  <string name="np_desc_tlem">Wielki Londyn, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
+  <string name="np_desc_tfi">Irlandia, Dublin, Belfast</string>
+  <string name="np_desc_atc">Emilia-Romagna, Bolonia</string>
+  <string name="np_desc_pl">Polska, koleje w Polsce</string>
+  <string name="np_desc_dub">Zjednoczone Emiraty Arabskie, Dubaj</string>
+  <string name="np_desc_sf">Kalifornia, San Francisco</string>
+  <string name="np_desc_septa">Pensylwania, Filadelfia</string>
+  <string name="np_desc_sydney">Australia, Nowa Południowa Walia, Sydney</string>
+  <string name="np_desc_met">Australia, Wiktoria, Melbourne</string>
+  <string name="np_desc_jet">Izrael, Jerozolima</string>
+  <string name="np_desc_paca">Prowansja-Alpy-Lazurowe Wybrzeże</string>
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_desc_paris">Paryż</string>
+  <string name="np_desc_nz">Wellington, Auckland</string>
+  <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+  <string name="np_desc_spain">Busy Madryt (EMT), Barcelona (TMB), Kraj Basków (Moveuskadi)</string>
+  <string name="np_desc_mersey">Liverpool City Region</string>
+  <string name="np_desc_br">São Paulo i Porto Alegre</string>
+  <string name="np_desc_vrs">Kolonia, Bonn</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Akwitania, Midi-Pireneje, Bordeaux, Tuluza</string>
+  <string name="np_desc_it">Rzym, Mediolan, Turyn, Wenecja, Palermo, Trydent</string>
+  <string name="np_desc_ontario">Ottawa, Toronto</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_db">Deutsche Bahn</string>
+  <string name="np_name_bayern">BAWARIA</string>
   <string name="np_name_paris">PARYŻ</string>
   <string name="np_name_sydney">SYDNEY</string>
   <string name="np_name_stockholm">SZTOKHOLM</string>
   <string name="np_name_wien">WIEDEŃ</string>
   <string name="np_name_spain">Hiszpania</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">Stany Nowy Jork i New Jersey</string>
+  <string name="np_name_br">SPTRANS EPTC</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
+  <string name="np_name_frenchsouthwest">Francja Południowo-Zachodnia</string>
   <string name="np_name_ontario">Ontario</string>
+  <string name="np_name_quebec">Quebec</string>
+  <string name="maintainer">Opiekun</string>
+  <string name="contributers">Pomocnicy</string>
   <string name="translators">Tłumacze</string>
   <string name="dutch">Holenderski</string>
   <string name="french">Francuski</string>
   <string name="german">Niemiecki</string>
   <string name="italian">Włoski</string>
+  <string name="portuguese_br">Portugalski
+(Brazylia)</string>
   <string name="spanish">Hiszpański</string>
   <string name="turkish">Turecki</string>
+  <string name="norwegian_bokmal">Norweski
+Bokmål</string>
   <string name="basque">Baskijski</string>
   <string name="english">Angielski</string>
+  <string name="catalan">Kataloński</string>
+  <string name="polish">Polski</string>
+  <string name="tamil">Tamilski</string>
 </resources>

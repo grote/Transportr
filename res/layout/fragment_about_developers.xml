@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -19,23 +19,23 @@
             android:layout_height="wrap_content"
             android:foreground="?android:attr/selectableItemBackground"
             card_view:cardBackgroundColor="?attr/cardBackgroundColor"
-            card_view:cardUseCompatPadding="true"
-            card_view:cardCornerRadius="2dp">
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="6dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:textSize="@dimen/textSizeLarge_openSource"
-                    android:textStyle="normal"
+                    android:text="@string/maintainer"
                     android:textColor="?android:attr/textColorPrimary"
-                    android:text="@string/maintainer"/>
+                    android:textSize="@dimen/textSizeLarge_openSource"
+                    android:textStyle="normal"/>
 
                 <include layout="@layout/divider_horizontal"/>
 
@@ -45,8 +45,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="Torsten Grote"/>
+                    android:text="Torsten Grote"
+                    tools:ignore="HardcodedText"/>
 
             </LinearLayout>
 
@@ -57,23 +57,23 @@
             android:layout_height="wrap_content"
             android:foreground="?android:attr/selectableItemBackground"
             card_view:cardBackgroundColor="?attr/cardBackgroundColor"
-            card_view:cardUseCompatPadding="true"
-            card_view:cardCornerRadius="2dp">
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="6dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:textSize="@dimen/textSizeLarge_openSource"
-                    android:textStyle="normal"
+                    android:text="@string/contributers"
                     android:textColor="?android:attr/textColorPrimary"
-                    android:text="@string/contributers"/>
+                    android:textSize="@dimen/textSizeLarge_openSource"
+                    android:textStyle="normal"/>
 
                 <include layout="@layout/divider_horizontal"/>
 
@@ -83,8 +83,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="ByteHamster"/>
+                    android:text="ByteHamster"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,8 +92,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="Jochen Sprickerhof"/>
+                    android:text="Jochen Sprickerhof"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -101,8 +101,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="kas70"/>
+                    android:text="kas70"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,8 +110,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="Mats Sjöberg"/>
+                    android:text="Mats Sjöberg"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -119,8 +119,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="mray"/>
+                    android:text="mray"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -128,8 +128,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="Paspartout"/>
+                    android:text="Paspartout"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -137,8 +137,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="Rob Snelders"/>
+                    android:text="Rob Snelders"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -146,8 +146,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="Sebastian Grote"/>
+                    android:text="Sebastian Grote"
+                    tools:ignore="HardcodedText"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -155,8 +155,8 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
-                    tools:ignore="HardcodedText"
-                    android:text="Simó Albert i Beltran"/>
+                    android:text="Simó Albert i Beltran"
+                    tools:ignore="HardcodedText"/>
 
             </LinearLayout>
 
@@ -167,23 +167,23 @@
             android:layout_height="wrap_content"
             android:foreground="?android:attr/selectableItemBackground"
             card_view:cardBackgroundColor="?attr/cardBackgroundColor"
-            card_view:cardUseCompatPadding="true"
-            card_view:cardCornerRadius="2dp">
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="6dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
-                    android:textSize="@dimen/textSizeLarge_openSource"
-                    android:textStyle="normal"
+                    android:text="@string/translators"
                     android:textColor="?android:attr/textColorPrimary"
-                    android:text="@string/translators"/>
+                    android:textSize="@dimen/textSizeLarge_openSource"
+                    android:textStyle="normal"/>
 
                 <include layout="@layout/divider_horizontal"/>
 
@@ -201,16 +201,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/basque"/>
+                            android:text="@string/basque"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="Aitor Beriain"/>
+                            android:text="Aitor Beriain"
+                            tools:ignore="HardcodedText"/>
                     </TableRow>
 
                     <TableRow
@@ -221,16 +221,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/catalan"/>
+                            android:text="@string/catalan"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="el_libre"/>
+                            android:text="el_libre"
+                            tools:ignore="HardcodedText"/>
                     </TableRow>
 
                     <TableRow
@@ -241,16 +241,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/dutch"/>
+                            android:text="@string/dutch"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="TheLastProject"/>
+                            android:text="TheLastProject"
+                            tools:ignore="HardcodedText"/>
                     </TableRow>
 
                     <TableRow
@@ -261,16 +261,36 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/french"/>
+                            android:text="@string/esperanto"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="Cryptie, Alain-Olivier"/>
+                            android:text="Verdulo"
+                            tools:ignore="HardcodedText"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="7dp"
+                            android:text="@string/french"
+                            android:textColor="?android:attr/textColorPrimary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="7dp"
+                            android:text="Cryptie, Alain-Olivier"
+                            tools:ignore="HardcodedText"/>
                     </TableRow>
 
                     <TableRow
@@ -281,8 +301,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
                             android:text="@string/german"
+                            android:textColor="?android:attr/textColorPrimary"
                             />
 
                         <TextView
@@ -290,8 +310,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="Martin Riesner, Benedikt Volkmer, Ettore Atalan, dktz, ..."/>
+                            android:text="Martin Riesner, Benedikt Volkmer, Ettore Atalan, dktz, ..."
+                            tools:ignore="HardcodedText"/>
 
                     </TableRow>
 
@@ -303,16 +323,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/italian"/>
+                            android:text="@string/italian"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="Giuseppe Pignataro"/>
+                            android:text="Giuseppe Pignataro"
+                            tools:ignore="HardcodedText"/>
                     </TableRow>
 
                     <TableRow
@@ -323,16 +343,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/norwegian_bokmal"/>
+                            android:text="@string/norwegian_bokmal"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="Allan Nordhøy"/>
+                            android:text="Allan Nordhøy"
+                            tools:ignore="HardcodedText"/>
                     </TableRow>
 
                     <TableRow
@@ -344,16 +364,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/polish"/>
+                            android:text="@string/polish"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="Daniel Koć"/>
+                            android:text="Daniel Koć, Verdulo"
+                            tools:ignore="HardcodedText"/>
                     </TableRow>
 
                     <TableRow
@@ -365,16 +385,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/portuguese_br"/>
+                            android:text="@string/portuguese_br"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="Gislene Kucker Arantes, Cibele A. Cambuí, Thiago Costa, Paulo Martins, José Victor, Caio Volpato"/>
+                            android:text="Gislene Kucker Arantes, Cibele A. Cambuí, Thiago Costa, Paulo Martins, José Victor, Caio Volpato"
+                            tools:ignore="HardcodedText"/>
                     </TableRow>
 
                     <TableRow
@@ -385,16 +405,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/spanish"/>
+                            android:text="@string/spanish"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="7dp"
-                            tools:ignore="HardcodedText"
-                            android:text="Adolfo Jayme Barrientos"/>
+                            android:text="Adolfo Jayme Barrientos, acuccaro"
+                            tools:ignore="HardcodedText"/>
                     </TableRow>
 
                     <TableRow
@@ -405,8 +425,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/tamil"/>
+                            android:text="@string/tamil"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -425,8 +445,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:textColor="?android:attr/textColorPrimary"
-                            android:text="@string/turkish"/>
+                            android:text="@string/turkish"
+                            android:textColor="?android:attr/textColorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
