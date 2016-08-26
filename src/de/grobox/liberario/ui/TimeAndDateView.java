@@ -21,6 +21,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+	import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -229,9 +230,11 @@ public class TimeAndDateView extends LinearLayout {
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			int hour = calendar.get(Calendar.HOUR_OF_DAY);
 			int minute = calendar.get(Calendar.MINUTE);
-
-			return new TimePickerDialog(getActivity(), this, hour, minute,
+			TimePickerDialog tpd = new TimePickerDialog(getActivity(), this, hour, minute,
 					android.text.format.DateFormat.is24HourFormat(getActivity()));
+			tpd.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancel), tpd);
+			tpd.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.ok), tpd);
+			return tpd;
 		}
 
 		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -250,8 +253,10 @@ public class TimeAndDateView extends LinearLayout {
 			int year = calendar.get(Calendar.YEAR);
 			int month = calendar.get(Calendar.MONTH);
 			int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-			return new DatePickerDialog(getActivity(), this, year, month, day);
+			DatePickerDialog dpd = new DatePickerDialog(getActivity(), this, year, month, day);
+			dpd.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancel), dpd);
+			dpd.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.ok), dpd);
+			return dpd;
 		}
 
 		public void onDateSet(DatePicker view, int year, int month, int day) {
