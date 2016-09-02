@@ -2,6 +2,9 @@
 <changelog>
 
     <release version="1.1.4" versioncode="39">
+        <change>Added France North East (Thanks Stéphane!)</change>
+        <change>Added Chicago (Thanks Andreas!)</change>
+        <change>Added emoticon flags for some countries</change>
         <change>New translation: Esperanto (Thanks Verdulo!)</change>
         <change>Complete Spanish translation (Thanks acuccaro!)</change>
         <change>Complete Polish translation (Thanks Verdulo!)</change>

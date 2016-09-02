@@ -263,7 +263,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_name_ontario">Ontario</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="maintainer">Mantenedor</string>
-  <string name="contributers">Colaboradores</string>
+  <string name="contributors">Colaboradores</string>
   <string name="translators">Traductores</string>
   <string name="dutch">Holandés</string>
   <string name="french">Francés</string>

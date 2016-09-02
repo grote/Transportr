@@ -202,7 +202,7 @@
   <string name="np_name_spain">Spanje</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">New York en New-Jersey staten</string>
   <string name="maintainer">Onderhouder</string>
-  <string name="contributers">Bijdragers</string>
+  <string name="contributors">Bijdragers</string>
   <string name="translators">Vertalers</string>
   <string name="dutch">Nederlands</string>
   <string name="french">Frans</string>

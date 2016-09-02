@@ -278,11 +278,13 @@ there are any).</string>
     <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
     <string name="np_desc_spain">Madrid buses (EMT), Barcelona (TMB), Basque (Moveuskadi)</string>
     <string name="np_desc_mersey">Liverpool City Region</string>
-    <string name="np_desc_br">São Paulo and Porto Alegre</string>
+    <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte and Porto Alegre</string>
     <string name="np_desc_br_floripa" translatable="false">SIM</string>
     <string name="np_desc_vrs">Cologne, Bonn</string>
     <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
     <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
+    <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
+    <string name="np_desc_francenortheast_networks" translatable="false">SNCF, CTS, Transpole, STAN, LE MET</string>
     <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
     <string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
     <string name="np_desc_ontario">Ottawa, Toronto</string>
@@ -296,14 +298,16 @@ there are any).</string>
     <string name="np_name_wien">VIENNA</string>
     <string name="np_name_spain">Spain</string>
     <string name="np_name_usny" tools:keep="@string/np_name_usny">New York and New-Jersey States</string>
-    <string name="np_name_br">SPTRANS EPTC</string>
+    <string name="np_name_br">Brazil</string>
     <string name="np_name_br_floripa">Florianópolis</string>
-    <string name="np_name_frenchsouthwest">FR-SW</string>
+    <string name="np_name_frenchsouthwest">France South West</string>
+    <string name="np_name_francenortheast">France North East</string>
     <string name="np_name_ontario">Ontario</string>
     <string name="np_name_quebec">Quebec</string>
+    <string name="np_name_rtachicago">Chicago</string>
 
     <string name="maintainer">Maintainer</string>
-    <string name="contributers">Contributors</string>
+    <string name="contributors">Contributors</string>
     <string name="translators">Translators</string>
     <string name="dutch">Dutch</string>
     <string name="french">French</string>

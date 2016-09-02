@@ -233,7 +233,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_name_ontario">Ontario</string>
   <string name="np_name_quebec">Québec</string>
   <string name="maintainer">Utgivelsesansvarlig</string>
-  <string name="contributers">Bidragsytere</string>
+  <string name="contributors">Bidragsytere</string>
   <string name="translators">Oversettere</string>
   <string name="dutch">Hollandsk</string>
   <string name="french">Fransk</string>

@@ -95,8 +95,10 @@ public final class NetworkProviderFactory
 	private static Reference<BrFloripaProvider> brFloripaProviderRef;
 	private static Reference<ItalyProvider> italyProviderRef;
 	private static Reference<FrenchSouthWestProvider> frenchSouthWestProviderRef;
+	private static Reference<FranceNorthEastProvider> franceNorthEastProviderRef;
 	private static Reference<OntarioProvider> ontarioProviderRef;
 	private static Reference<QuebecProvider> quebecProviderRef;
+	private static Reference<RtaChicagoProvider> rtaChicagoProviderRef;
 
 	private static final String NAVITIA_API = "https://api.navitia.io/v1/";
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
@@ -989,6 +991,19 @@ public final class NetworkProviderFactory
 			frenchSouthWestProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
+		else if (networkId.equals(NetworkId.FRANCENORTHEAST))
+		{
+			if (franceNorthEastProviderRef != null)
+			{
+				final FranceNorthEastProvider provider = franceNorthEastProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final FranceNorthEastProvider provider = new FranceNorthEastProvider(NAVITIA);
+			franceNorthEastProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
 		else if (networkId.equals(NetworkId.ONTARIO))
 		{
 			if (ontarioProviderRef != null)
@@ -1013,6 +1028,19 @@ public final class NetworkProviderFactory
 
 			final QuebecProvider provider = new QuebecProvider(NAVITIA);
 			quebecProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.RTACHICAGO))
+		{
+			if (rtaChicagoProviderRef != null)
+			{
+				final RtaChicagoProvider provider = rtaChicagoProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final RtaChicagoProvider provider = new RtaChicagoProvider();
+			rtaChicagoProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else
