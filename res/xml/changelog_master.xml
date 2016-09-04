@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.1.4" versioncode="39">
+    <release version="1.1.4" versioncode="40">
         <change>Added France North East (Thanks Stéphane!)</change>
         <change>Added Chicago (Thanks Andreas!)</change>
         <change>Added emoticon flags for some countries</change>
