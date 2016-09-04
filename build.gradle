@@ -26,7 +26,11 @@ dependencies {
 	compile 'com.mikepenz:aboutlibraries:5.8.1'
 	compile 'org.osmdroid:osmdroid-android:5.2'
 
-	compile project(':sublibs:public-transport-enabler:enabler')
+	compile(project(':sublibs:public-transport-enabler:enabler')) {
+		transitive = false
+	}
+	compile 'com.google.guava:guava:18.0'
+	compile 'com.google.code.findbugs:jsr305:3.0.0'
 	debugCompile 'org.slf4j:slf4j-api:1.7.14'
 	debugCompile 'com.github.tony19:logback-android-classic:1.1.1-4'
 	debugCompile 'com.github.tony19:logback-android-core:1.1.1-4'
@@ -56,10 +60,7 @@ dependencyVerification {
 			'com.mikepenz:iconics-core:fdaec9164d5dccd213e1e80610b29dbd33a6e36ccd56ca3e8d4e4a802ac962d5',
 			'com.mikepenz:fastadapter:04abf0796dd5166cfaa43a2ccb458fe762fb0b090dd32973f35ded9ad987d3d0',
 			'com.google.guava:guava:d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99',
-			'org.slf4j:slf4j-api:0aee9a77a4940d72932b0d0d9557793f872e66a03f598e473f45e7efecdccf99',
 			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
-			'org.json:json:055be110a570f9cda3eba8d70a006ff46c77a048bc67868524879211c48b330a',
-			'net.sf.kxml:kxml2:f264dd9f79a1fde10ce5ecc53221eff24be4c9331c830b7d52f2f08a7b633de2',
 			'com.android.support:support-core-utils:20dd25988a360df5887e8ad5d9cf9b77b54fb014a17163f2125ecde8aa635846',
 			'com.android.support:support-media-compat:b6b4ed6dd8e0678bb5fd6457ea9155766cc12d5bc5df9c283c01e0dc782ffb19',
 			'com.android.support:support-fragment:50aa9d408d33b82acda71423ce2980e54186caaae50f689ecd90e6692dcc3ed4',
@@ -86,12 +87,18 @@ android {
 	buildTypes {
 		release {
 			resValue "string", "app_name", "Transportr"
+			shrinkResources true
+			minifyEnabled true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
 		}
 
 		debug {
 			applicationIdSuffix ".debug"
 			versionNameSuffix "-debug"
 			resValue "string", "app_name", "Transportr Devel"
+			shrinkResources true
+			minifyEnabled true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
 		}
 	}
 
@@ -143,10 +150,8 @@ android {
 	}
 
 	lintOptions {
-		abortOnError false
 		checkReleaseBuilds false
 		disable 'MissingTranslation'
-		htmlReport true
 	}
 }
 

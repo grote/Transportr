@@ -1,0 +1,31 @@
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-dontobfuscate
+-verbose
+-useuniqueclassmembernames
+
+-dontnote android.net.http.**
+-dontnote org.apache.http.**
+-dontnote com.google.vending.licensing.**
+-dontnote com.android.vending.licensing.**
+
+-dontnote com.google.common.**
+-dontwarn com.google.common.**
+-dontnote android.support.v4.**
+-dontnote android.support.v7.**
+-dontnote android.support.design.widget.**
+
+-dontnote com.mikepenz.fastadapter.items.**
+-dontnote com.mikepenz.iconics.**
+-dontnote com.mikepenz.materialize.view.**
+
+-dontnote org.osmdroid.views.MapView
+-dontnote org.osmdroid.views.overlay.ItemizedOverlayControlView
+-dontnote com.orangegangsters.github.swipyrefreshlayout.library.**
+-dontwarn de.schildbach.pte.**
+-dontwarn org.slf4j.**
+-dontwarn ch.qos.logback.core.net.**
+-dontnote ch.qos.logback.core.rolling.helper.FileStoreUtil
+
+-dontnote de.grobox.liberario.ui.**
