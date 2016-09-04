@@ -246,7 +246,6 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">ônibus em Madri (EMT), Barcelona (TMB), Basco (Moveuskadi)</string>
   <string name="np_desc_mersey">Região da cidade de Liverpool</string>
-  <string name="np_desc_br">São Paulo e Porto Alegre</string>
   <string name="np_desc_vrs">Colônia, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limusino, Aquitânia, Sul Pirineus, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Roma, Milão, Turim, Veneza, Palermo, Trento </string>
@@ -260,13 +259,10 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_name_wien">VIENA</string>
   <string name="np_name_spain">Espanha</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nova York e Nova Jersey</string>
-  <string name="np_name_br">SPTRANS EPTC</string>
   <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_name_frenchsouthwest">FR-SW</string>
   <string name="np_name_ontario">Ontário </string>
   <string name="np_name_quebec">Quebec</string>
   <string name="maintainer">Mantenedores</string>
-  <string name="contributors">Colaboradores</string>
   <string name="translators">Tradutores</string>
   <string name="dutch">Holandês</string>
   <string name="french">Francês</string>

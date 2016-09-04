@@ -217,7 +217,6 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_nz">Wellington, Auckland</string>
   <string name="np_desc_spain">Madrid-bussene (EMT), Barcelona (TMB), Baskerland (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool byområdet</string>
-  <string name="np_desc_br">São Paulo og Porto Alegre</string>
   <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_ontario">Ottawa, Toronto</string>
   <string name="np_name_db">Deutsche Bahn</string>
@@ -228,12 +227,10 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_name_wien">WIEN</string>
   <string name="np_name_spain">Spania</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Statene New York og New-Jersey</string>
-  <string name="np_name_br"> </string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_name_ontario">Ontario</string>
   <string name="np_name_quebec">Québec</string>
   <string name="maintainer">Utgivelsesansvarlig</string>
-  <string name="contributors">Bidragsytere</string>
   <string name="translators">Oversettere</string>
   <string name="dutch">Hollandsk</string>
   <string name="french">Fransk</string>

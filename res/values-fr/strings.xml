@@ -80,6 +80,10 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="current_time_set">Heure réglée sur l\'heure actuelle.</string>
   <string name="current_date_set">Date réglée sur la date actuelle.</string>
   <string name="added_1h">1 heure a été ajoutée.</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Annuler</string>
+  <string name="yes">Oui</string>
+  <string name="no">Non</string>
   <string name="pref_transport_network">Réseau de transport</string>
   <string name="pref_hide_departure_time">Cacher l\'heure de départ</string>
   <string name="pref_hide_departure_time_summary">Ne montrer l\'heure d\'arrivée que lors de l\'affichage des arrêts intermédiaires</string>
@@ -243,7 +247,6 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Madrid (EMT), Barcelone (TMB), Basque (moveuskadi)</string>
   <string name="np_desc_mersey">Région métropolitaine de Liverpool</string>
-  <string name="np_desc_br">São Paulo et Porto Alegre</string>
   <string name="np_desc_vrs">Cologne, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Rome, Milan, Turin, Venise, Palerme, Trente</string>
@@ -257,13 +260,10 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_name_wien">VIENNE</string>
   <string name="np_name_spain">Espagne</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">États de New York et New Jersey</string>
-  <string name="np_name_br">SPTRANS EPTC</string>
   <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_name_frenchsouthwest">FR-SO</string>
   <string name="np_name_ontario">Ontario</string>
   <string name="np_name_quebec">Québec</string>
   <string name="maintainer">Mainteneur</string>
-  <string name="contributors">Contributeurs</string>
   <string name="translators">Traducteurs</string>
   <string name="dutch">Néerlandais</string>
   <string name="french">Français</string>
@@ -278,4 +278,5 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="catalan">Catalan</string>
   <string name="polish">Polonais</string>
   <string name="tamil">Tamoul</string>
+  <string name="esperanto">Espéranto</string>
 </resources>

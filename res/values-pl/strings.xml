@@ -85,6 +85,10 @@ Dodaj jakąś na stronie \"Ostatnie trasy\".</string>
   <string name="current_time_set">Ustawiono obecny czas.</string>
   <string name="current_date_set">Ustawiono obecną godzinę.</string>
   <string name="added_1h">Dodano 1 godzinę.</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Anuluj</string>
+  <string name="yes">Tak</string>
+  <string name="no">Nie</string>
   <string name="pref_transport_network">Sieć transportowa</string>
   <string name="pref_hide_departure_time">Ukryj czasy odjazdów</string>
   <string name="pref_hide_departure_time_summary">Pokaż tylko czasy przyjazdów podczas wyświetlania przystanków pośrednich</string>
@@ -248,9 +252,10 @@ Dodaj jakąś na stronie \"Ostatnie trasy\".</string>
   <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Busy Madryt (EMT), Barcelona (TMB), Kraj Basków (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool City Region</string>
-  <string name="np_desc_br">São Paulo i Porto Alegre</string>
+  <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte i Porto Alegre</string>
   <string name="np_desc_vrs">Kolonia, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Akwitania, Midi-Pireneje, Bordeaux, Tuluza</string>
+  <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
   <string name="np_desc_it">Rzym, Mediolan, Turyn, Wenecja, Palermo, Trydent</string>
   <string name="np_desc_ontario">Ottawa, Toronto</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
@@ -262,11 +267,13 @@ Dodaj jakąś na stronie \"Ostatnie trasy\".</string>
   <string name="np_name_wien">WIEDEŃ</string>
   <string name="np_name_spain">Hiszpania</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Stany Nowy Jork i New Jersey</string>
-  <string name="np_name_br">SPTRANS EPTC</string>
+  <string name="np_name_br">Brazylia</string>
   <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_name_frenchsouthwest">Francja Południowo-Zachodnia</string>
+  <string name="np_name_frenchsouthwest">Francja południowo-zachodnia</string>
+  <string name="np_name_francenortheast">Francja północno-wschodnia</string>
   <string name="np_name_ontario">Ontario</string>
   <string name="np_name_quebec">Quebec</string>
+  <string name="np_name_rtachicago">Chicago</string>
   <string name="maintainer">Opiekun</string>
   <string name="contributors">Pomocnicy</string>
   <string name="translators">Tłumacze</string>
@@ -285,4 +292,5 @@ Bokmål</string>
   <string name="catalan">Kataloński</string>
   <string name="polish">Polski</string>
   <string name="tamil">Tamilski</string>
+  <string name="esperanto">Esperanto</string>
 </resources>

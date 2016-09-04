@@ -192,7 +192,6 @@
   <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Autobusos de Madrid (EMT), Barcelona (TMB), i Euskadi (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool City Region</string>
-  <string name="np_desc_br">São Paulo i Porto Alegre</string>
   <string name="np_desc_vrs">Cologne, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
@@ -204,11 +203,8 @@
   <string name="np_name_wien">VIENA</string>
   <string name="np_name_spain">Espanya</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Estats de New York i New-Jersey</string>
-  <string name="np_name_br">SPTRANS EPTC</string>
   <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_name_frenchsouthwest">FR-SW</string>
   <string name="maintainer">Mantenidor</string>
-  <string name="contributors">Contribuïdors</string>
   <string name="translators">Traductors</string>
   <string name="dutch">Holandès</string>
   <string name="french">Francès</string>

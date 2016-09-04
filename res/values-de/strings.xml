@@ -86,6 +86,10 @@ es welche gibt) anzeigen lassen.</string>
   <string name="current_time_set">Aktuelle Uhrzeit wurde ausgewählt.</string>
   <string name="current_date_set">Aktuelles Datum wurde für die Suche ausgewählt.</string>
   <string name="added_1h">1 Stunde wurde hinzugefügt.</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Abbrechen</string>
+  <string name="yes">Ja</string>
+  <string name="no">Nein</string>
   <string name="pref_transport_network">Verkehrsverbund</string>
   <string name="pref_hide_departure_time">Abfahrtszeit ausblenden</string>
   <string name="pref_hide_departure_time_summary">Ankunftszeit nur anzeigen, wenn Zwischenhalte angezeigt werden</string>
@@ -249,9 +253,10 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Busse in Madrid (EMT), Barcelona (TMB), Baskenland (Moveuskadi)</string>
   <string name="np_desc_mersey">Region Liverpool</string>
-  <string name="np_desc_br">São Paulo und Porto Alegre</string>
+  <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte und Porto Alegre</string>
   <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+  <string name="np_desc_francenortheast">Straßburg, Metz, Lille, Nancy</string>
   <string name="np_desc_it">Rom, Mailand, Turin, Venedig, Palermo, Trient</string>
   <string name="np_desc_ontario">Ottawa, Toronto</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Québec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
@@ -263,11 +268,13 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_name_wien">WIEN</string>
   <string name="np_name_spain">Spanien</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
-  <string name="np_name_br">SPTrans (Sao Paulo) und EPTC (Porto Alegre)</string>
+  <string name="np_name_br">Brasilien</string>
   <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_name_frenchsouthwest">FR-SW</string>
+  <string name="np_name_frenchsouthwest">Frankreich Südwest</string>
+  <string name="np_name_francenortheast">Frankreich Nordost</string>
   <string name="np_name_ontario">Ontario</string>
   <string name="np_name_quebec">Québec</string>
+  <string name="np_name_rtachicago">Chicago</string>
   <string name="maintainer">Koordinator</string>
   <string name="contributors">Beitragende</string>
   <string name="translators">Übersetzer</string>
@@ -284,4 +291,5 @@ es welche gibt) anzeigen lassen.</string>
   <string name="catalan">Katalanisch</string>
   <string name="polish">Polnisch</string>
   <string name="tamil">Tamil</string>
+  <string name="esperanto">Esperanto</string>
 </resources>

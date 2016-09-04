@@ -193,7 +193,6 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_desc_paris">பாரிஸ்</string>
   <string name="np_desc_nz">வெல்லிங்டன், ஆக்லாந்து</string>
   <string name="np_desc_mersey">லிவர்பூல் நகரப் பகுதி</string>
-  <string name="np_desc_br">சாவ் பாவ்லோ மற்றும் போர்டோ அலேக்ரி</string>
   <string name="np_desc_ontario">ஒட்டாவா, டொரொன்டோ</string>
   <string name="np_name_bayern">பவரியா</string>
   <string name="np_name_paris">பாரிஸ்</string>
@@ -202,9 +201,7 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_name_wien">வியன்னா</string>
   <string name="np_name_spain">ஸ்பெயின்</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">நியூயார்க் மற்றும் நியு ஜெர்சி மாகாணங்கள்</string>
-  <string name="np_name_br">SPTRANS EPTC</string>
   <string name="maintainer">பராமரிப்பாளர்</string>
-  <string name="contributors">பங்களிப்பாளர்கள்</string>
   <string name="translators">மொழிபெயர்பாளர்கள்</string>
   <string name="dutch">டச்சு</string>
   <string name="french">ஃபிரெஞ்சு</string>

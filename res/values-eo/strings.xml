@@ -85,6 +85,10 @@ Aldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
   <string name="current_time_set">Agordis nunan tempon.</string>
   <string name="current_date_set">Agordis nunan daton.</string>
   <string name="added_1h">1 horo aldonita.</string>
+  <string name="ok">Bone</string>
+  <string name="cancel">Rezigni</string>
+  <string name="yes">Jes</string>
+  <string name="no">Ne</string>
   <string name="pref_transport_network">Transporta reto</string>
   <string name="pref_hide_departure_time">Kaŝi tempon de forveturo</string>
   <string name="pref_hide_departure_time_summary">Montras nur tempon de alveturo kiam montrante inter-staciojn</string>
@@ -99,8 +103,8 @@ Aldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
   <string name="pref_directions_routing">Direktoj kaj difinado de kurso</string>
   <string name="pref_optimize">Plibonigi por</string>
   <string name="pref_optimize_least_duration">Plej mallonga tempo</string>
-  <string name="pref_optimize_least_changes">Malplej trans-veturiliĝoj</string>
-  <string name="pref_optimize_least_walking">Malplej irado</string>
+  <string name="pref_optimize_least_changes">Malplej da trans-veturiliĝoj</string>
+  <string name="pref_optimize_least_walking">Malplej da irado</string>
   <string name="pref_walk_speed">Irada rapido</string>
   <string name="pref_walk_speed_slow">Malrapide</string>
   <string name="pref_walk_speed_normal">Norme</string>
@@ -199,6 +203,7 @@ Aldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
   <string name="np_desc_vvt">Tirolo</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_stv">Stirujo, Graz, Marburg, Mariboro</string>
+  <string name="np_desc_wien">WIENER LINIEN</string>
   <string name="np_region_liechtenstein">Liĥtenŝtejno</string>
   <string name="np_desc_vmobil">Liĥtenŝtejno, Vorarlbergo, Bregenz</string>
   <string name="np_region_switzerland">Svisujo</string>
@@ -244,14 +249,17 @@ Aldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
   <string name="np_desc_hsl">Helsinko</string>
   <string name="np_desc_paris">Parizo</string>
   <string name="np_desc_nz">Velingtono, Auckland</string>
+  <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Madridaj aŭtobusoj (EMT), Barcelono (TMB), Eŭskujo (Moveuskadi)</string>
   <string name="np_desc_mersey">Liverpool City Region</string>
-  <string name="np_desc_br">San-Paŭlo kaj Porto-Alegro</string>
+  <string name="np_desc_br">San-Paŭlo, Rio-de-Ĵanejro, Bel-Horizonto kaj Porto-Alegro</string>
   <string name="np_desc_vrs">Kolonjo, Bonn</string>
   <string name="np_desc_frenchsouthwest">Puatuo-Ĉarentoj, Limoĝio, Akvitanio, Sudo-Pireneoj, Bordeaux, Tuluzo</string>
+  <string name="np_desc_francenortheast">Strasburgo, Metz, Lillo, Nancio</string>
   <string name="np_desc_it">Romo, Milano, Torino, Venecio, Palermo, Trento</string>
   <string name="np_desc_ontario">Otavo, Toronto</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Kebekio, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montrealo, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_db">Deutsche Bahn</string>
   <string name="np_name_bayern">BAVARUJO</string>
   <string name="np_name_paris">PARIZO</string>
   <string name="np_name_sydney">SIDNEJO</string>
@@ -259,10 +267,13 @@ Aldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
   <string name="np_name_wien">VIENO</string>
   <string name="np_name_spain">Hispanujo</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Nov-Jorkio kaj Nov-Ĵerzejo Ŝtatoj</string>
+  <string name="np_name_br">Brazilo</string>
   <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_name_frenchsouthwest">Francujo Sudokcidenta</string>
+  <string name="np_name_frenchsouthwest">Francujo sud-okcidenta</string>
+  <string name="np_name_francenortheast">Francujo nord-orienta</string>
   <string name="np_name_ontario">Ontario</string>
   <string name="np_name_quebec">Kebekio</string>
+  <string name="np_name_rtachicago">Ĉikago</string>
   <string name="maintainer">Prizorganto</string>
   <string name="contributors">Kontribuantoj</string>
   <string name="translators">Tradukantoj</string>
@@ -281,4 +292,5 @@ Bokmål</string>
   <string name="catalan">Kataluna</string>
   <string name="polish">Pola</string>
   <string name="tamil">Tamila</string>
+  <string name="esperanto">Esperanto</string>
 </resources>

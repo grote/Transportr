@@ -80,6 +80,10 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="current_time_set">L\'orario è impostato su quello attuale.</string>
   <string name="current_date_set">La data è impostata su quella attuale.</string>
   <string name="added_1h">1 ora è stata aggiunta.</string>
+  <string name="ok">Ok</string>
+  <string name="cancel">Annulla</string>
+  <string name="yes">Sì</string>
+  <string name="no">No</string>
   <string name="pref_transport_network">Rete di trasporto</string>
   <string name="pref_hide_departure_time">Nascondi orario di partenza</string>
   <string name="pref_hide_departure_time_summary">Mostra solo l\'orario di arrivo quando si visualizzano le fermate intermedie</string>
@@ -243,7 +247,6 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
   <string name="np_desc_spain">Autobus di Madrid (EMT), di Barcellona (TMB) e dei Paesi Baschi (Moveuskadi)</string>
   <string name="np_desc_mersey">Città regione di Liverpool</string>
-  <string name="np_desc_br">San Paolo e Porto Alegre</string>
   <string name="np_desc_vrs">Colonia, Bonn</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitania, Midi-Pirenei, Bordeaux, Tolosa</string>
   <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
@@ -257,13 +260,10 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_name_wien">VIENNA</string>
   <string name="np_name_spain">Spagna</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Stati di New York e del New Jersey</string>
-  <string name="np_name_br">SPTRANS EPTC</string>
   <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_name_frenchsouthwest">FR-SW</string>
   <string name="np_name_ontario">Ontario</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="maintainer">Mantenitori</string>
-  <string name="contributors">Contributori</string>
   <string name="translators">Traduttori</string>
   <string name="dutch">Olandese</string>
   <string name="french">Francese</string>
@@ -278,4 +278,5 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="catalan">Catalano</string>
   <string name="polish">Polacco</string>
   <string name="tamil">Tamil</string>
+  <string name="esperanto">Esperanto</string>
 </resources>
