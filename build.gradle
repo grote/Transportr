@@ -31,9 +31,11 @@ dependencies {
 	}
 	compile 'com.google.guava:guava:18.0'
 	compile 'com.google.code.findbugs:jsr305:3.0.0'
-	debugCompile 'org.slf4j:slf4j-api:1.7.14'
-	debugCompile 'com.github.tony19:logback-android-classic:1.1.1-4'
-	debugCompile 'com.github.tony19:logback-android-core:1.1.1-4'
+	debugCompile 'org.slf4j:slf4j-api:1.7.21'
+	debugCompile 'com.github.tony19:logback-android-core:1.1.1-6'
+	debugCompile('com.github.tony19:logback-android-classic:1.1.1-6') {
+		exclude group: 'com.google.android', module: 'android'
+	}
 }
 
 dependencyVerification {
@@ -151,7 +153,7 @@ android {
 
 	lintOptions {
 		checkReleaseBuilds false
-		disable 'MissingTranslation'
+		disable 'MissingTranslation', 'InvalidPackage'
 	}
 }
 
