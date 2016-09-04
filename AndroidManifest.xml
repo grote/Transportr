@@ -16,6 +16,7 @@
     <uses-feature android:name="android.hardware.LOCATION" android:required="false" />
     <uses-feature android:name="android.hardware.location.NETWORK" android:required="false" />
     <uses-feature android:name="android.hardware.location.GPS" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
 
     <supports-screens
         android:smallScreens="true"

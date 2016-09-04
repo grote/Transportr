@@ -97,7 +97,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	private AsyncQueryTripsTask mAfterGpsTask = null;
 	private EnumSet<Product> products = EnumSet.allOf(Product.class);
 	private FastItemAdapter<ProductItem> productsAdapter;
-	private boolean restart = false;
 	private boolean showingMore = false;
 	private FavouritesAdapter mFavAdapter;
 
@@ -194,8 +193,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		restart = true;
-
 		if(savedInstanceState != null) {
 			setType(savedInstanceState.getBoolean("type"));
 			Serializable tmpProducts = savedInstanceState.getSerializable("products");
@@ -225,16 +222,14 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	public void onResume() {
 		super.onResume();
 
-		if(!restart && ui != null) {
+		if(ui != null) {
 			long time = ui.date.getCalendar().getTimeInMillis();
 			long now = Calendar.getInstance().getTimeInMillis();
 
-			// reset date and time if older than 10 minutes, so user doesn't search in the past by accident
-			if((now - time) / (60 * 1000) > 10) {
+			// reset date and time if old, so user doesn't search in the past by accident
+			if((now - time) / (60 * 1000) > 0) {
 				ui.date.reset();
 			}
-		} else {
-			restart = false;
 		}
 
 		mAfterGpsTask = null;
