@@ -285,6 +285,8 @@ there are any).</string>
     <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
     <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
     <string name="np_desc_francenortheast_networks" translatable="false">SNCF, CTS, Transpole, STAN, LE MET</string>
+    <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse Normandie, Haute Normandie</string>
+    <string name="np_desc_francenorthwest_networks" translatable="false">LILA, Star, TAN, IRIGO, SNCF</string>
     <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
     <string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
     <string name="np_desc_ontario">Ottawa, Toronto</string>
@@ -302,6 +304,7 @@ there are any).</string>
     <string name="np_name_br_floripa">Florianópolis</string>
     <string name="np_name_frenchsouthwest">France South West</string>
     <string name="np_name_francenortheast">France North East</string>
+    <string name="np_name_francenorthwest">France North West</string>
     <string name="np_name_ontario">Ontario</string>
     <string name="np_name_quebec">Quebec</string>
     <string name="np_name_rtachicago">Chicago</string>
