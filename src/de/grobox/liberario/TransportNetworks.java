@@ -476,6 +476,13 @@ public class TransportNetworks {
 				.setGoodLineNames(true)
 		);
 
+		list.add(new TransportNetwork(context, NetworkId.FRANCENORTHWEST)
+				.setName(getString(R.string.np_name_francenorthwest))
+				.setDescription(getString(R.string.np_desc_francenorthwest) + "\n(" + getString(R.string.np_desc_francenorthwest_networks) + ")")
+				.setRegion(region)
+				.setStatus(ALPHA)
+		);
+
 		// New Zealand
 
 		list.add(new TransportNetwork(context, NetworkId.NZ)
