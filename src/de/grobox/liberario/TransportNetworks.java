@@ -460,7 +460,7 @@ public class TransportNetworks {
 				         .setStatus(BETA)
 		);
 
-		list.add(new TransportNetwork(context, NetworkId.FRENCHSOUTHWEST)
+		list.add(new TransportNetwork(context, NetworkId.FRANCESOUTHWEST)
 				.setName(getString(R.string.np_name_frenchsouthwest))
 				.setDescription(getString(R.string.np_desc_frenchsouthwest) + "\n(" + getString(R.string.np_desc_frenchsouthwest_networks) + ")")
 				.setRegion(region)

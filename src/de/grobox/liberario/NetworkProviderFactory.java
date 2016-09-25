@@ -94,7 +94,7 @@ public final class NetworkProviderFactory
 	private static Reference<BrProvider> brProviderRef;
 	private static Reference<BrFloripaProvider> brFloripaProviderRef;
 	private static Reference<ItalyProvider> italyProviderRef;
-	private static Reference<FrenchSouthWestProvider> frenchSouthWestProviderRef;
+	private static Reference<FranceSouthWestProvider> franceSouthWestProviderRef;
 	private static Reference<FranceNorthEastProvider> franceNorthEastProviderRef;
 	private static Reference<FranceNorthWestProvider> franceNorthWestProviderRef;
 	private static Reference<OntarioProvider> ontarioProviderRef;
@@ -979,17 +979,17 @@ public final class NetworkProviderFactory
 			italyProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-		else if (networkId.equals(NetworkId.FRENCHSOUTHWEST))
+		else if (networkId.equals(NetworkId.FRANCESOUTHWEST))
 		{
-			if (frenchSouthWestProviderRef != null)
+			if (franceSouthWestProviderRef != null)
 			{
-				final FrenchSouthWestProvider provider = frenchSouthWestProviderRef.get();
+				final FranceSouthWestProvider provider = franceSouthWestProviderRef.get();
 				if (provider != null)
 					return provider;
 			}
 
-			final FrenchSouthWestProvider provider = new FrenchSouthWestProvider(NAVITIA);
-			frenchSouthWestProviderRef = new SoftReference<>(provider);
+			final FranceSouthWestProvider provider = new FranceSouthWestProvider(NAVITIA);
+			franceSouthWestProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.FRANCENORTHEAST))

@@ -101,6 +101,24 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginStart="7dp"
                     android:padding="7dp"
+                    android:text="Chimo"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
+                    android:text="Patrick Kanzler"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginStart="7dp"
+                    android:padding="7dp"
                     android:text="kas70"
                     tools:ignore="HardcodedText"/>
 
