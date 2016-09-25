@@ -21,6 +21,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -32,10 +33,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -65,6 +69,10 @@ import de.grobox.liberario.fragments.RecentTripsFragment;
 import de.grobox.liberario.fragments.SettingsFragment;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.OnHidePromptListener;
+
+import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class MainActivity extends TransportrActivity implements FragmentManager.OnBackStackChangedListener {
 
@@ -76,6 +84,8 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	static final public int PR_ACCESS_FINE_LOCATION_DIRECTIONS = 1;
 	static final public int PR_ACCESS_FINE_LOCATION_MAPS = 2;
 	static final public int PR_WRITE_EXTERNAL_STORAGE = 3;
+
+	private final static String ONBOARDING_DRAWER = "onboardingDrawer";
 
 	private Drawer drawer;
 	private AccountHeader accountHeader;
@@ -202,6 +212,13 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
 		}
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+
+		showOnboarding();
 	}
 
 	@Override
@@ -504,6 +521,40 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			Toast.makeText(getContext(), getString(R.string.error_no_nearby_locations_capability), Toast.LENGTH_SHORT).show();
 		}
 		switchFragment(NearbyStationsFragment.TAG);
+	}
+
+	private void showOnboarding() {
+		if(getDefaultSharedPreferences(getContext()).getBoolean(ONBOARDING_DRAWER, true)) {
+			View target = null;
+			for(int i = 0; i < toolbar.getChildCount(); i++) {
+				if(toolbar.getChildAt(i) instanceof AppCompatImageButton) {
+					target = toolbar.getChildAt(i);
+				}
+			}
+			if(target == null) return;
+
+			new MaterialTapTargetPrompt.Builder(this)
+					.setTarget(target)
+					.setPrimaryText(R.string.onboarding_drawer_title)
+					.setSecondaryText(R.string.onboarding_drawer_text)
+					.setBackgroundColourFromRes(R.color.primary)
+					.setIcon(R.drawable.ic_menu)
+					.setIconDrawableColourFilterFromRes(R.color.primary)
+					.setOnHidePromptListener(new OnHidePromptListener() {
+						@Override
+						public void onHidePrompt(MotionEvent motionEvent, boolean b) {
+						}
+
+						@Override
+						public void onHidePromptComplete() {
+							getDefaultSharedPreferences(getContext())
+									.edit()
+									.putBoolean(ONBOARDING_DRAWER, false)
+									.apply();
+						}
+					})
+					.show();
+		}
 	}
 
 	private Context getContext() {

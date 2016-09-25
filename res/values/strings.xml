@@ -19,6 +19,8 @@ and follow your progress via GPS.
 You can also discover nearby stations and show upcoming departures including the delays (if
 there are any).</string>
 
+    <string name="onboarding_drawer_title">Discover More Features</string>
+    <string name="onboarding_drawer_text">Tap this icon to open the navigation drawer to access more features of this app.</string>
     <string name="drawer_changelog">Changelog</string>
     <string name="drawer_about">About</string>
     <string name="drawer_settings">Settings</string>

@@ -25,6 +25,7 @@ dependencies {
 	compile 'com.mikepenz:materialdrawer:5.6.0'
 	compile 'com.mikepenz:aboutlibraries:5.8.1'
 	compile 'org.osmdroid:osmdroid-android:5.2'
+	compile 'uk.co.samuelwall:material-tap-target-prompt:1.4.0'
 
 	compile(project(':sublibs:public-transport-enabler:enabler')) {
 		transitive = false
@@ -51,6 +52,7 @@ dependencyVerification {
 			'com.mikepenz:materialdrawer:8bba1428dcef5ad7c2decf49c612ad980b38e2f1031cbd66c152a8a104793929',
 			'com.mikepenz:aboutlibraries:fb1c3eaafe29eb274afdef2ca5e0b9cf3b4596ce5e2de8235d3c2ca071255deb',
 			'org.osmdroid:osmdroid-android:22d6aacad7d61f784b4cb849f819751e62f1de87396f21b6b438f24eb02c056a',
+			'uk.co.samuelwall:material-tap-target-prompt:e19f894316f06fe9819755b117fa7d8f53e93872b2a6f13fdd9b2b6e9a602596',
 			'com.google.guava:guava:d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99',
 			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'com.android.support:support-v4:cac2956f5c4bb363cc0ba824ac16ea2a687d1c305d434416a34772a5f9375ed7',
