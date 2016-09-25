@@ -3,7 +3,7 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.1.3'
+		classpath 'com.android.tools.build:gradle:2.2.0'
 		classpath files('libs/gradle-witness.jar')
 	}
 }
@@ -12,7 +12,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'witness'
 
 dependencies {
-	def supportVersion = '24.2.0'
+	def supportVersion = '24.2.1'
 	compile "com.android.support:appcompat-v7:$supportVersion"
 	compile "com.android.support:design:$supportVersion"
 	compile "com.android.support:cardview-v7:$supportVersion"
@@ -40,32 +40,32 @@ dependencies {
 
 dependencyVerification {
 	verify = [
-			'com.android.support:appcompat-v7:29b1e21852ace88ad406bbe32d7791b518118f0a61a61453aca0affa8ef909e0',
-			'com.android.support:design:425546909ee6ae18ab59f8ad3f28d88f9728674235580eebadaf1c4f0349b382',
-			'com.android.support:cardview-v7:c8d40f9e97c30584c715946bab510dcd9a366251ef2de8651f476eabafe4a63f',
-			'com.android.support:recyclerview-v7:0381214757a2e6581918f3cd4acde55811f98b6f3a2e4500bf68430dcf98aa67',
-			'com.android.support:preference-v14:0b5e3cbdee2626e7a44a5f4ae2ee22ad11857de22480c6ec523a249d6d67c87c',
+			'com.android.support:appcompat-v7:ead7ac8011fb40676df8adc2856cae934edab55fc4444654c0ac6ea443736088',
+			'com.android.support:design:89842bb1243507fe3079066ea4ea58795effe69cdf9a819e05274d21760adfc2',
+			'com.android.support:cardview-v7:2303b351686d1db060b5fcf1a9c709c79b4a54a85bfda0fb3c4849e244606ee1',
+			'com.android.support:recyclerview-v7:9077766a1a0f4e89528fbf9dcdf6d5880a8686f0266fa852d58d803beeef18fa',
+			'com.android.support:preference-v14:d38be4e336b6a2c7a2b3351a20ecfa11063e8d863ab584e2fa7c8e62e810cb96',
 			'com.github.orangegangsters:swipy:153d03ab51b7c3672e0dfb60963dc4b983c3bf0fd39adbff576cd5179b8edbda',
 			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
 			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
 			'com.mikepenz:materialdrawer:8bba1428dcef5ad7c2decf49c612ad980b38e2f1031cbd66c152a8a104793929',
 			'com.mikepenz:aboutlibraries:fb1c3eaafe29eb274afdef2ca5e0b9cf3b4596ce5e2de8235d3c2ca071255deb',
 			'org.osmdroid:osmdroid-android:22d6aacad7d61f784b4cb849f819751e62f1de87396f21b6b438f24eb02c056a',
-			'com.android.support:support-vector-drawable:049b53487c07d6270f4b85896c0871645cfb2c6300bbd83f7e5ebf91f069d6a4',
-			'com.android.support:animated-vector-drawable:af39eb9a350084eae2a9e119db762633bbf1ad25eed5305dcc3af2411442ba68',
-			'com.android.support:support-v4:989888d1b48badd790b8386e9ab61ec793a453ce782faa11e89634d889db3a44',
-			'com.android.support:support-annotations:af5868da6750bdf42aec5d85fa87ac30de2b72939ca80437a6247e5753a07cad',
-			'com.android.support:support-compat:de70ac981118229b70ca29961b6df510d6f498c0ececd1e11e19a8073d1580c9',
-			'com.android.support:support-core-ui:6cd8723abdeafbd8d05816d7b4a307dd4dbebba9cb145f98e12834ab3ebd9212',
-			'com.android.support:preference-v7:e151ea6d5015e61ad9ff5ab31966dd7ff99bd1d27f40a0a2c27eac4e3792b8db',
+			'com.google.guava:guava:d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99',
+			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
+			'com.android.support:support-v4:cac2956f5c4bb363cc0ba824ac16ea2a687d1c305d434416a34772a5f9375ed7',
+			'com.android.support:support-vector-drawable:6ee37a7f7b93c1df1294e6f6f97df3724ac989fcda0549faf677001085330548',
+			'com.android.support:animated-vector-drawable:5aa30f578e1daefb26bef0ce06414266fbb4cdf5d4259f42a92c7bd83dcd81b4',
+			'com.android.support:support-annotations:1e4d471c5378b283d95abfb128e7ed3c6b3cb19bb6f0c317a9b75e48e99365ff',
+			'com.android.support:support-compat:8e4fe0078b68073e8f5bcb52aa5b6407fd456d47c51aa0f8e8d1e23c69da06c1',
+			'com.android.support:support-core-ui:ecc9184b7f438980e1c4a08b089d62dbc53ff90091f442d91fec27322a02c73c',
+			'com.android.support:preference-v7:8a18b973692103921a2006c59c732cbf632759f44fbe06cfb6093a40f0c7e051',
 			'com.mikepenz:materialize:942ccf5e2aa1a46803aa884e8dc7bbaf2a9e8e9996a0cf92e3fe2f44a8592ba4',
 			'com.mikepenz:iconics-core:fdaec9164d5dccd213e1e80610b29dbd33a6e36ccd56ca3e8d4e4a802ac962d5',
 			'com.mikepenz:fastadapter:04abf0796dd5166cfaa43a2ccb458fe762fb0b090dd32973f35ded9ad987d3d0',
-			'com.google.guava:guava:d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99',
-			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
-			'com.android.support:support-core-utils:20dd25988a360df5887e8ad5d9cf9b77b54fb014a17163f2125ecde8aa635846',
-			'com.android.support:support-media-compat:b6b4ed6dd8e0678bb5fd6457ea9155766cc12d5bc5df9c283c01e0dc782ffb19',
-			'com.android.support:support-fragment:50aa9d408d33b82acda71423ce2980e54186caaae50f689ecd90e6692dcc3ed4',
+			'com.android.support:support-media-compat:fa29a23eadd685631584b2c0c624a36e3bb79a33e257b00304501ad682fa2be3',
+			'com.android.support:support-core-utils:0fbc508e41dd6e8c634f310ee88452aaf8f48b6a843a369b115130b80d2fc05f',
+			'com.android.support:support-fragment:d8030f0bf0f64214a29dc4e14d5ccd225e59f66ed15eb37f3a5022e773dd1fda',
 	]
 }
 
@@ -106,7 +106,6 @@ android {
 
 	dexOptions {
 		preDexLibraries !project.hasProperty('buildServer')
-		incremental !project.hasProperty('buildServer')
 		javaMaxHeapSize "1g"
 	}
 
@@ -152,6 +151,7 @@ android {
 	}
 
 	lintOptions {
+		abortOnError !project.hasProperty('buildServer')
 		checkReleaseBuilds false
 		disable 'MissingTranslation', 'InvalidPackage'
 	}
