@@ -185,7 +185,8 @@ there are any).</string>
 
     <string name="np_region_europe">Europe</string>
     <string name="np_name_rt">Europe</string>
-    <string name="np_desc_rt">long-distance only</string>
+    <string name="np_desc_rt">long-distance trains only</string>
+    <string name="np_desc_rt_networks">Railteam alliance</string>
 
     <string name="np_region_germany">Germany</string>
     <string name="np_desc_db">Most of Germany</string>

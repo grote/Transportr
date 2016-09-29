@@ -48,7 +48,7 @@ public class TransportNetworks {
 
 		list.add(new TransportNetwork(context, NetworkId.RT)
 				         .setName(getString(R.string.np_name_rt))
-				         .setDescription(getString(R.string.np_desc_rt))
+				         .setDescription(description(getString(R.string.np_desc_rt), getString(R.string.np_desc_rt_networks)))
 				         .setRegion(region(getString(R.string.np_region_europe), "\uD83C\uDDEA\uD83C\uDDFA"))
 		);
 
@@ -376,7 +376,7 @@ public class TransportNetworks {
 		region = region(getString(R.string.np_region_italy), "\uD83C\uDDEE\uD83C\uDDF9");
 
 		list.add(new TransportNetwork(context, NetworkId.IT)
-				.setDescription(getString(R.string.np_desc_it) + "\n(" + getString(R.string.np_desc_it_networks) + ")")
+				.setDescription(description(getString(R.string.np_desc_it), getString(R.string.np_desc_it_networks)))
 				.setRegion(region)
 				.setStatus(BETA)
 				.setGoodLineNames(true)
@@ -473,7 +473,7 @@ public class TransportNetworks {
 
 		list.add(new TransportNetwork(context, NetworkId.FRANCESOUTHWEST)
 				.setName(getString(R.string.np_name_frenchsouthwest))
-				.setDescription(getString(R.string.np_desc_frenchsouthwest) + "\n(" + getString(R.string.np_desc_frenchsouthwest_networks) + ")")
+				.setDescription(description(getString(R.string.np_desc_frenchsouthwest), getString(R.string.np_desc_frenchsouthwest_networks)))
 				.setRegion(region)
 				.setStatus(BETA)
 				.setGoodLineNames(true)
@@ -481,7 +481,7 @@ public class TransportNetworks {
 
 		list.add(new TransportNetwork(context, NetworkId.FRANCENORTHEAST)
 				.setName(getString(R.string.np_name_francenortheast))
-				.setDescription(getString(R.string.np_desc_francenortheast) + "\n(" + getString(R.string.np_desc_francenortheast_networks) + ")")
+				.setDescription(description(getString(R.string.np_desc_francenortheast), getString(R.string.np_desc_francenortheast_networks)))
 				.setRegion(region)
 				.setStatus(ALPHA)
 				.setGoodLineNames(true)
@@ -489,7 +489,7 @@ public class TransportNetworks {
 
 		list.add(new TransportNetwork(context, NetworkId.FRANCENORTHWEST)
 				.setName(getString(R.string.np_name_francenorthwest))
-				.setDescription(getString(R.string.np_desc_francenorthwest) + "\n(" + getString(R.string.np_desc_francenorthwest_networks) + ")")
+				.setDescription(description(getString(R.string.np_desc_francenorthwest), getString(R.string.np_desc_francenorthwest_networks)))
 				.setRegion(region)
 				.setStatus(ALPHA)
 		);
@@ -595,5 +595,9 @@ public class TransportNetworks {
 
 	private String region(String name, String flag) {
 		return name + " " + flag;
+	}
+
+	private String description(String desc, String networks) {
+		return desc + "\n(" + networks + ")";
 	}
 }
