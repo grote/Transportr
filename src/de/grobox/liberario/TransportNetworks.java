@@ -594,7 +594,7 @@ public class TransportNetworks {
 	}
 
 	private String region(String name, String flag) {
-		return name + " " + flag;
+		return flag + " " + name;
 	}
 
 	private String description(String desc, String networks) {
