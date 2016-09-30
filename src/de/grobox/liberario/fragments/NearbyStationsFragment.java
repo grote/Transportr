@@ -53,6 +53,8 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
+import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
+
 public class NearbyStationsFragment extends TransportrFragment {
 
 	public static final String TAG = "de.grobox.liberario.nearby_locations";
@@ -127,6 +129,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 		ui.swipe_refresh.setColorSchemeResources(R.color.accent);
 		ui.swipe_refresh.setDirection(SwipyRefreshLayoutDirection.BOTTOM);
+		ui.swipe_refresh.setDistanceToTriggerSync(getDragDistance(getContext()));
 		ui.swipe_refresh.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
 			                                      @Override
 			                                      public void onRefresh(final SwipyRefreshLayoutDirection direction) {

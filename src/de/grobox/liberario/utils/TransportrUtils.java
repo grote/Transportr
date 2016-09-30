@@ -28,6 +28,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -586,6 +587,11 @@ public class TransportrUtils {
 		String walkString = Preferences.getWalkSpeed(context).toUpperCase();
 
 		return NetworkProvider.WalkSpeed.valueOf(walkString);
+	}
+
+	static public int getDragDistance(Context context) {
+		final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+		return (int) (25 * metrics.density);
 	}
 
 }

@@ -27,6 +27,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,6 +54,8 @@ import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
+
+import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 
 public class TripsActivity extends TransportrActivity {
 	private QueryTripsResult start_context;
@@ -96,6 +99,8 @@ public class TripsActivity extends TransportrActivity {
 
 		swipeRefresh = (SwipyRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 		swipeRefresh.setColorSchemeResources(R.color.accent);
+		swipeRefresh.setDistanceToTriggerSync(getDragDistance(this));
+
 
 		mRecyclerView = (RecyclerView) findViewById(R.id.trips_recycler_view);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

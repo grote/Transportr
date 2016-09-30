@@ -52,6 +52,8 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
+import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
+
 public class DeparturesFragment extends TransportrFragment {
 
 	public static final String TAG = "de.grobox.liberario.departures";
@@ -92,6 +94,7 @@ public class DeparturesFragment extends TransportrFragment {
 		// Swipe to Refresh
 		ui.swipe_refresh.setColorSchemeResources(R.color.accent);
 		ui.swipe_refresh.setDirection(SwipyRefreshLayoutDirection.BOTH);
+		ui.swipe_refresh.setDistanceToTriggerSync(getDragDistance(getContext()));
 		ui.swipe_refresh.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh(final SwipyRefreshLayoutDirection direction) {
