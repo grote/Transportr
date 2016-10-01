@@ -57,7 +57,7 @@ public class TransportNetwork {
 		return this;
 	}
 
-	public TransportNetwork setDescription(@Nullable String description, @Nullable String networks) {
+	public TransportNetwork setDescription(String description, String networks) {
 		this.description = description + "\n(" + networks + ")";
 
 		return this;
