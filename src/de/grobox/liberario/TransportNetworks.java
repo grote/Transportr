@@ -18,6 +18,7 @@
 package de.grobox.liberario;
 
 import android.content.Context;
+import android.support.annotation.StringRes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -611,11 +612,11 @@ public class TransportNetworks {
 		return context.getString(res);
 	}
 
-	private String region(int name, String flag) {
-		return flag + " " + name;
+	private String region(@StringRes int name, String flag) {
+		return flag + " " + getString(name);
 	}
 
-	private String description(int desc, int networks) {
+	private String description(@StringRes int desc, @StringRes int networks) {
 		return getString(desc) + "\n(" + getString(networks) + ")";
 	}
 }
