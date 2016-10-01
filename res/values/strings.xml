@@ -204,7 +204,7 @@ there are any).</string>
     <string name="np_desc_wien">Vienna</string>
 
     <string name="np_region_belgium">Belgium</string>
-    <string name="np_desc_sncb">trains in Belgium</string>
+    <string name="np_desc_sncb">Trains in Belgium</string>
 
     <string name="np_region_br">Brazil</string>
     <string name="np_name_br">Brazil</string>
@@ -226,7 +226,7 @@ there are any).</string>
 
     <string name="np_region_europe">Europe</string>
     <string name="np_name_rt">Europe</string>
-    <string name="np_desc_rt">long-distance trains only</string>
+    <string name="np_desc_rt">Long-distance trains only</string>
     <string name="np_desc_rt_networks">Railteam alliance</string>
 
     <string name="np_region_finland">Finland</string>
@@ -289,7 +289,6 @@ there are any).</string>
     <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>
     <string name="np_desc_vrr">North Rhine-Westphalia, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
     <string name="np_desc_vrs">Cologne, Bonn</string>
-    <string name="np_name_vvm" translatable="false">move</string>
     <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
     <string name="np_desc_vvo">Saxony, Dresden</string>
     <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -337,13 +336,11 @@ there are any).</string>
 
     <string name="np_region_sweden">Sweden</string>
     <string name="np_desc_se">Sweden, Stockholm</string>
-    <string name="np_name_stockholm">Stockholm</string>
-    <string name="np_desc_stockholm">Stockholm</string>
 
     <string name="np_region_switzerland">Switzerland</string>
     <!-- SBB is german/international, CFF is french and FFS is italian! So this IS translatable. -->
     <string name="np_name_sbb" translatable="true">SBB</string>
-    <string name="np_desc_sbb">trains in Switzerland</string>
+    <string name="np_desc_sbb">Trains in Switzerland</string>
     <string name="np_desc_vbl">Luzern</string>
     <string name="np_desc_zvv">Zurich</string>
 
@@ -354,7 +351,7 @@ there are any).</string>
     <string name="np_region_usa">United States of America</string>
     <string name="np_name_rtachicago">RTA</string>
     <string name="np_desc_rtachicago">Chicago</string>
-    <string name="np_desc_rtachicago_networks" translatable="false">cta, Metra, pace</string>
+    <string name="np_desc_rtachicago_networks" translatable="false">CTA, Metra, Pace</string>
     <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery and Philadelphia Counties</string>
     <string name="np_name_sf">San Francisco Bay Area</string>
     <string name="np_desc_sf">Alameda, Contra Costa, Marin, Napa, Solano, Sonoma, San Francisco, San Mateo and Santa Clara Counties</string>

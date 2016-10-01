@@ -57,6 +57,12 @@ public class TransportNetwork {
 		return this;
 	}
 
+	public TransportNetwork setDescription(@Nullable String description, @Nullable String networks) {
+		this.description = description + "\n(" + networks + ")";
+
+		return this;
+	}
+
 	public TransportNetwork setRegion(@Nullable String region) {
 		this.region = region;
 
