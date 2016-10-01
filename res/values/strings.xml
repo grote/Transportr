@@ -210,8 +210,9 @@ there are any).</string>
     <string name="np_name_br">Brazil</string>
     <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte and Porto Alegre</string>
     <string name="np_desc_br_networks" translatable="false">EPTC, SPTRANS, Buenosaires Subtes</string>
-    <string name="np_name_br_floripa" translatable="false">SIM</string>
-    <string name="np_desc_br_floripa">Florianópolis</string>
+    <string name="np_name_br_floripa">Florianópolis</string>
+    <string name="np_desc_br_floripa">Many bus routes, no Executivos</string>
+    <string name="np_desc_br_floripa_networks" translatable="false">SIM</string>
 
     <string name="np_region_canada">Canada</string>
     <string name="np_name_ontario">Ontario</string>

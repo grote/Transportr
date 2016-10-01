@@ -51,13 +51,13 @@ public class TransportNetwork {
 		return this;
 	}
 
-	public TransportNetwork setDescription(@Nullable String description) {
+	TransportNetwork setDescription(@Nullable String description) {
 		this.description = description;
 
 		return this;
 	}
 
-	public TransportNetwork setDescription(String description, String networks) {
+	TransportNetwork setDescription(String description, String networks) {
 		this.description = description + "\n(" + networks + ")";
 
 		return this;
@@ -87,7 +87,7 @@ public class TransportNetwork {
 		return this;
 	}
 
-	public TransportNetwork setGoodLineNames(boolean hasGoodLineNames) {
+	TransportNetwork setGoodLineNames(boolean hasGoodLineNames) {
 		this.goodLineNames = hasGoodLineNames;
 
 		return this;

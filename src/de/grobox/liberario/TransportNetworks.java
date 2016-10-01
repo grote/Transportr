@@ -535,7 +535,7 @@ public class TransportNetworks {
 		);
 		list.add(new TransportNetwork(context, NetworkId.BRFLORIPA)
 				.setName(getString(R.string.np_name_br_floripa))
-				.setDescription(getString(R.string.np_desc_br_floripa))
+				.setDescription(getString(R.string.np_desc_br_floripa), getString(R.string.np_desc_br_floripa_networks))
 				.setRegion(region)
 				.setStatus(TransportNetwork.Status.ALPHA)
 				.setGoodLineNames(true)
@@ -604,6 +604,6 @@ public class TransportNetworks {
 	}
 
 	private String region(@StringRes int name, String flag) {
-		return flag + " " + getString(name);
+		return getString(name) + " " + flag;
 	}
 }

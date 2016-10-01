@@ -4,8 +4,10 @@
     <release version="1.1.5" versioncode="41">
         <change>Added France North West (Thanks Patrick!)</change>
         <change>Reduce amount of scrolling needed to load more information</change>
+        <change>Improved departure layout and show long line names</change>
         <change>Added help screens</change>
         <change>Reduced size of the app</change>
+        <change>Updated and improved network provider list (Thanks Patrick!)</change>
     </release>
 
     <release version="1.1.4" versioncode="40">
