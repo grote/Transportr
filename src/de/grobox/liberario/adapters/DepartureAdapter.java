@@ -80,11 +80,9 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 	private Location station;
 	private Context context;
 
-	public DepartureAdapter(Context context, List<Departure> departures, int rowLayout) {
+	public DepartureAdapter(Context context, int rowLayout) {
 		this.rowLayout = rowLayout;
 		this.context = context;
-
-		addAll(departures);
 	}
 
 	@Override
@@ -120,10 +118,10 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 			if(dep.line.name != null) {
 				ui.lineName.setText(dep.line.name);
 			} else {
-				ui.lineName.setVisibility(View.GONE);
+				ui.lineName.setVisibility(View.INVISIBLE);
 			}
 		} else {
-			ui.lineName.setVisibility(View.GONE);
+			ui.lineName.setVisibility(View.INVISIBLE);
 		}
 
 		ui.arrow.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.arrow.getDrawable()));
@@ -195,18 +193,18 @@ public class DepartureAdapter extends RecyclerView.Adapter<DepartureAdapter.Depa
 		this.station = station;
 	}
 
-	protected static class DepartureHolder extends RecyclerView.ViewHolder {
+	static class DepartureHolder extends RecyclerView.ViewHolder {
 		public CardView card;
 		public ViewGroup line;
-		public TextView lineName;
+		TextView lineName;
 		public TextView time;
-		public TextView delay;
-		public ImageView arrow;
-		public TextView destination;
+		TextView delay;
+		ImageView arrow;
+		TextView destination;
 		public TextView position;
 		public TextView message;
 
-		public DepartureHolder(View v) {
+		DepartureHolder(View v) {
 			super(v);
 
 			card = (CardView) v;

@@ -82,7 +82,7 @@ public class DeparturesFragment extends TransportrFragment {
 		});
 
 		if(departureAdapter == null) {
-			departureAdapter = new DepartureAdapter(getActivity(), new ArrayList<Departure>(), R.layout.departure);
+			departureAdapter = new DepartureAdapter(getActivity(), R.layout.list_item_departure);
 
 			// hide departure list initially
 			ui.departure_list.setVisibility(View.GONE);
@@ -321,10 +321,10 @@ public class DeparturesFragment extends TransportrFragment {
 		public LocationView station;
 		public TimeAndDateView date;
 		public ImageButton search;
-		public ViewGroup departure_list;
-		public SwipyRefreshLayout swipe_refresh;
+		ViewGroup departure_list;
+		SwipyRefreshLayout swipe_refresh;
 		public ProgressBar progress;
-		public RecyclerView recycler;
+		RecyclerView recycler;
 
 		public ViewHolder(View view) {
 			station = (LocationView) view.findViewById(R.id.stationView);

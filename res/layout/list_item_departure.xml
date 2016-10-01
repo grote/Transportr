@@ -3,15 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
+    android:orientation="vertical"
     app:cardBackgroundColor="?attr/cardBackgroundColor"
-    app:cardUseCompatPadding="true"
     app:cardCornerRadius="2dp"
-    >
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,30 +24,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingRight="5dp"
             android:textColor="?android:attr/textColorPrimary"
-            tools:text="23:42"
-            android:paddingRight="5dp"/>
+            tools:ignore="RtlHardcoded,RtlSymmetry"
+            tools:text="23:42"/>
 
         <TextView
             android:id="@+id/delayView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/holo_red_light"
-            tools:text="+3"
-            android:layout_below="@+id/depTimeView"
-            android:layout_alignRight="@+id/depTimeView"
             android:layout_alignEnd="@+id/depTimeView"
-            android:paddingRight="5dp"/>
+            android:layout_alignRight="@+id/depTimeView"
+            android:layout_below="@+id/depTimeView"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="5dp"
+            android:textColor="@color/holo_red_light"
+            tools:ignore="RtlHardcoded,RtlSymmetry"
+            tools:text="+3"/>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:id="@+id/lineLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/depTimeView"
-            android:id="@+id/lineLayout"
             android:layout_alignBottom="@+id/depTimeView"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/depTimeView"
+            android:layout_toRightOf="@+id/depTimeView"
+            android:orientation="horizontal">
 
             <de.grobox.liberario.ui.LineView
                 android:layout_width="wrap_content"
@@ -58,61 +61,60 @@
             android:id="@+id/lineNameView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/destinationView"
-            android:layout_gravity="center_vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignTop="@id/lineLayout"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/lineLayout"
             android:layout_toLeftOf="@+id/positionView"
             android:layout_toRightOf="@+id/lineLayout"
             android:layout_toStartOf="@+id/positionView"
-            tools:text="Line Name Line Name Line Name Line Name Line NameLine NameLine NameLine NameLine NameLine NameLine NameLine NameLine NameLine Name "/>
+            tools:text="This is a line name that is so long that it does not fit one line"/>
 
         <TextView
             android:id="@+id/positionView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="13b"
-            android:layout_gravity="center_vertical"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
+            tools:text="13b"/>
 
         <ImageView
+            android:id="@+id/arrowView"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:id="@+id/arrowView"
-            app:srcCompat="@drawable/ic_right_arrow"
-            android:layout_toRightOf="@+id/delayView"
-            android:layout_toEndOf="@+id/depTimeView"
-            android:layout_below="@+id/lineLayout"
-            android:layout_alignBottom="@+id/destinationView"/>
+            android:layout_alignBottom="@+id/destinationView"
+            android:layout_alignLeft="@+id/lineLayout"
+            android:layout_alignStart="@+id/lineLayout"
+            android:layout_below="@+id/lineNameView"
+            android:contentDescription="@string/to"
+            android:src="@drawable/ic_right_arrow"/>
 
         <TextView
             android:id="@+id/destinationView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Zoologischer Garten (S+U)"
+            android:layout_below="@+id/lineNameView"
             android:layout_gravity="center_vertical"
-            android:layout_below="@+id/lineLayout"
-            android:layout_toRightOf="@+id/arrowView"
             android:layout_toEndOf="@+id/arrowView"
+            android:layout_toRightOf="@+id/arrowView"
+            android:paddingBottom="3dp"
             android:paddingTop="3dp"
-            android:paddingBottom="3dp"/>
+            tools:text="Zoologischer Garten (S+U)"/>
 
         <TextView
             android:id="@+id/messageView"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="This is a message that would be displayed and might be potentially very long."
+            android:layout_alignLeft="@+id/lineLayout"
+            android:layout_alignStart="@+id/lineLayout"
+            android:layout_below="@+id/destinationView"
             android:textColor="@color/holo_red_light"
-            android:layout_alignParentTop="false"
-            android:layout_alignLeft="@+id/delayView"
-            android:layout_alignStart="@+id/delayView"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/destinationView"/>
+            tools:text="This is a message that would be displayed and might be potentially very long."/>
 
     </RelativeLayout>
 

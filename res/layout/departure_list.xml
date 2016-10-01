@@ -2,11 +2,10 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:showIn="@layout/fragment_departures"
-    >
+    android:orientation="vertical"
+    tools:showIn="@layout/fragment_departures">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -28,8 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
-            tools:listitem="@layout/departure"
-            />
+            tools:listitem="@layout/list_item_departure"/>
 
     </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
