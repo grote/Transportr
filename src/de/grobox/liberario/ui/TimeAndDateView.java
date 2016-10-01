@@ -45,13 +45,20 @@ import java.util.Date;
 
 import de.grobox.liberario.R;
 
+import static android.text.format.DateFormat.getDateFormat;
+import static android.text.format.DateFormat.getTimeFormat;
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class TimeAndDateView extends LinearLayout
 		implements OnTimeSetListener, OnDateSetListener {
 
 	private final String SUPER_STATE = "superState";
 	private static final String DATE = "date";
+	private static final String NOW = "now";
+	private static final String TODAY = "today";
 	private final TimeAndDateViewHolder ui;
 	private Calendar calendar;
+	private boolean now = true, today = true;
 
 	public TimeAndDateView(Context context, AttributeSet attr) {
 		super(context, attr);
@@ -63,7 +70,7 @@ public class TimeAndDateView extends LinearLayout
 		ui = new TimeAndDateViewHolder(this);
 
 		// Initialize current Time and Date, display it in UI
-		if(!isInEditMode()) reset();
+		reset();
 
 		// Time
 		ui.time.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +90,7 @@ public class TimeAndDateView extends LinearLayout
 			@Override
 			public boolean onLongClick(View view) {
 				resetTime();
-				Toast.makeText(getContext(), R.string.current_time_set, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), R.string.current_time_set, LENGTH_SHORT).show();
 				return true;
 			}
 		});
@@ -105,7 +112,7 @@ public class TimeAndDateView extends LinearLayout
 			@Override
 			public boolean onLongClick(View view) {
 				resetDate();
-				Toast.makeText(getContext(), R.string.current_date_set, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), R.string.current_date_set, LENGTH_SHORT).show();
 				return true;
 			}
 		});
@@ -121,7 +128,7 @@ public class TimeAndDateView extends LinearLayout
 			@Override
 			public boolean onLongClick(View view) {
 				addTime(60);
-				Toast.makeText(getContext(), R.string.added_1h, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getContext(), R.string.added_1h, LENGTH_SHORT).show();
 				return true;
 			}
 		});
@@ -136,6 +143,8 @@ public class TimeAndDateView extends LinearLayout
 		Bundle bundle = new Bundle();
 		bundle.putParcelable(SUPER_STATE, super.onSaveInstanceState());
 		bundle.putSerializable(DATE, calendar);
+		bundle.putBoolean(NOW, now);
+		bundle.putBoolean(TODAY, today);
 		return bundle;
 	}
 
@@ -144,6 +153,8 @@ public class TimeAndDateView extends LinearLayout
 		if(state instanceof Bundle) { // implicit null check
 			Bundle bundle = (Bundle) state;
 			calendar = (Calendar) bundle.getSerializable(DATE);
+			now = bundle.getBoolean(NOW);
+			today = bundle.getBoolean(TODAY);
 			updateTexts();
 			state = bundle.getParcelable(SUPER_STATE);
 		}
@@ -167,6 +178,7 @@ public class TimeAndDateView extends LinearLayout
 		calendar.set(Calendar.YEAR, year);
 		calendar.set(Calendar.MONTH, month);
 		calendar.set(Calendar.DAY_OF_MONTH, day);
+		today = false;
 		updateTexts();
 	}
 
@@ -174,19 +186,21 @@ public class TimeAndDateView extends LinearLayout
 	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 		calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
 		calendar.set(Calendar.MINUTE, minute);
+		now = false;
 		updateTexts();
 	}
 
-	public Calendar getCalendar() {
-		return calendar;
-	}
-
 	public Date getDate() {
+		if(today && now) {
+			return new Date();
+		}
 		return calendar.getTime();
 	}
 
 	public void setDate(Date date) {
 		calendar.setTime(date);
+		now = false;
+		today = false;
 	}
 
 	private void updateTexts() {
@@ -195,20 +209,36 @@ public class TimeAndDateView extends LinearLayout
 	}
 
 	private String getTimeString() {
-		DateFormat tf = android.text.format.DateFormat.getTimeFormat(getContext().getApplicationContext());
-
+		if (now) {
+			return getContext().getString(R.string.now);
+		}
+		DateFormat tf = getTimeFormat(getContext().getApplicationContext());
 		return tf.format(calendar.getTime());
 	}
 
 	private String getDateString() {
-		DateFormat tf = android.text.format.DateFormat.getDateFormat(getContext().getApplicationContext());
-
+		if(today) {
+			return getContext().getString(R.string.today);
+		}
+		DateFormat tf = getDateFormat(getContext().getApplicationContext());
 		return tf.format(calendar.getTime());
 	}
 
 	private void addTime(int min) {
+		// remember day before adding
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+		// update time if it was set to now before
+		if(now) calendar = Calendar.getInstance();
+
 		// add min minutes
 		calendar.add(Calendar.MINUTE, min);
+
+		// no more now, but maybe today?
+		now = false;
+		if (day != calendar.get(Calendar.DAY_OF_MONTH)) {
+			today = false;
+		}
 
 		// update text of buttons
 		updateTexts();
@@ -219,6 +249,7 @@ public class TimeAndDateView extends LinearLayout
 		calendar.set(Calendar.HOUR_OF_DAY, c.get(Calendar.HOUR_OF_DAY));
 		calendar.set(Calendar.MINUTE, c.get(Calendar.MINUTE));
 
+		now = true;
 		ui.time.setText(getTimeString());
 	}
 
@@ -228,11 +259,14 @@ public class TimeAndDateView extends LinearLayout
 		calendar.set(Calendar.MONTH, c.get(Calendar.MONTH));
 		calendar.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
 
+		today = true;
 		ui.date.setText(getDateString());
 	}
 
 	public void reset() {
 		calendar = Calendar.getInstance();
+		now = true;
+		today = true;
 		updateTexts();
 	}
 

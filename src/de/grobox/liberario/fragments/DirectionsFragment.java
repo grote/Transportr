@@ -50,7 +50,6 @@ import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
@@ -221,16 +220,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	@Override
 	public void onResume() {
 		super.onResume();
-
-		if(ui != null) {
-			long time = ui.date.getCalendar().getTimeInMillis();
-			long now = Calendar.getInstance().getTimeInMillis();
-
-			// reset date and time if old, so user doesn't search in the past by accident
-			if((now - time) / (60 * 1000) > 0) {
-				ui.date.reset();
-			}
-		}
 
 		mAfterGpsTask = null;
 

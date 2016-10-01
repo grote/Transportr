@@ -2,26 +2,23 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/fragment_departures"
-    >
+    tools:showIn="@layout/fragment_departures">
 
     <Button
         android:id="@+id/timeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="65dp"
-        android:singleLine="true"
         android:layout_weight="0.4"
-        tools:text="23:42"
-        />
+        android:maxLines="1"
+        android:minWidth="65dp"/>
 
     <Button
         android:id="@+id/plus15Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="52dp"
-        android:singleLine="true"
         android:layout_weight="0.1"
+        android:maxLines="1"
+        android:minWidth="52dp"
         android:text="+15"
         tools:ignore="HardcodedText"/>
 
@@ -29,9 +26,8 @@
         android:id="@+id/dateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:singleLine="true"
         android:layout_weight="0.5"
-        tools:text="1337/23/42"
-        android:ellipsize="end"/>
+        android:ellipsize="end"
+        android:maxLines="1"/>
 
 </merge>

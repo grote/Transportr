@@ -36,7 +36,6 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import de.grobox.liberario.FavLocation;
@@ -62,7 +61,6 @@ public class DeparturesFragment extends TransportrFragment {
 	private DepartureAdapter departureAdapter;
 	private String stationId;
 	private Date date;
-	private boolean restart = false;
 
 	private static final int MAX_DEPARTURES = 12;
 	private static final int SAFETY_MARGIN = 6;
@@ -118,7 +116,6 @@ public class DeparturesFragment extends TransportrFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		restart = true;
 
 		if(savedInstanceState != null) {
 			Location station = (Location) savedInstanceState.getSerializable("station");
@@ -135,18 +132,6 @@ public class DeparturesFragment extends TransportrFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-
-		if(!restart && ui != null) {
-			long time = ui.date.getCalendar().getTimeInMillis();
-			long now = Calendar.getInstance().getTimeInMillis();
-
-			// reset date and time if older than 10 minutes, so user doesn't search in the past by accident
-			if((now - time) / (60 * 1000) > 10) {
-				ui.date.reset();
-			}
-		} else {
-			restart = false;
-		}
 
 		// clear favorites for auto-complete
 		if(ui != null) ui.station.resetIfEmpty();

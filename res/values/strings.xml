@@ -94,7 +94,9 @@ there are any).</string>
     <string name="no_favourites">No favourite trips.\n\nAdd one on the \"Recent Trips\" page.</string>
     <string name="removing_from_favourites">A trip you selected is marked as favourite trip. It will be removed there too.</string>
 
+    <string name="now">Now</string>
     <string name="current_time_set">Time was set to current.</string>
+    <string name="today">Today</string>
     <string name="current_date_set">Date was set to current.</string>
     <string name="added_1h">1 hour was added.</string>
 
