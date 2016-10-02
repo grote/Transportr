@@ -24,14 +24,13 @@ dependencies {
 	compile 'org.apmem.tools:layouts:1.10'
 	compile 'com.mikepenz:materialdrawer:5.6.0'
 	compile 'com.mikepenz:aboutlibraries:5.8.1'
-	compile 'org.osmdroid:osmdroid-android:5.2'
-	compile 'uk.co.samuelwall:material-tap-target-prompt:1.4.0'
+	compile 'org.osmdroid:osmdroid-android:5.4.1:release@aar'
+	compile 'uk.co.samuelwall:material-tap-target-prompt:1.4.1'
 
 	compile(project(':sublibs:public-transport-enabler:enabler')) {
-		transitive = false
+		exclude group: 'org.json' // provided by Android
+		exclude group: 'net.sf.kxml' // provided by Android
 	}
-	compile 'com.google.guava:guava:18.0'
-	compile 'com.google.code.findbugs:jsr305:3.0.0'
 	debugCompile 'org.slf4j:slf4j-api:1.7.21'
 	debugCompile 'com.github.tony19:logback-android-core:1.1.1-6'
 	debugCompile('com.github.tony19:logback-android-classic:1.1.1-6') {
@@ -51,10 +50,8 @@ dependencyVerification {
 			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
 			'com.mikepenz:materialdrawer:8bba1428dcef5ad7c2decf49c612ad980b38e2f1031cbd66c152a8a104793929',
 			'com.mikepenz:aboutlibraries:fb1c3eaafe29eb274afdef2ca5e0b9cf3b4596ce5e2de8235d3c2ca071255deb',
-			'org.osmdroid:osmdroid-android:22d6aacad7d61f784b4cb849f819751e62f1de87396f21b6b438f24eb02c056a',
-			'uk.co.samuelwall:material-tap-target-prompt:e19f894316f06fe9819755b117fa7d8f53e93872b2a6f13fdd9b2b6e9a602596',
-			'com.google.guava:guava:d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99',
-			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
+			'org.osmdroid:osmdroid-android:8e171e7814d5bf582fe0b1601986c6d1b0e7a4539a352086598436dc0d47066b',
+			'uk.co.samuelwall:material-tap-target-prompt:6c300067fdd0b45a2b586f801713214ea40d4a134a0ad4d96a6dfd9c5972c924',
 			'com.android.support:support-v4:cac2956f5c4bb363cc0ba824ac16ea2a687d1c305d434416a34772a5f9375ed7',
 			'com.android.support:support-vector-drawable:6ee37a7f7b93c1df1294e6f6f97df3724ac989fcda0549faf677001085330548',
 			'com.android.support:animated-vector-drawable:5aa30f578e1daefb26bef0ce06414266fbb4cdf5d4259f42a92c7bd83dcd81b4',
@@ -65,9 +62,15 @@ dependencyVerification {
 			'com.mikepenz:materialize:942ccf5e2aa1a46803aa884e8dc7bbaf2a9e8e9996a0cf92e3fe2f44a8592ba4',
 			'com.mikepenz:iconics-core:fdaec9164d5dccd213e1e80610b29dbd33a6e36ccd56ca3e8d4e4a802ac962d5',
 			'com.mikepenz:fastadapter:04abf0796dd5166cfaa43a2ccb458fe762fb0b090dd32973f35ded9ad987d3d0',
+			'com.squareup.okhttp3:okhttp:270bd243041967363230ab565e24a7cfeae6d0438433541122b6411bb7f2dbfd',
+			'com.squareup.okhttp3:logging-interceptor:dd9c4cfe0eb9f362c3707dd4492067f720329d5319f9ccbd86f4eec10c3fc6a2',
+			'com.google.guava:guava:d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99',
+			'org.slf4j:slf4j-api:0aee9a77a4940d72932b0d0d9557793f872e66a03f598e473f45e7efecdccf99',
+			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'com.android.support:support-media-compat:fa29a23eadd685631584b2c0c624a36e3bb79a33e257b00304501ad682fa2be3',
 			'com.android.support:support-core-utils:0fbc508e41dd6e8c634f310ee88452aaf8f48b6a843a369b115130b80d2fc05f',
 			'com.android.support:support-fragment:d8030f0bf0f64214a29dc4e14d5ccd225e59f66ed15eb37f3a5022e773dd1fda',
+			'com.squareup.okio:okio:3c0b8eb9f266fd9f0b9554fdf264f70ed0b40c1e9d6356839bf234277e39d7b5',
 	]
 }
 

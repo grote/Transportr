@@ -53,7 +53,7 @@ import android.widget.Toast;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.events.MapEventsReceiver;
-import org.osmdroid.util.BoundingBoxE6;
+import org.osmdroid.util.BoundingBox;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
@@ -150,7 +150,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	}
 
 	private void setupMap() {
-		MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(this, this);
+		MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(this);
 		map.getOverlays().add(0, mapEventsOverlay);
 
 		Intent intent = getIntent();
@@ -305,7 +305,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				for(FavLocation fav : favs) {
 					Location loc = fav.getLocation();
 					if(loc.hasLocation()) {
-						geoPoints.add(new GeoPoint(loc.lat, loc.lon));
+						geoPoints.add(new GeoPoint(loc.getLatAsDouble(), loc.getLonAsDouble()));
 					}
 				}
 
@@ -327,14 +327,14 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 				// display area if there's any
 				if(geoPoints.size() > 1) {
-					BoundingBoxE6 box = BoundingBoxE6.fromGeoPoints(geoPoints);
+					BoundingBox box = BoundingBox.fromGeoPoints(geoPoints);
 					zoomToArea(box);
 				}
 			}
 		});
 	}
 
-	private void zoomToArea(final BoundingBoxE6 box) {
+	private void zoomToArea(final BoundingBox box) {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -371,7 +371,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			if(leg.path == null) continue;
 
 				// draw leg path first, so it is always at the bottom
-			Polyline polyline = new Polyline(this);
+			Polyline polyline = new Polyline();
 			List<GeoPoint> geoPoints = new ArrayList<>(leg.path.size());
 			for(Point point : leg.path) {
 				geoPoints.add(new GeoPoint(point.getLatAsDouble(), point.getLonAsDouble()));
@@ -521,27 +521,27 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	private void setViewSpan() {
 		if(points.size() == 0) return;
 
-		int maxLat = Integer.MIN_VALUE;
-		int minLat = Integer.MAX_VALUE;
-		int maxLon = Integer.MIN_VALUE;
-		int minLon = Integer.MAX_VALUE;
+		double maxLat = Double.MIN_VALUE;
+		double minLat = Double.MAX_VALUE;
+		double maxLon = Double.MIN_VALUE;
+		double minLon = Double.MAX_VALUE;
 
 		for(GeoPoint point : points) {
-			maxLat = Math.max(point.getLatitudeE6(), maxLat);
-			minLat = Math.min(point.getLatitudeE6(), minLat);
-			maxLon = Math.max(point.getLongitudeE6(), maxLon);
-			minLon = Math.min(point.getLongitudeE6(), minLon);
+			maxLat = Math.max(point.getLatitude(), maxLat);
+			minLat = Math.min(point.getLatitude(), minLat);
+			maxLon = Math.max(point.getLongitude(), maxLon);
+			minLon = Math.min(point.getLongitude(), minLon);
 		}
 
 		if(gpsController.getLocation() != null) {
-			maxLat = Math.max(gpsController.getLocation().getLatitudeE6(), maxLat);
-			minLat = Math.min(gpsController.getLocation().getLatitudeE6(), minLat);
-			maxLon = Math.max(gpsController.getLocation().getLongitudeE6(), maxLon);
-			minLon = Math.min(gpsController.getLocation().getLongitudeE6(), minLon);
+			maxLat = Math.max(gpsController.getLocation().getLatitude(), maxLat);
+			minLat = Math.min(gpsController.getLocation().getLatitude(), minLat);
+			maxLon = Math.max(gpsController.getLocation().getLongitude(), maxLon);
+			minLon = Math.min(gpsController.getLocation().getLongitude(), minLon);
 		}
 
-		int center_lat = (maxLat + minLat) / 2;
-		int center_lon = (maxLon + minLon) / 2;
+		double center_lat = (maxLat + minLat) / 2;
+		double center_lon = (maxLon + minLon) / 2;
 		final GeoPoint center = new GeoPoint(center_lat, center_lon);
 
 		IMapController mapController = map.getController();

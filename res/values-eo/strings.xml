@@ -8,6 +8,8 @@ Nune, ĝi plej bone funkcias en Eŭropo, sed aliaj regionoj de la mondo estas an
 Transportr trovas direktojn el via hejmo, el via nuna pozicio, aŭ el elektita stacio kien ajn vi volus veturi. Vi ankaŭ povas konservi tutajn kursojn kiel ŝatataj kaj serĉi pluajn kursojn per unu movado de fingro. Sendube vi povas rigardi vian kurson sur la mapo kaj spuri viajn paŝojn per GPS.
 
 Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn inkluzive malfruojn (se iu ajn ekzistas).</string>
+  <string name="onboarding_drawer_title">Esplori pli da ebloj</string>
+  <string name="onboarding_drawer_text">Alklaku tie ĉi, por malfermi navigan breton kaj aliri pliajn eblojn de tiu ĉi aplikaĵo.</string>
   <string name="drawer_changelog">Ŝanĝoprotokolo</string>
   <string name="drawer_about">Pri</string>
   <string name="drawer_settings">Agordoj</string>
@@ -32,7 +34,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="tab_libraries">Bibliotekoj</string>
   <string name="tab_devs">Programistoj</string>
   <string name="tab_about">Pri</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote
+  <string name="about_top">© 2013 – 2015 Torsten GROTE
 Programo sub la Libera Permesilo: GPLv3</string>
   <string name="about">
 <![CDATA[
@@ -42,7 +44,7 @@ Programo sub la Libera Permesilo: GPLv3</string>
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p><b>Kontribuaĵoj</b>estas konsilindaj kaj laŭdindaj. Se vi volus kontribui, bonvolu viziti <a href=\"%1$s\">la retpaĝon de Transportr</a> por pliaj informoj.</p>
+<p><b>Kontribuaĵoj</b> estas konsilindaj kaj laŭdindaj. Se vi volus kontribui, bonvolu viziti <a href=\"%1$s\">la retpaĝon de Transportr</a> por pliaj informoj.</p>
 <p>Se vi trovos iujn erarojn en la programo, bonvolu raporti ilin je <a href=\"%2$s\">la erar-spurilo</a>.</p>
 <p>Ebloj de <b>donacioj</b> estas priskribitaj je <a href=\"%3$s\">la retpaĝo de Transportr</a>.</p>
 ]]>
@@ -82,7 +84,9 @@ Vi eblos ordigi ilin laŭ la plej ofte aŭ laŭ la plej laste uzitaj.</string>
 
 Aldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
   <string name="removing_from_favourites">La elektita kurso estas markita kiel ŝatata kurso. Ĝi estos forigita ankaŭ tie.</string>
+  <string name="now">Nun</string>
   <string name="current_time_set">Agordis nunan tempon.</string>
+  <string name="today">Hodiaŭ</string>
   <string name="current_date_set">Agordis nunan daton.</string>
   <string name="added_1h">1 horo aldonita.</string>
   <string name="ok">Bone</string>
@@ -161,119 +165,127 @@ Aldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
   <string name="changelog_full_title">Ŝanĝoprotokolo</string>
   <string name="changelog_title">Kio estas nova</string>
   <string name="changelog_show_full">Pli...</string>
+  <string name="np_region_australia">Aŭstralio</string>
+  <string name="np_desc_met">Aŭstralio, Viktorio, Melburno</string>
+  <string name="np_desc_sydney">Aŭstralio, Novsudkimrio, Sidnejo</string>
+  <string name="np_region_austria">Aŭstrujo</string>
+  <string name="np_desc_ivb">Innsbruck</string>
+  <string name="np_desc_linz">Supra Aŭstrujo, Linz</string>
+  <string name="np_desc_oebb">Aŭstrujo</string>
+  <string name="np_desc_stv">Stirujo, Graz, Marburg, Mariboro</string>
+  <string name="np_desc_svv">Salzburg</string>
+  <string name="np_desc_vor">Malsupra Aŭstrujo, Burgenlando, Vieno</string>
+  <string name="np_desc_vvt">Tirolo</string>
+  <string name="np_desc_wien">Vieno</string>
+  <string name="np_region_belgium">Belgujo</string>
+  <string name="np_desc_sncb">Fervojo en Belgujo</string>
+  <string name="np_region_br">Brazilo</string>
+  <string name="np_name_br">Brazilo</string>
+  <string name="np_desc_br">San-Paŭlo, Rio-de-Ĵanejro, Bel-Horizonto kaj Porto-Alegro</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
+  <string name="np_desc_br_floripa">Diversaj aŭtobusaj kursoj, sen \'Executivos\'</string>
+  <string name="np_region_canada">Kanado</string>
+  <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Otavo, Toronto</string>
+  <string name="np_name_quebec">Kebekio</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Kebekio, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montrealo, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_region_denmark">Danujo</string>
+  <string name="np_desc_dsb">Danujo, Kopenhago</string>
   <string name="np_region_europe">Eŭropo</string>
   <string name="np_name_rt">Eŭropo</string>
-  <string name="np_desc_rt">nur long-distancoj</string>
-  <string name="np_region_germany">Germanujo</string>
-  <string name="np_desc_db">Plejparto de Germanujo</string>
-  <string name="np_desc_bvg">Berlino</string>
-  <string name="np_desc_vbb">Brandenburgio, Berlino</string>
-  <string name="np_desc_bayern">Bavarujo, Würzburg, Regensburg</string>
-  <string name="np_desc_avv">Aŭgsburgo</string>
-  <string name="np_desc_mvv">Bavarujo, Munĥeno</string>
-  <string name="np_desc_invg">Ingolstadt</string>
-  <string name="np_desc_vgn">Nurenbergo, Fürth, Erlangen</string>
-  <string name="np_desc_vvm">Ŝvabujo, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
-  <string name="np_desc_vmv">Meklenburg-Antaŭpomerio, Schwerin</string>
-  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburgo</string>
-  <string name="np_desc_sh">Ŝlesvig-Holstinujo, Kilo, Lubeko, Hamburgo</string>
-  <string name="np_desc_gvh">Malsupra Saksujo, Hanovro, Hamburgo</string>
-  <string name="np_desc_bsvag">Brunsvigo, Wolfsburg</string>
-  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Malsupra Saksujo, Bremeno, Bremerhaven, Oldenburgo (Oldenburgujo), Osnabruko</string>
-  <string name="np_desc_vvo">Saksujo, Dresdeno</string>
-  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
-  <string name="np_desc_nasa">Saksujo, Leipzig, Saks-Anhalto, Magdeburgo, Halle</string>
-  <string name="np_desc_vrr">Nordrejn-Vestfalujo, Kolonjo, Bonn, Essen, Dortmundo, Duseldorfo, Münster, Paderborn, Höxter</string>
-  <string name="np_desc_mvg">Distrikto Mark, Lüdenscheid</string>
-  <string name="np_desc_nvv">Hesujo, Frankfurto ĉe Majno, Kaselo</string>
-  <string name="np_desc_vrn">Baden-Virtembergo, Rejnland-Palatinato, Mannheim, Majenco, Treviro</string>
-  <string name="np_desc_vvs">Baden-Virtembergo, Stutgarto</string>
-  <string name="np_desc_ding">Baden-Virtembergo, Ulm, Neu-Ulm</string>
-  <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
-  <string name="np_desc_vagfr">Alzaco, Bas-Rhin, Strasburgo, Freiburg im Breisgau</string>
-  <string name="np_desc_nvbw">Baden-Württemberg, Konstanco, Bazelo, Bazelo Urba, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
-  <string name="np_desc_vvv">Vogtland, Plauen</string>
-  <string name="np_desc_vgs">Sarlando, Saarbrücken</string>
-  <string name="np_region_austria">Aŭstrujo</string>
-  <string name="np_desc_oebb">Aŭstrujo</string>
-  <string name="np_desc_vor">Malsupra Aŭstrujo, Burgenlando, Vieno</string>
-  <string name="np_desc_linz">Supra Aŭstrujo, Linz</string>
-  <string name="np_desc_svv">Salzburg</string>
-  <string name="np_desc_vvt">Tirolo</string>
-  <string name="np_desc_ivb">Innsbruck</string>
-  <string name="np_desc_stv">Stirujo, Graz, Marburg, Mariboro</string>
-  <string name="np_desc_wien">WIENER LINIEN</string>
-  <string name="np_region_liechtenstein">Liĥtenŝtejno</string>
-  <string name="np_desc_vmobil">Liĥtenŝtejno, Vorarlbergo, Bregenz</string>
-  <string name="np_region_switzerland">Svisujo</string>
-  <string name="np_desc_vbl">Lucerno</string>
-  <string name="np_desc_zvv">Zuriko</string>
-  <string name="np_region_belgium">Belgujo</string>
-  <string name="np_region_luxembourg">Luksemburgo</string>
-  <string name="np_region_netherlands">Nederlando</string>
-  <string name="np_region_denmark">Danujo</string>
-  <string name="np_region_sweden">Svedujo</string>
-  <string name="np_region_norway">Norvegujo</string>
-  <string name="np_region_gb">Britujo</string>
-  <string name="np_region_ireland">Irlando</string>
-  <string name="np_region_italy">Italujo</string>
-  <string name="np_region_poland">Polujo</string>
-  <string name="np_region_uae">Unuiĝintaj Arabaj Emirlandoj</string>
-  <string name="np_region_usa">Usono</string>
-  <string name="np_region_australia">Aŭstralio</string>
-  <string name="np_region_israel">Israelo</string>
-  <string name="np_region_france">Francujo</string>
+  <string name="np_desc_rt">Nur long-distancaj vagonaroj</string>
+  <string name="np_desc_rt_networks">Societo Railteam</string>
   <string name="np_region_finland">Suomujo</string>
-  <string name="np_region_nz">Nov-Zelando</string>
-  <string name="np_region_spain">Hispanujo</string>
-  <string name="np_region_br">Brazilo</string>
-  <string name="np_region_canada">Kanado</string>
-  <string name="np_desc_ns">Nederlando, Amsterdamo</string>
-  <string name="np_desc_dsb">Danujo, Kopenhago</string>
-  <string name="np_desc_se">Svedujo, Stokholmo</string>
-  <string name="np_desc_stockholm">Stokholmo</string>
-  <string name="np_desc_nri">Norvegujo, Oslo, Bergen</string>
+  <string name="np_desc_hsl">Helsinko</string>
+  <string name="np_region_france">Francujo</string>
+  <string name="np_name_francenortheast">Francujo nord-orienta</string>
+  <string name="np_desc_francenortheast">Strasburgo, Metz, Lillo, Nancio</string>
+  <string name="np_name_francenorthwest">Francujo nord-okcidenta</string>
+  <string name="np_desc_francenorthwest">Bretonio, Luarlandoj, Centro-Valo de Luaro, Malsupra Normandio, Supra Normandio</string>
+  <string name="np_name_frenchsouthwest">Francujo sud-okcidenta</string>
+  <string name="np_desc_frenchsouthwest">Puatuo-Ĉarentoj, Limoĝio, Akvitanio, Sudo-Pireneoj, Bordeaux, Tuluzo</string>
+  <string name="np_desc_paca">Provenco-Alpoj-Bordo Lazura</string>
+  <string name="np_name_paris">Parizo</string>
+  <string name="np_desc_paris">Francujo, Francilio (Île-de-France), Parizo</string>
+  <string name="np_region_gb">Britujo</string>
+  <string name="np_desc_mersey">Liverpool City Region</string>
   <string name="np_desc_tlem">Granda Londono, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
-  <string name="np_desc_tfi">Irlando, Dublino, Belfasto</string>
-  <string name="np_desc_atc">Emilio-Romanjo, Bolonjo</string>
-  <string name="np_desc_pl">Polujo, fervojo en Polujo</string>
-  <string name="np_desc_dub">Unuiĝintaj Arabaj Emirlandoj, Dubajo</string>
-  <string name="np_desc_sf">Kalifornio, San-Francisko</string>
-  <string name="np_desc_septa">Pensilvanio, Filadelfio</string>
-  <string name="np_desc_sydney">Aŭstralio, Novsudkimrio, Sidnejo</string>
-  <string name="np_desc_met">Aŭstralio, Viktorio, Melburno</string>
-  <string name="np_desc_jet">Israelo, Jerusalemo</string>
-  <string name="np_desc_paca">Provenco-Alpoj-Bordo Lazura</string>
-  <string name="np_desc_hsl">Helsinko</string>
-  <string name="np_desc_paris">Parizo</string>
-  <string name="np_desc_nz">Velingtono, Auckland</string>
-  <string name="np_desc_usny" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
-  <string name="np_desc_spain">Madridaj aŭtobusoj (EMT), Barcelono (TMB), Eŭskujo (Moveuskadi)</string>
-  <string name="np_desc_mersey">Liverpool City Region</string>
-  <string name="np_desc_br">San-Paŭlo, Rio-de-Ĵanejro, Bel-Horizonto kaj Porto-Alegro</string>
+  <string name="np_region_germany">Germanujo</string>
+  <string name="np_desc_avv">Aŭgsburgo</string>
+  <string name="np_desc_bayern">Bavarujo, Würzburg, Regensburg</string>
+  <string name="np_desc_bsvag">Brunsvigo, Wolfsburg</string>
+  <string name="np_desc_bvg">Berlino</string>
+  <string name="np_desc_db">Plejparto de Germanujo</string>
+  <string name="np_desc_ding">Baden-Virtembergo, Ulm, Neu-Ulm</string>
+  <string name="np_desc_gvh">Malsupra Saksujo, Hanovro, Hamburgo, Bremerhaven</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburgo</string>
+  <string name="np_name_invg">Ingolstadt</string>
+  <string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
+  <string name="np_desc_mvg">Distrikto Mark, Lüdenscheid</string>
+  <string name="np_desc_mvv">Bavarujo, Munĥeno</string>
+  <string name="np_desc_nasa">Saksujo, Leipzig, Saks-Anhalto, Magdeburgo, Halle</string>
+  <string name="np_desc_nvbw">Baden-Württemberg, Konstanco, Bazelo, Bazelo Urba, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
+  <string name="np_desc_nvv">Hesujo, Frankfurto ĉe Majno, Kaselo</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_sh">Ŝlesvig-Holstinujo, Kilo, Lubeko, Hamburgo</string>
+  <string name="np_desc_vagfr">Alzaco, Bas-Rhin, Strasburgo, Freiburg im Breisgau</string>
+  <string name="np_desc_vbb">Brandenburgio, Berlino</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Malsupra Saksujo, Bremeno, Bremerhaven, Oldenburgo (Oldenburgujo), Osnabruko</string>
+  <string name="np_desc_vgn">Nurenbergo, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_desc_vgs">Sarlando, Saarbrücken</string>
+  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
+  <string name="np_desc_vmv">Meklenburg-Antaŭpomerio, Schwerin</string>
+  <string name="np_desc_vrn">Baden-Virtembergo, Rejnland-Palatinato, Mannheim, Majenco, Treviro</string>
+  <string name="np_desc_vrr">Nordrejn-Vestfalujo, Kolonjo, Bonn, Essen, Dortmundo, Duseldorfo, Münster, Paderborn, Höxter</string>
   <string name="np_desc_vrs">Kolonjo, Bonn</string>
-  <string name="np_desc_frenchsouthwest">Puatuo-Ĉarentoj, Limoĝio, Akvitanio, Sudo-Pireneoj, Bordeaux, Tuluzo</string>
-  <string name="np_desc_francenortheast">Strasburgo, Metz, Lillo, Nancio</string>
+  <string name="np_desc_vvm">Ŝvabujo, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
+  <string name="np_desc_vvo">Saksujo, Dresdeno</string>
+  <string name="np_desc_vvs">Baden-Virtembergo, Stutgarto</string>
+  <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_region_ireland">Irlando</string>
+  <string name="np_desc_tfi">Irlando, Dublino, Belfasto</string>
+  <string name="np_region_israel" tools:keep="@string/np_region_israel">Israelo</string>
+  <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israelo, Jerusalemo</string>
+  <string name="np_region_italy">Italujo</string>
+  <string name="np_desc_atc">Emilio-Romanjo, Bolonjo</string>
+  <string name="np_name_it">Italujo</string>
   <string name="np_desc_it">Romo, Milano, Torino, Venecio, Palermo, Trento</string>
-  <string name="np_desc_ontario">Otavo, Toronto</string>
-  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Kebekio, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montrealo, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
-  <string name="np_name_db">Deutsche Bahn</string>
-  <string name="np_name_bayern">BAVARUJO</string>
-  <string name="np_name_paris">PARIZO</string>
-  <string name="np_name_sydney">SIDNEJO</string>
-  <string name="np_name_stockholm">STOKHOLMO</string>
-  <string name="np_name_wien">VIENO</string>
+  <string name="np_region_liechtenstein">Liĥtenŝtejno</string>
+  <string name="np_desc_vmobil">Liĥtenŝtejno, Vorarlbergo, Bregenz</string>
+  <string name="np_region_luxembourg">Luksemburgo</string>
+  <string name="np_desc_lu">Luksemburgo</string>
+  <string name="np_region_netherlands">Nederlando</string>
+  <string name="np_desc_ns">Nederlando, Amsterdamo</string>
+  <string name="np_region_norway">Norvegujo</string>
+  <string name="np_desc_nri">Norvegujo, Oslo, Bergen</string>
+  <string name="np_region_nz">Nov-Zelando</string>
+  <string name="np_name_nz">Nov-Zelando</string>
+  <string name="np_desc_nz">Nov-Zelando, Velingtono, Aŭklando</string>
+  <string name="np_region_poland">Polujo</string>
+  <string name="np_desc_pl">Polujo, fervojo en Polujo</string>
+  <string name="np_region_spain">Hispanujo</string>
   <string name="np_name_spain">Hispanujo</string>
+  <string name="np_desc_spain">Madridaj aŭtobusoj, Barcelono, Eŭskujo</string>
+  <string name="np_region_sweden">Svedujo</string>
+  <string name="np_desc_se">Svedujo, Stokholmo</string>
+  <string name="np_region_switzerland">Svisujo</string>
+  <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_name_sbb" translatable="true">SBB-CFF-FFS</string>
+  <string name="np_desc_sbb">Fervojo en Svisujo</string>
+  <string name="np_desc_vbl">Lucerno</string>
+  <string name="np_desc_zvv">Zuriko</string>
+  <string name="np_region_uae">Unuiĝintaj Arabaj Emirlandoj</string>
+  <string name="np_name_dub">Dubajo</string>
+  <string name="np_desc_dub">Unuiĝintaj Arabaj Emirlandoj, Dubajo</string>
+  <string name="np_region_usa">Usono</string>
+  <string name="np_name_rtachicago">RTA</string>
+  <string name="np_desc_rtachicago">Ĉikago</string>
+  <string name="np_desc_septa">Distriktoj Chester, Delaware, Montgomery kaj Philadelphia</string>
+  <string name="np_name_sf">Regiono de Golfo de San-Francisko</string>
+  <string name="np_desc_sf">Distriktoj Alameda, Contra Costa, Marin, Napa, Solano, Sonoma, San Francisco, San Mateo kaj Santa Clara</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Nov-Jorkio kaj Nov-Ĵerzejo Ŝtatoj</string>
-  <string name="np_name_br">Brazilo</string>
-  <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_name_frenchsouthwest">Francujo sud-okcidenta</string>
-  <string name="np_name_francenortheast">Francujo nord-orienta</string>
-  <string name="np_name_ontario">Ontario</string>
-  <string name="np_name_quebec">Kebekio</string>
-  <string name="np_name_rtachicago">Ĉikago</string>
   <string name="maintainer">Prizorganto</string>
   <string name="contributors">Kontribuantoj</string>
   <string name="translators">Tradukantoj</string>

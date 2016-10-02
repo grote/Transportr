@@ -16,6 +16,12 @@
 -dontnote android.support.v7.**
 -dontnote android.support.design.widget.**
 
+-dontwarn java.nio.file.**
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontnote com.android.org.conscrypt.SSLParametersImpl
+-dontnote org.apache.harmony.xnet.provider.jsse.SSLParametersImpl
+-dontnote sun.security.ssl.SSLContextImpl
+
 -dontnote com.mikepenz.fastadapter.items.**
 -dontnote com.mikepenz.iconics.**
 -dontnote com.mikepenz.materialize.view.**

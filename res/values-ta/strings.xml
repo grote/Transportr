@@ -134,72 +134,61 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <!--ckChangeLog-->
   <string name="changelog_full_title">மாற்றப்பதிவு</string>
   <string name="changelog_show_full">மேலும்...</string>
-  <string name="np_region_europe">ஐரோப்பா</string>
-  <string name="np_name_rt">ஐரோப்பா</string>
-  <string name="np_desc_rt">தொலைதூரம் மட்டும்</string>
-  <string name="np_region_germany">ஜெர்மணி</string>
-  <string name="np_desc_db">பெரும்பாலான ஜெர்மணி</string>
-  <string name="np_desc_bvg">பெர்லின்</string>
-  <string name="np_desc_vbb">பிரன்டன்பர்க், பெர்லின்</string>
-  <string name="np_desc_avv">ஆக்ஸ்பர்க்</string>
-  <string name="np_desc_mvv">பவரிய, முனிச்</string>
-  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">ரோஸ்டாக்</string>
-  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">ஹம்பர்க்</string>
-  <string name="np_desc_vvo">சக்சோனி, ட்ரெஸ்டென்</string>
-  <string name="np_desc_vvv">வோக்ட்லேன்ட், ப்ளவென்</string>
-  <string name="np_region_austria">ஆஸ்ட்ரியா</string>
-  <string name="np_desc_oebb">ஆஸ்ட்ரியா</string>
-  <string name="np_desc_vor">லோயர் ஆஸ்திரியா, பர்கென்லேன்ட், வியன்</string>
-  <string name="np_desc_linz">அப்பர் ஆஸ்திரியா, லின்ஸ்</string>
-  <string name="np_desc_svv">சல்ஸ்பர்க்</string>
-  <string name="np_desc_vvt">டிரோல்</string>
-  <string name="np_desc_ivb">இன்ஸ்ப்ரக்</string>
-  <string name="np_region_switzerland">சுவிச்சர்லாந்து</string>
-  <string name="np_desc_zvv">சூரிச்</string>
-  <string name="np_region_belgium">பெல்ஜியம்</string>
-  <string name="np_region_luxembourg">லக்ஸம்பர்க்</string>
-  <string name="np_region_netherlands">நெதர்லாந்து</string>
-  <string name="np_region_denmark">டென்மார்க்</string>
-  <string name="np_region_sweden">சுவீடன்</string>
-  <string name="np_region_norway">நார்வே</string>
-  <string name="np_region_gb">கிரேட் பிரட்டன்</string>
-  <string name="np_region_ireland">அயர்லாந்து</string>
-  <string name="np_region_italy">இத்தாலி</string>
-  <string name="np_region_poland">போலாந்து</string>
-  <string name="np_region_uae">யுனைட்டட் அரபு எமிரேட்ஸ்</string>
-  <string name="np_region_usa">யுனைட்டட் ஸ்டேட்ஸ் ஆஃப் அமெரிக்கா</string>
   <string name="np_region_australia">ஆஸ்த்ரேலியா</string>
-  <string name="np_region_israel">இஸ்ரேல்</string>
-  <string name="np_region_france">பிரான்ஸ்</string>
-  <string name="np_region_finland">ஃபின்லாந்து</string>
-  <string name="np_region_nz">நியூசிலாந்து</string>
-  <string name="np_region_spain">ஸ்பெயின்</string>
+  <string name="np_desc_met">ஆஸ்த்ரேலியா, விக்டோரியா, மெல்போர்ன்</string>
+  <string name="np_desc_sydney">ஆஸ்த்ரேலியா, நியூ சவுத் வேல்ஸ், சிட்னி</string>
+  <string name="np_region_austria">ஆஸ்ட்ரியா</string>
+  <string name="np_desc_ivb">இன்ஸ்ப்ரக்</string>
+  <string name="np_desc_linz">அப்பர் ஆஸ்திரியா, லின்ஸ்</string>
+  <string name="np_desc_oebb">ஆஸ்ட்ரியா</string>
+  <string name="np_desc_svv">சல்ஸ்பர்க்</string>
+  <string name="np_desc_vor">லோயர் ஆஸ்திரியா, பர்கென்லேன்ட், வியன்</string>
+  <string name="np_desc_vvt">டிரோல்</string>
+  <string name="np_region_belgium">பெல்ஜியம்</string>
   <string name="np_region_br">பிரேசில்</string>
   <string name="np_region_canada">கனடா</string>
-  <string name="np_desc_ns">நெதர்லாந்து, ஆம்ஸ்டர்டாம்</string>
+  <string name="np_region_denmark">டென்மார்க்</string>
   <string name="np_desc_dsb">டென்மார்க், கோபன்ஹேகன்</string>
-  <string name="np_desc_se">சுவீடன், ஸ்டாக்ஹோம்</string>
-  <string name="np_desc_stockholm">ஸ்டாக்ஹோம்</string>
-  <string name="np_desc_nri">நார்வே, ஓஸ்லோ, பெர்கென்</string>
-  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">பிர்மிங்கம்</string>
-  <string name="np_desc_tfi">ஐயர்லாந்து, டப்லின், பெல்ஃபாஸ்ட்</string>
-  <string name="np_desc_dub">யுனைட்டட் அரபு எமிரேட்ஸ்</string>
-  <string name="np_desc_sf">கலிஃபோர்னியா, சான் ஃப்ரான்சிஸ்கோ</string>
-  <string name="np_desc_septa">பென்சில்வேனியா, ஃபிலடெல்ஃபியா</string>
-  <string name="np_desc_sydney">ஆஸ்த்ரேலியா, நியூ சவுத் வேல்ஸ், சிட்னி</string>
-  <string name="np_desc_met">ஆஸ்த்ரேலியா, விக்டோரியா, மெல்போர்ன்</string>
-  <string name="np_desc_jet">இஸ்ரேல், ஜெருசலேம்</string>
+  <string name="np_region_europe">ஐரோப்பா</string>
+  <string name="np_name_rt">ஐரோப்பா</string>
+  <string name="np_region_finland">ஃபின்லாந்து</string>
   <string name="np_desc_hsl">ஹெல்சின்கி</string>
-  <string name="np_desc_paris">பாரிஸ்</string>
-  <string name="np_desc_nz">வெல்லிங்டன், ஆக்லாந்து</string>
+  <string name="np_region_france">பிரான்ஸ்</string>
+  <string name="np_region_gb">கிரேட் பிரட்டன்</string>
   <string name="np_desc_mersey">லிவர்பூல் நகரப் பகுதி</string>
-  <string name="np_desc_ontario">ஒட்டாவா, டொரொன்டோ</string>
-  <string name="np_name_bayern">பவரியா</string>
-  <string name="np_name_paris">பாரிஸ்</string>
-  <string name="np_name_sydney">சிட்னி</string>
-  <string name="np_name_stockholm">ஸ்டாக்ஹோம்</string>
-  <string name="np_name_wien">வியன்னா</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">பிர்மிங்கம்</string>
+  <string name="np_region_germany">ஜெர்மணி</string>
+  <string name="np_desc_avv">ஆக்ஸ்பர்க்</string>
+  <string name="np_desc_bvg">பெர்லின்</string>
+  <string name="np_desc_db">பெரும்பாலான ஜெர்மணி</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">ஹம்பர்க்</string>
+  <string name="np_desc_mvv">பவரிய, முனிச்</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">ரோஸ்டாக்</string>
+  <string name="np_desc_vbb">பிரன்டன்பர்க், பெர்லின்</string>
+  <string name="np_desc_vvo">சக்சோனி, ட்ரெஸ்டென்</string>
+  <string name="np_desc_vvv">வோக்ட்லேன்ட், ப்ளவென்</string>
+  <string name="np_region_ireland">அயர்லாந்து</string>
+  <string name="np_desc_tfi">ஐயர்லாந்து, டப்லின், பெல்ஃபாஸ்ட்</string>
+  <string name="np_region_israel" tools:keep="@string/np_region_israel">இஸ்ரேல்</string>
+  <string name="np_desc_jet" tools:keep="@string/np_desc_jet">இஸ்ரேல், ஜெருசலேம்</string>
+  <string name="np_region_italy">இத்தாலி</string>
+  <string name="np_region_luxembourg">லக்ஸம்பர்க்</string>
+  <string name="np_region_netherlands">நெதர்லாந்து</string>
+  <string name="np_desc_ns">நெதர்லாந்து, ஆம்ஸ்டர்டாம்</string>
+  <string name="np_region_norway">நார்வே</string>
+  <string name="np_desc_nri">நார்வே, ஓஸ்லோ, பெர்கென்</string>
+  <string name="np_region_nz">நியூசிலாந்து</string>
+  <string name="np_region_poland">போலாந்து</string>
+  <string name="np_region_spain">ஸ்பெயின்</string>
   <string name="np_name_spain">ஸ்பெயின்</string>
+  <string name="np_region_sweden">சுவீடன்</string>
+  <string name="np_desc_se">சுவீடன், ஸ்டாக்ஹோம்</string>
+  <string name="np_region_switzerland">சுவிச்சர்லாந்து</string>
+  <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_desc_zvv">சூரிச்</string>
+  <string name="np_region_uae">யுனைட்டட் அரபு எமிரேட்ஸ்</string>
+  <string name="np_desc_dub">யுனைட்டட் அரபு எமிரேட்ஸ்</string>
+  <string name="np_region_usa">யுனைட்டட் ஸ்டேட்ஸ் ஆஃப் அமெரிக்கா</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">நியூயார்க் மற்றும் நியு ஜெர்சி மாகாணங்கள்</string>
   <string name="maintainer">பராமரிப்பாளர்</string>
   <string name="translators">மொழிபெயர்பாளர்கள்</string>
