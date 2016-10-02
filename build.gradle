@@ -25,7 +25,7 @@ dependencies {
 	compile 'com.mikepenz:materialdrawer:5.6.0'
 	compile 'com.mikepenz:aboutlibraries:5.8.1'
 	compile 'org.osmdroid:osmdroid-android:5.4.1:release@aar'
-	compile 'uk.co.samuelwall:material-tap-target-prompt:1.4.1'
+	compile 'uk.co.samuelwall:material-tap-target-prompt:1.4.0'
 
 	compile(project(':sublibs:public-transport-enabler:enabler')) {
 		exclude group: 'org.json' // provided by Android
@@ -51,7 +51,7 @@ dependencyVerification {
 			'com.mikepenz:materialdrawer:8bba1428dcef5ad7c2decf49c612ad980b38e2f1031cbd66c152a8a104793929',
 			'com.mikepenz:aboutlibraries:fb1c3eaafe29eb274afdef2ca5e0b9cf3b4596ce5e2de8235d3c2ca071255deb',
 			'org.osmdroid:osmdroid-android:8e171e7814d5bf582fe0b1601986c6d1b0e7a4539a352086598436dc0d47066b',
-			'uk.co.samuelwall:material-tap-target-prompt:6c300067fdd0b45a2b586f801713214ea40d4a134a0ad4d96a6dfd9c5972c924',
+			'uk.co.samuelwall:material-tap-target-prompt:e19f894316f06fe9819755b117fa7d8f53e93872b2a6f13fdd9b2b6e9a602596',
 			'com.android.support:support-v4:cac2956f5c4bb363cc0ba824ac16ea2a687d1c305d434416a34772a5f9375ed7',
 			'com.android.support:support-vector-drawable:6ee37a7f7b93c1df1294e6f6f97df3724ac989fcda0549faf677001085330548',
 			'com.android.support:animated-vector-drawable:5aa30f578e1daefb26bef0ce06414266fbb4cdf5d4259f42a92c7bd83dcd81b4',
@@ -82,8 +82,8 @@ allprojects {
 
 android {
 	defaultConfig {
-		versionCode 40
-		versionName "1.1.4"
+		versionCode 41
+		versionName "1.1.5-beta1"
 
 		compileSdkVersion 24
 		targetSdkVersion 24
