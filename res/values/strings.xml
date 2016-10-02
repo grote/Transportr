@@ -266,7 +266,7 @@ there are any).</string>
     <string name="np_name_db" translatable="false">Deutsche Bahn</string>
     <string name="np_desc_db">Most of Germany</string>
     <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
-    <string name="np_desc_gvh">Lower Saxony, Hannover, Hamburg, Bremerhaven</string>
+    <string name="np_desc_gvh">Lower Saxony, Hanover, Hamburg, Bremerhaven</string>
     <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
     <string name="np_name_invg">Ingolstadt</string>
     <string name="np_desc_invg">Ingolstadt</string>
