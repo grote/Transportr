@@ -352,7 +352,7 @@ there are any).</string>
     <string name="np_desc_dub">United Arab Emirates, Dubai</string>
 
     <string name="np_region_usa">United States of America</string>
-    <string name="np_name_rtachicago">RTA</string>
+    <string name="np_name_rtachicago" translatable="false">RTA</string>
     <string name="np_desc_rtachicago">Chicago</string>
     <string name="np_desc_rtachicago_networks" translatable="false">CTA, Metra, Pace</string>
     <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery and Philadelphia Counties</string>
