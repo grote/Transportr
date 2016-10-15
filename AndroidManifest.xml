@@ -64,6 +64,17 @@
         <activity
             android:name=".activities.MapActivity" />
 
+        <receiver
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/widget_name_quickhome"
+            android:name=".QuickhomeWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                       android:resource="@xml/quickhome_widget_info" />
+        </receiver>
+
     </application>
 
 </manifest>
