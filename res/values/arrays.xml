@@ -29,6 +29,7 @@
         <item>@string/polish</item>
         <item>@string/tamil</item>
         <item>@string/esperanto</item>
+        <item>@string/czech</item>
     </string-array>
     <string-array name="pref_language_values">
         <item>@string/pref_language_value_default</item>
@@ -46,6 +47,7 @@
         <item>pl</item>
         <item>ta</item>
         <item>eo</item>
+        <item>cs</item>
     </string-array>
     <string name="pref_language_value_default" translatable="false">default</string>
 

@@ -79,7 +79,9 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="more">Più</string>
   <string name="no_favourites">Nessun viaggio preferito.\n\nAggiungine uno nella pagina ¨Viaggi recenti¨.</string>
   <string name="removing_from_favourites">Un viaggio che hai selezionato è segnato come viaggio preferito. Sarà rimosso anche da lì.</string>
+  <string name="now">Ora</string>
   <string name="current_time_set">L\'orario è impostato su quello attuale.</string>
+  <string name="today">Oggi</string>
   <string name="current_date_set">La data è impostata su quella attuale.</string>
   <string name="added_1h">1 ora è stata aggiunta.</string>
   <string name="ok">Ok</string>
@@ -169,19 +171,24 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_svv">Salisburgo</string>
   <string name="np_desc_vor">Bassa Austria, Burgenland, Vienna</string>
   <string name="np_desc_vvt">Tirolo</string>
+  <string name="np_desc_wien">Vienna</string>
   <string name="np_region_belgium">Belgio</string>
+  <string name="np_desc_sncb">Treni in Belgio</string>
   <string name="np_region_br">Brasile</string>
   <string name="np_name_br">Brasile</string>
   <string name="np_desc_br">San Paolo, Rio de Janeiro, Belo Horizonte e Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
+  <string name="np_desc_br_floripa">Molti viaggi in autobus, niente Executivos</string>
   <string name="np_region_canada">Canada</string>
   <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danimarca</string>
   <string name="np_desc_dsb">Danimarca, Copenhagen</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
+  <string name="np_desc_rt">Solo treni a lunga percorrenza</string>
   <string name="np_region_finland">Finlandia</string>
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">Francia</string>
@@ -192,6 +199,8 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_name_frenchsouthwest">Francia sud-occidentale</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitania, Midi-Pirenei, Bordeaux, Tolosa</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
+  <string name="np_name_paris">Parigi</string>
+  <string name="np_desc_paris">Ile-de-France, Francia, Parigi</string>
   <string name="np_region_gb">Gran Bretagna</string>
   <string name="np_desc_mersey">Città regione di Liverpool</string>
   <string name="np_desc_tlem">Grande Londra, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isola di Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
@@ -203,7 +212,9 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_bvg">Berlino</string>
   <string name="np_desc_db">Maggior parte della Germania</string>
   <string name="np_desc_ding">Baden-Württemberg, Ulma, Nuova Ulma</string>
+  <string name="np_desc_gvh">Bassa Sassonia, Hannover, Amburgo, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Amburgo</string>
+  <string name="np_name_invg">Ingolstadt</string>
   <string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
@@ -216,6 +227,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_vagfr">Alsazia, Basso Reno, Strasburgo, Friburgo in Brisgovia</string>
   <string name="np_desc_vbb">Brandeburgo, Berlino</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Bassa Sassonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vgn">Norimberga, Fürth, Erlangen, Bayreuth, Bamberga, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vms">Sassonia Centrale, Chemnitz</string>
   <string name="np_desc_vmv">Meclemburgo-Pomerania anteriore, Schwerin</string>
@@ -232,28 +244,40 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israele, Gerusalemme</string>
   <string name="np_region_italy">Italia</string>
   <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
+  <string name="np_name_it">Italia</string>
   <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Lussemburgo</string>
+  <string name="np_desc_lu">Lussemburgo</string>
   <string name="np_region_netherlands">Olanda</string>
   <string name="np_desc_ns">Olanda, Amsterdam</string>
   <string name="np_region_norway">Norvegia</string>
   <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
   <string name="np_region_nz">Nuova Zelanda</string>
+  <string name="np_name_nz">Nuova Zelanda</string>
+  <string name="np_desc_nz">Nuova Zelanda, Welligton, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, ferrovie in Polonia</string>
   <string name="np_region_spain">Spagna</string>
   <string name="np_name_spain">Spagna</string>
+  <string name="np_desc_spain">Autobus di Madrid, Barcellona, Paesi Baschi</string>
   <string name="np_region_sweden">Svezia</string>
   <string name="np_desc_se">Svezia, Stoccolma</string>
   <string name="np_region_switzerland">Svizzera</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_name_sbb" translatable="true">SBB</string>
+  <string name="np_desc_sbb">Treni in Svizzera</string>
   <string name="np_desc_vbl">Lucerna</string>
   <string name="np_desc_zvv">Zurigo</string>
   <string name="np_region_uae">Emirati Arabi Uniti</string>
+  <string name="np_name_dub">Dubai</string>
   <string name="np_desc_dub">Emirati Arabi Uniti, Dubai</string>
   <string name="np_region_usa">Stati Uniti d\'America</string>
+  <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_septa">Contee di Bucks, Chester, Delaware, Montgomery e Philadelphia</string>
+  <string name="np_name_sf">San Francisco Bay Area</string>
+  <string name="np_desc_sf">Contee di Alameda, Contra Costa, Marin, Napa, Solano, Sonoma, San Francisco, San Mateo e Santa Clara</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Stati di New York e del New Jersey</string>
   <string name="maintainer">Mantenitori</string>
   <string name="contributors">Contributori</string>

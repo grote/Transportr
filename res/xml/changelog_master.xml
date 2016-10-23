@@ -9,6 +9,7 @@
         <change>Added help screens</change>
         <change>Reduced size of the app</change>
         <change>Updated and improved network provider list (Thanks Patrick!)</change>
+        <change>New translation: Czech (Thanks Miloš!)</change>
     </release>
 
     <release version="1.1.4" versioncode="40">

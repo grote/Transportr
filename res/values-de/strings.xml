@@ -16,6 +16,7 @@ anzeigen und dem Verlauf über GPS folgen.
 Du kannst auch Haltestellen in der Nähe finden und bevorstehende Abfahrten einschliesslich der Verzögerungen (wenn
 es welche gibt) anzeigen lassen.</string>
   <string name="onboarding_drawer_title">Entdecken Sie weitere Funktionen</string>
+  <string name="onboarding_drawer_text">Berühre dieses Symbol in der Navigationsleiste, um Zugriff auf weitere Funktionen dieser App zu erhalten.</string>
   <string name="drawer_changelog">Änderungsprotokoll</string>
   <string name="drawer_about">Über</string>
   <string name="drawer_settings">Einstellungen</string>
@@ -201,10 +202,12 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_name_francenortheast">Frankreich Nordost</string>
   <string name="np_desc_francenortheast">Straßburg, Metz, Lille, Nancy</string>
   <string name="np_name_francenorthwest">Frankreich Nordwest</string>
+  <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse Normandie, Haute Normandie</string>
   <string name="np_name_frenchsouthwest">Frankreich Südwest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
   <string name="np_name_paris">Paris</string>
+  <string name="np_desc_paris">Ile-de-France, Frankreich, Paris</string>
   <string name="np_region_gb">Großbritannien</string>
   <string name="np_desc_mersey">Region Liverpool</string>
   <string name="np_desc_tlem">Großraum London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
@@ -265,6 +268,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_pl">Polen, Eisenbahnen in Polen</string>
   <string name="np_region_spain">Spanien</string>
   <string name="np_name_spain">Spanien</string>
+  <string name="np_desc_spain">Madrid Busse, Barcelona, Baskenland</string>
   <string name="np_region_sweden">Schweden</string>
   <string name="np_desc_se">Schweden, Stockholm</string>
   <string name="np_region_switzerland">Schweiz</string>
@@ -278,6 +282,9 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_dub">Vereinigte Arabische Emirate, Dubai</string>
   <string name="np_region_usa">Vereinigte Staaten von Amerika</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery und Philadelphia Region</string>
+  <string name="np_name_sf">San Francisco Bay Gebiet</string>
+  <string name="np_desc_sf">Alameda, Contra Costa, Marin, Napa, Solano, Sonoma, San Francisco, San Mateo und Santa Clara Region</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
   <string name="maintainer">Koordinator</string>
   <string name="contributors">Beitragende</string>
