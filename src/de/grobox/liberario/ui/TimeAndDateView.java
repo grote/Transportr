@@ -48,6 +48,10 @@ import de.grobox.liberario.R;
 import static android.text.format.DateFormat.getDateFormat;
 import static android.text.format.DateFormat.getTimeFormat;
 import static android.widget.Toast.LENGTH_SHORT;
+import static java.util.Calendar.DAY_OF_MONTH;
+import static java.util.Calendar.MONTH;
+import static java.util.Calendar.YEAR;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class TimeAndDateView extends LinearLayout
 		implements OnTimeSetListener, OnDateSetListener {
@@ -175,10 +179,12 @@ public class TimeAndDateView extends LinearLayout
 
 	@Override
 	public void onDateSet(DatePicker view, int year, int month, int day) {
-		calendar.set(Calendar.YEAR, year);
-		calendar.set(Calendar.MONTH, month);
-		calendar.set(Calendar.DAY_OF_MONTH, day);
-		today = false;
+		calendar.set(YEAR, year);
+		calendar.set(MONTH, month);
+		calendar.set(DAY_OF_MONTH, day);
+
+		Calendar c = Calendar.getInstance();
+		today = c.get(YEAR) == year && c.get(MONTH) == month && c.get(DAY_OF_MONTH) == day;
 		updateTexts();
 	}
 
@@ -186,7 +192,9 @@ public class TimeAndDateView extends LinearLayout
 	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 		calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
 		calendar.set(Calendar.MINUTE, minute);
-		now = false;
+
+		Calendar c = Calendar.getInstance();
+		now = MILLISECONDS.toMinutes(Math.abs(c.getTimeInMillis() - calendar.getTimeInMillis())) < 10;
 		updateTexts();
 	}
 
@@ -226,7 +234,7 @@ public class TimeAndDateView extends LinearLayout
 
 	private void addTime(int min) {
 		// remember day before adding
-		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		int day = calendar.get(DAY_OF_MONTH);
 
 		// update time if it was set to now before
 		if(now) calendar = Calendar.getInstance();
@@ -236,7 +244,7 @@ public class TimeAndDateView extends LinearLayout
 
 		// no more now, but maybe today?
 		now = false;
-		if (day != calendar.get(Calendar.DAY_OF_MONTH)) {
+		if (day != calendar.get(DAY_OF_MONTH)) {
 			today = false;
 		}
 
@@ -255,9 +263,9 @@ public class TimeAndDateView extends LinearLayout
 
 	private void resetDate() {
 		Calendar c = Calendar.getInstance();
-		calendar.set(Calendar.YEAR, c.get(Calendar.YEAR));
-		calendar.set(Calendar.MONTH, c.get(Calendar.MONTH));
-		calendar.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH));
+		calendar.set(YEAR, c.get(YEAR));
+		calendar.set(MONTH, c.get(MONTH));
+		calendar.set(DAY_OF_MONTH, c.get(DAY_OF_MONTH));
 
 		today = true;
 		ui.date.setText(getDateString());
@@ -317,9 +325,9 @@ public class TimeAndDateView extends LinearLayout
 			Calendar calendar = (Calendar) getArguments().getSerializable(DATE);
 			if(calendar == null) calendar = Calendar.getInstance();
 
-			int year = calendar.get(Calendar.YEAR);
-			int month = calendar.get(Calendar.MONTH);
-			int day = calendar.get(Calendar.DAY_OF_MONTH);
+			int year = calendar.get(YEAR);
+			int month = calendar.get(MONTH);
+			int day = calendar.get(DAY_OF_MONTH);
 			DatePickerDialog dpd = new DatePickerDialog(getActivity(), listener, year, month, day);
 			dpd.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancel), dpd);
 			dpd.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.ok), dpd);
