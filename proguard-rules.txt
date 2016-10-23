@@ -31,6 +31,7 @@
 -dontnote com.orangegangsters.github.swipyrefreshlayout.library.**
 -dontwarn de.schildbach.pte.**
 -dontwarn org.slf4j.**
+-keep class ch.qos.logback.classic.android.LogcatAppender
 -dontwarn ch.qos.logback.core.net.**
 -dontnote ch.qos.logback.core.rolling.helper.FileStoreUtil
 
