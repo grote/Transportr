@@ -37,9 +37,11 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.adapters.LocationAdapter;
+import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
+
+import static de.grobox.liberario.WrapLocation.WrapType.GPS;
 
 public class LocationGpsView extends LocationView implements LocationListener {
 
@@ -85,8 +87,8 @@ public class LocationGpsView extends LocationView implements LocationListener {
 	}
 
 	@Override
-	public void onLocationItemClick(Location loc, View view) {
-		if(loc.id != null && loc.id.equals(LocationAdapter.GPS)) {
+	public void onLocationItemClick(WrapLocation loc, View view) {
+		if(loc.getType() == GPS) {
 			// prevent GPS fake name from being shown in the TextView
 			ui.location.setText("");
 

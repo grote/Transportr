@@ -68,7 +68,6 @@ import de.grobox.liberario.tasks.AsyncQueryTripsTask.TripHandler;
 import de.grobox.liberario.ui.LocationGpsView;
 import de.grobox.liberario.ui.LocationView;
 import de.grobox.liberario.ui.TimeAndDateView;
-import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -86,6 +85,12 @@ import static de.grobox.liberario.FavLocation.LOC_TYPE.TO;
 import static de.grobox.liberario.FavLocation.LOC_TYPE.VIA;
 import static de.grobox.liberario.Preferences.SHOW_ADV_DIRECTIONS;
 import static de.grobox.liberario.activities.MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS;
+import static de.grobox.liberario.utils.TransportrUtils.fixToolbarIcon;
+import static de.grobox.liberario.utils.TransportrUtils.getButtonIconColor;
+import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
+import static de.grobox.liberario.utils.TransportrUtils.getDrawableForProduct;
+import static de.grobox.liberario.utils.TransportrUtils.getTintedDrawable;
+import static de.grobox.liberario.utils.TransportrUtils.getToolbarDrawable;
 
 public class DirectionsFragment extends TransportrFragment implements TripHandler, OnProductsChangedListener {
 
@@ -152,7 +157,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		ui.products.setAdapter(productsAdapter);
 		products = Preferences.getProducts(getContext());
 		onProductsChanged(products);
-		ui.products.getBackground().setColorFilter(TransportrUtils.getButtonIconColor(getActivity()), SRC_ATOP);
+		ui.products.getBackground().setColorFilter(getButtonIconColor(getActivity()), SRC_ATOP);
 		ui.products.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
@@ -171,8 +176,8 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 					}
 				});
 
-		ui.fav_trips_separator_star.setColorFilter(TransportrUtils.getButtonIconColor(getActivity()));
-		ui.fav_trips_separator_line.setBackgroundColor(TransportrUtils.getButtonIconColor(getActivity()));
+		ui.fav_trips_separator_star.setColorFilter(getButtonIconColor(getActivity()));
+		ui.fav_trips_separator_line.setBackgroundColor(getButtonIconColor(getActivity()));
 
 		mFavAdapter = new FavouritesAdapter(getContext());
 		ui.favourites.setAdapter(mFavAdapter);
@@ -240,13 +245,13 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 		MenuItem expandItem = menu.findItem(R.id.action_navigation_expand);
 		if(ui.products.getVisibility() == GONE) {
-			expandItem.setIcon(TransportrUtils.getToolbarDrawable(context, R.drawable.ic_action_navigation_unfold_more));
+			expandItem.setIcon(getToolbarDrawable(context, R.drawable.ic_action_navigation_unfold_more));
 		} else {
-			expandItem.setIcon(TransportrUtils.getToolbarDrawable(context, R.drawable.ic_action_navigation_unfold_less));
+			expandItem.setIcon(getToolbarDrawable(context, R.drawable.ic_action_navigation_unfold_less));
 		}
 
 		MenuItem swapItem = menu.findItem(R.id.action_swap_locations);
-		TransportrUtils.fixToolbarIcon(context, swapItem);
+		fixToolbarIcon(context, swapItem);
 
 		super.onCreateOptionsMenu(menu, inflater);
 	}
@@ -257,11 +262,11 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		switch (item.getItemId()) {
 			case R.id.action_navigation_expand:
 				if(ui.products.getVisibility() == GONE) {
-					item.setIcon(TransportrUtils.getToolbarDrawable(getContext(), R.drawable.ic_action_navigation_unfold_less));
+					item.setIcon(getToolbarDrawable(getContext(), R.drawable.ic_action_navigation_unfold_less));
 					Preferences.setPref(getActivity(), SHOW_ADV_DIRECTIONS, true);
 					showMore(true);
 				} else {
-					item.setIcon(TransportrUtils.getToolbarDrawable(getContext(), R.drawable.ic_action_navigation_unfold_more));
+					item.setIcon(getToolbarDrawable(getContext(), R.drawable.ic_action_navigation_unfold_more));
 					Preferences.setPref(getActivity(), SHOW_ADV_DIRECTIONS, false);
 					showLess(true);
 				}
@@ -440,11 +445,11 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 	private void presetFromTo(Location from, Location via, Location to, Date date) {
 		if(ui.from != null && from != null) {
-			ui.from.setLocation(from, TransportrUtils.getDrawableForLocation(getContext(), from));
+			ui.from.setLocation(from, getDrawableForLocation(getContext(), from));
 		}
 
 		if(ui.via != null) {
-			ui.via.setLocation(via, TransportrUtils.getDrawableForLocation(getContext(), via));
+			ui.via.setLocation(via, getDrawableForLocation(getContext(), via));
 			if(via != null && ui.products.getVisibility() == GONE) {
 				// if there's a via location, make sure to show it in the UI
 				showMore(true);
@@ -452,7 +457,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 
 		if(ui.to != null && to != null) {
-			ui.to.setLocation(to, TransportrUtils.getDrawableForLocation(getContext(), to));
+			ui.to.setLocation(to, getDrawableForLocation(getContext(), to));
 		}
 
 		if (date != null) {
@@ -595,12 +600,12 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 				// swap location objects
 				Location tmp = ui.to.getLocation();
 				if(!ui.from.isSearching()) {
-					ui.to.setLocation(ui.from.getLocation(), TransportrUtils.getDrawableForLocation(getContext(), ui.from.getLocation()));
+					ui.to.setLocation(ui.from.getLocation(), getDrawableForLocation(getContext(), ui.from.getLocation()));
 				} else {
 					// TODO: GPS currently only supports from location, so don't swap it for now
 					ui.to.clearLocation();
 				}
-				ui.from.setLocation(tmp, TransportrUtils.getDrawableForLocation(getContext(), tmp));
+				ui.from.setLocation(tmp, getDrawableForLocation(getContext(), tmp));
 
 				ui.from.clearAnimation();
 				ui.to.clearAnimation();
@@ -672,7 +677,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		@Override
 		public void bindView(final ProductItem.ViewHolder ui, List payloads) {
 			super.bindView(ui, payloads);
-			ui.image.setImageDrawable(TransportrUtils.getTintedDrawable(getContext(), TransportrUtils.getDrawableForProduct(product)));
+			ui.image.setImageDrawable(getTintedDrawable(getContext(), getDrawableForProduct(product)));
 			ui.image.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {

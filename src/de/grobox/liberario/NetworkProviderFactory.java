@@ -507,7 +507,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VorProvider provider = new VorProvider();
+			final VorProvider provider = new VorProvider("no secret :(");
 			vorProviderRef = new SoftReference<>(provider);
 			return provider;
 		}

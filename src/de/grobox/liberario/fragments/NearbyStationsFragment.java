@@ -39,12 +39,10 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 import java.util.ArrayList;
 import java.util.EnumSet;
 
-import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
+import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.adapters.StationAdapter;
-import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
 import de.grobox.liberario.ui.LocationGpsView;
 import de.grobox.liberario.ui.LocationView;
@@ -53,7 +51,14 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
+import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
+import static de.grobox.liberario.utils.TransportrUtils.showLocationsOnMap;
 
 public class NearbyStationsFragment extends TransportrFragment {
 
@@ -61,7 +66,6 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 	private ViewHolder ui;
 	private StationAdapter stationAdapter;
-	private boolean changingHome = false;
 
 	// TODO: allow user to specify location types
 	EnumSet<LocationType> types = EnumSet.of(LocationType.STATION);
@@ -90,8 +94,8 @@ public class NearbyStationsFragment extends TransportrFragment {
 		ui.station.setCaller(MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
 		ui.station.setOnLocationClickListener(new LocationView.OnLocationClickListener() {
 			@Override
-			public void onLocationItemClick(View view, Location loc) {
-				if(loc != null && loc.id != null && !loc.id.equals(LocationAdapter.MAP)) {
+			public void onLocationItemClick(View view, WrapLocation loc) {
+				if(loc != null && loc.getType() != MAP) {
 					search();
 				}
 			}
@@ -104,7 +108,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 			@Override
 			public void deactivateGPS() {
-				ui.stations_area.setVisibility(View.GONE);
+				ui.stations_area.setVisibility(GONE);
 			}
 
 			@Override
@@ -121,7 +125,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 			stationAdapter = new StationAdapter(new ArrayList<Location>(), R.layout.station);
 
 			// hide departure list initially
-			ui.stations_area.setVisibility(View.GONE);
+			ui.stations_area.setVisibility(GONE);
 		}
 		ui.recycler.setAdapter(stationAdapter);
 
@@ -168,7 +172,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 			ArrayList<Location> stations = (ArrayList<Location>) savedInstanceState.getSerializable(STATIONS);
 			if(stations != null && stations.size() > 0) {
 				stationAdapter.addAll(stations);
-				ui.stations_area.setVisibility(View.VISIBLE);
+				ui.stations_area.setVisibility(VISIBLE);
 			}
 
 		}
@@ -212,7 +216,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 				}
 
 				// show stations on map
-				TransportrUtils.showLocationsOnMap(getContext(), stations, stationAdapter.getStart());
+				showLocationsOnMap(getContext(), stations, stationAdapter.getStart());
 
 				return true;
 			default:
@@ -231,7 +235,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 			if(ui.station.getLocation().hasId()) {
 				// Location is valid, so make it a favorite or increase counter
-				RecentsDB.updateFavLocation(getActivity(), ui.station.getLocation(), FavLocation.LOC_TYPE.FROM);
+				updateFavLocation(getActivity(), ui.station.getLocation(), FROM);
 			}
 
 			// play animations before clearing departures list
@@ -261,7 +265,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 				// get location and search departures for it
 				Location loc = (Location) intent.getSerializableExtra("location");
 				if(loc != null) {
-					ui.station.setLocation(loc, TransportrUtils.getDrawableForLocation(getContext(), loc));
+					ui.station.setLocation(loc, getDrawableForLocation(getContext(), loc));
 					search();
 				}
 			}
@@ -290,30 +294,30 @@ public class NearbyStationsFragment extends TransportrFragment {
 	}
 
 	public void onRefreshStart() {
-		if(ui.stations_area.getVisibility() == View.GONE) {
+		if(ui.stations_area.getVisibility() == GONE) {
 			// only fade in departure list on first search
 			ui.stations_area.setAlpha(0f);
-			ui.stations_area.setVisibility(View.VISIBLE);
+			ui.stations_area.setVisibility(VISIBLE);
 			ui.stations_area.animate().alpha(1f).setDuration(750);
 		}
 
 		// fade out recycler view
 		ui.recycler.animate().alpha(0f).setDuration(750);
-		ui.recycler.setVisibility(View.GONE);
+		ui.recycler.setVisibility(GONE);
 
 		// fade in progress bar
 		ui.progress.setAlpha(0f);
-		ui.progress.setVisibility(View.VISIBLE);
+		ui.progress.setVisibility(VISIBLE);
 		ui.progress.animate().alpha(1f).setDuration(750);
 
 		if(ui.menu_map != null) ui.menu_map.setVisible(false);
 	}
 
 	public void onRefreshComplete() {
-		if(ui.progress.getVisibility() == View.VISIBLE) {
+		if(ui.progress.getVisibility() == VISIBLE) {
 			// fade departures in and progress out
 			ui.recycler.setAlpha(0f);
-			ui.recycler.setVisibility(View.VISIBLE);
+			ui.recycler.setVisibility(VISIBLE);
 			ui.recycler.animate().alpha(1f).setDuration(750);
 			ui.progress.animate().alpha(0f).setDuration(750);
 		} else {
@@ -324,7 +328,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 			ui.recycler.smoothScrollBy(0, 150);
 		}
 
-		ui.progress.setVisibility(View.GONE);
+		ui.progress.setVisibility(GONE);
 
 		ArrayList<Location> stations = stationAdapter.getStations();
 		if(ui.menu_map != null && stations != null) {
@@ -346,11 +350,11 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 	public void onRefreshError() {
 		//ui.recycler.setVisibility(View.GONE);
-		ui.stations_area.setVisibility(View.GONE);
+		ui.stations_area.setVisibility(GONE);
 
 		// hide progress indicator
 		ui.swipe_refresh.setRefreshing(false);
-		ui.progress.setVisibility(View.GONE);
+		ui.progress.setVisibility(GONE);
 
 		if(ui.menu_map != null) {
 			ui.menu_map.setVisible(false);
@@ -360,12 +364,12 @@ public class NearbyStationsFragment extends TransportrFragment {
 	private static class ViewHolder {
 
 		public LocationGpsView station;
-		public Button search;
-		public ViewGroup stations_area;
-		public ProgressBar progress;
-		public SwipyRefreshLayout swipe_refresh;
-		public RecyclerView recycler;
-		public MenuItem menu_map;
+		Button search;
+		ViewGroup stations_area;
+		ProgressBar progress;
+		SwipyRefreshLayout swipe_refresh;
+		RecyclerView recycler;
+		MenuItem menu_map;
 
 		public ViewHolder(View view) {
 			station = (LocationGpsView) view.findViewById(R.id.location_input);

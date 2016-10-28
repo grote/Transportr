@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.1.6" versioncode="43">
+        <change>Fixed some German and Austrian networks</change>
+        <change>Removed VOR network, because now requires API secret like many Austrian networks :(</change>
+    </release>
+
     <release version="1.1.5" versioncode="42">
         <change>Added France North West (Thanks Patrick!)</change>
         <change>Reduce amount of scrolling needed to load more information</change>

@@ -59,6 +59,11 @@ import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.SuggestLocationsResult;
 
+import static de.grobox.liberario.WrapLocation.WrapType.HOME;
+import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
+import static de.grobox.liberario.utils.TransportrUtils.getTintedDrawable;
+
 public class LocationView extends LinearLayout implements LoaderManager.LoaderCallbacks, HomePickerDialogFragment.OnHomeChangedListener {
 
 	private final String LOCATION = "location";
@@ -103,7 +108,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
 				WrapLocation loc = getAdapter().getItem(position);
-				if(loc != null) onLocationItemClick(loc.getLocation(), view);
+				if(loc != null) onLocationItemClick(loc, view);
 			}
 		});
 		ui.location.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -131,8 +136,8 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 			}
 		});
 		if(!isInEditMode()) {
-			ui.status.setImageDrawable(TransportrUtils.getTintedDrawable(context, R.drawable.ic_location));
-			ui.clear.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.clear.getDrawable()));
+			ui.status.setImageDrawable(getTintedDrawable(context, R.drawable.ic_location));
+			ui.clear.setImageDrawable(getTintedDrawable(context, ui.clear.getDrawable()));
 		} else {
 			ui.status.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_location));
 		}
@@ -318,7 +323,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		if(icon != null) {
 			ui.status.setImageDrawable(icon);
 		} else {
-			ui.status.setImageDrawable(TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_location));
+			ui.status.setImageDrawable(getTintedDrawable(getContext(), R.drawable.ic_location));
 		}
 	}
 
@@ -327,7 +332,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	}
 
 	public void setLocation(Location loc) {
-		Drawable drawable = TransportrUtils.getDrawableForLocation(getContext(), loc);
+		Drawable drawable = getDrawableForLocation(getContext(), loc);
 		setLocation(loc, drawable, true);
 	}
 
@@ -395,11 +400,11 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		getAdapter().setMap(activate);
 	}
 
-	public void onLocationItemClick(Location loc, View view) {
+	public void onLocationItemClick(WrapLocation loc, View view) {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
 
 		// special case: home location
-		if(loc.id != null && loc.id.equals(LocationAdapter.HOME)) {
+		if(loc.getType() == HOME) {
 			Location home = RecentsDB.getHome(getContext());
 
 			if(home != null) {
@@ -411,7 +416,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 				selectHomeLocation();
 			}
 		}
-		else if(loc.id != null && loc.id.equals(LocationAdapter.MAP)) {
+		else if(loc.getType() == MAP) {
 			// prevent MAP from being shown in the TextView
 			ui.location.setText("");
 
@@ -419,7 +424,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		}
 		// all other cases
 		else {
-			setLocation(loc, icon);
+			setLocation(loc.getLocation(), icon);
 			ui.location.requestFocus();
 		}
 
@@ -471,13 +476,13 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	@Override
 	public void onHomeChanged(Location home) {
 		changingHome = false;
-		setLocation(home, TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_action_home));
+		setLocation(home, getTintedDrawable(getContext(), R.drawable.ic_action_home));
 	}
 
 	public static class LocationViewHolder {
 		public ImageView status;
 		public AutoCompleteTextView location;
-		public ProgressBar progress;
+		ProgressBar progress;
 		public ImageButton clear;
 
 		private LocationViewHolder(View view) {
@@ -486,7 +491,6 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 			clear = (ImageButton) view.findViewById(R.id.clearButton);
 			progress = (ProgressBar) view.findViewById(R.id.progress);
 		}
-
 	}
 
 	public void setOnLocationClickListener(OnLocationClickListener listener) {
@@ -494,7 +498,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	}
 
 	public interface OnLocationClickListener {
-		void onLocationItemClick(View view, Location loc);
+		void onLocationItemClick(View view, WrapLocation loc);
 	}
 
 }

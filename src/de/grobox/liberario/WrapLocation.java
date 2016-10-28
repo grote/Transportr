@@ -17,20 +17,48 @@
 
 package de.grobox.liberario;
 
-import de.grobox.liberario.adapters.LocationAdapter;
+import android.support.annotation.Nullable;
+
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static de.grobox.liberario.WrapLocation.WrapType.NORMAL;
+import static de.schildbach.pte.dto.LocationType.ANY;
+
 public class WrapLocation {
 
+	public enum WrapType { NORMAL, HOME, GPS, MAP }
+
 	private Location loc;
+	private WrapType type;
 
 	public WrapLocation(Location loc) {
+		this(loc, NORMAL);
+	}
+
+	public WrapLocation(WrapType type) {
+		this(new Location(ANY, null), type);
+		checkArgument(type != NORMAL, "Type can't be normal");
+	}
+
+	public WrapLocation(Location loc, WrapType type) {
 		this.loc = loc;
+		this.type = type;
 	}
 
 	public Location getLocation() {
 		return loc;
+	}
+
+	@Nullable
+	public String getId() {
+		if (loc == null) return null;
+		return loc.id;
+	}
+
+	public WrapType getType() {
+		return type;
 	}
 
 	@Override
@@ -51,17 +79,7 @@ public class WrapLocation {
 	@Override
 	public String toString() {
 		if(loc == null) return "";
-
-		if(loc.id != null) {
-			// we do not have a context here, so we can not get proper names
-			if(loc.id.equals(LocationAdapter.HOME)) {
-				return null;
-			} else if(loc.id.equals(LocationAdapter.GPS)) {
-				return null;
-			} else if(loc.id.equals(LocationAdapter.MAP)) {
-				return null;
-			}
-		}
+		if(type != NORMAL) return null;
 		return TransportrUtils.getFullLocName(getLocation());
 	}
 

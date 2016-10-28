@@ -227,11 +227,12 @@ public class TransportNetworks {
 				         .setRegion(region)
 		);
 
-		list.add(new TransportNetwork(context, NetworkId.VOR)
+		// missing API secret
+/*		list.add(new TransportNetwork(context, NetworkId.VOR)
 				         .setDescription(getString(R.string.np_desc_vor))
 				         .setRegion(region)
 		);
-
+*/
 		list.add(new TransportNetwork(context, NetworkId.LINZ)
 				         .setName(getString(R.string.np_name_linz))
 				         .setDescription(getString(R.string.np_desc_linz))

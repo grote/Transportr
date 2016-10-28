@@ -21,16 +21,13 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -51,13 +48,13 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapActivity;
-import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.ui.LineView;
-import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.NetworkProvider.Optimize;
+import de.schildbach.pte.NetworkProvider.WalkSpeed;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -66,9 +63,14 @@ import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 
+import static de.grobox.liberario.WrapLocation.WrapType.GPS;
+import static de.grobox.liberario.WrapLocation.WrapType.HOME;
+import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
+
 public class TransportrUtils {
 
-	static public void addLineBox(Context context, ViewGroup lineLayout, Line line, int index, boolean check_duplicates) {
+	static private void addLineBox(Context context, ViewGroup lineLayout, Line line, int index, boolean check_duplicates) {
 		if(check_duplicates) {
 			// loop through all line boxes in the linearLayout
 			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
@@ -141,7 +143,7 @@ public class TransportrUtils {
 		timeView.setText(DateUtils.getTime(context, time));
 	}
 
-	static public String getDelayText(long delay) {
+	static private String getDelayText(long delay) {
 		if(delay > 0) {
 			return "+" + Long.toString(delay / 1000 / 60);
 		}
@@ -152,7 +154,7 @@ public class TransportrUtils {
 		}
 	}
 
-	static public String tripToSubject(Context context, Trip trip, boolean tag) {
+	static private String tripToSubject(Context context, Trip trip, boolean tag) {
 		String str = "";
 
 		if(tag) str += "[" + context.getResources().getString(R.string.app_name) + "] ";
@@ -167,7 +169,7 @@ public class TransportrUtils {
 		return str;
 	}
 
-	static public String tripToString(Context context, Trip trip) {
+	static private String tripToString(Context context, Trip trip) {
 		String str = context.getString(R.string.times_include_delays) + "\n\n";
 
 		for(Leg leg : trip.legs) {
@@ -375,10 +377,6 @@ public class TransportrUtils {
 		showLocationsOnMap(context, loc_list, loc2);
 	}
 
-	static public void showLocationOnMap(Context context, Location loc) {
-		showLocationOnMap(context, loc, null);
-	}
-
 	static public void showTripOnMap(Context context, Trip trip) {
 		Intent intent = new Intent(context, MapActivity.class);
 		intent.setAction(MapActivity.SHOW_TRIP);
@@ -497,7 +495,7 @@ public class TransportrUtils {
 		return getTintedDrawable(context, ContextCompat.getDrawable(context, res));
 	}
 
-	static public Drawable getToolbarDrawable(Context context, Drawable drawable) {
+	static private Drawable getToolbarDrawable(Context context, Drawable drawable) {
 		if(drawable != null) {
 			drawable.setColorFilter(ContextCompat.getColor(context, R.color.drawableTintDark), PorterDuff.Mode.SRC_IN);
 			drawable.setAlpha(255);
@@ -514,7 +512,7 @@ public class TransportrUtils {
 		item.setIcon(getToolbarDrawable(context, item.getIcon()));
 	}
 
-	static public int getButtonIconColor(Context context, boolean on) {
+	static private int getButtonIconColor(Context context, boolean on) {
 		if(Preferences.darkThemeEnabled(context)) {
 			if(on) return ContextCompat.getColor(context, R.color.drawableTintDark);
 			else return ContextCompat.getColor(context, R.color.drawableTintLight);
@@ -528,16 +526,17 @@ public class TransportrUtils {
 		return getButtonIconColor(context, true);
 	}
 
-	static public Drawable getDrawableForLocation(Context context, Location l, boolean is_fav) {
-		if(l == null) return null;
+	static public Drawable getDrawableForLocation(Context context, WrapLocation w, boolean is_fav) {
+		if(w == null || w.getLocation() == null) return null;
+		Location l = w.getLocation();
 
-		if( (l.id != null && l.id.equals(LocationAdapter.HOME)) || l.equals(RecentsDB.getHome(context))) {
+		if(w.getType() == HOME || l.equals(RecentsDB.getHome(context))) {
 			return getTintedDrawable(context, R.drawable.ic_action_home);
 		}
-		else if(l.id != null && l.id.equals(LocationAdapter.GPS)) {
+		else if(w.getType() == GPS) {
 			return getTintedDrawable(context, R.drawable.ic_gps);
 		}
-		else if(l.id != null && l.id.equals(LocationAdapter.MAP)) {
+		else if(w.getType() == MAP) {
 			return getTintedDrawable(context, R.drawable.ic_action_location_map);
 		}
 		else if(is_fav) {
@@ -561,32 +560,33 @@ public class TransportrUtils {
 	static public Drawable getDrawableForLocation(Context context, Location l) {
 		if(l == null) return getTintedDrawable(context, R.drawable.ic_location);
 
-		List<WrapLocation> fav_list = RecentsDB.getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
+		List<WrapLocation> fav_list = getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
+		WrapLocation w = new WrapLocation(l);
 
-		return getDrawableForLocation(context, l, fav_list.contains(new WrapLocation(l)));
+		return getDrawableForLocation(context, w, fav_list.contains(w));
 	}
 
 
 	static public void setFavState(Context context, MenuItem item, boolean is_fav, boolean is_toolbar) {
 		if(is_fav) {
 			item.setTitle(R.string.action_unfav_trip);
-			item.setIcon(is_toolbar ? TransportrUtils.getToolbarDrawable(context, R.drawable.ic_action_star) : TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star));
+			item.setIcon(is_toolbar ? getToolbarDrawable(context, R.drawable.ic_action_star) : getTintedDrawable(context, R.drawable.ic_action_star));
 		} else {
 			item.setTitle(R.string.action_fav_trip);
-			item.setIcon(is_toolbar ? TransportrUtils.getToolbarDrawable(context, R.drawable.ic_action_star_empty) : TransportrUtils.getTintedDrawable(context, R.drawable.ic_action_star_empty));
+			item.setIcon(is_toolbar ? getToolbarDrawable(context, R.drawable.ic_action_star_empty) : getTintedDrawable(context, R.drawable.ic_action_star_empty));
 		}
 	}
 
-	static public NetworkProvider.Optimize getOptimize(Context context) {
+	static public Optimize getOptimize(Context context) {
 		String optimizeString = Preferences.getOptimize(context).toUpperCase();
 
-		return NetworkProvider.Optimize.valueOf(optimizeString);
+		return Optimize.valueOf(optimizeString);
 	}
 
-	static public NetworkProvider.WalkSpeed getWalkSpeed(Context context) {
+	static public WalkSpeed getWalkSpeed(Context context) {
 		String walkString = Preferences.getWalkSpeed(context).toUpperCase();
 
-		return NetworkProvider.WalkSpeed.valueOf(walkString);
+		return WalkSpeed.valueOf(walkString);
 	}
 
 	static public int getDragDistance(Context context) {

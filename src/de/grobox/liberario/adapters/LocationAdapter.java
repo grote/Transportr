@@ -19,9 +19,11 @@ package de.grobox.liberario.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +37,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.FavLocation.LOC_TYPE;
 import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.LocationType;
+
+import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.WrapLocation.WrapType.GPS;
+import static de.grobox.liberario.WrapLocation.WrapType.HOME;
+import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
+import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
+import static de.schildbach.pte.dto.LocationType.ANY;
 
 public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	private List<WrapLocation> locations;
@@ -54,11 +63,7 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 	private boolean includeHomeLocation = false;
 	private boolean includeGpsLocation = false;
 	private boolean includeMapLocation = false;
-	private FavLocation.LOC_TYPE sort = FavLocation.LOC_TYPE.FROM;
-
-	public static final String HOME = "Transportr.HOME";
-	public static final String GPS = "Transportr.GPS";
-	public static final String MAP = "Transportr.MAP";
+	private LOC_TYPE sort = FROM;
 
 	public static final int THRESHOLD = 3;
 
@@ -91,6 +96,7 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 		}
 	}
 
+	@NonNull
 	@Override
 	public Filter getFilter() {
 		if(filter != null) return filter;
@@ -149,8 +155,9 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 		}
 	}
 
+	@NonNull
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 		View view;
 		LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -167,7 +174,7 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 		if(wrapLocation == null || wrapLocation.getLocation() == null) return view;
 		Location l = wrapLocation.getLocation();
 
-		if(l.id != null && l.id.equals(HOME)) {
+		if(wrapLocation.getType() == HOME) {
 			Location home = RecentsDB.getHome(parent.getContext());
 			if(home != null) {
 				textView.setText(getHighlightedText(home));
@@ -180,11 +187,11 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 				textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 			}
 		}
-		else if(l.id != null && l.id.equals(GPS)) {
+		else if(wrapLocation.getType() == GPS) {
 			textView.setText(parent.getContext().getString(R.string.location_gps));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 		}
-		else if(l.id != null && l.id.equals(MAP)) {
+		else if(wrapLocation.getType() == MAP) {
 			textView.setText(parent.getContext().getString(R.string.location_map));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 		}
@@ -198,13 +205,13 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 		}
 
-		imageView.setImageDrawable(TransportrUtils.getDrawableForLocation(getContext(), l, defaultLocations.contains(wrapLocation)));
+		imageView.setImageDrawable(getDrawableForLocation(getContext(), wrapLocation, defaultLocations.contains(wrapLocation)));
 
 		return view;
 	}
 
 	@Override
-	public View getDropDownView(int position, View convertView, ViewGroup parent) {
+	public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
 		return getView(position, convertView, parent);
 	}
 
@@ -223,18 +230,18 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 			if(includeHomeLocation) {
 				home_loc = new WrapLocation(RecentsDB.getHome(getContext()));
 				if(home_loc.getLocation() != null) {
-					defaultLocations.add(new WrapLocation(new Location(LocationType.ANY, HOME, home_loc.getLocation().place, home_loc.getLocation().name)));
+					defaultLocations.add(new WrapLocation(new Location(ANY, null, home_loc.getLocation().place, home_loc.getLocation().name), HOME));
 				} else {
-					defaultLocations.add(new WrapLocation(new Location(LocationType.ANY, HOME)));
+					defaultLocations.add(new WrapLocation(HOME));
 				}
 			}
 			if(includeGpsLocation)
-				defaultLocations.add(new WrapLocation(new Location(LocationType.ANY, GPS)));
+				defaultLocations.add(new WrapLocation(GPS));
 			if(includeMapLocation)
-				defaultLocations.add(new WrapLocation(new Location(LocationType.ANY, MAP)));
+				defaultLocations.add(new WrapLocation(MAP));
 
 			if(includeFavLocations) {
-				List<WrapLocation> tmpList = RecentsDB.getFavLocationList(getContext(), sort, onlyIDs);
+				List<WrapLocation> tmpList = getFavLocationList(getContext(), sort, onlyIDs);
 				// remove home location from favorites if it is set
 				if(includeHomeLocation && home_loc != null) {
 					tmpList.remove(home_loc);
@@ -262,7 +269,7 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 		}
 	}
 
-	public void setSort(FavLocation.LOC_TYPE loc_type) {
+	public void setSort(LOC_TYPE loc_type) {
 		sort = loc_type;
 	}
 
