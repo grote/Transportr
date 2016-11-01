@@ -443,6 +443,14 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 				}
 				if(wto != null) {
 					to = wto.getLocation();
+					if(wto.getType() == WrapLocation.WrapType.HOME){
+						Location home = RecentsDB.getHome(getContext());
+						if(home != null) {
+							to = home;
+						} else {
+							// TODO open dialog to set HOME-location
+						}
+					}
 				} else {
 					to = null;
 				}
