@@ -184,7 +184,7 @@ there are any).</string>
     <string name="changelog_title">What\'s New</string>
     <string name="changelog_show_full">More…</string>
 
-    <string name="widget_name_quickhome">Transportr to fixed location</string>
+    <string name="widget_name_quickhome">Transportr: get home</string>
 
     <string name="np_region_australia">Australia</string>
     <string name="np_name_sydney" translatable="false">Transport NSW</string>
