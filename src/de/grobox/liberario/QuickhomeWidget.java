@@ -47,7 +47,8 @@ public class QuickhomeWidget extends AppWidgetProvider {
 			// Create an Intent to launch ExampleActivity
 			// Intent intent = new Intent(context, MainActivity.class);
 			Intent intent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, context, MainActivity.class);
-			intent.putExtra("to", RecentsDB.getHome(context));
+			intent.putExtra("from", new WrapLocation(WrapLocation.WrapType.GPS));
+			intent.putExtra("to", new WrapLocation(WrapLocation.WrapType.HOME));
 			intent.putExtra("search", true);
 			PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 

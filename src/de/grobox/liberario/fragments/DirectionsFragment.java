@@ -68,6 +68,7 @@ import de.grobox.liberario.tasks.AsyncQueryTripsTask.TripHandler;
 import de.grobox.liberario.ui.LocationGpsView;
 import de.grobox.liberario.ui.LocationView;
 import de.grobox.liberario.ui.TimeAndDateView;
+import de.grobox.liberario.WrapLocation;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -426,9 +427,25 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		if(intent != null) {
 			final String action = intent.getAction();
 			if(action != null && action.equals(TAG)) {
-				Location from = (Location) intent.getSerializableExtra("from");
-				Location via = (Location) intent.getSerializableExtra("via");
-				Location to = (Location) intent.getSerializableExtra("to");
+				WrapLocation wfrom = (WrapLocation) intent.getSerializableExtra("from");
+				WrapLocation wvia = (WrapLocation) intent.getSerializableExtra("via");
+				WrapLocation wto = (WrapLocation) intent.getSerializableExtra("to");
+				Location from, via, to;
+				if(wfrom != null) {
+					from = wfrom.getLocation();
+				} else {
+					from = null;
+				}
+				if(wvia != null) {
+					via = wvia.getLocation();
+				} else {
+					via = null;
+				}
+				if(wto != null) {
+					to = wto.getLocation();
+				} else {
+					to = null;
+				}
 				Date date = (Date) intent.getSerializableExtra("date");
 				boolean search = intent.getBooleanExtra("search", false);
 
