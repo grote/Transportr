@@ -96,8 +96,8 @@ public class RecentsDB {
 	}
 
 	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
-		if(loc == null || loc.type == LocationType.COORD) {
-			// don't store GPS locations
+		if(loc == null || loc.type == LocationType.COORD || loc.type == LocationType.ANY) {
+			// don't store GPS or ANY locations
 			return;
 		}
 
