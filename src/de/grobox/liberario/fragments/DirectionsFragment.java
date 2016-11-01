@@ -433,6 +433,10 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 				Location from, via, to;
 				if(wfrom != null) {
 					from = wfrom.getLocation();
+					if(wfrom.getType() == WrapLocation.WrapType.GPS) {
+						activateGPS();
+						from = null;
+					}
 				} else {
 					from = null;
 				}
