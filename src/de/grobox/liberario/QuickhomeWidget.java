@@ -44,16 +44,16 @@ public class QuickhomeWidget extends AppWidgetProvider {
 		for (int i=0; i<N; i++) {
 			int appWidgetId = appWidgetIds[i];
 
-			// Create an Intent to launch ExampleActivity
-			// Intent intent = new Intent(context, MainActivity.class);
+			// Create an Intent to launch the DirectionsFragment via MainActivity
 			Intent intent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, context, MainActivity.class);
 			intent.putExtra("from", new WrapLocation(WrapLocation.WrapType.GPS));
 			intent.putExtra("to", new WrapLocation(WrapLocation.WrapType.HOME));
 			intent.putExtra("search", true);
+			// put that Intent into a pending Intent
 			PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
 			// Get the layout for the App Widget and attach an on-click listener
-			// to the button
+			// to the whole widget
 			RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_quickhome);
 			views.setOnClickPendingIntent(R.id.widget_quickhome_frame, pendingIntent);
 
