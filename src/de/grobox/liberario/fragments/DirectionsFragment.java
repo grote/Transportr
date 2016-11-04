@@ -494,7 +494,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			// no location was selected by user
 			if(loc_view.getText() != null && loc_view.getText().length() > 0) {
 				// no location selected, but text entered. So let's try create locations from text
-				loc_view.setLocation(new Location(LocationType.ANY, "IS_AMBIGUOUS", loc_view.getText(), loc_view.getText()), null);
+				loc_view.setLocation(new Location(LocationType.ANY, null, loc_view.getText(), loc_view.getText()));
 
 				return true;
 			}

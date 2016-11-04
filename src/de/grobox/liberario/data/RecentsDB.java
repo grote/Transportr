@@ -38,13 +38,15 @@ import de.grobox.liberario.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
+import static de.grobox.liberario.Preferences.getNetwork;
+
 public class RecentsDB {
 
 	/* FavLocation */
 
 	public static List<FavLocation> getFavLocationList(Context context) {
 		List<FavLocation> fav_list = new ArrayList<>();
-		String network = Preferences.getNetwork(context);
+		String network = getNetwork(context);
 		if(network == null) return fav_list;
 
 		DBHelper mDbHelper = new DBHelper(context);
@@ -97,12 +99,7 @@ public class RecentsDB {
 
 	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
 		if(loc == null || loc.type == LocationType.COORD || loc.type == LocationType.ANY) {
-			// don't store GPS or ANY locations
-			return;
-		}
-
-		if(loc.id != null && loc.id.equals("IS_AMBIGUOUS")) {
-			// don't store ambiguous locations
+			// don't store GPS or ANY locations (includes ambiguous locations)
 			return;
 		}
 
@@ -112,7 +109,7 @@ public class RecentsDB {
 		if(loc.hasId()) {
 			// use location id to identify location
 			whereClause = "network = ? AND id = ?";
-			whereArgs = new String[] { Preferences.getNetwork(context), loc.id };
+			whereArgs = new String[] { getNetwork(context), loc.id };
 		} else {
 			// use other values to identify location
 			String lat = String.valueOf(loc.lat);
@@ -121,7 +118,7 @@ public class RecentsDB {
 			String name = loc.name == null ? "" : loc.name;
 
 			whereClause = "network = ? AND type = ? AND lat = ? AND lon = ? AND place = ? AND name = ?";
-			whereArgs = new String[] { Preferences.getNetwork(context), loc.type.name(), lat, lon, place, name };
+			whereArgs = new String[] { getNetwork(context), loc.type.name(), lat, lon, place, name };
 		}
 
 		DBHelper mDbHelper = new DBHelper(context);
@@ -154,7 +151,7 @@ public class RecentsDB {
 		}
 		else {
 			// add new favorite location
-			values.put("network", Preferences.getNetwork(context));
+			values.put("network", getNetwork(context));
 			values.put("type", loc.type.name());
 			values.put("id", loc.id);
 			values.put("lat", loc.lat);
@@ -193,7 +190,7 @@ public class RecentsDB {
 		List<RecentTrip> recent_list = new ArrayList<>();
 
 		// when the app starts for the first time, no network is selected
-		if(Preferences.getNetwork(context) == null)  return recent_list;
+		if(getNetwork(context) == null)  return recent_list;
 
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -210,7 +207,7 @@ public class RecentsDB {
 			"WHERE r.network = ? " +
 			"ORDER BY " + (sort_count ? "r.count" : "r.last_used") + " DESC";
 
-		Cursor c = db.rawQuery(RECENT_TRIPS, new String[]{ Preferences.getNetwork(context) });
+		Cursor c = db.rawQuery(RECENT_TRIPS, new String[]{ getNetwork(context) });
 
 		while(c.moveToNext()) {
 			Location from = getLocation(c, "from_");
@@ -231,7 +228,7 @@ public class RecentsDB {
 		List<RecentTrip> favourite_list = new ArrayList<>();
 
 		// when the app starts for the first time, no network is selected
-		if(Preferences.getNetwork(context) == null)  return favourite_list;
+		if(getNetwork(context) == null)  return favourite_list;
 
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -248,7 +245,7 @@ public class RecentsDB {
 			"WHERE r.network = ? AND r.is_favourite > 0 " +
 			"ORDER BY r.count DESC";
 
-		Cursor c = db.rawQuery(FAVOURITE_TRIPS, new String[]{ Preferences.getNetwork(context) });
+		Cursor c = db.rawQuery(FAVOURITE_TRIPS, new String[]{ getNetwork(context) });
 
 		while(c.moveToNext()) {
 			Location from = getLocation(c, "from_");
@@ -276,19 +273,19 @@ public class RecentsDB {
 			return;
 		}
 
-		if( (recent.getFrom().id != null && recent.getFrom().id.equals("IS_AMBIGUOUS")) ||
-				(recent.getVia() != null && recent.getVia().id != null && recent.getVia().id.equals("IS_AMBIGUOUS")) ||
-				(recent.getTo().id != null && recent.getTo().id.equals("IS_AMBIGUOUS")) ) {
-			// don't store trips with ambiguous locations
+		if( (recent.getFrom().type == LocationType.ANY) ||
+				(recent.getVia() != null && recent.getVia().type == LocationType.ANY) ||
+				(recent.getTo().type == LocationType.ANY) ) {
+			// don't store trips with ANY locations (includes ambiguous locations)
 			return;
 		}
 
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
-		int via_id = getLocationId(db, recent.getVia(), Preferences.getNetwork(context));
-		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
+		int from_id = getLocationId(db, recent.getFrom(), getNetwork(context));
+		int via_id = getLocationId(db, recent.getVia(), getNetwork(context));
+		int to_id = getLocationId(db, recent.getTo(), getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) {
 			db.close();
@@ -308,8 +305,8 @@ public class RecentsDB {
 						"network = ? AND from_loc = ? AND via_loc = ? AND to_loc = ?"
 				),
 				(via_id < 0 ?
-						new String[] { Preferences.getNetwork(context), from, to } :
-						new String[] { Preferences.getNetwork(context), from, via, to }
+						new String[] { getNetwork(context), from, to } :
+						new String[] { getNetwork(context), from, via, to }
 				),
 				null,   // don't group the rows
 				null,   // don't filter by row groups
@@ -331,7 +328,7 @@ public class RecentsDB {
 		}
 		else {
 			// add new recent trip trip database
-			values.put("network", Preferences.getNetwork(context));
+			values.put("network", getNetwork(context));
 			values.put("from_loc", from_id);
 			if(via_id < 0) values.putNull("via_loc");
 			else values.put("via_loc", via_id);
@@ -360,9 +357,9 @@ public class RecentsDB {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
-		int via_id = getLocationId(db, recent.getVia(), Preferences.getNetwork(context));
-		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
+		int from_id = getLocationId(db, recent.getFrom(), getNetwork(context));
+		int via_id = getLocationId(db, recent.getVia(), getNetwork(context));
+		int to_id = getLocationId(db, recent.getTo(), getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) {
 			db.close();
@@ -382,8 +379,8 @@ public class RecentsDB {
 						"network = ? AND from_loc = ? AND via_loc = ? AND to_loc = ?"
 				),
 				(via_id < 0 ?
-						new String[] { Preferences.getNetwork(context), from, to } :
-						new String[] { Preferences.getNetwork(context), from, via, to }
+						new String[] { getNetwork(context), from, to } :
+						new String[] { getNetwork(context), from, via, to }
 				),
 				null,   // don't group the rows
 				null,   // don't filter by row groups
@@ -404,9 +401,9 @@ public class RecentsDB {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
-		int via_id = getLocationId(db, recent.getVia(), Preferences.getNetwork(context));
-		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
+		int from_id = getLocationId(db, recent.getFrom(), getNetwork(context));
+		int via_id = getLocationId(db, recent.getVia(), getNetwork(context));
+		int to_id = getLocationId(db, recent.getTo(), getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) {
 			db.close();
@@ -426,8 +423,8 @@ public class RecentsDB {
 						"network = ? AND from_loc = ? AND via_loc = ? AND to_loc = ?"
 				),
 				(via_id < 0 ?
-						new String[] { Preferences.getNetwork(context), from, to } :
-						new String[] { Preferences.getNetwork(context), from, via, to }
+						new String[] { getNetwork(context), from, to } :
+						new String[] { getNetwork(context), from, via, to }
 				),
 				null,   // don't group the rows
 				null,   // don't filter by row groups
@@ -452,9 +449,9 @@ public class RecentsDB {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-		int from_id = getLocationId(db, recent.getFrom(), Preferences.getNetwork(context));
-		int via_id = getLocationId(db, recent.getVia(), Preferences.getNetwork(context));
-		int to_id = getLocationId(db, recent.getTo(), Preferences.getNetwork(context));
+		int from_id = getLocationId(db, recent.getFrom(), getNetwork(context));
+		int via_id = getLocationId(db, recent.getVia(), getNetwork(context));
+		int to_id = getLocationId(db, recent.getTo(), getNetwork(context));
 
 		if(from_id < 0 || to_id < 0) {
 			db.close();
@@ -471,8 +468,8 @@ public class RecentsDB {
 						"network = ? AND from_loc = ? AND via_loc = ? AND to_loc = ?"
 				),
 				(via_id < 0 ?
-						new String[] { Preferences.getNetwork(context), from, to } :
-						new String[] { Preferences.getNetwork(context), from, via, to }
+						new String[] { getNetwork(context), from, to } :
+						new String[] { getNetwork(context), from, via, to }
 				));
 
 		db.close();
@@ -484,7 +481,7 @@ public class RecentsDB {
 	public static Location getHome(Context context) {
 		Location home = null;
 
-		String network = Preferences.getNetwork(context);
+		String network = getNetwork(context);
 		if(network == null) return null;
 
 		DBHelper mDbHelper = new DBHelper(context);
@@ -516,7 +513,7 @@ public class RecentsDB {
 
 		// prepare values for new home location
 		ContentValues values = new ContentValues();
-		values.put("network", Preferences.getNetwork(context));
+		values.put("network", getNetwork(context));
 		values.put("type", home.type.name());
 		values.put("id", home.id);
 		values.put("lat", home.lat);
@@ -529,7 +526,7 @@ public class RecentsDB {
 			DBHelper.TABLE_HOME_LOCS,   // The table to query
 			new String[] { "_id" },     // The columns to return (null == all)
 			"network = ?",              // The columns for the WHERE clause
-			new String[] { Preferences.getNetwork(context) }, // The values for the WHERE clause
+			new String[] { getNetwork(context) }, // The values for the WHERE clause
 			null,   // don't group the rows
 			null,   // don't filter by row groups
 			null    // The sort order
@@ -537,7 +534,7 @@ public class RecentsDB {
 
 		if(c.getCount() > 0) {
 			// found previous home location, so update entry
-			db.update(DBHelper.TABLE_HOME_LOCS, values, "network = ?", new String[] { Preferences.getNetwork(context) });
+			db.update(DBHelper.TABLE_HOME_LOCS, values, "network = ?", new String[] { getNetwork(context) });
 		} else {
 			// no previous home location found, so insert new entry
 			db.insert(DBHelper.TABLE_HOME_LOCS, null, values);
