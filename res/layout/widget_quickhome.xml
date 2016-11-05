@@ -10,8 +10,8 @@
     <ImageView
         android:layout_width="64dp"
         android:layout_height="64dp"
-        app:srcCompat="@drawable/ic_launcher"
+        app:srcCompat="@drawable/ic_quickhome_widget"
         android:id="@+id/widget_quickhome_logo"
-        android:background="@drawable/ic_launcher"/>
+        android:background="@drawable/ic_quickhome_widget"/>
 
 </FrameLayout>

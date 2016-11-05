@@ -65,7 +65,7 @@
             android:name=".activities.MapActivity" />
 
         <receiver
-            android:icon="@drawable/ic_launcher"
+            android:icon="@drawable/ic_quickhome_widget"
             android:label="@string/widget_name_quickhome"
             android:name=".QuickhomeWidget">
             <intent-filter>
