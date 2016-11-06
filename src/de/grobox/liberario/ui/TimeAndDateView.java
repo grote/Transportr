@@ -27,6 +27,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
@@ -49,6 +50,8 @@ import static android.text.format.DateFormat.getDateFormat;
 import static android.text.format.DateFormat.getTimeFormat;
 import static android.widget.Toast.LENGTH_SHORT;
 import static java.util.Calendar.DAY_OF_MONTH;
+import static java.util.Calendar.HOUR_OF_DAY;
+import static java.util.Calendar.MINUTE;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
@@ -178,7 +181,7 @@ public class TimeAndDateView extends LinearLayout
 	}
 
 	@Override
-	public void onDateSet(DatePicker view, int year, int month, int day) {
+	public void onDateSet(@Nullable DatePicker view, int year, int month, int day) {
 		calendar.set(YEAR, year);
 		calendar.set(MONTH, month);
 		calendar.set(DAY_OF_MONTH, day);
@@ -189,9 +192,9 @@ public class TimeAndDateView extends LinearLayout
 	}
 
 	@Override
-	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-		calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-		calendar.set(Calendar.MINUTE, minute);
+	public void onTimeSet(@Nullable TimePicker view, int hourOfDay, int minute) {
+		calendar.set(HOUR_OF_DAY, hourOfDay);
+		calendar.set(MINUTE, minute);
 
 		Calendar c = Calendar.getInstance();
 		now = MILLISECONDS.toMinutes(Math.abs(c.getTimeInMillis() - calendar.getTimeInMillis())) < 10;
@@ -206,9 +209,11 @@ public class TimeAndDateView extends LinearLayout
 	}
 
 	public void setDate(Date date) {
-		calendar.setTime(date);
-		now = false;
-		today = false;
+		Calendar tmp = Calendar.getInstance();
+		tmp.setTime(date);
+
+		onTimeSet(null, tmp.get(HOUR_OF_DAY), tmp.get(MINUTE));
+		onDateSet(null, tmp.get(YEAR), tmp.get(MONTH), tmp.get(DAY_OF_MONTH));
 	}
 
 	private void updateTexts() {
@@ -240,7 +245,7 @@ public class TimeAndDateView extends LinearLayout
 		if(now) calendar = Calendar.getInstance();
 
 		// add min minutes
-		calendar.add(Calendar.MINUTE, min);
+		calendar.add(MINUTE, min);
 
 		// no more now, but maybe today?
 		now = false;
@@ -254,8 +259,8 @@ public class TimeAndDateView extends LinearLayout
 
 	private void resetTime() {
 		Calendar c = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, c.get(Calendar.HOUR_OF_DAY));
-		calendar.set(Calendar.MINUTE, c.get(Calendar.MINUTE));
+		calendar.set(HOUR_OF_DAY, c.get(HOUR_OF_DAY));
+		calendar.set(MINUTE, c.get(MINUTE));
 
 		now = true;
 		ui.time.setText(getTimeString());
@@ -300,8 +305,8 @@ public class TimeAndDateView extends LinearLayout
 			Calendar calendar = (Calendar) getArguments().getSerializable(DATE);
 			if(calendar == null) calendar = Calendar.getInstance();
 
-			int hour = calendar.get(Calendar.HOUR_OF_DAY);
-			int minute = calendar.get(Calendar.MINUTE);
+			int hour = calendar.get(HOUR_OF_DAY);
+			int minute = calendar.get(MINUTE);
 			TimePickerDialog tpd = new TimePickerDialog(getActivity(), listener, hour, minute,
 					android.text.format.DateFormat.is24HourFormat(getActivity()));
 			tpd.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancel), tpd);
