@@ -94,7 +94,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		enableStrictMode();
+//		enableStrictMode();
 		setContentView(R.layout.activity_main);
 
 		PreferenceManager.setDefaultValues(MainActivity.this, R.xml.preferences, false);
