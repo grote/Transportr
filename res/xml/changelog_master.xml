@@ -4,6 +4,7 @@
     <release version="1.1.6-beta1" versioncode="43">
         <change>Fixed some German and Austrian networks</change>
         <change>Removed VOR and VVT network, because now requires API secret like many Austrian networks :(</change>
+        <change>Improved trip icons on map for some devices</change>
     </release>
 
     <release version="1.1.5" versioncode="42">
