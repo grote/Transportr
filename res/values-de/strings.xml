@@ -15,7 +15,7 @@ anzeigen und dem Verlauf über GPS folgen.
 
 Du kannst auch Haltestellen in der Nähe finden und bevorstehende Abfahrten einschliesslich der Verzögerungen (wenn
 es welche gibt) anzeigen lassen.</string>
-  <string name="onboarding_drawer_title">Entdecken Sie weitere Funktionen</string>
+  <string name="onboarding_drawer_title">Entdecke weitere Funktionen</string>
   <string name="onboarding_drawer_text">Berühre dieses Symbol in der Navigationsleiste, um Zugriff auf weitere Funktionen dieser App zu erhalten.</string>
   <string name="drawer_changelog">Änderungsprotokoll</string>
   <string name="drawer_about">Über</string>
@@ -303,4 +303,5 @@ es welche gibt) anzeigen lassen.</string>
   <string name="polish">Polnisch</string>
   <string name="tamil">Tamil</string>
   <string name="esperanto">Esperanto</string>
+  <string name="czech">Tschechisch</string>
 </resources>

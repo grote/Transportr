@@ -34,8 +34,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="tab_libraries">Biblioteki</string>
   <string name="tab_devs">Twórcy</string>
   <string name="tab_about">O</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote
-Oprogramowanie na Wolnej Licencji: GPLv3</string>
+  <string name="about_top">© 2013 – 2015 Torsten Grote\nOprogramowanie na Wolnej Licencji: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr jest asystentem transportu publicznego, który szanuje Twoją prywatność i wolność. Jest darmową aplikacją tworzoną przez ludzi z całego świata mającą na celu ułatwienie korzystania z transportu publicznego jak tylko się da i gdziekolwiek jesteś. To jest Wolne Oprogramowanie, więc możesz z niego dowolnie korzystać, analizować je, kopiować i ulepszać.</p>
@@ -75,14 +74,9 @@ Oprogramowanie na Wolnej Licencji: GPLv3</string>
   <string name="departure_station">Odjazdy ze stacji</string>
   <string name="share_trip_via">Udostępnij trasę przez...</string>
   <string name="undo">Cofnij</string>
-  <string name="fav_trips_empty">Twoje ostatnie trasy pojawią się tutaj po tym jak zaczniesz szukać celów podróży.
-
-
-Będziesz mógł posortować je od ostatnich lub według najczęściej używanych.</string>
+  <string name="fav_trips_empty">Twoje ostatnie trasy pojawią się tutaj po tym jak zaczniesz szukać celów podróży.\n\n\nBędziesz mógł posortować je od ostatnich lub według najczęściej używanych.</string>
   <string name="more">Więcej</string>
-  <string name="no_favourites">Brak ulubionych tras.
-
-Dodaj jakąś na stronie \"Ostatnie trasy\".</string>
+  <string name="no_favourites">Brak ulubionych tras.\n\nDodaj jakąś na stronie \"Ostatnie trasy\".</string>
   <string name="removing_from_favourites">Wybrana trasa dostała dodana do ulubionych. Zostanie ona stąd usunięta.</string>
   <string name="now">Teraz</string>
   <string name="current_time_set">Ustawiono obecny czas.</string>
@@ -292,16 +286,15 @@ Dodaj jakąś na stronie \"Ostatnie trasy\".</string>
   <string name="french">Francuski</string>
   <string name="german">Niemiecki</string>
   <string name="italian">Włoski</string>
-  <string name="portuguese_br">Portugalski
-(Brazylia)</string>
+  <string name="portuguese_br">Portugalski\n(Brazylia)</string>
   <string name="spanish">Hiszpański</string>
   <string name="turkish">Turecki</string>
-  <string name="norwegian_bokmal">Norweski
-Bokmål</string>
+  <string name="norwegian_bokmal">Norweski\nBokmål</string>
   <string name="basque">Baskijski</string>
   <string name="english">Angielski</string>
   <string name="catalan">Kataloński</string>
   <string name="polish">Polski</string>
   <string name="tamil">Tamilski</string>
   <string name="esperanto">Esperanto</string>
+  <string name="czech">Czeski</string>
 </resources>

@@ -34,8 +34,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="tab_libraries">Bibliotekoj</string>
   <string name="tab_devs">Programistoj</string>
   <string name="tab_about">Pri</string>
-  <string name="about_top">© 2013 – 2015 Torsten GROTE
-Programo sub la Libera Permesilo: GPLv3</string>
+  <string name="about_top">© 2013 – 2015 Torsten GROTE\nProgramo sub la Libera Permesilo: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr estas helpilo por publika transporto kiu respektas vian privatecon kaj liberecon. Ĝi estas ne-profita aplikaĵo programita de homoj de la tuta mondo por igi uzadon de publika transporto kiel eble pli facilan kie ajn vi estas. Tiu ĉi aplikaĵo estas Libera Programo, do vi povas libere uzi, analizi, kunhavigi kaj plibonigi ĝin.</p>
@@ -75,14 +74,9 @@ Programo sub la Libera Permesilo: GPLv3</string>
   <string name="departure_station">Stacio de forveturo</string>
   <string name="share_trip_via">Kunhavigi kurson per</string>
   <string name="undo">Malfari</string>
-  <string name="fav_trips_empty">Viaj lastaj kursoj aperos tie ĉi kiam vi komencos serĉi direktojn.
-
-
-Vi eblos ordigi ilin laŭ la plej ofte aŭ laŭ la plej laste uzitaj.</string>
+  <string name="fav_trips_empty">Viaj lastaj kursoj aperos tie ĉi kiam vi komencos serĉi direktojn.\n\n\nVi eblos ordigi ilin laŭ la plej ofte aŭ laŭ la plej laste uzitaj.</string>
   <string name="more">Pli</string>
-  <string name="no_favourites">Neniaj ŝatataj kursoj.
-
-Aldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
+  <string name="no_favourites">Neniaj ŝatataj kursoj.\n\nAldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
   <string name="removing_from_favourites">La elektita kurso estas markita kiel ŝatata kurso. Ĝi estos forigita ankaŭ tie.</string>
   <string name="now">Nun</string>
   <string name="current_time_set">Agordis nunan tempon.</string>
@@ -292,16 +286,15 @@ Aldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
   <string name="french">Franca</string>
   <string name="german">Germana</string>
   <string name="italian">Itala</string>
-  <string name="portuguese_br">Portugala
-(Brazila)</string>
+  <string name="portuguese_br">Portugala\n(Brazila)</string>
   <string name="spanish">Hispana</string>
   <string name="turkish">Turka</string>
-  <string name="norwegian_bokmal">Norvega
-Bokmål</string>
+  <string name="norwegian_bokmal">Norvega\nBokmål</string>
   <string name="basque">Eŭska</string>
   <string name="english">Angla</string>
   <string name="catalan">Kataluna</string>
   <string name="polish">Pola</string>
   <string name="tamil">Tamila</string>
   <string name="esperanto">Esperanto</string>
+  <string name="czech">Ĉeĥa</string>
 </resources>

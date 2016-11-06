@@ -533,7 +533,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VvtProvider provider = new VvtProvider();
+			final VvtProvider provider = new VvtProvider("no secret :(");
 			vvtProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
