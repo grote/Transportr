@@ -521,10 +521,10 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	private void setViewSpan() {
 		if(points.size() == 0) return;
 
-		double maxLat = Double.MIN_VALUE;
-		double minLat = Double.MAX_VALUE;
-		double maxLon = Double.MIN_VALUE;
-		double minLon = Double.MAX_VALUE;
+		double maxLat = -180;
+		double minLat = 180;
+		double maxLon = -180;
+		double minLon = 180;
 
 		for(GeoPoint point : points) {
 			maxLat = Math.max(point.getLatitude(), maxLat);
@@ -553,7 +553,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 	private void markLocation(Location loc, Drawable drawable) {
 		GeoPoint pos = new GeoPoint(loc.getLatAsDouble(), loc.getLonAsDouble());
 
-		Log.d(getClass().getSimpleName(), "Mark location: " + loc.toString());
+		Log.i(getClass().getSimpleName(), "Mark location: " + loc.toString());
 
 		points.add(pos);
 		Marker marker = new Marker(map);
