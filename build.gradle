@@ -83,8 +83,8 @@ allprojects {
 
 android {
 	defaultConfig {
-		versionCode 42
-		versionName "1.1.5"
+		versionCode 43
+		versionName "1.1.6-beta1"
 
 		compileSdkVersion 25
 		targetSdkVersion 25
