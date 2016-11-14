@@ -23,7 +23,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +33,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -44,6 +40,7 @@ import de.grobox.liberario.FavLocation.LOC_TYPE;
 import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.utils.LocationFilter;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
@@ -102,130 +99,25 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 	@NonNull
 	@Override
 	public Filter getFilter() {
-		if(filter != null) return filter;
-		else {
-			// Assign every station a score, to sort them before displaying them
-			final HashMap<WrapLocation, Double> resultScores = new HashMap<>();
-			filter = new Filter() {
-				// People make mistakes writing search terms.
-				// That means we have to use approximation to score
-				// stations based on their similarity to the searched term
+		if(filter == null) filter = new LocationFilter(onlyIDs) {
+			@Override
+			protected FilterResults performFiltering(CharSequence constraint) {
+				search = constraint;
+				return super.performFiltering(constraint, suggestedLocations, defaultLocations);
+			}
 
-				// This gives us an approximation between 1 and 0, using the Levenshtein distance
-				private double stringSimilarity(String s1, String s2) {
-					String longer = s1, shorter = s2;
-					if (s1.length() < s2.length()) { // longer should always have greater length
-						longer = s2; shorter = s1;
-					}
-					int longerLength = longer.length();
-					if (longerLength == 0) { return 1.0; /* both strings are zero length */ }
-					return (longerLength - levenshteinDistance(longer, shorter)) / (double) longerLength;
+			@Override
+			protected void publishResults(CharSequence constraint, FilterResults results) {
+				if(results != null && results.count > 0) {
+					locations = (List<WrapLocation>) results.values;
+
+					notifyDataSetChanged();
+				} else {
+					notifyDataSetInvalidated();
 				}
-
-				// Example implementation of the Levenshtein Edit Distance
-				// See http://rosettacode.org/wiki/Levenshtein_distance#Java
-				private int levenshteinDistance(String s1, String s2) {
-					s1 = s1.toLowerCase();
-					s2 = s2.toLowerCase();
-
-					int[] costs = new int[s2.length() + 1];
-					for (int i = 0; i <= s1.length(); i++) {
-						int lastValue = i;
-						for (int j = 0; j <= s2.length(); j++) {
-							if (i == 0)
-								costs[j] = j;
-							else {
-								if (j > 0) {
-									int newValue = costs[j - 1];
-									if (s1.charAt(i - 1) != s2.charAt(j - 1))
-										newValue = Math.min(Math.min(newValue, lastValue),
-												costs[j]) + 1;
-									costs[j - 1] = lastValue;
-									lastValue = newValue;
-								}
-							}
-						}
-						if (i > 0)
-							costs[s2.length()] = lastValue;
-					}
-					return costs[s2.length()];
-				}
-
-				@Override
-				protected FilterResults performFiltering(final CharSequence constraint) {
-					FilterResults filterResults = new FilterResults();
-
-					if(constraint != null) {
-						List<WrapLocation> result = new ArrayList<>();
-						search = constraint;
-
-						// add fav locations that fulfill constraint
-						if(defaultLocations != null) {
-							for(WrapLocation l : defaultLocations) {
-								// if we only want locations with ID, make sure the location has one
-								if(!onlyIDs || l.getLocation().hasId()) {
-									// case-insensitive match of location name and location not already included
-									if(l.getLocation().name != null && l.getLocation().name.toLowerCase().contains(constraint.toString().toLowerCase()) && !result.contains(l)) {
-										result.add(l);
-										// Favorites are most important, they have to stay at the top
-										resultScores.put(l, 1d);
-									}
-								}
-							}
-						}
-
-						// add suggested locations (from network provider) without filtering if not already included
-						if(suggestedLocations != null) {
-							for(Location l : suggestedLocations) {
-								WrapLocation loc = new WrapLocation(l);
-								// prevent duplicates and if we only want locations with ID, make sure the location has one
-								if(!result.contains(loc) && (!onlyIDs || l.hasId())) {
-									result.add(loc);
-									String lName = loc.getLocation().name;
-									if (lName != null && lName.toLowerCase().contains(constraint.toString().toLowerCase())) {
-										// Because some providers don't preorder their results, we have to order
-										// by the search term
-										// if the term occurs literally, we don't need to calculate
-										// the levenshtein distance.
-										resultScores.put(loc, 0.9d);
-									} else if (lName != null) {
-										resultScores.put(loc, stringSimilarity(lName.toLowerCase(), constraint.toString().toLowerCase()));
-									} else {
-										resultScores.put(loc, 0d);
-									}
-								}
-							}
-						}
-
-						// Assign the data to the FilterResults
-						filterResults.values = result;
-						filterResults.count = result.size();
-					}
-					return filterResults;
-				}
-
-				@Override
-				protected void publishResults(CharSequence constraint, FilterResults results) {
-					if(results != null && results.count > 0) {
-						locations = (List<WrapLocation>) results.values;
-
-						// Sort the results according to the score map
-						Collections.sort(locations, new Comparator<WrapLocation>() {
-							@Override
-							public int compare(WrapLocation l1, WrapLocation l2)
-							{
-								return resultScores.get(l2).compareTo(resultScores.get(l1));
-							}
-						});
-
-						notifyDataSetChanged();
-					} else {
-						notifyDataSetInvalidated();
-					}
-				}
-			};
-			return filter;
-		}
+			}
+		};
+		return filter;
 	}
 
 	@NonNull
