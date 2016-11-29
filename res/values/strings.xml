@@ -205,7 +205,7 @@ there are any).</string>
     <string name="np_name_wien" translatable="false">Wiener Linien</string>
     <string name="np_desc_wien">Vienna</string>
 
-    <string name="np_region_belgium">Belgium</string>µ
+    <string name="np_region_belgium">Belgium</string>
     <string name="np_desc_sncb">Public transport in Belgium</string>
     <string name="np_desc_sncb_networks" translatable="false">SNCB-NMBS, De Lijn, TEC, MIVB-STIB</string>
 
