@@ -1,4 +1,4 @@
-/*    Transportr
+/*
  *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
@@ -297,7 +297,8 @@ public class TransportNetworks {
 		region = region(R.string.np_region_belgium, "\uD83C\uDDE7\uD83C\uDDEA");
 
 		list.add(new TransportNetwork(context, NetworkId.SNCB)
-				         .setDescription(getString(R.string.np_desc_sncb))
+		                 .setName(getString(R.string.np_region_belgium))
+				         .setDescription(getString(R.string.np_desc_sncb), getString(R.string.np_desc_sncb_networks))
 				         .setRegion(region)
 		);
 
