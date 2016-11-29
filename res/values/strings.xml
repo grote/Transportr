@@ -206,7 +206,8 @@ there are any).</string>
     <string name="np_desc_wien">Vienna</string>
 
     <string name="np_region_belgium">Belgium</string>
-    <string name="np_desc_sncb">Trains in Belgium</string>
+    <string name="np_desc_sncb">Public transport in Belgium</string>
+    <string name="np_desc_sncb_networks" translatable="false">SNCB-NMBS, De Lijn, TEC, MIVB-STIB</string>
 
     <string name="np_region_br">Brazil</string>
     <string name="np_name_br">Brazil</string>
