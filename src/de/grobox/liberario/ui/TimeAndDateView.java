@@ -85,6 +85,8 @@ public class TimeAndDateView extends LinearLayout
 			public void onClick(View view) {
 				TimePickerFragment newFragment = new TimePickerFragment();
 				newFragment.setOnTimeSetListener(TimeAndDateView.this);
+				// show current time also in dialog if time set to now
+				if(now) resetTime();
 				Bundle bundle = new Bundle();
 				bundle.putSerializable(DATE, calendar);
 				newFragment.setArguments(bundle);
@@ -108,6 +110,8 @@ public class TimeAndDateView extends LinearLayout
 			public void onClick(View view) {
 				DatePickerFragment newFragment = new DatePickerFragment();
 				newFragment.setOnDateSetListener(TimeAndDateView.this);
+				// show current date also in dialog if set to today
+				if(today) resetDate();
 				Bundle bundle = new Bundle();
 				bundle.putSerializable(DATE, calendar);
 				newFragment.setArguments(bundle);
