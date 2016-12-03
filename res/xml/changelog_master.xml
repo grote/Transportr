@@ -6,6 +6,7 @@
         <change>Removed VOR and VVT network, because now requires API secret like many Austrian networks :(</change>
         <change>Improved trip icons on map for some devices</change>
         <change>Fixed center on trip when viewing trip on map</change>
+        <change>Fixed bug where sometimes "now" and "today" where not respected</change>
     </release>
 
     <release version="1.1.5" versioncode="42">

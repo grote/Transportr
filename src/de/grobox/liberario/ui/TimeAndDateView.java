@@ -210,9 +210,8 @@ public class TimeAndDateView extends LinearLayout
 	}
 
 	public Date getDate() {
-		if(today && now) {
-			return new Date();
-		}
+		if(now) resetTime();
+		if(today) resetDate();
 		return calendar.getTime();
 	}
 
