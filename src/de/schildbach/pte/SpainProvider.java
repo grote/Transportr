@@ -17,12 +17,6 @@
 
 package de.schildbach.pte;
 
-import android.util.Log;
-
-import de.schildbach.pte.dto.Product;
-import de.schildbach.pte.dto.Style;
-import de.schildbach.pte.dto.Style.Shape;
-
 public class SpainProvider extends AbstractNavitiaProvider
 {
 	private static String API_REGION = "es";
@@ -40,38 +34,4 @@ public class SpainProvider extends AbstractNavitiaProvider
 		return API_REGION;
 	}
 
-	@Override
-	protected Style getLineStyle(final Product product, final String code, final String color)
-	{
-		final Style defaultStyle = Standard.STYLES.get(product);
-		int bc = defaultStyle.backgroundColor;
-		int fc = defaultStyle.foregroundColor;
-		if(color != null) {
-			bc = Style.parseColor(color);
-			fc = computeForegroundColor(color);
-		}
-
-		switch (product)
-		{
-			case SUBURBAN_TRAIN:
-			{
-				return new Style(Shape.CIRCLE, bc, fc);
-			}
-			case SUBWAY:
-			{
-				return new Style(Shape.CIRCLE, bc, fc);
-			}
-			case TRAM:
-			{
-				return new Style(Shape.RECT, bc, fc);
-			}
-			case BUS:
-			{
-				return new Style(Shape.RECT, bc, fc);
-			}
-			default:
-				Log.d("SpainProvider", "Unhandled Product: " + product.toString());
-				return new Style(bc, fc);
-		}
-	}
 }

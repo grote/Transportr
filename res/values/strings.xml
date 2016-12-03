@@ -211,7 +211,7 @@ there are any).</string>
     <string name="np_region_br">Brazil</string>
     <string name="np_name_br">Brazil</string>
     <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte and Porto Alegre</string>
-    <string name="np_desc_br_networks" translatable="false">EPTC, SPTRANS, Buenosaires Subtes</string>
+    <string name="np_desc_br_networks" translatable="false">SPTRANS, BH Trans, EPTC</string>
     <string name="np_name_br_floripa">Florianópolis</string>
     <string name="np_desc_br_floripa">Many bus routes, no Executivos</string>
     <string name="np_desc_br_floripa_networks" translatable="false">SIM</string>
@@ -334,8 +334,8 @@ there are any).</string>
 
     <string name="np_region_spain">Spain</string>
     <string name="np_name_spain">Spain</string>
-    <string name="np_desc_spain">Madrid buses, Barcelona, Basque</string>
-    <string name="np_desc_spain_networks" translatable="false">EMT, TMB, Moveuskadi</string>
+    <string name="np_desc_spain">Spain, Euskadi, Madrid, Barcelona</string>
+    <string name="np_desc_spain_networks" translatable="false">EMT, TMB, Moveuskadi, Renfe, Lurraldebus</string>
 
     <string name="np_region_sweden">Sweden</string>
     <string name="np_desc_se">Sweden, Stockholm</string>
