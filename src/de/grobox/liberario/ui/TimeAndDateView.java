@@ -200,8 +200,12 @@ public class TimeAndDateView extends LinearLayout
 		calendar.set(HOUR_OF_DAY, hourOfDay);
 		calendar.set(MINUTE, minute);
 
-		Calendar c = Calendar.getInstance();
-		now = MILLISECONDS.toMinutes(Math.abs(c.getTimeInMillis() - calendar.getTimeInMillis())) < 10;
+		// check if time can be considered "now"
+		Calendar c1 = Calendar.getInstance();
+		c1.set(HOUR_OF_DAY, hourOfDay);
+		c1.set(MINUTE, minute);
+		Calendar c2 = Calendar.getInstance();
+		now = MILLISECONDS.toMinutes(Math.abs(c1.getTimeInMillis() - c2.getTimeInMillis())) < 10;
 		updateTexts();
 	}
 
