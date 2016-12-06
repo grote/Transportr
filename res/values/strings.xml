@@ -344,7 +344,7 @@ there are any).</string>
     <string name="np_region_switzerland">Switzerland</string>
     <!-- SBB is german/international, CFF is french and FFS is italian! So this IS translatable. -->
     <string name="np_name_sbb" translatable="true">SBB</string>
-    <string name="np_desc_sbb">Trains in Switzerland</string>
+    <string name="np_desc_sbb">Switzerland</string>
     <string name="np_desc_vbl">Luzern</string>
     <string name="np_desc_zvv">Zurich</string>
 
