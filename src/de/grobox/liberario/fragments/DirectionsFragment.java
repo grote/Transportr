@@ -493,11 +493,11 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 	private void presetFromTo(Location from, Location via, Location to, Date date) {
 		if(ui.from != null && from != null) {
-			ui.from.setLocation(from, getDrawableForLocation(getContext(), from));
+			ui.from.setLocation(from);
 		}
 
 		if(ui.via != null) {
-			ui.via.setLocation(via, getDrawableForLocation(getContext(), via));
+			ui.via.setLocation(via);
 			if(via != null && ui.products.getVisibility() == GONE) {
 				// if there's a via location, make sure to show it in the UI
 				showMore(true);
@@ -505,7 +505,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 
 		if(ui.to != null && to != null) {
-			ui.to.setLocation(to, getDrawableForLocation(getContext(), to));
+			ui.to.setLocation(to);
 		}
 
 		if (date != null) {
