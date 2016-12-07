@@ -435,42 +435,9 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		if(intent != null) {
 			final String action = intent.getAction();
 			if(action != null && action.equals(TAG)) {
-				WrapLocation wfrom = (WrapLocation) intent.getSerializableExtra("from");
-				WrapLocation wvia = (WrapLocation) intent.getSerializableExtra("via");
-				WrapLocation wto = (WrapLocation) intent.getSerializableExtra("to");
-				Location from, via, to;
-				if(wfrom != null) {
-					from = wfrom.getLocation();
-					if(wfrom.getType() == WrapLocation.WrapType.GPS) {
-						activateGPS();
-						from = null;
-					}
-				} else {
-					from = null;
-				}
-				if(wvia != null) {
-					via = wvia.getLocation();
-				} else {
-					via = null;
-				}
-				if(wto != null) {
-					to = wto.getLocation();
-					if(wto.getType() == WrapLocation.WrapType.HOME){
-						Location home = RecentsDB.getHome(getContext());
-						if(home != null) {
-							to = home;
-						} else {
-							// show home picker dialog
-							changingHome = true;
-							HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
-							setHomeFragment.setOnHomeChangedListener(this);
-							FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-							setHomeFragment.show(ft, HomePickerDialogFragment.TAG);
-						}
-					}
-				} else {
-					to = null;
-				}
+				WrapLocation from = (WrapLocation) intent.getSerializableExtra("from");
+				WrapLocation via = (WrapLocation) intent.getSerializableExtra("via");
+				WrapLocation to = (WrapLocation) intent.getSerializableExtra("to");
 				Date date = (Date) intent.getSerializableExtra("date");
 				boolean search = intent.getBooleanExtra("search", false);
 
@@ -483,6 +450,45 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			intent.setAction(null);
 			getActivity().setIntent(null);
 		}
+	}
+
+	private void presetFromTo(WrapLocation wfrom, WrapLocation wvia, WrapLocation wto, Date date) {
+
+		Location from, via, to;
+		if(wfrom != null) {
+			from = wfrom.getLocation();
+			if(wfrom.getType() == WrapLocation.WrapType.GPS) {
+				activateGPS();
+				from = null;
+			}
+		} else {
+			from = null;
+		}
+		if(wvia != null) {
+			via = wvia.getLocation();
+		} else {
+			via = null;
+		}
+		if(wto != null) {
+			to = wto.getLocation();
+			if(wto.getType() == WrapLocation.WrapType.HOME){
+				Location home = RecentsDB.getHome(getContext());
+				if(home != null) {
+					to = home;
+				} else {
+					// show home picker dialog
+					changingHome = true;
+					HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
+					setHomeFragment.setOnHomeChangedListener(this);
+					FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+					setHomeFragment.show(ft, HomePickerDialogFragment.TAG);
+				}
+			}
+		} else {
+			to = null;
+		}
+
+		presetFromTo(from, via, to, date);
 	}
 
 	private void presetFromTo(Location from, Location via, Location to, Date date) {
@@ -507,7 +513,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 	}
 
-	private void searchFromTo(Location from, Location via, Location to, Date date) {
+	private void searchFromTo(WrapLocation from, WrapLocation via, WrapLocation to, Date date) {
 		presetFromTo(from, via, to, date);
 		search();
 	}
