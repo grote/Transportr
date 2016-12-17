@@ -243,6 +243,9 @@ there are any).</string>
     <string name="np_name_francenorthwest">France North West</string>
     <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse Normandie, Haute Normandie</string>
     <string name="np_desc_francenorthwest_networks" translatable="false">LILA, Star, TAN, IRIGO, SNCF</string>
+    <string name="np_name_frenchsoutheast">France South East</string>
+    <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corse</string>
+    <string name="np_desc_frenchsoutheast_networks" translatable="false">MTM, Aix en Bus, Transisère, Ligne d\'Azur, SNCF</string>
     <string name="np_name_frenchsouthwest">France South West</string>
     <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
     <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
