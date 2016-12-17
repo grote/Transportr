@@ -490,7 +490,6 @@ public class TransportNetworks {
 				.setStatus(BETA)
 				.setGoodLineNames(true)
 		);
-
 		list.add(new TransportNetwork(context, NetworkId.FRANCENORTHEAST)
 				.setName(getString(R.string.np_name_francenortheast))
 				.setDescription(getString(R.string.np_desc_francenortheast), getString(R.string.np_desc_francenortheast_networks))
@@ -506,6 +505,13 @@ public class TransportNetworks {
 				.setStatus(ALPHA)
 		);
 
+		list.add(new TransportNetwork(context, NetworkId.FRANCESOUTHEAST)
+				.setName(getString(R.string.np_name_frenchsoutheast))
+				.setDescription(getString(R.string.np_desc_frenchsoutheast), getString(R.string.np_desc_frenchsoutheast_networks))
+				.setRegion(region)
+				.setStatus(BETA)
+				.setGoodLineNames(true)
+		);
 		// New Zealand
 		region = region(R.string.np_region_nz, "\uD83C\uDDF3\uD83C\uDDFF");
 
