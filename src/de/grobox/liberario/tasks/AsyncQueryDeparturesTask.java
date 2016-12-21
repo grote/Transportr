@@ -58,8 +58,8 @@ public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDepartu
 	protected QueryDeparturesResult doInBackground(Void... params) {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(fragment.getActivity()));
 
-		Log.d(getClass().getSimpleName(), "Departures (" + String.valueOf(max_departures) + "): " + stationId);
-		Log.d(getClass().getSimpleName(), "Date: " + date.toString());
+		Log.i(getClass().getSimpleName(), "Departures (" + String.valueOf(max_departures) + "): " + stationId);
+		Log.i(getClass().getSimpleName(), "Date: " + date.toString());
 
 		try {
 			if(AsyncQueryTripsTask.isNetworkAvailable(fragment.getActivity())) {
