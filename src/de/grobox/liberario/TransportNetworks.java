@@ -227,24 +227,22 @@ public class TransportNetworks {
 				.setRegion(region)
 		);
 
-		// missing API secret
-/*		list.add(new TransportNetwork(context, NetworkId.VOR)
-				         .setDescription(getString(R.string.np_desc_vor))
-				         .setRegion(region)
+		list.add(new TransportNetwork(context, NetworkId.VOR)
+				.setDescription(getString(R.string.np_desc_vor))
+				.setRegion(region)
 		);
-*/
+
 		list.add(new TransportNetwork(context, NetworkId.LINZ)
 				.setName(getString(R.string.np_name_linz))
 				.setDescription(getString(R.string.np_desc_linz))
 				.setRegion(region)
 		);
 
-		// missing API secret
-/*		list.add(new TransportNetwork(context, NetworkId.VVT)
+		list.add(new TransportNetwork(context, NetworkId.VVT)
 				         .setDescription(getString(R.string.np_desc_vvt))
 				         .setRegion(region)
 		);
-*/
+
 		list.add(new TransportNetwork(context, NetworkId.IVB)
 				.setDescription(getString(R.string.np_desc_ivb))
 				.setRegion(region)
@@ -262,10 +260,17 @@ public class TransportNetworks {
 				.setRegion(region)
 		);
 
+		list.add(new TransportNetwork(context, NetworkId.VMOBIL)
+				.setName(getString(R.string.np_name_vmobil))
+				.setDescription(getString(R.string.np_desc_vmobil))
+				.setRegion(region)
+		);
+
 		// Liechtenstein
 		region = region(R.string.np_region_liechtenstein, "\uD83C\uDDF1\uD83C\uDDEE");
 
-		list.add(new TransportNetwork(context, NetworkId.VAO)
+		list.add(new TransportNetwork(context, NetworkId.VMOBIL)
+				.setName(getString(R.string.np_name_vmobil))
 				.setDescription(getString(R.string.np_desc_vmobil))
 				.setRegion(region)
 		);
@@ -389,13 +394,13 @@ public class TransportNetworks {
 				.setStatus(BETA)
 				.setGoodLineNames(true)
 		);
-
+/*
 		list.add(new TransportNetwork(context, NetworkId.ATC)
 				.setDescription(getString(R.string.np_desc_atc))
 				.setRegion(region)
 				.setStatus(BETA)
 		);
-
+*/
 		// Poland
 		region = region(R.string.np_region_poland, "\uD83C\uDDF5\uD83C\uDDF1");
 

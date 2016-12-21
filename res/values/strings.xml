@@ -314,6 +314,7 @@ there are any).</string>
     <string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
 
     <string name="np_region_liechtenstein">Liechtenstein</string>
+    <string name="np_name_vmobil">VVV</string>
     <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
 
     <string name="np_region_luxembourg">Luxembourg</string>

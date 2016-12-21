@@ -61,6 +61,7 @@ public final class NetworkProviderFactory
 	private static Reference<LinzProvider> linzProviderRef;
 	private static Reference<VvtProvider> vvtProviderRef;
 	private static Reference<VaoProvider> vaoProviderRef;
+	private static Reference<VmobilProvider> vmobilProviderRef;
 	private static Reference<IvbProvider> ivbProviderRef;
 	private static Reference<StvProvider> stvProviderRef;
 	private static Reference<SbbProvider> sbbProviderRef;
@@ -104,6 +105,7 @@ public final class NetworkProviderFactory
 
 	private static final String NAVITIA_API = "https://api.navitia.io/v1/";
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
+	private static final String VAO = "{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}";
 
 	public static synchronized NetworkProvider provider(final NetworkId networkId)
 	{
@@ -508,7 +510,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VorProvider provider = new VorProvider("no secret :(");
+			final VorProvider provider = new VorProvider(VAO);
 			vorProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -534,7 +536,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VvtProvider provider = new VvtProvider("no secret :(");
+			final VvtProvider provider = new VvtProvider(VAO);
 			vvtProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -547,8 +549,21 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VaoProvider provider = new VaoProvider("{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}");
+			final VaoProvider provider = new VaoProvider(VAO);
 			vaoProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.VMOBIL))
+		{
+			if (vmobilProviderRef != null)
+			{
+				final VmobilProvider provider = vmobilProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final VmobilProvider provider = new VmobilProvider(VAO);
+			vmobilProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.IVB))
