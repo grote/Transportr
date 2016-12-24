@@ -330,8 +330,8 @@ there are any).</string>
 
     <string name="np_region_nz">New Zealand</string>
     <string name="np_name_nz">New Zealand</string>
-    <string name="np_desc_nz">New-Zealand, Welligton, Auckland</string>
-    <string name="np_desc_nz_networks" translatable="false">Go Welligton, Tranz Metro, Auckland Transport</string>
+    <string name="np_desc_nz">New-Zealand, Wellington, Auckland</string>
+    <string name="np_desc_nz_networks" translatable="false">Go Wellington, Tranz Metro, Auckland Transport</string>
 
     <string name="np_region_poland">Poland</string>
     <string name="np_name_pl" translatable="false">PKP</string>
