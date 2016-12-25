@@ -173,7 +173,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_desc_vvt">Tirol</string>
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bélgica</string>
-  <string name="np_desc_sncb">Trenes en Bélgica</string>
+  <string name="np_desc_sncb">Transporte público en Bélgica</string>
   <string name="np_region_br">Brazil</string>
   <string name="np_name_br">Brazil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte y Porto Alegre</string>
@@ -257,18 +257,17 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
   <string name="np_region_nz">Nueva Zelanda</string>
   <string name="np_name_nz">Nueva Zelanda</string>
-  <string name="np_desc_nz">Nueva Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, lineas de ferrocarriles en Polonia</string>
   <string name="np_region_spain">España</string>
   <string name="np_name_spain">España</string>
-  <string name="np_desc_spain">Madrid autobúses, Barcelona, País Vasco</string>
+  <string name="np_desc_spain">Madrid, Barcelona, Euskadi - País Vasco, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma</string>
   <string name="np_region_sweden">Suecia</string>
   <string name="np_desc_se">Suecia, Estocolmo</string>
   <string name="np_region_switzerland">Suiza</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">SBB</string>
-  <string name="np_desc_sbb">Trenes en Suiza</string>
+  <string name="np_desc_sbb">Suiza</string>
   <string name="np_desc_vbl">Lucerna</string>
   <string name="np_desc_zvv">Zúrich</string>
   <string name="np_region_uae">Emiratos Árabes Unidos</string>
@@ -297,4 +296,5 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="polish">Polaco</string>
   <string name="tamil">Tamil</string>
   <string name="esperanto">Esperanto</string>
+  <string name="czech">Checo</string>
 </resources>

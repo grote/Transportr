@@ -6,6 +6,7 @@
         <change>Improved trip icons on map for some devices</change>
         <change>Fixed center on trip when viewing trip on map</change>
         <change>Fixed bug where sometimes "now" and "today" where not respected</change>
+        <change>New translation: Hungarian (Thanks András!)</change>
         <change>Removed San Francisco and Jerusalem</change>
     </release>
 

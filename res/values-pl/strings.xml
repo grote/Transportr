@@ -172,7 +172,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_vvt">Tyrol</string>
   <string name="np_desc_wien">Wiedeń</string>
   <string name="np_region_belgium">Belgia</string>
-  <string name="np_desc_sncb">Pociągi w Belgii</string>
+  <string name="np_desc_sncb">Transport publiczny w Belgii</string>
   <string name="np_region_br">Brazylia</string>
   <string name="np_name_br">Brazylia</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte i Porto Alegre</string>
@@ -196,6 +196,8 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
   <string name="np_name_francenorthwest">Francja północno-zachodnia</string>
   <string name="np_desc_francenorthwest">Bretania, Kraj Loary, Region Centralny, Dolna Normandia, Górna Normandia</string>
+  <string name="np_name_frenchsoutheast">Francja południowo-wschodnia</string>
+  <string name="np_desc_frenchsoutheast">Prowansja-Alpy-Lazurowe Wybrzeże, Rodan-Alpy, Langwedocja-Roussillon, Owernia, Korsyka</string>
   <string name="np_name_frenchsouthwest">Francja południowo-zachodnia</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Akwitania, Midi-Pireneje, Bordeaux, Tuluza</string>
   <string name="np_desc_paca">Prowansja-Alpy-Lazurowe Wybrzeże</string>
@@ -261,13 +263,13 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_pl">Polska, koleje w Polsce</string>
   <string name="np_region_spain">Hiszpania</string>
   <string name="np_name_spain">Hiszpania</string>
-  <string name="np_desc_spain">Autobusy Madryt, Barcelona, Kraj Basków</string>
+  <string name="np_desc_spain">Madryt, Barcelona, Kraj Basków, Walencja, Alicante, Majorka, Minorka, Teneryfa, La Palma</string>
   <string name="np_region_sweden">Szwecja</string>
   <string name="np_desc_se">Szwecja, Sztokholm</string>
   <string name="np_region_switzerland">Szwajcaria</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">SBB-CFF-FFS</string>
-  <string name="np_desc_sbb">Pociągi w Szwajcarii</string>
+  <string name="np_desc_sbb">Szwajcaria</string>
   <string name="np_desc_vbl">Lucerna</string>
   <string name="np_desc_zvv">Zurych</string>
   <string name="np_region_uae">Zjednoczone Emiraty Arabskie</string>

@@ -1,5 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_short_desc">De helper voor het openbaar vervoer die jouw privacy en vrijheid respecteert.</string>
+  <string name="google_play_full_desc">Transportr is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken waar je ook bent.
+
+Op het moment werkt het het beste in Europa, maar het ondersteund vele locaties wereldwijd. Als je in een niet ondersteund gebied woont, kun je deze aan Transportr toevoegen.
+Instructies staan op de homepage.
+
+Transportr vind directies vanaf je huis, je momentaneu positie, of een gegeven station naar
+waar je ook heen wilt gaan. Je kan ook complete routes als favorieten op slaan en
+volgende directies met een enkele swipe vinden. Natuurlijk kan je ook je positie op de kaart tonen
+en je voortgang volgen via GPS.
+
+Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclusief eventuele vertraging.</string>
+  <string name="onboarding_drawer_title">Ontdek Meer Functies</string>
+  <string name="onboarding_drawer_text">Druk op dit icoon op de navigatielade te openen om meer functies van deze app te bereiken.</string>
   <string name="drawer_changelog">Lijst van veranderingen</string>
   <string name="drawer_about">Over</string>
   <string name="drawer_settings">Instellingen</string>
@@ -11,10 +25,12 @@
   <string name="action_location_map">Laat stations op kaart zien</string>
   <string name="action_use_gps">GPS inschakelen</string>
   <string name="action_share">Deel</string>
+  <string name="action_trip_calendar">Voeg toe aan Kalender</string>
   <string name="action_trip_delete">Verbinding verwijderen</string>
   <string name="action_show_on_external_map">Laat op externe kaart zien</string>
   <string name="action_copy">Kopieëren</string>
   <string name="action_show_on_map">Laat op kaart zien</string>
+  <string name="action_show_all">Toon alle</string>
   <string name="drawer_directions">Verbindingen</string>
   <string name="tab_fav_trips">Favoriete Reizen</string>
   <string name="drawer_departures">Vertrekken</string>
@@ -23,11 +39,26 @@
   <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
   <string name="about_top">© 2013 – 2015 Torsten Grote\nVrije Software licentie: GPLv3</string>
+  <string name="about">
+<![CDATA[
+<p>Transportr is een helper voor het openbaar vervoer die jouw privacy en vrijheid respecteert. Het is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken waar je ook bent. Deze app is Vrije Software, dus je kan deze vrij gebruiken, bestuderen, delen en verbeteren.</p>
+<p>Er is geen garantie voor de correctheid van de data. Je gebruikt deze app op je eigen risico.</p>
+]]>
+</string>
+  <string name="about_bottom">
+<![CDATA[
+<p><b>Contributies</b> zijn welkom en worden geapprecieerd. Als je mee wilt helpen ga dan alsjeblieft naar <a href=\"%1$s\">de Transportr homepage</a> voor meer informatie.</p>
+<p>Als je problemen met de app vind, rapporteer deze dan alsjeblief op <a href=\"%2$s\">de issue tracker</a>.</p>
+<p><b>Donatieopties</b> staan op <a href=\"%3$s\">de Transportr website</a>.</p>
+]]>
+</string>
+  <string name="visit_website">Bezoek Website</string>
   <string name="trip_dep">v.</string>
   <string name="trip_arr">a.</string>
   <string name="trip_removed">Reis Verwijderd</string>
   <string name="from">Van</string>
   <string name="to">Naar</string>
+  <string name="via">Via</string>
   <string name="from_here">Vanaf Hier</string>
   <string name="to_here">Naar Hier</string>
   <string name="min"> min</string>
@@ -51,18 +82,37 @@
   <string name="more">Meer</string>
   <string name="no_favourites">Geen favoriete reizen.\n\nVoeg er een toe op de \"Recente Reizen\" pagina.</string>
   <string name="removing_from_favourites">Een reis die je geselecteerd hebt is ook gemarkeerd als favoriete reis. De reis zal ook uit je favorieten verwijderd worden.</string>
+  <string name="now">Nu</string>
   <string name="current_time_set">Tijd is ingesteld op nu.</string>
+  <string name="today">Vandaag</string>
   <string name="current_date_set">Datum is ingesteld op vandaag.</string>
   <string name="added_1h">1 uur was toegevoegd.</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Annuleer</string>
+  <string name="yes">Ja</string>
+  <string name="no">Nee</string>
   <string name="pref_transport_network">Transportatienetwerk</string>
   <string name="pref_hide_departure_time">Verberg vertrektijd</string>
   <string name="pref_hide_departure_time_summary">Toon aankomsttijd alleen bij het tonen van overstappen</string>
+  <string name="pref_exit_app_on_back_press">Sluit app met terug knop</string>
+  <string name="pref_exit_app_on_back_press_summary">Sluit de app altijd wanneer je op terug drukt in het startscherm</string>
   <string name="pref_home">Thuislocatie</string>
   <string name="pref_display">Scherm</string>
   <string name="pref_theme_title">Thema</string>
   <string name="pref_theme_light">Licht</string>
   <string name="pref_theme_dark">Donker</string>
+  <string name="pref_language_title">Taal</string>
+  <string name="pref_directions_routing">Richtingen en Routeplanning</string>
+  <string name="pref_optimize">Optimaliseer voor</string>
+  <string name="pref_optimize_least_duration">Kortste Tijd</string>
+  <string name="pref_optimize_least_changes">Minste Overstappen</string>
+  <string name="pref_optimize_least_walking">Kortste Lopen</string>
+  <string name="pref_walk_speed">Loopsnelheid</string>
+  <string name="pref_walk_speed_slow">Langzaa</string>
+  <string name="pref_walk_speed_normal">Normaal</string>
+  <string name="pref_walk_speed_fast">Snel</string>
   <string name="warning_departure_gap">Te weinig vertrekken gevonden. Er kunnen meer verborgen zijn. Zoek op de exacte tijd om zeker te zijn dat er geen vertrekken missen.</string>
+  <string name="warning_permission_granted_action">Kon de laatste actie niet automatisch herhalen</string>
   <string name="error_pick_network">U moet een verkeersnetwerk kiezen</string>
   <string name="error_no_internet">Geen bruikbare internetverbinding beschikbaar</string>
   <string name="error_invalid_from">Ongeldig Vertrekpunt (Van)</string>
@@ -78,11 +128,19 @@
   <string name="error_no_departures_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het vinden van verterkken.</string>
   <string name="error_no_nearby_locations_capability">Het huidige transportnetwerk ondersteund het vinden van dichtbijzijnde stations niet.</string>
   <string name="error_please_file_ticket">Er geen iets mis. Maak a.u.b. een foutrapport aan met een uitleg van wat je doet voordat dit probleem op trad.</string>
+  <string name="error_trip_refresh_failed">Kon de data voor de reis niet herladen.</string>
   <string name="meter">m</string>
+  <string name="system_default">Systeemstandaard</string>
+  <string name="times_include_delays">(Let op: Tijd is inclusief gerapporteerde vertragingen)</string>
   <string name="home">Thuis</string>
+  <string name="home_dialog_title">Zet thuislocatie</string>
   <string name="location">Locatie</string>
   <string name="location_home">Klik om uw thuisstation in te stellen</string>
   <string name="location_gps">Gebruik huidige locatie</string>
+  <string name="location_map">Krijg Locatie van Kaart</string>
+  <string name="position_not_yet_known">Positie nog niet bekend</string>
+  <string name="position_no_gps">GPS is uitgeschakeld. Positie zal niet betrouwbaar zijn.</string>
+  <string name="select_products">Kies Transporttype</string>
   <string name="product_high_speed_train">Hogesnelheidstrein</string>
   <string name="product_regional_train">Regionale trein</string>
   <string name="product_suburban_train">Stoptrein</string>
@@ -97,6 +155,7 @@
   <string name="action_fav_trips_sort_most">Meestgebruikt</string>
   <string name="action_set_locations">Bewerk zoekopdracht</string>
   <string name="action_swap_locations">Zoek naar terugreis</string>
+  <string name="permission_explanation_gps">Je moet de locatie permissie geven om je positie op de kaart te zien.</string>
   <string name="permission_denied_gps">Je hebt geen toegang tot je locatie gegeven, dus deze functionaliteit zal niet werken. Geef toestemming in de applicatieinstellingen.</string>
   <string name="permission_explanation_map">Kaartstukken moeten op het apparaat opgeslagen worden. De kaart kan niet zonder deze kaartstukken werken.</string>
   <string name="permission_denied_map">Om de kaart te tonen moeten kaartstukken op het apparaat opgeslagen worden. Sta toestemming tot opslaan om de kaart te gebruiken.</string>
@@ -116,15 +175,23 @@
   <string name="np_desc_vor">Zuid-Oostenrijk, Burgenland, Wenen</string>
   <string name="np_desc_vvt">Tirol</string>
   <string name="np_region_belgium">België</string>
+  <string name="np_desc_sncb">Openbaar vervoer in België</string>
   <string name="np_region_br">Brazilië</string>
+  <string name="np_name_br">Brazilie</string>
+  <string name="np_region_canada">Canada</string>
   <string name="np_region_denmark">Denemarken</string>
   <string name="np_desc_dsb">Denemarken, Kopenhagen</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
+  <string name="np_desc_rt">Alleen lange-afstand treinen</string>
   <string name="np_region_finland">Finland</string>
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">Frankrijk</string>
+  <string name="np_name_francenortheast">Noordoost Frankrijk</string>
+  <string name="np_name_francenorthwest">Noordwest Frankrijk</string>
+  <string name="np_name_frenchsouthwest">Zuidwest Frankrijk</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
+  <string name="np_name_paris">Parijs</string>
   <string name="np_region_gb">Groot Brittannië</string>
   <string name="np_desc_mersey">Liverpool Stad Regio</string>
   <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
@@ -164,14 +231,17 @@
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
   <string name="np_region_italy">Italië</string>
   <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
+  <string name="np_name_it">Italie</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Luxemburg</string>
+  <string name="np_desc_lu">Luxemburg</string>
   <string name="np_region_netherlands">Nederland</string>
   <string name="np_desc_ns">Nederlands, Amsterdam</string>
   <string name="np_region_norway">Noorwegen</string>
   <string name="np_desc_nri">Noorwegen, Oslo, Bergen</string>
   <string name="np_region_nz">Nieuw-Zeeland</string>
+  <string name="np_name_nz">Nieuw ZVeeland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_region_spain">Spanje</string>
   <string name="np_name_spain">Spanje</string>
@@ -179,13 +249,17 @@
   <string name="np_desc_se">Zweden, Stockholm</string>
   <string name="np_region_switzerland">Zwitserland</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_desc_sbb">Zwitserland</string>
   <string name="np_desc_vbl">Luzern</string>
   <string name="np_desc_zvv">Zürich</string>
   <string name="np_region_uae">Verenigde Arabische Emiraten</string>
+  <string name="np_name_dub">Dubai</string>
   <string name="np_desc_dub">Verenigde Arabische Emiraten, Dubai</string>
   <string name="np_region_usa">Verenigde Staten</string>
+  <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">New York en New-Jersey staten</string>
   <string name="maintainer">Onderhouder</string>
+  <string name="contributors">Contributies door</string>
   <string name="translators">Vertalers</string>
   <string name="dutch">Nederlands</string>
   <string name="french">Frans</string>
@@ -194,4 +268,8 @@
   <string name="portuguese_br">Portugees\n(Brazilië)</string>
   <string name="spanish">Spaans</string>
   <string name="turkish">Turks</string>
+  <string name="english">Engels</string>
+  <string name="catalan">Catalaans</string>
+  <string name="polish">Pools</string>
+  <string name="esperanto">Esperanto</string>
 </resources>

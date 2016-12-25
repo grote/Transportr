@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_short_desc">El company de transport públic que respecta la teva privacitat i llibertat.</string>
+  <string name="onboarding_drawer_title">Descobreix més característiques</string>
   <string name="drawer_changelog">Canvis</string>
   <string name="drawer_about">Sobre</string>
   <string name="drawer_settings">Configuració</string>
@@ -31,6 +33,7 @@
   <string name="trip_removed">Trajecte esborrat</string>
   <string name="from">De</string>
   <string name="to">Cap a</string>
+  <string name="via">Via</string>
   <string name="from_here">D\'aquí</string>
   <string name="to_here">Cap aquí</string>
   <string name="min">min.</string>
@@ -40,6 +43,7 @@
   <string name="beta">beta</string>
   <string name="network">Xarxa</string>
   <string name="pick_network_activity">Tria una xarxa de transport</string>
+  <string name="pick_network_first_run">Aquest és la primera vegada que inicies Transportr. Selecciona la teva xarxa de transport per a poder continuar!</string>
   <string name="trip_searching">Cercant connexions...</string>
   <string name="stations_searching_position">Cercant posició actual...</string>
   <string name="drawer_nearby_stations">Estacions properes</string>
@@ -49,12 +53,20 @@
   <string name="share_trip_via">Compartir trajecte via...</string>
   <string name="undo">Desfer</string>
   <string name="more">Més</string>
+  <string name="now">Ara</string>
   <string name="current_time_set">L\'hora s\'ha establert a actual.</string>
+  <string name="today">Avui</string>
   <string name="current_date_set">La data s\'ha establert a l\'actual</string>
   <string name="added_1h">S\'ha afegit 1 hora.</string>
+  <string name="ok">D\'acord</string>
+  <string name="cancel">Cancel·la</string>
+  <string name="yes">Sí</string>
+  <string name="no">No</string>
   <string name="pref_transport_network">Xarxa de Transport</string>
   <string name="pref_hide_departure_time">Amagar hora de sortida</string>
   <string name="pref_hide_departure_time_summary">Mostrar només arribada quan es mostrin parades intermitges</string>
+  <string name="pref_exit_app_on_back_press">Tanca l\'aplicació amb el botó enrere</string>
+  <string name="pref_exit_app_on_back_press_summary">Sempre tanca l\'aplicació en pitjar el botó enrere a la pantalla d\'inici</string>
   <string name="pref_home">Ubicació de Casa</string>
   <string name="pref_display">Mostrar</string>
   <string name="pref_theme_title">Interfície</string>
@@ -114,10 +126,16 @@
   <string name="np_desc_svv">Salzburg</string>
   <string name="np_desc_vor">Lower Austria, Burgenland, Wien</string>
   <string name="np_desc_vvt">Tirol</string>
+  <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bèlgica</string>
   <string name="np_region_br">Brasil</string>
+  <string name="np_name_br">Brasil</string>
+  <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte i Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_region_canada">Canadà</string>
+  <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
+  <string name="np_name_quebec">Quebec</string>
   <string name="np_region_denmark">Dinamarca</string>
   <string name="np_desc_dsb">Dinamarca, Copenhagen</string>
   <string name="np_region_europe">Europa</string>
@@ -125,8 +143,15 @@
   <string name="np_region_finland">Finlàndia</string>
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">França</string>
+  <string name="np_name_francenortheast">França (nordest)</string>
+  <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
+  <string name="np_name_francenorthwest">França (nort-oest)</string>
+  <string name="np_desc_francenorthwest">Bretanya, País del Loira, Centre, Baixa Normandia, Alta Normandia</string>
+  <string name="np_name_frenchsouthwest">França (sud-oest)</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
+  <string name="np_name_paris">París</string>
+  <string name="np_desc_paris">Illa de França, França, París</string>
   <string name="np_region_gb">Gran Bretanya</string>
   <string name="np_desc_mersey">Liverpool City Region</string>
   <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
@@ -138,18 +163,22 @@
   <string name="np_desc_bvg">Berlín</string>
   <string name="np_desc_db">Gran part d\'Alemanya</string>
   <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
+  <string name="np_desc_gvh">Baixa Saxònia, Hanover, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
+  <string name="np_name_invg">Ingolstadt</string>
   <string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Baviera, Munic</string>
   <string name="np_desc_nasa">Saxònia, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
+  <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
   <string name="np_desc_vagfr">Elsass, Bas-Rhin, Straßburg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxònia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
@@ -166,16 +195,20 @@
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
   <string name="np_region_italy">Itàlia</string>
   <string name="np_desc_atc">Emilia-Romagna, Bolònia</string>
+  <string name="np_name_it">Itàlia</string>
   <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Luxemburg</string>
+  <string name="np_desc_lu">Luxemburg</string>
   <string name="np_region_netherlands">Holanda</string>
   <string name="np_desc_ns">Holanda, Amsterdam</string>
   <string name="np_region_norway">Noruega</string>
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
   <string name="np_region_nz">Nova Zelanda</string>
+  <string name="np_name_nz">Nova Zelanda</string>
   <string name="np_region_poland">Polònia</string>
+  <string name="np_desc_pl">Polònia, trens a Polònia</string>
   <string name="np_region_spain">Espanya</string>
   <string name="np_name_spain">Espanya</string>
   <string name="np_region_sweden">Suècia</string>
@@ -185,10 +218,14 @@
   <string name="np_desc_vbl">Lucerna</string>
   <string name="np_desc_zvv">Zuric</string>
   <string name="np_region_uae">Emirats Àrabs Units</string>
+  <string name="np_name_dub">Dubai</string>
   <string name="np_desc_dub">Emirats Àrabs Units, Dubai</string>
   <string name="np_region_usa">Estats Units d\'Amèrica</string>
+  <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_name_sf">Àrea de la badia de San Francisco</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Estats de New York i New-Jersey</string>
   <string name="maintainer">Mantenidor</string>
+  <string name="contributors">Col·laboradors</string>
   <string name="translators">Traductors</string>
   <string name="dutch">Holandès</string>
   <string name="french">Francès</string>
@@ -200,4 +237,9 @@
   <string name="norwegian_bokmal">Noruec\nBokmål</string>
   <string name="basque">Eusquera</string>
   <string name="english">Anglès</string>
+  <string name="catalan">Català</string>
+  <string name="polish">Polonès</string>
+  <string name="tamil">Tàmil</string>
+  <string name="esperanto">Esperanto</string>
+  <string name="czech">Txec</string>
 </resources>

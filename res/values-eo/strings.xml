@@ -172,7 +172,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_vvt">Tirolo</string>
   <string name="np_desc_wien">Vieno</string>
   <string name="np_region_belgium">Belgujo</string>
-  <string name="np_desc_sncb">Fervojo en Belgujo</string>
+  <string name="np_desc_sncb">Publika transporto en Belgujo</string>
   <string name="np_region_br">Brazilo</string>
   <string name="np_name_br">Brazilo</string>
   <string name="np_desc_br">San-Paŭlo, Rio-de-Ĵanejro, Bel-Horizonto kaj Porto-Alegro</string>
@@ -196,6 +196,8 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_francenortheast">Strasburgo, Metz, Lillo, Nancio</string>
   <string name="np_name_francenorthwest">Francujo nord-okcidenta</string>
   <string name="np_desc_francenorthwest">Bretonio, Luarlandoj, Centro-Valo de Luaro, Malsupra Normandio, Supra Normandio</string>
+  <string name="np_name_frenchsoutheast">Francujo sud-orienta</string>
+  <string name="np_desc_frenchsoutheast">Provenco-Alpoj-Bordo Lazura, Rodano-Alpoj, Langvedoko-Rusiljono, Aŭvernjo, Korsiko</string>
   <string name="np_name_frenchsouthwest">Francujo sud-okcidenta</string>
   <string name="np_desc_frenchsouthwest">Puatuo-Ĉarentoj, Limoĝio, Akvitanio, Sudo-Pireneoj, Bordeaux, Tuluzo</string>
   <string name="np_desc_paca">Provenco-Alpoj-Bordo Lazura</string>
@@ -256,18 +258,18 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_nri">Norvegujo, Oslo, Bergen</string>
   <string name="np_region_nz">Nov-Zelando</string>
   <string name="np_name_nz">Nov-Zelando</string>
-  <string name="np_desc_nz">Nov-Zelando, Velingtono, Aŭklando</string>
+  <string name="np_desc_nz">Nov-Zelando, Velingtono, Auckland</string>
   <string name="np_region_poland">Polujo</string>
   <string name="np_desc_pl">Polujo, fervojo en Polujo</string>
   <string name="np_region_spain">Hispanujo</string>
   <string name="np_name_spain">Hispanujo</string>
-  <string name="np_desc_spain">Madridaj aŭtobusoj, Barcelono, Eŭskujo</string>
+  <string name="np_desc_spain">Madrido, Barcelono, Baskujo, Valencio, Alicante, Majorko, Minorko, Tenerifo, La Palma</string>
   <string name="np_region_sweden">Svedujo</string>
   <string name="np_desc_se">Svedujo, Stokholmo</string>
   <string name="np_region_switzerland">Svisujo</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">SBB-CFF-FFS</string>
-  <string name="np_desc_sbb">Fervojo en Svisujo</string>
+  <string name="np_desc_sbb">Svisujo</string>
   <string name="np_desc_vbl">Lucerno</string>
   <string name="np_desc_zvv">Zuriko</string>
   <string name="np_region_uae">Unuiĝintaj Arabaj Emirlandoj</string>

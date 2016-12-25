@@ -177,7 +177,6 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_vvt">Tirol</string>
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bélgica</string>
-  <string name="np_desc_sncb">Trens na Bélgica</string>
   <string name="np_region_br">Brasil</string>
   <string name="np_name_br">Brasil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte e Porto Alegre</string>
@@ -261,18 +260,15 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
   <string name="np_region_nz">Nova Zelândia</string>
   <string name="np_name_nz">Nova Zelândia </string>
-  <string name="np_desc_nz">Nova Zelândia, Welligton, Auckland</string>
   <string name="np_region_poland">Polônia</string>
   <string name="np_desc_pl">Polônia, ferrovias na Polônia</string>
   <string name="np_region_spain">Espanha</string>
   <string name="np_name_spain">Espanha</string>
-  <string name="np_desc_spain">Ônibus em Madri (EMT), Barcelona (TMB), Basco (Moveuskadi)</string>
   <string name="np_region_sweden">Suécia</string>
   <string name="np_desc_se">Suécia, Estocolmo</string>
   <string name="np_region_switzerland">Suíça</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">SBB</string>
-  <string name="np_desc_sbb">Trens na Suíça</string>
   <string name="np_desc_vbl">Lucerna</string>
   <string name="np_desc_zvv">Zurique</string>
   <string name="np_region_uae">Emirados Árabes Unidos</string>

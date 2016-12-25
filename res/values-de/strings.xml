@@ -15,7 +15,7 @@ anzeigen und dem Verlauf über GPS folgen.
 
 Du kannst auch Haltestellen in der Nähe finden und bevorstehende Abfahrten einschliesslich der Verzögerungen (wenn
 es welche gibt) anzeigen lassen.</string>
-  <string name="onboarding_drawer_title">Entdecke weitere Funktionen</string>
+  <string name="onboarding_drawer_title">Weitere Funktionen entdecken</string>
   <string name="onboarding_drawer_text">Berühre dieses Symbol in der Navigationsleiste, um Zugriff auf weitere Funktionen dieser App zu erhalten.</string>
   <string name="drawer_changelog">Änderungsprotokoll</string>
   <string name="drawer_about">Über</string>
@@ -179,7 +179,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_vvt">Tirol</string>
   <string name="np_desc_wien">Wien</string>
   <string name="np_region_belgium">Belgien</string>
-  <string name="np_desc_sncb">Züge in Belgien</string>
+  <string name="np_desc_sncb">Öffentliche Verkehrsmittel in Belgien</string>
   <string name="np_region_br">Brasilien</string>
   <string name="np_name_br">Brasilien</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte und Porto Alegre</string>
@@ -203,6 +203,8 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_francenortheast">Straßburg, Metz, Lille, Nancy</string>
   <string name="np_name_francenorthwest">Frankreich Nordwest</string>
   <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse Normandie, Haute Normandie</string>
+  <string name="np_name_frenchsoutheast">Frankreich Südost</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corse</string>
   <string name="np_name_frenchsouthwest">Frankreich Südwest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -254,6 +256,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_name_it">Italien</string>
   <string name="np_desc_it">Rom, Mailand, Turin, Venedig, Palermo, Trient</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_name_vmobil">VVV</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Luxemburg</string>
   <string name="np_desc_lu">Luxemburg</string>
@@ -268,13 +271,13 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_pl">Polen, Eisenbahnen in Polen</string>
   <string name="np_region_spain">Spanien</string>
   <string name="np_name_spain">Spanien</string>
-  <string name="np_desc_spain">Madrid Busse, Barcelona, Baskenland</string>
+  <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma</string>
   <string name="np_region_sweden">Schweden</string>
   <string name="np_desc_se">Schweden, Stockholm</string>
   <string name="np_region_switzerland">Schweiz</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">SBB</string>
-  <string name="np_desc_sbb">Züge in der Schweiz</string>
+  <string name="np_desc_sbb">Schweiz</string>
   <string name="np_desc_vbl">Luzern</string>
   <string name="np_desc_zvv">Zürich</string>
   <string name="np_region_uae">Vereinigte Arabische Emirate</string>

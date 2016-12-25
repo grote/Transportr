@@ -138,7 +138,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="position_not_yet_known">La position n\'est pas encore connue</string>
   <string name="position_no_gps">Le GPS est désactivé. La position sera très imprécise.</string>
   <string name="select_products">Choisir un moyen de transport</string>
-  <string name="product_high_speed_train">Train haute-vitesse</string>
+  <string name="product_high_speed_train">Train à grande vitesse</string>
   <string name="product_regional_train">Train régional</string>
   <string name="product_suburban_train">Train de banlieue</string>
   <string name="product_subway">Métro</string>
@@ -173,7 +173,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_vvt">Tyrol</string>
   <string name="np_desc_wien">Vienne</string>
   <string name="np_region_belgium">Belgique</string>
-  <string name="np_desc_sncb">Trains en Belgique</string>
+  <string name="np_desc_sncb">Transport en commun en Belgique</string>
   <string name="np_region_br">Brésil</string>
   <string name="np_name_br">Brésil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte et Porto Alegre</string>
@@ -197,6 +197,8 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
   <string name="np_name_francenorthwest">France - Nord-Ouest</string>
   <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse-Normandie, Haute-Normandie</string>
+  <string name="np_name_frenchsoutheast">France - Sud-Est</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corse</string>
   <string name="np_name_frenchsouthwest">France - Sud-Ouest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -257,18 +259,17 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_nri">Norvège, Oslo, Bergen</string>
   <string name="np_region_nz">Nouvelle-Zélande</string>
   <string name="np_name_nz">Nouvelle-Zélande</string>
-  <string name="np_desc_nz">Nouvelle-Zélande, Wellington, Auckland</string>
   <string name="np_region_poland">Pologne</string>
   <string name="np_desc_pl">Pologne, chemins de fer en Pologne</string>
   <string name="np_region_spain">Espagne</string>
   <string name="np_name_spain">Espagne</string>
-  <string name="np_desc_spain">Bus de Madrid, Barcelone, Pays basque</string>
+  <string name="np_desc_spain">Madrid, Barcelone, Euskadi - Pays basque, Valence, Alicante, Majorque, Minore, Tenerife, La Palma</string>
   <string name="np_region_sweden">Suède</string>
   <string name="np_desc_se">Suède, Stockholm</string>
   <string name="np_region_switzerland">Suisse</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">SBB</string>
-  <string name="np_desc_sbb">Trains en Suisse</string>
+  <string name="np_desc_sbb">Suisse</string>
   <string name="np_desc_vbl">Lucerne</string>
   <string name="np_desc_zvv">Zurich</string>
   <string name="np_region_uae">Émirats arabes unis</string>

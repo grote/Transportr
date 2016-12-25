@@ -14,6 +14,8 @@ fremtidige turer i ett enkelt drag. Du kan selsagt også vise turen i kartet
 og følge framdrift via GPS.
 
 Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsinkelser (hvis det skulle være noen).</string>
+  <string name="onboarding_drawer_title">Oppdag flere funksjoner</string>
+  <string name="onboarding_drawer_text">For tilgang til flere funksjoner, berør dette ikonet for å åpne oppsprettsmenyen for navigasjon.</string>
   <string name="drawer_changelog">Endringslogg</string>
   <string name="drawer_about">Om</string>
   <string name="drawer_settings">Innstillinger</string>
@@ -34,6 +36,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="drawer_directions">Veivisning</string>
   <string name="tab_fav_trips">Favoritt-turer</string>
   <string name="drawer_departures">Avganger</string>
+  <string name="drawer_recent_trips">Nylige turer</string>
   <string name="tab_libraries">Bibliotek</string>
   <string name="tab_devs">Utviklere</string>
   <string name="tab_about">Om</string>
@@ -58,6 +61,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="trip_removed">Fjernet  tur</string>
   <string name="from">Fra</string>
   <string name="to">Til</string>
+  <string name="via">Via</string>
   <string name="from_here">Herfra</string>
   <string name="to_here">Hit</string>
   <string name="min">min</string>
@@ -81,12 +85,20 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="more">Mer</string>
   <string name="no_favourites">Ingen favoritturer.\n\nLegg til en \"Nylige turer\"-side.</string>
   <string name="removing_from_favourites">En tur du valgte er merket som favorittur. Den vil bli fjernet derfra også.</string>
+  <string name="now">Nå</string>
   <string name="current_time_set">Klokken justert til nåværende tid.</string>
+  <string name="today">I dag</string>
   <string name="current_date_set">Dato oppdatert.</string>
   <string name="added_1h">En time lagt til.</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Avbryt</string>
+  <string name="yes">Ja</string>
+  <string name="no">Nei</string>
   <string name="pref_transport_network">Transportnettverk</string>
   <string name="pref_hide_departure_time">Skjul avgangstid</string>
   <string name="pref_hide_departure_time_summary">Bare vis ankomsttid når ventestopp vises</string>
+  <string name="pref_exit_app_on_back_press">Lukk program med tilbake-knappen</string>
+  <string name="pref_exit_app_on_back_press_summary">Alltid lukk programmet når tilbake-knappen på start-skjermen trykkes</string>
   <string name="pref_home">Hjemmehørende plassering</string>
   <string name="pref_display">Visning</string>
   <string name="pref_theme_title">Drakt</string>
@@ -103,6 +115,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="pref_walk_speed_normal">Normalt</string>
   <string name="pref_walk_speed_fast">Raskt</string>
   <string name="warning_departure_gap">For få avganger. Det kan hende det finnes flere skjulte. Søk for eksakt tid for å forsikre deg om at det ikke mangler noen.</string>
+  <string name="warning_permission_granted_action">Kunne ikke gjenta siste handling automatisk</string>
   <string name="error_pick_network">Velg ett transportnettverk!</string>
   <string name="error_no_internet">Mangler tilstrekkelig internettilknytning</string>
   <string name="error_invalid_from">Ugyldig utreisested (fra)</string>
@@ -123,10 +136,14 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="system_default">Systemforvalg</string>
   <string name="times_include_delays">(Merk: Tidsforespeilinger inkluderer rapporterte forsinkelser)</string>
   <string name="home">Hjem</string>
+  <string name="home_dialog_title">Sett hjemmeposisjon</string>
   <string name="location">Plassering</string>
   <string name="location_home">Klikk for å velge hjemmehørende plassering</string>
   <string name="location_gps">Bruk gjeldende plassering</string>
   <string name="location_map">Hent plassering fra kart</string>
+  <string name="position_not_yet_known">Posisjon ikke kjent enda</string>
+  <string name="position_no_gps">GPS avskrudd. Posisjon vil være unøyaktig.</string>
+  <string name="select_products">Velg transporttype</string>
   <string name="product_high_speed_train">Høyhastighetstog</string>
   <string name="product_regional_train">Regiontog</string>
   <string name="product_suburban_train">Forstadstog</string>
@@ -141,6 +158,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="action_fav_trips_sort_most">Mest brukt</string>
   <string name="action_set_locations">Rediger søk</string>
   <string name="action_swap_locations">Søk etter retur</string>
+  <string name="permission_explanation_gps">Du må gi tilgang til posisjonsdata for å kunne se din nåværende posisjon på kartet.</string>
   <string name="permission_denied_gps">Du har ikke gitt tilgang til din plassering, så denne funksjonen vil ikke fungere. Gi tilgang i programinnstillingene.</string>
   <string name="permission_explanation_map">Kartutsnitt må lagres/mellomlagres på din enhets lagringsmedium. Kartet fungerer ikke uten.</string>
   <string name="permission_denied_map">Visning av kart krever lagring av utsnitt på din enhets lagrinsmedium. Gi tilgang til lagringsmedium for å bruke dette kartet.</string>
@@ -149,28 +167,52 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="changelog_title">Nyheter</string>
   <string name="changelog_show_full">Mer…</string>
   <string name="np_region_australia">Australia</string>
+  <string name="np_desc_met">Australia, Victoria, Melbourne</string>
+  <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
   <string name="np_region_austria">Østerrike</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Øvre Østerrike, Linz</string>
   <string name="np_desc_oebb">Østerrike</string>
+  <string name="np_desc_stv">Steiermark, Graz, Marburg, Maribor</string>
   <string name="np_desc_svv">Salzburg</string>
   <string name="np_desc_vor">Niederösterreich, Burgenland, Wien</string>
   <string name="np_desc_vvt">Tyrol</string>
+  <string name="np_desc_wien">Wien</string>
   <string name="np_region_belgium">Belgia</string>
+  <string name="np_desc_sncb">Offentlig transport i Belgia</string>
   <string name="np_region_br">Brasil</string>
+  <string name="np_name_br">Brasil</string>
+  <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte og Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
+  <string name="np_desc_br_floripa">Mange bussruter, ingen for herrefolk</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
   <string name="np_name_quebec">Québec</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Le Sud-Ouest, Québec, Montérégie, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danmark</string>
   <string name="np_desc_dsb">Danmark, København</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
+  <string name="np_desc_rt">Bare langdistansetog</string>
+  <string name="np_desc_rt_networks">Railteam-alliansen</string>
   <string name="np_region_finland">Finland</string>
   <string name="np_desc_hsl">Helsingfors</string>
   <string name="np_region_france">Frankrike</string>
+  <string name="np_name_francenortheast">Frankrike nord-øst</string>
+  <string name="np_desc_francenortheast">Straßburg, Metz, Lille, Nancy</string>
+  <string name="np_name_francenorthwest">Frankrike nord-vest</string>
+  <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre-Val de Loire, Basse-Normandie, Haute-Normandie</string>
+  <string name="np_name_frenchsoutheast">Frankrike sør-øst</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Korsika</string>
+  <string name="np_name_frenchsouthwest">Frankrike sør-vest</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+  <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
+  <string name="np_name_paris">Paris</string>
+  <string name="np_desc_paris">Ile-de-France, Frankrike, Paris</string>
   <string name="np_region_gb">Storbritannia</string>
   <string name="np_desc_mersey">Liverpool byområdet</string>
+  <string name="np_desc_tlem">Stor-London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Tyskland</string>
   <string name="np_desc_avv">Augsburg</string>
@@ -178,44 +220,75 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Mesteparten av Tyskland</string>
+  <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
+  <string name="np_desc_gvh">Niedersachsen, Hannover, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
+  <string name="np_name_invg">Ingolstadt</string>
   <string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
+  <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bavaria, München</string>
+  <string name="np_desc_nasa">Fristaten Sachsen, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
+  <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_sh">Slesvig-Holsten, Kiel, Hansabyen Lübeck, Hamburg</string>
+  <string name="np_desc_vagfr">Elsass, Bas-Rhin, Straßburg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vms">Landkreis Mittelsachsen, Chemnitz</string>
+  <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
+  <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Nordrhein-Westfalen, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
   <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_vvm">Schwaben, Mittelschwaben, Krum, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Fristaten Saksen, Dresden</string>
+  <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
+  <string name="np_desc_vvv">Vogtland, Plauen</string>
   <string name="np_region_ireland">Irland</string>
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
   <string name="np_region_italy">Italia</string>
+  <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
+  <string name="np_name_it">Italia</string>
+  <string name="np_desc_it">Rom, Milano, Torino, Venedig, Palermo, Trient</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Luxemburg</string>
+  <string name="np_desc_lu">Luxemburg</string>
   <string name="np_region_netherlands">Holland</string>
   <string name="np_desc_ns">Holland, Amsterdam</string>
   <string name="np_region_norway">Norge</string>
   <string name="np_desc_nri">Norge, Oslo, Bergen</string>
   <string name="np_region_nz">Ny-Zealand</string>
+  <string name="np_name_nz">Ny-Zealand</string>
   <string name="np_region_poland">Polen</string>
+  <string name="np_desc_pl">Polen, jernbane i Polen</string>
   <string name="np_region_spain">Spania</string>
   <string name="np_name_spain">Spania</string>
+  <string name="np_desc_spain">Madrid, Barcelona, Baskerland, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma</string>
   <string name="np_region_sweden">Sverige</string>
   <string name="np_desc_se">Sverige, Stokholm</string>
   <string name="np_region_switzerland">Sveits</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_name_sbb" translatable="true">Schweizerische Bundesbahnen</string>
+  <string name="np_desc_sbb">Sveits</string>
   <string name="np_desc_vbl">Luzern</string>
   <string name="np_desc_zvv">Zürich</string>
   <string name="np_region_uae">De forente arabiske emirater</string>
+  <string name="np_name_dub">Dubai</string>
   <string name="np_desc_dub">De forente arabiske emirater, Dubai</string>
   <string name="np_region_usa">Amerikas forente stater</string>
+  <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_septa">Bucks-, Chester-, Delaware-, Montgomery- og Philadelphia -fylke</string>
+  <string name="np_name_sf">San Francisco Bay Area</string>
+  <string name="np_desc_sf">Alameda-, Contra Costa-, Marin-, Napa-, Solano-, Sonoma-, San Francisco-, San Mateo- og Santa Clara -fylke</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Statene New York og New-Jersey</string>
   <string name="maintainer">Utgivelsesansvarlig</string>
+  <string name="contributors">Bidragsytere</string>
   <string name="translators">Oversettere</string>
   <string name="dutch">Hollandsk</string>
   <string name="french">Fransk</string>
@@ -229,4 +302,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="english">Engelsk</string>
   <string name="catalan">Catalonia</string>
   <string name="polish">Polsk</string>
+  <string name="tamil">Tamilsk</string>
+  <string name="esperanto">Esperanto</string>
+  <string name="czech">Tsjekkisk</string>
 </resources>

@@ -10,7 +10,7 @@ Transportr trova la direzione da casa tua, dalla tua posizione o da un luogo pre
 
 Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi i ritardi (se ce ne sono).</string>
   <string name="onboarding_drawer_title">Scopri altre funzioni</string>
-  <string name="onboarding_drawer_text">Premi su questa icona per accedere ad altre funzioni di quest\'app.</string>
+  <string name="onboarding_drawer_text">Premi su questa icona per aprire il menù laterale e accedere ad altre funzioni di quest\'app.</string>
   <string name="drawer_changelog">Registro delle modifiche</string>
   <string name="drawer_about">Informazioni</string>
   <string name="drawer_settings">Impostazioni</string>
@@ -173,7 +173,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_vvt">Tirolo</string>
   <string name="np_desc_wien">Vienna</string>
   <string name="np_region_belgium">Belgio</string>
-  <string name="np_desc_sncb">Treni in Belgio</string>
+  <string name="np_desc_sncb">Trasporto pubblico in Belgio</string>
   <string name="np_region_br">Brasile</string>
   <string name="np_name_br">Brasile</string>
   <string name="np_desc_br">San Paolo, Rio de Janeiro, Belo Horizonte e Porto Alegre</string>
@@ -189,6 +189,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">Solo treni a lunga percorrenza</string>
+  <string name="np_desc_rt_networks">Railteam</string>
   <string name="np_region_finland">Finlandia</string>
   <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">Francia</string>
@@ -196,6 +197,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_francenortheast">Strasburgo, Metz, Lilla, Nancy</string>
   <string name="np_name_francenorthwest">Francia nord-occidentale</string>
   <string name="np_desc_francenorthwest">Bretagna, Paesi della Loira, Centro, Bassa Normandia, Alta Normandia</string>
+  <string name="np_name_frenchsoutheast">Francia sud-orientale</string>
   <string name="np_name_frenchsouthwest">Francia sud-occidentale</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitania, Midi-Pirenei, Bordeaux, Tolosa</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -256,18 +258,17 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
   <string name="np_region_nz">Nuova Zelanda</string>
   <string name="np_name_nz">Nuova Zelanda</string>
-  <string name="np_desc_nz">Nuova Zelanda, Welligton, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, ferrovie in Polonia</string>
   <string name="np_region_spain">Spagna</string>
   <string name="np_name_spain">Spagna</string>
-  <string name="np_desc_spain">Autobus di Madrid, Barcellona, Paesi Baschi</string>
+  <string name="np_desc_spain">Madrid, Barcellona, Paesi Baschi, Valencia, Alicante, Maiorca, Menorca, Tenerife, La Palma</string>
   <string name="np_region_sweden">Svezia</string>
   <string name="np_desc_se">Svezia, Stoccolma</string>
   <string name="np_region_switzerland">Svizzera</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">SBB</string>
-  <string name="np_desc_sbb">Treni in Svizzera</string>
+  <string name="np_desc_sbb">Svizzera</string>
   <string name="np_desc_vbl">Lucerna</string>
   <string name="np_desc_zvv">Zurigo</string>
   <string name="np_region_uae">Emirati Arabi Uniti</string>
