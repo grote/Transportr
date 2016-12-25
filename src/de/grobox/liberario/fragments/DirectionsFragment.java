@@ -44,7 +44,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.mikepenz.fastadapter.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 
@@ -675,7 +675,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 
 		@Override
-		public void bindView(final ProductItem.ViewHolder ui, List payloads) {
+		public void bindView(final ProductItem.ViewHolder ui, List<Object> payloads) {
 			super.bindView(ui, payloads);
 			ui.image.setImageDrawable(getTintedDrawable(getContext(), getDrawableForProduct(product)));
 			ui.image.setOnClickListener(new View.OnClickListener() {

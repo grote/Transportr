@@ -31,7 +31,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mikepenz.fastadapter.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
@@ -176,7 +176,7 @@ public class ProductDialogFragment extends DialogFragment {
 		}
 
 		@Override
-		public void bindView(final ViewHolder ui, List payloads) {
+		public void bindView(final ViewHolder ui, List<Object> payloads) {
 			super.bindView(ui, payloads);
 
 			ui.image.setImageDrawable(TransportrUtils.getTintedDrawable(getContext(), TransportrUtils.getDrawableForProduct(product)));
