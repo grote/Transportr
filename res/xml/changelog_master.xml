@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.1.6-beta2" versioncode="44">
+    <release version="1.1.6" versioncode="45">
         <change>Fixed some German and Austrian networks</change>
         <change>Improved trip icons on map for some devices</change>
         <change>Fixed center on trip when viewing trip on map</change>
