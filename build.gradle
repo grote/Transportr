@@ -63,15 +63,15 @@ dependencyVerification {
 			'com.mikepenz:materialize:942ccf5e2aa1a46803aa884e8dc7bbaf2a9e8e9996a0cf92e3fe2f44a8592ba4',
 			'com.mikepenz:iconics-core:fdaec9164d5dccd213e1e80610b29dbd33a6e36ccd56ca3e8d4e4a802ac962d5',
 			'com.mikepenz:fastadapter:04abf0796dd5166cfaa43a2ccb458fe762fb0b090dd32973f35ded9ad987d3d0',
-			'com.squareup.okhttp3:okhttp:270bd243041967363230ab565e24a7cfeae6d0438433541122b6411bb7f2dbfd',
-			'com.squareup.okhttp3:logging-interceptor:dd9c4cfe0eb9f362c3707dd4492067f720329d5319f9ccbd86f4eec10c3fc6a2',
-			'com.google.guava:guava:d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99',
-			'org.slf4j:slf4j-api:0aee9a77a4940d72932b0d0d9557793f872e66a03f598e473f45e7efecdccf99',
+			'com.squareup.okhttp3:okhttp:eecd834b09d12c3cd568b811522b97012619f7f00378c3c719a1957fac6458ef',
+			'com.squareup.okhttp3:logging-interceptor:2f77bb4b1b2ecf1c330a54295b0b112f65a56d2c16b7937303ad601b1de18fde',
+			'com.google.guava:guava:36a666e3b71ae7f0f0dca23654b67e086e6c93d192f60ba5dfd5519db6c288c8',
+			'org.slf4j:slf4j-api:1d5aeb6bd98b0fdd151269eae941c05f6468a791ea0f1e68d8e7fe518af3e7df',
 			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'com.android.support:support-media-compat:8665ae69c74b2879bdce2bdea6d3b7296126487d0ea6fa2f9dd9ffdd5a5cee86',
 			'com.android.support:support-core-utils:1808deca97864e78066d93d998f71bf71b0a774b6ea39c4e91fc1376d090728d',
 			'com.android.support:support-fragment:e47441b6a0e01b20cf744e3a8383ab60d922badcfde37c0b35fb078c84f2eae0',
-			'com.squareup.okio:okio:3c0b8eb9f266fd9f0b9554fdf264f70ed0b40c1e9d6356839bf234277e39d7b5',
+			'com.squareup.okio:okio:8c5436cadfab36bbd97db5f5c43b7bfdb5bf2f5f894ec8709b1929f14bdd010c',
 	]
 }
 

@@ -80,13 +80,11 @@ public final class NetworkProviderFactory
 	private static Reference<PlProvider> plProviderRef;
 	private static Reference<AtcProvider> atcProviderRef;
 	private static Reference<DubProvider> dubProviderRef;
-	private static Reference<SfProvider> sfProviderRef;
 	private static Reference<SeptaProvider> septaProviderRef;
 	private static Reference<SydneyProvider> sydneyProviderRef;
 	private static Reference<MetProvider> metProviderRef;
 	private static Reference<VgsProvider> vgsProviderRef;
 	private static Reference<WienProvider> wienProviderRef;
-	private static Reference<JetProvider> jetProviderRef;
 	private static Reference<PacaProvider> pacaProviderRef;
 	private static Reference<MerseyProvider> merseyProviderRef;
 	private static Reference<ParisProvider> parisProviderRef;
@@ -800,19 +798,6 @@ public final class NetworkProviderFactory
 			dubProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
-		else if (networkId.equals(NetworkId.SF))
-		{
-			if (sfProviderRef != null)
-			{
-				final SfProvider provider = sfProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final SfProvider provider = new SfProvider();
-			sfProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
 		else if (networkId.equals(NetworkId.SEPTA))
 		{
 			if (septaProviderRef != null)
@@ -876,19 +861,6 @@ public final class NetworkProviderFactory
 
 			final WienProvider provider = new WienProvider();
 			wienProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
-		else if (networkId.equals(NetworkId.JET))
-		{
-			if (jetProviderRef != null)
-			{
-				final JetProvider provider = jetProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final JetProvider provider = new JetProvider();
-			jetProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.PACA))

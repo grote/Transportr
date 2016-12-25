@@ -423,12 +423,6 @@ public class TransportNetworks {
 		// United States of America
 		region = region(R.string.np_region_usa, "\uD83C\uDDFA\uD83C\uDDF8");
 
-		list.add(new TransportNetwork(context, NetworkId.SF)
-				.setName(getString(R.string.np_name_sf))
-				.setDescription(getString(R.string.np_desc_sf))
-				.setRegion(region)
-		);
-
 		list.add(new TransportNetwork(context, NetworkId.SEPTA)
 				.setDescription(getString(R.string.np_desc_septa))
 				.setRegion(region)
@@ -464,14 +458,6 @@ public class TransportNetworks {
 				.setRegion(region)
 		);
 
-/*		// Israel
-		region = region(R.string.np_region_israel, "\uD83C\uDDEE\uD83C\uDDF1");
-
-		list.add(new TransportNetwork(context, NetworkId.JET)
-				         .setDescription(getString(R.string.np_desc_jet))
-				         .setRegion(region)
-		);
-*/
 		// France
 		region = region(R.string.np_region_france, "\uD83C\uDDEB\uD83C\uDDF7");
 
