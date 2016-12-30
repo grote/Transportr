@@ -347,7 +347,7 @@ there are any).</string>
     <string name="np_name_sbb" translatable="true">SBB</string>
     <string name="np_desc_sbb">Switzerland</string>
     <string name="np_desc_vbl">Lucerne</string>
-    <string name="np_desc_zvv">Zürich</string>
+    <string name="np_desc_zvv">Zurich</string>
 
     <string name="np_region_uae">United Arab Emirates</string>
     <string name="np_name_dub">Dubai</string>
