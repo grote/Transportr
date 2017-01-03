@@ -114,7 +114,11 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
              .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
 	             @Override
 	             public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-		             if(!currentProfile && profile != null && profile instanceof ProfileDrawerItem) {
+		             if(currentProfile) {
+			             Intent intent = new Intent(getContext(), PickNetworkProviderActivity.class);
+			             ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
+			             ActivityCompat.startActivityForResult(MainActivity.this, intent, CHANGED_NETWORK_PROVIDER, options.toBundle());
+		             } else if(profile != null && profile instanceof ProfileDrawerItem) {
 			             TransportNetwork network = (TransportNetwork) ((ProfileDrawerItem) profile).getTag();
 			             if(network != null) {
 				             // save new network
