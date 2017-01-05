@@ -239,7 +239,7 @@ there are any).</string>
     <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
     <string name="np_desc_francenortheast_networks" translatable="false">SNCF, CTS, Transpole, STAN, LE MET</string>
     <string name="np_name_francenorthwest">France North West</string>
-    <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse Normandie, Haute Normandie</string>
+    <string name="np_desc_francenorthwest">Brittany, Pays de la Loire, Centre, Lower Normandy, Upper Normandy</string>
     <string name="np_desc_francenorthwest_networks" translatable="false">LILA, Star, TAN, IRIGO, SNCF</string>
     <string name="np_name_frenchsoutheast">France South East</string>
     <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica</string>
@@ -261,7 +261,7 @@ there are any).</string>
     <string name="np_region_germany">Germany</string>
     <string name="np_desc_avv">Augsburg</string>
     <string name="np_name_bayern" translatable="false">BEG</string>
-    <string name="np_desc_bayern">Bayern, Würzburg, Regensburg</string>
+    <string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
     <string name="np_name_bsvag" translatable="false">BSVG</string>
     <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
     <string name="np_desc_bvg">Berlin</string>
@@ -276,14 +276,14 @@ there are any).</string>
     <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
     <string name="np_desc_mvv">Bavaria, Munich</string>
     <string name="np_name_nasa" translatable="false">INSA</string>
-    <string name="np_desc_nasa">Saxony, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
+    <string name="np_desc_nasa">Saxony, Leipzig, Saxony-Anhalt, Magdeburg, Halle</string>
     <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
     <string name="np_name_nvv" translatable="false">NVV/RMV</string>
     <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
     <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
     <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
     <string name="np_name_vagfr" translatable="false">VAG</string>
-    <string name="np_desc_vagfr">Elsass, Bas-Rhin, Straßburg, Freiburg im Breisgau</string>
+    <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
     <string name="np_desc_vbb">Brandenburg, Berlin</string>
     <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
     <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
@@ -291,8 +291,8 @@ there are any).</string>
     <string name="np_desc_vgs">Saarland, Saarbrücken</string>
     <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
     <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
-    <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>
-    <string name="np_desc_vrr">North Rhine-Westphalia, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+    <string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
+    <string name="np_desc_vrr">North Rhine-Westphalia, Cologne, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
     <string name="np_desc_vrs">Cologne, Bonn</string>
     <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
     <string name="np_desc_vvo">Saxony, Dresden</string>
