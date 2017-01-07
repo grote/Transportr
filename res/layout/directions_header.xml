@@ -99,7 +99,7 @@
             android:layout_centerHorizontal="true"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:text="@android:string/search_go"/>
+            android:text="@string/search"/>
 
     </RelativeLayout>
 

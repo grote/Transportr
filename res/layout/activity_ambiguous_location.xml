@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginTop="25dp"
-                android:text="@android:string/search_go" />
+                android:text="@string/search" />
 
         </LinearLayout>
 
