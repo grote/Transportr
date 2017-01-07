@@ -114,7 +114,10 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
              .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
 	             @Override
 	             public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-		             if(!currentProfile && profile != null && profile instanceof ProfileDrawerItem) {
+		             if(currentProfile) {
+			             openPickNetworkProviderActivity();
+			             return true;
+		             } else if(profile != null && profile instanceof ProfileDrawerItem) {
 			             TransportNetwork network = (TransportNetwork) ((ProfileDrawerItem) profile).getTag();
 			             if(network != null) {
 				             // save new network
@@ -130,10 +133,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			.withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
 				@Override
 				public boolean onClick(View view, IProfile profile) {
-					Intent intent = new Intent(getContext(), PickNetworkProviderActivity.class);
-					ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
-					ActivityCompat.startActivityForResult(MainActivity.this, intent, CHANGED_NETWORK_PROVIDER, options.toBundle());
-
+					openPickNetworkProviderActivity();
 					return true;
 				}
 			})
@@ -432,6 +432,12 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 
 			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
 		}
+	}
+
+	private void openPickNetworkProviderActivity() {
+		Intent intent = new Intent(getContext(), PickNetworkProviderActivity.class);
+		ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
+		ActivityCompat.startActivityForResult(MainActivity.this, intent, CHANGED_NETWORK_PROVIDER, options.toBundle());
 	}
 
 	private void addAccounts(TransportNetwork network) {
