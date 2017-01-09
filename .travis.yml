@@ -1,6 +1,13 @@
 language: android
+sudo: true # travis-ci/travis-ci#5582 implies this could help against killed build-jobs
 before_script: ./pre-build.sh && sed -i "s#com.android.tools.build:gradle:.*'#com.android.tools.build:gradle:1.5.0'#" build.gradle
 jdk: openjdk7
+before_cache:
+    - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+    - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+    directories:
+        - $HOME/.gradle/caches/
 android:
   components:
     - tools
