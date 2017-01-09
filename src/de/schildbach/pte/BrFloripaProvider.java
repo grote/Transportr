@@ -17,11 +17,13 @@
 
 package de.schildbach.pte;
 
+import okhttp3.HttpUrl;
+
 public class BrFloripaProvider extends AbstractNavitiaProvider
 {
 	private static String API_REGION = "br-floripa";
 
-	public BrFloripaProvider(final String api, final String authorization)
+	public BrFloripaProvider(final HttpUrl api, final String authorization)
 	{
 		super(NetworkId.BRFLORIPA, api, authorization);
 

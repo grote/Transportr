@@ -22,12 +22,13 @@ import android.util.Log;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Style;
 import de.schildbach.pte.dto.Style.Shape;
+import okhttp3.HttpUrl;
 
 public class BrProvider extends AbstractNavitiaProvider
 {
 	private static String API_REGION = "br";
 
-	public BrProvider(final String api, final String authorization)
+	public BrProvider(final HttpUrl api, final String authorization)
 	{
 		super(NetworkId.BR, api, authorization);
 

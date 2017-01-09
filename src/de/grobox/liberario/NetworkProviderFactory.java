@@ -21,6 +21,7 @@ import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
 
 import de.schildbach.pte.*;
+import okhttp3.HttpUrl;
 
 /**
  * @author Andreas Schildbach
@@ -101,7 +102,7 @@ public final class NetworkProviderFactory
 	private static Reference<QuebecProvider> quebecProviderRef;
 	private static Reference<RtaChicagoProvider> rtaChicagoProviderRef;
 
-	private static final String NAVITIA_API = "https://api.navitia.io/v1/";
+	private static final HttpUrl NAVITIA_API = HttpUrl.parse("https://api.navitia.io/v1/");
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 	private static final String VAO = "{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}";
 
@@ -233,7 +234,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VgnProvider provider = new VgnProvider("http://212.114.197.7/vgnExt_oeffi/");
+			final VgnProvider provider = new VgnProvider(HttpUrl.parse("http://212.114.197.7/vgnExt_oeffi/"));
 			vgnProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -339,7 +340,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VvoProvider provider = new VvoProvider("http://efaproxy.fahrinfo.uptrade.de/standard/");
+			final VvoProvider provider = new VvoProvider(HttpUrl.parse("http://efaproxy.fahrinfo.uptrade.de/standard/"));
 			vvoProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -417,7 +418,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final VvsProvider provider = new VvsProvider("http://www2.vvs.de/oeffi/");
+			final VvsProvider provider = new VvsProvider(HttpUrl.parse("http://www2.vvs.de/oeffi/"));
 			vvsProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -443,7 +444,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final KvvProvider provider = new KvvProvider("http://213.144.24.66/oeffi/");
+			final KvvProvider provider = new KvvProvider(HttpUrl.parse("http://213.144.24.66/oeffi/"));
 			kvvProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -950,7 +951,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final BrFloripaProvider provider = new BrFloripaProvider("https://transportr.grobox.de/api/v1/", null);
+			final BrFloripaProvider provider = new BrFloripaProvider(HttpUrl.parse("https://transportr.grobox.de/api/v1/"), null);
 			brFloripaProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
