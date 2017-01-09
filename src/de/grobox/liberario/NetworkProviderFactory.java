@@ -19,6 +19,7 @@ package de.grobox.liberario;
 
 import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
+import java.util.Locale;
 
 import de.schildbach.pte.*;
 import okhttp3.HttpUrl;
@@ -102,6 +103,7 @@ public final class NetworkProviderFactory
 	private static Reference<QuebecProvider> quebecProviderRef;
 	private static Reference<RtaChicagoProvider> rtaChicagoProviderRef;
 	private static Reference<OregonProvider> oregonProviderRef;
+	private static Reference<NegentweeProvider> negentweeProviderRef;
 
 	private static final HttpUrl NAVITIA_API = HttpUrl.parse("https://api.navitia.io/v1/");
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
@@ -1070,6 +1072,26 @@ public final class NetworkProviderFactory
 
 			final OregonProvider provider = new OregonProvider(NAVITIA);
 			oregonProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.NEGENTWEE))
+		{
+			if (negentweeProviderRef != null)
+			{
+				final NegentweeProvider provider = negentweeProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			NegentweeProvider.Language lang;
+			if (Locale.getDefault().getLanguage().equals("nl")) {
+				lang = NegentweeProvider.Language.NL_NL;
+			} else {
+				lang = NegentweeProvider.Language.EN_GB;
+			}
+
+			final NegentweeProvider provider = new NegentweeProvider(lang);
+			negentweeProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else

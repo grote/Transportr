@@ -330,6 +330,13 @@ public class TransportNetworks {
 				.setStatus(BETA)
 		);
 
+		list.add(new TransportNetwork(context, NetworkId.NEGENTWEE)
+				.setName(getString(R.string.np_name_negentwee))
+				.setDescription(getString(R.string.np_desc_negentwee))
+				.setRegion(region)
+				.setStatus(BETA)
+		);
+
 		// Denmark
 		region = region(R.string.np_region_denmark, "\uD83C\uDDE9\uD83C\uDDF0");
 

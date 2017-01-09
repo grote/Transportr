@@ -325,6 +325,8 @@ there are any).</string>
 
     <string name="np_region_netherlands">Netherlands</string>
     <string name="np_desc_ns">Netherlands, Amsterdam</string>
+    <string name="np_name_negentwee">9292</string>
+    <string name="np_desc_negentwee">Netherlands</string>
 
     <string name="np_region_norway">Norway</string>
     <string name="np_desc_nri">Norway, Oslo, Bergen</string>
