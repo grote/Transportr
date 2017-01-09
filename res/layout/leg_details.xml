@@ -60,8 +60,7 @@
         android:textSize="12sp"
         tools:text="This is an important message for this trip. It may contain a lot of text."
         android:layout_below="@+id/lineView"
-        android:layout_alignRight="@+id/lineView"
-        android:layout_alignEnd="@+id/lineView"
+        android:layout_toLeftOf="@+id/durationView"
         android:layout_marginTop="10dp"/>
 
 </RelativeLayout>
