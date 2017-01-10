@@ -336,6 +336,26 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		setLocation(loc, drawable, true);
 	}
 
+	public void setLocation(WrapLocation loc) {
+		// special case: home location
+		if(loc.getType() == HOME) {
+			Location home = RecentsDB.getHome(getContext());
+
+			if(home != null) {
+				setLocation(home);
+			} else {
+				// prevent home.toString() from being shown in the TextView
+				ui.location.setText("");
+
+				selectHomeLocation();
+			}
+		}
+		// all other cases
+		else {
+			setLocation(loc.getLocation());
+		}
+	}
+
 	@Nullable
 	public Location getLocation() {
 		return this.location;

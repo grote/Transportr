@@ -93,7 +93,7 @@ import static de.grobox.liberario.utils.TransportrUtils.getDrawableForProduct;
 import static de.grobox.liberario.utils.TransportrUtils.getTintedDrawable;
 import static de.grobox.liberario.utils.TransportrUtils.getToolbarDrawable;
 
-public class DirectionsFragment extends TransportrFragment implements TripHandler, OnProductsChangedListener, HomePickerDialogFragment.OnHomeChangedListener {
+public class DirectionsFragment extends TransportrFragment implements TripHandler, OnProductsChangedListener {
 
 	public final static String TAG = "de.grobox.liberario.directions";
 	private ProgressDialog pd;
@@ -104,8 +104,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	private FastItemAdapter<ProductItem> productsAdapter;
 	private boolean showingMore = false;
 	private FavouritesAdapter mFavAdapter;
-
-	private boolean changingHome = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -323,12 +321,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 	}
 
-	@Override
-	public void onHomeChanged(Location home) {
-		changingHome = false;
-		ui.to.setLocation(home, getDrawableForLocation(getContext(), home));
-	}
-
 	private void showProductDialog() {
 		ProductDialogFragment productFragment = ProductDialogFragment.newInstance(products);
 		productFragment.setOnProductsChangedListener(DirectionsFragment.this);
@@ -472,17 +464,8 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		if(wto != null) {
 			to = wto.getLocation();
 			if(wto.getType() == WrapLocation.WrapType.HOME){
-				Location home = RecentsDB.getHome(getContext());
-				if(home != null) {
-					to = home;
-				} else {
-					// show home picker dialog
-					changingHome = true;
-					HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
-					setHomeFragment.setOnHomeChangedListener(this);
-					FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-					setHomeFragment.show(ft, HomePickerDialogFragment.TAG);
-				}
+				to = null;
+				ui.to.setLocation(wto);
 			}
 		} else {
 			to = null;
@@ -581,7 +564,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 	private void showLess(boolean animate) {
 		showingMore = false;
-		ui.via.setLocation(null);
+		ui.via.setLocation((Location)null);
 		ui.via.setVisibility(GONE);
 		ui.products.setVisibility(GONE);
 
