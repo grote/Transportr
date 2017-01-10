@@ -1,7 +1,7 @@
 /*    Transportr
- *    Copyright (C) 2013 - 2016 Torsten Grote
+ *    Copyright (C) 2013 - 2017 Torsten Grote
  *    Quickhome-Widget
- *    Copyright (C) 2016 Patrick Kanzler
+ *    Copyright (C) 2017 Patrick Kanzler
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
