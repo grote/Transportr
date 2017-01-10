@@ -160,6 +160,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 			locationManager.removeUpdates(this);
 			Toast.makeText(getContext(), getContext().getString(R.string.error_no_location_provider), Toast.LENGTH_LONG).show();
 
+			searching = false;
 			return;
 		}
 
