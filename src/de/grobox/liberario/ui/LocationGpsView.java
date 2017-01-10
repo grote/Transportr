@@ -160,6 +160,9 @@ public class LocationGpsView extends LocationView implements LocationListener {
 			locationManager.removeUpdates(this);
 			Toast.makeText(getContext(), getContext().getString(R.string.error_no_location_provider), Toast.LENGTH_LONG).show();
 
+			// Set the flag that there is currently no active search. Otherwise the App won't
+			// allow new searches even after GPS has been reenabled, because the app "hangs" in
+			// a semistate where searching = true but now real search is active.
 			searching = false;
 			return;
 		}
