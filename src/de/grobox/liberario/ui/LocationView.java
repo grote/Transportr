@@ -331,14 +331,16 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		setLocation(loc, icon, true);
 	}
 
-	public void setLocation(Location loc) {
+	public void setLocation(@Nullable Location loc) {
 		Drawable drawable = getDrawableForLocation(getContext(), loc);
 		setLocation(loc, drawable, true);
 	}
 
 	public void setLocation(WrapLocation loc) {
-		// special case: home location
-		if(loc.getType() == HOME) {
+		if(loc == null) {
+			setLocation((Location) null);
+		} else if(loc.getType() == HOME) {
+			// special case: home location
 			Location home = RecentsDB.getHome(getContext());
 
 			if(home != null) {
@@ -349,9 +351,8 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 
 				selectHomeLocation();
 			}
-		}
-		// all other cases
-		else {
+		} else {
+			// all other cases
 			setLocation(loc.getLocation());
 		}
 	}
