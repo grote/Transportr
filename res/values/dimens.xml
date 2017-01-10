@@ -7,6 +7,4 @@
     <dimen name="line_box_height">20dp</dimen>
     <dimen name="line_box_corner_radius">3dp</dimen>
 
-    <dimen name="widget_margin">8dp</dimen>
-
 </resources>
