@@ -14,39 +14,4 @@
         android:id="@+id/widget_quickhome_logo"
         android:background="@drawable/ic_quickhome_widget"/>
 
- <!--   <TextView
-        android:id="@+id/appwidget_text"
-        android:typeface="sans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:maxLines="1"
-        android:text="Get Me Home"/>
--->
 </FrameLayout>
-<!--
-<LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-<ImageView
-    android:id="@+id/appwidget_button"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_gravity="center_horizontal"
-    android:layout_weight="1"
-    android:src="@drawable/widget_1_background"/>
-
-<TextView
-    android:id="@+id/appwidget_text"
-    android:typeface="sans"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:textColor="@android:color/white"
-    android:textSize="12sp"
-    android:singleLine="true"/>
-
-</LinearLayout>
--->
