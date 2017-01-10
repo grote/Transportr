@@ -564,7 +564,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 	private void showLess(boolean animate) {
 		showingMore = false;
-		ui.via.setLocation((Location)null);
+		ui.via.setLocation();
 		ui.via.setVisibility(GONE);
 		ui.products.setVisibility(GONE);
 
