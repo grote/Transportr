@@ -465,7 +465,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			to = wto.getLocation();
 			if(wto.getType() == WrapLocation.WrapType.HOME){
 				to = null;
-				ui.to.setLocation(wto);
+				ui.to.setWrapLocation(wto);
 			}
 		} else {
 			to = null;
@@ -564,7 +564,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 	private void showLess(boolean animate) {
 		showingMore = false;
-		ui.via.setLocation((Location)null);
+		ui.via.setLocation(null);
 		ui.via.setVisibility(GONE);
 		ui.products.setVisibility(GONE);
 

@@ -336,7 +336,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		setLocation(loc, drawable, true);
 	}
 
-	public void setLocation(WrapLocation loc) {
+	public void setWrapLocation(WrapLocation loc) {
 		if(loc == null) {
 			setLocation((Location) null);
 		} else if(loc.getType() == HOME) {
