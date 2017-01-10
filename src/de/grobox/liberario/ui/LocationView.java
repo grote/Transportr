@@ -22,7 +22,6 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -332,17 +331,12 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		setLocation(loc, icon, true);
 	}
 
-
-	public void setLocation(@Nullable Location loc) {
+	public void setLocation(Location loc) {
 		Drawable drawable = getDrawableForLocation(getContext(), loc);
 		setLocation(loc, drawable, true);
 	}
 
-	public void setLocation() {
-		setLocation((Location)null);
-	}
-
-	public void setLocation(@NonNull WrapLocation loc) {
+	public void setLocation(WrapLocation loc) {
 		// special case: home location
 		if(loc.getType() == HOME) {
 			Location home = RecentsDB.getHome(getContext());
