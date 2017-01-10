@@ -12,6 +12,6 @@
         android:layout_gravity="center_horizontal"
         app:srcCompat="@drawable/ic_quickhome_widget"
         android:id="@+id/widget_quickhome_logo"
-        android:background="@drawable/ic_quickhome_widget"/>
+        android:src="@drawable/ic_quickhome_widget"/>
 
 </FrameLayout>
