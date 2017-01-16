@@ -9,6 +9,7 @@
         <attr name="homeLocation" format="boolean"/>
         <attr name="favLocation" format="boolean"/>
         <attr name="mapLocation" format="boolean"/>
+        <attr name="showIcon" format="boolean"/>
         <attr name="hint" format="string"/>
     </declare-styleable>
 

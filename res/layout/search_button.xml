@@ -10,4 +10,4 @@
     android:minWidth="48dp"
     android:contentDescription="@string/search"
     app:srcCompat="@drawable/ic_action_search"
-    tools:showIn="@layout/fragment_departures"/>
+    tools:showIn="@layout/activity_departures"/>

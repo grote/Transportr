@@ -96,11 +96,17 @@ there are any).</string>
     <string name="removing_from_favourites">A trip you selected is marked as favourite trip. It will be removed there too.</string>
     <string name="create_quickhome_shortcut">Create a shortcut in your launcher that gets you home</string>
 
+    <string name="change_time">Change Time</string>
     <string name="now">Now</string>
+	<string name="now_small">now</string>
     <string name="current_time_set">Time was set to current.</string>
+    <string name="yesterday">Yesterday</string>
     <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
     <string name="current_date_set">Date was set to current.</string>
     <string name="added_1h">1 hour was added.</string>
+    <string name="in_x_minutes">in %dmin</string>
+    <string name="x_minutes_ago">%dmin ago</string>
 
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>

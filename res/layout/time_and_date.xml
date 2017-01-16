@@ -2,7 +2,7 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/fragment_departures">
+    tools:showIn="@layout/activity_departures">
 
     <Button
         android:id="@+id/timeButton"

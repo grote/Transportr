@@ -76,7 +76,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	protected FragmentActivity activity;
 	protected LoaderManager loaderManager;
 	protected final LocationViewHolder ui;
-	protected OnLocationClickListener clickListener;
+	protected LocationViewListener listener;
 	protected String hint;
 
 	private FavLocation.LOC_TYPE type;
@@ -89,6 +89,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		boolean includeHome = a.getBoolean(R.styleable.LocationView_homeLocation, false);
 		boolean includeFavs = a.getBoolean(R.styleable.LocationView_favLocation, false);
 		boolean includeMap = a.getBoolean(R.styleable.LocationView_mapLocation, false);
+		boolean showIcon = a.getBoolean(R.styleable.LocationView_showIcon, true);
 		hint = a.getString(R.styleable.LocationView_hint);
 		a.recycle();
 
@@ -127,6 +128,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		setHome(includeHome);
 		setFavs(includeFavs);
 		setMap(includeMap);
+		if (!showIcon) ui.status.setVisibility(View.GONE);
 
 		ui.status.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -314,13 +316,14 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 
 		if(setText) {
 			if(loc != null) {
-				ui.location.setText(TransportrUtils.getLocName(loc));
+				ui.location.setText(TransportrUtils.getLocationName(loc));
 				ui.location.setSelection(ui.location.getText().length());
 				ui.location.dismissDropDown();
 				ui.clear.setVisibility(View.VISIBLE);
 				stopLoader();
 			} else {
 				ui.location.setText(null);
+				ui.clear.setVisibility(View.GONE);
 			}
 		}
 
@@ -385,8 +388,9 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		clearLocation();
 		stopLoader();
 		reset();
+		if (listener != null) listener.onLocationCleared();
 		ui.clear.setVisibility(View.GONE);
-		if(isShown()) {
+		if (isShown()) {
 			ui.location.requestFocus();
 			ui.location.showDropDown();
 		}
@@ -456,7 +460,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		// hide soft-keyboard
 		hideSoftKeyboard();
 
-		if(!changingHome && clickListener != null) clickListener.onLocationItemClick(loc);
+		if(!changingHome && listener != null) listener.onLocationItemClick(loc);
 	}
 
 	public void onClick() {
@@ -502,7 +506,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	public void onHomeChanged(Location home) {
 		changingHome = false;
 		setLocation(home, getTintedDrawable(getContext(), R.drawable.ic_action_home));
-		if(clickListener != null) clickListener.onLocationItemClick(new WrapLocation(home, HOME));
+		if(listener != null) listener.onLocationItemClick(new WrapLocation(home, HOME));
 	}
 
 	protected static class LocationViewHolder {
@@ -519,12 +523,13 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		}
 	}
 
-	public void setOnLocationClickListener(OnLocationClickListener listener) {
-		this.clickListener = listener;
+	public void setLocationViewListener(LocationViewListener listener) {
+		this.listener = listener;
 	}
 
-	public interface OnLocationClickListener {
+	public interface LocationViewListener {
 		void onLocationItemClick(WrapLocation loc);
+		void onLocationCleared();
 	}
 
 }

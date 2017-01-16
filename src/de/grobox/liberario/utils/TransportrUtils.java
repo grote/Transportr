@@ -63,6 +63,7 @@ import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static de.grobox.liberario.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.WrapLocation.WrapType.MAP;
@@ -86,8 +87,8 @@ public class TransportrUtils {
 		lineView.setLine(line);
 
 		// set margin, because setting in in xml does not work
-		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		llp.setMargins(0, 5, 15, 5);
+		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+		llp.setMargins(0, 5, 10, 5);
 		lineView.setLayoutParams(llp);
 
 		lineLayout.addView(lineView, index);
@@ -105,8 +106,8 @@ public class TransportrUtils {
 		ImageView v = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, lineLayout, false);
 
 		// set margin, because setting in in xml does not work
-		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		llp.setMargins(0, 5, 15, 5);
+		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+		llp.setMargins(0, 5, 10, 5);
 		v.setLayoutParams(llp);
 
 		lineLayout.addView(v, index);
@@ -160,9 +161,9 @@ public class TransportrUtils {
 		if(tag) str += "[" + context.getResources().getString(R.string.app_name) + "] ";
 
 		str += DateUtils.getTime(context, trip.getFirstDepartureTime()) + " ";
-		str += getLocName(trip.from);
+		str += getLocationName(trip.from);
 		str += " → ";
-		str += getLocName(trip.to) + " ";
+		str += getLocationName(trip.to) + " ";
 		str += DateUtils.getTime(context, trip.getLastArrivalTime());
 		str += " (" + DateUtils.getDate(context, trip.getFirstDepartureTime()) + ")";
 
@@ -184,13 +185,13 @@ public class TransportrUtils {
 		String apos = "";
 
 		str += DateUtils.getTime(context, leg.getDepartureTime()) + " ";
-		str += getLocName(leg.departure);
+		str += getLocationName(leg.departure);
 
 		if(leg instanceof Trip.Public) {
 			Trip.Public pub = (Trip.Public) leg;
 			if(pub.line != null && pub.line.label != null) {
 				str += " (" + pub.line.label;
-				if(pub.destination  != null) str += " → " + getLocName(pub.destination);
+				if(pub.destination  != null) str += " → " + getLocationName(pub.destination);
 				str += ")";
 			}
 			// show departure position if existing
@@ -211,7 +212,7 @@ public class TransportrUtils {
 
 		str += "\n";
 		str += DateUtils.getTime(context, leg.getArrivalTime()) + " ";
-		str += getLocName(leg.arrival);
+		str += getLocationName(leg.arrival);
 		str += apos;
 
 		return str;
@@ -392,9 +393,9 @@ public class TransportrUtils {
 		String uri2;
 
 		try {
-			uri2 = "(" + URLEncoder.encode(TransportrUtils.getLocName(loc), "utf-8") + ")";
+			uri2 = "(" + URLEncoder.encode(TransportrUtils.getLocationName(loc), "utf-8") + ")";
 		} catch (UnsupportedEncodingException e) {
-			uri2 = "(" + TransportrUtils.getLocName(loc) + ")";
+			uri2 = "(" + TransportrUtils.getLocationName(loc) + ")";
 		}
 
 		Uri geo = Uri.parse(uri1 + uri2);
@@ -430,11 +431,11 @@ public class TransportrUtils {
 		clipboard.setPrimaryClip(clip);
 	}
 
-	static public String getLocName(Location l) {
+	static public String getLocationName(Location l) {
 		if(l == null) {
 			return "";
 		} else if(l.type.equals(LocationType.COORD)) {
-			return getCoordinationName(l.getLatAsDouble(), l.getLonAsDouble());
+			return getCoordinationName(l);
 		} else if(l.uniqueShortName() != null) {
 			return l.uniqueShortName();
 		} else {
@@ -446,8 +447,12 @@ public class TransportrUtils {
 		if(l.hasName()) {
 			return l.place == null ? l.uniqueShortName() : l.name + ", " + l.place;
 		} else {
-			return getLocName(l);
+			return getLocationName(l);
 		}
+	}
+
+	static public String getCoordinationName(Location location) {
+		return getCoordinationName(location.getLatAsDouble(), location.getLonAsDouble());
 	}
 
 	static public String getCoordinationName(double lat, double lon) {

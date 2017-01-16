@@ -40,7 +40,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -57,9 +56,8 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
-import java.util.Arrays;
+import java.util.Collections;
 
-import de.cketti.library.changelog.ChangeLog;
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
@@ -71,6 +69,7 @@ import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.RecentTripsFragment;
 import de.grobox.liberario.fragments.SettingsFragment;
+import de.grobox.liberario.ui.TransportrChangeLog;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
@@ -223,8 +222,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 
 	@TargetApi(Build.VERSION_CODES.N_MR1)
 	private void registerNougatShortcuts() {
-		int currentapiVersion = Build.VERSION.SDK_INT;
-		if(currentapiVersion >= Build.VERSION_CODES.N_MR1) {
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
 			ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
 
 			ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "quickhome")
@@ -232,8 +230,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 					.setIcon(Icon.createWithResource(getContext(), R.drawable.ic_quickhome_widget))
 					.setIntent(TransportrUtils.getShortcutIntent(getContext()))
 					.build();
-
-			shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
+			shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
 		}
 	}
 
@@ -603,39 +600,4 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		StrictMode.setVmPolicy(vmPolicy.build());
 	}
 
-	public static class TransportrChangeLog extends ChangeLog {
-		public final static String TAG = TransportrChangeLog.class.getName();
-
-		public TransportrChangeLog(Context context, boolean dark) {
-				super(new ContextThemeWrapper(context, getDialogTheme(dark)), theme(dark));
-		}
-
-		private static int getDialogTheme(boolean dark) {
-			if(dark) {
-				return R.style.DialogTheme;
-			} else {
-				return R.style.DialogTheme_Light;
-			}
-		}
-
-		private static String theme(boolean dark) {
-			if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-				if(dark) {
-					// holo dark
-					return "body { color: #e7e3e7; font-size: 0.9em; background-color: #292829; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-				} else {
-					// holo light
-					return "body { color: #212421; font-size: 0.9em; background-color: #f7f7f7; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-				}
-			} else {
-				if(dark) {
-					// material dark
-					return "body { color: #f3f3f3; font-size: 0.9em; background-color: #424242; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-				} else {
-					// material light
-					return "body { color: #202020; font-size: 0.9em; background-color: #ffffff; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-				}
-			}
-		}
-	}
 }

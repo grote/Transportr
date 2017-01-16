@@ -1,62 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/nearbystations_header">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:showIn="@layout/nearbystations_header">
 
-    <ImageView
-        android:id="@+id/statusButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_location"
-        tools:src="@drawable/ic_location"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"/>
+	<ImageView
+		android:id="@+id/statusButton"
+		android:layout_width="38dp"
+		android:layout_height="48dp"
+		android:layout_gravity="center"
+		android:background="?attr/selectableItemBackgroundBorderless"
+		android:scaleType="center"
+		app:srcCompat="@drawable/ic_location"
+		tools:src="@drawable/ic_location"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+	<AutoCompleteTextView
+		android:id="@+id/location"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:background="@android:color/transparent"
+		android:completionThreshold="1"
+		android:inputType="text|textNoSuggestions|textAutoComplete|textFilter"
+		android:maxLines="1"/>
 
-        <AutoCompleteTextView
-            android:id="@+id/location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="30dp"
-            android:paddingEnd="30dp"
-            android:inputType="text|textNoSuggestions|textAutoComplete|textFilter"
-            android:singleLine="true"
-            android:completionThreshold="1"
-            android:layout_gravity="bottom"/>
+	<ProgressBar
+		android:id="@+id/progress"
+		style="?android:attr/progressBarStyleSmall"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:visibility="gone"
+		tools:visibility="visible"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical|end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp">
-
-            <ProgressBar
-                android:id="@+id/progress"
-                style="?android:attr/progressBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:visibility="gone"/>
-
-            <ImageButton
-                android:id="@+id/clearButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                app:srcCompat="@drawable/ic_action_content_remove"
-                tools:src="@drawable/ic_action_content_remove"
-                android:visibility="gone" />
-        </LinearLayout>
-    </FrameLayout>
+	<ImageButton
+		android:id="@+id/clearButton"
+		android:layout_width="38dp"
+		android:layout_height="48dp"
+		android:background="?attr/selectableItemBackground"
+		android:src="@drawable/ic_action_content_remove"
+		android:visibility="gone"
+		app:srcCompat="@drawable/ic_action_content_remove"
+		tools:visibility="visible"/>
 
 </merge>

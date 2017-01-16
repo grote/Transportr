@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<com.mapbox.mapboxsdk.maps.MapView
+		android:id="@+id/map"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:access_token="pk.eyJ1IjoidG92b2s3IiwiYSI6ImNpeTA1OG82YjAwN3YycXA5cWJ6NThmcWIifQ.QpURhF9y7XBMLmWhELsOnw"
+		app:attribution_enabled="false"
+		app:compass_enabled="true"
+		app:compass_margin_top="72dp"
+		app:debug_active="false"
+		app:logo_enabled="false"
+		app:my_location_enabled="false"
+		app:rotate_enabled="true"
+		app:style_url="@string/style_mapbox_streets"
+		app:tilt_enabled="false"
+		app:zoom_controls_enabled="false"
+		app:zoom_enabled="true"/>
+
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/content"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<android.support.v7.widget.CardView
+			android:id="@+id/searchBackground"
+			android:layout_width="0dp"
+			android:layout_height="48dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+		<ImageButton
+			android:id="@+id/menu"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:background="?attr/selectableItemBackground"
+			android:clickable="true"
+			android:elevation="@dimen/cardview_default_elevation"
+			android:scaleType="center"
+			android:src="@drawable/ic_menu_black"
+			app:layout_constraintLeft_toLeftOf="@+id/searchBackground"
+			app:layout_constraintTop_toTopOf="@+id/searchBackground"/>
+
+		<de.grobox.liberario.ui.LocationView
+			android:id="@+id/search"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:elevation="@dimen/cardview_default_elevation"
+			android:gravity="center_vertical"
+			app:elevation="@dimen/cardview_default_elevation"
+			app:favLocation="true"
+			app:hint="Search here"
+			app:homeLocation="true"
+			app:layout_constraintBottom_toBottomOf="@+id/searchBackground"
+			app:layout_constraintLeft_toRightOf="@+id/menu"
+			app:layout_constraintRight_toRightOf="@+id/searchBackground"
+			app:layout_constraintTop_toTopOf="@+id/searchBackground"
+			app:showIcon="false"/>
+
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/directionsFab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginRight="16dp"
+			android:clickable="true"
+			android:src="@drawable/ic_menu_directions"
+			android:tint="@color/md_white_1000"
+			app:backgroundTint="@color/primary"
+			app:layout_constraintBottom_toTopOf="@+id/gpsFab"
+			app:layout_constraintRight_toRightOf="parent"/>
+
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/gpsFab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginRight="16dp"
+			android:clickable="true"
+			android:src="@drawable/ic_gps"
+			android:tint="@color/fabForegroundInitial"
+			app:backgroundTint="@color/cardview_light_background"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintRight_toRightOf="parent"/>
+
+	</android.support.constraint.ConstraintLayout>
+
+	<FrameLayout
+		android:id="@+id/bottomSheet"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:behavior_hideable="true"
+		app:behavior_peekHeight="102dp"
+		app:layout_behavior="android.support.design.widget.BottomSheetBehavior"/>
+
+</android.support.design.widget.CoordinatorLayout>

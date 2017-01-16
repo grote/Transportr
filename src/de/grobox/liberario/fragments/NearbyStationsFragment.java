@@ -92,13 +92,15 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 		// Location Input View
 		ui.station.setCaller(MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
-		ui.station.setOnLocationClickListener(new LocationView.OnLocationClickListener() {
+		ui.station.setLocationViewListener(new LocationView.LocationViewListener() {
 			@Override
 			public void onLocationItemClick(WrapLocation loc) {
 				if(loc != null && loc.getType() != MAP) {
 					search();
 				}
 			}
+			@Override
+			public void onLocationCleared() { }
 		});
 		LocationGpsView.LocationGpsListener listener = new LocationGpsView.LocationGpsListener() {
 			@Override

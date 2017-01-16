@@ -14,14 +14,12 @@
         android:orientation="vertical"
         app:cardBackgroundColor="?attr/cardBackgroundColor"
         app:cardCornerRadius="2dp"
-        app:cardUseCompatPadding="true"
         tools:showIn="@layout/fragment_nearbystations">
 
         <de.grobox.liberario.ui.LocationGpsView
             android:id="@+id/location_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             app:hint="@string/location"
             app:homeLocation="true"
             app:favLocation="true"

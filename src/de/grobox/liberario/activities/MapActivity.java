@@ -128,7 +128,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			map.setTilesScaledToDpi(true);
 		}
 
-		fab = (FloatingActionButton) findViewById(R.id.fab);
+		fab = (FloatingActionButton) findViewById(R.id.gpsFab);
 		fabController = new FabController();
 
 		gpsController = new GpsController();
@@ -559,7 +559,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		Marker marker = new Marker(map);
 		marker.setIcon(drawable);
 		marker.setPosition(pos);
-		marker.setTitle(TransportrUtils.getLocName(loc));
+		marker.setTitle(TransportrUtils.getLocationName(loc));
 		marker.setInfoWindow(new LocationInfoWindow(map));
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
 		marker.setInfoWindowAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);

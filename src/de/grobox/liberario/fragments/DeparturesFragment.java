@@ -40,7 +40,7 @@ import java.util.Date;
 
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
-import de.grobox.liberario.adapters.DepartureAdapter;
+import de.grobox.liberario.departures.DepartureAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
 import de.grobox.liberario.ui.LocationView;
@@ -53,6 +53,7 @@ import de.schildbach.pte.dto.StationDepartures;
 
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 
+@Deprecated
 public class DeparturesFragment extends TransportrFragment {
 
 	public static final String TAG = "de.grobox.liberario.departures";
@@ -67,7 +68,7 @@ public class DeparturesFragment extends TransportrFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_departures, container, false);
+		View v = inflater.inflate(R.layout.activity_departures, container, false);
 
 		ui = new ViewHolder(v);
 
@@ -80,7 +81,7 @@ public class DeparturesFragment extends TransportrFragment {
 		});
 
 		if(departureAdapter == null) {
-			departureAdapter = new DepartureAdapter(getActivity(), R.layout.list_item_departure);
+			departureAdapter = new DepartureAdapter();
 
 			// hide departure list initially
 			ui.departure_list.setVisibility(View.GONE);
@@ -108,7 +109,6 @@ public class DeparturesFragment extends TransportrFragment {
 		super.onSaveInstanceState(outState);
 
 		if(departureAdapter != null && departureAdapter.getItemCount() > 0) {
-			outState.putSerializable("departures", departureAdapter.getDepartures());
 			outState.putSerializable("station", ui.station.getLocation());
 		}
 	}
@@ -123,7 +123,6 @@ public class DeparturesFragment extends TransportrFragment {
 			ArrayList<Departure> departures = (ArrayList<Departure>) savedInstanceState.getSerializable("departures");
 			if(departures != null && departures.size() > 0) {
 				departureAdapter.addAll(departures);
-				if(station != null) departureAdapter.setStation(station);
 				ui.departure_list.setVisibility(View.VISIBLE);
 			}
 		}
@@ -160,9 +159,6 @@ public class DeparturesFragment extends TransportrFragment {
 
 			// clear old list
 			departureAdapter.clear();
-
-			// let list know where we start for trip/line search
-			departureAdapter.setStation(ui.station.getLocation());
 
 			AsyncQueryDeparturesTask query_stations = new AsyncQueryDeparturesTask(DeparturesFragment.this, stationId, date, true, MAX_DEPARTURES);
 			query_stations.execute();
@@ -315,10 +311,10 @@ public class DeparturesFragment extends TransportrFragment {
 			station = (LocationView) view.findViewById(R.id.stationView);
 			date = (TimeAndDateView) view.findViewById(R.id.dateView);
 			search = (ImageButton) view.findViewById(R.id.stationButton);
-			departure_list = (ViewGroup) view.findViewById(R.id.departure_list);
+			departure_list = (ViewGroup) view;
 			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 			progress = (ProgressBar) view.findViewById(R.id.progressBar);
-			recycler = (RecyclerView) view.findViewById(R.id.departures_recycler_view);
+			recycler = (RecyclerView) view.findViewById(R.id.list);
 		}
 	}
 

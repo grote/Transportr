@@ -113,9 +113,9 @@ public class RecentTrip implements Serializable, Comparable<RecentTrip> {
 
 	@Override
 	public String toString() {
-		String via = TransportrUtils.getLocName(getTo());
+		String via = TransportrUtils.getLocationName(getTo());
 		String viaStr = via.equals("") ? via : " → " + via;
-		return TransportrUtils.getLocName(getFrom()) + viaStr + " → " + TransportrUtils.getLocName(getTo()) + " (" + Integer.toString(getCount()) + ")";
+		return TransportrUtils.getLocationName(getFrom()) + viaStr + " → " + TransportrUtils.getLocationName(getTo()) + " (" + Integer.toString(getCount()) + ")";
 	}
 
 }

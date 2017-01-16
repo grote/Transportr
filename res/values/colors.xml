@@ -12,7 +12,9 @@
     <color name="preference_fallback_accent_color">@color/accent</color>
 
     <color name="drawableTintDark">#ffffffff</color>
-    <color name="drawableTintLight">#8a000000</color>
+    <color name="drawableTintLight">@color/md_grey_600</color>
+
+    <color name="buttonColor">@color/md_blue_500</color>
 
     <!-- GPS FAB -->
     <color name="fabBackground">@color/cardview_light_background</color>

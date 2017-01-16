@@ -174,8 +174,8 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 	}
 
 	private void setHeader() {
-		((TextView) findViewById(R.id.departureView)).setText(TransportrUtils.getLocName(trip.from));
-		((TextView) findViewById(R.id.arrivalView)).setText(TransportrUtils.getLocName(trip.to));
+		((TextView) findViewById(R.id.departureView)).setText(TransportrUtils.getLocationName(trip.from));
+		((TextView) findViewById(R.id.arrivalView)).setText(TransportrUtils.getLocationName(trip.to));
 		((TextView) findViewById(R.id.durationView)).setText(DateUtils.getDuration(trip.getDuration()));
 		((TextView) findViewById(R.id.dateView)).setText(DateUtils.getDate(this, trip.getFirstDepartureTime()));
 	}

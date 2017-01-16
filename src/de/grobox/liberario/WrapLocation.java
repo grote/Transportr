@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static de.grobox.liberario.WrapLocation.WrapType.NORMAL;
 import static de.schildbach.pte.dto.LocationType.ANY;
 
-public class WrapLocation implements Serializable{
+public class WrapLocation implements Serializable {
 
 	public enum WrapType { NORMAL, HOME, GPS, MAP }
 
@@ -63,6 +63,16 @@ public class WrapLocation implements Serializable{
 		return type;
 	}
 
+	@Nullable
+	public String getName() {
+		if (loc == null) return null;
+		return TransportrUtils.getLocationName(loc);
+	}
+
+	public boolean hasId() {
+		return loc != null && loc.hasId();
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if(o == this) {
@@ -81,7 +91,6 @@ public class WrapLocation implements Serializable{
 	@Override
 	public String toString() {
 		if(loc == null) return "";
-		if(type != NORMAL) return null;
 		return TransportrUtils.getFullLocName(getLocation());
 	}
 

@@ -18,6 +18,7 @@
 package de.grobox.liberario.utils;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -37,7 +38,6 @@ public class DateUtils {
 		else return tf.format(date);
 	}
 
-
 	static public String getDuration(long duration) {
 		// get duration in minutes
 		duration = duration / 1000 / 60;
@@ -50,6 +50,22 @@ public class DateUtils {
 
 	static public String getDuration(Date start, Date end) {
 		return getDuration(end.getTime() - start.getTime());
+	}
+
+	static public long getDifferenceInMinutes(Date date) {
+		return getDelay(new Date(), date);
+	}
+
+	/**
+	 * Returns delay in minutes
+	 */
+	static public long getDelay(Date plannedTime, Date predictedTime) {
+		return (predictedTime.getTime() - plannedTime.getTime()) / 1000 / 60;
+	}
+
+	@Nullable
+	static public String getDelayString(long delay) {
+		return (delay > 0 ? "+" : "-") + Long.toString(delay);
 	}
 
 }

@@ -89,14 +89,14 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Fa
 	public void onBindViewHolder(final FavouriteHolder ui, final int position) {
 		final RecentTrip fav = getItem(position);
 
-		ui.favFrom.setText(TransportrUtils.getLocName(fav.getFrom()));
+		ui.favFrom.setText(TransportrUtils.getLocationName(fav.getFrom()));
 		ui.favFrom.setCompoundDrawables(TransportrUtils.getTintedDrawable(context, ui.favFrom.getCompoundDrawables()[0]), null, null, null);
 
-		ui.favTo.setText(TransportrUtils.getLocName(fav.getTo()));
+		ui.favTo.setText(TransportrUtils.getLocationName(fav.getTo()));
 		ui.favTo.setCompoundDrawables(TransportrUtils.getTintedDrawable(context, ui.favTo.getCompoundDrawables()[0]), null, null, null);
 
 		if(fav.getVia() != null) {
-			ui.favVia.setText(TransportrUtils.getLocName(fav.getVia()));
+			ui.favVia.setText(TransportrUtils.getLocationName(fav.getVia()));
 			ui.favVia.setCompoundDrawables(TransportrUtils.getTintedDrawable(context, ui.favVia.getCompoundDrawables()[0]), null, null, null);
 			ui.favVia.setVisibility(View.VISIBLE);
 		} else {

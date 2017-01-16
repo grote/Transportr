@@ -5,31 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:showIn="@layout/fragment_departures">
+    tools:showIn="@layout/activity_departures">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_margin="15dp"
-        android:indeterminate="true"
-        android:padding="25dp"
-        android:visibility="gone"/>
 
-    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/departures_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/list_item_departure"/>
-
-    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
 </LinearLayout>
 

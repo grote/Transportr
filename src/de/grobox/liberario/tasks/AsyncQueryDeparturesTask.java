@@ -17,6 +17,10 @@
 
 package de.grobox.liberario.tasks;
 
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.util.Date;
 
 import de.grobox.liberario.NetworkProviderFactory;
@@ -26,10 +30,7 @@ import de.grobox.liberario.fragments.DeparturesFragment;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
-
+@Deprecated
 public class AsyncQueryDeparturesTask extends AsyncTask<Void, Void, QueryDeparturesResult> {
 	private DeparturesFragment fragment;
 	private String stationId;

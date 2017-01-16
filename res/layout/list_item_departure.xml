@@ -1,121 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:orientation="vertical"
-    app:cardBackgroundColor="?attr/cardBackgroundColor"
-    app:cardCornerRadius="2dp"
-    app:cardUseCompatPadding="true">
+	style="@style/CardView"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginBottom="8dp"
+	app:cardCornerRadius="0dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        >
-
-        <TextView
-            android:id="@+id/depTimeView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingRight="5dp"
-            android:textColor="?android:attr/textColorPrimary"
-            tools:ignore="RtlHardcoded,RtlSymmetry"
-            tools:text="23:42"/>
-
-        <TextView
-            android:id="@+id/delayView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/depTimeView"
-            android:layout_alignRight="@+id/depTimeView"
-            android:layout_below="@+id/depTimeView"
-            android:layout_gravity="center_vertical"
-            android:paddingRight="5dp"
-            android:textColor="@color/holo_red_light"
-            tools:ignore="RtlHardcoded,RtlSymmetry"
-            tools:text="+3"/>
-
-        <LinearLayout
-            android:id="@+id/lineLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/depTimeView"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/depTimeView"
-            android:layout_toRightOf="@+id/depTimeView"
-            android:orientation="horizontal">
-
-            <de.grobox.liberario.ui.LineView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/lineNameView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignTop="@id/lineLayout"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_toEndOf="@+id/lineLayout"
-            android:layout_toLeftOf="@+id/positionView"
-            android:layout_toRightOf="@+id/lineLayout"
-            android:layout_toStartOf="@+id/positionView"
-            tools:text="This is a line name that is so long that it does not fit one line"/>
-
-        <TextView
-            android:id="@+id/positionView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="3dp"
-            android:layout_marginStart="3dp"
-            tools:text="13b"/>
-
-        <ImageView
-            android:id="@+id/arrowView"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_alignBottom="@+id/destinationView"
-            android:layout_alignLeft="@+id/lineLayout"
-            android:layout_alignStart="@+id/lineLayout"
-            android:layout_below="@+id/lineNameView"
-            android:contentDescription="@string/to"
-            android:src="@drawable/ic_right_arrow"/>
-
-        <TextView
-            android:id="@+id/destinationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lineNameView"
-            android:layout_gravity="center_vertical"
-            android:layout_toEndOf="@+id/arrowView"
-            android:layout_toRightOf="@+id/arrowView"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            tools:text="Zoologischer Garten (S+U)"/>
-
-        <TextView
-            android:id="@+id/messageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/lineLayout"
-            android:layout_alignStart="@+id/lineLayout"
-            android:layout_below="@+id/destinationView"
-            android:textColor="@color/holo_red_light"
-            tools:text="This is a message that would be displayed and might be potentially very long."/>
-
-    </RelativeLayout>
+	<!-- This is just spit because of a bug in the Android Studio Layout Editor -->
+	<include
+		layout="@layout/list_item_departure_content"/>
 
 </android.support.v7.widget.CardView>
