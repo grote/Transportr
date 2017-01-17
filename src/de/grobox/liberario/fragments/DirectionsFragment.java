@@ -360,6 +360,11 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			return;
 		}
 
+		if(ui.to.getChangingHome()) {
+			// we are currently in a state of changing home in the to field, a search is not possible
+			return;
+		}
+
 		AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(getActivity(), this);
 
 		// check and set to location
