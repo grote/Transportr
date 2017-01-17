@@ -447,6 +447,8 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	private void presetFromTo(WrapLocation wfrom, WrapLocation wvia, WrapLocation wto, Date date) {
 
 		Location from, via, to;
+
+		// unwrap wfrom
 		if(wfrom != null) {
 			from = wfrom.getLocation();
 			if(wfrom.getType() == WrapLocation.WrapType.GPS) {
@@ -456,11 +458,30 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		} else {
 			from = null;
 		}
+
+
+		// handle from-location
+		if(ui.from != null && from != null) {
+			ui.from.setLocation(from);
+		}
+
+		// unwrap wvia
 		if(wvia != null) {
 			via = wvia.getLocation();
 		} else {
 			via = null;
 		}
+
+		// handle via-location
+		if(ui.via != null) {
+			ui.via.setLocation(via);
+			if(via != null && ui.products.getVisibility() == GONE) {
+				// if there's a via location, make sure to show it in the UI
+				showMore(true);
+			}
+		}
+
+		// unwrap wto
 		if(wto != null) {
 			to = wto.getLocation();
 			if(wto.getType() == WrapLocation.WrapType.HOME){
@@ -471,26 +492,12 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			to = null;
 		}
 
-		presetFromTo(from, via, to, date);
-	}
-
-	private void presetFromTo(Location from, Location via, Location to, Date date) {
-		if(ui.from != null && from != null) {
-			ui.from.setLocation(from);
-		}
-
-		if(ui.via != null) {
-			ui.via.setLocation(via);
-			if(via != null && ui.products.getVisibility() == GONE) {
-				// if there's a via location, make sure to show it in the UI
-				showMore(true);
-			}
-		}
-
+		// handle to-location
 		if(ui.to != null && to != null) {
 			ui.to.setLocation(to);
 		}
 
+		// handle date
 		if (date != null) {
 			ui.date.setDate(date);
 		}
