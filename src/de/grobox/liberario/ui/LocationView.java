@@ -305,7 +305,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		return (LocationAdapter) ui.location.getAdapter();
 	}
 
-	public boolean getChangingHome() {
+	public boolean isChangingHome() {
 		return changingHome;
 	}
 

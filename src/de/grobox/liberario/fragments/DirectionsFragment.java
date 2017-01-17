@@ -360,7 +360,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			return;
 		}
 
-		if(ui.to.getChangingHome()) {
+		if(ui.to.isChangingHome()) {
 			// we are currently in a state of changing home in the to field, a search is not possible
 			return;
 		}
