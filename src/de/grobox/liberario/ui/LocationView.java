@@ -431,7 +431,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		// hide soft-keyboard
 		hideSoftKeyboard();
 
-		if(clickListener != null) clickListener.onLocationItemClick(view, loc);
+		if(!changingHome && clickListener != null) clickListener.onLocationItemClick(loc);
 	}
 
 	public void onClick() {
@@ -477,9 +477,10 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	public void onHomeChanged(Location home) {
 		changingHome = false;
 		setLocation(home, getTintedDrawable(getContext(), R.drawable.ic_action_home));
+		if(clickListener != null) clickListener.onLocationItemClick(new WrapLocation(home, HOME));
 	}
 
-	public static class LocationViewHolder {
+	protected static class LocationViewHolder {
 		public ImageView status;
 		public AutoCompleteTextView location;
 		ProgressBar progress;
@@ -498,7 +499,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	}
 
 	public interface OnLocationClickListener {
-		void onLocationItemClick(View view, WrapLocation loc);
+		void onLocationItemClick(WrapLocation loc);
 	}
 
 }

@@ -23,7 +23,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,6 @@ import static de.grobox.liberario.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
-import static de.schildbach.pte.dto.LocationType.ANY;
 
 public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	private List<WrapLocation> locations;
@@ -225,15 +223,16 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 	private List<WrapLocation> getDefaultLocations(boolean refresh) {
 		if(refresh || defaultLocations == null || defaultLocations.size() == 0) {
 			defaultLocations = new ArrayList<>();
-			WrapLocation home_loc = null;
+			WrapLocation home = null;
 
 			if(includeHomeLocation) {
-				home_loc = new WrapLocation(RecentsDB.getHome(getContext()));
-				if(home_loc.getLocation() != null) {
-					defaultLocations.add(new WrapLocation(new Location(ANY, null, home_loc.getLocation().place, home_loc.getLocation().name), HOME));
+				Location home_loc = RecentsDB.getHome(getContext());
+				if(home_loc == null) {
+					home = new WrapLocation(HOME);
 				} else {
-					defaultLocations.add(new WrapLocation(HOME));
+					home = new WrapLocation(home_loc, HOME);
 				}
+				defaultLocations.add(home);
 			}
 			if(includeGpsLocation)
 				defaultLocations.add(new WrapLocation(GPS));
@@ -243,10 +242,9 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 			if(includeFavLocations) {
 				List<WrapLocation> tmpList = getFavLocationList(getContext(), sort, onlyIDs);
 				// remove home location from favorites if it is set
-				if(includeHomeLocation && home_loc != null) {
-					tmpList.remove(home_loc);
+				if(includeHomeLocation && home != null) {
+					tmpList.remove(home);
 				}
-
 				defaultLocations.addAll(tmpList);
 			}
 		}

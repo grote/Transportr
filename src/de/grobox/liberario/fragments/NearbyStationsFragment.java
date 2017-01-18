@@ -94,7 +94,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		ui.station.setCaller(MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
 		ui.station.setOnLocationClickListener(new LocationView.OnLocationClickListener() {
 			@Override
-			public void onLocationItemClick(View view, WrapLocation loc) {
+			public void onLocationItemClick(WrapLocation loc) {
 				if(loc != null && loc.getType() != MAP) {
 					search();
 				}
