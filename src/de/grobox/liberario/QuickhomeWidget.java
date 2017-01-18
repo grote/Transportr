@@ -25,16 +25,10 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.widget.RemoteViews;
 
 import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.adapters.LocationAdapter;
-import de.grobox.liberario.data.RecentsDB;
-import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
-import de.grobox.liberario.ui.LocationView;
-import de.schildbach.pte.dto.Location;
 
 public class QuickhomeWidget extends AppWidgetProvider {
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
