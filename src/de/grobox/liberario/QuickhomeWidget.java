@@ -46,6 +46,8 @@ public class QuickhomeWidget extends AppWidgetProvider {
 
 			// Create an Intent to launch the DirectionsFragment via MainActivity
 			Intent intent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, context, MainActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			intent.putExtra("from", new WrapLocation(WrapLocation.WrapType.GPS));
 			intent.putExtra("to", new WrapLocation(WrapLocation.WrapType.HOME));
 			intent.putExtra("search", true);
