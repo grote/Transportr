@@ -83,7 +83,6 @@ public final class NetworkProviderFactory
 	private static Reference<DubProvider> dubProviderRef;
 	private static Reference<SeptaProvider> septaProviderRef;
 	private static Reference<SydneyProvider> sydneyProviderRef;
-	private static Reference<MetProvider> metProviderRef;
 	private static Reference<VgsProvider> vgsProviderRef;
 	private static Reference<WienProvider> wienProviderRef;
 	private static Reference<PacaProvider> pacaProviderRef;
@@ -824,19 +823,6 @@ public final class NetworkProviderFactory
 
 			final SydneyProvider provider = new SydneyProvider();
 			sydneyProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
-		else if (networkId.equals(NetworkId.MET))
-		{
-			if (metProviderRef != null)
-			{
-				final MetProvider provider = metProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final MetProvider provider = new MetProvider();
-			metProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.VGS))

@@ -185,8 +185,6 @@ there are any).</string>
     <string name="changelog_show_full">More…</string>
 
     <string name="np_region_australia">Australia</string>
-    <string name="np_name_met" translatable="false">PTV</string>
-    <string name="np_desc_met">Australia, Victoria, Melbourne</string>
     <string name="np_name_sydney" translatable="false">Transport NSW</string>
     <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
 

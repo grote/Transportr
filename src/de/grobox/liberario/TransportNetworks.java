@@ -458,12 +458,6 @@ public class TransportNetworks {
 				.setRegion(region)
 		);
 
-		list.add(new TransportNetwork(context, NetworkId.MET)
-				.setName(getString(R.string.np_name_met))
-				.setDescription(getString(R.string.np_desc_met))
-				.setRegion(region)
-		);
-
 		// France
 		region = region(R.string.np_region_france, "\uD83C\uDDEB\uD83C\uDDF7");
 
