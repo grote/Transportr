@@ -1,5 +1,5 @@
 /*    Transportr
- *    Copyright (C) 2013 - 2016 Torsten Grote
+ *    Copyright (C) 2013 - 2017 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -33,7 +33,7 @@ public class TransportrApplication extends Application {
 		super.onCreate();
 
 		initializeNetworks(getBaseContext());
-		// ShortcutIcon(); //TODO
+		ShortcutIcon(); //TODO still a bit whacky and when done move somewhere proper
 	}
 
 	public void initializeNetworks(Context context) {
@@ -52,9 +52,7 @@ public class TransportrApplication extends Application {
 		Intent shortcutIntent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, getApplicationContext(), MainActivity.class);
 		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		shortcutIntent.putExtra("from", new WrapLocation(WrapLocation.WrapType.GPS)); //TODO this crashes the launcher at the moment
-		shortcutIntent.putExtra("to", new WrapLocation(WrapLocation.WrapType.HOME)); //TODO this also
-		shortcutIntent.putExtra("search", true);
+		shortcutIntent.putExtra("special", DirectionsFragment.taskBringMeHome);
 
 		Intent addIntent = new Intent();
 		addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
