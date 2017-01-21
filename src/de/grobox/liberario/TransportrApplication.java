@@ -19,6 +19,11 @@ package de.grobox.liberario;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+
+import de.grobox.liberario.activities.MainActivity;
+import de.grobox.liberario.fragments.DirectionsFragment;
 
 public class TransportrApplication extends Application {
 	private TransportNetworks networks;
@@ -28,6 +33,7 @@ public class TransportrApplication extends Application {
 		super.onCreate();
 
 		initializeNetworks(getBaseContext());
+		// ShortcutIcon(); //TODO
 	}
 
 	public void initializeNetworks(Context context) {
@@ -41,4 +47,20 @@ public class TransportrApplication extends Application {
 		return networks;
 	}
 
+	private void ShortcutIcon(){
+
+		Intent shortcutIntent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, getApplicationContext(), MainActivity.class);
+		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		shortcutIntent.putExtra("from", new WrapLocation(WrapLocation.WrapType.GPS)); //TODO this crashes the launcher at the moment
+		shortcutIntent.putExtra("to", new WrapLocation(WrapLocation.WrapType.HOME)); //TODO this also
+		shortcutIntent.putExtra("search", true);
+
+		Intent addIntent = new Intent();
+		addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+		addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.widget_name_quickhome));
+		addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.ic_quickhome_widget));
+		addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+		getApplicationContext().sendBroadcast(addIntent);
+	}
 }
