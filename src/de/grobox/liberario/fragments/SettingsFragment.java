@@ -20,6 +20,8 @@ package de.grobox.liberario.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -29,6 +31,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
+import android.widget.Toast;
 
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
@@ -88,6 +91,34 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
 		// Fill in current home location if available
 		if(network != null) setHome(null);
+
+		home = findPreference("pref_key_create_quickhome_shortcut");
+		home.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				// create launcher shortcut
+				int currentapiVersion = Build.VERSION.SDK_INT;
+				if(currentapiVersion >= Build.VERSION_CODES.KITKAT) {
+					// the INSTALL_SHORTCUT permission is not available below API 19
+					Intent shortcutIntent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, getContext(), MainActivity.class);
+					shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					shortcutIntent.putExtra("special", DirectionsFragment.taskBringMeHome);
+
+					Intent addIntent = new Intent();
+					addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+					addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.widget_name_quickhome));
+					addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getContext(), R.drawable.ic_quickhome_widget));
+					addIntent.putExtra("duplicate", false);
+					addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+					getContext().sendBroadcast(addIntent);
+					Toast.makeText(getContext(), getString(R.string.toast_create_quickhome_shortcut), Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(getContext(), getString(R.string.error_cannot_create_quickhome_shortcut), Toast.LENGTH_SHORT).show();
+				}
+
+				return true;
+			}
+		});
 	}
 
 	@Override

@@ -84,6 +84,12 @@
             android:defaultValue="false"
             />
 
+        <Preference
+            android:key="pref_key_create_quickhome_shortcut"
+            android:title="@string/pref_quickhome"
+            android:summary="@string/create_quickhome_shortcut"
+            />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
