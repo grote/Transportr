@@ -105,7 +105,7 @@ there are any).</string>
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    
+
     <string name="pref_transport_network">Transport Network</string>
     <string name="pref_hide_departure_time">Hide departure time</string>
     <string name="pref_hide_departure_time_summary">Only show arrival time when displaying intermediate stops</string>
@@ -359,6 +359,8 @@ there are any).</string>
     <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery and Philadelphia Counties</string>
     <string name="np_name_usny" tools:keep="@string/np_name_usny">New York and New-Jersey States</string>
     <string name="np_desc_usny" translatable="false" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+    <string name="np_name_california">California</string>
+    <string name="np_desc_california">Global Transport in Calfornia State (USA)</string>
     <string name="np_name_oregon">Oregon</string>
     <string name="np_desc_oregon">Global Transport in Oregon State (USA)</string>
 

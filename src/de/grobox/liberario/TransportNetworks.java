@@ -442,6 +442,12 @@ public class TransportNetworks {
 				.setRegion(region)
 				.setStatus(TransportNetwork.Status.ALPHA)
 		);
+		list.add(new TransportNetwork(context, NetworkId.CALIFORNIA)
+				.setName(getString(R.string.np_name_california))
+				.setDescription(getString(R.string.np_desc_california))
+				.setRegion(region)
+				.setStatus(TransportNetwork.Status.ALPHA)
+		);
 /*		list.add(new TransportNetwork(context, NetworkId.USNY)
 				         .setName(getString(R.string.np_name_usny))
 				         .setDescription(getString(R.string.np_desc_usny))
