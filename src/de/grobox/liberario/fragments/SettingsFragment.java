@@ -109,14 +109,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 				addIntent.putExtra("duplicate", false);
 				addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
 				getContext().sendBroadcast(addIntent);
-				int currentapiVersion = Build.VERSION.SDK_INT;
-				if(currentapiVersion >= Build.VERSION_CODES.KITKAT) {
-					Toast.makeText(getContext(), getString(R.string.toast_create_quickhome_shortcut), Toast.LENGTH_SHORT).show();
-				} else {
-					// the INSTALL_SHORTCUT permission is part of the launcher below API 19 and
-					// therefore might not be supported
-					Toast.makeText(getContext(), getString(R.string.toast_create_quickhome_old_API), Toast.LENGTH_SHORT).show();
-				}
+
+				// switch to home-screen to let the user see the new shortcut
+				Intent startMain = new Intent(Intent.ACTION_MAIN);
+				startMain.addCategory(Intent.CATEGORY_HOME);
+				startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(startMain);
+
 				return true;
 			}
 		});

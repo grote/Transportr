@@ -95,8 +95,6 @@ there are any).</string>
     <string name="no_favourites">No favourite trips.\n\nAdd one on the \"Recent Trips\" page.</string>
     <string name="removing_from_favourites">A trip you selected is marked as favourite trip. It will be removed there too.</string>
     <string name="create_quickhome_shortcut">Create a shortcut in your launcher that gets you home</string>
-    <string name="toast_create_quickhome_shortcut">A shortcut will be created in your launcher once.</string>
-    <string name="toast_create_quickhome_old_API">Creating shortcuts might not be supported on your platform.</string>
 
     <string name="now">Now</string>
     <string name="current_time_set">Time was set to current.</string>
