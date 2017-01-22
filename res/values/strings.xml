@@ -128,7 +128,7 @@ there are any).</string>
     <string name="pref_walk_speed_slow">Slow</string>
     <string name="pref_walk_speed_normal">Normal</string>
     <string name="pref_walk_speed_fast">Fast</string>
-    <string name="pref_quickhome">Get Me Home Shortcut</string>
+    <string name="pref_quickhome">"Get Me Home"-shortcut</string>
 
     <string name="warning_departure_gap">Found too few departures. There might be more hidden. Search for exact time to be sure none is missing.</string>
     <string name="warning_permission_granted_action">Could not repeat last action automatically</string>
@@ -188,7 +188,7 @@ there are any).</string>
     <string name="changelog_title">What\'s New</string>
     <string name="changelog_show_full">More…</string>
 
-    <string name="widget_name_quickhome">Transportr: Get Me Home</string>
+    <string name="widget_name_quickhome">Get Me Home (Transportr)</string>
 
     <string name="np_region_australia">Australia</string>
     <string name="np_name_sydney" translatable="false">Transport NSW</string>
