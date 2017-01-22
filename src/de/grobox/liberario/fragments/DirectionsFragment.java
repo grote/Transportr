@@ -436,19 +436,18 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 				WrapLocation from, via, to;
 				boolean search;
 				Date date;
-				if(intent.getSerializableExtra("special").equals(TASK_BRING_ME_HOME)) {
+				String eSpecial = (String) intent.getSerializableExtra("special");
+				if(eSpecial != null && eSpecial.equals(TASK_BRING_ME_HOME)) {
 					from = new WrapLocation(WrapLocation.WrapType.GPS);
 					to = new WrapLocation(WrapLocation.WrapType.HOME);
 					search = true;
-					via = null;
-					date = null;
 				} else {
 					from = (WrapLocation) intent.getSerializableExtra("from");
-					via = (WrapLocation) intent.getSerializableExtra("via");
 					to = (WrapLocation) intent.getSerializableExtra("to");
-					date = (Date) intent.getSerializableExtra("date");
 					search = intent.getBooleanExtra("search", false);
 				}
+				via = (WrapLocation) intent.getSerializableExtra("via");
+				date = (Date) intent.getSerializableExtra("date");
 
 				if(search) searchFromTo(from, via, to, date);
 				else presetFromTo(from, via, to, date);
