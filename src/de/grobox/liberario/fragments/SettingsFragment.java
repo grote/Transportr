@@ -108,11 +108,17 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 				addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
 				getContext().sendBroadcast(addIntent);
 
-				// switch to home-screen to let the user see the new shortcut
-				Intent startMain = new Intent(Intent.ACTION_MAIN);
-				startMain.addCategory(Intent.CATEGORY_HOME);
-				startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(startMain);
+				// switch to home-screen to let the user see the new shortcut if this is the first
+				// time installing
+				if(!Preferences.getPref(getContext(), Preferences.SHORTCUT_QUICKHOME_INSTALLED, false)) {
+					Intent startMain = new Intent(Intent.ACTION_MAIN);
+					startMain.addCategory(Intent.CATEGORY_HOME);
+					startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(startMain);
+				}
+
+				// remember installation for subsequent installation-attempts
+				Preferences.setPref(getContext(), Preferences.SHORTCUT_QUICKHOME_INSTALLED, true);
 
 				return true;
 			}
