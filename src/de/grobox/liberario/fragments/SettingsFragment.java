@@ -20,6 +20,7 @@ package de.grobox.liberario.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -45,6 +46,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
 	Preference network_pref;
 	Preference home;
+	Preference quickhome;
 
 	@Override
 	public void onCreatePreferences(Bundle savedInstanceState, String s) {
@@ -88,6 +90,33 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
 		// Fill in current home location if available
 		if(network != null) setHome(null);
+
+		quickhome = findPreference("pref_key_create_quickhome_shortcut");
+		quickhome.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+			public boolean onPreferenceClick(Preference preference) {
+				// create launcher shortcut
+				Intent shortcutIntent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, getContext(), MainActivity.class);
+				shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				shortcutIntent.putExtra("special", DirectionsFragment.TASK_BRING_ME_HOME);
+
+				Intent addIntent = new Intent();
+				addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+				addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.widget_name_quickhome));
+				addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getContext(), R.drawable.ic_quickhome_widget));
+				addIntent.putExtra("duplicate", false);
+				addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+				getContext().sendBroadcast(addIntent);
+
+				// switch to home-screen to let the user see the new shortcut
+				Intent startMain = new Intent(Intent.ACTION_MAIN);
+				startMain.addCategory(Intent.CATEGORY_HOME);
+				startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(startMain);
+
+				return true;
+			}
+		});
 	}
 
 	@Override

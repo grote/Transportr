@@ -305,6 +305,10 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		return (LocationAdapter) ui.location.getAdapter();
 	}
 
+	public boolean isChangingHome() {
+		return changingHome;
+	}
+
 	public void setLocation(Location loc, Drawable icon, boolean setText) {
 		location = loc;
 
@@ -331,9 +335,30 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		setLocation(loc, icon, true);
 	}
 
-	public void setLocation(Location loc) {
+	public void setLocation(@Nullable Location loc) {
 		Drawable drawable = getDrawableForLocation(getContext(), loc);
 		setLocation(loc, drawable, true);
+	}
+
+	public void setWrapLocation(@Nullable WrapLocation loc) {
+		if(loc == null) {
+			setLocation(null);
+		} else if(loc.getType() == HOME) {
+			// special case: home location
+			Location home = RecentsDB.getHome(getContext());
+
+			if(home != null) {
+				setLocation(home);
+			} else {
+				// prevent home.toString() from being shown in the TextView
+				ui.location.setText("");
+
+				selectHomeLocation();
+			}
+		} else {
+			// all other cases
+			setLocation(loc.getLocation());
+		}
 	}
 
 	@Nullable

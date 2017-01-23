@@ -303,9 +303,9 @@ public class TransportrUtils {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(DirectionsFragment.TAG);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent.putExtra("from", from);
-		intent.putExtra("via", via);
-		intent.putExtra("to", to);
+		intent.putExtra("from", new WrapLocation(from));
+		intent.putExtra("via", new WrapLocation(via));
+		intent.putExtra("to", new WrapLocation(to));
 		intent.putExtra("search", false);
 
 		context.startActivity(intent);
@@ -315,9 +315,9 @@ public class TransportrUtils {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(DirectionsFragment.TAG);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent.putExtra("from", from);
-		intent.putExtra("via", via);
-		intent.putExtra("to", to);
+		intent.putExtra("from", new WrapLocation(from));
+		intent.putExtra("via", new WrapLocation(via));
+		intent.putExtra("to", new WrapLocation(to));
 		intent.putExtra("search", true);
 		if (date != null) {
 			intent.putExtra("date", date);

@@ -68,6 +68,7 @@ import de.grobox.liberario.tasks.AsyncQueryTripsTask.TripHandler;
 import de.grobox.liberario.ui.LocationGpsView;
 import de.grobox.liberario.ui.LocationView;
 import de.grobox.liberario.ui.TimeAndDateView;
+import de.grobox.liberario.WrapLocation;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -95,6 +96,7 @@ import static de.grobox.liberario.utils.TransportrUtils.getToolbarDrawable;
 public class DirectionsFragment extends TransportrFragment implements TripHandler, OnProductsChangedListener {
 
 	public final static String TAG = "de.grobox.liberario.directions";
+	public final static String TASK_BRING_ME_HOME = "bring_me_home";
 	private ProgressDialog pd;
 
 	private DirectionsViewHolder ui;
@@ -359,6 +361,11 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			return;
 		}
 
+		if(ui.to.isChangingHome()) {
+			// we are currently in a state of changing home in the to field, a search is not possible
+			return;
+		}
+
 		AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(getActivity(), this);
 
 		// check and set to location
@@ -426,11 +433,21 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		if(intent != null) {
 			final String action = intent.getAction();
 			if(action != null && action.equals(TAG)) {
-				Location from = (Location) intent.getSerializableExtra("from");
-				Location via = (Location) intent.getSerializableExtra("via");
-				Location to = (Location) intent.getSerializableExtra("to");
-				Date date = (Date) intent.getSerializableExtra("date");
-				boolean search = intent.getBooleanExtra("search", false);
+				WrapLocation from, via, to;
+				boolean search;
+				Date date;
+				String eSpecial = (String) intent.getSerializableExtra("special");
+				if(eSpecial != null && eSpecial.equals(TASK_BRING_ME_HOME)) {
+					from = new WrapLocation(WrapLocation.WrapType.GPS);
+					to = new WrapLocation(WrapLocation.WrapType.HOME);
+					search = true;
+				} else {
+					from = (WrapLocation) intent.getSerializableExtra("from");
+					to = (WrapLocation) intent.getSerializableExtra("to");
+					search = intent.getBooleanExtra("search", false);
+				}
+				via = (WrapLocation) intent.getSerializableExtra("via");
+				date = (Date) intent.getSerializableExtra("date");
 
 				if(search) searchFromTo(from, via, to, date);
 				else presetFromTo(from, via, to, date);
@@ -443,29 +460,66 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 	}
 
-	private void presetFromTo(Location from, Location via, Location to, Date date) {
-		if(ui.from != null && from != null) {
-			ui.from.setLocation(from, getDrawableForLocation(getContext(), from));
+	private void presetFromTo(WrapLocation wfrom, WrapLocation wvia, WrapLocation wto, Date date) {
+
+		Location from, via, to;
+
+		// unwrap wfrom
+		if(wfrom != null) {
+			from = wfrom.getLocation();
+			if(wfrom.getType() == WrapLocation.WrapType.GPS) {
+				activateGPS();
+				from = null;
+			}
+		} else {
+			from = null;
 		}
 
+
+		// handle from-location
+		if(ui.from != null && from != null) {
+			ui.from.setLocation(from);
+		}
+
+		// unwrap wvia
+		if(wvia != null) {
+			via = wvia.getLocation();
+		} else {
+			via = null;
+		}
+
+		// handle via-location
 		if(ui.via != null) {
-			ui.via.setLocation(via, getDrawableForLocation(getContext(), via));
+			ui.via.setLocation(via);
 			if(via != null && ui.products.getVisibility() == GONE) {
 				// if there's a via location, make sure to show it in the UI
 				showMore(true);
 			}
 		}
 
-		if(ui.to != null && to != null) {
-			ui.to.setLocation(to, getDrawableForLocation(getContext(), to));
+		// unwrap wto
+		if(wto != null) {
+			to = wto.getLocation();
+			if(wto.getType() == WrapLocation.WrapType.HOME){
+				to = null;
+				ui.to.setWrapLocation(wto);
+			}
+		} else {
+			to = null;
 		}
 
+		// handle to-location
+		if(ui.to != null && to != null) {
+			ui.to.setLocation(to);
+		}
+
+		// handle date
 		if (date != null) {
 			ui.date.setDate(date);
 		}
 	}
 
-	private void searchFromTo(Location from, Location via, Location to, Date date) {
+	private void searchFromTo(WrapLocation from, WrapLocation via, WrapLocation to, Date date) {
 		presetFromTo(from, via, to, date);
 		search();
 	}

@@ -19,6 +19,8 @@ package de.grobox.liberario;
 
 import android.support.annotation.Nullable;
 
+import java.io.Serializable;
+
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
@@ -26,7 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static de.grobox.liberario.WrapLocation.WrapType.NORMAL;
 import static de.schildbach.pte.dto.LocationType.ANY;
 
-public class WrapLocation {
+public class WrapLocation implements Serializable{
 
 	public enum WrapType { NORMAL, HOME, GPS, MAP }
 

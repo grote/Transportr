@@ -94,6 +94,7 @@ there are any).</string>
     <string name="more">More</string>
     <string name="no_favourites">No favourite trips.\n\nAdd one on the \"Recent Trips\" page.</string>
     <string name="removing_from_favourites">A trip you selected is marked as favourite trip. It will be removed there too.</string>
+    <string name="create_quickhome_shortcut">Create a shortcut in your launcher that gets you home</string>
 
     <string name="now">Now</string>
     <string name="current_time_set">Time was set to current.</string>
@@ -126,6 +127,7 @@ there are any).</string>
     <string name="pref_walk_speed_slow">Slow</string>
     <string name="pref_walk_speed_normal">Normal</string>
     <string name="pref_walk_speed_fast">Fast</string>
+    <string name="pref_quickhome">\"Get Me Home\"-shortcut</string>
 
     <string name="warning_departure_gap">Found too few departures. There might be more hidden. Search for exact time to be sure none is missing.</string>
     <string name="warning_permission_granted_action">Could not repeat last action automatically</string>
@@ -183,6 +185,8 @@ there are any).</string>
     <string name="changelog_full_title">Changelog</string>
     <string name="changelog_title">What\'s New</string>
     <string name="changelog_show_full">More…</string>
+
+    <string name="widget_name_quickhome">Get Me Home</string>
 
     <string name="np_region_australia">Australia</string>
     <string name="np_name_sydney" translatable="false">Transport NSW</string>
