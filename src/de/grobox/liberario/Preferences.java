@@ -41,6 +41,7 @@ public class Preferences {
 	private final static String OPTIMIZE = "pref_key_optimize";
 	private final static String EXIT_ON_BACK = "pref_key_exit_app_on_back_press";
 	private final static String SELECTED_PRODUCTS = "_selected_products";
+	public final static String SHORTCUT_QUICKHOME_INSTALLED = "pref_shortcut_quickhome_installed";
 
 	private static String getNetwork(Context context, int i) {
 		SharedPreferences settings = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
