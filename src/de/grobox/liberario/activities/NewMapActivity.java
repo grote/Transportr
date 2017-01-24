@@ -17,15 +17,24 @@
 
 package de.grobox.liberario.activities;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.View;
 
+import com.mapbox.mapboxsdk.annotations.Icon;
+import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import com.mapbox.mapboxsdk.annotations.MarkerViewOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -33,24 +42,43 @@ import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.telemetry.MapboxEventManager;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.fragments.LocationFragment;
+import de.grobox.liberario.tasks.NearbyLocationsLoader;
 import de.grobox.liberario.ui.LocationView;
 import de.grobox.liberario.ui.LocationView.LocationViewListener;
+import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
+import de.schildbach.pte.dto.NearbyLocationsResult;
 
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
+import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
+import static de.grobox.liberario.utils.TransportrUtils.getLatLng;
+import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
+import static de.grobox.liberario.utils.TransportrUtils.getMarkerForProduct;
+import static de.schildbach.pte.dto.NearbyLocationsResult.Status.OK;
 
-public class NewMapActivity extends DrawerActivity implements LocationViewListener, OnMapReadyCallback {
+public class NewMapActivity extends DrawerActivity
+		implements LocationViewListener, OnMapReadyCallback, LoaderManager.LoaderCallbacks<NearbyLocationsResult> {
 
 	private MapView mapView;
 	private MapboxMap map;
 	private LocationView search;
 	private FloatingActionButton gpsFab, directionsFab;
 	private BottomSheetBehavior bottomSheetBehavior;
+
+	@Nullable
+	LocationFragment locationFragment;
+	@Nullable
+	Marker selectedLocationMarker;
+	Map<Marker, Location> nearbyLocations = new HashMap<>();
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,7 +111,7 @@ public class NewMapActivity extends DrawerActivity implements LocationViewListen
 			@Override
 			public void onStateChanged(@NonNull View bottomSheet, int newState) {
 				if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-					for (Marker m : map.getMarkers()) map.removeMarker(m);
+					if (selectedLocationMarker != null) map.removeMarker(selectedLocationMarker);
 					search.clearLocation();
 					directionsFab.show();
 				}
@@ -100,11 +128,28 @@ public class NewMapActivity extends DrawerActivity implements LocationViewListen
 
 			}
 		});
+
 	}
 
 	@Override
 	public void onMapReady(MapboxMap mapboxMap) {
 		map = mapboxMap;
+
+//		LatLng latLng = map.getCameraPosition().target;
+		Location location = new Location(LocationType.STATION, "fake");
+		Bundle args = NearbyLocationsLoader.getBundle(location, 0);
+		getSupportLoaderManager().initLoader(LOADER_NEARBY_STATIONS, args, this);
+
+		map.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
+			@Override
+			public boolean onMarkerClick(@NonNull Marker marker) {
+				if (!nearbyLocations.containsKey(marker)) return false;
+				WrapLocation wrapLocation = new WrapLocation(nearbyLocations.get(marker));
+				onLocationItemClick(wrapLocation);
+				search.clearLocation();
+				return true;
+			}
+		});
 	}
 
 	@Override
@@ -145,9 +190,10 @@ public class NewMapActivity extends DrawerActivity implements LocationViewListen
 				updateFavLocation(NewMapActivity.this, loc.getLocation(), FROM);
 			}
 		});
+		if (selectedLocationMarker != null) map.removeMarker(selectedLocationMarker);
 
-		LatLng latLng = new LatLng(loc.getLocation().getLatAsDouble(), loc.getLocation().getLonAsDouble());
-		map.addMarker(new MarkerOptions().position(latLng));
+		LatLng latLng = getLatLng(loc.getLocation());
+		selectedLocationMarker = map.addMarker(new MarkerOptions().position(latLng));
 		map.easeCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14), 1500);
 
 		getSupportFragmentManager().beginTransaction()
@@ -161,6 +207,48 @@ public class NewMapActivity extends DrawerActivity implements LocationViewListen
 	@Override
 	public void onLocationCleared() {
 		bottomSheetBehavior.setState(STATE_HIDDEN);
+	}
+
+	public void findNearbyStations(LocationFragment locationFragment, Location location) {
+		this.locationFragment = locationFragment;
+		Bundle args = NearbyLocationsLoader.getBundle(location, 0);
+		getSupportLoaderManager().restartLoader(LOADER_NEARBY_STATIONS, args, this).forceLoad();
+	}
+
+	@Override
+	public Loader<NearbyLocationsResult> onCreateLoader(int id, Bundle args) {
+		return new NearbyLocationsLoader(this, args);
+	}
+
+	@Override
+	public void onLoadFinished(Loader<NearbyLocationsResult> loader, NearbyLocationsResult result) {
+		if (result != null && result.status == OK && result.locations != null && result.locations.size() > 0) {
+			for (Location location : result.locations) {
+				if (!location.hasLocation()) continue;
+				Marker marker = map.addMarker(new MarkerViewOptions()
+						.position(getLatLng(location))
+						.title(getLocationName(location))
+						.icon(getNearbyLocationsIcon(getMarkerForProduct(location.products)))
+				);
+				nearbyLocations.put(marker, location);
+				Log.e("TEST", location.toString());
+			}
+			if (locationFragment != null) locationFragment.onNearbyStationsLoaded();
+		} else {
+			// TODO
+			Log.e("TEST", "ERROR loading nearby stations.");
+		}
+	}
+
+	@Override
+	public void onLoaderReset(Loader<NearbyLocationsResult> loader) {
+
+	}
+
+	private Icon getNearbyLocationsIcon(@DrawableRes int res) {
+		IconFactory iconFactory = IconFactory.getInstance(NewMapActivity.this);
+		Drawable iconDrawable = ContextCompat.getDrawable(NewMapActivity.this, res);
+		return iconFactory.fromDrawable(iconDrawable);
 	}
 
 }

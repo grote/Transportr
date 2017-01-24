@@ -68,6 +68,8 @@ public class LocationFragment extends BottomSheetDialogFragment
 	private WrapLocation location;
 	private SortedSet<Line> lines = new TreeSet<>();
 	private ViewGroup linesLayout;
+	private Button nearbyStationsButton;
+	private ProgressBar nearbyStationsProgress;
 
 	public static LocationFragment newInstance(WrapLocation location) {
 		LocationFragment f = new LocationFragment();
@@ -88,7 +90,6 @@ public class LocationFragment extends BottomSheetDialogFragment
 		Bundle args = getArguments();
 		location = (WrapLocation) args.getSerializable(WRAP_LOCATION);
 		if (location == null) throw new IllegalArgumentException("No location");
-		Log.e("TEST", location.toString());
 
 		View v = inflater.inflate(R.layout.fragment_location, container, false);
 
@@ -102,7 +103,7 @@ public class LocationFragment extends BottomSheetDialogFragment
 		});
 
 		// Location
-		ImageView locationIcon = (ImageView) v.findViewById(R.id.locationIcon);
+		final ImageView locationIcon = (ImageView) v.findViewById(R.id.locationIcon);
 		locationIcon.setImageDrawable(getDrawableForLocation(getContext(), location, false));
 		TextView locationName = (TextView) v.findViewById(R.id.locationName);
 		if (location != null) {
@@ -144,15 +145,15 @@ public class LocationFragment extends BottomSheetDialogFragment
 		}
 
 		// Nearby Stations
-		final Button nearbyStationsButton = (Button) v.findViewById(R.id.nearbyStationsButton);
-		final ProgressBar nearbyStationsProgress = (ProgressBar) v.findViewById(R.id.nearbyStationsProgress);
+		nearbyStationsButton = (Button) v.findViewById(R.id.nearbyStationsButton);
+		nearbyStationsProgress = (ProgressBar) v.findViewById(R.id.nearbyStationsProgress);
 		nearbyStationsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				Log.e("TEST", "nearbyStationsButton clicked");
-
 				nearbyStationsButton.setVisibility(INVISIBLE);
 				nearbyStationsProgress.setVisibility(VISIBLE);
+				activity.findNearbyStations(LocationFragment.this, location.getLocation());
 			}
 		});
 
@@ -192,6 +193,7 @@ public class LocationFragment extends BottomSheetDialogFragment
 				for (Departure d : s.departures) lines.add(d.line);
 			}
 			linesLayout.removeAllViews();
+			// TODO animate
 			for (Line l : lines) {
 				TransportrUtils.addLineBox(getContext(), linesLayout, l);
 			}
@@ -201,6 +203,12 @@ public class LocationFragment extends BottomSheetDialogFragment
 
 	@Override
 	public void onLoaderReset(Loader<QueryDeparturesResult> loader) {
+	}
+
+	public void onNearbyStationsLoaded() {
+		nearbyStationsButton.setVisibility(VISIBLE);
+		nearbyStationsButton.setEnabled(false);
+		nearbyStationsProgress.setVisibility(INVISIBLE);
 	}
 
 }

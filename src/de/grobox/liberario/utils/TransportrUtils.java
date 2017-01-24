@@ -25,6 +25,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -34,6 +36,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mapbox.mapboxsdk.geometry.LatLng;
+
 import org.apmem.tools.layouts.FlowLayout;
 
 import java.io.UnsupportedEncodingException;
@@ -41,6 +45,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.Preferences;
@@ -242,7 +247,9 @@ public class TransportrUtils {
 
 	}
 
+	@DrawableRes
 	static public int getDrawableForProduct(Product p) {
+		@DrawableRes
 		int image_res = R.drawable.product_bus;
 
 		switch(p) {
@@ -275,6 +282,45 @@ public class TransportrUtils {
 				break;
 		}
 
+		return image_res;
+	}
+
+	@DrawableRes
+	static public int getMarkerForProduct(Set<Product> p) {
+		@DrawableRes
+		int image_res = R.drawable.ic_marker_station;
+
+		if (p != null && p.size() > 0) {
+			switch (p.iterator().next()) {
+				case HIGH_SPEED_TRAIN:
+					image_res = R.drawable.product_high_speed_train_marker;
+					break;
+				case REGIONAL_TRAIN:
+					image_res = R.drawable.product_regional_train_marker;
+					break;
+				case SUBURBAN_TRAIN:
+					image_res = R.drawable.product_suburban_train_marker;
+					break;
+				case SUBWAY:
+					image_res = R.drawable.product_subway_marker;
+					break;
+				case TRAM:
+					image_res = R.drawable.product_tram_marker;
+					break;
+				case BUS:
+					image_res = R.drawable.product_bus_marker;
+					break;
+				case FERRY:
+					image_res = R.drawable.product_ferry_marker;
+					break;
+				case CABLECAR:
+					image_res = R.drawable.product_cablecar_marker;
+					break;
+				case ON_DEMAND:
+					image_res = R.drawable.product_on_demand_marker;
+					break;
+			}
+		}
 		return image_res;
 	}
 
@@ -606,4 +652,9 @@ public class TransportrUtils {
 		shortcutIntent.putExtra("special", DirectionsFragment.TASK_BRING_ME_HOME);
 		return shortcutIntent;
 	}
+
+	public static LatLng getLatLng(@NonNull Location location) {
+		return new LatLng(location.getLatAsDouble(), location.getLonAsDouble());
+	}
+
 }

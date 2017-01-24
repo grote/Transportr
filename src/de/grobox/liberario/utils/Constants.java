@@ -3,8 +3,9 @@ package de.grobox.liberario.utils;
 public interface Constants {
 
 	// Serialization
-	String DATE = "date";
+	String DATE = "Date";
 	String WRAP_LOCATION = "WrapLocation";
+	String LOCATION = "Location";
 
 	// Loaders
 	int LOADER_AUTO_COMPLETE = 0;
