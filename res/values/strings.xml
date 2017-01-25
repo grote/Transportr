@@ -187,6 +187,7 @@ there are any).</string>
     <string name="changelog_show_full">More…</string>
 
     <string name="widget_name_quickhome">Get Me Home</string>
+    <string name="shortcut_quickhome_long_label">Start search for home.</string>
 
     <string name="np_region_australia">Australia</string>
     <string name="np_name_sydney" translatable="false">Transport NSW</string>

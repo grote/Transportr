@@ -18,10 +18,15 @@
 package de.grobox.liberario.activities;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -54,6 +59,8 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
+
+import java.util.Arrays;
 
 import de.cketti.library.changelog.ChangeLog;
 import de.grobox.liberario.BuildConfig;
@@ -91,6 +98,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	private AccountHeader accountHeader;
 	private Toolbar toolbar;
 
+	@TargetApi(Build.VERSION_CODES.N_MR1)
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -211,6 +219,21 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		TransportrChangeLog cl = new TransportrChangeLog(this, Preferences.darkThemeEnabled(this));
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
+		}
+
+		// create Android 7.1 shortcut
+		int currentapiVersion = Build.VERSION.SDK_INT;
+		if(currentapiVersion >= Build.VERSION_CODES.N_MR1) {
+			ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+
+			ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "quickhome")
+					.setShortLabel(getString(R.string.widget_name_quickhome))
+					.setLongLabel(getString(R.string.shortcut_quickhome_long_label))
+					.setIcon(Icon.createWithResource(getContext(), R.drawable.ic_quickhome_widget))
+					.setIntent(getShortcutIntent(getContext()))
+					.build();
+
+			shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
 		}
 	}
 
@@ -565,6 +588,14 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 
 	private Context getContext() {
 		return this;
+	}
+
+	public static Intent getShortcutIntent(Context context) {
+		Intent shortcutIntent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, context, MainActivity.class);
+		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		shortcutIntent.putExtra("special", DirectionsFragment.TASK_BRING_ME_HOME);
+		return shortcutIntent;
 	}
 
 	private void enableStrictMode() {
