@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.activities;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
@@ -45,7 +46,9 @@ import com.mapbox.mapboxsdk.telemetry.MapboxEventManager;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.fragments.LocationFragment;
 import de.grobox.liberario.tasks.NearbyLocationsLoader;
@@ -58,6 +61,7 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.activities.MainActivity.CHANGED_NETWORK_PROVIDER;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
 import static de.grobox.liberario.utils.TransportrUtils.getLatLng;
@@ -129,6 +133,23 @@ public class NewMapActivity extends DrawerActivity
 			}
 		});
 
+		runOnThread(new Runnable() {
+			@Override
+			public void run() {
+				TransportNetwork network = Preferences.getTransportNetwork(NewMapActivity.this);
+				if (network == null) {
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							Intent intent = new Intent(NewMapActivity.this, PickNetworkProviderActivity.class);
+							// force choosing a network provider
+							intent.putExtra("FirstRun", true);
+							startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
+						}
+					});
+				}
+			}
+		});
 	}
 
 	@Override
