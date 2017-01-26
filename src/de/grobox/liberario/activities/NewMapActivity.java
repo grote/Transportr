@@ -224,11 +224,8 @@ public class NewMapActivity extends DrawerActivity
 		});
 		if (selectedLocationMarker != null) map.removeMarker(selectedLocationMarker);
 
-		LatLng latLng = getLatLng(loc.getLocation());
+		LatLng latLng = zoomTo(loc);
 		selectedLocationMarker = map.addMarker(new MarkerOptions().position(latLng));
-		CameraUpdate update = map.getCameraPosition().zoom < LOCATION_ZOOM ?
-				CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM) : CameraUpdateFactory.newLatLng(latLng);
-		map.easeCamera(update, 1500);
 
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, LocationFragment.newInstance(loc))
@@ -236,6 +233,14 @@ public class NewMapActivity extends DrawerActivity
 				.commit(); // takes some time and empty bottomSheet will not be shown
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
 		directionsFab.hide();
+	}
+
+	public LatLng zoomTo(WrapLocation loc) {
+		LatLng latLng = getLatLng(loc.getLocation());
+		CameraUpdate update = map.getCameraPosition().zoom < LOCATION_ZOOM ?
+				CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM) : CameraUpdateFactory.newLatLng(latLng);
+		map.easeCamera(update, 1500);
+		return latLng;
 	}
 
 	@Override

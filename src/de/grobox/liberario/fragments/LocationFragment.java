@@ -26,6 +26,7 @@ import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -95,7 +96,7 @@ public class LocationFragment extends BottomSheetDialogFragment
 
 		// Directions
 		FloatingActionButton directionFab = (FloatingActionButton) v.findViewById(R.id.directionFab);
-		directionFab.setOnClickListener(new View.OnClickListener() {
+		directionFab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				Log.e("TEST", "directionFab clicked");
@@ -112,6 +113,14 @@ public class LocationFragment extends BottomSheetDialogFragment
 				Log.e("TEST", location.getLocation().products.toString());
 			}
 		}
+		OnClickListener locationClick = new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				activity.zoomTo(location);
+			}
+		};
+		locationIcon.setOnClickListener(locationClick);
+		locationName.setOnClickListener(locationClick);
 
 		// Lines
 		linesLayout = (ViewGroup) v.findViewById(R.id.linesLayout);
@@ -132,7 +141,7 @@ public class LocationFragment extends BottomSheetDialogFragment
 		// Departures
 		Button departuresButton = (Button) v.findViewById(R.id.departuresButton);
 		if (location.hasId()) {
-			departuresButton.setOnClickListener(new View.OnClickListener() {
+			departuresButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View view) {
 					Intent intent = new Intent(getContext(), DeparturesActivity.class);
@@ -147,7 +156,7 @@ public class LocationFragment extends BottomSheetDialogFragment
 		// Nearby Stations
 		nearbyStationsButton = (Button) v.findViewById(R.id.nearbyStationsButton);
 		nearbyStationsProgress = (ProgressBar) v.findViewById(R.id.nearbyStationsProgress);
-		nearbyStationsButton.setOnClickListener(new View.OnClickListener() {
+		nearbyStationsButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				Log.e("TEST", "nearbyStationsButton clicked");
@@ -159,7 +168,7 @@ public class LocationFragment extends BottomSheetDialogFragment
 
 		// Share Location
 		Button shareButton = (Button) v.findViewById(R.id.shareButton);
-		shareButton.setOnClickListener(new View.OnClickListener() {
+		shareButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				startGeoIntent(getContext(), location.getLocation());
