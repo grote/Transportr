@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+	style="@style/FavoriteCard"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<android.support.constraint.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<ImageView
+			android:id="@+id/icon"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="8dp"
+			android:layout_marginStart="8dp"
+			android:src="@drawable/ic_time"
+			android:tint="?colorControlNormal"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:ignore="ContentDescription"/>
+
+		<ImageView
+			android:id="@+id/fromIcon"
+			android:layout_width="wrap_content"
+			android:layout_height="0dp"
+			android:layout_marginLeft="3dp"
+			android:layout_marginStart="3dp"
+			android:scaleType="matrix"
+			android:src="@drawable/trip_from"
+			android:tint="?colorControlNormal"
+			app:layout_constraintBottom_toBottomOf="@+id/from"
+			app:layout_constraintLeft_toRightOf="@+id/icon"
+			app:layout_constraintTop_toTopOf="@+id/from"
+			tools:ignore="ContentDescription"/>
+
+		<TextView
+			android:id="@+id/from"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:textColor="?android:textColorPrimary"
+			app:layout_constraintLeft_toRightOf="@+id/fromIcon"
+			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="From Station"/>
+
+		<ImageView
+			android:id="@+id/viaIcon"
+			android:layout_width="wrap_content"
+			android:layout_height="0dp"
+			android:scaleType="centerCrop"
+			android:src="@drawable/trip_via"
+			android:tint="?colorControlNormal"
+			app:layout_constraintBottom_toBottomOf="@+id/via"
+			app:layout_constraintLeft_toLeftOf="@+id/fromIcon"
+			app:layout_constraintTop_toTopOf="@+id/via"
+			tools:ignore="ContentDescription"
+			tools:visibility="visible"/>
+
+		<TextView
+			android:id="@+id/via"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:textColor="?android:textColorPrimary"
+			app:layout_constraintLeft_toRightOf="@+id/viaIcon"
+			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
+			app:layout_constraintTop_toBottomOf="@+id/from"
+			tools:text="Via Station"
+			tools:visibility="visible"/>
+
+		<ImageView
+			android:id="@+id/toIcon"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/trip_to"
+			android:tint="?colorControlNormal"
+			app:layout_constraintLeft_toLeftOf="@+id/fromIcon"
+			app:layout_constraintTop_toTopOf="@+id/to"
+			tools:ignore="ContentDescription"/>
+
+		<TextView
+			android:id="@+id/to"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:textColor="?android:textColorPrimary"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toRightOf="@+id/toIcon"
+			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
+			app:layout_constraintTop_toBottomOf="@+id/via"
+			tools:text="To station"/>
+
+		<ImageButton
+			android:id="@+id/overflowButton"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:background="?selectableItemBackground"
+			android:clickable="true"
+			android:contentDescription="@string/more"
+			android:src="@drawable/ic_more_vert"
+			android:tint="?colorControlNormal"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+	</android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

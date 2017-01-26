@@ -27,7 +27,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -42,7 +41,7 @@ import java.util.ArrayList;
 import de.grobox.liberario.ListTrip;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.RecentTrip;
+import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.adapters.TripAdapter;
 import de.grobox.liberario.data.RecentsDB;
@@ -163,7 +162,7 @@ public class TripsActivity extends TransportrActivity {
 		mRecyclerView.setAdapter(mAdapter);
 
 		if(to.type != LocationType.COORD && from.type != LocationType.COORD) {
-			isFav = RecentsDB.isFavedRecentTrip(this, new RecentTrip(from, via, to));
+			isFav = RecentsDB.isFavedRecentTrip(this, new FavoritesItem(from, via, to));
 			isFavable = true;
 		} else {
 			isFav = false;
@@ -215,7 +214,7 @@ public class TripsActivity extends TransportrActivity {
 			return true;
 		}
 		else if(item.getItemId() == R.id.action_fav_trip) {
-			RecentsDB.toggleFavouriteTrip(this, new RecentTrip(from, via, to, isFav));
+			RecentsDB.toggleFavouriteTrip(this, new FavoritesItem(from, via, to, isFav));
 			isFav = !isFav;
 			TransportrUtils.setFavState(this, item, isFav, true);
 

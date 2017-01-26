@@ -1,5 +1,5 @@
 /*    Transportr
- *    Copyright (C) 2013 - 2016 Torsten Grote
+ *    Copyright (C) 2013 - 2017 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -15,19 +15,28 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.fragments;
+package de.grobox.liberario.favorites;
 
-import android.support.v4.app.Fragment;
+enum FavoritesType {
 
+	HOME(0),
+	WORK(1),
+	TRIP(2);
 
-public abstract class TransportrFragment extends Fragment {
+	private final int value;
 
-	protected void runOnUiThread(final Runnable task) {
-		getActivity().runOnUiThread(task);
+	FavoritesType(int value) {
+		this.value = value;
 	}
 
-	protected void runOnThread(final Runnable task) {
-		new Thread(task).start();
+	public int getValue() {
+		return value;
+	}
+
+	static FavoritesType fromValue(int value) {
+		for (FavoritesType s : values())
+			if (s.value == value) return s;
+		throw new IllegalArgumentException();
 	}
 
 }

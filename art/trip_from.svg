@@ -8,11 +8,11 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="20"
-   height="20"
-   viewBox="0 0 20 20"
+   height="40"
+   viewBox="0 0 20 40"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.0 r"
    sodipodi:docname="trip_from.svg">
   <metadata
      id="metadata12">
@@ -38,23 +38,23 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1012"
+     inkscape:window-height="1021"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="13.906433"
-     inkscape:cx="8.2140291"
-     inkscape:cy="16.723579"
+     inkscape:cx="8.2859383"
+     inkscape:cy="13.847212"
      inkscape:window-x="1440"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
      inkscape:current-layer="svg2" />
   <path
-     d="m 10,5 c -2.7599995,0 -5,2.240001 -5,5 1e-7,2.504619 1.8460721,4.574688 4.25,4.9375 l 0,5.0625 1.5,0 0,-5.0625 C 13.153929,14.574688 15,12.504619 15,10 15,7.240001 12.76,5 10,5 Z"
+     d="m 9.9999998,4.9999997 c -2.7599991,0 -4.9999996,2.240001 -4.9999996,5 2e-7,2.5046193 1.8460721,4.5746883 4.2500001,4.9375003 V 40 H 10.75 V 14.9375 C 13.153929,14.574688 15,12.504619 15,9.9999997 c 0,-2.759999 -2.24,-5 -5.0000002,-5 z"
      id="path4"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="ssccccss" />
   <path
-     d="m 0,-4 24,0 0,24 -24,0 z"
+     d="M 0,16 H 24 V 40 H 0 Z"
      id="path6"
      inkscape:connector-curvature="0"
      style="fill:none" />

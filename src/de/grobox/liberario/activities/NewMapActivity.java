@@ -30,6 +30,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
@@ -47,10 +48,10 @@ import com.mapbox.mapboxsdk.telemetry.MapboxEventManager;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.WrapLocation;
+import de.grobox.liberario.favorites.FavoritesFragment;
 import de.grobox.liberario.fragments.LocationFragment;
 import de.grobox.liberario.tasks.NearbyLocationsLoader;
 import de.grobox.liberario.ui.LocationView;
@@ -59,9 +60,11 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
+import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.Preferences.getTransportNetwork;
 import static de.grobox.liberario.activities.MainActivity.CHANGED_NETWORK_PROVIDER;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
@@ -101,7 +104,7 @@ public class NewMapActivity extends DrawerActivity
 		mapView.getMapAsync(this);
 
 		View menu = findViewById(R.id.menu);
-		menu.setOnClickListener(new View.OnClickListener() {
+		menu.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				openDrawer();
@@ -128,8 +131,15 @@ public class NewMapActivity extends DrawerActivity
 		});
 
 		directionsFab = (FloatingActionButton) findViewById(R.id.directionsFab);
+		directionsFab.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(NewMapActivity.this, DirectionsActivity.class);
+				startActivity(intent);
+			}
+		});
 		gpsFab = (FloatingActionButton) findViewById(R.id.gpsFab);
-		gpsFab.setOnClickListener(new View.OnClickListener() {
+		gpsFab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 
@@ -139,7 +149,7 @@ public class NewMapActivity extends DrawerActivity
 		runOnThread(new Runnable() {
 			@Override
 			public void run() {
-				TransportNetwork network = Preferences.getTransportNetwork(NewMapActivity.this);
+				TransportNetwork network = getTransportNetwork(NewMapActivity.this);
 				if (network == null) {
 					runOnUiThread(new Runnable() {
 						@Override
@@ -153,6 +163,15 @@ public class NewMapActivity extends DrawerActivity
 				}
 			}
 		});
+
+		if (savedInstanceState == null) {
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.bottomSheet, FavoritesFragment.newInstance())
+					.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
+			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
+			bottomSheetBehavior.setState(STATE_COLLAPSED);
+			directionsFab.hide();
+		}
 	}
 
 	@Override

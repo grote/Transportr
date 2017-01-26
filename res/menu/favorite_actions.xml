@@ -16,7 +16,7 @@
         android:title="@string/action_set_locations"/>
 
     <item
-        android:id="@+id/action_mark_favourite"
+        android:id="@+id/action_mark_favorite"
         android:icon="@drawable/ic_action_star"
         app:showAsAction="always"
         android:title="@string/action_fav_trip"/>

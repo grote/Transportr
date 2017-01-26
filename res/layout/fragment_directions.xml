@@ -76,7 +76,7 @@
             android:id="@+id/favourites"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/favourite_trip_list_item"/>
+            tools:listitem="@layout/list_item_favorite"/>
 
     </LinearLayout>
 

@@ -25,15 +25,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.Preferences;
-import de.grobox.liberario.RecentTrip;
+import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -186,8 +187,8 @@ public class RecentsDB {
 
 	/* RecentTrip */
 
-	public static List<RecentTrip> getRecentTripList(Context context, final boolean sort_count) {
-		List<RecentTrip> recent_list = new ArrayList<>();
+	public static List<FavoritesItem> getRecentTripList(Context context, final boolean sort_count) {
+		List<FavoritesItem> recent_list = new ArrayList<>();
 
 		// when the app starts for the first time, no network is selected
 		if(getNetwork(context) == null)  return recent_list;
@@ -210,12 +211,7 @@ public class RecentsDB {
 		Cursor c = db.rawQuery(RECENT_TRIPS, new String[]{ getNetwork(context) });
 
 		while(c.moveToNext()) {
-			Location from = getLocation(c, "from_");
-			Location via = getLocation(c, "via_");
-			Location to = getLocation(c, "to_");
-			RecentTrip trip = new RecentTrip(from, via, to, c.getInt(c.getColumnIndex("count")),
-					c.getString(c.getColumnIndex("last_used")), c.getInt(c.getColumnIndex("is_favourite")) > 0);
-			recent_list.add(trip);
+			recent_list.add(getTrip(c));
 		}
 
 		c.close();
@@ -224,8 +220,8 @@ public class RecentsDB {
 		return recent_list;
 	}
 
-	public static List<RecentTrip> getFavouriteTripList(Context context) {
-		List<RecentTrip> favourite_list = new ArrayList<>();
+	public static List<FavoritesItem> getFavouriteTripList(Context context) {
+		List<FavoritesItem> favourite_list = new ArrayList<>();
 
 		// when the app starts for the first time, no network is selected
 		if(getNetwork(context) == null)  return favourite_list;
@@ -248,12 +244,7 @@ public class RecentsDB {
 		Cursor c = db.rawQuery(FAVOURITE_TRIPS, new String[]{ getNetwork(context) });
 
 		while(c.moveToNext()) {
-			Location from = getLocation(c, "from_");
-			Location via = getLocation(c, "via_");
-			Location to = getLocation(c, "to_");
-			RecentTrip trip = new RecentTrip(from, via, to, c.getInt(c.getColumnIndex("count")),
-					c.getString(c.getColumnIndex("last_used")), c.getInt(c.getColumnIndex("is_favourite")) > 0);
-			favourite_list.add(trip);
+			favourite_list.add(getTrip(c));
 		}
 
 		c.close();
@@ -262,7 +253,7 @@ public class RecentsDB {
 		return favourite_list;
 	}
 
-	public static void updateRecentTrip(Context context, RecentTrip recent) {
+	public static void updateRecentTrip(Context context, FavoritesItem recent) {
 		if(recent.getFrom() == null || recent.getTo() == null) {
 			// this should never happen, but well...
 			return;
@@ -348,7 +339,7 @@ public class RecentsDB {
 		db.close();
 	}
 
-	public static void toggleFavouriteTrip(Context context, RecentTrip recent) {
+	public static void toggleFavouriteTrip(Context context, FavoritesItem recent) {
 		if(recent.getFrom() == null || recent.getTo() == null) {
 			// this should never happen, but well...
 			return;
@@ -389,7 +380,7 @@ public class RecentsDB {
 
 		if(c.moveToFirst()) {
 			ContentValues values = new ContentValues();
-			values.put("is_favourite", recent.isFavourite() ? 0 : 1); // Toggle
+			values.put("is_favourite", recent.isFavorite() ? 0 : 1); // Toggle
 			db.update(DBHelper.TABLE_RECENT_TRIPS, values, "_id = ?", new String[]{c.getString(c.getColumnIndex("_id")) });
 		}
 
@@ -397,7 +388,7 @@ public class RecentsDB {
 		db.close();
 	}
 
-	public static boolean isFavedRecentTrip(Context context, RecentTrip recent) {
+	public static boolean isFavedRecentTrip(Context context, FavoritesItem recent) {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -445,7 +436,7 @@ public class RecentsDB {
 		return is_fav;
 	}
 
-	public static void deleteRecentTrip(Context context, RecentTrip recent) {
+	public static void deleteRecentTrip(Context context, FavoritesItem recent) {
 		DBHelper mDbHelper = new DBHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -603,4 +594,22 @@ public class RecentsDB {
 			return -1;
 		}
 	}
+
+	@SuppressLint("SimpleDateFormat")
+	private static FavoritesItem getTrip(Cursor c) {
+		Location from = getLocation(c, "from_");
+		Location via = getLocation(c, "via_");
+		Location to = getLocation(c, "to_");
+		String lastUsed = c.getString(c.getColumnIndex("last_used"));
+		Date date;
+		try {
+			date = lastUsed == null ? new Date() : (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).parse(lastUsed);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			date = new Date();
+		}
+		return new FavoritesItem(from, via, to, c.getInt(c.getColumnIndex("count")),
+				date, c.getInt(c.getColumnIndex("is_favourite")) > 0);
+	}
+
 }

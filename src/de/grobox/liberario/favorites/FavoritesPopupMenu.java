@@ -15,33 +15,38 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.ui;
+package de.grobox.liberario.favorites;
 
 import android.content.Context;
 import android.view.MenuItem;
 import android.view.View;
 
-import de.grobox.liberario.RecentTrip;
 import de.grobox.liberario.R;
-import de.grobox.liberario.data.RecentsDB;
-import de.grobox.liberario.utils.TransportrUtils;
+import de.grobox.liberario.ui.BasePopupMenu;
 
-public class RecentsPopupMenu extends BasePopupMenu {
+import static de.grobox.liberario.data.RecentsDB.toggleFavouriteTrip;
+import static de.grobox.liberario.utils.TransportrUtils.findDirections;
+import static de.grobox.liberario.utils.TransportrUtils.presetDirections;
+import static de.grobox.liberario.utils.TransportrUtils.setFavState;
 
-	private RecentTrip trip;
-	private FavouriteRemovedListener removedListener = null;
+public class FavoritesPopupMenu extends BasePopupMenu {
 
-	public RecentsPopupMenu(Context context, View anchor, RecentTrip trip) {
+	private final FavoritesItem trip;
+	private final FavoriteListener listener;
+
+	public FavoritesPopupMenu(Context context, View anchor, FavoritesItem trip, FavoriteListener listener) {
 		super(context, anchor);
 
 		this.trip = trip;
-		this.getMenuInflater().inflate(R.menu.recent_trip_actions, getMenu());
+		this.listener = listener;
+		this.getMenuInflater().inflate(R.menu.favorite_actions, getMenu());
 
-		TransportrUtils.setFavState(context, getMenu().findItem(R.id.action_mark_favourite), trip.isFavourite(), false);
+		setFavState(context, getMenu().findItem(R.id.action_mark_favorite), trip.isFavorite(), false);
 
 		showIcons();
 	}
 
+	@Override
 	public OnMenuItemClickListener getOnMenuItemClickListener() {
 		return new OnMenuItemClickListener() {
 			@Override
@@ -50,22 +55,22 @@ public class RecentsPopupMenu extends BasePopupMenu {
 				switch(item.getItemId()) {
 					// Swap Locations
 					case R.id.action_swap_locations:
-						TransportrUtils.findDirections(context, trip.getTo(), trip.getVia(), trip.getFrom());
+						findDirections(context, trip.getTo(), trip.getVia(), trip.getFrom());
 
 						return true;
 					// Preset Locations
 					case R.id.action_set_locations:
-						TransportrUtils.presetDirections(context, trip.getFrom(), trip.getVia(), trip.getTo());
+						presetDirections(context, trip.getFrom(), trip.getVia(), trip.getTo());
 
 						return true;
-					case R.id.action_mark_favourite:
-						RecentsDB.toggleFavouriteTrip(context, trip);
-						trip.setFavourite(!trip.isFavourite());
+					case R.id.action_mark_favorite:
+						toggleFavouriteTrip(context, trip);
+						trip.setFavourite(!trip.isFavorite());
 
-						TransportrUtils.setFavState(context, item, trip.isFavourite(), false);
+						setFavState(context, item, trip.isFavorite(), false);
 
-						if(removedListener != null) {
-							removedListener.onFavouriteRemoved();
+						if(listener != null) {
+							listener.onFavoriteRemoved(trip);
 						}
 						return true;
 					default:
@@ -73,14 +78,6 @@ public class RecentsPopupMenu extends BasePopupMenu {
 				}
 			}
 		};
-	}
-
-	public void setRemovedListener(FavouriteRemovedListener l) {
-		this.removedListener = l;
-	}
-
-	public static abstract class FavouriteRemovedListener {
-		public abstract void onFavouriteRemoved();
 	}
 
 }

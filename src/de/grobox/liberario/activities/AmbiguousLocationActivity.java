@@ -36,7 +36,7 @@ import java.util.List;
 import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.RecentTrip;
+import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
@@ -137,7 +137,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 				RecentsDB.updateFavLocation(getApplicationContext(), from, FavLocation.LOC_TYPE.FROM);
 				if(via != null) RecentsDB.updateFavLocation(getApplicationContext(), via, FavLocation.LOC_TYPE.VIA);
 				RecentsDB.updateFavLocation(getApplicationContext(), to, FavLocation.LOC_TYPE.TO);
-				RecentsDB.updateRecentTrip(getApplicationContext(), new RecentTrip(from, via, to));
+				RecentsDB.updateRecentTrip(getApplicationContext(), new FavoritesItem(from, via, to));
 
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext(), AmbiguousLocationActivity.this);
 

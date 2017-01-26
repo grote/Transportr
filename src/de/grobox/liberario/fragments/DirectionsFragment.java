@@ -57,10 +57,10 @@ import java.util.List;
 import de.grobox.liberario.NetworkProviderFactory;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.RecentTrip;
+import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.activities.AmbiguousLocationActivity;
 import de.grobox.liberario.activities.TripsActivity;
-import de.grobox.liberario.adapters.FavouritesAdapter;
+import de.grobox.liberario.favorites.FavoritesAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.ProductDialogFragment.OnProductsChangedListener;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
@@ -93,6 +93,7 @@ import static de.grobox.liberario.utils.TransportrUtils.getDrawableForProduct;
 import static de.grobox.liberario.utils.TransportrUtils.getTintedDrawable;
 import static de.grobox.liberario.utils.TransportrUtils.getToolbarDrawable;
 
+@Deprecated
 public class DirectionsFragment extends TransportrFragment implements TripHandler, OnProductsChangedListener {
 
 	public final static String TAG = "de.grobox.liberario.directions";
@@ -104,7 +105,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	private EnumSet<Product> products = EnumSet.allOf(Product.class);
 	private FastItemAdapter<ProductItem> productsAdapter;
 	private boolean showingMore = false;
-	private FavouritesAdapter mFavAdapter;
+	private FavoritesAdapter mFavAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -181,7 +182,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		ui.fav_trips_separator_star.setColorFilter(getButtonIconColor(getActivity()));
 		ui.fav_trips_separator_line.setBackgroundColor(getButtonIconColor(getActivity()));
 
-		mFavAdapter = new FavouritesAdapter(getContext());
+		mFavAdapter = new FavoritesAdapter(null);
 		ui.favourites.setAdapter(mFavAdapter);
 		ui.favourites.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -411,7 +412,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 
 		// remember trip
-		RecentsDB.updateRecentTrip(getActivity(), new RecentTrip(ui.from.getLocation(), ui.via.getLocation(), ui.to.getLocation()));
+		RecentsDB.updateRecentTrip(getActivity(), new FavoritesItem(ui.from.getLocation(), ui.via.getLocation(), ui.to.getLocation()));
 
 		// set date
 		query_trips.setDate(ui.date.getDate());

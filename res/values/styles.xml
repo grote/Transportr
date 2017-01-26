@@ -33,7 +33,15 @@
 
 	<style name="Card" parent="CardView">
 		<item name="cardUseCompatPadding">true</item>
-		<item name="cardBackgroundColor">?attr/cardBackgroundColor</item>
+		<item name="cardBackgroundColor">?attr/cardBackgroundColor</item> <!-- TODO can be removed? -->
+	</style>
+
+	<style name="FavoriteCard" parent="CardView">
+		<item name="android:foreground">?selectableItemBackground</item>
+		<item name="android:clickable">true</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginTop">8dp</item>
 	</style>
 
 	<style name="Button" parent="Widget.AppCompat.Button.Borderless.Colored">

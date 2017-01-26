@@ -159,6 +159,9 @@ there are any).</string>
 
     <string name="home">Home</string>
     <string name="home_dialog_title">Set Home Location</string>
+    <string name="work">Work</string>
+    <string name="work_dialog_title">Set Work Location</string>
+    <string name="tap_to_set">Tap to set</string>
     <string name="location">Location</string>
     <string name="location_home">Click to set Home Location</string>
     <string name="location_gps">Use Current Position</string>
