@@ -36,6 +36,7 @@ import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.annotations.MarkerViewOptions;
+import com.mapbox.mapboxsdk.camera.CameraUpdate;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -71,6 +72,8 @@ import static de.schildbach.pte.dto.NearbyLocationsResult.Status.OK;
 
 public class NewMapActivity extends DrawerActivity
 		implements LocationViewListener, OnMapReadyCallback, LoaderManager.LoaderCallbacks<NearbyLocationsResult> {
+
+	private final static int LOCATION_ZOOM = 14;
 
 	private MapView mapView;
 	private MapboxMap map;
@@ -180,6 +183,14 @@ public class NewMapActivity extends DrawerActivity
 	}
 
 	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN) {
+			directionsFab.hide();
+		}
+	}
+
+	@Override
 	public void onStart() {
 		super.onStart();
 		mapView.onResume();
@@ -215,7 +226,9 @@ public class NewMapActivity extends DrawerActivity
 
 		LatLng latLng = getLatLng(loc.getLocation());
 		selectedLocationMarker = map.addMarker(new MarkerOptions().position(latLng));
-		map.easeCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14), 1500);
+		CameraUpdate update = map.getCameraPosition().zoom < LOCATION_ZOOM ?
+				CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM) : CameraUpdateFactory.newLatLng(latLng);
+		map.easeCamera(update, 1500);
 
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, LocationFragment.newInstance(loc))

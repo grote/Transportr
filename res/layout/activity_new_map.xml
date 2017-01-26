@@ -72,13 +72,12 @@
 			android:id="@+id/directionsFab"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="16dp"
-			android:layout_marginEnd="16dp"
-			android:layout_marginRight="16dp"
+			android:layout_margin="16dp"
 			android:clickable="true"
 			android:src="@drawable/ic_menu_directions"
 			android:tint="@color/md_white_1000"
 			app:backgroundTint="@color/primary"
+			app:behavior_autoHide="true"
 			app:layout_constraintBottom_toTopOf="@+id/gpsFab"
 			app:layout_constraintRight_toRightOf="parent"/>
 
@@ -86,13 +85,12 @@
 			android:id="@+id/gpsFab"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="16dp"
-			android:layout_marginEnd="16dp"
-			android:layout_marginRight="16dp"
+			android:layout_margin="16dp"
 			android:clickable="true"
 			android:src="@drawable/ic_gps"
 			android:tint="@color/fabForegroundInitial"
 			app:backgroundTint="@color/cardview_light_background"
+			app:behavior_autoHide="true"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintRight_toRightOf="parent"/>
 
@@ -104,6 +102,7 @@
 		android:layout_height="wrap_content"
 		app:behavior_hideable="true"
 		app:behavior_peekHeight="102dp"
+		app:behavior_skipCollapsed="true"
 		app:layout_behavior="android.support.design.widget.BottomSheetBehavior"/>
 
 </android.support.design.widget.CoordinatorLayout>
