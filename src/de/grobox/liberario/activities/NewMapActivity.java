@@ -164,6 +164,12 @@ public class NewMapActivity extends DrawerActivity
 		Bundle args = NearbyLocationsLoader.getBundle(location, 0);
 		getSupportLoaderManager().initLoader(LOADER_NEARBY_STATIONS, args, this);
 
+		map.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
+			@Override
+			public void onMapClick(@NonNull LatLng point) {
+				search.hideSoftKeyboard();
+			}
+		});
 		map.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
 			@Override
 			public boolean onMarkerClick(@NonNull Marker marker) {
