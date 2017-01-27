@@ -168,7 +168,7 @@ public class NewMapActivity extends DrawerActivity
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.bottomSheet, FavoritesFragment.newInstance())
+					.replace(R.id.bottomSheet, FavoritesFragment.newInstance(), FavoritesFragment.TAG)
 					.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
 			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 			bottomSheetBehavior.setState(STATE_COLLAPSED);
@@ -254,9 +254,9 @@ public class NewMapActivity extends DrawerActivity
 		LatLng latLng = zoomTo(loc);
 		selectedLocationMarker = map.addMarker(new MarkerOptions().position(latLng));
 
+		locationFragment = LocationFragment.newInstance(loc);
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.bottomSheet, LocationFragment.newInstance(loc))
-				.addToBackStack(null)
+				.replace(R.id.bottomSheet, locationFragment, LocationFragment.TAG)
 				.commit(); // takes some time and empty bottomSheet will not be shown
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
 		directionsFab.hide();
@@ -275,8 +275,7 @@ public class NewMapActivity extends DrawerActivity
 		bottomSheetBehavior.setState(STATE_HIDDEN);
 	}
 
-	public void findNearbyStations(LocationFragment locationFragment, Location location) {
-		this.locationFragment = locationFragment;
+	public void findNearbyStations(Location location) {
 		Bundle args = NearbyLocationsLoader.getBundle(location, 0);
 		getSupportLoaderManager().restartLoader(LOADER_NEARBY_STATIONS, args, this).forceLoad();
 	}

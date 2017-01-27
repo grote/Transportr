@@ -60,6 +60,7 @@ import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 import static de.grobox.liberario.utils.TransportrUtils.showLocationsOnMap;
 
+@Deprecated
 public class NearbyStationsFragment extends TransportrFragment {
 
 	public static final String TAG = "de.grobox.liberario.nearby_locations";

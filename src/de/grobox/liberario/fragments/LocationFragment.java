@@ -65,6 +65,8 @@ import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 public class LocationFragment extends BottomSheetDialogFragment
 		implements LoaderManager.LoaderCallbacks<QueryDeparturesResult> {
 
+	public static final String TAG = LocationFragment.class.getName();
+
 	private NewMapActivity activity;
 	private WrapLocation location;
 	private SortedSet<Line> lines = new TreeSet<>();
@@ -162,7 +164,7 @@ public class LocationFragment extends BottomSheetDialogFragment
 				Log.e("TEST", "nearbyStationsButton clicked");
 				nearbyStationsButton.setVisibility(INVISIBLE);
 				nearbyStationsProgress.setVisibility(VISIBLE);
-				activity.findNearbyStations(LocationFragment.this, location.getLocation());
+				activity.findNearbyStations(location.getLocation());
 			}
 		});
 
@@ -202,11 +204,12 @@ public class LocationFragment extends BottomSheetDialogFragment
 				for (Departure d : s.departures) lines.add(d.line);
 			}
 			linesLayout.removeAllViews();
-			// TODO animate
 			for (Line l : lines) {
 				TransportrUtils.addLineBox(getContext(), linesLayout, l);
 			}
+			linesLayout.setAlpha(0f);
 			linesLayout.setVisibility(VISIBLE);
+			linesLayout.animate().alpha(1f).start();
 		}
 	}
 

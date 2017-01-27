@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.TransportrFragment;
+import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.Location;
 
 import static de.grobox.liberario.favorites.FavoritesDatabase.getFavoriteTripList;
@@ -25,10 +27,13 @@ import static de.grobox.liberario.utils.Constants.LOADER_FAVORITES;
 
 public class FavoritesFragment extends TransportrFragment implements FavoriteListener, LoaderManager.LoaderCallbacks<Collection<FavoritesItem>> {
 
+	public static final String TAG = FavoritesFragment.class.getName();
+
 	public static FavoritesFragment newInstance() {
 		return new FavoritesFragment();
 	}
 
+	private ProgressBar progressBar;
 	private RecyclerView list;
 	private FavoritesAdapter adapter;
 
@@ -36,10 +41,14 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_favorites, container, false);
 
+		progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
+
 		list = (RecyclerView) v.findViewById(R.id.favorites);
 		adapter = new FavoritesAdapter(this);
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(getContext()));
+
+		LceAnimator.showLoading(progressBar, list, null);
 
 		boolean hasLoader = getLoaderManager().getLoader(LOADER_FAVORITES) != null;
 		Loader loader = getLoaderManager().initLoader(LOADER_FAVORITES, null, this);
@@ -67,7 +76,7 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 
 	@Override
 	public void onLoadFinished(Loader<Collection<FavoritesItem>> loader, Collection<FavoritesItem> favorites) {
-		// TODO animate
+		LceAnimator.showContent(progressBar, list, null);
 		adapter.addAll(favorites);
 	}
 

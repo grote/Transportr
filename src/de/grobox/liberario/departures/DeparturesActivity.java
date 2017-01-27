@@ -27,6 +27,7 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.fragments.TimeDateFragment;
+import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
@@ -99,6 +100,8 @@ public class DeparturesActivity extends TransportrActivity
 		list.setVisibility(INVISIBLE);
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(this));
+
+		LceAnimator.showLoading(progressBar, list, null);
 
 		// Loader
 		Bundle args = getBundle(location.getId(), new Date(), MAX_DEPARTURES);
@@ -212,14 +215,10 @@ public class DeparturesActivity extends TransportrActivity
 			// TODO
 			Log.e("TEST", "LOAD FAILED!!!");
 		}
-
 		swipe.setRefreshing(false);
-		progressBar.setVisibility(INVISIBLE);
 
 		if (searchState == SearchState.INITIAL) {
-			list.setAlpha(0f);
-			list.setVisibility(VISIBLE);
-			list.animate().alpha(1f).setDuration(750);
+			LceAnimator.showContent(progressBar, list, null);
 		} else {
 			// scroll smoothly up or down when we have new trips
 			list.smoothScrollBy(0, searchState == SearchState.BOTTOM ? 150 : -150);
