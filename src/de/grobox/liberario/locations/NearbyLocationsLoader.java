@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.tasks;
+package de.grobox.liberario.locations;
 
 import android.content.Context;
 import android.os.Bundle;

@@ -15,13 +15,14 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.fragments;
+package de.grobox.liberario.locations;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.annotation.NonNull;
+import android.support.annotation.WorkerThread;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,6 +43,8 @@ import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.activities.NewMapActivity;
 import de.grobox.liberario.departures.DeparturesActivity;
 import de.grobox.liberario.departures.DeparturesLoader;
+import de.grobox.liberario.fragments.TransportrFragment;
+import de.grobox.liberario.locations.OsmReverseGeocoder.OsmReverseGeocoderCallback;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Line;
@@ -60,16 +63,21 @@ import static de.grobox.liberario.utils.Constants.WRAP_LOCATION;
 import static de.grobox.liberario.utils.TransportrUtils.getCoordinationName;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 import static de.grobox.liberario.utils.TransportrUtils.startGeoIntent;
+import static de.schildbach.pte.dto.LocationType.COORD;
 import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 
-public class LocationFragment extends BottomSheetDialogFragment
-		implements LoaderManager.LoaderCallbacks<QueryDeparturesResult> {
+public class LocationFragment extends TransportrFragment
+		implements LoaderCallbacks<QueryDeparturesResult>, OsmReverseGeocoderCallback {
 
 	public static final String TAG = LocationFragment.class.getName();
 
 	private NewMapActivity activity;
 	private WrapLocation location;
 	private SortedSet<Line> lines = new TreeSet<>();
+
+	private ImageView locationIcon;
+	private TextView locationName;
+	private TextView locationInfo;
 	private ViewGroup linesLayout;
 	private Button nearbyStationsButton;
 	private ProgressBar nearbyStationsProgress;
@@ -94,9 +102,6 @@ public class LocationFragment extends BottomSheetDialogFragment
 		location = (WrapLocation) args.getSerializable(WRAP_LOCATION);
 		if (location == null) throw new IllegalArgumentException("No location");
 
-		// TODO do async reverse geocoding when LocationType == COORD
-		// https://nominatim.openstreetmap.org/reverse?lat=52.5217&lon=13.4324&format=json
-
 		View v = inflater.inflate(R.layout.fragment_location, container, false);
 
 		// Directions
@@ -109,15 +114,8 @@ public class LocationFragment extends BottomSheetDialogFragment
 		});
 
 		// Location
-		final ImageView locationIcon = (ImageView) v.findViewById(R.id.locationIcon);
-		locationIcon.setImageDrawable(getDrawableForLocation(getContext(), location, false));
-		TextView locationName = (TextView) v.findViewById(R.id.locationName);
-		if (location != null) {
-			locationName.setText(location.getName());
-			if (location.getLocation().products != null) {
-				Log.e("TEST", location.getLocation().products.toString());
-			}
-		}
+		locationIcon = (ImageView) v.findViewById(R.id.locationIcon);
+		locationName = (TextView) v.findViewById(R.id.locationName);
 		OnClickListener locationClick = new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -132,16 +130,13 @@ public class LocationFragment extends BottomSheetDialogFragment
 		linesLayout.setVisibility(GONE);
 
 		// Location Info
-		TextView locationInfo = (TextView) v.findViewById(R.id.locationInfo);
-		StringBuilder locationInfoStr = new StringBuilder();
-		if (!isNullOrEmpty(location.getLocation().place)) {
-			locationInfoStr.append(location.getLocation().place);
+		locationInfo = (TextView) v.findViewById(R.id.locationInfo);
+		showLocation();
+
+		if (location.getLocation().type == COORD) {
+			OsmReverseGeocoder geocoder = new OsmReverseGeocoder(this);
+			geocoder.findLocation(location.getLocation());
 		}
-		if (location.getLocation().hasLocation()) {
-			if (locationInfoStr.length() > 0) locationInfoStr.append(", ");
-			locationInfoStr.append(getCoordinationName(location.getLocation()));
-		}
-		locationInfo.setText(locationInfoStr);
 
 		// Departures
 		Button departuresButton = (Button) v.findViewById(R.id.departuresButton);
@@ -164,7 +159,6 @@ public class LocationFragment extends BottomSheetDialogFragment
 		nearbyStationsButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Log.e("TEST", "nearbyStationsButton clicked");
 				nearbyStationsButton.setVisibility(INVISIBLE);
 				nearbyStationsProgress.setVisibility(VISIBLE);
 				activity.findNearbyStations(location.getLocation());
@@ -181,6 +175,20 @@ public class LocationFragment extends BottomSheetDialogFragment
 		});
 
 		return v;
+	}
+
+	private void showLocation() {
+		locationIcon.setImageDrawable(getDrawableForLocation(getContext(), location, false));
+		locationName.setText(location.getName());
+		StringBuilder locationInfoStr = new StringBuilder();
+		if (!isNullOrEmpty(location.getLocation().place)) {
+			locationInfoStr.append(location.getLocation().place);
+		}
+		if (location.getLocation().hasLocation()) {
+			if (locationInfoStr.length() > 0) locationInfoStr.append(", ");
+			locationInfoStr.append(getCoordinationName(location.getLocation()));
+		}
+		locationInfo.setText(locationInfoStr);
 	}
 
 	@Override
@@ -218,6 +226,18 @@ public class LocationFragment extends BottomSheetDialogFragment
 
 	@Override
 	public void onLoaderReset(Loader<QueryDeparturesResult> loader) {
+	}
+
+	@Override
+	@WorkerThread
+	public void onLocationRetrieved(@NonNull final WrapLocation location) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				LocationFragment.this.location = location;
+				showLocation();
+			}
+		});
 	}
 
 	public void onNearbyStationsLoaded() {
