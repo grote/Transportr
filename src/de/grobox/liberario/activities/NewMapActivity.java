@@ -20,6 +20,7 @@ package de.grobox.liberario.activities;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -48,6 +49,7 @@ import com.mapbox.mapboxsdk.telemetry.MapboxEventManager;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.WrapLocation;
@@ -92,6 +94,7 @@ public class NewMapActivity extends DrawerActivity
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
+//		enableStrictMode();
 		setContentView(R.layout.activity_new_map);
 		super.onCreate(savedInstanceState);
 
@@ -314,6 +317,19 @@ public class NewMapActivity extends DrawerActivity
 		IconFactory iconFactory = IconFactory.getInstance(NewMapActivity.this);
 		Drawable iconDrawable = ContextCompat.getDrawable(NewMapActivity.this, res);
 		return iconFactory.fromDrawable(iconDrawable);
+	}
+
+	private void enableStrictMode() {
+		if(!BuildConfig.DEBUG) return;
+
+		StrictMode.ThreadPolicy.Builder threadPolicy = new StrictMode.ThreadPolicy.Builder();
+		threadPolicy.detectAll();
+		threadPolicy.penaltyLog();
+		StrictMode.setThreadPolicy(threadPolicy.build());
+		StrictMode.VmPolicy.Builder vmPolicy = new StrictMode.VmPolicy.Builder();
+		vmPolicy.detectAll();
+		vmPolicy.penaltyLog();
+		StrictMode.setVmPolicy(vmPolicy.build());
 	}
 
 }
