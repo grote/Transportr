@@ -24,9 +24,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -38,7 +36,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
@@ -229,7 +226,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "quickhome")
 					.setShortLabel(getString(R.string.widget_name_quickhome))
 					.setIcon(Icon.createWithResource(getContext(), R.drawable.ic_quickhome_widget))
-					.setIntent(getShortcutIntent(getContext()))
+					.setIntent(TransportrUtils.getShortcutIntent(getContext()))
 					.build();
 
 			shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
@@ -587,14 +584,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 
 	private Context getContext() {
 		return this;
-	}
-
-	public static Intent getShortcutIntent(Context context) {
-		Intent shortcutIntent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, context, MainActivity.class);
-		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		shortcutIntent.putExtra("special", DirectionsFragment.TASK_BRING_ME_HOME);
-		return shortcutIntent;
 	}
 
 	private void enableStrictMode() {
