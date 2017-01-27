@@ -41,8 +41,11 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(getContext()));
 
+		boolean hasLoader = getLoaderManager().getLoader(LOADER_FAVORITES) != null;
 		Loader loader = getLoaderManager().initLoader(LOADER_FAVORITES, null, this);
-		if (savedInstanceState == null) loader.forceLoad();
+		if (savedInstanceState == null || !hasLoader) {
+			loader.forceLoad();
+		}
 
 		return v;
 	}
