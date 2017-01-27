@@ -228,7 +228,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 
 			ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "quickhome")
 					.setShortLabel(getString(R.string.widget_name_quickhome))
-					.setLongLabel(getString(R.string.shortcut_quickhome_long_label))
 					.setIcon(Icon.createWithResource(getContext(), R.drawable.ic_quickhome_widget))
 					.setIntent(getShortcutIntent(getContext()))
 					.build();
