@@ -2,35 +2,38 @@
 <android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:fitsSystemWindows="true">
 
 	<android.support.design.widget.AppBarLayout
+		android:id="@+id/appBarLayout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:paddingLeft="5dp"
-		android:paddingRight="5dp"
-		android:paddingTop="5dp">
+		android:orientation="vertical">
 
 		<android.support.design.widget.CollapsingToolbarLayout
-			android:id="@+id/collapsing_toolbar"
+			android:id="@+id/collapsingToolbar"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:fitsSystemWindows="true"
 			app:contentScrim="?attr/colorPrimary"
-			app:expandedTitleMarginEnd="64dp"
-			app:expandedTitleMarginStart="48dp"
 			app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+			<android.support.v7.widget.Toolbar
+				android:id="@+id/toolbar"
+				style="@style/ToolbarStyle"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+				app:title="@string/drawer_directions"/>
 
 			<include
 				android:id="@+id/departureForm"
 				layout="@layout/directions_header"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				app:layout_scrollFlags="scroll|enterAlways"/>
+				android:layout_marginTop="@dimen/materialize_toolbar"/>
 
 		</android.support.design.widget.CollapsingToolbarLayout>
 
@@ -40,7 +43,6 @@
 		android:id="@+id/fragmentContainer"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:layout_behavior="@string/appbar_scrolling_view_behavior"
-		tools:listitem="@layout/list_item_favorite"/>
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -34,8 +34,6 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
 		View v = inflater.inflate(R.layout.fragment_favorites, container, false);
 
 		list = (RecyclerView) v.findViewById(R.id.favorites);
