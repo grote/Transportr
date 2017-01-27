@@ -43,9 +43,11 @@ import java.util.List;
 import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.favorites.FavoritesItem;
-import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.favorites.FavoritesPopupMenu;
 import de.grobox.liberario.utils.TransportrUtils;
+
+import static de.grobox.liberario.favorites.FavoritesDatabase.deleteFavoriteTrip;
+import static de.grobox.liberario.favorites.FavoritesDatabase.getFavoriteTripList;
 
 @Deprecated
 public class RecentTripsFragment extends TransportrListFragment {
@@ -64,7 +66,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false)));
+		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, getFavoriteTripList(getActivity()));
 		setListAdapter(adapter);
 
 		toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
@@ -123,13 +125,13 @@ public class RecentTripsFragment extends TransportrListFragment {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_recent_trips_sort_count:
-				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), true));
+				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, getFavoriteTripList(getActivity()));
 				Preferences.setPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, true);
 				setListAdapter(adapter);
 				item.setChecked(true);
 				return true;
 			case R.id.action_recent_trips_sort_recent:
-				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), false));
+				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, getFavoriteTripList(getActivity()));
 				Preferences.setPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false);
 				setListAdapter(adapter);
 				item.setChecked(true);
@@ -259,7 +261,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 			if(tmp.valueAt(i)) {
 				int pos = tmp.keyAt(i);
 				FavoritesItem trip = adapter.getItem(pos);
-				RecentsDB.deleteRecentTrip(getActivity(), trip);
+				deleteFavoriteTrip(getActivity(), trip);
 				adapter.remove(trip);
 			}
 		}

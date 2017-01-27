@@ -45,6 +45,8 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
+import static de.grobox.liberario.favorites.FavoritesDatabase.updateFavoriteTrip;
+
 public class AmbiguousLocationActivity extends TransportrActivity implements AsyncQueryTripsTask.TripHandler {
 	private Location from, via, to;
 	private Date date;
@@ -137,7 +139,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 				RecentsDB.updateFavLocation(getApplicationContext(), from, FavLocation.LOC_TYPE.FROM);
 				if(via != null) RecentsDB.updateFavLocation(getApplicationContext(), via, FavLocation.LOC_TYPE.VIA);
 				RecentsDB.updateFavLocation(getApplicationContext(), to, FavLocation.LOC_TYPE.TO);
-				RecentsDB.updateRecentTrip(getApplicationContext(), new FavoritesItem(from, via, to));
+				updateFavoriteTrip(getApplicationContext(), new FavoritesItem(from, via, to));
 
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext(), AmbiguousLocationActivity.this);
 

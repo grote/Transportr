@@ -23,10 +23,12 @@ import android.widget.TextView;
 
 import de.grobox.liberario.R;
 
+import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
+
 abstract class SpecialFavoritesViewHolder extends AbstractFavoritesViewHolder {
 
 	protected final TextView title;
-	protected final TextView description;
+	private final TextView description;
 
 	SpecialFavoritesViewHolder(View v) {
 		super(v);
@@ -37,6 +39,12 @@ abstract class SpecialFavoritesViewHolder extends AbstractFavoritesViewHolder {
 	@Override
 	void onBind(final FavoritesItem item, final FavoriteListener listener) {
 		super.onBind(item, listener);
+
+		if (item.getTo() == null) {
+			description.setText(R.string.tap_to_set);
+		} else {
+			description.setText(getLocationName(item.getTo()));
+		}
 
 		// TODO special popup
 		final FavoritesPopupMenu favPopup = new FavoritesPopupMenu(overflow.getContext(), overflow, item, listener);

@@ -51,7 +51,7 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 		this(from, via, to, 1, new Date(), favorite);
 	}
 
-	public FavoritesItem(Location from, Location via, Location to, int count, Date lastUsed, boolean favorite) {
+	public FavoritesItem(Location from, @Nullable Location via, Location to, int count, Date lastUsed, boolean favorite) {
 		this.type = TRIP;
 		this.from = from;
 		this.via = via;
@@ -80,6 +80,7 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 		return from;
 	}
 
+	@Nullable
 	public Location getVia() {
 		return via;
 	}
@@ -97,18 +98,18 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 		return favorite;
 	}
 
-	void setFavourite(boolean is_favourite) {
-		this.favorite = is_favourite;
+	void setFavorite(boolean favorite) {
+		this.favorite = favorite;
 	}
 
 	@Override
 	public int compareTo(FavoritesItem i) {
-		if (type == HOME) return 1;
-		if (type == WORK && i.type != HOME) return 1;
-		if (favorite && !i.favorite) return 1;
+		if (type == HOME) return -1;
+		if (type == WORK && i.type != HOME) return -1;
+		if (favorite && !i.favorite) return -1;
 		if (favorite) {
 			if (count == i.count) return lastUsed.compareTo(i.lastUsed);
-			return count > i.count ? 1 : -1;
+			return count > i.count ? -1 : 1;
 		} else {
 			return lastUsed.compareTo(i.lastUsed);
 		}

@@ -58,7 +58,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<AbstractFavoritesView
 
 		@Override
 		public int compare(FavoritesItem f1, FavoritesItem f2) {
-			return f1.compareTo(f2) * -1;
+			return f1.compareTo(f2);
 		}
 
 		@Override

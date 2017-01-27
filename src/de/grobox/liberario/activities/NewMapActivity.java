@@ -120,7 +120,7 @@ public class NewMapActivity extends DrawerActivity
 		bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 			@Override
 			public void onStateChanged(@NonNull View bottomSheet, int newState) {
-				if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+				if (newState == STATE_HIDDEN) {
 					if (selectedLocationMarker != null) map.removeMarker(selectedLocationMarker);
 					search.clearLocation();
 					directionsFab.show();
@@ -142,7 +142,9 @@ public class NewMapActivity extends DrawerActivity
 		gpsFab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-
+				// TODO
+				Intent intent = new Intent(NewMapActivity.this, MainActivity.class);
+				startActivity(intent);
 			}
 		});
 
@@ -210,7 +212,7 @@ public class NewMapActivity extends DrawerActivity
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
-		if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN) {
+		if (savedInstanceState != null && bottomSheetBehavior.getState() != STATE_HIDDEN) {
 			directionsFab.hide();
 		}
 	}

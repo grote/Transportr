@@ -18,6 +18,7 @@ import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.schildbach.pte.dto.Location;
 
+import static de.grobox.liberario.favorites.FavoritesDatabase.getFavoriteTripList;
 import static de.grobox.liberario.favorites.FavoritesType.HOME;
 import static de.grobox.liberario.favorites.FavoritesType.WORK;
 import static de.grobox.liberario.utils.Constants.LOADER_FAVORITES;
@@ -53,7 +54,7 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 		return new AsyncTaskLoader<Collection<FavoritesItem>>(getContext()) {
 			@Override
 			public Collection<FavoritesItem> loadInBackground() {
-				List<FavoritesItem> favorites = RecentsDB.getFavouriteTripList(getContext());
+				List<FavoritesItem> favorites = getFavoriteTripList(getContext());
 				Location home = RecentsDB.getHome(getContext());
 				Location work = null; // TODO
 				favorites.add(new FavoritesItem(HOME, home));
@@ -65,6 +66,7 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 
 	@Override
 	public void onLoadFinished(Loader<Collection<FavoritesItem>> loader, Collection<FavoritesItem> favorites) {
+		// TODO animate
 		adapter.addAll(favorites);
 	}
 

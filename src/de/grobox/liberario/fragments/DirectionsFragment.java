@@ -86,6 +86,8 @@ import static de.grobox.liberario.FavLocation.LOC_TYPE.TO;
 import static de.grobox.liberario.FavLocation.LOC_TYPE.VIA;
 import static de.grobox.liberario.Preferences.SHOW_ADV_DIRECTIONS;
 import static de.grobox.liberario.activities.MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS;
+import static de.grobox.liberario.favorites.FavoritesDatabase.getFavoriteTripList;
+import static de.grobox.liberario.favorites.FavoritesDatabase.updateFavoriteTrip;
 import static de.grobox.liberario.utils.TransportrUtils.fixToolbarIcon;
 import static de.grobox.liberario.utils.TransportrUtils.getButtonIconColor;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
@@ -334,7 +336,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		if(mFavAdapter == null) return;
 
 		mFavAdapter.clear();
-		mFavAdapter.addAll(RecentsDB.getFavouriteTripList(getContext()));
+		mFavAdapter.addAll(getFavoriteTripList(getContext()));
 
 		if(showingMore && mFavAdapter.getItemCount() == 0) {
 			ui.no_favourites.setVisibility(VISIBLE);
@@ -412,7 +414,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 
 		// remember trip
-		RecentsDB.updateRecentTrip(getActivity(), new FavoritesItem(ui.from.getLocation(), ui.via.getLocation(), ui.to.getLocation()));
+		updateFavoriteTrip(getActivity(), new FavoritesItem(ui.from.getLocation(), ui.via.getLocation(), ui.to.getLocation()));
 
 		// set date
 		query_trips.setDate(ui.date.getDate());
