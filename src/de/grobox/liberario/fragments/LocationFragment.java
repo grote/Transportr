@@ -94,6 +94,9 @@ public class LocationFragment extends BottomSheetDialogFragment
 		location = (WrapLocation) args.getSerializable(WRAP_LOCATION);
 		if (location == null) throw new IllegalArgumentException("No location");
 
+		// TODO do async reverse geocoding when LocationType == COORD
+		// https://nominatim.openstreetmap.org/reverse?lat=52.5217&lon=13.4324&format=json
+
 		View v = inflater.inflate(R.layout.fragment_location, container, false);
 
 		// Directions
@@ -209,7 +212,7 @@ public class LocationFragment extends BottomSheetDialogFragment
 			}
 			linesLayout.setAlpha(0f);
 			linesLayout.setVisibility(VISIBLE);
-			linesLayout.animate().alpha(1f).start();
+			linesLayout.animate().setDuration(750).alpha(1f).start();
 		}
 	}
 

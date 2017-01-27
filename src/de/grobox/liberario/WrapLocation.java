@@ -19,6 +19,8 @@ package de.grobox.liberario;
 
 import android.support.annotation.Nullable;
 
+import com.mapbox.mapboxsdk.geometry.LatLng;
+
 import java.io.Serializable;
 
 import de.grobox.liberario.utils.TransportrUtils;
@@ -47,6 +49,11 @@ public class WrapLocation implements Serializable {
 	public WrapLocation(Location loc, WrapType type) {
 		this.loc = loc;
 		this.type = type;
+	}
+
+	public WrapLocation(LatLng latLng) {
+		this.loc = Location.coord((int) (latLng.getLatitude() * 1E6), (int) (latLng.getLongitude() * 1E6));
+		this.type = NORMAL;
 	}
 
 	public Location getLocation() {

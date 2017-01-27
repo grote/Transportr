@@ -191,7 +191,14 @@ public class NewMapActivity extends DrawerActivity
 		map.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
 			@Override
 			public void onMapClick(@NonNull LatLng point) {
+				search.clearFocus();
 				search.hideSoftKeyboard();
+			}
+		});
+		map.setOnMapLongClickListener(new MapboxMap.OnMapLongClickListener() {
+			@Override
+			public void onMapLongClick(@NonNull LatLng point) {
+				onLocationItemClick(new WrapLocation(point));
 			}
 		});
 		map.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
@@ -301,11 +308,11 @@ public class NewMapActivity extends DrawerActivity
 				nearbyLocations.put(marker, location);
 				Log.e("TEST", location.toString());
 			}
-			if (locationFragment != null) locationFragment.onNearbyStationsLoaded();
 		} else {
 			// TODO
 			Log.e("TEST", "ERROR loading nearby stations.");
 		}
+		if (locationFragment != null) locationFragment.onNearbyStationsLoaded();
 	}
 
 	@Override
