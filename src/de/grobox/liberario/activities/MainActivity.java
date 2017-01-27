@@ -95,7 +95,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	private AccountHeader accountHeader;
 	private Toolbar toolbar;
 
-	@TargetApi(Build.VERSION_CODES.N_MR1)
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -219,6 +218,11 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		}
 
 		// create Android 7.1 shortcut
+		registerNougatShortcuts();
+	}
+
+	@TargetApi(Build.VERSION_CODES.N_MR1)
+	private void registerNougatShortcuts() {
 		int currentapiVersion = Build.VERSION.SDK_INT;
 		if(currentapiVersion >= Build.VERSION_CODES.N_MR1) {
 			ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
