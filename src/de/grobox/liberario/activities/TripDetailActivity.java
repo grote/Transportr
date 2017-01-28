@@ -18,6 +18,7 @@
 package de.grobox.liberario.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -62,6 +63,11 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 		setContentView(R.layout.activity_trip_details);
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+
+		// work around #285
+		if(Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
+			getWindow().setSharedElementReturnTransition(null);
+		}
 
 		TransportNetwork network = Preferences.getTransportNetwork(this);
 		showLineName = network != null && network.hasGoodLineNames();
