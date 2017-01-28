@@ -51,7 +51,6 @@
   <string name="pref_walk_speed_slow">Yavaş</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Hızlı</string>
-  <string name="error_pick_network">Lütfen bir ulaşım ağı seçiniz!</string>
   <string name="error_no_internet">Yeterli internet bağlantısı mevcut değil</string>
   <string name="error_no_trips_found">Hiç yol bulunamadı</string>
   <string name="error_no_departures_found">Hiç kalkış bulunamadı</string>
