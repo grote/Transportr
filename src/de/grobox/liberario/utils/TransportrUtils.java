@@ -594,4 +594,11 @@ public class TransportrUtils {
 		return (int) (25 * metrics.density);
 	}
 
+	public static Intent getShortcutIntent(Context context) {
+		Intent shortcutIntent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, context, MainActivity.class);
+		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		shortcutIntent.putExtra("special", DirectionsFragment.TASK_BRING_ME_HOME);
+		return shortcutIntent;
+	}
 }

@@ -18,10 +18,13 @@
 package de.grobox.liberario.activities;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -33,7 +36,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
@@ -54,6 +56,8 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
+
+import java.util.Arrays;
 
 import de.cketti.library.changelog.ChangeLog;
 import de.grobox.liberario.BuildConfig;
@@ -211,6 +215,25 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		TransportrChangeLog cl = new TransportrChangeLog(this, Preferences.darkThemeEnabled(this));
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
+		}
+
+		// create Android 7.1 shortcut
+		registerNougatShortcuts();
+	}
+
+	@TargetApi(Build.VERSION_CODES.N_MR1)
+	private void registerNougatShortcuts() {
+		int currentapiVersion = Build.VERSION.SDK_INT;
+		if(currentapiVersion >= Build.VERSION_CODES.N_MR1) {
+			ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+
+			ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "quickhome")
+					.setShortLabel(getString(R.string.widget_name_quickhome))
+					.setIcon(Icon.createWithResource(getContext(), R.drawable.ic_quickhome_widget))
+					.setIntent(TransportrUtils.getShortcutIntent(getContext()))
+					.build();
+
+			shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
 		}
 	}
 
