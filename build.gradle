@@ -106,7 +106,7 @@ android {
 
 		compileSdkVersion 25
 		targetSdkVersion 25
-		buildToolsVersion "25.0.2" // travis does not have >= 23.0.3
+		buildToolsVersion "25.0.2"
 		minSdkVersion 15
 	}
 
