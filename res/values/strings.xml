@@ -301,6 +301,7 @@ there are any).</string>
     <string name="np_desc_vvo">Saxony, Dresden</string>
     <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
     <string name="np_desc_vvv">Vogtland, Plauen</string>
+    <string name="np_desc_vmt">Mittelthüringen</string>
 
     <string name="np_region_ireland">Ireland</string>
     <string name="np_desc_tfi">Ireland, Dublin, Belfast</string>

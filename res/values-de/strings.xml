@@ -247,6 +247,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_vvo">Sachsen, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Mittelthüringen</string>
   <string name="np_region_ireland">Irland</string>
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
@@ -307,4 +308,5 @@ es welche gibt) anzeigen lassen.</string>
   <string name="tamil">Tamil</string>
   <string name="esperanto">Esperanto</string>
   <string name="czech">Tschechisch</string>
+
 </resources>

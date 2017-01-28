@@ -218,6 +218,11 @@ public class TransportNetworks {
 				.setRegion(region)
 		);
 
+		list.add(new TransportNetwork(context, NetworkId.VMT)
+				.setDescription(getString(R.string.np_desc_vmt))
+				.setRegion(region)
+		);
+
 		// Austria
 		region = region(R.string.np_region_austria, "\uD83C\uDDE6\uD83C\uDDF9");
 

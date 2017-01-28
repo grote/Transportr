@@ -57,6 +57,7 @@ public final class NetworkProviderFactory
 	private static Reference<VagfrProvider> vagfrProviderRef;
 	private static Reference<NvbwProvider> nvbwProviderRef;
 	private static Reference<VvvProvider> vvvProviderRef;
+	private static Reference<VmtProvider> vmtProviderRef;
 	private static Reference<OebbProvider> oebbProviderRef;
 	private static Reference<VorProvider> vorProviderRef;
 	private static Reference<LinzProvider> linzProviderRef;
@@ -142,8 +143,7 @@ public final class NetworkProviderFactory
 				if (provider != null)
 					return provider;
 			}
-
-			final BvgProvider provider = new BvgProvider();
+			final BvgProvider provider = new BvgProvider("{\"aid\":\"1Rxs112shyHLatUX4fofnmdxK\",\"type\":\"AID\"}");
 			bvgProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -485,6 +485,19 @@ public final class NetworkProviderFactory
 
 			final VvvProvider provider = new VvvProvider();
 			vvvProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.VMT))
+		{
+			if (vmtProviderRef != null)
+			{
+				final VmtProvider provider = vmtProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final VmtProvider provider = new VmtProvider("{\"aid\":\"vj5d7i3g9m5d7e3\",\"type\":\"AID\"}");
+			vmtProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.OEBB))
