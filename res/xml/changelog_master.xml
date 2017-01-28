@@ -6,6 +6,7 @@
         <change>Added Oregon, USA (Thanks craftguy!)</change>
         <change>Added Mittelthüringen, Germany (Thanks Andreas!)</change>
         <change>New logos for MET, SYDNEY and DSB (Thanks André!)</change>
+        <change>Fixed Android 7.1 issue when returning to directions list</change>
     </release>
 
     <release version="1.1.6" versioncode="45">
