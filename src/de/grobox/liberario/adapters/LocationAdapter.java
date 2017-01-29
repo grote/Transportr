@@ -40,6 +40,7 @@ import de.grobox.liberario.FavLocation.LOC_TYPE;
 import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.utils.LocationFilter;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
@@ -97,60 +98,25 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 	@NonNull
 	@Override
 	public Filter getFilter() {
-		if(filter != null) return filter;
-		else {
-			filter = new Filter() {
-				@Override
-				protected FilterResults performFiltering(final CharSequence constraint) {
-					FilterResults filterResults = new FilterResults();
+		if(filter == null) filter = new LocationFilter(onlyIDs) {
+			@Override
+			protected FilterResults performFiltering(CharSequence constraint) {
+				search = constraint;
+				return super.performFiltering(constraint, suggestedLocations, defaultLocations);
+			}
 
-					if(constraint != null) {
-						List<WrapLocation> result = new ArrayList<>();
-						search = constraint;
+			@Override
+			protected void publishResults(CharSequence constraint, FilterResults results) {
+				if(results != null && results.count > 0) {
+					locations = (List<WrapLocation>) results.values;
 
-						// add fav locations that fulfill constraint
-						if(defaultLocations != null) {
-							for(WrapLocation l : defaultLocations) {
-								// if we only want locations with ID, make sure the location has one
-								if(!onlyIDs || l.getLocation().hasId()) {
-									// case-insensitive match of location name and location not already included
-									if(l.getLocation().name != null && l.getLocation().name.toLowerCase().contains(constraint.toString().toLowerCase()) && !result.contains(l)) {
-										result.add(l);
-									}
-								}
-							}
-						}
-
-						// add suggested locations (from network provider) without filtering if not already included
-						if(suggestedLocations != null) {
-							for(Location l : suggestedLocations) {
-								WrapLocation loc = new WrapLocation(l);
-								// prevent duplicates and if we only want locations with ID, make sure the location has one
-								if(!result.contains(loc) && (!onlyIDs || l.hasId())) {
-									result.add(loc);
-								}
-							}
-						}
-
-						// Assign the data to the FilterResults
-						filterResults.values = result;
-						filterResults.count = result.size();
-					}
-					return filterResults;
+					notifyDataSetChanged();
+				} else {
+					notifyDataSetInvalidated();
 				}
-
-				@Override
-				protected void publishResults(CharSequence constraint, FilterResults results) {
-					if(results != null && results.count > 0) {
-						locations = (List<WrapLocation>) results.values;
-						notifyDataSetChanged();
-					} else {
-						notifyDataSetInvalidated();
-					}
-				}
-			};
-			return filter;
-		}
+			}
+		};
+		return filter;
 	}
 
 	@NonNull
