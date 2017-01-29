@@ -79,7 +79,7 @@
 			android:name=".activities.AmbiguousLocationActivity"/>
 
 		<activity
-			android:name=".activities.PickNetworkProviderActivity"
+			android:name=".networks.PickTransportNetworkActivity"
 			android:label="@string/pick_network_activity"/>
 
 		<activity

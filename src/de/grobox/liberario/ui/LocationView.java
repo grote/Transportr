@@ -28,7 +28,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -47,13 +46,13 @@ import android.widget.ProgressBar;
 import java.util.List;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.NetworkProviderFactory;
-import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.HomePickerDialogFragment;
+import de.grobox.liberario.networks.NetworkProviderFactory;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
@@ -137,12 +136,6 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 				LocationView.this.onClick();
 			}
 		});
-		if(!isInEditMode()) {
-			ui.status.setImageDrawable(getTintedDrawable(context, R.drawable.ic_location));
-			ui.clear.setImageDrawable(getTintedDrawable(context, ui.clear.getDrawable()));
-		} else {
-			ui.status.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_location));
-		}
 
 		// clear text button
 		ui.clear.setOnClickListener(new View.OnClickListener() {

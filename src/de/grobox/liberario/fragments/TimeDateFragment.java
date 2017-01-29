@@ -34,7 +34,7 @@ import android.widget.TimePicker;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 
 import static android.text.format.DateFormat.getDateFormat;

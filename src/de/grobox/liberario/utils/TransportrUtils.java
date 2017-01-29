@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Set;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;

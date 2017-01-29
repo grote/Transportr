@@ -15,14 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.adapters;
-
-import java.util.HashMap;
-import java.util.List;
-
-import de.grobox.liberario.TransportNetwork;
-import de.grobox.liberario.R;
-import de.schildbach.pte.NetworkId;
+package de.grobox.liberario.networks;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -33,14 +26,20 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
+import java.util.HashMap;
+import java.util.List;
 
-	private Context _context;
-	private List<String> regions;
-	private HashMap<String, List<TransportNetwork>> networks;
+import de.grobox.liberario.R;
+import de.schildbach.pte.NetworkId;
 
-	public NetworkProviderListAdapter(Context context, List<String> listRegion,	HashMap<String, List<TransportNetwork>> listNetwork) {
-		this._context = context;
+class TransportNetworkAdapter extends BaseExpandableListAdapter {
+
+	private Context context;
+	private List<Region> regions;
+	private HashMap<Region, List<TransportNetwork>> networks;
+
+	TransportNetworkAdapter(Context context, List<Region> listRegion, HashMap<Region, List<TransportNetwork>> listNetwork) {
+		this.context = context;
 		this.regions = listRegion;
 		this.networks = listNetwork;
 	}
@@ -55,7 +54,7 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 		return childPosition;
 	}
 
-	public int getChildPos(String region, NetworkId network_id) {
+	int getChildPos(Region region, NetworkId network_id) {
 		List<TransportNetwork> networks = this.networks.get(region);
 		if(networks != null) {
 			for(final TransportNetwork network : networks) {
@@ -71,11 +70,11 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 	public View getChildView(int groupPos, final int childPos, boolean isLastChild, View convertView, ViewGroup parent) {
 		TransportNetwork network = ((TransportNetwork) getChild(groupPos, childPos));
 
-		LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		convertView = infalInflater.inflate(R.layout.network_provider_item, null);
+		LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		convertView = infalInflater.inflate(R.layout.network_provider_item, parent, false);
 
-		((TextView) convertView.findViewById(R.id.networkName)).setText(network.getName());
-		((TextView) convertView.findViewById(R.id.networkDescription)).setText(network.getDescription());
+		((TextView) convertView.findViewById(R.id.networkName)).setText(network.getName(context));
+		((TextView) convertView.findViewById(R.id.networkDescription)).setText(network.getDescription(context));
 
 		// set alpha/beta state of transport network
 		TextView beta = (TextView) convertView.findViewById(R.id.networkBeta);
@@ -84,13 +83,13 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 		} else {
 			beta.setVisibility(View.VISIBLE);
 			if(network.getStatus() == TransportNetwork.Status.ALPHA) {
-				beta.setText(_context.getString(R.string.alpha));
+				beta.setText(context.getString(R.string.alpha));
 			}
 		}
 
 		// set logo of provider if we have one
 		if(network.getLogo() != 0) {
-			((ImageView) convertView.findViewById(R.id.icon)).setImageDrawable(ContextCompat.getDrawable(_context, network.getLogo()));
+			((ImageView) convertView.findViewById(R.id.icon)).setImageDrawable(ContextCompat.getDrawable(context, network.getLogo()));
 		}
 
 		// remember region name of this child
@@ -113,7 +112,8 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public String getGroup(int groupPos) {
-		return this.regions.get(groupPos);
+		Region region = regions.get(groupPos);
+		return region.getString(context);
 	}
 
 	@Override
@@ -126,15 +126,15 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 		return groupPos;
 	}
 
-	public int getGroupPos(String group) {
+	int getGroupPos(Region group) {
 		return this.regions.indexOf(group);
 	}
 
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,	View convertView, ViewGroup parent) {
 		if(convertView == null) {
-			LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = infalInflater.inflate(R.layout.network_provider_group, null);
+			LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = inflater.inflate(R.layout.network_provider_group, parent, false);
 		}
 
 		((TextView) convertView.findViewById(R.id.regionName)).setText(getGroup(groupPosition));
@@ -151,4 +151,5 @@ public class NetworkProviderListAdapter extends BaseExpandableListAdapter {
 	public boolean isChildSelectable(int groupPos, int childPos) {
 		return true;
 	}
+
 }

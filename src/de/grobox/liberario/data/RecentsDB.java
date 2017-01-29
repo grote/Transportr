@@ -31,7 +31,7 @@ import de.grobox.liberario.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
-import static de.grobox.liberario.Preferences.getNetwork;
+import static de.grobox.liberario.settings.Preferences.getNetwork;
 import static de.grobox.liberario.data.DBHelper.getLocation;
 
 public class RecentsDB {

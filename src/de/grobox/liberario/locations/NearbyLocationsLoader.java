@@ -24,8 +24,8 @@ import android.util.Log;
 
 import java.util.EnumSet;
 
-import de.grobox.liberario.NetworkProviderFactory;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.networks.NetworkProviderFactory;
+import de.grobox.liberario.settings.Preferences;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;

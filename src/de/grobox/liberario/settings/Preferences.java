@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -27,6 +27,9 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
+import de.grobox.liberario.R;
+import de.grobox.liberario.networks.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetworks;
 import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.dto.Product;
 
@@ -56,18 +59,22 @@ public class Preferences {
 		return getNetwork(context, 0);
 	}
 
-	public static @Nullable TransportNetwork getTransportNetwork(Context context) {
+	@Nullable
+	public static TransportNetwork getTransportNetwork(Context context) {
 		return getTransportNetwork(context, 0);
 	}
 
-	public static @Nullable TransportNetwork getTransportNetwork(Context context, int i) {
+	@Nullable
+	public static TransportNetwork getTransportNetwork(Context context, int i) {
 		String id = getNetwork(context, i);
+		NetworkId networkId = NetworkId.valueOf(id);
 
 		if(id != null && context.getApplicationContext() != null) {
-			return ((TransportrApplication) context.getApplicationContext()).getTransportNetworks(context).getTransportNetwork(id);
-		} else {
-			return null;
+			for (TransportNetwork network : TransportNetworks.networks) {
+				if (network.getId().equals(networkId)) return network;
+			}
 		}
+		return null;
 	}
 
 	public static NetworkId getNetworkId(Context context) {

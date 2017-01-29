@@ -1,5 +1,5 @@
 /*    Transportr
- *    Copyright (C) 2013 - 2016 Torsten Grote
+ *    Copyright (C) 2013 - 2017 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -15,26 +15,22 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.fragments;
+package de.grobox.liberario;
 
-import android.support.v4.app.Fragment;
+import javax.inject.Singleton;
 
-import de.grobox.liberario.AppComponent;
-import de.grobox.liberario.TransportrApplication;
+import dagger.Component;
+import de.grobox.liberario.activities.NewMapActivity;
+import de.grobox.liberario.departures.DeparturesActivity;
+import de.grobox.liberario.locations.LocationFragment;
 
+@Singleton
+@Component(modules = AppModule.class)
+public interface AppComponent {
 
-public abstract class TransportrFragment extends Fragment {
+	void inject(NewMapActivity activity);
+	void inject(DeparturesActivity activity);
 
-	protected AppComponent getComponent() {
-		return ((TransportrApplication) getActivity().getApplication()).getComponent();
-	}
-
-	protected void runOnUiThread(final Runnable task) {
-		getActivity().runOnUiThread(task);
-	}
-
-	protected void runOnThread(final Runnable task) {
-		new Thread(task).start();
-	}
+	void inject(LocationFragment fragment);
 
 }

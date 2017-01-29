@@ -39,9 +39,9 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 import java.util.ArrayList;
 
 import de.grobox.liberario.ListTrip;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.adapters.TripAdapter;
 import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
@@ -80,7 +80,7 @@ public class TripsActivity extends TransportrActivity {
 
 		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			if(network != null) toolbar.setSubtitle(network.getName());
+			if(network != null) toolbar.setSubtitle(network.getName(this));
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();

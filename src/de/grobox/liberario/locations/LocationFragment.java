@@ -38,6 +38,8 @@ import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import javax.inject.Inject;
+
 import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.activities.NewMapActivity;
@@ -45,6 +47,7 @@ import de.grobox.liberario.departures.DeparturesActivity;
 import de.grobox.liberario.departures.DeparturesLoader;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.locations.OsmReverseGeocoder.OsmReverseGeocoderCallback;
+import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Line;
@@ -71,6 +74,8 @@ public class LocationFragment extends TransportrFragment
 
 	public static final String TAG = LocationFragment.class.getName();
 
+	@Inject
+	TransportNetworkManager manager;
 	private NewMapActivity activity;
 	private WrapLocation location;
 	private SortedSet<Line> lines = new TreeSet<>();
@@ -103,6 +108,7 @@ public class LocationFragment extends TransportrFragment
 		if (location == null) throw new IllegalArgumentException("No location");
 
 		View v = inflater.inflate(R.layout.fragment_location, container, false);
+		getComponent().inject(this);
 
 		// Directions
 		FloatingActionButton directionFab = (FloatingActionButton) v.findViewById(R.id.directionFab);
@@ -202,12 +208,12 @@ public class LocationFragment extends TransportrFragment
 
 	@Override
 	public DeparturesLoader onCreateLoader(int id, Bundle args) {
-		return new DeparturesLoader(getContext(), args);
+		return new DeparturesLoader(getContext(), manager.getTransportNetwork(), args);
 	}
 
 	@Override
 	public void onLoadFinished(Loader<QueryDeparturesResult> loader, QueryDeparturesResult data) {
-		if (data.status == OK) {
+		if (data != null && data.status == OK) {
 			for (StationDepartures s : data.stationDepartures) {
 				if (s.lines != null) {
 					for (LineDestination d : s.lines) lines.add(d.line);

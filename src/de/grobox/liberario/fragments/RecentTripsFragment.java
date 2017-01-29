@@ -40,7 +40,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.favorites.FavoritesPopupMenu;

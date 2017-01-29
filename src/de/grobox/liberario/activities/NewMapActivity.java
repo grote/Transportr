@@ -51,11 +51,12 @@ import java.util.Map;
 
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.favorites.FavoritesFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.NearbyLocationsLoader;
+import de.grobox.liberario.networks.PickTransportNetworkActivity;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.ui.LocationView;
 import de.grobox.liberario.ui.LocationView.LocationViewListener;
 import de.schildbach.pte.dto.Location;
@@ -66,9 +67,9 @@ import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
-import static de.grobox.liberario.Preferences.getTransportNetwork;
 import static de.grobox.liberario.activities.MainActivity.CHANGED_NETWORK_PROVIDER;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
+import static de.grobox.liberario.settings.Preferences.getTransportNetwork;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
 import static de.grobox.liberario.utils.TransportrUtils.getLatLng;
 import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
@@ -95,6 +96,7 @@ public class NewMapActivity extends DrawerActivity
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 //		enableStrictMode();
+		getComponent().inject(this);
 		setContentView(R.layout.activity_new_map);
 		super.onCreate(savedInstanceState);
 
@@ -159,7 +161,7 @@ public class NewMapActivity extends DrawerActivity
 					runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
-							Intent intent = new Intent(NewMapActivity.this, PickNetworkProviderActivity.class);
+							Intent intent = new Intent(NewMapActivity.this, PickTransportNetworkActivity.class);
 							// force choosing a network provider
 							intent.putExtra("FirstRun", true);
 							startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);

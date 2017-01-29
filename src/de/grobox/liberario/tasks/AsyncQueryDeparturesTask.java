@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 import java.util.Date;
 
-import de.grobox.liberario.NetworkProviderFactory;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.networks.NetworkProviderFactory;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.schildbach.pte.NetworkProvider;

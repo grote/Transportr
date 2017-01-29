@@ -18,7 +18,7 @@ import de.grobox.liberario.data.DBHelper;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
-import static de.grobox.liberario.Preferences.getNetwork;
+import static de.grobox.liberario.settings.Preferences.getNetwork;
 import static de.grobox.liberario.data.DBHelper.getLocation;
 import static de.grobox.liberario.data.DBHelper.getLocationId;
 

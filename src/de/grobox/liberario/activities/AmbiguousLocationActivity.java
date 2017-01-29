@@ -34,7 +34,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.WrapLocation;
@@ -60,7 +60,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			toolbar.setSubtitle(Preferences.getTransportNetwork(this).getName());
+			toolbar.setSubtitle(Preferences.getTransportNetwork(this).getName(this));
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();

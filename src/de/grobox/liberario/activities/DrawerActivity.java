@@ -35,9 +35,13 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
-import de.grobox.liberario.Preferences;
+import javax.inject.Inject;
+
+import de.grobox.liberario.networks.TransportNetworkManager;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.networks.PickTransportNetworkActivity;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.SettingsFragment;
 import de.grobox.liberario.ui.TransportrChangeLog;
@@ -48,6 +52,9 @@ import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import static de.grobox.liberario.activities.MainActivity.CHANGED_NETWORK_PROVIDER;
 
 abstract class DrawerActivity extends TransportrActivity {
+
+	@Inject
+	TransportNetworkManager manager;
 
 	private Drawer drawer;
 	private AccountHeader accountHeader;
@@ -124,31 +131,31 @@ abstract class DrawerActivity extends TransportrActivity {
 
 	private void addAccounts() {
 		// TODO async
-		TransportNetwork network = Preferences.getTransportNetwork(this);
+		TransportNetwork network = manager.getTransportNetwork();
 		if(network != null) {
 			ProfileDrawerItem item1 = new ProfileDrawerItem()
-					.withName(network.getName())
-					.withEmail(network.getDescription())
+					.withName(network.getName(this))
+					.withEmail(network.getDescription(this))
 					.withIcon(ContextCompat.getDrawable(this, network.getLogo()));
 			item1.withTag(network);
 			accountHeader.addProfile(item1, accountHeader.getProfiles().size());
 		}
 
-		TransportNetwork network2 = Preferences.getTransportNetwork(this, 2);
+		TransportNetwork network2 = manager.getTransportNetwork(2);
 		if(network2 != null) {
 			ProfileDrawerItem item2 = new ProfileDrawerItem()
-					.withName(network2.getName())
-					.withEmail(network2.getDescription())
+					.withName(network2.getName(this))
+					.withEmail(network2.getDescription(this))
 					.withIcon(ContextCompat.getDrawable(this, network2.getLogo()));
 			item2.withTag(network2);
 			accountHeader.addProfile(item2, accountHeader.getProfiles().size());
 		}
 
-		TransportNetwork network3 = Preferences.getTransportNetwork(this, 3);
+		TransportNetwork network3 = manager.getTransportNetwork(3);
 		if(network3 != null) {
 			ProfileDrawerItem item3 = new ProfileDrawerItem()
-					.withName(network3.getName())
-					.withEmail(network3.getDescription())
+					.withName(network3.getName(this))
+					.withEmail(network3.getDescription(this))
 					.withIcon(ContextCompat.getDrawable(this, network3.getLogo()));
 			item3.withTag(network3);
 			accountHeader.addProfile(item3, accountHeader.getProfiles().size());
@@ -195,7 +202,7 @@ abstract class DrawerActivity extends TransportrActivity {
 	}
 
 	private void openPickNetworkProviderActivity() {
-		Intent intent = new Intent(this, PickNetworkProviderActivity.class);
+		Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 		ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
 		ActivityCompat.startActivityForResult(this, intent, CHANGED_NETWORK_PROVIDER, options.toBundle());
 	}

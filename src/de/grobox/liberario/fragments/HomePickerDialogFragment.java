@@ -33,7 +33,7 @@ import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.ui.LocationView;

@@ -30,11 +30,11 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.activities.PickNetworkProviderActivity;
+import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
@@ -56,12 +56,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
 		// Fill in current home location if available
 		network_pref = findPreference("pref_key_network");
-		if(network != null) network_pref.setSummary(network.getName());
+		if(network != null) network_pref.setSummary(network.getName(getContext()));
 
 		network_pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-			    Intent intent = new Intent(getActivity(), PickNetworkProviderActivity.class);
+			    Intent intent = new Intent(getActivity(), PickTransportNetworkActivity.class);
 
 //				View view = preference.getView(null, null);
 				View view = getView();

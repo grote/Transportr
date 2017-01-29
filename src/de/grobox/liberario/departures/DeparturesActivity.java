@@ -23,10 +23,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import de.grobox.liberario.R;
 import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.fragments.TimeDateFragment;
+import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
@@ -54,6 +57,8 @@ public class DeparturesActivity extends TransportrActivity
 	private RecyclerView list;
 	private DepartureAdapter adapter;
 
+	@Inject
+	TransportNetworkManager manager;
 	private WrapLocation location;
 	private SearchState searchState = SearchState.INITIAL;
 	private Calendar calendar;
@@ -68,6 +73,8 @@ public class DeparturesActivity extends TransportrActivity
 			throw new IllegalArgumentException("No Location");
 
 		setContentView(R.layout.activity_departures);
+
+		getComponent().inject(this);
 
 		// Toolbar
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -200,7 +207,7 @@ public class DeparturesActivity extends TransportrActivity
 	@Override
 	public DeparturesLoader onCreateLoader(int i, Bundle args) {
 		Log.e("TEST", "onCreateLoader!!! " + args.toString());
-		return new DeparturesLoader(this, args);
+		return new DeparturesLoader(this, manager.getTransportNetwork(), args);
 	}
 
 	@Override

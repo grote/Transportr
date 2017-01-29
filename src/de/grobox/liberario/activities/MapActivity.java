@@ -68,9 +68,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
@@ -115,7 +115,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			toolbar.setSubtitle(network.getName());
+			toolbar.setSubtitle(network.getName(this));
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();

@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.activities;
+package de.grobox.liberario.networks;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,14 +33,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
-import de.grobox.liberario.TransportrApplication;
-import de.grobox.liberario.adapters.NetworkProviderListAdapter;
+import de.grobox.liberario.activities.TransportrActivity;
 
-public class PickNetworkProviderActivity extends TransportrActivity {
-	private NetworkProviderListAdapter listAdapter;
+public class PickTransportNetworkActivity extends TransportrActivity {
+	private TransportNetworkAdapter listAdapter;
 	private ExpandableListView expListView;
 	private boolean back = true;
 
@@ -69,11 +67,11 @@ public class PickNetworkProviderActivity extends TransportrActivity {
 
 		expListView = (ExpandableListView) findViewById(R.id.expandableNetworkProviderListView);
 
-		HashMap<String, List<TransportNetwork>> listNetwork = ((TransportrApplication) getApplicationContext()).getTransportNetworks(this).getHashMapByRegion();
-		List<String> listRegion = new ArrayList<>(listNetwork.keySet());
+		HashMap<Region, List<TransportNetwork>> listNetwork = getTransportNetworksByRegion();
+		List<Region> listRegion = new ArrayList<>(listNetwork.keySet());
 		Collections.sort(listRegion);
 
-		listAdapter = new NetworkProviderListAdapter(this, listRegion, listNetwork);
+		listAdapter = new TransportNetworkAdapter(this, listRegion, listNetwork);
 		expListView.setAdapter(listAdapter);
 
 		selectItem();
@@ -122,7 +120,7 @@ public class PickNetworkProviderActivity extends TransportrActivity {
 		TransportNetwork tn = Preferences.getTransportNetwork(this);
 
 		// return if no network is set
-		if(tn == null || tn.getIdString() == null || tn.getRegion() == null) {
+		if(tn == null) {
 			Log.d(getClass().getSimpleName(), "No NetworkId in Settings.");
 			return;
 		}
@@ -139,6 +137,20 @@ public class PickNetworkProviderActivity extends TransportrActivity {
 
 	public void close() {
 		ActivityCompat.finishAfterTransition(this);
+	}
+
+	private HashMap<Region, List<TransportNetwork>> getTransportNetworksByRegion() {
+		HashMap<Region, List<TransportNetwork>> networks = new HashMap<>();
+		for (TransportNetwork n : TransportNetworks.networks) {
+			if (networks.containsKey(n.getRegion())) {
+				networks.get(n.getRegion()).add(n);
+			} else {
+				List<TransportNetwork> list = new ArrayList<>();
+				list.add(n);
+				networks.put(n.getRegion(), list);
+			}
+		}
+		return networks;
 	}
 
 }

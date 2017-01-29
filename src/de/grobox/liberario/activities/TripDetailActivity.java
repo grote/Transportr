@@ -35,9 +35,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.adapters.TripAdapter;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.utils.DateUtils;
@@ -74,7 +74,7 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			if(network != null) toolbar.setSubtitle(network.getName());
+			if(network != null) toolbar.setSubtitle(network.getName(this));
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();

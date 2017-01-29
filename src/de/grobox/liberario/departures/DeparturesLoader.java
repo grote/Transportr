@@ -24,8 +24,7 @@ import android.util.Log;
 
 import java.util.Date;
 
-import de.grobox.liberario.NetworkProviderFactory;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 
@@ -33,17 +32,19 @@ import static de.grobox.liberario.utils.Constants.DATE;
 
 public class DeparturesLoader extends AsyncTaskLoader<QueryDeparturesResult> {
 
-	private final String TAG = getClass().getName();
+	private final static String TAG = DeparturesLoader.class.getName();
 	private final static String STATION_ID = "stationId";
 	private final static String MAX_DEPARTURES = "maxDepartures";
 
+	private final TransportNetwork network;
 	private final String stationId;
 	private final Date date;
 	private final int maxDepartures;
 
-	public DeparturesLoader(Context context, Bundle args) {
+	public DeparturesLoader(Context context, TransportNetwork network, Bundle args) {
 		super(context);
 
+		this.network = network;
 		this.stationId = args.getString(STATION_ID);
 		this.date = (Date) args.getSerializable(DATE);
 		this.maxDepartures = args.getInt(MAX_DEPARTURES);
@@ -51,7 +52,7 @@ public class DeparturesLoader extends AsyncTaskLoader<QueryDeparturesResult> {
 
 	@Override
 	public QueryDeparturesResult loadInBackground() {
-		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
+		NetworkProvider np = network.getNetworkProvider();
 
 		Log.i(TAG, "Departures (" + maxDepartures + "): " + stationId);
 		Log.i(TAG, "Date: " + date.toString());

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.networks;
 
 import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;

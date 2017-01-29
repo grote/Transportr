@@ -17,32 +17,32 @@
 
 package de.grobox.liberario;
 
-import android.app.Application;
+import javax.inject.Singleton;
 
-import com.squareup.leakcanary.LeakCanary;
+import dagger.Module;
+import dagger.Provides;
+import de.grobox.liberario.networks.TransportNetworkManager;
+import de.grobox.liberario.settings.SettingsManager;
 
-public class TransportrApplication extends Application {
+@Module
+class AppModule {
 
-	private AppComponent component;
+	private final TransportrApplication application;
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-
-		if (LeakCanary.isInAnalyzerProcess(this)) {
-			// This process is dedicated to LeakCanary for heap analysis.
-			// You should not init your app in this process.
-			return;
-		}
-		LeakCanary.install(this);
-
-		component = DaggerAppComponent.builder()
-				.appModule(new AppModule(this))
-				.build();
+	AppModule(TransportrApplication application) {
+		this.application = application;
 	}
 
-	public AppComponent getComponent() {
-		return component;
+	@Provides
+	@Singleton
+	SettingsManager provideSettingsManager() {
+		return new SettingsManager(application.getApplicationContext());
+	}
+
+	@Provides
+	@Singleton
+	TransportNetworkManager provideTransportNetworkManager(SettingsManager settingsManager) {
+		return new TransportNetworkManager(application.getApplicationContext(), settingsManager);
 	}
 
 }

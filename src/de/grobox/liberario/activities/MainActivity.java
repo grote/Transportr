@@ -59,10 +59,11 @@ import com.mikepenz.materialdrawer.util.KeyboardUtil;
 import java.util.Collections;
 
 import de.grobox.liberario.BuildConfig;
-import de.grobox.liberario.NetworkProviderFactory;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.networks.NetworkProviderFactory;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.networks.PickTransportNetworkActivity;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
@@ -184,7 +185,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 
 			// show network name in toolbar subtitle
 			if(network != null) {
-				toolbar.setSubtitle(network.getName());
+				toolbar.setSubtitle(network.getName(this));
 			}
 
 			// add initial fragment
@@ -199,7 +200,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			if(actionBar != null) actionBar.setTitle(getFragmentName(tag));
 
 			if(network != null && !tag.equals(AboutMainFragment.TAG) && !tag.equals(SettingsFragment.TAG)) {
-				toolbar.setSubtitle(network.getName());
+				toolbar.setSubtitle(network.getName(this));
 			}
 
 			processIntent();
@@ -388,7 +389,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		// set network name in toolbar
 		TransportNetwork network = Preferences.getTransportNetwork(getContext());
 		if(network != null && !tag.equals(AboutMainFragment.TAG) && !tag.equals(SettingsFragment.TAG)) {
-			toolbar.setSubtitle(network.getName());
+			toolbar.setSubtitle(network.getName(this));
 		} else {
 			toolbar.setSubtitle(null);
 		}
@@ -445,7 +446,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	private void ensureTransportNetworkAvailable(TransportNetwork network) {
 		// return if a network is set
 		if(network == null) {
-			Intent intent = new Intent(this, PickNetworkProviderActivity.class);
+			Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 
 			// force choosing a network provider
 			intent.putExtra("FirstRun", true);
@@ -455,7 +456,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	}
 
 	private void openPickNetworkProviderActivity() {
-		Intent intent = new Intent(getContext(), PickNetworkProviderActivity.class);
+		Intent intent = new Intent(getContext(), PickTransportNetworkActivity.class);
 		ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
 		ActivityCompat.startActivityForResult(MainActivity.this, intent, CHANGED_NETWORK_PROVIDER, options.toBundle());
 	}
@@ -463,8 +464,8 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	private void addAccounts(TransportNetwork network) {
 		if(network != null) {
 			ProfileDrawerItem item1 = new ProfileDrawerItem()
-					                          .withName(network.getName())
-					                          .withEmail(network.getDescription())
+					                          .withName(network.getName(this))
+					                          .withEmail(network.getDescription(this))
 					                          .withIcon(ContextCompat.getDrawable(this, network.getLogo()));
 			item1.withTag(network);
 			accountHeader.addProfile(item1, accountHeader.getProfiles().size());
@@ -473,8 +474,8 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		TransportNetwork network2 = Preferences.getTransportNetwork(getContext(), 2);
 		if(network2 != null) {
 			ProfileDrawerItem item2 = new ProfileDrawerItem()
-					                          .withName(network2.getName())
-					                          .withEmail(network2.getDescription())
+					                          .withName(network2.getName(this))
+					                          .withEmail(network2.getDescription(this))
 					                          .withIcon(ContextCompat.getDrawable(this, network2.getLogo()));
 			item2.withTag(network2);
 			accountHeader.addProfile(item2, accountHeader.getProfiles().size());
@@ -483,8 +484,8 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		TransportNetwork network3 = Preferences.getTransportNetwork(getContext(), 3);
 		if(network3 != null) {
 			ProfileDrawerItem item3 = new ProfileDrawerItem()
-					                          .withName(network3.getName())
-					                          .withEmail(network3.getDescription())
+					                          .withName(network3.getName(this))
+					                          .withEmail(network3.getDescription(this))
 					                          .withIcon(ContextCompat.getDrawable(this, network3.getLogo()));
 			item3.withTag(network3);
 			accountHeader.addProfile(item3, accountHeader.getProfiles().size());

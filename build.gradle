@@ -28,9 +28,11 @@ dependencies {
 	compile 'com.mikepenz:fastadapter-commons:2.1.0@aar'
 	compile 'org.osmdroid:osmdroid-android:5.6.1'
 	compile 'uk.co.samuelwall:material-tap-target-prompt:1.6.3'
-	compile ('com.mapbox.mapboxsdk:mapbox-android-sdk:4.2.1@aar') {
+	compile ('com.mapbox.mapboxsdk:mapbox-android-sdk:4.2.2@aar') {
 		transitive = true
 	}
+	compile 'com.google.dagger:dagger:2.8'
+	annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
 
 	compile(project(':sublibs:public-transport-enabler:enabler')) {
 		exclude group: 'org.json' // provided by Android
@@ -63,7 +65,8 @@ dependencyVerification {
 			'com.mikepenz:fastadapter-commons:ff7c751a839c18575a4a4221c2cfc3fa9bb72846f4b346803a64d405b4393483',
 			'org.osmdroid:osmdroid-android:e64a97b8302a50bedf6c4c6ff024291008f72103b17a728801132ebdce0492ed',
 			'uk.co.samuelwall:material-tap-target-prompt:b53287592ddbe4a7c79aadea8092524c0760a1daa51c7cae928c445b0c192406',
-			'com.mapbox.mapboxsdk:mapbox-android-sdk:879fcc3bcb279b2952f2755154cce8ab07d8d83461c5198f272f7977d7f8d32c',
+			'com.mapbox.mapboxsdk:mapbox-android-sdk:81e7b72106f42389645fb54d8d265248401d484a6d2d692c973eba5962d14aab',
+			'com.google.dagger:dagger:5070e1dff5c551a4908ba7b93125c0243de2a688aed3d2f475357d86d9d7c0ad',
 			'com.android.support:support-annotations:fb941680f43afbd70ce01ec3cc837a5037f0a774701b12a9fd3090bd4727cf15',
 			'com.android.support:support-v4:ed4cda7c752f51d33f9bbdfff3422b425b323d356cd1bdc9786aa413c912e594',
 			'com.android.support:support-vector-drawable:2697503d3e8e709023ae176ba5db7f98ca0aa0b4e6290aedcb3c371904806bf7',
@@ -77,6 +80,7 @@ dependencyVerification {
 			'com.mikepenz:iconics-core:fdaec9164d5dccd213e1e80610b29dbd33a6e36ccd56ca3e8d4e4a802ac962d5',
 			'com.mapzen.android:lost:6e2a7bfb1627587cf17e7788fc16eb2a293f1fb03c1cd9715da4cf5c9d33fefe',
 			'com.mapbox.mapboxsdk:mapbox-java-services:48488716151c51f6606da48d30812ba6eb3d1b82d721d1c089ff648d22d95429',
+			'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
 			'com.squareup.okhttp3:logging-interceptor:2f77bb4b1b2ecf1c330a54295b0b112f65a56d2c16b7937303ad601b1de18fde',
 			'com.google.guava:guava:36a666e3b71ae7f0f0dca23654b67e086e6c93d192f60ba5dfd5519db6c288c8',
 			'org.slf4j:slf4j-api:1d5aeb6bd98b0fdd151269eae941c05f6468a791ea0f1e68d8e7fe518af3e7df',

@@ -25,10 +25,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.Locale;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.AppComponent;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.TransportrApplication;
 
-public class TransportrActivity extends AppCompatActivity {
+public abstract class TransportrActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,11 @@ public class TransportrActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 	}
 
-	public static void useLanguage(Context context) {
+	protected AppComponent getComponent() {
+		return ((TransportrApplication) getApplication()).getComponent();
+	}
+
+	protected static void useLanguage(Context context) {
 		String lang = Preferences.getLanguage(context);
 		if(!lang.equals(context.getString(R.string.pref_language_value_default))) {
 			Locale locale;
@@ -64,7 +70,7 @@ public class TransportrActivity extends AppCompatActivity {
 		}
 	}
 
-	public void runOnThread(final Runnable task) {
+	protected void runOnThread(final Runnable task) {
 		new Thread(task).start();
 	}
 

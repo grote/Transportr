@@ -29,8 +29,8 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
 
-import de.grobox.liberario.NetworkProviderFactory;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.networks.NetworkProviderFactory;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TripDetailActivity;
 import de.grobox.liberario.utils.TransportrUtils;
