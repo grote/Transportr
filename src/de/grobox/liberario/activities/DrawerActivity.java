@@ -130,7 +130,6 @@ abstract class DrawerActivity extends TransportrActivity {
 	}
 
 	private void addAccounts() {
-		// TODO async
 		TransportNetwork network = manager.getTransportNetwork();
 		if(network != null) {
 			ProfileDrawerItem item1 = new ProfileDrawerItem()

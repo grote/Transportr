@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.ui;
+package de.grobox.liberario.locations;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -45,10 +45,7 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import de.grobox.liberario.FavLocation;
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
-import de.grobox.liberario.adapters.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.HomePickerDialogFragment;
 import de.grobox.liberario.networks.NetworkProviderFactory;
@@ -58,8 +55,8 @@ import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.SuggestLocationsResult;
 
-import static de.grobox.liberario.WrapLocation.WrapType.HOME;
-import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 import static de.grobox.liberario.utils.TransportrUtils.getTintedDrawable;
 
@@ -323,7 +320,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		if(icon != null) {
 			ui.status.setImageDrawable(icon);
 		} else {
-			ui.status.setImageDrawable(getTintedDrawable(getContext(), R.drawable.ic_location));
+			ui.status.setImageResource(R.drawable.ic_location);
 		}
 	}
 

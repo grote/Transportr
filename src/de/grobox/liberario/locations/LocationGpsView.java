@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.ui;
+package de.grobox.liberario.locations;
 
 import android.Manifest;
 import android.content.Context;
@@ -37,11 +37,10 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
-import static de.grobox.liberario.WrapLocation.WrapType.GPS;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 
 public class LocationGpsView extends LocationView implements LocationListener {
 

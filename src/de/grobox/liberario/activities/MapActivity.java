@@ -67,7 +67,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.locations.FavLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.networks.TransportNetwork;

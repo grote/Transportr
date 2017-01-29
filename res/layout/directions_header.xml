@@ -20,7 +20,7 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <de.grobox.liberario.ui.LocationGpsView
+        <de.grobox.liberario.locations.LocationGpsView
             android:id="@+id/fromLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             app:mapLocation="true"
             app:onlyIds="false"/>
 
-        <de.grobox.liberario.ui.LocationView
+        <de.grobox.liberario.locations.LocationView
             android:id="@+id/viaLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             app:mapLocation="true"
             app:onlyIds="false"/>
 
-        <de.grobox.liberario.ui.LocationView
+        <de.grobox.liberario.locations.LocationView
             android:id="@+id/toLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

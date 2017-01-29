@@ -38,7 +38,7 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 
 import java.util.ArrayList;
 
-import de.grobox.liberario.ListTrip;
+import de.grobox.liberario.trips.ListTrip;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.networks.TransportNetwork;

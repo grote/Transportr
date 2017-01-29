@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.WrapLocation;
+import de.grobox.liberario.locations.FavLocation;
+import de.grobox.liberario.locations.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 

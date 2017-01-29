@@ -38,12 +38,12 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 import java.util.ArrayList;
 import java.util.Date;
 
-import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.locations.FavLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.departures.DepartureAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
-import de.grobox.liberario.ui.LocationView;
+import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.ui.TimeAndDateView;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;

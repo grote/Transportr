@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import de.grobox.liberario.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import okhttp3.Call;
 import okhttp3.Callback;

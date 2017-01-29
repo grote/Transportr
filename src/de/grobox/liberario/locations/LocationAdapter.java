@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.adapters;
+package de.grobox.liberario.locations;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -36,21 +36,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import de.grobox.liberario.FavLocation.LOC_TYPE;
+import de.grobox.liberario.locations.FavLocation.LOC_TYPE;
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
-import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
-import static de.grobox.liberario.WrapLocation.WrapType.GPS;
-import static de.grobox.liberario.WrapLocation.WrapType.HOME;
-import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static de.grobox.liberario.locations.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 
 public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
+
 	private List<WrapLocation> locations;
 	private List<WrapLocation> defaultLocations;
 	private List<Location> suggestedLocations;
@@ -63,9 +63,9 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 	private boolean includeMapLocation = false;
 	private LOC_TYPE sort = FROM;
 
-	public static final int THRESHOLD = 3;
+	static final int THRESHOLD = 3;
 
-	public LocationAdapter(Context context, boolean onlyIDs) {
+	LocationAdapter(Context context, boolean onlyIDs) {
 		super(context, R.layout.location_item);
 		this.onlyIDs = onlyIDs;
 		this.locations = new ArrayList<>();
@@ -213,7 +213,7 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 		return getView(position, convertView, parent);
 	}
 
-	public void setDefaultLocations(boolean refresh) {
+	void setDefaultLocations(boolean refresh) {
 		locations = getDefaultLocations(refresh);
 		if(refresh && suggestedLocations != null) {
 			suggestedLocations.clear();
@@ -251,7 +251,7 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 		return defaultLocations;
 	}
 
-	public void clearSearchTerm() {
+	void clearSearchTerm() {
 		search = null;
 		// when we are clearing the search term, there is no need to keep its results around
 
@@ -260,7 +260,7 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 		}
 	}
 
-	public void swapSuggestedLocations(List<Location> suggestedLocations, String search) {
+	void swapSuggestedLocations(List<Location> suggestedLocations, String search) {
 		this.suggestedLocations = suggestedLocations;
 		if(suggestedLocations != null && search != null && search.length() >= THRESHOLD) {
 			getFilter().filter(search);
@@ -271,7 +271,7 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 		sort = loc_type;
 	}
 
-	public void setFavs(boolean favs) {
+	void setFavs(boolean favs) {
 		this.includeFavLocations = favs;
 	}
 
@@ -296,4 +296,5 @@ public class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filte
 			return Html.fromHtml(TransportrUtils.getFullLocName(l));
 		}
 	}
+
 }

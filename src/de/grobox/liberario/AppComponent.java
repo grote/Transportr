@@ -22,6 +22,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import de.grobox.liberario.activities.NewMapActivity;
 import de.grobox.liberario.departures.DeparturesActivity;
+import de.grobox.liberario.favorites.FavoritesFragment;
 import de.grobox.liberario.locations.LocationFragment;
 
 @Singleton
@@ -32,5 +33,6 @@ public interface AppComponent {
 	void inject(DeparturesActivity activity);
 
 	void inject(LocationFragment fragment);
+	void inject(FavoritesFragment fragment);
 
 }

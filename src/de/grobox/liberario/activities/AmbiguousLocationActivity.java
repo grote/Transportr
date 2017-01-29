@@ -33,12 +33,12 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
-import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.locations.FavLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.favorites.FavoritesItem;
-import de.grobox.liberario.WrapLocation;
-import de.grobox.liberario.adapters.LocationAdapter;
+import de.grobox.liberario.locations.WrapLocation;
+import de.grobox.liberario.locations.LocationAdapter;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.schildbach.pte.dto.Location;

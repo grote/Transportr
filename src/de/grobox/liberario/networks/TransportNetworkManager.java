@@ -1,10 +1,13 @@
 package de.grobox.liberario.networks;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
+import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.settings.SettingsManager;
 import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.dto.Location;
@@ -26,6 +29,7 @@ public class TransportNetworkManager {
 		transportNetwork = loadTransportNetwork(1);
 		transportNetwork2 = loadTransportNetwork(2);
 		transportNetwork3 = loadTransportNetwork(3);
+		loadHome();
 	}
 
 	@Nullable
@@ -56,6 +60,29 @@ public class TransportNetworkManager {
 		} else {
 			throw new IllegalArgumentException();
 		}
+	}
+
+	@Nullable
+	public Location getHome() {
+		return home;
+	}
+
+	public void setHome(@Nullable final Location home) {
+		new Handler(Looper.getMainLooper()).post(new Runnable() {
+			@Override
+			public void run() {
+				TransportNetworkManager.this.home = home;
+			}
+		});
+	}
+
+	private void loadHome() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				setHome(RecentsDB.getHome(context));
+			}
+		}).start();
 	}
 
 }

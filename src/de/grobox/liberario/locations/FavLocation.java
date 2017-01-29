@@ -15,17 +15,16 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.locations;
 
 import android.support.annotation.NonNull;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 import de.schildbach.pte.dto.Location;
 
-public class FavLocation extends WrapLocation implements Serializable, Comparable<FavLocation> {
-	private static final long serialVersionUID = 3542146506031067902L;
+public class FavLocation extends WrapLocation implements Comparable<FavLocation> {
+
 	public enum LOC_TYPE { FROM, VIA, TO }
 
 	private int from_count;
@@ -39,15 +38,15 @@ public class FavLocation extends WrapLocation implements Serializable, Comparabl
 		to_count = to;
 	}
 
-	public int getFromCount() {
+	private int getFromCount() {
 		return from_count;
 	}
 
-	public int getViaCount() {
+	private int getViaCount() {
 		return via_count;
 	}
 
-	public int getToCount() {
+	private int getToCount() {
 		return to_count;
 	}
 

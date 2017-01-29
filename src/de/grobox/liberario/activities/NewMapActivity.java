@@ -51,14 +51,14 @@ import java.util.Map;
 
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.favorites.FavoritesFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.NearbyLocationsLoader;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.ui.LocationView;
-import de.grobox.liberario.ui.LocationView.LocationViewListener;
+import de.grobox.liberario.locations.LocationView;
+import de.grobox.liberario.locations.LocationView.LocationViewListener;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
@@ -66,7 +66,7 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
-import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.locations.FavLocation.LOC_TYPE.FROM;
 import static de.grobox.liberario.activities.MainActivity.CHANGED_NETWORK_PROVIDER;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
 import static de.grobox.liberario.settings.Preferences.getTransportNetwork;
@@ -117,7 +117,6 @@ public class NewMapActivity extends DrawerActivity
 		});
 
 		search = (LocationView) findViewById(R.id.search);
-		search.initialize(this);
 		search.setLocationViewListener(this);
 
 		View bottomSheet = findViewById(R.id.bottomSheet);
@@ -319,7 +318,7 @@ public class NewMapActivity extends DrawerActivity
 
 	@Override
 	public void onLoaderReset(Loader<NearbyLocationsResult> loader) {
-
+		nearbyLocations.clear();
 	}
 
 	private Icon getNearbyLocationsIcon(@DrawableRes int res) {

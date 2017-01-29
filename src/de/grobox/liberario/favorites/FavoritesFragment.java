@@ -14,9 +14,11 @@ import android.widget.ProgressBar;
 import java.util.Collection;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import de.grobox.liberario.R;
-import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.TransportrFragment;
+import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.Location;
 
@@ -29,17 +31,20 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 
 	public static final String TAG = FavoritesFragment.class.getName();
 
-	public static FavoritesFragment newInstance() {
-		return new FavoritesFragment();
-	}
-
+	@Inject
+	TransportNetworkManager manager;
 	private ProgressBar progressBar;
 	private RecyclerView list;
 	private FavoritesAdapter adapter;
 
+	public static FavoritesFragment newInstance() {
+		return new FavoritesFragment();
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_favorites, container, false);
+		getComponent().inject(this);
 
 		progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
 
@@ -65,7 +70,7 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 			@Override
 			public Collection<FavoritesItem> loadInBackground() {
 				List<FavoritesItem> favorites = getFavoriteTripList(getContext());
-				Location home = RecentsDB.getHome(getContext());
+				Location home = manager.getHome();
 				Location work = null; // TODO
 				favorites.add(new FavoritesItem(HOME, home));
 				favorites.add(new FavoritesItem(WORK, work));

@@ -47,10 +47,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import de.grobox.liberario.FavLocation;
+import de.grobox.liberario.locations.FavLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapActivity;
 import de.grobox.liberario.data.RecentsDB;
@@ -69,9 +69,9 @@ import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-import static de.grobox.liberario.WrapLocation.WrapType.GPS;
-import static de.grobox.liberario.WrapLocation.WrapType.HOME;
-import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
 
 public class TransportrUtils {

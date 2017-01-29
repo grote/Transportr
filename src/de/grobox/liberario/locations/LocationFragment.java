@@ -41,7 +41,6 @@ import java.util.TreeSet;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
 import de.grobox.liberario.activities.NewMapActivity;
 import de.grobox.liberario.departures.DeparturesActivity;
 import de.grobox.liberario.departures.DeparturesLoader;

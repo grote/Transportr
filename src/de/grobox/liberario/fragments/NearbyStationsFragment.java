@@ -40,12 +40,12 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.adapters.StationAdapter;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
-import de.grobox.liberario.ui.LocationGpsView;
-import de.grobox.liberario.ui.LocationView;
+import de.grobox.liberario.locations.LocationGpsView;
+import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -53,8 +53,8 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
-import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static de.grobox.liberario.locations.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;

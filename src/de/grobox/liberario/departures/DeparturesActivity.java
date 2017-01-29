@@ -26,7 +26,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.fragments.TimeDateFragment;
 import de.grobox.liberario.networks.TransportNetworkManager;

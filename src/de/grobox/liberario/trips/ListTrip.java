@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.trips;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +24,11 @@ import de.schildbach.pte.dto.Trip;
 
 // this hack seems to be necessary because RecyclerView has no way to save view states for its items
 public class ListTrip {
+
 	public Trip trip;
 	public boolean expanded;
 
-	public ListTrip(Trip trip) {
+	private ListTrip(Trip trip) {
 		this.trip = trip;
 
 		// don't expand trips initially
@@ -57,4 +58,5 @@ public class ListTrip {
 
 		return trip.equals(other.trip);
 	}
+
 }

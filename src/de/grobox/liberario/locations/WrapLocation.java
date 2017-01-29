@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario;
+package de.grobox.liberario.locations;
 
 import android.support.annotation.Nullable;
 
@@ -27,7 +27,7 @@ import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static de.grobox.liberario.WrapLocation.WrapType.NORMAL;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.NORMAL;
 import static de.schildbach.pte.dto.LocationType.ANY;
 
 public class WrapLocation implements Serializable {
