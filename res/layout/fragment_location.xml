@@ -5,7 +5,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:background="@color/md_grey_500">
+	tools:background="@color/md_pink_100">
 
 	<FrameLayout
 		android:id="@+id/frame"
@@ -21,6 +21,11 @@
 		app:layout_constraintVertical_bias="1.0"
 		tools:layout_constraintLeft_creator="1"
 		tools:layout_constraintRight_creator="1"/>
+
+	<View
+		style="@style/Divider"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/frame"/>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/directionFab"

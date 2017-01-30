@@ -19,4 +19,8 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"/>
 
+	<View
+		style="@style/Divider"
+		android:layout_gravity="top"/>
+
 </FrameLayout>
