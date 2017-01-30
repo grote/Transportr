@@ -25,8 +25,7 @@
             android:layout_height="wrap_content"
             app:favLocation="true"
             app:hint="@string/departure_station"
-            app:homeLocation="true"
-            app:onlyIds="true"/>
+            app:homeLocation="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"

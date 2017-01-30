@@ -46,7 +46,7 @@ public abstract class TransportrActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 	}
 
-	protected AppComponent getComponent() {
+	public AppComponent getComponent() {
 		return ((TransportrApplication) getApplication()).getComponent();
 	}
 

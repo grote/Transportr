@@ -81,7 +81,6 @@ public class HomePickerDialogFragment extends DialogFragment {
 
 		// Initialize LocationView
 		final LocationView loc = (LocationView) v.findViewById(R.id.location_input);
-		loc.initialize(getActivity());
 
 		// OK Button
 		Button okButton = (Button) v.findViewById(R.id.okButton);

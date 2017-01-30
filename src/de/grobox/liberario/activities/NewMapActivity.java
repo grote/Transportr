@@ -66,7 +66,7 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
-import static de.grobox.liberario.locations.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
 import static de.grobox.liberario.activities.MainActivity.CHANGED_NETWORK_PROVIDER;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
 import static de.grobox.liberario.settings.Preferences.getTransportNetwork;

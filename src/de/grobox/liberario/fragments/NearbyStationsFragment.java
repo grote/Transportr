@@ -53,7 +53,7 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static de.grobox.liberario.locations.FavLocation.LOC_TYPE.FROM;
+import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;

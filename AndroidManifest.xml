@@ -76,7 +76,7 @@
 			android:parentActivityName=".activities.TripsActivity"/>
 
 		<activity
-			android:name=".activities.AmbiguousLocationActivity"/>
+			android:name=".locations.AmbiguousLocationActivity"/>
 
 		<activity
 			android:name=".networks.PickTransportNetworkActivity"

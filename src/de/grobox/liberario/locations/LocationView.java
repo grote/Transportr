@@ -20,15 +20,13 @@ package de.grobox.liberario.locations;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -43,48 +41,53 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import java.util.List;
+import javax.inject.Inject;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.fragments.HomePickerDialogFragment;
-import de.grobox.liberario.networks.NetworkProviderFactory;
-import de.grobox.liberario.settings.Preferences;
+import de.grobox.liberario.fragments.HomePickerDialogFragment.OnHomeChangedListener;
+import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.utils.TransportrUtils;
-import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.SuggestLocationsResult;
 
 import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
-import static de.grobox.liberario.utils.TransportrUtils.getTintedDrawable;
 
-public class LocationView extends LinearLayout implements LoaderManager.LoaderCallbacks, HomePickerDialogFragment.OnHomeChangedListener {
+public class LocationView extends LinearLayout implements OnHomeChangedListener, SuggestLocationsTask.SuggestLocationsTaskCallback {
 
-	private final String LOCATION = "location";
-	private final String TEXT = "text";
-	private final String TEXT_POSITION = "textPosition";
-	private final String CHANGING_HOME = "changingHome";
-	protected final String SUPER_STATE = "superState";
+	private final static String LOCATION = "location";
+	private final static String TEXT = "text";
+	private final static String TEXT_POSITION = "textPosition";
+	private final static String CHANGING_HOME = "changingHome";
+	private final static int AUTO_COMPLETION_DELAY = 300;
+	protected final static String SUPER_STATE = "superState";
+
+	@Inject
+	TransportNetworkManager manager;
+	private SuggestLocationsTask task;
 	private Location location;
-	private boolean changingHome = false;
-	protected FragmentActivity activity;
-	protected LoaderManager loaderManager;
+	private boolean changingHome = false, suggestLocationsTaskPending = false;
+	protected TransportrActivity activity;
 	protected final LocationViewHolder ui;
 	protected LocationViewListener listener;
 	protected String hint;
 
-	private FavLocation.LOC_TYPE type;
+	private FavLocation.FavLocationType type;
 
 	public LocationView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
+		if (!isInEditMode()) {
+			activity = ((TransportrActivity) context);
+			activity.getComponent().inject(this);
+		}
+
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LocationView, 0, 0);
-		boolean onlyIDs = a.getBoolean(R.styleable.LocationView_onlyIds, true);
 		boolean includeHome = a.getBoolean(R.styleable.LocationView_homeLocation, false);
 		boolean includeFavs = a.getBoolean(R.styleable.LocationView_favLocation, false);
-		boolean includeMap = a.getBoolean(R.styleable.LocationView_mapLocation, false);
 		boolean showIcon = a.getBoolean(R.styleable.LocationView_showIcon, true);
 		hint = a.getString(R.styleable.LocationView_hint);
 		a.recycle();
@@ -95,12 +98,8 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		inflater.inflate(R.layout.location_view, this, true);
 		ui = new LocationViewHolder(this);
 
-		if(!isInEditMode() && context instanceof FragmentActivity) {
-			initialize((FragmentActivity) context);
-		}
-
 		ui.location.setHint(hint);
-		ui.location.setAdapter(new LocationAdapter(context, onlyIDs));
+		if (!isInEditMode()) ui.location.setAdapter(createLocationAdapter(includeHome, includeFavs));
 		ui.location.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
@@ -121,15 +120,12 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 			}
 		});
 
-		setHome(includeHome);
-		setFavs(includeFavs);
-		setMap(includeMap);
 		if (!showIcon) ui.status.setVisibility(View.GONE);
 
 		ui.status.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				getAdapter().setDefaultLocations(false);
+				getAdapter().resetDropDownLocations();
 				LocationView.this.onClick();
 			}
 		});
@@ -148,10 +144,8 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				if((count == 1 && before == 0) || (count == 0 && before == 1)) handleTextChanged(s);
 			}
-
 			public void afterTextChanged(Editable s) {
 			}
-
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			}
 		});
@@ -161,11 +155,25 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		this(context, null);
 	}
 
-	public void initialize(FragmentActivity a) {
-		loaderManager = a.getSupportLoaderManager();
-		loaderManager.initLoader(getId(), null, this);
-		activity = a;
+	protected static class LocationViewHolder {
+		public ImageView status;
+		public AutoCompleteTextView location;
+		ProgressBar progress;
+		public ImageButton clear;
+
+		private LocationViewHolder(View view) {
+			status = (ImageView) view.findViewById(R.id.statusButton);
+			location = (AutoCompleteTextView) view.findViewById(R.id.location);
+			clear = (ImageButton) view.findViewById(R.id.clearButton);
+			progress = (ProgressBar) view.findViewById(R.id.progress);
+		}
 	}
+
+	protected LocationAdapter createLocationAdapter(boolean includeHome, boolean includeFavs) {
+		return new LocationAdapter(getContext(), manager, includeHome, false, includeFavs);
+	}
+
+	/* State Saving and Restoring */
 
 	@Override
 	public Parcelable onSaveInstanceState() {
@@ -192,17 +200,12 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 			else if(text != null && text.length() > 0) {
 				ui.location.setText(text);
 				ui.clear.setVisibility(View.VISIBLE);
-
-				// load the auto-completion results again as they seem to get lost during restart
-				Loader loader = loaderManager.getLoader(getId());
-				if(loader != null) loader.onContentChanged();
 			}
 			int position = bundle.getInt(TEXT_POSITION);
 			ui.location.setSelection(position);
 
 			changingHome = bundle.getBoolean(CHANGING_HOME);
 			if(changingHome) {
-				// re-set OnHomeChangedListener if home picker is shown
 				Fragment homePicker = activity.getSupportFragmentManager().findFragmentByTag(HomePickerDialogFragment.TAG);
 				if(homePicker != null && homePicker.isAdded()) {
 					((HomePickerDialogFragment) homePicker).setOnHomeChangedListener(this);
@@ -227,78 +230,61 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		super.dispatchThawSelfOnly(container);
 	}
 
-	@Override
-	protected void onDetachedFromWindow() {
-		// Important: Destroy Loader, because it holds a reference to the old LocationView
-		loaderManager.destroyLoader(getId());
+	/* Auto-Completion */
 
-		super.onDetachedFromWindow();
-	}
+	public void handleTextChanged(CharSequence s) {
+		// show clear button
+		if(s.length() > 0) {
+			ui.clear.setVisibility(View.VISIBLE);
+			// clear location tag
+			setLocation(null, null, false);
 
-	@Override
-	public AsyncTaskLoader onCreateLoader(int id, Bundle args) {
-		AsyncTaskLoader loader = new AsyncTaskLoader<List<Location>>(getContext()) {
-			@Override
-			public List<Location> loadInBackground() {
-				String search = getText();
-				if(search.length() < LocationAdapter.THRESHOLD) return null;
-
-				NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
-				try {
-					// get locations from network provider
-					SuggestLocationsResult result = np.suggestLocations(search);
-					return result.getLocations();
-				} catch(Exception e) {
-					e.printStackTrace();
-					return null;
-				}
+			if(s.length() >= LocationAdapter.TYPING_THRESHOLD) {
+				onContentChanged();
 			}
-		};
-		loader.setUpdateThrottle(750);
-		return loader;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void onLoadFinished(Loader loader, final Object data) {
-		ui.progress.setVisibility(View.GONE);
-		if(data == null) return;
-
-		if(getAdapter() != null) {
-			getAdapter().swapSuggestedLocations((List<Location>) data, ui.location.getText().toString());
+		} else {
+			clearLocationAndShowDropDown();
 		}
-	}
-
-	@Override
-	public void onLoaderReset(Loader loader) {
-		getAdapter().swapSuggestedLocations(null, null);
-		ui.progress.setVisibility(View.GONE);
-	}
-
-	private void stopLoader() {
-		Loader loader = loaderManager.getLoader(getId());
-		if(loader != null) loader.cancelLoad();
-		ui.progress.setVisibility(View.GONE);
 	}
 
 	private void onContentChanged() {
 		ui.progress.setVisibility(View.VISIBLE);
-		Loader loader = loaderManager.getLoader(getId());
-		if(loader != null) loader.onContentChanged();
+		startSuggestLocationsTaskDelayed(getText());
 	}
 
-	protected void onFocusChange(View v, boolean hasFocus) {
-		if(hasFocus && v.isShown() && v instanceof AutoCompleteTextView) {
-			((AutoCompleteTextView) v).showDropDown();
+	private void startSuggestLocationsTaskDelayed(final String searchText) {
+		if (suggestLocationsTaskPending || manager.getTransportNetwork() == null) return;
+		suggestLocationsTaskPending = true;
+		postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				if (task != null && task.getStatus() != AsyncTask.Status.FINISHED) task.cancel(true);
+				task = new SuggestLocationsTask(manager.getTransportNetwork(), LocationView.this);
+				task.execute(getText());
+				suggestLocationsTaskPending = false;
+			}
+		}, AUTO_COMPLETION_DELAY);
+	}
+
+	@Override
+	public void onSuggestLocationsResult(@Nullable SuggestLocationsResult suggestLocationsResult) {
+		ui.progress.setVisibility(View.GONE);
+		if(suggestLocationsResult == null) return;
+
+		if(getAdapter() != null) {
+			getAdapter().swapSuggestedLocations(suggestLocationsResult.getLocations(), ui.location.getText().toString());
 		}
 	}
 
-	protected LocationAdapter getAdapter() {
-		return (LocationAdapter) ui.location.getAdapter();
+	private void stopSuggestLocationsTask() {
+		if(task != null) task.cancel(true);
+		ui.progress.setVisibility(View.GONE);
 	}
 
-	public boolean isChangingHome() {
-		return changingHome;
+	/* Setter and Getter */
+
+	protected LocationAdapter getAdapter() {
+		return (LocationAdapter) ui.location.getAdapter();
 	}
 
 	public void setLocation(Location loc, Drawable icon, boolean setText) {
@@ -310,7 +296,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 				ui.location.setSelection(ui.location.getText().length());
 				ui.location.dismissDropDown();
 				ui.clear.setVisibility(View.VISIBLE);
-				stopLoader();
+				stopSuggestLocationsTask();
 			} else {
 				ui.location.setText(null);
 				ui.clear.setVisibility(View.GONE);
@@ -338,14 +324,12 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 			setLocation(null);
 		} else if(loc.getType() == HOME) {
 			// special case: home location
-			Location home = RecentsDB.getHome(getContext());
-
+			Location home = manager.getHome();
 			if(home != null) {
 				setLocation(home);
 			} else {
 				// prevent home.toString() from being shown in the TextView
 				ui.location.setText("");
-
 				selectHomeLocation();
 			}
 		} else {
@@ -367,56 +351,21 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		}
 	}
 
-	public void clearLocation() {
-		setLocation(null, null);
-		if(getAdapter() != null) {
-			getAdapter().clearSearchTerm();
-		}
-	}
-
-	protected void clearLocationAndShowDropDown() {
-		clearLocation();
-		stopLoader();
-		reset();
-		if (listener != null) listener.onLocationCleared();
-		ui.clear.setVisibility(View.GONE);
-		if (isShown()) {
-			ui.location.requestFocus();
-			ui.location.showDropDown();
-		}
-	}
-
-	public void reset() {
-		if(getAdapter() != null) {
-			getAdapter().setDefaultLocations(true);
-		}
-	}
-
-	public void resetIfEmpty() {
-		if(ui.location.getText().length() == 0) {
-			reset();
-		}
-	}
-
-	public void setType(FavLocation.LOC_TYPE type) {
+	public void setType(FavLocation.FavLocationType type) {
 		this.type = type;
 	}
 
-	public FavLocation.LOC_TYPE getType() {
+	public FavLocation.FavLocationType getType() {
 		getAdapter().setSort(type);
 		return this.type;
 	}
 
-	public void setFavs(boolean activate) {
-		getAdapter().setFavs(activate);
-	}
+	/* Behavior */
 
-	public void setHome(boolean activate) {
-		getAdapter().setHome(activate);
-	}
-
-	public void setMap(boolean activate) {
-		getAdapter().setMap(activate);
+	protected void onFocusChange(View v, boolean hasFocus) {
+		if(hasFocus && v.isShown() && v instanceof AutoCompleteTextView) {
+			((AutoCompleteTextView) v).showDropDown();
+		}
 	}
 
 	public void onLocationItemClick(WrapLocation loc, View view) {
@@ -424,7 +373,7 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 
 		// special case: home location
 		if(loc.getType() == HOME) {
-			Location home = RecentsDB.getHome(getContext());
+			Location home = manager.getHome();
 
 			if(home != null) {
 				setLocation(home, icon);
@@ -454,26 +403,39 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	}
 
 	public void onClick() {
-		if(ui.location.getText().length() == 0) {
-			getAdapter().setDefaultLocations(false);
-		}
 		if(getAdapter().getCount() > 0) {
 			ui.location.showDropDown();
 		}
 	}
 
-	public void handleTextChanged(CharSequence s) {
-		// show clear button
-		if(s.length() > 0) {
-			ui.clear.setVisibility(View.VISIBLE);
-			// clear location tag
-			setLocation(null, null, false);
+	public void clearLocation() {
+		setLocation(null, null);
+		if(getAdapter() != null) {
+			getAdapter().resetSearchTerm();
+		}
+	}
 
-			if(s.length() >= LocationAdapter.THRESHOLD) {
-				onContentChanged();
-			}
-		} else {
-			clearLocationAndShowDropDown();
+	protected void clearLocationAndShowDropDown() {
+		clearLocation();
+		stopSuggestLocationsTask();
+		reset();
+		if (listener != null) listener.onLocationCleared();
+		ui.clear.setVisibility(View.GONE);
+		if (isShown()) {
+			ui.location.requestFocus();
+			ui.location.showDropDown();
+		}
+	}
+
+	public void reset() {
+		if(getAdapter() != null) {
+			getAdapter().reset();
+		}
+	}
+
+	public void resetIfEmpty() {
+		if(ui.location.getText().length() == 0) {
+			reset();
 		}
 	}
 
@@ -482,9 +444,10 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 		imm.hideSoftInputFromWindow(ui.location.getWindowToken(), 0);
 	}
 
+	/* Changing Home Location */
+
 	public void selectHomeLocation() {
 		changingHome = true;
-
 		// show home picker dialog
 		HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
 		setHomeFragment.setOnHomeChangedListener(this);
@@ -495,23 +458,15 @@ public class LocationView extends LinearLayout implements LoaderManager.LoaderCa
 	@Override
 	public void onHomeChanged(Location home) {
 		changingHome = false;
-		setLocation(home, getTintedDrawable(getContext(), R.drawable.ic_action_home));
+		setLocation(home, ContextCompat.getDrawable(getContext(), R.drawable.ic_action_home));
 		if(listener != null) listener.onLocationItemClick(new WrapLocation(home, HOME));
 	}
 
-	protected static class LocationViewHolder {
-		public ImageView status;
-		public AutoCompleteTextView location;
-		ProgressBar progress;
-		public ImageButton clear;
-
-		private LocationViewHolder(View view) {
-			status = (ImageView) view.findViewById(R.id.statusButton);
-			location = (AutoCompleteTextView) view.findViewById(R.id.location);
-			clear = (ImageButton) view.findViewById(R.id.clearButton);
-			progress = (ProgressBar) view.findViewById(R.id.progress);
-		}
+	public boolean isChangingHome() {
+		return changingHome;
 	}
+
+	/* Listener */
 
 	public void setLocationViewListener(LocationViewListener listener) {
 		this.listener = listener;

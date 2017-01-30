@@ -183,7 +183,7 @@ public class LocationFragment extends TransportrFragment
 	}
 
 	private void showLocation() {
-		locationIcon.setImageDrawable(getDrawableForLocation(getContext(), location, false));
+		locationIcon.setImageDrawable(getDrawableForLocation(getContext(), manager.getHome(), location, false));
 		locationName.setText(location.getName());
 		StringBuilder locationInfoStr = new StringBuilder();
 		if (!isNullOrEmpty(location.getLocation().place)) {

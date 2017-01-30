@@ -12,8 +12,9 @@
 		android:layout_gravity="center"
 		android:background="?attr/selectableItemBackgroundBorderless"
 		android:scaleType="center"
-		app:srcCompat="@drawable/ic_location"
-		tools:src="@drawable/ic_location"/>
+		android:src="@drawable/ic_location"
+		android:tint="?colorControlNormal"
+		app:srcCompat="@drawable/ic_location"/>
 
 	<AutoCompleteTextView
 		android:id="@+id/location"
@@ -22,6 +23,7 @@
 		android:layout_weight="1"
 		android:background="@android:color/transparent"
 		android:completionThreshold="1"
+		android:dropDownWidth="wrap_content"
 		android:inputType="text|textNoSuggestions|textAutoComplete|textFilter"
 		android:maxLines="1"/>
 
@@ -40,6 +42,7 @@
 		android:layout_height="48dp"
 		android:background="?attr/selectableItemBackground"
 		android:src="@drawable/ic_action_content_remove"
+		android:tint="?colorControlNormal"
 		android:visibility="gone"
 		app:srcCompat="@drawable/ic_action_content_remove"
 		tools:visibility="visible"/>

@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:id="@+id/imageView"
-        app:srcCompat="@drawable/ic_action_home"
-        android:padding="3dp"
-        android:scaleType="fitCenter"/>
+	<ImageView
+		android:id="@+id/imageView"
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:padding="3dp"
+		android:scaleType="fitCenter"
+		android:tint="?colorControlNormal"
+		tools:ignore="ContentDescription"
+		tools:src="@drawable/ic_action_home"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:text="Medium Text"
-        android:gravity="center_vertical"
-        android:padding="3dp"
-        android:singleLine="true"
-        android:ellipsize="middle"/>
+	<TextView
+		android:id="@+id/textView"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:ellipsize="middle"
+		android:gravity="center_vertical"
+		android:maxLines="1"
+		android:padding="3dp"
+		android:text="Medium Text"/>
+
 </LinearLayout>

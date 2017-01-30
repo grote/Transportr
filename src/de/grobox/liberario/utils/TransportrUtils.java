@@ -27,6 +27,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -578,10 +579,15 @@ public class TransportrUtils {
 	}
 
 	static public Drawable getDrawableForLocation(Context context, WrapLocation w, boolean is_fav) {
+		return getDrawableForLocation(context, null, w, is_fav);
+	}
+
+	static public Drawable getDrawableForLocation(Context context, @Nullable Location home, WrapLocation w, boolean is_fav) {
 		if(w == null || w.getLocation() == null) return null;
+		if (home == null) home = RecentsDB.getHome(context);
 		Location l = w.getLocation();
 
-		if(w.getType() == HOME || l.equals(RecentsDB.getHome(context))) {
+		if(w.getType() == HOME || l.equals(home)) {
 			return getTintedDrawable(context, R.drawable.ic_action_home);
 		}
 		else if(w.getType() == GPS) {
@@ -611,7 +617,7 @@ public class TransportrUtils {
 	static public Drawable getDrawableForLocation(Context context, Location l) {
 		if(l == null) return getTintedDrawable(context, R.drawable.ic_location);
 
-		List<WrapLocation> fav_list = getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
+		List<WrapLocation> fav_list = getFavLocationList(context, FavLocation.FavLocationType.FROM);
 		WrapLocation w = new WrapLocation(l);
 
 		return getDrawableForLocation(context, w, fav_list.contains(w));

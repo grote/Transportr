@@ -58,8 +58,11 @@ public class LocationGpsView extends LocationView implements LocationListener {
 		if(!isInEditMode()) {
 			this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 		}
+	}
 
-		getAdapter().setGPS(true);
+	@Override
+	protected LocationAdapter createLocationAdapter(boolean includeHome, boolean includeFavs) {
+		return new LocationAdapter(getContext(), manager, includeHome, true, includeFavs);
 	}
 
 	@Override

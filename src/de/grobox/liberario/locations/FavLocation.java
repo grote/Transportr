@@ -25,7 +25,7 @@ import de.schildbach.pte.dto.Location;
 
 public class FavLocation extends WrapLocation implements Comparable<FavLocation> {
 
-	public enum LOC_TYPE { FROM, VIA, TO }
+	public enum FavLocationType { FROM, VIA, TO }
 
 	private int from_count;
 	private int via_count;

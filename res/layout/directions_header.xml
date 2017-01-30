@@ -27,9 +27,7 @@
             android:layout_alignParentTop="true"
             app:favLocation="true"
             app:hint="@string/from"
-            app:homeLocation="true"
-            app:mapLocation="true"
-            app:onlyIds="false"/>
+            app:homeLocation="true"/>
 
         <de.grobox.liberario.locations.LocationView
             android:id="@+id/viaLocation"
@@ -38,9 +36,7 @@
             android:layout_below="@id/fromLocation"
             app:favLocation="true"
             app:hint="@string/via"
-            app:homeLocation="true"
-            app:mapLocation="true"
-            app:onlyIds="false"/>
+            app:homeLocation="true"/>
 
         <de.grobox.liberario.locations.LocationView
             android:id="@+id/toLocation"
@@ -49,9 +45,7 @@
             android:layout_below="@id/viaLocation"
             app:favLocation="true"
             app:hint="@string/to"
-            app:homeLocation="true"
-            app:mapLocation="true"
-            app:onlyIds="false"/>
+            app:homeLocation="true"/>
 
         <LinearLayout
             android:id="@+id/dateLine"

@@ -68,30 +68,24 @@ public class RecentsDB {
 		return fav_list;
 	}
 
-	public static List<WrapLocation> getFavLocationList(Context context, FavLocation.LOC_TYPE sort, boolean onlyIDs) {
+	public static List<WrapLocation> getFavLocationList(Context context, FavLocation.FavLocationType sort) {
 		List<FavLocation> fav_list = getFavLocationList(context);
 		List<WrapLocation> list = new ArrayList<>();
 
-		if(sort == FavLocation.LOC_TYPE.FROM) {
+		if (sort == FavLocation.FavLocationType.FROM) {
 			Collections.sort(fav_list, FavLocation.FromComparator);
-		}
-		else if(sort == FavLocation.LOC_TYPE.VIA) {
+		} else if (sort == FavLocation.FavLocationType.VIA) {
 			Collections.sort(fav_list, FavLocation.ViaComparator);
-		}
-		else if(sort == FavLocation.LOC_TYPE.TO) {
+		} else if (sort == FavLocation.FavLocationType.TO) {
 			Collections.sort(fav_list, FavLocation.ToComparator);
 		}
-
-		for(final FavLocation loc : fav_list) {
-			if(!onlyIDs || loc.getLocation().hasId()) {
-				list.add(loc);
-			}
+		for (FavLocation loc : fav_list) {
+			list.add(loc);
 		}
-
 		return list;
 	}
 
-	public static void updateFavLocation(Context context, Location loc, FavLocation.LOC_TYPE loc_type) {
+	public static void updateFavLocation(Context context, Location loc, FavLocation.FavLocationType favLocationType) {
 		if(loc == null || loc.type == LocationType.COORD || loc.type == LocationType.ANY) {
 			// don't store GPS or ANY locations (includes ambiguous locations)
 			return;
@@ -132,13 +126,13 @@ public class RecentsDB {
 
 		if(c.moveToFirst()) {
 			// increase counter by one for existing location
-			if(loc_type == FavLocation.LOC_TYPE.FROM) {
+			if(favLocationType == FavLocation.FavLocationType.FROM) {
 				values.put("from_count", c.getInt(c.getColumnIndex("from_count")) + 1);
 			}
-			else if(loc_type == FavLocation.LOC_TYPE.VIA) {
+			else if(favLocationType == FavLocation.FavLocationType.VIA) {
 				values.put("via_count", c.getInt(c.getColumnIndex("via_count")) + 1);
 			}
-			else if(loc_type == FavLocation.LOC_TYPE.TO) {
+			else if(favLocationType == FavLocation.FavLocationType.TO) {
 				values.put("to_count", c.getInt(c.getColumnIndex("to_count")) + 1);
 			}
 			db.update(DBHelper.TABLE_FAV_LOCS, values, "_id = ?", new String[] { c.getString(c.getColumnIndex("_id")) });
@@ -154,17 +148,17 @@ public class RecentsDB {
 			values.put("name", loc.name);
 
 			// set counter to one
-			if(loc_type == FavLocation.LOC_TYPE.FROM) {
+			if(favLocationType == FavLocation.FavLocationType.FROM) {
 				values.put("from_count", 1);
 				values.put("via_count", 0);
 				values.put("to_count", 0);
 			}
-			else if(loc_type == FavLocation.LOC_TYPE.VIA) {
+			else if(favLocationType == FavLocation.FavLocationType.VIA) {
 				values.put("from_count", 0);
 				values.put("via_count", 1);
 				values.put("to_count", 0);
 			}
-			else if(loc_type == FavLocation.LOC_TYPE.TO) {
+			else if(favLocationType == FavLocation.FavLocationType.TO) {
 				values.put("from_count", 0);
 				values.put("via_count", 0);
 				values.put("to_count", 1);

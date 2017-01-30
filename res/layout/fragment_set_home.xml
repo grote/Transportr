@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:hint="@string/home"
-        app:onlyIds="true"
         app:favLocation="true"/>
 
     <include

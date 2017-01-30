@@ -149,7 +149,7 @@ public class DeparturesFragment extends TransportrFragment {
 			}
 
 			// Location is valid, so make it a favorite or increase counter
-			RecentsDB.updateFavLocation(getActivity(), ui.station.getLocation(), FavLocation.LOC_TYPE.FROM);
+			RecentsDB.updateFavLocation(getActivity(), ui.station.getLocation(), FavLocation.FavLocationType.FROM);
 
 			date = ui.date.getDate();
 			stationId = ui.station.getLocation().id;
