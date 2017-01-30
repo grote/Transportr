@@ -41,10 +41,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.liberario.R;
 import de.grobox.liberario.locations.FavLocation.FavLocationType;
 import de.grobox.liberario.networks.TransportNetworkManager;
+import de.grobox.liberario.networks.TransportNetworkManager.OnFavoriteLocationsLoadedListener;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
-import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
 import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
@@ -52,7 +52,7 @@ import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 
 @ParametersAreNonnullByDefault
-class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
+class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, OnFavoriteLocationsLoadedListener {
 
 	private final TransportNetworkManager manager;
 	private List<WrapLocation> favoriteLocations = new ArrayList<>();
@@ -195,7 +195,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	private List<WrapLocation> getFavoriteLocations() {
 		WrapLocation home = null;
 		if (includeHome) {
-			Location home_loc = manager.getHome(); ;
+			Location home_loc = manager.getHome();
 			if (home_loc == null) {
 				home = new WrapLocation(HOME);
 			} else {
@@ -207,12 +207,21 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 			favoriteLocations.add(new WrapLocation(GPS));
 		}
 		if (includeFavs) {
-			// TODO get from manager
-			List<WrapLocation> tmpList = getFavLocationList(getContext(), sort);
-			if (includeHome) tmpList.remove(new WrapLocation(home.getLocation()));
-			favoriteLocations.addAll(tmpList);
+			List<WrapLocation> tmpList = manager.getFavoriteLocations(sort);
+			if (tmpList == null) {
+				manager.addOnFavoriteLocationsLoadedListener(this);
+			} else {
+				if (includeHome) tmpList.remove(new WrapLocation(home.getLocation()));
+				favoriteLocations.addAll(tmpList);
+			}
 		}
 		return favoriteLocations;
+	}
+
+	@Override
+	public void onFavoriteLocationsLoaded() {
+		resetFavoriteLocations();
+		resetDropDownLocations();
 	}
 
 	private void resetFavoriteLocations() {
@@ -241,6 +250,8 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 
 	void setSort(FavLocationType favLocationType) {
 		sort = favLocationType;
+		resetFavoriteLocations();
+		addFavoriteLocationsToDropDown();
 	}
 
 }

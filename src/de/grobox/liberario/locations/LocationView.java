@@ -47,6 +47,7 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.fragments.HomePickerDialogFragment;
 import de.grobox.liberario.fragments.HomePickerDialogFragment.OnHomeChangedListener;
+import de.grobox.liberario.locations.FavLocation.FavLocationType;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
@@ -75,7 +76,7 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 	protected LocationViewListener listener;
 	protected String hint;
 
-	private FavLocation.FavLocationType type;
+	private FavLocationType type = FavLocationType.FROM;
 
 	public LocationView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -249,10 +250,10 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 
 	private void onContentChanged() {
 		ui.progress.setVisibility(View.VISIBLE);
-		startSuggestLocationsTaskDelayed(getText());
+		startSuggestLocationsTaskDelayed();
 	}
 
-	private void startSuggestLocationsTaskDelayed(final String searchText) {
+	private void startSuggestLocationsTaskDelayed() {
 		if (suggestLocationsTaskPending || manager.getTransportNetwork() == null) return;
 		suggestLocationsTaskPending = true;
 		postDelayed(new Runnable() {
@@ -351,13 +352,13 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 		}
 	}
 
-	public void setType(FavLocation.FavLocationType type) {
+	public void setType(FavLocationType type) {
 		this.type = type;
+		getAdapter().setSort(type);
 	}
 
-	public FavLocation.FavLocationType getType() {
-		getAdapter().setSort(type);
-		return this.type;
+	public FavLocationType getType() {
+		return type;
 	}
 
 	/* Behavior */

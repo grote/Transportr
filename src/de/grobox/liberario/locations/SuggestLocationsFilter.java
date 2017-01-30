@@ -12,8 +12,9 @@ abstract class SuggestLocationsFilter extends Filter {
 	/**
 	 * Starts an asynchronous filtering operation on a worker thread.
 	 */
-	protected FilterResults performFiltering(CharSequence constraint, List<WrapLocation> favoriteLocations, List<Location> suggestedLocations) {
+	FilterResults performFiltering(CharSequence constraint, List<WrapLocation> favoriteLocations, List<Location> suggestedLocations) {
 		FilterResults filterResults = new FilterResults();
+		if (constraint == null) return filterResults;
 		List<WrapLocation> result = new ArrayList<>();
 
 		// add fav locations that fulfill constraint
