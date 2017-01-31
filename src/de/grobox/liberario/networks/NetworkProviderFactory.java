@@ -73,6 +73,7 @@ public final class NetworkProviderFactory
 	private static Reference<SncbProvider> sncbProviderRef;
 	private static Reference<LuProvider> luProviderRef;
 	private static Reference<NsProvider> nsProviderRef;
+	private static Reference<NegentweeProvider> negentweeProviderRef;
 	private static Reference<DsbProvider> dsbProviderRef;
 	private static Reference<SeProvider> seProviderRef;
 	private static Reference<NriProvider> nriProviderRef;
@@ -693,6 +694,19 @@ public final class NetworkProviderFactory
 
 			final NsProvider provider = new NsProvider();
 			nsProviderRef = new SoftReference<>(provider);
+			return provider;
+		}
+		else if (networkId.equals(NetworkId.NEGENTWEE))
+		{
+			if (negentweeProviderRef != null)
+			{
+				final NegentweeProvider provider = negentweeProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final NegentweeProvider provider = new NegentweeProvider();
+			negentweeProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.DSB))

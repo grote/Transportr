@@ -273,7 +273,7 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 		if(suggestLocationsResult == null) return;
 
 		if(getAdapter() != null) {
-			getAdapter().swapSuggestedLocations(suggestLocationsResult.getLocations(), ui.location.getText().toString());
+			getAdapter().swapSuggestedLocations(suggestLocationsResult.suggestedLocations, ui.location.getText().toString());
 		}
 	}
 

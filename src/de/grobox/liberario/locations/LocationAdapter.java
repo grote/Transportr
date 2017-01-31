@@ -44,6 +44,7 @@ import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.networks.TransportNetworkManager.OnFavoriteLocationsLoadedListener;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.SuggestedLocation;
 
 import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
@@ -57,7 +58,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 	private final TransportNetworkManager manager;
 	private List<WrapLocation> favoriteLocations = new ArrayList<>();
 	@Nullable
-	private List<Location> suggestedLocations;
+	private List<SuggestedLocation> suggestedLocations;
 	@Nullable
 	private CharSequence search;
 	private Filter filter = null;
@@ -180,7 +181,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 		return filter;
 	}
 
-	void swapSuggestedLocations(List<Location> suggestedLocations, String search) {
+	void swapSuggestedLocations(List<SuggestedLocation> suggestedLocations, String search) {
 		this.suggestedLocations = suggestedLocations;
 		if (search.length() >= TYPING_THRESHOLD) {
 			this.search = search;

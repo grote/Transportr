@@ -339,6 +339,15 @@ public interface TransportNetworks {
 					.setStatus(BETA)
 					.build(),
 
+			new TransportNetworkBuilder()
+					.setId(NetworkId.NEGENTWEE)
+					.setName(R.string.np_name_negentwee)
+					.setDescription(R.string.np_desc_negentwee)
+					.setLogo(R.drawable.network_negentwee_logo)
+					.setRegion(Region.NETHERLANDS)
+					.setStatus(ALPHA)
+					.build(),
+
 			// Denmark
 
 			new TransportNetworkBuilder()

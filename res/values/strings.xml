@@ -334,6 +334,8 @@ there are any).</string>
 
     <string name="np_region_netherlands">Netherlands</string>
     <string name="np_desc_ns">Netherlands, Amsterdam</string>
+    <string name="np_name_negentwee" translatable="false">9292.nl</string>
+    <string name="np_desc_negentwee">All public transport in the Netherlands</string>
 
     <string name="np_region_norway">Norway</string>
     <string name="np_desc_nri">Norway, Oslo, Bergen</string>
