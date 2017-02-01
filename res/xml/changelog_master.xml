@@ -4,6 +4,7 @@
     <release version="1.1.7-beta1" versioncode="46">
         <change>New setting: Add "Get me home" shortcut to launcher (Thanks Patrick!)</change>
         <change>Added Oregon, USA (Thanks craftguy!)</change>
+        <change>Added 9292.nl (Thanks full-duplex!)</change>
         <change>Added Mittelthüringen, Germany (Thanks Andreas!)</change>
         <change>New logos for MET, SYDNEY and DSB (Thanks André!)</change>
         <change>Fixed Android 7.1 issue when returning to directions list</change>
