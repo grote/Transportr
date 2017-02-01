@@ -76,9 +76,9 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="departure_station">Estación de salida</string>
   <string name="share_trip_via">Compartir viaje vía…</string>
   <string name="undo">Deshacer</string>
-  <string name="fav_trips_empty">Tus viajes recientes aparecerán aquí una vez que empieces a buscar direcciones./n/n/nSerás capaz de ordenarlas por más frecuentes o por más recientes.</string>
+  <string name="fav_trips_empty">Tus viajes recientes aparecerán aquí una vez que empieces a buscar direcciones.\n\n\nSerás capaz de ordenarlas por más frecuentes o por más recientes.</string>
   <string name="more">Más</string>
-  <string name="no_favourites">No hay viajes favoritos./n/nAñade uno en la página de \"Viajes recientes\".</string>
+  <string name="no_favourites">No hay viajes favoritos.\n\nAñade uno en la página de \"Viajes recientes\".</string>
   <string name="removing_from_favourites">Un viaje que has seleccionado está marcado como favorito. También se eliminará de ahí.</string>
   <string name="now">Ahora</string>
   <string name="current_time_set">La hora se ha actualizado.</string>
