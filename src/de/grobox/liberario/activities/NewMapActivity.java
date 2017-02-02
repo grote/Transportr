@@ -26,7 +26,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.util.Log;
@@ -49,16 +49,19 @@ import com.mapbox.mapboxsdk.telemetry.MapboxEventManager;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
-import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.favorites.FavoritesFragment;
 import de.grobox.liberario.locations.LocationFragment;
-import de.grobox.liberario.locations.NearbyLocationsLoader;
-import de.grobox.liberario.networks.PickTransportNetworkActivity;
-import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.LocationView.LocationViewListener;
+import de.grobox.liberario.locations.NearbyLocationsLoader;
+import de.grobox.liberario.locations.WrapLocation;
+import de.grobox.liberario.networks.PickTransportNetworkActivity;
+import de.grobox.liberario.networks.TransportNetwork;
+import de.grobox.liberario.trips.DirectionsActivity;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
@@ -66,18 +69,19 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
-import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
-import static de.grobox.liberario.activities.MainActivity.CHANGED_NETWORK_PROVIDER;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
-import static de.grobox.liberario.settings.Preferences.getTransportNetwork;
+import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
+import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
+import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
 import static de.grobox.liberario.utils.TransportrUtils.getLatLng;
 import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
 import static de.grobox.liberario.utils.TransportrUtils.getMarkerForProduct;
 import static de.schildbach.pte.dto.NearbyLocationsResult.Status.OK;
 
+@ParametersAreNonnullByDefault
 public class NewMapActivity extends DrawerActivity
-		implements LocationViewListener, OnMapReadyCallback, LoaderManager.LoaderCallbacks<NearbyLocationsResult> {
+		implements LocationViewListener, OnMapReadyCallback, LoaderCallbacks<NearbyLocationsResult> {
 
 	private final static int LOCATION_ZOOM = 14;
 
@@ -97,6 +101,7 @@ public class NewMapActivity extends DrawerActivity
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 //		enableStrictMode();
 		getComponent().inject(this);
+		ensureTransportNetworkSelected();
 		setContentView(R.layout.activity_new_map);
 		super.onCreate(savedInstanceState);
 
@@ -149,24 +154,6 @@ public class NewMapActivity extends DrawerActivity
 				// TODO
 				Intent intent = new Intent(NewMapActivity.this, MainActivity.class);
 				startActivity(intent);
-			}
-		});
-
-		runOnThread(new Runnable() {
-			@Override
-			public void run() {
-				TransportNetwork network = getTransportNetwork(NewMapActivity.this);
-				if (network == null) {
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							Intent intent = new Intent(NewMapActivity.this, PickTransportNetworkActivity.class);
-							// force choosing a network provider
-							intent.putExtra("FirstRun", true);
-							startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
-						}
-					});
-				}
 			}
 		});
 
@@ -223,7 +210,7 @@ public class NewMapActivity extends DrawerActivity
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
-		if (savedInstanceState != null && bottomSheetBehavior.getState() != STATE_HIDDEN) {
+		if (bottomSheetBehavior.getState() != STATE_HIDDEN) {
 			directionsFab.hide();
 		}
 	}
@@ -231,12 +218,14 @@ public class NewMapActivity extends DrawerActivity
 	@Override
 	public void onStart() {
 		super.onStart();
+		manager.addOnTransportNetworkChangedListener(this);
 		mapView.onResume();
 	}
 
 	@Override
 	public void onStop() {
 		super.onStop();
+		manager.removeOnTransportNetworkChangedListener(this);
 		mapView.onPause();
 	}
 
@@ -250,6 +239,13 @@ public class NewMapActivity extends DrawerActivity
 	public void onDestroy() {
 		super.onDestroy();
 		mapView.onDestroy();
+	}
+
+	@Override
+	public void onTransportNetworkChanged(TransportNetwork network) {
+		// TODO
+		Log.e("TEST", "Transport Network Changed, recreating...");
+		recreate();
 	}
 
 	@Override
@@ -297,7 +293,7 @@ public class NewMapActivity extends DrawerActivity
 	}
 
 	@Override
-	public void onLoadFinished(Loader<NearbyLocationsResult> loader, NearbyLocationsResult result) {
+	public void onLoadFinished(Loader<NearbyLocationsResult> loader, @Nullable NearbyLocationsResult result) {
 		if (result != null && result.status == OK && result.locations != null && result.locations.size() > 0) {
 			for (Location location : result.locations) {
 				if (!location.hasLocation()) continue;
@@ -325,6 +321,15 @@ public class NewMapActivity extends DrawerActivity
 		IconFactory iconFactory = IconFactory.getInstance(NewMapActivity.this);
 		Drawable iconDrawable = ContextCompat.getDrawable(NewMapActivity.this, res);
 		return iconFactory.fromDrawable(iconDrawable);
+	}
+
+	private void ensureTransportNetworkSelected() {
+		TransportNetwork network = manager.getTransportNetwork();
+		if (network == null) {
+			Intent intent = new Intent(this, PickTransportNetworkActivity.class);
+			intent.putExtra(FORCE_NETWORK_SELECTION, true);
+			startActivityForResult(intent, REQUEST_NETWORK_PROVIDER_CHANGE);
+		}
 	}
 
 	private void enableStrictMode() {

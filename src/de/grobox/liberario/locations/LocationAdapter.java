@@ -41,7 +41,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.liberario.R;
 import de.grobox.liberario.locations.FavLocation.FavLocationType;
 import de.grobox.liberario.networks.TransportNetworkManager;
-import de.grobox.liberario.networks.TransportNetworkManager.OnFavoriteLocationsLoadedListener;
+import de.grobox.liberario.networks.TransportNetworkManager.FavoriteLocationsLoadedListener;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.SuggestedLocation;
@@ -53,7 +53,7 @@ import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 
 @ParametersAreNonnullByDefault
-class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, OnFavoriteLocationsLoadedListener {
+class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, FavoriteLocationsLoadedListener {
 
 	private final TransportNetworkManager manager;
 	private List<WrapLocation> favoriteLocations = new ArrayList<>();

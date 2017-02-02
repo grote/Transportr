@@ -103,4 +103,13 @@ public class TransportNetwork {
 		return goodLineNames;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof TransportNetwork) {
+			TransportNetwork network = (TransportNetwork) o ;
+			return this.id.equals(network.id);
+		}
+		return super.equals(o);
+	}
+
 }

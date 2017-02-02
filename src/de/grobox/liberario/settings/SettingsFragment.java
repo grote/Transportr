@@ -15,11 +15,11 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.fragments;
+package de.grobox.liberario.settings;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -30,16 +30,22 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
 
-import de.grobox.liberario.settings.Preferences;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.liberario.R;
-import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.activities.MainActivity;
-import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.fragments.HomePickerDialogFragment;
+import de.grobox.liberario.networks.PickTransportNetworkActivity;
+import de.grobox.liberario.networks.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
-public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener, HomePickerDialogFragment.OnHomeChangedListener {
+import static android.app.Activity.RESULT_OK;
+import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
+
+@ParametersAreNonnullByDefault
+public class SettingsFragment extends PreferenceFragmentCompat implements OnSharedPreferenceChangeListener, TransportNetworkChangedListener, HomePickerDialogFragment.OnHomeChangedListener {
 
 	public static final String TAG = "de.grobox.liberario.settings";
 
@@ -62,14 +68,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 			    Intent intent = new Intent(getActivity(), PickTransportNetworkActivity.class);
-
-//				View view = preference.getView(null, null);
 				View view = getView();
 				if(view != null) view = view.findFocus();
 
 				ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
-				ActivityCompat.startActivityForResult(getActivity(), intent, MainActivity.CHANGED_NETWORK_PROVIDER, options.toBundle());
-
+				ActivityCompat.startActivityForResult(getActivity(), intent, REQUEST_NETWORK_PROVIDER_CHANGE, options.toBundle());
 				return true;
 			}
 		});
@@ -147,6 +150,21 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 	}
 
 	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		super.onActivityResult(requestCode, resultCode, intent);
+
+		if (requestCode == REQUEST_NETWORK_PROVIDER_CHANGE && resultCode == RESULT_OK) {
+//			TransportNetwork network = manager.getTransportNetwork();
+//			if (network != null) onTransportNetworkChanged(network);
+		}
+	}
+
+	@Override
+	public void onTransportNetworkChanged(TransportNetwork network) {
+		// TODO
+	}
+
+	@Override
 	public void onHomeChanged(Location home) {
 		setHome(home);
 	}
@@ -162,15 +180,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 		}
 	}
 
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
-
-		if(requestCode == MainActivity.CHANGED_NETWORK_PROVIDER && resultCode == Activity.RESULT_OK) {
-			((MainActivity) getActivity()).onNetworkProviderChanged();
-		}
-	}
-
 	private void reload() {
 		getActivity().recreate();
 	}
+
 }

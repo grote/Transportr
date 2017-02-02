@@ -19,10 +19,7 @@ package de.grobox.liberario.networks;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -33,64 +30,67 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import de.grobox.liberario.settings.Preferences;
+import javax.inject.Inject;
+
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TransportrActivity;
+import de.grobox.liberario.networks.Region.RegionComparator;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static android.widget.ExpandableListView.getPackedPositionForChild;
 
 public class PickTransportNetworkActivity extends TransportrActivity {
-	private TransportNetworkAdapter listAdapter;
-	private ExpandableListView expListView;
-	private boolean back = true;
+
+	public final static String FORCE_NETWORK_SELECTION = "ForceNetworkSelection";
+
+	@Inject
+	TransportNetworkManager manager;
+	private TransportNetworkAdapter adapter;
+	private ExpandableListView list;
+	private boolean backAllowed;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pick_network_provider);
-
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		if(toolbar != null) {
-			setSupportActionBar(toolbar);
-		}
+		getComponent().inject(this);
+		setUpCustomToolbar(false);
 
 		Intent intent = getIntent();
-		if(intent.getBooleanExtra("FirstRun", false)) {
-			// prevent going back
-			back = false;
-			// show first time notice
-			findViewById(R.id.firstRunTextView).setVisibility(View.VISIBLE);
+		ActionBar actionBar = getSupportActionBar();
+		if (intent.getBooleanExtra(FORCE_NETWORK_SELECTION, false)) {
+			backAllowed = false;
+			if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(false);
+			findViewById(R.id.firstRunTextView).setVisibility(VISIBLE);
+		} else {
+			backAllowed = true;
+			if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+			findViewById(R.id.firstRunTextView).setVisibility(GONE);
 		}
-		else {
-			ActionBar actionBar = getSupportActionBar();
-			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
-			findViewById(R.id.firstRunTextView).setVisibility(View.GONE);
-		}
-
-		expListView = (ExpandableListView) findViewById(R.id.expandableNetworkProviderListView);
+		setResult(RESULT_CANCELED);
 
 		HashMap<Region, List<TransportNetwork>> listNetwork = getTransportNetworksByRegion();
 		List<Region> listRegion = new ArrayList<>(listNetwork.keySet());
-		Collections.sort(listRegion);
+		RegionComparator regionComparator = new RegionComparator(this);
+		Collections.sort(listRegion, regionComparator);
 
-		listAdapter = new TransportNetworkAdapter(this, listRegion, listNetwork);
-		expListView.setAdapter(listAdapter);
+		adapter = new TransportNetworkAdapter(this, listRegion, listNetwork);
+		list = (ExpandableListView) findViewById(R.id.expandableNetworkProviderListView);
+		list.setAdapter(adapter);
 
 		selectItem();
 
-		expListView.setOnChildClickListener(new OnChildClickListener() {
+		list.setOnChildClickListener(new OnChildClickListener() {
 			@Override
 			public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-				int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
+				int index = parent.getFlatListPosition(getPackedPositionForChild(groupPosition, childPosition));
 				parent.setItemChecked(index, true);
-				//if(parent.getCheckedItemPosition() >= 0) {
-				if(index >= 0) {
-					//TransportNetwork network = ((TransportNetwork) parent.getItemAtPosition(parent.getCheckedItemPosition()));
-					TransportNetwork network = ((TransportNetwork) parent.getItemAtPosition(index));
-
-					Preferences.setNetworkId(v.getContext(), network.getId());
-
-					Intent returnIntent = new Intent();
-					setResult(RESULT_OK, returnIntent);
-					close();
+				if (index >= 0) {
+					TransportNetwork network = (TransportNetwork) parent.getItemAtPosition(index);
+					manager.setTransportNetwork(network);
+					setResult(RESULT_OK);
+					supportFinishAfterTransition();
 					return true;
 				}
 				return false;
@@ -100,43 +100,30 @@ public class PickTransportNetworkActivity extends TransportrActivity {
 
 	@Override
 	public void onBackPressed() {
-		if(back) {
-			Intent returnIntent = new Intent();
-			setResult(RESULT_CANCELED, returnIntent);
-			close();
-		}
+		if (backAllowed) super.onBackPressed();
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
-		if(menuItem.getItemId() == android.R.id.home) {
+		if (menuItem.getItemId() == android.R.id.home) {
 			onBackPressed();
+			return true;
+		} else {
+			return false;
 		}
-		return true;
 	}
 
 	private void selectItem() {
-		// get current network from settings
-		TransportNetwork tn = Preferences.getTransportNetwork(this);
+		TransportNetwork network = manager.getTransportNetwork();
+		if (network == null) return;
 
-		// return if no network is set
-		if(tn == null) {
-			Log.d(getClass().getSimpleName(), "No NetworkId in Settings.");
-			return;
+		int region = adapter.getGroupPos(network.getRegion());
+		int position = adapter.getChildPos(network.getRegion(), network.getId());
+		if (position >= 0) {
+			list.expandGroup(region);
+			int index = list.getFlatListPosition(getPackedPositionForChild(region, position));
+			list.setItemChecked(index, true);
 		}
-
-		// we have a network, so pre-select it in the list
-		int region = listAdapter.getGroupPos(tn.getRegion());
-		int network = listAdapter.getChildPos(tn.getRegion(), tn.getId());
-		if(network >= 0) {
-			expListView.expandGroup(region);
-			int index = expListView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(region, network));
-			expListView.setItemChecked(index, true);
-		}
-	}
-
-	public void close() {
-		ActivityCompat.finishAfterTransition(this);
 	}
 
 	private HashMap<Region, List<TransportNetwork>> getTransportNetworksByRegion() {

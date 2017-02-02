@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +34,8 @@ public class TransportNetworkManager {
 	private Location home;
 	@Nullable
 	private List<FavLocation> favoriteLocations;
-	private List<OnFavoriteLocationsLoadedListener> onFavoriteLocationsLoadedListeners = new ArrayList<>();
+	private List<FavoriteLocationsLoadedListener> favoriteLocationsLoadedListeners = new ArrayList<>();
+	private List<TransportNetworkChangedListener> transportNetworkChangedListeners = new ArrayList<>();
 
 	@Inject
 	public TransportNetworkManager(Context context, SettingsManager settingsManager) {
@@ -73,6 +75,27 @@ public class TransportNetworkManager {
 			return transportNetwork3;
 		} else {
 			throw new IllegalArgumentException();
+		}
+	}
+
+	public void setTransportNetwork(TransportNetwork transportNetwork) {
+		Log.e("TEST", "SET TRANSPORT NETWORK: " + transportNetwork.getId().name());
+
+		// check if same network was selected again
+		if (this.transportNetwork != null && this.transportNetwork.equals(transportNetwork)) return;
+		settingsManager.setNetworkId(transportNetwork.getId());
+
+		// move 2nd network to 3rd if existing and not re-selected
+		if (this.transportNetwork2 != null && !this.transportNetwork2.equals(transportNetwork)) {
+			this.transportNetwork3 = this.transportNetwork2;
+		}
+		// swap remaining networks
+		this.transportNetwork2 = this.transportNetwork;
+		this.transportNetwork = transportNetwork;
+
+		// inform listeners
+		for (TransportNetworkChangedListener l : transportNetworkChangedListeners) {
+			if (l != null) l.onTransportNetworkChanged(transportNetwork);
 		}
 	}
 
@@ -140,10 +163,10 @@ public class TransportNetworkManager {
 			@Override
 			public void run() {
 				TransportNetworkManager.this.favoriteLocations = favoriteLocations;
-				for (OnFavoriteLocationsLoadedListener l : onFavoriteLocationsLoadedListeners) {
+				for (FavoriteLocationsLoadedListener l : favoriteLocationsLoadedListeners) {
 					if (l != null) l.onFavoriteLocationsLoaded();
 				}
-				onFavoriteLocationsLoadedListeners.clear();
+				favoriteLocationsLoadedListeners.clear();
 			}
 		});
 	}
@@ -153,12 +176,26 @@ public class TransportNetworkManager {
 	 * The listener will be removed automatically after being informed.
 	 */
 	@UiThread
-	public void addOnFavoriteLocationsLoadedListener(OnFavoriteLocationsLoadedListener listener) {
-		onFavoriteLocationsLoadedListeners.add(listener);
+	public void addOnFavoriteLocationsLoadedListener(FavoriteLocationsLoadedListener listener) {
+		favoriteLocationsLoadedListeners.add(listener);
 	}
 
-	public interface OnFavoriteLocationsLoadedListener {
+	@UiThread
+	public void addOnTransportNetworkChangedListener(TransportNetworkChangedListener listener) {
+		transportNetworkChangedListeners.add(listener);
+	}
+
+	@UiThread
+	public void removeOnTransportNetworkChangedListener(TransportNetworkChangedListener listener) {
+		transportNetworkChangedListeners.remove(listener);
+	}
+
+	public interface FavoriteLocationsLoadedListener {
 		void onFavoriteLocationsLoaded();
+	}
+
+	public interface TransportNetworkChangedListener {
+		void onTransportNetworkChanged(TransportNetwork network);
 	}
 
 }

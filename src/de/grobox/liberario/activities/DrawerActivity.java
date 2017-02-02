@@ -37,21 +37,21 @@ import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import javax.inject.Inject;
 
-import de.grobox.liberario.networks.TransportNetworkManager;
-import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.fragments.AboutMainFragment;
+import de.grobox.liberario.settings.SettingsFragment;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.fragments.AboutMainFragment;
-import de.grobox.liberario.fragments.SettingsFragment;
+import de.grobox.liberario.networks.TransportNetworkManager;
+import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.ui.TransportrChangeLog;
 import de.grobox.liberario.utils.TransportrUtils;
 
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
-import static de.grobox.liberario.activities.MainActivity.CHANGED_NETWORK_PROVIDER;
+import static android.support.v4.app.ActivityOptionsCompat.makeScaleUpAnimation;
+import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
 
-abstract class DrawerActivity extends TransportrActivity {
+abstract class DrawerActivity extends TransportrActivity implements TransportNetworkChangedListener {
 
 	@Inject
 	TransportNetworkManager manager;
@@ -67,23 +67,18 @@ abstract class DrawerActivity extends TransportrActivity {
 		accountHeader = new AccountHeaderBuilder()
 				.withActivity(this)
 				.withHeaderBackground(R.drawable.account_header_background)
+				.withDividerBelowHeader(true)
 				.withSelectionListEnabled(false)
 				.withThreeSmallProfileImages(true)
 				.withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
 					@Override
 					public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-						if(currentProfile) {
+						if (currentProfile) {
 							openPickNetworkProviderActivity();
 							return true;
-						} else if(profile != null && profile instanceof ProfileDrawerItem) {
+						} else if (profile != null && profile instanceof ProfileDrawerItem) {
 							TransportNetwork network = (TransportNetwork) ((ProfileDrawerItem) profile).getTag();
-							if(network != null) {
-								// save new network
-								Preferences.setNetworkId(DrawerActivity.this, network.getId());
-
-								// notify everybody of this change
-								onNetworkProviderChanged();
-							}
+							if (network != null) manager.setTransportNetwork(network);
 						}
 						return false;
 					}
@@ -131,7 +126,7 @@ abstract class DrawerActivity extends TransportrActivity {
 
 	private void addAccounts() {
 		TransportNetwork network = manager.getTransportNetwork();
-		if(network != null) {
+		if (network != null) {
 			ProfileDrawerItem item1 = new ProfileDrawerItem()
 					.withName(network.getName(this))
 					.withEmail(network.getDescription(this))
@@ -141,7 +136,7 @@ abstract class DrawerActivity extends TransportrActivity {
 		}
 
 		TransportNetwork network2 = manager.getTransportNetwork(2);
-		if(network2 != null) {
+		if (network2 != null) {
 			ProfileDrawerItem item2 = new ProfileDrawerItem()
 					.withName(network2.getName(this))
 					.withEmail(network2.getDescription(this))
@@ -151,7 +146,7 @@ abstract class DrawerActivity extends TransportrActivity {
 		}
 
 		TransportNetwork network3 = manager.getTransportNetwork(3);
-		if(network3 != null) {
+		if (network3 != null) {
 			ProfileDrawerItem item3 = new ProfileDrawerItem()
 					.withName(network3.getName(this))
 					.withEmail(network3.getDescription(this))
@@ -165,7 +160,7 @@ abstract class DrawerActivity extends TransportrActivity {
 		Drawer.OnDrawerItemClickListener onClick;
 		String name;
 
-		if(tag.equals(TransportrChangeLog.TAG)) {
+		if (tag.equals(TransportrChangeLog.TAG)) {
 			onClick = new Drawer.OnDrawerItemClickListener() {
 				@Override
 				public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -174,8 +169,7 @@ abstract class DrawerActivity extends TransportrActivity {
 				}
 			};
 			name = getString(R.string.drawer_changelog);
-		}
-		else {
+		} else {
 			onClick = new Drawer.OnDrawerItemClickListener() {
 				@Override
 				public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -195,25 +189,24 @@ abstract class DrawerActivity extends TransportrActivity {
 	}
 
 	private String getFragmentName(String tag) {
-		if(tag.equals(SettingsFragment.TAG)) return getString(R.string.drawer_settings);
-		if(tag.equals(AboutMainFragment.TAG)) return getString(R.string.drawer_about);
+		if (tag.equals(SettingsFragment.TAG)) return getString(R.string.drawer_settings);
+		if (tag.equals(AboutMainFragment.TAG)) return getString(R.string.drawer_about);
 		throw new IllegalArgumentException("Could not find fragment name");
 	}
 
-	private void openPickNetworkProviderActivity() {
+	protected void openPickNetworkProviderActivity() {
 		Intent intent = new Intent(this, PickTransportNetworkActivity.class);
-		ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
-		ActivityCompat.startActivityForResult(this, intent, CHANGED_NETWORK_PROVIDER, options.toBundle());
+		ActivityOptionsCompat options = makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
+		ActivityCompat.startActivityForResult(this, intent, REQUEST_NETWORK_PROVIDER_CHANGE, options.toBundle());
 	}
 
-	protected void onNetworkProviderChanged() {
-		// create an intent for restarting this activity
-		Intent intent = new Intent(this, NewMapActivity.class);
-//		intent.setAction(getCurrentFragmentTag());
-		intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
-
-		finish();
-		startActivity(intent);
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == REQUEST_NETWORK_PROVIDER_CHANGE && resultCode == RESULT_OK) {
+			TransportNetwork network = manager.getTransportNetwork();
+			if (network != null) onTransportNetworkChanged(network);
+		}
 	}
 
 	protected void openDrawer() {

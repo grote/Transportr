@@ -7,6 +7,9 @@ public interface Constants {
 	String WRAP_LOCATION = "WrapLocation";
 	String LOCATION = "Location";
 
+	// Request Codes
+	int REQUEST_NETWORK_PROVIDER_CHANGE = 1;
+
 	// Loaders
 	int LOADER_AUTO_COMPLETE = 0;
 	int LOADER_DEPARTURES = 1;

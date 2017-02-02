@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
+import java.util.Comparator;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.R;
@@ -59,6 +61,22 @@ enum Region {
 
 	public String getString(Context context) {
 		return flag == null ? context.getString(name) : context.getString(name) + " " + flag;
+	}
+
+	static class RegionComparator implements Comparator<Region> {
+
+		private final Context context;
+
+		public RegionComparator(Context context) {
+			super();
+			this.context = context;
+		}
+
+		@Override
+		public int compare(Region r1, Region r2) {
+			return r1.getString(context).compareTo(r2.getString(context));
+		}
+
 	}
 
 }

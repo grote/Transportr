@@ -30,8 +30,6 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -59,17 +57,17 @@ import com.mikepenz.materialdrawer.util.KeyboardUtil;
 import java.util.Collections;
 
 import de.grobox.liberario.BuildConfig;
-import de.grobox.liberario.networks.NetworkProviderFactory;
-import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.networks.PickTransportNetworkActivity;
-import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.RecentTripsFragment;
-import de.grobox.liberario.fragments.SettingsFragment;
+import de.grobox.liberario.settings.SettingsFragment;
+import de.grobox.liberario.networks.NetworkProviderFactory;
+import de.grobox.liberario.networks.PickTransportNetworkActivity;
+import de.grobox.liberario.networks.TransportNetwork;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.ui.TransportrChangeLog;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
@@ -77,12 +75,11 @@ import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.OnHidePromptListener;
 
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
+import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 
 public class MainActivity extends TransportrActivity implements FragmentManager.OnBackStackChangedListener {
 
 	public static final String TAG = MainActivity.class.toString();
-
-	static final public int CHANGED_NETWORK_PROVIDER = 1;
 
 	static final public int PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS = 0;
 	static final public int PR_ACCESS_FINE_LOCATION_DIRECTIONS = 1;
@@ -119,7 +116,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	             @Override
 	             public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
 		             if(currentProfile) {
-			             openPickNetworkProviderActivity();
 			             return true;
 		             } else if(profile != null && profile instanceof ProfileDrawerItem) {
 			             TransportNetwork network = (TransportNetwork) ((ProfileDrawerItem) profile).getTag();
@@ -134,13 +130,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		             return false;
 	             }
              })
-			.withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
-				@Override
-				public boolean onClick(View view, IProfile profile) {
-					openPickNetworkProviderActivity();
-					return true;
-				}
-			})
              .build();
 
 		// Drawer
@@ -295,14 +284,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		}
 	}
 
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
-
-		if(requestCode == CHANGED_NETWORK_PROVIDER && resultCode == RESULT_OK) {
-			onNetworkProviderChanged();
-		}
-	}
-
 	public void onNetworkProviderChanged() {
 		// create an intent for restarting this activity
 		Intent intent = new Intent(this, MainActivity.class);
@@ -449,16 +430,10 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 
 			// force choosing a network provider
-			intent.putExtra("FirstRun", true);
+			intent.putExtra(FORCE_NETWORK_SELECTION, true);
 
-			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
+			startActivity(intent);
 		}
-	}
-
-	private void openPickNetworkProviderActivity() {
-		Intent intent = new Intent(getContext(), PickTransportNetworkActivity.class);
-		ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
-		ActivityCompat.startActivityForResult(MainActivity.this, intent, CHANGED_NETWORK_PROVIDER, options.toBundle());
 	}
 
 	private void addAccounts(TransportNetwork network) {

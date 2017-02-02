@@ -25,12 +25,14 @@ import de.grobox.liberario.departures.DeparturesActivity;
 import de.grobox.liberario.favorites.FavoritesFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
+import de.grobox.liberario.networks.PickTransportNetworkActivity;
 
 @Singleton
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
 	void inject(NewMapActivity activity);
+	void inject(PickTransportNetworkActivity activity);
 	void inject(DeparturesActivity activity);
 
 	void inject(LocationFragment fragment);
