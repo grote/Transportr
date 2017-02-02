@@ -99,7 +99,7 @@
 			android:id="@+id/overflowButton"
 			android:layout_width="48dp"
 			android:layout_height="48dp"
-			android:background="?selectableItemBackground"
+			android:background="?selectableItemBackgroundBorderless"
 			android:clickable="true"
 			android:contentDescription="@string/more"
 			android:src="@drawable/ic_more_vert"

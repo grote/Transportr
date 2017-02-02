@@ -23,7 +23,6 @@
 		android:layout_weight="1"
 		android:background="@android:color/transparent"
 		android:completionThreshold="1"
-		android:dropDownWidth="wrap_content"
 		android:inputType="text|textNoSuggestions|textAutoComplete|textFilter"
 		android:maxLines="1"/>
 
@@ -40,7 +39,7 @@
 		android:id="@+id/clearButton"
 		android:layout_width="38dp"
 		android:layout_height="48dp"
-		android:background="?attr/selectableItemBackground"
+		android:background="?attr/selectableItemBackgroundBorderless"
 		android:src="@drawable/ic_action_content_remove"
 		android:tint="?colorControlNormal"
 		android:visibility="gone"
