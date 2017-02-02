@@ -21,14 +21,17 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import java.util.Locale;
 
 import de.grobox.liberario.AppComponent;
-import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportrApplication;
+import de.grobox.liberario.settings.Preferences;
 
 public abstract class TransportrActivity extends AppCompatActivity {
 
@@ -48,6 +51,27 @@ public abstract class TransportrActivity extends AppCompatActivity {
 
 	public AppComponent getComponent() {
 		return ((TransportrApplication) getApplication()).getComponent();
+	}
+
+	/**
+	 * This should be called after the content view has been added in onCreate()
+	 *
+	 * @param ownLayout true if the custom toolbar brings its own layout
+	 * @return the Toolbar object or null if content view did not contain one
+	 */
+	@Nullable
+	protected Toolbar setUpCustomToolbar(boolean ownLayout) {
+		// Custom Toolbar
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		ActionBar ab = getSupportActionBar();
+		if (ab != null) {
+			ab.setDisplayShowHomeEnabled(true);
+			ab.setDisplayHomeAsUpEnabled(true);
+			ab.setDisplayShowCustomEnabled(ownLayout);
+			ab.setDisplayShowTitleEnabled(!ownLayout);
+		}
+		return toolbar;
 	}
 
 	protected static void useLanguage(Context context) {

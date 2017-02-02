@@ -60,7 +60,8 @@
 		</activity>
 
 		<activity
-			android:name=".activities.DirectionsActivity"/>
+			android:name=".trips.DirectionsActivity"
+			android:windowSoftInputMode="stateHidden"/>
 
 		<activity
 			android:name=".departures.DeparturesActivity"

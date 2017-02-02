@@ -3,6 +3,7 @@
 
 	<style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
 		<item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+		<item name="popupTheme">?popupTheme</item>
 	</style>
 
 	<style name="Delay">

@@ -2,9 +2,11 @@
 <android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:fitsSystemWindows="true">
+	android:fitsSystemWindows="true"
+	tools:context=".trips.DirectionsActivity">
 
 	<android.support.design.widget.AppBarLayout
 		android:id="@+id/appBarLayout"
@@ -17,23 +19,99 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:fitsSystemWindows="true"
-			app:contentScrim="?attr/colorPrimary"
 			app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-			<android.support.v7.widget.Toolbar
-				android:id="@+id/toolbar"
-				style="@style/ToolbarStyle"
+			<android.support.constraint.ConstraintLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-				app:title="@string/drawer_directions"/>
+				android:layout_marginBottom="8dp">
 
-			<include
-				android:id="@+id/departureForm"
-				layout="@layout/directions_header"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/materialize_toolbar"/>
+				<android.support.v7.widget.Toolbar
+					android:id="@+id/toolbar"
+					style="@style/ToolbarStyle"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent"
+					app:layout_constraintTop_toTopOf="parent">
+
+					<RelativeLayout
+						android:layout_width="wrap_content"
+						android:layout_height="?attr/actionBarSize">
+
+						<ImageView
+							android:id="@+id/timeIcon"
+							android:layout_width="48dp"
+							android:layout_height="match_parent"
+							android:layout_toLeftOf="@+id/time"
+							android:layout_toStartOf="@+id/time"
+							android:background="?selectableItemBackgroundBorderless"
+							android:clickable="true"
+							android:scaleType="center"
+							android:src="@drawable/ic_time"
+							tools:ignore="ContentDescription"/>
+
+						<TextView
+							android:id="@+id/time"
+							android:layout_width="wrap_content"
+							android:layout_height="match_parent"
+							android:layout_alignParentEnd="true"
+							android:layout_alignParentRight="true"
+							android:layout_centerVertical="true"
+							android:layout_marginEnd="16dp"
+							android:layout_marginRight="16dp"
+							android:background="?selectableItemBackgroundBorderless"
+							android:clickable="true"
+							android:gravity="center"
+							android:text="@string/now"
+							tools:ignore="RtlSymmetry"/>
+
+					</RelativeLayout>
+
+				</android.support.v7.widget.Toolbar>
+
+				<android.support.v7.widget.CardView
+					android:id="@+id/fromCard"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="8dp"
+					android:layout_marginLeft="8dp"
+					android:layout_marginRight="8dp"
+					android:layout_marginStart="8dp"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent"
+					app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+					<de.grobox.liberario.locations.LocationGpsView
+						android:id="@+id/fromLocation"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						app:favLocation="true"
+						app:hint="@string/from"
+						app:homeLocation="true"/>
+
+				</android.support.v7.widget.CardView>
+
+				<android.support.v7.widget.CardView
+					android:id="@+id/toCard"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_margin="8dp"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent"
+					app:layout_constraintTop_toBottomOf="@+id/fromCard">
+
+					<de.grobox.liberario.locations.LocationView
+						android:id="@+id/toLocation"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						app:favLocation="true"
+						app:hint="@string/to"
+						app:homeLocation="true"/>
+
+				</android.support.v7.widget.CardView>
+
+			</android.support.constraint.ConstraintLayout>
 
 		</android.support.design.widget.CollapsingToolbarLayout>
 
