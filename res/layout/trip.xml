@@ -8,7 +8,6 @@
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
-    android:transitionName="card"
     card_view:cardBackgroundColor="?attr/cardBackgroundColor"
     card_view:cardUseCompatPadding="true"
     card_view:cardCornerRadius="2dp">

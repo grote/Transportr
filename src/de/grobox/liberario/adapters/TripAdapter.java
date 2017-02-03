@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -122,6 +123,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 	public void onBindViewHolder(final TripHolder ui, final int position) {
 		// get trip with position from View Holder as this one gets updated when trips are removed
 		final ListTrip trip = trips.get(ui.getAdapterPosition());
+		ViewCompat.setTransitionName(ui.card, trip.trip.getId());
 
 		// listen to touches also in the card, because it does not work only in the RecyclerView
 		ui.card.setOnTouchListener(touchListener);
@@ -206,6 +208,10 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 	@Override
 	public int getItemCount() {
 		return trips == null ? 0 : trips.size();
+	}
+
+	public int getPosition(Trip trip) {
+		return trips.indexOf(new ListTrip(trip));
 	}
 
 	private static void bindLeg(Context context, final LegHolder leg_holder, Trip.Leg leg, boolean detail, FlowLayout lines, boolean showLineName) {
@@ -531,6 +537,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 	}
 
 	static class TripHolder extends BaseTripHolder {
+		CardView card;
 		TableLayout firstLeg;
 		TableRow linesView;
 		TextView departureDelay;
@@ -546,6 +553,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		TripHolder(View v, int size) {
 			super(v, size - 1);
 
+			card = (CardView) v.findViewById(R.id.cardView);
 			firstLeg = (TableLayout) v.findViewById(R.id.firstLegView);
 			map = (ImageView) v.findViewById(R.id.mapView);
 			share = (ImageView) v.findViewById(R.id.shareView);

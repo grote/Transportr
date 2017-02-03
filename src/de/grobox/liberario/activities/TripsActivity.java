@@ -17,17 +17,17 @@
 
 package de.grobox.liberario.activities;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -101,7 +101,6 @@ public class TripsActivity extends TransportrActivity {
 		swipeRefresh.setColorSchemeResources(R.color.accent);
 		swipeRefresh.setDistanceToTriggerSync(getDragDistance(this));
 
-
 		mRecyclerView = (RecyclerView) findViewById(R.id.trips_recycler_view);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -140,14 +139,14 @@ public class TripsActivity extends TransportrActivity {
 			     intent.putExtra("de.schildbach.pte.dto.Trip.to", to);
 				 intent.putExtra("de.schildbach.pte.dto.Trip.products", products);
 
-				 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-					 LinearLayoutManager layoutManager = ((LinearLayoutManager)mRecyclerView.getLayoutManager());
-					 int firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
-					 ActivityOptions options = ActivityOptions.
-							 makeSceneTransitionAnimation(TripsActivity.this, mRecyclerView.getChildAt(position-firstVisiblePosition), "card");
-					 startActivity(intent, options.toBundle());
-				 } else {
+				 int pos = mAdapter.getPosition(trip);
+				 ActivityOptionsCompat options = ActivityOptionsCompat.
+						 makeSceneTransitionAnimation(TripsActivity.this, mRecyclerView.findViewHolderForAdapterPosition(pos).itemView, trip.getId());
+				 if(Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
+					 // work around #285
 					 startActivity(intent);
+				 } else {
+					 ActivityCompat.startActivity(TripsActivity.this, intent, options.toBundle());
 				 }
 			 }
 		});
