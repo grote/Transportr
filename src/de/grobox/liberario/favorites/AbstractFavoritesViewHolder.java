@@ -17,7 +17,7 @@ abstract class AbstractFavoritesViewHolder extends RecyclerView.ViewHolder {
 	AbstractFavoritesViewHolder(View v) {
 		super(v);
 		layout = v;
-		icon = (ImageView) v.findViewById(R.id.icon);
+		icon = (ImageView) v.findViewById(R.id.logo);
 		overflow = (ImageButton) v.findViewById(R.id.overflowButton);
 	}
 

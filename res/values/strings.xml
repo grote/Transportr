@@ -80,7 +80,7 @@ there are any).</string>
     <string name="beta">beta</string>
     <string name="network">Network</string>
     <string name="pick_network_activity">Choose Area</string>
-    <string name="pick_network_first_run">Welcome to Transportr! Please select your transportation network in order to continue.</string>
+    <string name="pick_network_first_run">Welcome to Transportr!\n\nPlease select the transportation network from your area in order to continue. You can change this at any time.</string>
     <string name="clear_recent_trips">Are you sure that you want to delete %1$d trip(s) from your recent trips? The usage count will be lost.</string>
     <string name="trip_searching">Searching for connections&#8230;</string>
     <string name="stations_searching_position">Searching for current position&#8230;</string>

@@ -7,7 +7,4 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:background="?attr/colorPrimary"
-    android:elevation="4dp"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-    app:layout_scrollFlags="scroll|enterAlways"
-    />
+    app:layout_scrollFlags="scroll|enterAlways"/>

@@ -1,10 +1,25 @@
+/*    Transportr
+ *    Copyright (C) 2013 - 2017 Torsten Grote
+ *
+ *    This program is Free Software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as
+ *    published by the Free Software Foundation, either version 3 of the
+ *    License, or (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package de.grobox.liberario.networks;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-
-import java.util.Comparator;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -50,33 +65,18 @@ enum Region {
 		this.flag = flag;
 	}
 
+	@StringRes
 	public int getName() {
 		return name;
+	}
+
+	public String getName(Context context) {
+		return context.getString(name);
 	}
 
 	@Nullable
 	public String getFlag() {
 		return flag;
-	}
-
-	public String getString(Context context) {
-		return flag == null ? context.getString(name) : context.getString(name) + " " + flag;
-	}
-
-	static class RegionComparator implements Comparator<Region> {
-
-		private final Context context;
-
-		public RegionComparator(Context context) {
-			super();
-			this.context = context;
-		}
-
-		@Override
-		public int compare(Region r1, Region r2) {
-			return r1.getString(context).compareTo(r2.getString(context));
-		}
-
 	}
 
 }

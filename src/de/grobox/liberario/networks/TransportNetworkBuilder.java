@@ -37,8 +37,8 @@ class TransportNetworkBuilder {
 	private @StringRes int name;
 	private @StringRes int description;
 	private @StringRes int agencies;
-	private Status status = Status.ALPHA;
-	private @DrawableRes int logo = R.drawable.ic_placeholder;
+	private Status status = Status.STABLE;
+	private @DrawableRes int logo = R.drawable.network_placeholder;
 	private boolean goodLineNames = false;
 
 	TransportNetworkBuilder() {

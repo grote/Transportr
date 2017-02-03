@@ -12,7 +12,7 @@
 		android:layout_height="match_parent">
 
 		<ImageView
-			android:id="@+id/icon"
+			android:id="@+id/logo"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="8dp"
@@ -35,7 +35,7 @@
 			android:textAppearance="@style/TextAppearance.AppCompat.Body1"
 			android:textSize="18sp"
 			android:textStyle="normal|bold"
-			app:layout_constraintLeft_toRightOf="@+id/icon"
+			app:layout_constraintLeft_toRightOf="@+id/logo"
 			app:layout_constraintTop_toTopOf="parent"/>
 
 		<TextView
