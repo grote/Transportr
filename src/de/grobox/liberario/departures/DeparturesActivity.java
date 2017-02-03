@@ -157,7 +157,7 @@ public class DeparturesActivity extends TransportrActivity
 	}
 
 	@Override
-	public void onTimeAndDateSet(Calendar calendar) {
+	public void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday) {
 		this.calendar = calendar;
 		adapter.clear();
 		progressBar.setVisibility(VISIBLE);

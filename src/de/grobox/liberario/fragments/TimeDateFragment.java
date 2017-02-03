@@ -21,6 +21,7 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,6 +39,7 @@ import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 
 import static android.text.format.DateFormat.getDateFormat;
+import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
 import static java.util.Calendar.DAY_OF_MONTH;
 import static java.util.Calendar.HOUR_OF_DAY;
 import static java.util.Calendar.MINUTE;
@@ -125,7 +127,12 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 		okButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				if (listener != null) listener.onTimeAndDateSet(calendar);
+				if (listener != null) {
+					long diff = Math.abs(calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
+					boolean now = diff < 10 * MINUTE_IN_MILLIS;
+					boolean today = DateUtils.isToday(calendar.getTimeInMillis());
+					listener.onTimeAndDateSet(calendar, now, today);
+				}
 				dismiss();
 			}
 		});
@@ -190,7 +197,7 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 	}
 
 	public interface TimeDateListener {
-		void onTimeAndDateSet(Calendar calendar);
+		void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday);
 	}
 
 }
