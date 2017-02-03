@@ -78,6 +78,7 @@ public class PickTransportNetworkActivity extends TransportrActivity {
 			@Override
 			public void onSelectionChanged(IItem item, boolean selected) {
 				if (!selectAllowed || !selected) return;
+				selectAllowed = false;
 				TransportNetworkItem networkItem = (TransportNetworkItem) item;
 				manager.setTransportNetwork(networkItem.getTransportNetwork());
 				setResult(RESULT_OK);

@@ -35,7 +35,7 @@ class RegionViewHolder extends RecyclerView.ViewHolder {
 	private final TextView name;
 	private final ImageView chevron;
 
-	public RegionViewHolder(View v) {
+	RegionViewHolder(View v) {
 		super(v);
 		flag = (TextView) v.findViewById(R.id.flag);
 		name = (TextView) v.findViewById(R.id.name);

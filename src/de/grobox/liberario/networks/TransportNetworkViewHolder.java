@@ -36,7 +36,7 @@ class TransportNetworkViewHolder extends RecyclerView.ViewHolder {
 	private final TextView desc;
 	private final TextView status;
 
-	public TransportNetworkViewHolder(View v) {
+	TransportNetworkViewHolder(View v) {
 		super(v);
 		logo = (ImageView) v.findViewById(R.id.logo);
 		name = (TextView) v.findViewById(R.id.name);

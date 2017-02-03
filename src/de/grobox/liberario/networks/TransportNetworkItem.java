@@ -19,8 +19,10 @@ package de.grobox.liberario.networks;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.view.View;
 
 import com.mikepenz.fastadapter.commons.items.AbstractExpandableItem;
+import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 
 import java.util.List;
 
@@ -29,6 +31,7 @@ import de.grobox.liberario.R;
 class TransportNetworkItem extends AbstractExpandableItem<RegionItem, TransportNetworkViewHolder, TransportNetworkItem> {
 
 	private final TransportNetwork network;
+	private static final ViewHolderFactory<TransportNetworkViewHolder> FACTORY = new ItemFactory();
 
 	TransportNetworkItem(TransportNetwork network) {
 		super();
@@ -60,6 +63,17 @@ class TransportNetworkItem extends AbstractExpandableItem<RegionItem, TransportN
 
 	TransportNetwork getTransportNetwork() {
 		return network;
+	}
+
+	@Override
+	public ViewHolderFactory<TransportNetworkViewHolder> getFactory() {
+		return FACTORY;
+	}
+
+	private static class ItemFactory implements ViewHolderFactory<TransportNetworkViewHolder> {
+		public TransportNetworkViewHolder create(View v) {
+			return new TransportNetworkViewHolder(v);
+		}
 	}
 
 }

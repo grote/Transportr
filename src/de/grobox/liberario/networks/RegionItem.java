@@ -27,6 +27,7 @@ import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.commons.items.AbstractExpandableItem;
+import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 
 import java.util.Comparator;
 import java.util.List;
@@ -36,6 +37,7 @@ import de.grobox.liberario.R;
 class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, TransportNetworkItem> {
 
 	private final Region region;
+	private static final ViewHolderFactory<RegionViewHolder> FACTORY = new ItemFactory();
 
 	RegionItem(Region region) {
 		super();
@@ -81,11 +83,14 @@ class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, Tr
 	}
 
 	@Override
+	public ViewHolderFactory<RegionViewHolder> getFactory() {
+		return FACTORY;
+	}
+
+	@Override
 	public FastAdapter.OnClickListener<RegionItem> getOnItemClickListener() {
 		return onClickListener;
 	}
-
-
 
 	static class RegionComparator implements Comparator<IItem> {
 
@@ -103,6 +108,12 @@ class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, Tr
 				return ((RegionItem) i1).region.getName(context).compareTo(((RegionItem) i2).region.getName(context));
 			}
 			return 0;
+		}
+	}
+
+	private static class ItemFactory implements ViewHolderFactory<RegionViewHolder> {
+		public RegionViewHolder create(View v) {
+			return new RegionViewHolder(v);
 		}
 	}
 
