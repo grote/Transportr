@@ -105,7 +105,7 @@ allprojects {
 
 android {
 	defaultConfig {
-		versionCode 47
+		versionCode 48
 		versionName "2.0.0-preview1"
 
 		compileSdkVersion 25

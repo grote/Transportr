@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.1.7-beta1" versioncode="46">
+    <release version="1.1.7" versioncode="47">
         <change>New setting: Add "Get me home" shortcut to launcher (Thanks Patrick!)</change>
         <change>Added Oregon, USA (Thanks craftguy!)</change>
         <change>Added Mittelthüringen, Germany (Thanks Andreas!)</change>
