@@ -40,12 +40,12 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.adapters.StationAdapter;
 import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
-import de.grobox.liberario.ui.LocationGpsView;
-import de.grobox.liberario.ui.LocationView;
+import de.grobox.liberario.locations.LocationGpsView;
+import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -53,13 +53,14 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static de.grobox.liberario.FavLocation.LOC_TYPE.FROM;
-import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 import static de.grobox.liberario.utils.TransportrUtils.showLocationsOnMap;
 
+@Deprecated
 public class NearbyStationsFragment extends TransportrFragment {
 
 	public static final String TAG = "de.grobox.liberario.nearby_locations";
@@ -92,13 +93,15 @@ public class NearbyStationsFragment extends TransportrFragment {
 
 		// Location Input View
 		ui.station.setCaller(MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
-		ui.station.setOnLocationClickListener(new LocationView.OnLocationClickListener() {
+		ui.station.setLocationViewListener(new LocationView.LocationViewListener() {
 			@Override
 			public void onLocationItemClick(WrapLocation loc) {
 				if(loc != null && loc.getType() != MAP) {
 					search();
 				}
 			}
+			@Override
+			public void onLocationCleared() { }
 		});
 		LocationGpsView.LocationGpsListener listener = new LocationGpsView.LocationGpsListener() {
 			@Override

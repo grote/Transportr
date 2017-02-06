@@ -1,5 +1,5 @@
 /*    Transportr
- *    Copyright (C) 2013 - 2016 Torsten Grote
+ *    Copyright (C) 2013 - 2017 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -18,27 +18,31 @@
 package de.grobox.liberario;
 
 import android.app.Application;
-import android.content.Context;
+
+import com.squareup.leakcanary.LeakCanary;
 
 public class TransportrApplication extends Application {
-	private TransportNetworks networks;
+
+	private AppComponent component;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 
-		initializeNetworks(getBaseContext());
+		if (LeakCanary.isInAnalyzerProcess(this)) {
+			// This process is dedicated to LeakCanary for heap analysis.
+			// You should not init your app in this process.
+			return;
+		}
+		LeakCanary.install(this);
+
+		component = DaggerAppComponent.builder()
+				.appModule(new AppModule(this))
+				.build();
 	}
 
-	public void initializeNetworks(Context context) {
-		if(networks == null) networks = new TransportNetworks(context);
-	}
-
-	public TransportNetworks getTransportNetworks(Context context) {
-		// sometimes we need to reinitialize for some reason
-		if(networks == null) initializeNetworks(context);
-
-		return networks;
+	public AppComponent getComponent() {
+		return component;
 	}
 
 }

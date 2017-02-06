@@ -32,7 +32,7 @@ abstract public class BasePopupMenu extends PopupMenu {
 
 	protected Context context;
 
-	BasePopupMenu(Context context, View anchor) {
+	public BasePopupMenu(Context context, View anchor) {
 		super(context, anchor);
 
 		this.context = context;

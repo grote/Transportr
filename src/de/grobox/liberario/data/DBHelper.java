@@ -18,16 +18,23 @@
 package de.grobox.liberario.data;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.Nullable;
+import android.util.Log;
+
+import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
 
 public class DBHelper extends SQLiteOpenHelper {
-	public static final String DB_NAME = "liberario.db";
+
+	private static final String DB_NAME = "liberario.db";
 	private static final int DB_VERSION = 4;
 
 	public static final String TABLE_FAV_LOCS  = "fav_locations";
-	public static final String TABLE_RECENT_TRIPS = "recent_trips";
-	public static final String TABLE_HOME_LOCS = "home_locations";
+	public static final String TABLE_FAVORITE_TRIPS = "recent_trips";
+	static final String TABLE_HOME_LOCS = "home_locations";
 
 	private static final String NETWORK = "network STRING NOT NULL";
 
@@ -50,7 +57,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		" )";
 
 	private static final String CREATE_TABLE_RECENT_TRIPS =
-		"CREATE TABLE "	+ TABLE_RECENT_TRIPS + " (" +
+		"CREATE TABLE "	+ TABLE_FAVORITE_TRIPS + " (" +
 			"_id INTEGER PRIMARY KEY, " +
 			NETWORK + ", " +
 			"from_loc INTEGER NOT NULL, " +
@@ -88,17 +95,77 @@ public class DBHelper extends SQLiteOpenHelper {
 					db.execSQL("ALTER TABLE fav_trips ADD COLUMN last_used DATETIME");
 					break;
 				case 3:
-					db.execSQL("ALTER TABLE fav_trips RENAME TO "+TABLE_RECENT_TRIPS);
-					db.execSQL("ALTER TABLE " + TABLE_RECENT_TRIPS + " ADD COLUMN is_favourite INTEGER");
+					db.execSQL("ALTER TABLE fav_trips RENAME TO "+ TABLE_FAVORITE_TRIPS);
+					db.execSQL("ALTER TABLE " + TABLE_FAVORITE_TRIPS + " ADD COLUMN is_favourite INTEGER");
 					break;
 				case 4:
 					db.execSQL("ALTER TABLE " + TABLE_FAV_LOCS + " ADD COLUMN via_count INTEGER NOT NULL DEFAULT 0");
-					db.execSQL("ALTER TABLE " + TABLE_RECENT_TRIPS + " ADD COLUMN via_loc INTEGER DEFAULT NULL");
+					db.execSQL("ALTER TABLE " + TABLE_FAVORITE_TRIPS + " ADD COLUMN via_loc INTEGER DEFAULT NULL");
 					break;
 			}
 			upgradeTo++;
 		}
 	}
 
+	@Nullable
+	public static Location getLocation(Cursor c, String pre) {
+		if(c.isNull(c.getColumnIndex("pre_type".replace("pre_", pre)))) return null;
+
+		return new Location(
+				LocationType.valueOf(c.getString(c.getColumnIndex("pre_type".replace("pre_", pre)))),
+				c.getString(c.getColumnIndex("pre_id".replace("pre_", pre))),
+				c.getInt(c.getColumnIndex("pre_lat".replace("pre_", pre))),
+				c.getInt(c.getColumnIndex("pre_lon".replace("pre_", pre))),
+				c.getString(c.getColumnIndex("pre_place".replace("pre_", pre))),
+				c.getString(c.getColumnIndex("pre_name".replace("pre_", pre)))
+		);
+	}
+
+	public static Location getLocation(Cursor c) {
+		return getLocation(c, "");
+	}
+
+	public static int getLocationId(SQLiteDatabase db, Location loc, String network) {
+		String whereClause;
+		String[] whereArgs;
+
+		if(loc == null) {
+			return -1;
+		} else if(loc.hasId()) {
+			whereClause = "network = ? AND id = ?";
+			whereArgs = new String[] { network, loc.id };
+		} else {
+			// location has no ID, so use complicated way of assembling query
+			String lat = String.valueOf(loc.lat);
+			String lon = String.valueOf(loc.lon);
+			String place = loc.place == null ? "" : loc.place;
+			String name = loc.name == null ? "" : loc.name;
+
+			whereClause = "network = ? AND type = ? AND lat = ? AND lon = ? AND place = ? AND name = ?";
+			whereArgs = new String[] { network, loc.type.name(), lat, lon, place, name };
+		}
+
+		// get from location ID from database
+		Cursor c = db.query(
+				DBHelper.TABLE_FAV_LOCS,    // The table to query
+				new String[] { "_id" },
+				whereClause,
+				whereArgs,
+				null,   // don't group the rows
+				null,   // don't filter by row groups
+				null    // The sort order
+		);
+
+		if(c.moveToFirst()) {
+			int loc_id = c.getInt(c.getColumnIndex("_id"));
+			c.close();
+			Log.d("getLocationId", "Found location: " + loc.toString());
+			return loc_id;
+		} else {
+			c.close();
+			Log.d("getLocationId", "Could not find location: " + loc.toString());
+			return -1;
+		}
+	}
 
 }

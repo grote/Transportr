@@ -1,69 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
+<manifest
+	package="de.grobox.liberario"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:installLocation="auto">
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="de.grobox.liberario"
-          android:installLocation="auto">
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-feature
+		android:name="android.hardware.WIFI"
+		android:required="false"/>
+	<uses-feature
+		android:name="android.hardware.LOCATION"
+		android:required="false"/>
+	<uses-feature
+		android:name="android.hardware.location.NETWORK"
+		android:required="false"/>
+	<uses-feature
+		android:name="android.hardware.location.GPS"
+		android:required="false"/>
+	<uses-feature
+		android:name="android.hardware.touchscreen"
+		android:required="false"/>
 
-    <uses-feature android:name="android.hardware.WIFI" android:required="false" />
-    <uses-feature android:name="android.hardware.LOCATION" android:required="false" />
-    <uses-feature android:name="android.hardware.location.NETWORK" android:required="false" />
-    <uses-feature android:name="android.hardware.location.GPS" android:required="false" />
-    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+	<application
+		android:name="de.grobox.liberario.TransportrApplication"
+		android:allowBackup="true"
+		android:hardwareAccelerated="true"
+		android:icon="@drawable/ic_launcher"
+		android:label="@string/app_name"
+		android:theme="@style/AppTheme.Light"
+		tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-    <supports-screens
-        android:smallScreens="true"
-        android:normalScreens="true"
-        android:largeScreens="true"
-        android:xlargeScreens="true"
-        android:anyDensity="true"
-        android:resizeable="true" />
+		<service
+			android:name="com.mapbox.mapboxsdk.telemetry.TelemetryService"
+			android:exported="false"
+			android:permission="android.permission.CALL_EMERGENCY_NUMBERS"/>
 
-    <application
-        android:name="de.grobox.liberario.TransportrApplication"
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme.Light"
-        android:hardwareAccelerated="true"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+		<activity
+			android:name=".activities.MainActivity"
+			android:label="@string/app_name"
+			android:windowSoftInputMode="stateHidden">
+		</activity>
 
-        <activity
-            android:name=".activities.MainActivity"
-            android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden" >
+		<activity
+			android:name=".activities.NewMapActivity"
+			android:label="@string/app_name"
+			android:windowSoftInputMode="stateHidden">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+		<activity
+			android:name=".trips.DirectionsActivity"
+			android:windowSoftInputMode="stateHidden"/>
 
-        <activity
-            android:name=".activities.TripsActivity"
-            android:parentActivityName=".activities.MainActivity" />
+		<activity
+			android:name=".departures.DeparturesActivity"
+			android:label="@string/drawer_departures"
+			android:parentActivityName=".activities.NewMapActivity"/>
 
-        <activity
-            android:name=".activities.TripDetailActivity"
-            android:parentActivityName=".activities.TripsActivity" />
+		<activity
+			android:name=".activities.TripsActivity"
+			android:parentActivityName=".activities.MainActivity"/>
 
-        <activity
-            android:name=".activities.AmbiguousLocationActivity" />
+		<activity
+			android:name=".activities.TripDetailActivity"
+			android:parentActivityName=".activities.TripsActivity"/>
 
-        <activity
-            android:name=".activities.PickNetworkProviderActivity"
-             android:label="@string/pick_network_activity" />
+		<activity
+			android:name=".locations.AmbiguousLocationActivity"/>
 
-        <activity
-            android:name=".activities.MapActivity" />
+		<activity
+			android:name=".networks.PickTransportNetworkActivity"
+			android:label="@string/pick_network_activity"/>
 
-    </application>
+		<activity
+			android:name=".activities.MapActivity"/>
+
+	</application>
 
 </manifest>

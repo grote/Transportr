@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import de.grobox.liberario.ListTrip;
+import de.grobox.liberario.trips.ListTrip;
 import de.grobox.liberario.R;
 import de.grobox.liberario.ui.LegPopupMenu;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
@@ -210,8 +210,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 	private static void bindLeg(Context context, final LegHolder leg_holder, Trip.Leg leg, boolean detail, FlowLayout lines, boolean showLineName) {
 		// Locations
-		leg_holder.departureLocation.setText(TransportrUtils.getLocName(leg.departure));
-		leg_holder.arrivalLocation.setText(TransportrUtils.getLocName(leg.arrival));
+		leg_holder.departureLocation.setText(TransportrUtils.getLocationName(leg.departure));
+		leg_holder.arrivalLocation.setText(TransportrUtils.getLocationName(leg.arrival));
 
 		if(detail) {
 			final LegPopupMenu departurePopup = new LegPopupMenu(context, leg_holder.departureLocation, leg);
@@ -275,7 +275,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				leg_holder.arrow.setVisibility(View.INVISIBLE);
 			}
 			else if(public_leg.destination != null) {
-				leg_holder.lineDestination.setText(TransportrUtils.getLocName(public_leg.destination));
+				leg_holder.lineDestination.setText(TransportrUtils.getLocationName(public_leg.destination));
 				leg_holder.arrow.setImageDrawable(TransportrUtils.getTintedDrawable(context, leg_holder.arrow.getDrawable()));
 			} else {
 				// hide arrow because this line has no name and no destination
@@ -391,7 +391,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 				stopHolder.departureDelay.setVisibility(View.GONE);
 			}
 
-			stopHolder.location.setText(TransportrUtils.getLocName(stop.location));
+			stopHolder.location.setText(TransportrUtils.getLocationName(stop.location));
 
 			if(stop.plannedArrivalPosition != null) {
 				stopHolder.arrivalPlatform.setText(stop.plannedArrivalPosition.name);
@@ -573,7 +573,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			// remember where the lines are inserted and the trip duration
 			departureDelay = (TextView) linesView.findViewById(R.id.departureDelayView);
 			lineArrowDown = (ImageView) linesView.findViewById(R.id.lineArrowDown);
-			lines = (FlowLayout) linesView.findViewById(R.id.lineLayout);
+			lines = (FlowLayout) linesView.findViewById(R.id.line);
 			changes = (TextView) linesView.findViewById(R.id.changesView);
 			duration = (TextView) linesView.findViewById(R.id.durationView);
 		}

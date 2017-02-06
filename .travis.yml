@@ -1,7 +1,18 @@
 language: android
 sudo: true # travis-ci/travis-ci#5582 implies this could help against killed build-jobs
-before_script: ./pre-build.sh && sed -i "s#com.android.tools.build:gradle:.*'#com.android.tools.build:gradle:1.5.0'#" build.gradle
-jdk: openjdk7
+before_script:
+    - ./pre-build.sh
+    - wget https://services.gradle.org/distributions/gradle-3.3-bin.zip
+    - unzip -qq gradle-3.3-bin.zip
+    - export GRADLE_HOME=$PWD/gradle-3.3
+    - export PATH=$GRADLE_HOME/bin:$PATH
+    - gradle -v
+    - gradle dependencies || true
+before_install:
+    - mkdir "$ANDROID_HOME/licenses" || true
+    - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+    - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+jdk: oraclejdk8
 before_cache:
     - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
     - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -11,8 +22,12 @@ cache:
 android:
   components:
     - tools
-    - build-tools-23.0.2
+    - build-tools-25.0.2
     - android-25
+    - extra-android-support
     - extra-android-m2repository
+licenses:
+    - android-sdk-license-.+
+    - '.+'
 script: gradle build connectedCheck -PbuildServer
 

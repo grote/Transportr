@@ -64,7 +64,7 @@ public class LegPopupMenu extends BasePopupMenu {
 		super(context, anchor);
 
 		this.loc1 = stop.location;
-		this.text = DateUtils.getTime(context, stop.getArrivalTime()) + " " + TransportrUtils.getLocName(stop.location);
+		this.text = DateUtils.getTime(context, stop.getArrivalTime()) + " " + TransportrUtils.getLocationName(stop.location);
 		this.getMenuInflater().inflate(R.menu.location_actions, getMenu());
 
 		showIcons();
@@ -115,7 +115,7 @@ public class LegPopupMenu extends BasePopupMenu {
 					case R.id.action_share:
 						Intent sendIntent = new Intent()
 								                    .setAction(Intent.ACTION_SEND)
-								                    .putExtra(Intent.EXTRA_SUBJECT, TransportrUtils.getLocName(loc1))
+								                    .putExtra(Intent.EXTRA_SUBJECT, TransportrUtils.getLocationName(loc1))
 								                    .putExtra(Intent.EXTRA_TEXT, text)
 								                    .setType("text/plain")
 								                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
@@ -124,7 +124,7 @@ public class LegPopupMenu extends BasePopupMenu {
 						return true;
 					// Copy Leg to Clipboard
 					case R.id.action_copy:
-						TransportrUtils.copyToClipboard(context, TransportrUtils.getLocName(loc1));
+						TransportrUtils.copyToClipboard(context, TransportrUtils.getLocationName(loc1));
 
 						return true;
 					default:

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc">L\'app di trasporto pubblico che rispetta la tua privacy e la tua libertà.</string>
-  <string name="google_play_full_desc">Transportr è un\'app non-profit sviluppata da persone di tutto il mondo per rendere l\'uso del trasporto pubblico il più semplice possibile ovunque tu sia.
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">L\'app di trasporto pubblico che rispetta la tua privacy e la tua libertà.</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr è un\'app non-profit sviluppata da persone di tutto il mondo per rendere l\'uso del trasporto pubblico il più semplice possibile ovunque tu sia.
 
 Attualmente l\'app funziona meglio in Europa ma supporta anche altre città del resto del mondo. Se vivi in una zona non supportata, considera l\'idea di aggiungerla su Transportr.
 Le istruzioni sono disponibili sul sito ufficiale.
@@ -35,7 +35,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="tab_libraries">Librerie</string>
   <string name="tab_devs">Sviluppatori</string>
   <string name="tab_about">Informazioni</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote\nFree Software License: GPLv3</string>
+  <string name="about_top">© 2013 – 2017 Torsten Grote\nLicenza del software libero: GPL v3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr è un\'app non-profit di trasporto pubblico che rispetta la tua privacy e la tua libertà. È sviluppata da persone da tutto il mondo per fare in modo che l\'uso del trasporto pubblico sia il più semplice ovunque tu sia. Quest\'app è software libero, così puoi liberamente usarla, studiarla, condividerla e migliorarla.</p>
@@ -56,6 +56,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="from">Da</string>
   <string name="to">A</string>
   <string name="via">Per</string>
+  <string name="search">Cerca</string>
   <string name="from_here">Da qui</string>
   <string name="to_here">A qui</string>
   <string name="min">min</string>
@@ -79,6 +80,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="more">Più</string>
   <string name="no_favourites">Nessun viaggio preferito.\n\nAggiungine uno nella pagina ¨Viaggi recenti¨.</string>
   <string name="removing_from_favourites">Un viaggio che hai selezionato è segnato come viaggio preferito. Sarà rimosso anche da lì.</string>
+  <string name="create_quickhome_shortcut">Crea un collegamento nel tuo launcher per riportarti a casa</string>
   <string name="now">Ora</string>
   <string name="current_time_set">L\'orario è impostato su quello attuale.</string>
   <string name="today">Oggi</string>
@@ -108,9 +110,9 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Veloce</string>
+  <string name="pref_quickhome">Collegamento \"Portami a casa\"</string>
   <string name="warning_departure_gap">Sono state trovate troppe poche partenze. Potrebbero essercene altre nascoste. Cerca l\'orario esatto per assicurarti di non perderne nessuna.</string>
   <string name="warning_permission_granted_action">Impossibile ripetere l\'ultima azione automaticamente</string>
-  <string name="error_pick_network">Seleziona una rete di trasporto!</string>
   <string name="error_no_internet">Nessuna connessione internet disponibile</string>
   <string name="error_invalid_from">Posizione iniziale (da) non valida</string>
   <string name="error_invalid_to">Destinazione (a) non valida</string>
@@ -124,7 +126,6 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="error_no_trips_capability">Questa rete di trasporto non supporta l\'esecuzione di query per le direzioni.</string>
   <string name="error_no_departures_capability">La rete di trasporto attuale non supporta la ricerca delle partenze.</string>
   <string name="error_no_nearby_locations_capability">La corrente rete di trasporti non supporta la ricerca di stazioni vicine.</string>
-  <string name="error_please_file_ticket">Qualcosa è andato storto. Crea una segnalazione e spiegaci cosa è successo.</string>
   <string name="error_trip_refresh_failed">Impossibile aggiornare i dati per l\'attuale percorso.</string>
   <string name="meter">m</string>
   <string name="system_default">Predefinito di sistema</string>
@@ -160,8 +161,8 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="changelog_full_title">Registro delle modifiche</string>
   <string name="changelog_title">Novità</string>
   <string name="changelog_show_full">Più...</string>
+  <string name="widget_name_quickhome">Portami a casa</string>
   <string name="np_region_australia">Australia</string>
-  <string name="np_desc_met">Australia, Victoria, Melbourne</string>
   <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
   <string name="np_region_austria">Austria</string>
   <string name="np_desc_ivb">Innsbruck</string>
@@ -196,8 +197,9 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_name_francenortheast">Francia nord-orientale</string>
   <string name="np_desc_francenortheast">Strasburgo, Metz, Lilla, Nancy</string>
   <string name="np_name_francenorthwest">Francia nord-occidentale</string>
-  <string name="np_desc_francenorthwest">Bretagna, Paesi della Loira, Centro, Bassa Normandia, Alta Normandia</string>
+  <string name="np_desc_francenorthwest">Bretagna, Pays de la Loire, Centre, Bassa Normandia, Alta Normandia</string>
   <string name="np_name_frenchsoutheast">Francia sud-orientale</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica</string>
   <string name="np_name_frenchsouthwest">Francia sud-occidentale</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitania, Midi-Pirenei, Bordeaux, Tolosa</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -209,7 +211,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Germania</string>
   <string name="np_desc_avv">Asburgo</string>
-  <string name="np_desc_bayern">Baviera, Würzburg, Ratisbona</string>
+  <string name="np_desc_bayern">Baviera, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlino</string>
   <string name="np_desc_db">Maggior parte della Germania</string>
@@ -221,7 +223,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Baviera, Monaco</string>
-  <string name="np_desc_nasa">Sassonia, Lipsia, Sassonia-Anhalt, Magdeburgo, Halle</string>
+  <string name="np_desc_nasa">Sassonia, Leipzig, Sassonia-Anhalt, Magdeburgo, Halle</string>
   <string name="np_desc_nvbw">Baden-Württemberg, Costanza, Basilea, Basilea Città, Reutlingen, Rottweil, Tubinga, Sigmaringa</string>
   <string name="np_desc_nvv">Assia, Francoforte sul Meno, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
@@ -234,7 +236,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_vms">Sassonia Centrale, Chemnitz</string>
   <string name="np_desc_vmv">Meclemburgo-Pomerania anteriore, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Renania-Palatinato, Mannheim, Magonza, Treviri</string>
-  <string name="np_desc_vrr">Renania settentrionale-Vestfalia, Colonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrr">Renania Settentrionale-Vestfalia, Colonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
   <string name="np_desc_vrs">Colonia, Bonn</string>
   <string name="np_desc_vvm">Svevia, Medio Svevia, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Sassonia, Dresda</string>
@@ -245,10 +247,10 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israele</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israele, Gerusalemme</string>
   <string name="np_region_italy">Italia</string>
-  <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
   <string name="np_name_it">Italia</string>
   <string name="np_desc_it">Roma, Milano, Torino, Venezia, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_name_vmobil">VVV</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Lussemburgo</string>
   <string name="np_desc_lu">Lussemburgo</string>
@@ -258,6 +260,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
   <string name="np_region_nz">Nuova Zelanda</string>
   <string name="np_name_nz">Nuova Zelanda</string>
+  <string name="np_desc_nz">Nuova Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, ferrovie in Polonia</string>
   <string name="np_region_spain">Spagna</string>
@@ -277,9 +280,9 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_region_usa">Stati Uniti d\'America</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_desc_septa">Contee di Bucks, Chester, Delaware, Montgomery e Philadelphia</string>
-  <string name="np_name_sf">San Francisco Bay Area</string>
-  <string name="np_desc_sf">Contee di Alameda, Contra Costa, Marin, Napa, Solano, Sonoma, San Francisco, San Mateo e Santa Clara</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Stati di New York e del New Jersey</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Trasporto pubblico nello Stato dell\'Oregon (USA)</string>
   <string name="maintainer">Mantenitori</string>
   <string name="contributors">Contributori</string>
   <string name="translators">Traduttori</string>
@@ -298,4 +301,5 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="tamil">Tamil</string>
   <string name="esperanto">Esperanto</string>
   <string name="czech">Ceco</string>
+  <string name="hungarian">Ungherese</string>
 </resources>

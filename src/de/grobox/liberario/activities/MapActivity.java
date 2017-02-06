@@ -67,10 +67,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.locations.FavLocation;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
@@ -115,7 +115,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			toolbar.setSubtitle(network.getName());
+			toolbar.setSubtitle(network.getName(this));
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();
@@ -128,7 +128,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			map.setTilesScaledToDpi(true);
 		}
 
-		fab = (FloatingActionButton) findViewById(R.id.fab);
+		fab = (FloatingActionButton) findViewById(R.id.gpsFab);
 		fabController = new FabController();
 
 		gpsController = new GpsController();
@@ -559,7 +559,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 		Marker marker = new Marker(map);
 		marker.setIcon(drawable);
 		marker.setPosition(pos);
-		marker.setTitle(TransportrUtils.getLocName(loc));
+		marker.setTitle(TransportrUtils.getLocationName(loc));
 		marker.setInfoWindow(new LocationInfoWindow(map));
 		marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
 		marker.setInfoWindowAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);

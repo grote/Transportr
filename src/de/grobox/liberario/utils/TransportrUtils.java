@@ -25,6 +25,9 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -34,6 +37,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mapbox.mapboxsdk.geometry.LatLng;
+
 import org.apmem.tools.layouts.FlowLayout;
 
 import java.io.UnsupportedEncodingException;
@@ -41,11 +46,12 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
-import de.grobox.liberario.FavLocation;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.locations.FavLocation;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.WrapLocation;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapActivity;
 import de.grobox.liberario.data.RecentsDB;
@@ -63,9 +69,10 @@ import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 
-import static de.grobox.liberario.WrapLocation.WrapType.GPS;
-import static de.grobox.liberario.WrapLocation.WrapType.HOME;
-import static de.grobox.liberario.WrapLocation.WrapType.MAP;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
 
 public class TransportrUtils {
@@ -86,8 +93,8 @@ public class TransportrUtils {
 		lineView.setLine(line);
 
 		// set margin, because setting in in xml does not work
-		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		llp.setMargins(0, 5, 15, 5);
+		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+		llp.setMargins(0, 5, 10, 5);
 		lineView.setLayoutParams(llp);
 
 		lineLayout.addView(lineView, index);
@@ -105,8 +112,8 @@ public class TransportrUtils {
 		ImageView v = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, lineLayout, false);
 
 		// set margin, because setting in in xml does not work
-		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		llp.setMargins(0, 5, 15, 5);
+		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+		llp.setMargins(0, 5, 10, 5);
 		v.setLayoutParams(llp);
 
 		lineLayout.addView(v, index);
@@ -160,9 +167,9 @@ public class TransportrUtils {
 		if(tag) str += "[" + context.getResources().getString(R.string.app_name) + "] ";
 
 		str += DateUtils.getTime(context, trip.getFirstDepartureTime()) + " ";
-		str += getLocName(trip.from);
+		str += getLocationName(trip.from);
 		str += " → ";
-		str += getLocName(trip.to) + " ";
+		str += getLocationName(trip.to) + " ";
 		str += DateUtils.getTime(context, trip.getLastArrivalTime());
 		str += " (" + DateUtils.getDate(context, trip.getFirstDepartureTime()) + ")";
 
@@ -184,13 +191,13 @@ public class TransportrUtils {
 		String apos = "";
 
 		str += DateUtils.getTime(context, leg.getDepartureTime()) + " ";
-		str += getLocName(leg.departure);
+		str += getLocationName(leg.departure);
 
 		if(leg instanceof Trip.Public) {
 			Trip.Public pub = (Trip.Public) leg;
 			if(pub.line != null && pub.line.label != null) {
 				str += " (" + pub.line.label;
-				if(pub.destination  != null) str += " → " + getLocName(pub.destination);
+				if(pub.destination  != null) str += " → " + getLocationName(pub.destination);
 				str += ")";
 			}
 			// show departure position if existing
@@ -211,7 +218,7 @@ public class TransportrUtils {
 
 		str += "\n";
 		str += DateUtils.getTime(context, leg.getArrivalTime()) + " ";
-		str += getLocName(leg.arrival);
+		str += getLocationName(leg.arrival);
 		str += apos;
 
 		return str;
@@ -241,7 +248,9 @@ public class TransportrUtils {
 
 	}
 
+	@DrawableRes
 	static public int getDrawableForProduct(Product p) {
+		@DrawableRes
 		int image_res = R.drawable.product_bus;
 
 		switch(p) {
@@ -277,6 +286,46 @@ public class TransportrUtils {
 		return image_res;
 	}
 
+	@DrawableRes
+	static public int getMarkerForProduct(Set<Product> p) {
+		// TODO better default marker
+		@DrawableRes
+		int image_res = R.drawable.ic_marker_station;
+
+		if (p != null && p.size() > 0) {
+			switch (p.iterator().next()) {
+				case HIGH_SPEED_TRAIN:
+					image_res = R.drawable.product_high_speed_train_marker;
+					break;
+				case REGIONAL_TRAIN:
+					image_res = R.drawable.product_regional_train_marker;
+					break;
+				case SUBURBAN_TRAIN:
+					image_res = R.drawable.product_suburban_train_marker;
+					break;
+				case SUBWAY:
+					image_res = R.drawable.product_subway_marker;
+					break;
+				case TRAM:
+					image_res = R.drawable.product_tram_marker;
+					break;
+				case BUS:
+					image_res = R.drawable.product_bus_marker;
+					break;
+				case FERRY:
+					image_res = R.drawable.product_ferry_marker;
+					break;
+				case CABLECAR:
+					image_res = R.drawable.product_cablecar_marker;
+					break;
+				case ON_DEMAND:
+					image_res = R.drawable.product_on_demand_marker;
+					break;
+			}
+		}
+		return image_res;
+	}
+
 	static public void share(Context context, Trip trip) {
 		//noinspection deprecation
 		Intent sendIntent = new Intent()
@@ -303,9 +352,9 @@ public class TransportrUtils {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(DirectionsFragment.TAG);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent.putExtra("from", from);
-		intent.putExtra("via", via);
-		intent.putExtra("to", to);
+		intent.putExtra("from", new WrapLocation(from));
+		intent.putExtra("via", new WrapLocation(via));
+		intent.putExtra("to", new WrapLocation(to));
 		intent.putExtra("search", false);
 
 		context.startActivity(intent);
@@ -315,9 +364,9 @@ public class TransportrUtils {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(DirectionsFragment.TAG);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent.putExtra("from", from);
-		intent.putExtra("via", via);
-		intent.putExtra("to", to);
+		intent.putExtra("from", new WrapLocation(from));
+		intent.putExtra("via", new WrapLocation(via));
+		intent.putExtra("to", new WrapLocation(to));
 		intent.putExtra("search", true);
 		if (date != null) {
 			intent.putExtra("date", date);
@@ -392,9 +441,9 @@ public class TransportrUtils {
 		String uri2;
 
 		try {
-			uri2 = "(" + URLEncoder.encode(TransportrUtils.getLocName(loc), "utf-8") + ")";
+			uri2 = "(" + URLEncoder.encode(TransportrUtils.getLocationName(loc), "utf-8") + ")";
 		} catch (UnsupportedEncodingException e) {
-			uri2 = "(" + TransportrUtils.getLocName(loc) + ")";
+			uri2 = "(" + TransportrUtils.getLocationName(loc) + ")";
 		}
 
 		Uri geo = Uri.parse(uri1 + uri2);
@@ -430,11 +479,11 @@ public class TransportrUtils {
 		clipboard.setPrimaryClip(clip);
 	}
 
-	static public String getLocName(Location l) {
+	static public String getLocationName(Location l) {
 		if(l == null) {
 			return "";
 		} else if(l.type.equals(LocationType.COORD)) {
-			return getCoordinationName(l.getLatAsDouble(), l.getLonAsDouble());
+			return getCoordinationName(l);
 		} else if(l.uniqueShortName() != null) {
 			return l.uniqueShortName();
 		} else {
@@ -446,8 +495,12 @@ public class TransportrUtils {
 		if(l.hasName()) {
 			return l.place == null ? l.uniqueShortName() : l.name + ", " + l.place;
 		} else {
-			return getLocName(l);
+			return getLocationName(l);
 		}
+	}
+
+	static public String getCoordinationName(Location location) {
+		return getCoordinationName(location.getLatAsDouble(), location.getLonAsDouble());
 	}
 
 	static public String getCoordinationName(double lat, double lon) {
@@ -527,10 +580,15 @@ public class TransportrUtils {
 	}
 
 	static public Drawable getDrawableForLocation(Context context, WrapLocation w, boolean is_fav) {
+		return getDrawableForLocation(context, null, w, is_fav);
+	}
+
+	static public Drawable getDrawableForLocation(Context context, @Nullable Location home, WrapLocation w, boolean is_fav) {
 		if(w == null || w.getLocation() == null) return null;
+		if (home == null) home = RecentsDB.getHome(context);
 		Location l = w.getLocation();
 
-		if(w.getType() == HOME || l.equals(RecentsDB.getHome(context))) {
+		if(w.getType() == HOME || l.equals(home)) {
 			return getTintedDrawable(context, R.drawable.ic_action_home);
 		}
 		else if(w.getType() == GPS) {
@@ -560,7 +618,7 @@ public class TransportrUtils {
 	static public Drawable getDrawableForLocation(Context context, Location l) {
 		if(l == null) return getTintedDrawable(context, R.drawable.ic_location);
 
-		List<WrapLocation> fav_list = getFavLocationList(context, FavLocation.LOC_TYPE.FROM, false);
+		List<WrapLocation> fav_list = getFavLocationList(context, FavLocation.FavLocationType.FROM);
 		WrapLocation w = new WrapLocation(l);
 
 		return getDrawableForLocation(context, w, fav_list.contains(w));
@@ -592,6 +650,18 @@ public class TransportrUtils {
 	static public int getDragDistance(Context context) {
 		final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
 		return (int) (25 * metrics.density);
+	}
+
+	public static Intent getShortcutIntent(Context context) {
+		Intent shortcutIntent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, context, MainActivity.class);
+		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		shortcutIntent.putExtra("special", DirectionsFragment.TASK_BRING_ME_HOME);
+		return shortcutIntent;
+	}
+
+	public static LatLng getLatLng(@NonNull Location location) {
+		return new LatLng(location.getLatAsDouble(), location.getLonAsDouble());
 	}
 
 }

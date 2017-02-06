@@ -18,6 +18,7 @@
 package de.grobox.liberario.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -34,9 +35,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.adapters.TripAdapter;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.utils.DateUtils;
@@ -63,12 +64,17 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
+		// work around #285
+		if(Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
+			getWindow().setSharedElementReturnTransition(null);
+		}
+
 		TransportNetwork network = Preferences.getTransportNetwork(this);
 		showLineName = network != null && network.hasGoodLineNames();
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			if(network != null) toolbar.setSubtitle(network.getName());
+			if(network != null) toolbar.setSubtitle(network.getName(this));
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();
@@ -168,8 +174,8 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 	}
 
 	private void setHeader() {
-		((TextView) findViewById(R.id.departureView)).setText(TransportrUtils.getLocName(trip.from));
-		((TextView) findViewById(R.id.arrivalView)).setText(TransportrUtils.getLocName(trip.to));
+		((TextView) findViewById(R.id.departureView)).setText(TransportrUtils.getLocationName(trip.from));
+		((TextView) findViewById(R.id.arrivalView)).setText(TransportrUtils.getLocationName(trip.to));
 		((TextView) findViewById(R.id.durationView)).setText(DateUtils.getDuration(trip.getDuration()));
 		((TextView) findViewById(R.id.dateView)).setText(DateUtils.getDate(this, trip.getFirstDepartureTime()));
 	}

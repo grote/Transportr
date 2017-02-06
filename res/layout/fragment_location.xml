@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:background="@color/md_pink_100">
+
+	<FrameLayout
+		android:id="@+id/frame"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginTop="24dp"
+		android:background="?android:attr/windowBackground"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/directionFab"
+		app:layout_constraintVertical_bias="1.0"
+		tools:layout_constraintLeft_creator="1"
+		tools:layout_constraintRight_creator="1"/>
+
+	<View
+		style="@style/Divider"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/frame"/>
+
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/directionFab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:clickable="true"
+		android:src="@drawable/ic_menu_directions"
+		android:tint="@android:color/white"
+		app:elevation="1dp"
+		app:fabSize="normal"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:srcCompat="@drawable/ic_menu_directions"/>
+
+	<ImageView
+		android:id="@+id/locationIcon"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="16dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		android:src="@drawable/ic_location_address"
+		android:tint="?colorControlNormal"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/frame"/>
+
+	<TextView
+		android:id="@+id/locationName"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="8dp"
+		android:layout_marginStart="8dp"
+		android:textAppearance="@style/TextAppearance.AppCompat"
+		app:layout_constraintBottom_toBottomOf="@+id/locationIcon"
+		app:layout_constraintLeft_toRightOf="@+id/locationIcon"
+		app:layout_constraintRight_toLeftOf="@+id/directionFab"
+		app:layout_constraintTop_toTopOf="@+id/locationIcon"
+		app:layout_constraintVertical_bias="0.0"
+		tools:text="Name of Location that can be very long and fill two lines"/>
+
+	<org.apmem.tools.layouts.FlowLayout
+		android:id="@+id/linesLayout"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginTop="8dp"
+		app:layout_constraintLeft_toLeftOf="@+id/locationIcon"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/locationName">
+
+		<include layout="@layout/line_view"/>
+
+	</org.apmem.tools.layouts.FlowLayout>
+
+	<TextView
+		android:id="@+id/locationInfo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:textAppearance="@style/TextAppearance.AppCompat.Small"
+		app:layout_constraintLeft_toLeftOf="@+id/locationIcon"
+		app:layout_constraintTop_toBottomOf="@+id/linesLayout"
+		tools:text="Place of Location, 12.34/56.78"/>
+
+	<de.grobox.liberario.ui.ImageTextButton
+		android:id="@+id/departuresButton"
+		style="@style/Button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="16dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		android:background="?attr/selectableItemBackground"
+		android:drawablePadding="8dp"
+		android:drawableTop="@drawable/ic_action_departures"
+		android:maxWidth="120dp"
+		android:padding="8dp"
+		android:text="@string/drawer_departures"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toLeftOf="@+id/nearbyStationsButton"
+		app:layout_constraintTop_toBottomOf="@+id/locationInfo"/>
+
+	<de.grobox.liberario.ui.ImageTextButton
+		android:id="@+id/nearbyStationsButton"
+		style="@style/Button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="16dp"
+		android:layout_marginLeft="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		android:background="?attr/selectableItemBackground"
+		android:drawablePadding="8dp"
+		android:drawableTop="@drawable/ic_tab_stations"
+		android:maxWidth="120dp"
+		android:padding="8dp"
+		android:text="@string/drawer_nearby_stations"
+		app:layout_constraintLeft_toRightOf="@+id/departuresButton"
+		app:layout_constraintRight_toLeftOf="@+id/shareButton"
+		app:layout_constraintTop_toBottomOf="@+id/locationInfo"/>
+
+	<ProgressBar
+		android:id="@+id/nearbyStationsProgress"
+		style="?android:attr/progressBarStyle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:visibility="invisible"
+		app:layout_constraintBottom_toBottomOf="@+id/nearbyStationsButton"
+		app:layout_constraintLeft_toLeftOf="@+id/nearbyStationsButton"
+		app:layout_constraintRight_toRightOf="@+id/nearbyStationsButton"
+		app:layout_constraintTop_toTopOf="@+id/nearbyStationsButton"/>
+
+	<de.grobox.liberario.ui.ImageTextButton
+		android:id="@+id/shareButton"
+		style="@style/Button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginTop="16dp"
+		android:background="?attr/selectableItemBackground"
+		android:drawablePadding="8dp"
+		android:drawableTop="@drawable/ic_action_social_share"
+		android:maxWidth="120dp"
+		android:padding="8dp"
+		android:text="@string/action_share"
+		app:layout_constraintLeft_toRightOf="@+id/nearbyStationsButton"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/locationInfo"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc">Der Begleiter für öffentliche Verkehrsmittel, der deine Privatsphäre und deine Freiheit respektiert. </string>
-  <string name="google_play_full_desc">Transportr ist eine nicht-kommerzielle Anwendung, welche von Menschen überall auf der Welt entwickelt wird,
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Der Begleiter für öffentliche Verkehrsmittel, der deine Privatsphäre und deine Freiheit respektiert. </string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr ist eine nicht-kommerzielle Anwendung, welche von Menschen überall auf der Welt entwickelt wird,
 um die Nutzung von öffentlichen Verkehrsmitteln zu erleichtern, egal wo du bist.
 
 Zur Zeit funktioniert dies am besten in Europa, aber es werden auch viele Orte weltweit unterstützt.
@@ -41,7 +41,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="tab_libraries">Bibliotheken</string>
   <string name="tab_devs">Entwickler</string>
   <string name="tab_about">Über</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
+  <string name="about_top">© 2013 – 2017 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr ist dein Begleiter für den öffentlichen Nah- und Fernverkehr der deine Privatsphäre und Freiheit respektiert. Es ist eine gemeinnützige App entwickelt von Menschen aus aller Welt mit dem Ziel die Benutzung des öffentlichen Verkehrs so einfach wie möglich zu machen, ganz gleich wo du bist. Diese App ist Freie Software, es steht dir also frei sie zu nutzen, zu verstehen wie sie funktioniert, sie zu verteilen und zu verbessern.</p>
@@ -62,6 +62,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="from">Von</string>
   <string name="to">Nach</string>
   <string name="via">Über</string>
+  <string name="search">Suchen</string>
   <string name="from_here">Von hier</string>
   <string name="to_here">Verbindung zum aktuellen Standort suchen</string>
   <string name="min"> min</string>
@@ -85,6 +86,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="more">Mehr</string>
   <string name="no_favourites">Keine Favoriten vorhanden.\n\nDu kannst diese unter \"kürzliche Verbindungen\" hinzufügen.</string>
   <string name="removing_from_favourites">Eine markierte Verbindung ist als Favorit gekennzeichnet. Sie wird auch aus den Favoriten gelöscht werden.</string>
+  <string name="create_quickhome_shortcut">Erzeuge eine Verknüpfung in deinem Launcher, um schnell nach Hause zu kommen</string>
   <string name="now">Jetzt</string>
   <string name="current_time_set">Aktuelle Uhrzeit wurde ausgewählt.</string>
   <string name="today">Heute</string>
@@ -114,9 +116,9 @@ es welche gibt) anzeigen lassen.</string>
   <string name="pref_walk_speed_slow">Langsam</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Schnell</string>
+  <string name="pref_quickhome">\"Nach Hause\"-Verknüpfung</string>
   <string name="warning_departure_gap">Zu wenige Abfahrten gefunden. Es könnte mehr geben. Suche nach einer genauen Abfahrtszeit um sicher zu gehen, dass alle Abfahrten angezeigt werden.</string>
   <string name="warning_permission_granted_action">Konnte letzte Aktion nicht automatisch wiederholen</string>
-  <string name="error_pick_network">Bitte wählen Sie genau einen Verkehrsverbund aus!</string>
   <string name="error_no_internet">Keine ausreichende Internetverbindung verfügbar</string>
   <string name="error_invalid_from">Ungültiger Startort (Von)</string>
   <string name="error_invalid_to">Ungültiges Ziel (Nach)</string>
@@ -130,7 +132,6 @@ es welche gibt) anzeigen lassen.</string>
   <string name="error_no_trips_capability">Dieser Verkehrsverbund unterstützt keine Routenanfragen.</string>
   <string name="error_no_departures_capability">Der aktuelle Verkehrsverbund unterstützt keine Suche nach Abfahrten.</string>
   <string name="error_no_nearby_locations_capability">Vom aktuellen Verkehrsverbund wird die Suche nach Haltestellen in der Umgebung nicht unterstützt.</string>
-  <string name="error_please_file_ticket">Es ist etwas schief gelaufen. Bitte erstelle einen Fehlerbericht mit der Beschreibung des Hergangs. (Link findest Du unter \"Über\")</string>
   <string name="error_trip_refresh_failed">Es war nicht möglich die aktuelle Verbindung zu aktualisieren.</string>
   <string name="meter">m</string>
   <string name="system_default">Systemstandard</string>
@@ -166,8 +167,8 @@ es welche gibt) anzeigen lassen.</string>
   <string name="changelog_full_title">Änderungsprotokoll</string>
   <string name="changelog_title">Was gibt\'s Neues</string>
   <string name="changelog_show_full">Mehr…</string>
+  <string name="widget_name_quickhome">Nach Hause</string>
   <string name="np_region_australia">Australien</string>
-  <string name="np_desc_met">Australien, Victoria, Melbourne</string>
   <string name="np_desc_sydney">Australien, Neusüdwales, Sydney</string>
   <string name="np_region_austria">Österreich</string>
   <string name="np_desc_ivb">Innsbruck</string>
@@ -204,7 +205,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_name_francenorthwest">Frankreich Nordwest</string>
   <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse Normandie, Haute Normandie</string>
   <string name="np_name_frenchsoutheast">Frankreich Südost</string>
-  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corse</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhone-Alpen, Languedoc-Roussillon, Auvergne, Korsika</string>
   <string name="np_name_frenchsouthwest">Frankreich Südwest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -252,7 +253,6 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
   <string name="np_region_italy">Italien</string>
-  <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
   <string name="np_name_it">Italien</string>
   <string name="np_desc_it">Rom, Mailand, Turin, Venedig, Palermo, Trient</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -286,9 +286,9 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_region_usa">Vereinigte Staaten von Amerika</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery und Philadelphia Region</string>
-  <string name="np_name_sf">San Francisco Bay Gebiet</string>
-  <string name="np_desc_sf">Alameda, Contra Costa, Marin, Napa, Solano, Sonoma, San Francisco, San Mateo und Santa Clara Region</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Global Transport im Bundesstaat Oregon (USA)</string>
   <string name="maintainer">Koordinator</string>
   <string name="contributors">Beitragende</string>
   <string name="translators">Übersetzer</string>
@@ -307,4 +307,5 @@ es welche gibt) anzeigen lassen.</string>
   <string name="tamil">Tamil</string>
   <string name="esperanto">Esperanto</string>
   <string name="czech">Tschechisch</string>
+  <string name="hungarian">Ungarisch</string>
 </resources>

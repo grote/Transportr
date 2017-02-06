@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc">இது ஒரு பொது போக்குவரத்து துணையாக செயல்படுவது மட்டுமின்றி உங்கள் தனியுரிமை மற்றும் சுதந்திரத்தையும் மதிக்கும் செயலி.</string>
-  <string name="google_play_full_desc">Transportr, ஒரு இலாப நோக்கமற்ற செயலி. உலகிலுள்ள பல்வேறு நாட்டில் பொது போக்குவரத்தை பயன்படுத்துவதை எளிமயாக்க பல்வேறு மக்களால் இது உருவாக்கப்பட்டது.
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">இது ஒரு பொது போக்குவரத்து துணையாக செயல்படுவது மட்டுமின்றி உங்கள் தனியுரிமை மற்றும் சுதந்திரத்தையும் மதிக்கும் செயலி.</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr, ஒரு இலாப நோக்கமற்ற செயலி. உலகிலுள்ள பல்வேறு நாட்டில் பொது போக்குவரத்தை பயன்படுத்துவதை எளிமயாக்க பல்வேறு மக்களால் இது உருவாக்கப்பட்டது.
 தற்சமயம் ஐரோப்பாவில் நன்றாக வேலை செய்கிறது.
 நீங்கள் வசிக்கும் இடத்திலுள்ள பொது போக்குவரத்திற்கான ஆதரவு இதில் இல்லை என்றால் நீங்கள் அதனை இதில் சேர்க்க முயற்சிக்கலாம்.
 அதற்கான வழிமுறைகள் யாவும் வலைதளத்தின் முகப்பக்கத்தில் உள்ளது.
@@ -33,7 +33,6 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="tab_libraries">துணை நிரல்கள்</string>
   <string name="tab_devs">உருவாக்கியவர்கள்</string>
   <string name="tab_about">விபரம்</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote\nகட்டற்ற மென்பொருள் உரிமம்: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr ஒரு பொது போக்குவரத்து துணையாக செயல்படுவது மட்டுமின்றி உங்கள் தனியுரிமை மற்றும் சுதந்திரத்தையும் மதிக்கும் செயலி. உலகிலுள்ள பவ்வேறு நாடுகளில் பொது போக்குவரத்தை பயன்படுத்துவதை எளிமையாக்க பல்வேறு மனிதர்களால் இலாப நோக்கமற்ற முறையில் உருவாக்கப்படுகிறது. இது ஒரு கட்டற்ற மென்பொருள். ஆதலால் இதை பயன்படுத்துவதில், நிரலை படிக்க, மாற்ற மற்றும் அடுத்தவரோடு பகிர்ந்துக் கொள்ள எந்தக் கட்டுப்பாடும் இல்லை.</p>
@@ -100,7 +99,6 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="pref_walk_speed_fast">வேகமாக</string>
   <string name="warning_departure_gap">மிகக் குறைவான புறப்பாடுகள் பெறப்பட்டன. மேலும் சில இருக்கலாம். மற்றவைகளை காண நேரத்தை சரிபார்த்துக் கொள்ளுங்கள்.</string>
   <string name="warning_permission_granted_action">சென்ற செயலை தானாக மீண்டும் இயக்க முடியவில்லை</string>
-  <string name="error_pick_network">தயவுசெய்து ஒரு போக்குவரத்து பிணையத்தை தேர்வு செய்யுங்கள்!</string>
   <string name="error_no_internet">போதுமான அளவு இணைய இணைப்பு கிடைக்கவில்லை</string>
   <string name="error_invalid_from">தொடங்கும் இடம் (புற.) ஏற்புடையதல்ல</string>
   <string name="error_invalid_to">சேருமிடம் (சேரு) ஏற்புடையதல்ல</string>
@@ -135,15 +133,12 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="changelog_full_title">மாற்றப்பதிவு</string>
   <string name="changelog_show_full">மேலும்...</string>
   <string name="np_region_australia">ஆஸ்த்ரேலியா</string>
-  <string name="np_desc_met">ஆஸ்த்ரேலியா, விக்டோரியா, மெல்போர்ன்</string>
   <string name="np_desc_sydney">ஆஸ்த்ரேலியா, நியூ சவுத் வேல்ஸ், சிட்னி</string>
   <string name="np_region_austria">ஆஸ்ட்ரியா</string>
   <string name="np_desc_ivb">இன்ஸ்ப்ரக்</string>
   <string name="np_desc_linz">அப்பர் ஆஸ்திரியா, லின்ஸ்</string>
   <string name="np_desc_oebb">ஆஸ்ட்ரியா</string>
   <string name="np_desc_svv">சல்ஸ்பர்க்</string>
-  <string name="np_desc_vor">லோயர் ஆஸ்திரியா, பர்கென்லேன்ட், வியன்</string>
-  <string name="np_desc_vvt">டிரோல்</string>
   <string name="np_region_belgium">பெல்ஜியம்</string>
   <string name="np_region_br">பிரேசில்</string>
   <string name="np_region_canada">கனடா</string>

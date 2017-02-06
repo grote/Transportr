@@ -79,8 +79,8 @@ there are any).</string>
     <string name="alpha">alpha</string>
     <string name="beta">beta</string>
     <string name="network">Network</string>
-    <string name="pick_network_activity">Pick a Transportation Network</string>
-    <string name="pick_network_first_run">This is the first time you\'ve started Transportr. Please select your transportation network in order to continue!</string>
+    <string name="pick_network_activity">Choose Area</string>
+    <string name="pick_network_first_run">Welcome to Transportr!\n\nPlease select the transportation network from your area in order to continue. You can change this at any time.</string>
     <string name="clear_recent_trips">Are you sure that you want to delete %1$d trip(s) from your recent trips? The usage count will be lost.</string>
     <string name="trip_searching">Searching for connections&#8230;</string>
     <string name="stations_searching_position">Searching for current position&#8230;</string>
@@ -94,12 +94,19 @@ there are any).</string>
     <string name="more">More</string>
     <string name="no_favourites">No favourite trips.\n\nAdd one on the \"Recent Trips\" page.</string>
     <string name="removing_from_favourites">A trip you selected is marked as favourite trip. It will be removed there too.</string>
+    <string name="create_quickhome_shortcut">Create a shortcut in your launcher that gets you home</string>
 
+    <string name="change_time">Change Time</string>
     <string name="now">Now</string>
+	<string name="now_small">now</string>
     <string name="current_time_set">Time was set to current.</string>
+    <string name="yesterday">Yesterday</string>
     <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
     <string name="current_date_set">Date was set to current.</string>
     <string name="added_1h">1 hour was added.</string>
+    <string name="in_x_minutes">in %dmin</string>
+    <string name="x_minutes_ago">%dmin ago</string>
 
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -126,6 +133,7 @@ there are any).</string>
     <string name="pref_walk_speed_slow">Slow</string>
     <string name="pref_walk_speed_normal">Normal</string>
     <string name="pref_walk_speed_fast">Fast</string>
+    <string name="pref_quickhome">\"Get Me Home\"-shortcut</string>
 
     <string name="warning_departure_gap">Found too few departures. There might be more hidden. Search for exact time to be sure none is missing.</string>
     <string name="warning_permission_granted_action">Could not repeat last action automatically</string>
@@ -151,6 +159,9 @@ there are any).</string>
 
     <string name="home">Home</string>
     <string name="home_dialog_title">Set Home Location</string>
+    <string name="work">Work</string>
+    <string name="work_dialog_title">Set Work Location</string>
+    <string name="tap_to_set">Tap to set</string>
     <string name="location">Location</string>
     <string name="location_home">Click to set Home Location</string>
     <string name="location_gps">Use Current Position</string>
@@ -183,6 +194,8 @@ there are any).</string>
     <string name="changelog_full_title">Changelog</string>
     <string name="changelog_title">What\'s New</string>
     <string name="changelog_show_full">More…</string>
+
+    <string name="widget_name_quickhome">Get Me Home</string>
 
     <string name="np_region_australia">Australia</string>
     <string name="np_name_sydney" translatable="false">Transport NSW</string>
@@ -241,8 +254,8 @@ there are any).</string>
     <string name="np_desc_francenorthwest">Brittany, Pays de la Loire, Centre, Lower Normandy, Upper Normandy</string>
     <string name="np_desc_francenorthwest_networks" translatable="false">LILA, Star, TAN, IRIGO, SNCF</string>
     <string name="np_name_frenchsoutheast">France South East</string>
-    <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica</string>
-    <string name="np_desc_frenchsoutheast_networks" translatable="false">MTM, Aix en Bus, Transisère, Ligne d\'Azur, SNCF</string>
+    <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica, Lyon</string>
+    <string name="np_desc_frenchsoutheast_networks" translatable="false">MTM, Aix en Bus, Transisère, Ligne d\'Azur, SNCF, TCL</string>
     <string name="np_name_frenchsouthwest">France South West</string>
     <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
     <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
@@ -297,6 +310,7 @@ there are any).</string>
     <string name="np_desc_vvo">Saxony, Dresden</string>
     <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
     <string name="np_desc_vvv">Vogtland, Plauen</string>
+    <string name="np_desc_vmt">Mittelthüringen</string>
 
     <string name="np_region_ireland">Ireland</string>
     <string name="np_desc_tfi">Ireland, Dublin, Belfast</string>
@@ -320,6 +334,8 @@ there are any).</string>
 
     <string name="np_region_netherlands">Netherlands</string>
     <string name="np_desc_ns">Netherlands, Amsterdam</string>
+    <string name="np_name_negentwee" translatable="false">9292.nl</string>
+    <string name="np_desc_negentwee">All public transport in the Netherlands</string>
 
     <string name="np_region_norway">Norway</string>
     <string name="np_desc_nri">Norway, Oslo, Bergen</string>

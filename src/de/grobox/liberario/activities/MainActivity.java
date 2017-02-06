@@ -18,27 +18,26 @@
 package de.grobox.liberario.activities;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -55,30 +54,32 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
-import de.cketti.library.changelog.ChangeLog;
+import java.util.Collections;
+
 import de.grobox.liberario.BuildConfig;
-import de.grobox.liberario.NetworkProviderFactory;
-import de.grobox.liberario.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.TransportNetwork;
 import de.grobox.liberario.fragments.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.RecentTripsFragment;
-import de.grobox.liberario.fragments.SettingsFragment;
+import de.grobox.liberario.settings.SettingsFragment;
+import de.grobox.liberario.networks.NetworkProviderFactory;
+import de.grobox.liberario.networks.PickTransportNetworkActivity;
+import de.grobox.liberario.networks.TransportNetwork;
+import de.grobox.liberario.settings.Preferences;
+import de.grobox.liberario.ui.TransportrChangeLog;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.OnHidePromptListener;
 
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
+import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 
 public class MainActivity extends TransportrActivity implements FragmentManager.OnBackStackChangedListener {
 
 	public static final String TAG = MainActivity.class.toString();
-
-	static final public int CHANGED_NETWORK_PROVIDER = 1;
 
 	static final public int PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS = 0;
 	static final public int PR_ACCESS_FINE_LOCATION_DIRECTIONS = 1;
@@ -115,7 +116,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	             @Override
 	             public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
 		             if(currentProfile) {
-			             openPickNetworkProviderActivity();
 			             return true;
 		             } else if(profile != null && profile instanceof ProfileDrawerItem) {
 			             TransportNetwork network = (TransportNetwork) ((ProfileDrawerItem) profile).getTag();
@@ -130,13 +130,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		             return false;
 	             }
              })
-			.withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
-				@Override
-				public boolean onClick(View view, IProfile profile) {
-					openPickNetworkProviderActivity();
-					return true;
-				}
-			})
              .build();
 
 		// Drawer
@@ -181,7 +174,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 
 			// show network name in toolbar subtitle
 			if(network != null) {
-				toolbar.setSubtitle(network.getName());
+				toolbar.setSubtitle(network.getName(this));
 			}
 
 			// add initial fragment
@@ -196,7 +189,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			if(actionBar != null) actionBar.setTitle(getFragmentName(tag));
 
 			if(network != null && !tag.equals(AboutMainFragment.TAG) && !tag.equals(SettingsFragment.TAG)) {
-				toolbar.setSubtitle(network.getName());
+				toolbar.setSubtitle(network.getName(this));
 			}
 
 			processIntent();
@@ -211,6 +204,23 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		TransportrChangeLog cl = new TransportrChangeLog(this, Preferences.darkThemeEnabled(this));
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
+		}
+
+		// create Android 7.1 shortcut
+		registerNougatShortcuts();
+	}
+
+	@TargetApi(Build.VERSION_CODES.N_MR1)
+	private void registerNougatShortcuts() {
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+			ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+
+			ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "quickhome")
+					.setShortLabel(getString(R.string.widget_name_quickhome))
+					.setIcon(Icon.createWithResource(getContext(), R.drawable.ic_quickhome_widget))
+					.setIntent(TransportrUtils.getShortcutIntent(getContext()))
+					.build();
+			shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
 		}
 	}
 
@@ -271,14 +281,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 				default:
 					Toast.makeText(this, R.string.warning_permission_granted_action, Toast.LENGTH_SHORT).show();
 			}
-		}
-	}
-
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
-
-		if(requestCode == CHANGED_NETWORK_PROVIDER && resultCode == RESULT_OK) {
-			onNetworkProviderChanged();
 		}
 	}
 
@@ -368,7 +370,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		// set network name in toolbar
 		TransportNetwork network = Preferences.getTransportNetwork(getContext());
 		if(network != null && !tag.equals(AboutMainFragment.TAG) && !tag.equals(SettingsFragment.TAG)) {
-			toolbar.setSubtitle(network.getName());
+			toolbar.setSubtitle(network.getName(this));
 		} else {
 			toolbar.setSubtitle(null);
 		}
@@ -425,26 +427,20 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	private void ensureTransportNetworkAvailable(TransportNetwork network) {
 		// return if a network is set
 		if(network == null) {
-			Intent intent = new Intent(this, PickNetworkProviderActivity.class);
+			Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 
 			// force choosing a network provider
-			intent.putExtra("FirstRun", true);
+			intent.putExtra(FORCE_NETWORK_SELECTION, true);
 
-			startActivityForResult(intent, CHANGED_NETWORK_PROVIDER);
+			startActivity(intent);
 		}
-	}
-
-	private void openPickNetworkProviderActivity() {
-		Intent intent = new Intent(getContext(), PickNetworkProviderActivity.class);
-		ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
-		ActivityCompat.startActivityForResult(MainActivity.this, intent, CHANGED_NETWORK_PROVIDER, options.toBundle());
 	}
 
 	private void addAccounts(TransportNetwork network) {
 		if(network != null) {
 			ProfileDrawerItem item1 = new ProfileDrawerItem()
-					                          .withName(network.getName())
-					                          .withEmail(network.getDescription())
+					                          .withName(network.getName(this))
+					                          .withEmail(network.getDescription(this))
 					                          .withIcon(ContextCompat.getDrawable(this, network.getLogo()));
 			item1.withTag(network);
 			accountHeader.addProfile(item1, accountHeader.getProfiles().size());
@@ -453,8 +449,8 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		TransportNetwork network2 = Preferences.getTransportNetwork(getContext(), 2);
 		if(network2 != null) {
 			ProfileDrawerItem item2 = new ProfileDrawerItem()
-					                          .withName(network2.getName())
-					                          .withEmail(network2.getDescription())
+					                          .withName(network2.getName(this))
+					                          .withEmail(network2.getDescription(this))
 					                          .withIcon(ContextCompat.getDrawable(this, network2.getLogo()));
 			item2.withTag(network2);
 			accountHeader.addProfile(item2, accountHeader.getProfiles().size());
@@ -463,8 +459,8 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		TransportNetwork network3 = Preferences.getTransportNetwork(getContext(), 3);
 		if(network3 != null) {
 			ProfileDrawerItem item3 = new ProfileDrawerItem()
-					                          .withName(network3.getName())
-					                          .withEmail(network3.getDescription())
+					                          .withName(network3.getName(this))
+					                          .withEmail(network3.getDescription(this))
 					                          .withIcon(ContextCompat.getDrawable(this, network3.getLogo()));
 			item3.withTag(network3);
 			accountHeader.addProfile(item3, accountHeader.getProfiles().size());
@@ -580,39 +576,4 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		StrictMode.setVmPolicy(vmPolicy.build());
 	}
 
-	public static class TransportrChangeLog extends ChangeLog {
-		public final static String TAG = TransportrChangeLog.class.getName();
-
-		public TransportrChangeLog(Context context, boolean dark) {
-				super(new ContextThemeWrapper(context, getDialogTheme(dark)), theme(dark));
-		}
-
-		private static int getDialogTheme(boolean dark) {
-			if(dark) {
-				return R.style.DialogTheme;
-			} else {
-				return R.style.DialogTheme_Light;
-			}
-		}
-
-		private static String theme(boolean dark) {
-			if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-				if(dark) {
-					// holo dark
-					return "body { color: #e7e3e7; font-size: 0.9em; background-color: #292829; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-				} else {
-					// holo light
-					return "body { color: #212421; font-size: 0.9em; background-color: #f7f7f7; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-				}
-			} else {
-				if(dark) {
-					// material dark
-					return "body { color: #f3f3f3; font-size: 0.9em; background-color: #424242; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-				} else {
-					// material light
-					return "body { color: #202020; font-size: 0.9em; background-color: #ffffff; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }";
-				}
-			}
-		}
-	}
 }

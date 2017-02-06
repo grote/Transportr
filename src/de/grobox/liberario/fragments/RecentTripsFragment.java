@@ -40,13 +40,16 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.RecentTrip;
-import de.grobox.liberario.data.RecentsDB;
-import de.grobox.liberario.ui.RecentsPopupMenu;
+import de.grobox.liberario.favorites.FavoritesItem;
+import de.grobox.liberario.favorites.FavoritesPopupMenu;
 import de.grobox.liberario.utils.TransportrUtils;
 
+import static de.grobox.liberario.favorites.FavoritesDatabase.deleteFavoriteTrip;
+import static de.grobox.liberario.favorites.FavoritesDatabase.getFavoriteTripList;
+
+@Deprecated
 public class RecentTripsFragment extends TransportrListFragment {
 
 	public static final String TAG = "de.grobox.liberario.recent_trips";
@@ -63,7 +66,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), Preferences.getPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false)));
+		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, getFavoriteTripList(getActivity()));
 		setListAdapter(adapter);
 
 		toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
@@ -122,13 +125,13 @@ public class RecentTripsFragment extends TransportrListFragment {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 			case R.id.action_recent_trips_sort_count:
-				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), true));
+				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, getFavoriteTripList(getActivity()));
 				Preferences.setPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, true);
 				setListAdapter(adapter);
 				item.setChecked(true);
 				return true;
 			case R.id.action_recent_trips_sort_recent:
-				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, RecentsDB.getRecentTripList(getActivity(), false));
+				adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, getFavoriteTripList(getActivity()));
 				Preferences.setPref(getActivity(), Preferences.SORT_RECENT_TRIPS_COUNT, false);
 				setListAdapter(adapter);
 				item.setChecked(true);
@@ -157,8 +160,8 @@ public class RecentTripsFragment extends TransportrListFragment {
 		}
 	}
 
-	private class FavTripArrayAdapter extends ArrayAdapter<RecentTrip> {
-		public FavTripArrayAdapter(Context context, int textViewResourceId,	List<RecentTrip> objects) {
+	private class FavTripArrayAdapter extends ArrayAdapter<FavoritesItem> {
+		public FavTripArrayAdapter(Context context, int textViewResourceId,	List<FavoritesItem> objects) {
 			super(context, textViewResourceId, objects);
 		}
 
@@ -173,14 +176,14 @@ public class RecentTripsFragment extends TransportrListFragment {
 			v.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					RecentTrip trip = (RecentTrip) getListView().getItemAtPosition(position);
+					FavoritesItem trip = (FavoritesItem) getListView().getItemAtPosition(position);
 					TransportrUtils.findDirections(getActivity(), trip.getFrom(), trip.getVia(), trip.getTo());
 				}
 			});
 
 			// handle click on more button
 			ImageButton moreButton = (ImageButton) v.findViewById(R.id.moreButton);
-			final RecentsPopupMenu recentsPopup = new RecentsPopupMenu(getContext(), moreButton,(RecentTrip) getListView().getItemAtPosition(position));
+			final FavoritesPopupMenu recentsPopup = new FavoritesPopupMenu(getContext(), moreButton,(FavoritesItem) getListView().getItemAtPosition(position), null);
 			moreButton.setOnClickListener(new OnClickListener() {
 				                              @Override
 				                              public void onClick(View v) {
@@ -203,22 +206,22 @@ public class RecentTripsFragment extends TransportrListFragment {
 				}
 			});
 
-			RecentTrip trip = this.getItem(position);
+			FavoritesItem trip = this.getItem(position);
 
 			// from
 			TextView favFromView = (TextView) v.findViewById(R.id.recentFromView);
-			favFromView.setText(TransportrUtils.getLocName(trip.getFrom()));
+			favFromView.setText(TransportrUtils.getLocationName(trip.getFrom()));
 			favFromView.setCompoundDrawables(TransportrUtils.getTintedDrawable(getContext(), favFromView.getCompoundDrawables()[0]), null, null, null);
 
 			// to
 			TextView favToView = (TextView) v.findViewById(R.id.recentToView);
-			favToView.setText(TransportrUtils.getLocName(trip.getTo()));
+			favToView.setText(TransportrUtils.getLocationName(trip.getTo()));
 			favToView.setCompoundDrawables(TransportrUtils.getTintedDrawable(getContext(), favToView.getCompoundDrawables()[0]), null, null, null);
 
 			// via
 			TextView favViaView = (TextView) v.findViewById(R.id.recentViaView);
 			if(trip.getVia() != null) {
-				favViaView.setText(TransportrUtils.getLocName(trip.getVia()));
+				favViaView.setText(TransportrUtils.getLocationName(trip.getVia()));
 				favViaView.setCompoundDrawables(TransportrUtils.getTintedDrawable(getContext(), favViaView.getCompoundDrawables()[0]), null, null, null);
 			} else {
 				favViaView.setVisibility(View.GONE);
@@ -257,8 +260,8 @@ public class RecentTripsFragment extends TransportrListFragment {
 		for(int i = tmp.size()-1; i >= 0; i--) {
 			if(tmp.valueAt(i)) {
 				int pos = tmp.keyAt(i);
-				RecentTrip trip = adapter.getItem(pos);
-				RecentsDB.deleteRecentTrip(getActivity(), trip);
+				FavoritesItem trip = adapter.getItem(pos);
+				deleteFavoriteTrip(getActivity(), trip);
 				adapter.remove(trip);
 			}
 		}
@@ -269,7 +272,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 
 		for(int i = tmp.size()-1; i >= 0; i--) {
 			if(tmp.valueAt(i)) {
-				if(adapter.getItem(tmp.keyAt(i)).isFavourite()) {
+				if(adapter.getItem(tmp.keyAt(i)).isFavorite()) {
 					return true;
 				}
 			}

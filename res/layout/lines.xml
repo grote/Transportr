@@ -26,7 +26,7 @@
     </RelativeLayout>
 
     <org.apmem.tools.layouts.FlowLayout
-        android:id="@+id/lineLayout"
+        android:id="@+id/line"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

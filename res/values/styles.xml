@@ -1,34 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Delay">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:gravity">top|right</item>
-        <item name="android:textColor">@color/holo_red_light</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:layout_marginRight">4dp</item>
-    </style>
 
-    <style name="DownArrow">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginLeft">2dp</item>
-        <item name="android:src">@drawable/ic_arrow_down</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:alpha">0.75</item>
-    </style>
+	<style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+		<item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+		<item name="popupTheme">?popupTheme</item>
+	</style>
 
-    <style name="DialogAnimation" parent="@android:style/Animation.Dialog">
-        <item name="android:windowEnterAnimation">@anim/scale_up</item>
-        <item name="android:windowExitAnimation">@anim/scale_down</item>
-    </style>
+	<style name="Delay">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:gravity">top|right</item>
+		<item name="android:textColor">@color/holo_red_light</item>
+		<item name="android:textSize">12sp</item>
+		<item name="android:layout_marginRight">4dp</item>
+	</style>
 
-    <style name="Card" parent="CardView">
-        <item name="cardUseCompatPadding">true</item>
-        <item name="cardBackgroundColor">?attr/cardBackgroundColor</item>
-    </style>
+	<style name="DownArrow">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">2dp</item>
+		<item name="android:src">@drawable/ic_arrow_down</item>
+		<item name="android:scaleType">fitCenter</item>
+		<item name="android:layout_centerVertical">true</item>
+		<item name="android:layout_alignParentLeft">true</item>
+		<item name="android:alpha">0.75</item>
+	</style>
+
+	<style name="DialogAnimation" parent="@android:style/Animation.Dialog">
+		<item name="android:windowEnterAnimation">@anim/scale_up</item>
+		<item name="android:windowExitAnimation">@anim/scale_down</item>
+	</style>
+
+	<style name="Card" parent="CardView">
+		<item name="cardUseCompatPadding">true</item>
+		<item name="cardBackgroundColor">?attr/cardBackgroundColor</item> <!-- TODO can be removed? -->
+	</style>
+
+	<style name="FavoriteCard" parent="CardView">
+		<item name="android:foreground">?selectableItemBackground</item>
+		<item name="android:clickable">true</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+	</style>
+
+	<style name="Button" parent="Widget.AppCompat.Button.Borderless.Colored">
+		<item name="android:textColor">@color/buttonColor</item>
+	</style>
+
+	<style name="Divider">
+		<item name="android:background">@color/md_grey_500</item>
+		<item name="android:layout_height">1px</item>
+		<item name="android:layout_width">match_parent</item>
+	</style>
 
 </resources>

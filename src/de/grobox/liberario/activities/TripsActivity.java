@@ -27,7 +27,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,13 +38,12 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 
 import java.util.ArrayList;
 
-import de.grobox.liberario.ListTrip;
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.trips.ListTrip;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.RecentTrip;
-import de.grobox.liberario.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.adapters.TripAdapter;
-import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
 import de.grobox.liberario.utils.TransportrUtils;
@@ -55,6 +53,8 @@ import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
 
+import static de.grobox.liberario.favorites.FavoritesDatabase.isFavoriteTrip;
+import static de.grobox.liberario.favorites.FavoritesDatabase.toggleFavoriteTrip;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 
 public class TripsActivity extends TransportrActivity {
@@ -80,7 +80,7 @@ public class TripsActivity extends TransportrActivity {
 
 		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		if(toolbar != null) {
-			if(network != null) toolbar.setSubtitle(network.getName());
+			if(network != null) toolbar.setSubtitle(network.getName(this));
 			setSupportActionBar(toolbar);
 
 			ActionBar actionBar = getSupportActionBar();
@@ -163,7 +163,7 @@ public class TripsActivity extends TransportrActivity {
 		mRecyclerView.setAdapter(mAdapter);
 
 		if(to.type != LocationType.COORD && from.type != LocationType.COORD) {
-			isFav = RecentsDB.isFavedRecentTrip(this, new RecentTrip(from, via, to));
+			isFav = isFavoriteTrip(this, new FavoritesItem(from, via, to));
 			isFavable = true;
 		} else {
 			isFav = false;
@@ -215,7 +215,7 @@ public class TripsActivity extends TransportrActivity {
 			return true;
 		}
 		else if(item.getItemId() == R.id.action_fav_trip) {
-			RecentsDB.toggleFavouriteTrip(this, new RecentTrip(from, via, to, isFav));
+			toggleFavoriteTrip(this, new FavoritesItem(from, via, to, isFav));
 			isFav = !isFav;
 			TransportrUtils.setFavState(this, item, isFav, true);
 

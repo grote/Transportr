@@ -19,5 +19,22 @@ package de.grobox.liberario.fragments;
 
 import android.support.v4.app.Fragment;
 
+import de.grobox.liberario.AppComponent;
+import de.grobox.liberario.TransportrApplication;
 
-public abstract class TransportrFragment extends Fragment { }
+
+public abstract class TransportrFragment extends Fragment {
+
+	protected AppComponent getComponent() {
+		return ((TransportrApplication) getActivity().getApplication()).getComponent();
+	}
+
+	protected void runOnUiThread(final Runnable task) {
+		getActivity().runOnUiThread(task);
+	}
+
+	protected void runOnThread(final Runnable task) {
+		new Thread(task).start();
+	}
+
+}

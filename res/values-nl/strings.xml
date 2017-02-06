@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc">De helper voor het openbaar vervoer die jouw privacy en vrijheid respecteert.</string>
-  <string name="google_play_full_desc">Transportr is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken waar je ook bent.
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">De helper voor het openbaar vervoer die jouw privacy en vrijheid respecteert.</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken waar je ook bent.
 
 Op het moment werkt het het beste in Europa, maar het ondersteund vele locaties wereldwijd. Als je in een niet ondersteund gebied woont, kun je deze aan Transportr toevoegen.
 Instructies staan op de homepage.
@@ -38,7 +38,6 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="tab_libraries">Hulpprogramma\'s</string>
   <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote\nVrije Software licentie: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr is een helper voor het openbaar vervoer die jouw privacy en vrijheid respecteert. Het is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken waar je ook bent. Deze app is Vrije Software, dus je kan deze vrij gebruiken, bestuderen, delen en verbeteren.</p>
@@ -113,7 +112,6 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="pref_walk_speed_fast">Snel</string>
   <string name="warning_departure_gap">Te weinig vertrekken gevonden. Er kunnen meer verborgen zijn. Zoek op de exacte tijd om zeker te zijn dat er geen vertrekken missen.</string>
   <string name="warning_permission_granted_action">Kon de laatste actie niet automatisch herhalen</string>
-  <string name="error_pick_network">U moet een verkeersnetwerk kiezen</string>
   <string name="error_no_internet">Geen bruikbare internetverbinding beschikbaar</string>
   <string name="error_invalid_from">Ongeldig Vertrekpunt (Van)</string>
   <string name="error_invalid_to">Ongeldig Aankomstpunt (Naar)</string>
@@ -127,7 +125,6 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="error_no_trips_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het zoeken naar verbindingen.</string>
   <string name="error_no_departures_capability">Dit vervoersnetwerk heeft geen ondersteuning voor het vinden van verterkken.</string>
   <string name="error_no_nearby_locations_capability">Het huidige transportnetwerk ondersteund het vinden van dichtbijzijnde stations niet.</string>
-  <string name="error_please_file_ticket">Er geen iets mis. Maak a.u.b. een foutrapport aan met een uitleg van wat je doet voordat dit probleem op trad.</string>
   <string name="error_trip_refresh_failed">Kon de data voor de reis niet herladen.</string>
   <string name="meter">m</string>
   <string name="system_default">Systeemstandaard</string>
@@ -164,21 +161,24 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="changelog_title">Veranderingen</string>
   <string name="changelog_show_full">Meer...</string>
   <string name="np_region_australia">Australië</string>
-  <string name="np_desc_met">Australië, Victoria, Melbourne</string>
   <string name="np_desc_sydney">Australië, New South Wales, Sydney</string>
   <string name="np_region_austria">Oostenrijk</string>
   <string name="np_desc_ivb">Innsbruch</string>
   <string name="np_desc_linz">Noord-Oosternrijk, Linz</string>
   <string name="np_desc_oebb">Oostenrijk</string>
-  <string name="np_desc_stv">Stiermarken, Graz, Marburg, Maribor</string>
   <string name="np_desc_svv">Salzburg</string>
-  <string name="np_desc_vor">Zuid-Oostenrijk, Burgenland, Wenen</string>
-  <string name="np_desc_vvt">Tirol</string>
+  <string name="np_desc_wien">Wenen</string>
   <string name="np_region_belgium">België</string>
   <string name="np_desc_sncb">Openbaar vervoer in België</string>
   <string name="np_region_br">Brazilië</string>
   <string name="np_name_br">Brazilie</string>
+  <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte en Porto Alegre</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_region_canada">Canada</string>
+  <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
+  <string name="np_name_quebec">Quebec</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Denemarken</string>
   <string name="np_desc_dsb">Denemarken, Kopenhagen</string>
   <string name="np_region_europe">Europa</string>
@@ -189,6 +189,7 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="np_region_france">Frankrijk</string>
   <string name="np_name_francenortheast">Noordoost Frankrijk</string>
   <string name="np_name_francenorthwest">Noordwest Frankrijk</string>
+  <string name="np_name_frenchsoutheast">Zuidoost Frankrijk</string>
   <string name="np_name_frenchsouthwest">Zuidwest Frankrijk</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
   <string name="np_name_paris">Parijs</string>
@@ -198,7 +199,6 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Duitsland</string>
   <string name="np_desc_avv">Augsburg</string>
-  <string name="np_desc_bayern">Beieren, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlijn</string>
   <string name="np_desc_db">Het grootste deel van Duitsland</string>
@@ -208,19 +208,16 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Beieren, München</string>
-  <string name="np_desc_nasa">Saksen, Leipzig, Saksen-Anhalt, Magdeburg, Halle</string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Bazel, Bazel-Stad, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
-  <string name="np_desc_vagfr">Elzas, Bas-Rhin, Straatsburg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlijn</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Nedersaksen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
-  <string name="np_desc_vrn">Baden-Württemberg, Rijnland-Palts, Mannheim, Mainz, Trier</string>
-  <string name="np_desc_vrr">Noordrijn-Westfalen, Keulen, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Keulen, Bonn</string>
   <string name="np_desc_vvm">Zwaben, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saksen, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -230,7 +227,6 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
   <string name="np_region_italy">Italië</string>
-  <string name="np_desc_atc">Emilia-Romagna, Bologna</string>
   <string name="np_name_it">Italie</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
@@ -242,6 +238,7 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="np_desc_nri">Noorwegen, Oslo, Bergen</string>
   <string name="np_region_nz">Nieuw-Zeeland</string>
   <string name="np_name_nz">Nieuw ZVeeland</string>
+  <string name="np_desc_nz">Nieuw-Zeeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_region_spain">Spanje</string>
   <string name="np_name_spain">Spanje</string>
@@ -250,7 +247,6 @@ Je kan ook dichtbij gelegen stations vinden en zien wanneer wat vertrekt, inclus
   <string name="np_region_switzerland">Zwitserland</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_desc_sbb">Zwitserland</string>
-  <string name="np_desc_vbl">Luzern</string>
   <string name="np_desc_zvv">Zürich</string>
   <string name="np_region_uae">Verenigde Arabische Emiraten</string>
   <string name="np_name_dub">Dubai</string>

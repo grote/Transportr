@@ -33,10 +33,10 @@ import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.RecentsDB;
-import de.grobox.liberario.ui.LocationView;
+import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
@@ -81,7 +81,6 @@ public class HomePickerDialogFragment extends DialogFragment {
 
 		// Initialize LocationView
 		final LocationView loc = (LocationView) v.findViewById(R.id.location_input);
-		loc.initialize(getActivity());
 
 		// OK Button
 		Button okButton = (Button) v.findViewById(R.id.okButton);

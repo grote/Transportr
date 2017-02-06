@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc">Asystent transportu publicznego który szanuje Twoją prywatność i wolność.</string>
-  <string name="google_play_full_desc">Transportr jest darmową aplikacją stworzoną przez ludzi z całego świata po to, aby korzystanie z transportu publicznego było jak najłatwiejsze gdziekolwiek jesteś.
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Asystent transportu publicznego który szanuje Twoją prywatność i wolność.</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr jest darmową aplikacją stworzoną przez ludzi z całego świata po to, aby korzystanie z transportu publicznego było jak najłatwiejsze gdziekolwiek jesteś.
 
 Obecnie, działa najlepiej w Europie, ale także inne miejsca na świecie są wspierane. Jeżeli Twój obszar zamieszkania nie jest wspierany, rozważ dodanie go do programu Transportr. Instrukcje znajdziesz na stronie.
 
@@ -34,7 +34,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="tab_libraries">Biblioteki</string>
   <string name="tab_devs">Twórcy</string>
   <string name="tab_about">O</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote\nOprogramowanie na Wolnej Licencji: GPLv3</string>
+  <string name="about_top">© 2013 – 2017 Torsten Grote\nProgram na wolnej licencji: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr jest asystentem transportu publicznego, który szanuje Twoją prywatność i wolność. Jest darmową aplikacją tworzoną przez ludzi z całego świata mającą na celu ułatwienie korzystania z transportu publicznego jak tylko się da i gdziekolwiek jesteś. To jest Wolne Oprogramowanie, więc możesz z niego dowolnie korzystać, analizować je, kopiować i ulepszać.</p>
@@ -55,6 +55,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="from">Z</string>
   <string name="to">Do</string>
   <string name="via">Przez</string>
+  <string name="search">Szukaj</string>
   <string name="from_here">Stąd</string>
   <string name="to_here">Dotąd</string>
   <string name="min">min</string>
@@ -78,6 +79,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="more">Więcej</string>
   <string name="no_favourites">Brak ulubionych tras.\n\nDodaj jakąś na stronie \"Ostatnie trasy\".</string>
   <string name="removing_from_favourites">Wybrana trasa dostała dodana do ulubionych. Zostanie ona stąd usunięta.</string>
+  <string name="create_quickhome_shortcut">Tworzy skrót w aplikacji uruchomieniowej przenoszący do domu</string>
   <string name="now">Teraz</string>
   <string name="current_time_set">Ustawiono obecny czas.</string>
   <string name="today">Dzisiaj</string>
@@ -107,9 +109,9 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="pref_walk_speed_slow">Powoli</string>
   <string name="pref_walk_speed_normal">Normalnie</string>
   <string name="pref_walk_speed_fast">Szybko</string>
+  <string name="pref_quickhome">Skrót \"Do domu!\"</string>
   <string name="warning_departure_gap">Zbyt mało odjazdów. Być może niektóre są ukryte. Wyszukaj przy użyciu dokładnego czasu, aby być pewnym, że żadnych nie brakuje.</string>
   <string name="warning_permission_granted_action">Nie można automatycznie powtórzyć ostatniej czynności</string>
-  <string name="error_pick_network">Proszę wybrać jedną sieć transportową!</string>
   <string name="error_no_internet">Brak sprawnego połączenia internetowego</string>
   <string name="error_invalid_from">Niepoprawny punkt początkowy (Z)</string>
   <string name="error_invalid_to">Niepoprawny cel (Do)</string>
@@ -123,7 +125,6 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="error_no_trips_capability">Wybrana sieć transportowa nie wspiera szukania po kierunkach.</string>
   <string name="error_no_departures_capability">Wybrana sieć transportowa nie wspiera wyszukiwania odjazdów.</string>
   <string name="error_no_nearby_locations_capability">Wybrana sieć transportowa nie wspiera wyszukiwania pobliskich stacji.</string>
-  <string name="error_please_file_ticket">Wystąpił błąd. Prosimy zgłosić błąd opisujący co się stało.</string>
   <string name="error_trip_refresh_failed">Nie można odświeżyć danych dla obecnej trasy.</string>
   <string name="meter">m</string>
   <string name="system_default">Domyślny systemowy</string>
@@ -159,8 +160,8 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="changelog_full_title">Lista zmian</string>
   <string name="changelog_title">Co nowego</string>
   <string name="changelog_show_full">Więcej...</string>
+  <string name="widget_name_quickhome">Do domu!</string>
   <string name="np_region_australia">Australia</string>
-  <string name="np_desc_met">Australia, Wiktoria, Melbourne</string>
   <string name="np_desc_sydney">Australia, Nowa Południowa Walia, Sydney</string>
   <string name="np_region_austria">Austria</string>
   <string name="np_desc_ivb">Innsbruck</string>
@@ -195,7 +196,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_name_francenortheast">Francja północno-wschodnia</string>
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
   <string name="np_name_francenorthwest">Francja północno-zachodnia</string>
-  <string name="np_desc_francenorthwest">Bretania, Kraj Loary, Region Centralny, Dolna Normandia, Górna Normandia</string>
+  <string name="np_desc_francenorthwest">Bretania, Kraj Loary, Region Centralny-Dolina Loary, Dolna Normandia, Górna Normandia</string>
   <string name="np_name_frenchsoutheast">Francja południowo-wschodnia</string>
   <string name="np_desc_frenchsoutheast">Prowansja-Alpy-Lazurowe Wybrzeże, Rodan-Alpy, Langwedocja-Roussillon, Owernia, Korsyka</string>
   <string name="np_name_frenchsouthwest">Francja południowo-zachodnia</string>
@@ -209,7 +210,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Niemcy</string>
   <string name="np_desc_avv">Augsburg</string>
-  <string name="np_desc_bayern">Bawaria, Würzburg, Rytazbona</string>
+  <string name="np_desc_bayern">Bawaria, Würzburg, Ratyzbona</string>
   <string name="np_desc_bsvag">Brunszwik, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Większość Niemiec</string>
@@ -245,7 +246,6 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Izrael</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Izrael, Jerozolima</string>
   <string name="np_region_italy">Włochy</string>
-  <string name="np_desc_atc">Emilia-Romagna, Bolonia</string>
   <string name="np_name_it">Włochy</string>
   <string name="np_desc_it">Rzym, Mediolan, Turyn, Wenecja, Palermo, Trydent</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -278,9 +278,9 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_region_usa">USA</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_desc_septa">Hrabstwa Bucks, Chester, Delaware, Montgomery i Philadelphia</string>
-  <string name="np_name_sf">Obszar zatoki San Francisco</string>
-  <string name="np_desc_sf">Hrabstwa Alameda, Contra Costa, Marin, Napa, Solano, Sonoma, San Francisco, San Mateo i Santa Clara</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Stany Nowy Jork i New Jersey</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Global Transport w stanie Oregon (USA)</string>
   <string name="maintainer">Opiekun</string>
   <string name="contributors">Pomocnicy</string>
   <string name="translators">Tłumacze</string>
@@ -299,4 +299,5 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="tamil">Tamilski</string>
   <string name="esperanto">Esperanto</string>
   <string name="czech">Czeski</string>
+  <string name="hungarian">Węgierski</string>
 </resources>

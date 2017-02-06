@@ -40,7 +40,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
-import de.grobox.liberario.Preferences;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Product;

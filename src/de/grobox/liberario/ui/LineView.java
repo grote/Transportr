@@ -30,11 +30,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Line;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static de.grobox.liberario.utils.TransportrUtils.getDrawableForProduct;
 
 public class LineView extends LinearLayout {
 
@@ -62,7 +61,7 @@ public class LineView extends LinearLayout {
 
 	public void setLine(Line line) {
 		if (line.product != null) {
-			Drawable drawable = ContextCompat.getDrawable(getContext(), TransportrUtils.getDrawableForProduct(line.product));
+			Drawable drawable = ContextCompat.getDrawable(getContext(), getDrawableForProduct(line.product));
 			ui.product.setImageDrawable(drawable);
 		} else {
 			ui.product.setVisibility(GONE);
@@ -88,9 +87,9 @@ public class LineView extends LinearLayout {
 	}
 
 	private static class ViewHolder {
-		public ViewGroup box;
-		public ImageView product;
-		public TextView label;
+		private ViewGroup box;
+		private ImageView product;
+		private TextView label;
 
 		public ViewHolder(View view) {
 			box = (ViewGroup) view;

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc">Le compagnon de transport en commun qui respecte vos données personnelles et votre liberté.</string>
-  <string name="google_play_full_desc">Transportr est une appli sans but lucratif développée par des personnes du monde entier pour faciliter le plus possible l\'utilisation des transports en commun, où que vous soyez.
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Le compagnon de transport en commun qui respecte vos données personnelles et votre liberté.</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr est une appli sans but lucratif développée par des personnes du monde entier pour faciliter le plus possible l\'utilisation des transports en commun, où que vous soyez.
 
 Actuellement, elle fonctionne de manière optimale en Europe, mais prend aussi en charge de nombreux endroits de par le monde. Si vous habitez dans une région qui n\'est pas prise en charge, envisagez de l\'ajouter à Transportr.
 Vous trouverez des instructions sur la page d\'accueil.
@@ -35,7 +35,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="tab_libraries">Bibliothèques</string>
   <string name="tab_devs">Développeurs</string>
   <string name="tab_about">À propos</string>
-  <string name="about_top">© 2013 - 2015 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
+  <string name="about_top">© 2013 – 2017 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr est un compagnon de transport en commun qui respecte vos données personnelles et votre liberté. C\'est une appli sans but lucratif, développée par des personnes dans le monde entier pour faciliter autant que possible l\'utilisation des transports collectifs, où que vous soyez. Cette appli est un logiciel libre et ouvert. Vous pouvez donc l\'utiliser gratuitement, l\'étudier, la partager et l\'améliorer.</p>
@@ -56,6 +56,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="from">De</string>
   <string name="to">À</string>
   <string name="via">via</string>
+  <string name="search">Rechercher</string>
   <string name="from_here">D\'ici</string>
   <string name="to_here">À ici</string>
   <string name="min">min</string>
@@ -79,6 +80,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="more">Plus</string>
   <string name="no_favourites">Aucun trajet favori.\n\nAjoutez-en sur la page « Trajets récents ».</string>
   <string name="removing_from_favourites">Un trajet que vous avez sélectionné est marqué comme favori. Il sera aussi supprimé comme tel.</string>
+  <string name="create_quickhome_shortcut">Créer un raccourci dans votre lanceur qui vous guide vers chez vous</string>
   <string name="now">Maintenant</string>
   <string name="current_time_set">Heure réglée sur l\'heure actuelle.</string>
   <string name="today">Aujourd’hui</string>
@@ -108,9 +110,9 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="pref_walk_speed_slow">Lente</string>
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Rapide</string>
+  <string name="pref_quickhome">Raccourci « À la maison »</string>
   <string name="warning_departure_gap">Trop peu de départs ont été trouvés. Il pourrait y en avoir d\'autres cachés. Recherchez l\'heure exacte pour vous assurez qu\'il n\'en manque pas.</string>
   <string name="warning_permission_granted_action">Impossible de répéter la dernière action automatiquement</string>
-  <string name="error_pick_network">Veuillez choisir un réseau de transport !</string>
   <string name="error_no_internet">Aucune connexion Internet suffisante disponible.</string>
   <string name="error_invalid_from">Point de départ invalide (de)</string>
   <string name="error_invalid_to">Destination invalide (vers)</string>
@@ -124,7 +126,6 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="error_no_trips_capability">Le réseau de transport ne prend pas en charge la demande d\'itinéraire.</string>
   <string name="error_no_departures_capability">Le réseau de transport sélectionné ne prend pas en charge la recherche de départs.</string>
   <string name="error_no_nearby_locations_capability">Le réseau de transport sélectionné ne prend pas en charge la recherche d\'arrêts/stations à proximité.</string>
-  <string name="error_please_file_ticket">Il y a eu un problème. Veuillez le signaler en expliquant ce que vous avez fait.</string>
   <string name="error_trip_refresh_failed">Impossible de rafraîchir les données pour le trajet actuel.</string>
   <string name="meter">m</string>
   <string name="system_default">Valeur par défaut du système</string>
@@ -160,8 +161,8 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="changelog_full_title">Journal des changements</string>
   <string name="changelog_title">Nouveautés</string>
   <string name="changelog_show_full">Plus...</string>
+  <string name="widget_name_quickhome">À la maison</string>
   <string name="np_region_australia">Australie</string>
-  <string name="np_desc_met">Australie, Victoria, Melbourne</string>
   <string name="np_desc_sydney">Australie, Nouvelle-Galles du Sud, Sydney</string>
   <string name="np_region_austria">Autriche</string>
   <string name="np_desc_ivb">Innsbruck</string>
@@ -198,7 +199,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_name_francenorthwest">France - Nord-Ouest</string>
   <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse-Normandie, Haute-Normandie</string>
   <string name="np_name_frenchsoutheast">France - Sud-Est</string>
-  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corse</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corse</string>
   <string name="np_name_frenchsouthwest">France - Sud-Ouest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -210,7 +211,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Allemagne</string>
   <string name="np_desc_avv">Augsbourg</string>
-  <string name="np_desc_bayern">Bayern, Wurtzbourg, Ratisbonne</string>
+  <string name="np_desc_bayern">Bavière, Wurtzbourg, Ratisbonne</string>
   <string name="np_desc_bsvag">Brunswick, Wolfsbourg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">La plupart de l\'Allemagne</string>
@@ -246,10 +247,10 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israël</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israël, Jérusalem</string>
   <string name="np_region_italy">Italie</string>
-  <string name="np_desc_atc">Émilie-Romagne, Bologne</string>
   <string name="np_name_it">Italie</string>
   <string name="np_desc_it">Rome, Milan, Turin, Venise, Palerme, Trente</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_name_vmobil">VVV</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Brégence</string>
   <string name="np_region_luxembourg">Luxembourg</string>
   <string name="np_desc_lu">Luxembourg</string>
@@ -259,6 +260,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_nri">Norvège, Oslo, Bergen</string>
   <string name="np_region_nz">Nouvelle-Zélande</string>
   <string name="np_name_nz">Nouvelle-Zélande</string>
+  <string name="np_desc_nz">Nouvelle-Zélande, Wellington, Auckland</string>
   <string name="np_region_poland">Pologne</string>
   <string name="np_desc_pl">Pologne, chemins de fer en Pologne</string>
   <string name="np_region_spain">Espagne</string>
@@ -278,9 +280,9 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_region_usa">États-Unis d\'Amérique</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_desc_septa">Comtés de Bucks, Chester, Delaware, Montgomery et Philadelphie</string>
-  <string name="np_name_sf">Zone de la baie de San Francisco</string>
-  <string name="np_desc_sf">Comtés d\'Alameda, Contra Costa, Marin, Napa, Solano, Sonoma, San Francisco, San Mateo et Santa Clara</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">États de New York et New Jersey</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">« Global Transport » dans l\'état de l\'Oregon (É.-U.)</string>
   <string name="maintainer">Mainteneur</string>
   <string name="contributors">Contributeurs</string>
   <string name="translators">Traducteurs</string>
@@ -299,4 +301,5 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="tamil">Tamoul</string>
   <string name="esperanto">Espéranto</string>
   <string name="czech">Tchèque</string>
+  <string name="hungarian">Hongrois</string>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc">Veřejná doprava respektuje vaše soukromí a svobodu.</string>
-  <string name="google_play_full_desc">Transportr je nezisková app, která byla vyvinuta lidmi z celého světa, aby se používání veřejné dopravy stalo tak jednoduché, jak je to jen možné, ať jste kdekoli. V současné době funguje nejlépe v Evropě, ale také podporuje mnoho míst po celém světě. Pokud žijete v nepodporované oblasti, zvažte jeho přidání do Transportr. Pokyny jsou k dispozici na domovské stránce. Transportr najde trasu z domova, vaší aktuální polohy nebo danou stanici od odkudkoliv budete chtít jet. Můžete také uložit celé cesty jako oblíbené a najít další cesty s jednou ranou. Samozřejmě, můžete také zobrazit na mapě svou cestu a sledovat svůj pokrok pomocí GPS. Můžete také objevovat blízké stanice a ukázat nejbližší odjezdy včetně zpoždění (pokud existují).</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Veřejná doprava respektuje vaše soukromí a svobodu.</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr je nezisková app, která byla vyvinuta lidmi z celého světa, aby se používání veřejné dopravy stalo tak jednoduché, jak je to jen možné, ať jste kdekoli. V současné době funguje nejlépe v Evropě, ale také podporuje mnoho míst po celém světě. Pokud žijete v nepodporované oblasti, zvažte jeho přidání do Transportr. Pokyny jsou k dispozici na domovské stránce. Transportr najde trasu z domova, vaší aktuální polohy nebo danou stanici od odkudkoliv budete chtít jet. Můžete také uložit celé cesty jako oblíbené a najít další cesty s jednou ranou. Samozřejmě, můžete také zobrazit na mapě svou cestu a sledovat svůj pokrok pomocí GPS. Můžete také objevovat blízké stanice a ukázat nejbližší odjezdy včetně zpoždění (pokud existují).</string>
   <string name="onboarding_drawer_title">Objevte více možností</string>
   <string name="onboarding_drawer_text">Klepnutím na tuto ikonu otevřete přístup k více funkcím této aplikace.</string>
   <string name="drawer_changelog">Seznam změn</string>
@@ -28,7 +28,6 @@
   <string name="tab_libraries">Knihovny</string>
   <string name="tab_devs">Vývojáři</string>
   <string name="tab_about">O</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote Free Software License: GPLv3</string>
   <string name="about_bottom">
     <![CDATA[
 <p><b>Příspěvky</b> jsou podporovány a oceňovány. Pokud byste chtěli přispět přejděte na <a href=\"%1$s\">the Transportr homepage</a> pro více informací.</p>
@@ -97,7 +96,6 @@
   <string name="pref_walk_speed_fast">Rychle</string>
   <string name="warning_departure_gap">Nalezeno příliš málo odjezdů.</string>
   <string name="warning_permission_granted_action">Nemohl jsem zopakovat poslední akci automaticky.</string>
-  <string name="error_pick_network">Prosím vyberte jednu dopravní síť.</string>
   <string name="error_no_internet">Nedostatečné připojení k internetu</string>
   <string name="error_invalid_from">Nesprávná počáteční poloha (OD)</string>
   <string name="error_invalid_to">Nesprávný cíl (Do)</string>
@@ -111,7 +109,6 @@
   <string name="error_no_trips_capability">Tato dopravní síť nepodporuje dotazování se na cestu.</string>
   <string name="error_no_departures_capability">Aktuální dopravní síť nepodporuje zjištění odchylky.</string>
   <string name="error_no_nearby_locations_capability">Aktuální dopravní síť nepodporuje hledání blízkých stanic.</string>
-  <string name="error_please_file_ticket">Něco se pokazilo. Prosím vytvořte emisní lístek vysvětlující, co jsi udělal.</string>
   <string name="error_trip_refresh_failed">Nepodařilo se aktualizovat data pro aktuální cestu.</string>
   <string name="meter">m</string>
   <string name="system_default">Výchozí nastavení systému</string>

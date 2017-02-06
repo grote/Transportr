@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.1.7" versioncode="45">
+    <release version="1.1.7" versioncode="47">
+        <change>New setting: Add "Get me home" shortcut to launcher (Thanks Patrick!)</change>
         <change>Added Oregon, USA (Thanks craftguy!)</change>
+        <change>Added Mittelthüringen, Germany (Thanks Andreas!)</change>
         <change>New logos for MET, SYDNEY and DSB (Thanks André!)</change>
+        <change>Fixed Android 7.1 issue when returning to directions list</change>
     </release>
 
     <release version="1.1.6" versioncode="45">

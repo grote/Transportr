@@ -9,7 +9,7 @@
     app:cardBackgroundColor="?attr/cardBackgroundColor"
     app:cardCornerRadius="2dp"
     app:cardUseCompatPadding="true"
-    tools:showIn="@layout/fragment_departures">
+    tools:showIn="@layout/activity_departures">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,14 +19,13 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <de.grobox.liberario.ui.LocationView
+        <de.grobox.liberario.locations.LocationView
             android:id="@+id/stationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:favLocation="true"
             app:hint="@string/departure_station"
-            app:homeLocation="true"
-            app:onlyIds="true"/>
+            app:homeLocation="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"

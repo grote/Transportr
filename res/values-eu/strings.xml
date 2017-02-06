@@ -26,13 +26,14 @@
   <string name="tab_libraries">Liburutegiak</string>
   <string name="tab_devs">Garatzaileak</string>
   <string name="tab_about">Honi buruz</string>
-  <string name="about_top">© 2013 – 2015 Torsten Grote\nSoftware askeko lizentzia: GPLv3</string>
+  <string name="about_top">© 2013 – 2017 Torsten Grote\nSoftware askeko lizentzia: GPLv3</string>
   <string name="visit_website">Webgunea bisitatu</string>
   <string name="trip_dep">irt</string>
   <string name="trip_arr">hel</string>
   <string name="trip_removed">Bidaia ezabatuta</string>
   <string name="from">Nondik</string>
   <string name="to">Nora</string>
+  <string name="search">Bilatu</string>
   <string name="from_here">Hemendik</string>
   <string name="to_here">Hona</string>
   <string name="min"> min</string>
@@ -55,7 +56,9 @@
   <string name="more">Gehiago</string>
   <string name="no_favourites">Ez duzu bidai gogokorik.\n\nGehitu ezazu bat \"Duela gutxiko bidaiak\" orritik</string>
   <string name="removing_from_favourites">Hautatu duzun badai bat gogokoen bezala markatu da. Handik ere kenduko da.</string>
+  <string name="now">Orain</string>
   <string name="current_time_set">Denbora oraingora ezarri da.</string>
+  <string name="today">Gaur</string>
   <string name="current_date_set">Data oraingora ezarri da.</string>
   <string name="added_1h">Ordu 1 gehitu da.</string>
   <string name="ok">Ados</string>
@@ -78,7 +81,6 @@
   <string name="pref_walk_speed_normal">Arrunta</string>
   <string name="pref_walk_speed_fast">Bizkor</string>
   <string name="warning_departure_gap">Oso irteera gutxi aurkitu dira. Ezkutuko gehiago egon liteke. Bilatu ezazu denbora zehatza bat ere ez falta ez dela ziurtatzeko</string>
-  <string name="error_pick_network">Mesedez garraio sare bat aukeratu!</string>
   <string name="error_no_internet">Interneteko konexio nahikorik ez eskuragarri</string>
   <string name="error_invalid_from">Hasiera kokapen baliogabea (Nondik)</string>
   <string name="error_invalid_to">Helbide baliogabea (Nora)</string>
@@ -92,7 +94,6 @@
   <string name="error_no_trips_capability">Garraio sare honek ez du norabideak kontsultatzea baimentzen.</string>
   <string name="error_no_departures_capability">Uneko garraio sareak ez du irteerak aurkitzea baimentzen.</string>
   <string name="error_no_nearby_locations_capability">Uneko garraio sareak ez du gertuko geltokiak aurkitzea baimentzen.</string>
-  <string name="error_please_file_ticket">Zerbait oker joan da. Mesedez sortu ezazu arazo tiket bat egin duzuna azaltzen.</string>
   <string name="error_trip_refresh_failed">Ezin izan dira datuak freskatu uneko bidairako.</string>
   <string name="meter">m</string>
   <string name="system_default">Sistemaren lehenetsia</string>
@@ -127,8 +128,6 @@
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_oebb">Austria</string>
   <string name="np_desc_svv">Salzburgo</string>
-  <string name="np_desc_vor">Austria Beherea, Burgenland, Viena</string>
-  <string name="np_desc_vvt">Tirol</string>
   <string name="np_region_belgium">Belgika</string>
   <string name="np_region_br">Brasil</string>
   <string name="np_region_canada">Kanada</string>
@@ -138,11 +137,14 @@
   <string name="np_name_rt">Europa</string>
   <string name="np_region_finland">Finlandia</string>
   <string name="np_region_france">Frantzia</string>
+  <string name="np_name_francenortheast">Frantzia ipar ekialdea</string>
+  <string name="np_name_francenorthwest">Frantzia ipar mendebaldea</string>
+  <string name="np_name_frenchsoutheast">Frantzia hego ekialdea</string>
+  <string name="np_name_frenchsouthwest">Frantzia hego mendebaldea</string>
   <string name="np_region_gb">Britainia Handia</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Alemania</string>
   <string name="np_desc_avv">Augsburg</string>
-  <string name="np_desc_bayern">Bavaria, Würzburg, Ratisbona</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Alemaniako gehiena</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hanburgo</string>
@@ -168,7 +170,6 @@
   <string name="np_desc_se">Suedia, Stockholm</string>
   <string name="np_region_switzerland">Suitza</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
-  <string name="np_desc_vbl">Luzerna</string>
   <string name="np_desc_zvv">Zurich</string>
   <string name="np_region_uae">Arabiar Emirerri Batuak</string>
   <string name="np_desc_dub">Arabiar Emirerri Batuak, Dubai</string>
