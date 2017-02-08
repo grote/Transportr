@@ -164,6 +164,8 @@ public class NewMapActivity extends DrawerActivity
 			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 			bottomSheetBehavior.setState(STATE_COLLAPSED);
 			directionsFab.hide();
+		} else {
+			// TODO potentially re-attach location fragment
 		}
 	}
 

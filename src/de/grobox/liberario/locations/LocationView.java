@@ -48,6 +48,7 @@ import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.fragments.HomePickerDialogFragment;
 import de.grobox.liberario.fragments.HomePickerDialogFragment.OnHomeChangedListener;
 import de.grobox.liberario.locations.FavLocation.FavLocationType;
+import de.grobox.liberario.locations.SuggestLocationsTask.SuggestLocationsTaskCallback;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
@@ -57,7 +58,7 @@ import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 
-public class LocationView extends LinearLayout implements OnHomeChangedListener, SuggestLocationsTask.SuggestLocationsTaskCallback {
+public class LocationView extends LinearLayout implements OnHomeChangedListener, SuggestLocationsTaskCallback {
 
 	private final static String LOCATION = "location";
 	private final static String TEXT = "text";
@@ -321,12 +322,12 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 	}
 
 	public void setWrapLocation(@Nullable WrapLocation loc) {
-		if(loc == null) {
+		if (loc == null) {
 			setLocation(null);
-		} else if(loc.getType() == HOME) {
+		} else if (loc.getType() == HOME) {
 			// special case: home location
 			Location home = manager.getHome();
-			if(home != null) {
+			if (home != null) {
 				setLocation(home);
 			} else {
 				// prevent home.toString() from being shown in the TextView

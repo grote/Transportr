@@ -21,7 +21,10 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
+
+import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
 
 public class DateUtils {
 
@@ -66,6 +69,15 @@ public class DateUtils {
 	@Nullable
 	static public String getDelayString(long delay) {
 		return (delay > 0 ? "+" : "-") + Long.toString(delay);
+	}
+
+	public static boolean isToday(Calendar calendar) {
+		return android.text.format.DateUtils.isToday(calendar.getTimeInMillis());
+	}
+
+	public static boolean isNow(Calendar calendar) {
+		long diff = Math.abs(calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
+		return diff < 10 * MINUTE_IN_MILLIS;
 	}
 
 }

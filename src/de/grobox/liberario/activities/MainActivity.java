@@ -77,6 +77,7 @@ import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.OnHidePr
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 
+@Deprecated
 public class MainActivity extends TransportrActivity implements FragmentManager.OnBackStackChangedListener {
 
 	public static final String TAG = MainActivity.class.toString();

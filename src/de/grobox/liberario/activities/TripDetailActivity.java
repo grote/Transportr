@@ -38,7 +38,7 @@ import java.util.HashSet;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.adapters.TripAdapter;
+import de.grobox.liberario.trips.TripAdapter;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.TransportrUtils;

@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.adapters;
+package de.grobox.liberario.trips;
 
 import android.animation.LayoutTransition;
 import android.content.Context;
@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import de.grobox.liberario.trips.ListTrip;
 import de.grobox.liberario.R;
 import de.grobox.liberario.ui.LegPopupMenu;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
@@ -113,7 +112,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 	@Override
 	public TripHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-		View v = LayoutInflater.from(context).inflate(R.layout.trip, viewGroup, false);
+		View v = LayoutInflater.from(context).inflate(R.layout.list_item_trip, viewGroup, false);
 
 		return new TripHolder(v, i);
 	}
@@ -160,47 +159,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 
 		// Re-color arrow down
 		ui.lineArrowDown.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.lineArrowDown.getDrawable()));
-
-		// Show Trip on Map
-		ui.map.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.map.getDrawable()));
-		ui.map.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				TransportrUtils.showTripOnMap(context, trip.trip);
-			}
-		});
-
-		// Share Trip
-		ui.share.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.share.getDrawable()));
-		ui.share.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				TransportrUtils.share(context, trip.trip);
-			}
-		});
-
-		// Add Trip to Calendar
-		ui.calendar.setImageDrawable(TransportrUtils.getTintedDrawable(context, ui.calendar.getDrawable()));
-		ui.calendar.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				TransportrUtils.intoCalendar(context, trip.trip);
-			}
-		});
-
-		// Expand Card
-		if(trip.trip.legs.size() == 1) {
-			ui.expand.setVisibility(View.GONE);
-		} else {
-			ui.expand.setOnClickListener(new View.OnClickListener() {
-				                             @Override
-				                             public void onClick(View view) {
-					                             expandTrip(ui, trip.expanded);
-					                             trip.expanded = !trip.expanded;
-				                             }
-			                             }
-			);
-		}
 	}
 
 	@Override
@@ -451,6 +409,10 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		return trip;
 	}
 
+	void clear() {
+		trips.clear();
+	}
+
 	public void undo() {
 		trips.add(removed.remove(removed.size() - 1));
 	}
@@ -471,7 +433,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 			state = View.VISIBLE;
 			ostate = View.GONE;
 		}
-		ui.expand.setImageDrawable(icon);
 
 		// show view with all trip lines if everything else is gone
 		ui.linesView.setVisibility(ostate);

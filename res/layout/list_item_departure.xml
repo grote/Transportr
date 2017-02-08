@@ -8,7 +8,7 @@
 	android:layout_marginBottom="8dp"
 	app:cardCornerRadius="0dp">
 
-	<!-- This is just spit because of a bug in the Android Studio Layout Editor -->
+	<!-- This is just split because of a bug in the Android Studio Layout Editor -->
 	<include
 		layout="@layout/list_item_departure_content"/>
 

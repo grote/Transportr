@@ -2,6 +2,7 @@ package de.grobox.liberario.favorites;
 
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,14 +21,16 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.ui.LceAnimator;
+import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
 import static de.grobox.liberario.favorites.FavoritesDatabase.getFavoriteTripList;
 import static de.grobox.liberario.favorites.FavoritesType.HOME;
+import static de.grobox.liberario.favorites.FavoritesType.TRIP;
 import static de.grobox.liberario.favorites.FavoritesType.WORK;
 import static de.grobox.liberario.utils.Constants.LOADER_FAVORITES;
 
-public class FavoritesFragment extends TransportrFragment implements FavoriteListener, LoaderManager.LoaderCallbacks<Collection<FavoritesItem>> {
+public class FavoritesFragment extends TransportrFragment implements FavoriteListener, LoaderCallbacks<Collection<FavoritesItem>> {
 
 	public static final String TAG = FavoritesFragment.class.getName();
 
@@ -92,7 +95,16 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 
 	@Override
 	public void onFavoriteClicked(FavoritesItem item) {
-		// TODO
+		if (item.getType() == HOME) {
+			// TODO
+		} else if (item.getType() == WORK) {
+			// TODO
+		} else if (item.getType() == TRIP) {
+			if (item.getFrom() == null || item.getTo() == null) throw new IllegalArgumentException();
+			TransportrUtils.findDirections(getContext(), item.getFrom(), item.getVia(), item.getTo());
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override

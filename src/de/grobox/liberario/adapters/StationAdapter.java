@@ -34,6 +34,7 @@ import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 
+@Deprecated
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationHolder>{
 
 	private Location start;

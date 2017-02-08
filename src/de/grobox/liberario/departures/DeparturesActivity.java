@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
+import de.grobox.liberario.fragments.TimeDateFragment.TimeDateListener;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.fragments.TimeDateFragment;
@@ -45,7 +47,7 @@ import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 
 public class DeparturesActivity extends TransportrActivity
-		implements LoaderManager.LoaderCallbacks<QueryDeparturesResult>, TimeDateFragment.TimeDateListener {
+		implements LoaderCallbacks<QueryDeparturesResult>, TimeDateListener {
 
 	public final static int MAX_DEPARTURES = 12;
 	private final static int SAFETY_MARGIN = 6;

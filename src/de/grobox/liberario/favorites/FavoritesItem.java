@@ -36,18 +36,17 @@ import static de.grobox.liberario.favorites.FavoritesType.WORK;
 public class FavoritesItem implements Comparable<FavoritesItem> {
 
 	private final FavoritesType type;
-	private final Location from;
-	private final Location to;
-	private final Location via;
+	@Nullable
+	private final Location from, via, to;
 	private final int count;
 	private Date lastUsed;
 	private boolean favorite;
 
-	public FavoritesItem(Location from, Location via, Location to) {
+	public FavoritesItem(Location from, @Nullable Location via, Location to) {
 		this(from, via, to, false);
 	}
 
-	public FavoritesItem(Location from, Location via, Location to, boolean favorite) {
+	public FavoritesItem(Location from, @Nullable Location via, Location to, boolean favorite) {
 		this(from, via, to, 1, new Date(), favorite);
 	}
 
@@ -76,6 +75,7 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 		return type;
 	}
 
+	@Nullable
 	public Location getFrom() {
 		return from;
 	}

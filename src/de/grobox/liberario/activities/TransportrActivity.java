@@ -22,6 +22,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -72,6 +73,11 @@ public abstract class TransportrActivity extends AppCompatActivity {
 			ab.setDisplayShowTitleEnabled(!ownLayout);
 		}
 		return toolbar;
+	}
+
+	protected boolean fragmentIsVisible(String tag) {
+		Fragment fragment = getSupportFragmentManager().findFragmentByTag(tag);
+		return fragment != null && fragment.isVisible();
 	}
 
 	protected static void useLanguage(Context context) {

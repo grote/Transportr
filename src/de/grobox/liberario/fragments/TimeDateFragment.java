@@ -21,7 +21,6 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +36,7 @@ import java.util.Calendar;
 
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.utils.DateUtils;
 
 import static android.text.format.DateFormat.getDateFormat;
 import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
@@ -128,9 +128,8 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 			@Override
 			public void onClick(View view) {
 				if (listener != null) {
-					long diff = Math.abs(calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
-					boolean now = diff < 10 * MINUTE_IN_MILLIS;
-					boolean today = DateUtils.isToday(calendar.getTimeInMillis());
+					boolean now = DateUtils.isNow(calendar);
+					boolean today = DateUtils.isToday(calendar);
 					listener.onTimeAndDateSet(calendar, now, today);
 				}
 				dismiss();

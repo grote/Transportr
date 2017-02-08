@@ -1,9 +1,11 @@
 package de.grobox.liberario.trips;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.AppBarLayout.OnOffsetChangedListener;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -11,9 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.TextView;
-
-import java.util.Calendar;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -21,31 +22,22 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.favorites.FavoritesFragment;
 import de.grobox.liberario.fragments.TimeDateFragment;
-import de.grobox.liberario.fragments.TimeDateFragment.TimeDateListener;
 import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
-import de.grobox.liberario.locations.LocationView.LocationViewListener;
 import de.grobox.liberario.locations.WrapLocation;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-import static de.grobox.liberario.utils.DateUtils.getDate;
-import static de.grobox.liberario.utils.DateUtils.getTime;
-
 @ParametersAreNonnullByDefault
-public class DirectionsActivity extends TransportrActivity implements OnOffsetChangedListener, LocationViewListener, TimeDateListener {
+public class DirectionsActivity extends TransportrActivity implements OnOffsetChangedListener {
 
 	private final static String TAG = DirectionsActivity.class.getName();
 
 	@Nullable
 	private TripsFragment tripsFragment;
+	private DirectionsPresenter presenter;
 
 	private TextView date, time;
 	private LocationGpsView from;
 	private LocationView to;
-
-	private boolean now = true;
-	private Calendar calendar = Calendar.getInstance();
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,29 +52,55 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 			OnClickListener onTimeClickListener = new OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					TimeDateFragment fragment = TimeDateFragment.newInstance(calendar);
-					fragment.setTimeDateListener(DirectionsActivity.this);
+					TimeDateFragment fragment = TimeDateFragment.newInstance(presenter.getCalendar());
+					fragment.setTimeDateListener(presenter);
 					fragment.show(getSupportFragmentManager(), TimeDateFragment.TAG);
 				}
 			};
-			toolbar.findViewById(R.id.timeIcon).setOnClickListener(onTimeClickListener);
+			OnLongClickListener onTimeLongClickListener = new OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View view) {
+					presenter.resetCalendar();
+					return true;
+				}
+			};
+			View timeIcon = toolbar.findViewById(R.id.timeIcon);
+			timeIcon.setOnClickListener(onTimeClickListener);
+			timeIcon.setOnLongClickListener(onTimeLongClickListener);
 			date = (TextView) toolbar.findViewById(R.id.date);
 			date.setOnClickListener(onTimeClickListener);
+			date.setOnLongClickListener(onTimeLongClickListener);
 			time = (TextView) toolbar.findViewById(R.id.time);
 			time.setOnClickListener(onTimeClickListener);
+			time.setOnLongClickListener(onTimeLongClickListener);
 		}
 
 		from = (LocationGpsView) findViewById(R.id.fromLocation);
-		from.setLocationViewListener(this);
-
 		to = (LocationView) findViewById(R.id.toLocation);
-		to.setLocationViewListener(this);
+
+		// TODO Is Departure???
+
+		presenter = new DirectionsPresenter(this, savedInstanceState);
+		from.setLocationViewListener(presenter);
+		to.setLocationViewListener(presenter);
 
 		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.fragmentContainer, FavoritesFragment.newInstance())
-					.commit();
+			showFavorites();
+		} else {
+			// TODO re-attach TimeDateFragment if shown
 		}
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		processIntent();
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		presenter.onSaveInstanceState(outState);
 	}
 
 	@Override
@@ -111,37 +129,62 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	}
 
 	@Override
-	public void onLocationItemClick(WrapLocation loc) {
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		setIntent(intent);
 
+		processIntent();
 	}
 
-	@Override
-	public void onLocationCleared() {
-
+	void setTimeText(String text) {
+		time.setText(text);
 	}
 
-	@Override
-	public void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday) {
-		this.now = isNow;
-		this.calendar = calendar;
-		if (isNow) {
-			time.setText(R.string.now);
-			date.setVisibility(GONE);
-		} else if (isToday) {
-			time.setText(getTime(this, calendar.getTime()));
-			date.setVisibility(GONE);
-		} else {
-			time.setText(getTime(this, calendar.getTime()));
-			date.setText(getDate(this, calendar.getTime()));
-			date.setVisibility(VISIBLE);
-		}
-		search();
+	void setDateText(String text) {
+		date.setText(text);
 	}
 
-	private void search() {
+	void setDateVisibility(int visibility) {
+		date.setVisibility(visibility);
+	}
+
+	void setFromLocation(@Nullable WrapLocation location) {
+		from.setWrapLocation(location);
+	}
+
+	void setToLocation(@Nullable WrapLocation location) {
+		to.setWrapLocation(location);
+	}
+
+	boolean isShowingTrips() {
+		return fragmentIsVisible(TripsFragment.TAG);
+	}
+
+	void showFavorites() {
+		getSupportFragmentManager()
+				.beginTransaction()
+				.replace(R.id.fragmentContainer, FavoritesFragment.newInstance())
+				.commit();
+	}
+
+	void search() {
 		Log.i(TAG, "From: " + from.getLocation());
 		Log.i(TAG, "To: " + to.getLocation());
-		Log.i(TAG, "Date: " + calendar.getTime());
+		Log.i(TAG, "Date: " + presenter.getCalendar().getTime());
+
+		if (from.getLocation() == null || to.getLocation() == null) return;
+
+		tripsFragment = TripsFragment.newInstance(from.getLocation(), null, to.getLocation(), presenter.getCalendar().getTime(), true);
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragmentContainer, tripsFragment, TripsFragment.TAG)
+				.commit();
+	}
+
+	private void processIntent() {
+		presenter.processIntent(getIntent());
+		// remove the intent (and clear its action) since it was already processed
+		// and should not be processed again
+		setIntent(null);
 	}
 
 }

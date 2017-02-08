@@ -42,7 +42,7 @@ import de.grobox.liberario.trips.ListTrip;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.adapters.TripAdapter;
+import de.grobox.liberario.trips.TripAdapter;
 import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;

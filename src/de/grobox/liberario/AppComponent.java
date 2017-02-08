@@ -26,6 +26,7 @@ import de.grobox.liberario.favorites.FavoritesFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
+import de.grobox.liberario.trips.TripsFragment;
 
 @Singleton
 @Component(modules = AppModule.class)
@@ -37,6 +38,7 @@ public interface AppComponent {
 
 	void inject(LocationFragment fragment);
 	void inject(FavoritesFragment fragment);
+	void inject(TripsFragment fragment);
 
 	void inject(LocationView view);
 

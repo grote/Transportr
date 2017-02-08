@@ -48,6 +48,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.liberario.locations.FavLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
@@ -58,6 +60,7 @@ import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
+import de.grobox.liberario.trips.DirectionsActivity;
 import de.grobox.liberario.ui.LineView;
 import de.schildbach.pte.NetworkProvider.Optimize;
 import de.schildbach.pte.NetworkProvider.WalkSpeed;
@@ -74,7 +77,13 @@ import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
+import static de.grobox.liberario.utils.Constants.DATE;
+import static de.grobox.liberario.utils.Constants.FROM;
+import static de.grobox.liberario.utils.Constants.SEARCH;
+import static de.grobox.liberario.utils.Constants.TO;
+import static de.grobox.liberario.utils.Constants.VIA;
 
+@ParametersAreNonnullByDefault
 public class TransportrUtils {
 
 	static private void addLineBox(Context context, ViewGroup lineLayout, Line line, int index, boolean check_duplicates) {
@@ -348,34 +357,32 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void presetDirections(Context context, Location from, Location via, Location to) {
-		Intent intent = new Intent(context, MainActivity.class);
-		intent.setAction(DirectionsFragment.TAG);
+	static public void presetDirections(Context context, Location from, @Nullable Location via, Location to) {
+		Intent intent = new Intent(context, DirectionsActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent.putExtra("from", new WrapLocation(from));
-		intent.putExtra("via", new WrapLocation(via));
-		intent.putExtra("to", new WrapLocation(to));
-		intent.putExtra("search", false);
+		intent.putExtra(FROM, new WrapLocation(from));
+		intent.putExtra(VIA, new WrapLocation(via));
+		intent.putExtra(TO, new WrapLocation(to));
+		intent.putExtra(SEARCH, false);
 
 		context.startActivity(intent);
 	}
 
-	static public void findDirections(Context context, Location from, Location via, Location to, Date date) {
-		Intent intent = new Intent(context, MainActivity.class);
-		intent.setAction(DirectionsFragment.TAG);
+	static public void findDirections(Context context, Location from, @Nullable Location via, Location to, @Nullable Date date) {
+		Intent intent = new Intent(context, DirectionsActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent.putExtra("from", new WrapLocation(from));
-		intent.putExtra("via", new WrapLocation(via));
-		intent.putExtra("to", new WrapLocation(to));
-		intent.putExtra("search", true);
+		intent.putExtra(FROM, new WrapLocation(from));
+		intent.putExtra(VIA, new WrapLocation(via));
+		intent.putExtra(TO, new WrapLocation(to));
+		intent.putExtra(SEARCH, true);
 		if (date != null) {
-			intent.putExtra("date", date);
+			intent.putExtra(DATE, date);
 		}
 
 		context.startActivity(intent);
 	}
 
-	static public void findDirections(Context context, Location from, Location via, Location to) {
+	static public void findDirections(Context context, Location from, @Nullable Location via, Location to) {
 		findDirections(context, from, via, to, null);
 	}
 
@@ -660,7 +667,7 @@ public class TransportrUtils {
 		return shortcutIntent;
 	}
 
-	public static LatLng getLatLng(@NonNull Location location) {
+	public static LatLng getLatLng(Location location) {
 		return new LatLng(location.getLatAsDouble(), location.getLonAsDouble());
 	}
 
