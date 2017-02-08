@@ -302,8 +302,9 @@ public class RecentTripsFragment extends TransportrListFragment {
 		public boolean onActionItemClicked(final ActionMode mode, MenuItem item) {
 			switch(item.getItemId()) {
 				case R.id.action_trip_delete:
+					int checkedTripsCount = getListView().getCheckedItemCount();
 					new AlertDialog.Builder(getActivity())
-					.setMessage(getActivity().getResources().getString(R.string.clear_recent_trips, getListView().getCheckedItemCount()))
+					.setMessage(getActivity().getResources().getQuantityString(R.plurals.clear_recent_trips, checkedTripsCount, checkedTripsCount))
 					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
 							if(isFavouriteSelected()) {

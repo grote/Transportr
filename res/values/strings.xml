@@ -81,7 +81,10 @@ there are any).</string>
     <string name="network">Network</string>
     <string name="pick_network_activity">Choose Area</string>
     <string name="pick_network_first_run">Welcome to Transportr!\n\nPlease select the transportation network from your area in order to continue. You can change this at any time.</string>
-    <string name="clear_recent_trips">Are you sure that you want to delete %1$d trip(s) from your recent trips? The usage count will be lost.</string>
+    <plurals name="clear_recent_trips">
+        <item quantity="one">Are you sure that you want to delete %1$d trip from your recent trips? The usage count will be lost.</item>
+        <item quantity="other">Are you sure that you want to delete %1$d trips from your recent trips? The usage count will be lost.</item>
+    </plurals>
     <string name="trip_searching">Searching for connections&#8230;</string>
     <string name="stations_searching_position">Searching for current position&#8230;</string>
     <string name="drawer_nearby_stations">Nearby Stations</string>
