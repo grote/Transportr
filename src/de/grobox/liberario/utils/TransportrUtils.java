@@ -26,7 +26,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
@@ -50,16 +49,16 @@ import java.util.Set;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import de.grobox.liberario.locations.FavLocation;
-import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapActivity;
 import de.grobox.liberario.data.RecentsDB;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
+import de.grobox.liberario.locations.FavLocation;
+import de.grobox.liberario.locations.WrapLocation;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.trips.DirectionsActivity;
 import de.grobox.liberario.ui.LineView;
 import de.schildbach.pte.NetworkProvider.Optimize;
@@ -72,16 +71,19 @@ import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
-import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
 import static de.grobox.liberario.utils.Constants.DATE;
 import static de.grobox.liberario.utils.Constants.FROM;
 import static de.grobox.liberario.utils.Constants.SEARCH;
 import static de.grobox.liberario.utils.Constants.TO;
 import static de.grobox.liberario.utils.Constants.VIA;
+import static de.grobox.liberario.utils.DateUtils.getDifferenceInMinutes;
 
 @ParametersAreNonnullByDefault
 public class TransportrUtils {
@@ -141,7 +143,7 @@ public class TransportrUtils {
 		if(stop.isArrivalTimePredicted() && stop.getArrivalDelay() != null) {
 			long delay = stop.getArrivalDelay();
 			time.setTime(time.getTime() - delay);
-			delayView.setText(getDelayText(delay));
+			delayView.setText(DateUtils.getDelayText(delay));
 		}
 		timeView.setText(DateUtils.getTime(context, time));
 	}
@@ -154,19 +156,24 @@ public class TransportrUtils {
 		if(stop.isDepartureTimePredicted() && stop.getDepartureDelay() != null) {
 			long delay = stop.getDepartureDelay();
 			time.setTime(time.getTime() - delay);
-			delayView.setText(getDelayText(delay));
+			delayView.setText(DateUtils.getDelayText(delay));
 		}
 		timeView.setText(DateUtils.getTime(context, time));
 	}
 
-	static private String getDelayText(long delay) {
-		if(delay > 0) {
-			return "+" + Long.toString(delay / 1000 / 60);
-		}
-		else if(delay < 0) {
-			return Long.toString(delay / 1000 / 60);
+	public static void setRelativeDepartureTime(TextView timeRel, Date date) {
+		long difference = getDifferenceInMinutes(date);
+		if (difference > 99 || difference < -99) {
+			timeRel.setVisibility(GONE);
+		} else if (difference == 0) {
+			timeRel.setText(timeRel.getContext().getString(R.string.now_small));
+			timeRel.setVisibility(VISIBLE);
+		} else if (difference > 0) {
+			timeRel.setText(timeRel.getContext().getString(R.string.in_x_minutes, difference));
+			timeRel.setVisibility(VISIBLE);
 		} else {
-			return null;
+			timeRel.setText(timeRel.getContext().getString(R.string.x_minutes_ago, difference * -1));
+			timeRel.setVisibility(VISIBLE);
 		}
 	}
 

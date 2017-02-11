@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/leg_details">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:showIn="@layout/leg_details">
 
-    <ImageView
-        android:id="@+id/productView"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="1px"
-        android:src="@drawable/product_bus"
-        tools:ignore="ContentDescription"/>
+	<ImageView
+		android:id="@+id/productView"
+		android:layout_width="16dp"
+		android:layout_height="16dp"
+		android:layout_gravity="center"
+		android:layout_marginTop="1px"
+		android:src="@drawable/product_bus"
+		tools:ignore="ContentDescription"/>
 
-    <TextView
-        android:id="@+id/labelView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingRight="3dp"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        tools:ignore="RtlHardcoded,RtlSymmetry"
-        tools:text="123"/>
+	<TextView
+		android:id="@+id/labelView"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:gravity="center"
+		android:paddingRight="3dp"
+		android:textSize="12sp"
+		android:textStyle="bold"
+		tools:ignore="RtlHardcoded,RtlSymmetry"
+		tools:text="123"/>
 
 </merge>

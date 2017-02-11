@@ -38,13 +38,13 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 
 import java.util.ArrayList;
 
-import de.grobox.liberario.trips.ListTrip;
-import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.trips.TripAdapter;
+import de.grobox.liberario.adapters.TripDetailsAdapter;
 import de.grobox.liberario.favorites.FavoritesItem;
+import de.grobox.liberario.networks.TransportNetwork;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
+import de.grobox.liberario.trips.ListTrip;
 import de.grobox.liberario.ui.SwipeDismissRecyclerViewTouchListener;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
@@ -61,7 +61,7 @@ public class TripsActivity extends TransportrActivity {
 	private QueryTripsResult start_context;
 	private QueryTripsResult end_context;
 	private RecyclerView mRecyclerView;
-	private TripAdapter mAdapter;
+	private TripDetailsAdapter mAdapter;
 	private SwipyRefreshLayout swipeRefresh;
 	private Location from;
 	private Location via;
@@ -158,7 +158,7 @@ public class TripsActivity extends TransportrActivity {
 
 		final boolean showLineName = network != null && network.hasGoodLineNames();;
 
-		mAdapter = new TripAdapter(ListTrip.getList(start_context.trips), touchListener, this, showLineName);
+		mAdapter = new TripDetailsAdapter(ListTrip.getList(start_context.trips), touchListener, this, showLineName);
 		mAdapter.setHasStableIds(false);
 		mRecyclerView.setAdapter(mAdapter);
 

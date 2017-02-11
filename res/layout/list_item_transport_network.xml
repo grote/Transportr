@@ -64,12 +64,15 @@
 		app:layout_constraintLeft_toRightOf="@+id/logo"
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/name"
-		tools:text="Network Description that can be longer and maybe even have a network list like this:\n(ABC, DEF)"/>
+		tools:text="Network Description that can be longer and maybe even have a network list like this:\n(ABC, DEF)"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintVertical_bias="0.0"/>
 
 	<View
 		style="@style/Divider"
+		android:layout_width="0dp"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintLeft_toLeftOf="parent"/>
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

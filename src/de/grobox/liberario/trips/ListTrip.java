@@ -22,7 +22,7 @@ import java.util.List;
 
 import de.schildbach.pte.dto.Trip;
 
-// this hack seems to be necessary because RecyclerView has no way to save view states for its items
+@Deprecated
 public class ListTrip {
 
 	public Trip trip;

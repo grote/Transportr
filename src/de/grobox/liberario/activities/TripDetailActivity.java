@@ -35,10 +35,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
-import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.adapters.TripDetailsAdapter;
 import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.trips.TripAdapter;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.TransportrUtils;
@@ -50,7 +50,7 @@ import de.schildbach.pte.dto.Trip;
 public class TripDetailActivity extends TransportrActivity implements AsyncQueryTripsTask.TripHandler {
 
 	private Trip trip;
-	private TripAdapter.BaseTripHolder ui;
+	private TripDetailsAdapter.BaseTripHolder ui;
 	private Menu mMenu;
 	private Location from;
 	private Location to;
@@ -83,7 +83,7 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 
 		final Intent intent = getIntent();
 		trip = (Trip) intent.getSerializableExtra("de.schildbach.pte.dto.Trip");
-		ui = new TripAdapter.BaseTripHolder(findViewById(R.id.cardView), trip.legs.size());
+		ui = new TripDetailsAdapter.BaseTripHolder(findViewById(R.id.cardView), trip.legs.size());
 
 		// retrieve trip data from intent that is not stored properly in trip object
 		from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.from");
@@ -185,7 +185,7 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 
 		int i = 0;
 		for(final Trip.Leg leg : trip.legs) {
-			TripAdapter.bindLeg(this, ui.legs.get(i), leg, true, showLineName);
+			TripDetailsAdapter.bindLeg(this, ui.legs.get(i), leg, true, showLineName);
 			i += 1;
 		}
 

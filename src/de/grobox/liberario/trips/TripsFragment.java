@@ -15,7 +15,6 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout.OnRefreshListener;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -92,15 +91,16 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 		swipe.setOnRefreshListener(this);
 
 		list = (RecyclerView) v.findViewById(R.id.list);
-		list.setLayoutManager(new LinearLayoutManager(getContext()));
-		boolean showLineName = manager.getTransportNetwork() != null && manager.getTransportNetwork().hasGoodLineNames();
-		adapter = new TripAdapter(new ArrayList<ListTrip>(), null, getContext(), showLineName);
+		LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+		list.setLayoutManager(layoutManager);
+		adapter = new TripAdapter();
 		adapter.setHasStableIds(false);
 		list.setAdapter(adapter);
 
 		LceAnimator.showLoading(progressBar, list, null);
 
-		getLoaderManager().initLoader(LOADER_TRIPS, null, this).forceLoad();
+		Loader loader = getLoaderManager().initLoader(LOADER_TRIPS, null, this);
+		if (savedInstanceState == null) loader.forceLoad();
 
 		return v;
 	}
@@ -123,7 +123,7 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 	@Override
 	public void onLoadFinished(Loader<QueryTripsResult> loader, @Nullable QueryTripsResult result) {
 		if (result != null && result.status == OK) {
-			adapter.addAll(ListTrip.getList(result.trips));
+			adapter.addAll(result.trips);
 			LceAnimator.showContent(progressBar, list, null);
 		} else {
 			// TODO show error message

@@ -18,10 +18,10 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static de.grobox.liberario.utils.DateUtils.getDelay;
 import static de.grobox.liberario.utils.DateUtils.getDelayString;
-import static de.grobox.liberario.utils.DateUtils.getDifferenceInMinutes;
 import static de.grobox.liberario.utils.DateUtils.getTime;
 import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
 import static de.grobox.liberario.utils.TransportrUtils.getTintedDrawable;
+import static de.grobox.liberario.utils.TransportrUtils.setRelativeDepartureTime;
 
 class DepartureViewHolder extends RecyclerView.ViewHolder {
 
@@ -56,16 +56,18 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 		if (dep.plannedTime != null) {
 			bindTimeAbs(dep.plannedTime);
 			if (dep.predictedTime != null) {
-				bindTimeRel(dep.predictedTime);
+				setRelativeDepartureTime(timeRel, dep.predictedTime);
 				bindDelay(getDelay(dep.plannedTime, dep.predictedTime));
 			} else {
-				bindTimeRel(dep.plannedTime);
+				setRelativeDepartureTime(timeRel, dep.plannedTime);
 				bindDelay(0);
 			}
-		} else {
+		} else if (dep.predictedTime != null) {
 			bindTimeAbs(dep.predictedTime);
-			bindTimeRel(dep.predictedTime);
+			setRelativeDepartureTime(timeRel, dep.predictedTime);
 			bindDelay(0);
+		} else {
+			throw new RuntimeException();
 		}
 
 		// line icon and name
@@ -98,22 +100,6 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 
 		// TODO show line from here on
 		card.setClickable(false);
-	}
-
-	private void bindTimeRel(Date date) {
-		long difference = getDifferenceInMinutes(date);
-		if (difference > 99 || difference < -99) {
-			timeRel.setVisibility(GONE);
-		} else if (difference == 0) {
-			timeRel.setText(timeRel.getContext().getString(R.string.now_small));
-			timeRel.setVisibility(VISIBLE);
-		} else if (difference > 0) {
-			timeRel.setText(timeRel.getContext().getString(R.string.in_x_minutes, difference));
-			timeRel.setVisibility(VISIBLE);
-		} else {
-			timeRel.setText(timeRel.getContext().getString(R.string.x_minutes_ago, difference * -1));
-			timeRel.setVisibility(VISIBLE);
-		}
 	}
 
 	private void bindTimeAbs(Date date) {

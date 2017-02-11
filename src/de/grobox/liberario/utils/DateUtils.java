@@ -80,4 +80,14 @@ public class DateUtils {
 		return diff < 10 * MINUTE_IN_MILLIS;
 	}
 
+	public static String getDelayText(long delay) {
+		if (delay > 0) {
+			return "+" + Long.toString(delay / 1000 / 60);
+		} else if (delay < 0) {
+			return "-" + Long.toString(delay / 1000 / 60);
+		} else {
+			return null;
+		}
+	}
+
 }
