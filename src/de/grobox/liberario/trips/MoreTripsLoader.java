@@ -22,41 +22,28 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
-import java.util.Date;
-import java.util.EnumSet;
-
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
-import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
-import de.schildbach.pte.NetworkProvider.Optimize;
-import de.schildbach.pte.NetworkProvider.WalkSpeed;
-import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.Product;
+import de.schildbach.pte.dto.QueryTripsContext;
 import de.schildbach.pte.dto.QueryTripsResult;
 
 @ParametersAreNonnullByDefault
-class TripsLoader extends AsyncTaskLoader<QueryTripsResult> {
+class MoreTripsLoader extends AsyncTaskLoader<QueryTripsResult> {
 
 	private final String TAG = getClass().getName();
 
 	private final TransportNetworkManager manager;
-	private final Location from, to;
-	@Nullable
-	private final Location via;
-	private final Date date;
-	private final boolean departure;
+	private final @Nullable QueryTripsContext queryTripsContext;
+	private final boolean later;
 
-	TripsLoader(Context context, TransportNetworkManager manager, Location from, @Nullable Location via, Location to, Date date, boolean departure) {
+	MoreTripsLoader(Context context, TransportNetworkManager manager, @Nullable QueryTripsContext queryTripsContext, boolean later) {
 		super(context);
 		this.manager = manager;
-		this.from = from;
-		this.to = to;
-		this.via = via;
-		this.date = date;
-		this.departure = departure;
+		this.queryTripsContext = queryTripsContext;
+		this.later = later;
 	}
 
 	@Nullable
@@ -65,23 +52,16 @@ class TripsLoader extends AsyncTaskLoader<QueryTripsResult> {
 		TransportNetwork network = manager.getTransportNetwork();
 		if (network == null) return null;
 
-		// TODO expose via TransportNetworkManager
-		Optimize optimize = TransportrUtils.getOptimize(getContext());
-		WalkSpeed walkSpeed = TransportrUtils.getWalkSpeed(getContext());
-		EnumSet<Product> products = EnumSet.allOf(Product.class);
+		if (queryTripsContext == null) return null;
+		if (later && !queryTripsContext.canQueryLater()) return null;
+		if (!later && !queryTripsContext.canQueryEarlier()) return null;
 
-		Log.i(TAG, "From: " + from);
-		Log.i(TAG, "Via: " + via);
-		Log.i(TAG, "To: " + to);
-		Log.i(TAG, "Date: " + date);
-		Log.i(TAG, "Departure: " + departure);
-		Log.i(TAG, "Products: " + products);
-		Log.i(TAG, "Optimize for: " + optimize);
-		Log.i(TAG, "Walk Speed: " + walkSpeed);
+		Log.i(TAG, "QueryTripsContext: " + queryTripsContext.toString());
+		Log.i(TAG, "Later: " + later);
 
 		try {
 			NetworkProvider np = network.getNetworkProvider();
-			return np.queryTrips(from, via, to, date, departure, products, optimize, walkSpeed, null, null);
+			return np.queryMoreTrips(queryTripsContext, later);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

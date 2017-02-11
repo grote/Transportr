@@ -22,5 +22,6 @@ public interface Constants {
 	int LOADER_NEARBY_STATIONS = 2;
 	int LOADER_FAVORITES = 3;
 	int LOADER_TRIPS = 4;
+	int LOADER_MORE_TRIPS = 5;
 
 }

@@ -24,13 +24,16 @@ import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.QueryTripsContext;
 import de.schildbach.pte.dto.QueryTripsResult;
 
+import static com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout.LARGE;
 import static com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
 import static com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTTOM;
 import static de.grobox.liberario.utils.Constants.DATE;
 import static de.grobox.liberario.utils.Constants.FROM;
 import static de.grobox.liberario.utils.Constants.IS_DEPARTURE;
+import static de.grobox.liberario.utils.Constants.LOADER_MORE_TRIPS;
 import static de.grobox.liberario.utils.Constants.LOADER_TRIPS;
 import static de.grobox.liberario.utils.Constants.TO;
 import static de.grobox.liberario.utils.Constants.VIA;
@@ -50,10 +53,11 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 	private TripAdapter adapter;
 
 	private Location from, to;
-	@Nullable
-	private Location via;
+	private @Nullable Location via;
 	private Date date;
 	private boolean departure;
+	private @Nullable QueryTripsContext queryTripsContext;
+	private boolean queryMoreLater;
 
 	public static TripsFragment newInstance(Location from, @Nullable Location via, Location to, Date date, boolean departure) {
 		TripsFragment f = new TripsFragment();
@@ -87,6 +91,8 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 		// Swipe to Refresh
 		swipe = (SwipyRefreshLayout) v.findViewById(R.id.swipe);
 		swipe.setColorSchemeResources(R.color.accent);
+		swipe.setProgressBackgroundColor(R.color.cardview_dark_background);
+		swipe.setSize(LARGE);
 		swipe.setDistanceToTriggerSync(getDragDistance(getContext()));
 		swipe.setOnRefreshListener(this);
 
@@ -95,6 +101,7 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 		list.setLayoutManager(layoutManager);
 		adapter = new TripAdapter();
 		adapter.setHasStableIds(false);
+		list.setHasFixedSize(true);
 		list.setAdapter(adapter);
 
 		LceAnimator.showLoading(progressBar, list, null);
@@ -111,22 +118,31 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 
 	@Override
 	public void onRefresh(SwipyRefreshLayoutDirection direction) {
-		// TODO
-		swipe.setRefreshing(false);
+		queryMoreLater = direction == BOTTOM;
+		getLoaderManager().restartLoader(LOADER_MORE_TRIPS, null, this).forceLoad();
 	}
 
 	@Override
 	public Loader<QueryTripsResult> onCreateLoader(int id, Bundle args) {
+		if (id == LOADER_MORE_TRIPS)
+			return new MoreTripsLoader(getContext(), manager, queryTripsContext, queryMoreLater);
 		return new TripsLoader(getContext(), manager, from, via, to, date, departure);
 	}
 
 	@Override
 	public void onLoadFinished(Loader<QueryTripsResult> loader, @Nullable QueryTripsResult result) {
 		if (result != null && result.status == OK) {
+			queryTripsContext = result.context;
 			adapter.addAll(result.trips);
-			LceAnimator.showContent(progressBar, list, null);
 		} else {
 			// TODO show error message
+			LceAnimator.showContent(progressBar, list, null);
+		}
+
+		if (loader.getId() == LOADER_MORE_TRIPS) {
+			swipe.setRefreshing(false);
+			list.smoothScrollBy(0, queryMoreLater ? 200 : -200);
+		} else {
 			LceAnimator.showContent(progressBar, list, null);
 		}
 	}
@@ -134,6 +150,7 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 	@Override
 	public void onLoaderReset(Loader<QueryTripsResult> loader) {
 		adapter.clear();
+		queryTripsContext = null;
 	}
 
 }
