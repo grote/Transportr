@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.AppBarLayout.OnOffsetChangedListener;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -14,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -38,6 +38,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	private TextView date, time;
 	private LocationGpsView from;
 	private LocationView to;
+	private FrameLayout fragmentContainer;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,6 +84,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		presenter = new DirectionsPresenter(this, savedInstanceState);
 		from.setLocationViewListener(presenter);
 		to.setLocationViewListener(presenter);
+		fragmentContainer = (FrameLayout) findViewById(R.id.fragmentContainer);
 
 		if (savedInstanceState == null) {
 			showFavorites();
@@ -178,6 +180,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragmentContainer, tripsFragment, TripsFragment.TAG)
 				.commit();
+		fragmentContainer.requestFocus();
 	}
 
 	private void processIntent() {

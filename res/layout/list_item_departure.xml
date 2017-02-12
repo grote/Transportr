@@ -38,7 +38,7 @@
 			android:textAppearance="@style/TextAppearance.AppCompat.Body1"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toLeftOf="@+id/guideline"
-			app:layout_constraintTop_toBottomOf="@+id/fromTimeRel"
+			app:layout_constraintTop_toBottomOf="@+id/departureTimeRel"
 			app:layout_goneMarginTop="0dp"
 			tools:text="23:42"/>
 

@@ -295,7 +295,6 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 		if(setText) {
 			if(loc != null) {
 				ui.location.setText(TransportrUtils.getLocationName(loc));
-				ui.location.setSelection(ui.location.getText().length());
 				ui.location.dismissDropDown();
 				ui.clear.setVisibility(View.VISIBLE);
 				stopSuggestLocationsTask();
