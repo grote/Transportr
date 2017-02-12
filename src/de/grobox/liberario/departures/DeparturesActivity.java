@@ -162,6 +162,7 @@ public class DeparturesActivity extends TransportrActivity
 	public void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday) {
 		this.calendar = calendar;
 		adapter.clear();
+		searchState = SearchState.INITIAL;
 		progressBar.setVisibility(VISIBLE);
 		list.setVisibility(INVISIBLE);
 
