@@ -55,4 +55,11 @@
 		<item name="android:layout_width">match_parent</item>
 	</style>
 
+	<style name="ActivityAnimation" parent="@android:style/Animation.Activity">
+		<item name="android:activityOpenEnterAnimation">@anim/screen_new_in</item>
+		<item name="android:activityOpenExitAnimation">@anim/screen_old_out</item>
+		<item name="android:activityCloseEnterAnimation">@anim/screen_old_in</item>
+		<item name="android:activityCloseExitAnimation">@anim/screen_new_out</item>
+	</style>
+
 </resources>
