@@ -110,6 +110,12 @@ public class TransportNetworkManager {
 		this.transportNetwork2 = this.transportNetwork;
 		this.transportNetwork = transportNetwork;
 
+		// TODO improve
+		home = null;
+		loadHome();
+		favoriteLocations = null;
+		loadFavoriteLocations();
+
 		// inform listeners
 		for (TransportNetworkChangedListener l : transportNetworkChangedListeners) {
 			if (l != null) l.onTransportNetworkChanged(transportNetwork);

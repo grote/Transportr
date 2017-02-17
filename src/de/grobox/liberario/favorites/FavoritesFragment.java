@@ -1,7 +1,6 @@
 package de.grobox.liberario.favorites;
 
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
@@ -72,6 +71,7 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 		return new AsyncTaskLoader<Collection<FavoritesItem>>(getContext()) {
 			@Override
 			public Collection<FavoritesItem> loadInBackground() {
+				// TODO use TransportManager cache instead of loading this ourselves
 				List<FavoritesItem> favorites = getFavoriteTripList(getContext());
 				Location home = manager.getHome();
 				Location work = null; // TODO

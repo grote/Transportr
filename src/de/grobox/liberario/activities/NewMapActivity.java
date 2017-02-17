@@ -248,6 +248,9 @@ public class NewMapActivity extends DrawerActivity
 		// TODO
 		Log.e("TEST", "Transport Network Changed, recreating...");
 		recreate();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.bottomSheet, FavoritesFragment.newInstance(), FavoritesFragment.TAG)
+				.commit();
 	}
 
 	@Override
@@ -255,6 +258,7 @@ public class NewMapActivity extends DrawerActivity
 		runOnThread(new Runnable() {
 			@Override
 			public void run() {
+				// TODO do this with TransportManager
 				updateFavLocation(NewMapActivity.this, loc.getLocation(), FROM);
 			}
 		});
