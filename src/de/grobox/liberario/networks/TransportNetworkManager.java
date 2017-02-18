@@ -31,7 +31,8 @@ import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
-import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.data.LocationDb;
+import de.grobox.liberario.data.SpecialLocationDb;
 import de.grobox.liberario.locations.FavLocation;
 import de.grobox.liberario.locations.FavLocation.FavLocationType;
 import de.grobox.liberario.locations.WrapLocation;
@@ -48,7 +49,7 @@ public class TransportNetworkManager {
 	@Nullable
 	private TransportNetwork transportNetwork, transportNetwork2, transportNetwork3;
 	@Nullable
-	private Location home;
+	private Location home, work;
 	@Nullable
 	private List<FavLocation> favoriteLocations;
 	private List<FavoriteLocationsLoadedListener> favoriteLocationsLoadedListeners = new ArrayList<>();
@@ -62,6 +63,7 @@ public class TransportNetworkManager {
 		transportNetwork2 = loadTransportNetwork(2);
 		transportNetwork3 = loadTransportNetwork(3);
 		loadHome();
+		loadWork();
 		loadFavoriteLocations();
 	}
 
@@ -113,6 +115,8 @@ public class TransportNetworkManager {
 		// TODO improve
 		home = null;
 		loadHome();
+		work = null;
+		loadWork();
 		favoriteLocations = null;
 		loadFavoriteLocations();
 
@@ -127,7 +131,16 @@ public class TransportNetworkManager {
 		return home;
 	}
 
-	public void setHome(@Nullable final Location home) {
+	private void loadHome() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				setLoadedHome(SpecialLocationDb.getHome(context));
+			}
+		}).start();
+	}
+
+	private void setLoadedHome(@Nullable final Location home) {
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {
@@ -136,11 +149,45 @@ public class TransportNetworkManager {
 		});
 	}
 
-	private void loadHome() {
+	public void setHome(final Location home) {
+		this.home = home;
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				setHome(RecentsDB.getHome(context));
+				SpecialLocationDb.setHome(context, home);
+			}
+		}).start();
+	}
+
+	@Nullable
+	public Location getWork() {
+		return work;
+	}
+
+	private void loadWork() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				setLoadedWork(SpecialLocationDb.getWork(context));
+			}
+		}).start();
+	}
+
+	private void setLoadedWork(@Nullable final Location work) {
+		new Handler(Looper.getMainLooper()).post(new Runnable() {
+			@Override
+			public void run() {
+				TransportNetworkManager.this.work = work;
+			}
+		});
+	}
+
+	public void setWork(final Location work) {
+		this.work = work;
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				SpecialLocationDb.setWork(context, work);
 			}
 		}).start();
 	}
@@ -176,12 +223,12 @@ public class TransportNetworkManager {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				setFavoriteLocations(RecentsDB.getFavLocationList(context));
+				setLoadedFavoriteLocations(LocationDb.getFavLocationList(context));
 			}
 		}).start();
 	}
 
-	private void setFavoriteLocations(final List<FavLocation> favoriteLocations) {
+	private void setLoadedFavoriteLocations(final List<FavLocation> favoriteLocations) {
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {

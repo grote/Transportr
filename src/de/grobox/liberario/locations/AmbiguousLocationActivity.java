@@ -38,13 +38,13 @@ import de.grobox.liberario.activities.TripsActivity;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.favorites.FavoritesItem;
-import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.data.LocationDb;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
-import static de.grobox.liberario.favorites.FavoritesDatabase.updateFavoriteTrip;
+import static de.grobox.liberario.data.FavoritesDb.updateFavoriteTrip;
 
 public class AmbiguousLocationActivity extends TransportrActivity implements AsyncQueryTripsTask.TripHandler {
 	private Location from, via, to;
@@ -135,9 +135,9 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 				to = ((WrapLocation) ui.toSpinner.getSelectedItem()).getLocation();
 
 				// remember location and trip
-				RecentsDB.updateFavLocation(getApplicationContext(), from, FavLocation.FavLocationType.FROM);
-				if(via != null) RecentsDB.updateFavLocation(getApplicationContext(), via, FavLocation.FavLocationType.VIA);
-				RecentsDB.updateFavLocation(getApplicationContext(), to, FavLocation.FavLocationType.TO);
+				LocationDb.updateFavLocation(getApplicationContext(), from, FavLocation.FavLocationType.FROM);
+				if(via != null) LocationDb.updateFavLocation(getApplicationContext(), via, FavLocation.FavLocationType.VIA);
+				LocationDb.updateFavLocation(getApplicationContext(), to, FavLocation.FavLocationType.TO);
 				updateFavoriteTrip(getApplicationContext(), new FavoritesItem(from, via, to));
 
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext(), AmbiguousLocationActivity.this);

@@ -71,7 +71,7 @@ import de.grobox.liberario.locations.FavLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.data.LocationDb;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Line;
@@ -300,7 +300,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			@Override
 			public void run() {
 				// first try to get area from favourites
-				List<FavLocation> favs = RecentsDB.getFavLocationList(MapActivity.this);
+				List<FavLocation> favs = LocationDb.getFavLocationList(MapActivity.this);
 				ArrayList<GeoPoint> geoPoints = new ArrayList<>(favs.size());
 				for(FavLocation fav : favs) {
 					Location loc = fav.getLocation();

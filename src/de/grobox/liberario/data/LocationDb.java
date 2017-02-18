@@ -32,22 +32,20 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
 import static de.grobox.liberario.settings.Preferences.getNetwork;
-import static de.grobox.liberario.data.DBHelper.getLocation;
+import static de.grobox.liberario.data.DbHelper.getLocation;
 
-public class RecentsDB {
-
-	/* FavLocation */
+public class LocationDb {
 
 	public static List<FavLocation> getFavLocationList(Context context) {
 		List<FavLocation> fav_list = new ArrayList<>();
 		String network = getNetwork(context);
 		if(network == null) return fav_list;
 
-		DBHelper mDbHelper = new DBHelper(context);
+		DbHelper mDbHelper = new DbHelper(context);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
 		Cursor c = db.query(
-			DBHelper.TABLE_FAV_LOCS,    // The table to query
+			DbHelper.TABLE_FAV_LOCS,    // The table to query
 			null,                       // The columns to return (null == all)
 			"network = ?",              // The columns for the WHERE clause
 			new String[] { network }, // The values for the WHERE clause
@@ -109,12 +107,12 @@ public class RecentsDB {
 			whereArgs = new String[] { getNetwork(context), loc.type.name(), lat, lon, place, name };
 		}
 
-		DBHelper mDbHelper = new DBHelper(context);
+		DbHelper mDbHelper = new DbHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
 		// get location that needs to be updated from database
 		Cursor c = db.query(
-				DBHelper.TABLE_FAV_LOCS,    // The table to query
+				DbHelper.TABLE_FAV_LOCS,    // The table to query
 				new String[] {"_id", "from_count", "via_count", "to_count"},
 				whereClause,
 				whereArgs,
@@ -135,7 +133,7 @@ public class RecentsDB {
 			else if(favLocationType == FavLocation.FavLocationType.TO) {
 				values.put("to_count", c.getInt(c.getColumnIndex("to_count")) + 1);
 			}
-			db.update(DBHelper.TABLE_FAV_LOCS, values, "_id = ?", new String[] { c.getString(c.getColumnIndex("_id")) });
+			db.update(DbHelper.TABLE_FAV_LOCS, values, "_id = ?", new String[] { c.getString(c.getColumnIndex("_id")) });
 		}
 		else {
 			// add new favorite location
@@ -164,75 +162,7 @@ public class RecentsDB {
 				values.put("to_count", 1);
 			}
 
-			db.insert(DBHelper.TABLE_FAV_LOCS, null, values);
-		}
-
-		c.close();
-		db.close();
-	}
-
-	/* Home */
-
-	public static Location getHome(Context context) {
-		Location home = null;
-
-		String network = getNetwork(context);
-		if(network == null) return null;
-
-		DBHelper mDbHelper = new DBHelper(context);
-		SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-		Cursor c = db.query(
-				DBHelper.TABLE_HOME_LOCS,   // The table to query
-				null,                       // The columns to return (null == all)
-				"network = ?",              // The columns for the WHERE clause
-				new String[] { network }, // The values for the WHERE clause
-				null,   // don't group the rows
-				null,   // don't filter by row groups
-				null    // The sort order
-		);
-
-		while(c.moveToNext()) {
-			home = getLocation(c);
-		}
-
-		c.close();
-		db.close();
-
-		return home;
-	}
-
-	public static void setHome(Context context, Location home) {
-		DBHelper mDbHelper = new DBHelper(context);
-		SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-		// prepare values for new home location
-		ContentValues values = new ContentValues();
-		values.put("network", getNetwork(context));
-		values.put("type", home.type.name());
-		values.put("id", home.id);
-		values.put("lat", home.lat);
-		values.put("lon", home.lon);
-		values.put("place", home.place);
-		values.put("name", home.name);
-
-		// check if a previous home location was set
-		Cursor c = db.query(
-			DBHelper.TABLE_HOME_LOCS,   // The table to query
-			new String[] { "_id" },     // The columns to return (null == all)
-			"network = ?",              // The columns for the WHERE clause
-			new String[] { getNetwork(context) }, // The values for the WHERE clause
-			null,   // don't group the rows
-			null,   // don't filter by row groups
-			null    // The sort order
-		);
-
-		if(c.getCount() > 0) {
-			// found previous home location, so update entry
-			db.update(DBHelper.TABLE_HOME_LOCS, values, "network = ?", new String[] { getNetwork(context) });
-		} else {
-			// no previous home location found, so insert new entry
-			db.insert(DBHelper.TABLE_HOME_LOCS, null, values);
+			db.insert(DbHelper.TABLE_FAV_LOCS, null, values);
 		}
 
 		c.close();

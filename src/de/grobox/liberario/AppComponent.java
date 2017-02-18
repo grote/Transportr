@@ -23,6 +23,8 @@ import dagger.Component;
 import de.grobox.liberario.activities.NewMapActivity;
 import de.grobox.liberario.departures.DeparturesActivity;
 import de.grobox.liberario.favorites.FavoritesFragment;
+import de.grobox.liberario.favorites.HomePickerDialogFragment;
+import de.grobox.liberario.favorites.WorkPickerDialogFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
@@ -39,6 +41,8 @@ public interface AppComponent {
 	void inject(LocationFragment fragment);
 	void inject(FavoritesFragment fragment);
 	void inject(TripsFragment fragment);
+	void inject(HomePickerDialogFragment fragment);
+	void inject(WorkPickerDialogFragment fragment);
 
 	void inject(LocationView view);
 

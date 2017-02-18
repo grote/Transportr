@@ -46,8 +46,8 @@ import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.favorites.FavoritesPopupMenu;
 import de.grobox.liberario.utils.TransportrUtils;
 
-import static de.grobox.liberario.favorites.FavoritesDatabase.deleteFavoriteTrip;
-import static de.grobox.liberario.favorites.FavoritesDatabase.getFavoriteTripList;
+import static de.grobox.liberario.data.FavoritesDb.deleteFavoriteTrip;
+import static de.grobox.liberario.data.FavoritesDb.getFavoriteTripList;
 
 @Deprecated
 public class RecentTripsFragment extends TransportrListFragment {

@@ -23,7 +23,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -33,8 +32,8 @@ import android.view.View;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.data.RecentsDB;
-import de.grobox.liberario.fragments.HomePickerDialogFragment;
+import de.grobox.liberario.data.SpecialLocationDb;
+import de.grobox.liberario.favorites.HomePickerDialogFragment;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;
@@ -45,7 +44,7 @@ import static android.app.Activity.RESULT_OK;
 import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
 
 @ParametersAreNonnullByDefault
-public class SettingsFragment extends PreferenceFragmentCompat implements OnSharedPreferenceChangeListener, TransportNetworkChangedListener, HomePickerDialogFragment.OnHomeChangedListener {
+public class SettingsFragment extends PreferenceFragmentCompat implements OnSharedPreferenceChangeListener, TransportNetworkChangedListener {
 
 	public static final String TAG = "de.grobox.liberario.settings";
 
@@ -77,19 +76,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 			}
 		});
 
+		// TODO remove from here
 		home = findPreference("pref_key_home");
 		home.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			public boolean onPreferenceClick(Preference preference) {
 				// show home picker dialog
 				HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
-				setHomeFragment.setOnHomeChangedListener(SettingsFragment.this);
 				FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
 				setHomeFragment.show(ft, HomePickerDialogFragment.TAG);
 
 				return true;
 			}
 		});
-
 		// Fill in current home location if available
 		if(network != null) setHome(null);
 
@@ -120,11 +118,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 	public void onResume() {
 		super.onResume();
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-
-		Fragment homePicker = getActivity().getSupportFragmentManager().findFragmentByTag(HomePickerDialogFragment.TAG);
-		if(homePicker != null && homePicker.isAdded()) {
-			((HomePickerDialogFragment) homePicker).setOnHomeChangedListener(this);
-		}
 	}
 
 	@Override
@@ -164,14 +157,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 		// TODO
 	}
 
-	@Override
-	public void onHomeChanged(Location home) {
-		setHome(home);
-	}
-
 	private void setHome(Location home) {
 		if(home == null) {
-			home = RecentsDB.getHome(getActivity());
+			home = SpecialLocationDb.getHome(getActivity());
 		}
 		if(home != null) {
 			this.home.setSummary(TransportrUtils.getFullLocName(home));

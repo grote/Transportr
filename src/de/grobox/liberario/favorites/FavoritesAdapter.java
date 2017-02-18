@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.favorites;
 
+import android.support.annotation.Nullable;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.R;
 
+import static android.support.v7.util.SortedList.INVALID_POSITION;
 import static de.grobox.liberario.favorites.FavoritesType.HOME;
 import static de.grobox.liberario.favorites.FavoritesType.WORK;
 
@@ -107,19 +109,42 @@ public class FavoritesAdapter extends RecyclerView.Adapter<AbstractFavoritesView
 		return items.size();
 	}
 
-	public FavoritesItem getItem(int position) {
-		return items.get(position);
+	@Nullable
+	public FavoritesItem getHome() {
+		return getSpecialItem(HOME);
 	}
 
-	public void add(FavoritesItem favorite) {
-		items.add(favorite);
+	@Nullable
+	public FavoritesItem getWork() {
+		return getSpecialItem(WORK);
 	}
 
-	public void addAll(Collection<FavoritesItem> favorites) {
+	@Nullable
+	private FavoritesItem getSpecialItem(FavoritesType type) {
+		for (int i = 0; i < items.size(); i++) {
+			FavoritesItem item = items.get(i);
+			if (item.getType() == type) return item;
+		}
+		return null;
+	}
+
+	int findItemPosition(FavoritesItem item) {
+		// items.indexOf() doesn't work on multiple (position) changes
+		for (int i = 0; i < items.size(); i++) {
+			if (item.equals(items.get(i))) return i;
+		}
+		return INVALID_POSITION;
+	}
+
+	void addAll(Collection<FavoritesItem> favorites) {
 		items.addAll(favorites);
 	}
 
-	public void clear() {
+	void updateItem(int position, FavoritesItem item) {
+		items.updateItemAt(position, item);
+	}
+
+	void clear() {
 		items.clear();
 	}
 

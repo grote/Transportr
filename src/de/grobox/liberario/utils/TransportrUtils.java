@@ -52,7 +52,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapActivity;
-import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.data.SpecialLocationDb;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
@@ -74,7 +74,7 @@ import de.schildbach.pte.dto.Trip.Leg;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-import static de.grobox.liberario.data.RecentsDB.getFavLocationList;
+import static de.grobox.liberario.data.LocationDb.getFavLocationList;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
@@ -364,7 +364,7 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void presetDirections(Context context, Location from, @Nullable Location via, Location to) {
+	static public void presetDirections(Context context, @Nullable Location from, @Nullable Location via, @Nullable Location to) {
 		Intent intent = new Intent(context, DirectionsActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra(FROM, new WrapLocation(from));
@@ -375,7 +375,7 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void findDirections(Context context, Location from, @Nullable Location via, Location to, @Nullable Date date) {
+	static public void findDirections(Context context, @Nullable Location from, @Nullable Location via, Location to, @Nullable Date date) {
 		Intent intent = new Intent(context, DirectionsActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra(FROM, new WrapLocation(from));
@@ -389,7 +389,7 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void findDirections(Context context, Location from, @Nullable Location via, Location to) {
+	static public void findDirections(Context context, @Nullable  Location from, @Nullable Location via, @Nullable Location to) {
 		findDirections(context, from, via, to, null);
 	}
 
@@ -599,7 +599,7 @@ public class TransportrUtils {
 
 	static public Drawable getDrawableForLocation(Context context, @Nullable Location home, WrapLocation w, boolean is_fav) {
 		if(w == null || w.getLocation() == null) return null;
-		if (home == null) home = RecentsDB.getHome(context);
+		if (home == null) home = SpecialLocationDb.getHome(context);
 		Location l = w.getLocation();
 
 		if(w.getType() == HOME || l.equals(home)) {
@@ -629,7 +629,7 @@ public class TransportrUtils {
 		}
 	}
 
-	static public Drawable getDrawableForLocation(Context context, Location l) {
+	static public Drawable getDrawableForLocation(Context context, @Nullable Location l) {
 		if(l == null) return getTintedDrawable(context, R.drawable.ic_location);
 
 		List<WrapLocation> fav_list = getFavLocationList(context, FavLocation.FavLocationType.FROM);

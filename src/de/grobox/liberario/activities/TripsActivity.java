@@ -53,8 +53,8 @@ import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
 
-import static de.grobox.liberario.favorites.FavoritesDatabase.isFavoriteTrip;
-import static de.grobox.liberario.favorites.FavoritesDatabase.toggleFavoriteTrip;
+import static de.grobox.liberario.data.FavoritesDb.isFavoriteTrip;
+import static de.grobox.liberario.data.FavoritesDb.toggleFavoriteTrip;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 
 public class TripsActivity extends TransportrActivity {

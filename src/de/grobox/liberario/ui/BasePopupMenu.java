@@ -18,17 +18,17 @@
 package de.grobox.liberario.ui;
 
 import android.content.Context;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import de.grobox.liberario.utils.TransportrUtils;
 
-abstract public class BasePopupMenu extends PopupMenu {
+public abstract class BasePopupMenu extends PopupMenu implements OnMenuItemClickListener {
 
 	protected Context context;
 
@@ -36,24 +36,14 @@ abstract public class BasePopupMenu extends PopupMenu {
 		super(context, anchor);
 
 		this.context = context;
-		setOnMenuItemClickListener(getOnMenuItemClickListener());
-	}
-
-	abstract public OnMenuItemClickListener getOnMenuItemClickListener();
-
-	protected void fixIconColors() {
-		Menu menu = getMenu();
-		for(int i = 0; i < menu.size(); i++) {
-			MenuItem item = menu.getItem(i);
-			item.setIcon(TransportrUtils.getTintedDrawable(context, item.getIcon()));
-		}
+		setOnMenuItemClickListener(this);
 	}
 
 	protected void showIcons() {
 		// very ugly hack to show icons in PopupMenu
 		// see: http://stackoverflow.com/a/18431605
 		try {
-			Field[] fields = getClass().getSuperclass().getSuperclass().getDeclaredFields();
+			Field[] fields = BasePopupMenu.class.getSuperclass().getDeclaredFields();
 			for(Field field : fields) {
 				if("mPopup".equals(field.getName())) {
 					field.setAccessible(true);
@@ -73,4 +63,10 @@ abstract public class BasePopupMenu extends PopupMenu {
 			getMenu().getItem(i).setIcon(TransportrUtils.getTintedDrawable(context, getMenu().getItem(i).getIcon()));
 		}
 	}
+
+	@Override
+	public boolean onMenuItemClick(MenuItem item) {
+		return false;
+	}
+
 }

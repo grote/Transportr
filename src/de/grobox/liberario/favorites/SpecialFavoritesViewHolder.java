@@ -17,12 +17,15 @@
 
 package de.grobox.liberario.favorites;
 
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import de.grobox.liberario.R;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
 
 abstract class SpecialFavoritesViewHolder extends AbstractFavoritesViewHolder {
@@ -42,18 +45,20 @@ abstract class SpecialFavoritesViewHolder extends AbstractFavoritesViewHolder {
 
 		if (item.getTo() == null) {
 			description.setText(R.string.tap_to_set);
+			description.setTypeface(null, Typeface.ITALIC);
+			overflow.setVisibility(GONE);
 		} else {
 			description.setText(getLocationName(item.getTo()));
+			description.setTypeface(null, Typeface.NORMAL);
+			overflow.setVisibility(VISIBLE);
+			final SpecialLocationPopupMenu popup = new SpecialLocationPopupMenu(overflow.getContext(), overflow, item);
+			overflow.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					popup.show();
+				}
+			});
 		}
-
-		// TODO special popup
-		final FavoritesPopupMenu favPopup = new FavoritesPopupMenu(overflow.getContext(), overflow, item, listener);
-		overflow.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				favPopup.show();
-			}
-		});
 	}
 
 }

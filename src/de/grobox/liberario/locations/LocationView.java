@@ -24,9 +24,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.StringRes;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -44,9 +42,7 @@ import android.widget.ProgressBar;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.activities.TransportrActivity;
-import de.grobox.liberario.fragments.HomePickerDialogFragment;
-import de.grobox.liberario.fragments.HomePickerDialogFragment.OnHomeChangedListener;
+import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.locations.FavLocation.FavLocationType;
 import de.grobox.liberario.locations.SuggestLocationsTask.SuggestLocationsTaskCallback;
 import de.grobox.liberario.networks.TransportNetworkManager;
@@ -58,7 +54,7 @@ import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 
-public class LocationView extends LinearLayout implements OnHomeChangedListener, SuggestLocationsTaskCallback {
+public class LocationView extends LinearLayout implements SuggestLocationsTaskCallback {
 
 	private final static String LOCATION = "location";
 	private final static String TEXT = "text";
@@ -72,7 +68,6 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 	private SuggestLocationsTask task;
 	private Location location;
 	private boolean changingHome = false, suggestLocationsTaskPending = false;
-	protected TransportrActivity activity;
 	protected final LocationViewHolder ui;
 	protected LocationViewListener listener;
 	protected String hint;
@@ -83,8 +78,7 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 		super(context, attrs);
 
 		if (!isInEditMode()) {
-			activity = ((TransportrActivity) context);
-			activity.getComponent().inject(this);
+			((TransportrApplication) getContext().getApplicationContext()).getComponent().inject(this);
 		}
 
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LocationView, 0, 0);
@@ -207,13 +201,13 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 			ui.location.setSelection(position);
 
 			changingHome = bundle.getBoolean(CHANGING_HOME);
-			if(changingHome) {
+/*			if(changingHome) {
 				Fragment homePicker = activity.getSupportFragmentManager().findFragmentByTag(HomePickerDialogFragment.TAG);
 				if(homePicker != null && homePicker.isAdded()) {
-					((HomePickerDialogFragment) homePicker).setOnHomeChangedListener(this);
+					((HomePickerDialogFragment) homePicker).setListener(this);
 				}
 			}
-
+*/
 			// replace state by super state
 			state = bundle.getParcelable(SUPER_STATE);
 		}
@@ -361,6 +355,10 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 		return type;
 	}
 
+	public void setHint(@StringRes int hint) {
+		ui.location.setHint(hint);
+	}
+
 	/* Behavior */
 
 	protected void onFocusChange(View v, boolean hasFocus) {
@@ -450,8 +448,8 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 	public void selectHomeLocation() {
 		changingHome = true;
 		// show home picker dialog
-		HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
-		setHomeFragment.setOnHomeChangedListener(this);
+/*		HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
+		setHomeFragment.setListener(this);
 		FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
 		setHomeFragment.show(ft, HomePickerDialogFragment.TAG);
 	}
@@ -461,7 +459,7 @@ public class LocationView extends LinearLayout implements OnHomeChangedListener,
 		changingHome = false;
 		setLocation(home, ContextCompat.getDrawable(getContext(), R.drawable.ic_action_home));
 		if(listener != null) listener.onLocationItemClick(new WrapLocation(home, HOME));
-	}
+*/	}
 
 	public boolean isChangingHome() {
 		return changingHome;

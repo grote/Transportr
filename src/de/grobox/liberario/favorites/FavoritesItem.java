@@ -104,9 +104,12 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 
 	@Override
 	public int compareTo(FavoritesItem i) {
+		if (equals(i)) return 0;
 		if (type == HOME) return -1;
 		if (type == WORK && i.type != HOME) return -1;
+		if (type == WORK) return 1;
 		if (favorite && !i.favorite) return -1;
+		if (!favorite && i.favorite) return 1;
 		if (favorite) {
 			if (count == i.count) return lastUsed.compareTo(i.lastUsed);
 			return count > i.count ? -1 : 1;

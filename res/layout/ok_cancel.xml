@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:showIn="@layout/fragment_set_home"
+    tools:showIn="@layout/fragment_special_location"
     >
 
     <include layout="@layout/divider_horizontal"/>

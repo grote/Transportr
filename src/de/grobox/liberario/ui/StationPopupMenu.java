@@ -38,7 +38,7 @@ public class StationPopupMenu extends BasePopupMenu {
 		this.station = station;
 		this.start = start;
 
-		if(!station.hasLocation()) {
+		if (!station.hasLocation()) {
 			getMenu().removeItem(R.id.action_show_on_map);
 			getMenu().removeItem(R.id.action_show_on_external_map);
 		}
@@ -47,65 +47,60 @@ public class StationPopupMenu extends BasePopupMenu {
 	}
 
 	@Override
-	public OnMenuItemClickListener getOnMenuItemClickListener() {
-		return new OnMenuItemClickListener() {
-			@Override
-			public boolean onMenuItemClick(MenuItem item) {
-				String text = TransportrUtils.getLocationName(start) + " " + TransportrUtils.computeDistance(start, station) + "m → " + TransportrUtils.getLocationName(station);
+	public boolean onMenuItemClick(MenuItem item) {
+		String text = TransportrUtils.getLocationName(start) + " " + TransportrUtils.computeDistance(start, station) + "m → " + TransportrUtils.getLocationName(station);
 
-				// handle presses on menu items
-				switch(item.getItemId()) {
-					// Show On Map
-					case R.id.action_show_on_map:
-						TransportrUtils.showLocationOnMap(context, station, start);
+		// handle presses on menu items
+		switch (item.getItemId()) {
+			// Show On Map
+			case R.id.action_show_on_map:
+				TransportrUtils.showLocationOnMap(context, station, start);
 
-						return true;
-					// Show On External Map
-					case R.id.action_show_on_external_map:
-						TransportrUtils.startGeoIntent(context, station);
+				return true;
+			// Show On External Map
+			case R.id.action_show_on_external_map:
+				TransportrUtils.startGeoIntent(context, station);
 
-						return true;
-					// From Here
-					case R.id.action_from_here:
-						TransportrUtils.presetDirections(context, station, null, null);
+				return true;
+			// From Here
+			case R.id.action_from_here:
+				TransportrUtils.presetDirections(context, station, null, null);
 
-						return true;
-					// To Here
-					case R.id.action_to_here:
-						TransportrUtils.presetDirections(context, null, null, station);
+				return true;
+			// To Here
+			case R.id.action_to_here:
+				TransportrUtils.presetDirections(context, null, null, station);
 
-						return true;
-					// Show Departures
-					case R.id.action_show_departures:
-						TransportrUtils.findDepartures(context, station);
+				return true;
+			// Show Departures
+			case R.id.action_show_departures:
+				TransportrUtils.findDepartures(context, station);
 
-						return true;
-					// Show Nearby Stations
-					case R.id.action_show_nearby_stations:
-						TransportrUtils.findNearbyStations(context, station);
+				return true;
+			// Show Nearby Stations
+			case R.id.action_show_nearby_stations:
+				TransportrUtils.findNearbyStations(context, station);
 
-						return true;
-					// Share Station
-					case R.id.action_share:
-						//noinspection deprecation
-						Intent sendIntent = new Intent()
-								                    .setAction(Intent.ACTION_SEND)
-								                    .putExtra(Intent.EXTRA_TEXT, text)
-								                    .setType("text/plain")
-								                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-						context.startActivity(Intent.createChooser(sendIntent, context.getResources().getText(R.string.action_share)));
+				return true;
+			// Share Station
+			case R.id.action_share:
+				//noinspection deprecation
+				Intent sendIntent = new Intent()
+						.setAction(Intent.ACTION_SEND)
+						.putExtra(Intent.EXTRA_TEXT, text)
+						.setType("text/plain")
+						.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+				context.startActivity(Intent.createChooser(sendIntent, context.getResources().getText(R.string.action_share)));
 
-						return true;
-					// Copy Station to Clipboard
-					case R.id.action_copy:
-						TransportrUtils.copyToClipboard(context, text);
+				return true;
+			// Copy Station to Clipboard
+			case R.id.action_copy:
+				TransportrUtils.copyToClipboard(context, text);
 
-						return true;
-					default:
-						return false;
-				}
-			}
-		};
+				return true;
+			default:
+				return super.onMenuItemClick(item);
+		}
 	}
 
 }

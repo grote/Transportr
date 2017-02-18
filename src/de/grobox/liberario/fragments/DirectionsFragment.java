@@ -54,21 +54,21 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 
-import de.grobox.liberario.networks.NetworkProviderFactory;
-import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.favorites.FavoritesItem;
-import de.grobox.liberario.locations.AmbiguousLocationActivity;
 import de.grobox.liberario.activities.TripsActivity;
+import de.grobox.liberario.data.LocationDb;
 import de.grobox.liberario.favorites.FavoritesAdapter;
-import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.favorites.FavoritesItem;
 import de.grobox.liberario.fragments.ProductDialogFragment.OnProductsChangedListener;
-import de.grobox.liberario.tasks.AsyncQueryTripsTask;
-import de.grobox.liberario.tasks.AsyncQueryTripsTask.TripHandler;
+import de.grobox.liberario.locations.AmbiguousLocationActivity;
 import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
-import de.grobox.liberario.ui.TimeAndDateView;
 import de.grobox.liberario.locations.WrapLocation;
+import de.grobox.liberario.networks.NetworkProviderFactory;
+import de.grobox.liberario.settings.Preferences;
+import de.grobox.liberario.tasks.AsyncQueryTripsTask;
+import de.grobox.liberario.tasks.AsyncQueryTripsTask.TripHandler;
+import de.grobox.liberario.ui.TimeAndDateView;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -81,13 +81,12 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
+import static de.grobox.liberario.activities.MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS;
+import static de.grobox.liberario.data.FavoritesDb.updateFavoriteTrip;
 import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.FavLocation.FavLocationType.TO;
 import static de.grobox.liberario.locations.FavLocation.FavLocationType.VIA;
 import static de.grobox.liberario.settings.Preferences.SHOW_ADV_DIRECTIONS;
-import static de.grobox.liberario.activities.MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS;
-import static de.grobox.liberario.favorites.FavoritesDatabase.getFavoriteTripList;
-import static de.grobox.liberario.favorites.FavoritesDatabase.updateFavoriteTrip;
 import static de.grobox.liberario.utils.TransportrUtils.fixToolbarIcon;
 import static de.grobox.liberario.utils.TransportrUtils.getButtonIconColor;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
@@ -233,7 +232,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 		mAfterGpsTask = null;
 
-		displayFavouriteTrips();
 		refreshAutocomplete(false);
 
 		// check if there's an intent for us and if so, act on it
@@ -330,26 +328,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		productFragment.setOnProductsChangedListener(DirectionsFragment.this);
 		FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
 		productFragment.show(ft, ProductDialogFragment.TAG);
-	}
-
-	private void displayFavouriteTrips() {
-		if(mFavAdapter == null) return;
-
-		mFavAdapter.clear();
-		mFavAdapter.addAll(getFavoriteTripList(getContext()));
-
-		if(showingMore && mFavAdapter.getItemCount() == 0) {
-			ui.no_favourites.setVisibility(VISIBLE);
-		} else {
-			ui.no_favourites.setVisibility(GONE);
-		}
-
-		if(showingMore || mFavAdapter.getItemCount() != 0) {
-			ui.fav_trips_separator.setVisibility(VISIBLE);
-			ui.fav_trips_separator.setAlpha(1f);
-		} else {
-			ui.fav_trips_separator.setVisibility(GONE);
-		}
 	}
 
 	private void search() {
@@ -559,7 +537,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 		// we have a location, so make it a favorite
 		else {
-			RecentsDB.updateFavLocation(getActivity(), loc, loc_view.getType());
+			LocationDb.updateFavLocation(getActivity(), loc, loc_view.getType());
 		}
 
 		return true;

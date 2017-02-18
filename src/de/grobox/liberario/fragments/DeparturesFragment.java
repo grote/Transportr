@@ -41,7 +41,7 @@ import java.util.Date;
 import de.grobox.liberario.locations.FavLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.departures.DepartureAdapter;
-import de.grobox.liberario.data.RecentsDB;
+import de.grobox.liberario.data.LocationDb;
 import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.ui.TimeAndDateView;
@@ -149,7 +149,7 @@ public class DeparturesFragment extends TransportrFragment {
 			}
 
 			// Location is valid, so make it a favorite or increase counter
-			RecentsDB.updateFavLocation(getActivity(), ui.station.getLocation(), FavLocation.FavLocationType.FROM);
+			LocationDb.updateFavLocation(getActivity(), ui.station.getLocation(), FavLocation.FavLocationType.FROM);
 
 			date = ui.date.getDate();
 			stationId = ui.station.getLocation().id;

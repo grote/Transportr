@@ -55,7 +55,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
-import static de.grobox.liberario.data.RecentsDB.updateFavLocation;
+import static de.grobox.liberario.data.LocationDb.updateFavLocation;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 import static de.grobox.liberario.utils.TransportrUtils.showLocationsOnMap;

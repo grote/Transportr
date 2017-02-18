@@ -27,80 +27,94 @@ import android.util.Log;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
-public class DBHelper extends SQLiteOpenHelper {
+class DbHelper extends SQLiteOpenHelper {
 
 	private static final String DB_NAME = "liberario.db";
-	private static final int DB_VERSION = 4;
+	private static final int DB_VERSION = 5;
 
-	public static final String TABLE_FAV_LOCS  = "fav_locations";
-	public static final String TABLE_FAVORITE_TRIPS = "recent_trips";
+	static final String TABLE_FAV_LOCS = "fav_locations";
+	static final String TABLE_FAVORITE_TRIPS = "recent_trips";
 	static final String TABLE_HOME_LOCS = "home_locations";
+	static final String TABLE_WORK_LOCS = "work_locations";
 
 	private static final String NETWORK = "network STRING NOT NULL";
 
 	private static final String LOCATION =
-		"type STRING NOT NULL, " +
-		"id STRING, " +
-		"lat INTEGER NOT NULL DEFAULT 0, " +
-		"lon INTEGER NOT NULL DEFAULT 0, " +
-		"place TEXT, " +
-		"name TEXT";
+			"type STRING NOT NULL, " +
+					"id STRING, " +
+					"lat INTEGER NOT NULL DEFAULT 0, " +
+					"lon INTEGER NOT NULL DEFAULT 0, " +
+					"place TEXT, " +
+					"name TEXT";
 
 	private static final String CREATE_TABLE_FAV_LOCS =
-		"CREATE TABLE "	+ TABLE_FAV_LOCS + " (" +
-			"_id INTEGER PRIMARY KEY, " +
-			NETWORK + ", " +
-			LOCATION + ", " +
-			"from_count INTEGER NOT NULL DEFAULT 0, " +
-			"via_count INTEGER NOT NULL DEFAULT 0, " +
-			"to_count INTEGER NOT NULL DEFAULT 0" +
-		" )";
+			"CREATE TABLE " + TABLE_FAV_LOCS + " (" +
+					"_id INTEGER PRIMARY KEY, " +
+					NETWORK + ", " +
+					LOCATION + ", " +
+					"from_count INTEGER NOT NULL DEFAULT 0, " +
+					"via_count INTEGER NOT NULL DEFAULT 0, " +
+					"to_count INTEGER NOT NULL DEFAULT 0" +
+					" )";
 
 	private static final String CREATE_TABLE_RECENT_TRIPS =
-		"CREATE TABLE "	+ TABLE_FAVORITE_TRIPS + " (" +
-			"_id INTEGER PRIMARY KEY, " +
-			NETWORK + ", " +
-			"from_loc INTEGER NOT NULL, " +
-			"via_loc INTEGER DEFAULT NULL, " +
-			"to_loc INTEGER NOT NULL, " +
-			"count INTEGER NOT NULL DEFAULT 0, " +
-			"last_used DATETIME, " +
-			"is_favourite INTEGER NOT NULL" +
-		" )";
+			"CREATE TABLE " + TABLE_FAVORITE_TRIPS + " (" +
+					"_id INTEGER PRIMARY KEY, " +
+					NETWORK + ", " +
+					"from_loc INTEGER NOT NULL, " +
+					"via_loc INTEGER DEFAULT NULL, " +
+					"to_loc INTEGER NOT NULL, " +
+					"count INTEGER NOT NULL DEFAULT 0, " +
+					"last_used DATETIME, " +
+					"is_favourite INTEGER NOT NULL" +
+					" )";
 
 	private static final String CREATE_TABLE_HOME_LOCS =
-		"CREATE TABLE "	+ TABLE_HOME_LOCS + " (" +
-			"_id INTEGER PRIMARY KEY, " +
-			NETWORK + ", " +
-			LOCATION + ", " +
-			"UNIQUE(network)" +
-		" )";
+			"CREATE TABLE " + TABLE_HOME_LOCS + " (" +
+					"_id INTEGER PRIMARY KEY, " +
+					NETWORK + ", " +
+					LOCATION + ", " +
+					"UNIQUE(network)" +
+					" )";
 
-	public DBHelper(Context context) {
+	private static final String CREATE_TABLE_WORK_LOCS =
+			"CREATE TABLE " + TABLE_WORK_LOCS + " (" +
+					"_id INTEGER PRIMARY KEY, " +
+					NETWORK + ", " +
+					LOCATION + ", " +
+					"UNIQUE(network)" +
+					" )";
+
+	DbHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
 	}
 
+	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(CREATE_TABLE_FAV_LOCS);
 		db.execSQL(CREATE_TABLE_RECENT_TRIPS);
 		db.execSQL(CREATE_TABLE_HOME_LOCS);
+		db.execSQL(CREATE_TABLE_WORK_LOCS);
 	}
 
+	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		int upgradeTo = oldVersion + 1;
-		while(upgradeTo <= newVersion) {
-			switch(upgradeTo)
-			{
+		while (upgradeTo <= newVersion) {
+			switch (upgradeTo) {
 				case 2:
 					db.execSQL("ALTER TABLE fav_trips ADD COLUMN last_used DATETIME");
 					break;
 				case 3:
-					db.execSQL("ALTER TABLE fav_trips RENAME TO "+ TABLE_FAVORITE_TRIPS);
+					db.execSQL("ALTER TABLE fav_trips RENAME TO " + TABLE_FAVORITE_TRIPS);
 					db.execSQL("ALTER TABLE " + TABLE_FAVORITE_TRIPS + " ADD COLUMN is_favourite INTEGER");
 					break;
 				case 4:
 					db.execSQL("ALTER TABLE " + TABLE_FAV_LOCS + " ADD COLUMN via_count INTEGER NOT NULL DEFAULT 0");
 					db.execSQL("ALTER TABLE " + TABLE_FAVORITE_TRIPS + " ADD COLUMN via_loc INTEGER DEFAULT NULL");
+					break;
+				case 5:
+					db.execSQL(CREATE_TABLE_WORK_LOCS);
 					break;
 			}
 			upgradeTo++;
@@ -109,7 +123,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Nullable
 	public static Location getLocation(Cursor c, String pre) {
-		if(c.isNull(c.getColumnIndex("pre_type".replace("pre_", pre)))) return null;
+		if (c.isNull(c.getColumnIndex("pre_type".replace("pre_", pre)))) return null;
 
 		return new Location(
 				LocationType.valueOf(c.getString(c.getColumnIndex("pre_type".replace("pre_", pre)))),
@@ -125,13 +139,13 @@ public class DBHelper extends SQLiteOpenHelper {
 		return getLocation(c, "");
 	}
 
-	public static int getLocationId(SQLiteDatabase db, Location loc, String network) {
+	static int getLocationId(SQLiteDatabase db, Location loc, String network) {
 		String whereClause;
 		String[] whereArgs;
 
-		if(loc == null) {
+		if (loc == null) {
 			return -1;
-		} else if(loc.hasId()) {
+		} else if (loc.hasId()) {
 			whereClause = "network = ? AND id = ?";
 			whereArgs = new String[] { network, loc.id };
 		} else {
@@ -147,7 +161,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		// get from location ID from database
 		Cursor c = db.query(
-				DBHelper.TABLE_FAV_LOCS,    // The table to query
+				DbHelper.TABLE_FAV_LOCS,    // The table to query
 				new String[] { "_id" },
 				whereClause,
 				whereArgs,
@@ -156,7 +170,7 @@ public class DBHelper extends SQLiteOpenHelper {
 				null    // The sort order
 		);
 
-		if(c.moveToFirst()) {
+		if (c.moveToFirst()) {
 			int loc_id = c.getInt(c.getColumnIndex("_id"));
 			c.close();
 			Log.d("getLocationId", "Found location: " + loc.toString());
