@@ -20,6 +20,7 @@ package de.grobox.liberario.locations;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -36,6 +37,7 @@ import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
@@ -66,6 +68,7 @@ import static de.grobox.liberario.utils.TransportrUtils.startGeoIntent;
 import static de.schildbach.pte.dto.LocationType.COORD;
 import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 
+@ParametersAreNonnullByDefault
 public class LocationFragment extends TransportrFragment
 		implements LoaderCallbacks<QueryDeparturesResult>, OsmReverseGeocoderCallback {
 
@@ -95,7 +98,7 @@ public class LocationFragment extends TransportrFragment
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		activity = (NewMapActivity) getActivity();
@@ -186,7 +189,7 @@ public class LocationFragment extends TransportrFragment
 	}
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
+	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		if (location.hasId()) {
 			Bundle args = getBundle(location.getId(), new Date(), MAX_DEPARTURES);

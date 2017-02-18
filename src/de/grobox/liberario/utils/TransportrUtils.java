@@ -303,7 +303,7 @@ public class TransportrUtils {
 	}
 
 	@DrawableRes
-	static public int getMarkerForProduct(Set<Product> p) {
+	static public int getMarkerForProduct(@Nullable Set<Product> p) {
 		// TODO better default marker
 		@DrawableRes
 		int image_res = R.drawable.ic_marker_station;

@@ -90,7 +90,6 @@ public class NewMapActivity extends DrawerActivity
 	private MapView mapView;
 	private MapboxMap map;
 	private LocationView search;
-	private FloatingActionButton gpsFab, directionsFab;
 	private BottomSheetBehavior bottomSheetBehavior;
 
 	@Nullable
@@ -130,20 +129,27 @@ public class NewMapActivity extends DrawerActivity
 			@Override
 			public void onStateChanged(@NonNull View bottomSheet, int newState) {
 				if (newState == STATE_HIDDEN) {
-					if (selectedLocationMarker != null) map.removeMarker(selectedLocationMarker);
+					if (selectedLocationMarker != null) {
+						map.removeMarker(selectedLocationMarker);
+						selectedLocationMarker = null;
+					}
+					if (locationFragment != null) {
+						getSupportFragmentManager().beginTransaction().remove(locationFragment).commit();
+						locationFragment = null;
+					}
 					search.clearLocation();
-					gpsFab.show();
+					search.reset();
 				}
 			}
 			@Override
 			public void onSlide(@NonNull View bottomSheet, float slideOffset) { }
 		});
 
-		directionsFab = (FloatingActionButton) findViewById(R.id.directionsFab);
+		FloatingActionButton directionsFab = (FloatingActionButton) findViewById(R.id.directionsFab);
 		directionsFab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				if (locationFragment != null && locationFragment.isVisible() && bottomSheetBehavior.getState() != STATE_HIDDEN) {
+				if (locationFragment != null && locationFragmentVisible()) {
 					findDirections(NewMapActivity.this, new WrapLocation(GPS), null, locationFragment.getLocation(), null, true);
 				} else {
 					Intent intent = new Intent(NewMapActivity.this, DirectionsActivity.class);
@@ -151,7 +157,7 @@ public class NewMapActivity extends DrawerActivity
 				}
 			}
 		});
-		gpsFab = (FloatingActionButton) findViewById(R.id.gpsFab);
+		FloatingActionButton gpsFab = (FloatingActionButton) findViewById(R.id.gpsFab);
 		gpsFab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -168,7 +174,6 @@ public class NewMapActivity extends DrawerActivity
 					.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
 			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 			bottomSheetBehavior.setState(STATE_COLLAPSED);
-			gpsFab.hide();
 		} else {
 			locationFragment = (LocationFragment) getSupportFragmentManager().findFragmentByTag(LocationFragment.TAG);
 		}
@@ -206,21 +211,17 @@ public class NewMapActivity extends DrawerActivity
 				return true;
 			}
 		});
+		// restore marker on map if there was one
+		if (locationFragment != null) {
+			LatLng latLng = zoomTo(locationFragment.getLocation());
+			addMarker(latLng);
+		}
 	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		mapView.onSaveInstanceState(outState);
-	}
-
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-		// TODO restore marker
-		if (bottomSheetBehavior.getState() != STATE_HIDDEN) {
-			gpsFab.hide();
-		}
 	}
 
 	@Override
@@ -268,17 +269,20 @@ public class NewMapActivity extends DrawerActivity
 				updateFavLocation(NewMapActivity.this, loc.getLocation(), FROM);
 			}
 		});
-		if (selectedLocationMarker != null) map.removeMarker(selectedLocationMarker);
 
 		LatLng latLng = zoomTo(loc);
-		selectedLocationMarker = map.addMarker(new MarkerOptions().position(latLng));
+		addMarker(latLng);
 
 		locationFragment = LocationFragment.newInstance(loc);
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, locationFragment, LocationFragment.TAG)
 				.commit(); // takes some time and empty bottomSheet will not be shown
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
-		gpsFab.hide();
+	}
+
+	private void addMarker(LatLng latLng) {
+		if (selectedLocationMarker != null) map.removeMarker(selectedLocationMarker);
+		selectedLocationMarker = map.addMarker(new MarkerOptions().position(latLng));
 	}
 
 	public LatLng zoomTo(WrapLocation loc) {
@@ -287,6 +291,10 @@ public class NewMapActivity extends DrawerActivity
 				CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM) : CameraUpdateFactory.newLatLng(latLng);
 		map.easeCamera(update, 1500);
 		return latLng;
+	}
+
+	private boolean locationFragmentVisible() {
+		return locationFragment != null && locationFragment.isVisible() && bottomSheetBehavior.getState() != STATE_HIDDEN;
 	}
 
 	@Override
