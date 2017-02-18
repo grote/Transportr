@@ -3,13 +3,14 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:background="?android:windowBackground">
 
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/favorites"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="?android:windowBackground"
+		android:layout_marginTop="16dp"
 		tools:listitem="@layout/list_item_favorite"/>
 
 	<ProgressBar

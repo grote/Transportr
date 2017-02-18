@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import java.util.Collection;
@@ -38,6 +39,7 @@ import static de.grobox.liberario.utils.TransportrUtils.findDirections;
 public class FavoritesFragment extends TransportrFragment implements FavoriteListener, LoaderCallbacks<Collection<FavoritesItem>> {
 
 	public static final String TAG = FavoritesFragment.class.getName();
+	private static final String TOP_MARGIN = "topMargin";
 
 	@Inject
 	TransportNetworkManager manager;
@@ -45,8 +47,12 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 	private RecyclerView list;
 	private FavoritesAdapter adapter;
 
-	public static FavoritesFragment newInstance() {
-		return new FavoritesFragment();
+	public static FavoritesFragment newInstance(boolean topMargin) {
+		FavoritesFragment f = new FavoritesFragment();
+		Bundle args = new Bundle();
+		args.putBoolean(TOP_MARGIN, topMargin);
+		f.setArguments(args);
+		return f;
 	}
 
 	@Override
@@ -60,6 +66,11 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 		adapter = new FavoritesAdapter(this);
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(getContext()));
+		if (!getArguments().getBoolean(TOP_MARGIN)) {
+			FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) list.getLayoutParams();
+			params.topMargin = 0;
+			list.setLayoutParams(params);
+		}
 
 		LceAnimator.showLoading(progressBar, list, null);
 

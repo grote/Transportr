@@ -163,9 +163,10 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	}
 
 	void showFavorites() {
+		FavoritesFragment f = FavoritesFragment.newInstance(false);
 		getSupportFragmentManager()
 				.beginTransaction()
-				.replace(R.id.fragmentContainer, FavoritesFragment.newInstance())
+				.replace(R.id.fragmentContainer, f, FavoritesFragment.TAG)
 				.commit();
 	}
 

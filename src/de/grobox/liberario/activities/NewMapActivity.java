@@ -71,9 +71,11 @@ import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.liberario.data.LocationDb.updateFavLocation;
 import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
 import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
+import static de.grobox.liberario.utils.TransportrUtils.findDirections;
 import static de.grobox.liberario.utils.TransportrUtils.getLatLng;
 import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
 import static de.grobox.liberario.utils.TransportrUtils.getMarkerForProduct;
@@ -108,9 +110,7 @@ public class NewMapActivity extends DrawerActivity
 		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);
 		MapboxEventManager eventManager = MapboxEventManager.getMapboxEventManager();
-		if (eventManager.isTelemetryEnabled()) {
-			eventManager.setTelemetryEnabled(false);
-		}
+		if (eventManager.isTelemetryEnabled()) eventManager.setTelemetryEnabled(false);
 		mapView.getMapAsync(this);
 
 		View menu = findViewById(R.id.menu);
@@ -132,7 +132,7 @@ public class NewMapActivity extends DrawerActivity
 				if (newState == STATE_HIDDEN) {
 					if (selectedLocationMarker != null) map.removeMarker(selectedLocationMarker);
 					search.clearLocation();
-					directionsFab.show();
+					gpsFab.show();
 				}
 			}
 			@Override
@@ -143,8 +143,12 @@ public class NewMapActivity extends DrawerActivity
 		directionsFab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Intent intent = new Intent(NewMapActivity.this, DirectionsActivity.class);
-				startActivity(intent);
+				if (locationFragment != null && locationFragment.isVisible() && bottomSheetBehavior.getState() != STATE_HIDDEN) {
+					findDirections(NewMapActivity.this, new WrapLocation(GPS), null, locationFragment.getLocation(), null, true);
+				} else {
+					Intent intent = new Intent(NewMapActivity.this, DirectionsActivity.class);
+					startActivity(intent);
+				}
 			}
 		});
 		gpsFab = (FloatingActionButton) findViewById(R.id.gpsFab);
@@ -158,14 +162,15 @@ public class NewMapActivity extends DrawerActivity
 		});
 
 		if (savedInstanceState == null) {
+			FavoritesFragment f = FavoritesFragment.newInstance(true);
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.bottomSheet, FavoritesFragment.newInstance(), FavoritesFragment.TAG)
+					.replace(R.id.bottomSheet, f, FavoritesFragment.TAG)
 					.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
 			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 			bottomSheetBehavior.setState(STATE_COLLAPSED);
-			directionsFab.hide();
+			gpsFab.hide();
 		} else {
-			// TODO potentially re-attach location fragment
+			locationFragment = (LocationFragment) getSupportFragmentManager().findFragmentByTag(LocationFragment.TAG);
 		}
 	}
 
@@ -212,8 +217,9 @@ public class NewMapActivity extends DrawerActivity
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
+		// TODO restore marker
 		if (bottomSheetBehavior.getState() != STATE_HIDDEN) {
-			directionsFab.hide();
+			gpsFab.hide();
 		}
 	}
 
@@ -249,7 +255,7 @@ public class NewMapActivity extends DrawerActivity
 		Log.e("TEST", "Transport Network Changed, recreating...");
 		recreate();
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.bottomSheet, FavoritesFragment.newInstance(), FavoritesFragment.TAG)
+				.replace(R.id.bottomSheet, FavoritesFragment.newInstance(true), FavoritesFragment.TAG)
 				.commit();
 	}
 
@@ -272,7 +278,7 @@ public class NewMapActivity extends DrawerActivity
 				.replace(R.id.bottomSheet, locationFragment, LocationFragment.TAG)
 				.commit(); // takes some time and empty bottomSheet will not be shown
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
-		directionsFab.hide();
+		gpsFab.hide();
 	}
 
 	public LatLng zoomTo(WrapLocation loc) {

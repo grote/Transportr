@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
@@ -59,10 +58,8 @@ import static android.view.View.VISIBLE;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static de.grobox.liberario.departures.DeparturesActivity.MAX_DEPARTURES;
 import static de.grobox.liberario.departures.DeparturesLoader.getBundle;
-import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.utils.Constants.LOADER_DEPARTURES;
 import static de.grobox.liberario.utils.Constants.WRAP_LOCATION;
-import static de.grobox.liberario.utils.TransportrUtils.findDirections;
 import static de.grobox.liberario.utils.TransportrUtils.getCoordinationName;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 import static de.grobox.liberario.utils.TransportrUtils.startGeoIntent;
@@ -109,15 +106,6 @@ public class LocationFragment extends TransportrFragment
 
 		View v = inflater.inflate(R.layout.fragment_location, container, false);
 		getComponent().inject(this);
-
-		// Directions
-		FloatingActionButton directionFab = (FloatingActionButton) v.findViewById(R.id.directionFab);
-		directionFab.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				findDirections(getContext(), new WrapLocation(GPS), null, location, null, true);
-			}
-		});
 
 		// Location
 		locationIcon = (ImageView) v.findViewById(R.id.locationIcon);
@@ -250,6 +238,10 @@ public class LocationFragment extends TransportrFragment
 		nearbyStationsButton.setVisibility(VISIBLE);
 		nearbyStationsButton.setEnabled(false);
 		nearbyStationsProgress.setVisibility(INVISIBLE);
+	}
+
+	public WrapLocation getLocation() {
+		return location;
 	}
 
 }
