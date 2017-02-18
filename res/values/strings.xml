@@ -188,6 +188,7 @@ there are any).</string>
     <string name="action_fav_trips_sort_most">Most used</string>
     <string name="action_set_locations">Edit search</string>
     <string name="action_swap_locations">Search return trip</string>
+    <string name="action_change">Change</string>
 
     <string name="permission_explanation_gps">You need to grant the location permission in order to see your current position on the map.</string>
     <string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>

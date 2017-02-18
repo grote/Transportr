@@ -23,10 +23,10 @@ import android.view.View;
 
 import de.grobox.liberario.R;
 
-class SpecialLocationPopupMenu extends AbstractFavoritesPopupMenu {
+abstract class SpecialLocationPopupMenu extends AbstractFavoritesPopupMenu {
 
-	SpecialLocationPopupMenu(Context context, View anchor, FavoritesItem trip) {
-		super(context, anchor, trip);
+	SpecialLocationPopupMenu(Context context, View anchor, FavoritesItem trip, FavoriteListener listener) {
+		super(context, anchor, trip, listener);
 	}
 
 	@Override

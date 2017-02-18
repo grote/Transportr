@@ -33,6 +33,16 @@ class WorkFavoriteViewHolder extends SpecialFavoritesViewHolder {
 
 		icon.setImageResource(R.drawable.ic_work);
 		title.setText(R.string.work);
+
+		if (item.getTo() != null) {
+			final SpecialLocationPopupMenu popup = new WorkPopupMenu(overflow.getContext(), overflow, item, listener);
+			overflow.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					popup.show();
+				}
+			});
+		}
 	}
 
 }

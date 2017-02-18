@@ -103,17 +103,13 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 	public void onFavoriteClicked(FavoritesItem item) {
 		if (item.getType() == HOME) {
 			if (manager.getHome() == null) {
-				HomePickerDialogFragment f = HomePickerDialogFragment.newInstance();
-			    f.setListener(this);
-				f.show(getActivity().getSupportFragmentManager(), HomePickerDialogFragment.TAG);
+				changeHome();
 			} else {
 				findDirections(getContext(), item.getFrom(), item.getVia(), manager.getHome());
 			}
 		} else if (item.getType() == WORK) {
 			if (manager.getWork() == null) {
-				WorkPickerDialogFragment f = WorkPickerDialogFragment.newInstance();
-				f.setListener(this);
-				f.show(getActivity().getSupportFragmentManager(), WorkPickerDialogFragment.TAG);
+				changeWork();
 			} else {
 				findDirections(getContext(), item.getFrom(), item.getVia(), manager.getWork());
 			}
@@ -131,6 +127,20 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 		if (position != INVALID_POSITION) {
 			adapter.updateItem(position, item);
 		}
+	}
+
+	@Override
+	public void changeHome() {
+		HomePickerDialogFragment f = HomePickerDialogFragment.newInstance();
+		f.setListener(this);
+		f.show(getActivity().getSupportFragmentManager(), HomePickerDialogFragment.TAG);
+	}
+
+	@Override
+	public void changeWork() {
+		WorkPickerDialogFragment f = WorkPickerDialogFragment.newInstance();
+		f.setListener(this);
+		f.show(getActivity().getSupportFragmentManager(), WorkPickerDialogFragment.TAG);
 	}
 
 	@Override

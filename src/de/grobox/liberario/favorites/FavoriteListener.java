@@ -11,6 +11,10 @@ interface FavoriteListener {
 
 	void onFavoriteChanged(FavoritesItem item);
 
+	void changeHome();
+
+	void changeWork();
+
 	void onHomeChanged(Location home);
 
 	void onWorkChanged(Location work);

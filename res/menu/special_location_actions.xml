@@ -15,4 +15,10 @@
         app:showAsAction="always"
         android:title="@string/action_set_locations"/>
 
+    <item
+        android:id="@+id/action_change"
+        android:icon="@drawable/ic_action_settings"
+        app:showAsAction="always"
+        android:title="@string/action_change"/>
+
 </menu>

@@ -28,11 +28,8 @@ import static de.grobox.liberario.utils.TransportrUtils.setFavState;
 
 public class FavoritesPopupMenu extends AbstractFavoritesPopupMenu {
 
-	private final FavoriteListener listener;
-
 	public FavoritesPopupMenu(Context context, View anchor, FavoritesItem trip, FavoriteListener listener) {
-		super(context, anchor, trip);
-		this.listener = listener;
+		super(context, anchor, trip, listener);
 		setFavState(context, getMenu().findItem(R.id.action_mark_favorite), trip.isFavorite(), false);
 	}
 

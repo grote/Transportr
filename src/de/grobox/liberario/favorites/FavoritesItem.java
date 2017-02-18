@@ -106,8 +106,9 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 	public int compareTo(FavoritesItem i) {
 		if (equals(i)) return 0;
 		if (type == HOME) return -1;
-		if (type == WORK && i.type != HOME) return -1;
-		if (type == WORK) return 1;
+		if (i.type == HOME) return 1;
+		if (type == WORK) return -1;
+		if (i.type == WORK) return 1;
 		if (favorite && !i.favorite) return -1;
 		if (!favorite && i.favorite) return 1;
 		if (favorite) {

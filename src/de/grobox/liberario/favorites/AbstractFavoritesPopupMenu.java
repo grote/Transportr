@@ -31,11 +31,13 @@ import static de.grobox.liberario.utils.TransportrUtils.presetDirections;
 abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 
 	protected final FavoritesItem trip;
+	protected final FavoriteListener listener;
 
-	AbstractFavoritesPopupMenu(Context context, View anchor, FavoritesItem trip) {
+	AbstractFavoritesPopupMenu(Context context, View anchor, FavoritesItem trip, FavoriteListener listener) {
 		super(context, anchor);
 
 		this.trip = trip;
+		this.listener = listener;
 		getMenuInflater().inflate(getMenuRes(), getMenu());
 
 		showIcons();

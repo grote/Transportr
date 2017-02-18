@@ -1,5 +1,5 @@
 /*    Transportr
- *    Copyright (C) 2013 - 2017 Torsten Grote
+ *    Copyright (C) 2013 - 2016 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -17,31 +17,25 @@
 
 package de.grobox.liberario.favorites;
 
+import android.content.Context;
+import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.liberario.R;
 
-class HomeFavoriteViewHolder extends SpecialFavoritesViewHolder {
+class WorkPopupMenu extends SpecialLocationPopupMenu {
 
-	HomeFavoriteViewHolder(View v) {
-		super(v);
+	WorkPopupMenu(Context context, View anchor, FavoritesItem trip, FavoriteListener listener) {
+		super(context, anchor, trip, listener);
 	}
 
 	@Override
-	void onBind(FavoritesItem item, FavoriteListener listener) {
-		super.onBind(item, listener);
-
-		icon.setImageResource(R.drawable.ic_action_home);
-		title.setText(R.string.home);
-
-		if (item.getTo() != null) {
-			final SpecialLocationPopupMenu popup = new HomePopupMenu(overflow.getContext(), overflow, item, listener);
-			overflow.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					popup.show();
-				}
-			});
+	public boolean onMenuItemClick(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_change:
+				listener.changeWork();
+			default:
+				return super.onMenuItemClick(item);
 		}
 	}
 

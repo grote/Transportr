@@ -19,7 +19,6 @@ package de.grobox.liberario.favorites;
 
 import android.graphics.Typeface;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import de.grobox.liberario.R;
@@ -51,13 +50,6 @@ abstract class SpecialFavoritesViewHolder extends AbstractFavoritesViewHolder {
 			description.setText(getLocationName(item.getTo()));
 			description.setTypeface(null, Typeface.NORMAL);
 			overflow.setVisibility(VISIBLE);
-			final SpecialLocationPopupMenu popup = new SpecialLocationPopupMenu(overflow.getContext(), overflow, item);
-			overflow.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					popup.show();
-				}
-			});
 		}
 	}
 
