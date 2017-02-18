@@ -24,7 +24,6 @@ import android.support.annotation.WorkerThread;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -60,8 +59,10 @@ import static android.view.View.VISIBLE;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static de.grobox.liberario.departures.DeparturesActivity.MAX_DEPARTURES;
 import static de.grobox.liberario.departures.DeparturesLoader.getBundle;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.utils.Constants.LOADER_DEPARTURES;
 import static de.grobox.liberario.utils.Constants.WRAP_LOCATION;
+import static de.grobox.liberario.utils.TransportrUtils.findDirections;
 import static de.grobox.liberario.utils.TransportrUtils.getCoordinationName;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 import static de.grobox.liberario.utils.TransportrUtils.startGeoIntent;
@@ -114,7 +115,7 @@ public class LocationFragment extends TransportrFragment
 		directionFab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Log.e("TEST", "directionFab clicked");
+				findDirections(getContext(), new WrapLocation(GPS), null, location, null, true);
 			}
 		});
 

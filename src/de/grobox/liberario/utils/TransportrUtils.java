@@ -364,29 +364,25 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void presetDirections(Context context, @Nullable Location from, @Nullable Location via, @Nullable Location to) {
+	static public void findDirections(Context context, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, @Nullable Date date, boolean search) {
 		Intent intent = new Intent(context, DirectionsActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent.putExtra(FROM, new WrapLocation(from));
-		intent.putExtra(VIA, new WrapLocation(via));
-		intent.putExtra(TO, new WrapLocation(to));
-		intent.putExtra(SEARCH, false);
-
-		context.startActivity(intent);
-	}
-
-	static public void findDirections(Context context, @Nullable Location from, @Nullable Location via, Location to, @Nullable Date date) {
-		Intent intent = new Intent(context, DirectionsActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent.putExtra(FROM, new WrapLocation(from));
-		intent.putExtra(VIA, new WrapLocation(via));
-		intent.putExtra(TO, new WrapLocation(to));
-		intent.putExtra(SEARCH, true);
+		intent.putExtra(FROM, from);
+		intent.putExtra(VIA, via);
+		intent.putExtra(TO, to);
+		intent.putExtra(SEARCH, search);
 		if (date != null) {
 			intent.putExtra(DATE, date);
 		}
-
 		context.startActivity(intent);
+	}
+
+	static public void presetDirections(Context context, @Nullable Location from, @Nullable Location via, @Nullable Location to) {
+		findDirections(context, new WrapLocation(from), new WrapLocation(via), new WrapLocation(to), null, false);
+	}
+
+	static public void findDirections(Context context, @Nullable Location from, @Nullable Location via, @Nullable Location to, @Nullable Date date) {
+		findDirections(context, new WrapLocation(from), new WrapLocation(via), new WrapLocation(to), date, true);
 	}
 
 	static public void findDirections(Context context, @Nullable  Location from, @Nullable Location via, @Nullable Location to) {
