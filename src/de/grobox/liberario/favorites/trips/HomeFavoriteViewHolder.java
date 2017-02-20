@@ -15,28 +15,34 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
-enum FavoritesType {
+import android.view.View;
 
-	HOME(0),
-	WORK(1),
-	TRIP(2);
+import de.grobox.liberario.R;
 
-	private final int value;
+class HomeFavoriteViewHolder extends SpecialFavoritesViewHolder {
 
-	FavoritesType(int value) {
-		this.value = value;
+	HomeFavoriteViewHolder(View v) {
+		super(v);
 	}
 
-	public int getValue() {
-		return value;
-	}
+	@Override
+	void onBind(FavoriteTripItem item, FavoriteTripListener listener) {
+		super.onBind(item, listener);
 
-	static FavoritesType fromValue(int value) {
-		for (FavoritesType s : values())
-			if (s.value == value) return s;
-		throw new IllegalArgumentException();
+		icon.setImageResource(R.drawable.ic_action_home);
+		title.setText(R.string.home);
+
+		if (item.getTo() != null) {
+			final SpecialLocationPopupMenu popup = new HomePopupMenu(overflow.getContext(), overflow, item, listener);
+			overflow.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					popup.show();
+				}
+			});
+		}
 	}
 
 }

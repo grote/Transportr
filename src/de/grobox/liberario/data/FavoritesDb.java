@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import de.grobox.liberario.favorites.FavoritesItem;
+import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
@@ -24,8 +24,8 @@ import static de.grobox.liberario.settings.Preferences.getNetwork;
 
 public class FavoritesDb {
 
-	public static List<FavoritesItem> getFavoriteTripList(Context context) {
-		List<FavoritesItem> list = new ArrayList<>();
+	public static List<FavoriteTripItem> getFavoriteTripList(Context context) {
+		List<FavoriteTripItem> list = new ArrayList<>();
 
 		// when the app starts for the first time, no network is selected
 		if (getNetwork(context) == null) return list;
@@ -55,7 +55,7 @@ public class FavoritesDb {
 	}
 
 	@SuppressLint("SimpleDateFormat")
-	private static FavoritesItem getTrip(Cursor c) {
+	private static FavoriteTripItem getTrip(Cursor c) {
 		Location from = getLocation(c, "from_");
 		Location via = getLocation(c, "via_");
 		Location to = getLocation(c, "to_");
@@ -67,11 +67,11 @@ public class FavoritesDb {
 			e.printStackTrace();
 			date = new Date();
 		}
-		return new FavoritesItem(from, via, to, c.getInt(c.getColumnIndex("count")),
+		return new FavoriteTripItem(from, via, to, c.getInt(c.getColumnIndex("count")),
 				date, c.getInt(c.getColumnIndex("is_favourite")) > 0);
 	}
 
-	public static void updateFavoriteTrip(Context context, FavoritesItem trip) {
+	public static void updateFavoriteTrip(Context context, FavoriteTripItem trip) {
 		if (trip.getFrom() == null || trip.getTo() == null) {
 			// this should never happen, but well...
 			return;
@@ -150,7 +150,7 @@ public class FavoritesDb {
 		db.close();
 	}
 
-	public static void toggleFavoriteTrip(Context context, FavoritesItem recent) {
+	public static void toggleFavoriteTrip(Context context, FavoriteTripItem recent) {
 		if (recent.getFrom() == null || recent.getTo() == null) {
 			// this should never happen, but well...
 			return;
@@ -196,7 +196,7 @@ public class FavoritesDb {
 		db.close();
 	}
 
-	public static boolean isFavoriteTrip(Context context, FavoritesItem recent) {
+	public static boolean isFavoriteTrip(Context context, FavoriteTripItem recent) {
 		DbHelper mDbHelper = new DbHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -240,7 +240,7 @@ public class FavoritesDb {
 		return is_fav;
 	}
 
-	public static void deleteFavoriteTrip(Context context, FavoritesItem recent) {
+	public static void deleteFavoriteTrip(Context context, FavoriteTripItem recent) {
 		DbHelper mDbHelper = new DbHelper(context);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 

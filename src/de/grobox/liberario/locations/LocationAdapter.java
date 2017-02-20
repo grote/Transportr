@@ -39,14 +39,15 @@ import java.util.regex.Pattern;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.locations.FavLocation.FavLocationType;
+import de.grobox.liberario.favorites.locations.FavoriteLocation;
+import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.networks.TransportNetworkManager.FavoriteLocationsLoadedListener;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.SuggestedLocation;
 
-import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
+import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
@@ -131,7 +132,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 		}
 		// locations from favorites and auto-complete
-		else if(wrapLocation instanceof FavLocation) {
+		else if(wrapLocation instanceof FavoriteLocation) {
 			textView.setText(getHighlightedText(l));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 		}

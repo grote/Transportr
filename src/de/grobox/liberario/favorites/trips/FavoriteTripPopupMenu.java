@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.content.Context;
 import android.view.MenuItem;
@@ -23,17 +23,34 @@ import android.view.View;
 
 import de.grobox.liberario.R;
 
-class HomePopupMenu extends SpecialLocationPopupMenu {
+import static de.grobox.liberario.data.FavoritesDb.toggleFavoriteTrip;
+import static de.grobox.liberario.utils.TransportrUtils.setFavState;
 
-	HomePopupMenu(Context context, View anchor, FavoritesItem trip, FavoriteListener listener) {
+public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
+
+	public FavoriteTripPopupMenu(Context context, View anchor, FavoriteTripItem trip, FavoriteTripListener listener) {
 		super(context, anchor, trip, listener);
+		setFavState(context, getMenu().findItem(R.id.action_mark_favorite), trip.isFavorite(), false);
+	}
+
+	@Override
+	protected int getMenuRes() {
+		return R.menu.favorite_actions;
 	}
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.action_change:
-				listener.changeHome();
+			case R.id.action_mark_favorite:
+				toggleFavoriteTrip(context, trip);
+				trip.setFavorite(!trip.isFavorite());
+
+				setFavState(context, item, trip.isFavorite(), false);
+
+				if (listener != null) {
+					listener.onFavoriteChanged(trip);
+				}
+				return true;
 			default:
 				return super.onMenuItemClick(item);
 		}

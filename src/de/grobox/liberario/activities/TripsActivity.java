@@ -40,7 +40,7 @@ import java.util.ArrayList;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.adapters.TripDetailsAdapter;
-import de.grobox.liberario.favorites.FavoritesItem;
+import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.tasks.AsyncQueryMoreTripsTask;
@@ -163,7 +163,7 @@ public class TripsActivity extends TransportrActivity {
 		mRecyclerView.setAdapter(mAdapter);
 
 		if(to.type != LocationType.COORD && from.type != LocationType.COORD) {
-			isFav = isFavoriteTrip(this, new FavoritesItem(from, via, to));
+			isFav = isFavoriteTrip(this, new FavoriteTripItem(from, via, to));
 			isFavable = true;
 		} else {
 			isFav = false;
@@ -215,7 +215,7 @@ public class TripsActivity extends TransportrActivity {
 			return true;
 		}
 		else if(item.getItemId() == R.id.action_fav_trip) {
-			toggleFavoriteTrip(this, new FavoritesItem(from, via, to, isFav));
+			toggleFavoriteTrip(this, new FavoriteTripItem(from, via, to, isFav));
 			isFav = !isFav;
 			TransportrUtils.setFavState(this, item, isFav, true);
 

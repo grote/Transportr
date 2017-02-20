@@ -56,7 +56,7 @@ import de.grobox.liberario.data.SpecialLocationDb;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
-import de.grobox.liberario.locations.FavLocation;
+import de.grobox.liberario.favorites.locations.FavoriteLocation;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.trips.DirectionsActivity;
@@ -628,7 +628,7 @@ public class TransportrUtils {
 	static public Drawable getDrawableForLocation(Context context, @Nullable Location l) {
 		if(l == null) return getTintedDrawable(context, R.drawable.ic_location);
 
-		List<WrapLocation> fav_list = getFavLocationList(context, FavLocation.FavLocationType.FROM);
+		List<WrapLocation> fav_list = getFavLocationList(context, FavoriteLocation.FavLocationType.FROM);
 		WrapLocation w = new WrapLocation(l);
 
 		return getDrawableForLocation(context, w, fav_list.contains(w));

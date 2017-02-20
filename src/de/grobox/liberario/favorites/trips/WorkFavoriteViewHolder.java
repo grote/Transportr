@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.view.View;
 
@@ -28,7 +28,7 @@ class WorkFavoriteViewHolder extends SpecialFavoritesViewHolder {
 	}
 
 	@Override
-	void onBind(FavoritesItem item, FavoriteListener listener) {
+	void onBind(FavoriteTripItem item, FavoriteTripListener listener) {
 		super.onBind(item, listener);
 
 		icon.setImageResource(R.drawable.ic_work);

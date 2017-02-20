@@ -38,7 +38,7 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 import java.util.ArrayList;
 import java.util.Date;
 
-import de.grobox.liberario.locations.FavLocation;
+import de.grobox.liberario.favorites.locations.FavoriteLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.departures.DepartureAdapter;
 import de.grobox.liberario.data.LocationDb;
@@ -149,7 +149,7 @@ public class DeparturesFragment extends TransportrFragment {
 			}
 
 			// Location is valid, so make it a favorite or increase counter
-			LocationDb.updateFavLocation(getActivity(), ui.station.getLocation(), FavLocation.FavLocationType.FROM);
+			LocationDb.updateFavLocation(getActivity(), ui.station.getLocation(), FavoriteLocation.FavLocationType.FROM);
 
 			date = ui.date.getDate();
 			stationId = ui.station.getLocation().id;

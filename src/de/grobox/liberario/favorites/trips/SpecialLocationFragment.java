@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -47,7 +47,7 @@ import de.schildbach.pte.dto.Location;
 abstract class SpecialLocationFragment extends DialogFragment implements LocationView.LocationViewListener {
 
 	@Inject TransportNetworkManager manager;
-	protected @Nullable FavoriteListener listener;
+	protected @Nullable FavoriteTripListener listener;
 
 	private LocationView loc;
 
@@ -116,7 +116,7 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 	public void onLocationCleared() {
 	}
 
-	public void setListener(@Nullable FavoriteListener listener) {
+	public void setListener(@Nullable FavoriteTripListener listener) {
 		this.listener = listener;
 	}
 

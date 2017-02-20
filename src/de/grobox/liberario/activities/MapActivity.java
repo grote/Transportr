@@ -67,7 +67,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.grobox.liberario.locations.FavLocation;
+import de.grobox.liberario.favorites.locations.FavoriteLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.networks.TransportNetwork;
@@ -300,9 +300,9 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			@Override
 			public void run() {
 				// first try to get area from favourites
-				List<FavLocation> favs = LocationDb.getFavLocationList(MapActivity.this);
+				List<FavoriteLocation> favs = LocationDb.getFavLocationList(MapActivity.this);
 				ArrayList<GeoPoint> geoPoints = new ArrayList<>(favs.size());
-				for(FavLocation fav : favs) {
+				for(FavoriteLocation fav : favs) {
 					Location loc = fav.getLocation();
 					if(loc.hasLocation()) {
 						geoPoints.add(new GeoPoint(loc.getLatAsDouble(), loc.getLonAsDouble()));

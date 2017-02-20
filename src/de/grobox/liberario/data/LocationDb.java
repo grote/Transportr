@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.grobox.liberario.locations.FavLocation;
+import de.grobox.liberario.favorites.locations.FavoriteLocation;
 import de.grobox.liberario.locations.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -36,8 +36,8 @@ import static de.grobox.liberario.data.DbHelper.getLocation;
 
 public class LocationDb {
 
-	public static List<FavLocation> getFavLocationList(Context context) {
-		List<FavLocation> fav_list = new ArrayList<>();
+	public static List<FavoriteLocation> getFavLocationList(Context context) {
+		List<FavoriteLocation> fav_list = new ArrayList<>();
 		String network = getNetwork(context);
 		if(network == null) return fav_list;
 
@@ -56,7 +56,7 @@ public class LocationDb {
 
 		while(c.moveToNext()) {
 			Location loc = getLocation(c);
-			FavLocation fav_loc = new FavLocation(loc, c.getInt(c.getColumnIndex("from_count")), c.getInt(c.getColumnIndex("via_count")), c.getInt(c.getColumnIndex("to_count")));
+			FavoriteLocation fav_loc = new FavoriteLocation(loc, c.getInt(c.getColumnIndex("from_count")), c.getInt(c.getColumnIndex("via_count")), c.getInt(c.getColumnIndex("to_count")));
 			fav_list.add(fav_loc);
 		}
 
@@ -66,24 +66,24 @@ public class LocationDb {
 		return fav_list;
 	}
 
-	public static List<WrapLocation> getFavLocationList(Context context, FavLocation.FavLocationType sort) {
-		List<FavLocation> fav_list = getFavLocationList(context);
+	public static List<WrapLocation> getFavLocationList(Context context, FavoriteLocation.FavLocationType sort) {
+		List<FavoriteLocation> fav_list = getFavLocationList(context);
 		List<WrapLocation> list = new ArrayList<>();
 
-		if (sort == FavLocation.FavLocationType.FROM) {
-			Collections.sort(fav_list, FavLocation.FromComparator);
-		} else if (sort == FavLocation.FavLocationType.VIA) {
-			Collections.sort(fav_list, FavLocation.ViaComparator);
-		} else if (sort == FavLocation.FavLocationType.TO) {
-			Collections.sort(fav_list, FavLocation.ToComparator);
+		if (sort == FavoriteLocation.FavLocationType.FROM) {
+			Collections.sort(fav_list, FavoriteLocation.FromComparator);
+		} else if (sort == FavoriteLocation.FavLocationType.VIA) {
+			Collections.sort(fav_list, FavoriteLocation.ViaComparator);
+		} else if (sort == FavoriteLocation.FavLocationType.TO) {
+			Collections.sort(fav_list, FavoriteLocation.ToComparator);
 		}
-		for (FavLocation loc : fav_list) {
+		for (FavoriteLocation loc : fav_list) {
 			list.add(loc);
 		}
 		return list;
 	}
 
-	public static void updateFavLocation(Context context, Location loc, FavLocation.FavLocationType favLocationType) {
+	public static void updateFavLocation(Context context, Location loc, FavoriteLocation.FavLocationType favLocationType) {
 		if(loc == null || loc.type == LocationType.COORD || loc.type == LocationType.ANY) {
 			// don't store GPS or ANY locations (includes ambiguous locations)
 			return;
@@ -124,13 +124,13 @@ public class LocationDb {
 
 		if(c.moveToFirst()) {
 			// increase counter by one for existing location
-			if(favLocationType == FavLocation.FavLocationType.FROM) {
+			if(favLocationType == FavoriteLocation.FavLocationType.FROM) {
 				values.put("from_count", c.getInt(c.getColumnIndex("from_count")) + 1);
 			}
-			else if(favLocationType == FavLocation.FavLocationType.VIA) {
+			else if(favLocationType == FavoriteLocation.FavLocationType.VIA) {
 				values.put("via_count", c.getInt(c.getColumnIndex("via_count")) + 1);
 			}
-			else if(favLocationType == FavLocation.FavLocationType.TO) {
+			else if(favLocationType == FavoriteLocation.FavLocationType.TO) {
 				values.put("to_count", c.getInt(c.getColumnIndex("to_count")) + 1);
 			}
 			db.update(DbHelper.TABLE_FAV_LOCS, values, "_id = ?", new String[] { c.getString(c.getColumnIndex("_id")) });
@@ -146,17 +146,17 @@ public class LocationDb {
 			values.put("name", loc.name);
 
 			// set counter to one
-			if(favLocationType == FavLocation.FavLocationType.FROM) {
+			if(favLocationType == FavoriteLocation.FavLocationType.FROM) {
 				values.put("from_count", 1);
 				values.put("via_count", 0);
 				values.put("to_count", 0);
 			}
-			else if(favLocationType == FavLocation.FavLocationType.VIA) {
+			else if(favLocationType == FavoriteLocation.FavLocationType.VIA) {
 				values.put("from_count", 0);
 				values.put("via_count", 1);
 				values.put("to_count", 0);
 			}
-			else if(favLocationType == FavLocation.FavLocationType.TO) {
+			else if(favLocationType == FavoriteLocation.FavLocationType.TO) {
 				values.put("from_count", 0);
 				values.put("via_count", 0);
 				values.put("to_count", 1);

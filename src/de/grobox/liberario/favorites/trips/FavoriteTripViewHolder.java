@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,14 +28,14 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
 
-class FavoritesViewHolder extends AbstractFavoritesViewHolder {
+class FavoriteTripViewHolder extends AbstractFavoritesViewHolder {
 
 	private final TextView from;
 	private final TextView via;
 	private final TextView to;
 	private final ImageView viaIcon;
 
-	FavoritesViewHolder(View v) {
+	FavoriteTripViewHolder(View v) {
 		super(v);
 		from = (TextView) v.findViewById(R.id.from);
 		via = (TextView) v.findViewById(R.id.via);
@@ -44,7 +44,7 @@ class FavoritesViewHolder extends AbstractFavoritesViewHolder {
 	}
 
 	@Override
-	void onBind(final FavoritesItem item, FavoriteListener listener) {
+	void onBind(final FavoriteTripItem item, FavoriteTripListener listener) {
 		super.onBind(item, listener);
 
 		if (item.isFavorite()) {
@@ -65,7 +65,7 @@ class FavoritesViewHolder extends AbstractFavoritesViewHolder {
 			viaIcon.setVisibility(GONE);
 		}
 
-		final FavoritesPopupMenu favPopup = new FavoritesPopupMenu(overflow.getContext(), overflow, item, listener);
+		final FavoriteTripPopupMenu favPopup = new FavoriteTripPopupMenu(overflow.getContext(), overflow, item, listener);
 		overflow.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

@@ -35,9 +35,10 @@ import java.util.List;
 
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.activities.TripsActivity;
+import de.grobox.liberario.favorites.locations.FavoriteLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.favorites.FavoritesItem;
+import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.data.LocationDb;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.schildbach.pte.dto.Location;
@@ -80,7 +81,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 		// From
 		if(trips.ambiguousFrom != null) {
 			LocationAdapter loca = new LocationAdapter(this, null, trips.ambiguousFrom);
-			loca.setSort(FavLocation.FavLocationType.FROM);
+			loca.setSort(FavoriteLocation.FavLocationType.FROM);
 			ui.fromSpinner.setAdapter(loca);
 			if(trips.ambiguousFrom.size() == 1) ui.fromSpinner.setEnabled(false);
 		}
@@ -88,7 +89,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 			List<Location> list = new ArrayList<>();
 			list.add(from);
 			LocationAdapter loca = new LocationAdapter(this, null, list);
-			loca.setSort(FavLocation.FavLocationType.FROM);
+			loca.setSort(FavoriteLocation.FavLocationType.FROM);
 			ui.fromSpinner.setAdapter(loca);
 			ui.fromSpinner.setEnabled(false);
 		}
@@ -99,14 +100,14 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 			ui.viaSpinner.setVisibility(View.GONE);
 		} else if (trips.ambiguousVia != null) {
 			LocationAdapter loca = new LocationAdapter(this, null, trips.ambiguousVia);
-			loca.setSort(FavLocation.FavLocationType.VIA);
+			loca.setSort(FavoriteLocation.FavLocationType.VIA);
 			ui.viaSpinner.setAdapter(loca);
 			if(trips.ambiguousVia.size() == 1) ui.viaSpinner.setEnabled(false);
 		} else {
 			List<Location> list = new ArrayList<>();
 			list.add(via);
 			LocationAdapter loca = new LocationAdapter(this, null, list);
-			loca.setSort(FavLocation.FavLocationType.VIA);
+			loca.setSort(FavoriteLocation.FavLocationType.VIA);
 			ui.viaSpinner.setAdapter(loca);
 			ui.viaSpinner.setEnabled(false);
 		}
@@ -114,7 +115,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 		// To
 		if(trips.ambiguousTo != null) {
 			LocationAdapter loca = new LocationAdapter(this, null, trips.ambiguousTo);
-			loca.setSort(FavLocation.FavLocationType.TO);
+			loca.setSort(FavoriteLocation.FavLocationType.TO);
 			ui.toSpinner.setAdapter(loca);
 			if(trips.ambiguousTo.size() == 1) ui.toSpinner.setEnabled(false);
 		}
@@ -122,7 +123,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 			List<Location> list = new ArrayList<>();
 			list.add(to);
 			LocationAdapter loca = new LocationAdapter(this, null, list);
-			loca.setSort(FavLocation.FavLocationType.TO);
+			loca.setSort(FavoriteLocation.FavLocationType.TO);
 			ui.toSpinner.setAdapter(loca);
 			ui.toSpinner.setEnabled(false);
 		}
@@ -135,10 +136,10 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 				to = ((WrapLocation) ui.toSpinner.getSelectedItem()).getLocation();
 
 				// remember location and trip
-				LocationDb.updateFavLocation(getApplicationContext(), from, FavLocation.FavLocationType.FROM);
-				if(via != null) LocationDb.updateFavLocation(getApplicationContext(), via, FavLocation.FavLocationType.VIA);
-				LocationDb.updateFavLocation(getApplicationContext(), to, FavLocation.FavLocationType.TO);
-				updateFavoriteTrip(getApplicationContext(), new FavoritesItem(from, via, to));
+				LocationDb.updateFavLocation(getApplicationContext(), from, FavoriteLocation.FavLocationType.FROM);
+				if(via != null) LocationDb.updateFavLocation(getApplicationContext(), via, FavoriteLocation.FavLocationType.VIA);
+				LocationDb.updateFavLocation(getApplicationContext(), to, FavoriteLocation.FavLocationType.TO);
+				updateFavoriteTrip(getApplicationContext(), new FavoriteTripItem(from, via, to));
 
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext(), AmbiguousLocationActivity.this);
 

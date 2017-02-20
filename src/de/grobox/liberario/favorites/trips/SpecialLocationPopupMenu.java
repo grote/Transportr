@@ -15,48 +15,28 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.content.Context;
-import android.support.annotation.MenuRes;
 import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.ui.BasePopupMenu;
 
-import static de.grobox.liberario.utils.TransportrUtils.findDirections;
-import static de.grobox.liberario.utils.TransportrUtils.presetDirections;
+abstract class SpecialLocationPopupMenu extends AbstractFavoritesPopupMenu {
 
-abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
-
-	protected final FavoritesItem trip;
-	protected final FavoriteListener listener;
-
-	AbstractFavoritesPopupMenu(Context context, View anchor, FavoritesItem trip, FavoriteListener listener) {
-		super(context, anchor);
-
-		this.trip = trip;
-		this.listener = listener;
-		getMenuInflater().inflate(getMenuRes(), getMenu());
-
-		showIcons();
+	SpecialLocationPopupMenu(Context context, View anchor, FavoriteTripItem trip, FavoriteTripListener listener) {
+		super(context, anchor, trip, listener);
 	}
 
-	@MenuRes
-	protected abstract int getMenuRes();
+	@Override
+	protected int getMenuRes() {
+		return R.menu.special_location_actions;
+	}
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
-			// Swap Locations
-			case R.id.action_swap_locations:
-				findDirections(context, trip.getTo(), trip.getVia(), trip.getFrom());
-				return true;
-			// Preset Locations
-			case R.id.action_set_locations:
-				presetDirections(context, trip.getFrom(), trip.getVia(), trip.getTo());
-				return true;
 			default:
 				return super.onMenuItemClick(item);
 		}

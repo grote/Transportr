@@ -53,7 +53,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
-import de.grobox.liberario.favorites.FavoritesFragment;
+import de.grobox.liberario.favorites.trips.FavoriteTripTripsFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.LocationView.LocationViewListener;
@@ -70,7 +70,7 @@ import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.liberario.data.LocationDb.updateFavLocation;
-import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
+import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
@@ -168,9 +168,9 @@ public class NewMapActivity extends DrawerActivity
 		});
 
 		if (savedInstanceState == null) {
-			FavoritesFragment f = FavoritesFragment.newInstance(true);
+			FavoriteTripTripsFragment f = FavoriteTripTripsFragment.newInstance(true);
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.bottomSheet, f, FavoritesFragment.TAG)
+					.replace(R.id.bottomSheet, f, FavoriteTripTripsFragment.TAG)
 					.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
 			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 			bottomSheetBehavior.setState(STATE_COLLAPSED);
@@ -256,7 +256,7 @@ public class NewMapActivity extends DrawerActivity
 		Log.e("TEST", "Transport Network Changed, recreating...");
 		recreate();
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.bottomSheet, FavoritesFragment.newInstance(true), FavoritesFragment.TAG)
+				.replace(R.id.bottomSheet, FavoriteTripTripsFragment.newInstance(true), FavoriteTripTripsFragment.TAG)
 				.commit();
 	}
 

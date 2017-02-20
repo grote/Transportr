@@ -20,7 +20,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TransportrActivity;
-import de.grobox.liberario.favorites.FavoritesFragment;
+import de.grobox.liberario.favorites.trips.FavoriteTripTripsFragment;
 import de.grobox.liberario.fragments.TimeDateFragment;
 import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
@@ -163,10 +163,10 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	}
 
 	void showFavorites() {
-		FavoritesFragment f = FavoritesFragment.newInstance(false);
+		FavoriteTripTripsFragment f = FavoriteTripTripsFragment.newInstance(false);
 		getSupportFragmentManager()
 				.beginTransaction()
-				.replace(R.id.fragmentContainer, f, FavoritesFragment.TAG)
+				.replace(R.id.fragmentContainer, f, FavoriteTripTripsFragment.TAG)
 				.commit();
 	}
 

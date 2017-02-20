@@ -43,7 +43,7 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportrApplication;
-import de.grobox.liberario.locations.FavLocation.FavLocationType;
+import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.locations.SuggestLocationsTask.SuggestLocationsTaskCallback;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.utils.TransportrUtils;

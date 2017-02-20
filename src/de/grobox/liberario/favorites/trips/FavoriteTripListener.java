@@ -1,15 +1,15 @@
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.schildbach.pte.dto.Location;
 
 @ParametersAreNonnullByDefault
-interface FavoriteListener {
+interface FavoriteTripListener {
 
-	void onFavoriteClicked(FavoritesItem item);
+	void onFavoriteClicked(FavoriteTripItem item);
 
-	void onFavoriteChanged(FavoritesItem item);
+	void onFavoriteChanged(FavoriteTripItem item);
 
 	void changeHome();
 

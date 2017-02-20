@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.support.annotation.Nullable;
 
@@ -28,30 +28,27 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.schildbach.pte.dto.Location;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static de.grobox.liberario.favorites.FavoritesType.HOME;
-import static de.grobox.liberario.favorites.FavoritesType.TRIP;
-import static de.grobox.liberario.favorites.FavoritesType.WORK;
 
 @ParametersAreNonnullByDefault
-public class FavoritesItem implements Comparable<FavoritesItem> {
+public class FavoriteTripItem implements Comparable<FavoriteTripItem> {
 
-	private final FavoritesType type;
+	private final FavoriteTripType type;
 	@Nullable
 	private final Location from, via, to;
 	private final int count;
 	private Date lastUsed;
 	private boolean favorite;
 
-	public FavoritesItem(Location from, @Nullable Location via, Location to) {
+	public FavoriteTripItem(Location from, @Nullable Location via, Location to) {
 		this(from, via, to, false);
 	}
 
-	public FavoritesItem(Location from, @Nullable Location via, Location to, boolean favorite) {
+	public FavoriteTripItem(Location from, @Nullable Location via, Location to, boolean favorite) {
 		this(from, via, to, 1, new Date(), favorite);
 	}
 
-	public FavoritesItem(Location from, @Nullable Location via, Location to, int count, Date lastUsed, boolean favorite) {
-		this.type = TRIP;
+	public FavoriteTripItem(Location from, @Nullable Location via, Location to, int count, Date lastUsed, boolean favorite) {
+		this.type = FavoriteTripType.TRIP;
 		this.from = from;
 		this.via = via;
 		this.to = to;
@@ -60,8 +57,8 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 		this.favorite = favorite;
 	}
 
-	FavoritesItem(FavoritesType type, @Nullable Location to) {
-		checkArgument(type == HOME || type == WORK, "This constructor can only be used for HOME and WORK");
+	FavoriteTripItem(FavoriteTripType type, @Nullable Location to) {
+		checkArgument(type == FavoriteTripType.HOME || type == FavoriteTripType.WORK, "This constructor can only be used for HOME and WORK");
 		this.type = type;
 		this.from = null;
 		this.via = null;
@@ -71,7 +68,7 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 		this.favorite = false;
 	}
 
-	FavoritesType getType() {
+	FavoriteTripType getType() {
 		return type;
 	}
 
@@ -103,12 +100,12 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 	}
 
 	@Override
-	public int compareTo(FavoritesItem i) {
+	public int compareTo(FavoriteTripItem i) {
 		if (equals(i)) return 0;
-		if (type == HOME) return -1;
-		if (i.type == HOME) return 1;
-		if (type == WORK) return -1;
-		if (i.type == WORK) return 1;
+		if (type == FavoriteTripType.HOME) return -1;
+		if (i.type == FavoriteTripType.HOME) return 1;
+		if (type == FavoriteTripType.WORK) return -1;
+		if (i.type == FavoriteTripType.WORK) return 1;
 		if (favorite && !i.favorite) return -1;
 		if (!favorite && i.favorite) return 1;
 		if (favorite) {
@@ -124,9 +121,9 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 	public boolean equals(Object o) {
 		if (o == this)
 			return true;
-		if (!(o instanceof FavoritesItem))
+		if (!(o instanceof FavoriteTripItem))
 			return false;
-		final FavoritesItem other = (FavoritesItem) o;
+		final FavoriteTripItem other = (FavoriteTripItem) o;
 		if (!Objects.equal(this.type, other.type))
 			return false;
 		if (!Objects.equal(this.from, other.from))
@@ -142,9 +139,9 @@ public class FavoritesItem implements Comparable<FavoritesItem> {
 	boolean equalsAllFields(Object o) {
 		if (o == this)
 			return true;
-		if (!(o instanceof FavoritesItem))
+		if (!(o instanceof FavoriteTripItem))
 			return false;
-		final FavoritesItem other = (FavoritesItem) o;
+		final FavoriteTripItem other = (FavoriteTripItem) o;
 		if (!Objects.equal(this.type, other.type))
 			return false;
 		if (!Objects.equal(this.from, other.from))

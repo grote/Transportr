@@ -57,8 +57,7 @@ import java.util.List;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TripsActivity;
 import de.grobox.liberario.data.LocationDb;
-import de.grobox.liberario.favorites.FavoritesAdapter;
-import de.grobox.liberario.favorites.FavoritesItem;
+import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.fragments.ProductDialogFragment.OnProductsChangedListener;
 import de.grobox.liberario.locations.AmbiguousLocationActivity;
 import de.grobox.liberario.locations.LocationGpsView;
@@ -83,9 +82,9 @@ import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
 import static de.grobox.liberario.activities.MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS;
 import static de.grobox.liberario.data.FavoritesDb.updateFavoriteTrip;
-import static de.grobox.liberario.locations.FavLocation.FavLocationType.FROM;
-import static de.grobox.liberario.locations.FavLocation.FavLocationType.TO;
-import static de.grobox.liberario.locations.FavLocation.FavLocationType.VIA;
+import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.FROM;
+import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.TO;
+import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.VIA;
 import static de.grobox.liberario.settings.Preferences.SHOW_ADV_DIRECTIONS;
 import static de.grobox.liberario.utils.TransportrUtils.fixToolbarIcon;
 import static de.grobox.liberario.utils.TransportrUtils.getButtonIconColor;
@@ -106,7 +105,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	private EnumSet<Product> products = EnumSet.allOf(Product.class);
 	private FastItemAdapter<ProductItem> productsAdapter;
 	private boolean showingMore = false;
-	private FavoritesAdapter mFavAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -183,8 +181,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		ui.fav_trips_separator_star.setColorFilter(getButtonIconColor(getActivity()));
 		ui.fav_trips_separator_line.setBackgroundColor(getButtonIconColor(getActivity()));
 
-		mFavAdapter = new FavoritesAdapter(null);
-		ui.favourites.setAdapter(mFavAdapter);
 		ui.favourites.setLayoutManager(new LinearLayoutManager(getContext()));
 
 		if(!Preferences.getPref(getActivity(), SHOW_ADV_DIRECTIONS, false)) {
@@ -392,7 +388,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 
 		// remember trip
-		updateFavoriteTrip(getActivity(), new FavoritesItem(ui.from.getLocation(), ui.via.getLocation(), ui.to.getLocation()));
+		updateFavoriteTrip(getActivity(), new FavoriteTripItem(ui.from.getLocation(), ui.via.getLocation(), ui.to.getLocation()));
 
 		// set date
 		query_trips.setDate(ui.date.getDate());
@@ -549,20 +545,10 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		ui.products.setVisibility(VISIBLE);
 		ui.fav_trips_separator.setVisibility(VISIBLE);
 
-		if(mFavAdapter.getItemCount() == 0) {
-			ui.no_favourites.setVisibility(VISIBLE);
-		}
 
 		if(animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			DisplayMetrics dm = new DisplayMetrics();
 			getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-			if(mFavAdapter.getItemCount() == 0) {
-				ui.no_favourites.setAlpha(0f);
-				ui.no_favourites.animate().setDuration(500).alpha(1f);
-				ui.fav_trips_separator.setAlpha(0f);
-				ui.fav_trips_separator.animate().setDuration(500).alpha(1f);
-			}
 		}
 	}
 
@@ -571,24 +557,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		ui.via.setLocation(null);
 		ui.via.setVisibility(GONE);
 		ui.products.setVisibility(GONE);
-
-		if(mFavAdapter.getItemCount() == 0) {
-			if (animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-				ui.no_favourites.setAlpha(1f);
-				ui.fav_trips_separator.setAlpha(1f);
-				ui.fav_trips_separator.animate().setDuration(500).alpha(0f);
-				ui.no_favourites.animate().setDuration(500).alpha(0f).withEndAction(new Runnable() {
-					@Override
-					public void run() {
-						ui.no_favourites.setVisibility(GONE);
-						ui.fav_trips_separator.setVisibility(GONE);
-					}
-				});
-			} else {
-				ui.no_favourites.setVisibility(GONE);
-				ui.fav_trips_separator.setVisibility(GONE);
-			}
-		}
 	}
 
 	private void setType(boolean departure) {

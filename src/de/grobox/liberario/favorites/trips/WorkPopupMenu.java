@@ -15,37 +15,28 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
-import de.grobox.liberario.AppComponent;
+import android.content.Context;
+import android.view.MenuItem;
+import android.view.View;
+
 import de.grobox.liberario.R;
-import de.schildbach.pte.dto.Location;
 
-public class HomePickerDialogFragment extends SpecialLocationFragment {
+class WorkPopupMenu extends SpecialLocationPopupMenu {
 
-	public static final String TAG = HomePickerDialogFragment.class.getName();
-
-	public HomePickerDialogFragment() {
-	}
-
-	public static HomePickerDialogFragment newInstance() {
-		return new HomePickerDialogFragment();
+	WorkPopupMenu(Context context, View anchor, FavoriteTripItem trip, FavoriteTripListener listener) {
+		super(context, anchor, trip, listener);
 	}
 
 	@Override
-	protected void inject(AppComponent component) {
-		component.inject(this);
-	}
-
-	@Override
-	protected int getHint() {
-		return R.string.home_dialog_title;
-	}
-
-	@Override
-	protected void onSpecialLocationSet(Location location) {
-		manager.setHome(location);
-		if (listener != null) listener.onHomeChanged(location);
+	public boolean onMenuItemClick(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_change:
+				listener.changeWork();
+			default:
+				return super.onMenuItemClick(item);
+		}
 	}
 
 }

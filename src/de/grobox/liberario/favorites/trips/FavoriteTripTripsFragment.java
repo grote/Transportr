@@ -1,4 +1,4 @@
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
@@ -29,26 +29,23 @@ import de.schildbach.pte.dto.Location;
 
 import static android.support.v7.util.SortedList.INVALID_POSITION;
 import static de.grobox.liberario.data.FavoritesDb.getFavoriteTripList;
-import static de.grobox.liberario.favorites.FavoritesType.HOME;
-import static de.grobox.liberario.favorites.FavoritesType.TRIP;
-import static de.grobox.liberario.favorites.FavoritesType.WORK;
 import static de.grobox.liberario.utils.Constants.LOADER_FAVORITES;
 import static de.grobox.liberario.utils.TransportrUtils.findDirections;
 
 @ParametersAreNonnullByDefault
-public class FavoritesFragment extends TransportrFragment implements FavoriteListener, LoaderCallbacks<Collection<FavoritesItem>> {
+public class FavoriteTripTripsFragment extends TransportrFragment implements FavoriteTripListener, LoaderCallbacks<Collection<FavoriteTripItem>> {
 
-	public static final String TAG = FavoritesFragment.class.getName();
+	public static final String TAG = FavoriteTripTripsFragment.class.getName();
 	private static final String TOP_MARGIN = "topMargin";
 
 	@Inject
 	TransportNetworkManager manager;
 	private ProgressBar progressBar;
 	private RecyclerView list;
-	private FavoritesAdapter adapter;
+	private FavoriteTripAdapter adapter;
 
-	public static FavoritesFragment newInstance(boolean topMargin) {
-		FavoritesFragment f = new FavoritesFragment();
+	public static FavoriteTripTripsFragment newInstance(boolean topMargin) {
+		FavoriteTripTripsFragment f = new FavoriteTripTripsFragment();
 		Bundle args = new Bundle();
 		args.putBoolean(TOP_MARGIN, topMargin);
 		f.setArguments(args);
@@ -63,7 +60,7 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 		progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
 
 		list = (RecyclerView) v.findViewById(R.id.favorites);
-		adapter = new FavoritesAdapter(this);
+		adapter = new FavoriteTripAdapter(this);
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(getContext()));
 		if (!getArguments().getBoolean(TOP_MARGIN)) {
@@ -84,47 +81,47 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 	}
 
 	@Override
-	public Loader<Collection<FavoritesItem>> onCreateLoader(int id, Bundle args) {
-		return new AsyncTaskLoader<Collection<FavoritesItem>>(getContext()) {
+	public Loader<Collection<FavoriteTripItem>> onCreateLoader(int id, Bundle args) {
+		return new AsyncTaskLoader<Collection<FavoriteTripItem>>(getContext()) {
 			@Override
-			public Collection<FavoritesItem> loadInBackground() {
-				List<FavoritesItem> favorites = getFavoriteTripList(getContext());
+			public Collection<FavoriteTripItem> loadInBackground() {
+				List<FavoriteTripItem> favorites = getFavoriteTripList(getContext());
 				Location home = SpecialLocationDb.getHome(getContext());
 				Location work = SpecialLocationDb.getWork(getContext());
-				favorites.add(new FavoritesItem(HOME, home));
-				favorites.add(new FavoritesItem(WORK, work));
+				favorites.add(new FavoriteTripItem(FavoriteTripType.HOME, home));
+				favorites.add(new FavoriteTripItem(FavoriteTripType.WORK, work));
 				return favorites;
 			}
 		};
 	}
 
 	@Override
-	public void onLoadFinished(Loader<Collection<FavoritesItem>> loader, Collection<FavoritesItem> favorites) {
+	public void onLoadFinished(Loader<Collection<FavoriteTripItem>> loader, Collection<FavoriteTripItem> favorites) {
 		LceAnimator.showContent(progressBar, list, null);
 		adapter.clear();
 		adapter.addAll(favorites);
 	}
 
 	@Override
-	public void onLoaderReset(Loader<Collection<FavoritesItem>> loader) {
+	public void onLoaderReset(Loader<Collection<FavoriteTripItem>> loader) {
 		adapter.clear();
 	}
 
 	@Override
-	public void onFavoriteClicked(FavoritesItem item) {
-		if (item.getType() == HOME) {
+	public void onFavoriteClicked(FavoriteTripItem item) {
+		if (item.getType() == FavoriteTripType.HOME) {
 			if (manager.getHome() == null) {
 				changeHome();
 			} else {
 				findDirections(getContext(), item.getFrom(), item.getVia(), manager.getHome());
 			}
-		} else if (item.getType() == WORK) {
+		} else if (item.getType() == FavoriteTripType.WORK) {
 			if (manager.getWork() == null) {
 				changeWork();
 			} else {
 				findDirections(getContext(), item.getFrom(), item.getVia(), manager.getWork());
 			}
-		} else if (item.getType() == TRIP) {
+		} else if (item.getType() == FavoriteTripType.TRIP) {
 			if (item.getFrom() == null || item.getTo() == null) throw new IllegalArgumentException();
 			findDirections(getContext(), item.getFrom(), item.getVia(), item.getTo());
 		} else {
@@ -133,7 +130,7 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 	}
 
 	@Override
-	public void onFavoriteChanged(FavoritesItem item) {
+	public void onFavoriteChanged(FavoriteTripItem item) {
 		int position = adapter.findItemPosition(item);
 		if (position != INVALID_POSITION) {
 			adapter.updateItem(position, item);
@@ -156,15 +153,15 @@ public class FavoritesFragment extends TransportrFragment implements FavoriteLis
 
 	@Override
 	public void onHomeChanged(Location home) {
-		onSpecialLocationChanged(adapter.getHome(), new FavoritesItem(HOME, home));
+		onSpecialLocationChanged(adapter.getHome(), new FavoriteTripItem(FavoriteTripType.HOME, home));
 	}
 
 	@Override
 	public void onWorkChanged(Location work) {
-		onSpecialLocationChanged(adapter.getWork(), new FavoritesItem(WORK, work));
+		onSpecialLocationChanged(adapter.getWork(), new FavoriteTripItem(FavoriteTripType.WORK, work));
 	}
 
-	private void onSpecialLocationChanged(@Nullable FavoritesItem oldItem, FavoritesItem newItem) {
+	private void onSpecialLocationChanged(@Nullable FavoriteTripItem oldItem, FavoriteTripItem newItem) {
 		if (oldItem == null) return;
 		int position = adapter.findItemPosition(oldItem);
 		if (position == INVALID_POSITION) return;

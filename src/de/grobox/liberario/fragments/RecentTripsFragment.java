@@ -42,8 +42,8 @@ import java.util.List;
 
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
-import de.grobox.liberario.favorites.FavoritesItem;
-import de.grobox.liberario.favorites.FavoritesPopupMenu;
+import de.grobox.liberario.favorites.trips.FavoriteTripItem;
+import de.grobox.liberario.favorites.trips.FavoriteTripPopupMenu;
 import de.grobox.liberario.utils.TransportrUtils;
 
 import static de.grobox.liberario.data.FavoritesDb.deleteFavoriteTrip;
@@ -160,8 +160,8 @@ public class RecentTripsFragment extends TransportrListFragment {
 		}
 	}
 
-	private class FavTripArrayAdapter extends ArrayAdapter<FavoritesItem> {
-		public FavTripArrayAdapter(Context context, int textViewResourceId,	List<FavoritesItem> objects) {
+	private class FavTripArrayAdapter extends ArrayAdapter<FavoriteTripItem> {
+		public FavTripArrayAdapter(Context context, int textViewResourceId,	List<FavoriteTripItem> objects) {
 			super(context, textViewResourceId, objects);
 		}
 
@@ -176,14 +176,14 @@ public class RecentTripsFragment extends TransportrListFragment {
 			v.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					FavoritesItem trip = (FavoritesItem) getListView().getItemAtPosition(position);
+					FavoriteTripItem trip = (FavoriteTripItem) getListView().getItemAtPosition(position);
 					TransportrUtils.findDirections(getActivity(), trip.getFrom(), trip.getVia(), trip.getTo());
 				}
 			});
 
 			// handle click on more button
 			ImageButton moreButton = (ImageButton) v.findViewById(R.id.moreButton);
-			final FavoritesPopupMenu recentsPopup = new FavoritesPopupMenu(getContext(), moreButton,(FavoritesItem) getListView().getItemAtPosition(position), null);
+			final FavoriteTripPopupMenu recentsPopup = new FavoriteTripPopupMenu(getContext(), moreButton,(FavoriteTripItem) getListView().getItemAtPosition(position), null);
 			moreButton.setOnClickListener(new OnClickListener() {
 				                              @Override
 				                              public void onClick(View v) {
@@ -206,7 +206,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 				}
 			});
 
-			FavoritesItem trip = this.getItem(position);
+			FavoriteTripItem trip = this.getItem(position);
 
 			// from
 			TextView favFromView = (TextView) v.findViewById(R.id.recentFromView);
@@ -260,7 +260,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 		for(int i = tmp.size()-1; i >= 0; i--) {
 			if(tmp.valueAt(i)) {
 				int pos = tmp.keyAt(i);
-				FavoritesItem trip = adapter.getItem(pos);
+				FavoriteTripItem trip = adapter.getItem(pos);
 				deleteFavoriteTrip(getActivity(), trip);
 				adapter.remove(trip);
 			}

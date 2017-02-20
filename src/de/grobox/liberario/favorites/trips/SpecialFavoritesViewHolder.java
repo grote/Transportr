@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.graphics.Typeface;
 import android.view.View;
@@ -39,7 +39,7 @@ abstract class SpecialFavoritesViewHolder extends AbstractFavoritesViewHolder {
 	}
 
 	@Override
-	void onBind(final FavoritesItem item, final FavoriteListener listener) {
+	void onBind(final FavoriteTripItem item, final FavoriteTripListener listener) {
 		super.onBind(item, listener);
 
 		if (item.getTo() == null) {

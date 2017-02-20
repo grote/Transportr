@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.content.Context;
 import android.view.MenuItem;
@@ -23,20 +23,17 @@ import android.view.View;
 
 import de.grobox.liberario.R;
 
-abstract class SpecialLocationPopupMenu extends AbstractFavoritesPopupMenu {
+class HomePopupMenu extends SpecialLocationPopupMenu {
 
-	SpecialLocationPopupMenu(Context context, View anchor, FavoritesItem trip, FavoriteListener listener) {
+	HomePopupMenu(Context context, View anchor, FavoriteTripItem trip, FavoriteTripListener listener) {
 		super(context, anchor, trip, listener);
-	}
-
-	@Override
-	protected int getMenuRes() {
-		return R.menu.special_location_actions;
 	}
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
+			case R.id.action_change:
+				listener.changeHome();
 			default:
 				return super.onMenuItemClick(item);
 		}

@@ -15,23 +15,24 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.locations;
+package de.grobox.liberario.favorites.locations;
 
 import android.support.annotation.NonNull;
 
 import java.util.Comparator;
 
+import de.grobox.liberario.locations.WrapLocation;
 import de.schildbach.pte.dto.Location;
 
-public class FavLocation extends WrapLocation implements Comparable<FavLocation> {
+public class FavoriteLocation extends WrapLocation implements Comparable<FavoriteLocation> {
 
-	public enum FavLocationType { FROM, VIA, TO }
+	public enum FavLocationType {FROM, VIA, TO}
 
 	private int from_count;
 	private int via_count;
 	private int to_count;
 
-	public FavLocation(Location loc, int from, int via, int to) {
+	public FavoriteLocation(Location loc, int from, int via, int to) {
 		super(loc);
 		from_count = from;
 		via_count = via;
@@ -51,13 +52,13 @@ public class FavLocation extends WrapLocation implements Comparable<FavLocation>
 	}
 
 	@Override
-	public boolean equals(Object o)	{
-		if(o == this) {
+	public boolean equals(Object o) {
+		if (o == this) {
 			return true;
 		}
 
-		if(o instanceof FavLocation) {
-			if(this.getLocation().equals(((FavLocation) o).getLocation())) {
+		if (o instanceof FavoriteLocation) {
+			if (this.getLocation().equals(((FavoriteLocation) o).getLocation())) {
 				return true;
 			}
 			return false;
@@ -71,24 +72,24 @@ public class FavLocation extends WrapLocation implements Comparable<FavLocation>
 	}
 
 	@Override
-	public int compareTo(@NonNull FavLocation other) {
+	public int compareTo(@NonNull FavoriteLocation other) {
 		return (other.getFromCount() + other.getToCount()) - (this.getFromCount() + this.getToCount());
 	}
 
-	public static Comparator<FavLocation> FromComparator = new Comparator<FavLocation>() {
-		public int compare(FavLocation loc1, FavLocation loc2) {
+	public static Comparator<FavoriteLocation> FromComparator = new Comparator<FavoriteLocation>() {
+		public int compare(FavoriteLocation loc1, FavoriteLocation loc2) {
 			return loc2.getFromCount() - loc1.getFromCount();
 		}
 	};
 
-	public static Comparator<FavLocation> ViaComparator = new Comparator<FavLocation>() {
-		public int compare(FavLocation loc1, FavLocation loc2) {
+	public static Comparator<FavoriteLocation> ViaComparator = new Comparator<FavoriteLocation>() {
+		public int compare(FavoriteLocation loc1, FavoriteLocation loc2) {
 			return loc2.getViaCount() - loc1.getViaCount();
 		}
 	};
 
-	public static Comparator<FavLocation> ToComparator = new Comparator<FavLocation>() {
-		public int compare(FavLocation loc1, FavLocation loc2) {
+	public static Comparator<FavoriteLocation> ToComparator = new Comparator<FavoriteLocation>() {
+		public int compare(FavoriteLocation loc1, FavoriteLocation loc2) {
 			return loc2.getToCount() - loc1.getToCount();
 		}
 	};

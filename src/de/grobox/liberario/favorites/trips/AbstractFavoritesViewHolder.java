@@ -1,4 +1,4 @@
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import android.support.annotation.CallSuper;
 import android.support.v7.widget.RecyclerView;
@@ -22,7 +22,7 @@ abstract class AbstractFavoritesViewHolder extends RecyclerView.ViewHolder {
 	}
 
 	@CallSuper
-	void onBind(final FavoritesItem item, final FavoriteListener listener) {
+	void onBind(final FavoriteTripItem item, final FavoriteTripListener listener) {
 		layout.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

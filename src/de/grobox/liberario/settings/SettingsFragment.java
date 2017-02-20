@@ -33,7 +33,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.SpecialLocationDb;
-import de.grobox.liberario.favorites.HomePickerDialogFragment;
+import de.grobox.liberario.favorites.trips.HomePickerDialogFragment;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;

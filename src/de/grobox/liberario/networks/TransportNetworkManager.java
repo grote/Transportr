@@ -33,8 +33,9 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.data.LocationDb;
 import de.grobox.liberario.data.SpecialLocationDb;
-import de.grobox.liberario.locations.FavLocation;
-import de.grobox.liberario.locations.FavLocation.FavLocationType;
+import de.grobox.liberario.favorites.trips.FavoriteTripItem;
+import de.grobox.liberario.favorites.locations.FavoriteLocation;
+import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.settings.SettingsManager;
 import de.schildbach.pte.NetworkId;
@@ -46,14 +47,12 @@ public class TransportNetworkManager {
 	private final Context context;
 	private final SettingsManager settingsManager;
 
-	@Nullable
-	private TransportNetwork transportNetwork, transportNetwork2, transportNetwork3;
-	@Nullable
-	private Location home, work;
-	@Nullable
-	private List<FavLocation> favoriteLocations;
+	private @Nullable TransportNetwork transportNetwork, transportNetwork2, transportNetwork3;
+	private @Nullable Location home, work;
+	private @Nullable List<FavoriteLocation> favoriteLocations;
 	private List<FavoriteLocationsLoadedListener> favoriteLocationsLoadedListeners = new ArrayList<>();
 	private List<TransportNetworkChangedListener> transportNetworkChangedListeners = new ArrayList<>();
+	private @Nullable List<FavoriteTripItem> favoriteTrips;
 
 	@Inject
 	public TransportNetworkManager(Context context, SettingsManager settingsManager) {
@@ -196,7 +195,7 @@ public class TransportNetworkManager {
 	 * Returns a copy of cached favorite locations.
 	 */
 	@Nullable
-	public List<FavLocation> getFavoriteLocations() {
+	public List<FavoriteLocation> getFavoriteLocations() {
 		return favoriteLocations == null ? null : new ArrayList<>(favoriteLocations);
 	}
 
@@ -204,16 +203,16 @@ public class TransportNetworkManager {
 	public List<WrapLocation> getFavoriteLocations(FavLocationType sort) {
 		if (favoriteLocations == null) return null;
 		List<WrapLocation> list = new ArrayList<>();
-		List<FavLocation> tmpList = new ArrayList<>(favoriteLocations);
+		List<FavoriteLocation> tmpList = new ArrayList<>(favoriteLocations);
 
 		if (sort == FavLocationType.FROM) {
-			Collections.sort(tmpList, FavLocation.FromComparator);
+			Collections.sort(tmpList, FavoriteLocation.FromComparator);
 		} else if (sort == FavLocationType.VIA) {
-			Collections.sort(tmpList, FavLocation.ViaComparator);
+			Collections.sort(tmpList, FavoriteLocation.ViaComparator);
 		} else if (sort == FavLocationType.TO) {
-			Collections.sort(tmpList, FavLocation.ToComparator);
+			Collections.sort(tmpList, FavoriteLocation.ToComparator);
 		}
-		for (FavLocation loc : tmpList) {
+		for (FavoriteLocation loc : tmpList) {
 			list.add(loc);
 		}
 		return list;
@@ -228,7 +227,7 @@ public class TransportNetworkManager {
 		}).start();
 	}
 
-	private void setLoadedFavoriteLocations(final List<FavLocation> favoriteLocations) {
+	private void setLoadedFavoriteLocations(final List<FavoriteLocation> favoriteLocations) {
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {
@@ -240,6 +239,16 @@ public class TransportNetworkManager {
 			}
 		});
 	}
+
+	/**
+	 * Returns a copy of cached favorite trips.
+	 */
+	@Nullable
+	public List<FavoriteTripItem> getFavoriteTrips() {
+		return favoriteTrips == null ? null : new ArrayList<>(favoriteTrips);
+	}
+
+
 
 	/**
 	 * Adds a listener that will be informed once favorite locations have been loaded.

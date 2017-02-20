@@ -15,21 +15,21 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites;
+package de.grobox.liberario.favorites.trips;
 
 import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
 import de.schildbach.pte.dto.Location;
 
-public class WorkPickerDialogFragment extends SpecialLocationFragment {
+public class HomePickerDialogFragment extends SpecialLocationFragment {
 
-	public static final String TAG = WorkPickerDialogFragment.class.getName();
+	public static final String TAG = HomePickerDialogFragment.class.getName();
 
-	public WorkPickerDialogFragment() {
+	public HomePickerDialogFragment() {
 	}
 
-	public static WorkPickerDialogFragment newInstance() {
-		return new WorkPickerDialogFragment();
+	public static HomePickerDialogFragment newInstance() {
+		return new HomePickerDialogFragment();
 	}
 
 	@Override
@@ -39,13 +39,13 @@ public class WorkPickerDialogFragment extends SpecialLocationFragment {
 
 	@Override
 	protected int getHint() {
-		return R.string.work_hint;
+		return R.string.home_dialog_title;
 	}
 
 	@Override
 	protected void onSpecialLocationSet(Location location) {
-		manager.setWork(location);
-		if (listener != null) listener.onWorkChanged(location);
+		manager.setHome(location);
+		if (listener != null) listener.onHomeChanged(location);
 	}
 
 }
