@@ -86,6 +86,7 @@ public class NewMapActivity extends DrawerActivity
 		implements LocationViewListener, OnMapReadyCallback, LoaderCallbacks<NearbyLocationsResult> {
 
 	private final static int LOCATION_ZOOM = 14;
+	private final static String BOTTOM_SHEET_HEIGHT = "bottomSheetHeight";
 
 	@Inject FavoriteLocationManager favoriteLocationManager;
 
@@ -129,16 +130,9 @@ public class NewMapActivity extends DrawerActivity
 			@Override
 			public void onStateChanged(@NonNull View bottomSheet, int newState) {
 				if (newState == STATE_HIDDEN) {
-					if (selectedLocationMarker != null) {
-						map.removeMarker(selectedLocationMarker);
-						selectedLocationMarker = null;
-					}
-					if (locationFragment != null) {
-						getSupportFragmentManager().beginTransaction().remove(locationFragment).commit();
-						locationFragment = null;
-					}
 					search.clearLocation();
 					search.reset();
+					bottomSheetBehavior.setPeekHeight(0);
 				}
 			}
 			@Override
@@ -175,6 +169,7 @@ public class NewMapActivity extends DrawerActivity
 			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 			bottomSheetBehavior.setState(STATE_COLLAPSED);
 		} else {
+			bottomSheetBehavior.setPeekHeight(savedInstanceState.getInt(BOTTOM_SHEET_HEIGHT));
 			locationFragment = (LocationFragment) getSupportFragmentManager().findFragmentByTag(LocationFragment.TAG);
 		}
 	}
@@ -204,11 +199,19 @@ public class NewMapActivity extends DrawerActivity
 		map.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
 			@Override
 			public boolean onMarkerClick(@NonNull Marker marker) {
-				if (!nearbyLocations.containsKey(marker)) return false;
-				WrapLocation wrapLocation = new WrapLocation(nearbyLocations.get(marker));
-				onLocationItemClick(wrapLocation);
-				search.clearLocation();
-				return true;
+				if (marker.equals(selectedLocationMarker)) {
+					if (locationFragment != null) search.setWrapLocation(locationFragment.getLocation());
+					bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
+					bottomSheetBehavior.setState(STATE_COLLAPSED);
+					return true;
+				} else if (nearbyLocations.containsKey(marker)) {
+					WrapLocation wrapLocation = new WrapLocation(nearbyLocations.get(marker));
+					onLocationItemClick(wrapLocation);
+					search.clearLocation();
+					return true;
+				} else {
+					return false;
+				}
 			}
 		});
 		// restore marker on map if there was one
@@ -222,6 +225,7 @@ public class NewMapActivity extends DrawerActivity
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		mapView.onSaveInstanceState(outState);
+		outState.putInt(BOTTOM_SHEET_HEIGHT, bottomSheetBehavior.getPeekHeight());
 	}
 
 	@Override
@@ -267,6 +271,7 @@ public class NewMapActivity extends DrawerActivity
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, locationFragment, LocationFragment.TAG)
 				.commit(); // takes some time and empty bottomSheet will not be shown
+		bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
 	}
 
