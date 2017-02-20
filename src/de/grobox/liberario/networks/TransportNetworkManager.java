@@ -17,53 +17,38 @@
 
 package de.grobox.liberario.networks;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
-import de.grobox.liberario.data.LocationDb;
-import de.grobox.liberario.data.SpecialLocationDb;
+import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.favorites.trips.FavoriteTripItem;
-import de.grobox.liberario.favorites.locations.FavoriteLocation;
-import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
-import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.settings.SettingsManager;
 import de.schildbach.pte.NetworkId;
-import de.schildbach.pte.dto.Location;
 
 @ParametersAreNonnullByDefault
 public class TransportNetworkManager {
 
-	private final Context context;
+	private final FavoriteLocationManager favoriteLocationManager;
 	private final SettingsManager settingsManager;
 
 	private @Nullable TransportNetwork transportNetwork, transportNetwork2, transportNetwork3;
-	private @Nullable Location home, work;
-	private @Nullable List<FavoriteLocation> favoriteLocations;
-	private List<FavoriteLocationsLoadedListener> favoriteLocationsLoadedListeners = new ArrayList<>();
-	private List<TransportNetworkChangedListener> transportNetworkChangedListeners = new ArrayList<>();
 	private @Nullable List<FavoriteTripItem> favoriteTrips;
+	private List<TransportNetworkChangedListener> transportNetworkChangedListeners = new ArrayList<>();
 
 	@Inject
-	public TransportNetworkManager(Context context, SettingsManager settingsManager) {
-		this.context = context;
+	public TransportNetworkManager(FavoriteLocationManager favoriteLocationManager, SettingsManager settingsManager) {
+		this.favoriteLocationManager = favoriteLocationManager;
 		this.settingsManager = settingsManager;
 		transportNetwork = loadTransportNetwork(1);
 		transportNetwork2 = loadTransportNetwork(2);
 		transportNetwork3 = loadTransportNetwork(3);
-		loadHome();
-		loadWork();
-		loadFavoriteLocations();
 	}
 
 	@Nullable
@@ -112,151 +97,11 @@ public class TransportNetworkManager {
 		this.transportNetwork = transportNetwork;
 
 		// TODO improve
-		home = null;
-		loadHome();
-		work = null;
-		loadWork();
-		favoriteLocations = null;
-		loadFavoriteLocations();
 
 		// inform listeners
 		for (TransportNetworkChangedListener l : transportNetworkChangedListeners) {
 			if (l != null) l.onTransportNetworkChanged(transportNetwork);
 		}
-	}
-
-	@Nullable
-	public Location getHome() {
-		return home;
-	}
-
-	private void loadHome() {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				setLoadedHome(SpecialLocationDb.getHome(context));
-			}
-		}).start();
-	}
-
-	private void setLoadedHome(@Nullable final Location home) {
-		new Handler(Looper.getMainLooper()).post(new Runnable() {
-			@Override
-			public void run() {
-				TransportNetworkManager.this.home = home;
-			}
-		});
-	}
-
-	public void setHome(final Location home) {
-		this.home = home;
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				SpecialLocationDb.setHome(context, home);
-			}
-		}).start();
-	}
-
-	@Nullable
-	public Location getWork() {
-		return work;
-	}
-
-	private void loadWork() {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				setLoadedWork(SpecialLocationDb.getWork(context));
-			}
-		}).start();
-	}
-
-	private void setLoadedWork(@Nullable final Location work) {
-		new Handler(Looper.getMainLooper()).post(new Runnable() {
-			@Override
-			public void run() {
-				TransportNetworkManager.this.work = work;
-			}
-		});
-	}
-
-	public void setWork(final Location work) {
-		this.work = work;
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				SpecialLocationDb.setWork(context, work);
-			}
-		}).start();
-	}
-
-	/**
-	 * Returns a copy of cached favorite locations.
-	 */
-	@Nullable
-	public List<FavoriteLocation> getFavoriteLocations() {
-		return favoriteLocations == null ? null : new ArrayList<>(favoriteLocations);
-	}
-
-	@Nullable
-	public List<WrapLocation> getFavoriteLocations(FavLocationType sort) {
-		if (favoriteLocations == null) return null;
-		List<WrapLocation> list = new ArrayList<>();
-		List<FavoriteLocation> tmpList = new ArrayList<>(favoriteLocations);
-
-		if (sort == FavLocationType.FROM) {
-			Collections.sort(tmpList, FavoriteLocation.FromComparator);
-		} else if (sort == FavLocationType.VIA) {
-			Collections.sort(tmpList, FavoriteLocation.ViaComparator);
-		} else if (sort == FavLocationType.TO) {
-			Collections.sort(tmpList, FavoriteLocation.ToComparator);
-		}
-		for (FavoriteLocation loc : tmpList) {
-			list.add(loc);
-		}
-		return list;
-	}
-
-	private void loadFavoriteLocations() {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				setLoadedFavoriteLocations(LocationDb.getFavLocationList(context));
-			}
-		}).start();
-	}
-
-	private void setLoadedFavoriteLocations(final List<FavoriteLocation> favoriteLocations) {
-		new Handler(Looper.getMainLooper()).post(new Runnable() {
-			@Override
-			public void run() {
-				TransportNetworkManager.this.favoriteLocations = favoriteLocations;
-				for (FavoriteLocationsLoadedListener l : favoriteLocationsLoadedListeners) {
-					if (l != null) l.onFavoriteLocationsLoaded();
-				}
-				favoriteLocationsLoadedListeners.clear();
-			}
-		});
-	}
-
-	/**
-	 * Returns a copy of cached favorite trips.
-	 */
-	@Nullable
-	public List<FavoriteTripItem> getFavoriteTrips() {
-		return favoriteTrips == null ? null : new ArrayList<>(favoriteTrips);
-	}
-
-
-
-	/**
-	 * Adds a listener that will be informed once favorite locations have been loaded.
-	 * The listener will be removed automatically after being informed.
-	 */
-	@UiThread
-	public void addOnFavoriteLocationsLoadedListener(FavoriteLocationsLoadedListener listener) {
-		favoriteLocationsLoadedListeners.add(listener);
 	}
 
 	@UiThread
@@ -267,10 +112,6 @@ public class TransportNetworkManager {
 	@UiThread
 	public void removeOnTransportNetworkChangedListener(TransportNetworkChangedListener listener) {
 		transportNetworkChangedListeners.remove(listener);
-	}
-
-	public interface FavoriteLocationsLoadedListener {
-		void onFavoriteLocationsLoaded();
 	}
 
 	public interface TransportNetworkChangedListener {

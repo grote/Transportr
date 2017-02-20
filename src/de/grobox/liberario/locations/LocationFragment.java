@@ -44,6 +44,7 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.activities.NewMapActivity;
 import de.grobox.liberario.departures.DeparturesActivity;
 import de.grobox.liberario.departures.DeparturesLoader;
+import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.locations.OsmReverseGeocoder.OsmReverseGeocoderCallback;
 import de.grobox.liberario.networks.TransportNetworkManager;
@@ -74,8 +75,8 @@ public class LocationFragment extends TransportrFragment
 
 	public static final String TAG = LocationFragment.class.getName();
 
-	@Inject
-	TransportNetworkManager manager;
+	@Inject TransportNetworkManager transportNetworkManager;
+	@Inject FavoriteLocationManager favoriteLocationManager;
 	private NewMapActivity activity;
 	private WrapLocation location;
 	private SortedSet<Line> lines = new TreeSet<>();
@@ -175,7 +176,7 @@ public class LocationFragment extends TransportrFragment
 	}
 
 	private void showLocation() {
-		locationIcon.setImageDrawable(getDrawableForLocation(getContext(), manager.getHome(), location, false));
+		locationIcon.setImageDrawable(getDrawableForLocation(getContext(), favoriteLocationManager.getHome(), location, false));
 		locationName.setText(location.getName());
 		StringBuilder locationInfoStr = new StringBuilder();
 		if (!isNullOrEmpty(location.getLocation().place)) {
@@ -199,7 +200,7 @@ public class LocationFragment extends TransportrFragment
 
 	@Override
 	public DeparturesLoader onCreateLoader(int id, Bundle args) {
-		return new DeparturesLoader(getContext(), manager.getTransportNetwork(), args);
+		return new DeparturesLoader(getContext(), transportNetworkManager.getTransportNetwork(), args);
 	}
 
 	@Override

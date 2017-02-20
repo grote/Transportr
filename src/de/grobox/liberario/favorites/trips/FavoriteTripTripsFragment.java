@@ -22,8 +22,8 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.SpecialLocationDb;
+import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.fragments.TransportrFragment;
-import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.Location;
 
@@ -38,8 +38,7 @@ public class FavoriteTripTripsFragment extends TransportrFragment implements Fav
 	public static final String TAG = FavoriteTripTripsFragment.class.getName();
 	private static final String TOP_MARGIN = "topMargin";
 
-	@Inject
-	TransportNetworkManager manager;
+	@Inject FavoriteLocationManager favoriteLocationManager;
 	private ProgressBar progressBar;
 	private RecyclerView list;
 	private FavoriteTripAdapter adapter;
@@ -110,16 +109,16 @@ public class FavoriteTripTripsFragment extends TransportrFragment implements Fav
 	@Override
 	public void onFavoriteClicked(FavoriteTripItem item) {
 		if (item.getType() == FavoriteTripType.HOME) {
-			if (manager.getHome() == null) {
+			if (favoriteLocationManager.getHome() == null) {
 				changeHome();
 			} else {
-				findDirections(getContext(), item.getFrom(), item.getVia(), manager.getHome());
+				findDirections(getContext(), item.getFrom(), item.getVia(), favoriteLocationManager.getHome());
 			}
 		} else if (item.getType() == FavoriteTripType.WORK) {
-			if (manager.getWork() == null) {
+			if (favoriteLocationManager.getWork() == null) {
 				changeWork();
 			} else {
-				findDirections(getContext(), item.getFrom(), item.getVia(), manager.getWork());
+				findDirections(getContext(), item.getFrom(), item.getVia(), favoriteLocationManager.getWork());
 			}
 		} else if (item.getType() == FavoriteTripType.TRIP) {
 			if (item.getFrom() == null || item.getTo() == null) throw new IllegalArgumentException();

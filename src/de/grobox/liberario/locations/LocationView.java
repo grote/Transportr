@@ -44,6 +44,7 @@ import javax.inject.Inject;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
+import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.locations.SuggestLocationsTask.SuggestLocationsTaskCallback;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.utils.TransportrUtils;
@@ -63,8 +64,8 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	private final static int AUTO_COMPLETION_DELAY = 300;
 	protected final static String SUPER_STATE = "superState";
 
-	@Inject
-	TransportNetworkManager manager;
+	@Inject TransportNetworkManager transportNetworkManager;
+	@Inject FavoriteLocationManager favoriteLocationManager;
 	private SuggestLocationsTask task;
 	private Location location;
 	private boolean changingHome = false, suggestLocationsTaskPending = false;
@@ -166,7 +167,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	protected LocationAdapter createLocationAdapter(boolean includeHome, boolean includeFavs) {
-		return new LocationAdapter(getContext(), manager, includeHome, false, includeFavs);
+		return new LocationAdapter(getContext(), favoriteLocationManager, includeHome, false, includeFavs);
 	}
 
 	/* State Saving and Restoring */
@@ -249,13 +250,13 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	private void startSuggestLocationsTaskDelayed() {
-		if (suggestLocationsTaskPending || manager.getTransportNetwork() == null) return;
+		if (suggestLocationsTaskPending || transportNetworkManager.getTransportNetwork() == null) return;
 		suggestLocationsTaskPending = true;
 		postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				if (task != null && task.getStatus() != AsyncTask.Status.FINISHED) task.cancel(true);
-				task = new SuggestLocationsTask(manager.getTransportNetwork(), LocationView.this);
+				task = new SuggestLocationsTask(transportNetworkManager.getTransportNetwork(), LocationView.this);
 				task.execute(getText());
 				suggestLocationsTaskPending = false;
 			}
@@ -319,7 +320,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 			setLocation(null);
 		} else if (loc.getType() == HOME) {
 			// special case: home location
-			Location home = manager.getHome();
+			Location home = favoriteLocationManager.getHome();
 			if (home != null) {
 				setLocation(home);
 			} else {
@@ -372,10 +373,11 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 		// special case: home location
 		if(loc.getType() == HOME) {
-			Location home = manager.getHome();
+			Location home = favoriteLocationManager.getHome();
 
 			if(home != null) {
 				setLocation(home, icon);
+				favoriteLocationManager.addLocation(loc);
 			} else {
 				// prevent home.toString() from being shown in the TextView
 				ui.location.setText("");
@@ -393,6 +395,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		else {
 			setLocation(loc.getLocation(), icon);
 			ui.location.requestFocus();
+			favoriteLocationManager.addLocation(loc);
 		}
 
 		// hide soft-keyboard

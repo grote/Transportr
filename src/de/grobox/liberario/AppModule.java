@@ -21,6 +21,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.settings.SettingsManager;
 
@@ -41,8 +42,16 @@ class AppModule {
 
 	@Provides
 	@Singleton
-	TransportNetworkManager provideTransportNetworkManager(SettingsManager settingsManager) {
-		return new TransportNetworkManager(application.getApplicationContext(), settingsManager);
+	TransportNetworkManager provideTransportNetworkManager(FavoriteLocationManager favoriteLocationManager, SettingsManager settingsManager) {
+		TransportNetworkManager manager = new TransportNetworkManager(favoriteLocationManager, settingsManager);
+		manager.addOnTransportNetworkChangedListener(favoriteLocationManager);
+		return manager;
+	}
+
+	@Provides
+	@Singleton
+	FavoriteLocationManager provideFavoriteLocationManager() {
+		return new FavoriteLocationManager(application.getApplicationContext());
 	}
 
 }

@@ -50,9 +50,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import javax.inject.Inject;
 
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
+import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.favorites.trips.FavoriteTripTripsFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
@@ -69,8 +71,6 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
-import static de.grobox.liberario.data.LocationDb.updateFavLocation;
-import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
@@ -87,16 +87,16 @@ public class NewMapActivity extends DrawerActivity
 
 	private final static int LOCATION_ZOOM = 14;
 
+	@Inject FavoriteLocationManager favoriteLocationManager;
+
 	private MapView mapView;
 	private MapboxMap map;
 	private LocationView search;
 	private BottomSheetBehavior bottomSheetBehavior;
 
-	@Nullable
-	LocationFragment locationFragment;
-	@Nullable
-	Marker selectedLocationMarker;
-	Map<Marker, Location> nearbyLocations = new HashMap<>();
+	private @Nullable LocationFragment locationFragment;
+	private @Nullable Marker selectedLocationMarker;
+	private Map<Marker, Location> nearbyLocations = new HashMap<>();
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -252,8 +252,6 @@ public class NewMapActivity extends DrawerActivity
 
 	@Override
 	public void onTransportNetworkChanged(TransportNetwork network) {
-		// TODO
-		Log.e("TEST", "Transport Network Changed, recreating...");
 		recreate();
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, FavoriteTripTripsFragment.newInstance(true), FavoriteTripTripsFragment.TAG)
@@ -262,14 +260,6 @@ public class NewMapActivity extends DrawerActivity
 
 	@Override
 	public void onLocationItemClick(final WrapLocation loc) {
-		runOnThread(new Runnable() {
-			@Override
-			public void run() {
-				// TODO do this with TransportManager
-				updateFavLocation(NewMapActivity.this, loc.getLocation(), FROM);
-			}
-		});
-
 		LatLng latLng = zoomTo(loc);
 		addMarker(latLng);
 

@@ -44,7 +44,7 @@ public class HomePickerDialogFragment extends SpecialLocationFragment {
 
 	@Override
 	protected void onSpecialLocationSet(Location location) {
-		manager.setHome(location);
+		favoriteLocationManager.setHome(location);
 		if (listener != null) listener.onHomeChanged(location);
 	}
 

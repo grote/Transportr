@@ -61,7 +61,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 
 	@Override
 	protected LocationAdapter createLocationAdapter(boolean includeHome, boolean includeFavs) {
-		return new LocationAdapter(getContext(), manager, includeHome, true, includeFavs);
+		return new LocationAdapter(getContext(), favoriteLocationManager, includeHome, true, includeFavs);
 	}
 
 	@Override

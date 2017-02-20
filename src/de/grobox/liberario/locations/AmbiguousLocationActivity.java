@@ -47,6 +47,7 @@ import de.schildbach.pte.dto.QueryTripsResult;
 
 import static de.grobox.liberario.data.FavoritesDb.updateFavoriteTrip;
 
+@Deprecated
 public class AmbiguousLocationActivity extends TransportrActivity implements AsyncQueryTripsTask.TripHandler {
 	private Location from, via, to;
 	private Date date;

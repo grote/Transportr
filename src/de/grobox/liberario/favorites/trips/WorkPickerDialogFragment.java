@@ -44,7 +44,7 @@ public class WorkPickerDialogFragment extends SpecialLocationFragment {
 
 	@Override
 	protected void onSpecialLocationSet(Location location) {
-		manager.setWork(location);
+		favoriteLocationManager.setWork(location);
 		if (listener != null) listener.onWorkChanged(location);
 	}
 

@@ -38,15 +38,15 @@ import javax.inject.Inject;
 import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportrApplication;
+import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.WrapLocation;
-import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.settings.Preferences;
 import de.schildbach.pte.dto.Location;
 
 abstract class SpecialLocationFragment extends DialogFragment implements LocationView.LocationViewListener {
 
-	@Inject TransportNetworkManager manager;
+	@Inject FavoriteLocationManager favoriteLocationManager;
 	protected @Nullable FavoriteTripListener listener;
 
 	private LocationView loc;

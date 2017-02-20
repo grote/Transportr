@@ -39,6 +39,20 @@ public class FavoriteLocation extends WrapLocation implements Comparable<Favorit
 		to_count = to;
 	}
 
+	public void add(FavLocationType type) {
+		switch (type) {
+			case FROM:
+				from_count++;
+				break;
+			case VIA:
+				via_count++;
+				break;
+			case TO:
+				to_count++;
+				break;
+		}
+	}
+
 	private int getFromCount() {
 		return from_count;
 	}

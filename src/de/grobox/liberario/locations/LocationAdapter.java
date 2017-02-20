@@ -41,8 +41,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.liberario.R;
 import de.grobox.liberario.favorites.locations.FavoriteLocation;
 import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
-import de.grobox.liberario.networks.TransportNetworkManager;
-import de.grobox.liberario.networks.TransportNetworkManager.FavoriteLocationsLoadedListener;
+import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
+import de.grobox.liberario.favorites.locations.FavoriteLocationManager.FavoriteLocationsLoadedListener;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.SuggestedLocation;
@@ -56,7 +56,7 @@ import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 @ParametersAreNonnullByDefault
 class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, FavoriteLocationsLoadedListener {
 
-	private final TransportNetworkManager manager;
+	private final FavoriteLocationManager favoriteLocationManager;
 	private List<WrapLocation> favoriteLocations = new ArrayList<>();
 	@Nullable
 	private List<SuggestedLocation> suggestedLocations;
@@ -68,9 +68,9 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 
 	static final int TYPING_THRESHOLD = 3;
 
-	LocationAdapter(Context context, TransportNetworkManager manager, boolean includeHome, boolean includeGps, boolean includeFavs) {
+	LocationAdapter(Context context, FavoriteLocationManager favoriteLocationManager, boolean includeHome, boolean includeGps, boolean includeFavs) {
 		super(context, R.layout.location_item);
-		this.manager = manager;
+		this.favoriteLocationManager = favoriteLocationManager;
 		this.includeHome = includeHome;
 		this.includeGps = includeGps;
 		this.includeFavs = includeFavs;
@@ -78,8 +78,8 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 		addFavoriteLocationsToDropDown();
 	}
 
-	LocationAdapter(Context context, TransportNetworkManager manager, List<Location> locations) {
-		this(context, manager, false, false, false);
+	LocationAdapter(Context context, FavoriteLocationManager favoriteLocationManager, List<Location> locations) {
+		this(context, favoriteLocationManager, false, false, false);
 		for (Location l : locations) {
 			add(new WrapLocation(l));
 		}
@@ -111,7 +111,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 		Location l = wrapLocation.getLocation();
 
 		if(wrapLocation.getType() == HOME) {
-			Location home = manager.getHome();
+			Location home = favoriteLocationManager.getHome();
 			if(home != null) {
 				textView.setText(getHighlightedText(home));
 				textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
@@ -141,7 +141,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 		}
 
-		imageView.setImageDrawable(getDrawableForLocation(getContext(), manager.getHome(), wrapLocation, favoriteLocations.contains(wrapLocation)));
+		imageView.setImageDrawable(getDrawableForLocation(getContext(), favoriteLocationManager.getHome(), wrapLocation, favoriteLocations.contains(wrapLocation)));
 
 		return view;
 	}
@@ -197,7 +197,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 	private List<WrapLocation> getFavoriteLocations() {
 		WrapLocation home = null;
 		if (includeHome) {
-			Location home_loc = manager.getHome();
+			Location home_loc = favoriteLocationManager.getHome();
 			if (home_loc == null) {
 				home = new WrapLocation(HOME);
 			} else {
@@ -209,9 +209,9 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 			favoriteLocations.add(new WrapLocation(GPS));
 		}
 		if (includeFavs) {
-			List<WrapLocation> tmpList = manager.getFavoriteLocations(sort);
+			List<WrapLocation> tmpList = favoriteLocationManager.getLocations(sort);
 			if (tmpList == null) {
-				manager.addOnFavoriteLocationsLoadedListener(this);
+				favoriteLocationManager.addOnFavoriteLocationsLoadedListener(this);
 			} else {
 				if (includeHome) tmpList.remove(new WrapLocation(home.getLocation()));
 				favoriteLocations.addAll(tmpList);
