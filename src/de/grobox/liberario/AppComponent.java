@@ -22,7 +22,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import de.grobox.liberario.activities.NewMapActivity;
 import de.grobox.liberario.departures.DeparturesActivity;
-import de.grobox.liberario.favorites.trips.FavoriteTripTripsFragment;
+import de.grobox.liberario.favorites.trips.FavoriteTripsFragment;
 import de.grobox.liberario.favorites.trips.HomePickerDialogFragment;
 import de.grobox.liberario.favorites.trips.WorkPickerDialogFragment;
 import de.grobox.liberario.locations.LocationFragment;
@@ -39,7 +39,7 @@ public interface AppComponent {
 	void inject(DeparturesActivity activity);
 
 	void inject(LocationFragment fragment);
-	void inject(FavoriteTripTripsFragment fragment);
+	void inject(FavoriteTripsFragment fragment);
 	void inject(TripsFragment fragment);
 	void inject(HomePickerDialogFragment fragment);
 	void inject(WorkPickerDialogFragment fragment);

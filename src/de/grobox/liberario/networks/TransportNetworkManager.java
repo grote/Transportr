@@ -27,7 +27,6 @@ import java.util.List;
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
-import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.settings.SettingsManager;
 import de.schildbach.pte.NetworkId;
@@ -35,7 +34,6 @@ import de.schildbach.pte.NetworkId;
 @ParametersAreNonnullByDefault
 public class TransportNetworkManager {
 
-	private final FavoriteLocationManager favoriteLocationManager;
 	private final SettingsManager settingsManager;
 
 	private @Nullable TransportNetwork transportNetwork, transportNetwork2, transportNetwork3;
@@ -43,8 +41,7 @@ public class TransportNetworkManager {
 	private List<TransportNetworkChangedListener> transportNetworkChangedListeners = new ArrayList<>();
 
 	@Inject
-	public TransportNetworkManager(FavoriteLocationManager favoriteLocationManager, SettingsManager settingsManager) {
-		this.favoriteLocationManager = favoriteLocationManager;
+	public TransportNetworkManager(SettingsManager settingsManager) {
 		this.settingsManager = settingsManager;
 		transportNetwork = loadTransportNetwork(1);
 		transportNetwork2 = loadTransportNetwork(2);
@@ -95,8 +92,6 @@ public class TransportNetworkManager {
 		// swap remaining networks
 		this.transportNetwork2 = this.transportNetwork;
 		this.transportNetwork = transportNetwork;
-
-		// TODO improve
 
 		// inform listeners
 		for (TransportNetworkChangedListener l : transportNetworkChangedListeners) {

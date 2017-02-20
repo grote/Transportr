@@ -32,6 +32,7 @@ import de.grobox.liberario.AbstractManager;
 import de.grobox.liberario.data.LocationDb;
 import de.grobox.liberario.data.SpecialLocationDb;
 import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
+import de.grobox.liberario.favorites.trips.FavoriteTripManager;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;
@@ -44,14 +45,16 @@ import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocati
 public class FavoriteLocationManager extends AbstractManager implements TransportNetworkChangedListener {
 
 	private final Context context;
+	private final FavoriteTripManager favoriteTripManager;
 
 	private @Nullable Location home, work;
 	private @Nullable List<FavoriteLocation> favoriteLocations;
 	private List<FavoriteLocationsLoadedListener> favoriteLocationsLoadedListeners = new ArrayList<>();
 
 	@Inject
-	public FavoriteLocationManager(Context context) {
+	public FavoriteLocationManager(Context context, FavoriteTripManager favoriteTripManager) {
 		this.context = context;
+		this.favoriteTripManager = favoriteTripManager;
 		loadHome();
 		loadWork();
 		loadLocations();
@@ -86,6 +89,7 @@ public class FavoriteLocationManager extends AbstractManager implements Transpor
 			@Override
 			public void run() {
 				SpecialLocationDb.setHome(context, home);
+				favoriteTripManager.loadTrips();
 			}
 		});
 	}
@@ -119,6 +123,7 @@ public class FavoriteLocationManager extends AbstractManager implements Transpor
 			@Override
 			public void run() {
 				SpecialLocationDb.setWork(context, work);
+				favoriteTripManager.loadTrips();
 			}
 		});
 	}
@@ -150,7 +155,7 @@ public class FavoriteLocationManager extends AbstractManager implements Transpor
 		final FavLocationType type = FROM;
 
 		FavoriteLocation favoriteLocation = new FavoriteLocation(location.getLocation(), 0, 0, 0);
-		if (favoriteLocations != null && favoriteLocations.indexOf(favoriteLocation) != -1) {
+		if (favoriteLocations != null && favoriteLocations.contains(favoriteLocation)) {
 			favoriteLocations.get(favoriteLocations.indexOf(favoriteLocation)).add(type);
 		} else if (favoriteLocations != null) {
 			favoriteLocations.add(favoriteLocation);

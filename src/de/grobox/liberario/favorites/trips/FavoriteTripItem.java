@@ -35,7 +35,7 @@ public class FavoriteTripItem implements Comparable<FavoriteTripItem> {
 	private final FavoriteTripType type;
 	@Nullable
 	private final Location from, via, to;
-	private final int count;
+	private int count;
 	private Date lastUsed;
 	private boolean favorite;
 
@@ -99,6 +99,11 @@ public class FavoriteTripItem implements Comparable<FavoriteTripItem> {
 		this.favorite = favorite;
 	}
 
+	void use() {
+		count++;
+		lastUsed = new Date();
+	}
+
 	@Override
 	public int compareTo(FavoriteTripItem i) {
 		if (equals(i)) return 0;
@@ -112,7 +117,7 @@ public class FavoriteTripItem implements Comparable<FavoriteTripItem> {
 			if (count == i.count) return lastUsed.compareTo(i.lastUsed);
 			return count > i.count ? -1 : 1;
 		} else {
-			return lastUsed.compareTo(i.lastUsed);
+			return lastUsed.compareTo(i.lastUsed) * -1;
 		}
 	}
 

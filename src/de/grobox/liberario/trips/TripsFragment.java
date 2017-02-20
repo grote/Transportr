@@ -20,6 +20,7 @@ import java.util.Date;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
+import de.grobox.liberario.favorites.trips.FavoriteTripManager;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.ui.LceAnimator;
@@ -44,8 +45,8 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 
 	final static String TAG = TripsFragment.class.getName();
 
-	@Inject
-	TransportNetworkManager manager;
+	@Inject TransportNetworkManager manager;
+	@Inject FavoriteTripManager favoriteTripManager;
 
 	private ProgressBar progressBar;
 	private SwipyRefreshLayout swipe;
@@ -107,7 +108,10 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 		LceAnimator.showLoading(progressBar, list, null);
 
 		Loader loader = getLoaderManager().initLoader(LOADER_TRIPS, null, this);
-		if (savedInstanceState == null) loader.forceLoad();
+		if (savedInstanceState == null) {
+			loader.forceLoad();
+			favoriteTripManager.addTrip(from, via, to);
+		}
 
 		return v;
 	}

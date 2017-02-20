@@ -55,7 +55,7 @@ import javax.inject.Inject;
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
 import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
-import de.grobox.liberario.favorites.trips.FavoriteTripTripsFragment;
+import de.grobox.liberario.favorites.trips.FavoriteTripsFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.LocationView.LocationViewListener;
@@ -168,9 +168,9 @@ public class NewMapActivity extends DrawerActivity
 		});
 
 		if (savedInstanceState == null) {
-			FavoriteTripTripsFragment f = FavoriteTripTripsFragment.newInstance(true);
+			FavoriteTripsFragment f = FavoriteTripsFragment.newInstance(true);
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.bottomSheet, f, FavoriteTripTripsFragment.TAG)
+					.replace(R.id.bottomSheet, f, FavoriteTripsFragment.TAG)
 					.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
 			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 			bottomSheetBehavior.setState(STATE_COLLAPSED);
@@ -254,7 +254,7 @@ public class NewMapActivity extends DrawerActivity
 	public void onTransportNetworkChanged(TransportNetwork network) {
 		recreate();
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.bottomSheet, FavoriteTripTripsFragment.newInstance(true), FavoriteTripTripsFragment.TAG)
+				.replace(R.id.bottomSheet, FavoriteTripsFragment.newInstance(true), FavoriteTripsFragment.TAG)
 				.commit();
 	}
 
