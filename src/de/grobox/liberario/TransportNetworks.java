@@ -406,13 +406,7 @@ public class TransportNetworks {
 				.setStatus(BETA)
 				.setGoodLineNames(true)
 		);
-/*
-		list.add(new TransportNetwork(context, NetworkId.ATC)
-				.setDescription(getString(R.string.np_desc_atc))
-				.setRegion(region)
-				.setStatus(BETA)
-		);
-*/
+
 		// Poland
 		region = region(R.string.np_region_poland, "\uD83C\uDDF5\uD83C\uDDF1");
 
@@ -434,12 +428,6 @@ public class TransportNetworks {
 
 		// United States of America
 		region = region(R.string.np_region_usa, "\uD83C\uDDFA\uD83C\uDDF8");
-
-		list.add(new TransportNetwork(context, NetworkId.SEPTA)
-				.setDescription(getString(R.string.np_desc_septa))
-				.setRegion(region)
-				.setStatus(BETA)
-		);
 
 		list.add(new TransportNetwork(context, NetworkId.RTACHICAGO)
 				.setName(getString(R.string.np_name_rtachicago))
@@ -476,12 +464,6 @@ public class TransportNetworks {
 		list.add(new TransportNetwork(context, NetworkId.PARIS)
 				.setName(getString(R.string.np_name_paris))
 				.setDescription(getString(R.string.np_desc_paris), getString(R.string.np_desc_paris_networks))
-				.setRegion(region)
-				.setStatus(BETA)
-		);
-
-		list.add(new TransportNetwork(context, NetworkId.PACA)
-				.setDescription(getString(R.string.np_desc_paca))
 				.setRegion(region)
 				.setStatus(BETA)
 		);
