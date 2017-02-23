@@ -444,13 +444,6 @@ public interface TransportNetworks {
 			// United States of America
 
 			new TransportNetworkBuilder()
-					.setId(NetworkId.SEPTA)
-					.setDescription(R.string.np_desc_septa)
-					.setRegion(Region.USA)
-					.setLogo(R.drawable.network_septa_logo)
-					.setStatus(BETA)
-					.build(),
-			new TransportNetworkBuilder()
 					.setId(NetworkId.RTACHICAGO)
 					.setName(R.string.np_name_rtachicago)
 					.setDescription(R.string.np_desc_rtachicago)
@@ -487,12 +480,6 @@ public interface TransportNetworks {
 					.setAgencies(R.string.np_desc_paris_networks)
 					.setRegion(Region.FRANCE)
 					.setLogo(R.drawable.network_paris_logo)
-					.setStatus(BETA)
-					.build(),
-			new TransportNetworkBuilder()
-					.setId(NetworkId.PACA)
-					.setDescription(R.string.np_desc_paca)
-					.setRegion(Region.FRANCE)
 					.setStatus(BETA)
 					.build(),
 			new TransportNetworkBuilder()
