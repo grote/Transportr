@@ -356,8 +356,8 @@ there are any).</string>
 
     <string name="np_region_spain">Spain</string>
     <string name="np_name_spain">Spain</string>
-    <string name="np_desc_spain">Madrid, Barcelona, Euskadi-Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma</string>
-    <string name="np_desc_spain_networks" translatable="false">CRTM, TMB, FGC, Moveuskadi, Renfe, Lurraldebus, Metrovalencia, EMT, TRAM, CTM, CIME, Tranvía, TITSA, TILP</string>
+    <string name="np_desc_spain">Madrid, Barcelona, Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
+    <string name="np_desc_spain_networks" translatable="false">CRTM, TMB, FGC, Moveuskadi, Metrovalencia, EMT Valencia, TRAM, CTM, EMT Palma, CIME, Tranvía, TITSA, TILP, Transporte Interurbano de Navarra</string>
 
     <string name="np_region_sweden">Sweden</string>
     <string name="np_desc_se">Sweden, Stockholm</string>
