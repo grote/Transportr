@@ -150,8 +150,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripHolder>{
 		ui.legs.get(trip.trip.legs.size() - 1).divider.setVisibility(View.GONE);
 
 		// Show Number of Changes for long trips
-		if(trip.trip.numChanges != null && trip.trip.numChanges > 3) {
-			ui.changes.setText(String.valueOf(trip.trip.numChanges));
+		Integer numChanges = trip.trip.getNumChanges();
+		if(numChanges != null && numChanges > 3) {
+			ui.changes.setText(String.valueOf(numChanges));
 			ui.changes.setVisibility(View.VISIBLE);
 		} else {
 			ui.changes.setVisibility(View.GONE);

@@ -219,7 +219,8 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 
 		// check number of changes and legs
 		boolean numChangesEq = true;
-		if (old_trip.numChanges != null && !old_trip.numChanges.equals(new_trip.numChanges)) {
+		Integer oldNumChanges = old_trip.getNumChanges();
+		if (oldNumChanges != null && !oldNumChanges.equals(new_trip.getNumChanges())) {
 			numChangesEq = false;
 		}
 		boolean legsEq = (old_trip.legs.size() == new_trip.legs.size());
