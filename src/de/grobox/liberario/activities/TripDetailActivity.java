@@ -222,7 +222,13 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 		if(old_trip == null || new_trip == null || new_trip.legs == null) return false;
 
 		// check number of changes and legs
-		if(old_trip.numChanges.equals(new_trip.numChanges) && old_trip.legs.size() == new_trip.legs.size()) {
+		boolean numChangesEq = true;
+		Integer oldNumChanges = old_trip.getNumChanges();
+		if (oldNumChanges != null && !oldNumChanges.equals(new_trip.getNumChanges())) {
+			numChangesEq = false;
+		}
+		boolean legsEq = (old_trip.legs.size() == new_trip.legs.size());
+		if(numChangesEq && legsEq) {
 			// check departure times
 			if(old_trip.legs.get(0) instanceof Trip.Public && new_trip.legs.get(0) instanceof Trip.Public) {
 				Trip.Public old_start = (Trip.Public) old_trip.legs.get(0);
