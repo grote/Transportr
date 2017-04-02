@@ -33,6 +33,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apmem.tools.layouts.FlowLayout;
 
@@ -296,7 +297,11 @@ public class TransportrUtils {
 				                .putExtra("title", trip.from.name + " → " + trip.to.name)
 				                .putExtra("description", TransportrUtils.tripToString(context, trip));
 		if(trip.from.place != null) intent.putExtra("eventLocation", trip.from.place);
-		context.startActivity(intent);
+		if (intent.resolveActivity(context.getPackageManager()) != null) {
+			context.startActivity(intent);
+		} else {
+			Toast.makeText(context, R.string.error_no_calender, Toast.LENGTH_LONG).show();
+		}
 	}
 
 	static public void presetDirections(Context context, Location from, Location via, Location to) {

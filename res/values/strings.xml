@@ -146,6 +146,7 @@ there are any).</string>
     <string name="error_no_departures_capability">The current transportation network does not support finding departures.</string>
     <string name="error_no_nearby_locations_capability">The current transportation network does not support finding nearby stations.</string>
     <string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
+    <string name="error_no_calender">No calendar app found.</string>
 
     <string name="meter">m</string>
     <string name="system_default">System Default</string>
