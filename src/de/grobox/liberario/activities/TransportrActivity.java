@@ -26,6 +26,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import java.util.Locale;
 
@@ -48,6 +49,15 @@ public abstract class TransportrActivity extends AppCompatActivity {
 		}
 
 		super.onCreate(savedInstanceState);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			onBackPressed();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	public AppComponent getComponent() {

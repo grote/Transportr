@@ -23,22 +23,21 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import javax.inject.Inject;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.data.SpecialLocationDb;
-import de.grobox.liberario.favorites.trips.HomePickerDialogFragment;
+import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
+import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;
 import de.grobox.liberario.utils.TransportrUtils;
-import de.schildbach.pte.dto.Location;
 
 import static android.app.Activity.RESULT_OK;
 import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
@@ -48,20 +47,24 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 
 	public static final String TAG = "de.grobox.liberario.settings";
 
-	Preference network_pref;
-	Preference home;
-	Preference quickhome;
+	@Inject TransportNetworkManager manager;
+	private Preference network_pref;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		((TransportrApplication) getActivity().getApplication()).getComponent().inject(this);
+		super.onCreate(savedInstanceState);
+	}
 
 	@Override
 	public void onCreatePreferences(Bundle savedInstanceState, String s) {
 		// Load the preferences from an XML resource
 		addPreferencesFromResource(R.xml.preferences);
 
-		TransportNetwork network = Preferences.getTransportNetwork(getActivity());
-
-		// Fill in current home location if available
+		// Fill in current transport network if available
 		network_pref = findPreference("pref_key_network");
-		if(network != null) network_pref.setSummary(network.getName(getContext()));
+		TransportNetwork network = manager.getTransportNetwork();
+		if (network != null) onTransportNetworkChanged(network);
 
 		network_pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
@@ -76,22 +79,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 			}
 		});
 
-		// TODO remove from here
-		home = findPreference("pref_key_home");
-		home.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-			public boolean onPreferenceClick(Preference preference) {
-				// show home picker dialog
-				HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
-				FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-				setHomeFragment.show(ft, HomePickerDialogFragment.TAG);
-
-				return true;
-			}
-		});
-		// Fill in current home location if available
-		if(network != null) setHome(null);
-
-		quickhome = findPreference("pref_key_create_quickhome_shortcut");
+		Preference quickhome = findPreference("pref_key_create_quickhome_shortcut");
 		quickhome.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			public boolean onPreferenceClick(Preference preference) {
 				// create launcher shortcut
@@ -147,25 +135,14 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if (requestCode == REQUEST_NETWORK_PROVIDER_CHANGE && resultCode == RESULT_OK) {
-//			TransportNetwork network = manager.getTransportNetwork();
-//			if (network != null) onTransportNetworkChanged(network);
+			TransportNetwork network = manager.getTransportNetwork();
+			if (network != null) onTransportNetworkChanged(network);
 		}
 	}
 
 	@Override
 	public void onTransportNetworkChanged(TransportNetwork network) {
-		// TODO
-	}
-
-	private void setHome(Location home) {
-		if(home == null) {
-			home = SpecialLocationDb.getHome(getActivity());
-		}
-		if(home != null) {
-			this.home.setSummary(TransportrUtils.getFullLocName(home));
-		} else {
-			this.home.setSummary(getResources().getString(R.string.location_home));
-		}
+		network_pref.setSummary(network.getName(getContext()));
 	}
 
 	private void reload() {

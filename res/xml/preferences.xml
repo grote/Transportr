@@ -12,12 +12,6 @@
             android:summary="@string/pick_network_activity"
             />
 
-        <Preference
-            android:key="pref_key_home"
-            android:title="@string/pref_home"
-            android:summary="@string/location_home"
-            />
-
     </PreferenceCategory>
 
     <PreferenceCategory

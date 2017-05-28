@@ -39,6 +39,7 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.fragments.AboutMainFragment;
+import de.grobox.liberario.settings.SettingsActivity;
 import de.grobox.liberario.settings.SettingsFragment;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
@@ -175,6 +176,10 @@ abstract class DrawerActivity extends TransportrActivity implements TransportNet
 				public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 					drawer.closeDrawer();
 					// TODO
+					if (tag.equals(SettingsFragment.TAG)) {
+						Intent i = new Intent(DrawerActivity.this, SettingsActivity.class);
+						startActivity(i);
+					}
 					return true;
 				}
 			};
