@@ -3,7 +3,7 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.3.0-beta4'
+		classpath 'com.android.tools.build:gradle:2.3.2'
 		classpath files('libs/gradle-witness.jar')
 	}
 }
@@ -12,27 +12,27 @@ apply plugin: 'com.android.application'
 apply plugin: 'witness'
 
 dependencies {
-	def supportVersion = '25.1.1'
+	def supportVersion = '25.3.1'
 	compile "com.android.support:appcompat-v7:$supportVersion"
 	compile "com.android.support:design:$supportVersion"
 	compile "com.android.support:cardview-v7:$supportVersion"
 	compile "com.android.support:recyclerview-v7:$supportVersion"
 	compile "com.android.support:preference-v14:$supportVersion"
-	compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+	compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
 	compile 'com.github.orangegangsters:swipy:1.2.3'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
-	compile 'org.apmem.tools:layouts:1.10'
-	compile 'com.mikepenz:materialdrawer:5.8.1'
-	compile 'com.mikepenz:aboutlibraries:5.9.1'
-	compile 'com.mikepenz:fastadapter-commons:2.1.0@aar'
+	compile 'org.apmem.tools:layouts:1.10' // https://android-developers.googleblog.com/2017/02/build-flexible-layouts-with.html
+	compile 'com.mikepenz:materialdrawer:5.9.2'
+	compile 'com.mikepenz:aboutlibraries:5.9.6'
+	compile 'com.mikepenz:fastadapter-commons:2.5.3@aar'
 	compile 'org.osmdroid:osmdroid-android:5.6.1'
-	compile 'uk.co.samuelwall:material-tap-target-prompt:1.6.3'
+	compile 'uk.co.samuelwall:material-tap-target-prompt:1.10.0'
 	compile ('com.mapbox.mapboxsdk:mapbox-android-sdk:4.2.2@aar') {
 		transitive = true
 	}
-	compile 'com.google.dagger:dagger:2.8'
-	annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
+	compile 'com.google.dagger:dagger:2.11'
+	annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
 
 	compile(project(':sublibs:public-transport-enabler:enabler')) {
 		exclude group: 'org.json' // provided by Android
@@ -51,49 +51,49 @@ dependencies {
 
 dependencyVerification {
 	verify = [
-			'com.android.support:appcompat-v7:c485c421d73fa5b257fa4c39a31f7e24aeada62451f84b44250b8285b0dc95ae',
-			'com.android.support:design:4867cf256911d7ada88f3d948a27cdc7d4555d69411e2b4e3aa2336b657ad111',
-			'com.android.support:cardview-v7:7b4320d989c371fd9539c0aca7500c3f787b338021006e54ccfd8b8bea415c1a',
-			'com.android.support:recyclerview-v7:e3b519f59f05e9765fdc93b88286e4a7b9430f64b6440a03bacb5847daa8e13c',
-			'com.android.support:preference-v14:3a404b1e1e6a66d2e7d614c170da497aaaec55002fe5fb808635ac1c88812e63',
-			'com.android.support.constraint:constraint-layout:46b7471f09c41d93dfb0261fd1999756efdfb0d73cfab20c3190af56a4c60082',
+			'com.android.support:appcompat-v7:ac1ebbc46589195dda3e0b1becfe410bafd75bdf3edd1cd9acf04850f3895830',
+			'com.android.support:design:a3e83064fe99d0a4369f9b46d8bfbe77d0c3022fffdee4be3ac3857b87cc89e3',
+			'com.android.support:cardview-v7:defc17032ffa600a82e1c7d96bb574aa5ed64e2b57e28414a245da7d6db0c666',
+			'com.android.support:recyclerview-v7:375974a8724e359d97d77fa8522c614f813a3ac4583c1807f154a3f9a054b0a1',
+			'com.android.support:preference-v14:970904d676ea886d0be459e7e5e36c0db650daefea5bbe80cc59146091905be5',
+			'com.android.support.constraint:constraint-layout:b0c688cc2b7172608f8153a689d746da40f71e52d7e2fe2bfd9df2f92db77085',
 			'com.github.orangegangsters:swipy:153d03ab51b7c3672e0dfb60963dc4b983c3bf0fd39adbff576cd5179b8edbda',
 			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
 			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
-			'com.mikepenz:materialdrawer:91716d14c7537e8d490cc505b979430e03ac5cf7b4bdb72eb0afab23da02c22e',
-			'com.mikepenz:aboutlibraries:70a36d5f49efab987783fec44139f9810e46c4fac3e2d147e2602270a48d5017',
-			'com.mikepenz:fastadapter-commons:ff7c751a839c18575a4a4221c2cfc3fa9bb72846f4b346803a64d405b4393483',
+			'com.mikepenz:materialdrawer:030c51b2ca97378b09dddaf21961ede6106c5a6f176d06c805b96679b142d342',
+			'com.mikepenz:aboutlibraries:7ed9676ebf9b388de45c43c514b3b82b3a507e63cc4834b7b0cfc7039314edeb',
+			'com.mikepenz:fastadapter-commons:43eb876014d40daaabdd2dfe4eb8dd4772edac08023503448272eb873529b552',
 			'org.osmdroid:osmdroid-android:e64a97b8302a50bedf6c4c6ff024291008f72103b17a728801132ebdce0492ed',
-			'uk.co.samuelwall:material-tap-target-prompt:b53287592ddbe4a7c79aadea8092524c0760a1daa51c7cae928c445b0c192406',
+			'uk.co.samuelwall:material-tap-target-prompt:3cdecbd8d391a7bda411f3edbbc7da5be5d781544f90e2f9e427e6465f54a66c',
 			'com.mapbox.mapboxsdk:mapbox-android-sdk:81e7b72106f42389645fb54d8d265248401d484a6d2d692c973eba5962d14aab',
-			'com.google.dagger:dagger:5070e1dff5c551a4908ba7b93125c0243de2a688aed3d2f475357d86d9d7c0ad',
-			'com.android.support:support-annotations:46cc01378ddbefa9d0a6bd46bb3c10b35b06e06e375d41a357c3769ba563e9c6',
-			'com.android.support:support-v4:b9b0b9220b7ece40cd621ee839d36d8094694151c7d7021ae91e3e7b76c1300f',
-			'com.android.support:support-vector-drawable:58c63db6367691397ce0d534fdef59fe204178af78deb686a0983f3b6556e6e0',
-			'com.android.support:animated-vector-drawable:d59d0161ff90fa04ace30425037c1d5463698f481dbf41a611e4dc622af09553',
-			'com.android.support:transition:d0b2db0594eff7555ec81c0fea9952d47a04c6174f50383bdf296b5dec8703d7',
-			'com.android.support:support-compat:c5072de567ae6ef711f7a90599e8370aefbece9f4df45407b5802a21714839d9',
-			'com.android.support:support-core-ui:df14d89b20e62b85cc55d5e17442c58d66e032c19833247fb44268f0ae3204b6',
-			'com.android.support:preference-v7:444c586ddfe186c61bf89a5d77e07a7237307a8b2b3b08bb7802713f144b1218',
-			'com.android.support.constraint:constraint-layout-solver:9f9990052870c15ac57a3985f2491b5b1020289e442d1d57da5ac6c6822950dd',
-			'com.mikepenz:materialize:942ccf5e2aa1a46803aa884e8dc7bbaf2a9e8e9996a0cf92e3fe2f44a8592ba4',
-			'com.mikepenz:iconics-core:fdaec9164d5dccd213e1e80610b29dbd33a6e36ccd56ca3e8d4e4a802ac962d5',
+			'com.google.dagger:dagger:1e9fe8a7ba7ca663449cda3e4f973511aa4593dbecd93ef3eb2476ef98082f08',
+			'com.android.support:support-annotations:aedf76962584adfaed2bd3fcaa22406461c4310237fc27e301128edaa2dba2fa',
+			'com.android.support:support-v4:07d389154bcf73b47e514964df1578136b26cba78257b8a577a3ccb54beff0ae',
+			'com.android.support:support-vector-drawable:13728f337f36d1c02d52198a6c20724edb447a0875454d829f95cb9eb4aa293b',
+			'com.android.support:animated-vector-drawable:4bc46edf1946b32d518b41416d1734e915e0cbb28021de3b340527419b070691',
+			'com.android.support:transition:36c688825a8c0e6e879e18886de83dc90673322822d5b606ee302f70fb558e16',
+			'com.android.support:support-compat:e02d781268dc60aab6638d8dc20156ea11ca20b962d294b85e6f1e8418cabfa7',
+			'com.android.support:support-core-ui:6182278a6653e6c111c888963626cbb16f2d0022571cb239760475119e0b92a8',
+			'com.android.support:preference-v7:b37d8193c65cf8eb3c4ba9cbfc6d5c96042177901622717fb089290bef784a58',
+			'com.android.support.constraint:constraint-layout-solver:8c62525a9bc5cff5633a96cb9b32fffeccaf41b8841aa87fc22607070dea9b8d',
+			'com.mikepenz:materialize:7add9fff9ccc20e4bbc508b7d2727594369def95d9ca58c620503cf0d1ee67f1',
+			'com.mikepenz:iconics-core:e1c4e3b6200acfca71af0698d140fa63a57a6ce6b61c0eac4a8325766ca87bc7',
+			'com.mikepenz:fastadapter:178441f46d7f911301978f4753cc628c92eb3e44468071e8b2c23286dbfa794d',
 			'com.mapzen.android:lost:6e2a7bfb1627587cf17e7788fc16eb2a293f1fb03c1cd9715da4cf5c9d33fefe',
 			'com.mapbox.mapboxsdk:mapbox-java-services:48488716151c51f6606da48d30812ba6eb3d1b82d721d1c089ff648d22d95429',
 			'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
-			'com.squareup.okhttp3:logging-interceptor:2f77bb4b1b2ecf1c330a54295b0b112f65a56d2c16b7937303ad601b1de18fde',
+			'com.squareup.okhttp3:logging-interceptor:88d04693ab3109b549149b38abf96530bf6ee97f38c0dc72aa73560ef30d953d',
 			'com.google.guava:guava:36a666e3b71ae7f0f0dca23654b67e086e6c93d192f60ba5dfd5519db6c288c8',
 			'org.slf4j:slf4j-api:1d5aeb6bd98b0fdd151269eae941c05f6468a791ea0f1e68d8e7fe518af3e7df',
 			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'com.squareup.retrofit2:retrofit:b7ae1a8c9f8de27c85ea43238c6c1507e91d33c6411cc52a06b5451842dc28bb',
 			'com.squareup.retrofit2:converter-gson:7a24c46a7185f89ffdde23670a5db2fb794a87d34fc3ab8e0e4039c5ef48e652',
 			'com.google.code.gson:gson:2d43eb5ea9e133d2ee2405cc14f5ee08951b8361302fdd93494a3a997b508d32',
-			'com.mikepenz:fastadapter:bee864e3dcb54b6c6126335f58b92ecb17a4b70b58a270279c91e9c96ac1b963',
-			'com.android.support:support-media-compat:84213df60369186320c6b4f3e1d25d1240045d4e5f72275474da0db0b1b62181',
-			'com.android.support:support-core-utils:b7f5449c6c60a813c7f8348cb2ae0d6221d453348af0a4623c2b6c917e64b87c',
-			'com.android.support:support-fragment:dfbe0891ff08b98ed70f4de41b7c597f4ac6d00d4c919534cce14a4007c79fc3',
-			'com.squareup.okhttp3:okhttp:eecd834b09d12c3cd568b811522b97012619f7f00378c3c719a1957fac6458ef',
-			'com.squareup.okio:okio:8c5436cadfab36bbd97db5f5c43b7bfdb5bf2f5f894ec8709b1929f14bdd010c',
+			'com.android.support:support-media-compat:cbed07d07e0e84fdb4b75712f5fd946229a8af155933c9a92e41db64d00791e0',
+			'com.android.support:support-core-utils:32fac02eb2c20a77fa3e3bc3ede62392a19613f72b8f8e10f5dfa84bb4c89ea1',
+			'com.android.support:support-fragment:541d6393c1e024453aca2a14f31bea0c7270ff4e2a02783f3528aa426367444d',
+			'com.squareup.okhttp3:okhttp:19e1db51787716ff0046fa19e408fb34ed32a6274baa0c07475bf724b4eb6800',
+			'com.squareup.okio:okio:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
 	]
 }
 
