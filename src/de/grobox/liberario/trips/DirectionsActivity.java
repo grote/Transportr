@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.AppBarLayout.OnOffsetChangedListener;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -25,6 +28,9 @@ import de.grobox.liberario.fragments.TimeDateFragment;
 import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.WrapLocation;
+import de.schildbach.pte.dto.Location;
+
+import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 
 @ParametersAreNonnullByDefault
 public class DirectionsActivity extends TransportrActivity implements OnOffsetChangedListener {
@@ -38,6 +44,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	private TextView date, time;
 	private LocationGpsView from;
 	private LocationView to;
+	private CardView fromCard, toCard;
 	private FrameLayout fragmentContainer;
 
 	@Override
@@ -79,6 +86,9 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		from = (LocationGpsView) findViewById(R.id.fromLocation);
 		to = (LocationView) findViewById(R.id.toLocation);
 
+		fromCard = (CardView) findViewById(R.id.fromCard);
+		toCard = (CardView) findViewById(R.id.toCard);
+
 		// TODO Is Departure???
 
 		presenter = new DirectionsPresenter(this, savedInstanceState);
@@ -115,8 +125,8 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch(item.getItemId()) {
-			case android.R.id.home:
-				onBackPressed();
+			case R.id.action_swap_locations:
+				swapLocations();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -189,6 +199,51 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		// remove the intent (and clear its action) since it was already processed
 		// and should not be processed again
 		setIntent(null);
+	}
+
+	private void swapLocations() {
+		Animation slideUp = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+				0.0f, Animation.ABSOLUTE, fromCard.getY()*-1);
+		slideUp.setDuration(400);
+		slideUp.setFillAfter(true);
+		slideUp.setFillEnabled(true);
+
+		Animation slideDown = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+				0.0f, Animation.ABSOLUTE, fromCard.getY());
+		slideDown.setDuration(400);
+		slideDown.setFillAfter(true);
+		slideDown.setFillEnabled(true);
+
+		fromCard.startAnimation(slideDown);
+		toCard.startAnimation(slideUp);
+
+		slideUp.setAnimationListener(new Animation.AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {
+			}
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				// swap location objects
+				Location tmp = to.getLocation();
+				if(!from.isSearching()) {
+					to.setLocation(from.getLocation(), getDrawableForLocation(DirectionsActivity.this, from.getLocation()));
+				} else {
+					// TODO: GPS currently only supports from location, so don't swap it for now
+					to.clearLocation();
+				}
+				from.setLocation(tmp, getDrawableForLocation(DirectionsActivity.this, tmp));
+
+				fromCard.clearAnimation();
+				toCard.clearAnimation();
+
+				search();
+			}
+		});
 	}
 
 }
