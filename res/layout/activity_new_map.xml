@@ -10,18 +10,15 @@
 		android:id="@+id/map"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:access_token="pk.eyJ1IjoidG92b2s3IiwiYSI6ImNpeTA1OG82YjAwN3YycXA5cWJ6NThmcWIifQ.QpURhF9y7XBMLmWhELsOnw"
-		app:attribution_enabled="false"
-		app:compass_enabled="true"
-		app:compass_margin_top="72dp"
-		app:debug_active="false"
-		app:logo_enabled="false"
-		app:my_location_enabled="false"
-		app:rotate_enabled="true"
-		app:style_url="@string/style_mapbox_streets"
-		app:tilt_enabled="false"
-		app:zoom_controls_enabled="false"
-		app:zoom_enabled="true"/>
+		app:mapbox_styleUrl="@string/mapbox_style_mapbox_streets"
+		app:mapbox_uiCompass="true"
+		app:mapbox_uiCompassMarginTop="72dp"
+		app:mapbox_uiRotateGestures="true"
+		app:mapbox_uiTiltGestures="false"
+		app:mapbox_uiZoomControls="false"
+		app:mapbox_uiLogo="false"
+		app:mapbox_myLocation="false"
+		app:mapbox_uiAttribution="false"/>
 
 	<android.support.v7.widget.CardView
 		android:id="@+id/searchBackground"

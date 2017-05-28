@@ -28,7 +28,7 @@ dependencies {
 	compile 'com.mikepenz:fastadapter-commons:2.5.3@aar'
 	compile 'org.osmdroid:osmdroid-android:5.6.1'
 	compile 'uk.co.samuelwall:material-tap-target-prompt:1.10.0'
-	compile ('com.mapbox.mapboxsdk:mapbox-android-sdk:4.2.2@aar') {
+	compile ('com.mapbox.mapboxsdk:mapbox-android-sdk:5.0.2@aar') {
 		transitive = true
 	}
 	compile 'com.google.dagger:dagger:2.11'
@@ -65,7 +65,7 @@ dependencyVerification {
 			'com.mikepenz:fastadapter-commons:43eb876014d40daaabdd2dfe4eb8dd4772edac08023503448272eb873529b552',
 			'org.osmdroid:osmdroid-android:e64a97b8302a50bedf6c4c6ff024291008f72103b17a728801132ebdce0492ed',
 			'uk.co.samuelwall:material-tap-target-prompt:3cdecbd8d391a7bda411f3edbbc7da5be5d781544f90e2f9e427e6465f54a66c',
-			'com.mapbox.mapboxsdk:mapbox-android-sdk:81e7b72106f42389645fb54d8d265248401d484a6d2d692c973eba5962d14aab',
+			'com.mapbox.mapboxsdk:mapbox-android-sdk:4a2b26b33fc8cc1f7a55a828f69f6d3a0a61f3c0b1230155266d923163cc200e',
 			'com.google.dagger:dagger:1e9fe8a7ba7ca663449cda3e4f973511aa4593dbecd93ef3eb2476ef98082f08',
 			'com.android.support:support-annotations:aedf76962584adfaed2bd3fcaa22406461c4310237fc27e301128edaa2dba2fa',
 			'com.android.support:support-v4:07d389154bcf73b47e514964df1578136b26cba78257b8a577a3ccb54beff0ae',
@@ -79,16 +79,17 @@ dependencyVerification {
 			'com.mikepenz:materialize:7add9fff9ccc20e4bbc508b7d2727594369def95d9ca58c620503cf0d1ee67f1',
 			'com.mikepenz:iconics-core:e1c4e3b6200acfca71af0698d140fa63a57a6ce6b61c0eac4a8325766ca87bc7',
 			'com.mikepenz:fastadapter:178441f46d7f911301978f4753cc628c92eb3e44468071e8b2c23286dbfa794d',
-			'com.mapzen.android:lost:6e2a7bfb1627587cf17e7788fc16eb2a293f1fb03c1cd9715da4cf5c9d33fefe',
-			'com.mapbox.mapboxsdk:mapbox-java-services:48488716151c51f6606da48d30812ba6eb3d1b82d721d1c089ff648d22d95429',
+			'com.jakewharton.timber:timber:d553d3d3e883ce7d061f1b21b95d6ee0840f3bfbf6d3bd51c5671f0b0f0b0091',
+			'com.mapzen.android:lost:c9f4eca5d37c05b455c2333a127ecf6f92c73d1567447d7ade2a34bb7b11ddad',
+			'com.mapbox.mapboxsdk:mapbox-java-geojson:da1b8769a75d1c06835cfa446c4097e8774ab6f4415c20f2cf74fb5472c1f632',
+			'com.mapbox.mapboxsdk:mapbox-android-telemetry:a1c5b69902db964575772375884b2b189f0b3c2e1336d1f6103a8837d6f7f520',
 			'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
 			'com.squareup.okhttp3:logging-interceptor:88d04693ab3109b549149b38abf96530bf6ee97f38c0dc72aa73560ef30d953d',
 			'com.google.guava:guava:36a666e3b71ae7f0f0dca23654b67e086e6c93d192f60ba5dfd5519db6c288c8',
 			'org.slf4j:slf4j-api:1d5aeb6bd98b0fdd151269eae941c05f6468a791ea0f1e68d8e7fe518af3e7df',
 			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
-			'com.squareup.retrofit2:retrofit:b7ae1a8c9f8de27c85ea43238c6c1507e91d33c6411cc52a06b5451842dc28bb',
-			'com.squareup.retrofit2:converter-gson:7a24c46a7185f89ffdde23670a5db2fb794a87d34fc3ab8e0e4039c5ef48e652',
-			'com.google.code.gson:gson:2d43eb5ea9e133d2ee2405cc14f5ee08951b8361302fdd93494a3a997b508d32',
+			'com.mapbox.mapboxsdk:mapbox-java-core:245fb12f4a0a04c5a894e7e66cd1aa056a77c6251cebf7d0c618248aec240e1b',
+			'com.google.code.gson:gson:c6221763bd79c4f1c3dc7f750b5f29a0bb38b367b81314c4f71896e340c40825',
 			'com.android.support:support-media-compat:cbed07d07e0e84fdb4b75712f5fd946229a8af155933c9a92e41db64d00791e0',
 			'com.android.support:support-core-utils:32fac02eb2c20a77fa3e3bc3ede62392a19613f72b8f8e10f5dfa84bb4c89ea1',
 			'com.android.support:support-fragment:541d6393c1e024453aca2a14f31bea0c7270ff4e2a02783f3528aa426367444d',

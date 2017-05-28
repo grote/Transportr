@@ -18,7 +18,6 @@
 package de.grobox.liberario.activities;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.DrawableRes;
@@ -27,7 +26,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.View;
@@ -44,7 +42,6 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.telemetry.MapboxEventManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -109,8 +106,6 @@ public class NewMapActivity extends DrawerActivity
 
 		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);
-		MapboxEventManager eventManager = MapboxEventManager.getMapboxEventManager();
-		if (eventManager.isTelemetryEnabled()) eventManager.setTelemetryEnabled(false);
 		mapView.getMapAsync(this);
 
 		View menu = findViewById(R.id.menu);
@@ -232,14 +227,26 @@ public class NewMapActivity extends DrawerActivity
 	public void onStart() {
 		super.onStart();
 		manager.addOnTransportNetworkChangedListener(this);
+		mapView.onStart();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		mapView.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mapView.onPause();
 	}
 
 	@Override
 	public void onStop() {
 		super.onStop();
 		manager.removeOnTransportNetworkChangedListener(this);
-		mapView.onPause();
+		mapView.onStop();
 	}
 
 	@Override
@@ -334,8 +341,7 @@ public class NewMapActivity extends DrawerActivity
 
 	private Icon getNearbyLocationsIcon(@DrawableRes int res) {
 		IconFactory iconFactory = IconFactory.getInstance(NewMapActivity.this);
-		Drawable iconDrawable = ContextCompat.getDrawable(NewMapActivity.this, res);
-		return iconFactory.fromDrawable(iconDrawable);
+		return iconFactory.fromResource(res);
 	}
 
 	private void ensureTransportNetworkSelected() {

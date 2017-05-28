@@ -19,6 +19,8 @@ package de.grobox.liberario;
 
 import android.app.Application;
 
+import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.services.android.telemetry.MapboxTelemetry;
 import com.squareup.leakcanary.LeakCanary;
 
 public class TransportrApplication extends Application {
@@ -28,6 +30,10 @@ public class TransportrApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+
+		Mapbox.getInstance(getApplicationContext(),
+				"pk.eyJ1IjoidG92b2s3IiwiYSI6ImNpeTA1OG82YjAwN3YycXA5cWJ6NThmcWIifQ.QpURhF9y7XBMLmWhELsOnw");
+		MapboxTelemetry.getInstance().setTelemetryEnabled(false);
 
 		if (LeakCanary.isInAnalyzerProcess(this)) {
 			// This process is dedicated to LeakCanary for heap analysis.
