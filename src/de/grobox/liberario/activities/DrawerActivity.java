@@ -38,7 +38,8 @@ import com.mikepenz.materialdrawer.util.KeyboardUtil;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.fragments.AboutMainFragment;
+import de.grobox.liberario.about.AboutActivity;
+import de.grobox.liberario.about.AboutMainFragment;
 import de.grobox.liberario.settings.SettingsActivity;
 import de.grobox.liberario.settings.SettingsFragment;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
@@ -175,9 +176,11 @@ abstract class DrawerActivity extends TransportrActivity implements TransportNet
 				@Override
 				public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 					drawer.closeDrawer();
-					// TODO
 					if (tag.equals(SettingsFragment.TAG)) {
 						Intent i = new Intent(DrawerActivity.this, SettingsActivity.class);
+						startActivity(i);
+					} else if (tag.equals(AboutMainFragment.TAG)) {
+						Intent i = new Intent(DrawerActivity.this, AboutActivity.class);
 						startActivity(i);
 					}
 					return true;

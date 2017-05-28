@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.fragments;
+package de.grobox.liberario.about;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -57,8 +57,8 @@ public class AboutMainFragment extends Fragment {
 		return view;
 	}
 
-	class AboutPagerAdapter extends FragmentPagerAdapter {
-		public AboutPagerAdapter(FragmentManager fm) {
+	private class AboutPagerAdapter extends FragmentPagerAdapter {
+		AboutPagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
 

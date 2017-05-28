@@ -58,7 +58,7 @@ import java.util.Collections;
 
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
-import de.grobox.liberario.fragments.AboutMainFragment;
+import de.grobox.liberario.about.AboutMainFragment;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;

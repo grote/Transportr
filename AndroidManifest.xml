@@ -85,6 +85,10 @@
 			android:name=".settings.SettingsActivity"
 			android:label="@string/drawer_settings"/>
 
+		<activity
+			android:name=".about.AboutActivity"
+			android:label="@string/drawer_about"/>
+
 	</application>
 
 </manifest>
