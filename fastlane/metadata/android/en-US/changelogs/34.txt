@@ -1,0 +1,4 @@
+<change>New product icons that are now shown for all lines</change>
+<change>"Get Location from Map" now zooms in to your area</change>
+<change>Turn off GPS when leaving map and turn it back on when you return</change>
+<change>Show the name instead of the destination for lines of selected networks</change>

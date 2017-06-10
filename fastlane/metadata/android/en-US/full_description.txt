@@ -1,0 +1,14 @@
+Transportr is a non-profit app developed by people around the world to make
+using public transport as easy as possible wherever you are.
+
+Currently, it works best in Europe, but also supports many places world-wide. If
+you live in an unsupported area, consider adding it to Transportr.
+Instructions are available on the homepage.
+
+Transportr finds directions from your home, your current position or a given station to
+wherever you want to go. You can also save entire trips as favorites and find
+next trips with one swipe. Of course, you can also show your trip on the map
+and follow your progress via GPS.
+
+You can also discover nearby stations and show upcoming departures including the delays (if
+there are any).

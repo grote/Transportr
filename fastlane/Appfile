@@ -1,0 +1,2 @@
+json_key_file "/home/user/android/signing/gplay-key.json"
+package_name "de.grobox.liberario"

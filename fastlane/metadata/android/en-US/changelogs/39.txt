@@ -1,0 +1,6 @@
+* New translation: Esperanto (Thanks Verdulo!)
+* Complete Spanish translation (Thanks acuccaro!!)
+* Complete Polish translation (Thanks Verdulo!)
+* Fix white dialogs in dark theme
+* Remember when all products have ben re-selected (Thanks schachmat!)
+* Allow OK, Cancel, Yes and No to be translated in all languages (Thanks kas70!)

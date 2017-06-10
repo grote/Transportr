@@ -1,0 +1,10 @@
+Favorite locations, trips and your home needed to be reset :(
+The favorite trips list has been improved
+You can now share trips via SMS or email
+You can add trips directly into your calendar
+Show walking between stations on external map app
+Show nearby stations on map
+Choose the products you want to use for your trip
+You can now pull to refresh the list of next departures
+Added Region: Jerusalem, Dubai, Provence-Alpes-Côte d'Azur, Göttingen & South Lower Saxony
+Added Italian Translation

@@ -1,0 +1,4 @@
+- Station position is now shown in calendar export and shared trip text
+- Long press on products now shows their name
+- Special connection messages are shown in red and without HTML code
+- Updated PTE: Added support for Rostock (RSAG), fixed encoding errors in auto-completion, fewer departures shown

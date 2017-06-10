@@ -1,0 +1,6 @@
+* Entire trips can now be shown on the map
+* Major improvements when auto-completing entered locations
+* Long click on the map to find directions or stations from that location
+* Added map button that zooms map to show all stations
+* Click on departure now searches for this trip
+* Added logo for MVV, INVG and VVM network (Thanks Hartmut!)

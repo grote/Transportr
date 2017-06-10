@@ -1,0 +1,7 @@
+Transportr est une appli sans but lucratif développée par des personnes du monde entier pour faciliter le plus possible l'utilisation des transports en commun, où que vous soyez.
+
+Actuellement, elle fonctionne de manière optimale en Europe, mais prend aussi en charge de nombreux endroits de par le monde. Si vous habitez dans une région qui n'est pas prise en charge, envisagez de l'ajouter à Transportr. Vous trouverez des instructions sur la page d'accueil.
+
+Transportr trouve des itinéraires de chez vous, de votre emplacement actuel ou d'un arrêt/station donné vers n'importe quel lieu. Vous pouvez aussi enregistrer des trajets entiers préférés et y accéder ultérieurement d'un seul glisser. Bien sûr, vous pouvez aussi faire apparaître votre trajet sur la carte et suivre votre déplacement par GPS.
+
+Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les prochains départs incluant les retards (s'il y en a).

@@ -1,0 +1,7 @@
+* Added Ontario, Canada (Thanks Chimo!)
+* Added Catalan translation (Thanks el_libre!)
+* Added Polish translation (Thanks Daniel!)
+* Improve start screen for devices with small screens
+* Improve usability for network provider selection
+* Do not remove other location when choosing "To here" or "From here"
+* Fix rare crash when reloading trip

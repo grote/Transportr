@@ -1,0 +1,4 @@
+* Fixed various networks (e.g. Belgium, NSW, HSL, etc.)
+* Fixed bug when searching nearby stations from current location
+* Fixed bug with BVG network when refreshing a trip
+* Fixed crash when user has no calendar app installed

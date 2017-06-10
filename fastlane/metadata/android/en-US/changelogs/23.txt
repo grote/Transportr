@@ -1,0 +1,7 @@
+* Added Italy (Thanks Antonio!)
+* Added South West of France (Thanks Nicolas!)
+* New setting to change app language
+* Include updated delays when exporting/sharing trips
+* Shorten long location names in the middle, not at the end
+* Show toolbar icons in white even on old devices
+* Fix issues with KVV, AVV and VMS networks

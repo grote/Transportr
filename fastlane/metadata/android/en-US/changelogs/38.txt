@@ -1,0 +1,3 @@
+* Remember selected means of transports for each network (Thanks kas70!)
+* Fix problem with NVV/RMV network
+* Prevent crash when turning screen during trip search

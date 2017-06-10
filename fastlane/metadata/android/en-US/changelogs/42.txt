@@ -1,0 +1,8 @@
+* Added France North West (Thanks Patrick!)
+* Reduce amount of scrolling needed to load more information
+* Use TODAY and NOW when searching for directions unless changed
+* Improved departure layout and show long line names 
+* Added help screens
+* Reduced size of the app
+* Updated and improved network provider list (Thanks Patrick!)
+* New translation: Czech (Thanks Miloš!)

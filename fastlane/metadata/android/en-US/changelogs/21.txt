@@ -1,0 +1,4 @@
+* Renamed app from Liberario to Transportr
+* New Logo
+* New user interface in material design with navigation drawer
+* Lots of new features like trip refresh, favorites on start screen, interactions with stations on the map and many more

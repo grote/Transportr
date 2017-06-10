@@ -1,0 +1,8 @@
+- Redesigned start screen for better usability
+- Favorite trips can be sorted by last used
+- Improved trip list with better contrasts and popup menu (try long touch)
+- You can now share parts of trips or copy their names to clipboard
+- Stations can be shown on integrated and external map
+- Show departures and other nearby stations for locations in your trip
+- Show logos of transportation networks in settings dialog
+- Added support for Paris, New Zealand, Helsinki, Spain and Cologne/Bonn

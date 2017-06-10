@@ -1,0 +1,2 @@
+* Updated PTE: Fix API changes by various networks (Thanks to Jochen Sprickerhof)
+* Activate SBB network again for Switzerland

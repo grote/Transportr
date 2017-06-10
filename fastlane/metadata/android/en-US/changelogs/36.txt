@@ -1,0 +1,7 @@
+* New product icons that are now shown for all lines
+* Add button to map that shows current position and follows it
+* New product icons - They shown for all lines and have a selection dialog
+* "Get Location from Map" now zooms in to your area
+* Turn off GPS when leaving map and turn it back on when you return
+* Show the name instead of the destination for lines of selected networks
+* Added Tamil translation (Thanks Prasanna!)

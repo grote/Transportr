@@ -1,0 +1,6 @@
+* Fixed some German and Austrian networks
+* Improved trip icons on map for some devices
+* Fixed center on trip when viewing trip on map
+* Fixed bug where sometimes "now" and "today" where not respected
+* New translation: Hungarian (Thanks András!)
+* Removed San Francisco and Jerusalem

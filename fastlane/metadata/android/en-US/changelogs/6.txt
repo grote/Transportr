@@ -1,0 +1,9 @@
+New start screen
+Find trips from current position
+New home button as a shortcut for your home station, long press to change later
++15 minutes button to quickly change time for trip
+Wider input field for location/station name
+Input fields for stations now have a X button to delete the text
+Names in the auto completion lists now also show the city of the proposed location
+Hide less used settings from start screen
+Little trip boxes are now shown in correct order

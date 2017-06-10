@@ -1,0 +1,9 @@
+* Added Quebec, Canada (Thanks Chimo!)
+* Many changes under the hood that improve performance, memory usage and new multi-window mode
+* Add animation when changing pages and opening dialogs
+* Modern UI for built-in map
+* Improvements for location auto-completion
+* Improvements for networks provided by Navitia.io
+* Add more and better logos (Thanks André and Vincent!)
+* Small visual improvements
+* Remove Salzburg and Schleswig-Holstein (require API authorization now)

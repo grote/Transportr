@@ -1,0 +1,5 @@
+* New setting: Add "Get me home" shortcut to launcher (Thanks Patrick!)
+* Added Oregon, USA (Thanks craftguy!)
+* Added Mittelthüringen, Germany (Thanks Andreas!)
+* New logos for MET, SYDNEY and DSB
+* Fixed Android 7.1 issue when returning to directions list

@@ -1,0 +1,8 @@
+* You can now optimize the directions for certain criteria
+* You can now also set your preferred walking speed in the settings
+* Add experimental support for Florianópolis, Brazil
+* Only show departures from given station, not also from stations in the area
+* Fix some issues with networks provided by Navitia.io
+* Fix exotic bug when turning phone and closing physical keyboard at the same time
+* Added logo for VRN and VVS network (Thanks Robert!)
+* Added logo for BSVAG and NASA network
