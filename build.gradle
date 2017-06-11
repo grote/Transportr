@@ -1,9 +1,12 @@
 buildscript {
 	repositories {
 		jcenter()
+		maven {
+			url "https://maven.google.com"
+		}
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.3.2'
+		classpath 'com.android.tools.build:gradle:2.3.3'
 		classpath files('libs/gradle-witness.jar')
 	}
 }
@@ -37,6 +40,7 @@ dependencies {
 	compile(project(':sublibs:public-transport-enabler:enabler')) {
 		exclude group: 'org.json' // provided by Android
 		exclude group: 'net.sf.kxml' // provided by Android
+		exclude group: 'junit'
 	}
 	debugCompile 'org.slf4j:slf4j-api:1.7.21'
 	debugCompile 'com.github.tony19:logback-android-core:1.1.1-6'
@@ -44,9 +48,27 @@ dependencies {
 		exclude group: 'com.google.android', module: 'android'
 	}
 
+	// LeakCanary
+	androidTestCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 	debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
 	releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 	testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
+	androidTestCompile ('com.android.support.test.espresso:espresso-core:2.2.2') {
+		exclude group: 'com.android.support', module: 'support-annotations'
+		exclude group: 'com.google.code.findbugs'
+	}
+	androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+		exclude group: 'com.android.support', module: 'support-annotations'
+		exclude group: 'com.android.support', module: 'support-v4'
+		exclude group: 'com.android.support', module: 'design'
+		exclude group: 'com.android.support', module: 'recyclerview-v7'
+		exclude group: 'com.google.code.findbugs'
+	}
+	androidTestCompile ('tools.fastlane:screengrab:1.0.0') {
+		exclude group: 'com.android.support', module: 'support-annotations'
+		exclude group: 'com.google.code.findbugs'
+	}
 }
 
 dependencyVerification {
@@ -113,6 +135,8 @@ android {
 		targetSdkVersion 25
 		buildToolsVersion "25.0.2"
 		minSdkVersion 15
+
+		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
 	}
 
 	buildTypes {
@@ -130,6 +154,7 @@ android {
 			shrinkResources true
 			minifyEnabled true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+			testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt', 'proguard-test.txt'
 		}
 	}
 
@@ -147,6 +172,18 @@ android {
 			renderscript.srcDirs = ['src']
 			res.srcDirs = ['res']
 			assets.srcDirs = ['assets']
+		}
+		debug {
+			manifest.srcFile 'tests/androidTest/AndroidManifest.xml'
+		}
+		test {
+			java.srcDirs = ['tests/test']
+			resources.srcDirs = ['tests/test']
+		}
+		androidTest {
+			java.srcDirs = ['tests/androidTest']
+			resources.srcDirs = ['tests/androidTest']
+			manifest.srcFile 'tests/androidTest/AndroidManifest.xml'
 		}
 	}
 

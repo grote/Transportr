@@ -18,6 +18,10 @@ platform :android do
     gradle(task: "test")
   end
 
+  lane :screenshots do
+	screengrab
+  end
+
   desc "Deploy a new version to the Google Play"
   lane :deploy do
     gradle(task: "assembleRelease")
