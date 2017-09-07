@@ -47,13 +47,13 @@ public class NzProvider extends AbstractNavitiaProvider
 	}
 
 	@Override
-	protected Style getLineStyle(final Product product, final String code, final String color)
+	protected Style getLineStyle(final String network, final Product product, final String code, final String color)
 	{
 		if(color != null) {
-			return lineStyle(network.name(), product, code);
+			return lineStyle(this.network.name(), product, code);
 		}
 		else {
-			return super.getLineStyle(product, code, null);
+			return super.getLineStyle(network, product, code, null);
 		}
 	}
 

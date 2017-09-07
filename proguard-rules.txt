@@ -12,6 +12,7 @@
 
 -dontnote com.google.common.**
 -dontwarn com.google.common.**
+-dontwarn com.google.errorprone.**
 -dontnote android.support.v4.**
 -dontnote android.support.v7.**
 -dontnote android.support.design.widget.**

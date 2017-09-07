@@ -3,7 +3,7 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.2.3'
+		classpath 'com.android.tools.build:gradle:2.3.3'
 		classpath files('libs/gradle-witness.jar')
 	}
 }
@@ -41,39 +41,42 @@ dependencies {
 
 dependencyVerification {
 	verify = [
-			'com.android.support:appcompat-v7:ac1ebbc46589195dda3e0b1becfe410bafd75bdf3edd1cd9acf04850f3895830',
-			'com.android.support:design:a3e83064fe99d0a4369f9b46d8bfbe77d0c3022fffdee4be3ac3857b87cc89e3',
-			'com.android.support:cardview-v7:defc17032ffa600a82e1c7d96bb574aa5ed64e2b57e28414a245da7d6db0c666',
-			'com.android.support:recyclerview-v7:375974a8724e359d97d77fa8522c614f813a3ac4583c1807f154a3f9a054b0a1',
 			'com.android.support:preference-v14:970904d676ea886d0be459e7e5e36c0db650daefea5bbe80cc59146091905be5',
 			'com.github.orangegangsters:swipy:153d03ab51b7c3672e0dfb60963dc4b983c3bf0fd39adbff576cd5179b8edbda',
-			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
-			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
 			'com.mikepenz:materialdrawer:91716d14c7537e8d490cc505b979430e03ac5cf7b4bdb72eb0afab23da02c22e',
 			'com.mikepenz:aboutlibraries:70a36d5f49efab987783fec44139f9810e46c4fac3e2d147e2602270a48d5017',
+			'com.android.support:preference-v7:b37d8193c65cf8eb3c4ba9cbfc6d5c96042177901622717fb089290bef784a58',
+			'com.android.support:design:a3e83064fe99d0a4369f9b46d8bfbe77d0c3022fffdee4be3ac3857b87cc89e3',
+			'com.android.support:appcompat-v7:ac1ebbc46589195dda3e0b1becfe410bafd75bdf3edd1cd9acf04850f3895830',
+			'com.android.support:cardview-v7:defc17032ffa600a82e1c7d96bb574aa5ed64e2b57e28414a245da7d6db0c666',
+			'com.android.support:recyclerview-v7:375974a8724e359d97d77fa8522c614f813a3ac4583c1807f154a3f9a054b0a1',
+			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
+			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
 			'com.mikepenz:fastadapter-commons:ff7c751a839c18575a4a4221c2cfc3fa9bb72846f4b346803a64d405b4393483',
 			'org.osmdroid:osmdroid-android:e64a97b8302a50bedf6c4c6ff024291008f72103b17a728801132ebdce0492ed',
 			'uk.co.samuelwall:material-tap-target-prompt:b53287592ddbe4a7c79aadea8092524c0760a1daa51c7cae928c445b0c192406',
-			'com.android.support:support-annotations:aedf76962584adfaed2bd3fcaa22406461c4310237fc27e301128edaa2dba2fa',
-			'com.android.support:support-v4:07d389154bcf73b47e514964df1578136b26cba78257b8a577a3ccb54beff0ae',
-			'com.android.support:support-vector-drawable:13728f337f36d1c02d52198a6c20724edb447a0875454d829f95cb9eb4aa293b',
-			'com.android.support:animated-vector-drawable:4bc46edf1946b32d518b41416d1734e915e0cbb28021de3b340527419b070691',
 			'com.android.support:transition:36c688825a8c0e6e879e18886de83dc90673322822d5b606ee302f70fb558e16',
-			'com.android.support:support-compat:e02d781268dc60aab6638d8dc20156ea11ca20b962d294b85e6f1e8418cabfa7',
+			'com.android.support:support-v4:07d389154bcf73b47e514964df1578136b26cba78257b8a577a3ccb54beff0ae',
+			'com.android.support:support-fragment:541d6393c1e024453aca2a14f31bea0c7270ff4e2a02783f3528aa426367444d',
 			'com.android.support:support-core-ui:6182278a6653e6c111c888963626cbb16f2d0022571cb239760475119e0b92a8',
-			'com.android.support:preference-v7:b37d8193c65cf8eb3c4ba9cbfc6d5c96042177901622717fb089290bef784a58',
-			'com.mikepenz:materialize:942ccf5e2aa1a46803aa884e8dc7bbaf2a9e8e9996a0cf92e3fe2f44a8592ba4',
-			'com.mikepenz:iconics-core:fdaec9164d5dccd213e1e80610b29dbd33a6e36ccd56ca3e8d4e4a802ac962d5',
-			'com.squareup.okhttp3:okhttp:eecd834b09d12c3cd568b811522b97012619f7f00378c3c719a1957fac6458ef',
-			'com.squareup.okhttp3:logging-interceptor:2f77bb4b1b2ecf1c330a54295b0b112f65a56d2c16b7937303ad601b1de18fde',
-			'com.google.guava:guava:36a666e3b71ae7f0f0dca23654b67e086e6c93d192f60ba5dfd5519db6c288c8',
-			'org.slf4j:slf4j-api:1d5aeb6bd98b0fdd151269eae941c05f6468a791ea0f1e68d8e7fe518af3e7df',
-			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'com.android.support:support-media-compat:cbed07d07e0e84fdb4b75712f5fd946229a8af155933c9a92e41db64d00791e0',
 			'com.android.support:support-core-utils:32fac02eb2c20a77fa3e3bc3ede62392a19613f72b8f8e10f5dfa84bb4c89ea1',
-			'com.android.support:support-fragment:541d6393c1e024453aca2a14f31bea0c7270ff4e2a02783f3528aa426367444d',
-			'com.squareup.okio:okio:8c5436cadfab36bbd97db5f5c43b7bfdb5bf2f5f894ec8709b1929f14bdd010c',
+			'com.android.support:animated-vector-drawable:4bc46edf1946b32d518b41416d1734e915e0cbb28021de3b340527419b070691',
+			'com.android.support:support-vector-drawable:13728f337f36d1c02d52198a6c20724edb447a0875454d829f95cb9eb4aa293b',
+			'com.android.support:support-compat:e02d781268dc60aab6638d8dc20156ea11ca20b962d294b85e6f1e8418cabfa7',
+			'com.android.support:support-annotations:aedf76962584adfaed2bd3fcaa22406461c4310237fc27e301128edaa2dba2fa',
+			'com.mikepenz:materialize:942ccf5e2aa1a46803aa884e8dc7bbaf2a9e8e9996a0cf92e3fe2f44a8592ba4',
+			'com.mikepenz:iconics-core:fdaec9164d5dccd213e1e80610b29dbd33a6e36ccd56ca3e8d4e4a802ac962d5',
 			'com.mikepenz:fastadapter:bee864e3dcb54b6c6126335f58b92ecb17a4b70b58a270279c91e9c96ac1b963',
+			'com.squareup.okhttp3:logging-interceptor:1e84fce63c46ce41fb7f8ca65d5b67ffe61aa0350e964288e66391fda7399ff8',
+			'com.squareup.okhttp3:okhttp:c1d57f913f74f61d424d4250a92723ba9a61affc12a0ab194d84cc179b472841',
+			'com.google.guava:guava:c8cea78328d2c50a3be2d4548f6fbc723516b5438251f5803008778f3ff5a3ed',
+			'org.slf4j:slf4j-api:18c4a0095d5c1da6b817592e767bb23d29dd2f560ad74df75ff3961dbde25b79',
+			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
+			'com.squareup.okio:okio:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
+			'com.google.errorprone:error_prone_annotations:cb4cfad870bf563a07199f3ebea5763f0dec440fcda0b318640b1feaa788656b',
+			'com.google.j2objc:j2objc-annotations:40ceb7157feb263949e0f503fe5f71689333a621021aa20ce0d0acee3badaa0f',
+			'org.codehaus.mojo:animal-sniffer-annotations:2068320bd6bad744c3673ab048f67e30bef8f518996fa380033556600669905d',
 	]
 }
 
@@ -90,7 +93,7 @@ android {
 
 		compileSdkVersion 25
 		targetSdkVersion 25
-		buildToolsVersion "23.0.2" // travis does not have >= 23.0.3
+		buildToolsVersion "25.0.2"
 		minSdkVersion 14
 	}
 

@@ -42,7 +42,7 @@ public class BrProvider extends AbstractNavitiaProvider
 	}
 
 	@Override
-	protected Style getLineStyle(final Product product, final String code, final String color)
+	protected Style getLineStyle(final String network, final Product product, final String code, final String color)
 	{
 		final Style defaultStyle = Standard.STYLES.get(product);
 		int bc = defaultStyle.backgroundColor;
