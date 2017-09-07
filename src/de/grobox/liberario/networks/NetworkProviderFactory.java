@@ -67,7 +67,6 @@ public final class NetworkProviderFactory
 	private static Reference<IvbProvider> ivbProviderRef;
 	private static Reference<StvProvider> stvProviderRef;
 	private static Reference<SbbProvider> sbbProviderRef;
-	private static Reference<BvbProvider> bvbProviderRef;
 	private static Reference<VblProvider> vblProviderRef;
 	private static Reference<ZvvProvider> zvvProviderRef;
 	private static Reference<SncbProvider> sncbProviderRef;
@@ -613,19 +612,6 @@ public final class NetworkProviderFactory
 
 			final SbbProvider provider = new SbbProvider();
 			sbbProviderRef = new SoftReference<>(provider);
-			return provider;
-		}
-		else if (networkId.equals(NetworkId.BVB))
-		{
-			if (bvbProviderRef != null)
-			{
-				final BvbProvider provider = bvbProviderRef.get();
-				if (provider != null)
-					return provider;
-			}
-
-			final BvbProvider provider = new BvbProvider();
-			bvbProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
 		else if (networkId.equals(NetworkId.VBL))
