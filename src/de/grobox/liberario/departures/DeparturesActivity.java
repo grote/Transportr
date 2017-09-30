@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
@@ -17,8 +16,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 
-import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
-import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -27,10 +26,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.fragments.TimeDateFragment.TimeDateListener;
-import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.fragments.TimeDateFragment;
+import de.grobox.liberario.fragments.TimeDateFragment.TimeDateListener;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.QueryDeparturesResult;
@@ -38,7 +37,7 @@ import de.schildbach.pte.dto.StationDepartures;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
-import static com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.TOP;
+import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.TOP;
 import static de.grobox.liberario.departures.DeparturesLoader.getBundle;
 import static de.grobox.liberario.utils.Constants.DATE;
 import static de.grobox.liberario.utils.Constants.LOADER_DEPARTURES;

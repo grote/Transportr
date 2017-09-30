@@ -6,7 +6,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+	<com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
 		android:id="@+id/swipe"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -18,7 +18,7 @@
 			android:layout_height="match_parent"
 			tools:listitem="@layout/list_item_trip"/>
 
-	</com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+	</com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
 	<ProgressBar
 		android:id="@+id/progressBar"

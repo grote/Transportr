@@ -53,7 +53,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		setContentView(R.layout.activity_directions);
 		Toolbar toolbar = setUpCustomToolbar(true);
 
-		AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
+		AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
 		appBarLayout.addOnOffsetChangedListener(this);
 
 		if (toolbar != null) {
@@ -75,26 +75,26 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 			View timeIcon = toolbar.findViewById(R.id.timeIcon);
 			timeIcon.setOnClickListener(onTimeClickListener);
 			timeIcon.setOnLongClickListener(onTimeLongClickListener);
-			date = (TextView) toolbar.findViewById(R.id.date);
+			date = toolbar.findViewById(R.id.date);
 			date.setOnClickListener(onTimeClickListener);
 			date.setOnLongClickListener(onTimeLongClickListener);
-			time = (TextView) toolbar.findViewById(R.id.time);
+			time = toolbar.findViewById(R.id.time);
 			time.setOnClickListener(onTimeClickListener);
 			time.setOnLongClickListener(onTimeLongClickListener);
 		}
 
-		from = (LocationGpsView) findViewById(R.id.fromLocation);
-		to = (LocationView) findViewById(R.id.toLocation);
+		from = findViewById(R.id.fromLocation);
+		to = findViewById(R.id.toLocation);
 
-		fromCard = (CardView) findViewById(R.id.fromCard);
-		toCard = (CardView) findViewById(R.id.toCard);
+		fromCard = findViewById(R.id.fromCard);
+		toCard = findViewById(R.id.toCard);
 
 		// TODO Is Departure???
 
 		presenter = new DirectionsPresenter(this, savedInstanceState);
 		from.setLocationViewListener(presenter);
 		to.setLocationViewListener(presenter);
-		fragmentContainer = (FrameLayout) findViewById(R.id.fragmentContainer);
+		fragmentContainer = findViewById(R.id.fragmentContainer);
 
 		if (savedInstanceState == null) {
 			showFavorites();

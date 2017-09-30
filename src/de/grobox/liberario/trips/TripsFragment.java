@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
-import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout.OnRefreshListener;
-import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout.OnRefreshListener;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import java.util.Date;
 
@@ -28,9 +28,9 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsContext;
 import de.schildbach.pte.dto.QueryTripsResult;
 
-import static com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout.LARGE;
-import static com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
-import static com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTTOM;
+import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout.LARGE;
+import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
+import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTTOM;
 import static de.grobox.liberario.utils.Constants.DATE;
 import static de.grobox.liberario.utils.Constants.FROM;
 import static de.grobox.liberario.utils.Constants.IS_DEPARTURE;

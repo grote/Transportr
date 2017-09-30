@@ -4,17 +4,17 @@
 	<string name="define_swipyrefreshlayout"></string>
 	<!-- Author section -->
 	<string name="library_swipyrefreshlayout_author">OrangeGangsters</string>
-	<string name="library_swipyrefreshlayout_authorWebsite">https://github.com/OrangeGangsters</string>
+	<string name="library_swipyrefreshlayout_authorWebsite">https://github.com/omadahealth</string>
 	<!-- Library section -->
 	<string name="library_swipyrefreshlayout_libraryName">SwipyRefreshLayout</string>
 	<string name="library_swipyrefreshlayout_libraryDescription">A SwipeRefreshLayout extension that allows to swipe in both direction (API 9+).</string>
 	<string name="library_swipyrefreshlayout_libraryWebsite"></string>
-	<string name="library_swipyrefreshlayout_libraryVersion">1.2.0</string>
+	<string name="library_swipyrefreshlayout_libraryVersion">1.2.3</string>
 	<!-- OpenSource section -->
 	<string name="library_swipyrefreshlayout_isOpenSource">true</string>
-	<string name="library_swipyrefreshlayout_repositoryLink">https://github.com/OrangeGangsters/SwipyRefreshLayout</string>
+	<string name="library_swipyrefreshlayout_repositoryLink">https://github.com/omadahealth/SwipyRefreshLayout</string>
 	<!-- ClassPath for autoDetect section -->
-	<string name="library_swipyrefreshlayout_classPath">com.orangegangsters.github.swipyrefreshlayout.library</string>
+	<string name="library_swipyrefreshlayout_classPath">com.omadahealth.github.swipyrefreshlayout.library</string>
 	<!-- License section -->
 	<string name="library_swipyrefreshlayout_licenseId">mit</string>
 	<!-- Custom variables section -->

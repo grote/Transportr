@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.view.ViewCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -159,10 +160,10 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		public ImageButton clear;
 
 		private LocationViewHolder(View view) {
-			status = (ImageView) view.findViewById(R.id.statusButton);
-			location = (AutoCompleteTextView) view.findViewById(R.id.location);
-			clear = (ImageButton) view.findViewById(R.id.clearButton);
-			progress = (ProgressBar) view.findViewById(R.id.progress);
+			status = view.findViewById(R.id.statusButton);
+			location = view.findViewById(R.id.location);
+			clear = view.findViewById(R.id.clearButton);
+			progress = view.findViewById(R.id.progress);
 		}
 	}
 
@@ -363,7 +364,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	/* Behavior */
 
 	protected void onFocusChange(View v, boolean hasFocus) {
-		if(hasFocus && v.isShown() && v instanceof AutoCompleteTextView) {
+		if(hasFocus && ViewCompat.isAttachedToWindow(v) && v instanceof AutoCompleteTextView) {
 			((AutoCompleteTextView) v).showDropDown();
 		}
 	}
@@ -443,7 +444,9 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	public void hideSoftKeyboard() {
 		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(ui.location.getWindowToken(), 0);
+		if (imm != null) {
+			imm.hideSoftInputFromWindow(ui.location.getWindowToken(), 0);
+		}
 	}
 
 	/* Changing Home Location */

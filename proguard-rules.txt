@@ -12,6 +12,7 @@
 
 -dontnote com.google.common.**
 -dontwarn com.google.common.**
+-dontwarn com.google.errorprone.annotations.**
 -dontnote android.support.v4.**
 -dontnote android.support.v7.**
 -dontnote android.support.design.widget.**
@@ -28,11 +29,15 @@
 
 -dontnote org.osmdroid.views.MapView
 -dontnote org.osmdroid.views.overlay.ItemizedOverlayControlView
--dontnote com.orangegangsters.github.swipyrefreshlayout.library.**
+-dontwarn org.osmdroid.tileprovider.modules.NetworkAvailabliltyCheck
+-dontnote com.omadahealth.github.swipyrefreshlayout.library.**
 -dontwarn de.schildbach.pte.**
 -dontwarn org.slf4j.**
 -keep class ch.qos.logback.classic.android.LogcatAppender
 -dontwarn ch.qos.logback.core.net.**
 -dontnote ch.qos.logback.core.rolling.helper.FileStoreUtil
 
+-keep class de.schildbach.pte.dto.**
+
+-keep class de.grobox.liberario.**
 -dontnote de.grobox.liberario.ui.**

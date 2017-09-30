@@ -38,7 +38,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -63,19 +62,22 @@ import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.fragments.RecentTripsFragment;
-import de.grobox.liberario.settings.SettingsFragment;
 import de.grobox.liberario.networks.NetworkProviderFactory;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.settings.Preferences;
+import de.grobox.liberario.settings.SettingsFragment;
 import de.grobox.liberario.ui.TransportrChangeLog;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.OnHidePromptListener;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.PromptStateChangeListener;
 
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.Builder;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_DISMISSED;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FINISHED;
 
 @Deprecated
 public class MainActivity extends TransportrActivity implements FragmentManager.OnBackStackChangedListener {
@@ -536,24 +538,23 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			}
 			if(target == null) return;
 
-			new MaterialTapTargetPrompt.Builder(this)
+			new Builder(this)
 					.setTarget(target)
 					.setPrimaryText(R.string.onboarding_drawer_title)
 					.setSecondaryText(R.string.onboarding_drawer_text)
-					.setBackgroundColourFromRes(R.color.primary)
+					.setBackgroundColour(ContextCompat.getColor(MainActivity.this, R.color.primary))
 					.setIcon(R.drawable.ic_menu)
-					.setIconDrawableColourFilterFromRes(R.color.primary)
-					.setOnHidePromptListener(new OnHidePromptListener() {
+					.setIconDrawableColourFilter(ContextCompat.getColor(MainActivity.this, R.color.primary))
+					.setPromptStateChangeListener(new PromptStateChangeListener() {
 						@Override
-						public void onHidePrompt(MotionEvent motionEvent, boolean b) {
-						}
+						public void onPromptStateChanged(MaterialTapTargetPrompt materialTapTargetPrompt, int i) {
+							if (i == STATE_DISMISSED || i == STATE_FINISHED) {
+								getDefaultSharedPreferences(getContext())
+										.edit()
+										.putBoolean(ONBOARDING_DRAWER, false)
+										.apply();
 
-						@Override
-						public void onHidePromptComplete() {
-							getDefaultSharedPreferences(getContext())
-									.edit()
-									.putBoolean(ONBOARDING_DRAWER, false)
-									.apply();
+							}
 						}
 					})
 					.show();

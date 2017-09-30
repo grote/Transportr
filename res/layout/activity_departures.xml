@@ -33,7 +33,7 @@
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/appBar"/>
 
-	<com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+	<com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
 		android:id="@+id/swipe"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
@@ -50,6 +50,6 @@
 			android:scrollbars="vertical"
 			tools:listitem="@layout/list_item_departure"/>
 
-	</com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+	</com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -18,6 +18,9 @@
 package de.grobox.liberario.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.DrawableRes;
@@ -26,6 +29,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.View;
@@ -341,7 +345,16 @@ public class NewMapActivity extends DrawerActivity
 
 	private Icon getNearbyLocationsIcon(@DrawableRes int res) {
 		IconFactory iconFactory = IconFactory.getInstance(NewMapActivity.this);
-		return iconFactory.fromResource(res);
+		Drawable drawable = ContextCompat.getDrawable(this, res);
+		return iconFactory.fromBitmap(getBitmap(drawable));
+	}
+
+	private Bitmap getBitmap(Drawable drawable) {
+		Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+		drawable.draw(canvas);
+		return bitmap;
 	}
 
 	private void ensureTransportNetworkSelected() {
