@@ -9,6 +9,10 @@ Transportr is a non-profit app developed by people around the world to make usin
 
 Please **[visit the website](http://transportr.grobox.de)** for more information!
 
+**Warning:** The `master` branch is currently a big construction site in preparation of version 2.
+If you are looking for the source code of the latest release,
+please check out the `v1` branch.
+
 If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues). Contributions are both encouraged and appreciated. If you like to contribute please [check the website](http://transportr.grobox.de/#contribute) for more information.
 
 The upstream repository is at: https://github.com/grote/Transportr
