@@ -1,14 +1,22 @@
 # ------------------- TEST DEPENDENCIES -------------------
+-dontshrink
+-dontoptimize
+-dontpreverify
+-verbose
+-useuniqueclassmembernames
+
 -dontwarn org.hamcrest.**
 -dontwarn android.test.**
 -dontwarn android.support.test.**
 -dontnote android.support.test.**
 -dontwarn com.squareup.javawriter.JavaWriter
 -dontwarn com.squareup.leakcanary.**
+-dontwarn org.xmlpull.v1.**
+-dontwarn org.mockito.internal.**
 
--keep class org.hamcrest.** {
-   *;
-}
+-keep class android.arch.** { *; }
+
+-keep class org.hamcrest.** { *; }
 
 -keep class org.junit.** { *; }
 -dontwarn org.junit.**
