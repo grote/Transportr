@@ -41,9 +41,9 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p><b>பங்களிப்புகள்</b> வரவேற்கப்படுகின்றன. நீங்கள் பங்களிக்க விரும்பினால் <a href=\"%1$s\">Transportr தளத்தின் முகப்பககத்திற்கு</a> செல்லவும்.</p>
-<p>இச்செயலியில் ஏதேனும் கோளாறை நீங்கள் கண்டால் அதை <a href=\"%2$s\">இங்கே தெரிவிக்கவும்</a>.</p>
-<p><b>நன்கொடை</b> செய்ய விரும்பினால், அதற்கான விபரங்கள் <a href=\"%3$s\">Transportr வலைதளத்தில்</a>.</p>
+<p><b>பங்களிப்புகள்</b> வரவேற்கப்படுகின்றன. நீங்கள் பங்களிக்க விரும்பினால் <a href="%1$s">Transportr தளத்தின் முகப்பககத்திற்கு</a> செல்லவும்.</p>
+<p>இச்செயலியில் ஏதேனும் கோளாறை நீங்கள் கண்டால் அதை <a href="%2$s">இங்கே தெரிவிக்கவும்</a>.</p>
+<p><b>நன்கொடை</b> செய்ய விரும்பினால், அதற்கான விபரங்கள் <a href="%3$s">Transportr வலைதளத்தில்</a>.</p>
 ]]>
 </string>
   <string name="visit_website">வலைதளத்திற்கு செல்</string>
@@ -61,9 +61,6 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">பிணைப்பு</string>
-  <string name="pick_network_activity">ஒரு போக்குவரத்து பிணையத்தை தேர்ந்தெடுக்கவும்</string>
-  <string name="pick_network_first_run">நீங்கள் Transportr-ஐ இயக்குவது இது முதல் முறை எனவே நீங்கள் விரும்பும் ஒரு போக்குவரத்து பிணையத்தை தேர்ந்தெடுக்கவும்!</string>
-  <string name="clear_recent_trips">உங்கள் சமீபத்திய பயணப் பட்டியலில் இருந்து %1$d பயணங்களை நீக்க விரும்புகிறீர்களா? அவ்வாறு செய்வதன் மூலம் பயண குறிப்பு எண்ணிக்கை குறையும்.</string>
   <string name="trip_searching">இணைப்புகள் தேடப்படுகின்றன...</string>
   <string name="stations_searching_position">தற்சமயம் இருக்குமிடத்தை கணிக்க முயற்சிக்கிறோம்...</string>
   <string name="drawer_nearby_stations">அருகிலுள்ள நிலையங்கள்</string>

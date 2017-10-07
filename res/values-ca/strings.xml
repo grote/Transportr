@@ -41,8 +41,6 @@
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Xarxa</string>
-  <string name="pick_network_activity">Tria una xarxa de transport</string>
-  <string name="pick_network_first_run">Aquest és la primera vegada que inicies Transportr. Selecciona la teva xarxa de transport per a poder continuar!</string>
   <string name="trip_searching">Cercant connexions...</string>
   <string name="stations_searching_position">Cercant posició actual...</string>
   <string name="drawer_nearby_stations">Estacions properes</string>

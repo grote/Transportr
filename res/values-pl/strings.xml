@@ -43,9 +43,9 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p><b>Wsparcie</b> jest bardzo mile widziane. Jeżeli chcesz coś zrobić, prosimy wejść na <a href=\"%1$s\">stronę internetową Transportr</a> po więcej informacji.</p>
-<p>Jeżeli masz jakieś problemy z programem, prosimy je zgłosić na <a href=\"%2$s\">tej stronie</a>.</p>
-<p>Możliwości <b>dotacji</b> są wymienione na <a href=\"%3$s\">stronie internetowej Transportr</a>.</p>
+<p><b>Wsparcie</b> jest bardzo mile widziane. Jeżeli chcesz coś zrobić, prosimy wejść na <a href="%1$s">stronę internetową Transportr</a> po więcej informacji.</p>
+<p>Jeżeli masz jakieś problemy z programem, prosimy je zgłosić na <a href="%2$s">tej stronie</a>.</p>
+<p>Możliwości <b>dotacji</b> są wymienione na <a href="%3$s">stronie internetowej Transportr</a>.</p>
 ]]>
 </string>
   <string name="visit_website">Odwiedź stronę</string>
@@ -64,27 +64,38 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Sieć</string>
-  <string name="pick_network_activity">Wybierz sieć transportową</string>
-  <string name="pick_network_first_run">Uruchomiłeś Transportr po raz pierwszy. Prosimy wybrać Twoją sieć transportową aby kontynuować!</string>
-  <string name="clear_recent_trips">Czy chcesz na pewno usunąć %1$d tras ze swoich ostatnich tras? Licznik użycia zostanie zresetowany.</string>
-  <string name="trip_searching">Szukanie połączeń...</string>
-  <string name="stations_searching_position">Szukanie obecnej lokalizacji...</string>
+  <string name="pick_network_activity">Wybierz region</string>
+  <string name="pick_network_first_run">Witamy w Transportr!\n\nProsimy wybrać najbliższą sieć transportową, aby kontynuować. Będzie można ją zmienić w dowolnym momencie.</string>
+  <plurals name="clear_recent_trips">
+    <item quantity="one">Czy chcesz na pewno usunąć %1$d trasę ze swoich ostatnich tras? Licznik użycia zostanie zresetowany.</item>
+    <item quantity="few">Czy chcesz na pewno usunąć %1$d trasy ze swoich ostatnich tras? Licznik użycia zostanie zresetowany.</item>
+    <item quantity="many"></item>
+    <item quantity="other">Czy chcesz na pewno usunąć %1$d tras ze swoich ostatnich tras? Licznik użycia zostanie zresetowany.</item>
+  </plurals>
+  <string name="trip_searching">Szukanie połączeń…</string>
+  <string name="stations_searching_position">Szukanie obecnej lokalizacji…</string>
   <string name="drawer_nearby_stations">Pobliskie stacje</string>
   <string name="find_nearby_stations">Szukaj pobliskich stacji</string>
   <string name="find_departures">Szukaj odjazdów</string>
   <string name="departure_station">Odjazdy ze stacji</string>
-  <string name="share_trip_via">Udostępnij trasę przez...</string>
+  <string name="share_trip_via">Udostępnij trasę przez…</string>
   <string name="undo">Cofnij</string>
   <string name="fav_trips_empty">Twoje ostatnie trasy pojawią się tutaj po tym jak zaczniesz szukać celów podróży.\n\n\nBędziesz mógł posortować je od ostatnich lub według najczęściej używanych.</string>
   <string name="more">Więcej</string>
   <string name="no_favourites">Brak ulubionych tras.\n\nDodaj jakąś na stronie \"Ostatnie trasy\".</string>
   <string name="removing_from_favourites">Wybrana trasa dostała dodana do ulubionych. Zostanie ona stąd usunięta.</string>
   <string name="create_quickhome_shortcut">Tworzy skrót w aplikacji uruchomieniowej przenoszący do domu</string>
+  <string name="change_time">Ustaw czas</string>
   <string name="now">Teraz</string>
+  <string name="now_small">teraz</string>
   <string name="current_time_set">Ustawiono obecny czas.</string>
+  <string name="yesterday">Wczoraj</string>
   <string name="today">Dzisiaj</string>
+  <string name="tomorrow">Jutro</string>
   <string name="current_date_set">Ustawiono obecną godzinę.</string>
   <string name="added_1h">Dodano 1 godzinę.</string>
+  <string name="in_x_minutes">za %dmin</string>
+  <string name="x_minutes_ago">%dmin temu</string>
   <string name="ok">OK</string>
   <string name="cancel">Anuluj</string>
   <string name="yes">Tak</string>
@@ -131,6 +142,10 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="times_include_delays">(Uwaga: Czasy uwzględniają odnotowane opóźnienia)</string>
   <string name="home">Dom</string>
   <string name="home_dialog_title">Ustaw lokalizację domową</string>
+  <string name="work">Praca</string>
+  <string name="work_hint">Ustaw miejsce pracy</string>
+  <string name="work_dialog_title">Ustaw miejsce pracy</string>
+  <string name="tap_to_set">Stuknij, aby ustawić</string>
   <string name="location">Położenie</string>
   <string name="location_home">Kliknij aby ustawić lokalizację domową</string>
   <string name="location_gps">Użyj obecnej pozycji</string>
@@ -152,6 +167,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="action_fav_trips_sort_most">Najczęściej używane</string>
   <string name="action_set_locations">Edytuj wyszukiwanie</string>
   <string name="action_swap_locations">Szukaj drogi powrotnej</string>
+  <string name="action_change">Zmień</string>
   <string name="permission_explanation_gps">Musisz zezwolić aplikacji na dostęp do lokalizacji, aby wyświetlić swoją obecną pozycję na mapie.</string>
   <string name="permission_denied_gps">Nie zezwoliłeś na dostęp do lokalizacji, więc ta funkcja nie będzie działała. Prosimy przydzielić uprawnienia w ustawieniach aplikacji.</string>
   <string name="permission_explanation_map">Kafelki map potrzebują być przechowywane w pamięci urządzenia. Mapa nie będzie działała bez tego.</string>
@@ -159,7 +175,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <!--ckChangeLog-->
   <string name="changelog_full_title">Lista zmian</string>
   <string name="changelog_title">Co nowego</string>
-  <string name="changelog_show_full">Więcej...</string>
+  <string name="changelog_show_full">Więcej…</string>
   <string name="widget_name_quickhome">Do domu!</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_sydney">Australia, Nowa Południowa Walia, Sydney</string>
@@ -198,7 +214,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_name_francenorthwest">Francja północno-zachodnia</string>
   <string name="np_desc_francenorthwest">Bretania, Kraj Loary, Region Centralny-Dolina Loary, Dolna Normandia, Górna Normandia</string>
   <string name="np_name_frenchsoutheast">Francja południowo-wschodnia</string>
-  <string name="np_desc_frenchsoutheast">Prowansja-Alpy-Lazurowe Wybrzeże, Rodan-Alpy, Langwedocja-Roussillon, Owernia, Korsyka</string>
+  <string name="np_desc_frenchsoutheast">Prowansja-Alpy-Lazurowe Wybrzeże, Rodan-Alpy, Langwedocja-Roussillon, Owernia, Korsyka, Lyon</string>
   <string name="np_name_frenchsouthwest">Francja południowo-zachodnia</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Akwitania, Midi-Pireneje, Bordeaux, Tuluza</string>
   <string name="np_desc_paca">Prowansja-Alpy-Lazurowe Wybrzeże</string>
@@ -254,6 +270,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_lu">Luksemburg</string>
   <string name="np_region_netherlands">Holandia</string>
   <string name="np_desc_ns">Holandia, Amsterdam</string>
+  <string name="np_desc_negentwee">Transport publiczny w Holandii</string>
   <string name="np_region_norway">Norwegia</string>
   <string name="np_desc_nri">Norwegia, Oslo, Bergen</string>
   <string name="np_region_nz">Nowa Zelandia</string>
@@ -263,7 +280,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_pl">Polska, koleje w Polsce</string>
   <string name="np_region_spain">Hiszpania</string>
   <string name="np_name_spain">Hiszpania</string>
-  <string name="np_desc_spain">Madryt, Barcelona, Kraj Basków, Walencja, Alicante, Majorka, Minorka, Teneryfa, La Palma</string>
+  <string name="np_desc_spain">Madryt, Barcelona, Kraj Basków, Walencja, Alicante, Majorka, Minorka, Teneryfa, La Palma, Nawarra</string>
   <string name="np_region_sweden">Szwecja</string>
   <string name="np_desc_se">Szwecja, Sztokholm</string>
   <string name="np_region_switzerland">Szwajcaria</string>

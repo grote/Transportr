@@ -44,9 +44,9 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p>Incoraggiamo e apprezziamo i vostri <b>contributi</b>. Se vuoi contribuire al progetto vai sul <a href=\"%1$s\">sito ufficiale di Transportr</a> per maggiori informazioni.</p>
-<p>Se hai trovato un problema con quest\'app, segnalalo nell\'<a href=\"%2$s\">apposita sezione</a>.</p>
-<p>Le possibilità di <b>donazioni</b> sono elencate sul <a href=\"%3$s\">sito di Transportr</a>.</p>
+<p>Incoraggiamo e apprezziamo i vostri <b>contributi</b>. Se vuoi contribuire al progetto vai sul <a href="%1$s">sito ufficiale di Transportr</a> per maggiori informazioni.</p>
+<p>Se hai trovato un problema con quest\'app, segnalalo nell\'<a href="%2$s">apposita sezione</a>.</p>
+<p>Le possibilità di <b>donazioni</b> sono elencate sul <a href="%3$s">sito di Transportr</a>.</p>
 ]]>
 </string>
   <string name="visit_website">Visita il sito</string>
@@ -65,9 +65,12 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Rete</string>
-  <string name="pick_network_activity">Scegli una rete di trasporto</string>
-  <string name="pick_network_first_run">Questa è la prima volta che avvii Transportr. Per favore seleziona la compagnia di trasporti prima di continuare!</string>
-  <string name="clear_recent_trips">Sei sicuro di voler eliminare %1$d viaggio/i dai tuoi viaggi recenti? Il numero di utilizzi andrà perso.</string>
+  <string name="pick_network_activity">Scegli la zona</string>
+  <string name="pick_network_first_run">Benvenuto su Transportr!\n\nSeleziona la rete di trasporto della tua zona per poter continuare. Puoi cambiare la selezione in qualunque momento.</string>
+  <plurals name="clear_recent_trips">
+    <item quantity="one">Sei sicuro di voler cancellare %1$d viaggio dai tuoi viaggi recenti? Il contatore di uso verrà azzerato.</item>
+    <item quantity="other">Sei sicuro di voler cancellare %1$d viaggi dai tuoi viaggi recenti? Il contatore di uso verrà azzerato.</item>
+  </plurals>
   <string name="trip_searching">Ricerca connessioni in corso...</string>
   <string name="stations_searching_position">Ricerca posizione corrente in corso...</string>
   <string name="drawer_nearby_stations">Stazioni vicine</string>
@@ -81,11 +84,17 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="no_favourites">Nessun viaggio preferito.\n\nAggiungine uno nella pagina ¨Viaggi recenti¨.</string>
   <string name="removing_from_favourites">Un viaggio che hai selezionato è segnato come viaggio preferito. Sarà rimosso anche da lì.</string>
   <string name="create_quickhome_shortcut">Crea un collegamento nel tuo launcher per riportarti a casa</string>
+  <string name="change_time">Cambia ora</string>
   <string name="now">Ora</string>
+  <string name="now_small">ora</string>
   <string name="current_time_set">L\'orario è impostato su quello attuale.</string>
+  <string name="yesterday">Ieri</string>
   <string name="today">Oggi</string>
+  <string name="tomorrow">Domani</string>
   <string name="current_date_set">La data è impostata su quella attuale.</string>
   <string name="added_1h">1 ora è stata aggiunta.</string>
+  <string name="in_x_minutes">in %d min</string>
+  <string name="x_minutes_ago">%d min fa</string>
   <string name="ok">Ok</string>
   <string name="cancel">Annulla</string>
   <string name="yes">Sì</string>
@@ -131,7 +140,11 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="system_default">Predefinito di sistema</string>
   <string name="times_include_delays">(Attenzione: gli orari includono i ritardi riportati)</string>
   <string name="home">Casa</string>
-  <string name="home_dialog_title">Imposta luogo iniziale</string>
+  <string name="home_dialog_title">Imposta luogo della casa</string>
+  <string name="work">Lavoro</string>
+  <string name="work_hint">Imposta posizione del lavoro</string>
+  <string name="work_dialog_title">Imposta luogo di lavoro</string>
+  <string name="tap_to_set">Tocca per impostare</string>
   <string name="location">Luogo</string>
   <string name="location_home">Clicca per impostare il luogo iniziale</string>
   <string name="location_gps">Utilizza posizione corrente</string>
@@ -153,6 +166,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="action_fav_trips_sort_most">Più utilizzato</string>
   <string name="action_set_locations">Modifica ricerca</string>
   <string name="action_swap_locations">Cerca tragitto di ritorno</string>
+  <string name="action_change">Cambia</string>
   <string name="permission_explanation_gps">Devi concedere l\'autorizzazione alla localizzazione per vedere la tua posizione attuale sulla mappa.</string>
   <string name="permission_denied_gps">Non hai permesso di accedere alla tua posizione, per cui questa funzionalità non può funzionare. Si prega di concedere i permessi nelle impostazioni.</string>
   <string name="permission_explanation_map">Gli elementi della mappa devono essere salvati sul tuo dispositivo. La mappa non può funzionare senza.</string>
@@ -199,7 +213,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_name_francenorthwest">Francia nord-occidentale</string>
   <string name="np_desc_francenorthwest">Bretagna, Pays de la Loire, Centre, Bassa Normandia, Alta Normandia</string>
   <string name="np_name_frenchsoutheast">Francia sud-orientale</string>
-  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica</string>
+  <string name="np_desc_frenchsoutheast">Provenza-Alpi-Costa Azzurra, Rodano-Alpi, Languedoc-Roussillon, Alvernia, Corsica, Lione</string>
   <string name="np_name_frenchsouthwest">Francia sud-occidentale</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitania, Midi-Pirenei, Bordeaux, Tolosa</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -242,6 +256,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_vvo">Sassonia, Dresda</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stoccarda</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Mittelthüringen</string>
   <string name="np_region_ireland">Irlanda</string>
   <string name="np_desc_tfi">Irlanda, Dublino, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israele</string>
@@ -256,6 +271,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_lu">Lussemburgo</string>
   <string name="np_region_netherlands">Olanda</string>
   <string name="np_desc_ns">Olanda, Amsterdam</string>
+  <string name="np_desc_negentwee">Tutti i trasporti pubblici nei Paesi Bassi</string>
   <string name="np_region_norway">Norvegia</string>
   <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
   <string name="np_region_nz">Nuova Zelanda</string>
@@ -265,7 +281,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_pl">Polonia, ferrovie in Polonia</string>
   <string name="np_region_spain">Spagna</string>
   <string name="np_name_spain">Spagna</string>
-  <string name="np_desc_spain">Madrid, Barcellona, Paesi Baschi, Valencia, Alicante, Maiorca, Menorca, Tenerife, La Palma</string>
+  <string name="np_desc_spain">Madrid, Barcellona, Paesi Baschi, Valencia, Alicante, Maiorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_region_sweden">Svezia</string>
   <string name="np_desc_se">Svezia, Stoccolma</string>
   <string name="np_region_switzerland">Svizzera</string>

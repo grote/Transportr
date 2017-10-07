@@ -17,7 +17,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
   <string name="action_unfav_trip">Supprimer la marque de trajet favori</string>
   <string name="action_switch_locations">Inverser les points de départ et d\'arrivée</string>
-  <string name="action_refresh">Rafraîchir</string>
+  <string name="action_refresh">Actualiser</string>
   <string name="action_navigation_expand">En montrer plus</string>
   <string name="action_location_map">Montrer les arrêts/stations sur la carte</string>
   <string name="action_use_gps">Activer le GPS</string>
@@ -44,9 +44,9 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p>Nous encourageons et apprécions les <b>contributions</b>. Si vous voulez participer à Transportr, veuillez visiter <a href=\"%1$s\">la page d\'accueil de Transportr</a> pour de plus amples informations.</p>
-<p>Si vous découvrez quelques problèmes avec cette appli, veuillez les rapporter grâce au <a href=\"%2$s\">gestionnaire de problèmes</a>.</p>
-<p>Les options de <b>don</b> sont listées sur <a href=\"%3$s\">le site Web de Transportr</a>.</p>
+<p>Nous encourageons et apprécions les <b>contributions</b>. Si vous voulez participer à Transportr, veuillez visiter <a href="%1$s">la page d\'accueil de Transportr</a> pour de plus amples informations.</p>
+<p>Si vous découvrez quelques problèmes avec cette appli, veuillez les rapporter grâce au <a href="%2$s">gestionnaire de problèmes</a>.</p>
+<p>Les options de <b>don</b> sont listées sur <a href="%3$s">le site Web de Transportr</a>.</p>
 ]]>
 </string>
   <string name="visit_website">Visiter le site Web</string>
@@ -65,9 +65,12 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="alpha">alpha</string>
   <string name="beta">bêta</string>
   <string name="network">Réseau</string>
-  <string name="pick_network_activity">Choisir un réseau de transport</string>
-  <string name="pick_network_first_run">C\'est la première fois que vous lancez Transportr. Veuillez choisir votre réseau de transport afin de continuer !</string>
-  <string name="clear_recent_trips">Voulez-vous vraiment supprimer %1$d trajet(s) de vos trajets récents ? Le compte d\'utilisation sera perdu.</string>
+  <string name="pick_network_activity">Choisir une zone</string>
+  <string name="pick_network_first_run">Bienvenue à Transportr !\n\nVeuillez choisir le réseau de transport de votre région afin de poursuivre. Il peut être modifié en tout temps.</string>
+  <plurals name="clear_recent_trips">
+    <item quantity="one">Voulez-vous vraiment supprimer %1$d trajet de vos trajets récents ? Le compte d\'utilisation sera perdu.</item>
+    <item quantity="other">Voulez-vous vraiment supprimer %1$d trajets de vos trajets récents ? Le compte d\'utilisation sera perdu.</item>
+  </plurals>
   <string name="trip_searching">Recherche de correspondances…</string>
   <string name="stations_searching_position">Recherche de la position actuelle...</string>
   <string name="drawer_nearby_stations">Arrêts/stations à proximité</string>
@@ -81,11 +84,17 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="no_favourites">Aucun trajet favori.\n\nAjoutez-en sur la page « Trajets récents ».</string>
   <string name="removing_from_favourites">Un trajet que vous avez sélectionné est marqué comme favori. Il sera aussi supprimé comme tel.</string>
   <string name="create_quickhome_shortcut">Créer un raccourci dans votre lanceur qui vous guide vers chez vous</string>
+  <string name="change_time">Changer l\'heure</string>
   <string name="now">Maintenant</string>
+  <string name="now_small">maintenant</string>
   <string name="current_time_set">Heure réglée sur l\'heure actuelle.</string>
+  <string name="yesterday">hier</string>
   <string name="today">Aujourd’hui</string>
+  <string name="tomorrow">demain</string>
   <string name="current_date_set">Date réglée sur la date actuelle.</string>
   <string name="added_1h">1 heure a été ajoutée.</string>
+  <string name="in_x_minutes">dans %d min</string>
+  <string name="x_minutes_ago">il y a %d min</string>
   <string name="ok">OK</string>
   <string name="cancel">Annuler</string>
   <string name="yes">Oui</string>
@@ -132,6 +141,10 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="times_include_delays">(Avertissement : les heures incluent les retards signalés)</string>
   <string name="home">Origine</string>
   <string name="home_dialog_title">Définir le point d\'origine</string>
+  <string name="work">Travail</string>
+  <string name="work_hint">Définir le lieu de travail</string>
+  <string name="work_dialog_title">Définir le lieu de travail</string>
+  <string name="tap_to_set">Toquer pour définir</string>
   <string name="location">Lieu</string>
   <string name="location_home">Cliquer pour définir le point d\'origine</string>
   <string name="location_gps">Utiliser la position actuel</string>
@@ -153,6 +166,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="action_fav_trips_sort_most">Les plus utilisés</string>
   <string name="action_set_locations">Modifier la recherche</string>
   <string name="action_swap_locations">Rechercher le trajet de retour</string>
+  <string name="action_change">Modifier</string>
   <string name="permission_explanation_gps">Vous devez autoriser la localisation afin de voir votre position actuelle sur la carte.</string>
   <string name="permission_denied_gps">Vous devez autoriser l\'accès à votre position pour que ceci fonctionne. Veuillez donner la permission dans les paramètres de l\'appli.</string>
   <string name="permission_explanation_map">Les carrés de la carte doivent être stockés/mis en cache sur votre appareil. Sans ça, la carte ne fonctionnera pas.</string>
@@ -174,7 +188,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_vvt">Tyrol</string>
   <string name="np_desc_wien">Vienne</string>
   <string name="np_region_belgium">Belgique</string>
-  <string name="np_desc_sncb">Transport en commun en Belgique</string>
+  <string name="np_desc_sncb">Les transports en commun en Belgique</string>
   <string name="np_region_br">Brésil</string>
   <string name="np_name_br">Brésil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte et Porto Alegre</string>
@@ -199,7 +213,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_name_francenorthwest">France - Nord-Ouest</string>
   <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse-Normandie, Haute-Normandie</string>
   <string name="np_name_frenchsoutheast">France - Sud-Est</string>
-  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corse</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica, Lyon</string>
   <string name="np_name_frenchsouthwest">France - Sud-Ouest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -242,6 +256,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_vvo">Saxe, Dresden</string>
   <string name="np_desc_vvs">Bade-Wurtemberg, Stuttgart</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Mittelthüringen</string>
   <string name="np_region_ireland">Irlande</string>
   <string name="np_desc_tfi">Irlande, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israël</string>
@@ -256,6 +271,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_lu">Luxembourg</string>
   <string name="np_region_netherlands">Pays-Bas</string>
   <string name="np_desc_ns">Pays-Bas, Amsterdam</string>
+  <string name="np_desc_negentwee">Tous les transports en commun des Pays-Bas</string>
   <string name="np_region_norway">Norvège</string>
   <string name="np_desc_nri">Norvège, Oslo, Bergen</string>
   <string name="np_region_nz">Nouvelle-Zélande</string>
@@ -265,7 +281,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_pl">Pologne, chemins de fer en Pologne</string>
   <string name="np_region_spain">Espagne</string>
   <string name="np_name_spain">Espagne</string>
-  <string name="np_desc_spain">Madrid, Barcelone, Euskadi - Pays basque, Valence, Alicante, Majorque, Minore, Tenerife, La Palma</string>
+  <string name="np_desc_spain">Madrid, Barcelone, Pays basque, Valence, Alicante, Majorque, Minore, Tenerife, La Palma, Navarre</string>
   <string name="np_region_sweden">Suède</string>
   <string name="np_desc_se">Suède, Stockholm</string>
   <string name="np_region_switzerland">Suisse</string>

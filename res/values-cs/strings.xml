@@ -30,9 +30,9 @@
   <string name="tab_about">O</string>
   <string name="about_bottom">
     <![CDATA[
-<p><b>Příspěvky</b> jsou podporovány a oceňovány. Pokud byste chtěli přispět přejděte na <a href=\"%1$s\">the Transportr homepage</a> pro více informací.</p>
-<p>Pokud zjistíte nějaké problémy s touto aplikací, oznamte je na <a href=\"%2$s\">sledování problémů </a>.</p>
-<p><b>Dary</b> možnosti jsou uvedeny <a href=\"%3$s\">Na webových stránkách Transportr </a>.</p>
+<p><b>Příspěvky</b> jsou podporovány a oceňovány. Pokud byste chtěli přispět přejděte na <a href="%1$s">the Transportr homepage</a> pro více informací.</p>
+<p>Pokud zjistíte nějaké problémy s touto aplikací, oznamte je na <a href="%2$s">sledování problémů </a>.</p>
+<p><b>Dary</b> možnosti jsou uvedeny <a href="%3$s">Na webových stránkách Transportr </a>.</p>
 ]]>
 </string>
   <string name="visit_website">Navštívit webové stránky</string>
@@ -50,9 +50,6 @@
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Síť</string>
-  <string name="pick_network_activity">Vyberte si dopravní síť.</string>
-  <string name="pick_network_first_run">Toto je poprvé, co jste začali pracovat v Transporter. Prosím, vyberte dopravní síť, aby jste mohl pokračovat!</string>
-  <string name="clear_recent_trips">Jste si jisti, že chcete smazat %1$d cest(y) ze svých nedávných cest? Počet využití bude ztraceno.</string>
   <string name="trip_searching">Vyhledávání spojení…</string>
   <string name="stations_searching_position">Vyhledávání aktuální polohy #8230;</string>
   <string name="drawer_nearby_stations">Poblíž stanice</string>

@@ -1,5 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Zure pribatutasuna eta askatasuna errespetatzen dituen garrio publikoen aplikazio laguntzailea.</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr irabazi asmorik gabeko aplikazioa bat da,
+garrio publikoa edonon zaudela ahalik eta errazen erabiltzeko mundu osoko pertsonek garatua.
+
+Une honetan, Europan funtzionatzen du hobekien, baina mundu osoko leku asko onartzen ditu ere.
+Onartu gabeko leku batean bizi bazara, kontuan hartu Transportrera gehitu dezakezula.
+Jarraibideak etxeko orrian eskuragarri daude.
+
+Transportrek zure etxetik, zure uneko kokapenetik edo zehaztutako geltoki batetik joan nahi duzun edonora norabideak aurkitzen ditu.
+Bidai osoak gorde ditzakezu ere gogokoen bezala,
+eta hurrengo bidaiak keinu batekin aurkitu. Noski, zure bidaia mapan ikusi dezakezu eta jarraipena GPS bidez egin.
+
+Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek barne (egonez gero).</string>
   <string name="onboarding_drawer_title">Ezaugarri gehiago aurkitu</string>
   <string name="onboarding_drawer_text">Ikono hau ukitu nabigazio tiradera ireki eta aplikazio honen ezaugarri gehiagora sartu ahal izateko.</string>
   <string name="drawer_changelog">Aldaketen zerrenda</string>
@@ -27,12 +40,26 @@
   <string name="tab_devs">Garatzaileak</string>
   <string name="tab_about">Honi buruz</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nSoftware askeko lizentzia: GPLv3</string>
+  <string name="about">
+<![CDATA[
+<p>Transportr garraio publikoarekin lagunduko dizu zure pribatutasuna eta askatasunari begirunea erakutsiz. Irabazi asmorik gabeko aplikazio bat da, mundu osoko jendeak garatuta, zauden tokian zaudela garraio publikoa erabiltzea errazagoa izan dadin. Aplikazio hau software librea da, libre zara berau erabili, ikertu, partekatu eta hobetzeko.</p>
+<p>Ezin dugu datuen zehaztasuna bermatu. Aplikazio honi ematen diozun erabilera zure erantzukizuna da.</p>
+]]>
+</string>
+  <string name="about_bottom">
+<![CDATA[
+<p><b>Parte hartzea</b>  ongi etorria da eta eskertzen da. Parte hartu nahi baduzu zoaz <a href="%1$s">Transportr webgunera</a> informazio gehiagorako.</p>
+<p>Aplikazio honekin arazorik baduzu, jakinarazi <a href="%2$s">arazoen arbelean</a>.</p>
+<p><b>Dohaintza</b> aukerak ere <a href="%3$s">Transportr webgunean</a> ikusi daitezke.</p>
+]]>
+</string>
   <string name="visit_website">Webgunea bisitatu</string>
   <string name="trip_dep">irt</string>
   <string name="trip_arr">hel</string>
   <string name="trip_removed">Bidaia ezabatuta</string>
   <string name="from">Nondik</string>
   <string name="to">Nora</string>
+  <string name="via">Hemendik pasatuz</string>
   <string name="search">Bilatu</string>
   <string name="from_here">Hemendik</string>
   <string name="to_here">Hona</string>
@@ -42,8 +69,12 @@
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Sarea</string>
-  <string name="pick_network_activity">Garraio sare bat aukeratu</string>
-  <string name="pick_network_first_run">Hau da Transportr abiarazi duzun lehen aldia. Mesedez hautatu zure garraio sarea jarraitu baino lehen!</string>
+  <string name="pick_network_activity">Tokia hautatu</string>
+  <string name="pick_network_first_run">Ongi etorri Transportr-era!\n\nMesedez hautatu ezazu zure inguruko garraio sarea jarraitzeko. Edozein momentutan aldatu ahal izango duzu.</string>
+  <plurals name="clear_recent_trips">
+    <item quantity="one">Ziur bidai %1$d ezabatu nahi dituzula azken bidaietatik? Erabilera kontaketa galduko da.</item>
+    <item quantity="other">Ziur %1$d bidai ezabatu nahi dituzula azken bidaietatik? Erabilera kontaketa galduko da.</item>
+  </plurals>
   <string name="trip_searching">Loturak bilatzen...</string>
   <string name="stations_searching_position">Uneko kokapena bilatzen...</string>
   <string name="drawer_nearby_stations">Hurbileko geltokiak</string>
@@ -56,11 +87,18 @@
   <string name="more">Gehiago</string>
   <string name="no_favourites">Ez duzu bidai gogokorik.\n\nGehitu ezazu bat \"Duela gutxiko bidaiak\" orritik</string>
   <string name="removing_from_favourites">Hautatu duzun badai bat gogokoen bezala markatu da. Handik ere kenduko da.</string>
+  <string name="create_quickhome_shortcut">Zure jaurtigailuan etxera eramaten zaituen lasterbidea sortu</string>
+  <string name="change_time">Denbora aldatu</string>
   <string name="now">Orain</string>
+  <string name="now_small">orain</string>
   <string name="current_time_set">Denbora oraingora ezarri da.</string>
+  <string name="yesterday">Atzo</string>
   <string name="today">Gaur</string>
+  <string name="tomorrow">Bihar</string>
   <string name="current_date_set">Data oraingora ezarri da.</string>
   <string name="added_1h">Ordu 1 gehitu da.</string>
+  <string name="in_x_minutes">%dmin barru</string>
+  <string name="x_minutes_ago">duela %dmin</string>
   <string name="ok">Ados</string>
   <string name="cancel">Utzi</string>
   <string name="yes">Bai</string>
@@ -76,11 +114,18 @@
   <string name="pref_theme_light">Argia</string>
   <string name="pref_theme_dark">Iluna</string>
   <string name="pref_language_title">Hizkuntza</string>
+  <string name="pref_directions_routing">Norabideak eta bidai bideraketa</string>
+  <string name="pref_optimize">Honetarako optimizatu</string>
+  <string name="pref_optimize_least_duration">Iraupen gutxien</string>
+  <string name="pref_optimize_least_changes">Aldaketa gutxien</string>
+  <string name="pref_optimize_least_walking">Gutxien ibili beharra</string>
   <string name="pref_walk_speed">Ibiltze abiadura</string>
   <string name="pref_walk_speed_slow">Poliki</string>
   <string name="pref_walk_speed_normal">Arrunta</string>
   <string name="pref_walk_speed_fast">Bizkor</string>
+  <string name="pref_quickhome">\"Eraman nazazu etxera\"-lasterbidea</string>
   <string name="warning_departure_gap">Oso irteera gutxi aurkitu dira. Ezkutuko gehiago egon liteke. Bilatu ezazu denbora zehatza bat ere ez falta ez dela ziurtatzeko</string>
+  <string name="warning_permission_granted_action">Ezin izan da azken ekintza automatikoki errepikatu</string>
   <string name="error_no_internet">Interneteko konexio nahikorik ez eskuragarri</string>
   <string name="error_invalid_from">Hasiera kokapen baliogabea (Nondik)</string>
   <string name="error_invalid_to">Helbide baliogabea (Nora)</string>
@@ -97,14 +142,20 @@
   <string name="error_trip_refresh_failed">Ezin izan dira datuak freskatu uneko bidairako.</string>
   <string name="meter">m</string>
   <string name="system_default">Sistemaren lehenetsia</string>
+  <string name="times_include_delays">(Adi: denborek jakinarazitako atzerapenak dauzkate)</string>
   <string name="home">Etxea</string>
   <string name="home_dialog_title">Etxeko kokalekua ezarri</string>
+  <string name="work">Lana</string>
+  <string name="work_hint">Laneko kokalekua ezarri</string>
+  <string name="work_dialog_title">Laneko kokalekua ezarri</string>
+  <string name="tap_to_set">Ukitu ezartzeko</string>
   <string name="location">Kokapena</string>
   <string name="location_home">Sakatu zure etxeko kokalekua ezartzeko</string>
   <string name="location_gps">Uneko kokapena erabili</string>
   <string name="location_map">Kokapena mapatik hartu</string>
   <string name="position_not_yet_known">Kokapena ez da ezaguna oraindik</string>
   <string name="position_no_gps">GPSa itzalita dago. Kokapena ez da batere zehatza izango.</string>
+  <string name="select_products">Garriobideak hautatu</string>
   <string name="product_high_speed_train">Abiadura handiko trena</string>
   <string name="product_regional_train">Eskualdeko trena</string>
   <string name="product_suburban_train">Hiri inguruko trena</string>
@@ -119,61 +170,139 @@
   <string name="action_fav_trips_sort_most">Gehien erabilitakoak</string>
   <string name="action_set_locations">Bilaketa editatu</string>
   <string name="action_swap_locations">Bilatu itzultzeko bidaia</string>
+  <string name="action_change">Aldatu</string>
+  <string name="permission_explanation_gps">Kokapen baimenak eman behar dituzu zure uneko kokapena mapan ikusteko.</string>
+  <string name="permission_denied_gps">Ez duzu zure kokalekua atzemateko baimena eman, funtzionaltasun hau ez da ibiliko. Eman baimena aplikazioaren ezarpenetan.</string>
+  <string name="permission_explanation_map">Mapa erakusteko lauzak zure gailuan gorde behar dira. Hori gabe mapa ez da ibiliko.</string>
+  <string name="permission_denied_map">Mapa erakusteko lauzak zure gailuan gorde behar dira. Onartu behar den baimena mapa erabiltzeko.</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">Aldaketen zerrenda</string>
   <string name="changelog_title">Zer da berria</string>
   <string name="changelog_show_full">Gehiago...</string>
+  <string name="widget_name_quickhome">Eraman nazazu etxera</string>
   <string name="np_region_australia">Australia</string>
+  <string name="np_desc_sydney">Sydney, Hegoaldeko Gales Berria, Australia</string>
   <string name="np_region_austria">Austria</string>
   <string name="np_desc_ivb">Innsbruck</string>
+  <string name="np_desc_linz">Linz, Austria Garaia</string>
   <string name="np_desc_oebb">Austria</string>
+  <string name="np_desc_stv">Estiria, Graz, Marburg, Maribor</string>
   <string name="np_desc_svv">Salzburgo</string>
+  <string name="np_desc_vor">Austria Beherea, Burgenland, Viena</string>
+  <string name="np_desc_vvt">Tirol</string>
+  <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Belgika</string>
+  <string name="np_desc_sncb">Belgikako garraio publikoa</string>
   <string name="np_region_br">Brasil</string>
+  <string name="np_name_br">Brasil</string>
+  <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte eta Porto Alegre</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
+  <string name="np_desc_br_floripa">Autobus bide anitz, ez Executivos</string>
   <string name="np_region_canada">Kanada</string>
+  <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
+  <string name="np_name_quebec">Quebec</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danimarka</string>
   <string name="np_desc_dsb">Danimarka, Kopenhage</string>
   <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
+  <string name="np_desc_rt">Distantzia handiko trenak soilik</string>
+  <string name="np_desc_rt_networks">Railteam aliantza</string>
   <string name="np_region_finland">Finlandia</string>
+  <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">Frantzia</string>
   <string name="np_name_francenortheast">Frantzia ipar ekialdea</string>
+  <string name="np_desc_francenortheast">Estrasburgo, Metz, Lille, Nancy</string>
   <string name="np_name_francenorthwest">Frantzia ipar mendebaldea</string>
+  <string name="np_desc_francenorthwest">Britania, Pays de la Loire, Centre, Lower Normandy, Normandia garaia</string>
   <string name="np_name_frenchsoutheast">Frantzia hego ekialdea</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Korsika, Lyon</string>
   <string name="np_name_frenchsouthwest">Frantzia hego mendebaldea</string>
+  <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+  <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
+  <string name="np_name_paris">Paris</string>
+  <string name="np_desc_paris">Ile-de-France, Frantzia, Paris</string>
   <string name="np_region_gb">Britainia Handia</string>
+  <string name="np_desc_mersey">Liverpool Hiri Eremua</string>
+  <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Alemania</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_desc_bayern">Bavaria, Würzburg, Ratisbona</string>
+  <string name="np_desc_bsvag">Brunswick, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Alemaniako gehiena</string>
+  <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
+  <string name="np_desc_gvh">Saxonia behera, Hanover, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hanburgo</string>
+  <string name="np_name_invg">Ingolstadt</string>
   <string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
+  <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bavaria, Munich</string>
+  <string name="np_desc_nasa">Saxonia, Leipzig, Saxony-Anhalt, Magdeburg, Halle</string>
+  <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
+  <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
+  <string name="np_desc_vagfr">Alsazia, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburgo, Berlin</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Saxonia behera Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_desc_vgs">Sarre, Saarbrücken</string>
+  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
+  <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
+  <string name="np_desc_vrn">Baden-Württemberg, Renania-Palatinatua, Mannheim, Mainz, Trier</string>
+  <string name="np_desc_vrr">Ipar Rhine-Westphalia, Kolonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Kolonia, Bonn</string>
+  <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saxonia, Dresden</string>
+  <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
+  <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Mittelthüringen</string>
   <string name="np_region_ireland">Irlanda</string>
+  <string name="np_desc_tfi">Irlanda, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
+  <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
   <string name="np_region_italy">Italia</string>
+  <string name="np_name_it">Italia</string>
+  <string name="np_desc_it">Roma, Milan, Turin, Venezia, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_name_vmobil">VVV</string>
+  <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Luxenburgo</string>
+  <string name="np_desc_lu">Luxenburgo</string>
   <string name="np_region_netherlands">Herbehereak</string>
   <string name="np_desc_ns">Herbehereak, Amsterdam</string>
+  <string name="np_desc_negentwee">Herbehereetako garraio publiko guztia </string>
   <string name="np_region_norway">Norvegia</string>
   <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
   <string name="np_region_nz">Zeelanda Berria</string>
+  <string name="np_name_nz">Zeelanda Berria</string>
+  <string name="np_desc_nz">Zeelanda Berria, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
+  <string name="np_desc_pl">Polonia, Poloniako trenbideak</string>
   <string name="np_region_spain">Espainia</string>
   <string name="np_name_spain">Espainia</string>
+  <string name="np_desc_spain">Madril, Bartzelona, Euskadi, Nafarroa, Valentzia, Alacant, Mallorca, Menorca, Tenerife, La Palma</string>
   <string name="np_region_sweden">Suedia</string>
   <string name="np_desc_se">Suedia, Stockholm</string>
   <string name="np_region_switzerland">Suitza</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_name_sbb" translatable="true">SBB</string>
+  <string name="np_desc_sbb">Suitza</string>
+  <string name="np_desc_vbl">Luzerna</string>
   <string name="np_desc_zvv">Zurich</string>
   <string name="np_region_uae">Arabiar Emirerri Batuak</string>
+  <string name="np_name_dub">Dubai</string>
   <string name="np_desc_dub">Arabiar Emirerri Batuak, Dubai</string>
   <string name="np_region_usa">Ameriketako Estatu Batuak</string>
+  <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery eta Philadelphia konderriak</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">New York eta New-Jersey estatuak</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Oregon estatuko (EEBB) garraio orokorra</string>
   <string name="maintainer">Mantentzailea</string>
   <string name="contributors">Laguntzaileak</string>
   <string name="translators">Itzultzaileak</string>
@@ -191,4 +320,6 @@
   <string name="polish">Poloniera</string>
   <string name="tamil">Tamilera</string>
   <string name="esperanto">Esperantoa</string>
+  <string name="czech">Txekiera</string>
+  <string name="hungarian">Hungariera</string>
 </resources>

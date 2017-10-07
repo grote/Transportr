@@ -43,9 +43,9 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p>Szeretnénk bátorítani arra, hogy <b>Hozzájárulj</b> az alkalmazás továbbfejlesztéséhez. További információkért kérlek, látogass el a <a href=\"%1$s\">Transportr honlapjára</a>.</p>
-<p>Ha bármilyen problémát tapasztalsz az alkalmazás működésével kapcsolatban, kérlek jelentsd nekünk a <a href=\"%2$s\">problémakövetőn</a> keresztül.</p>
-<p><b>Adomány</b>ozási lehetőségekről a <a href=\"%3$s\">Transportr honlapján</a> tájékozódhatsz.</p>
+<p>Szeretnénk bátorítani arra, hogy <b>Hozzájárulj</b> az alkalmazás továbbfejlesztéséhez. További információkért kérlek, látogass el a <a href="%1$s">Transportr honlapjára</a>.</p>
+<p>Ha bármilyen problémát tapasztalsz az alkalmazás működésével kapcsolatban, kérlek jelentsd nekünk a <a href="%2$s">problémakövetőn</a> keresztül.</p>
+<p><b>Adomány</b>ozási lehetőségekről a <a href="%3$s">Transportr honlapján</a> tájékozódhatsz.</p>
 ]]>
 </string>
   <string name="visit_website">Honlap megtekintése</string>
@@ -55,6 +55,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="from">Kiindulási pont</string>
   <string name="to">Célpont</string>
   <string name="via">Érintett pont</string>
+  <string name="search">Keresés</string>
   <string name="from_here">Innen</string>
   <string name="to_here">Ide</string>
   <string name="min">p</string>
@@ -63,9 +64,12 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="alpha">alfa</string>
   <string name="beta">béta</string>
   <string name="network">Hálózat</string>
-  <string name="pick_network_activity">Válassz tömegközlekedési hálózatot</string>
-  <string name="pick_network_first_run">Ez az alkalmazás első indítása. Kérlek, válaszd ki a használandó tömegközlekedési hálózatot!</string>
-  <string name="clear_recent_trips">Biztos vagy benne, hogy kitörölsz %1$d utat a legutóbbi utak közül? A használati száma elveszik.</string>
+  <string name="pick_network_activity">Válassz hálózatot</string>
+  <string name="pick_network_first_run">Köszönt Téged a Transportr!\n\nVálaszd ki a tömegközlekedési hálózatot, amit használni szeretnél. Ezt bármikor meg tudod változtatni.</string>
+  <plurals name="clear_recent_trips">
+    <item quantity="one">Biztosan törlöd ezt az %1$d utat a legutóbbi útjaid közül? A rajta megtett útjaid számlálója nullázódni fog.</item>
+    <item quantity="other">Biztosan törölsz %1$d utat a legutóbbi útjaid közül? A rajtuk megtett útjaid számlálója nullázódni fog.</item>
+  </plurals>
   <string name="trip_searching">Kapcsolatok keresése...</string>
   <string name="stations_searching_position">Jelenlegi pozíció megállapítása...</string>
   <string name="drawer_nearby_stations">Állomások a közelben</string>
@@ -78,11 +82,18 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="more">Több</string>
   <string name="no_favourites">Nincsenek kedvenc útvonalaid.\n\nAdj hozzá egyet a \"Nemrég keresett\" menüből.</string>
   <string name="removing_from_favourites">Egy útvonal, amit kiválasztottál, kedvencként van megjelölve. A kedvencek közül is el lesz távolítva.</string>
+  <string name="create_quickhome_shortcut">Ikon elhelyezése, ami megmutatja az utat hazafelé</string>
+  <string name="change_time">Idő változtatása</string>
   <string name="now">Most</string>
+  <string name="now_small">most</string>
   <string name="current_time_set">A pontos idő lett kiválasztva.</string>
+  <string name="yesterday">Tegnap</string>
   <string name="today">Ma</string>
+  <string name="tomorrow">Holnap</string>
   <string name="current_date_set">A mai dátum lett kiválasztva.</string>
   <string name="added_1h">1 óra hozzáadva.</string>
+  <string name="in_x_minutes">%dp múlva</string>
+  <string name="x_minutes_ago">%dp ezelőtt</string>
   <string name="ok">OK</string>
   <string name="cancel">Mégse</string>
   <string name="yes">Igen</string>
@@ -90,7 +101,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="pref_transport_network">Tömegközlekedési hálózat</string>
   <string name="pref_hide_departure_time">Indulási idő elrejtése</string>
   <string name="pref_hide_departure_time_summary">Csak akkor kijelzett az érkezés időpontja, ha köztes megállók vannak</string>
-  <string name="pref_exit_app_on_back_press">A \"vissza\" gomb megnyomásával az alkalmazás bezárása</string>
+  <string name="pref_exit_app_on_back_press">A \"Vissza\" gomb megnyomásával bezárás</string>
   <string name="pref_exit_app_on_back_press_summary">Mindig bezárni az alkalmazást, ha az indulóképernyőnél a \"vissza\" gomb lenyomott</string>
   <string name="pref_home">Az otthon pozíciója</string>
   <string name="pref_display">Kijelzés</string>
@@ -107,6 +118,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="pref_walk_speed_slow">Lassú</string>
   <string name="pref_walk_speed_normal">Átlagos</string>
   <string name="pref_walk_speed_fast">Gyors</string>
+  <string name="pref_quickhome">\"Vigyél Haza\"-ikon</string>
   <string name="warning_departure_gap">Túl kevés talált indulási időpont. Lehet hogy vannak továbbiak, de rejtettek. Keress egy konkrét időpont szerint, hogy az összes indulást mutassa.</string>
   <string name="warning_permission_granted_action">A legutóbbi lépést nem lehetett automatikusan megismételni.</string>
   <string name="error_no_internet">Nincs internetkapcsolat</string>
@@ -128,6 +140,10 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="times_include_delays">(Figyelem: Az jelzett időpontokba a jelentett késések is beleszámítanak)</string>
   <string name="home">Otthon</string>
   <string name="home_dialog_title">Az otthon pozíciójának beállítása</string>
+  <string name="work">Munka</string>
+  <string name="work_hint">Munkahely helyének beállítása</string>
+  <string name="work_dialog_title">Munkahely helyének beállítása</string>
+  <string name="tap_to_set">Érintsd meg a beállításhoz</string>
   <string name="location">Pozíció</string>
   <string name="location_home">Érints ide, hogy beállítsd az otthon pozícióját</string>
   <string name="location_gps">Jelenlegi pozíció használata</string>
@@ -149,6 +165,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="action_fav_trips_sort_most">Leggyakrabban használt</string>
   <string name="action_set_locations">Keresés szerkesztése</string>
   <string name="action_swap_locations">Visszaút keresése</string>
+  <string name="action_change">Változtatás</string>
   <string name="permission_explanation_gps">Engedélyezned kell a hozzáférést a pozíciódhoz, hogy lásd azt a térképen.</string>
   <string name="permission_denied_gps">Nem engedtél hozzáférést a pozíciódhoz, így ez a funkció nem tud működni. Kérlek, add meg a hozzáférést az alkalmazásbeállításokban.</string>
   <string name="permission_explanation_map">A térképrészleteket tárolni kell a készülékeden. A térkép enélkül nem tud működni.</string>
@@ -157,6 +174,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="changelog_full_title">Változtatási napló</string>
   <string name="changelog_title">Újdonságok</string>
   <string name="changelog_show_full">Továbbiak...</string>
+  <string name="widget_name_quickhome">Vigyél Haza</string>
   <string name="np_region_australia">Ausztrália</string>
   <string name="np_desc_sydney">Ausztrália, New South Wales, Sydney</string>
   <string name="np_region_austria">Ausztria</string>
@@ -192,8 +210,9 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_name_francenortheast">Északkelet-franciaország</string>
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
   <string name="np_name_francenorthwest">Északnyugat-franciaország</string>
+  <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Alsó-Normandia, Felső-Normandia</string>
   <string name="np_name_frenchsoutheast">Délkelet-Franciaország</string>
-  <string name="np_desc_frenchsoutheast">Provence-Alpok-Azúr-part, Rhône-Alpok, Languedoc-Roussillon, Auvergne, Korzika</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpok-Azúr-part, Rhône-Alpok, Languedoc-Roussillon, Auvergne, Korzika, Lyon</string>
   <string name="np_name_frenchsouthwest">Délkelet-franciaország</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitáina, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpok-Azúr-part</string>
@@ -205,6 +224,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Németország</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_desc_bayern">Bajorország, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Németország nagyobb része</string>
@@ -216,21 +236,26 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bajorország, München</string>
+  <string name="np_desc_nasa">Szászország, Lipcse, Szászország-Anhalt, Magdeburg, Halle</string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
   <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
+  <string name="np_desc_vagfr">Elzász, Bas-Rhin, Straßburg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Alsó-szászország, Bréma, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saar-vidék, Saarbrücken</string>
   <string name="np_desc_vms">Középső-szászország, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Elő-Pomeránia, Schwerin</string>
+  <string name="np_desc_vrn">Baden-Württemberg, Rajna-vidék-Pfalz, Mannheim, Mainz, Trier</string>
+  <string name="np_desc_vrr">Észak-Rajna-Vesztfália, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
   <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_vvm">Svábia, Középső-svábia, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Szászország, Drezda</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Közép-Türingia</string>
   <string name="np_region_ireland">Írország</string>
   <string name="np_desc_tfi">Írország, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Izrael</string>
@@ -245,6 +270,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_desc_lu">Luxemburg</string>
   <string name="np_region_netherlands">Hollandia</string>
   <string name="np_desc_ns">Hollandia, Amszterdam</string>
+  <string name="np_desc_negentwee">A teljes Holland tömegközlekedési hálózat</string>
   <string name="np_region_norway">Norvégia</string>
   <string name="np_desc_nri">Norvégia, Oslo, Bergen</string>
   <string name="np_region_nz">Új-zéland</string>
@@ -254,7 +280,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_desc_pl">Lengyelország, vasúti útvonalak Lengyelországban</string>
   <string name="np_region_spain">Spanyolország</string>
   <string name="np_name_spain">Spanyolország</string>
-  <string name="np_desc_spain">Madrid, Barcelona, Euskadi-Baszkföld, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma</string>
+  <string name="np_desc_spain">Madrid, Barcelona, Baszkföld, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_region_sweden">Svédország</string>
   <string name="np_desc_se">Svédország, Stockholm</string>
   <string name="np_region_switzerland">Svájc</string>
@@ -270,6 +296,8 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery és Philadelphia megyék</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">New York és New-Jersey államok</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Global Transport Oregon államban (USA)</string>
   <string name="maintainer">Fenntartó</string>
   <string name="contributors">Hozzájárulók</string>
   <string name="translators">Fordítók</string>

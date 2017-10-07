@@ -44,9 +44,9 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p>Los <b>aportes</b> son alentados y apreciados. Si deseas contribuir, por favor vaya a <a href=\"%1$s\">la página principal de Transportr</a> para más información.</p>
-<p>Si encuentra algún problema con esta aplicación, por favor informe en <a href=\"%2$s\">el rastreador de problemas</a>.</p>
-<p>Las opciones para <b>donativos</b> están listadas en <a href=\"%3$s\">la página web de Transportr</a>.</p>
+<p>Los <b>aportes</b> son alentados y apreciados. Si deseas contribuir, por favor vaya a <a href="%1$s">la página principal de Transportr</a> para más información.</p>
+<p>Si encuentra algún problema con esta aplicación, por favor informe en <a href="%2$s">el rastreador de problemas</a>.</p>
+<p>Las opciones para <b>donativos</b> están listadas en <a href="%3$s">la página web de Transportr</a>.</p>
 ]]>
 </string>
   <string name="visit_website">Visitar sitio web</string>
@@ -65,9 +65,12 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Red</string>
-  <string name="pick_network_activity">Elige una red de transporte</string>
-  <string name="pick_network_first_run">Esta es la primera vez que utilizas Transportr. ¡Por favor, selecciona tu red de transportes para continuar!</string>
-  <string name="clear_recent_trips">¿Estás seguro de que quieres borrar %1$d viaje/s de tus viajes recientes? El contador se borrará.</string>
+  <string name="pick_network_activity">Elige la zona</string>
+  <string name="pick_network_first_run">Bienvenido a Transportr!\n\nPor favor, selecciona la red de transportes de tu zona para continuar. Puedes modificarla en cualquier momento.</string>
+  <plurals name="clear_recent_trips">
+    <item quantity="one">¿Estás seguro de que quieres borrar %1$d viaje de tus viajes recientes? El contador se perderá.</item>
+    <item quantity="other">¿Estás seguro de que quieres borrar %1$d viajes de tus viajes recientes? El contador se perderá.</item>
+  </plurals>
   <string name="trip_searching">Buscando conexiones…</string>
   <string name="stations_searching_position">Buscando la posición actual…</string>
   <string name="drawer_nearby_stations">Estaciones cercanas</string>
@@ -76,15 +79,22 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="departure_station">Estación de salida</string>
   <string name="share_trip_via">Compartir viaje vía…</string>
   <string name="undo">Deshacer</string>
-  <string name="fav_trips_empty">Tus viajes recientes aparecerán aquí una vez que empieces a buscar direcciones./n/n/nSerás capaz de ordenarlas por más frecuentes o por más recientes.</string>
+  <string name="fav_trips_empty">Tus viajes recientes aparecerán aquí una vez que empieces a buscar direcciones.\n\n\nSerás capaz de ordenarlas por más frecuentes o por más recientes.</string>
   <string name="more">Más</string>
-  <string name="no_favourites">No hay viajes favoritos./n/nAñade uno en la página de \"Viajes recientes\".</string>
+  <string name="no_favourites">No hay viajes favoritos.\n\nAñade uno en la página de \"Viajes recientes\".</string>
   <string name="removing_from_favourites">Un viaje que has seleccionado está marcado como favorito. También se eliminará de ahí.</string>
+  <string name="create_quickhome_shortcut">Crear un acceso directo en tu lanzador que te lleva a casa</string>
+  <string name="change_time">Cambiar hora</string>
   <string name="now">Ahora</string>
+  <string name="now_small">ahora</string>
   <string name="current_time_set">La hora se ha actualizado.</string>
+  <string name="yesterday">Ayer</string>
   <string name="today">Hoy</string>
+  <string name="tomorrow">Mañana</string>
   <string name="current_date_set">La fecha se ha actualizado.</string>
   <string name="added_1h">Se ha añadido 1 hora.</string>
+  <string name="in_x_minutes">en %dmin</string>
+  <string name="x_minutes_ago">hace %dmin</string>
   <string name="ok">OK</string>
   <string name="cancel">Cancelar</string>
   <string name="yes">Sí</string>
@@ -109,6 +119,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
+  <string name="pref_quickhome">Acceso directo \"Llévame a casa\"</string>
   <string name="warning_departure_gap">Se han encontrado muy pocas salidas. Es posible que haya más ocultas. Busca por hora exacta para asegurarte de que no falta ninguna.</string>
   <string name="warning_permission_granted_action">No se pudo repetir la última acción automáticamente</string>
   <string name="error_no_internet">La conexión a Internet es débil</string>
@@ -130,6 +141,10 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="times_include_delays">(Atención: Los tiempos incluyen demoras reportadas)</string>
   <string name="home">Inicio</string>
   <string name="home_dialog_title">Establecer la ubicación inicial</string>
+  <string name="work">Trabajo</string>
+  <string name="work_hint">Definir ubicación del trabajo</string>
+  <string name="work_dialog_title">Definir ubicación del trabajo</string>
+  <string name="tap_to_set">Pulsa para fijar</string>
   <string name="location">Ubicación</string>
   <string name="location_home">Pulsa para fijar la Ubicación inicial</string>
   <string name="location_gps">Usar la posición actual</string>
@@ -151,6 +166,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="action_fav_trips_sort_most">Más usada</string>
   <string name="action_set_locations">Editar búsqueda</string>
   <string name="action_swap_locations">Buscar viaje de vuelta</string>
+  <string name="action_change">Cambiar</string>
   <string name="permission_explanation_gps">Es necesario conceder el permiso de ubicación para poder ver su posición actual en el mapa.</string>
   <string name="permission_denied_gps">No permitiste el acceso a tu ubicación, por lo que esta funcionalidad no estará disponible. Por favor, concede permiso en la configuración de la aplicación.</string>
   <string name="permission_explanation_map">Los mosaicos del mapa necesitan ser guardados en el almacenamiento de tu dispositivo. De otra manera el mapa no funcionará.</string>
@@ -159,6 +175,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="changelog_full_title">Cambios</string>
   <string name="changelog_title">Novedades</string>
   <string name="changelog_show_full">Más...</string>
+  <string name="widget_name_quickhome">Llévame a casa</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_sydney">Australia, Nueva Gales del Sur, Sídney</string>
   <string name="np_region_austria">Austria</string>
@@ -196,7 +213,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_name_francenorthwest">Noroeste de Francia</string>
   <string name="np_desc_francenorthwest">Bretaña, País del Loira, Centro, Baja Normandía, Alta Normandía</string>
   <string name="np_name_frenchsoutheast">Sudeste de Francia</string>
-  <string name="np_desc_frenchsoutheast">Provenza-Alpes-Costa Azul, Ródano-Alpes, Languedoc-Rosellón, Auvernia, Córcega</string>
+  <string name="np_desc_frenchsoutheast">Provenza-Alpes-Costa Azul, Ródano-Alpes, Languedoc-Rosellón, Auvernia, Córcega, Lyon</string>
   <string name="np_name_frenchsouthwest">Sudoeste de Francia</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provenza-Alpes-Costa Azul</string>
@@ -239,6 +256,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_desc_vvo">Sajonia, Dresde</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Turingia Central</string>
   <string name="np_region_ireland">Irlanda</string>
   <string name="np_desc_tfi">Irlanda, Dublín, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
@@ -253,6 +271,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_desc_lu">Luxemburgo</string>
   <string name="np_region_netherlands">Países Bajos</string>
   <string name="np_desc_ns">Países Bajos, Ámsterdam</string>
+  <string name="np_desc_negentwee">Todo el transporte público de Países Bajos</string>
   <string name="np_region_norway">Noruega</string>
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
   <string name="np_region_nz">Nueva Zelanda</string>
@@ -262,7 +281,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_desc_pl">Polonia, lineas de ferrocarriles en Polonia</string>
   <string name="np_region_spain">España</string>
   <string name="np_name_spain">España</string>
-  <string name="np_desc_spain">Madrid, Barcelona, Euskadi - País Vasco, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma</string>
+  <string name="np_desc_spain">Madrid, Barcelona, Euskadi - País Vasco, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_region_sweden">Suecia</string>
   <string name="np_desc_se">Suecia, Estocolmo</string>
   <string name="np_region_switzerland">Suiza</string>

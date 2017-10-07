@@ -9,7 +9,7 @@ Transportr trovas direktojn el via hejmo, el via nuna pozicio, aŭ el elektita s
 
 Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn inkluzive malfruojn (se iu ajn ekzistas).</string>
   <string name="onboarding_drawer_title">Esplori pli da ebloj</string>
-  <string name="onboarding_drawer_text">Alklaku tie ĉi, por malfermi navigan breton kaj aliri pliajn eblojn de tiu ĉi aplikaĵo.</string>
+  <string name="onboarding_drawer_text">Frapetu tie ĉi, por malfermi navigan breton kaj aliri pliajn eblojn de tiu ĉi aplikaĵo.</string>
   <string name="drawer_changelog">Ŝanĝoprotokolo</string>
   <string name="drawer_about">Pri</string>
   <string name="drawer_settings">Agordoj</string>
@@ -34,7 +34,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="tab_libraries">Bibliotekoj</string>
   <string name="tab_devs">Programistoj</string>
   <string name="tab_about">Pri</string>
-  <string name="about_top">© 2013 – 2017 Torsten GROTE\nProgramo sub libera permesilo: GPLv3</string>
+  <string name="about_top">© 2013 – 2017 Torsten GROTE\nProgramo laŭ la libera permesilo: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr estas helpilo por publika transporto kiu respektas vian privatecon kaj liberecon. Ĝi estas ne-profita aplikaĵo programita de homoj de la tuta mondo por igi uzadon de publika transporto kiel eble pli facila, kie ajn vi estas. Tiu ĉi aplikaĵo estas Libera Programo, do vi povas libere uzi, analizi, kunhavigi kaj plibonigi ĝin.</p>
@@ -43,9 +43,9 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p><b>Kontribuaĵoj</b> estas konsilindaj kaj laŭdindaj. Se vi volus kontribui, bonvolu viziti <a href=\"%1$s\">la retpaĝon de Transportr</a> por pliaj informoj.</p>
-<p>Se vi trovos iujn erarojn en la programo, bonvolu raporti ilin je <a href=\"%2$s\">la erar-spurilo</a>.</p>
-<p>Ebloj de <b>donacioj</b> estas priskribitaj je <a href=\"%3$s\">la retpaĝo de Transportr</a>.</p>
+<p><b>Kontribuaĵoj</b> estas konsilindaj kaj laŭdindaj. Se vi volus kontribui, bonvolu viziti <a href="%1$s">la retpaĝon de Transportr</a> por pliaj informoj.</p>
+<p>Se vi trovos iujn erarojn en la programo, bonvolu raporti ilin je <a href="%2$s">la erar-spurilo</a>.</p>
+<p>Ebloj de <b>donacioj</b> estas priskribitaj je <a href="%3$s">la retpaĝo de Transportr</a>.</p>
 ]]>
 </string>
   <string name="visit_website">Viziti retpaĝon</string>
@@ -64,36 +64,45 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Reto</string>
-  <string name="pick_network_activity">Elekti transportan reton</string>
-  <string name="pick_network_first_run">Vi unuafoje startigis Transportr. Bonvolu elekti vian transportan reton por pluigi!</string>
-  <string name="clear_recent_trips">Ĉu vi certe volas forigi %1$d kurso(j)n el viaj lastaj kursoj? La numerilo de uzoj estos nuligita.</string>
-  <string name="trip_searching">Serĉado de konektoj...</string>
-  <string name="stations_searching_position">Determinado de nuna pozicio...</string>
+  <string name="pick_network_activity">Elektu regionon</string>
+  <string name="pick_network_first_run">Bonvenon al Transportr!\n\nBonvolu elekti la plej proksiman transportan reton por pluigi. Vi povas ŝanĝi ĝin kiam ajn.</string>
+  <plurals name="clear_recent_trips">
+    <item quantity="one">Ĉu vi certe volas forigi %1$d kurson el viaj lastaj kursoj? La numerilo de uzoj estos nuligita.</item>
+    <item quantity="other">Ĉu vi certe volas forigi %1$d kursojn el viaj lastaj kursoj? La numerilo de uzoj estos nuligita.</item>
+  </plurals>
+  <string name="trip_searching">Serĉado de konektoj…</string>
+  <string name="stations_searching_position">Determinado de nuna pozicio…</string>
   <string name="drawer_nearby_stations">Proksimaj stacioj</string>
   <string name="find_nearby_stations">Serĉi proksimajn staciojn</string>
   <string name="find_departures">Serĉi forveturojn</string>
   <string name="departure_station">Stacio de forveturo</string>
-  <string name="share_trip_via">Kunhavigi kurson per</string>
+  <string name="share_trip_via">Kunhavigi kurson per…</string>
   <string name="undo">Malfari</string>
   <string name="fav_trips_empty">Viaj lastaj kursoj aperos tie ĉi kiam vi komencos serĉi direktojn.\n\n\nVi eblos ordigi ilin laŭ la plej ofte aŭ laŭ la plej laste uzitaj.</string>
   <string name="more">Pli</string>
-  <string name="no_favourites">Neniaj ŝatataj kursoj.\n\nAldoni iun uzante la \"Lastaj kursoj\" paĝon.</string>
+  <string name="no_favourites">Neniuj ŝatataj kursoj.\n\nAldoni iun uzante la paĝon “Lastaj kursoj”.</string>
   <string name="removing_from_favourites">La elektita kurso estas markita kiel ŝatata kurso. Ĝi estos forigita ankaŭ tie.</string>
-  <string name="create_quickhome_shortcut">Kreas ligilon en via lanĉilo, kiu movos vin hejmen</string>
+  <string name="create_quickhome_shortcut">Krei ligilon en via lanĉilo, kiu movos vin hejmen</string>
+  <string name="change_time">Ŝanĝi tempon</string>
   <string name="now">Nun</string>
+  <string name="now_small">nun</string>
   <string name="current_time_set">Agordis nunan tempon.</string>
+  <string name="yesterday">Hieraŭ</string>
   <string name="today">Hodiaŭ</string>
+  <string name="tomorrow">Morgaŭ</string>
   <string name="current_date_set">Agordis nunan daton.</string>
   <string name="added_1h">1 horo aldonita.</string>
+  <string name="in_x_minutes">post %dmin</string>
+  <string name="x_minutes_ago">antaŭ %dmin</string>
   <string name="ok">Bone</string>
   <string name="cancel">Rezigni</string>
   <string name="yes">Jes</string>
   <string name="no">Ne</string>
   <string name="pref_transport_network">Transporta reto</string>
   <string name="pref_hide_departure_time">Kaŝi tempon de forveturo</string>
-  <string name="pref_hide_departure_time_summary">Montras nur tempon de alveturo kiam montrante inter-staciojn</string>
+  <string name="pref_hide_departure_time_summary">Montri nur tempon de alveturo kiam montrante inter-staciojn</string>
   <string name="pref_exit_app_on_back_press">Fermi aplikaĵon uzante reen-butonon</string>
-  <string name="pref_exit_app_on_back_press_summary">Ĉiam fermas la aplikaĵon dum premado de reen-butono ĉe komenc-ekrano</string>
+  <string name="pref_exit_app_on_back_press_summary">Ĉiam fermi la aplikaĵon dum premado de reen-butono ĉe komenc-ekrano</string>
   <string name="pref_home">Hejma loko</string>
   <string name="pref_display">Aspekto</string>
   <string name="pref_theme_title">Etoso</string>
@@ -109,16 +118,16 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="pref_walk_speed_slow">Malrapide</string>
   <string name="pref_walk_speed_normal">Norme</string>
   <string name="pref_walk_speed_fast">Rapide</string>
-  <string name="pref_quickhome">\"Iri hejmen\"-ligilo</string>
+  <string name="pref_quickhome">“Iri hejmen”-ligilo</string>
   <string name="warning_departure_gap">Trovis tro malpli forveturojn. Eble iuj estas kaŝitaj. Serĉu uzante ekzaktan tempon por certigi, ke neniuj mankas.</string>
   <string name="warning_permission_granted_action">Ne povis refari aŭtomate lastan agon.</string>
-  <string name="error_no_internet">Nenia retkonekto alirebla</string>
+  <string name="error_no_internet">Neniu retkonekto alirebla</string>
   <string name="error_invalid_from">Malĝusta komencpunkto (El)</string>
   <string name="error_invalid_to">Malĝusta celo (Al)</string>
   <string name="error_no_trips_found">Neniaj direktoj trovitaj</string>
   <string name="error_no_location_provider">Ne povas determini vian pozicion. Bonvolu aktivigi GPS-on!</string>
-  <string name="error_no_departures_found">Neniaj forveturoj trovitaj</string>
-  <string name="error_no_stations_found">Neniaj stacioj trovitaj</string>
+  <string name="error_no_departures_found">Neniuj forveturoj trovitaj</string>
+  <string name="error_no_stations_found">Neniuj stacioj trovitaj</string>
   <string name="error_no_proper_station">La elektita loko ne estas ĝusta stacio</string>
   <string name="error_only_autocomplete_station">Bonvolu elekti stacion el la mem-kompletiganta listo!</string>
   <string name="error_no_station_location">Ne povas trovi lokon de elektita(j) stacio(j)</string>
@@ -131,6 +140,10 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="times_include_delays">(Atentu: tempoj enhavas raportitajn malfruojn)</string>
   <string name="home">Hejmo</string>
   <string name="home_dialog_title">Agordi hejm-lokon</string>
+  <string name="work">Laborejo</string>
+  <string name="work_hint">Agordu lokon de laborado</string>
+  <string name="work_dialog_title">Agordi lokon de laborado</string>
+  <string name="tap_to_set">Frapetu por agordi</string>
   <string name="location">Loko</string>
   <string name="location_home">Alklaku por agordi hejm-lokon</string>
   <string name="location_gps">Uzi nunan pozicion</string>
@@ -152,6 +165,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="action_fav_trips_sort_most">Ofte uzitaj</string>
   <string name="action_set_locations">Redakti serĉon</string>
   <string name="action_swap_locations">Serĉi revenan kurson</string>
+  <string name="action_change">Ŝanĝi</string>
   <string name="permission_explanation_gps">Vi devas permesi al aplikaĵo trovi lokon por rigardi vian nunan pozicion sur la mapo.</string>
   <string name="permission_denied_gps">Vi malpermesis al aplikaĵo aliri vian lokon, do tiu ĉi ne funkcios. Bonvolu doni la permeson en agordoj de aplikaĵoj.</string>
   <string name="permission_explanation_map">Kaheloj de mapoj devas esti konservitaj en memorejo de via aparato. La mapo ne funkcios sen tiu ĉi.</string>
@@ -159,7 +173,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <!--ckChangeLog-->
   <string name="changelog_full_title">Ŝanĝoprotokolo</string>
   <string name="changelog_title">Kio estas nova</string>
-  <string name="changelog_show_full">Pli...</string>
+  <string name="changelog_show_full">Pli…</string>
   <string name="widget_name_quickhome">Iri hejmen</string>
   <string name="np_region_australia">Aŭstralio</string>
   <string name="np_desc_sydney">Aŭstralio, Novsudkimrio, Sidnejo</string>
@@ -178,7 +192,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_name_br">Brazilo</string>
   <string name="np_desc_br">San-Paŭlo, Rio-de-Ĵanejro, Bel-Horizonto kaj Porto-Alegro</string>
   <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_desc_br_floripa">Diversaj aŭtobusaj kursoj, sen \'Executivos\'</string>
+  <string name="np_desc_br_floripa">Diversaj aŭtobusaj kursoj, sen ‘Executivos’</string>
   <string name="np_region_canada">Kanado</string>
   <string name="np_name_ontario">Ontario</string>
   <string name="np_desc_ontario">Ontario, Otavo, Toronto</string>
@@ -198,7 +212,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_name_francenorthwest">Francujo nord-okcidenta</string>
   <string name="np_desc_francenorthwest">Bretonujo, Luarlandoj, Centro-Valo de Luaro, Malsupra Normandujo, Supra Normandujo</string>
   <string name="np_name_frenchsoutheast">Francujo sud-orienta</string>
-  <string name="np_desc_frenchsoutheast">Provenco-Alpoj-Bordo Lazura, Rodano-Alpoj, Langvedoko-Rusiljono, Aŭvernjo, Korsiko</string>
+  <string name="np_desc_frenchsoutheast">Provenco-Alpoj-Bordo Lazura, Rodano-Alpoj, Langvedoko-Rusiljono, Aŭvernjo, Korsiko, Liono</string>
   <string name="np_name_frenchsouthwest">Francujo sud-okcidenta</string>
   <string name="np_desc_frenchsouthwest">Puatuo-Ĉarentoj, Limoĝio, Akvitanio, Sudo-Pireneoj, Bordeaux, Tuluzo</string>
   <string name="np_desc_paca">Provenco-Alpoj-Bordo Lazura</string>
@@ -241,6 +255,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_vvo">Saksujo, Dresdeno</string>
   <string name="np_desc_vvs">Baden-Virtembergo, Stutgarto</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Mittelthüringen</string>
   <string name="np_region_ireland">Irlando</string>
   <string name="np_desc_tfi">Irlando, Dublino, Belfasto</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israelo</string>
@@ -249,11 +264,13 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_name_it">Italujo</string>
   <string name="np_desc_it">Romo, Milano, Torino, Venecio, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Liĥtenŝtejno</string>
+  <string name="np_name_vmobil">VVV</string>
   <string name="np_desc_vmobil">Liĥtenŝtejno, Vorarlbergo, Bregenz</string>
   <string name="np_region_luxembourg">Luksemburgo</string>
   <string name="np_desc_lu">Luksemburgo</string>
   <string name="np_region_netherlands">Nederlando</string>
   <string name="np_desc_ns">Nederlando, Amsterdamo</string>
+  <string name="np_desc_negentwee">Publika transporto en Nederlando</string>
   <string name="np_region_norway">Norvegujo</string>
   <string name="np_desc_nri">Norvegujo, Oslo, Bergen</string>
   <string name="np_region_nz">Nov-Zelando</string>
@@ -263,7 +280,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_pl">Polujo, fervojo en Polujo</string>
   <string name="np_region_spain">Hispanujo</string>
   <string name="np_name_spain">Hispanujo</string>
-  <string name="np_desc_spain">Madrido, Barcelono, Baskujo, Valencio, Alicante, Majorko, Minorko, Tenerifo, La Palma</string>
+  <string name="np_desc_spain">Madrido, Barcelono, Eŭskujo, Valencio, Alakanto, Majorko, Minorko, Tenerifo, La Palma, Navaro</string>
   <string name="np_region_sweden">Svedujo</string>
   <string name="np_desc_se">Svedujo, Stokholmo</string>
   <string name="np_region_switzerland">Svisujo</string>

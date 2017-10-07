@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Lommekameraten for offentlig transport som respekterer ditt personvern og din frihet.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr er et veldedig program utviklet av folk verden om for bruk til offentlig transport, i den hensikt å gjøre det enkelt og mulig hvor som helst.
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr er et veldedig program utviklet av folk fra hele verden, til hjelp med offentlig transport, i den hensikt å gjøre det enkelt, og mulig, hvor som helst.
 
 Fungerer for tiden best i Europa, men støtter også mange steder rundt omkring i verden. Hvis
-Du bor i et område som ikke er støttet kan du legge det ti i Transportr.
+du bor i et område som ikke er støttet kan du legge det til i Transportr.
 
 Instruksjoner finner du på hjemmesiden.
 
-Transportr finner veivisninger fra ditt hjem, din gjeldende plassering eller en gitt stasjon til
+Transportr viser veien fra ditt hjem, din gjeldende plassering eller en gitt stasjon til
 hvorhen du ønsker å dra. Du kan også lagre hele turer som favoritter og finne
-fremtidige turer i ett enkelt drag. Du kan selsagt også vise turen i kartet
+fremtidige turer i ett enkelt drag. Du kan selvsagt også vise turen i kartet
 og følge framdrift via GPS.
 
 Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsinkelser (hvis det skulle være noen).</string>
@@ -40,18 +40,19 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="tab_libraries">Bibliotek</string>
   <string name="tab_devs">Utviklere</string>
   <string name="tab_about">Om</string>
+  <string name="about_top">© 2013 – 2017 Torsten Grote\nFriprog-lisens: GPLv3</string>
   <string name="about">
 <![CDATA[
-<p>Transport er en lommekamerat for offentlig transport som respekterer ditt privatliv og frihet. Det er et veldedig program utviklet av folk verden om for å gjøre offentlig transport enkelt og mulig uavhengig av hvor du befinner deg. Dette programmet er fri programvare, så du kan fritt bruke, dele, og forbedre det. </p>
-<p>Det gis ingen garantier for at ting stemmer. Bruk programmet på egen risiko..</p>
+<p>Transport er en lommekamerat for offentlig transport som respekterer ditt privatliv og frihet. Det er et veldedig program utviklet av folk fra hele verden, til hjelp med offentlig transport, i den hensikt å gjøre transport enklest mulig der du er. Dette programmet er fri programvare, så du kan fritt bruke, dele, og forbedre det. </p>
+<p>Det gis ingen garantier for at ting stemmer. Bruk programmet på egen risiko.</p>
 ]]>
 
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p><b>Bidrag</b> støttes og settes pris på. Hvis du har noe å hjelpe til med , gå til<a href=\"%1$s\">Transportr-hjemmesiden</a> for mer informasjon.</p>
-<p>Rapporter ethvert problem med programmet til<a href=\"%2$s\">feiloversikten</a>.</p>
-<p><b>Donasjoner</b> dine valg er listet opp på <a href=\"%3$s\">Transportr-nettsiden</a>.</p>
+<p><b>Bidrag</b> oppfordres og settes pris på. Hvis du har noe å hjelpe til med , gå til <a href="%1$s">Transportr-hjemmesiden</a> for mer informasjon.</p>
+<p>Rapporter ethvert problem med programmet til <a href="%2$s">feiloversikten</a>.</p>
+<p><b>Donasjoner</b> dine valg er listet opp på <a href="%3$s">Transportr-nettsiden</a>.</p>
 ]]>
 </string>
   <string name="visit_website">Besøk nettside</string>
@@ -61,6 +62,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="from">Fra</string>
   <string name="to">Til</string>
   <string name="via">Via</string>
+  <string name="search">Søk</string>
   <string name="from_here">Herfra</string>
   <string name="to_here">Hit</string>
   <string name="min">min</string>
@@ -69,26 +71,36 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Nettverk</string>
-  <string name="pick_network_activity">Velg et transportnettverk</string>
-  <string name="pick_network_first_run">Dette er første gangen du har startet Transportr. Velg transportnettverk for å fortsette.</string>
-  <string name="clear_recent_trips">Er du sikker på at du ønsker å slette %1$d tur(er) fra dine nylige turer. Bruksantallet vil gå tapt.</string>
-  <string name="trip_searching">Søker etter overganger...</string>
-  <string name="stations_searching_position">Søker etter gjeldende plassering...</string>
+  <string name="pick_network_activity">Velg område</string>
+  <string name="pick_network_first_run">Velkommen til Transportr!\n\nVelg transportnettverk for ditt nærområde for å fortsette. Du kan endre dette når som helst.</string>
+  <plurals name="clear_recent_trips">
+    <item quantity="one">Bekreft at du ønsker å slette %1$d tur fra dine nylige turer. Bruksantallet vil gå tapt.</item>
+    <item quantity="other">Bekreft at du ønsker å slette %1$d turer fra dine nylige turer. Bruksantallet vil gå tapt.</item>
+  </plurals>
+  <string name="trip_searching">Søker etter overganger…</string>
+  <string name="stations_searching_position">Søker etter gjeldende plassering…</string>
   <string name="drawer_nearby_stations">Stasjoner i nærheten</string>
   <string name="find_nearby_stations">Finn stasjoner i nærheten</string>
   <string name="find_departures">Finn avganger</string>
   <string name="departure_station">Avgangsstasjon</string>
-  <string name="share_trip_via">Del tur via...</string>
+  <string name="share_trip_via">Del tur via…</string>
   <string name="undo">Angre</string>
   <string name="fav_trips_empty">Dine nylige turer vil vises her så snart du begynner å søke etter veivisninger.\n\nDu vil kunne sortere dem etter oftest og nyligst brukt.</string>
   <string name="more">Mer</string>
   <string name="no_favourites">Ingen favoritturer.\n\nLegg til en \"Nylige turer\"-side.</string>
   <string name="removing_from_favourites">En tur du valgte er merket som favorittur. Den vil bli fjernet derfra også.</string>
+  <string name="create_quickhome_shortcut">Opprett en snarvei i din oppstarter som får deg hjem</string>
+  <string name="change_time">Avgangstid</string>
   <string name="now">Nå</string>
+  <string name="now_small">nå</string>
   <string name="current_time_set">Klokken justert til nåværende tid.</string>
+  <string name="yesterday">I går</string>
   <string name="today">I dag</string>
+  <string name="tomorrow">I morgen</string>
   <string name="current_date_set">Dato oppdatert.</string>
   <string name="added_1h">En time lagt til.</string>
+  <string name="in_x_minutes">om %dmin</string>
+  <string name="x_minutes_ago">%dmin siden</string>
   <string name="ok">OK</string>
   <string name="cancel">Avbryt</string>
   <string name="yes">Ja</string>
@@ -101,8 +113,8 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="pref_home">Hjemmehørende plassering</string>
   <string name="pref_display">Visning</string>
   <string name="pref_theme_title">Drakt</string>
-  <string name="pref_theme_light">Lyst</string>
-  <string name="pref_theme_dark">Mørkt</string>
+  <string name="pref_theme_light">Lys</string>
+  <string name="pref_theme_dark">Mørk</string>
   <string name="pref_language_title">Språk</string>
   <string name="pref_directions_routing">Veivisning og turplotting</string>
   <string name="pref_optimize">Optimer for</string>
@@ -113,6 +125,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="pref_walk_speed_slow">Tregt</string>
   <string name="pref_walk_speed_normal">Normalt</string>
   <string name="pref_walk_speed_fast">Raskt</string>
+  <string name="pref_quickhome">\"Få meg hjem\"-snarvei</string>
   <string name="warning_departure_gap">For få avganger. Det kan hende det finnes flere skjulte. Søk for eksakt tid for å forsikre deg om at det ikke mangler noen.</string>
   <string name="warning_permission_granted_action">Kunne ikke gjenta siste handling automatisk</string>
   <string name="error_no_internet">Mangler tilstrekkelig internettilknytning</string>
@@ -134,6 +147,10 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="times_include_delays">(Merk: Tidsforespeilinger inkluderer rapporterte forsinkelser)</string>
   <string name="home">Hjem</string>
   <string name="home_dialog_title">Sett hjemmeposisjon</string>
+  <string name="work">Arbeid</string>
+  <string name="work_hint">Sett arbeidsplassering</string>
+  <string name="work_dialog_title">Sett arbeidsplassering</string>
+  <string name="tap_to_set">Trykk for å velge</string>
   <string name="location">Plassering</string>
   <string name="location_home">Klikk for å velge hjemmehørende plassering</string>
   <string name="location_gps">Bruk gjeldende plassering</string>
@@ -155,6 +172,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="action_fav_trips_sort_most">Mest brukt</string>
   <string name="action_set_locations">Rediger søk</string>
   <string name="action_swap_locations">Søk etter retur</string>
+  <string name="action_change">Endre</string>
   <string name="permission_explanation_gps">Du må gi tilgang til posisjonsdata for å kunne se din nåværende posisjon på kartet.</string>
   <string name="permission_denied_gps">Du har ikke gitt tilgang til din plassering, så denne funksjonen vil ikke fungere. Gi tilgang i programinnstillingene.</string>
   <string name="permission_explanation_map">Kartutsnitt må lagres/mellomlagres på din enhets lagringsmedium. Kartet fungerer ikke uten.</string>
@@ -163,13 +181,17 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="changelog_full_title">Endringslogg</string>
   <string name="changelog_title">Nyheter</string>
   <string name="changelog_show_full">Mer…</string>
+  <string name="widget_name_quickhome">Få meg hjem</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
   <string name="np_region_austria">Østerrike</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Øvre Østerrike, Linz</string>
   <string name="np_desc_oebb">Østerrike</string>
+  <string name="np_desc_stv">Steiermark, Graz, Marburg, Maribor</string>
   <string name="np_desc_svv">Salzburg</string>
+  <string name="np_desc_vor">Niederösterreich, Burgenland, Wien</string>
+  <string name="np_desc_vvt">Tyrol</string>
   <string name="np_desc_wien">Wien</string>
   <string name="np_region_belgium">Belgia</string>
   <string name="np_desc_sncb">Offentlig transport i Belgia</string>
@@ -195,7 +217,9 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_name_francenortheast">Frankrike nord-øst</string>
   <string name="np_desc_francenortheast">Straßburg, Metz, Lille, Nancy</string>
   <string name="np_name_francenorthwest">Frankrike nord-vest</string>
+  <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre-Val de Loire, Basse-Normandie, Haute-Normandie</string>
   <string name="np_name_frenchsoutheast">Frankrike sør-øst</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Korsika, Lyon</string>
   <string name="np_name_frenchsouthwest">Frankrike sør-vest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -207,6 +231,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Tyskland</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Mesteparten av Tyskland</string>
@@ -218,48 +243,58 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bavaria, München</string>
+  <string name="np_desc_nasa">Fristaten Sachsen, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
   <string name="np_desc_sh">Slesvig-Holsten, Kiel, Hansabyen Lübeck, Hamburg</string>
+  <string name="np_desc_vagfr">Elsass, Bas-Rhin, Straßburg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vms">Landkreis Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
+  <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>
+  <string name="np_desc_vrr">Nordrhein-Westfalen, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
   <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_vvm">Schwaben, Mittelschwaben, Krum, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Fristaten Saksen, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Midt-Thüringen</string>
   <string name="np_region_ireland">Irland</string>
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
   <string name="np_region_italy">Italia</string>
   <string name="np_name_it">Italia</string>
+  <string name="np_desc_it">Rom, Milano, Torino, Venedig, Palermo, Trient</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_name_vmobil">VVV</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Luxemburg</string>
   <string name="np_desc_lu">Luxemburg</string>
   <string name="np_region_netherlands">Holland</string>
   <string name="np_desc_ns">Holland, Amsterdam</string>
+  <string name="np_desc_negentwee">All offentlig transport i Holland</string>
   <string name="np_region_norway">Norge</string>
   <string name="np_desc_nri">Norge, Oslo, Bergen</string>
   <string name="np_region_nz">Ny-Zealand</string>
   <string name="np_name_nz">Ny-Zealand</string>
+  <string name="np_desc_nz">Ny-Zealand, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, jernbane i Polen</string>
   <string name="np_region_spain">Spania</string>
   <string name="np_name_spain">Spania</string>
-  <string name="np_desc_spain">Madrid, Barcelona, Baskerland, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma</string>
+  <string name="np_desc_spain">Madrid, Barcelona, Baskerland, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_region_sweden">Sverige</string>
   <string name="np_desc_se">Sverige, Stokholm</string>
   <string name="np_region_switzerland">Sveits</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">Schweizerische Bundesbahnen</string>
   <string name="np_desc_sbb">Sveits</string>
+  <string name="np_desc_vbl">Luzern</string>
   <string name="np_desc_zvv">Zürich</string>
   <string name="np_region_uae">De forente arabiske emirater</string>
   <string name="np_name_dub">Dubai</string>
@@ -268,6 +303,8 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_desc_septa">Bucks-, Chester-, Delaware-, Montgomery- og Philadelphia -fylke</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Statene New York og New-Jersey</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Transport for hele staten Oregon (USA)</string>
   <string name="maintainer">Utgivelsesansvarlig</string>
   <string name="contributors">Bidragsytere</string>
   <string name="translators">Oversettere</string>
@@ -278,12 +315,13 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="portuguese_br">Portugisisk\n(Brasil)</string>
   <string name="spanish">Spansk</string>
   <string name="turkish">Tyrkisk</string>
-  <string name="norwegian_bokmal">Norsk bokmål</string>
-  <string name="basque">Baskerland</string>
+  <string name="norwegian_bokmal">Norsk \nbokmål</string>
+  <string name="basque">Baskisk</string>
   <string name="english">Engelsk</string>
-  <string name="catalan">Catalonia</string>
+  <string name="catalan">Katalansk</string>
   <string name="polish">Polsk</string>
   <string name="tamil">Tamilsk</string>
   <string name="esperanto">Esperanto</string>
   <string name="czech">Tsjekkisk</string>
+  <string name="hungarian">Ungarsk</string>
 </resources>

@@ -50,9 +50,9 @@ es welche gibt) anzeigen lassen.</string>
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p><b>Beiträge</b> sind ausdrücklich erwünscht und werden dankbar entgegen genommen. Falls du etwas beitragen möchtest, besuche bitte <a href=\"%1$s\">die Transportr Webseite</a> für mehr Informationen.</p>
-<p>Falls du irgendwelche Probleme in der App entdeckst, melde diese bitte im <a href=\"%2$s\">Issue Tracker</a>.</p>
-<p><b>Spendenmöglichkeiten</b> sind auf <a href=\"%3$s\">der Transportr Webseite</a> aufgeführt.</p>
+<p><b>Beiträge</b> sind ausdrücklich erwünscht und werden dankbar entgegen genommen. Falls du etwas beitragen möchtest, besuche bitte <a href="%1$s">die Transportr Webseite</a> für mehr Informationen.</p>
+<p>Falls du irgendwelche Probleme in der App entdeckst, melde diese bitte im <a href="%2$s">Issue Tracker</a>.</p>
+<p><b>Spendenmöglichkeiten</b> sind auf <a href="%3$s">der Transportr Webseite</a> aufgeführt.</p>
 ]]>
 </string>
   <string name="visit_website">Zur Webseite</string>
@@ -71,9 +71,12 @@ es welche gibt) anzeigen lassen.</string>
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Netzwerk</string>
-  <string name="pick_network_activity">Verkehrsverbund auswählen</string>
-  <string name="pick_network_first_run">Dies ist das erste Mal, dass Du Transportr startest. Bitte wähle einen Verkehrsverbund aus, um fortzufahren!</string>
-  <string name="clear_recent_trips">Bist Du sicher, dass Du %1$d Verbindung(en) aus den Favoriten löschen willst? Die Nutzungshäufigkeit der Verbindungen geht dabei verloren.</string>
+  <string name="pick_network_activity">Wähle eine Region</string>
+  <string name="pick_network_first_run">Willkommen bei Transportr! Bitte wähle einen Verkehrsverbund aus, um fortzufahren. Diesen kannst du jederzeit ändern.</string>
+  <plurals name="clear_recent_trips">
+    <item quantity="one">Bist du sicher, dass du %1$d Verbindung aus den Favoriten löschen willst? Die Nutzungshäufigkeit der Verbindung geht dabei verloren.</item>
+    <item quantity="other">Bist du sicher, dass du %1$d Verbindungen aus den Favoriten löschen willst? Die Nutzungshäufigkeit der Verbindungen geht dabei verloren.</item>
+  </plurals>
   <string name="trip_searching">Suche nach Verbindungen…</string>
   <string name="stations_searching_position">Suche nach aktueller Position…</string>
   <string name="drawer_nearby_stations">Haltestellen in der Nähe</string>
@@ -87,11 +90,17 @@ es welche gibt) anzeigen lassen.</string>
   <string name="no_favourites">Keine Favoriten vorhanden.\n\nDu kannst diese unter \"kürzliche Verbindungen\" hinzufügen.</string>
   <string name="removing_from_favourites">Eine markierte Verbindung ist als Favorit gekennzeichnet. Sie wird auch aus den Favoriten gelöscht werden.</string>
   <string name="create_quickhome_shortcut">Erzeuge eine Verknüpfung in deinem Launcher, um schnell nach Hause zu kommen</string>
+  <string name="change_time">Zeit ändern</string>
   <string name="now">Jetzt</string>
+  <string name="now_small">jetzt</string>
   <string name="current_time_set">Aktuelle Uhrzeit wurde ausgewählt.</string>
+  <string name="yesterday">Gestern</string>
   <string name="today">Heute</string>
+  <string name="tomorrow">Morgen</string>
   <string name="current_date_set">Aktuelles Datum wurde für die Suche ausgewählt.</string>
   <string name="added_1h">1 Stunde wurde hinzugefügt.</string>
+  <string name="in_x_minutes">in %d min</string>
+  <string name="x_minutes_ago">vor %d min</string>
   <string name="ok">OK</string>
   <string name="cancel">Abbrechen</string>
   <string name="yes">Ja</string>
@@ -110,7 +119,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="pref_directions_routing">Verbindungen und Routenkriterien</string>
   <string name="pref_optimize">Optimiert für</string>
   <string name="pref_optimize_least_duration">Geringste Dauer</string>
-  <string name="pref_optimize_least_changes">Wenigste Umstiege</string>
+  <string name="pref_optimize_least_changes">Geringste Änderungen</string>
   <string name="pref_optimize_least_walking">Kürzester Fußweg</string>
   <string name="pref_walk_speed">Laufgeschwindigkeit</string>
   <string name="pref_walk_speed_slow">Langsam</string>
@@ -138,6 +147,10 @@ es welche gibt) anzeigen lassen.</string>
   <string name="times_include_delays">(Achtung: Zeiten beinhalten gemeldete Verspätungen)</string>
   <string name="home">Zuhause</string>
   <string name="home_dialog_title">Heimatadresse festlegen</string>
+  <string name="work">Arbeit</string>
+  <string name="work_hint">Arbeitsort festlegen</string>
+  <string name="work_dialog_title">Arbeitsort festlegen</string>
+  <string name="tap_to_set">Zum Festlegen tippen</string>
   <string name="location">Position</string>
   <string name="location_home">Klicken um eine Heimatadresse festzulegen</string>
   <string name="location_gps">Aktuelle Position verwenden</string>
@@ -159,8 +172,9 @@ es welche gibt) anzeigen lassen.</string>
   <string name="action_fav_trips_sort_most">Meist genutzte</string>
   <string name="action_set_locations">Suche bearbeiten</string>
   <string name="action_swap_locations">Rückfahrt suchen</string>
+  <string name="action_change">Ändern</string>
   <string name="permission_explanation_gps">Sie müssen die Standortbestimmungsberechtigung erteilen, um Ihre aktuelle Position auf der Karte zu sehen.</string>
-  <string name="permission_denied_gps">Da Du den Zugriff auf Deinen aktuellen Standort nicht freigegeben hast, wird diese Funktion nicht funktionieren. Bitte erlaube den Standortzugriff in den Einstellungen.</string>
+  <string name="permission_denied_gps">Da du den Zugriff auf deinen aktuellen Standort nicht freigegeben hast, wird diese Funktion nicht funktionieren. Bitte erlaube den Standortzugriff in den Einstellungen.</string>
   <string name="permission_explanation_map">Es ist nötig Kartendaten auf deinem Gerät zwischenzuspeichern. Die Karte wird sonst nicht funktionieren.</string>
   <string name="permission_denied_map">Um die Karte anzeigen zu können, ist es nötig Kartendaten auf deinem Gerät zu speichern. Bitte erlaube den Speicherzugriff, um die Karte zu benutzen.</string>
   <!--ckChangeLog-->
@@ -205,7 +219,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_name_francenorthwest">Frankreich Nordwest</string>
   <string name="np_desc_francenorthwest">Bretagne, Pays de la Loire, Centre, Basse Normandie, Haute Normandie</string>
   <string name="np_name_frenchsoutheast">Frankreich Südost</string>
-  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhone-Alpen, Languedoc-Roussillon, Auvergne, Korsika</string>
+  <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhone-Alpen, Languedoc-Roussillon, Auvergne, Korsika, Lyon</string>
   <string name="np_name_frenchsouthwest">Frankreich Südwest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
   <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
@@ -248,6 +262,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_vvo">Sachsen, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Mittelthüringen</string>
   <string name="np_region_ireland">Irland</string>
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
@@ -262,6 +277,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_lu">Luxemburg</string>
   <string name="np_region_netherlands">Niederlande</string>
   <string name="np_desc_ns">Niederlande, Amsterdam</string>
+  <string name="np_desc_negentwee">Sämtliche öffentliche Verkehrsmittel in Belgien</string>
   <string name="np_region_norway">Norwegen</string>
   <string name="np_desc_nri">Norwegen, Oslo, Bergen</string>
   <string name="np_region_nz">Neuseeland</string>
@@ -271,7 +287,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_pl">Polen, Eisenbahnen in Polen</string>
   <string name="np_region_spain">Spanien</string>
   <string name="np_name_spain">Spanien</string>
-  <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma</string>
+  <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma, Navarra</string>
   <string name="np_region_sweden">Schweden</string>
   <string name="np_desc_se">Schweden, Stockholm</string>
   <string name="np_region_switzerland">Schweiz</string>

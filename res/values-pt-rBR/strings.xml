@@ -39,6 +39,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="tab_libraries">Bibliotecas</string>
   <string name="tab_devs">Desenvolvedores</string>
   <string name="tab_about">Sobre</string>
+  <string name="about_top">© 2013 – 2017 Torsten Grote\nLicença de Software Livre: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr é um aplicativo de transporte público que respeita a sua privacidade e liberdade. É um aplicativo sem fins lucrativos, desenvolvido por pessoas ao redor do mundo que querem utilizar o sistema de transporte público, de forma fácil onde quer que esteja. Por ser um aplicativo de software livre, você pode livremente utilizar, estudar, compartilhar e melhorá-lo.</p>
@@ -47,9 +48,9 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
 </string>
   <string name="about_bottom">
 <![CDATA[
-<p><b>Contribuições</b> são encorajadas e apreciadas. Se você gostaria de contribuir, por favor, faça isso <a href=\"%1$s\">Transportr  website </a> para maiores informações.</p>
-<p>Se encontrar qualquer problema com esse aplicativo, por favor, reporte isso para <a href=\"%2$s\"> a central de desenvolvimento </a>.</p>
-<p><b> Doações</b> Veja as opções disponíveis no <a href=\"%3$s\"> Transportr website</a>.</p>
+<p><b>Contribuições</b> são encorajadas e apreciadas. Se você gostaria de contribuir, por favor, faça isso <a href="%1$s">Transportr  website </a> para maiores informações.</p>
+<p>Se encontrar qualquer problema com esse aplicativo, por favor, reporte isso para <a href="%2$s"> a central de desenvolvimento </a>.</p>
+<p><b> Doações</b> Veja as opções disponíveis no <a href="%3$s"> Transportr website</a>.</p>
 ]]>
 </string>
   <string name="visit_website">Visite o Website</string>
@@ -59,6 +60,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="from">De</string>
   <string name="to">Para</string>
   <string name="via">Via</string>
+  <string name="search">Pesquisar</string>
   <string name="from_here">De</string>
   <string name="to_here">Para</string>
   <string name="min">min</string>
@@ -67,9 +69,8 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Rede</string>
-  <string name="pick_network_activity">Escolha uma Rede de Transporte</string>
-  <string name="pick_network_first_run">Esta é a primeira vez que você inicia o Transportr. Selecione sua rede de transporte para continuar!</string>
-  <string name="clear_recent_trips">Tem certeza que você quer excluir %1$d viagem(ns) de seus favoritos? As partidas selecionadas serão excluídas.</string>
+  <string name="pick_network_activity">Escolha a região</string>
+  <string name="pick_network_first_run">Bem vinda ao Transportr!n\nPor favor, selecione a rede de transporte da sua região para continuar. Você pode mudar isso a qualquer momento.</string>
   <string name="trip_searching">Pesquisando por conexões…</string>
   <string name="stations_searching_position">Pesquisando por posição atual…</string>
   <string name="drawer_nearby_stations">Estações Próximas</string>
@@ -82,9 +83,13 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="more">Mais</string>
   <string name="no_favourites">Não há partidas favoritas.\n\nAdicione uma em \"Viagens Recentes\".</string>
   <string name="removing_from_favourites">A partida selecionada está marcada como partida favorita. Esta, também, será removida.</string>
+  <string name="change_time">Mudar hora</string>
   <string name="now">Agora</string>
+  <string name="now_small">agora</string>
   <string name="current_time_set">O horário foi atualizado.</string>
+  <string name="yesterday">Ontem</string>
   <string name="today">Hoje</string>
+  <string name="tomorrow">Amanhã</string>
   <string name="current_date_set">A data foi atualizada.</string>
   <string name="added_1h">1 hora adicionada.</string>
   <string name="ok">OK</string>
@@ -111,6 +116,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
+  <string name="pref_quickhome">\"Leve-me para casa\"-atalho</string>
   <string name="warning_departure_gap">Encontre também algumas saídas. Pode haver saídas ocultas. Pesquise pela hora exata para ter certeza de que não está faltando nenhuma.</string>
   <string name="warning_permission_granted_action">Não foi possível repetir automaticamente ultima ação</string>
   <string name="error_no_internet">Conexão de internet disponível insuficiente</string>
@@ -132,6 +138,9 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="times_include_delays">(Atenção: Horários incluem atrasos)</string>
   <string name="home">Página Inicial</string>
   <string name="home_dialog_title">Configurar localização de Casa</string>
+  <string name="work">Trabalho</string>
+  <string name="work_dialog_title">Definir local de trabalho</string>
+  <string name="tap_to_set">Pressione para fixar</string>
   <string name="location">Local</string>
   <string name="location_home">Clique para definir Local Inicial</string>
   <string name="location_gps">Use Posição Atual</string>
@@ -161,6 +170,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="changelog_full_title">Novidades</string>
   <string name="changelog_title">O que é Novo</string>
   <string name="changelog_show_full">Mais</string>
+  <string name="widget_name_quickhome">Leve-me para casa</string>
   <string name="np_region_australia">Austrália</string>
   <string name="np_desc_sydney">Austrália, Nova Gales do Sul, Sydney</string>
   <string name="np_region_austria">Áustria</string>
@@ -254,6 +264,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_region_switzerland">Suíça</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">SBB</string>
+  <string name="np_desc_sbb">Suíça</string>
   <string name="np_desc_zvv">Zurique</string>
   <string name="np_region_uae">Emirados Árabes Unidos</string>
   <string name="np_name_dub">Dubai</string>
