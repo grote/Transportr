@@ -8,9 +8,9 @@ android:
   components:
     - build-tools-26.0.2
     - android-26
-#    - tools
-#    - android-22
-#    - sys-img-armeabi-v7a-android-22
+    - tools
+    - android-22
+    - sys-img-armeabi-v7a-android-22
 
 licenses:
     - android-sdk-license-.+
@@ -25,23 +25,22 @@ before_script:
     - ./pre-build.sh
 
     # update gradle
-    - wget https://services.gradle.org/distributions/gradle-4.2-bin.zip
-    - unzip -qq gradle-4.2-bin.zip
-    - export GRADLE_HOME=$PWD/gradle-4.2
+    - wget https://services.gradle.org/distributions/gradle-4.2.1-bin.zip
+    - unzip -qq gradle-4.2.1-bin.zip
+    - export GRADLE_HOME=$PWD/gradle-4.2.1
     - export PATH=$GRADLE_HOME/bin:$PATH
     - gradle -v
     - gradle dependencies || true
 
     # start emulator
-#    - android list sdk --no-ui --all --extended
-#    - android list targets
-#    - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-#    - emulator -avd test -no-audio -no-window &
-#    - android-wait-for-emulator
-#    - adb shell input keyevent 82 &
+    - android list sdk --no-ui --all --extended
+    - android list targets
+    - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+    - emulator -avd test -no-audio -no-window &
+    - android-wait-for-emulator
+    - adb shell input keyevent 82 &
 
-#script: gradle build connectedCheck -PbuildServer
-script: gradle build -PbuildServer
+script: gradle build connectedCheck -PbuildServer -Pandroid.testInstrumentationRunnerArguments.notAnnotation=android.test.suitebuilder.annotation.LargeTest
 
 before_cache:
     - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock

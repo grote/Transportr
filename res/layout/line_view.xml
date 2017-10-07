@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	tools:showIn="@layout/leg_details">
 
@@ -10,7 +11,7 @@
 		android:layout_height="16dp"
 		android:layout_gravity="center"
 		android:layout_marginTop="1px"
-		android:src="@drawable/product_bus"
+		app:srcCompat="@drawable/product_bus"
 		tools:ignore="ContentDescription"/>
 
 	<TextView

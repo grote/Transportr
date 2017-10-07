@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatDrawableManager;
 import android.util.AttributeSet;
 
 import de.grobox.liberario.R;
@@ -23,7 +22,7 @@ public class ImageTextButton extends AppCompatButton {
 		super(context, attrs, defStyleAttr);
 
 		Drawable drawable = getCompoundDrawables()[1];
-		drawable.setColorFilter(AppCompatDrawableManager.getPorterDuffColorFilter(getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
+		drawable.setColorFilter(getCurrentTextColor(), PorterDuff.Mode.SRC_IN);
 		setCompoundDrawables(null, drawable, null, null);
 	}
 

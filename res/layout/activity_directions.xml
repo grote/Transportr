@@ -48,7 +48,7 @@
 							android:background="?selectableItemBackgroundBorderless"
 							android:clickable="true"
 							android:scaleType="center"
-							android:src="@drawable/ic_time"
+							app:srcCompat="@drawable/ic_time"
 							tools:ignore="ContentDescription"/>
 
 						<TextView

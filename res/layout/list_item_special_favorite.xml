@@ -17,11 +17,11 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="8dp"
 			android:layout_marginStart="8dp"
-			android:src="@drawable/ic_action_home"
 			android:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_action_home"
 			tools:ignore="ContentDescription"/>
 
 		<TextView
@@ -59,11 +59,12 @@
 			android:background="?selectableItemBackgroundBorderless"
 			android:clickable="true"
 			android:contentDescription="@string/more"
-			android:src="@drawable/ic_more_vert"
+			android:focusable="true"
 			android:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent"/>
+			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_more_vert"/>
 
 	</android.support.constraint.ConstraintLayout>
 

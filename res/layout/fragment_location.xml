@@ -17,7 +17,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_margin="16dp"
-		android:src="@drawable/ic_location_address"
+		app:srcCompat="@drawable/ic_location_address"
 		android:tint="?colorControlNormal"
 		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintLeft_toLeftOf="parent"

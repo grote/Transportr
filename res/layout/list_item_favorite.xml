@@ -17,11 +17,11 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="8dp"
 			android:layout_marginStart="8dp"
-			android:src="@drawable/ic_time"
 			android:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_time"
 			tools:ignore="ContentDescription"/>
 
 		<ImageView
@@ -31,11 +31,11 @@
 			android:layout_marginLeft="3dp"
 			android:layout_marginStart="3dp"
 			android:scaleType="matrix"
-			android:src="@drawable/trip_from"
 			android:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="@+id/from"
 			app:layout_constraintLeft_toRightOf="@+id/logo"
 			app:layout_constraintTop_toTopOf="@+id/from"
+			app:srcCompat="@drawable/trip_from"
 			tools:ignore="ContentDescription"/>
 
 		<TextView
@@ -54,11 +54,11 @@
 			android:layout_width="wrap_content"
 			android:layout_height="0dp"
 			android:scaleType="centerCrop"
-			android:src="@drawable/trip_via"
 			android:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="@+id/via"
 			app:layout_constraintLeft_toLeftOf="@+id/fromIcon"
 			app:layout_constraintTop_toTopOf="@+id/via"
+			app:srcCompat="@drawable/trip_via"
 			tools:ignore="ContentDescription"
 			tools:visibility="visible"/>
 
@@ -77,10 +77,10 @@
 			android:id="@+id/toIcon"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/trip_to"
 			android:tint="?colorControlNormal"
 			app:layout_constraintLeft_toLeftOf="@+id/fromIcon"
 			app:layout_constraintTop_toTopOf="@+id/to"
+			app:srcCompat="@drawable/trip_to"
 			tools:ignore="ContentDescription"/>
 
 		<TextView
@@ -102,11 +102,12 @@
 			android:background="?selectableItemBackgroundBorderless"
 			android:clickable="true"
 			android:contentDescription="@string/more"
-			android:src="@drawable/ic_more_vert"
+			android:focusable="true"
 			android:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent"/>
+			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_more_vert"/>
 
 	</android.support.constraint.ConstraintLayout>
 

@@ -21,8 +21,8 @@
 		android:layout_height="fill_parent"
 		android:ellipsize="middle"
 		android:gravity="center_vertical"
-		android:maxLines="1"
 		android:padding="3dp"
-		android:text="Medium Text"/>
+		android:text="Medium Text"
+		android:singleLine="true"/>
 
 </LinearLayout>

@@ -28,7 +28,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="10dp"
         android:clickable="true"
-        android:src="@drawable/ic_gps"
+        app:srcCompat="@drawable/ic_gps"
         android:tint="@color/fabForegroundInitial"
         app:backgroundTint="@color/cardview_light_background"/>
 

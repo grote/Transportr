@@ -10,15 +10,15 @@
 		android:id="@+id/map"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		app:mapbox_myLocation="false"
 		app:mapbox_styleUrl="@string/mapbox_style_mapbox_streets"
+		app:mapbox_uiAttribution="false"
 		app:mapbox_uiCompass="true"
 		app:mapbox_uiCompassMarginTop="72dp"
+		app:mapbox_uiLogo="false"
 		app:mapbox_uiRotateGestures="true"
 		app:mapbox_uiTiltGestures="false"
-		app:mapbox_uiZoomControls="false"
-		app:mapbox_uiLogo="false"
-		app:mapbox_myLocation="false"
-		app:mapbox_uiAttribution="false"/>
+		app:mapbox_uiZoomControls="false"/>
 
 	<android.support.v7.widget.CardView
 		android:id="@+id/searchBackground"
@@ -37,8 +37,9 @@
 			android:background="?attr/selectableItemBackground"
 			android:clickable="true"
 			android:contentDescription="@string/onboarding_drawer_title"
+			android:focusable="true"
 			android:scaleType="center"
-			android:src="@drawable/ic_menu_black"/>
+			app:srcCompat="@drawable/ic_menu_black"/>
 
 		<de.grobox.liberario.locations.LocationView
 			android:id="@+id/search"
@@ -64,13 +65,14 @@
 		android:layout_marginEnd="16dp"
 		android:layout_marginRight="16dp"
 		android:clickable="true"
-		android:src="@drawable/ic_menu_directions"
+		android:focusable="true"
 		android:tint="@color/md_white_1000"
 		app:backgroundTint="@color/primary"
 		app:behavior_autoHide="true"
 		app:fabSize="normal"
 		app:layout_anchor="@+id/bottomSheet"
-		app:layout_anchorGravity="top|end"/>
+		app:layout_anchorGravity="top|end"
+		app:srcCompat="@drawable/ic_menu_directions"/>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/gpsFab"
@@ -79,12 +81,13 @@
 		android:layout_gravity="bottom|end"
 		android:layout_margin="16dp"
 		android:clickable="true"
-		android:src="@drawable/ic_gps"
+		android:focusable="true"
 		android:tint="@color/fabForegroundInitial"
 		app:backgroundTint="@color/cardview_light_background"
 		app:behavior_autoHide="true"
 		app:elevation="4dp"
-		app:fabSize="normal"/>
+		app:fabSize="normal"
+		app:srcCompat="@drawable/ic_gps"/>
 
 	<FrameLayout
 		android:id="@+id/bottomSheet"

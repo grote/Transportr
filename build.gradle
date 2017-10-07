@@ -150,6 +150,7 @@ android {
 		buildToolsVersion "26.0.2"
 		minSdkVersion 15
 
+		vectorDrawables.useSupportLibrary = true
 		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
 		javaCompileOptions {
 			annotationProcessorOptions {
@@ -239,7 +240,6 @@ android {
 	}
 
 	lintOptions {
-		abortOnError !project.hasProperty('buildServer')
 		checkReleaseBuilds false
 		disable 'MissingTranslation', 'InvalidPackage'
 	}
