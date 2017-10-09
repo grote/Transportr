@@ -19,7 +19,7 @@ package de.grobox.liberario.favorites.trips;
 
 import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
-import de.schildbach.pte.dto.Location;
+import de.grobox.liberario.locations.WrapLocation;
 
 public class HomePickerDialogFragment extends SpecialLocationFragment {
 
@@ -43,9 +43,9 @@ public class HomePickerDialogFragment extends SpecialLocationFragment {
 	}
 
 	@Override
-	protected void onSpecialLocationSet(Location location) {
-		favoriteLocationManager.setHome(location);
-		if (listener != null) listener.onHomeChanged(location);
+	protected void onSpecialLocationSet(WrapLocation location) {
+		viewModel.setHome(location);
+		if (listener != null) listener.onHomeChanged(location.getLocation());
 	}
 
 }

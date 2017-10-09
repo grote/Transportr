@@ -25,7 +25,6 @@ import de.grobox.liberario.R;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
 
 abstract class SpecialFavoritesViewHolder extends AbstractFavoritesViewHolder {
 
@@ -34,8 +33,8 @@ abstract class SpecialFavoritesViewHolder extends AbstractFavoritesViewHolder {
 
 	SpecialFavoritesViewHolder(View v) {
 		super(v);
-		title = (TextView) v.findViewById(R.id.title);
-		description = (TextView) v.findViewById(R.id.description);
+		title = v.findViewById(R.id.title);
+		description = v.findViewById(R.id.description);
 	}
 
 	@Override
@@ -47,7 +46,7 @@ abstract class SpecialFavoritesViewHolder extends AbstractFavoritesViewHolder {
 			description.setTypeface(null, Typeface.ITALIC);
 			overflow.setVisibility(GONE);
 		} else {
-			description.setText(getLocationName(item.getTo()));
+			description.setText(item.getTo().getName());
 			description.setTypeface(null, Typeface.NORMAL);
 			overflow.setVisibility(VISIBLE);
 		}

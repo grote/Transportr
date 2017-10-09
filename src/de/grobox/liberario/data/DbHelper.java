@@ -27,6 +27,7 @@ import android.util.Log;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
+@Deprecated
 class DbHelper extends SQLiteOpenHelper {
 
 	private static final String DB_NAME = "liberario.db";

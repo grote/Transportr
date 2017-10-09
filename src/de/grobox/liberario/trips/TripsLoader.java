@@ -62,7 +62,7 @@ class TripsLoader extends AsyncTaskLoader<QueryTripsResult> {
 	@Nullable
 	@Override
 	public QueryTripsResult loadInBackground() {
-		TransportNetwork network = manager.getTransportNetwork();
+		TransportNetwork network = manager.getTransportNetwork().getValue();
 		if (network == null) return null;
 
 		// TODO expose via TransportNetworkManager

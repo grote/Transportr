@@ -119,7 +119,7 @@ public class PickTransportNetworkActivity extends TransportrActivity {
 	}
 
 	private void selectItem() {
-		TransportNetwork network = manager.getTransportNetwork();
+		TransportNetwork network = manager.getTransportNetwork().getValue();
 		if (network == null) {
 			selectAllowed = true;
 			return;

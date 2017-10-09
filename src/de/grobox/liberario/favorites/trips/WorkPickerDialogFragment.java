@@ -19,7 +19,7 @@ package de.grobox.liberario.favorites.trips;
 
 import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
-import de.schildbach.pte.dto.Location;
+import de.grobox.liberario.locations.WrapLocation;
 
 public class WorkPickerDialogFragment extends SpecialLocationFragment {
 
@@ -43,9 +43,10 @@ public class WorkPickerDialogFragment extends SpecialLocationFragment {
 	}
 
 	@Override
-	protected void onSpecialLocationSet(Location location) {
-		favoriteLocationManager.setWork(location);
-		if (listener != null) listener.onWorkChanged(location);
+	protected void onSpecialLocationSet(WrapLocation location) {
+		// TODO
+//		viewModel.setWork(location);
+		if (listener != null) listener.onWorkChanged(location.getLocation());
 	}
 
 }

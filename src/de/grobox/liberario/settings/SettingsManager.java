@@ -40,7 +40,6 @@ public class SettingsManager {
 		try {
 			networkId = NetworkId.valueOf(networkStr);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
 			return null;
 		}
 		return networkId;

@@ -24,6 +24,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.utils.DateUtils;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.grobox.liberario.R;
@@ -93,12 +94,12 @@ public class LegPopupMenu extends BasePopupMenu {
 						return true;
 					// From Here
 					case R.id.action_from_here:
-						TransportrUtils.presetDirections(context, loc1, null, null);
+						TransportrUtils.presetDirections(context, new WrapLocation(loc1), null, null);
 
 						return true;
 					// To Here
 					case R.id.action_to_here:
-						TransportrUtils.presetDirections(context, null, null, loc1);
+						TransportrUtils.presetDirections(context, null, null, new WrapLocation(loc1));
 
 						return true;
 					// Show Departures

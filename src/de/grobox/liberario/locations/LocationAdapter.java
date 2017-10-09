@@ -23,6 +23,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,49 +40,69 @@ import java.util.regex.Pattern;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.favorites.locations.FavoriteLocation;
-import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
-import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
-import de.grobox.liberario.favorites.locations.FavoriteLocationManager.FavoriteLocationsLoadedListener;
-import de.grobox.liberario.utils.TransportrUtils;
-import de.schildbach.pte.dto.Location;
+import de.grobox.liberario.data.locations.FavoriteLocation;
+import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
+import de.grobox.liberario.data.locations.HomeLocation;
 import de.schildbach.pte.dto.SuggestedLocation;
 
-import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.FROM;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
-import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.NORMAL;
 
 @ParametersAreNonnullByDefault
-class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, FavoriteLocationsLoadedListener {
+class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 
-	private final FavoriteLocationManager favoriteLocationManager;
-	private List<WrapLocation> favoriteLocations = new ArrayList<>();
-	@Nullable
-	private List<SuggestedLocation> suggestedLocations;
-	@Nullable
-	private CharSequence search;
+	private @Nullable HomeLocation homeLocation;
+	private List<FavoriteLocation> favoriteLocations = new ArrayList<>();
+	private List<WrapLocation> locations = new ArrayList<>();
+	private @Nullable List<SuggestedLocation> suggestedLocations;
+	private @Nullable CharSequence search;
 	private Filter filter = null;
 	private final boolean includeHome, includeGps, includeFavs;
 	private FavLocationType sort = FROM;
 
 	static final int TYPING_THRESHOLD = 3;
 
-	LocationAdapter(Context context, FavoriteLocationManager favoriteLocationManager, boolean includeHome, boolean includeGps, boolean includeFavs) {
+	LocationAdapter(Context context, boolean includeHome, boolean includeGps, boolean includeFavs) {
 		super(context, R.layout.location_item);
-		this.favoriteLocationManager = favoriteLocationManager;
 		this.includeHome = includeHome;
 		this.includeGps = includeGps;
 		this.includeFavs = includeFavs;
-		getFavoriteLocations();
-		addFavoriteLocationsToDropDown();
 	}
 
-	LocationAdapter(Context context, FavoriteLocationManager favoriteLocationManager, List<Location> locations) {
-		this(context, favoriteLocationManager, false, false, false);
-		for (Location l : locations) {
-			add(new WrapLocation(l));
+	/* TODO new stuff */
+
+	public void setHomeLocation(@Nullable HomeLocation homeLocation) {
+		Log.w("TEST", "SETTING NEW HOME LOCATION IN ADAPTER: " + (homeLocation == null ? "null" : homeLocation.toString()));
+		this.homeLocation = homeLocation;
+		updateLocations();
+		resetDropDownLocations();
+	}
+
+	public void setFavoriteLocations(List<FavoriteLocation> favoriteLocations) {
+		Log.w("TEST", "SETTING NEW FAV LOCATIONS IN ADAPTER: " + favoriteLocations.toString());
+		this.favoriteLocations = favoriteLocations;
+		// TODO sort
+		updateLocations();
+		resetDropDownLocations();
+	}
+
+	private void updateLocations() {
+		locations = new ArrayList<>();
+		if (includeHome) {
+			if (homeLocation != null) {
+				favoriteLocations.remove(homeLocation);
+				locations.add(homeLocation);
+			}
+			else locations.add(new WrapLocation(HOME));
+		}
+		if (includeGps) locations.add(new WrapLocation(GPS));
+//		locations.add(new WrapLocation(MAP));
+
+		if (includeFavs) {
+			locations.addAll(favoriteLocations);
 		}
 	}
 
@@ -103,56 +124,38 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 			view = convertView;
 		}
 
-		ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-		TextView textView = (TextView) view.findViewById(R.id.textView);
+		ImageView imageView = view.findViewById(R.id.imageView);
+		TextView textView = view.findViewById(R.id.textView);
 
 		WrapLocation wrapLocation = getItem(position);
 		if(wrapLocation == null || wrapLocation.getLocation() == null) return view;
-		Location l = wrapLocation.getLocation();
 
-		if(wrapLocation.getType() == HOME) {
-			Location home = favoriteLocationManager.getHome();
-			if(home != null) {
-				textView.setText(getHighlightedText(home));
-				textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-
-				// change home location on long click does not work here
-				// because click events are not accepted from the list anymore
-			} else {
+		if (wrapLocation.getWrapType() == NORMAL) {
+			textView.setText(getHighlightedText(wrapLocation));
+			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+		} else {
+			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+			if(wrapLocation.getWrapType() == HOME) {
 				textView.setText(parent.getContext().getString(R.string.location_home));
-				textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+			} else if(wrapLocation.getWrapType() == GPS) {
+				textView.setText(parent.getContext().getString(R.string.location_gps));
+			} else if(wrapLocation.getWrapType() == MAP) {
+				textView.setText(parent.getContext().getString(R.string.location_map));
 			}
 		}
-		else if(wrapLocation.getType() == GPS) {
-			textView.setText(parent.getContext().getString(R.string.location_gps));
-			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
-		}
-		else if(wrapLocation.getType() == MAP) {
-			textView.setText(parent.getContext().getString(R.string.location_map));
-			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
-		}
-		// locations from favorites and auto-complete
-		else if(wrapLocation instanceof FavoriteLocation) {
-			textView.setText(getHighlightedText(l));
-			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-		}
-		else {
-			textView.setText(getHighlightedText(l));
-			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-		}
-
-		imageView.setImageDrawable(getDrawableForLocation(getContext(), favoriteLocationManager.getHome(), wrapLocation, favoriteLocations.contains(wrapLocation)));
+		//imageView.setImageDrawable(getDrawableForLocation(getContext(), homeLocation, wrapLocation, locations.contains(wrapLocation)));
+		imageView.setImageResource(wrapLocation.getDrawable());
 
 		return view;
 	}
 
-	private Spanned getHighlightedText(Location l) {
+	private Spanned getHighlightedText(WrapLocation l) {
 		if(search != null && search.length() >= TYPING_THRESHOLD) {
 			String regex = "(?i)(" + Pattern.quote(search.toString()) + ")";
-			String str = TransportrUtils.getFullLocName(l).replaceAll(regex, "<b>$1</b>");
+			String str = l.getFullName().replaceAll(regex, "<b>$1</b>");
 			return Html.fromHtml(str);
 		} else {
-			return Html.fromHtml(TransportrUtils.getFullLocName(l));
+			return Html.fromHtml(l.getFullName());
 		}
 	}
 
@@ -163,7 +166,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 			filter = new SuggestLocationsFilter() {
 				@Override
 				protected FilterResults performFiltering(CharSequence charSequence) {
-					return super.performFiltering(charSequence, favoriteLocations, suggestedLocations);
+					return super.performFiltering(charSequence, locations, suggestedLocations);
 				}
 
 				@Override
@@ -190,47 +193,6 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 		}
 	}
 
-	private void addFavoriteLocationsToDropDown() {
-		addAll(favoriteLocations);
-	}
-
-	private List<WrapLocation> getFavoriteLocations() {
-		WrapLocation home = null;
-		if (includeHome) {
-			Location home_loc = favoriteLocationManager.getHome();
-			if (home_loc == null) {
-				home = new WrapLocation(HOME);
-			} else {
-				home = new WrapLocation(home_loc, HOME);
-			}
-			favoriteLocations.add(home);
-		}
-		if (includeGps) {
-			favoriteLocations.add(new WrapLocation(GPS));
-		}
-		if (includeFavs) {
-			List<WrapLocation> tmpList = favoriteLocationManager.getLocations(sort);
-			if (tmpList == null) {
-				favoriteLocationManager.addOnFavoriteLocationsLoadedListener(this);
-			} else {
-				if (includeHome) tmpList.remove(new WrapLocation(home.getLocation()));
-				favoriteLocations.addAll(tmpList);
-			}
-		}
-		return favoriteLocations;
-	}
-
-	@Override
-	public void onFavoriteLocationsLoaded() {
-		resetFavoriteLocations();
-		resetDropDownLocations();
-	}
-
-	private void resetFavoriteLocations() {
-		favoriteLocations.clear();
-		getFavoriteLocations();
-	}
-
 	void resetSearchTerm() {
 		search = null;
 		// when we are clearing the search term, there is no need to keep its results around
@@ -241,19 +203,20 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable, 
 
 	void resetDropDownLocations() {
 		clear();
-		addFavoriteLocationsToDropDown();
+		addAll(locations);
 	}
 
 	void reset() {
 		resetSearchTerm();
-		resetFavoriteLocations();
+		updateLocations();
 		resetDropDownLocations();
 	}
 
 	void setSort(FavLocationType favLocationType) {
+		// TODO
 		sort = favLocationType;
-		resetFavoriteLocations();
-		addFavoriteLocationsToDropDown();
+		updateLocations();
+		resetDropDownLocations();
 	}
 
 }

@@ -55,8 +55,6 @@ import java.util.List;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TripsActivity;
-import de.grobox.liberario.data.LocationDb;
-import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.fragments.ProductDialogFragment.OnProductsChangedListener;
 import de.grobox.liberario.locations.AmbiguousLocationActivity;
 import de.grobox.liberario.locations.LocationGpsView;
@@ -69,7 +67,6 @@ import de.grobox.liberario.tasks.AsyncQueryTripsTask.TripHandler;
 import de.grobox.liberario.ui.TimeAndDateView;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
@@ -80,10 +77,9 @@ import static android.view.View.VISIBLE;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
 import static de.grobox.liberario.activities.MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS;
-import static de.grobox.liberario.data.FavoritesDb.updateFavoriteTrip;
-import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.FROM;
-import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.TO;
-import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.VIA;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.TO;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.VIA;
 import static de.grobox.liberario.settings.Preferences.SHOW_ADV_DIRECTIONS;
 import static de.grobox.liberario.utils.TransportrUtils.fixToolbarIcon;
 import static de.grobox.liberario.utils.TransportrUtils.getButtonIconColor;
@@ -125,14 +121,14 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			@Override
 			public void deactivateGPS() { }
 			@Override
-			public void onLocationChanged(Location location) {
+			public void onLocationChanged(WrapLocation location) {
 				if(pd != null) {
 					pd.dismiss();
 				}
 
 				// query for trips if user pressed search already and we just have been waiting for the location
 				if(mAfterGpsTask != null) {
-					mAfterGpsTask.setFrom(location);
+					mAfterGpsTask.setFrom(location.getLocation());
 					mAfterGpsTask.execute();
 				}
 			}
@@ -337,16 +333,16 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			return;
 		}
 
-		if(ui.to.isChangingHome()) {
-			// we are currently in a state of changing home in the to field, a search is not possible
-			return;
-		}
+//		if(ui.to.isChangingHome()) {
+//			// we are currently in a state of changing home in the to field, a search is not possible
+//			return;
+//		}
 
 		AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(getActivity(), this);
 
 		// check and set to location
 		if(checkLocation(ui.to)) {
-			query_trips.setTo(ui.to.getLocation());
+//			query_trips.setTo(ui.to.getLocation());
 		} else {
 			Toast.makeText(getActivity(), getResources().getString(R.string.error_invalid_to), LENGTH_SHORT).show();
 			return;
@@ -354,13 +350,13 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 		// check and set via location
 		if(checkLocation(ui.via)) {
-			query_trips.setVia(ui.via.getLocation());
+//			query_trips.setVia(ui.via.getLocation());
 		}
 
 		// check and set from location
 		if(ui.from.isSearching()) {
 			if(ui.from.getLocation() != null) {
-				query_trips.setFrom(ui.from.getLocation());
+//				query_trips.setFrom(ui.from.getLocation());
 			} else {
 				mAfterGpsTask = query_trips;
 
@@ -379,7 +375,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			}
 		} else {
 			if(checkLocation(ui.from)) {
-				query_trips.setFrom(ui.from.getLocation());
+//				query_trips.setFrom(ui.from.getLocation());
 			} else {
 				Toast.makeText(getActivity(), getString(R.string.error_invalid_from), LENGTH_SHORT).show();
 				return;
@@ -387,7 +383,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 
 		// remember trip
-		updateFavoriteTrip(getActivity(), new FavoriteTripItem(ui.from.getLocation(), ui.via.getLocation(), ui.to.getLocation()));
+//		updateFavoriteTrip(getActivity(), new FavoriteTripItem(ui.from.getLocation(), ui.via.getLocation(), ui.to.getLocation()));
 
 		// set date
 		query_trips.setDate(ui.date.getDate());
@@ -437,62 +433,62 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	}
 
 	private void presetFromTo(WrapLocation wfrom, WrapLocation wvia, WrapLocation wto, Date date) {
-
-		Location from, via, to;
-
-		// unwrap wfrom
-		if(wfrom != null) {
-			from = wfrom.getLocation();
-			if(wfrom.getType() == WrapLocation.WrapType.GPS) {
-				activateGPS();
-				from = null;
-			}
-		} else {
-			from = null;
-		}
-
-
-		// handle from-location
-		if(ui.from != null && from != null) {
-			ui.from.setLocation(from);
-		}
-
-		// unwrap wvia
-		if(wvia != null) {
-			via = wvia.getLocation();
-		} else {
-			via = null;
-		}
-
-		// handle via-location
-		if(ui.via != null) {
-			ui.via.setLocation(via);
-			if(via != null && ui.products.getVisibility() == GONE) {
-				// if there's a via location, make sure to show it in the UI
-				showMore(true);
-			}
-		}
-
-		// unwrap wto
-		if(wto != null) {
-			to = wto.getLocation();
-			if(wto.getType() == WrapLocation.WrapType.HOME){
-				to = null;
-				ui.to.setWrapLocation(wto);
-			}
-		} else {
-			to = null;
-		}
-
-		// handle to-location
-		if(ui.to != null && to != null) {
-			ui.to.setLocation(to);
-		}
-
-		// handle date
-		if (date != null) {
-			ui.date.setDate(date);
-		}
+//
+//		Location from, via, to;
+//
+//		// unwrap wfrom
+//		if(wfrom != null) {
+//			from = wfrom.getLocation();
+//			if(wfrom.getWrapType() == WrapLocation.WrapType.GPS) {
+//				activateGPS();
+//				from = null;
+//			}
+//		} else {
+//			from = null;
+//		}
+//
+//
+//		// handle from-location
+//		if(ui.from != null && from != null) {
+//			ui.from.setLocation(from);
+//		}
+//
+//		// unwrap wvia
+//		if(wvia != null) {
+//			via = wvia.getLocation();
+//		} else {
+//			via = null;
+//		}
+//
+//		// handle via-location
+//		if(ui.via != null) {
+//			ui.via.setLocation(via);
+//			if(via != null && ui.products.getVisibility() == GONE) {
+//				// if there's a via location, make sure to show it in the UI
+//				showMore(true);
+//			}
+//		}
+//
+//		// unwrap wto
+//		if(wto != null) {
+//			to = wto.getLocation();
+//			if(wto.getWrapType() == WrapLocation.WrapType.HOME){
+//				to = null;
+//				ui.to.setWrapLocation(wto);
+//			}
+//		} else {
+//			to = null;
+//		}
+//
+//		// handle to-location
+//		if(ui.to != null && to != null) {
+//			ui.to.setLocation(to);
+//		}
+//
+//		// handle date
+//		if (date != null) {
+//			ui.date.setDate(date);
+//		}
 	}
 
 	private void searchFromTo(WrapLocation from, WrapLocation via, WrapLocation to, Date date) {
@@ -518,13 +514,13 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	}
 
 	private Boolean checkLocation(LocationView loc_view) {
-		Location loc = loc_view.getLocation();
+		Location loc = null; // loc_view.getLocation();
 
 		if(loc == null) {
 			// no location was selected by user
 			if(loc_view.getText() != null && loc_view.getText().length() > 0) {
 				// no location selected, but text entered. So let's try create locations from text
-				loc_view.setLocation(new Location(LocationType.ANY, null, loc_view.getText(), loc_view.getText()));
+//				loc_view.setLocation(new Location(LocationType.ANY, null, loc_view.getText(), loc_view.getText()));
 
 				return true;
 			}
@@ -532,7 +528,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 		// we have a location, so make it a favorite
 		else {
-			LocationDb.updateFavLocation(getActivity(), loc, loc_view.getType());
+//			LocationDb.updateFavLocation(getActivity(), loc, loc_view.getType());
 		}
 
 		return true;
@@ -600,14 +596,14 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				// swap location objects
-				Location tmp = ui.to.getLocation();
+//				Location tmp = ui.to.getLocation();
 				if(!ui.from.isSearching()) {
 					ui.to.setLocation(ui.from.getLocation(), getDrawableForLocation(getContext(), ui.from.getLocation()));
 				} else {
 					// TODO: GPS currently only supports from location, so don't swap it for now
 					ui.to.clearLocation();
 				}
-				ui.from.setLocation(tmp, getDrawableForLocation(getContext(), tmp));
+//				ui.from.setLocation(tmp, getDrawableForLocation(getContext(), tmp));
 
 				ui.from.clearAnimation();
 				ui.to.clearAnimation();

@@ -3,6 +3,7 @@ package de.grobox.liberario.data;
 
 import android.arch.persistence.room.TypeConverter;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -11,7 +12,7 @@ import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Product;
 
-class Converters {
+public class Converters {
 
 	@TypeConverter
 	public static String fromNetworkId(NetworkId networkId) {
@@ -53,6 +54,16 @@ class Converters {
 	public static Set<Product> toProducts(@Nullable String codes) {
 		if (codes == null) return null;
 		return Product.fromCodes(codes.toCharArray());
+	}
+
+	@TypeConverter
+	public static Date toDate(Long value) {
+		return value == null ? null : new Date(value);
+	}
+
+	@TypeConverter
+	public static Long fromDate(Date date) {
+		return date == null ? null : date.getTime();
 	}
 
 }

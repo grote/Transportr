@@ -17,67 +17,87 @@
 
 package de.grobox.liberario.locations;
 
+import android.arch.persistence.room.Ignore;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 
+import com.google.common.base.Strings;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import de.grobox.liberario.R;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.LocationType;
+import de.schildbach.pte.dto.Product;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.NORMAL;
 import static de.schildbach.pte.dto.LocationType.ANY;
+import static de.schildbach.pte.dto.LocationType.COORD;
 
 public class WrapLocation implements Serializable {
 
 	public enum WrapType { NORMAL, HOME, GPS, MAP }
 
-	private Location loc;
-	private WrapType type;
+	@Ignore
+	private WrapType wrapType;
 
-	public WrapLocation(Location loc) {
-		this(loc, NORMAL);
-	}
+	public LocationType type;
+	public @Nullable String id;
+	public int lat, lon;
+	public @Nullable String place;
+	public @Nullable String name;
+	public @Nullable Set<Product> products;
 
-	public WrapLocation(WrapType type) {
-		this(new Location(ANY, null), type);
-		checkArgument(type != NORMAL, "Type can't be normal");
-	}
-
-	public WrapLocation(Location loc, WrapType type) {
-		this.loc = loc;
+	public WrapLocation(LocationType type, @Nullable String id, int lat, int lon, @Nullable String place, @Nullable String name, @Nullable Set<Product> products) {
+		this.wrapType = NORMAL;
 		this.type = type;
+		this.id = id;
+		this.lat = lat;
+		this.lon = lon;
+		this.place = place;
+		this.name = name;
+		this.products = products;
+	}
+
+	public WrapLocation(Location l) {
+		this(l.type, l.id, l.lat, l.lon, l.place, l.name, l.products);
+	}
+
+	public WrapLocation(WrapType wrapType) {
+		checkArgument(wrapType != NORMAL, "Type can't be normal");
+		this.wrapType = wrapType;
+		this.type = ANY;
 	}
 
 	public WrapLocation(LatLng latLng) {
-		this.loc = Location.coord((int) (latLng.getLatitude() * 1E6), (int) (latLng.getLongitude() * 1E6));
-		this.type = NORMAL;
+		this.wrapType = NORMAL;
+		this.type = COORD;
+		this.lat = (int) (latLng.getLatitude() * 1E6);
+		this.lon = (int) (latLng.getLongitude() * 1E6);
+	}
+
+	public WrapType getWrapType() {
+		return wrapType;
 	}
 
 	public Location getLocation() {
-		return loc;
+		if (type == LocationType.ANY && id != null) {
+			return new Location(type, null, lat, lon, place, name, products);
+		}
+		return new Location(type, id, lat, lon, place, name, products);
 	}
 
 	@Nullable
 	public String getId() {
-		if (loc == null) return null;
-		return loc.id;
-	}
-
-	public WrapType getType() {
-		return type;
-	}
-
-	@Nullable
-	public String getName() {
-		if (loc == null) return null;
-		return TransportrUtils.getLocationName(loc);
+		return id;
 	}
 
 	public boolean hasId() {
-		return loc != null && loc.hasId();
+		return !Strings.isNullOrEmpty(id);
 	}
 
 	@Override
@@ -95,10 +115,54 @@ public class WrapLocation implements Serializable {
 		return false;
 	}
 
+	@DrawableRes
+	public int getDrawable() {
+		switch (wrapType) {
+			case HOME:
+				return R.drawable.ic_action_home;
+			case GPS:
+				return R.drawable.ic_gps;
+			case MAP:
+				return R.drawable.ic_action_location_map;
+			case NORMAL:
+				switch (type) {
+					case ADDRESS:
+						return R.drawable.ic_location_address;
+					case POI:
+						return R.drawable.ic_action_about;
+					case STATION:
+						return R.drawable.ic_tab_stations;
+					case COORD:
+						return R.drawable.ic_gps;
+				}
+		}
+		return R.drawable.ic_location;
+	}
+
+	public String getName() {
+		// FIXME improve
+		if (type.equals(LocationType.COORD)) {
+			return TransportrUtils.getCoordinationName(getLocation());
+		} else if (getLocation().uniqueShortName() != null) {
+			return getLocation().uniqueShortName();
+		} else if (hasId()) {
+			return id;
+		} else {
+			return "";
+		}
+	}
+
+	public String getFullName() {
+		if (name != null) {
+			return place == null ? name : name + ", " + place;
+		} else {
+			return getName();
+		}
+	}
+
 	@Override
 	public String toString() {
-		if(loc == null) return "";
-		return TransportrUtils.getFullLocName(getLocation());
+		return getFullName();
 	}
 
 }

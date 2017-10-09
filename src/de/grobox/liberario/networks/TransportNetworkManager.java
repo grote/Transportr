@@ -17,17 +17,14 @@
 
 package de.grobox.liberario.networks;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.Nullable;
-import android.support.annotation.UiThread;
 import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
-import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.settings.SettingsManager;
 import de.schildbach.pte.NetworkId;
 
@@ -36,14 +33,16 @@ public class TransportNetworkManager {
 
 	private final SettingsManager settingsManager;
 
-	private @Nullable TransportNetwork transportNetwork, transportNetwork2, transportNetwork3;
-	private @Nullable List<FavoriteTripItem> favoriteTrips;
-	private List<TransportNetworkChangedListener> transportNetworkChangedListeners = new ArrayList<>();
+	private MutableLiveData<TransportNetwork> transportNetwork = new MutableLiveData<>();
+	private @Nullable TransportNetwork transportNetwork2, transportNetwork3;
 
 	@Inject
 	public TransportNetworkManager(SettingsManager settingsManager) {
 		this.settingsManager = settingsManager;
-		transportNetwork = loadTransportNetwork(1);
+
+		TransportNetwork network = loadTransportNetwork(1);
+		if (network != null) transportNetwork.setValue(network);
+
 		transportNetwork2 = loadTransportNetwork(2);
 		transportNetwork3 = loadTransportNetwork(3);
 	}
@@ -60,15 +59,14 @@ public class TransportNetworkManager {
 		return null;
 	}
 
-	@Nullable
-	public TransportNetwork getTransportNetwork() {
-		return getTransportNetwork(0);
+	public LiveData<TransportNetwork> getTransportNetwork() {
+		return transportNetwork;
 	}
 
 	@Nullable
 	public TransportNetwork getTransportNetwork(int i) {
 		if (i == 0 || i == 1) {
-			return transportNetwork;
+			return transportNetwork.getValue();
 		} else if (i == 2) {
 			return transportNetwork2;
 		} else if (i == 3) {
@@ -82,7 +80,7 @@ public class TransportNetworkManager {
 		Log.e("TEST", "SET TRANSPORT NETWORK: " + transportNetwork.getId().name());
 
 		// check if same network was selected again
-		if (this.transportNetwork != null && this.transportNetwork.equals(transportNetwork)) return;
+		if (this.transportNetwork != null && transportNetwork.equals(this.transportNetwork.getValue())) return;
 		settingsManager.setNetworkId(transportNetwork.getId());
 
 		// move 2nd network to 3rd if existing and not re-selected
@@ -90,23 +88,8 @@ public class TransportNetworkManager {
 			this.transportNetwork3 = this.transportNetwork2;
 		}
 		// swap remaining networks
-		this.transportNetwork2 = this.transportNetwork;
-		this.transportNetwork = transportNetwork;
-
-		// inform listeners
-		for (TransportNetworkChangedListener l : transportNetworkChangedListeners) {
-			if (l != null) l.onTransportNetworkChanged(transportNetwork);
-		}
-	}
-
-	@UiThread
-	public void addOnTransportNetworkChangedListener(TransportNetworkChangedListener listener) {
-		transportNetworkChangedListeners.add(listener);
-	}
-
-	@UiThread
-	public void removeOnTransportNetworkChangedListener(TransportNetworkChangedListener listener) {
-		transportNetworkChangedListeners.remove(listener);
+		this.transportNetwork2 = this.transportNetwork.getValue();
+		this.transportNetwork.setValue(transportNetwork);
 	}
 
 	public interface TransportNetworkChangedListener {

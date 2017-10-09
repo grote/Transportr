@@ -49,7 +49,7 @@ class MoreTripsLoader extends AsyncTaskLoader<QueryTripsResult> {
 	@Nullable
 	@Override
 	public QueryTripsResult loadInBackground() {
-		TransportNetwork network = manager.getTransportNetwork();
+		TransportNetwork network = manager.getTransportNetwork().getValue();
 		if (network == null) return null;
 
 		if (queryTripsContext == null) return null;

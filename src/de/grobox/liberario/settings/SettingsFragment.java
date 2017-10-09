@@ -63,7 +63,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 
 		// Fill in current transport network if available
 		network_pref = findPreference("pref_key_network");
-		TransportNetwork network = manager.getTransportNetwork();
+		TransportNetwork network = manager.getTransportNetwork().getValue();
 		if (network != null) onTransportNetworkChanged(network);
 
 		network_pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -135,7 +135,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		if (requestCode == REQUEST_NETWORK_PROVIDER_CHANGE && resultCode == RESULT_OK) {
-			TransportNetwork network = manager.getTransportNetwork();
+			TransportNetwork network = manager.getTransportNetwork().getValue();
 			if (network != null) onTransportNetworkChanged(network);
 		}
 	}

@@ -127,7 +127,7 @@ abstract class DrawerActivity extends TransportrActivity implements TransportNet
 	}
 
 	private void addAccounts() {
-		TransportNetwork network = manager.getTransportNetwork();
+		TransportNetwork network = manager.getTransportNetwork().getValue();
 		if (network != null) {
 			ProfileDrawerItem item1 = new ProfileDrawerItem()
 					.withName(network.getName(this))
@@ -212,7 +212,7 @@ abstract class DrawerActivity extends TransportrActivity implements TransportNet
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == REQUEST_NETWORK_PROVIDER_CHANGE && resultCode == RESULT_OK) {
-			TransportNetwork network = manager.getTransportNetwork();
+			TransportNetwork network = manager.getTransportNetwork().getValue();
 			if (network != null) onTransportNetworkChanged(network);
 		}
 	}

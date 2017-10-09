@@ -7,6 +7,7 @@ public interface Constants {
 	String NOW = "now";
 	String WRAP_LOCATION = "WrapLocation";
 	String LOCATION = "Location";
+	String FAV_TRIP_UID = "favTripUid";
 	String FROM = "from";
 	String VIA = "via";
 	String TO = "to";

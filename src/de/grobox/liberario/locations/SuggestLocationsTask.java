@@ -30,7 +30,6 @@ class SuggestLocationsTask extends AsyncTask<String, Void, SuggestLocationsResul
 		try {
 			return np.suggestLocations(search);
 		} catch(Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}

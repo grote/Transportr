@@ -18,7 +18,6 @@
 package de.grobox.liberario.favorites.trips;
 
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +25,6 @@ import de.grobox.liberario.R;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
 
 class FavoriteTripViewHolder extends AbstractFavoritesViewHolder {
 
@@ -37,10 +35,10 @@ class FavoriteTripViewHolder extends AbstractFavoritesViewHolder {
 
 	FavoriteTripViewHolder(View v) {
 		super(v);
-		from = (TextView) v.findViewById(R.id.from);
-		via = (TextView) v.findViewById(R.id.via);
-		to = (TextView) v.findViewById(R.id.to);
-		viaIcon = (ImageView) v.findViewById(R.id.viaIcon);
+		from = v.findViewById(R.id.from);
+		via = v.findViewById(R.id.via);
+		to = v.findViewById(R.id.to);
+		viaIcon = v.findViewById(R.id.viaIcon);
 	}
 
 	@Override
@@ -53,11 +51,11 @@ class FavoriteTripViewHolder extends AbstractFavoritesViewHolder {
 			icon.setImageResource(R.drawable.ic_time);
 		}
 
-		from.setText(getLocationName(item.getFrom()));
-		to.setText(getLocationName(item.getTo()));
+		from.setText(item.getFrom().getName());
+		to.setText(item.getTo().getName());
 
 		if(item.getVia() != null) {
-			via.setText(getLocationName(item.getVia()));
+			via.setText(item.getVia().getName());
 			via.setVisibility(VISIBLE);
 			viaIcon.setVisibility(VISIBLE);
 		} else {
@@ -66,12 +64,7 @@ class FavoriteTripViewHolder extends AbstractFavoritesViewHolder {
 		}
 
 		final FavoriteTripPopupMenu favPopup = new FavoriteTripPopupMenu(overflow.getContext(), overflow, item, listener);
-		overflow.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				favPopup.show();
-			}
-		});
+		overflow.setOnClickListener(v -> favPopup.show());
 	}
 
 }

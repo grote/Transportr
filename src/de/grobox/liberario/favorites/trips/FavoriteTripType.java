@@ -17,7 +17,7 @@
 
 package de.grobox.liberario.favorites.trips;
 
-enum FavoriteTripType {
+public enum FavoriteTripType {
 
 	HOME(0),
 	WORK(1),

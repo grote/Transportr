@@ -8,16 +8,18 @@ import android.support.annotation.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import de.grobox.liberario.locations.WrapLocation;
 import de.schildbach.pte.dto.Location;
 
 import static de.grobox.liberario.data.DbHelper.getLocation;
 import static de.grobox.liberario.settings.Preferences.getNetwork;
 
+@Deprecated
 @ParametersAreNonnullByDefault
 public class SpecialLocationDb {
 
 	@Nullable
-	private static Location getSpecialLocation(Context context, String table) {
+	private static WrapLocation getSpecialLocation(Context context, String table) {
 		Location location = null;
 
 		String network = getNetwork(context);
@@ -43,7 +45,8 @@ public class SpecialLocationDb {
 		c.close();
 		db.close();
 
-		return location;
+		if (location == null) return null;
+		return new WrapLocation(location);
 	}
 
 	private static void setSpecialLocation(Context context, String table, Location location) {
@@ -84,7 +87,7 @@ public class SpecialLocationDb {
 	}
 
 	@Nullable
-	public static Location getHome(Context context) {
+	public static WrapLocation getHome(Context context) {
 		return getSpecialLocation(context, DbHelper.TABLE_HOME_LOCS);
 	}
 
@@ -93,12 +96,12 @@ public class SpecialLocationDb {
 	}
 
 	@Nullable
-	public static Location getWork(Context context) {
+	public static WrapLocation getWork(Context context) {
 		return getSpecialLocation(context, DbHelper.TABLE_WORK_LOCS);
 	}
 
-	public static void setWork(Context context, Location home) {
-		setSpecialLocation(context, DbHelper.TABLE_WORK_LOCS, home);
+	public static void setWork(Context context, WrapLocation home) {
+		setSpecialLocation(context, DbHelper.TABLE_WORK_LOCS, home.getLocation());
 	}
 
 }

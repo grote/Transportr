@@ -23,7 +23,6 @@ import android.view.View;
 
 import de.grobox.liberario.R;
 
-import static de.grobox.liberario.data.FavoritesDb.toggleFavoriteTrip;
 import static de.grobox.liberario.utils.TransportrUtils.setFavState;
 
 public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
@@ -42,14 +41,10 @@ public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_mark_favorite:
-				toggleFavoriteTrip(context, trip);
-				trip.setFavorite(!trip.isFavorite());
-
-				setFavState(context, item, trip.isFavorite(), false);
-
 				if (listener != null) {
-					listener.onFavoriteChanged(trip);
+					listener.onFavoriteChanged(trip, !trip.isFavorite());
 				}
+				setFavState(context, item, trip.isFavorite(), false);
 				return true;
 			default:
 				return super.onMenuItemClick(item);

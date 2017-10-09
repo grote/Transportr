@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.favorites.trips;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -33,20 +34,17 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
-import javax.inject.Inject;
-
 import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportrApplication;
-import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.locations.LocationView;
+import de.grobox.liberario.locations.LocationsViewModel;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.settings.Preferences;
-import de.schildbach.pte.dto.Location;
 
 abstract class SpecialLocationFragment extends DialogFragment implements LocationView.LocationViewListener {
 
-	@Inject FavoriteLocationManager favoriteLocationManager;
+	protected LocationsViewModel viewModel;
 	protected @Nullable FavoriteTripListener listener;
 
 	private LocationView loc;
@@ -73,9 +71,20 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 		View v = inflater.inflate(R.layout.fragment_special_location, container);
 
 		// Initialize LocationView
-		loc = (LocationView) v.findViewById(R.id.location_input);
+		loc = v.findViewById(R.id.location_input);
 		loc.setHint(getHint());
 		loc.setLocationViewListener(this);
+
+		// Get view model and observe data
+		viewModel = ViewModelProviders.of(getActivity()).get(LocationsViewModel.class);
+		viewModel.getTransportNetwork().observe(this, transportNetwork -> {
+			if (transportNetwork != null) loc.setTransportNetwork(transportNetwork);
+		});
+		viewModel.getHome().observe(this, homeLocation -> loc.setHomeLocation(homeLocation));
+		viewModel.getLocations().observe(this, favoriteLocations -> {
+			if (favoriteLocations == null) return;
+			loc.setFavoriteLocations(favoriteLocations);
+		});
 
 		return v;
 	}
@@ -106,11 +115,11 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 
 	@Override
 	public void onLocationItemClick(WrapLocation loc) {
-		onSpecialLocationSet(loc.getLocation());
+		onSpecialLocationSet(loc);
 		getDialog().cancel();
 	}
 
-	protected abstract void onSpecialLocationSet(Location location);
+	protected abstract void onSpecialLocationSet(WrapLocation location);
 
 	@Override
 	public void onLocationCleared() {

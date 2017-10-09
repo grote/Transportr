@@ -26,14 +26,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.grobox.liberario.favorites.locations.FavoriteLocation;
+import de.grobox.liberario.FavoriteLocation;
 import de.grobox.liberario.locations.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
-import static de.grobox.liberario.settings.Preferences.getNetwork;
 import static de.grobox.liberario.data.DbHelper.getLocation;
+import static de.grobox.liberario.settings.Preferences.getNetwork;
 
+@Deprecated
 public class LocationDb {
 
 	public static List<FavoriteLocation> getFavLocationList(Context context) {

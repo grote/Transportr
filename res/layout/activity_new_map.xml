@@ -39,6 +39,7 @@
 			android:contentDescription="@string/onboarding_drawer_title"
 			android:focusable="true"
 			android:scaleType="center"
+			android:src="@drawable/ic_menu_black"
 			app:srcCompat="@drawable/ic_menu_black"/>
 
 		<de.grobox.liberario.locations.LocationView

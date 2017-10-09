@@ -33,7 +33,9 @@ dependencies {
 	compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
 	def archVersion = '1.0.0-beta2'
+	compile "android.arch.lifecycle:extensions:$archVersion"
 	compile "android.arch.persistence.room:runtime:$archVersion"
+	compile "android.arch.lifecycle:common-java8:$archVersion"
 	annotationProcessor "android.arch.persistence.room:compiler:$archVersion"
 
 	compile 'com.github.omadahealth:swipy:1.2.3'
@@ -134,8 +136,12 @@ dependencyVerification {
 			'com.google.errorprone:error_prone_annotations:cb4cfad870bf563a07199f3ebea5763f0dec440fcda0b318640b1feaa788656b',
 			'org.codehaus.mojo:animal-sniffer-annotations:2068320bd6bad744c3673ab048f67e30bef8f518996fa380033556600669905d',
 			'android.arch.lifecycle:runtime:e4e34e5d02bd102e8d39ddbc29f9ead8a15a61e367993d02238196ac48509ad8',
-			'android.arch.lifecycle:common:86bf301a20ad0cd0a391e22a52e6fbf90575c096ff83233fa9fd0d52b3219121',
+			'android.arch.core:runtime:e170b5c29bedec5a75e2b726bce62e0ea08a713d8a5a7aaed16f570d8c4ee721',
 			'android.arch.core:common:5192934cd73df32e2c15722ed7fc488dde90baaec9ae030010dd1a80fb4e74e1',
+			'android.arch.persistence.room:common:361fd6e2a7d52fcbcb08f5489342b0ed7e0ce1dfcaf5c4db237ae6861487bdcc',
+			'android.arch.persistence:db-framework:a48db6798516c6c587d1ebf2d4f09c40965b10e9019c6e179ce924f3408eb9e5',
+			'android.arch.persistence:db:e42736d96ba0248062dba8608449158023dbeb99580cf41dd2f11c9a6cec9996',
+			'android.arch.lifecycle:common:0390ab9ed44d2bf2c368542d714986cfcf19faec0ad7ccbe0f25c2f86f7aac77',
 			'com.squareup.okio:okio:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
 	]
 }
@@ -178,6 +184,11 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
 			testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt', 'proguard-test.txt'
 		}
+	}
+
+	compileOptions {
+		targetCompatibility 1.8
+		sourceCompatibility 1.8
 	}
 
 	dexOptions {
@@ -241,7 +252,6 @@ android {
 
 	lintOptions {
 		checkReleaseBuilds false
-		disable 'MissingTranslation', 'InvalidPackage'
+		disable 'MissingTranslation', 'InvalidPackage', 'VectorDrawableCompat'
 	}
-
 }

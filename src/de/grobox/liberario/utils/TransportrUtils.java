@@ -44,7 +44,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -52,11 +51,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.activities.MapActivity;
-import de.grobox.liberario.data.SpecialLocationDb;
+import de.grobox.liberario.data.locations.HomeLocation;
 import de.grobox.liberario.fragments.DeparturesFragment;
 import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
-import de.grobox.liberario.favorites.locations.FavoriteLocation;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.trips.DirectionsActivity;
@@ -74,7 +72,6 @@ import de.schildbach.pte.dto.Trip.Leg;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-import static de.grobox.liberario.data.LocationDb.getFavLocationList;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
@@ -377,15 +374,15 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void presetDirections(Context context, @Nullable Location from, @Nullable Location via, @Nullable Location to) {
-		findDirections(context, new WrapLocation(from), new WrapLocation(via), new WrapLocation(to), null, false);
+	static public void presetDirections(Context context, WrapLocation from, @Nullable WrapLocation via, WrapLocation to) {
+		findDirections(context, from, via, to, null, false);
 	}
 
-	static public void findDirections(Context context, @Nullable Location from, @Nullable Location via, @Nullable Location to, @Nullable Date date) {
-		findDirections(context, new WrapLocation(from), new WrapLocation(via), new WrapLocation(to), date, true);
+	static public void findDirections(Context context, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, @Nullable Date date) {
+		findDirections(context, from, via, to, date, true);
 	}
 
-	static public void findDirections(Context context, @Nullable  Location from, @Nullable Location via, @Nullable Location to) {
+	static public void findDirections(Context context, WrapLocation from, @Nullable WrapLocation via, WrapLocation to) {
 		findDirections(context, from, via, to, null);
 	}
 
@@ -593,31 +590,30 @@ public class TransportrUtils {
 		return getDrawableForLocation(context, null, w, is_fav);
 	}
 
-	static public Drawable getDrawableForLocation(Context context, @Nullable Location home, WrapLocation w, boolean is_fav) {
+	static public Drawable getDrawableForLocation(Context context, @Nullable HomeLocation home, WrapLocation w, boolean is_fav) {
 		if(w == null || w.getLocation() == null) return null;
-		if (home == null) home = SpecialLocationDb.getHome(context);
-		Location l = w.getLocation();
+//		if (home == null) home = SpecialLocationDb.getHome(context);
 
-		if(w.getType() == HOME || l.equals(home)) {
+		if(w.getWrapType() == HOME || w.equals(home)) {
 			return getTintedDrawable(context, R.drawable.ic_action_home);
 		}
-		else if(w.getType() == GPS) {
+		else if(w.getWrapType() == GPS) {
 			return getTintedDrawable(context, R.drawable.ic_gps);
 		}
-		else if(w.getType() == MAP) {
+		else if(w.getWrapType() == MAP) {
 			return getTintedDrawable(context, R.drawable.ic_action_location_map);
 		}
 		else if(is_fav) {
 			return getTintedDrawable(context, R.drawable.ic_action_star);
 		}
 		else {
-			if(l.type.equals(LocationType.ADDRESS)) {
+			if(w.type.equals(LocationType.ADDRESS)) {
 				return getTintedDrawable(context, R.drawable.ic_location_address);
-			} else if(l.type.equals(LocationType.POI)) {
+			} else if(w.type.equals(LocationType.POI)) {
 				return getTintedDrawable(context, R.drawable.ic_action_about);
-			} else if(l.type.equals(LocationType.STATION)) {
+			} else if(w.type.equals(LocationType.STATION)) {
 				return getTintedDrawable(context, R.drawable.ic_tab_stations);
-			} else if(l.type.equals(LocationType.COORD)) {
+			} else if(w.type.equals(LocationType.COORD)) {
 				return getTintedDrawable(context, R.drawable.ic_gps);
 			} else {
 				return null;
@@ -625,13 +621,10 @@ public class TransportrUtils {
 		}
 	}
 
-	static public Drawable getDrawableForLocation(Context context, @Nullable Location l) {
+	static public Drawable getDrawableForLocation(Context context, @Nullable WrapLocation l) {
 		if(l == null) return getTintedDrawable(context, R.drawable.ic_location);
 
-		List<WrapLocation> fav_list = getFavLocationList(context, FavoriteLocation.FavLocationType.FROM);
-		WrapLocation w = new WrapLocation(l);
-
-		return getDrawableForLocation(context, w, fav_list.contains(w));
+		return getTintedDrawable(context, l.getDrawable());
 	}
 
 

@@ -48,7 +48,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 	private LocationManager locationManager;
 	private LocationGpsListener gpsListener;
 	private volatile boolean searching = false;
-	private Location gps_location = null;
+	private WrapLocation gps_location = null;
 	protected int caller = 0;
 
 	public LocationGpsView(Context context, AttributeSet attrs) {
@@ -61,7 +61,8 @@ public class LocationGpsView extends LocationView implements LocationListener {
 
 	@Override
 	protected LocationAdapter createLocationAdapter(boolean includeHome, boolean includeFavs) {
-		return new LocationAdapter(getContext(), favoriteLocationManager, includeHome, true, includeFavs);
+
+		return new LocationAdapter(getContext(), includeHome, true, includeFavs);
 	}
 
 	@Override
@@ -89,7 +90,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 
 	@Override
 	public void onLocationItemClick(WrapLocation loc, View view) {
-		if(loc.getType() == GPS) {
+		if(loc.getWrapType() == GPS) {
 			// prevent GPS fake name from being shown in the TextView
 			ui.location.setText("");
 
@@ -207,7 +208,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 		return searching;
 	}
 
-	public void onLocationChanged(Location location) {
+	public void onLocationChanged(WrapLocation location) {
 		setLocation(location, TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_gps));
 		if(gpsListener != null) gpsListener.onLocationChanged(location);
 		deactivateGPS();
@@ -228,7 +229,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 			int lon = (int) Math.round(location.getLongitude() * 1E6);
 
 			// create location based on GPS coordinates
-			gps_location = Location.coord(lat, lon);
+			gps_location = new WrapLocation(Location.coord(lat, lon));
 
 			onLocationChanged(gps_location);
 		}
@@ -256,7 +257,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 	public interface LocationGpsListener {
 		void activateGPS();
 		void deactivateGPS();
-		void onLocationChanged(Location location);
+		void onLocationChanged(WrapLocation location);
 	}
 
 }

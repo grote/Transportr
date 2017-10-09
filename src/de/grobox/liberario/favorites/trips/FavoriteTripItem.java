@@ -25,40 +25,38 @@ import java.util.Date;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import de.schildbach.pte.dto.Location;
+import de.grobox.liberario.data.searches.StoredSearch;
+import de.grobox.liberario.locations.WrapLocation;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static de.grobox.liberario.favorites.trips.FavoriteTripType.HOME;
+import static de.grobox.liberario.favorites.trips.FavoriteTripType.TRIP;
+import static de.grobox.liberario.favorites.trips.FavoriteTripType.WORK;
 
 @ParametersAreNonnullByDefault
-public class FavoriteTripItem implements Comparable<FavoriteTripItem> {
+public class FavoriteTripItem extends StoredSearch implements Comparable<FavoriteTripItem> {
 
 	private final FavoriteTripType type;
-	@Nullable
-	private final Location from, via, to;
-	private int count;
-	private Date lastUsed;
-	private boolean favorite;
+	private final @Nullable WrapLocation from, via, to;
 
-	public FavoriteTripItem(Location from, @Nullable Location via, Location to) {
-		this(from, via, to, false);
-	}
-
-	public FavoriteTripItem(Location from, @Nullable Location via, Location to, boolean favorite) {
-		this(from, via, to, 1, new Date(), favorite);
-	}
-
-	public FavoriteTripItem(Location from, @Nullable Location via, Location to, int count, Date lastUsed, boolean favorite) {
-		this.type = FavoriteTripType.TRIP;
+	public FavoriteTripItem(long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to) {
+		this.uid = uid;
+		this.type = TRIP;
 		this.from = from;
 		this.via = via;
 		this.to = to;
-		this.count = count;
-		this.lastUsed = lastUsed;
-		this.favorite = favorite;
 	}
 
-	FavoriteTripItem(FavoriteTripType type, @Nullable Location to) {
-		checkArgument(type == FavoriteTripType.HOME || type == FavoriteTripType.WORK, "This constructor can only be used for HOME and WORK");
+	public FavoriteTripItem(StoredSearch storedSearch, WrapLocation from, @Nullable WrapLocation via, WrapLocation to) {
+		super(storedSearch);
+		this.type = TRIP;
+		this.from = from;
+		this.via = via;
+		this.to = to;
+	}
+
+	public FavoriteTripItem(FavoriteTripType type, @Nullable WrapLocation to) {
+		checkArgument(type == HOME || type == WORK, "This constructor can only be used for HOME and WORK");
 		this.type = type;
 		this.from = null;
 		this.via = null;
@@ -73,44 +71,27 @@ public class FavoriteTripItem implements Comparable<FavoriteTripItem> {
 	}
 
 	@Nullable
-	public Location getFrom() {
+	public WrapLocation getFrom() {
 		return from;
 	}
 
 	@Nullable
-	public Location getVia() {
+	public WrapLocation getVia() {
 		return via;
 	}
 
 	@Nullable
-	public Location getTo() {
+	public WrapLocation getTo() {
 		return to;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public boolean isFavorite() {
-		return favorite;
-	}
-
-	void setFavorite(boolean favorite) {
-		this.favorite = favorite;
-	}
-
-	void use() {
-		count++;
-		lastUsed = new Date();
 	}
 
 	@Override
 	public int compareTo(FavoriteTripItem i) {
 		if (equals(i)) return 0;
-		if (type == FavoriteTripType.HOME) return -1;
-		if (i.type == FavoriteTripType.HOME) return 1;
-		if (type == FavoriteTripType.WORK) return -1;
-		if (i.type == FavoriteTripType.WORK) return 1;
+		if (type == HOME) return -1;
+		if (i.type == HOME) return 1;
+		if (type == WORK) return -1;
+		if (i.type == WORK) return 1;
 		if (favorite && !i.favorite) return -1;
 		if (!favorite && i.favorite) return 1;
 		if (favorite) {

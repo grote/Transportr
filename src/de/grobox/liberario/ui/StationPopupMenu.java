@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.liberario.R;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
@@ -64,12 +65,12 @@ public class StationPopupMenu extends BasePopupMenu {
 				return true;
 			// From Here
 			case R.id.action_from_here:
-				TransportrUtils.presetDirections(context, station, null, null);
+				TransportrUtils.presetDirections(context, new WrapLocation(station), null, null);
 
 				return true;
 			// To Here
 			case R.id.action_to_here:
-				TransportrUtils.presetDirections(context, null, null, station);
+				TransportrUtils.presetDirections(context, null, null, new WrapLocation(station));
 
 				return true;
 			// Show Departures

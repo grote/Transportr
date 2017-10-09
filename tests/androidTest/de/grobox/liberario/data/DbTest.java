@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class DbTest {
 
-	Db db;
+	protected Db db;
 
 	@Before
 	public void createDb() {

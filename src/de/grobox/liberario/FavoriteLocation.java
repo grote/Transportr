@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites.locations;
+package de.grobox.liberario;
 
 import android.support.annotation.NonNull;
 

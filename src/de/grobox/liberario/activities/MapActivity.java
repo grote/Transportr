@@ -67,7 +67,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.grobox.liberario.favorites.locations.FavoriteLocation;
+import de.grobox.liberario.FavoriteLocation;
 import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
 import de.grobox.liberario.networks.TransportNetwork;
@@ -83,6 +83,7 @@ import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 import de.schildbach.pte.dto.Trip.Public;
 
+@Deprecated
 public class MapActivity extends TransportrActivity implements MapEventsReceiver {
 	private MapView map;
 	private Menu menu;
@@ -303,10 +304,10 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				List<FavoriteLocation> favs = LocationDb.getFavLocationList(MapActivity.this);
 				ArrayList<GeoPoint> geoPoints = new ArrayList<>(favs.size());
 				for(FavoriteLocation fav : favs) {
-					Location loc = fav.getLocation();
-					if(loc.hasLocation()) {
-						geoPoints.add(new GeoPoint(loc.getLatAsDouble(), loc.getLonAsDouble()));
-					}
+//					Location loc = fav.getLocation();
+//					if(loc.hasLocation()) {
+//						geoPoints.add(new GeoPoint(loc.getLatAsDouble(), loc.getLonAsDouble()));
+//					}
 				}
 
 				// if two few favourites, get area from network provider
@@ -615,7 +616,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				fromHere.setOnClickListener(new View.OnClickListener() {
 					                            @Override
 					                            public void onClick(View v) {
-						                            TransportrUtils.presetDirections(MapActivity.this, loc, null, null);
+//						                            TransportrUtils.presetDirections(MapActivity.this, loc, null, null);
 					                            }
 				                            }
 				);
@@ -625,7 +626,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				toHere.setOnClickListener(new View.OnClickListener() {
 					                          @Override
 					                          public void onClick(View v) {
-						                          TransportrUtils.presetDirections(MapActivity.this, null, null, loc);
+//						                          TransportrUtils.presetDirections(MapActivity.this, null, null, loc);
 					                          }
 				                          }
 				);
@@ -849,7 +850,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 		private void turnOn() {
 			//noinspection MissingPermission
-			locationManager.addGpsStatusListener(this);
+//			locationManager.addGpsStatusListener(this);
 			myLocationOverlay.enableMyLocation();
 			fabController.show();
 			if(menu != null) {

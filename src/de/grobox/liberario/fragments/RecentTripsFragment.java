@@ -209,26 +209,26 @@ public class RecentTripsFragment extends TransportrListFragment {
 			FavoriteTripItem trip = this.getItem(position);
 
 			// from
-			TextView favFromView = (TextView) v.findViewById(R.id.recentFromView);
-			favFromView.setText(TransportrUtils.getLocationName(trip.getFrom()));
+			TextView favFromView = v.findViewById(R.id.recentFromView);
+			favFromView.setText(trip.getFrom().getName());
 			favFromView.setCompoundDrawables(TransportrUtils.getTintedDrawable(getContext(), favFromView.getCompoundDrawables()[0]), null, null, null);
 
 			// to
-			TextView favToView = (TextView) v.findViewById(R.id.recentToView);
-			favToView.setText(TransportrUtils.getLocationName(trip.getTo()));
+			TextView favToView = v.findViewById(R.id.recentToView);
+			favToView.setText(trip.getTo().getName());
 			favToView.setCompoundDrawables(TransportrUtils.getTintedDrawable(getContext(), favToView.getCompoundDrawables()[0]), null, null, null);
 
 			// via
-			TextView favViaView = (TextView) v.findViewById(R.id.recentViaView);
+			TextView favViaView = v.findViewById(R.id.recentViaView);
 			if(trip.getVia() != null) {
-				favViaView.setText(TransportrUtils.getLocationName(trip.getVia()));
+				favViaView.setText(trip.getVia().getName());
 				favViaView.setCompoundDrawables(TransportrUtils.getTintedDrawable(getContext(), favViaView.getCompoundDrawables()[0]), null, null, null);
 			} else {
 				favViaView.setVisibility(View.GONE);
 			}
 
 			// count
-			TextView favCountView = (TextView) v.findViewById(R.id.recentCountView);
+			TextView favCountView = v.findViewById(R.id.recentCountView);
 			favCountView.setText(String.valueOf(trip.getCount()));
 
 			// handle click on check box

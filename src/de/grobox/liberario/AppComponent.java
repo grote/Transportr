@@ -29,6 +29,7 @@ import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.settings.SettingsFragment;
+import de.grobox.liberario.trips.DirectionsActivity;
 import de.grobox.liberario.trips.TripsFragment;
 
 @Singleton
@@ -38,6 +39,7 @@ public interface AppComponent {
 	void inject(NewMapActivity activity);
 	void inject(PickTransportNetworkActivity activity);
 	void inject(DeparturesActivity activity);
+	void inject(DirectionsActivity activity);
 
 	void inject(LocationFragment fragment);
 	void inject(FavoriteTripsFragment fragment);

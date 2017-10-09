@@ -38,14 +38,11 @@ import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirec
 import java.util.ArrayList;
 import java.util.Date;
 
-import de.grobox.liberario.favorites.locations.FavoriteLocation;
 import de.grobox.liberario.R;
 import de.grobox.liberario.departures.DepartureAdapter;
-import de.grobox.liberario.data.LocationDb;
-import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
 import de.grobox.liberario.locations.LocationView;
+import de.grobox.liberario.tasks.AsyncQueryDeparturesTask;
 import de.grobox.liberario.ui.TimeAndDateView;
-import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryDeparturesResult;
@@ -149,7 +146,7 @@ public class DeparturesFragment extends TransportrFragment {
 			}
 
 			// Location is valid, so make it a favorite or increase counter
-			LocationDb.updateFavLocation(getActivity(), ui.station.getLocation(), FavoriteLocation.FavLocationType.FROM);
+//			LocationDb.updateFavLocation(getActivity(), ui.station.getLocation(), FavoriteLocation.FavLocationType.FROM);
 
 			date = ui.date.getDate();
 			stationId = ui.station.getLocation().id;
@@ -285,7 +282,7 @@ public class DeparturesFragment extends TransportrFragment {
 				// get location and search departures for it
 				Location loc = (Location) intent.getSerializableExtra("location");
 				if(loc != null) {
-					ui.station.setLocation(loc, TransportrUtils.getDrawableForLocation(getContext(), loc));
+//					ui.station.setLocation(loc, TransportrUtils.getDrawableForLocation(getContext(), loc));
 					search();
 				}
 			}

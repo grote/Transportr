@@ -1,5 +1,7 @@
 package de.grobox.liberario.trips;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,6 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import javax.inject.Inject;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TransportrActivity;
@@ -28,7 +31,7 @@ import de.grobox.liberario.fragments.TimeDateFragment;
 import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.WrapLocation;
-import de.schildbach.pte.dto.Location;
+import de.grobox.liberario.networks.TransportNetwork;
 
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 
@@ -37,8 +40,11 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 	private final static String TAG = DirectionsActivity.class.getName();
 
+	@Inject ViewModelProvider.Factory viewModelFactory;
+
 	@Nullable
 	private TripsFragment tripsFragment;
+	private DirectionsViewModel viewModel;
 	private DirectionsPresenter presenter;
 
 	private TextView date, time;
@@ -50,6 +56,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getComponent().inject(this);
 		setContentView(R.layout.activity_directions);
 		Toolbar toolbar = setUpCustomToolbar(true);
 
@@ -57,20 +64,14 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		appBarLayout.addOnOffsetChangedListener(this);
 
 		if (toolbar != null) {
-			OnClickListener onTimeClickListener = new OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					TimeDateFragment fragment = TimeDateFragment.newInstance(presenter.getCalendar());
-					fragment.setTimeDateListener(presenter);
-					fragment.show(getSupportFragmentManager(), TimeDateFragment.TAG);
-				}
+			OnClickListener onTimeClickListener = view -> {
+				TimeDateFragment fragment = TimeDateFragment.newInstance(presenter.getCalendar());
+				fragment.setTimeDateListener(presenter);
+				fragment.show(getSupportFragmentManager(), TimeDateFragment.TAG);
 			};
-			OnLongClickListener onTimeLongClickListener = new OnLongClickListener() {
-				@Override
-				public boolean onLongClick(View view) {
-					presenter.resetCalendar();
-					return true;
-				}
+			OnLongClickListener onTimeLongClickListener = view -> {
+				presenter.resetCalendar();
+				return true;
 			};
 			View timeIcon = toolbar.findViewById(R.id.timeIcon);
 			timeIcon.setOnClickListener(onTimeClickListener);
@@ -91,7 +92,23 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 		// TODO Is Departure???
 
-		presenter = new DirectionsPresenter(this, savedInstanceState);
+		// get view model and observe data
+		viewModel = ViewModelProviders.of(this, viewModelFactory).get(DirectionsViewModel.class);
+		TransportNetwork network = viewModel.getTransportNetwork().getValue();
+		if (network == null) throw new IllegalStateException();
+		from.setTransportNetwork(network);
+		to.setTransportNetwork(network);
+		viewModel.getHome().observe(this, homeLocation -> {
+			from.setHomeLocation(homeLocation);
+			to.setHomeLocation(homeLocation);
+		});
+		viewModel.getLocations().observe(this, favoriteLocations -> {
+			if (favoriteLocations == null) return;
+			from.setFavoriteLocations(favoriteLocations);
+			to.setFavoriteLocations(favoriteLocations);
+		});
+
+		presenter = new DirectionsPresenter(this, viewModel, savedInstanceState);
 		from.setLocationViewListener(presenter);
 		to.setLocationViewListener(presenter);
 		fragmentContainer = findViewById(R.id.fragmentContainer);
@@ -187,7 +204,8 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 		if (from.getLocation() == null || to.getLocation() == null) return;
 
-		tripsFragment = TripsFragment.newInstance(from.getLocation(), null, to.getLocation(), presenter.getCalendar().getTime(), true);
+		// TODO favTripUid
+		tripsFragment = TripsFragment.newInstance(0, from.getLocation(), null, to.getLocation(), presenter.getCalendar().getTime(), true);
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragmentContainer, tripsFragment, TripsFragment.TAG)
 				.commit();
@@ -229,7 +247,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				// swap location objects
-				Location tmp = to.getLocation();
+				WrapLocation tmp = to.getLocation();
 				if(!from.isSearching()) {
 					to.setLocation(from.getLocation(), getDrawableForLocation(DirectionsActivity.this, from.getLocation()));
 				} else {

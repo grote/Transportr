@@ -17,6 +17,8 @@
 
 package de.grobox.liberario.activities;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -33,7 +35,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
@@ -55,11 +56,12 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
-import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.favorites.trips.FavoriteTripsFragment;
+import de.grobox.liberario.favorites.trips.HomePickerDialogFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.LocationView.LocationViewListener;
+import de.grobox.liberario.locations.LocationsViewModel;
 import de.grobox.liberario.locations.NearbyLocationsLoader;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
@@ -72,7 +74,9 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
 import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
@@ -89,8 +93,9 @@ public class NewMapActivity extends DrawerActivity
 	private final static int LOCATION_ZOOM = 14;
 	private final static String BOTTOM_SHEET_HEIGHT = "bottomSheetHeight";
 
-	@Inject FavoriteLocationManager favoriteLocationManager;
+	@Inject	ViewModelProvider.Factory viewModelFactory;
 
+	private LocationsViewModel viewModel;
 	private MapView mapView;
 	private MapboxMap map;
 	private LocationView search;
@@ -99,6 +104,7 @@ public class NewMapActivity extends DrawerActivity
 	private @Nullable LocationFragment locationFragment;
 	private @Nullable Marker selectedLocationMarker;
 	private Map<Marker, Location> nearbyLocations = new HashMap<>();
+	private boolean transportNetworkInitialized = false;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,20 +114,31 @@ public class NewMapActivity extends DrawerActivity
 		setContentView(R.layout.activity_new_map);
 		super.onCreate(savedInstanceState);
 
-		mapView = (MapView) findViewById(R.id.map);
+		mapView = findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);
 		mapView.getMapAsync(this);
 
 		View menu = findViewById(R.id.menu);
-		menu.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				openDrawer();
+		menu.setOnClickListener(view -> openDrawer());
+
+		search = findViewById(R.id.search);
+		search.setLocationViewListener(this);
+
+		// get view model and observe data
+		viewModel = ViewModelProviders.of(this, viewModelFactory).get(LocationsViewModel.class);
+		viewModel.getTransportNetwork().observe(this, transportNetwork -> {
+			if (transportNetwork == null) return;
+			if (transportNetworkInitialized) onTransportNetworkChanged(transportNetwork);
+			else {
+				search.setTransportNetwork(transportNetwork);
+				transportNetworkInitialized = true;
 			}
 		});
-
-		search = (LocationView) findViewById(R.id.search);
-		search.setLocationViewListener(this);
+		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));
+		viewModel.getLocations().observe(this, favoriteLocations -> {
+			if (favoriteLocations == null) return;
+			search.setFavoriteLocations(favoriteLocations);
+		});
 
 		View bottomSheet = findViewById(R.id.bottomSheet);
 		bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
@@ -138,26 +155,20 @@ public class NewMapActivity extends DrawerActivity
 			public void onSlide(@NonNull View bottomSheet, float slideOffset) { }
 		});
 
-		FloatingActionButton directionsFab = (FloatingActionButton) findViewById(R.id.directionsFab);
-		directionsFab.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if (locationFragment != null && locationFragmentVisible()) {
-					findDirections(NewMapActivity.this, new WrapLocation(GPS), null, locationFragment.getLocation(), null, true);
-				} else {
-					Intent intent = new Intent(NewMapActivity.this, DirectionsActivity.class);
-					startActivity(intent);
-				}
-			}
-		});
-		FloatingActionButton gpsFab = (FloatingActionButton) findViewById(R.id.gpsFab);
-		gpsFab.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				// TODO
-				Intent intent = new Intent(NewMapActivity.this, MainActivity.class);
+		FloatingActionButton directionsFab = findViewById(R.id.directionsFab);
+		directionsFab.setOnClickListener(view -> {
+			if (locationFragment != null && locationFragmentVisible()) {
+				findDirections(NewMapActivity.this, new WrapLocation(GPS), null, locationFragment.getLocation(), null, true);
+			} else {
+				Intent intent = new Intent(NewMapActivity.this, DirectionsActivity.class);
 				startActivity(intent);
 			}
+		});
+		FloatingActionButton gpsFab = findViewById(R.id.gpsFab);
+		gpsFab.setOnClickListener(view -> {
+			// TODO
+			Intent intent = new Intent(NewMapActivity.this, MainActivity.class);
+			startActivity(intent);
 		});
 
 		if (savedInstanceState == null) {
@@ -182,35 +193,24 @@ public class NewMapActivity extends DrawerActivity
 		Bundle args = NearbyLocationsLoader.getBundle(location, 0);
 		getSupportLoaderManager().initLoader(LOADER_NEARBY_STATIONS, args, this);
 
-		map.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
-			@Override
-			public void onMapClick(@NonNull LatLng point) {
-				search.clearFocus();
-				search.hideSoftKeyboard();
-			}
+		map.setOnMapClickListener(point -> {
+			search.clearFocus();
+			search.hideSoftKeyboard();
 		});
-		map.setOnMapLongClickListener(new MapboxMap.OnMapLongClickListener() {
-			@Override
-			public void onMapLongClick(@NonNull LatLng point) {
-				onLocationItemClick(new WrapLocation(point));
-			}
-		});
-		map.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
-			@Override
-			public boolean onMarkerClick(@NonNull Marker marker) {
-				if (marker.equals(selectedLocationMarker)) {
-					if (locationFragment != null) search.setWrapLocation(locationFragment.getLocation());
-					bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
-					bottomSheetBehavior.setState(STATE_COLLAPSED);
-					return true;
-				} else if (nearbyLocations.containsKey(marker)) {
-					WrapLocation wrapLocation = new WrapLocation(nearbyLocations.get(marker));
-					onLocationItemClick(wrapLocation);
-					search.clearLocation();
-					return true;
-				} else {
-					return false;
-				}
+		map.setOnMapLongClickListener(point -> onLocationItemClick(new WrapLocation(point)));
+		map.setOnMarkerClickListener(marker -> {
+			if (marker.equals(selectedLocationMarker)) {
+				if (locationFragment != null) search.setWrapLocation(locationFragment.getLocation());
+				bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
+				bottomSheetBehavior.setState(STATE_COLLAPSED);
+				return true;
+			} else if (nearbyLocations.containsKey(marker)) {
+				WrapLocation wrapLocation = new WrapLocation(nearbyLocations.get(marker));
+				onLocationItemClick(wrapLocation);
+				search.clearLocation();
+				return true;
+			} else {
+				return false;
 			}
 		});
 		// restore marker on map if there was one
@@ -230,7 +230,6 @@ public class NewMapActivity extends DrawerActivity
 	@Override
 	public void onStart() {
 		super.onStart();
-		manager.addOnTransportNetworkChangedListener(this);
 		mapView.onStart();
 	}
 
@@ -249,7 +248,6 @@ public class NewMapActivity extends DrawerActivity
 	@Override
 	public void onStop() {
 		super.onStop();
-		manager.removeOnTransportNetworkChangedListener(this);
 		mapView.onStop();
 	}
 
@@ -267,6 +265,7 @@ public class NewMapActivity extends DrawerActivity
 
 	@Override
 	public void onTransportNetworkChanged(TransportNetwork network) {
+		Log.w("TEST", "TRANSPORT NETWORK HAS CHANGED!!! " + network.getName(this));
 		recreate();
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, FavoriteTripsFragment.newInstance(true), FavoriteTripsFragment.TAG)
@@ -275,6 +274,14 @@ public class NewMapActivity extends DrawerActivity
 
 	@Override
 	public void onLocationItemClick(final WrapLocation loc) {
+		if (loc.getWrapType() == HOME) {
+			HomePickerDialogFragment f = HomePickerDialogFragment.newInstance();
+			f.show(getSupportFragmentManager(), HomePickerDialogFragment.TAG);
+			return;
+		}
+
+		viewModel.clickLocation(loc, FROM);
+
 		LatLng latLng = zoomTo(loc);
 		addMarker(latLng);
 
@@ -358,7 +365,7 @@ public class NewMapActivity extends DrawerActivity
 	}
 
 	private void ensureTransportNetworkSelected() {
-		TransportNetwork network = manager.getTransportNetwork();
+		TransportNetwork network = manager.getTransportNetwork().getValue();
 		if (network == null) {
 			Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 			intent.putExtra(FORCE_NETWORK_SELECTION, true);

@@ -176,7 +176,11 @@ public class LocationFragment extends TransportrFragment
 	}
 
 	private void showLocation() {
-		locationIcon.setImageDrawable(getDrawableForLocation(getContext(), favoriteLocationManager.getHome(), location, false));
+		if (favoriteLocationManager.getHome() == null) {
+			locationIcon.setImageDrawable(getDrawableForLocation(getContext(), null, location, false));
+		} else {
+			locationIcon.setImageDrawable(getDrawableForLocation(getContext(), favoriteLocationManager.getHome(), location, false));
+		}
 		locationName.setText(location.getName());
 		StringBuilder locationInfoStr = new StringBuilder();
 		if (!isNullOrEmpty(location.getLocation().place)) {
@@ -200,7 +204,7 @@ public class LocationFragment extends TransportrFragment
 
 	@Override
 	public DeparturesLoader onCreateLoader(int id, Bundle args) {
-		return new DeparturesLoader(getContext(), transportNetworkManager.getTransportNetwork(), args);
+		return new DeparturesLoader(getContext(), transportNetworkManager.getTransportNetwork().getValue(), args);
 	}
 
 	@Override

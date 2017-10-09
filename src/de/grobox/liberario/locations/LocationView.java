@@ -23,33 +23,34 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.view.ViewCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import javax.inject.Inject;
+import java.util.List;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportrApplication;
-import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
-import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
+import de.grobox.liberario.data.locations.FavoriteLocation;
+import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
+import de.grobox.liberario.data.locations.HomeLocation;
 import de.grobox.liberario.locations.SuggestLocationsTask.SuggestLocationsTaskCallback;
-import de.grobox.liberario.networks.TransportNetworkManager;
+import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.utils.TransportrUtils;
-import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.SuggestLocationsResult;
 
 import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
@@ -61,15 +62,14 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	private final static String LOCATION = "location";
 	private final static String TEXT = "text";
 	private final static String TEXT_POSITION = "textPosition";
-	private final static String CHANGING_HOME = "changingHome";
 	private final static int AUTO_COMPLETION_DELAY = 300;
 	protected final static String SUPER_STATE = "superState";
 
-	@Inject TransportNetworkManager transportNetworkManager;
-	@Inject FavoriteLocationManager favoriteLocationManager;
+	private LocationAdapter adapter;
 	private SuggestLocationsTask task;
-	private Location location;
-	private boolean changingHome = false, suggestLocationsTaskPending = false;
+	private @Nullable TransportNetwork transportNetwork;
+	private WrapLocation location;
+	private boolean suggestLocationsTaskPending = false;
 	protected final LocationViewHolder ui;
 	protected LocationViewListener listener;
 	protected String hint;
@@ -97,44 +97,26 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		ui = new LocationViewHolder(this);
 
 		ui.location.setHint(hint);
-		if (!isInEditMode()) ui.location.setAdapter(createLocationAdapter(includeHome, includeFavs));
-		ui.location.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-				WrapLocation loc = getAdapter().getItem(position);
-				if(loc != null) onLocationItemClick(loc, view);
-			}
+		if (!isInEditMode()) {
+			adapter = createLocationAdapter(includeHome, includeFavs);
+			ui.location.setAdapter(adapter);
+		}
+		ui.location.setOnItemClickListener((parent, view, position, rowId) -> {
+			WrapLocation loc = getAdapter().getItem(position);
+			if(loc != null) onLocationItemClick(loc, view);
 		});
-		ui.location.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				LocationView.this.onFocusChange(v, hasFocus);
-			}
-		});
-		ui.location.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				LocationView.this.onClick();
-			}
-		});
+		ui.location.setOnFocusChangeListener(LocationView.this::onFocusChange);
+		ui.location.setOnClickListener(view -> LocationView.this.onClick());
 
 		if (!showIcon) ui.status.setVisibility(View.GONE);
 
-		ui.status.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				getAdapter().resetDropDownLocations();
-				LocationView.this.onClick();
-			}
+		ui.status.setOnClickListener(v -> {
+			getAdapter().resetDropDownLocations();
+			LocationView.this.onClick();
 		});
 
 		// clear text button
-		ui.clear.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				clearLocationAndShowDropDown();
-			}
-		});
+		ui.clear.setOnClickListener(v -> clearLocationAndShowDropDown());
 
 		// From text input changed
 		ui.location.addTextChangedListener(new TextWatcher() {
@@ -168,7 +150,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	protected LocationAdapter createLocationAdapter(boolean includeHome, boolean includeFavs) {
-		return new LocationAdapter(getContext(), favoriteLocationManager, includeHome, false, includeFavs);
+		return new LocationAdapter(getContext(), includeHome, false, includeFavs);
 	}
 
 	/* State Saving and Restoring */
@@ -182,7 +164,6 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		if(location == null && ui.location.getText().length() > 0) {
 			bundle.putString(TEXT, ui.location.getText().toString());
 		}
-		bundle.putBoolean(CHANGING_HOME, changingHome);
 		return bundle;
 	}
 
@@ -190,7 +171,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	public void onRestoreInstanceState(Parcelable state) {
 		if(state instanceof Bundle) { // implicit null check
 			Bundle bundle = (Bundle) state;
-			Location loc = (Location) bundle.getSerializable(LOCATION);
+			WrapLocation loc = (WrapLocation) bundle.getSerializable(LOCATION);
 			String text = bundle.getString(TEXT);
 			if(loc != null) {
 				setLocation(loc);
@@ -202,14 +183,6 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 			int position = bundle.getInt(TEXT_POSITION);
 			ui.location.setSelection(position);
 
-			changingHome = bundle.getBoolean(CHANGING_HOME);
-/*			if(changingHome) {
-				Fragment homePicker = activity.getSupportFragmentManager().findFragmentByTag(HomePickerDialogFragment.TAG);
-				if(homePicker != null && homePicker.isAdded()) {
-					((HomePickerDialogFragment) homePicker).setListener(this);
-				}
-			}
-*/
 			// replace state by super state
 			state = bundle.getParcelable(SUPER_STATE);
 		}
@@ -226,6 +199,19 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	protected void dispatchRestoreInstanceState(SparseArray<Parcelable> container) {
 		// Makes sure that the state of the child views are not restored
 		super.dispatchThawSelfOnly(container);
+	}
+
+	public void setTransportNetwork(@NonNull TransportNetwork transportNetwork) {
+		Log.w("TEST", "setting new transport network: " + transportNetwork.getName(getContext()));
+		this.transportNetwork = transportNetwork;
+	}
+
+	public void setHomeLocation(@Nullable HomeLocation homeLocation) {
+		adapter.setHomeLocation(homeLocation);
+	}
+
+	public void setFavoriteLocations(List<FavoriteLocation> favoriteLocations) {
+		adapter.setFavoriteLocations(favoriteLocations);
 	}
 
 	/* Auto-Completion */
@@ -251,16 +237,17 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	private void startSuggestLocationsTaskDelayed() {
-		if (suggestLocationsTaskPending || transportNetworkManager.getTransportNetwork() == null) return;
+		if (transportNetwork == null) {
+			stopSuggestLocationsTask();
+			return;
+		}
+		if (suggestLocationsTaskPending) return;
 		suggestLocationsTaskPending = true;
-		postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				if (task != null && task.getStatus() != AsyncTask.Status.FINISHED) task.cancel(true);
-				task = new SuggestLocationsTask(transportNetworkManager.getTransportNetwork(), LocationView.this);
-				task.execute(getText());
-				suggestLocationsTaskPending = false;
-			}
+		postDelayed(() -> {
+			if (task != null && task.getStatus() != AsyncTask.Status.FINISHED) task.cancel(true);
+			task = new SuggestLocationsTask(transportNetwork, LocationView.this);
+			task.execute(getText());
+			suggestLocationsTaskPending = false;
 		}, AUTO_COMPLETION_DELAY);
 	}
 
@@ -285,12 +272,12 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		return (LocationAdapter) ui.location.getAdapter();
 	}
 
-	public void setLocation(Location loc, Drawable icon, boolean setText) {
+	public void setLocation(WrapLocation loc, Drawable icon, boolean setText) {
 		location = loc;
 
 		if(setText) {
 			if(loc != null) {
-				ui.location.setText(TransportrUtils.getLocationName(loc));
+				ui.location.setText(loc.getName());
 				ui.location.dismissDropDown();
 				ui.clear.setVisibility(View.VISIBLE);
 				stopSuggestLocationsTask();
@@ -307,11 +294,11 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		}
 	}
 
-	public void setLocation(Location loc, Drawable icon) {
+	public void setLocation(WrapLocation loc, Drawable icon) {
 		setLocation(loc, icon, true);
 	}
 
-	public void setLocation(@Nullable Location loc) {
+	public void setLocation(@Nullable WrapLocation loc) {
 		Drawable drawable = getDrawableForLocation(getContext(), loc);
 		setLocation(loc, drawable, true);
 	}
@@ -319,24 +306,17 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	public void setWrapLocation(@Nullable WrapLocation loc) {
 		if (loc == null) {
 			setLocation(null);
-		} else if (loc.getType() == HOME) {
-			// special case: home location
-			Location home = favoriteLocationManager.getHome();
-			if (home != null) {
-				setLocation(home);
-			} else {
-				// prevent home.toString() from being shown in the TextView
-				ui.location.setText("");
-				selectHomeLocation();
-			}
+		} else if (loc.getWrapType() == HOME) {
+			// prevent home.toString() from being shown in the TextView
+			ui.location.setText("");
 		} else {
 			// all other cases
-			setLocation(loc.getLocation());
+			setLocation(loc);
 		}
 	}
 
 	@Nullable
-	public Location getLocation() {
+	public WrapLocation getLocation() {
 		return this.location;
 	}
 
@@ -372,21 +352,14 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	public void onLocationItemClick(WrapLocation loc, View view) {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
 
+		Log.w("TEST", "Clicked Location: " + loc);
+
 		// special case: home location
-		if(loc.getType() == HOME) {
-			Location home = favoriteLocationManager.getHome();
-
-			if(home != null) {
-				setLocation(home, icon);
-				favoriteLocationManager.addLocation(loc);
-			} else {
-				// prevent home.toString() from being shown in the TextView
-				ui.location.setText("");
-
-				selectHomeLocation();
-			}
+		if(loc.getWrapType() == HOME) {
+			// prevent home.toString() from being shown in the TextView
+			ui.location.setText("");
 		}
-		else if(loc.getType() == MAP) {
+		else if(loc.getWrapType() == MAP) {
 			// prevent MAP from being shown in the TextView
 			ui.location.setText("");
 
@@ -394,15 +367,14 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		}
 		// all other cases
 		else {
-			setLocation(loc.getLocation(), icon);
+			setLocation(loc, icon);
 			ui.location.requestFocus();
-			favoriteLocationManager.addLocation(loc);
 		}
 
 		// hide soft-keyboard
 		hideSoftKeyboard();
 
-		if(!changingHome && listener != null) listener.onLocationItemClick(loc);
+		if(listener != null) listener.onLocationItemClick(loc);
 	}
 
 	public void onClick() {
@@ -447,28 +419,6 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		if (imm != null) {
 			imm.hideSoftInputFromWindow(ui.location.getWindowToken(), 0);
 		}
-	}
-
-	/* Changing Home Location */
-
-	public void selectHomeLocation() {
-		changingHome = true;
-		// show home picker dialog
-/*		HomePickerDialogFragment setHomeFragment = HomePickerDialogFragment.newInstance();
-		setHomeFragment.setListener(this);
-		FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-		setHomeFragment.show(ft, HomePickerDialogFragment.TAG);
-	}
-
-	@Override
-	public void onHomeChanged(Location home) {
-		changingHome = false;
-		setLocation(home, ContextCompat.getDrawable(getContext(), R.drawable.ic_action_home));
-		if(listener != null) listener.onLocationItemClick(new WrapLocation(home, HOME));
-*/	}
-
-	public boolean isChangingHome() {
-		return changingHome;
 	}
 
 	/* Listener */

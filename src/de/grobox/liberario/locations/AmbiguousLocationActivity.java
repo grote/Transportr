@@ -31,21 +31,17 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 
+import de.grobox.liberario.FavoriteLocation;
+import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.activities.TripsActivity;
-import de.grobox.liberario.favorites.locations.FavoriteLocation;
-import de.grobox.liberario.settings.Preferences;
-import de.grobox.liberario.R;
-import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.data.LocationDb;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.tasks.AsyncQueryTripsTask;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
-
-import static de.grobox.liberario.data.FavoritesDb.updateFavoriteTrip;
 
 @Deprecated
 public class AmbiguousLocationActivity extends TransportrActivity implements AsyncQueryTripsTask.TripHandler {
@@ -80,67 +76,67 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 		final ViewHolder ui = new ViewHolder(findViewById(R.id.layout));
 
 		// From
-		if(trips.ambiguousFrom != null) {
-			LocationAdapter loca = new LocationAdapter(this, null, trips.ambiguousFrom);
-			loca.setSort(FavoriteLocation.FavLocationType.FROM);
-			ui.fromSpinner.setAdapter(loca);
-			if(trips.ambiguousFrom.size() == 1) ui.fromSpinner.setEnabled(false);
-		}
-		else {
-			List<Location> list = new ArrayList<>();
-			list.add(from);
-			LocationAdapter loca = new LocationAdapter(this, null, list);
-			loca.setSort(FavoriteLocation.FavLocationType.FROM);
-			ui.fromSpinner.setAdapter(loca);
-			ui.fromSpinner.setEnabled(false);
-		}
+//		if(trips.ambiguousFrom != null) {
+//			LocationAdapter loca = new LocationAdapter(this, null, trips.ambiguousFrom);
+//			loca.setSort(FavoriteLocation.FavLocationType.FROM);
+//			ui.fromSpinner.setAdapter(loca);
+//			if(trips.ambiguousFrom.size() == 1) ui.fromSpinner.setEnabled(false);
+//		}
+//		else {
+//			List<Location> list = new ArrayList<>();
+//			list.add(from);
+//			LocationAdapter loca = new LocationAdapter(this, null, list);
+//			loca.setSort(FavoriteLocation.FavLocationType.FROM);
+//			ui.fromSpinner.setAdapter(loca);
+//			ui.fromSpinner.setEnabled(false);
+//		}
 
 		// Via
-		if(via == null) {
-			ui.viaText.setVisibility(View.GONE);
-			ui.viaSpinner.setVisibility(View.GONE);
-		} else if (trips.ambiguousVia != null) {
-			LocationAdapter loca = new LocationAdapter(this, null, trips.ambiguousVia);
-			loca.setSort(FavoriteLocation.FavLocationType.VIA);
-			ui.viaSpinner.setAdapter(loca);
-			if(trips.ambiguousVia.size() == 1) ui.viaSpinner.setEnabled(false);
-		} else {
-			List<Location> list = new ArrayList<>();
-			list.add(via);
-			LocationAdapter loca = new LocationAdapter(this, null, list);
-			loca.setSort(FavoriteLocation.FavLocationType.VIA);
-			ui.viaSpinner.setAdapter(loca);
-			ui.viaSpinner.setEnabled(false);
-		}
+//		if(via == null) {
+//			ui.viaText.setVisibility(View.GONE);
+//			ui.viaSpinner.setVisibility(View.GONE);
+//		} else if (trips.ambiguousVia != null) {
+//			LocationAdapter loca = new LocationAdapter(this, null, trips.ambiguousVia);
+//			loca.setSort(FavoriteLocation.FavLocationType.VIA);
+//			ui.viaSpinner.setAdapter(loca);
+//			if(trips.ambiguousVia.size() == 1) ui.viaSpinner.setEnabled(false);
+//		} else {
+//			List<Location> list = new ArrayList<>();
+//			list.add(via);
+//			LocationAdapter loca = new LocationAdapter(this, null, list);
+//			loca.setSort(FavoriteLocation.FavLocationType.VIA);
+//			ui.viaSpinner.setAdapter(loca);
+//			ui.viaSpinner.setEnabled(false);
+//		}
 
 		// To
-		if(trips.ambiguousTo != null) {
-			LocationAdapter loca = new LocationAdapter(this, null, trips.ambiguousTo);
-			loca.setSort(FavoriteLocation.FavLocationType.TO);
-			ui.toSpinner.setAdapter(loca);
-			if(trips.ambiguousTo.size() == 1) ui.toSpinner.setEnabled(false);
-		}
-		else {
-			List<Location> list = new ArrayList<>();
-			list.add(to);
-			LocationAdapter loca = new LocationAdapter(this, null, list);
-			loca.setSort(FavoriteLocation.FavLocationType.TO);
-			ui.toSpinner.setAdapter(loca);
-			ui.toSpinner.setEnabled(false);
-		}
+//		if(trips.ambiguousTo != null) {
+//			LocationAdapter loca = new LocationAdapter(this, null, trips.ambiguousTo);
+//			loca.setSort(FavoriteLocation.FavLocationType.TO);
+//			ui.toSpinner.setAdapter(loca);
+//			if(trips.ambiguousTo.size() == 1) ui.toSpinner.setEnabled(false);
+//		}
+//		else {
+//			List<Location> list = new ArrayList<>();
+//			list.add(to);
+//			LocationAdapter loca = new LocationAdapter(this, null, list);
+//			loca.setSort(FavoriteLocation.FavLocationType.TO);
+//			ui.toSpinner.setAdapter(loca);
+//			ui.toSpinner.setEnabled(false);
+//		}
 
 		// Search Button
 		ui.button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				from = ((WrapLocation) ui.fromSpinner.getSelectedItem()).getLocation();
-				if(ui.viaSpinner.getSelectedItem() != null) via = ((WrapLocation) ui.viaSpinner.getSelectedItem()).getLocation();
-				to = ((WrapLocation) ui.toSpinner.getSelectedItem()).getLocation();
+//				from = ((WrapLocation) ui.fromSpinner.getSelectedItem()).getLocation();
+//				if(ui.viaSpinner.getSelectedItem() != null) via = ((WrapLocation) ui.viaSpinner.getSelectedItem()).getLocation();
+//				to = ((WrapLocation) ui.toSpinner.getSelectedItem()).getLocation();
 
 				// remember location and trip
 				LocationDb.updateFavLocation(getApplicationContext(), from, FavoriteLocation.FavLocationType.FROM);
 				if(via != null) LocationDb.updateFavLocation(getApplicationContext(), via, FavoriteLocation.FavLocationType.VIA);
 				LocationDb.updateFavLocation(getApplicationContext(), to, FavoriteLocation.FavLocationType.TO);
-				updateFavoriteTrip(getApplicationContext(), new FavoriteTripItem(from, via, to));
+//				updateFavoriteTrip(getApplicationContext(), new FavoriteTripItem(from, via, to));
 
 				AsyncQueryTripsTask query_trips = new AsyncQueryTripsTask(v.getContext(), AmbiguousLocationActivity.this);
 

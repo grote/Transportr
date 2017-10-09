@@ -17,16 +17,23 @@
 
 package de.grobox.liberario;
 
+import android.arch.persistence.room.Room;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.grobox.liberario.data.Db;
+import de.grobox.liberario.data.locations.LocationDao;
+import de.grobox.liberario.data.locations.LocationRepository;
+import de.grobox.liberario.data.searches.SearchesDao;
+import de.grobox.liberario.data.searches.SearchesRepository;
 import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.favorites.trips.FavoriteTripManager;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.settings.SettingsManager;
 
-@Module
+@Module(includes = ViewModelModule.class)
 class AppModule {
 
 	private final TransportrApplication application;
@@ -43,23 +50,53 @@ class AppModule {
 
 	@Provides
 	@Singleton
-	TransportNetworkManager provideTransportNetworkManager(SettingsManager settingsManager, FavoriteLocationManager favoriteLocationManager, FavoriteTripManager favoriteTripManager) {
+	TransportNetworkManager provideTransportNetworkManager(SettingsManager settingsManager) {
 		TransportNetworkManager manager = new TransportNetworkManager(settingsManager);
-		manager.addOnTransportNetworkChangedListener(favoriteLocationManager);
-		manager.addOnTransportNetworkChangedListener(favoriteTripManager);
+//		manager.addOnTransportNetworkChangedListener(favoriteLocationManager);
+//		manager.addOnTransportNetworkChangedListener(favoriteTripManager);
 		return manager;
 	}
 
 	@Provides
 	@Singleton
-	FavoriteLocationManager provideFavoriteLocationManager(FavoriteTripManager favoriteTripManager) {
-		return new FavoriteLocationManager(application.getApplicationContext(), favoriteTripManager);
+	FavoriteLocationManager provideFavoriteLocationManager(LocationRepository locationRepository, FavoriteTripManager favoriteTripManager) {
+		return new FavoriteLocationManager(application.getApplicationContext(), locationRepository, favoriteTripManager);
 	}
 
 	@Provides
 	@Singleton
-	FavoriteTripManager provideFavoriteTripManager() {
-		return new FavoriteTripManager(application.getApplicationContext());
+	FavoriteTripManager provideFavoriteTripManager(SearchesRepository searchesRepository) {
+		return new FavoriteTripManager(searchesRepository);
+	}
+
+	@Provides
+	@Singleton
+	Db provideDb() {
+		return Room.databaseBuilder(application.getApplicationContext(), Db.class, Db.DATABASE_NAME).build();
+	}
+
+	@Provides
+	@Singleton
+	LocationDao locationDao(Db db) {
+		return db.locationDao();
+	}
+
+	@Provides
+	@Singleton
+	SearchesDao searchesDao(Db db) {
+		return db.searchesDao();
+	}
+
+	@Provides
+	@Singleton
+	LocationRepository locationRepository(LocationDao locationDao, TransportNetworkManager transportNetworkManager) {
+		return new LocationRepository(locationDao, transportNetworkManager);
+	}
+
+	@Provides
+	@Singleton
+	SearchesRepository searchesRepository(SearchesDao searchesDao, LocationDao locationDao, TransportNetworkManager transportNetworkManager) {
+		return new SearchesRepository(searchesDao, locationDao, transportNetworkManager);
 	}
 
 }

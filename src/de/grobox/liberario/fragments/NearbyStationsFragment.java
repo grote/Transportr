@@ -40,12 +40,12 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.adapters.StationAdapter;
-import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
 import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
+import de.grobox.liberario.locations.WrapLocation;
+import de.grobox.liberario.tasks.AsyncQueryNearbyStationsTask;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
@@ -53,11 +53,8 @@ import de.schildbach.pte.dto.NearbyLocationsResult;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
-import static de.grobox.liberario.data.LocationDb.updateFavLocation;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
-import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 import static de.grobox.liberario.utils.TransportrUtils.showLocationsOnMap;
 
 @Deprecated
@@ -96,7 +93,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 		ui.station.setLocationViewListener(new LocationView.LocationViewListener() {
 			@Override
 			public void onLocationItemClick(WrapLocation loc) {
-				if(loc != null && loc.getType() != MAP) {
+				if(loc != null && loc.getWrapType() != MAP) {
 					search();
 				}
 			}
@@ -115,7 +112,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 			}
 
 			@Override
-			public void onLocationChanged(Location location) {
+			public void onLocationChanged(WrapLocation location) {
 				search();
 			}
 		};
@@ -231,14 +228,14 @@ public class NearbyStationsFragment extends TransportrFragment {
 		if(ui.station.getLocation() != null) {
 			// use location to query nearby stations
 
-			if(!ui.station.getLocation().hasId() && !ui.station.getLocation().hasLocation()) {
-				Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
-				return;
-			}
+//			if(!ui.station.getLocation().hasId() && !ui.station.getLocation().hasLocation()) {
+//				Toast.makeText(getActivity(), getResources().getString(R.string.error_no_proper_station), Toast.LENGTH_SHORT).show();
+//				return;
+//			}
 
 			if(ui.station.getLocation().hasId()) {
 				// Location is valid, so make it a favorite or increase counter
-				updateFavLocation(getActivity(), ui.station.getLocation(), FROM);
+//				updateFavLocation(getActivity(), ui.station.getLocation(), FROM);
 			}
 
 			// play animations before clearing departures list
@@ -248,13 +245,13 @@ public class NearbyStationsFragment extends TransportrFragment {
 			stationAdapter.clear();
 
 			// set location origin
-			stationAdapter.setStart(ui.station.getLocation());
+//			stationAdapter.setStart(ui.station.getLocation());
 
 			// reset number of stations to retrieve
 			maxStations = MAX_STATIONS;
 
-			AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(this, types, ui.station.getLocation(), MAX_DISTANCE, maxStations);
-			task.execute();
+//			AsyncQueryNearbyStationsTask task = new AsyncQueryNearbyStationsTask(this, types, ui.station.getLocation(), MAX_DISTANCE, maxStations);
+//			task.execute();
 		} else if(!ui.station.isSearching()) {
 			Toast.makeText(getActivity(), getResources().getString(R.string.error_only_autocomplete_station), Toast.LENGTH_SHORT).show();
 		}
@@ -268,7 +265,7 @@ public class NearbyStationsFragment extends TransportrFragment {
 				// get location and search departures for it
 				Location loc = (Location) intent.getSerializableExtra("location");
 				if(loc != null) {
-					ui.station.setLocation(loc, getDrawableForLocation(getContext(), loc));
+//					ui.station.setLocation(loc, getDrawableForLocation(getContext(), loc));
 					search();
 				}
 			}

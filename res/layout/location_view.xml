@@ -39,6 +39,7 @@
 		android:layout_width="38dp"
 		android:layout_height="48dp"
 		android:background="?attr/selectableItemBackgroundBorderless"
+		android:src="@drawable/ic_action_content_remove"
 		android:tint="?colorControlNormal"
 		android:visibility="gone"
 		app:srcCompat="@drawable/ic_action_content_remove"

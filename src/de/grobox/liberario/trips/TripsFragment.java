@@ -22,9 +22,9 @@ import javax.inject.Inject;
 import de.grobox.liberario.R;
 import de.grobox.liberario.favorites.trips.FavoriteTripManager;
 import de.grobox.liberario.fragments.TransportrFragment;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.ui.LceAnimator;
-import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.QueryTripsContext;
 import de.schildbach.pte.dto.QueryTripsResult;
 
@@ -32,6 +32,7 @@ import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayo
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTTOM;
 import static de.grobox.liberario.utils.Constants.DATE;
+import static de.grobox.liberario.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.liberario.utils.Constants.FROM;
 import static de.grobox.liberario.utils.Constants.IS_DEPARTURE;
 import static de.grobox.liberario.utils.Constants.LOADER_MORE_TRIPS;
@@ -53,16 +54,18 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 	private RecyclerView list;
 	private TripAdapter adapter;
 
-	private Location from, to;
-	private @Nullable Location via;
+	private long favTripUid;
+	private WrapLocation from, to;
+	private @Nullable WrapLocation via;
 	private Date date;
 	private boolean departure;
 	private @Nullable QueryTripsContext queryTripsContext;
 	private boolean queryMoreLater;
 
-	public static TripsFragment newInstance(Location from, @Nullable Location via, Location to, Date date, boolean departure) {
+	public static TripsFragment newInstance(long favTripUid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, Date date, boolean departure) {
 		TripsFragment f = new TripsFragment();
 		Bundle args = new Bundle();
+		args.putLong(FAV_TRIP_UID, favTripUid);
 		args.putSerializable(FROM, from);
 		args.putSerializable(VIA, via);
 		args.putSerializable(TO, to);
@@ -79,25 +82,26 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 
 		// initialize arguments
 		Bundle bundle = getArguments();
-		from = (Location) bundle.getSerializable(FROM);
-		via = (Location) bundle.getSerializable(VIA);
-		to = (Location) bundle.getSerializable(TO);
+		favTripUid = bundle.getLong(FAV_TRIP_UID, 0);
+		from = (WrapLocation) bundle.getSerializable(FROM);
+		via = (WrapLocation) bundle.getSerializable(VIA);
+		to = (WrapLocation) bundle.getSerializable(TO);
 		date = (Date) bundle.getSerializable(DATE);
 		departure = bundle.getBoolean(IS_DEPARTURE);
 		if (from == null || to == null || date == null) throw new IllegalArgumentException();
 
 		// Progress Bar
-		progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
+		progressBar = v.findViewById(R.id.progressBar);
 
 		// Swipe to Refresh
-		swipe = (SwipyRefreshLayout) v.findViewById(R.id.swipe);
+		swipe = v.findViewById(R.id.swipe);
 		swipe.setColorSchemeResources(R.color.accent);
 		swipe.setProgressBackgroundColor(R.color.cardview_dark_background);
 		swipe.setSize(LARGE);
 		swipe.setDistanceToTriggerSync(getDragDistance(getContext()));
 		swipe.setOnRefreshListener(this);
 
-		list = (RecyclerView) v.findViewById(R.id.list);
+		list = v.findViewById(R.id.list);
 		LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 		list.setLayoutManager(layoutManager);
 		adapter = new TripAdapter();
@@ -110,7 +114,7 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 		Loader loader = getLoaderManager().initLoader(LOADER_TRIPS, null, this);
 		if (savedInstanceState == null) {
 			loader.forceLoad();
-			favoriteTripManager.addTrip(from, via, to);
+			favoriteTripManager.addTrip(favTripUid, from, via, to);
 		}
 
 		return v;
@@ -130,7 +134,7 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 	public Loader<QueryTripsResult> onCreateLoader(int id, Bundle args) {
 		if (id == LOADER_MORE_TRIPS)
 			return new MoreTripsLoader(getContext(), manager, queryTripsContext, queryMoreLater);
-		return new TripsLoader(getContext(), manager, from, via, to, date, departure);
+		return new TripsLoader(getContext(), manager, from.getLocation(), via != null ? via.getLocation() : null, to.getLocation(), date, departure);
 	}
 
 	@Override

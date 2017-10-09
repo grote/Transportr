@@ -9,7 +9,7 @@ interface FavoriteTripListener {
 
 	void onFavoriteClicked(FavoriteTripItem item);
 
-	void onFavoriteChanged(FavoriteTripItem item);
+	void onFavoriteChanged(FavoriteTripItem item, boolean isFavorite);
 
 	void changeHome();
 

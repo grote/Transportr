@@ -1,10 +1,11 @@
-package de.grobox.liberario.data;
+package de.grobox.liberario.data.locations;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
+import de.grobox.liberario.data.DbTest;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 
@@ -15,8 +16,10 @@ import static de.schildbach.pte.dto.LocationType.ANY;
 import static de.schildbach.pte.dto.LocationType.POI;
 import static de.schildbach.pte.dto.LocationType.STATION;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
-public class LocationDaoTest extends DbTest {
+public class FavoriteLocationTest extends DbTest {
 
 	private LocationDao dao;
 
@@ -33,14 +36,14 @@ public class LocationDaoTest extends DbTest {
 
 		// create a complete station location
 		Location loc1 = new Location(STATION, "stationId", 23, 42, "place", "name", Product.ALL);
-		dao.addFavoriteLocation(new FavoriteLocation(DB, loc1));
+		long uid1 = dao.addFavoriteLocation(new FavoriteLocation(DB, loc1));
 
 		// assert that location has been inserted and retrieved properly
 		List<FavoriteLocation> locations1 = dao.getFavoriteLocations(DB);
 		assertEquals(1, locations1.size());
 		FavoriteLocation f1 = locations1.get(0);
-		assertEquals(1, f1.getUid());
-		assertEquals(DB, f1.networkId);
+		assertEquals(uid1, f1.getUid());
+		assertEquals(DB, f1.getNetworkId());
 		assertEquals(loc1.type, f1.type);
 		assertEquals(loc1.id, f1.id);
 		assertEquals(loc1.lat, f1.lat);
@@ -51,14 +54,14 @@ public class LocationDaoTest extends DbTest {
 
 		// insert a second location in a different network
 		Location loc2 = new Location(ANY, null, 1337, 0, null, null, Product.fromCodes("ISB".toCharArray()));
-		dao.addFavoriteLocation(new FavoriteLocation(BVG, loc2));
+		long uid2 = dao.addFavoriteLocation(new FavoriteLocation(BVG, loc2));
 
 		// assert that location has been inserted and retrieved properly
 		List<FavoriteLocation> locations2 = dao.getFavoriteLocations(BVG);
 		assertEquals(1, locations2.size());
 		FavoriteLocation f2 = locations2.get(0);
-		assertEquals(2, f2.getUid());
-		assertEquals(BVG, f2.networkId);
+		assertEquals(uid2, f2.getUid());
+		assertEquals(BVG, f2.getNetworkId());
 		assertEquals(loc2.type, f2.type);
 		assertEquals(loc2.id, f2.id);
 		assertEquals(loc2.lat, f2.lat);
@@ -72,18 +75,20 @@ public class LocationDaoTest extends DbTest {
 	public void replaceFavoriteLocation() throws Exception {
 		// create a complete station location
 		Location loc1 = new Location(STATION, "stationId", 23, 42, "place", "name", Product.ALL);
-		dao.addFavoriteLocation(new FavoriteLocation(DB, loc1));
+		long uid1 = dao.addFavoriteLocation(new FavoriteLocation(DB, loc1));
 
 		// retrieve favorite location
 		List<FavoriteLocation> locations1 = dao.getFavoriteLocations(DB);
 		assertEquals(1, locations1.size());
 		FavoriteLocation f1 = locations1.get(0);
+		assertEquals(uid1, f1.getUid());
 
 		// change the favorite location and replace it in the DB
 		f1.place = "new place";
 		f1.name = "new name";
 		f1.products = null;
-		dao.addFavoriteLocation(f1);
+		uid1 = dao.addFavoriteLocation(f1);
+		assertEquals(uid1, f1.getUid());
 
 		// retrieve favorite location again
 		List<FavoriteLocation> locations2 = dao.getFavoriteLocations(DB);
@@ -130,38 +135,60 @@ public class LocationDaoTest extends DbTest {
 		dao.addFavoriteLocation(new FavoriteLocation(BVG, loc2));
 
 		// second location should not override first one
-		List<FavoriteLocation> locations = dao.getFavoriteLocations(DB);
 		assertEquals(1, dao.getFavoriteLocations(DB).size());
 		assertEquals(1, dao.getFavoriteLocations(BVG).size());
 	}
 
 	@Test
-	public void locationExists() throws Exception {
+	public void getFavoriteLocationByUid() throws Exception {
+		// insert a minimal location
+		Location l1 = new Location(STATION, "id", 1, 1, "place", "name", null);
+		FavoriteLocation f1 = new FavoriteLocation(DB, l1);
+		long uid = dao.addFavoriteLocation(f1);
+
+		// retrieve by UID
+		FavoriteLocation f2 = dao.getFavoriteLocation(uid);
+
+		// assert that retrieval worked
+		assertNotNull(f2);
+		assertEquals(uid, f2.getUid());
+		assertEquals(DB, f2.getNetworkId());
+		assertEquals(l1.type, f2.type);
+		assertEquals(l1.id, f2.id);
+		assertEquals(l1.lat, f2.lat);
+		assertEquals(l1.lon, f2.lon);
+		assertEquals(l1.place, f2.place);
+		assertEquals(l1.name, f2.name);
+		assertEquals(l1.products, f2.products);
+	}
+
+	@Test
+	public void getFavoriteLocationByValues() throws Exception {
 		// insert a minimal location
 		Location loc1 = new Location(ANY, null, 0, 0, null, null, null);
 		dao.addFavoriteLocation(new FavoriteLocation(DB, loc1));
 
 		// assert the exists check works
-		assertEquals(1, dao.exists(DB, loc1.type, loc1.id, loc1.lat, loc1.lon, loc1.place, loc1.name));
-		assertEquals(0, dao.exists(DB, ADDRESS, loc1.id, loc1.lat, loc1.lon, loc1.place, loc1.name));
-		assertEquals(0, dao.exists(DB, loc1.type, "id", loc1.lat, loc1.lon, loc1.place, loc1.name));
-		assertEquals(0, dao.exists(DB, loc1.type, loc1.id, 1, loc1.lon, loc1.place, loc1.name));
-		assertEquals(0, dao.exists(DB, loc1.type, loc1.id, loc1.lat, 1, loc1.place, loc1.name));
-		assertEquals(0, dao.exists(DB, loc1.type, loc1.id, loc1.lat, loc1.lon, "place", loc1.name));
-		assertEquals(0, dao.exists(DB, loc1.type, loc1.id, loc1.lat, loc1.lon, loc1.place, "name"));
+		assertNotNull(dao.getFavoriteLocation(DB, loc1.type, loc1.id, loc1.lat, loc1.lon, loc1.place, loc1.name));
+		assertNull(dao.getFavoriteLocation(DB, ADDRESS, loc1.id, loc1.lat, loc1.lon, loc1.place, loc1.name));
+		assertNull(dao.getFavoriteLocation(DB, loc1.type, "id", loc1.lat, loc1.lon, loc1.place, loc1.name));
+		assertNull(dao.getFavoriteLocation(DB, loc1.type, loc1.id, 1, loc1.lon, loc1.place, loc1.name));
+		assertNull(dao.getFavoriteLocation(DB, loc1.type, loc1.id, loc1.lat, 1, loc1.place, loc1.name));
+		assertNull(dao.getFavoriteLocation(DB, loc1.type, loc1.id, loc1.lat, loc1.lon, "place", loc1.name));
+		assertNull(dao.getFavoriteLocation(DB, loc1.type, loc1.id, loc1.lat, loc1.lon, loc1.place, "name"));
 
 		// insert a maximal location
 		Location loc2 = new Location(STATION, "id", 1, 1, "place", "name", null);
 		dao.addFavoriteLocation(new FavoriteLocation(DB, loc2));
 
 		// assert the exists check works
-		assertEquals(1, dao.exists(DB, loc2.type, loc2.id, loc2.lat, loc2.lon, loc2.place, loc2.name));
-		assertEquals(0, dao.exists(DB, POI, loc2.id, loc2.lat, loc2.lon, loc2.place, loc2.name));
-		assertEquals(0, dao.exists(DB, loc2.type, "oid", loc2.lat, loc2.lon, loc2.place, loc2.name));
-		assertEquals(0, dao.exists(DB, loc2.type, loc2.id, 42, loc2.lon, loc2.place, loc2.name));
-		assertEquals(0, dao.exists(DB, loc2.type, loc2.id, loc2.lat, 42, loc2.place, loc2.name));
-		assertEquals(0, dao.exists(DB, loc2.type, loc2.id, loc2.lat, loc2.lon, "oplace", loc2.name));
-		assertEquals(0, dao.exists(DB, loc2.type, loc2.id, loc2.lat, loc2.lon, loc2.place, "oname"));
+		assertNotNull(dao.getFavoriteLocation(DB, loc2.type, loc2.id, loc2.lat, loc2.lon, loc2.place, loc2.name));
+		assertNull(dao.getFavoriteLocation(DB, POI, loc2.id, loc2.lat, loc2.lon, loc2.place, loc2.name));
+		assertNull(dao.getFavoriteLocation(DB, loc2.type, "oid", loc2.lat, loc2.lon, loc2.place, loc2.name));
+		assertNull(dao.getFavoriteLocation(DB, loc2.type, loc2.id, 42, loc2.lon, loc2.place, loc2.name));
+		assertNull(dao.getFavoriteLocation(DB, loc2.type, loc2.id, loc2.lat, 42, loc2.place, loc2.name));
+		assertNull(dao.getFavoriteLocation(DB, loc2.type, loc2.id, loc2.lat, loc2.lon, "oplace", loc2.name));
+		assertNull(dao.getFavoriteLocation(DB, loc2.type, loc2.id, loc2.lat, loc2.lon, loc2.place, "oname"));
 	}
 
 }

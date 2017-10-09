@@ -209,7 +209,7 @@ public class DeparturesActivity extends TransportrActivity
 	@Override
 	public DeparturesLoader onCreateLoader(int i, Bundle args) {
 		Log.e("TEST", "onCreateLoader!!! " + args.toString());
-		return new DeparturesLoader(this, manager.getTransportNetwork(), args);
+		return new DeparturesLoader(this, manager.getTransportNetwork().getValue(), args);
 	}
 
 	@Override

@@ -20,6 +20,7 @@ package de.grobox.liberario.favorites.locations;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,73 +30,61 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.liberario.AbstractManager;
-import de.grobox.liberario.data.LocationDb;
 import de.grobox.liberario.data.SpecialLocationDb;
-import de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType;
+import de.grobox.liberario.data.locations.FavoriteLocation;
+import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
+import de.grobox.liberario.data.locations.HomeLocation;
+import de.grobox.liberario.data.locations.LocationRepository;
 import de.grobox.liberario.favorites.trips.FavoriteTripManager;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;
-import de.schildbach.pte.dto.Location;
 
-import static de.grobox.liberario.data.LocationDb.updateFavLocation;
-import static de.grobox.liberario.favorites.locations.FavoriteLocation.FavLocationType.FROM;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.TO;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.VIA;
 
 @ParametersAreNonnullByDefault
 public class FavoriteLocationManager extends AbstractManager implements TransportNetworkChangedListener {
 
 	private final Context context;
+	private final LocationRepository locationRepository;
 	private final FavoriteTripManager favoriteTripManager;
 
-	private @Nullable Location home, work;
+	private @Nullable HomeLocation home;
+	private @Nullable WrapLocation work;
 	private @Nullable List<FavoriteLocation> favoriteLocations;
 	private List<FavoriteLocationsLoadedListener> favoriteLocationsLoadedListeners = new ArrayList<>();
 
 	@Inject
-	public FavoriteLocationManager(Context context, FavoriteTripManager favoriteTripManager) {
+	public FavoriteLocationManager(Context context, LocationRepository locationRepository, FavoriteTripManager favoriteTripManager) {
 		this.context = context;
+		this.locationRepository = locationRepository;
 		this.favoriteTripManager = favoriteTripManager;
-		loadHome();
+		observeHome();
 		loadWork();
-		loadLocations();
+		observeLocations();
 	}
 
 	@Nullable
-	public Location getHome() {
+	public HomeLocation getHome() {
 		return home;
 	}
 
-	private void loadHome() {
-		runOnBackgroundThread(new Runnable() {
-			@Override
-			public void run() {
-				setLoadedHome(SpecialLocationDb.getHome(context));
-			}
+	private void observeHome() {
+		locationRepository.getHomeLocation().observeForever(newHomeLocation -> {
+			if (newHomeLocation == null) return;
+			Log.w("TEST", "OBSERVED A NEW HOME LOCATION: " + newHomeLocation.toString());
+			home = newHomeLocation;
 		});
 	}
 
-	private void setLoadedHome(@Nullable final Location home) {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				FavoriteLocationManager.this.home = home;
-			}
-		});
-	}
-
-	public void setHome(final Location home) {
-		this.home = home;
-		runOnBackgroundThread(new Runnable() {
-			@Override
-			public void run() {
-				SpecialLocationDb.setHome(context, home);
-				favoriteTripManager.loadTrips();
-			}
-		});
+	public void setHome(final WrapLocation home) {
+		locationRepository.setHomeLocation(home);
 	}
 
 	@Nullable
-	public Location getWork() {
+	public WrapLocation getWork() {
 		return work;
 	}
 
@@ -108,7 +97,7 @@ public class FavoriteLocationManager extends AbstractManager implements Transpor
 		});
 	}
 
-	private void setLoadedWork(@Nullable final Location work) {
+	private void setLoadedWork(@Nullable final WrapLocation work) {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -117,15 +106,9 @@ public class FavoriteLocationManager extends AbstractManager implements Transpor
 		});
 	}
 
-	public void setWork(final Location work) {
+	public void setWork(final WrapLocation work) {
+		// TODO
 		this.work = work;
-		runOnBackgroundThread(new Runnable() {
-			@Override
-			public void run() {
-				SpecialLocationDb.setWork(context, work);
-				favoriteTripManager.loadTrips();
-			}
-		});
 	}
 
 	/**
@@ -139,55 +122,30 @@ public class FavoriteLocationManager extends AbstractManager implements Transpor
 
 		if (sort == FROM) {
 			Collections.sort(tmpList, FavoriteLocation.FromComparator);
-		} else if (sort == FavLocationType.VIA) {
+		} else if (sort == VIA) {
 			Collections.sort(tmpList, FavoriteLocation.ViaComparator);
-		} else if (sort == FavLocationType.TO) {
+		} else if (sort == TO) {
 			Collections.sort(tmpList, FavoriteLocation.ToComparator);
 		}
-		for (FavoriteLocation loc : tmpList) {
-			list.add(loc);
-		}
+		list.addAll(tmpList);
 		return list;
 	}
 
 	@UiThread
 	public void addLocation(final WrapLocation location) {
-		final FavLocationType type = FROM;
-
-		FavoriteLocation favoriteLocation = new FavoriteLocation(location.getLocation(), 0, 0, 0);
-		if (favoriteLocations != null && favoriteLocations.contains(favoriteLocation)) {
-			favoriteLocations.get(favoriteLocations.indexOf(favoriteLocation)).add(type);
-		} else if (favoriteLocations != null) {
-			favoriteLocations.add(favoriteLocation);
-		}
-
-		runOnBackgroundThread(new Runnable() {
-			@Override
-			public void run() {
-				updateFavLocation(context, location.getLocation(), type);
-			}
-		});
+		final FavLocationType type = FROM;  // TODO
+		locationRepository.addFavoriteLocation(location, type);
 	}
 
-	private void loadLocations() {
-		runOnBackgroundThread(new Runnable() {
-			@Override
-			public void run() {
-				setLoadedFavoriteLocations(LocationDb.getFavLocationList(context));
+	private void observeLocations() {
+		locationRepository.getFavoriteLocations().observeForever(locations -> {
+			if (locations == null) return;
+			Log.w("TEST", "OBSERVED NEW FAV LOCATIONS: " + locations.toString());
+			favoriteLocations = locations;
+			for (FavoriteLocationsLoadedListener l : favoriteLocationsLoadedListeners) {
+				if (l != null) l.onFavoriteLocationsLoaded();
 			}
-		});
-	}
-
-	private void setLoadedFavoriteLocations(final List<FavoriteLocation> favoriteLocations) {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				FavoriteLocationManager.this.favoriteLocations = favoriteLocations;
-				for (FavoriteLocationsLoadedListener l : favoriteLocationsLoadedListeners) {
-					if (l != null) l.onFavoriteLocationsLoaded();
-				}
-				favoriteLocationsLoadedListeners.clear();
-			}
+			favoriteLocationsLoadedListeners.clear();
 		});
 	}
 
@@ -205,9 +163,9 @@ public class FavoriteLocationManager extends AbstractManager implements Transpor
 		home = null;
 		work = null;
 		favoriteLocations = null;
-		loadHome();
+		observeHome();
 		loadWork();
-		loadLocations();
+		observeLocations();
 	}
 
 	public interface FavoriteLocationsLoadedListener {

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -12,6 +11,7 @@ import java.util.Date;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.R;
+import de.grobox.liberario.data.locations.FavoriteLocation;
 import de.grobox.liberario.fragments.TimeDateFragment.TimeDateListener;
 import de.grobox.liberario.locations.LocationView.LocationViewListener;
 import de.grobox.liberario.locations.WrapLocation;
@@ -35,12 +35,14 @@ import static de.grobox.liberario.utils.DateUtils.getTime;
 class DirectionsPresenter implements LocationViewListener, TimeDateListener {
 
 	private final DirectionsActivity activity;
+	private DirectionsViewModel viewModel;
 
 	private boolean now = true;
 	private Calendar calendar = Calendar.getInstance();
 
-	DirectionsPresenter(DirectionsActivity activity, @Nullable Bundle savedInstanceState) {
+	DirectionsPresenter(DirectionsActivity activity, DirectionsViewModel viewModel, @Nullable Bundle savedInstanceState) {
 		this.activity = activity;
+		this.viewModel = viewModel;
 		if (savedInstanceState != null) {
 			calendar = (Calendar) savedInstanceState.getSerializable(DATE);
 			now = savedInstanceState.getBoolean(NOW);
@@ -55,6 +57,7 @@ class DirectionsPresenter implements LocationViewListener, TimeDateListener {
 
 	@Override
 	public void onLocationItemClick(WrapLocation loc) {
+		viewModel.clickLocation(loc, FavoriteLocation.FavLocationType.FROM);
 		activity.search();
 	}
 
@@ -123,7 +126,7 @@ class DirectionsPresenter implements LocationViewListener, TimeDateListener {
 	}
 
 	private void presetFromTo(@Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to, @Nullable Date date) {
-		if (from != null && from.getType() == GPS) {
+		if (from != null && from.getWrapType() == GPS) {
 			// TODO
 //			activateGPS();
 			activity.setFromLocation(null);
