@@ -44,4 +44,17 @@ public interface LocationDao {
 	@Query("SELECT COUNT(uid) FROM home_locations WHERE networkId = :networkId")
 	int countHomes(NetworkId networkId);
 
+	// WorkLocation
+
+	@Nullable
+	@Query("SELECT * FROM work_locations WHERE networkId = :networkId")
+	WorkLocation getWorkLocation(NetworkId networkId);
+
+	@Insert(onConflict = REPLACE)
+	long addWorkLocation(WorkLocation location);
+
+	/* This is just for tests to ensure, there's only ever one home location per network */
+	@Query("SELECT COUNT(uid) FROM work_locations WHERE networkId = :networkId")
+	int countWorks(NetworkId networkId);
+
 }

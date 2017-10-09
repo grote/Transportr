@@ -12,14 +12,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.grobox.liberario.data.locations.HomeLocation;
 import de.grobox.liberario.favorites.trips.FavoriteTripItem;
-import de.grobox.liberario.favorites.trips.FavoriteTripType;
-import de.grobox.liberario.locations.WrapLocation;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 
 import static de.grobox.liberario.data.DbHelper.getLocation;
-import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.settings.Preferences.getNetwork;
 
 @Deprecated
@@ -70,7 +68,7 @@ public class FavoritesDb {
 		}
 //		return new FavoriteTripItem(from, via, to, c.getInt(c.getColumnIndex("count")),
 //				date, c.getInt(c.getColumnIndex("is_favourite")) > 0);
-		return new FavoriteTripItem(FavoriteTripType.HOME, new WrapLocation(HOME));
+		return new FavoriteTripItem((HomeLocation)null);
 	}
 
 	public static void updateFavoriteTrip(Context context, FavoriteTripItem trip) {

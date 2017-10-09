@@ -43,6 +43,7 @@ import de.grobox.liberario.R;
 import de.grobox.liberario.data.locations.FavoriteLocation;
 import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.data.locations.HomeLocation;
+import de.grobox.liberario.data.locations.WorkLocation;
 import de.schildbach.pte.dto.SuggestedLocation;
 
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
@@ -55,6 +56,7 @@ import static de.grobox.liberario.locations.WrapLocation.WrapType.NORMAL;
 class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 
 	private @Nullable HomeLocation homeLocation;
+	private @Nullable WorkLocation workLocation;
 	private List<FavoriteLocation> favoriteLocations = new ArrayList<>();
 	private List<WrapLocation> locations = new ArrayList<>();
 	private @Nullable List<SuggestedLocation> suggestedLocations;
@@ -81,6 +83,13 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 		resetDropDownLocations();
 	}
 
+	public void setWorkLocation(@Nullable WorkLocation workLocation) {
+		Log.w("TEST", "SETTING NEW WORK LOCATION IN ADAPTER: " + (workLocation == null ? "null" : workLocation.toString()));
+		this.workLocation = workLocation;
+		updateLocations();
+		resetDropDownLocations();
+	}
+
 	public void setFavoriteLocations(List<FavoriteLocation> favoriteLocations) {
 		Log.w("TEST", "SETTING NEW FAV LOCATIONS IN ADAPTER: " + favoriteLocations.toString());
 		this.favoriteLocations = favoriteLocations;
@@ -97,6 +106,10 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 				locations.add(homeLocation);
 			}
 			else locations.add(new WrapLocation(HOME));
+		}
+		if (workLocation != null) {
+			favoriteLocations.remove(workLocation);
+			locations.add(workLocation);
 		}
 		if (includeGps) locations.add(new WrapLocation(GPS));
 //		locations.add(new WrapLocation(MAP));

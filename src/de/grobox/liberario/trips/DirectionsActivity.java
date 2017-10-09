@@ -102,6 +102,10 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 			from.setHomeLocation(homeLocation);
 			to.setHomeLocation(homeLocation);
 		});
+		viewModel.getWork().observe(this, workLocation -> {
+			from.setWorkLocation(workLocation);
+			to.setWorkLocation(workLocation);
+		});
 		viewModel.getLocations().observe(this, favoriteLocations -> {
 			if (favoriteLocations == null) return;
 			from.setFavoriteLocations(favoriteLocations);

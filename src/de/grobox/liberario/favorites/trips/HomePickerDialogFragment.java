@@ -45,7 +45,6 @@ public class HomePickerDialogFragment extends SpecialLocationFragment {
 	@Override
 	protected void onSpecialLocationSet(WrapLocation location) {
 		viewModel.setHome(location);
-		if (listener != null) listener.onHomeChanged(location.getLocation());
 	}
 
 }

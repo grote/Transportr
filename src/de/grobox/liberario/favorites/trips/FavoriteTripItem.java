@@ -25,19 +25,22 @@ import java.util.Date;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import de.grobox.liberario.data.locations.HomeLocation;
+import de.grobox.liberario.data.locations.WorkLocation;
 import de.grobox.liberario.data.searches.StoredSearch;
 import de.grobox.liberario.locations.WrapLocation;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static de.grobox.liberario.favorites.trips.FavoriteTripType.HOME;
 import static de.grobox.liberario.favorites.trips.FavoriteTripType.TRIP;
 import static de.grobox.liberario.favorites.trips.FavoriteTripType.WORK;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 
 @ParametersAreNonnullByDefault
 public class FavoriteTripItem extends StoredSearch implements Comparable<FavoriteTripItem> {
 
 	private final FavoriteTripType type;
-	private final @Nullable WrapLocation from, via, to;
+	private final WrapLocation from;
+	private final @Nullable WrapLocation via, to;
 
 	public FavoriteTripItem(long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to) {
 		this.uid = uid;
@@ -55,13 +58,22 @@ public class FavoriteTripItem extends StoredSearch implements Comparable<Favorit
 		this.to = to;
 	}
 
-	public FavoriteTripItem(FavoriteTripType type, @Nullable WrapLocation to) {
-		checkArgument(type == HOME || type == WORK, "This constructor can only be used for HOME and WORK");
-		this.type = type;
-		this.from = null;
+	public FavoriteTripItem(@Nullable HomeLocation to) {
+		this.type = HOME;
+		this.from = new WrapLocation(GPS);
 		this.via = null;
 		this.to = to;
-		this.count = 0;
+		this.count = 1;
+		this.lastUsed = new Date();
+		this.favorite = false;
+	}
+
+	public FavoriteTripItem(@Nullable WorkLocation to) {
+		this.type = WORK;
+		this.from = new WrapLocation(GPS);
+		this.via = null;
+		this.to = to;
+		this.count = 1;
 		this.lastUsed = new Date();
 		this.favorite = false;
 	}
@@ -70,7 +82,6 @@ public class FavoriteTripItem extends StoredSearch implements Comparable<Favorit
 		return type;
 	}
 
-	@Nullable
 	public WrapLocation getFrom() {
 		return from;
 	}

@@ -40,7 +40,7 @@ import static de.schildbach.pte.dto.LocationType.COORD;
 
 public class WrapLocation implements Serializable {
 
-	public enum WrapType { NORMAL, HOME, GPS, MAP }
+	public enum WrapType { NORMAL, HOME, WORK, GPS, MAP }
 
 	@Ignore
 	private WrapType wrapType;

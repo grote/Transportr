@@ -17,6 +17,7 @@
 
 package de.grobox.liberario.favorites.trips;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,6 +35,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
+import javax.inject.Inject;
+
 import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportrApplication;
@@ -43,6 +46,8 @@ import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.settings.Preferences;
 
 abstract class SpecialLocationFragment extends DialogFragment implements LocationView.LocationViewListener {
+
+	@Inject ViewModelProvider.Factory viewModelFactory;
 
 	protected LocationsViewModel viewModel;
 	protected @Nullable FavoriteTripListener listener;
@@ -76,11 +81,12 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 		loc.setLocationViewListener(this);
 
 		// Get view model and observe data
-		viewModel = ViewModelProviders.of(getActivity()).get(LocationsViewModel.class);
+		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(LocationsViewModel.class);
 		viewModel.getTransportNetwork().observe(this, transportNetwork -> {
 			if (transportNetwork != null) loc.setTransportNetwork(transportNetwork);
 		});
 		viewModel.getHome().observe(this, homeLocation -> loc.setHomeLocation(homeLocation));
+		viewModel.getWork().observe(this, workLocation -> loc.setWorkLocation(workLocation));
 		viewModel.getLocations().observe(this, favoriteLocations -> {
 			if (favoriteLocations == null) return;
 			loc.setFavoriteLocations(favoriteLocations);

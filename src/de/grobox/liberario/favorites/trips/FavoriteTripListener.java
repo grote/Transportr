@@ -2,8 +2,6 @@ package de.grobox.liberario.favorites.trips;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import de.schildbach.pte.dto.Location;
-
 @ParametersAreNonnullByDefault
 interface FavoriteTripListener {
 
@@ -14,9 +12,5 @@ interface FavoriteTripListener {
 	void changeHome();
 
 	void changeWork();
-
-	void onHomeChanged(Location home);
-
-	void onWorkChanged(Location work);
 
 }

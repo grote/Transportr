@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import de.grobox.liberario.data.locations.FavoriteLocation;
 import de.grobox.liberario.data.locations.HomeLocation;
 import de.grobox.liberario.data.locations.LocationDao;
+import de.grobox.liberario.data.locations.WorkLocation;
 import de.grobox.liberario.data.searches.SearchesDao;
 import de.grobox.liberario.data.searches.StoredSearch;
 
@@ -16,6 +17,7 @@ import de.grobox.liberario.data.searches.StoredSearch;
 		entities = {
 				FavoriteLocation.class,
 				HomeLocation.class,
+				WorkLocation.class,
 				StoredSearch.class
 		}
 )

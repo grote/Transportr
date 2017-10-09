@@ -48,6 +48,7 @@ import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.data.locations.FavoriteLocation;
 import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.data.locations.HomeLocation;
+import de.grobox.liberario.data.locations.WorkLocation;
 import de.grobox.liberario.locations.SuggestLocationsTask.SuggestLocationsTaskCallback;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.utils.TransportrUtils;
@@ -208,6 +209,10 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	public void setHomeLocation(@Nullable HomeLocation homeLocation) {
 		adapter.setHomeLocation(homeLocation);
+	}
+
+	public void setWorkLocation(@Nullable WorkLocation workLocation) {
+		adapter.setWorkLocation(workLocation);
 	}
 
 	public void setFavoriteLocations(List<FavoriteLocation> favoriteLocations) {

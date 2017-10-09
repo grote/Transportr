@@ -26,6 +26,7 @@ public class LocationRepository extends AbstractManager implements Observer<Tran
 
 	private final LiveData<TransportNetwork> network;
 	private final MutableLiveData<HomeLocation> home = new MutableLiveData<>();
+	private final MutableLiveData<WorkLocation> work = new MutableLiveData<>();
 	private final MutableLiveData<List<FavoriteLocation>> locations = new MutableLiveData<>();
 
 	@Inject
@@ -60,11 +61,49 @@ public class LocationRepository extends AbstractManager implements Observer<Tran
 	public void setHomeLocation(WrapLocation location) {
 		if (network.getValue() == null) return;
 
-		final HomeLocation homeLocation = new HomeLocation(network.getValue().getId(), location);
+		NetworkId networkId = network.getValue().getId();
 		runOnBackgroundThread(() -> {
-			locationDao.addHomeLocation(homeLocation);
+			// add also as favorite location if it doesn't exist already
+			FavoriteLocation favoriteLocation = getFavoriteLocation(networkId, location);
+			if (favoriteLocation == null) locationDao.addFavoriteLocation(new FavoriteLocation(networkId, location));
+
+			locationDao.addHomeLocation(new HomeLocation(networkId, location));
 //			home.postValue(homeLocation);  // TODO necessary?
 		});
+	}
+
+	public LiveData<WorkLocation> getWorkLocation() {
+		if (network.getValue() == null) return work;
+		if (work.getValue() != null) return work;
+
+		fetchWorkLocation(network.getValue().getId());
+		return work;
+	}
+
+	private void fetchWorkLocation(NetworkId networkId) {
+		runOnBackgroundThread(() -> {
+			WorkLocation workLocation = locationDao.getWorkLocation(networkId);
+			work.postValue(workLocation);
+		});
+	}
+
+	public void setWorkLocation(WrapLocation location) {
+		if (network.getValue() == null) return;
+
+		NetworkId networkId = network.getValue().getId();
+		runOnBackgroundThread(() -> {
+			// add also as favorite location if it doesn't exist already
+			FavoriteLocation favoriteLocation = getFavoriteLocation(networkId, location);
+			if (favoriteLocation == null) locationDao.addFavoriteLocation(new FavoriteLocation(networkId, location));
+
+			locationDao.addWorkLocation(new WorkLocation(networkId, location));
+		});
+	}
+
+	@Nullable
+	private FavoriteLocation getFavoriteLocation(NetworkId networkId, @Nullable WrapLocation l) {
+		if (l == null) return null;
+		return locationDao.getFavoriteLocation(networkId, l.type, l.id, l.lat, l.lon, l.place, l.name);
 	}
 
 	public LiveData<List<FavoriteLocation>> getFavoriteLocations() {

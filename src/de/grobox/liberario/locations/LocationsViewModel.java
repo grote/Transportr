@@ -11,6 +11,7 @@ import de.grobox.liberario.data.locations.FavoriteLocation;
 import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.data.locations.HomeLocation;
 import de.grobox.liberario.data.locations.LocationRepository;
+import de.grobox.liberario.data.locations.WorkLocation;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.networks.TransportNetworkViewModel;
 
@@ -19,6 +20,7 @@ public class LocationsViewModel extends TransportNetworkViewModel {
 	private final LocationRepository locationRepository;
 
 	private final LiveData<HomeLocation> home;
+	private final LiveData<WorkLocation> work;
 	private final LiveData<List<FavoriteLocation>> locations;
 
 	@Inject
@@ -26,7 +28,13 @@ public class LocationsViewModel extends TransportNetworkViewModel {
 		super(transportNetworkManager);
 		this.locationRepository = locationRepository;
 		this.home = locationRepository.getHomeLocation();
+		this.work = locationRepository.getWorkLocation();
 		this.locations = locationRepository.getFavoriteLocations();
+	}
+
+	public void setHome(WrapLocation wrapLocation) {
+		Log.w(this.getClass().getName(), "SET HOME");
+		locationRepository.setHomeLocation(wrapLocation);
 	}
 
 	public LiveData<HomeLocation> getHome() {
@@ -34,8 +42,14 @@ public class LocationsViewModel extends TransportNetworkViewModel {
 		return home;
 	}
 
-	public void setHome(WrapLocation wrapLocation) {
-		locationRepository.setHomeLocation(wrapLocation);
+	public void setWork(WrapLocation wrapLocation) {
+		Log.w(this.getClass().getName(), "SET WORK");
+		locationRepository.setWorkLocation(wrapLocation);
+	}
+
+	public LiveData<WorkLocation> getWork() {
+		Log.w(this.getClass().getName(), "GET WORK");
+		return work;
 	}
 
 	public LiveData<List<FavoriteLocation>> getLocations() {

@@ -21,7 +21,6 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.fragments.TransportrFragment;
-import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.Location;
 
@@ -125,14 +124,12 @@ public class FavoriteTripsFragment extends TransportrFragment implements Favorit
 		f.show(getActivity().getSupportFragmentManager(), WorkPickerDialogFragment.TAG);
 	}
 
-	@Override
 	public void onHomeChanged(Location home) {
-		onSpecialLocationChanged(adapter.getHome(), new FavoriteTripItem(FavoriteTripType.HOME, new WrapLocation(home)));
+//		onSpecialLocationChanged(adapter.getHome(), new FavoriteTripItem(new HomeLocation(home)));
 	}
 
-	@Override
 	public void onWorkChanged(Location work) {
-		onSpecialLocationChanged(adapter.getWork(), new FavoriteTripItem(FavoriteTripType.WORK, new WrapLocation(work)));
+//		onSpecialLocationChanged(adapter.getWork(), new FavoriteTripItem(new WorkLocation(work)));
 	}
 
 	private void onSpecialLocationChanged(@Nullable FavoriteTripItem oldItem, FavoriteTripItem newItem) {

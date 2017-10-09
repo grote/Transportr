@@ -135,6 +135,7 @@ public class NewMapActivity extends DrawerActivity
 			}
 		});
 		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));
+		viewModel.getWork().observe(this, workLocation -> search.setWorkLocation(workLocation));
 		viewModel.getLocations().observe(this, favoriteLocations -> {
 			if (favoriteLocations == null) return;
 			search.setFavoriteLocations(favoriteLocations);

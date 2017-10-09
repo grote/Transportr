@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "607dcc698c6827c265c3f46ead1bd9e1",
+    "identityHash": "98970f699e388cb9b02e3867dd372bcd",
     "entities": [
       {
         "tableName": "locations",
@@ -194,6 +194,83 @@
         "foreignKeys": []
       },
       {
+        "tableName": "work_locations",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`type` TEXT, `id` TEXT, `lat` INTEGER NOT NULL, `lon` INTEGER NOT NULL, `place` TEXT, `name` TEXT, `products` TEXT, `uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `networkId` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lat",
+            "columnName": "lat",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lon",
+            "columnName": "lon",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "place",
+            "columnName": "place",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "products",
+            "columnName": "products",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "networkId",
+            "columnName": "networkId",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_work_locations_networkId",
+            "unique": true,
+            "columnNames": [
+              "networkId"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_work_locations_networkId` ON `${TABLE_NAME}` (`networkId`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
         "tableName": "searches",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `networkId` TEXT, `from_id` INTEGER NOT NULL, `via_id` INTEGER, `to_id` INTEGER NOT NULL, `count` INTEGER NOT NULL, `lastUsed` INTEGER, `favorite` INTEGER NOT NULL, FOREIGN KEY(`from_id`) REFERENCES `locations`(`uid`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`via_id`) REFERENCES `locations`(`uid`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`to_id`) REFERENCES `locations`(`uid`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
@@ -335,7 +412,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"607dcc698c6827c265c3f46ead1bd9e1\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"98970f699e388cb9b02e3867dd372bcd\")"
     ]
   }
 }

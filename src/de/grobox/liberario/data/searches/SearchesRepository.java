@@ -15,14 +15,12 @@ import de.grobox.liberario.AbstractManager;
 import de.grobox.liberario.data.locations.FavoriteLocation;
 import de.grobox.liberario.data.locations.HomeLocation;
 import de.grobox.liberario.data.locations.LocationDao;
+import de.grobox.liberario.data.locations.WorkLocation;
 import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.schildbach.pte.NetworkId;
-
-import static de.grobox.liberario.favorites.trips.FavoriteTripType.HOME;
-import static de.grobox.liberario.favorites.trips.FavoriteTripType.WORK;
 
 public class SearchesRepository extends AbstractManager implements Observer<TransportNetwork> {
 
@@ -59,8 +57,9 @@ public class SearchesRepository extends AbstractManager implements Observer<Tran
 			List<FavoriteTripItem> favoriteTrips = new ArrayList<>();
 
 			HomeLocation homeLocation = locationDao.getHomeLocation(networkId);
-			favoriteTrips.add(new FavoriteTripItem(HOME, homeLocation));
-			favoriteTrips.add(new FavoriteTripItem(WORK, null));  // TODO
+			WorkLocation workLocation = locationDao.getWorkLocation(networkId);
+			favoriteTrips.add(new FavoriteTripItem(homeLocation));
+			favoriteTrips.add(new FavoriteTripItem(workLocation));
 
 			List<StoredSearch> storedSearches = searchesDao.getStoredSearches(networkId);
 			for (StoredSearch storedSearch : storedSearches) {

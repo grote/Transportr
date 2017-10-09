@@ -44,9 +44,7 @@ public class WorkPickerDialogFragment extends SpecialLocationFragment {
 
 	@Override
 	protected void onSpecialLocationSet(WrapLocation location) {
-		// TODO
-//		viewModel.setWork(location);
-		if (listener != null) listener.onWorkChanged(location.getLocation());
+		viewModel.setWork(location);
 	}
 
 }
