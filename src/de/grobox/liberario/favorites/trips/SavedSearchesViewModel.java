@@ -7,25 +7,25 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.grobox.liberario.data.locations.LocationRepository;
 import de.grobox.liberario.data.searches.SearchesRepository;
+import de.grobox.liberario.locations.LocationsViewModel;
 import de.grobox.liberario.networks.TransportNetworkManager;
-import de.grobox.liberario.networks.TransportNetworkViewModel;
 
-public class SavedSearchesViewModel extends TransportNetworkViewModel {
+public class SavedSearchesViewModel extends LocationsViewModel {
 
 	private final SearchesRepository searchesRepository;
 
 	private final LiveData<List<FavoriteTripItem>> savedSearches;
 
 	@Inject
-	SavedSearchesViewModel(TransportNetworkManager transportNetworkManager, SearchesRepository searchesRepository) {
-		super(transportNetworkManager);
+	SavedSearchesViewModel(TransportNetworkManager transportNetworkManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
+		super(transportNetworkManager, locationRepository);
 		this.searchesRepository = searchesRepository;
 		this.savedSearches = searchesRepository.getFavoriteTrips();
 	}
 
-	public LiveData<List<FavoriteTripItem>> getFavoriteTrips() {
-		Log.w(this.getClass().getName(), "GET FAV TRIPS");
+	LiveData<List<FavoriteTripItem>> getFavoriteTrips() {
 		return savedSearches;
 	}
 
@@ -34,8 +34,7 @@ public class SavedSearchesViewModel extends TransportNetworkViewModel {
 		searchesRepository.storeSearch(item);
 	}
 
-	public void updateFavoriteState(FavoriteTripItem item) {
-		Log.w(this.getClass().getName(), "UPDATE FAV STATE OF TRIP ITEM " + (item.isFavorite() ? "TO FAV" : "TO RECENT"));
+	void updateFavoriteState(FavoriteTripItem item) {
 		searchesRepository.updateFavoriteState(item);
 	}
 

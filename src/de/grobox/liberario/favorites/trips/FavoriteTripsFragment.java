@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +19,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
+import de.grobox.liberario.data.locations.HomeLocation;
+import de.grobox.liberario.data.locations.WorkLocation;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.ui.LceAnimator;
-import de.schildbach.pte.dto.Location;
 
 import static android.support.v7.util.SortedList.INVALID_POSITION;
 import static de.grobox.liberario.utils.TransportrUtils.findDirections;
@@ -39,6 +39,7 @@ public class FavoriteTripsFragment extends TransportrFragment implements Favorit
 	private ProgressBar progressBar;
 	private RecyclerView list;
 	private FavoriteTripAdapter adapter;
+	private boolean listAlreadyUpdated = false;
 
 	public static FavoriteTripsFragment newInstance(boolean topMargin) {
 		FavoriteTripsFragment f = new FavoriteTripsFragment();
@@ -61,7 +62,9 @@ public class FavoriteTripsFragment extends TransportrFragment implements Favorit
 		list.setLayoutManager(new LinearLayoutManager(getContext()));
 
 		viewModel = ViewModelProviders.of(this, viewModelFactory).get(SavedSearchesViewModel.class);
-		viewModel.getFavoriteTrips().observe(this, this::onFavoriteTripsLoaded);
+		viewModel.getHome().observe(this, this::onHomeLocationChanged);
+		viewModel.getWork().observe(this, this::onWorkLocationChanged);
+		viewModel.getFavoriteTrips().observe(this, this::onFavoriteTripsChanged);
 
 		if (!getArguments().getBoolean(TOP_MARGIN)) {
 			FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) list.getLayoutParams();
@@ -71,10 +74,73 @@ public class FavoriteTripsFragment extends TransportrFragment implements Favorit
 		return v;
 	}
 
-	private void onFavoriteTripsLoaded(List<FavoriteTripItem> trips) {
+	private void onHomeLocationChanged(@Nullable HomeLocation home) {
+		FavoriteTripItem oldHome = adapter.getHome();
+		FavoriteTripItem newHome = new FavoriteTripItem(home);
+		if (oldHome == null) {
+			adapter.add(newHome);
+		} else {
+			onSpecialLocationChanged(oldHome, newHome);
+		}
+	}
+
+	private void onWorkLocationChanged(@Nullable WorkLocation work) {
+		FavoriteTripItem oldWork = adapter.getWork();
+		FavoriteTripItem newWork = new FavoriteTripItem(work);
+		if (oldWork == null) {
+			adapter.add(newWork);
+		} else {
+			onSpecialLocationChanged(oldWork, newWork);
+		}
+	}
+
+	private void onSpecialLocationChanged(FavoriteTripItem oldItem, FavoriteTripItem newItem) {
+		int position = adapter.findItemPosition(oldItem);
+		if (position == INVALID_POSITION) return;
+
+		// animate the new location in from right to left
+		RecyclerView.ViewHolder viewHolder = list.findViewHolderForAdapterPosition(position);
+		if (viewHolder != null) {  // is null when activity gets recreated
+			View view = viewHolder.itemView;
+			ObjectAnimator.ofFloat(view, View.TRANSLATION_X, view.getWidth(), 0).start();
+		}
+		adapter.updateItem(position, newItem);
+	}
+
+	private void onFavoriteTripsChanged(List<FavoriteTripItem> trips) {
+		// duplicate detection does not work, so we manage list updates ourselves, no need to reload
+		if (listAlreadyUpdated) {
+			// be ready for the next update
+			listAlreadyUpdated = false;
+			return;
+		}
 		LceAnimator.showContent(progressBar, list, null);
-		adapter.clear();
-		adapter.addAll(trips);
+		adapter.swap(trips);
+	}
+
+	@Override
+	public void onFavoriteChanged(FavoriteTripItem item, boolean isFavorite) {
+		item.setFavorite(isFavorite);
+		int position = adapter.findItemPosition(item);
+		if (position != INVALID_POSITION) {
+			adapter.updateItem(position, item);
+		}
+		listAlreadyUpdated = true;
+		viewModel.updateFavoriteState(item);
+	}
+
+	@Override
+	public void changeHome() {
+		HomePickerDialogFragment f = HomePickerDialogFragment.newInstance();
+		f.setListener(this);
+		f.show(getActivity().getSupportFragmentManager(), HomePickerDialogFragment.TAG);
+	}
+
+	@Override
+	public void changeWork() {
+		WorkPickerDialogFragment f = WorkPickerDialogFragment.newInstance();
+		f.setListener(this);
+		f.show(getActivity().getSupportFragmentManager(), WorkPickerDialogFragment.TAG);
 	}
 
 	@Override
@@ -97,50 +163,6 @@ public class FavoriteTripsFragment extends TransportrFragment implements Favorit
 		} else {
 			throw new IllegalArgumentException();
 		}
-	}
-
-	@Override
-	public void onFavoriteChanged(FavoriteTripItem item, boolean isFavorite) {
-		item.setFavorite(isFavorite);
-		viewModel.updateFavoriteState(item);
-		int position = adapter.findItemPosition(item);
-		if (position != INVALID_POSITION) {
-			adapter.updateItem(position, item);
-			Log.w("TEST", "UPDATING FAV TRIP STATUS DIRECTLY");
-		}
-	}
-
-	@Override
-	public void changeHome() {
-		HomePickerDialogFragment f = HomePickerDialogFragment.newInstance();
-		f.setListener(this);
-		f.show(getActivity().getSupportFragmentManager(), HomePickerDialogFragment.TAG);
-	}
-
-	@Override
-	public void changeWork() {
-		WorkPickerDialogFragment f = WorkPickerDialogFragment.newInstance();
-		f.setListener(this);
-		f.show(getActivity().getSupportFragmentManager(), WorkPickerDialogFragment.TAG);
-	}
-
-	public void onHomeChanged(Location home) {
-//		onSpecialLocationChanged(adapter.getHome(), new FavoriteTripItem(new HomeLocation(home)));
-	}
-
-	public void onWorkChanged(Location work) {
-//		onSpecialLocationChanged(adapter.getWork(), new FavoriteTripItem(new WorkLocation(work)));
-	}
-
-	private void onSpecialLocationChanged(@Nullable FavoriteTripItem oldItem, FavoriteTripItem newItem) {
-		if (oldItem == null) return;
-		int position = adapter.findItemPosition(oldItem);
-		if (position == INVALID_POSITION) return;
-
-		View view = list.findViewHolderForAdapterPosition(position).itemView;
-		ObjectAnimator.ofFloat(view, View.TRANSLATION_X, view.getWidth(), 0).start();
-
-		adapter.updateItem(position, newItem);
 	}
 
 }

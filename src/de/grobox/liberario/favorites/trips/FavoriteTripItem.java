@@ -114,22 +114,14 @@ public class FavoriteTripItem extends StoredSearch implements Comparable<Favorit
 	}
 
 	@Override
-	@SuppressWarnings("RedundantIfStatement")
+	@SuppressWarnings("SimplifiableIfStatement")
 	public boolean equals(Object o) {
 		if (o == this)
 			return true;
 		if (!(o instanceof FavoriteTripItem))
 			return false;
-		final FavoriteTripItem other = (FavoriteTripItem) o;
-		if (!Objects.equal(this.type, other.type))
-			return false;
-		if (!Objects.equal(this.from, other.from))
-			return false;
-		if (!Objects.equal(this.to, other.to))
-			return false;
-		if (!Objects.equal(this.via, other.via))
-			return false;
-		return true;
+		FavoriteTripItem item = (FavoriteTripItem) o;
+		return uid == item.uid && type == item.type;
 	}
 
 	@SuppressWarnings("RedundantIfStatement")
@@ -152,6 +144,12 @@ public class FavoriteTripItem extends StoredSearch implements Comparable<Favorit
 		if (this.favorite != other.favorite)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ID[" + uid + "] " + (favorite ? "F " : "R ") +
+				from.getName() + " -> " + (to == null ? type.name() : to.getName()) + " [" + count + "]";
 	}
 
 }

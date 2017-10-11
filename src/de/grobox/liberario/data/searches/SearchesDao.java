@@ -1,5 +1,6 @@
 package de.grobox.liberario.data.searches;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
@@ -15,7 +16,7 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 public interface SearchesDao {
 
 	@Query("SELECT * FROM searches WHERE networkId = :networkId")
-	List<StoredSearch> getStoredSearches(NetworkId networkId);
+	LiveData<List<StoredSearch>> getStoredSearches(NetworkId networkId);
 
 	@Insert(onConflict = REPLACE)
 	long storeSearch(StoredSearch storedSearch);

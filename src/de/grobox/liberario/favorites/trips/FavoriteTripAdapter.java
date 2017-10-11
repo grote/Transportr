@@ -31,6 +31,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.liberario.R;
 
 import static android.support.v7.util.SortedList.INVALID_POSITION;
+import static de.grobox.liberario.favorites.trips.FavoriteTripType.HOME;
+import static de.grobox.liberario.favorites.trips.FavoriteTripType.WORK;
 
 @ParametersAreNonnullByDefault
 class FavoriteTripAdapter extends RecyclerView.Adapter<AbstractFavoritesViewHolder> {
@@ -85,10 +87,10 @@ class FavoriteTripAdapter extends RecyclerView.Adapter<AbstractFavoritesViewHold
 
 	@Override
 	public AbstractFavoritesViewHolder onCreateViewHolder(ViewGroup viewGroup, int type) {
-		if (type == FavoriteTripType.HOME.getValue()) {
+		if (type == HOME.getValue()) {
 			View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_special_favorite, viewGroup, false);
 			return new HomeFavoriteViewHolder(v);
-		} else if (type == FavoriteTripType.WORK.getValue()) {
+		} else if (type == WORK.getValue()) {
 			View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_special_favorite, viewGroup, false);
 			return new WorkFavoriteViewHolder(v);
 		} else {
@@ -109,17 +111,18 @@ class FavoriteTripAdapter extends RecyclerView.Adapter<AbstractFavoritesViewHold
 
 	@Nullable
 	public FavoriteTripItem getHome() {
-		return getSpecialItem(FavoriteTripType.HOME);
+		return getSpecialItem(HOME);
 	}
 
 	@Nullable
 	public FavoriteTripItem getWork() {
-		return getSpecialItem(FavoriteTripType.WORK);
+		return getSpecialItem(WORK);
 	}
 
 	@Nullable
 	private FavoriteTripItem getSpecialItem(FavoriteTripType type) {
-		for (int i = 0; i < items.size(); i++) {
+		int end = items.size() <= 1 ? items.size() : 2;
+		for (int i = 0; i < end; i++) {
 			FavoriteTripItem item = items.get(i);
 			if (item.getType() == type) return item;
 		}
@@ -134,16 +137,24 @@ class FavoriteTripAdapter extends RecyclerView.Adapter<AbstractFavoritesViewHold
 		return INVALID_POSITION;
 	}
 
-	void addAll(Collection<FavoriteTripItem> favorites) {
+	void add(FavoriteTripItem favorite) {
+		items.add(favorite);
+	}
+
+	void swap(Collection<FavoriteTripItem> favorites) {
+		FavoriteTripItem home = getHome();
+		FavoriteTripItem work = getWork();
+
+		items.beginBatchedUpdates();
+		items.clear();
+		if (home != null) items.add(home);
+		if (work != null) items.add(work);
 		items.addAll(favorites);
+		items.endBatchedUpdates();
 	}
 
 	void updateItem(int position, FavoriteTripItem item) {
 		items.updateItemAt(position, item);
-	}
-
-	void clear() {
-		items.clear();
 	}
 
 }

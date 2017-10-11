@@ -52,14 +52,14 @@ public class StoredSearchTest extends DbTest {
 	@Test
 	public void getStoredSearches() throws Exception {
 		// no stored searches should exist in empty DB
-		assertEquals(0, dao.getStoredSearches(DB).size());
+		assertEquals(0, getValue(dao.getStoredSearches(DB)).size());
 
 		// store a new search
 		StoredSearch madeSearch = new StoredSearch(DB, f1, null, f3);
 		long uid1 = dao.storeSearch(madeSearch);
 
 		// assert that search was stored and retrieved properly
-		List<StoredSearch> storedSearches = dao.getStoredSearches(DB);
+		List<StoredSearch> storedSearches = getValue(dao.getStoredSearches(DB));
 		assertEquals(1, storedSearches.size());
 		StoredSearch storedSearch = storedSearches.get(0);
 		assertEquals(uid1, storedSearch.getUid());
@@ -76,7 +76,7 @@ public class StoredSearchTest extends DbTest {
 		long uid2 = dao.storeSearch(madeSearch);
 
 		// assert that search was stored and retrieved properly
-		storedSearches = dao.getStoredSearches(DB);
+		storedSearches = getValue(dao.getStoredSearches(DB));
 		assertEquals(2, storedSearches.size());
 		storedSearch = storedSearches.get(1);
 		assertEquals(uid2, storedSearch.getUid());
@@ -93,7 +93,7 @@ public class StoredSearchTest extends DbTest {
 		long uid = dao.storeSearch(madeSearch);
 
 		// retrieve it again, so we get it with an UID which is required for the update
-		List<StoredSearch> storedSearches = dao.getStoredSearches(DB);
+		List<StoredSearch> storedSearches = getValue(dao.getStoredSearches(DB));
 		assertEquals(1, storedSearches.size());
 		StoredSearch storedSearch = storedSearches.get(0);
 		assertEquals(uid, storedSearch.getUid());
@@ -104,7 +104,7 @@ public class StoredSearchTest extends DbTest {
 		dao.storeSearch(storedSearch);
 
 		// retrieve the stored search and assert count got increased
-		storedSearches = dao.getStoredSearches(DB);
+		storedSearches = getValue(dao.getStoredSearches(DB));
 		assertEquals(1, storedSearches.size());
 		assertEquals(2, storedSearches.get(0).count);
 	}
@@ -125,7 +125,7 @@ public class StoredSearchTest extends DbTest {
 		dao.updateStoredSearch(uid1, 42, lastUsed);
 
 		// retrieve the stored search and assert count got increased
-		List<StoredSearch> storedSearches = dao.getStoredSearches(DB);
+		List<StoredSearch> storedSearches = getValue(dao.getStoredSearches(DB));
 		assertEquals(2, storedSearches.size());
 		assertEquals(42, storedSearches.get(0).count);
 		assertEquals(lastUsed, storedSearches.get(0).lastUsed);
@@ -150,7 +150,7 @@ public class StoredSearchTest extends DbTest {
 		dao.setFavorite(uid1, true);
 
 		// retrieve the stored search and assert it is now a favorite
-		List<StoredSearch> storedSearches = dao.getStoredSearches(DB);
+		List<StoredSearch> storedSearches = getValue(dao.getStoredSearches(DB));
 		assertEquals(2, storedSearches.size());
 		assertTrue(storedSearches.get(0).favorite);
 
@@ -159,7 +159,7 @@ public class StoredSearchTest extends DbTest {
 
 		// make it a regular saved search again
 		dao.setFavorite(uid1, false);
-		assertFalse(dao.getStoredSearches(DB).get(0).favorite);
+		assertFalse(getValue(dao.getStoredSearches(DB)).get(0).favorite);
 	}
 
 }

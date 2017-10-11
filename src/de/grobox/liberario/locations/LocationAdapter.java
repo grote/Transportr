@@ -23,7 +23,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,21 +75,18 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	/* TODO new stuff */
 
 	public void setHomeLocation(@Nullable HomeLocation homeLocation) {
-		Log.w("TEST", "SETTING NEW HOME LOCATION IN ADAPTER: " + (homeLocation == null ? "null" : homeLocation.toString()));
 		this.homeLocation = homeLocation;
 		updateLocations();
 		resetDropDownLocations();
 	}
 
-	public void setWorkLocation(@Nullable WorkLocation workLocation) {
-		Log.w("TEST", "SETTING NEW WORK LOCATION IN ADAPTER: " + (workLocation == null ? "null" : workLocation.toString()));
+	void setWorkLocation(@Nullable WorkLocation workLocation) {
 		this.workLocation = workLocation;
 		updateLocations();
 		resetDropDownLocations();
 	}
 
-	public void setFavoriteLocations(List<FavoriteLocation> favoriteLocations) {
-		Log.w("TEST", "SETTING NEW FAV LOCATIONS IN ADAPTER: " + favoriteLocations.toString());
+	void setFavoriteLocations(List<FavoriteLocation> favoriteLocations) {
 		this.favoriteLocations = favoriteLocations;
 		// TODO sort
 		updateLocations();
