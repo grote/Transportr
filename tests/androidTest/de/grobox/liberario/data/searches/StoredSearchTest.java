@@ -1,7 +1,10 @@
 package de.grobox.liberario.data.searches;
 
+import android.support.test.runner.AndroidJUnit4;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+@RunWith(AndroidJUnit4.class)
 public class StoredSearchTest extends DbTest {
 
 	private SearchesDao dao;
@@ -23,7 +27,7 @@ public class StoredSearchTest extends DbTest {
 	private FavoriteLocation f1, f2, f3;
 
 	@Before
-	public void createDb() {
+	public void createDb() throws Exception {
 		super.createDb();
 		dao = db.searchesDao();
 		LocationDao locationDao = db.locationDao();
@@ -35,7 +39,7 @@ public class StoredSearchTest extends DbTest {
 		long uid1 = locationDao.addFavoriteLocation(fTmp1);
 		long uid2 = locationDao.addFavoriteLocation(fTmp2);
 		long uid3 = locationDao.addFavoriteLocation(fTmp3);
-		List<FavoriteLocation> locations = locationDao.getFavoriteLocations(DB);
+		List<FavoriteLocation> locations = getValue(locationDao.getFavoriteLocations(DB));
 		assertEquals(3, locations.size());
 		f1 = locations.get(0);
 		f2 = locations.get(1);

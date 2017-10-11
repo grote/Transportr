@@ -2,7 +2,6 @@ package de.grobox.liberario.data.locations;
 
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.support.annotation.Nullable;
 
@@ -26,7 +25,7 @@ public class LocationRepository extends AbstractManager {
 	private final LiveData<NetworkId> networkId;
 	private final LiveData<HomeLocation> home;
 	private final LiveData<WorkLocation> work;
-	private final MutableLiveData<List<FavoriteLocation>> locations = new MutableLiveData<>();
+	private final LiveData<List<FavoriteLocation>> locations;
 
 	@Inject
 	public LocationRepository(LocationDao locationDao, TransportNetworkManager transportNetworkManager) {
@@ -34,6 +33,7 @@ public class LocationRepository extends AbstractManager {
 		this.networkId = transportNetworkManager.getNetworkId();
 		this.home = Transformations.switchMap(networkId, this::getHomeLocation);
 		this.work = Transformations.switchMap(networkId, this::getWorkLocation);
+		this.locations = Transformations.switchMap(networkId, this::getFavoriteLocations);
 	}
 
 	private LiveData<HomeLocation> getHomeLocation(NetworkId id) {
@@ -76,6 +76,10 @@ public class LocationRepository extends AbstractManager {
 		});
 	}
 
+	private LiveData<List<FavoriteLocation>> getFavoriteLocations(NetworkId networkId) {
+		return locationDao.getFavoriteLocations(networkId);
+	}
+
 	@Nullable
 	private FavoriteLocation getFavoriteLocation(NetworkId networkId, @Nullable WrapLocation l) {
 		if (l == null) return null;
@@ -83,18 +87,7 @@ public class LocationRepository extends AbstractManager {
 	}
 
 	public LiveData<List<FavoriteLocation>> getFavoriteLocations() {
-		if (networkId.getValue() == null) return locations;
-		if (locations.getValue() != null) return locations;
-
-		fetchFavoriteLocations(networkId.getValue());
 		return locations;
-	}
-
-	private void fetchFavoriteLocations(NetworkId networkId) {
-		runOnBackgroundThread(() -> {
-			List<FavoriteLocation> favoriteLocations = locationDao.getFavoriteLocations(networkId);
-			locations.postValue(favoriteLocations);
-		});
 	}
 
 	public void addFavoriteLocation(WrapLocation wrapLocation, FavoriteLocation.FavLocationType type) {

@@ -19,7 +19,7 @@ public interface LocationDao {
 	// FavoriteLocation
 
 	@Query("SELECT * FROM locations WHERE networkId = :networkId")
-	List<FavoriteLocation> getFavoriteLocations(NetworkId networkId);
+	LiveData<List<FavoriteLocation>> getFavoriteLocations(NetworkId networkId);
 
 	@Insert(onConflict = REPLACE)
 	long addFavoriteLocation(FavoriteLocation location);

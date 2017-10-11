@@ -1,7 +1,10 @@
 package de.grobox.liberario.data.locations;
 
+import android.support.test.runner.AndroidJUnit4;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.List;
 
@@ -19,12 +22,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+@RunWith(AndroidJUnit4.class)
 public class FavoriteLocationTest extends DbTest {
 
 	private LocationDao dao;
 
 	@Before
-	public void createDb() {
+	public void createDb() throws Exception {
 		super.createDb();
 		dao = db.locationDao();
 	}
@@ -32,14 +36,14 @@ public class FavoriteLocationTest extends DbTest {
 	@Test
 	public void insertFavoriteLocation() throws Exception {
 		// no locations should exist
-		assertEquals(0, dao.getFavoriteLocations(DB).size());
+		assertNotNull(getValue(dao.getFavoriteLocations(DB)));
 
 		// create a complete station location
 		Location loc1 = new Location(STATION, "stationId", 23, 42, "place", "name", Product.ALL);
 		long uid1 = dao.addFavoriteLocation(new FavoriteLocation(DB, loc1));
 
 		// assert that location has been inserted and retrieved properly
-		List<FavoriteLocation> locations1 = dao.getFavoriteLocations(DB);
+		List<FavoriteLocation> locations1 = getValue(dao.getFavoriteLocations(DB));
 		assertEquals(1, locations1.size());
 		FavoriteLocation f1 = locations1.get(0);
 		assertEquals(uid1, f1.getUid());
@@ -57,7 +61,7 @@ public class FavoriteLocationTest extends DbTest {
 		long uid2 = dao.addFavoriteLocation(new FavoriteLocation(BVG, loc2));
 
 		// assert that location has been inserted and retrieved properly
-		List<FavoriteLocation> locations2 = dao.getFavoriteLocations(BVG);
+		List<FavoriteLocation> locations2 = getValue(dao.getFavoriteLocations(BVG));
 		assertEquals(1, locations2.size());
 		FavoriteLocation f2 = locations2.get(0);
 		assertEquals(uid2, f2.getUid());
@@ -78,7 +82,7 @@ public class FavoriteLocationTest extends DbTest {
 		long uid1 = dao.addFavoriteLocation(new FavoriteLocation(DB, loc1));
 
 		// retrieve favorite location
-		List<FavoriteLocation> locations1 = dao.getFavoriteLocations(DB);
+		List<FavoriteLocation> locations1 = getValue(dao.getFavoriteLocations(DB));
 		assertEquals(1, locations1.size());
 		FavoriteLocation f1 = locations1.get(0);
 		assertEquals(uid1, f1.getUid());
@@ -91,7 +95,7 @@ public class FavoriteLocationTest extends DbTest {
 		assertEquals(uid1, f1.getUid());
 
 		// retrieve favorite location again
-		List<FavoriteLocation> locations2 = dao.getFavoriteLocations(DB);
+		List<FavoriteLocation> locations2 = getValue(dao.getFavoriteLocations(DB));
 		assertEquals(1, locations2.size());
 		FavoriteLocation f2 = locations2.get(0);
 
@@ -108,7 +112,7 @@ public class FavoriteLocationTest extends DbTest {
 		Location loc2 = new Location(ADDRESS, null, 0, 0, null, "name2", null);
 		dao.addFavoriteLocation(new FavoriteLocation(DB, loc1));
 		dao.addFavoriteLocation(new FavoriteLocation(DB, loc2));
-		assertEquals(2, dao.getFavoriteLocations(DB).size());
+		assertEquals(2, getValue(dao.getFavoriteLocations(DB)).size());
 	}
 
 	@Test
@@ -119,7 +123,7 @@ public class FavoriteLocationTest extends DbTest {
 		dao.addFavoriteLocation(new FavoriteLocation(DB, loc2));
 
 		// second location should override first one and don't create a new one
-		List<FavoriteLocation> locations = dao.getFavoriteLocations(DB);
+		List<FavoriteLocation> locations = getValue(dao.getFavoriteLocations(DB));
 		assertEquals(1, locations.size());
 		FavoriteLocation f = locations.get(0);
 		assertEquals(loc2.lat, f.lat);
@@ -135,8 +139,8 @@ public class FavoriteLocationTest extends DbTest {
 		dao.addFavoriteLocation(new FavoriteLocation(BVG, loc2));
 
 		// second location should not override first one
-		assertEquals(1, dao.getFavoriteLocations(DB).size());
-		assertEquals(1, dao.getFavoriteLocations(BVG).size());
+		assertEquals(1, getValue(dao.getFavoriteLocations(DB)).size());
+		assertEquals(1, getValue(dao.getFavoriteLocations(BVG)).size());
 	}
 
 	@Test

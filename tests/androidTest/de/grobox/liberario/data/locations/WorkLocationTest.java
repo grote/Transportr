@@ -1,11 +1,7 @@
 package de.grobox.liberario.data.locations;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
 import de.grobox.liberario.data.DbTest;
 import de.schildbach.pte.dto.Location;
@@ -17,35 +13,28 @@ import static de.schildbach.pte.dto.LocationType.STATION;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.mockito.Mockito.verify;
 
 public class WorkLocationTest extends DbTest {
 
 	private LocationDao dao;
-	@Mock private Observer<WorkLocation> observer;
 
 	@Before
-	public void createDb() {
+	public void createDb() throws Exception {
 		super.createDb();
 		dao = db.locationDao();
 	}
 
 	@Test
 	public void insertWorkLocation() throws Exception {
-		LiveData<WorkLocation> workLocationLive = dao.getWorkLocation(DB);
-		workLocationLive.observeForever(observer);
-
 		// no home location should exist
-		assertNull(workLocationLive.getValue());
+		assertNull(getValue(dao.getWorkLocation(DB)));
 
 		// create a complete station location
 		Location location = new Location(STATION, "stationId", 23, 42, "place", "name", Product.ALL);
-		WorkLocation insert = new WorkLocation(DB, location);
-		long uid1 = dao.addWorkLocation(insert);
-		verify(observer).onChanged(insert);
+		long uid1 = dao.addWorkLocation(new WorkLocation(DB, location));
 
 		// assert that location has been inserted and retrieved properly
-		WorkLocation workLocation = workLocationLive.getValue();
+		WorkLocation workLocation = getValue(dao.getWorkLocation(DB));
 		assertNotNull(workLocation);
 		assertEquals(uid1, workLocation.getUid());
 		assertEquals(DB, workLocation.getNetworkId());
@@ -60,11 +49,10 @@ public class WorkLocationTest extends DbTest {
 		// create a different home location
 		location = new Location(ADDRESS, null, 1337, 0, "place2", "name2", null);
 		dao.addWorkLocation(new WorkLocation(DB, location));
-		verify(observer).onChanged(insert);
 
 		// assert that old home location has been replaced properly
 		assertEquals(1, dao.countWorks(DB));
-		workLocation = workLocationLive.getValue();
+		workLocation = getValue(dao.getWorkLocation(DB));
 		assertNotNull(workLocation);
 		assertEquals(DB, workLocation.getNetworkId());
 		assertEquals(location.type, workLocation.type);
