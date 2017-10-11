@@ -15,8 +15,6 @@ import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.schildbach.pte.NetworkId;
 
-import static de.grobox.liberario.locations.WrapLocation.WrapType.NORMAL;
-
 @Singleton
 public class LocationRepository extends AbstractManager {
 
@@ -95,7 +93,7 @@ public class LocationRepository extends AbstractManager {
 		if (wrapLocation instanceof FavoriteLocation) {
 			favoriteLocation = (FavoriteLocation) wrapLocation;
 			favoriteLocation.add(type);
-		} else if (networkId.getValue() != null && wrapLocation.getWrapType() == NORMAL) {
+		} else if (!(wrapLocation instanceof StoredLocation)) {  // no home or work location please
 			favoriteLocation = new FavoriteLocation(networkId.getValue(), wrapLocation);
 		} else {
 			// nothing for us to do here

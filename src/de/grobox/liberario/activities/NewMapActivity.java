@@ -57,7 +57,6 @@ import javax.inject.Inject;
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
 import de.grobox.liberario.favorites.trips.FavoriteTripsFragment;
-import de.grobox.liberario.favorites.trips.HomePickerDialogFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.LocationView.LocationViewListener;
@@ -76,7 +75,6 @@ import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
-import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
 import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
@@ -201,7 +199,7 @@ public class NewMapActivity extends DrawerActivity
 		map.setOnMapLongClickListener(point -> onLocationItemClick(new WrapLocation(point)));
 		map.setOnMarkerClickListener(marker -> {
 			if (marker.equals(selectedLocationMarker)) {
-				if (locationFragment != null) search.setWrapLocation(locationFragment.getLocation());
+				if (locationFragment != null) search.setLocation(locationFragment.getLocation());
 				bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 				bottomSheetBehavior.setState(STATE_COLLAPSED);
 				return true;
@@ -275,12 +273,6 @@ public class NewMapActivity extends DrawerActivity
 
 	@Override
 	public void onLocationItemClick(final WrapLocation loc) {
-		if (loc.getWrapType() == HOME) {
-			HomePickerDialogFragment f = HomePickerDialogFragment.newInstance();
-			f.show(getSupportFragmentManager(), HomePickerDialogFragment.TAG);
-			return;
-		}
-
 		viewModel.clickLocation(loc, FROM);
 
 		LatLng latLng = zoomTo(loc);

@@ -405,24 +405,24 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		if(intent != null) {
 			final String action = intent.getAction();
 			if(action != null && action.equals(TAG)) {
-				WrapLocation from, via, to;
-				boolean search;
-				Date date;
-				String eSpecial = (String) intent.getSerializableExtra("special");
-				if(eSpecial != null && eSpecial.equals(TASK_BRING_ME_HOME)) {
-					from = new WrapLocation(WrapLocation.WrapType.GPS);
-					to = new WrapLocation(WrapLocation.WrapType.HOME);
-					search = true;
-				} else {
-					from = (WrapLocation) intent.getSerializableExtra("from");
-					to = (WrapLocation) intent.getSerializableExtra("to");
-					search = intent.getBooleanExtra("search", false);
-				}
-				via = (WrapLocation) intent.getSerializableExtra("via");
-				date = (Date) intent.getSerializableExtra("date");
-
-				if(search) searchFromTo(from, via, to, date);
-				else presetFromTo(from, via, to, date);
+//				WrapLocation from, via, to;
+//				boolean search;
+//				Date date;
+//				String eSpecial = (String) intent.getSerializableExtra("special");
+//				if(eSpecial != null && eSpecial.equals(TASK_BRING_ME_HOME)) {
+//					from = new WrapLocation(WrapLocation.WrapType.GPS);
+//					to = new WrapLocation(WrapLocation.WrapType.HOME);
+//					search = true;
+//				} else {
+//					from = (WrapLocation) intent.getSerializableExtra("from");
+//					to = (WrapLocation) intent.getSerializableExtra("to");
+//					search = intent.getBooleanExtra("search", false);
+//				}
+//				via = (WrapLocation) intent.getSerializableExtra("via");
+//				date = (Date) intent.getSerializableExtra("date");
+//
+//				if(search) searchFromTo(from, via, to, date);
+//				else presetFromTo(from, via, to, date);
 			}
 
 			// remove the intent (and clear its action) since it was already processed

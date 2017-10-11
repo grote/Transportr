@@ -182,11 +182,11 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	}
 
 	void setFromLocation(@Nullable WrapLocation location) {
-		from.setWrapLocation(location);
+		from.setLocation(location);
 	}
 
 	void setToLocation(@Nullable WrapLocation location) {
-		to.setWrapLocation(location);
+		to.setLocation(location);
 	}
 
 	boolean isShowingTrips() {

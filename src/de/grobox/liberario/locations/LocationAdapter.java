@@ -48,7 +48,6 @@ import de.schildbach.pte.dto.SuggestedLocation;
 
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
-import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.NORMAL;
 
@@ -100,12 +99,9 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 
 	private void updateLocations() {
 		locations = new ArrayList<>();
-		if (includeHome) {
-			if (homeLocation != null) {
-				favoriteLocations.remove(homeLocation);
-				locations.add(homeLocation);
-			}
-			else locations.add(new WrapLocation(HOME));
+		if (includeHome && homeLocation != null) {
+			favoriteLocations.remove(homeLocation);
+			locations.add(homeLocation);
 		}
 		if (workLocation != null) {
 			favoriteLocations.remove(workLocation);
@@ -148,9 +144,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
 		} else {
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
-			if(wrapLocation.getWrapType() == HOME) {
-				textView.setText(parent.getContext().getString(R.string.location_home));
-			} else if(wrapLocation.getWrapType() == GPS) {
+			if(wrapLocation.getWrapType() == GPS) {
 				textView.setText(parent.getContext().getString(R.string.location_gps));
 			} else if(wrapLocation.getWrapType() == MAP) {
 				textView.setText(parent.getContext().getString(R.string.location_map));

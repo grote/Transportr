@@ -21,7 +21,6 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static de.grobox.liberario.fragments.DirectionsFragment.TASK_BRING_ME_HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
-import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.utils.Constants.DATE;
 import static de.grobox.liberario.utils.Constants.FROM;
 import static de.grobox.liberario.utils.Constants.NOW;
@@ -111,7 +110,7 @@ class DirectionsPresenter implements LocationViewListener, TimeDateListener {
 		String special = (String) intent.getSerializableExtra("special");
 		if (special != null && special.equals(TASK_BRING_ME_HOME)) {
 			from = new WrapLocation(GPS);
-			to = new WrapLocation(HOME);
+			to = viewModel.getHome().getValue();
 			search = true;
 		} else {
 			from = (WrapLocation) intent.getSerializableExtra(FROM);

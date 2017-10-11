@@ -73,7 +73,6 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
-import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.utils.Constants.DATE;
 import static de.grobox.liberario.utils.Constants.FROM;
@@ -590,14 +589,12 @@ public class TransportrUtils {
 		return getDrawableForLocation(context, null, w, is_fav);
 	}
 
+	@Deprecated
 	static public Drawable getDrawableForLocation(Context context, @Nullable HomeLocation home, WrapLocation w, boolean is_fav) {
 		if(w == null || w.getLocation() == null) return null;
 //		if (home == null) home = SpecialLocationDb.getHome(context);
 
-		if(w.getWrapType() == HOME || w.equals(home)) {
-			return getTintedDrawable(context, R.drawable.ic_action_home);
-		}
-		else if(w.getWrapType() == GPS) {
+		if(w.getWrapType() == GPS) {
 			return getTintedDrawable(context, R.drawable.ic_gps);
 		}
 		else if(w.getWrapType() == MAP) {

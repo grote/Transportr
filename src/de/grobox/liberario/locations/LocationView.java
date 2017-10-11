@@ -54,7 +54,6 @@ import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.SuggestLocationsResult;
 
-import static de.grobox.liberario.locations.WrapLocation.WrapType.HOME;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 
@@ -308,18 +307,6 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		setLocation(loc, drawable, true);
 	}
 
-	public void setWrapLocation(@Nullable WrapLocation loc) {
-		if (loc == null) {
-			setLocation(null);
-		} else if (loc.getWrapType() == HOME) {
-			// prevent home.toString() from being shown in the TextView
-			ui.location.setText("");
-		} else {
-			// all other cases
-			setLocation(loc);
-		}
-	}
-
 	@Nullable
 	public WrapLocation getLocation() {
 		return this.location;
@@ -357,14 +344,8 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	public void onLocationItemClick(WrapLocation loc, View view) {
 		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
 
-		Log.w("TEST", "Clicked Location: " + loc);
-
 		// special case: home location
-		if(loc.getWrapType() == HOME) {
-			// prevent home.toString() from being shown in the TextView
-			ui.location.setText("");
-		}
-		else if(loc.getWrapType() == MAP) {
+		if(loc.getWrapType() == MAP) {
 			// prevent MAP from being shown in the TextView
 			ui.location.setText("");
 
