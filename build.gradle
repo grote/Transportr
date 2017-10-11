@@ -86,6 +86,7 @@ dependencies {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
 	}
+	androidTestCompile 'org.mockito:mockito-core:2.8.9'
 }
 
 dependencyVerification {

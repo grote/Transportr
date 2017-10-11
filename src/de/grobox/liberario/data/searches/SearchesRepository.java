@@ -18,37 +18,44 @@ import de.grobox.liberario.data.locations.LocationDao;
 import de.grobox.liberario.data.locations.WorkLocation;
 import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.locations.WrapLocation;
-import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.schildbach.pte.NetworkId;
 
-public class SearchesRepository extends AbstractManager implements Observer<TransportNetwork> {
+public class SearchesRepository extends AbstractManager implements Observer<NetworkId> {
 
 	private final SearchesDao searchesDao;
 	private final LocationDao locationDao;
 
-	private final LiveData<TransportNetwork> network;
+	private final LiveData<NetworkId> networkId;
 	private final MutableLiveData<List<FavoriteTripItem>> favoriteTripItems = new MutableLiveData<>();
 
 	@Inject
 	public SearchesRepository(SearchesDao searchesDao, LocationDao locationDao, TransportNetworkManager transportNetworkManager) {
 		this.searchesDao = searchesDao;
 		this.locationDao = locationDao;
-		this.network = transportNetworkManager.getTransportNetwork();
-		this.network.observeForever(this);
+		this.networkId = transportNetworkManager.getNetworkId();
 	}
 
 	@Override
-	public void onChanged(@Nullable TransportNetwork transportNetwork) {
-		if (transportNetwork == null) return;
-		fetchFavoriteTrips(transportNetwork.getId());
+	public void onChanged(@Nullable NetworkId networkId) {
+		if (networkId == null) return;
+
+		fetchFavoriteTrips(networkId);
+	}
+
+	private void onHomeLocationChanged(HomeLocation homeLocation) {
+		Log.w(getClass().getSimpleName(), "HOME LOCATION CHANGED " + (homeLocation == null ? "null" : homeLocation.toString()));
+		// TODO improve
+		fetchFavoriteTrips(networkId.getValue());
 	}
 
 	public LiveData<List<FavoriteTripItem>> getFavoriteTrips() {
-		if (favoriteTripItems.getValue() != null) return favoriteTripItems;
-		if (network.getValue() == null) return favoriteTripItems;
+		if (favoriteTripItems.getValue() == null) {
+			this.networkId.observeForever(this);
+		}
+		if (networkId.getValue() == null) return favoriteTripItems;
 
-		fetchFavoriteTrips(network.getValue().getId());
+		fetchFavoriteTrips(networkId.getValue());
 		return favoriteTripItems;
 	}
 
@@ -56,9 +63,8 @@ public class SearchesRepository extends AbstractManager implements Observer<Tran
 		runOnBackgroundThread(() -> {
 			List<FavoriteTripItem> favoriteTrips = new ArrayList<>();
 
-			HomeLocation homeLocation = locationDao.getHomeLocation(networkId);
 			WorkLocation workLocation = locationDao.getWorkLocation(networkId);
-			favoriteTrips.add(new FavoriteTripItem(homeLocation));
+			favoriteTrips.add(new FavoriteTripItem(locationDao.getHomeLocation(networkId).getValue()));
 			favoriteTrips.add(new FavoriteTripItem(workLocation));
 
 			List<StoredSearch> storedSearches = searchesDao.getStoredSearches(networkId);
@@ -82,8 +88,8 @@ public class SearchesRepository extends AbstractManager implements Observer<Tran
 				Log.w("TEST", "STORE SEARCH WITH ID: " + item.toString());
 				searchesDao.updateStoredSearch(item.getUid(), item.count, item.lastUsed);
 			} else {
-				if (network.getValue() == null) return;
-				NetworkId networkId = network.getValue().getId();
+				if (networkId.getValue() == null) return;
+				NetworkId networkId = this.networkId.getValue();
 
 				FavoriteLocation from = getFavoriteLocation(networkId, item.getFrom());
 				FavoriteLocation via = getFavoriteLocation(networkId, item.getVia());

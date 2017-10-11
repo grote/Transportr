@@ -1,5 +1,6 @@
 package de.grobox.liberario.data.locations;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
@@ -33,9 +34,8 @@ public interface LocationDao {
 
 	// HomeLocation
 
-	@Nullable
 	@Query("SELECT * FROM home_locations WHERE networkId = :networkId")
-	HomeLocation getHomeLocation(NetworkId networkId);
+	LiveData<HomeLocation> getHomeLocation(NetworkId networkId);
 
 	@Insert(onConflict = REPLACE)
 	long addHomeLocation(HomeLocation location);

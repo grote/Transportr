@@ -2,11 +2,10 @@ package de.grobox.liberario.data;
 
 
 import android.arch.persistence.room.TypeConverter;
+import android.support.annotation.Nullable;
 
 import java.util.Date;
 import java.util.Set;
-
-import javax.annotation.Nullable;
 
 import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.dto.LocationType;
@@ -15,7 +14,8 @@ import de.schildbach.pte.dto.Product;
 public class Converters {
 
 	@TypeConverter
-	public static String fromNetworkId(NetworkId networkId) {
+	public static String fromNetworkId(@Nullable NetworkId networkId) {
+		if (networkId == null) return null;
 		return networkId.name();
 	}
 

@@ -19,6 +19,7 @@ package de.grobox.liberario.networks;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -34,6 +35,7 @@ public class TransportNetworkManager {
 	private final SettingsManager settingsManager;
 
 	private MutableLiveData<TransportNetwork> transportNetwork = new MutableLiveData<>();
+	private final LiveData<NetworkId> networkId = Transformations.map(transportNetwork, TransportNetwork::getId);
 	private @Nullable TransportNetwork transportNetwork2, transportNetwork3;
 
 	@Inject
@@ -41,7 +43,9 @@ public class TransportNetworkManager {
 		this.settingsManager = settingsManager;
 
 		TransportNetwork network = loadTransportNetwork(1);
-		if (network != null) transportNetwork.setValue(network);
+		if (network != null) {
+			transportNetwork.setValue(network);
+		}
 
 		transportNetwork2 = loadTransportNetwork(2);
 		transportNetwork3 = loadTransportNetwork(3);
@@ -61,6 +65,10 @@ public class TransportNetworkManager {
 
 	public LiveData<TransportNetwork> getTransportNetwork() {
 		return transportNetwork;
+	}
+
+	public LiveData<NetworkId> getNetworkId() {
+		return networkId;
 	}
 
 	@Nullable
