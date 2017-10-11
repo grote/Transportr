@@ -46,9 +46,8 @@ public interface LocationDao {
 
 	// WorkLocation
 
-	@Nullable
 	@Query("SELECT * FROM work_locations WHERE networkId = :networkId")
-	WorkLocation getWorkLocation(NetworkId networkId);
+	LiveData<WorkLocation> getWorkLocation(NetworkId networkId);
 
 	@Insert(onConflict = REPLACE)
 	long addWorkLocation(WorkLocation location);

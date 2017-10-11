@@ -15,7 +15,6 @@ import de.grobox.liberario.AbstractManager;
 import de.grobox.liberario.data.locations.FavoriteLocation;
 import de.grobox.liberario.data.locations.HomeLocation;
 import de.grobox.liberario.data.locations.LocationDao;
-import de.grobox.liberario.data.locations.WorkLocation;
 import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetworkManager;
@@ -63,9 +62,8 @@ public class SearchesRepository extends AbstractManager implements Observer<Netw
 		runOnBackgroundThread(() -> {
 			List<FavoriteTripItem> favoriteTrips = new ArrayList<>();
 
-			WorkLocation workLocation = locationDao.getWorkLocation(networkId);
 			favoriteTrips.add(new FavoriteTripItem(locationDao.getHomeLocation(networkId).getValue()));
-			favoriteTrips.add(new FavoriteTripItem(workLocation));
+			favoriteTrips.add(new FavoriteTripItem(locationDao.getWorkLocation(networkId).getValue()));
 
 			List<StoredSearch> storedSearches = searchesDao.getStoredSearches(networkId);
 			for (StoredSearch storedSearch : storedSearches) {

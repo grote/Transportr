@@ -25,7 +25,7 @@ public class LocationRepository extends AbstractManager {
 
 	private final LiveData<NetworkId> networkId;
 	private final LiveData<HomeLocation> home;
-	private final MutableLiveData<WorkLocation> work = new MutableLiveData<>();
+	private final LiveData<WorkLocation> work;
 	private final MutableLiveData<List<FavoriteLocation>> locations = new MutableLiveData<>();
 
 	@Inject
@@ -33,6 +33,7 @@ public class LocationRepository extends AbstractManager {
 		this.locationDao = locationDao;
 		this.networkId = transportNetworkManager.getNetworkId();
 		this.home = Transformations.switchMap(networkId, this::getHomeLocation);
+		this.work = Transformations.switchMap(networkId, this::getWorkLocation);
 	}
 
 	private LiveData<HomeLocation> getHomeLocation(NetworkId id) {
@@ -55,31 +56,23 @@ public class LocationRepository extends AbstractManager {
 		});
 	}
 
-	public LiveData<WorkLocation> getWorkLocation() {
-		if (networkId.getValue() == null) return work;
-		if (work.getValue() != null) return work;
-
-		fetchWorkLocation(networkId.getValue());
-		return work;
+	private LiveData<WorkLocation> getWorkLocation(NetworkId id) {
+		return locationDao.getWorkLocation(id);
 	}
 
-	private void fetchWorkLocation(NetworkId networkId) {
-		runOnBackgroundThread(() -> {
-			WorkLocation workLocation = locationDao.getWorkLocation(networkId);
-			work.postValue(workLocation);
-		});
+	public LiveData<WorkLocation> getWorkLocation() {
+		return work;
 	}
 
 	public void setWorkLocation(WrapLocation location) {
 		if (networkId.getValue() == null) return;
 
-		NetworkId networkId = this.networkId.getValue();
 		runOnBackgroundThread(() -> {
 			// add also as favorite location if it doesn't exist already
-			FavoriteLocation favoriteLocation = getFavoriteLocation(networkId, location);
-			if (favoriteLocation == null) locationDao.addFavoriteLocation(new FavoriteLocation(networkId, location));
+			FavoriteLocation favoriteLocation = getFavoriteLocation(networkId.getValue(), location);
+			if (favoriteLocation == null) locationDao.addFavoriteLocation(new FavoriteLocation(networkId.getValue(), location));
 
-			locationDao.addWorkLocation(new WorkLocation(networkId, location));
+			locationDao.addWorkLocation(new WorkLocation(networkId.getValue(), location));
 		});
 	}
 
