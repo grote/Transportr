@@ -38,10 +38,10 @@ class TransportNetworkViewHolder extends RecyclerView.ViewHolder {
 
 	TransportNetworkViewHolder(View v) {
 		super(v);
-		logo = (ImageView) v.findViewById(R.id.logo);
-		name = (TextView) v.findViewById(R.id.name);
-		desc = (TextView) v.findViewById(R.id.desc);
-		status = (TextView) v.findViewById(R.id.status);
+		logo = v.findViewById(R.id.logo);
+		name = v.findViewById(R.id.name);
+		desc = v.findViewById(R.id.desc);
+		status = v.findViewById(R.id.status);
 	}
 
 	void bind(TransportNetwork network) {

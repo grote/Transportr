@@ -79,7 +79,7 @@ public class ProductDialogFragment extends DialogFragment {
 		View v = inflater.inflate(R.layout.fragment_product_dialog, container);
 
 		// RecyclerView
-		RecyclerView productsView = (RecyclerView) v.findViewById(R.id.productsView);
+		RecyclerView productsView = v.findViewById(R.id.productsView);
 		productsView.setLayoutManager(new LinearLayoutManager(getContext()));
 		adapter = new FastItemAdapter<>();
 		adapter.withSelectable(true);
@@ -100,7 +100,7 @@ public class ProductDialogFragment extends DialogFragment {
 		adapter.withSavedInstanceState(savedInstanceState);
 
 		// OK Button
-		okButton = (Button) v.findViewById(R.id.okButton);
+		okButton = v.findViewById(R.id.okButton);
 		okButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -115,7 +115,7 @@ public class ProductDialogFragment extends DialogFragment {
 		});
 
 		// Cancel Button
-		Button cancelButton = (Button) v.findViewById(R.id.cancelButton);
+		Button cancelButton = v.findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -211,9 +211,9 @@ public class ProductDialogFragment extends DialogFragment {
 				super(v);
 
 				layout = (ViewGroup) v;
-				image = (ImageView) v.findViewById(R.id.productImage);
-				name = (TextView) v.findViewById(R.id.productName);
-				checkBox = (CheckBox) v.findViewById(R.id.productCheckBox);
+				image = v.findViewById(R.id.productImage);
+				name = v.findViewById(R.id.productName);
+				checkBox = v.findViewById(R.id.productCheckBox);
 			}
 		}
 	}

@@ -37,9 +37,9 @@ class RegionViewHolder extends RecyclerView.ViewHolder {
 
 	RegionViewHolder(View v) {
 		super(v);
-		flag = (TextView) v.findViewById(R.id.flag);
-		name = (TextView) v.findViewById(R.id.name);
-		chevron = (ImageView) v.findViewById(R.id.chevron);
+		flag = v.findViewById(R.id.flag);
+		name = v.findViewById(R.id.name);
+		chevron = v.findViewById(R.id.chevron);
 	}
 
 	void bind(Region region, boolean expanded) {

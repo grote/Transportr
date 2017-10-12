@@ -90,12 +90,12 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 		View v = inflater.inflate(R.layout.fragment_time_date, container);
 
 		// Time
-		timePicker = (TimePicker) v.findViewById(R.id.timePicker);
+		timePicker = v.findViewById(R.id.timePicker);
 		timePicker.setOnTimeChangedListener(this);
 		showTime(calendar);
 
 		// Date
-		dateView = (TextView) v.findViewById(R.id.dateView);
+		dateView = v.findViewById(R.id.dateView);
 		dateView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -105,7 +105,7 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 		showDate(calendar);
 
 		// Previous and Next Date
-		ImageButton prevDateButton = (ImageButton) v.findViewById(R.id.prevDateButton);
+		ImageButton prevDateButton = v.findViewById(R.id.prevDateButton);
 		prevDateButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -113,7 +113,7 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 				showDate(calendar);
 			}
 		});
-		ImageButton nextDateButton = (ImageButton) v.findViewById(R.id.nextDateButton);
+		ImageButton nextDateButton = v.findViewById(R.id.nextDateButton);
 		nextDateButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -123,7 +123,7 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 		});
 
 		// Buttons
-		Button okButton = (Button) v.findViewById(R.id.okButton);
+		Button okButton = v.findViewById(R.id.okButton);
 		okButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -135,7 +135,7 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 				dismiss();
 			}
 		});
-		Button cancelButton = (Button) v.findViewById(R.id.cancelButton);
+		Button cancelButton = v.findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {

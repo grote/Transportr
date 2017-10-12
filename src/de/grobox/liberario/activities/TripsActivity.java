@@ -58,6 +58,7 @@ import static de.grobox.liberario.data.FavoritesDb.isFavoriteTrip;
 import static de.grobox.liberario.data.FavoritesDb.toggleFavoriteTrip;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 
+@Deprecated
 public class TripsActivity extends TransportrActivity {
 	private QueryTripsResult start_context;
 	private QueryTripsResult end_context;
@@ -79,7 +80,7 @@ public class TripsActivity extends TransportrActivity {
 
 		TransportNetwork network = Preferences.getTransportNetwork(this);
 
-		final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		final Toolbar toolbar = findViewById(R.id.toolbar);
 		if(toolbar != null) {
 			if(network != null) toolbar.setSubtitle(network.getName(this));
 			setSupportActionBar(toolbar);
@@ -98,12 +99,12 @@ public class TripsActivity extends TransportrActivity {
 		to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.to");
 		products = (ArrayList<Product>) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.products");
 
-		swipeRefresh = (SwipyRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+		swipeRefresh = findViewById(R.id.swipe_refresh_layout);
 		swipeRefresh.setColorSchemeResources(R.color.accent);
 		swipeRefresh.setDistanceToTriggerSync(getDragDistance(this));
 
 
-		mRecyclerView = (RecyclerView) findViewById(R.id.trips_recycler_view);
+		mRecyclerView = findViewById(R.id.trips_recycler_view);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 		mRecyclerView.setHasFixedSize(true);
@@ -157,7 +158,7 @@ public class TripsActivity extends TransportrActivity {
 		mRecyclerView.setOnScrollListener(touchListener.makeScrollListener());
 		// TODO also make sure a swipe prevents scrolling
 
-		final boolean showLineName = network != null && network.hasGoodLineNames();;
+		final boolean showLineName = network != null && network.hasGoodLineNames();
 
 		mAdapter = new TripDetailsAdapter(ListTrip.getList(start_context.trips), touchListener, this, showLineName);
 		mAdapter.setHasStableIds(false);

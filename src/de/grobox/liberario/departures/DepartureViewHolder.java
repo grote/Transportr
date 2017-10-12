@@ -40,15 +40,15 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 		super(v);
 
 		card = (CardView) v;
-		line = (LineView) v.findViewById(R.id.line);
-		lineName = (TextView) v.findViewById(R.id.lineNameView);
-		timeRel = (TextView) v.findViewById(R.id.departureTimeRel);
-		timeAbs = (TextView) v.findViewById(R.id.departureTimeAbs);
-		delay = (TextView) v.findViewById(R.id.delay);
-		arrow = (ImageView) v.findViewById(R.id.arrowView);
-		destination = (TextView) v.findViewById(R.id.destinationView);
-		position = (TextView) v.findViewById(R.id.positionView);
-		message = (TextView) v.findViewById(R.id.messageView);
+		line = v.findViewById(R.id.line);
+		lineName = v.findViewById(R.id.lineNameView);
+		timeRel = v.findViewById(R.id.departureTimeRel);
+		timeAbs = v.findViewById(R.id.departureTimeAbs);
+		delay = v.findViewById(R.id.delay);
+		arrow = v.findViewById(R.id.arrowView);
+		destination = v.findViewById(R.id.destinationView);
+		position = v.findViewById(R.id.positionView);
+		message = v.findViewById(R.id.messageView);
 	}
 
 	void bind(Departure dep) {

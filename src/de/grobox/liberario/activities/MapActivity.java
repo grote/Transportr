@@ -114,7 +114,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 		network = Preferences.getTransportNetwork(this);
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = findViewById(R.id.toolbar);
 		if(toolbar != null) {
 			toolbar.setSubtitle(network.getName(this));
 			setSupportActionBar(toolbar);
@@ -123,13 +123,13 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 
-		map = (MapView) findViewById(R.id.map);
+		map = findViewById(R.id.map);
 		if(map != null) {
 			map.setMultiTouchControls(true);
 			map.setTilesScaledToDpi(true);
 		}
 
-		fab = (FloatingActionButton) findViewById(R.id.gpsFab);
+		fab = findViewById(R.id.gpsFab);
 		fabController = new FabController();
 
 		gpsController = new GpsController();
@@ -596,7 +596,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 
 			final Location loc = (Location) marker.getRelatedObject();
 
-			ViewGroup productsView = (ViewGroup) mView.findViewById(R.id.productsView);
+			ViewGroup productsView = mView.findViewById(R.id.productsView);
 			productsView.removeAllViews();
 
 			// Add product icons if available
@@ -608,8 +608,8 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 				}
 			}
 
-			TextView fromHere = ((TextView) mView.findViewById(R.id.fromHere));
-			TextView toHere = ((TextView) mView.findViewById(R.id.toHere));
+			TextView fromHere = mView.findViewById(R.id.fromHere);
+			TextView toHere = mView.findViewById(R.id.toHere);
 			if(network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.TRIPS)) {
 				// From Here
 				fromHere.setCompoundDrawables(TransportrUtils.getTintedDrawable(MapActivity.this, fromHere.getCompoundDrawables()[0]), null, null, null);
@@ -636,7 +636,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			}
 
 			// Departures
-			TextView departures = ((TextView) mView.findViewById(R.id.departures));
+			TextView departures = mView.findViewById(R.id.departures);
 			if(loc.hasId() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.DEPARTURES)) {
 				departures.setCompoundDrawables(TransportrUtils.getTintedDrawable(MapActivity.this, departures.getCompoundDrawables()[0]), null, null, null);
 				departures.setOnClickListener(new View.OnClickListener() {
@@ -651,7 +651,7 @@ public class MapActivity extends TransportrActivity implements MapEventsReceiver
 			}
 
 			// Nearby Stations
-			TextView nearbyStations = ((TextView) mView.findViewById(R.id.nearbyStations));
+			TextView nearbyStations = mView.findViewById(R.id.nearbyStations);
 			if(loc.hasLocation() && network.getNetworkProvider().hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
 				nearbyStations.setCompoundDrawables(TransportrUtils.getTintedDrawable(MapActivity.this, nearbyStations.getCompoundDrawables()[0]), null, null, null);
 				nearbyStations.setOnClickListener(new View.OnClickListener() {

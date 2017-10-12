@@ -51,7 +51,7 @@ public class DeparturesActivity extends TransportrActivity
 	public final static int MAX_DEPARTURES = 12;
 	private final static int SAFETY_MARGIN = 6;
 
-	private enum SearchState {INITIAL, TOP, BOTTOM};
+	private enum SearchState {INITIAL, TOP, BOTTOM}
 
 	private ProgressBar progressBar;
 	private SwipyRefreshLayout swipe;
@@ -78,7 +78,7 @@ public class DeparturesActivity extends TransportrActivity
 		getComponent().inject(this);
 
 		// Toolbar
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		toolbar.setSubtitle(location.getName());
 		ActionBar actionBar = getSupportActionBar();
@@ -88,10 +88,10 @@ public class DeparturesActivity extends TransportrActivity
 		}
 
 		// Progress Bar
-		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		progressBar = findViewById(R.id.progressBar);
 
 		// Swipe to Refresh
-		swipe = (SwipyRefreshLayout) findViewById(R.id.swipe);
+		swipe = findViewById(R.id.swipe);
 		swipe.setColorSchemeResources(R.color.accent);
 		swipe.setDirection(SwipyRefreshLayoutDirection.BOTH);
 		swipe.setDistanceToTriggerSync(getDragDistance(this));
@@ -104,7 +104,7 @@ public class DeparturesActivity extends TransportrActivity
 
 		// Departures List
 		adapter = new DepartureAdapter();
-		list = (RecyclerView) findViewById(R.id.list);
+		list = findViewById(R.id.list);
 		list.setVisibility(INVISIBLE);
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(this));

@@ -49,11 +49,11 @@ public class AboutFragment extends Fragment {
 		}
 
 		// add app name and version
-		TextView aboutApp = (TextView) view.findViewById(R.id.aboutApp);
+		TextView aboutApp = view.findViewById(R.id.aboutApp);
 		aboutApp.setText(getResources().getString(R.string.app_name) + "  " + versionName);
 
 		// create real paragraphs
-		TextView t = (TextView) view.findViewById(R.id.aboutTextView);
+		TextView t = view.findViewById(R.id.aboutTextView);
 		t.setText(Html.fromHtml(
 				getString(R.string.about) +
 				String.format(getString(R.string.about_bottom), getString(R.string.website), getString(R.string.bugtracker), getString(R.string.website)+"#donate")
@@ -63,7 +63,7 @@ public class AboutFragment extends Fragment {
 		t.setMovementMethod(LinkMovementMethod.getInstance());
 		t.setLinkTextColor(ContextCompat.getColor(activity, R.color.accent));
 
-		Button website = (Button) view.findViewById(R.id.websiteButton);
+		Button website = view.findViewById(R.id.websiteButton);
 		website.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

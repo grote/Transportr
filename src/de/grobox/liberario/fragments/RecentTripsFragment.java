@@ -69,7 +69,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 		adapter = new FavTripArrayAdapter(getActivity(), R.layout.recent_trip_list_item, getFavoriteTripList(getActivity()));
 		setListAdapter(adapter);
 
-		toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+		toolbar = getActivity().findViewById(R.id.toolbar);
 
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
@@ -182,7 +182,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 			});
 
 			// handle click on more button
-			ImageButton moreButton = (ImageButton) v.findViewById(R.id.moreButton);
+			ImageButton moreButton = v.findViewById(R.id.moreButton);
 			final FavoriteTripPopupMenu recentsPopup = new FavoriteTripPopupMenu(getContext(), moreButton,(FavoriteTripItem) getListView().getItemAtPosition(position), null);
 			moreButton.setOnClickListener(new OnClickListener() {
 				                              @Override
@@ -232,7 +232,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 			favCountView.setText(String.valueOf(trip.getCount()));
 
 			// handle click on check box
-			CheckBox checkBox = (CheckBox) v.findViewById(R.id.checkBox);
+			CheckBox checkBox = v.findViewById(R.id.checkBox);
 			checkBox.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {

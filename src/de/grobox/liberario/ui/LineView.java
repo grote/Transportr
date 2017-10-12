@@ -93,8 +93,8 @@ public class LineView extends LinearLayout {
 
 		public ViewHolder(View view) {
 			box = (ViewGroup) view;
-			product = (ImageView) view.findViewById(R.id.productView);
-			label = (TextView) view.findViewById(R.id.labelView);
+			product = view.findViewById(R.id.productView);
+			label = view.findViewById(R.id.labelView);
 		}
 	}
 

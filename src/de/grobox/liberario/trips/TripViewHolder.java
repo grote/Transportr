@@ -48,15 +48,15 @@ class TripViewHolder extends RecyclerView.ViewHolder {
 	TripViewHolder(View v) {
 		super(v);
 		root = v;
-		fromTimeRel = (TextView) v.findViewById(R.id.fromTimeRel);
-		fromTime = (TextView) v.findViewById(R.id.fromTime);
-		fromLocation = (TextView) v.findViewById(R.id.fromLocation);
-		fromDelay = (TextView) v.findViewById(R.id.fromDelay);
-		toTime = (TextView) v.findViewById(R.id.toTime);
-		toLocation = (TextView) v.findViewById(R.id.toLocation);
-		toDelay = (TextView) v.findViewById(R.id.toDelay);
-		lines = (ViewGroup) v.findViewById(R.id.lines);
-		duration = (TextView) v.findViewById(R.id.duration);
+		fromTimeRel = v.findViewById(R.id.fromTimeRel);
+		fromTime = v.findViewById(R.id.fromTime);
+		fromLocation = v.findViewById(R.id.fromLocation);
+		fromDelay = v.findViewById(R.id.fromDelay);
+		toTime = v.findViewById(R.id.toTime);
+		toLocation = v.findViewById(R.id.toLocation);
+		toDelay = v.findViewById(R.id.toDelay);
+		lines = v.findViewById(R.id.lines);
+		duration = v.findViewById(R.id.duration);
 	}
 
 	void bind(final Trip trip) {

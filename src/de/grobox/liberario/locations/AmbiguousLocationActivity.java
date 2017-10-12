@@ -55,7 +55,7 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ambiguous_location);
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = findViewById(R.id.toolbar);
 		if(toolbar != null) {
 			toolbar.setSubtitle(Preferences.getTransportNetwork(this).getName(this));
 			setSupportActionBar(toolbar);
@@ -208,11 +208,11 @@ public class AmbiguousLocationActivity extends TransportrActivity implements Asy
 		Button button;
 
 		ViewHolder(View v) {
-			fromSpinner = (Spinner) v.findViewById(R.id.fromSpinner);
+			fromSpinner = v.findViewById(R.id.fromSpinner);
 			viaText = v.findViewById(R.id.viaView);
-			viaSpinner = (Spinner) v.findViewById(R.id.viaSpinner);
-			toSpinner = (Spinner) v.findViewById(R.id.toSpinner);
-			button = (Button) v.findViewById(R.id.button);
+			viaSpinner = v.findViewById(R.id.viaSpinner);
+			toSpinner = v.findViewById(R.id.toSpinner);
+			button = v.findViewById(R.id.button);
 		}
 	}
 

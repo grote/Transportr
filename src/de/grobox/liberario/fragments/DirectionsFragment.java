@@ -518,13 +518,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 		if(loc == null) {
 			// no location was selected by user
-			if(loc_view.getText() != null && loc_view.getText().length() > 0) {
-				// no location selected, but text entered. So let's try create locations from text
-//				loc_view.setLocation(new Location(LocationType.ANY, null, loc_view.getText(), loc_view.getText()));
-
-				return true;
-			}
-			return false;
+			return loc_view.getText() != null && loc_view.getText().length() > 0;
 		}
 		// we have a location, so make it a favorite
 		else {
@@ -635,22 +629,22 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		ImageView fav_trips_separator_star;
 
 		DirectionsViewHolder(View mView) {
-			from = (LocationGpsView) mView.findViewById(R.id.fromLocation);
-			via = (LocationView) mView.findViewById(R.id.viaLocation);
-			to = (LocationView) mView.findViewById(R.id.toLocation);
+			from = mView.findViewById(R.id.fromLocation);
+			via = mView.findViewById(R.id.viaLocation);
+			to = mView.findViewById(R.id.toLocation);
 
-			type = (Button) mView.findViewById(R.id.dateType);
-			date = (TimeAndDateView) mView.findViewById(R.id.dateView);
+			type = mView.findViewById(R.id.dateType);
+			date = mView.findViewById(R.id.dateView);
 
-			products = (RecyclerView) mView.findViewById(R.id.productsList);
-			search = (Button) mView.findViewById(R.id.searchButton);
+			products = mView.findViewById(R.id.productsList);
+			search = mView.findViewById(R.id.searchButton);
 
-			favourites = (RecyclerView) mView.findViewById(R.id.favourites);
-			no_favourites = (CardView) mView.findViewById(R.id.no_favourites);
-			fav_trips_separator = (LinearLayout) mView.findViewById(R.id.fav_trips_separator);
-			fav_trips_separator = (LinearLayout) mView.findViewById(R.id.fav_trips_separator);
+			favourites = mView.findViewById(R.id.favourites);
+			no_favourites = mView.findViewById(R.id.no_favourites);
+			fav_trips_separator = mView.findViewById(R.id.fav_trips_separator);
+			fav_trips_separator = mView.findViewById(R.id.fav_trips_separator);
 			fav_trips_separator_line = mView.findViewById(R.id.fav_trips_separator_line);
-			fav_trips_separator_star = (ImageView) mView.findViewById(R.id.fav_trips_separator_star);
+			fav_trips_separator_star = mView.findViewById(R.id.fav_trips_separator_star);
 		}
 	}
 
@@ -693,7 +687,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 			ViewHolder(View v) {
 				super(v);
-				image = (ImageView) v.findViewById(R.id.productView);
+				image = v.findViewById(R.id.productView);
 			}
 		}
 	}

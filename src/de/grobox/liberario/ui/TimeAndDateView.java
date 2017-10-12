@@ -296,9 +296,9 @@ public class TimeAndDateView extends LinearLayout
 		public Button date;
 
 		private TimeAndDateViewHolder(View view) {
-			time = (Button) view.findViewById(R.id.timeButton);
-			plus15 = (Button) view.findViewById(R.id.plus15Button);
-			date = (Button) view.findViewById(R.id.dateButton);
+			time = view.findViewById(R.id.timeButton);
+			plus15 = view.findViewById(R.id.plus15Button);
+			date = view.findViewById(R.id.dateButton);
 		}
 	}
 

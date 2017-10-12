@@ -177,10 +177,10 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 		public StationHolder(View v) {
 			super(v);
 
-			item = (ViewGroup) v.findViewById(R.id.stationView);
-			station = (TextView) v.findViewById(R.id.stationNameView);
-			distance = (TextView) v.findViewById(R.id.distanceView);
-			products = (ViewGroup) v.findViewById(R.id.productsView);
+			item = v.findViewById(R.id.stationView);
+			station = v.findViewById(R.id.stationNameView);
+			distance = v.findViewById(R.id.distanceView);
+			products = v.findViewById(R.id.productsView);
 		}
 	}
 }

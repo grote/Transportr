@@ -477,8 +477,8 @@ public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.
 		public BaseTripHolder(View v, int size) {
 			super(v);
 
-			card = (CardView) v.findViewById(R.id.cardView);
-			legsView = (ViewGroup) v.findViewById(R.id.legsView);
+			card = v.findViewById(R.id.cardView);
+			legsView = v.findViewById(R.id.legsView);
 
 			legs = new ArrayList<>();
 
@@ -508,10 +508,10 @@ public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.
 		TripHolder(View v, int size) {
 			super(v, size - 1);
 
-			map = (ImageView) v.findViewById(R.id.mapView);
-			share = (ImageView) v.findViewById(R.id.shareView);
-			calendar = (ImageView) v.findViewById(R.id.calendarView);
-			expand = (ImageView) v.findViewById(R.id.expandView);
+			map = v.findViewById(R.id.mapView);
+			share = v.findViewById(R.id.shareView);
+			calendar = v.findViewById(R.id.calendarView);
+			expand = v.findViewById(R.id.expandView);
 
 			LayoutTransition transition = new LayoutTransition();
 			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -524,11 +524,11 @@ public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.
 			legsView.setLayoutTransition(transition);
 
 			// remember where the lines are inserted and the trip duration
-			departureDelay = (TextView) linesView.findViewById(R.id.departureDelayView);
-			lineArrowDown = (ImageView) linesView.findViewById(R.id.lineArrowDown);
-			lines = (FlowLayout) linesView.findViewById(R.id.line);
-			changes = (TextView) linesView.findViewById(R.id.changesView);
-			duration = (TextView) linesView.findViewById(R.id.durationView);
+			departureDelay = linesView.findViewById(R.id.departureDelayView);
+			lineArrowDown = linesView.findViewById(R.id.lineArrowDown);
+			lines = linesView.findViewById(R.id.line);
+			changes = linesView.findViewById(R.id.changesView);
+			duration = linesView.findViewById(R.id.durationView);
 		}
 	}
 
@@ -558,24 +558,24 @@ public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.
 			super(v);
 
 			layout = (TableLayout) v;
-			departure = (ViewGroup) v.findViewById(R.id.departureView);
-			departureTime = (TextView) v.findViewById(R.id.departureTimeView);
-			departureDelay = (TextView) v.findViewById(R.id.departureDelayView);
-			departureLocation = (TextView) v.findViewById(R.id.departureLocationView);
-			departurePlatform =  (TextView) v.findViewById(R.id.departurePlatformView);
-			arrival = (ViewGroup) v.findViewById(R.id.arrivalView);
-			arrivalTime = (TextView) v.findViewById(R.id.arrivalTimeView);
-			arrivalDelay = (TextView) v.findViewById(R.id.arrivalDelayView);
-			arrivalLocation =  (TextView) v.findViewById(R.id.arrivalLocationView);
-			arrivalPlatform =  (TextView) v.findViewById(R.id.arrivalPlatformView);
-			info = (ViewGroup) v.findViewById(R.id.infoView);
-			message =  (TextView) v.findViewById(R.id.messageView);
-			stops = (ViewGroup) v.findViewById(R.id.stopsView);
-			line = (ViewGroup) v.findViewById(R.id.lineView);
-			arrow = (ImageView) v.findViewById(R.id.arrowView);
-			arrowDown = (ImageView) v.findViewById(R.id.arrowDown);
-			lineDestination = (TextView) v.findViewById(R.id.lineDestinationView);
-			duration = (TextView) v.findViewById(R.id.durationView);
+			departure = v.findViewById(R.id.departureView);
+			departureTime = v.findViewById(R.id.departureTimeView);
+			departureDelay = v.findViewById(R.id.departureDelayView);
+			departureLocation = v.findViewById(R.id.departureLocationView);
+			departurePlatform = v.findViewById(R.id.departurePlatformView);
+			arrival = v.findViewById(R.id.arrivalView);
+			arrivalTime = v.findViewById(R.id.arrivalTimeView);
+			arrivalDelay = v.findViewById(R.id.arrivalDelayView);
+			arrivalLocation = v.findViewById(R.id.arrivalLocationView);
+			arrivalPlatform = v.findViewById(R.id.arrivalPlatformView);
+			info = v.findViewById(R.id.infoView);
+			message = v.findViewById(R.id.messageView);
+			stops = v.findViewById(R.id.stopsView);
+			line = v.findViewById(R.id.lineView);
+			arrow = v.findViewById(R.id.arrowView);
+			arrowDown = v.findViewById(R.id.arrowDown);
+			lineDestination = v.findViewById(R.id.lineDestinationView);
+			duration = v.findViewById(R.id.durationView);
 			divider = v.findViewById(R.id.dividerView);
 
 			message.setVisibility(View.GONE);
@@ -597,16 +597,16 @@ public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.
 
 		StopHolder(TableRow v) {
 			layout = v;
-			arrivalTime = (TextView) v.findViewById(R.id.arrivalTimeView);
-			departureTime = (TextView) v.findViewById(R.id.departureTimeView);
-			arrivalDelay = (TextView) v.findViewById(R.id.arrivalDelayView);
-			departureDelay = (TextView) v.findViewById(R.id.departureDelayView);
+			arrivalTime = v.findViewById(R.id.arrivalTimeView);
+			departureTime = v.findViewById(R.id.departureTimeView);
+			arrivalDelay = v.findViewById(R.id.arrivalDelayView);
+			departureDelay = v.findViewById(R.id.departureDelayView);
 
-			location = (TextView) v.findViewById(R.id.locationView);
+			location = v.findViewById(R.id.locationView);
 
-			platformView = (ViewGroup) v.findViewById(R.id.platformView);
-			arrivalPlatform = (TextView) v.findViewById(R.id.arrivalPlatformView);
-			departurePlatform = (TextView) v.findViewById(R.id.departurePlatformView);
+			platformView = v.findViewById(R.id.platformView);
+			arrivalPlatform = v.findViewById(R.id.arrivalPlatformView);
+			departurePlatform = v.findViewById(R.id.departurePlatformView);
 		}
 	}
 }

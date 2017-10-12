@@ -41,7 +41,7 @@ public class AboutMainFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_about_main, container, false);
 
-		final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
+		final ViewPager viewPager = view.findViewById(R.id.pager);
 
 		// don't recreate the fragments when changing tabs
 		viewPager.setOffscreenPageLimit(3);
@@ -49,7 +49,7 @@ public class AboutMainFragment extends Fragment {
 		mPagerAdapter = new AboutPagerAdapter(getChildFragmentManager());
 		viewPager.setAdapter(mPagerAdapter);
 
-		final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+		final TabLayout tabLayout = view.findViewById(R.id.tab_layout);
 		tabLayout.setupWithViewPager(viewPager);
 		tabLayout.setTabsFromPagerAdapter(mPagerAdapter);
 		tabLayout.setTabMode(TabLayout.MODE_FIXED);

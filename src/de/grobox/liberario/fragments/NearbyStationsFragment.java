@@ -372,12 +372,12 @@ public class NearbyStationsFragment extends TransportrFragment {
 		MenuItem menu_map;
 
 		public ViewHolder(View view) {
-			station = (LocationGpsView) view.findViewById(R.id.location_input);
-			search = (Button) view.findViewById(R.id.searchButton);
-			stations_area = (ViewGroup) view.findViewById(R.id.nearbystations_list);
-			progress = (ProgressBar) view.findViewById(R.id.progressBar);
-			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
-			recycler = (RecyclerView) view.findViewById(R.id.nearbystations_recycler_view);
+			station = view.findViewById(R.id.location_input);
+			search = view.findViewById(R.id.searchButton);
+			stations_area = view.findViewById(R.id.nearbystations_list);
+			progress = view.findViewById(R.id.progressBar);
+			swipe_refresh = view.findViewById(R.id.swipe_refresh_layout);
+			recycler = view.findViewById(R.id.nearbystations_recycler_view);
 		}
 	}
 

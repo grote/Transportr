@@ -47,6 +47,7 @@ import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
 
+@Deprecated
 public class TripDetailActivity extends TransportrActivity implements AsyncQueryTripsTask.TripHandler {
 
 	private Trip trip;
@@ -72,7 +73,7 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 		TransportNetwork network = Preferences.getTransportNetwork(this);
 		showLineName = network != null && network.hasGoodLineNames();
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = findViewById(R.id.toolbar);
 		if(toolbar != null) {
 			if(network != null) toolbar.setSubtitle(network.getName(this));
 			setSupportActionBar(toolbar);

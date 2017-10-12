@@ -106,7 +106,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		final TransportNetwork network = Preferences.getTransportNetwork(this);
 
 		// Handle Toolbar
-		toolbar = (Toolbar) findViewById(R.id.toolbar);
+		toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		// Accounts aka TransportNetworks

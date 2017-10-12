@@ -73,7 +73,7 @@ public abstract class TransportrActivity extends AppCompatActivity {
 	@Nullable
 	protected Toolbar setUpCustomToolbar(boolean ownLayout) {
 		// Custom Toolbar
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		ActionBar ab = getSupportActionBar();
 		if (ab != null) {

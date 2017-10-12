@@ -85,7 +85,7 @@ public class PickTransportNetworkActivity extends TransportrActivity {
 				supportFinishAfterTransition();
 			}
 		});
-		list = (RecyclerView) findViewById(R.id.list);
+		list = findViewById(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
 

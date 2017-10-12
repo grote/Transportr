@@ -36,7 +36,7 @@ public class RecentTripsLayout extends LinearLayout implements Checkable {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		checkbox = (CheckBox) findViewById(R.id.checkBox);
+		checkbox = findViewById(R.id.checkBox);
 	}
 
 	@Override

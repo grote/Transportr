@@ -305,13 +305,13 @@ public class DeparturesFragment extends TransportrFragment {
 		RecyclerView recycler;
 
 		public ViewHolder(View view) {
-			station = (LocationView) view.findViewById(R.id.stationView);
-			date = (TimeAndDateView) view.findViewById(R.id.dateView);
-			search = (ImageButton) view.findViewById(R.id.stationButton);
+			station = view.findViewById(R.id.stationView);
+			date = view.findViewById(R.id.dateView);
+			search = view.findViewById(R.id.stationButton);
 			departure_list = (ViewGroup) view;
-			swipe_refresh = (SwipyRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
-			progress = (ProgressBar) view.findViewById(R.id.progressBar);
-			recycler = (RecyclerView) view.findViewById(R.id.list);
+			swipe_refresh = view.findViewById(R.id.swipe_refresh_layout);
+			progress = view.findViewById(R.id.progressBar);
+			recycler = view.findViewById(R.id.list);
 		}
 	}
 

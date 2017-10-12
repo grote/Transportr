@@ -112,8 +112,8 @@ public class LocationFragment extends TransportrFragment
 		getComponent().inject(this);
 
 		// Location
-		locationIcon = (ImageView) v.findViewById(R.id.locationIcon);
-		locationName = (TextView) v.findViewById(R.id.locationName);
+		locationIcon = v.findViewById(R.id.locationIcon);
+		locationName = v.findViewById(R.id.locationName);
 		OnClickListener locationClick = new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -124,11 +124,11 @@ public class LocationFragment extends TransportrFragment
 		locationName.setOnClickListener(locationClick);
 
 		// Lines
-		linesLayout = (ViewGroup) v.findViewById(R.id.linesLayout);
+		linesLayout = v.findViewById(R.id.linesLayout);
 		linesLayout.setVisibility(GONE);
 
 		// Location Info
-		locationInfo = (TextView) v.findViewById(R.id.locationInfo);
+		locationInfo = v.findViewById(R.id.locationInfo);
 		showLocation();
 
 		if (location.getLocation().type == COORD) {
@@ -137,7 +137,7 @@ public class LocationFragment extends TransportrFragment
 		}
 
 		// Departures
-		Button departuresButton = (Button) v.findViewById(R.id.departuresButton);
+		Button departuresButton = v.findViewById(R.id.departuresButton);
 		if (location.hasId()) {
 			departuresButton.setOnClickListener(new OnClickListener() {
 				@Override
@@ -152,8 +152,8 @@ public class LocationFragment extends TransportrFragment
 		}
 
 		// Nearby Stations
-		nearbyStationsButton = (Button) v.findViewById(R.id.nearbyStationsButton);
-		nearbyStationsProgress = (ProgressBar) v.findViewById(R.id.nearbyStationsProgress);
+		nearbyStationsButton = v.findViewById(R.id.nearbyStationsButton);
+		nearbyStationsProgress = v.findViewById(R.id.nearbyStationsProgress);
 		nearbyStationsButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -164,7 +164,7 @@ public class LocationFragment extends TransportrFragment
 		});
 
 		// Share Location
-		Button shareButton = (Button) v.findViewById(R.id.shareButton);
+		Button shareButton = v.findViewById(R.id.shareButton);
 		shareButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
