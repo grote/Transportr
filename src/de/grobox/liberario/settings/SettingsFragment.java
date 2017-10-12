@@ -36,14 +36,10 @@ import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
-import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;
 import de.grobox.liberario.utils.TransportrUtils;
 
-import static android.app.Activity.RESULT_OK;
-import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
-
 @ParametersAreNonnullByDefault
-public class SettingsFragment extends PreferenceFragmentCompat implements OnSharedPreferenceChangeListener, TransportNetworkChangedListener {
+public class SettingsFragment extends PreferenceFragmentCompat implements OnSharedPreferenceChangeListener {
 
 	public static final String TAG = "de.grobox.liberario.settings";
 
@@ -63,8 +59,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 
 		// Fill in current transport network if available
 		network_pref = findPreference("pref_key_network");
-		TransportNetwork network = manager.getTransportNetwork().getValue();
-		if (network != null) onTransportNetworkChanged(network);
+		manager.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
 
 		network_pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
@@ -74,7 +69,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 				if(view != null) view = view.findFocus();
 
 				ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
-				ActivityCompat.startActivityForResult(getActivity(), intent, REQUEST_NETWORK_PROVIDER_CHANGE, options.toBundle());
+				ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
 				return true;
 			}
 		});
@@ -130,18 +125,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 		}
 	}
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
-
-		if (requestCode == REQUEST_NETWORK_PROVIDER_CHANGE && resultCode == RESULT_OK) {
-			TransportNetwork network = manager.getTransportNetwork().getValue();
-			if (network != null) onTransportNetworkChanged(network);
-		}
-	}
-
-	@Override
-	public void onTransportNetworkChanged(TransportNetwork network) {
+	private void onTransportNetworkChanged(TransportNetwork network) {
 		network_pref.setSummary(network.getName(getContext()));
 	}
 

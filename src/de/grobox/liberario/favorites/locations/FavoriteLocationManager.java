@@ -37,15 +37,13 @@ import de.grobox.liberario.data.locations.HomeLocation;
 import de.grobox.liberario.data.locations.LocationRepository;
 import de.grobox.liberario.favorites.trips.FavoriteTripManager;
 import de.grobox.liberario.locations.WrapLocation;
-import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;
 
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.TO;
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.VIA;
 
 @ParametersAreNonnullByDefault
-public class FavoriteLocationManager extends AbstractManager implements TransportNetworkChangedListener {
+public class FavoriteLocationManager extends AbstractManager {
 
 	private final Context context;
 	private final LocationRepository locationRepository;
@@ -89,21 +87,11 @@ public class FavoriteLocationManager extends AbstractManager implements Transpor
 	}
 
 	private void loadWork() {
-		runOnBackgroundThread(new Runnable() {
-			@Override
-			public void run() {
-				setLoadedWork(SpecialLocationDb.getWork(context));
-			}
-		});
+		runOnBackgroundThread(() -> setLoadedWork(SpecialLocationDb.getWork(context)));
 	}
 
 	private void setLoadedWork(@Nullable final WrapLocation work) {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				FavoriteLocationManager.this.work = work;
-			}
-		});
+		runOnUiThread(() -> FavoriteLocationManager.this.work = work);
 	}
 
 	public void setWork(final WrapLocation work) {
@@ -147,25 +135,6 @@ public class FavoriteLocationManager extends AbstractManager implements Transpor
 			}
 			favoriteLocationsLoadedListeners.clear();
 		});
-	}
-
-	/**
-	 * Adds a listener that will be informed once favorite locations have been loaded.
-	 * The listener will be removed automatically after being informed.
-	 */
-	@UiThread
-	public void addOnFavoriteLocationsLoadedListener(FavoriteLocationsLoadedListener listener) {
-		favoriteLocationsLoadedListeners.add(listener);
-	}
-
-	@Override
-	public void onTransportNetworkChanged(TransportNetwork network) {
-		home = null;
-		work = null;
-		favoriteLocations = null;
-		observeHome();
-		loadWork();
-		observeLocations();
 	}
 
 	public interface FavoriteLocationsLoadedListener {

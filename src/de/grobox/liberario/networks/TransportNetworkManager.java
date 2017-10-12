@@ -21,7 +21,6 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
@@ -84,24 +83,18 @@ public class TransportNetworkManager {
 		}
 	}
 
-	public void setTransportNetwork(TransportNetwork transportNetwork) {
-		Log.e("TEST", "SET TRANSPORT NETWORK: " + transportNetwork.getId().name());
-
+	public void setTransportNetwork(TransportNetwork network) {
 		// check if same network was selected again
-		if (this.transportNetwork != null && transportNetwork.equals(this.transportNetwork.getValue())) return;
-		settingsManager.setNetworkId(transportNetwork.getId());
+		if (network.equals(transportNetwork.getValue())) return;
+		settingsManager.setNetworkId(network.getId());
 
 		// move 2nd network to 3rd if existing and not re-selected
-		if (this.transportNetwork2 != null && !this.transportNetwork2.equals(transportNetwork)) {
+		if (this.transportNetwork2 != null && !this.transportNetwork2.equals(network)) {
 			this.transportNetwork3 = this.transportNetwork2;
 		}
 		// swap remaining networks
 		this.transportNetwork2 = this.transportNetwork.getValue();
-		this.transportNetwork.setValue(transportNetwork);
-	}
-
-	public interface TransportNetworkChangedListener {
-		void onTransportNetworkChanged(TransportNetwork network);
+		this.transportNetwork.setValue(network);
 	}
 
 }

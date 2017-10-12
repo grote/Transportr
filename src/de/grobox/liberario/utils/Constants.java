@@ -15,13 +15,10 @@ public interface Constants {
 	String SEARCH = "search";
 
 	// Request Codes
-	int REQUEST_NETWORK_PROVIDER_CHANGE = 1;
 
 	// Loaders
-	int LOADER_AUTO_COMPLETE = 0;
 	int LOADER_DEPARTURES = 1;
 	int LOADER_NEARBY_STATIONS = 2;
-	int LOADER_FAVORITES = 3;
 	int LOADER_TRIPS = 4;
 	int LOADER_MORE_TRIPS = 5;
 

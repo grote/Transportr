@@ -31,8 +31,6 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import javax.inject.Inject;
@@ -40,20 +38,18 @@ import javax.inject.Inject;
 import de.grobox.liberario.R;
 import de.grobox.liberario.about.AboutActivity;
 import de.grobox.liberario.about.AboutMainFragment;
-import de.grobox.liberario.settings.SettingsActivity;
-import de.grobox.liberario.settings.SettingsFragment;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
-import de.grobox.liberario.networks.TransportNetworkManager.TransportNetworkChangedListener;
 import de.grobox.liberario.settings.Preferences;
+import de.grobox.liberario.settings.SettingsActivity;
+import de.grobox.liberario.settings.SettingsFragment;
 import de.grobox.liberario.ui.TransportrChangeLog;
 import de.grobox.liberario.utils.TransportrUtils;
 
 import static android.support.v4.app.ActivityOptionsCompat.makeScaleUpAnimation;
-import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
 
-abstract class DrawerActivity extends TransportrActivity implements TransportNetworkChangedListener {
+abstract class DrawerActivity extends TransportrActivity {
 
 	@Inject
 	TransportNetworkManager manager;
@@ -72,25 +68,19 @@ abstract class DrawerActivity extends TransportrActivity implements TransportNet
 				.withDividerBelowHeader(true)
 				.withSelectionListEnabled(false)
 				.withThreeSmallProfileImages(true)
-				.withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-					@Override
-					public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-						if (currentProfile) {
-							openPickNetworkProviderActivity();
-							return true;
-						} else if (profile != null && profile instanceof ProfileDrawerItem) {
-							TransportNetwork network = (TransportNetwork) ((ProfileDrawerItem) profile).getTag();
-							if (network != null) manager.setTransportNetwork(network);
-						}
-						return false;
-					}
-				})
-				.withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
-					@Override
-					public boolean onClick(View view, IProfile profile) {
+				.withOnAccountHeaderListener((view, profile, currentProfile) -> {
+					if (currentProfile) {
 						openPickNetworkProviderActivity();
 						return true;
+					} else if (profile != null && profile instanceof ProfileDrawerItem) {
+						TransportNetwork network = (TransportNetwork) ((ProfileDrawerItem) profile).getTag();
+						if (network != null) manager.setTransportNetwork(network);
 					}
+					return false;
+				})
+				.withOnAccountHeaderSelectionViewClickListener((view, profile) -> {
+					openPickNetworkProviderActivity();
+					return true;
 				})
 				.build();
 
@@ -163,28 +153,22 @@ abstract class DrawerActivity extends TransportrActivity implements TransportNet
 		String name;
 
 		if (tag.equals(TransportrChangeLog.TAG)) {
-			onClick = new Drawer.OnDrawerItemClickListener() {
-				@Override
-				public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-					new TransportrChangeLog(DrawerActivity.this, Preferences.darkThemeEnabled(DrawerActivity.this)).getFullLogDialog().show();
-					return true;
-				}
+			onClick = (view, position, drawerItem) -> {
+				new TransportrChangeLog(DrawerActivity.this, Preferences.darkThemeEnabled(DrawerActivity.this)).getFullLogDialog().show();
+				return true;
 			};
 			name = getString(R.string.drawer_changelog);
 		} else {
-			onClick = new Drawer.OnDrawerItemClickListener() {
-				@Override
-				public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-					drawer.closeDrawer();
-					if (tag.equals(SettingsFragment.TAG)) {
-						Intent i = new Intent(DrawerActivity.this, SettingsActivity.class);
-						startActivity(i);
-					} else if (tag.equals(AboutMainFragment.TAG)) {
-						Intent i = new Intent(DrawerActivity.this, AboutActivity.class);
-						startActivity(i);
-					}
-					return true;
+			onClick = (view, position, drawerItem) -> {
+				drawer.closeDrawer();
+				if (tag.equals(SettingsFragment.TAG)) {
+					Intent i = new Intent(DrawerActivity.this, SettingsActivity.class);
+					startActivity(i);
+				} else if (tag.equals(AboutMainFragment.TAG)) {
+					Intent i = new Intent(DrawerActivity.this, AboutActivity.class);
+					startActivity(i);
 				}
+				return true;
 			};
 			name = getFragmentName(tag);
 		}
@@ -205,16 +189,7 @@ abstract class DrawerActivity extends TransportrActivity implements TransportNet
 	protected void openPickNetworkProviderActivity() {
 		Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 		ActivityOptionsCompat options = makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
-		ActivityCompat.startActivityForResult(this, intent, REQUEST_NETWORK_PROVIDER_CHANGE, options.toBundle());
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == REQUEST_NETWORK_PROVIDER_CHANGE && resultCode == RESULT_OK) {
-			TransportNetwork network = manager.getTransportNetwork().getValue();
-			if (network != null) onTransportNetworkChanged(network);
-		}
+		ActivityCompat.startActivity(this, intent, options.toBundle());
 	}
 
 	protected void openDrawer() {

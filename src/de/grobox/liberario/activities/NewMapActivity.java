@@ -77,7 +77,6 @@ import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationTyp
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.liberario.utils.Constants.LOADER_NEARBY_STATIONS;
-import static de.grobox.liberario.utils.Constants.REQUEST_NETWORK_PROVIDER_CHANGE;
 import static de.grobox.liberario.utils.TransportrUtils.findDirections;
 import static de.grobox.liberario.utils.TransportrUtils.getLatLng;
 import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
@@ -124,20 +123,10 @@ public class NewMapActivity extends DrawerActivity
 
 		// get view model and observe data
 		viewModel = ViewModelProviders.of(this, viewModelFactory).get(LocationsViewModel.class);
-		viewModel.getTransportNetwork().observe(this, transportNetwork -> {
-			if (transportNetwork == null) return;
-			if (transportNetworkInitialized) onTransportNetworkChanged(transportNetwork);
-			else {
-				search.setTransportNetwork(transportNetwork);
-				transportNetworkInitialized = true;
-			}
-		});
+		viewModel.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
 		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));
 		viewModel.getWork().observe(this, workLocation -> search.setWorkLocation(workLocation));
-		viewModel.getLocations().observe(this, favoriteLocations -> {
-			if (favoriteLocations == null) return;
-			search.setFavoriteLocations(favoriteLocations);
-		});
+		viewModel.getLocations().observe(this, favoriteLocations -> search.setFavoriteLocations(favoriteLocations));
 
 		View bottomSheet = findViewById(R.id.bottomSheet);
 		bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
@@ -262,13 +251,18 @@ public class NewMapActivity extends DrawerActivity
 		mapView.onDestroy();
 	}
 
-	@Override
 	public void onTransportNetworkChanged(TransportNetwork network) {
-		Log.w("TEST", "TRANSPORT NETWORK HAS CHANGED!!! " + network.getName(this));
-		recreate();
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.bottomSheet, FavoriteTripsFragment.newInstance(true), FavoriteTripsFragment.TAG)
-				.commit();
+		if (transportNetworkInitialized) {
+			Log.w("TEST", "TRANSPORT NETWORK HAS CHANGED!!! " + network.getName(this));
+			search.setLocation(null);
+			recreate();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.bottomSheet, FavoriteTripsFragment.newInstance(true), FavoriteTripsFragment.TAG)
+					.commit();
+		} else {
+			search.setTransportNetwork(network);
+			transportNetworkInitialized = true;
+		}
 	}
 
 	@Override
@@ -362,7 +356,7 @@ public class NewMapActivity extends DrawerActivity
 		if (network == null) {
 			Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 			intent.putExtra(FORCE_NETWORK_SELECTION, true);
-			startActivityForResult(intent, REQUEST_NETWORK_PROVIDER_CHANGE);
+			startActivity(intent);
 		}
 	}
 
