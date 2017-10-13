@@ -1,4 +1,4 @@
-package de.grobox.liberario.trips;
+package de.grobox.liberario.trips.search;
 
 import javax.inject.Inject;
 

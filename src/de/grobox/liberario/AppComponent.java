@@ -29,8 +29,11 @@ import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.settings.SettingsFragment;
-import de.grobox.liberario.trips.DirectionsActivity;
-import de.grobox.liberario.trips.TripsFragment;
+import de.grobox.liberario.trips.TripDetailActivity;
+import de.grobox.liberario.trips.TripDetailFragment;
+import de.grobox.liberario.trips.TripMapFragment;
+import de.grobox.liberario.trips.search.DirectionsActivity;
+import de.grobox.liberario.trips.search.TripsFragment;
 
 @Singleton
 @Component(modules = AppModule.class)
@@ -40,10 +43,13 @@ public interface AppComponent {
 	void inject(PickTransportNetworkActivity activity);
 	void inject(DeparturesActivity activity);
 	void inject(DirectionsActivity activity);
+	void inject(TripDetailActivity activity);
 
 	void inject(LocationFragment fragment);
 	void inject(FavoriteTripsFragment fragment);
 	void inject(TripsFragment fragment);
+	void inject(TripMapFragment fragment);
+	void inject(TripDetailFragment fragment);
 	void inject(SettingsFragment fragment);
 	void inject(HomePickerDialogFragment fragment);
 	void inject(WorkPickerDialogFragment fragment);

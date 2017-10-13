@@ -15,17 +15,15 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.trips;
+package de.grobox.liberario.trips.search;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.utils.DateUtils;
-import de.grobox.liberario.utils.TransportrUtils;
+import de.grobox.liberario.trips.search.TripAdapter.OnTripClickListener;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Individual;
 import de.schildbach.pte.dto.Trip.Leg;
@@ -33,6 +31,11 @@ import de.schildbach.pte.dto.Trip.Public;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static de.grobox.liberario.utils.DateUtils.getDelayText;
+import static de.grobox.liberario.utils.DateUtils.getDuration;
+import static de.grobox.liberario.utils.DateUtils.getTime;
+import static de.grobox.liberario.utils.TransportrUtils.addLineBox;
+import static de.grobox.liberario.utils.TransportrUtils.addWalkingBox;
 import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
 import static de.grobox.liberario.utils.TransportrUtils.setRelativeDepartureTime;
 
@@ -59,22 +62,22 @@ class TripViewHolder extends RecyclerView.ViewHolder {
 		duration = v.findViewById(R.id.duration);
 	}
 
-	void bind(final Trip trip) {
+	void bind(final Trip trip, OnTripClickListener listener) {
 		// Relative Departure Time
 		setRelativeDepartureTime(fromTimeRel, trip.getFirstDepartureTime());
 
 		// Departure Time
 		Leg firstLeg = trip.legs.get(0);
 		if (firstLeg instanceof Public) {
-			fromTime.setText(DateUtils.getTime(fromTime.getContext(), ((Public) firstLeg).getDepartureTime(true)));
+			fromTime.setText(getTime(fromTime.getContext(), ((Public) firstLeg).getDepartureTime(true)));
 		} else {
-			fromTime.setText(DateUtils.getTime(fromTime.getContext(), firstLeg.getDepartureTime()));
+			fromTime.setText(getTime(fromTime.getContext(), firstLeg.getDepartureTime()));
 		}
 
 		// Departure Delay
 		Public publicLeg = trip.getFirstPublicLeg();
 		if (publicLeg != null && publicLeg.getDepartureDelay() != null && publicLeg.getDepartureDelay() != 0) {
-			fromDelay.setText(DateUtils.getDelayText(publicLeg.getDepartureDelay()));
+			fromDelay.setText(getDelayText(publicLeg.getDepartureDelay()));
 			fromDelay.setVisibility(VISIBLE);
 		} else {
 			fromDelay.setVisibility(GONE);
@@ -85,27 +88,27 @@ class TripViewHolder extends RecyclerView.ViewHolder {
 		lines.removeAllViews();
 		for (Leg leg : trip.legs) {
 			if (leg instanceof Public) {
-				TransportrUtils.addLineBox(lines.getContext(), lines, ((Public) leg).line);
+				addLineBox(lines.getContext(), lines, ((Public) leg).line);
 			} else if (leg instanceof Individual) {
-				TransportrUtils.addWalkingBox(lines.getContext(), lines);
+				addWalkingBox(lines.getContext(), lines);
 			} else {
 				throw new RuntimeException();
 			}
 		}
-		duration.setText(DateUtils.getDuration(trip.getDuration()));
+		duration.setText(getDuration(trip.getDuration()));
 
 		// Arrival Time
 		Leg lastLeg = trip.legs.get(trip.legs.size() - 1);
 		if (lastLeg instanceof Public) {
-			toTime.setText(DateUtils.getTime(toTime.getContext(), ((Public) lastLeg).getDepartureTime(true)));
+			toTime.setText(getTime(toTime.getContext(), ((Public) lastLeg).getDepartureTime(true)));
 		} else {
-			toTime.setText(DateUtils.getTime(toTime.getContext(), lastLeg.getDepartureTime()));
+			toTime.setText(getTime(toTime.getContext(), lastLeg.getDepartureTime()));
 		}
 
 		// Arrival Delay
 		publicLeg = trip.getLastPublicLeg();
 		if (publicLeg != null && publicLeg.getArrivalDelay() != null && publicLeg.getArrivalDelay() != 0) {
-			toDelay.setText(DateUtils.getDelayText(publicLeg.getArrivalDelay()));
+			toDelay.setText(getDelayText(publicLeg.getArrivalDelay()));
 			toDelay.setVisibility(VISIBLE);
 		} else {
 			toDelay.setVisibility(GONE);
@@ -113,13 +116,7 @@ class TripViewHolder extends RecyclerView.ViewHolder {
 		toLocation.setText(getLocationName(trip.to));
 
 		// Click Listener
-		root.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				// TODO
-				Log.e("TEST", trip.toString());
-			}
-		});
+		root.setOnClickListener(view -> listener.onClick(trip));
 	}
 
 }

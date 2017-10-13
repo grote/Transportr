@@ -1,11 +1,13 @@
-package de.grobox.liberario.trips;
+package de.grobox.liberario.trips.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import java.util.Date;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
+import de.grobox.liberario.trips.TripDetailActivity;
 import de.grobox.liberario.favorites.trips.FavoriteTripManager;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.locations.WrapLocation;
@@ -27,10 +30,12 @@ import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.QueryTripsContext;
 import de.schildbach.pte.dto.QueryTripsResult;
+import de.schildbach.pte.dto.Trip;
 
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout.LARGE;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTTOM;
+import static de.grobox.liberario.trips.TripDetailActivity.TRIP;
 import static de.grobox.liberario.utils.Constants.DATE;
 import static de.grobox.liberario.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.liberario.utils.Constants.FROM;
@@ -42,7 +47,7 @@ import static de.grobox.liberario.utils.Constants.VIA;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 import static de.schildbach.pte.dto.QueryTripsResult.Status.OK;
 
-public class TripsFragment extends TransportrFragment implements LoaderCallbacks<QueryTripsResult>, OnRefreshListener {
+public class TripsFragment extends TransportrFragment implements LoaderCallbacks<QueryTripsResult>, OnRefreshListener, TripAdapter.OnTripClickListener {
 
 	final static String TAG = TripsFragment.class.getName();
 
@@ -104,9 +109,9 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 		list = v.findViewById(R.id.list);
 		LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 		list.setLayoutManager(layoutManager);
-		adapter = new TripAdapter();
+		adapter = new TripAdapter(this);
 		adapter.setHasStableIds(false);
-		list.setHasFixedSize(true);
+		list.setHasFixedSize(false);
 		list.setAdapter(adapter);
 
 		LceAnimator.showLoading(progressBar, list, null);
@@ -159,6 +164,18 @@ public class TripsFragment extends TransportrFragment implements LoaderCallbacks
 	public void onLoaderReset(Loader<QueryTripsResult> loader) {
 		adapter.clear();
 		queryTripsContext = null;
+	}
+
+	@Override
+	public void onClick(Trip trip) {
+		Log.e("TEST", trip.toString());
+
+		Intent i = new Intent(getContext(), TripDetailActivity.class);
+		i.putExtra(TRIP, trip);
+//		i.putExtra("de.schildbach.pte.dto.Trip.from", from);
+//		i.putExtra("de.schildbach.pte.dto.Trip.to", to);
+//		i.putExtra("de.schildbach.pte.dto.Trip.products", trip.products().toArray());
+		startActivity(i);
 	}
 
 }

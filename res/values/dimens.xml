@@ -9,4 +9,6 @@
 
 	<dimen name="lce_content_view_animation_translate_y">40dp</dimen>
 
+	<dimen name="buttonSize">48dp</dimen>
+
 </resources>

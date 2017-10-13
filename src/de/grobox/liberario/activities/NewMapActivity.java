@@ -65,7 +65,7 @@ import de.grobox.liberario.locations.NearbyLocationsLoader;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.trips.DirectionsActivity;
+import de.grobox.liberario.trips.search.DirectionsActivity;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;

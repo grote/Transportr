@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.trips;
+package de.grobox.liberario.trips.search;
 
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
@@ -66,6 +66,12 @@ class TripAdapter extends RecyclerView.Adapter<TripViewHolder> {
 			return t1.equals(t2);
 		}
 	});
+	private final OnTripClickListener listener;
+
+	TripAdapter(OnTripClickListener listener) {
+		super();
+		this.listener = listener;
+	}
 
 	@Override
 	public TripViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -76,7 +82,7 @@ class TripAdapter extends RecyclerView.Adapter<TripViewHolder> {
 	@Override
 	public void onBindViewHolder(final TripViewHolder ui, final int position) {
 		Trip dep = getItem(position);
-		ui.bind(dep);
+		ui.bind(dep, listener);
 	}
 
 	@Override
@@ -96,5 +102,8 @@ class TripAdapter extends RecyclerView.Adapter<TripViewHolder> {
 		items.clear();
 	}
 
+	interface OnTripClickListener {
+		void onClick(Trip trip);
+	}
 
 }

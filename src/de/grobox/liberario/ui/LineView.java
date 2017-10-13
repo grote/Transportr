@@ -47,8 +47,9 @@ public class LineView extends LinearLayout {
 		//noinspection deprecation
 		setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.line_box));
 
-		int height = context.getResources().getDimensionPixelSize(R.dimen.line_box_height);
-		setMinimumHeight(height);
+		int size = context.getResources().getDimensionPixelSize(R.dimen.line_box_height);
+		setMinimumHeight(size);
+		setMinimumWidth(size);
 
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.line_view, this, true);
@@ -68,6 +69,7 @@ public class LineView extends LinearLayout {
 		}
 
 		ui.label.setText(line.label);
+		ui.label.setVisibility(VISIBLE);
 
 		if (line.style != null) {
 			GradientDrawable box = (GradientDrawable) ui.box.getBackground();
@@ -80,6 +82,12 @@ public class LineView extends LinearLayout {
 			ui.label.setTextColor(line.style.foregroundColor);
 			ui.product.setColorFilter(line.style.foregroundColor);
 		}
+	}
+
+	public void setWalk() {
+		ui.product.setImageResource(R.drawable.ic_walk);
+		ui.label.setVisibility(GONE);
+		ui.box.setBackgroundResource(R.drawable.walk_box);
 	}
 
 	public String getLabel() {

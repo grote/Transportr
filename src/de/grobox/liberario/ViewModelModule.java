@@ -8,7 +8,8 @@ import dagger.Module;
 import dagger.multibindings.IntoMap;
 import de.grobox.liberario.favorites.trips.SavedSearchesViewModel;
 import de.grobox.liberario.locations.LocationsViewModel;
-import de.grobox.liberario.trips.DirectionsViewModel;
+import de.grobox.liberario.trips.TripDetailViewModel;
+import de.grobox.liberario.trips.search.DirectionsViewModel;
 
 @Module
 abstract class ViewModelModule {
@@ -27,6 +28,11 @@ abstract class ViewModelModule {
 	@IntoMap
 	@ViewModelKey(DirectionsViewModel.class)
 	abstract ViewModel bindDirectionsViewModel(DirectionsViewModel directionsViewModel);
+
+	@Binds
+	@IntoMap
+	@ViewModelKey(TripDetailViewModel.class)
+	abstract ViewModel bindTripDetailViewModel(TripDetailViewModel tripDetailViewModel);
 
 	@Binds
 	abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

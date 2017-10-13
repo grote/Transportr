@@ -30,10 +30,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -57,7 +55,7 @@ import de.grobox.liberario.fragments.DirectionsFragment;
 import de.grobox.liberario.fragments.NearbyStationsFragment;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.settings.Preferences;
-import de.grobox.liberario.trips.DirectionsActivity;
+import de.grobox.liberario.trips.search.DirectionsActivity;
 import de.grobox.liberario.ui.LineView;
 import de.schildbach.pte.NetworkProvider.Optimize;
 import de.schildbach.pte.NetworkProvider.WalkSpeed;
@@ -79,7 +77,9 @@ import static de.grobox.liberario.utils.Constants.FROM;
 import static de.grobox.liberario.utils.Constants.SEARCH;
 import static de.grobox.liberario.utils.Constants.TO;
 import static de.grobox.liberario.utils.Constants.VIA;
+import static de.grobox.liberario.utils.DateUtils.getDelayText;
 import static de.grobox.liberario.utils.DateUtils.getDifferenceInMinutes;
+import static de.grobox.liberario.utils.DateUtils.getTime;
 
 @ParametersAreNonnullByDefault
 public class TransportrUtils {
@@ -116,14 +116,15 @@ public class TransportrUtils {
 	}
 
 	static public void addWalkingBox(Context context, ViewGroup lineLayout, int index) {
-		ImageView v = (ImageView) LayoutInflater.from(context).inflate(R.layout.walking_box, lineLayout, false);
+		LineView lineView = new LineView(context);
+		lineView.setWalk();
 
 		// set margin, because setting in in xml does not work
 		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
 		llp.setMargins(0, 5, 10, 5);
-		v.setLayoutParams(llp);
+		lineView.setLayoutParams(llp);
 
-		lineLayout.addView(v, index);
+		lineLayout.addView(lineView, index);
 	}
 
 	static public void addWalkingBox(Context context, ViewGroup lineLayout) {
@@ -139,9 +140,12 @@ public class TransportrUtils {
 		if(stop.isArrivalTimePredicted() && stop.getArrivalDelay() != null) {
 			long delay = stop.getArrivalDelay();
 			time.setTime(time.getTime() - delay);
-			delayView.setText(DateUtils.getDelayText(delay));
+			delayView.setText(getDelayText(delay));
+			delayView.setVisibility(VISIBLE);
+		} else {
+			delayView.setVisibility(GONE);
 		}
-		timeView.setText(DateUtils.getTime(context, time));
+		timeView.setText(getTime(context, time));
 	}
 
 	static public void setDepartureTimes(Context context, TextView timeView, TextView delayView, Stop stop) {
@@ -152,9 +156,12 @@ public class TransportrUtils {
 		if(stop.isDepartureTimePredicted() && stop.getDepartureDelay() != null) {
 			long delay = stop.getDepartureDelay();
 			time.setTime(time.getTime() - delay);
-			delayView.setText(DateUtils.getDelayText(delay));
+			delayView.setText(getDelayText(delay));
+			delayView.setVisibility(VISIBLE);
+		} else {
+			delayView.setVisibility(GONE);
 		}
-		timeView.setText(DateUtils.getTime(context, time));
+		timeView.setText(getTime(context, time));
 	}
 
 	public static void setRelativeDepartureTime(TextView timeRel, Date date) {
@@ -178,11 +185,11 @@ public class TransportrUtils {
 
 		if(tag) str += "[" + context.getResources().getString(R.string.app_name) + "] ";
 
-		str += DateUtils.getTime(context, trip.getFirstDepartureTime()) + " ";
+		str += getTime(context, trip.getFirstDepartureTime()) + " ";
 		str += getLocationName(trip.from);
 		str += " → ";
 		str += getLocationName(trip.to) + " ";
-		str += DateUtils.getTime(context, trip.getLastArrivalTime());
+		str += getTime(context, trip.getLastArrivalTime());
 		str += " (" + DateUtils.getDate(context, trip.getFirstDepartureTime()) + ")";
 
 		return str;
@@ -202,7 +209,7 @@ public class TransportrUtils {
 		String str = "";
 		String apos = "";
 
-		str += DateUtils.getTime(context, leg.getDepartureTime()) + " ";
+		str += getTime(context, leg.getDepartureTime()) + " ";
 		str += getLocationName(leg.departure);
 
 		if(leg instanceof Trip.Public) {
@@ -229,7 +236,7 @@ public class TransportrUtils {
 		}
 
 		str += "\n";
-		str += DateUtils.getTime(context, leg.getArrivalTime()) + " ";
+		str += getTime(context, leg.getArrivalTime()) + " ";
 		str += getLocationName(leg.arrival);
 		str += apos;
 

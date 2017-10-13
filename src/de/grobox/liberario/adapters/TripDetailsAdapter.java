@@ -50,6 +50,7 @@ import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 
+@Deprecated
 public class TripDetailsAdapter extends RecyclerView.Adapter<TripDetailsAdapter.TripHolder>{
 
 	private SortedList<ListTrip> trips = new SortedList<>(ListTrip.class, new SortedList.Callback<ListTrip>(){

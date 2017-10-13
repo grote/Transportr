@@ -55,7 +55,7 @@
 		</activity>
 
 		<activity
-			android:name=".trips.DirectionsActivity"
+			android:name=".trips.search.DirectionsActivity"
 			android:windowSoftInputMode="stateHidden"/>
 
 		<activity
@@ -68,8 +68,8 @@
 			android:parentActivityName=".activities.MainActivity"/>
 
 		<activity
-			android:name=".activities.TripDetailActivity"
-			android:parentActivityName=".activities.TripsActivity"/>
+			android:name=".trips.TripDetailActivity"
+			android:parentActivityName=".trips.search.DirectionsActivity"/>
 
 		<activity
 			android:name=".locations.AmbiguousLocationActivity"/>

@@ -7,8 +7,8 @@
 
 	<ImageView
 		android:id="@+id/productView"
-		android:layout_width="16dp"
-		android:layout_height="16dp"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
 		android:layout_gravity="center"
 		android:layout_marginTop="1px"
 		app:srcCompat="@drawable/product_bus"
@@ -20,9 +20,10 @@
 		android:layout_height="match_parent"
 		android:gravity="center"
 		android:paddingRight="3dp"
-		android:textSize="12sp"
+		android:textSize="16sp"
 		android:textStyle="bold"
 		tools:ignore="RtlHardcoded,RtlSymmetry"
-		tools:text="123"/>
+		tools:text="123"
+		tools:visibility="visible"/>
 
 </merge>

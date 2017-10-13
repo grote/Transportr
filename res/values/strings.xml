@@ -157,6 +157,10 @@ there are any).</string>
     <string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
 
     <string name="meter">m</string>
+    <plurals name="stops">
+        <item quantity="one">%d Stop</item>
+        <item quantity="other">%d Stops</item>
+    </plurals>
     <string name="system_default">System Default</string>
     <string name="times_include_delays">(Attention: Times include reported delays)</string>
 

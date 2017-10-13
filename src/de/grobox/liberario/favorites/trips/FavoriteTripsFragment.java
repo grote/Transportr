@@ -58,6 +58,7 @@ public class FavoriteTripsFragment extends TransportrFragment implements Favorit
 
 		list = v.findViewById(R.id.favorites);
 		adapter = new FavoriteTripAdapter(this);
+		list.setHasFixedSize(false);
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(getContext()));
 

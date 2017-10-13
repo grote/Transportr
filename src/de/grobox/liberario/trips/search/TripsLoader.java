@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.trips;
+package de.grobox.liberario.trips.search;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

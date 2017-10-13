@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<TextView
+		android:id="@+id/fromTime"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="8dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="8dp"
+		android:textColor="?android:textColorPrimary"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:text="12:22"/>
+
+	<TextView
+		android:id="@+id/fromDelay"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="@color/md_red_500"
+		android:textSize="12sp"
+		app:layout_constraintRight_toRightOf="@+id/fromTime"
+		app:layout_constraintTop_toBottomOf="@+id/fromTime"
+		tools:text="+12"
+		tools:visibility="visible"/>
+
+	<ImageView
+		android:id="@+id/fromCircle"
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="2dp"
+		android:background="?selectableItemBackgroundBorderless"
+		app:layout_constraintBottom_toBottomOf="@+id/fromLocation"
+		app:layout_constraintStart_toEndOf="@+id/fromTime"
+		app:layout_constraintTop_toTopOf="@+id/fromTime"
+		app:layout_constraintVertical_bias="0.0"
+		tools:ignore="ContentDescription"
+		tools:src="@drawable/leg_circle_end"
+		tools:tint="@color/md_red_300"/>
+
+	<TextView
+		android:id="@+id/fromLocation"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="8dp"
+		android:layout_marginStart="8dp"
+		android:background="?selectableItemBackground"
+		android:gravity="center_vertical"
+		android:paddingBottom="8dp"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="16sp"
+		app:layout_constraintEnd_toStartOf="@+id/toButton"
+		app:layout_constraintLeft_toRightOf="@+id/fromTime"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/fromCircle"
+		app:layout_constraintTop_toTopOf="@+id/fromTime"
+		tools:text="From Location with quite a long name"/>
+
+	<ImageButton
+		android:id="@+id/fromButton"
+		android:layout_width="48dp"
+		android:layout_height="48dp"
+		android:background="?selectableItemBackgroundBorderless"
+		android:contentDescription="@string/more"
+		android:tint="?colorControlNormal"
+		app:layout_constraintBottom_toBottomOf="@+id/fromLocation"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/fromLocation"
+		app:srcCompat="@drawable/ic_more_vert"/>
+
+	<ImageView
+		android:id="@+id/lineBar"
+		android:layout_width="20dp"
+		android:layout_height="0dp"
+		android:background="?selectableItemBackground"
+		android:scaleType="fitXY"
+		android:src="@drawable/leg_bar"
+		app:layout_constraintBottom_toTopOf="@+id/toCircle"
+		app:layout_constraintEnd_toEndOf="@+id/fromCircle"
+		app:layout_constraintStart_toStartOf="@+id/fromCircle"
+		app:layout_constraintTop_toBottomOf="@+id/fromCircle"
+		tools:ignore="ContentDescription"
+		tools:tint="@color/md_red_300"/>
+
+	<de.grobox.liberario.ui.LineView
+		android:id="@+id/lineView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="8dp"
+		android:layout_marginTop="8dp"
+		android:background="?selectableItemBackgroundBorderless"
+		app:layout_constraintBottom_toBottomOf="@+id/lineDestination"
+		app:layout_constraintStart_toStartOf="@+id/fromLocation"
+		app:layout_constraintTop_toTopOf="@+id/lineDestination"/>
+
+	<TextView
+		android:id="@+id/lineDestination"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="8dp"
+		android:layout_marginStart="8dp"
+		android:background="?selectableItemBackground"
+		android:gravity="center_vertical"
+		app:layout_constraintEnd_toStartOf="@+id/duration"
+		app:layout_constraintStart_toEndOf="@+id/lineView"
+		app:layout_constraintTop_toBottomOf="@+id/fromLocation"
+		tools:text="Direction of Line that can also be very long"
+		tools:visibility="gone"/>
+
+	<TextView
+		android:id="@+id/message"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		android:layout_marginTop="8dp"
+		android:textColor="@color/md_red_500"
+		android:textSize="12sp"
+		app:layout_constraintEnd_toStartOf="@+id/duration"
+		app:layout_constraintStart_toStartOf="@+id/lineView"
+		app:layout_constraintTop_toBottomOf="@+id/lineDestination"
+		tools:text="This is an important message that can be several lines long and even include HTML."
+		tools:visibility="visible"/>
+
+	<TextView
+		android:id="@+id/duration"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="8dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		android:layout_marginTop="8dp"
+		app:layout_constraintBottom_toTopOf="@+id/toButton"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/fromButton"
+		app:layout_goneMarginBottom="32dp"
+		tools:text="13:37"/>
+
+	<TextView
+		android:id="@+id/stopsText"
+		android:layout_width="wrap_content"
+		android:layout_height="0dp"
+		android:background="?selectableItemBackground"
+		android:gravity="center_vertical"
+		app:layout_constraintBottom_toBottomOf="@+id/stopsButton"
+		app:layout_constraintStart_toStartOf="@+id/lineView"
+		app:layout_constraintTop_toTopOf="@+id/stopsButton"
+		tools:text="42 Stops"
+		tools:visibility="visible"/>
+
+	<ImageButton
+		android:id="@+id/stopsButton"
+		android:layout_width="48dp"
+		android:layout_height="48dp"
+		android:layout_marginTop="0dp"
+		android:background="?selectableItemBackgroundBorderless"
+		android:contentDescription="@string/more"
+		android:tint="?colorControlNormal"
+		app:layout_constraintStart_toEndOf="@+id/stopsText"
+		app:layout_constraintTop_toBottomOf="@+id/message"
+		app:srcCompat="@drawable/ic_action_navigation_unfold_more"
+		tools:visibility="visible"/>
+
+	<TextView
+		android:id="@+id/toTime"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="?android:textColorPrimary"
+		app:layout_constraintBottom_toBottomOf="@+id/toCircle"
+		app:layout_constraintStart_toStartOf="@+id/fromTime"
+		app:layout_constraintTop_toTopOf="@+id/toCircle"
+		tools:text="23:42"/>
+
+	<TextView
+		android:id="@+id/toDelay"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="@color/md_red_500"
+		android:textSize="12sp"
+		app:layout_constraintEnd_toEndOf="@+id/toTime"
+		app:layout_constraintTop_toBottomOf="@+id/toTime"
+		tools:text="+3"
+		tools:visibility="visible"/>
+
+	<ImageView
+		android:id="@+id/toCircle"
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginTop="2dp"
+		android:background="?selectableItemBackgroundBorderless"
+		app:layout_constraintEnd_toEndOf="@+id/lineBar"
+		app:layout_constraintStart_toStartOf="@+id/lineBar"
+		app:layout_constraintTop_toTopOf="@+id/toLocation"
+		tools:ignore="ContentDescription"
+		tools:src="@drawable/leg_circle_middle"
+		tools:tint="@color/md_red_300"/>
+
+	<TextView
+		android:id="@+id/toLocation"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:background="?selectableItemBackground"
+		android:paddingBottom="8dp"
+		android:textColor="?android:textColorPrimary"
+		android:textSize="16sp"
+		app:layout_constraintEnd_toStartOf="@+id/toButton"
+		app:layout_constraintLeft_toLeftOf="@+id/fromLocation"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/stopsButton"
+		app:layout_goneMarginTop="8dp"
+		tools:text="To Location has also a very long name"/>
+
+	<ImageButton
+		android:id="@+id/toButton"
+		android:layout_width="@dimen/buttonSize"
+		android:layout_height="@dimen/buttonSize"
+		android:background="?selectableItemBackgroundBorderless"
+		android:contentDescription="@string/more"
+		android:tint="?colorControlNormal"
+		app:layout_constraintBottom_toBottomOf="@+id/toLocation"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/toLocation"
+		app:srcCompat="@drawable/ic_more_vert"/>
+
+</android.support.constraint.ConstraintLayout>

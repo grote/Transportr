@@ -89,7 +89,7 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 		// retrieve trip data from intent that is not stored properly in trip object
 		from = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.from");
 		to = (Location) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.to");
-		products = (ArrayList<Product>) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.products");
+//		products = (ArrayList<Product>) intent.getSerializableExtra("de.schildbach.pte.dto.Trip.products");
 
 		setHeader();
 		setTrip(trip);
