@@ -142,6 +142,8 @@ public class TransportrUtils {
 			long delay = stop.getArrivalDelay();
 			time.setTime(time.getTime() - delay);
 			delayView.setText(getDelayText(delay));
+			if (delay <= 0) delayView.setTextColor(ContextCompat.getColor(context, R.color.md_green_500));
+			else delayView.setTextColor(ContextCompat.getColor(context, R.color.md_red_500));
 			delayView.setVisibility(VISIBLE);
 		} else {
 			delayView.setVisibility(GONE);
@@ -158,6 +160,8 @@ public class TransportrUtils {
 			long delay = stop.getDepartureDelay();
 			time.setTime(time.getTime() - delay);
 			delayView.setText(getDelayText(delay));
+			if (delay <= 0) delayView.setTextColor(ContextCompat.getColor(context, R.color.md_green_500));
+			else delayView.setTextColor(ContextCompat.getColor(context, R.color.md_red_500));
 			delayView.setVisibility(VISIBLE);
 		} else {
 			delayView.setVisibility(GONE);

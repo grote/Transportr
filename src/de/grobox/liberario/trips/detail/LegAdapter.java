@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.trips;
+package de.grobox.liberario.trips.detail;
 
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
@@ -25,13 +25,13 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.trips.LegViewHolder.LegType;
+import de.grobox.liberario.trips.detail.LegViewHolder.LegType;
 import de.schildbach.pte.dto.Trip.Leg;
 
-import static de.grobox.liberario.trips.LegViewHolder.LegType.FIRST;
-import static de.grobox.liberario.trips.LegViewHolder.LegType.FIRST_LAST;
-import static de.grobox.liberario.trips.LegViewHolder.LegType.LAST;
-import static de.grobox.liberario.trips.LegViewHolder.LegType.MIDDLE;
+import static de.grobox.liberario.trips.detail.LegViewHolder.LegType.FIRST;
+import static de.grobox.liberario.trips.detail.LegViewHolder.LegType.FIRST_LAST;
+import static de.grobox.liberario.trips.detail.LegViewHolder.LegType.LAST;
+import static de.grobox.liberario.trips.detail.LegViewHolder.LegType.MIDDLE;
 
 public class LegAdapter extends Adapter<LegViewHolder> {
 

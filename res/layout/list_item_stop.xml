@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<TextView
+		android:id="@+id/arrivalTime"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:text="12:22"/>
+
+	<TextView
+		android:id="@+id/arrivalDelay"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="@color/md_red_500"
+		android:textSize="12sp"
+		app:layout_constraintRight_toRightOf="@+id/arrivalTime"
+		app:layout_constraintTop_toBottomOf="@+id/arrivalTime"
+		tools:text="+12"
+		tools:visibility="visible"/>
+
+	<TextView
+		android:id="@+id/departureTime"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/arrivalDelay"
+		tools:text="23:42"
+		tools:visibility="visible"/>
+
+	<TextView
+		android:id="@+id/departureDelay"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textColor="@color/md_red_500"
+		android:textSize="12sp"
+		app:layout_constraintEnd_toEndOf="@+id/departureTime"
+		app:layout_constraintTop_toBottomOf="@+id/departureTime"
+		tools:text="+3"
+		tools:visibility="visible"/>
+
+	<ImageView
+		android:id="@+id/circle"
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginBottom="8dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="8dp"
+		android:src="@drawable/leg_circle_middle"
+		app:layout_constraintBottom_toBottomOf="@+id/departureTime"
+		app:layout_constraintStart_toEndOf="@+id/arrivalTime"
+		app:layout_constraintTop_toTopOf="@+id/arrivalTime"
+		tools:ignore="ContentDescription"
+		tools:tint="@color/md_red_300"/>
+
+	<TextView
+		android:id="@+id/stopLocation"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:background="?selectableItemBackground"
+		android:paddingBottom="4dp"
+		android:paddingLeft="8dp"
+		android:paddingStart="8dp"
+		android:paddingTop="4dp"
+		app:layout_constraintBottom_toBottomOf="@+id/circle"
+		app:layout_constraintEnd_toStartOf="@+id/stopButton"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toEndOf="@+id/circle"
+		app:layout_constraintTop_toTopOf="@+id/circle"
+		tools:text="An intermediate stop that can have a very long name"/>
+
+	<ImageButton
+		android:id="@+id/stopButton"
+		android:layout_width="@dimen/buttonSize"
+		android:layout_height="0dp"
+		android:background="?selectableItemBackgroundBorderless"
+		android:contentDescription="@string/more"
+		android:tint="?colorControlNormal"
+		app:layout_constraintBottom_toBottomOf="@+id/departureDelay"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/arrivalTime"
+		app:srcCompat="@drawable/ic_more_vert"/>
+
+</android.support.constraint.ConstraintLayout>

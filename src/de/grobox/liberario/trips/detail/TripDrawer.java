@@ -1,4 +1,4 @@
-package de.grobox.liberario.trips;
+package de.grobox.liberario.trips.detail;
 
 
 import android.content.Context;

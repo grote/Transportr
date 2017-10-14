@@ -1,4 +1,4 @@
-package de.grobox.liberario.trips;
+package de.grobox.liberario.trips.detail;
 
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Trip.Leg;

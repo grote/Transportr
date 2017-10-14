@@ -68,7 +68,7 @@
 			android:parentActivityName=".activities.MainActivity"/>
 
 		<activity
-			android:name=".trips.TripDetailActivity"
+			android:name=".trips.detail.TripDetailActivity"
 			android:parentActivityName=".trips.search.DirectionsActivity"/>
 
 		<activity

@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.multibindings.IntoMap;
 import de.grobox.liberario.favorites.trips.SavedSearchesViewModel;
 import de.grobox.liberario.locations.LocationsViewModel;
-import de.grobox.liberario.trips.TripDetailViewModel;
+import de.grobox.liberario.trips.detail.TripDetailViewModel;
 import de.grobox.liberario.trips.search.DirectionsViewModel;
 
 @Module

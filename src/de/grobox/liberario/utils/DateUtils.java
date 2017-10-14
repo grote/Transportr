@@ -37,8 +37,15 @@ public class DateUtils {
 	static public String getTime(Context context, Date date) {
 		DateFormat tf = android.text.format.DateFormat.getTimeFormat(context);
 
-		if(date == null) return "";
-		else return tf.format(date);
+		if (tf.getNumberFormat().getMinimumIntegerDigits() == 1) {
+			String formattedTime = tf.format(date);
+			if (formattedTime.indexOf(':') == 1) {
+				// ensure times always have the same length, so views (like intermediate stops) align
+				return "0" + formattedTime;
+			}
+			return formattedTime;
+		}
+		return tf.format(date);
 	}
 
 	static public String getDuration(long duration) {
@@ -80,8 +87,9 @@ public class DateUtils {
 		return diff < 10 * MINUTE_IN_MILLIS;
 	}
 
+	@Nullable
 	public static String getDelayText(long delay) {
-		if (delay > 0) {
+		if (delay >= 0) {
 			return "+" + Long.toString(delay / 1000 / 60);
 		} else if (delay < 0) {
 			return "-" + Long.toString(delay / 1000 / 60);

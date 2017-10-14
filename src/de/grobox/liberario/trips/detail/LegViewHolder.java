@@ -1,8 +1,11 @@
-package de.grobox.liberario.trips;
+package de.grobox.liberario.trips.detail;
 
 import android.support.annotation.ColorInt;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,9 +26,9 @@ import static android.text.Html.fromHtml;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static de.grobox.liberario.trips.LegViewHolder.LegType.FIRST;
-import static de.grobox.liberario.trips.LegViewHolder.LegType.FIRST_LAST;
-import static de.grobox.liberario.trips.LegViewHolder.LegType.MIDDLE;
+import static de.grobox.liberario.trips.detail.LegViewHolder.LegType.FIRST;
+import static de.grobox.liberario.trips.detail.LegViewHolder.LegType.FIRST_LAST;
+import static de.grobox.liberario.trips.detail.LegViewHolder.LegType.MIDDLE;
 import static de.grobox.liberario.utils.DateUtils.getDuration;
 import static de.grobox.liberario.utils.TransportrUtils.getLocationName;
 import static de.grobox.liberario.utils.TransportrUtils.setArrivalTimes;
@@ -51,6 +54,7 @@ class LegViewHolder extends ViewHolder {
 	private final TextView duration;
 	private final TextView stopsText;
 	private final ImageButton stopsButton;
+	private final RecyclerView stopsList;
 
 	private final TextView toTime;
 	private final TextView toDelay;
@@ -74,6 +78,7 @@ class LegViewHolder extends ViewHolder {
 		duration = v.findViewById(R.id.duration);
 		stopsText = v.findViewById(R.id.stopsText);
 		stopsButton = v.findViewById(R.id.stopsButton);
+		stopsList = v.findViewById(R.id.stopsList);
 
 		toTime = v.findViewById(R.id.toTime);
 		toDelay = v.findViewById(R.id.toDelay);
@@ -156,16 +161,29 @@ class LegViewHolder extends ViewHolder {
 				int numStops = publicLeg.intermediateStops.size();
 				String text = stopsText.getContext().getResources().getQuantityString(R.plurals.stops, numStops, numStops);
 				stopsText.setText(text);
+
+				OnClickListener stopsClick = view -> {
+					if (stopsList.getVisibility() == GONE) {
+						stopsList.setLayoutManager(new LinearLayoutManager(stopsList.getContext()));
+						StopAdapter adapter = new StopAdapter(publicLeg.intermediateStops, listener, lineColor);
+						stopsList.setAdapter(adapter);
+						stopsList.setVisibility(VISIBLE);
+						stopsButton.setImageResource(R.drawable.ic_action_navigation_unfold_less);
+					} else {
+						stopsList.setVisibility(GONE);
+						stopsButton.setImageResource(R.drawable.ic_action_navigation_unfold_more);
+					}
+				};
+				stopsText.setOnClickListener(stopsClick);
+				stopsButton.setOnClickListener(stopsClick);
+
 				stopsText.setVisibility(VISIBLE);
 				stopsButton.setVisibility(VISIBLE);
 			} else {
 				stopsText.setVisibility(GONE);
 				stopsButton.setVisibility(GONE);
 			}
-
-			// show intermediate stops
-			// TODO
-//			bindStops(context, leg_holder, publicLeg.intermediateStops);
+			stopsList.setVisibility(GONE);
 
 			// Optional message
 			boolean hasText = false;
@@ -208,6 +226,7 @@ class LegViewHolder extends ViewHolder {
 
 			stopsText.setVisibility(GONE);
 			stopsButton.setVisibility(GONE);
+			stopsList.setVisibility(GONE);
 		}
 	}
 

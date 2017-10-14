@@ -24,14 +24,14 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.fragments.TransportrFragment;
-import de.grobox.liberario.trips.TripDetailActivity;
+import de.grobox.liberario.trips.detail.TripDetailActivity;
 import de.grobox.liberario.trips.search.TripAdapter.OnTripClickListener;
 import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.Trip;
 
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTTOM;
-import static de.grobox.liberario.trips.TripDetailActivity.TRIP;
+import static de.grobox.liberario.trips.detail.TripDetailActivity.TRIP;
 import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
 
 public class TripsFragment extends TransportrFragment implements OnRefreshListener, OnTripClickListener {
