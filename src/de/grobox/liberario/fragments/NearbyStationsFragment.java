@@ -42,6 +42,7 @@ import java.util.EnumSet;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.adapters.StationAdapter;
+import de.grobox.liberario.data.locations.FavoriteLocation;
 import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.WrapLocation;
@@ -92,13 +93,13 @@ public class NearbyStationsFragment extends TransportrFragment {
 		ui.station.setCaller(MainActivity.PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS);
 		ui.station.setLocationViewListener(new LocationView.LocationViewListener() {
 			@Override
-			public void onLocationItemClick(WrapLocation loc) {
+			public void onLocationItemClick(WrapLocation loc, FavoriteLocation.FavLocationType type) {
 				if(loc != null && loc.getWrapType() != MAP) {
 					search();
 				}
 			}
 			@Override
-			public void onLocationCleared() { }
+			public void onLocationCleared(FavoriteLocation.FavLocationType type) { }
 		});
 		LocationGpsView.LocationGpsListener listener = new LocationGpsView.LocationGpsListener() {
 			@Override

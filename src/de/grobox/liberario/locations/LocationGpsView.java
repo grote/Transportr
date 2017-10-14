@@ -95,7 +95,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 			ui.location.setText("");
 
 			activateGPS();
-			if(listener != null) listener.onLocationItemClick(loc);
+			if(listener != null) listener.onLocationItemClick(loc, getType());
 		} else {
 			super.onLocationItemClick(loc, view);
 		}

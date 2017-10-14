@@ -29,7 +29,6 @@ import de.grobox.liberario.trips.search.TripAdapter.OnTripClickListener;
 import de.grobox.liberario.ui.LceAnimator;
 import de.schildbach.pte.dto.Trip;
 
-import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout.LARGE;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTTOM;
 import static de.grobox.liberario.trips.TripDetailActivity.TRIP;
@@ -60,8 +59,6 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		// Swipe to Refresh
 		swipe = v.findViewById(R.id.swipe);
 		swipe.setColorSchemeResources(R.color.accent);
-		swipe.setProgressBackgroundColor(R.color.cardview_dark_background);
-		swipe.setSize(LARGE);
 		swipe.setDistanceToTriggerSync(getDragDistance(getContext()));
 		swipe.setOnRefreshListener(this);
 

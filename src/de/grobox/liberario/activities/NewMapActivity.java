@@ -56,6 +56,7 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
+import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.favorites.trips.FavoriteTripsFragment;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
@@ -185,7 +186,7 @@ public class NewMapActivity extends DrawerActivity
 			search.clearFocus();
 			search.hideSoftKeyboard();
 		});
-		map.setOnMapLongClickListener(point -> onLocationItemClick(new WrapLocation(point)));
+		map.setOnMapLongClickListener(point -> onLocationItemClick(new WrapLocation(point), FROM));
 		map.setOnMarkerClickListener(marker -> {
 			if (marker.equals(selectedLocationMarker)) {
 				if (locationFragment != null) search.setLocation(locationFragment.getLocation());
@@ -194,7 +195,7 @@ public class NewMapActivity extends DrawerActivity
 				return true;
 			} else if (nearbyLocations.containsKey(marker)) {
 				WrapLocation wrapLocation = new WrapLocation(nearbyLocations.get(marker));
-				onLocationItemClick(wrapLocation);
+				onLocationItemClick(wrapLocation, FROM);
 				search.clearLocation();
 				return true;
 			} else {
@@ -266,7 +267,7 @@ public class NewMapActivity extends DrawerActivity
 	}
 
 	@Override
-	public void onLocationItemClick(final WrapLocation loc) {
+	public void onLocationItemClick(final WrapLocation loc, FavLocationType type) {
 		viewModel.clickLocation(loc, FROM);
 
 		LatLng latLng = zoomTo(loc);
@@ -298,7 +299,7 @@ public class NewMapActivity extends DrawerActivity
 	}
 
 	@Override
-	public void onLocationCleared() {
+	public void onLocationCleared(FavLocationType type) {
 		bottomSheetBehavior.setState(STATE_HIDDEN);
 	}
 

@@ -658,7 +658,7 @@ public class TransportrUtils {
 
 	static public int getDragDistance(Context context) {
 		final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-		return (int) (25 * metrics.density);
+		return (int) (30 * metrics.density);
 	}
 
 	public static Intent getShortcutIntent(Context context) {

@@ -23,7 +23,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -34,12 +33,11 @@ import android.widget.TimePicker;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.R;
+import de.grobox.liberario.settings.Preferences;
 import de.grobox.liberario.utils.DateUtils;
 
 import static android.text.format.DateFormat.getDateFormat;
-import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
 import static java.util.Calendar.DAY_OF_MONTH;
 import static java.util.Calendar.HOUR_OF_DAY;
 import static java.util.Calendar.MINUTE;
@@ -96,52 +94,33 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 
 		// Date
 		dateView = v.findViewById(R.id.dateView);
-		dateView.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				new DatePickerDialog(getContext(), TimeDateFragment.this, calendar.get(YEAR), calendar.get(MONTH), calendar.get(DAY_OF_MONTH)).show();
-			}
-		});
+		dateView.setOnClickListener(view -> new DatePickerDialog(getContext(), TimeDateFragment.this, calendar.get(YEAR), calendar.get(MONTH), calendar.get(DAY_OF_MONTH)).show());
 		showDate(calendar);
 
 		// Previous and Next Date
 		ImageButton prevDateButton = v.findViewById(R.id.prevDateButton);
-		prevDateButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				calendar.add(DAY_OF_MONTH, -1);
-				showDate(calendar);
-			}
+		prevDateButton.setOnClickListener(view -> {
+			calendar.add(DAY_OF_MONTH, -1);
+			showDate(calendar);
 		});
 		ImageButton nextDateButton = v.findViewById(R.id.nextDateButton);
-		nextDateButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				calendar.add(DAY_OF_MONTH, 1);
-				showDate(calendar);
-			}
+		nextDateButton.setOnClickListener(view -> {
+			calendar.add(DAY_OF_MONTH, 1);
+			showDate(calendar);
 		});
 
 		// Buttons
 		Button okButton = v.findViewById(R.id.okButton);
-		okButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if (listener != null) {
-					boolean now = DateUtils.isNow(calendar);
-					boolean today = DateUtils.isToday(calendar);
-					listener.onTimeAndDateSet(calendar, now, today);
-				}
-				dismiss();
+		okButton.setOnClickListener(view -> {
+			if (listener != null) {
+				boolean now = DateUtils.isNow(calendar);
+				boolean today = DateUtils.isToday(calendar);
+				listener.onTimeAndDateSet(calendar, now, today);
 			}
+			dismiss();
 		});
 		Button cancelButton = v.findViewById(R.id.cancelButton);
-		cancelButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				dismiss();
-			}
-		});
+		cancelButton.setOnClickListener(view -> dismiss());
 
 		return v;
 	}

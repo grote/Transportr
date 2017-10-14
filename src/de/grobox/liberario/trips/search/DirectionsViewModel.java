@@ -9,6 +9,8 @@ import android.support.annotation.WorkerThread;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,10 +20,11 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.data.locations.LocationRepository;
 import de.grobox.liberario.data.searches.SearchesRepository;
+import de.grobox.liberario.fragments.TimeDateFragment.TimeDateListener;
 import de.grobox.liberario.locations.LocationsViewModel;
+import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
-import de.grobox.liberario.trips.TripQuery;
 import de.grobox.liberario.utils.SingleLiveEvent;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.NetworkProvider.WalkSpeed;
@@ -33,22 +36,86 @@ import de.schildbach.pte.dto.Trip;
 import static de.schildbach.pte.dto.QueryTripsResult.Status.OK;
 
 @ParametersAreNonnullByDefault
-public class DirectionsViewModel extends LocationsViewModel {
+public class DirectionsViewModel extends LocationsViewModel implements TimeDateListener {
 
 	private final static String TAG = DirectionsViewModel.class.getSimpleName();
 
 	private final SearchesRepository searchesRepository;
 
+	private final MutableLiveData<WrapLocation> fromLocation = new MutableLiveData<>();
+	private final MutableLiveData<WrapLocation> viaLocation = new MutableLiveData<>();
+	private final MutableLiveData<WrapLocation> toLocation = new MutableLiveData<>();
+
+	private final SingleLiveEvent<Void> showTrips = new SingleLiveEvent<>();
 	private final MutableLiveData<Set<Trip>> trips = new MutableLiveData<>();
 	private final SingleLiveEvent<String> queryError = new SingleLiveEvent<>();
 	private final SingleLiveEvent<String> queryMoreError = new SingleLiveEvent<>();
 	private @Nullable volatile QueryTripsContext queryTripsContext;
 
+	private MutableLiveData<Calendar> calendar = new MutableLiveData<>();
+	private long favTripUid;
+
 	@Inject
 	DirectionsViewModel(TransportNetworkManager transportNetworkManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
 		super(transportNetworkManager, locationRepository);
 		this.searchesRepository = searchesRepository;
+		calendar.setValue(Calendar.getInstance());
 	}
+
+	LiveData<WrapLocation> getFromLocation() {
+		return fromLocation;
+	}
+
+	LiveData<WrapLocation> getViaLocation() {
+		return viaLocation;
+	}
+
+	LiveData<WrapLocation> getToLocation() {
+		return toLocation;
+	}
+
+	void setFromLocation(@Nullable WrapLocation location) {
+		fromLocation.setValue(location);
+	}
+
+	void setViaLocation(@Nullable WrapLocation location) {
+		viaLocation.setValue(location);
+	}
+
+	void setToLocation(@Nullable WrapLocation location) {
+		toLocation.setValue(location);
+	}
+
+	SingleLiveEvent<Void> showTrips() {
+		return showTrips;
+	}
+
+	LiveData<Calendar> getCalendar() {
+		return calendar;
+	}
+
+	void setDate(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		this.calendar.setValue(calendar);
+	}
+
+	void setFavTripUid(long favTripUid) {
+		this.favTripUid = favTripUid;
+	}
+
+	@Override
+	public void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday) {
+		this.calendar.setValue(calendar);
+		search();
+	}
+
+	void resetCalender() {
+		calendar.setValue(Calendar.getInstance());
+		search();
+	}
+
+	/* Trip Queries */
 
 	LiveData<Set<Trip>> getTrips() {
 		return trips;
@@ -63,10 +130,18 @@ public class DirectionsViewModel extends LocationsViewModel {
 	}
 
 	@SuppressLint("StaticFieldLeak")
-	void search(TripQuery tripQuery) {
-		Log.e(TAG, "QUERY FOR NEW TRIPS NOW~!!!!");
+	void search() {
+		if (fromLocation.getValue() == null || toLocation.getValue() == null) return;
+		Calendar calendar = getCalendar().getValue();
+		if (calendar == null) return;
+
+		showTrips.call();
+
+		// TODO
+		boolean departure = true;
 
 		// store/count search
+		TripQuery tripQuery = new TripQuery(favTripUid, fromLocation.getValue(), viaLocation.getValue(), toLocation.getValue(), calendar.getTime(), departure);
 		searchesRepository.storeSearch(tripQuery.toFavoriteTripItem());
 
 		// reset current data
@@ -99,7 +174,7 @@ public class DirectionsViewModel extends LocationsViewModel {
 		TransportNetwork network = getTransportNetwork().getValue();
 		if (network == null) throw new IllegalStateException("No transport network set");
 
-		// TODO expose via TransportNetworkManager
+		// TODO expose via TransportNetworkManager or SettingsManager
 		NetworkProvider.Optimize optimize = null; // TransportrUtils.getOptimize(getContext());
 		WalkSpeed walkSpeed = null; // TransportrUtils.getWalkSpeed(getContext());
 		EnumSet<Product> products = EnumSet.allOf(Product.class);

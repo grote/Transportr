@@ -33,6 +33,7 @@ import de.grobox.liberario.trips.TripDetailActivity;
 import de.grobox.liberario.trips.TripDetailFragment;
 import de.grobox.liberario.trips.TripMapFragment;
 import de.grobox.liberario.trips.search.DirectionsActivity;
+import de.grobox.liberario.trips.search.DirectionsFragment;
 import de.grobox.liberario.trips.search.TripsFragment;
 
 @Singleton
@@ -47,6 +48,7 @@ public interface AppComponent {
 
 	void inject(LocationFragment fragment);
 	void inject(FavoriteTripsFragment fragment);
+	void inject(DirectionsFragment fragment);
 	void inject(TripsFragment fragment);
 	void inject(TripMapFragment fragment);
 	void inject(TripDetailFragment fragment);

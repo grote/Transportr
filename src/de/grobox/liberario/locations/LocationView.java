@@ -360,7 +360,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		// hide soft-keyboard
 		hideSoftKeyboard();
 
-		if(listener != null) listener.onLocationItemClick(loc);
+		if(listener != null) listener.onLocationItemClick(loc, type);
 	}
 
 	public void onClick() {
@@ -380,7 +380,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		clearLocation();
 		stopSuggestLocationsTask();
 		reset();
-		if (listener != null) listener.onLocationCleared();
+		if (listener != null) listener.onLocationCleared(type);
 		ui.clear.setVisibility(View.GONE);
 		if (isShown()) {
 			ui.location.requestFocus();
@@ -414,8 +414,8 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	public interface LocationViewListener {
-		void onLocationItemClick(WrapLocation loc);
-		void onLocationCleared();
+		void onLocationItemClick(WrapLocation loc, FavLocationType type);
+		void onLocationCleared(FavLocationType type);
 	}
 
 }

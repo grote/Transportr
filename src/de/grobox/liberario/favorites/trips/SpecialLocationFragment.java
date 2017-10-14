@@ -40,6 +40,7 @@ import javax.inject.Inject;
 import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportrApplication;
+import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.LocationsViewModel;
 import de.grobox.liberario.locations.WrapLocation;
@@ -120,7 +121,7 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 	}
 
 	@Override
-	public void onLocationItemClick(WrapLocation loc) {
+	public void onLocationItemClick(WrapLocation loc, FavLocationType type) {
 		onSpecialLocationSet(loc);
 		getDialog().cancel();
 	}
@@ -128,7 +129,7 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 	protected abstract void onSpecialLocationSet(WrapLocation location);
 
 	@Override
-	public void onLocationCleared() {
+	public void onLocationCleared(FavLocationType type) {
 	}
 
 	public void setListener(@Nullable FavoriteTripListener listener) {

@@ -7,19 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.AppBarLayout.OnOffsetChangedListener;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
-import android.widget.TextView;
+
+import java.util.Date;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
@@ -27,14 +21,16 @@ import javax.inject.Inject;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.favorites.trips.FavoriteTripsFragment;
-import de.grobox.liberario.fragments.TimeDateFragment;
-import de.grobox.liberario.locations.LocationGpsView;
-import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.WrapLocation;
-import de.grobox.liberario.networks.TransportNetwork;
-import de.grobox.liberario.trips.TripQuery;
 
-import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
+import static de.grobox.liberario.fragments.DirectionsFragment.TASK_BRING_ME_HOME;
+import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
+import static de.grobox.liberario.utils.Constants.DATE;
+import static de.grobox.liberario.utils.Constants.FAV_TRIP_UID;
+import static de.grobox.liberario.utils.Constants.FROM;
+import static de.grobox.liberario.utils.Constants.SEARCH;
+import static de.grobox.liberario.utils.Constants.TO;
+import static de.grobox.liberario.utils.Constants.VIA;
 
 @ParametersAreNonnullByDefault
 public class DirectionsActivity extends TransportrActivity implements OnOffsetChangedListener {
@@ -46,12 +42,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	@Nullable
 	private TripsFragment tripsFragment;
 	private DirectionsViewModel viewModel;
-	private DirectionsPresenter presenter;
 
-	private TextView date, time;
-	private LocationGpsView from;
-	private LocationView to;
-	private CardView fromCard, toCard;
 	private FrameLayout fragmentContainer;
 
 	@Override
@@ -59,106 +50,29 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		super.onCreate(savedInstanceState);
 		getComponent().inject(this);
 		setContentView(R.layout.activity_directions);
-		Toolbar toolbar = setUpCustomToolbar(true);
 
 		AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
 		appBarLayout.addOnOffsetChangedListener(this);
 
-		if (toolbar != null) {
-			OnClickListener onTimeClickListener = view -> {
-				TimeDateFragment fragment = TimeDateFragment.newInstance(presenter.getCalendar());
-				fragment.setTimeDateListener(presenter);
-				fragment.show(getSupportFragmentManager(), TimeDateFragment.TAG);
-			};
-			OnLongClickListener onTimeLongClickListener = view -> {
-				presenter.resetCalendar();
-				return true;
-			};
-			View timeIcon = toolbar.findViewById(R.id.timeIcon);
-			timeIcon.setOnClickListener(onTimeClickListener);
-			timeIcon.setOnLongClickListener(onTimeLongClickListener);
-			date = toolbar.findViewById(R.id.date);
-			date.setOnClickListener(onTimeClickListener);
-			date.setOnLongClickListener(onTimeLongClickListener);
-			time = toolbar.findViewById(R.id.time);
-			time.setOnClickListener(onTimeClickListener);
-			time.setOnLongClickListener(onTimeLongClickListener);
-		}
-
-		from = findViewById(R.id.fromLocation);
-		to = findViewById(R.id.toLocation);
-
-		fromCard = findViewById(R.id.fromCard);
-		toCard = findViewById(R.id.toCard);
-
-		// TODO Is Departure???
-
 		// get view model and observe data
 		viewModel = ViewModelProviders.of(this, viewModelFactory).get(DirectionsViewModel.class);
-		TransportNetwork network = viewModel.getTransportNetwork().getValue();
-		if (network == null) throw new IllegalStateException();
-		from.setTransportNetwork(network);
-		to.setTransportNetwork(network);
-		viewModel.getHome().observe(this, homeLocation -> {
-			from.setHomeLocation(homeLocation);
-			to.setHomeLocation(homeLocation);
-		});
-		viewModel.getWork().observe(this, workLocation -> {
-			from.setWorkLocation(workLocation);
-			to.setWorkLocation(workLocation);
-		});
-		viewModel.getLocations().observe(this, favoriteLocations -> {
-			if (favoriteLocations == null) return;
-			from.setFavoriteLocations(favoriteLocations);
-			to.setFavoriteLocations(favoriteLocations);
-		});
+		viewModel.showTrips().observe(this, v -> showTrips());
 
-		presenter = new DirectionsPresenter(this, viewModel, savedInstanceState);
-		from.setLocationViewListener(presenter);
-		to.setLocationViewListener(presenter);
 		fragmentContainer = findViewById(R.id.fragmentContainer);
 
 		if (savedInstanceState == null) {
 			showFavorites();
-		} else {
-			// TODO re-attach TimeDateFragment if shown
+			processIntent();
 		}
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		processIntent();
-	}
-
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		presenter.onSaveInstanceState(outState);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.directions, menu);
-		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
-		switch(item.getItemId()) {
-			case android.R.id.home:
-				if (isShowingTrips()) {
-					showFavorites();
-					return true;
-				}
-				return super.onOptionsItemSelected(item);
-			case R.id.action_swap_locations:
-				swapLocations();
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
+		if (item.getItemId() == android.R.id.home && isShowingTrips()) {
+			showFavorites();
+			return true;
 		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
@@ -173,34 +87,12 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		super.onNewIntent(intent);
 		setIntent(intent);
 
+		Log.e(TAG, "ON NEW INTENT");
+
 		processIntent();
 	}
 
-	void setTimeText(String text) {
-		time.setText(text);
-	}
-
-	void setDateText(String text) {
-		date.setText(text);
-	}
-
-	void setDateVisibility(int visibility) {
-		date.setVisibility(visibility);
-	}
-
-	void setFromLocation(@Nullable WrapLocation location) {
-		from.setLocation(location);
-	}
-
-	void setToLocation(@Nullable WrapLocation location) {
-		to.setLocation(location);
-	}
-
-	boolean isShowingTrips() {
-		return fragmentIsVisible(TripsFragment.TAG);
-	}
-
-	void showFavorites() {
+	private void showFavorites() {
 		FavoriteTripsFragment f = FavoriteTripsFragment.newInstance(false);
 		getSupportFragmentManager()
 				.beginTransaction()
@@ -208,17 +100,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 				.commit();
 	}
 
-	void search() {
-		Log.i(TAG, "From: " + from.getLocation());
-		Log.i(TAG, "To: " + to.getLocation());
-		Log.i(TAG, "Date: " + presenter.getCalendar().getTime());
-
-		if (from.getLocation() == null || to.getLocation() == null) return;
-
-		// TODO uid, via, departure
-		TripQuery query = new TripQuery(0, from.getLocation(), null, to.getLocation(), presenter.getCalendar().getTime(), true);
-		viewModel.search(query);
-
+	private void showTrips() {
 		tripsFragment = new TripsFragment();
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragmentContainer, tripsFragment, TripsFragment.TAG)
@@ -226,56 +108,62 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		fragmentContainer.requestFocus();
 	}
 
+	boolean isShowingTrips() {
+		return fragmentIsVisible(TripsFragment.TAG);
+	}
+
 	private void processIntent() {
-		presenter.processIntent(getIntent());
+		Intent intent = getIntent();
+		if (intent == null) return;
+
+		Log.e(TAG, "PROCESSING NEW INTENT");
+
+		WrapLocation from, via, to;
+		boolean search;
+		Date date;
+		long uid = intent.getLongExtra(FAV_TRIP_UID, 0);
+		String special = (String) intent.getSerializableExtra("special");
+		if (special != null && special.equals(TASK_BRING_ME_HOME)) {
+			from = new WrapLocation(GPS);
+			to = viewModel.getHome().getValue();
+			search = true;
+		} else {
+			from = (WrapLocation) intent.getSerializableExtra(FROM);
+			to = (WrapLocation) intent.getSerializableExtra(TO);
+			search = intent.getBooleanExtra(SEARCH, false);
+		}
+		via = (WrapLocation) intent.getSerializableExtra(VIA);
+		date = (Date) intent.getSerializableExtra(DATE);
+
+		if (search) searchFromTo(uid, from, via, to, date);
+		else presetFromTo(uid, from, via, to, date);
+
 		// remove the intent (and clear its action) since it was already processed
 		// and should not be processed again
+		Log.e(TAG, "SETTIG INTENT NULL");
 		setIntent(null);
 	}
 
-	private void swapLocations() {
-		Animation slideUp = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-				0.0f, Animation.ABSOLUTE, fromCard.getY()*-1);
-		slideUp.setDuration(400);
-		slideUp.setFillAfter(true);
-		slideUp.setFillEnabled(true);
+	private void presetFromTo(long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to, @Nullable Date date) {
+		viewModel.setFavTripUid(uid);
+		if (from != null && from.getWrapType() == GPS) {
+			// TODO
+//			activateGPS();
+			viewModel.setFromLocation(null);
+		} else {
+			viewModel.setFromLocation(from);
+		}
+		viewModel.setViaLocation(via);
+		viewModel.setToLocation(to);
 
-		Animation slideDown = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-				0.0f, Animation.ABSOLUTE, fromCard.getY());
-		slideDown.setDuration(400);
-		slideDown.setFillAfter(true);
-		slideDown.setFillEnabled(true);
+		if (date != null) {
+			viewModel.setDate(date);
+		}
+	}
 
-		fromCard.startAnimation(slideDown);
-		toCard.startAnimation(slideUp);
-
-		slideUp.setAnimationListener(new Animation.AnimationListener() {
-			@Override
-			public void onAnimationStart(Animation animation) {
-			}
-			@Override
-			public void onAnimationRepeat(Animation animation) {
-			}
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				// swap location objects
-				WrapLocation tmp = to.getLocation();
-				if(!from.isSearching()) {
-					to.setLocation(from.getLocation(), getDrawableForLocation(DirectionsActivity.this, from.getLocation()));
-				} else {
-					// TODO: GPS currently only supports from location, so don't swap it for now
-					to.clearLocation();
-				}
-				from.setLocation(tmp, getDrawableForLocation(DirectionsActivity.this, tmp));
-
-				fromCard.clearAnimation();
-				toCard.clearAnimation();
-
-				search();
-			}
-		});
+	private void searchFromTo(long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, Date date) {
+		presetFromTo(uid, from, via, to, date);
+		viewModel.search();
 	}
 
 }
