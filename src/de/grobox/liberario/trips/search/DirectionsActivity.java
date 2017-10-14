@@ -32,6 +32,7 @@ import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
+import de.grobox.liberario.trips.TripQuery;
 
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
 
@@ -146,6 +147,12 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch(item.getItemId()) {
+			case android.R.id.home:
+				if (isShowingTrips()) {
+					showFavorites();
+					return true;
+				}
+				return super.onOptionsItemSelected(item);
 			case R.id.action_swap_locations:
 				swapLocations();
 				return true;
@@ -208,8 +215,11 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 		if (from.getLocation() == null || to.getLocation() == null) return;
 
-		// TODO favTripUid
-		tripsFragment = TripsFragment.newInstance(0, from.getLocation(), null, to.getLocation(), presenter.getCalendar().getTime(), true);
+		// TODO uid, via, departure
+		TripQuery query = new TripQuery(0, from.getLocation(), null, to.getLocation(), presenter.getCalendar().getTime(), true);
+		viewModel.search(query);
+
+		tripsFragment = new TripsFragment();
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragmentContainer, tripsFragment, TripsFragment.TAG)
 				.commit();

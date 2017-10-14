@@ -146,7 +146,7 @@ public class NewMapActivity extends DrawerActivity
 		FloatingActionButton directionsFab = findViewById(R.id.directionsFab);
 		directionsFab.setOnClickListener(view -> {
 			if (locationFragment != null && locationFragmentVisible()) {
-				findDirections(NewMapActivity.this, new WrapLocation(GPS), null, locationFragment.getLocation(), null, true);
+				findDirections(NewMapActivity.this, 0, new WrapLocation(GPS), null, locationFragment.getLocation(), null, true);
 			} else {
 				Intent intent = new Intent(NewMapActivity.this, DirectionsActivity.class);
 				startActivity(intent);

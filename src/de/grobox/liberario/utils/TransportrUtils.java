@@ -73,6 +73,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.liberario.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.liberario.utils.Constants.DATE;
+import static de.grobox.liberario.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.liberario.utils.Constants.FROM;
 import static de.grobox.liberario.utils.Constants.SEARCH;
 import static de.grobox.liberario.utils.Constants.TO;
@@ -367,9 +368,10 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void findDirections(Context context, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, @Nullable Date date, boolean search) {
+	static public void findDirections(Context context, long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, @Nullable Date date, boolean search) {
 		Intent intent = new Intent(context, DirectionsActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		intent.putExtra(FAV_TRIP_UID, uid);
 		intent.putExtra(FROM, from);
 		intent.putExtra(VIA, via);
 		intent.putExtra(TO, to);
@@ -380,16 +382,16 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void presetDirections(Context context, WrapLocation from, @Nullable WrapLocation via, WrapLocation to) {
-		findDirections(context, from, via, to, null, false);
+	static public void presetDirections(Context context, long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to) {
+		findDirections(context, uid, from, via, to, null, false);
 	}
 
-	static public void findDirections(Context context, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, @Nullable Date date) {
-		findDirections(context, from, via, to, date, true);
+	static public void findDirections(Context context, long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, @Nullable Date date) {
+		findDirections(context, uid, from, via, to, date, true);
 	}
 
-	static public void findDirections(Context context, WrapLocation from, @Nullable WrapLocation via, WrapLocation to) {
-		findDirections(context, from, via, to, null);
+	static public void findDirections(Context context, long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to) {
+		findDirections(context, uid, from, via, to, null);
 	}
 
 	static public void findDepartures(Context context, Location loc) {

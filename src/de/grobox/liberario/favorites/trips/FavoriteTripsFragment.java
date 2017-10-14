@@ -150,17 +150,17 @@ public class FavoriteTripsFragment extends TransportrFragment implements Favorit
 			if (item.getTo() == null) {
 				changeHome();
 			} else {
-				findDirections(getContext(), item.getFrom(), item.getVia(), item.getTo());
+				findDirections(getContext(), item.getUid(), item.getFrom(), item.getVia(), item.getTo());
 			}
 		} else if (item.getType() == FavoriteTripType.WORK) {
 			if (item.getTo() == null) {
 				changeWork();
 			} else {
-				findDirections(getContext(), item.getFrom(), item.getVia(), item.getTo());
+				findDirections(getContext(), item.getUid(), item.getFrom(), item.getVia(), item.getTo());
 			}
 		} else if (item.getType() == FavoriteTripType.TRIP) {
 			if (item.getFrom() == null || item.getTo() == null) throw new IllegalArgumentException();
-			findDirections(getContext(), item.getFrom(), item.getVia(), item.getTo());
+			findDirections(getContext(), item.getUid(), item.getFrom(), item.getVia(), item.getTo());
 		} else {
 			throw new IllegalArgumentException();
 		}

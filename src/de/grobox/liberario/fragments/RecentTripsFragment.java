@@ -177,7 +177,7 @@ public class RecentTripsFragment extends TransportrListFragment {
 				@Override
 				public void onClick(View v) {
 					FavoriteTripItem trip = (FavoriteTripItem) getListView().getItemAtPosition(position);
-					TransportrUtils.findDirections(getActivity(), trip.getFrom(), trip.getVia(), trip.getTo());
+					TransportrUtils.findDirections(getActivity(), 0, trip.getFrom(), trip.getVia(), trip.getTo());
 				}
 			});
 

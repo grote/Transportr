@@ -62,9 +62,7 @@ class DirectionsPresenter implements LocationViewListener, TimeDateListener {
 
 	@Override
 	public void onLocationCleared() {
-		if (activity.isShowingTrips()) {
-			activity.showFavorites();
-		}
+		// no-op
 	}
 
 	@Override
