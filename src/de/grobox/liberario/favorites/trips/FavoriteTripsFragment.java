@@ -21,6 +21,8 @@ import javax.inject.Inject;
 import de.grobox.liberario.R;
 import de.grobox.liberario.data.locations.HomeLocation;
 import de.grobox.liberario.data.locations.WorkLocation;
+import de.grobox.liberario.favorites.locations.HomePickerDialogFragment;
+import de.grobox.liberario.favorites.locations.WorkPickerDialogFragment;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.ui.LceAnimator;
 

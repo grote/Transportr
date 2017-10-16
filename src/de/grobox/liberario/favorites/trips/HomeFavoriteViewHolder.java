@@ -36,12 +36,7 @@ class HomeFavoriteViewHolder extends SpecialFavoritesViewHolder {
 
 		if (item.getTo() != null) {
 			final SpecialLocationPopupMenu popup = new HomePopupMenu(overflow.getContext(), overflow, item, listener);
-			overflow.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					popup.show();
-				}
-			});
+			overflow.setOnClickListener(v -> popup.show());
 		}
 	}
 

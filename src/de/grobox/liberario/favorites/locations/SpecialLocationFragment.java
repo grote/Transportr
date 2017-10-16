@@ -15,11 +15,10 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites.trips;
+package de.grobox.liberario.favorites.locations;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,8 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
+import android.view.WindowManager.LayoutParams;
 
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
@@ -41,6 +39,7 @@ import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
 import de.grobox.liberario.TransportrApplication;
 import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
+import de.grobox.liberario.favorites.trips.FavoriteTripListener;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.LocationsViewModel;
 import de.grobox.liberario.locations.WrapLocation;
@@ -86,11 +85,10 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 		viewModel.getTransportNetwork().observe(this, transportNetwork -> {
 			if (transportNetwork != null) loc.setTransportNetwork(transportNetwork);
 		});
-		viewModel.getHome().observe(this, homeLocation -> loc.setHomeLocation(homeLocation));
-		viewModel.getWork().observe(this, workLocation -> loc.setWorkLocation(workLocation));
 		viewModel.getLocations().observe(this, favoriteLocations -> {
 			if (favoriteLocations == null) return;
 			loc.setFavoriteLocations(favoriteLocations);
+			loc.post(() -> loc.onClick());  // don't know why this only works when posted
 		});
 
 		return v;
@@ -99,20 +97,18 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 	protected abstract @StringRes int getHint();
 
 	@Override
-	public void onResume() {
-		super.onResume();
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 
 		getDialog().setCanceledOnTouchOutside(true);
 
-		// set width to match parent
+		// set width to match parent and show keyboard
 		Window window = getDialog().getWindow();
 		if (window != null) {
-			window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+			window.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 			window.setGravity(Gravity.TOP);
+			window.setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 		}
-
-		InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.showSoftInput(loc, InputMethodManager.SHOW_FORCED);
 	}
 
 	@Override

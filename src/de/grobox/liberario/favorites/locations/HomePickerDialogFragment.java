@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.favorites.trips;
+package de.grobox.liberario.favorites.locations;
 
 import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;

@@ -3,7 +3,7 @@ package de.grobox.liberario.favorites.trips;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-interface FavoriteTripListener {
+public interface FavoriteTripListener {
 
 	void onFavoriteClicked(FavoriteTripItem item);
 
