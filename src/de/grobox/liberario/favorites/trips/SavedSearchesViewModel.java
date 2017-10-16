@@ -1,7 +1,6 @@
 package de.grobox.liberario.favorites.trips;
 
 import android.arch.lifecycle.LiveData;
-import android.util.Log;
 
 import java.util.List;
 
@@ -27,11 +26,6 @@ public class SavedSearchesViewModel extends LocationsViewModel {
 
 	LiveData<List<FavoriteTripItem>> getFavoriteTrips() {
 		return savedSearches;
-	}
-
-	public void useFavoriteTripItem(FavoriteTripItem item) {
-		Log.w(this.getClass().getName(), "USE FAV TRIP ITEM");
-		searchesRepository.storeSearch(item);
 	}
 
 	void updateFavoriteState(FavoriteTripItem item) {

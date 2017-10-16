@@ -98,15 +98,15 @@ public class StoredSearchTest extends DbTest {
 		StoredSearch storedSearch = storedSearches.get(0);
 		assertEquals(uid, storedSearch.getUid());
 
-		// increase count by one
-		storedSearch.use();
-		assertEquals(2, storedSearch.count);
-		dao.storeSearch(storedSearch);
+		// update date and store it with increased count
+		Date newDate = new Date();
+		dao.updateStoredSearch(storedSearch.uid, newDate);
 
 		// retrieve the stored search and assert count got increased
 		storedSearches = getValue(dao.getStoredSearches(DB));
 		assertEquals(1, storedSearches.size());
 		assertEquals(2, storedSearches.get(0).count);
+		assertEquals(newDate, storedSearches.get(0).lastUsed);
 	}
 
 	@Test
@@ -122,12 +122,12 @@ public class StoredSearchTest extends DbTest {
 
 		// increase count by one and update lastUsed date
 		Date lastUsed = new Date();
-		dao.updateStoredSearch(uid1, 42, lastUsed);
+		dao.updateStoredSearch(uid1, lastUsed);
 
 		// retrieve the stored search and assert count got increased
 		List<StoredSearch> storedSearches = getValue(dao.getStoredSearches(DB));
 		assertEquals(2, storedSearches.size());
-		assertEquals(42, storedSearches.get(0).count);
+		assertEquals(madeSearch1.count + 1, storedSearches.get(0).count);
 		assertEquals(lastUsed, storedSearches.get(0).lastUsed);
 
 		// other search remained was unchanged

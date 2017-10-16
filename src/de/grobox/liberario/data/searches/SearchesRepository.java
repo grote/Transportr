@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -63,9 +64,7 @@ public class SearchesRepository extends AbstractManager {
 	public void storeSearch(FavoriteTripItem item) {
 		runOnBackgroundThread(() -> {
 			if (item.getUid() != 0) {
-				item.use();
-				Log.w("TEST", "STORE SEARCH WITH ID: " + item.toString());
-				searchesDao.updateStoredSearch(item.getUid(), item.count, item.lastUsed);
+				searchesDao.updateStoredSearch(item.getUid(), new Date());
 			} else {
 				if (networkId.getValue() == null) return;
 				NetworkId networkId = this.networkId.getValue();
@@ -93,4 +92,3 @@ public class SearchesRepository extends AbstractManager {
 	}
 
 }
-

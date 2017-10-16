@@ -37,16 +37,16 @@ public class StoredSearch {
 	protected @Nullable NetworkId networkId;
 
 	@ColumnInfo(name = "from_id")
-	public long fromId;
+	long fromId;
 	@ColumnInfo(name = "via_id")
-	public @Nullable Long viaId;
+	@Nullable Long viaId;
 	@ColumnInfo(name = "to_id")
-	public long toId;
+	long toId;
 	public int count;
 	public Date lastUsed;
 	public boolean favorite;
 
-	public StoredSearch(long uid, NetworkId networkId, long fromId, @Nullable Long viaId, long toId, int count, Date lastUsed, boolean favorite) {
+	StoredSearch(long uid, @Nullable NetworkId networkId, long fromId, @Nullable Long viaId, long toId, int count, Date lastUsed, boolean favorite) {
 		this.uid = uid;
 		this.networkId = networkId;
 		this.fromId = fromId;
@@ -58,7 +58,7 @@ public class StoredSearch {
 	}
 
 	@Ignore
-	public StoredSearch() {
+	protected StoredSearch() {
 		this(0, null, 0, 0L, 0, 1, new Date(), false);
 	}
 
@@ -67,7 +67,7 @@ public class StoredSearch {
 	}
 
 	@Ignore
-	public StoredSearch(@NonNull NetworkId networkId, FavoriteLocation from, @Nullable FavoriteLocation via, FavoriteLocation to) {
+	StoredSearch(@NonNull NetworkId networkId, FavoriteLocation from, @Nullable FavoriteLocation via, FavoriteLocation to) {
 		this.networkId = networkId;
 		this.fromId = from.getUid();
 		if (via != null) this.viaId = via.getUid();
@@ -81,6 +81,7 @@ public class StoredSearch {
 		return uid;
 	}
 
+	@Nullable
 	public NetworkId getNetworkId() {
 		return networkId;
 	}
@@ -95,11 +96,6 @@ public class StoredSearch {
 
 	public void setFavorite(boolean favorite) {
 		this.favorite = favorite;
-	}
-
-	public void use() {
-		count++;
-		lastUsed = new Date();
 	}
 
 }
