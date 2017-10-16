@@ -11,7 +11,7 @@ import de.grobox.liberario.locations.LocationsViewModel;
 
 public class SavedSearchesFragment extends FavoriteTripsFragment {
 
-	private static final Class<SavedSearchesViewModel> viewModelClass = SavedSearchesViewModel.class;
+	private static final Class<MapViewModel> viewModelClass = MapViewModel.class;
 
 	@Override
 	protected SavedSearchesViewModel getViewModel() {

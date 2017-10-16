@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
-import de.grobox.liberario.favorites.trips.SavedSearchesViewModel;
+import de.grobox.liberario.map.MapViewModel;
 import de.grobox.liberario.trips.detail.TripDetailViewModel;
 import de.grobox.liberario.trips.search.DirectionsViewModel;
 
@@ -15,8 +15,8 @@ abstract class ViewModelModule {
 
 	@Binds
 	@IntoMap
-	@ViewModelKey(SavedSearchesViewModel.class)
-	abstract ViewModel bindSavedSearchesViewModel(SavedSearchesViewModel savedSearchesViewModel);
+	@ViewModelKey(MapViewModel.class)
+	abstract ViewModel bindMapViewModel(MapViewModel mapViewModel);
 
 	@Binds
 	@IntoMap

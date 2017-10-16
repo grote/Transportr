@@ -58,11 +58,9 @@ import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
-import de.grobox.liberario.favorites.trips.SavedSearchesViewModel;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.LocationView.LocationViewListener;
-import de.grobox.liberario.locations.LocationsViewModel;
 import de.grobox.liberario.locations.NearbyLocationsLoader;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
@@ -90,11 +88,10 @@ public class MapActivity extends DrawerActivity
 		implements LocationViewListener, OnMapReadyCallback, LoaderCallbacks<NearbyLocationsResult> {
 
 	private final static int LOCATION_ZOOM = 14;
-	private final static String BOTTOM_SHEET_HEIGHT = "bottomSheetHeight";
 
 	@Inject	ViewModelProvider.Factory viewModelFactory;
 
-	private LocationsViewModel viewModel;
+	private MapViewModel viewModel;
 	private MapView mapView;
 	private MapboxMap map;
 	private LocationView search;
@@ -123,13 +120,6 @@ public class MapActivity extends DrawerActivity
 		search = findViewById(R.id.search);
 		search.setLocationViewListener(this);
 
-		// get view model and observe data
-		viewModel = ViewModelProviders.of(this, viewModelFactory).get(SavedSearchesViewModel.class);
-		viewModel.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
-		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));
-		viewModel.getWork().observe(this, workLocation -> search.setWorkLocation(workLocation));
-		viewModel.getLocations().observe(this, favoriteLocations -> search.setFavoriteLocations(favoriteLocations));
-
 		View bottomSheet = findViewById(R.id.bottomSheet);
 		bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 		bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -143,6 +133,16 @@ public class MapActivity extends DrawerActivity
 			}
 			@Override
 			public void onSlide(@NonNull View bottomSheet, float slideOffset) { }
+		});
+
+		// get view model and observe data
+		viewModel = ViewModelProviders.of(this, viewModelFactory).get(MapViewModel.class);
+		viewModel.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
+		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));
+		viewModel.getWork().observe(this, workLocation -> search.setWorkLocation(workLocation));
+		viewModel.getLocations().observe(this, favoriteLocations -> search.setFavoriteLocations(favoriteLocations));
+		viewModel.getPeekHeight().observe(this, height -> {
+			if (height != null) bottomSheetBehavior.setPeekHeight(height);
 		});
 
 		FloatingActionButton directionsFab = findViewById(R.id.directionsFab);
@@ -169,7 +169,6 @@ public class MapActivity extends DrawerActivity
 			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 			bottomSheetBehavior.setState(STATE_COLLAPSED);
 		} else {
-			bottomSheetBehavior.setPeekHeight(savedInstanceState.getInt(BOTTOM_SHEET_HEIGHT));
 			locationFragment = (LocationFragment) getSupportFragmentManager().findFragmentByTag(LocationFragment.TAG);
 		}
 	}
@@ -191,7 +190,6 @@ public class MapActivity extends DrawerActivity
 		map.setOnMarkerClickListener(marker -> {
 			if (marker.equals(selectedLocationMarker)) {
 				if (locationFragment != null) search.setLocation(locationFragment.getLocation());
-				bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 				bottomSheetBehavior.setState(STATE_COLLAPSED);
 				return true;
 			} else if (nearbyLocations.containsKey(marker)) {
@@ -203,6 +201,11 @@ public class MapActivity extends DrawerActivity
 				return false;
 			}
 		});
+
+		// observe map related data
+		viewModel.getZoomTo().observe(this, this::zoomTo);
+		viewModel.getFindNearbyStations().observe(this, this::findNearbyStations);
+
 		// restore marker on map if there was one
 		if (locationFragment != null) {
 			LatLng latLng = zoomTo(locationFragment.getLocation());
@@ -214,7 +217,6 @@ public class MapActivity extends DrawerActivity
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		mapView.onSaveInstanceState(outState);
-		outState.putInt(BOTTOM_SHEET_HEIGHT, bottomSheetBehavior.getPeekHeight());
 	}
 
 	@Override
@@ -278,7 +280,6 @@ public class MapActivity extends DrawerActivity
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, locationFragment, LocationFragment.TAG)
 				.commit(); // takes some time and empty bottomSheet will not be shown
-		bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
 	}
 
@@ -289,10 +290,14 @@ public class MapActivity extends DrawerActivity
 
 	public LatLng zoomTo(WrapLocation loc) {
 		LatLng latLng = getLatLng(loc.getLocation());
+		zoomTo(latLng);
+		return latLng;
+	}
+
+	public void zoomTo(LatLng latLng) {
 		CameraUpdate update = map.getCameraPosition().zoom < LOCATION_ZOOM ?
 				CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM) : CameraUpdateFactory.newLatLng(latLng);
 		map.easeCamera(update, 1500);
-		return latLng;
 	}
 
 	private boolean locationFragmentVisible() {
@@ -304,8 +309,8 @@ public class MapActivity extends DrawerActivity
 		bottomSheetBehavior.setState(STATE_HIDDEN);
 	}
 
-	public void findNearbyStations(Location location) {
-		Bundle args = NearbyLocationsLoader.getBundle(location, 0);
+	public void findNearbyStations(WrapLocation location) {
+		Bundle args = NearbyLocationsLoader.getBundle(location.getLocation(), 0);
 		getSupportLoaderManager().restartLoader(LOADER_NEARBY_STATIONS, args, this).forceLoad();
 	}
 
@@ -363,8 +368,6 @@ public class MapActivity extends DrawerActivity
 	}
 
 	private void enableStrictMode() {
-		if(!BuildConfig.DEBUG) return;
-
 		StrictMode.ThreadPolicy.Builder threadPolicy = new StrictMode.ThreadPolicy.Builder();
 		threadPolicy.detectAll();
 		threadPolicy.penaltyLog();

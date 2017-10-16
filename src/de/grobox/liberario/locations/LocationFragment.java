@@ -17,17 +17,21 @@
 
 package de.grobox.liberario.locations;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -41,12 +45,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.map.MapActivity;
 import de.grobox.liberario.departures.DeparturesActivity;
 import de.grobox.liberario.departures.DeparturesLoader;
 import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.locations.OsmReverseGeocoder.OsmReverseGeocoderCallback;
+import de.grobox.liberario.map.MapViewModel;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
@@ -64,20 +68,22 @@ import static de.grobox.liberario.departures.DeparturesLoader.getBundle;
 import static de.grobox.liberario.utils.Constants.LOADER_DEPARTURES;
 import static de.grobox.liberario.utils.Constants.WRAP_LOCATION;
 import static de.grobox.liberario.utils.TransportrUtils.getCoordinationName;
-import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
+import static de.grobox.liberario.utils.TransportrUtils.getDragDistance;
+import static de.grobox.liberario.utils.TransportrUtils.getLatLng;
 import static de.grobox.liberario.utils.TransportrUtils.startGeoIntent;
 import static de.schildbach.pte.dto.LocationType.COORD;
 import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 
 @ParametersAreNonnullByDefault
 public class LocationFragment extends TransportrFragment
-		implements LoaderCallbacks<QueryDeparturesResult>, OsmReverseGeocoderCallback {
+		implements LoaderCallbacks<QueryDeparturesResult>, OsmReverseGeocoderCallback, OnGlobalLayoutListener {
 
 	public static final String TAG = LocationFragment.class.getName();
 
+	@Inject	ViewModelProvider.Factory viewModelFactory;
 	@Inject TransportNetworkManager transportNetworkManager;
 	@Inject FavoriteLocationManager favoriteLocationManager;
-	private MapActivity activity;
+	private MapViewModel viewModel;
 	private WrapLocation location;
 	private SortedSet<Line> lines = new TreeSet<>();
 
@@ -102,8 +108,6 @@ public class LocationFragment extends TransportrFragment
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		activity = (MapActivity) getActivity();
-
 		Bundle args = getArguments();
 		location = (WrapLocation) args.getSerializable(WRAP_LOCATION);
 		if (location == null) throw new IllegalArgumentException("No location");
@@ -111,15 +115,12 @@ public class LocationFragment extends TransportrFragment
 		View v = inflater.inflate(R.layout.fragment_location, container, false);
 		getComponent().inject(this);
 
+		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(MapViewModel.class);
+
 		// Location
 		locationIcon = v.findViewById(R.id.locationIcon);
 		locationName = v.findViewById(R.id.locationName);
-		OnClickListener locationClick = new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				activity.zoomTo(location);
-			}
-		};
+		OnClickListener locationClick = view -> viewModel.zoomTo(getLatLng(location.getLocation()));
 		locationIcon.setOnClickListener(locationClick);
 		locationName.setOnClickListener(locationClick);
 
@@ -139,13 +140,10 @@ public class LocationFragment extends TransportrFragment
 		// Departures
 		Button departuresButton = v.findViewById(R.id.departuresButton);
 		if (location.hasId()) {
-			departuresButton.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					Intent intent = new Intent(getContext(), DeparturesActivity.class);
-					intent.putExtra(WRAP_LOCATION, location);
-					startActivity(intent);
-				}
+			departuresButton.setOnClickListener(view -> {
+				Intent intent = new Intent(getContext(), DeparturesActivity.class);
+				intent.putExtra(WRAP_LOCATION, location);
+				startActivity(intent);
 			});
 		} else {
 			departuresButton.setVisibility(GONE);
@@ -154,34 +152,35 @@ public class LocationFragment extends TransportrFragment
 		// Nearby Stations
 		nearbyStationsButton = v.findViewById(R.id.nearbyStationsButton);
 		nearbyStationsProgress = v.findViewById(R.id.nearbyStationsProgress);
-		nearbyStationsButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				nearbyStationsButton.setVisibility(INVISIBLE);
-				nearbyStationsProgress.setVisibility(VISIBLE);
-				activity.findNearbyStations(location.getLocation());
-			}
+		nearbyStationsButton.setOnClickListener(view -> {
+			nearbyStationsButton.setVisibility(INVISIBLE);
+			nearbyStationsProgress.setVisibility(VISIBLE);
+			viewModel.findNearbyStations(location);
 		});
 
 		// Share Location
 		Button shareButton = v.findViewById(R.id.shareButton);
-		shareButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				startGeoIntent(getContext(), location.getLocation());
-			}
-		});
+		shareButton.setOnClickListener(view -> startGeoIntent(getContext(), location.getLocation()));
+
+		v.getViewTreeObserver().addOnGlobalLayoutListener(this);
 
 		return v;
 	}
 
-	private void showLocation() {
-		if (favoriteLocationManager.getHome() == null) {
-			locationIcon.setImageDrawable(getDrawableForLocation(getContext(), null, location, false));
-		} else {
-			locationIcon.setImageDrawable(getDrawableForLocation(getContext(), favoriteLocationManager.getHome(), location, false));
+	@Override
+	public void onGlobalLayout() {
+		// set peek distance to show view header
+		if (getContext() == null) return;
+		if (linesLayout.getBottom() > 0) {
+			viewModel.setPeekHeight(linesLayout.getBottom() + getDragDistance(getContext()));
+		} else if (locationInfo.getBottom() > 0) {
+			viewModel.setPeekHeight(locationInfo.getBottom() + getDragDistance(getContext()));
 		}
+	}
+
+	private void showLocation() {
 		locationName.setText(location.getName());
+		locationIcon.setImageDrawable(ContextCompat.getDrawable(getContext(), location.getDrawable()));
 		StringBuilder locationInfoStr = new StringBuilder();
 		if (!isNullOrEmpty(location.getLocation().place)) {
 			locationInfoStr.append(location.getLocation().place);
@@ -233,12 +232,9 @@ public class LocationFragment extends TransportrFragment
 	@Override
 	@WorkerThread
 	public void onLocationRetrieved(@NonNull final WrapLocation location) {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				LocationFragment.this.location = location;
-				showLocation();
-			}
+		runOnUiThread(() -> {
+			LocationFragment.this.location = location;
+			showLocation();
 		});
 	}
 
