@@ -20,8 +20,8 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.data.locations.LocationRepository;
 import de.grobox.liberario.data.searches.SearchesRepository;
+import de.grobox.liberario.favorites.trips.SavedSearchesViewModel;
 import de.grobox.liberario.fragments.TimeDateFragment.TimeDateListener;
-import de.grobox.liberario.locations.LocationsViewModel;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
@@ -36,11 +36,9 @@ import de.schildbach.pte.dto.Trip;
 import static de.schildbach.pte.dto.QueryTripsResult.Status.OK;
 
 @ParametersAreNonnullByDefault
-public class DirectionsViewModel extends LocationsViewModel implements TimeDateListener {
+public class DirectionsViewModel extends SavedSearchesViewModel implements TimeDateListener {
 
 	private final static String TAG = DirectionsViewModel.class.getSimpleName();
-
-	private final SearchesRepository searchesRepository;
 
 	private final MutableLiveData<WrapLocation> fromLocation = new MutableLiveData<>();
 	private final MutableLiveData<WrapLocation> viaLocation = new MutableLiveData<>();
@@ -57,8 +55,7 @@ public class DirectionsViewModel extends LocationsViewModel implements TimeDateL
 
 	@Inject
 	DirectionsViewModel(TransportNetworkManager transportNetworkManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
-		super(transportNetworkManager, locationRepository);
-		this.searchesRepository = searchesRepository;
+		super(transportNetworkManager, locationRepository, searchesRepository);
 		calendar.setValue(Calendar.getInstance());
 	}
 

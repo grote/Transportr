@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.activities;
+package de.grobox.liberario.map;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -56,8 +56,9 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.BuildConfig;
 import de.grobox.liberario.R;
+import de.grobox.liberario.activities.MainActivity;
 import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
-import de.grobox.liberario.favorites.trips.FavoriteTripsFragment;
+import de.grobox.liberario.favorites.trips.SavedSearchesViewModel;
 import de.grobox.liberario.locations.LocationFragment;
 import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.LocationView.LocationViewListener;
@@ -85,7 +86,7 @@ import static de.grobox.liberario.utils.TransportrUtils.getMarkerForProduct;
 import static de.schildbach.pte.dto.NearbyLocationsResult.Status.OK;
 
 @ParametersAreNonnullByDefault
-public class NewMapActivity extends DrawerActivity
+public class MapActivity extends DrawerActivity
 		implements LocationViewListener, OnMapReadyCallback, LoaderCallbacks<NearbyLocationsResult> {
 
 	private final static int LOCATION_ZOOM = 14;
@@ -106,7 +107,7 @@ public class NewMapActivity extends DrawerActivity
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
-//		enableStrictMode();
+		if (BuildConfig.DEBUG) enableStrictMode();
 		getComponent().inject(this);
 		ensureTransportNetworkSelected();
 		setContentView(R.layout.activity_new_map);
@@ -123,7 +124,7 @@ public class NewMapActivity extends DrawerActivity
 		search.setLocationViewListener(this);
 
 		// get view model and observe data
-		viewModel = ViewModelProviders.of(this, viewModelFactory).get(LocationsViewModel.class);
+		viewModel = ViewModelProviders.of(this, viewModelFactory).get(SavedSearchesViewModel.class);
 		viewModel.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
 		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));
 		viewModel.getWork().observe(this, workLocation -> search.setWorkLocation(workLocation));
@@ -147,23 +148,23 @@ public class NewMapActivity extends DrawerActivity
 		FloatingActionButton directionsFab = findViewById(R.id.directionsFab);
 		directionsFab.setOnClickListener(view -> {
 			if (locationFragment != null && locationFragmentVisible()) {
-				findDirections(NewMapActivity.this, 0, new WrapLocation(GPS), null, locationFragment.getLocation(), null, true);
+				findDirections(MapActivity.this, 0, new WrapLocation(GPS), null, locationFragment.getLocation(), null, true);
 			} else {
-				Intent intent = new Intent(NewMapActivity.this, DirectionsActivity.class);
+				Intent intent = new Intent(MapActivity.this, DirectionsActivity.class);
 				startActivity(intent);
 			}
 		});
 		FloatingActionButton gpsFab = findViewById(R.id.gpsFab);
 		gpsFab.setOnClickListener(view -> {
 			// TODO
-			Intent intent = new Intent(NewMapActivity.this, MainActivity.class);
+			Intent intent = new Intent(MapActivity.this, MainActivity.class);
 			startActivity(intent);
 		});
 
 		if (savedInstanceState == null) {
-			FavoriteTripsFragment f = FavoriteTripsFragment.newInstance(true);
+			SavedSearchesFragment f = new SavedSearchesFragment();
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.bottomSheet, f, FavoriteTripsFragment.TAG)
+					.replace(R.id.bottomSheet, f, SavedSearchesFragment.TAG)
 					.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
 			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 			bottomSheetBehavior.setState(STATE_COLLAPSED);
@@ -258,7 +259,7 @@ public class NewMapActivity extends DrawerActivity
 			search.setLocation(null);
 			recreate();
 			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.bottomSheet, FavoriteTripsFragment.newInstance(true), FavoriteTripsFragment.TAG)
+					.replace(R.id.bottomSheet, new SavedSearchesFragment(), SavedSearchesFragment.TAG)
 					.commit();
 		} else {
 			search.setTransportNetwork(network);
@@ -339,7 +340,7 @@ public class NewMapActivity extends DrawerActivity
 	}
 
 	private Icon getNearbyLocationsIcon(@DrawableRes int res) {
-		IconFactory iconFactory = IconFactory.getInstance(NewMapActivity.this);
+		IconFactory iconFactory = IconFactory.getInstance(MapActivity.this);
 		Drawable drawable = ContextCompat.getDrawable(this, res);
 		return iconFactory.fromBitmap(getBitmap(drawable));
 	}

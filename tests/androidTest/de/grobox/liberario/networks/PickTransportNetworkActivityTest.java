@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.activities.NewMapActivity;
+import de.grobox.liberario.map.MapActivity;
 import tools.fastlane.screengrab.Screengrab;
 import tools.fastlane.screengrab.locale.LocaleTestRule;
 
@@ -26,7 +26,7 @@ public class PickTransportNetworkActivityTest {
 
 	@Rule
 	// when app data is cleared, this should open PickTransportNetworkActivity
-	public ActivityTestRule<NewMapActivity> mActivityTestRule = new ActivityTestRule<>(NewMapActivity.class);
+	public ActivityTestRule<MapActivity> mActivityTestRule = new ActivityTestRule<>(MapActivity.class);
 
 	@ClassRule
 	public static final LocaleTestRule localeTestRule = new LocaleTestRule();

@@ -41,7 +41,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.liberario.R;
-import de.grobox.liberario.activities.NewMapActivity;
+import de.grobox.liberario.map.MapActivity;
 import de.grobox.liberario.departures.DeparturesActivity;
 import de.grobox.liberario.departures.DeparturesLoader;
 import de.grobox.liberario.favorites.locations.FavoriteLocationManager;
@@ -77,7 +77,7 @@ public class LocationFragment extends TransportrFragment
 
 	@Inject TransportNetworkManager transportNetworkManager;
 	@Inject FavoriteLocationManager favoriteLocationManager;
-	private NewMapActivity activity;
+	private MapActivity activity;
 	private WrapLocation location;
 	private SortedSet<Line> lines = new TreeSet<>();
 
@@ -102,7 +102,7 @@ public class LocationFragment extends TransportrFragment
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		activity = (NewMapActivity) getActivity();
+		activity = (MapActivity) getActivity();
 
 		Bundle args = getArguments();
 		location = (WrapLocation) args.getSerializable(WRAP_LOCATION);

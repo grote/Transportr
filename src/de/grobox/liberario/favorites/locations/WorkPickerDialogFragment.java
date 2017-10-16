@@ -21,16 +21,9 @@ import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
 import de.grobox.liberario.locations.WrapLocation;
 
-public class WorkPickerDialogFragment extends SpecialLocationFragment {
+public abstract class WorkPickerDialogFragment extends SpecialLocationFragment {
 
 	public static final String TAG = WorkPickerDialogFragment.class.getName();
-
-	public WorkPickerDialogFragment() {
-	}
-
-	public static WorkPickerDialogFragment newInstance() {
-		return new WorkPickerDialogFragment();
-	}
 
 	@Override
 	protected void inject(AppComponent component) {

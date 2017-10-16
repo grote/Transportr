@@ -21,16 +21,9 @@ import de.grobox.liberario.AppComponent;
 import de.grobox.liberario.R;
 import de.grobox.liberario.locations.WrapLocation;
 
-public class HomePickerDialogFragment extends SpecialLocationFragment {
+public abstract class HomePickerDialogFragment extends SpecialLocationFragment {
 
 	public static final String TAG = HomePickerDialogFragment.class.getName();
-
-	public HomePickerDialogFragment() {
-	}
-
-	public static HomePickerDialogFragment newInstance() {
-		return new HomePickerDialogFragment();
-	}
 
 	@Override
 	protected void inject(AppComponent component) {

@@ -18,7 +18,6 @@
 package de.grobox.liberario.favorites.locations;
 
 import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -47,7 +46,7 @@ import de.grobox.liberario.settings.Preferences;
 
 abstract class SpecialLocationFragment extends DialogFragment implements LocationView.LocationViewListener {
 
-	@Inject ViewModelProvider.Factory viewModelFactory;
+	@Inject protected ViewModelProvider.Factory viewModelFactory;
 
 	protected LocationsViewModel viewModel;
 	protected @Nullable FavoriteTripListener listener;
@@ -81,7 +80,7 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 		loc.setLocationViewListener(this);
 
 		// Get view model and observe data
-		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(LocationsViewModel.class);
+		viewModel = getViewModel();
 		viewModel.getTransportNetwork().observe(this, transportNetwork -> {
 			if (transportNetwork != null) loc.setTransportNetwork(transportNetwork);
 		});
@@ -93,6 +92,8 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 
 		return v;
 	}
+
+	protected abstract LocationsViewModel getViewModel();
 
 	protected abstract @StringRes int getHint();
 

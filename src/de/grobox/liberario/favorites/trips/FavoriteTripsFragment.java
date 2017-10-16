@@ -2,7 +2,6 @@ package de.grobox.liberario.favorites.trips;
 
 import android.animation.ObjectAnimator;
 import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,26 +29,17 @@ import static android.support.v7.util.SortedList.INVALID_POSITION;
 import static de.grobox.liberario.utils.TransportrUtils.findDirections;
 
 @ParametersAreNonnullByDefault
-public class FavoriteTripsFragment extends TransportrFragment implements FavoriteTripListener {
+public abstract class FavoriteTripsFragment extends TransportrFragment implements FavoriteTripListener {
 
 	public static final String TAG = FavoriteTripsFragment.class.getName();
-	private static final String TOP_MARGIN = "topMargin";
 
-	@Inject	ViewModelProvider.Factory viewModelFactory;
+	@Inject	protected ViewModelProvider.Factory viewModelFactory;
 	private SavedSearchesViewModel viewModel;
 
 	private ProgressBar progressBar;
 	private RecyclerView list;
 	private FavoriteTripAdapter adapter;
 	private boolean listAlreadyUpdated = false;
-
-	public static FavoriteTripsFragment newInstance(boolean topMargin) {
-		FavoriteTripsFragment f = new FavoriteTripsFragment();
-		Bundle args = new Bundle();
-		args.putBoolean(TOP_MARGIN, topMargin);
-		f.setArguments(args);
-		return f;
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,18 +54,22 @@ public class FavoriteTripsFragment extends TransportrFragment implements Favorit
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(getContext()));
 
-		viewModel = ViewModelProviders.of(this, viewModelFactory).get(SavedSearchesViewModel.class);
+		viewModel = getViewModel();
 		viewModel.getHome().observe(this, this::onHomeLocationChanged);
 		viewModel.getWork().observe(this, this::onWorkLocationChanged);
 		viewModel.getFavoriteTrips().observe(this, this::onFavoriteTripsChanged);
 
-		if (!getArguments().getBoolean(TOP_MARGIN)) {
+		if (!hasTopMargin()) {
 			FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) list.getLayoutParams();
 			params.topMargin = 0;
 			list.setLayoutParams(params);
 		}
 		return v;
 	}
+
+	abstract protected SavedSearchesViewModel getViewModel();
+
+	abstract protected boolean hasTopMargin();
 
 	private void onHomeLocationChanged(@Nullable HomeLocation home) {
 		FavoriteTripItem oldHome = adapter.getHome();
@@ -134,17 +128,21 @@ public class FavoriteTripsFragment extends TransportrFragment implements Favorit
 
 	@Override
 	public void changeHome() {
-		HomePickerDialogFragment f = HomePickerDialogFragment.newInstance();
+		HomePickerDialogFragment f = getHomePickerDialogFragment();
 		f.setListener(this);
 		f.show(getActivity().getSupportFragmentManager(), HomePickerDialogFragment.TAG);
 	}
 
+	protected abstract HomePickerDialogFragment getHomePickerDialogFragment();
+
 	@Override
 	public void changeWork() {
-		WorkPickerDialogFragment f = WorkPickerDialogFragment.newInstance();
+		WorkPickerDialogFragment f = getWorkPickerDialogFragment();
 		f.setListener(this);
 		f.show(getActivity().getSupportFragmentManager(), WorkPickerDialogFragment.TAG);
 	}
+
+	protected abstract WorkPickerDialogFragment getWorkPickerDialogFragment();
 
 	@Override
 	public void onFavoriteClicked(FavoriteTripItem item) {

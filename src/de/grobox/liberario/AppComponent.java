@@ -20,7 +20,7 @@ package de.grobox.liberario;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import de.grobox.liberario.activities.NewMapActivity;
+import de.grobox.liberario.map.MapActivity;
 import de.grobox.liberario.departures.DeparturesActivity;
 import de.grobox.liberario.favorites.trips.FavoriteTripsFragment;
 import de.grobox.liberario.favorites.locations.HomePickerDialogFragment;
@@ -40,7 +40,7 @@ import de.grobox.liberario.trips.search.TripsFragment;
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
-	void inject(NewMapActivity activity);
+	void inject(MapActivity activity);
 	void inject(PickTransportNetworkActivity activity);
 	void inject(DeparturesActivity activity);
 	void inject(DirectionsActivity activity);

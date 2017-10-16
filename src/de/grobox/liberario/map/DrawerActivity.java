@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.activities;
+package de.grobox.liberario.map;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,6 +38,7 @@ import javax.inject.Inject;
 import de.grobox.liberario.R;
 import de.grobox.liberario.about.AboutActivity;
 import de.grobox.liberario.about.AboutMainFragment;
+import de.grobox.liberario.activities.TransportrActivity;
 import de.grobox.liberario.networks.PickTransportNetworkActivity;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;

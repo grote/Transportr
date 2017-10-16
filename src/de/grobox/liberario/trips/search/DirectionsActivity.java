@@ -8,8 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.AppBarLayout.OnOffsetChangedListener;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -20,7 +18,6 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TransportrActivity;
-import de.grobox.liberario.favorites.trips.FavoriteTripsFragment;
 import de.grobox.liberario.locations.WrapLocation;
 
 import static de.grobox.liberario.fragments.DirectionsFragment.TASK_BRING_ME_HOME;
@@ -93,10 +90,10 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	}
 
 	private void showFavorites() {
-		FavoriteTripsFragment f = FavoriteTripsFragment.newInstance(false);
+		SavedSearchesFragment f = new SavedSearchesFragment();
 		getSupportFragmentManager()
 				.beginTransaction()
-				.replace(R.id.fragmentContainer, f, FavoriteTripsFragment.TAG)
+				.replace(R.id.fragmentContainer, f, SavedSearchesFragment.TAG)
 				.commit();
 	}
 
