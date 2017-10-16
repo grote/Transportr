@@ -33,7 +33,6 @@ import android.widget.TextView;
 
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
-import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import java.util.EnumSet;
@@ -158,7 +157,6 @@ public class ProductDialogFragment extends DialogFragment {
 	}
 
 	class ProductItem extends AbstractItem<ProductItem, ProductItem.ViewHolder> {
-		private final ViewHolderFactory<? extends ProductItem.ViewHolder> FACTORY = new ItemFactory();
 		private final Product product;
 
 		ProductItem(Product product) {
@@ -199,14 +197,8 @@ public class ProductDialogFragment extends DialogFragment {
 		}
 
 		@Override
-		public ViewHolderFactory<? extends ProductItem.ViewHolder> getFactory() {
-			return FACTORY;
-		}
-
-		class ItemFactory implements ViewHolderFactory<ProductItem.ViewHolder> {
-			public ProductItem.ViewHolder create(View v) {
-				return new ProductItem.ViewHolder(v);
-			}
+		public ViewHolder getViewHolder(View view) {
+			return new ProductItem.ViewHolder(view);
 		}
 
 		class ViewHolder extends RecyclerView.ViewHolder {
