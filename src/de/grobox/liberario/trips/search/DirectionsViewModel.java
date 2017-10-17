@@ -18,10 +18,12 @@ import java.util.Set;
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
+import de.grobox.liberario.data.locations.FavoriteLocation;
 import de.grobox.liberario.data.locations.LocationRepository;
 import de.grobox.liberario.data.searches.SearchesRepository;
 import de.grobox.liberario.favorites.trips.SavedSearchesViewModel;
 import de.grobox.liberario.fragments.TimeDateFragment.TimeDateListener;
+import de.grobox.liberario.locations.LocationView;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
@@ -33,10 +35,12 @@ import de.schildbach.pte.dto.QueryTripsContext;
 import de.schildbach.pte.dto.QueryTripsResult;
 import de.schildbach.pte.dto.Trip;
 
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.VIA;
 import static de.schildbach.pte.dto.QueryTripsResult.Status.OK;
 
 @ParametersAreNonnullByDefault
-public class DirectionsViewModel extends SavedSearchesViewModel implements TimeDateListener {
+public class DirectionsViewModel extends SavedSearchesViewModel implements TimeDateListener, LocationView.LocationViewListener {
 
 	private final static String TAG = DirectionsViewModel.class.getSimpleName();
 
@@ -99,6 +103,30 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 
 	void setFavTripUid(long favTripUid) {
 		this.favTripUid = favTripUid;
+	}
+
+	@Override
+	public void onLocationItemClick(WrapLocation loc, FavoriteLocation.FavLocationType type) {
+		clickLocation(loc, type);
+		if (type == FROM) {
+			setFromLocation(loc);
+		} else if (type == VIA) {
+			setViaLocation(loc);
+		} else {
+			setToLocation(loc);
+		}
+		search();
+	}
+
+	@Override
+	public void onLocationCleared(FavoriteLocation.FavLocationType type) {
+		if (type == FROM) {
+			setFromLocation(null);
+		} else if (type == VIA) {
+			setViaLocation(null);
+		} else {
+			setToLocation(null);
+		}
 	}
 
 	@Override

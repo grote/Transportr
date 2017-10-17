@@ -25,12 +25,10 @@ import javax.inject.Inject;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TransportrActivity;
-import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.fragments.TimeDateFragment;
 import de.grobox.liberario.fragments.TransportrFragment;
 import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
-import de.grobox.liberario.locations.LocationView.LocationViewListener;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.utils.DateUtils;
@@ -40,12 +38,11 @@ import static android.view.View.VISIBLE;
 import static android.view.animation.Animation.RELATIVE_TO_SELF;
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.TO;
-import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.VIA;
 import static de.grobox.liberario.utils.DateUtils.getDate;
 import static de.grobox.liberario.utils.DateUtils.getTime;
 import static de.grobox.liberario.utils.DateUtils.isNow;
 
-public class DirectionsFragment extends TransportrFragment implements LocationViewListener {
+public class DirectionsFragment extends TransportrFragment {
 
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
@@ -148,28 +145,8 @@ public class DirectionsFragment extends TransportrFragment implements LocationVi
 		date.setOnLongClickListener(onTimeLongClickListener);
 		time.setOnLongClickListener(onTimeLongClickListener);
 
-		from.setLocationViewListener(this);
-		to.setLocationViewListener(this);
-	}
-
-	@Override
-	public void onLocationItemClick(WrapLocation loc, FavLocationType type) {
-		viewModel.clickLocation(loc, type);
-
-		if (type == FROM) {
-			viewModel.setFromLocation(loc);
-		} else if (type == VIA) {
-			viewModel.setViaLocation(loc);
-		} else {
-			viewModel.setToLocation(loc);
-		}
-
-		viewModel.search();
-	}
-
-	@Override
-	public void onLocationCleared(FavLocationType type) {
-		// no up
+		from.setLocationViewListener(viewModel);
+		to.setLocationViewListener(viewModel);
 	}
 
 	void onCalendarUpdated(@Nullable Calendar calendar) {
