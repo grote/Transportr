@@ -59,6 +59,8 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	private MutableLiveData<Boolean> now = new MutableLiveData<>();
 	private LiveData<Calendar> calendar = Transformations.switchMap(now, this::getUpdatedCalendar);
 	private MutableLiveData<Calendar> updatedCalendar = new MutableLiveData<>();
+	private MutableLiveData<Boolean> isDeparture = new MutableLiveData<>();
+
 	private long favTripUid;
 
 	@Inject
@@ -66,6 +68,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		super(transportNetworkManager, locationRepository, searchesRepository);
 		now.setValue(true);
 		updatedCalendar.setValue(Calendar.getInstance());
+		isDeparture.setValue(true);
 	}
 
 	LiveData<WrapLocation> getFromLocation() {
@@ -133,6 +136,15 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		}
 	}
 
+	LiveData<Boolean> getIsDeparture() {
+		return isDeparture;
+	}
+
+	void setIsDeparture(boolean departure) {
+		isDeparture.setValue(departure);
+		search();
+	}
+
 	void setFavTripUid(long favTripUid) {
 		this.favTripUid = favTripUid;
 	}
@@ -189,10 +201,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 
 		showTrips.call();
 
-		// TODO
-		boolean departure = true;
-
-		// store/count search
+		boolean departure = isDeparture.getValue() == null ? true : isDeparture.getValue();
 		TripQuery tripQuery = new TripQuery(favTripUid, fromLocation.getValue(), viaLocation.getValue(), toLocation.getValue(), calendar.getTime(), departure);
 
 		// reset current data

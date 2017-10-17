@@ -46,6 +46,7 @@ public class DirectionsFragment extends TransportrFragment {
 
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
+	private @Nullable Menu menu;
 	private View timeIcon;
 	private TextView date, time;
 	private LocationGpsView from;
@@ -114,16 +115,26 @@ public class DirectionsFragment extends TransportrFragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.directions, menu);
+		this.menu = menu;
+		viewModel.getIsDeparture().observe(this, this::onIsDepartureChanged);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.action_swap_locations) {
-			swapLocations();
-			return true;
+		switch (item.getItemId()) {
+			case R.id.action_swap_locations:
+				swapLocations();
+				return true;
+			case R.id.action_departure:
+				viewModel.setIsDeparture(true);
+				return true;
+			case R.id.action_arrival:
+				viewModel.setIsDeparture(false);
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	private void setupClickListeners() {
@@ -174,6 +185,17 @@ public class DirectionsFragment extends TransportrFragment {
 
 	void onToLocationUpdated(@Nullable WrapLocation location) {
 		to.setLocation(location);
+	}
+
+	void onIsDepartureChanged(boolean isDeparture) {
+		if (menu == null) throw new IllegalStateException("Menu is null");
+		if (isDeparture) {
+			MenuItem departureItem = menu.findItem(R.id.action_departure);
+			departureItem.setChecked(true);
+		} else {
+			MenuItem arrivalItem = menu.findItem(R.id.action_arrival);
+			arrivalItem.setChecked(true);
+		}
 	}
 
 	private void swapLocations() {
