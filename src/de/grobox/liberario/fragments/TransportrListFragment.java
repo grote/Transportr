@@ -19,6 +19,6 @@ package de.grobox.liberario.fragments;
 
 import android.support.v4.app.ListFragment;
 
-
+@Deprecated
 public abstract class TransportrListFragment extends ListFragment { }
 

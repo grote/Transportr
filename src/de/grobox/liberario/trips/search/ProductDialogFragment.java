@@ -15,16 +15,16 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.liberario.fragments;
+package de.grobox.liberario.trips.search;
 
-import android.content.DialogInterface;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -33,35 +33,29 @@ import android.widget.TextView;
 
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
-import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import de.grobox.liberario.R;
 import de.grobox.liberario.settings.Preferences;
-import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.dto.Product;
+
+import static de.grobox.liberario.utils.TransportrUtils.getDrawableForProduct;
+import static de.grobox.liberario.utils.TransportrUtils.productToString;
 
 public class ProductDialogFragment extends DialogFragment {
 
-	public static final String TAG = ProductDialogFragment.class.getName();
+	public static final String TAG = ProductDialogFragment.class.getSimpleName();
 
-	private static final String PRODUCTS = "products";
-	private OnProductsChangedListener listener;
+	@Inject ViewModelProvider.Factory viewModelFactory;
+
+	private DirectionsViewModel viewModel;
 	private FastItemAdapter<ProductItem> adapter;
 	private Button okButton;
-
-	static ProductDialogFragment newInstance(EnumSet<Product> products) {
-		ProductDialogFragment f = new ProductDialogFragment();
-
-		Bundle args = new Bundle();
-		args.putSerializable(PRODUCTS, products);
-		f.setArguments(args);
-
-		return f;
-	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -84,44 +78,29 @@ public class ProductDialogFragment extends DialogFragment {
 		adapter = new FastItemAdapter<>();
 		adapter.withSelectable(true);
 		productsView.setAdapter(adapter);
-
-		// Add Products and select the ones we got
-		@SuppressWarnings("unchecked")
-		EnumSet<Product> products = (EnumSet<Product>) getArguments().getSerializable(PRODUCTS);
-		if(products == null) throw new IllegalArgumentException("No Products. Use newInstance()");
-		int i = 0;
 		for(Product product : Product.ALL) {
 			adapter.add(new ProductItem(product));
-			if(savedInstanceState == null && products.contains(product)) {
-				adapter.select(i);
-			}
-			i++;
 		}
-		adapter.withSavedInstanceState(savedInstanceState);
+
+		// Get view model and observe products
+		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(DirectionsViewModel.class);
+		if (savedInstanceState == null) {
+			viewModel.getProducts().observe(this, this::onProductsChanged);
+		} else {
+			adapter.withSavedInstanceState(savedInstanceState);
+		}
 
 		// OK Button
 		okButton = v.findViewById(R.id.okButton);
-		okButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// call listener if set
-				if(listener != null) {
-					EnumSet<Product> products = getProductsFromItems(adapter.getSelectedItems());
-					Preferences.setProducts(getContext(), products);
-					listener.onProductsChanged(products);
-				}
-				getDialog().cancel();
-			}
+		okButton.setOnClickListener(view -> {
+			EnumSet<Product> products = getProductsFromItems(adapter.getSelectedItems());
+			viewModel.setProducts(products);
+			getDialog().cancel();
 		});
 
 		// Cancel Button
 		Button cancelButton = v.findViewById(R.id.cancelButton);
-		cancelButton.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				getDialog().cancel();
-			}
-		});
+		cancelButton.setOnClickListener(view -> getDialog().cancel());
 		return v;
 	}
 
@@ -131,9 +110,14 @@ public class ProductDialogFragment extends DialogFragment {
 		adapter.saveInstanceState(outState);
 	}
 
-	@Override
-	public void onCancel(DialogInterface dialog) {
-		KeyboardUtil.hideKeyboard(getActivity());
+	private void onProductsChanged(EnumSet<Product> products) {
+		int i = 0;
+		for (Product product : Product.ALL) {
+			if (products.contains(product)) {
+				adapter.select(i);
+			}
+			i++;
+		}
 	}
 
 	private EnumSet<Product> getProductsFromItems(Set<ProductItem> items) {
@@ -146,14 +130,6 @@ public class ProductDialogFragment extends DialogFragment {
 
 	void setOkEnabled(boolean enabled) {
 		okButton.setEnabled(enabled);
-	}
-
-	void setOnProductsChangedListener(OnProductsChangedListener listener) {
-		this.listener = listener;
-	}
-
-	interface OnProductsChangedListener {
-		void onProductsChanged(EnumSet<Product> products);
 	}
 
 	class ProductItem extends AbstractItem<ProductItem, ProductItem.ViewHolder> {
@@ -177,21 +153,18 @@ public class ProductDialogFragment extends DialogFragment {
 		public void bindView(final ViewHolder ui, List<Object> payloads) {
 			super.bindView(ui, payloads);
 
-			ui.image.setImageDrawable(TransportrUtils.getTintedDrawable(getContext(), TransportrUtils.getDrawableForProduct(product)));
-			ui.name.setText(TransportrUtils.productToString(getContext(), product));
+			ui.image.setImageResource(getDrawableForProduct(product));
+			ui.name.setText(productToString(getContext(), product));
 			ui.checkBox.setChecked(isSelected());
-			ui.layout.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					int position = adapter.getAdapterPosition(ProductItem.this);
-					adapter.toggleSelection(position);
-					Set products = adapter.getSelectedItems();
-					// if no products are selected, disable the ok-button
-					if (products.size() == 0) {
-						setOkEnabled(false);
-					} else {
-						setOkEnabled(true);
-					}
+			ui.layout.setOnClickListener(v -> {
+				int position = adapter.getAdapterPosition(ProductItem.this);
+				adapter.toggleSelection(position);
+				Set products = adapter.getSelectedItems();
+				// if no products are selected, disable the ok-button
+				if (products.size() == 0) {
+					setOkEnabled(false);
+				} else {
+					setOkEnabled(true);
 				}
 			});
 		}

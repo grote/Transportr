@@ -59,6 +59,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	private MutableLiveData<Boolean> now = new MutableLiveData<>();
 	private LiveData<Calendar> calendar = Transformations.switchMap(now, this::getUpdatedCalendar);
 	private MutableLiveData<Calendar> updatedCalendar = new MutableLiveData<>();
+	private MutableLiveData<EnumSet<Product>> products = new MutableLiveData<>();
 	private MutableLiveData<Boolean> isDeparture = new MutableLiveData<>();
 	private MutableLiveData<Boolean> isExpanded = new MutableLiveData<>();
 
@@ -69,6 +70,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		super(transportNetworkManager, locationRepository, searchesRepository);
 		now.setValue(true);
 		updatedCalendar.setValue(Calendar.getInstance());
+		products.setValue(EnumSet.allOf(Product.class));
 		isDeparture.setValue(true);
 		isExpanded.setValue(false);
 	}
@@ -136,6 +138,15 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		} else {
 			now.setValue(false);
 		}
+	}
+
+	LiveData<EnumSet<Product>> getProducts() {
+		return products;
+	}
+
+	void setProducts(EnumSet<Product> newProducts) {
+		products.setValue(newProducts);
+		search();
 	}
 
 	LiveData<Boolean> getIsDeparture() {
@@ -212,8 +223,8 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 
 		showTrips.call();
 
-		boolean departure = isDeparture.getValue() == null ? true : isDeparture.getValue();
-		TripQuery tripQuery = new TripQuery(favTripUid, fromLocation.getValue(), viaLocation.getValue(), toLocation.getValue(), calendar.getTime(), departure);
+		TripQuery tripQuery = new TripQuery(favTripUid, fromLocation.getValue(), viaLocation.getValue(), toLocation.getValue(),
+				calendar.getTime(), isDeparture.getValue(), products.getValue());
 
 		// reset current data
 		clearState();
@@ -249,20 +260,19 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		// TODO expose via TransportNetworkManager or SettingsManager
 		NetworkProvider.Optimize optimize = null; // TransportrUtils.getOptimize(getContext());
 		WalkSpeed walkSpeed = null; // TransportrUtils.getWalkSpeed(getContext());
-		EnumSet<Product> products = EnumSet.allOf(Product.class);
 
 		Log.i(TAG, "From: " + query.from.getLocation());
 		Log.i(TAG, "Via: " + (query.via == null ? "null" : query.via.getLocation()));
 		Log.i(TAG, "To: " + query.to.getLocation());
 		Log.i(TAG, "Date: " + query.date);
 		Log.i(TAG, "Departure: " + query.departure);
-//		Log.i(TAG, "Products: " + products);
+		Log.i(TAG, "Products: " + query.products);
 //		Log.i(TAG, "Optimize for: " + optimize);
 //		Log.i(TAG, "Walk Speed: " + walkSpeed);
 
 		NetworkProvider np = network.getNetworkProvider();
 		return np.queryTrips(query.from.getLocation(), query.via == null ? null : query.via.getLocation(), query.to.getLocation(),
-				query.date, query.departure, products, optimize, walkSpeed, null, null);
+				query.date, query.departure, query.products, optimize, walkSpeed, null, null);
 	}
 
 	@SuppressLint("StaticFieldLeak")

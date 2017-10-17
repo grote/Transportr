@@ -144,6 +144,8 @@ public class DirectionsFragment extends TransportrFragment {
 			case R.id.action_navigation_expand:
 				viewModel.setIsExpanded(!item.isChecked());
 				return true;
+			case R.id.action_choose_products:
+				new ProductDialogFragment().show(getFragmentManager(), ProductDialogFragment.TAG);
 			default:
 				return super.onOptionsItemSelected(item);
 		}

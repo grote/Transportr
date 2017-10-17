@@ -23,8 +23,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +32,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -44,18 +41,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
-import com.mikepenz.fastadapter.items.AbstractItem;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.EnumSet;
-import java.util.List;
 
 import de.grobox.liberario.R;
 import de.grobox.liberario.activities.TripsActivity;
-import de.grobox.liberario.fragments.ProductDialogFragment.OnProductsChangedListener;
 import de.grobox.liberario.locations.AmbiguousLocationActivity;
 import de.grobox.liberario.locations.LocationGpsView;
 import de.grobox.liberario.locations.LocationView;
@@ -70,8 +62,6 @@ import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsResult;
 
-import static android.graphics.PorterDuff.Mode.SRC_ATOP;
-import static android.view.MotionEvent.ACTION_UP;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.widget.Toast.LENGTH_LONG;
@@ -84,12 +74,10 @@ import static de.grobox.liberario.settings.Preferences.SHOW_ADV_DIRECTIONS;
 import static de.grobox.liberario.utils.TransportrUtils.fixToolbarIcon;
 import static de.grobox.liberario.utils.TransportrUtils.getButtonIconColor;
 import static de.grobox.liberario.utils.TransportrUtils.getDrawableForLocation;
-import static de.grobox.liberario.utils.TransportrUtils.getDrawableForProduct;
-import static de.grobox.liberario.utils.TransportrUtils.getTintedDrawable;
 import static de.grobox.liberario.utils.TransportrUtils.getToolbarDrawable;
 
 @Deprecated
-public class DirectionsFragment extends TransportrFragment implements TripHandler, OnProductsChangedListener {
+public class DirectionsFragment extends TransportrFragment implements TripHandler {
 
 	public final static String TAG = "de.grobox.liberario.directions";
 	public final static String TASK_BRING_ME_HOME = "bring_me_home";
@@ -98,7 +86,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	private DirectionsViewHolder ui;
 	private AsyncQueryTripsTask mAfterGpsTask = null;
 	private EnumSet<Product> products = EnumSet.allOf(Product.class);
-	private FastItemAdapter<ProductItem> productsAdapter;
+//	private FastItemAdapter<ProductItem> productsAdapter;
 	private boolean showingMore = false;
 
 	@Override
@@ -149,23 +137,23 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		});
 
 		// Products
-		productsAdapter = new FastItemAdapter<>();
-		ui.products.setHasFixedSize(true);
-		ui.products.setAdapter(productsAdapter);
-		products = Preferences.getProducts(getContext());
-		onProductsChanged(products);
-		ui.products.getBackground().setColorFilter(getButtonIconColor(getActivity()), SRC_ATOP);
-		ui.products.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// onClickListener doesn't work for some reasion, so use touch instead
-				if(event.getAction() == ACTION_UP) {
-					showProductDialog();
-					return true;
-				}
-				return false;
-			}
-		});
+//		productsAdapter = new FastItemAdapter<>();
+//		ui.products.setHasFixedSize(true);
+//		ui.products.setAdapter(productsAdapter);
+//		products = Preferences.getProducts(getContext());
+//		onProductsChanged(products);
+//		ui.products.getBackground().setColorFilter(getButtonIconColor(getActivity()), SRC_ATOP);
+//		ui.products.setOnTouchListener(new View.OnTouchListener() {
+//			@Override
+//			public boolean onTouch(View v, MotionEvent event) {
+//				// onClickListener doesn't work for some reasion, so use touch instead
+//				if(event.getAction() == ACTION_UP) {
+//					showProductDialog();
+//					return true;
+//				}
+//				return false;
+//			}
+//		});
 
 		ui.search.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
@@ -195,16 +183,16 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		if(savedInstanceState != null) {
 			setType(savedInstanceState.getBoolean("type"));
 			Serializable tmpProducts = savedInstanceState.getSerializable("products");
-			if(tmpProducts instanceof EnumSet) {
-				//noinspection unchecked
-				products = (EnumSet<Product>) tmpProducts;
-				onProductsChanged(products);
-			}
-			// re-attach fragment listener
-			Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(ProductDialogFragment.TAG);
-			if(fragment != null && fragment.getUserVisibleHint()) {
-				((ProductDialogFragment) fragment).setOnProductsChangedListener(this);
-			}
+//			if(tmpProducts instanceof EnumSet) {
+//				//noinspection unchecked
+//				products = (EnumSet<Product>) tmpProducts;
+//				onProductsChanged(products);
+//			}
+//			// re-attach fragment listener
+//			Fragment fragment = getActivity().getSupportFragmentManager().findFragmentByTag(ProductDialogFragment.TAG);
+//			if(fragment != null && fragment.getUserVisibleHint()) {
+//				((ProductDialogFragment) fragment).setOnProductsChangedListener(this);
+//			}
 		}
 	}
 
@@ -305,21 +293,21 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	@Override
 	public void onTripRetrievalError(String error) { }
 
-	@Override
-	public void onProductsChanged(EnumSet<Product> products) {
-		this.products = products;
-		productsAdapter.clear();
-		for(Product product : products) {
-			productsAdapter.add(new ProductItem(product));
-		}
-	}
+//	@Override
+//	public void onProductsChanged(EnumSet<Product> products) {
+//		this.products = products;
+//		productsAdapter.clear();
+//		for(Product product : products) {
+//			productsAdapter.add(new ProductItem(product));
+//		}
+//	}
 
-	private void showProductDialog() {
-		ProductDialogFragment productFragment = ProductDialogFragment.newInstance(products);
-		productFragment.setOnProductsChangedListener(DirectionsFragment.this);
-		FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-		productFragment.show(ft, ProductDialogFragment.TAG);
-	}
+//	private void showProductDialog() {
+//		ProductDialogFragment productFragment = ProductDialogFragment.newInstance(products);
+//		productFragment.setOnProductsChangedListener(DirectionsFragment.this);
+//		FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//		productFragment.show(ft, ProductDialogFragment.TAG);
+//	}
 
 	private void search() {
 		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getActivity()));
@@ -647,8 +635,8 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			fav_trips_separator_star = mView.findViewById(R.id.fav_trips_separator_star);
 		}
 	}
-
-	class ProductItem extends AbstractItem<ProductDialogFragment.ProductItem, ProductItem.ViewHolder> {
+/*
+	class ProductItem { extends AbstractItem<ProductDialogFragment.ProductItem, ProductItem.ViewHolder> {
 		private final Product product;
 
 		ProductItem(Product product) {
@@ -691,6 +679,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 			}
 		}
 	}
-
+*/
 }
 

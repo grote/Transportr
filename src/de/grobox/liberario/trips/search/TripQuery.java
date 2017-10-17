@@ -3,11 +3,13 @@ package de.grobox.liberario.trips.search;
 import android.support.annotation.Nullable;
 
 import java.util.Date;
+import java.util.EnumSet;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.liberario.favorites.trips.FavoriteTripItem;
 import de.grobox.liberario.locations.WrapLocation;
+import de.schildbach.pte.dto.Product;
 
 @ParametersAreNonnullByDefault
 public class TripQuery {
@@ -18,17 +20,19 @@ public class TripQuery {
 	public final WrapLocation to;
 	public final Date date;
 	public final boolean departure;
+	public final EnumSet<Product> products;
 
-	public TripQuery(long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, Date date, boolean departure) {
+	TripQuery(long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, Date date, @Nullable Boolean departure, @Nullable EnumSet<Product> products) {
 		this.uid = uid;
 		this.from = from;
 		this.via = via;
 		this.to = to;
 		this.date = date;
-		this.departure = departure;
+		this.departure = departure == null ? true : departure;
+		this.products = products == null ? EnumSet.allOf(Product.class) : products;
 	}
 
-	public FavoriteTripItem toFavoriteTripItem() {
+	FavoriteTripItem toFavoriteTripItem() {
 		return new FavoriteTripItem(uid, from, via, to);
 	}
 
