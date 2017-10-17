@@ -4,6 +4,7 @@ package de.grobox.liberario.data.locations;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Transformations;
 import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import de.grobox.liberario.AbstractManager;
+import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetworkManager;
 import de.schildbach.pte.NetworkId;
@@ -74,21 +76,11 @@ public class LocationRepository extends AbstractManager {
 		});
 	}
 
-	private LiveData<List<FavoriteLocation>> getFavoriteLocations(NetworkId networkId) {
-		return locationDao.getFavoriteLocations(networkId);
-	}
-
-	@Nullable
-	private FavoriteLocation getFavoriteLocation(NetworkId networkId, @Nullable WrapLocation l) {
-		if (l == null) return null;
-		return locationDao.getFavoriteLocation(networkId, l.type, l.id, l.lat, l.lon, l.place, l.name);
-	}
-
 	public LiveData<List<FavoriteLocation>> getFavoriteLocations() {
 		return locations;
 	}
 
-	public void addFavoriteLocation(WrapLocation wrapLocation, FavoriteLocation.FavLocationType type) {
+	public void addFavoriteLocation(WrapLocation wrapLocation, FavLocationType type) {
 		FavoriteLocation favoriteLocation;
 		if (wrapLocation instanceof FavoriteLocation) {
 			favoriteLocation = (FavoriteLocation) wrapLocation;
@@ -99,8 +91,29 @@ public class LocationRepository extends AbstractManager {
 			// nothing for us to do here
 			return;
 		}
-		// TODO  FOREIGN KEY constraint failed (code 787)
-		runOnBackgroundThread(() -> locationDao.addFavoriteLocation(favoriteLocation));
+		runOnBackgroundThread(() -> {
+			FavoriteLocation locationToStore = favoriteLocation;
+			if (favoriteLocation.getUid() == 0) {
+				FavoriteLocation existingLocation = getFavoriteLocation(networkId.getValue(), wrapLocation);
+				if (existingLocation != null) {
+					locationToStore = existingLocation;
+					locationToStore.add(type);
+				}
+			}
+			locationDao.addFavoriteLocation(locationToStore);
+		});
+	}
+
+	@WorkerThread
+	private LiveData<List<FavoriteLocation>> getFavoriteLocations(NetworkId networkId) {
+		return locationDao.getFavoriteLocations(networkId);
+	}
+
+	@Nullable
+	@WorkerThread
+	private FavoriteLocation getFavoriteLocation(NetworkId networkId, @Nullable WrapLocation l) {
+		if (l == null) return null;
+		return locationDao.getFavoriteLocation(networkId, l.type, l.id, l.lat, l.lon, l.place, l.name);
 	}
 
 }
