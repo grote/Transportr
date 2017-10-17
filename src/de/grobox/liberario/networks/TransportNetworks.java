@@ -460,6 +460,14 @@ public interface TransportNetworks {
 					.setLogo(R.drawable.network_oregon_logo)
 					.setStatus(ALPHA)
 					.build(),
+			new TransportNetworkBuilder()
+					.setId(NetworkId.CALIFORNIA)
+					.setName(R.string.np_name_california)
+					.setDescription(R.string.np_desc_california)
+					.setRegion(Region.USA)
+					.setLogo(R.drawable.network_california_logo)
+					.setStatus(ALPHA)
+					.build(),
 
 			// Australia
 
