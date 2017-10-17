@@ -19,7 +19,7 @@ import java.util.Set;
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
-import de.grobox.liberario.data.locations.FavoriteLocation;
+import de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.liberario.data.locations.LocationRepository;
 import de.grobox.liberario.data.searches.SearchesRepository;
 import de.grobox.liberario.favorites.trips.SavedSearchesViewModel;
@@ -60,6 +60,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	private LiveData<Calendar> calendar = Transformations.switchMap(now, this::getUpdatedCalendar);
 	private MutableLiveData<Calendar> updatedCalendar = new MutableLiveData<>();
 	private MutableLiveData<Boolean> isDeparture = new MutableLiveData<>();
+	private MutableLiveData<Boolean> isExpanded = new MutableLiveData<>();
 
 	private long favTripUid;
 
@@ -69,6 +70,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		now.setValue(true);
 		updatedCalendar.setValue(Calendar.getInstance());
 		isDeparture.setValue(true);
+		isExpanded.setValue(false);
 	}
 
 	LiveData<WrapLocation> getFromLocation() {
@@ -145,12 +147,20 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		search();
 	}
 
+	LiveData<Boolean> getIsExpanded() {
+		return isExpanded;
+	}
+
+	void setIsExpanded(boolean expanded) {
+		isExpanded.setValue(expanded);
+	}
+
 	void setFavTripUid(long favTripUid) {
 		this.favTripUid = favTripUid;
 	}
 
 	@Override
-	public void onLocationItemClick(WrapLocation loc, FavoriteLocation.FavLocationType type) {
+	public void onLocationItemClick(WrapLocation loc, FavLocationType type) {
 		clickLocation(loc, type);
 		if (type == FROM) {
 			setFromLocation(loc);
@@ -163,11 +173,12 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	}
 
 	@Override
-	public void onLocationCleared(FavoriteLocation.FavLocationType type) {
+	public void onLocationCleared(FavLocationType type) {
 		if (type == FROM) {
 			setFromLocation(null);
 		} else if (type == VIA) {
 			setViaLocation(null);
+			search();
 		} else {
 			setToLocation(null);
 		}

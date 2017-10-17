@@ -38,6 +38,7 @@ import static android.view.View.VISIBLE;
 import static android.view.animation.Animation.RELATIVE_TO_SELF;
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.TO;
+import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.VIA;
 import static de.grobox.liberario.utils.DateUtils.getDate;
 import static de.grobox.liberario.utils.DateUtils.getTime;
 import static de.grobox.liberario.utils.DateUtils.isNow;
@@ -50,8 +51,8 @@ public class DirectionsFragment extends TransportrFragment {
 	private View timeIcon;
 	private TextView date, time;
 	private LocationGpsView from;
-	private LocationView to;
-	private CardView fromCard, toCard;
+	private LocationView via, to;
+	private CardView fromCard, viaCard, toCard;
 
 	private DirectionsViewModel viewModel;
 
@@ -67,8 +68,10 @@ public class DirectionsFragment extends TransportrFragment {
 		time = toolbar.findViewById(R.id.time);
 
 		fromCard = v.findViewById(R.id.fromCard);
-		from = v.findViewById(R.id.fromLocation);
+		viaCard = v.findViewById(R.id.viaCard);
 		toCard = v.findViewById(R.id.toCard);
+		from = v.findViewById(R.id.fromLocation);
+		via = v.findViewById(R.id.viaLocation);
 		to = v.findViewById(R.id.toLocation);
 
 		((TransportrActivity) getActivity()).setSupportActionBar(toolbar);
@@ -84,27 +87,32 @@ public class DirectionsFragment extends TransportrFragment {
 		TransportNetwork network = viewModel.getTransportNetwork().getValue();
 		if (network == null) throw new IllegalStateException();
 		from.setTransportNetwork(network);
+		via.setTransportNetwork(network);
 		to.setTransportNetwork(network);
 
 		from.setType(FROM);
+		via.setType(VIA);
 		to.setType(TO);
 
 		viewModel.getHome().observe(this, homeLocation -> {
 			from.setHomeLocation(homeLocation);
+			via.setHomeLocation(homeLocation);
 			to.setHomeLocation(homeLocation);
 		});
 		viewModel.getWork().observe(this, workLocation -> {
 			from.setWorkLocation(workLocation);
+			via.setWorkLocation(workLocation);
 			to.setWorkLocation(workLocation);
 		});
 		viewModel.getLocations().observe(this, favoriteLocations -> {
 			if (favoriteLocations == null) return;
 			from.setFavoriteLocations(favoriteLocations);
+			via.setFavoriteLocations(favoriteLocations);
 			to.setFavoriteLocations(favoriteLocations);
 		});
-		viewModel.getFromLocation().observe(this, this::onFromLocationUpdated);
-		viewModel.getViaLocation().observe(this, this::onViaLocationUpdated);
-		viewModel.getToLocation().observe(this, this::onToLocationUpdated);
+		viewModel.getFromLocation().observe(this, location -> from.setLocation(location));
+		viewModel.getViaLocation().observe(this, location -> via.setLocation(location));
+		viewModel.getToLocation().observe(this, location -> to.setLocation(location));
 		viewModel.getCalendar().observe(this, this::onCalendarUpdated);
 
 		setupClickListeners();
@@ -117,6 +125,7 @@ public class DirectionsFragment extends TransportrFragment {
 		inflater.inflate(R.menu.directions, menu);
 		this.menu = menu;
 		viewModel.getIsDeparture().observe(this, this::onIsDepartureChanged);
+		viewModel.getIsExpanded().observe(this, this::onViaVisibleChanged);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -131,6 +140,9 @@ public class DirectionsFragment extends TransportrFragment {
 				return true;
 			case R.id.action_arrival:
 				viewModel.setIsDeparture(false);
+				return true;
+			case R.id.action_navigation_expand:
+				viewModel.setIsExpanded(!item.isChecked());
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -157,6 +169,7 @@ public class DirectionsFragment extends TransportrFragment {
 		time.setOnLongClickListener(onTimeLongClickListener);
 
 		from.setLocationViewListener(viewModel);
+		via.setLocationViewListener(viewModel);
 		to.setLocationViewListener(viewModel);
 	}
 
@@ -175,36 +188,15 @@ public class DirectionsFragment extends TransportrFragment {
 		}
 	}
 
-	void onFromLocationUpdated(@Nullable WrapLocation location) {
-		from.setLocation(location);
-	}
-
-	void onViaLocationUpdated(@Nullable WrapLocation location) {
-//		via.setLocation(location);
-	}
-
-	void onToLocationUpdated(@Nullable WrapLocation location) {
-		to.setLocation(location);
-	}
-
-	void onIsDepartureChanged(boolean isDeparture) {
-		if (menu == null) throw new IllegalStateException("Menu is null");
-		if (isDeparture) {
-			MenuItem departureItem = menu.findItem(R.id.action_departure);
-			departureItem.setChecked(true);
-		} else {
-			MenuItem arrivalItem = menu.findItem(R.id.action_arrival);
-			arrivalItem.setChecked(true);
-		}
-	}
-
 	private void swapLocations() {
-		Animation slideUp = new TranslateAnimation(RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, fromCard.getY() * -1);
+		float toToY = fromCard.getY() - toCard.getY();
+		Animation slideUp = new TranslateAnimation(RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, toToY);
 		slideUp.setDuration(400);
 		slideUp.setFillAfter(true);
 		slideUp.setFillEnabled(true);
 
-		Animation slideDown = new TranslateAnimation(RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, fromCard.getY());
+		float fromToY = toCard.getY() - fromCard.getY();
+		Animation slideDown = new TranslateAnimation(RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, fromToY);
 		slideDown.setDuration(400);
 		slideDown.setFillAfter(true);
 		slideDown.setFillEnabled(true);
@@ -237,6 +229,24 @@ public class DirectionsFragment extends TransportrFragment {
 				viewModel.search();
 			}
 		});
+	}
+
+	void onIsDepartureChanged(boolean isDeparture) {
+		if (menu == null) throw new IllegalStateException("Menu is null");
+		if (isDeparture) {
+			MenuItem departureItem = menu.findItem(R.id.action_departure);
+			departureItem.setChecked(true);
+		} else {
+			MenuItem arrivalItem = menu.findItem(R.id.action_arrival);
+			arrivalItem.setChecked(true);
+		}
+	}
+
+	void onViaVisibleChanged(boolean viaVisible) {
+		if (menu == null) throw new IllegalStateException("Menu is null");
+		MenuItem viaItem = menu.findItem(R.id.action_navigation_expand);
+		viaItem.setChecked(viaVisible);
+		viaCard.setVisibility(viaVisible ? VISIBLE : GONE);
 	}
 
 }
