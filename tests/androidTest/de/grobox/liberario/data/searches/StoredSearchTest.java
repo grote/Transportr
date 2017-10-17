@@ -17,6 +17,8 @@ import de.schildbach.pte.dto.Location;
 import static de.schildbach.pte.NetworkId.DB;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
@@ -83,6 +85,39 @@ public class StoredSearchTest extends DbTest {
 		assertEquals(madeSearch.fromId, storedSearch.fromId);
 		assertEquals(madeSearch.viaId, storedSearch.viaId);
 		assertEquals(madeSearch.toId, storedSearch.toId);
+	}
+
+	@Test
+	public void getStoredSearch() throws Exception {
+		// no stored searches should exist in empty DB
+		assertNull(dao.getStoredSearch(DB, 0, null, 0));
+
+		// store a new search
+		StoredSearch madeSearch = new StoredSearch(DB, f1, null, f3);
+		long uid1 = dao.storeSearch(madeSearch);
+
+		// assert that search was stored and retrieved properly
+		StoredSearch storedSearch = dao.getStoredSearch(DB, f1.getUid(), null, f3.getUid());
+		assertNotNull(storedSearch);
+		assertEquals(uid1, storedSearch.getUid());
+		assertEquals(DB, storedSearch.getNetworkId());
+		assertEquals(f1.getUid(), storedSearch.fromId);
+		assertEquals(null, storedSearch.viaId);
+		assertEquals(f3.getUid(), storedSearch.toId);
+
+		// store a search with via
+		madeSearch = new StoredSearch(DB, f1, f2, f3);
+		long uid2 = dao.storeSearch(madeSearch);
+
+		// assert that search was stored and retrieved properly
+		storedSearch = dao.getStoredSearch(DB, f1.getUid(), f2.getUid(), f3.getUid());
+		assertNotNull(storedSearch);
+		assertEquals(uid2, storedSearch.getUid());
+		assertEquals(DB, storedSearch.getNetworkId());
+		assertEquals(f1.getUid(), storedSearch.fromId);
+		assertNotNull(storedSearch.viaId);
+		assertEquals(f2.getUid(), (long) storedSearch.viaId);
+		assertEquals(f3.getUid(), storedSearch.toId);
 	}
 
 	@Test

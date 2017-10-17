@@ -18,24 +18,24 @@ public abstract class StoredLocation extends WrapLocation {
 	private final long uid;
 	private NetworkId networkId;
 
-	public StoredLocation(long uid, NetworkId networkId, LocationType type, @Nullable String id, int lat, int lon, @Nullable String place, @Nullable String name, @Nullable Set<Product> products) {
+	StoredLocation(long uid, NetworkId networkId, LocationType type, @Nullable String id, int lat, int lon, @Nullable String place, @Nullable String name, @Nullable Set<Product> products) {
 		super(type, id, lat, lon, place, name, products);
 		this.uid = uid;
 		this.networkId = networkId;
 	}
 
 	@Ignore
-	public StoredLocation(long uid, NetworkId networkId, WrapLocation l) {
+	StoredLocation(long uid, NetworkId networkId, WrapLocation l) {
 		this(uid, networkId, l.type, l.id, l.lat, l.lon, l.place, l.name, l.products);
 	}
 
 	@Ignore
-	public StoredLocation(NetworkId networkId, WrapLocation l) {
+	StoredLocation(NetworkId networkId, WrapLocation l) {
 		this(0, networkId, l);
 	}
 
 	@Ignore
-	public StoredLocation(NetworkId networkId, Location l) {
+	StoredLocation(NetworkId networkId, Location l) {
 		this(0, networkId, l.type, l.id, l.lat, l.lon, l.place, l.name, l.products);
 	}
 

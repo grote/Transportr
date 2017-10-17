@@ -99,6 +99,7 @@ public class LocationRepository extends AbstractManager {
 			// nothing for us to do here
 			return;
 		}
+		// TODO  FOREIGN KEY constraint failed (code 787)
 		runOnBackgroundThread(() -> locationDao.addFavoriteLocation(favoriteLocation));
 	}
 

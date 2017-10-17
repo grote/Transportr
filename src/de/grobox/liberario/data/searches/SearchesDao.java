@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.support.annotation.Nullable;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,10 @@ public interface SearchesDao {
 
 	@Query("SELECT * FROM searches WHERE networkId = :networkId")
 	LiveData<List<StoredSearch>> getStoredSearches(NetworkId networkId);
+
+	@Nullable
+	@Query("SELECT * FROM searches WHERE networkId = :networkId AND from_id = :fromId AND via_id IS :viaId AND to_id = :toId")
+	StoredSearch getStoredSearch(NetworkId networkId, long fromId, @Nullable Long viaId, long toId);
 
 	@Insert(onConflict = REPLACE)
 	long storeSearch(StoredSearch storedSearch);

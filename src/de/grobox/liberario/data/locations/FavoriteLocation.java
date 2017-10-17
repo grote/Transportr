@@ -71,15 +71,15 @@ public class FavoriteLocation extends StoredLocation {
 		return R.drawable.ic_action_star;
 	}
 
-	public int getFromCount() {
+	int getFromCount() {
 		return fromCount;
 	}
 
-	public int getViaCount() {
+	int getViaCount() {
 		return viaCount;
 	}
 
-	public int getToCount() {
+	int getToCount() {
 		return toCount;
 	}
 

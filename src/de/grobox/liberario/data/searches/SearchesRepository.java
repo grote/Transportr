@@ -71,9 +71,14 @@ public class SearchesRepository extends AbstractManager {
 				FavoriteLocation from = getFavoriteLocation(networkId, item.getFrom());
 				FavoriteLocation via = getFavoriteLocation(networkId, item.getVia());
 				FavoriteLocation to = getFavoriteLocation(networkId, item.getTo());
-				if (from == null || to == null) throw new RuntimeException("Start or Destination was null");
+				if (from == null || to == null) throw new RuntimeException("Start or Destination wasn't saved");
 
-				StoredSearch storedSearch = new StoredSearch(networkId, from, via, to);
+				// try to find existing stored search
+				StoredSearch storedSearch = searchesDao.getStoredSearch(networkId, from.getUid(), via == null ? null : via.getUid(), to.getUid());
+				if (storedSearch == null) {
+					// no search was found, so create a new one
+					storedSearch = new StoredSearch(networkId, from, via, to);
+				}
 				searchesDao.storeSearch(storedSearch);
 			}
 		});
