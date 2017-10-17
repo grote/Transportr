@@ -71,12 +71,4 @@
 		<item name="mapbox_uiZoomControls">false</item>
 	</style>
 
-	<style name="MapStyleReadOnly" parent="@style/MapStyle">
-		<item name="mapbox_uiRotateGestures">false</item>
-		<item name="mapbox_uiZoomGestures">false</item>
-		<item name="mapbox_uiScrollGestures">false</item>
-		<item name="mapbox_uiDoubleTapGestures">false</item>
-		<item name="mapbox_myLocation">false</item>
-	</style>
-
 </resources>

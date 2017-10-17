@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
@@ -38,6 +40,17 @@ public class TripDetailActivity extends TransportrActivity {
 					.add(R.id.bottomContainer, new TripDetailFragment(), TripDetailFragment.TAG)
 					.commit();
 		}
+
+		AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
+		CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
+		AppBarLayout.Behavior behavior = new AppBarLayout.Behavior();
+		behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
+			@Override
+			public boolean canDrag(AppBarLayout appBarLayout) {
+				return false;
+			}
+		});
+		params.setBehavior(behavior);
 	}
 
 }
