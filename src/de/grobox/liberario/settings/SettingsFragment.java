@@ -41,7 +41,7 @@ import de.grobox.liberario.utils.TransportrUtils;
 @ParametersAreNonnullByDefault
 public class SettingsFragment extends PreferenceFragmentCompat implements OnSharedPreferenceChangeListener {
 
-	public static final String TAG = "de.grobox.liberario.settings";
+	public static final String TAG = SettingsFragment.class.getSimpleName();
 
 	@Inject TransportNetworkManager manager;
 	private Preference network_pref;
@@ -61,51 +61,46 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 		network_pref = findPreference("pref_key_network");
 		manager.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
 
-		network_pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-			    Intent intent = new Intent(getActivity(), PickTransportNetworkActivity.class);
-				View view = getView();
-				if(view != null) view = view.findFocus();
+		network_pref.setOnPreferenceClickListener(preference -> {
+		    Intent intent = new Intent(getActivity(), PickTransportNetworkActivity.class);
+			View view = getView();
+			if(view != null) view = view.findFocus();
 
-				ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
-				ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
-				return true;
-			}
+			ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
+			ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+			return true;
 		});
 
 		Preference quickhome = findPreference("pref_key_create_quickhome_shortcut");
-		quickhome.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-			public boolean onPreferenceClick(Preference preference) {
-				// create launcher shortcut
-				Intent addIntent = new Intent();
-				addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, TransportrUtils.getShortcutIntent(getContext()));
-				addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.widget_name_quickhome));
-				addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getContext(), R.drawable.ic_quickhome_widget));
-				addIntent.putExtra("duplicate", false);
-				addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-				getContext().sendBroadcast(addIntent);
+		quickhome.setOnPreferenceClickListener(preference -> {
+			// create launcher shortcut
+			Intent addIntent = new Intent();
+			addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, TransportrUtils.getShortcutIntent(getContext()));
+			addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.widget_name_quickhome));
+			addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getContext(), R.drawable.ic_quickhome_widget));
+			addIntent.putExtra("duplicate", false);
+			addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+			getContext().sendBroadcast(addIntent);
 
-				// switch to home-screen to let the user see the new shortcut
-				Intent startMain = new Intent(Intent.ACTION_MAIN);
-				startMain.addCategory(Intent.CATEGORY_HOME);
-				startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(startMain);
+			// switch to home-screen to let the user see the new shortcut
+			Intent startMain = new Intent(Intent.ACTION_MAIN);
+			startMain.addCategory(Intent.CATEGORY_HOME);
+			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(startMain);
 
-				return true;
-			}
+			return true;
 		});
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
+	public void onStart() {
+		super.onStart();
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
-	public void onPause() {
-		super.onPause();
+	public void onStop() {
+		super.onStop();
 		getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
 	}
 

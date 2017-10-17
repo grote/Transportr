@@ -488,7 +488,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 					findNearbyStations();
 					break;
 				case RecentTripsFragment.TAG:
-				case SettingsFragment.TAG:
+//				case SettingsFragment.TAG:
 				case AboutMainFragment.TAG:
 					// these fragments do not have special intent actions, so just switch to them
 					switchFragment(action);

@@ -1,89 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory
-        android:title="@string/pref_transport_network"
-        android:key="pref_key_transport_network">
+	<PreferenceCategory
+		android:key="pref_key_transport_network"
+		android:title="@string/pref_transport_network">
 
-        <Preference
-            android:key="pref_key_network"
-            android:title="@string/network"
-            android:summary="@string/pick_network_activity"
-            />
+		<Preference
+			android:key="pref_key_network"
+			android:summary="@string/pick_network_activity"
+			android:title="@string/network"
+			/>
 
-    </PreferenceCategory>
+	</PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/pref_directions_routing"
-        android:key="pref_key_directions">
+	<PreferenceCategory
+		android:key="pref_key_directions"
+		android:title="@string/pref_directions_routing">
 
-        <ListPreference
-            android:key="pref_key_optimize"
-            android:title="@string/pref_optimize"
-            android:entries="@array/pref_optimize_options"
-            android:entryValues="@array/pref_optimize_values"
-            android:defaultValue="@string/pref_optimize_value_default"
-            android:summary="%s"
-            android:negativeButtonText="@string/cancel"
-            />
+		<ListPreference
+			android:defaultValue="@string/pref_optimize_value_default"
+			android:entries="@array/pref_optimize_options"
+			android:entryValues="@array/pref_optimize_values"
+			android:key="pref_key_optimize"
+			android:negativeButtonText="@string/cancel"
+			android:summary="%s"
+			android:title="@string/pref_optimize"
+			/>
 
-        <ListPreference
-            android:key="pref_key_walk_speed"
-            android:title="@string/pref_walk_speed"
-            android:entries="@array/pref_walk_speed_options"
-            android:entryValues="@array/pref_walk_speed_values"
-            android:defaultValue="@string/pref_walk_speed_value_default"
-            android:summary="%s"
-            android:negativeButtonText="@string/cancel"
-            />
+		<ListPreference
+			android:defaultValue="@string/pref_walk_speed_value_default"
+			android:entries="@array/pref_walk_speed_options"
+			android:entryValues="@array/pref_walk_speed_values"
+			android:key="pref_key_walk_speed"
+			android:negativeButtonText="@string/cancel"
+			android:summary="%s"
+			android:title="@string/pref_walk_speed"
+			/>
 
-    </PreferenceCategory>
+	</PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/pref_display"
-        android:key="pref_key_display">
+	<PreferenceCategory
+		android:key="pref_key_display"
+		android:title="@string/pref_display">
 
-        <ListPreference
-            android:key="pref_key_theme"
-            android:title="@string/pref_theme_title"
-            android:entries="@array/pref_theme_options"
-            android:entryValues="@array/pref_theme_values"
-            android:defaultValue="@string/pref_theme_value_light"
-            android:summary="%s"
-            android:negativeButtonText="@string/cancel"
-            />
+		<ListPreference
+			android:defaultValue="@string/pref_theme_value_light"
+			android:entries="@array/pref_theme_options"
+			android:entryValues="@array/pref_theme_values"
+			android:key="pref_key_theme"
+			android:negativeButtonText="@string/cancel"
+			android:summary="%s"
+			android:title="@string/pref_theme_title"
+			/>
 
-        <ListPreference
-            android:key="pref_key_language"
-            android:title="@string/pref_language_title"
-            android:entries="@array/pref_language_options"
-            android:entryValues="@array/pref_language_values"
-            android:defaultValue="@string/pref_language_value_default"
-            android:summary="%s"
-            android:negativeButtonText="@string/cancel"
-            />
+		<ListPreference
+			android:defaultValue="@string/pref_language_value_default"
+			android:entries="@array/pref_language_options"
+			android:entryValues="@array/pref_language_values"
+			android:key="pref_key_language"
+			android:negativeButtonText="@string/cancel"
+			android:summary="%s"
+			android:title="@string/pref_language_title"
+			/>
 
-        <CheckBoxPreference
-            android:key="pref_key_exit_app_on_back_press"
-            android:title="@string/pref_exit_app_on_back_press"
-            android:summary="@string/pref_exit_app_on_back_press_summary"
-            android:defaultValue="false"
-            />
+		<Preference
+			android:key="pref_key_create_quickhome_shortcut"
+			android:summary="@string/create_quickhome_shortcut"
+			android:title="@string/pref_quickhome"
+			/>
 
-        <CheckBoxPreference
-            android:key="pref_key_hide_departure_time"
-            android:title="@string/pref_hide_departure_time"
-            android:summary="@string/pref_hide_departure_time_summary"
-            android:defaultValue="false"
-            />
-
-        <Preference
-            android:key="pref_key_create_quickhome_shortcut"
-            android:title="@string/pref_quickhome"
-            android:summary="@string/create_quickhome_shortcut"
-            />
-
-    </PreferenceCategory>
+	</PreferenceCategory>
 
 </PreferenceScreen>

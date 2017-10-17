@@ -3,28 +3,38 @@ package de.grobox.liberario.settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
+import de.grobox.liberario.R;
 import de.schildbach.pte.NetworkId;
+import de.schildbach.pte.NetworkProvider.Optimize;
+import de.schildbach.pte.NetworkProvider.WalkSpeed;
 
 @ParametersAreNonnullByDefault
 public class SettingsManager {
 
 	private final static String PREFS = "LiberarioPrefs";
+
 	private final static String NETWORK_ID_1 = "NetworkId";
 	private final static String NETWORK_ID_2 = "NetworkId2";
 	private final static String NETWORK_ID_3 = "NetworkId3";
 
+	private final static String WALK_SPEED = "pref_key_walk_speed";
+	private final static String OPTIMIZE = "pref_key_optimize";
+
 	private final Context context;
 	private final SharedPreferences sharedPreferences;
+	private final SharedPreferences settings;
 
 	@Inject
 	public SettingsManager(Context context) {
 		this.context = context;
 		this.sharedPreferences = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+		this.settings = PreferenceManager.getDefaultSharedPreferences(context);
 	}
 
 	@Nullable
@@ -58,6 +68,24 @@ public class SettingsManager {
 		editor.putString(NETWORK_ID_2, networkId1);
 		editor.putString(NETWORK_ID_1, newNetworkId.name());
 		editor.apply();
+	}
+
+	public WalkSpeed getWalkSpeed() {
+		try {
+			return WalkSpeed.valueOf(settings.getString(WALK_SPEED, context.getString(R.string.pref_walk_speed_value_default)));
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			return WalkSpeed.NORMAL;
+		}
+	}
+
+	public Optimize getOptimize() {
+		try {
+			return Optimize.valueOf(settings.getString(OPTIMIZE, context.getString(R.string.pref_optimize_value_default)));
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			return Optimize.LEAST_DURATION;
+		}
 	}
 
 }

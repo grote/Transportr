@@ -28,8 +28,10 @@ import de.grobox.liberario.locations.LocationView.LocationViewListener;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
+import de.grobox.liberario.settings.SettingsManager;
 import de.grobox.liberario.utils.SingleLiveEvent;
 import de.schildbach.pte.NetworkProvider;
+import de.schildbach.pte.NetworkProvider.Optimize;
 import de.schildbach.pte.NetworkProvider.WalkSpeed;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.QueryTripsContext;
@@ -45,6 +47,8 @@ import static de.schildbach.pte.dto.QueryTripsResult.Status.OK;
 public class DirectionsViewModel extends SavedSearchesViewModel implements TimeDateListener, LocationViewListener {
 
 	private final static String TAG = DirectionsViewModel.class.getSimpleName();
+
+	private final SettingsManager settingsManager;
 
 	private final MutableLiveData<WrapLocation> fromLocation = new MutableLiveData<>();
 	private final MutableLiveData<WrapLocation> viaLocation = new MutableLiveData<>();
@@ -66,8 +70,9 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	private long favTripUid;
 
 	@Inject
-	DirectionsViewModel(TransportNetworkManager transportNetworkManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
+	DirectionsViewModel(TransportNetworkManager transportNetworkManager, SettingsManager settingsManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
 		super(transportNetworkManager, locationRepository, searchesRepository);
+		this.settingsManager = settingsManager;
 		now.setValue(true);
 		updatedCalendar.setValue(Calendar.getInstance());
 		products.setValue(EnumSet.allOf(Product.class));
@@ -257,18 +262,17 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		TransportNetwork network = getTransportNetwork().getValue();
 		if (network == null) throw new IllegalStateException("No transport network set");
 
-		// TODO expose via TransportNetworkManager or SettingsManager
-		NetworkProvider.Optimize optimize = null; // TransportrUtils.getOptimize(getContext());
-		WalkSpeed walkSpeed = null; // TransportrUtils.getWalkSpeed(getContext());
+		Optimize optimize = settingsManager.getOptimize();
+		WalkSpeed walkSpeed = settingsManager.getWalkSpeed();
 
-		Log.i(TAG, "From: " + query.from.getLocation());
-		Log.i(TAG, "Via: " + (query.via == null ? "null" : query.via.getLocation()));
-		Log.i(TAG, "To: " + query.to.getLocation());
-		Log.i(TAG, "Date: " + query.date);
-		Log.i(TAG, "Departure: " + query.departure);
-		Log.i(TAG, "Products: " + query.products);
-//		Log.i(TAG, "Optimize for: " + optimize);
-//		Log.i(TAG, "Walk Speed: " + walkSpeed);
+		Log.d(TAG, "From: " + query.from.getLocation());
+		Log.d(TAG, "Via: " + (query.via == null ? "null" : query.via.getLocation()));
+		Log.d(TAG, "To: " + query.to.getLocation());
+		Log.d(TAG, "Date: " + query.date);
+		Log.d(TAG, "Departure: " + query.departure);
+		Log.d(TAG, "Products: " + query.products);
+		Log.d(TAG, "Optimize for: " + optimize);
+		Log.d(TAG, "Walk Speed: " + walkSpeed);
 
 		NetworkProvider np = network.getNetworkProvider();
 		return np.queryTrips(query.from.getLocation(), query.via == null ? null : query.via.getLocation(), query.to.getLocation(),
