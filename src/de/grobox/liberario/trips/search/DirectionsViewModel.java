@@ -194,7 +194,6 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 
 		// store/count search
 		TripQuery tripQuery = new TripQuery(favTripUid, fromLocation.getValue(), viaLocation.getValue(), toLocation.getValue(), calendar.getTime(), departure);
-		searchesRepository.storeSearch(tripQuery.toFavoriteTripItem());
 
 		// reset current data
 		clearState();
@@ -213,6 +212,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 			protected void onPostExecute(QueryTripsResult queryTripsResult) {
 				if (queryTripsResult == null) return;
 				if (queryTripsResult.status == OK && queryTripsResult.trips.size() > 0) {
+					searchesRepository.storeSearch(tripQuery.toFavoriteTripItem());
 					onQueryTripsResultReceived(queryTripsResult);
 				} else {
 					queryError.setValue(queryTripsResult.status.name());
