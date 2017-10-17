@@ -3,6 +3,7 @@ package de.grobox.liberario.trips.search;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
@@ -23,7 +24,7 @@ import de.grobox.liberario.data.locations.LocationRepository;
 import de.grobox.liberario.data.searches.SearchesRepository;
 import de.grobox.liberario.favorites.trips.SavedSearchesViewModel;
 import de.grobox.liberario.fragments.TimeDateFragment.TimeDateListener;
-import de.grobox.liberario.locations.LocationView;
+import de.grobox.liberario.locations.LocationView.LocationViewListener;
 import de.grobox.liberario.locations.WrapLocation;
 import de.grobox.liberario.networks.TransportNetwork;
 import de.grobox.liberario.networks.TransportNetworkManager;
@@ -37,10 +38,11 @@ import de.schildbach.pte.dto.Trip;
 
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.liberario.data.locations.FavoriteLocation.FavLocationType.VIA;
+import static de.grobox.liberario.utils.DateUtils.isNow;
 import static de.schildbach.pte.dto.QueryTripsResult.Status.OK;
 
 @ParametersAreNonnullByDefault
-public class DirectionsViewModel extends SavedSearchesViewModel implements TimeDateListener, LocationView.LocationViewListener {
+public class DirectionsViewModel extends SavedSearchesViewModel implements TimeDateListener, LocationViewListener {
 
 	private final static String TAG = DirectionsViewModel.class.getSimpleName();
 
@@ -54,13 +56,16 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	private final SingleLiveEvent<String> queryMoreError = new SingleLiveEvent<>();
 	private @Nullable volatile QueryTripsContext queryTripsContext;
 
-	private MutableLiveData<Calendar> calendar = new MutableLiveData<>();
+	private MutableLiveData<Boolean> now = new MutableLiveData<>();
+	private LiveData<Calendar> calendar = Transformations.switchMap(now, this::getUpdatedCalendar);
+	private MutableLiveData<Calendar> updatedCalendar = new MutableLiveData<>();
 	private long favTripUid;
 
 	@Inject
 	DirectionsViewModel(TransportNetworkManager transportNetworkManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
 		super(transportNetworkManager, locationRepository, searchesRepository);
-		calendar.setValue(Calendar.getInstance());
+		now.setValue(true);
+		updatedCalendar.setValue(Calendar.getInstance());
 	}
 
 	LiveData<WrapLocation> getFromLocation() {
@@ -91,6 +96,13 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		return showTrips;
 	}
 
+	private LiveData<Calendar> getUpdatedCalendar(boolean now) {
+		if (now) {
+			updatedCalendar.setValue(Calendar.getInstance());
+		}
+		return updatedCalendar;
+	}
+
 	LiveData<Calendar> getCalendar() {
 		return calendar;
 	}
@@ -98,7 +110,27 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	void setDate(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		this.calendar.setValue(calendar);
+		setCalendar(calendar);
+	}
+
+	@Override
+	public void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday) {
+		setCalendar(calendar);
+		search();
+	}
+
+	void resetCalender() {
+		now.setValue(true);
+		search();
+	}
+
+	private void setCalendar(Calendar calendar) {
+		updatedCalendar.setValue(calendar);
+		if (isNow(calendar)) {
+			now.setValue(true);
+		} else {
+			now.setValue(false);
+		}
 	}
 
 	void setFavTripUid(long favTripUid) {
@@ -129,17 +161,6 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		}
 	}
 
-	@Override
-	public void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday) {
-		this.calendar.setValue(calendar);
-		search();
-	}
-
-	void resetCalender() {
-		calendar.setValue(Calendar.getInstance());
-		search();
-	}
-
 	/* Trip Queries */
 
 	LiveData<Set<Trip>> getTrips() {
@@ -157,8 +178,14 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	@SuppressLint("StaticFieldLeak")
 	void search() {
 		if (fromLocation.getValue() == null || toLocation.getValue() == null) return;
-		Calendar calendar = getCalendar().getValue();
-		if (calendar == null) return;
+
+		Calendar calendar;
+		if (now.getValue() != null && now.getValue()) {
+			calendar = Calendar.getInstance();
+		} else {
+			calendar = getCalendar().getValue();
+			if (calendar == null) return;
+		}
 
 		showTrips.call();
 
