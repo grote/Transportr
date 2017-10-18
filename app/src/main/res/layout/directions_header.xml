@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/cardView"
+    style="@style/Card"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:focusableInTouchMode="true"
+    tools:showIn="@layout/fragment_directions">
+
+    <requestFocus/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <de.grobox.transportr.locations.LocationGpsView
+            android:id="@+id/fromLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:favLocation="true"
+            app:hint="@string/from"
+            app:homeLocation="true"/>
+
+        <de.grobox.transportr.locations.LocationView
+            android:id="@+id/viaLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fromLocation"
+            app:favLocation="true"
+            app:hint="@string/via"
+            app:homeLocation="true"/>
+
+        <de.grobox.transportr.locations.LocationView
+            android:id="@+id/toLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viaLocation"
+            app:favLocation="true"
+            app:hint="@string/to"
+            app:homeLocation="true"/>
+
+        <LinearLayout
+            android:id="@+id/dateLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toLocation"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/dateType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:minWidth="52dp"
+                android:text="@string/trip_dep"
+                />
+
+            <de.grobox.transportr.ui.TimeAndDateView
+                android:id="@+id/dateView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/productsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dateLine"
+            android:layout_margin="4dp"
+            android:background="@drawable/products_border"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/item_product"/>
+
+        <Button
+            android:id="@+id/searchButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/productsList"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="@string/search"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

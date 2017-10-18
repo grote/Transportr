@@ -1,257 +1,31 @@
-allprojects {
-	repositories {
-		jcenter()
-		maven {
-			url "https://maven.google.com"
-		}
-	}
-}
-
 buildscript {
+
+	ext.kotlinVersion = '1.1.51'
+	ext.daggerVersion = '2.11'
+	ext.supportVersion = '26.1.0'
+	ext.archVersion = '1.0.0-beta2'
+	ext.espressoVersion = '3.0.1'
+
 	repositories {
+		google()
 		jcenter()
-		maven {
-			url "https://maven.google.com"
-		}
 	}
+
 	dependencies {
 		classpath 'com.android.tools.build:gradle:3.0.0-rc1'
-		classpath files('libs/gradle-witness.jar')
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+		classpath files('app/libs/gradle-witness.jar')
+	}
+
+}
+
+allprojects {
+	repositories {
+		google()
+		jcenter()
 	}
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'witness'
-
-dependencies {
-	def supportVersion = '26.1.0'
-	compile "com.android.support:appcompat-v7:$supportVersion"
-	compile "com.android.support:design:$supportVersion"
-	compile "com.android.support:cardview-v7:$supportVersion"
-	compile "com.android.support:recyclerview-v7:$supportVersion"
-	compile "com.android.support:preference-v14:$supportVersion"
-	compile 'com.android.support.constraint:constraint-layout:1.0.2'
-
-	def archVersion = '1.0.0-beta2'
-	compile "android.arch.lifecycle:extensions:$archVersion"
-	compile "android.arch.persistence.room:runtime:$archVersion"
-	compile "android.arch.lifecycle:common-java8:$archVersion"
-	annotationProcessor "android.arch.persistence.room:compiler:$archVersion"
-
-	compile 'com.github.omadahealth:swipy:1.2.3'
-	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
-	compile 'org.apmem.tools:layouts:1.10' // https://android-developers.googleblog.com/2017/02/build-flexible-layouts-with.html
-	compile 'com.mikepenz:materialdrawer:5.9.5'
-	compile 'com.mikepenz:aboutlibraries:5.9.7'
-	compile 'com.mikepenz:fastadapter-commons:2.6.3@aar'
-	compile 'org.osmdroid:osmdroid-android:5.6.1'
-	compile 'uk.co.samuelwall:material-tap-target-prompt:2.1.0'
-	compile ('com.mapbox.mapboxsdk:mapbox-android-sdk:5.1.4@aar') {
-		transitive = true
-	}
-	compile 'com.google.dagger:dagger:2.11'
-	annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
-
-	compile(project(':sublibs:public-transport-enabler:enabler')) {
-		exclude group: 'org.json' // provided by Android
-		exclude group: 'net.sf.kxml' // provided by Android
-		exclude group: 'junit'
-	}
-	debugCompile 'org.slf4j:slf4j-api:1.7.25'
-	debugCompile 'com.github.tony19:logback-android-core:1.1.1-6'
-	debugCompile('com.github.tony19:logback-android-classic:1.1.1-6') {
-		exclude group: 'com.google.android', module: 'android'
-	}
-
-	// LeakCanary
-	def canaryVersion = '1.5'
-	androidTestCompile "com.squareup.leakcanary:leakcanary-android-no-op:$canaryVersion"
-	debugCompile "com.squareup.leakcanary:leakcanary-android:$canaryVersion"
-	releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$canaryVersion"
-	testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$canaryVersion"
-
-	def espressoVersion = '3.0.1'
-	androidTestCompile ("com.android.support.test.espresso:espresso-core:$espressoVersion") {
-		exclude group: 'com.android.support', module: 'support-annotations'
-		exclude group: 'com.google.code.findbugs'
-	}
-	androidTestCompile ("com.android.support.test.espresso:espresso-contrib:$espressoVersion") {
-		exclude group: 'com.android.support', module: 'support-annotations'
-		exclude group: 'com.android.support', module: 'support-v4'
-		exclude group: 'com.android.support', module: 'design'
-		exclude group: 'com.android.support', module: 'recyclerview-v7'
-		exclude group: 'com.google.code.findbugs'
-	}
-	androidTestCompile ('tools.fastlane:screengrab:1.0.0') {
-		exclude group: 'com.android.support', module: 'support-annotations'
-		exclude group: 'com.google.code.findbugs'
-	}
-}
-
-dependencyVerification {
-	verify = [
-			'com.android.support:preference-v14:f340c88589184fd53ad46aebbba1ae5b88b5919f92ed085bf0f687a58d0e0e17',
-			'com.github.omadahealth:swipy:63bff6e181742e3e243c29b595062ca65b4274bf7033c65460924f64f65c01e0',
-			'com.mikepenz:materialdrawer:f7b380cd85ae55bcd3111855bd9104ba86b5c1160e8a31ae89fe1725c5f3c587',
-			'com.mikepenz:aboutlibraries:f724205fa6382deba3080918fecf9d946a8819d6aa14f0a6347bcc170ed234ea',
-			'com.android.support:preference-v7:42672e51c06c6e26a40798d3379ede97ee42076c84592d670c4e5c96630c50f1',
-			'com.mapbox.mapboxsdk:mapbox-android-sdk:e9171795125faacf7d4a5c6643b902622798ecf49b157d5bfa7d5f46c4f8b7ed',
-			'com.mapzen.android:lost:6e2a7bfb1627587cf17e7788fc16eb2a293f1fb03c1cd9715da4cf5c9d33fefe',
-			'com.mapbox.mapboxsdk:mapbox-android-telemetry:bb912ad3d55af402b0cac5e7874c07296bea860675843998a3902400f20435d8',
-			'com.android.support:design:76f5fbb365bf2d622af5df8a4205904409250305685e38670bf654ac90c2494d',
-			'com.android.support:appcompat-v7:9d44e7bf343dfd19a55e3e6f4c4e733b68d32509e0b0af5b32f2981f4f1dedd8',
-			'com.android.support:cardview-v7:7ea56ed5560b629ee1c0f24af6693e32974fbc8b91b544052cd2c14b176c85e0',
-			'com.android.support:recyclerview-v7:389cb47a7dabca4fb8c23657ff7c85ebc651428580d3a5ea0349eeb43ddea94b',
-			'com.android.support.constraint:constraint-layout:b0c688cc2b7172608f8153a689d746da40f71e52d7e2fe2bfd9df2f92db77085',
-			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
-			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
-			'com.mikepenz:fastadapter-commons:7125dadccf3c80783fc5d7c6753f91f0284888e651f8a48fc4802466780e3e4c',
-			'org.osmdroid:osmdroid-android:e64a97b8302a50bedf6c4c6ff024291008f72103b17a728801132ebdce0492ed',
-			'uk.co.samuelwall:material-tap-target-prompt:6df17e7c371f9264bfe440506f91205dd47566869c1528891943a04a26c96a94',
-			'com.google.dagger:dagger:1e9fe8a7ba7ca663449cda3e4f973511aa4593dbecd93ef3eb2476ef98082f08',
-			'com.android.support:animated-vector-drawable:d5905aee3c8a4ac75e069a73b914c0a41b9b36b0e6b04126719fca22659d3cc8',
-			'com.android.support:support-vector-drawable:1151b7f0ea29c9a9a8fee042a1dbe82f196632d801c438d08b279e131c767118',
-			'com.android.support:transition:c5d3d1204997f80af1f4a3a315a54b1a23543c554963cef831da726aac34b56f',
-			'com.android.support:support-v4:36d8385de1be7791231acb933b757198f97cb53bc7d046e8c4bc403d214caaca',
-			'com.android.support:support-fragment:a0ab3369ef40fe199160692f0463a5f63f1277ebfb64dd587c76fdb128d76b32',
-			'com.android.support:support-core-ui:82f538051599335ea881ec264407547cab52be750f16ce099cfb27754fc755ff',
-			'com.android.support:support-media-compat:9d8cee7cd40eff22ebdeb90c8e70f5ee96c5bd25cb2c3e3b3940e27285a3e98a',
-			'com.android.support:support-core-utils:4fda6d4eb430971e3b1dad7456988333f374b0f4ba15f99839ca1a0ab5155c8a',
-			'com.android.support:support-compat:7d6da01cf9766b1705c6c80cfc12274a895b406c4c287900b07a56145ca6c030',
-			'com.android.support:support-annotations:99d6199ad5a09a0e5e8a49a4cc08f818483ddcfd7eedea2f9923412daf982309',
-			'com.android.support.constraint:constraint-layout-solver:8c62525a9bc5cff5633a96cb9b32fffeccaf41b8841aa87fc22607070dea9b8d',
-			'com.mikepenz:materialize:f215825cf9215af4c2807e3df25228b87d7b8f28fc8ccf122c9c5a93dfa13b8a',
-			'com.mikepenz:iconics-core:998967c7e422c87bac3436d889912c07735ce814e88aa250ca2d018ba046b7c1',
-			'com.mikepenz:fastadapter:abd501599a7fd983127791cff50cf1595d360eba95a336479bce37e7953ca560',
-			'com.jakewharton.timber:timber:d553d3d3e883ce7d061f1b21b95d6ee0840f3bfbf6d3bd51c5671f0b0f0b0091',
-			'com.squareup.okhttp3:logging-interceptor:1e84fce63c46ce41fb7f8ca65d5b67ffe61aa0350e964288e66391fda7399ff8',
-			'com.squareup.okhttp3:okhttp:c1d57f913f74f61d424d4250a92723ba9a61affc12a0ab194d84cc179b472841',
-			'com.mapbox.mapboxsdk:mapbox-java-geojson:fe643e894295dcf62bd952ad6e58aa5d28c2db40091544922125d7336e9d5f35',
-			'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
-			'com.google.guava:guava:c8cea78328d2c50a3be2d4548f6fbc723516b5438251f5803008778f3ff5a3ed',
-			'org.slf4j:slf4j-api:18c4a0095d5c1da6b817592e767bb23d29dd2f560ad74df75ff3961dbde25b79',
-			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
-			'com.mapbox.mapboxsdk:mapbox-java-core:99cc79e1f681658cdf907541e034884b62dbad042b45d619a8b5360ca956b573',
-			'com.google.code.gson:gson:c6221763bd79c4f1c3dc7f750b5f29a0bb38b367b81314c4f71896e340c40825',
-			'com.google.errorprone:error_prone_annotations:cb4cfad870bf563a07199f3ebea5763f0dec440fcda0b318640b1feaa788656b',
-			'org.codehaus.mojo:animal-sniffer-annotations:2068320bd6bad744c3673ab048f67e30bef8f518996fa380033556600669905d',
-			'android.arch.lifecycle:runtime:e4e34e5d02bd102e8d39ddbc29f9ead8a15a61e367993d02238196ac48509ad8',
-			'android.arch.core:runtime:e170b5c29bedec5a75e2b726bce62e0ea08a713d8a5a7aaed16f570d8c4ee721',
-			'android.arch.core:common:5192934cd73df32e2c15722ed7fc488dde90baaec9ae030010dd1a80fb4e74e1',
-			'android.arch.persistence.room:common:361fd6e2a7d52fcbcb08f5489342b0ed7e0ce1dfcaf5c4db237ae6861487bdcc',
-			'android.arch.persistence:db-framework:a48db6798516c6c587d1ebf2d4f09c40965b10e9019c6e179ce924f3408eb9e5',
-			'android.arch.persistence:db:e42736d96ba0248062dba8608449158023dbeb99580cf41dd2f11c9a6cec9996',
-			'android.arch.lifecycle:common:0390ab9ed44d2bf2c368542d714986cfcf19faec0ad7ccbe0f25c2f86f7aac77',
-			'com.squareup.okio:okio:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
-	]
-}
-
-android {
-	defaultConfig {
-		versionCode 48
-		versionName "2.0.0-preview1"
-
-		compileSdkVersion 26
-		targetSdkVersion 26
-		buildToolsVersion "26.0.2"
-		minSdkVersion 15
-
-		vectorDrawables.useSupportLibrary = true
-		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-		javaCompileOptions {
-			annotationProcessorOptions {
-				arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-			}
-		}
-	}
-
-	buildTypes {
-		release {
-			resValue "string", "app_name", "Transportr"
-			shrinkResources true
-			minifyEnabled true
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-		}
-
-		debug {
-			applicationIdSuffix ".debug"
-			versionNameSuffix "-debug"
-			resValue "string", "app_name", "Transportr Devel"
-//			shrinkResources true
-//			minifyEnabled true
-			shrinkResources false
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-			testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt', 'proguard-test.txt'
-		}
-	}
-
-	compileOptions {
-		targetCompatibility 1.8
-		sourceCompatibility 1.8
-	}
-
-	dexOptions {
-		preDexLibraries !project.hasProperty('buildServer')
-		javaMaxHeapSize "1g"
-	}
-
-	sourceSets {
-		main {
-			manifest.srcFile 'AndroidManifest.xml'
-			java.srcDirs = ['src']
-			resources.srcDirs = ['src']
-			aidl.srcDirs = ['src']
-			renderscript.srcDirs = ['src']
-			res.srcDirs = ['res']
-			assets.srcDirs = ['assets']
-		}
-		debug {
-			manifest.srcFile 'tests/androidTest/AndroidManifest.xml'
-		}
-		test {
-			java.srcDirs = ['tests/test']
-			resources.srcDirs = ['tests/test']
-		}
-		androidTest {
-			java.srcDirs = ['tests/androidTest']
-			resources.srcDirs = ['tests/androidTest']
-			manifest.srcFile 'tests/androidTest/AndroidManifest.xml'
-			assets.srcDirs += files("$projectDir/schemas".toString())
-		}
-	}
-
-	/*
-	* To sign release build, create file gradle.properties in ~/.gradle/ with this content:
-	*
-	* signingStoreLocation=/home/key.store
-	* signingStorePassword=xxx
-	* signingKeyAlias=alias
-	* signingKeyPassword=xxx
-	*/
-	if (project.hasProperty('signingStoreLocation') &&
-			project.hasProperty('signingStorePassword') &&
-			project.hasProperty('signingKeyAlias') &&
-			project.hasProperty('signingKeyPassword')) {
-		println "Found sign properties in gradle.properties! Signing build…"
-
-		signingConfigs {
-			release {
-				storeFile file(signingStoreLocation)
-				storePassword signingStorePassword
-				keyAlias signingKeyAlias
-				keyPassword signingKeyPassword
-			}
-		}
-
-		buildTypes.release.signingConfig = signingConfigs.release
-		buildTypes.debug.signingConfig = signingConfigs.release
-	} else {
-		buildTypes.release.signingConfig = null
-	}
-
-	lintOptions {
-		checkReleaseBuilds false
-		disable 'MissingTranslation', 'InvalidPackage', 'VectorDrawableCompat'
-	}
+task clean(type: Delete) {
+	delete rootProject.buildDir
 }

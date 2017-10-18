@@ -17,28 +17,28 @@ If you find any issues with this app, please report them at [the issue tracker](
 
 The upstream repository is at: https://github.com/grote/Transportr
 
-[![Follow @TransportrApp](art/twitter.png)](https://twitter.com/TransportrApp)
-[![Flattr me](art/flattr.png)](https://flattr.com/thing/1921242)
+[![Follow @TransportrApp](artwork/twitter.png)](https://twitter.com/TransportrApp)
+[![Flattr me](artwork/flattr.png)](https://flattr.com/thing/1921242)
 
 Get Transportr
 --------------
 
-[![Available on F-Droid](/art/f-droid.png)](https://f-droid.org/repository/browse/?fdid=de.grobox.liberario)
-[![Available on Google Play](/art/google-play.png)](https://play.google.com/store/apps/details?id=de.grobox.liberario)
+[![Available on F-Droid](/artwork/f-droid.png)](https://f-droid.org/repository/browse/?fdid=de.grobox.liberario)
+[![Available on Google Play](/artwork/google-play.png)](https://play.google.com/store/apps/details?id=de.grobox.liberario)
 
 Pre-releases and beta versions for advanced users are available via [a special F-Droid repository](http://grobox.de/fdroid/).
 
 Screenshots
 -----------
-[<img src="art/screenshots/drawer.png" width="200">](art/screenshots/drawer.png)
-[<img src="art/screenshots/directions.png" width="200">](art/screenshots/directions.png)
-[<img src="art/screenshots/trips.png" width="200">](art/screenshots/trips.png)
-[<img src="art/screenshots/trip_details.png" width="200">](art/screenshots/trip_details.png)
-[<img src="art/screenshots/favorite_trips.png" width="200">](art/screenshots/favorite_trips.png)
-[<img src="art/screenshots/departures.png" width="200">](art/screenshots/departures.png)
-[<img src="art/screenshots/nearby_stations.png" width="200">](art/screenshots/nearby_stations.png)
-[<img src="art/screenshots/nearby_stations_map.png" width="200">](art/screenshots/nearby_stations_map.png)
-[<img src="art/screenshots/about.png" width="200">](art/screenshots/about.png)
+[<img src="art/screenshots/drawer.png" width="200">](artwork/screenshots/drawer.png)
+[<img src="art/screenshots/directions.png" width="200">](artwork/screenshots/directions.png)
+[<img src="art/screenshots/trips.png" width="200">](artwork/screenshots/trips.png)
+[<img src="art/screenshots/trip_details.png" width="200">](artwork/screenshots/trip_details.png)
+[<img src="art/screenshots/favorite_trips.png" width="200">](artwork/screenshots/favorite_trips.png)
+[<img src="art/screenshots/departures.png" width="200">](artwork/screenshots/departures.png)
+[<img src="art/screenshots/nearby_stations.png" width="200">](artwork/screenshots/nearby_stations.png)
+[<img src="art/screenshots/nearby_stations_map.png" width="200">](artwork/screenshots/nearby_stations_map.png)
+[<img src="art/screenshots/about.png" width="200">](artwork/screenshots/about.png)
 
 
 Building From Source

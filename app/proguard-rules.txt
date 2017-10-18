@@ -1,0 +1,41 @@
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-dontobfuscate
+-verbose
+-useuniqueclassmembernames
+
+-dontnote android.net.http.**
+-dontnote org.apache.http.**
+-dontnote com.google.vending.licensing.**
+-dontnote com.android.vending.licensing.**
+
+-dontnote com.google.common.**
+-dontwarn com.google.common.**
+-dontwarn com.google.errorprone.annotations.**
+-dontnote android.support.v4.**
+-dontnote android.support.v7.**
+-dontnote android.support.design.widget.**
+
+-dontwarn java.nio.file.**
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontnote com.android.org.conscrypt.SSLParametersImpl
+-dontnote org.apache.harmony.xnet.provider.jsse.SSLParametersImpl
+-dontnote sun.security.ssl.SSLContextImpl
+
+-dontnote com.mikepenz.fastadapter.items.**
+-dontnote com.mikepenz.iconics.**
+-dontnote com.mikepenz.materialize.view.**
+
+-dontnote com.omadahealth.github.swipyrefreshlayout.library.**
+-dontwarn org.slf4j.**
+-keep class ch.qos.logback.classic.android.LogcatAppender
+-dontwarn ch.qos.logback.core.net.**
+-dontnote ch.qos.logback.core.rolling.helper.FileStoreUtil
+
+-keep class de.schildbach.pte.dto.**
+-dontwarn de.schildbach.pte.**
+
+-keep class de.grobox.transportr.**
+-dontwarn de.grobox.transportr.data.**
+-dontnote de.grobox.transportr.ui.**
