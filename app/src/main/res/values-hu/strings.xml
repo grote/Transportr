@@ -15,9 +15,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="drawer_settings">Beállítások</string>
   <string name="action_fav_trip">Megjelölés kedvencként</string>
   <string name="action_unfav_trip">Eltávolítás a kedvencek közül</string>
-  <string name="action_switch_locations">Kiinduló- és célpont felcserélése</string>
   <string name="action_refresh">Frissítés</string>
-  <string name="action_navigation_expand">Több mutatása</string>
   <string name="action_location_map">Állomások megjelenítése a térképen</string>
   <string name="action_use_gps">GPS bekapcsolása</string>
   <string name="action_share">Megosztás</string>
@@ -49,8 +47,6 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
 ]]>
 </string>
   <string name="visit_website">Honlap megtekintése</string>
-  <string name="trip_dep">ind</string>
-  <string name="trip_arr">érk</string>
   <string name="trip_removed">Eltávolított útvonal</string>
   <string name="from">Kiindulási pont</string>
   <string name="to">Célpont</string>

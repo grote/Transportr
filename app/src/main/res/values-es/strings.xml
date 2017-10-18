@@ -16,9 +16,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="drawer_settings">Ajustes</string>
   <string name="action_fav_trip">Marcar viaje como favorito</string>
   <string name="action_unfav_trip">Desmarcar viaje como favorito</string>
-  <string name="action_switch_locations">Intercambiar origen y destino</string>
   <string name="action_refresh">Actualizar</string>
-  <string name="action_navigation_expand">Mostrar más</string>
   <string name="action_location_map">Mostrar estaciones en el mapa</string>
   <string name="action_use_gps">Activar GPS</string>
   <string name="action_share">Compartir</string>
@@ -50,8 +48,6 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
 ]]>
 </string>
   <string name="visit_website">Visitar sitio web</string>
-  <string name="trip_dep">sal</string>
-  <string name="trip_arr">lle</string>
   <string name="trip_removed">Viaje eliminado</string>
   <string name="from">De</string>
   <string name="to">A</string>

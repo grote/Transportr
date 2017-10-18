@@ -9,9 +9,7 @@
   <string name="drawer_settings">Nastavení</string>
   <string name="action_fav_trip">Označit cestu jako oblíbenou</string>
   <string name="action_unfav_trip">Neoznačit cestu jako oblíbený</string>
-  <string name="action_switch_locations">Výměna z a do umístění</string>
   <string name="action_refresh">Obnovit</string>
-  <string name="action_navigation_expand">Zobrazit více</string>
   <string name="action_location_map">Zobrazit stanice na mapě</string>
   <string name="action_use_gps">Zapnout GPS</string>
   <string name="action_share">Sdílet</string>
@@ -36,8 +34,6 @@
 ]]>
 </string>
   <string name="visit_website">Navštívit webové stránky</string>
-  <string name="trip_dep">odj</string>
-  <string name="trip_arr">příj</string>
   <string name="trip_removed">Odtrasněná cesta.</string>
   <string name="from">Z</string>
   <string name="to">Do</string>

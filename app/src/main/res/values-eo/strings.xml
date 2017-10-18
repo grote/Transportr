@@ -15,9 +15,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="drawer_settings">Agordoj</string>
   <string name="action_fav_trip">Marki kurson kiel ŝatatan</string>
   <string name="action_unfav_trip">Malmarki kurson kiel ŝatatan</string>
-  <string name="action_switch_locations">Anstataŭigi komencpunkton per celo</string>
   <string name="action_refresh">Aktualigi</string>
-  <string name="action_navigation_expand">Montri pli</string>
   <string name="action_location_map">Montri staciojn sur mapo</string>
   <string name="action_use_gps">Aktivigi GPS-on</string>
   <string name="action_share">Kunhavigi</string>
@@ -49,8 +47,6 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
 ]]>
 </string>
   <string name="visit_website">Viziti retpaĝon</string>
-  <string name="trip_dep">for</string>
-  <string name="trip_arr">al</string>
   <string name="trip_removed">Kurso estas forigita</string>
   <string name="from">El</string>
   <string name="to">Al</string>
@@ -136,6 +132,10 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="error_no_nearby_locations_capability">La elektita transporta reto ne ebligas serĉi proksimajn staciojn.</string>
   <string name="error_trip_refresh_failed">Ne povas aktualigi datumojn por nunan kurson.</string>
   <string name="meter">m</string>
+  <plurals name="stops">
+    <item quantity="one">%d haltejo</item>
+    <item quantity="other">%d haltejoj</item>
+  </plurals>
   <string name="system_default">Sistema implicita</string>
   <string name="times_include_delays">(Atentu: tempoj enhavas raportitajn malfruojn)</string>
   <string name="home">Hejmo</string>

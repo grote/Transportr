@@ -15,9 +15,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="drawer_settings">Ustawienia</string>
   <string name="action_fav_trip">Oznacz trasę jako ulubioną</string>
   <string name="action_unfav_trip">Wycofaj oznaczenie trasy jako ulubionej</string>
-  <string name="action_switch_locations">Zamień lokalizację początkową i końcową</string>
   <string name="action_refresh">Odśwież</string>
-  <string name="action_navigation_expand">Pokaż więcej</string>
   <string name="action_location_map">Pokaż przystanki na mapie</string>
   <string name="action_use_gps">Włącz GPS</string>
   <string name="action_share">Udostępnij</string>
@@ -49,8 +47,6 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
 ]]>
 </string>
   <string name="visit_website">Odwiedź stronę</string>
-  <string name="trip_dep">odj</string>
-  <string name="trip_arr">przyj</string>
   <string name="trip_removed">Usunięta trasa</string>
   <string name="from">Z</string>
   <string name="to">Do</string>
@@ -138,6 +134,12 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="error_no_nearby_locations_capability">Wybrana sieć transportowa nie wspiera wyszukiwania pobliskich stacji.</string>
   <string name="error_trip_refresh_failed">Nie można odświeżyć danych dla obecnej trasy.</string>
   <string name="meter">m</string>
+  <plurals name="stops">
+    <item quantity="one">%d przystanek</item>
+    <item quantity="few">%d przystanki</item>
+    <item quantity="many">%d przystanków</item>
+    <item quantity="other">%d przystanków</item>
+  </plurals>
   <string name="system_default">Domyślny systemowy</string>
   <string name="times_include_delays">(Uwaga: Czasy uwzględniają odnotowane opóźnienia)</string>
   <string name="home">Dom</string>
@@ -257,6 +259,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_vvo">Saksonia, Drezno</string>
   <string name="np_desc_vvs">Badenia-Wirtembergia, Stuttgart</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Mittelthüringen</string>
   <string name="np_region_ireland">Irlandia</string>
   <string name="np_desc_tfi">Irlandia, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Izrael</string>
@@ -265,6 +268,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_name_it">Włochy</string>
   <string name="np_desc_it">Rzym, Mediolan, Turyn, Wenecja, Palermo, Trydent</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_name_vmobil">VVV</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregencja</string>
   <string name="np_region_luxembourg">Luksemburg</string>
   <string name="np_desc_lu">Luksemburg</string>

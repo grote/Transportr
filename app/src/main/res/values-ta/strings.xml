@@ -14,9 +14,7 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="drawer_settings">அமைப்புகள்</string>
   <string name="action_fav_trip">இப்பயணத்தை பிடித்தமானதாக தேர்வு செய்</string>
   <string name="action_unfav_trip">இப்பயணத்தை பிடித்தமான பட்டியலிலிருந்து நீக்கு</string>
-  <string name="action_switch_locations">புறப்படும் மற்றும் சேருமிடத்தை இடம் மாற்று</string>
   <string name="action_refresh">புதுப்பி</string>
-  <string name="action_navigation_expand">மேலும் காண்க</string>
   <string name="action_location_map">நிலையங்களை வரைபடத்தில் காண்க</string>
   <string name="action_use_gps">GPS-ஐ இயக்கு</string>
   <string name="action_share">பகிர்தல்</string>
@@ -47,8 +45,6 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
 ]]>
 </string>
   <string name="visit_website">வலைதளத்திற்கு செல்</string>
-  <string name="trip_dep">புற.</string>
-  <string name="trip_arr">வரு.</string>
   <string name="trip_removed">நீக்கப்பட்ட பயணம்</string>
   <string name="from">புறப்படும் இடம்</string>
   <string name="to">சேருமிடம்</string>

@@ -7,9 +7,7 @@
   <string name="drawer_settings">Configuració</string>
   <string name="action_fav_trip">Marcar trajecte com a favorit</string>
   <string name="action_unfav_trip">Desmarcar trajecte com a favorit</string>
-  <string name="action_switch_locations">Intercanviar ubicacions de De i Cap a</string>
   <string name="action_refresh">Actualitzar</string>
-  <string name="action_navigation_expand">Mostrar més</string>
   <string name="action_location_map">Mostrar estacions al mapa</string>
   <string name="action_use_gps">Activar GPS</string>
   <string name="action_share">Compartir</string>
@@ -27,8 +25,6 @@
   <string name="tab_devs">Desenvolupadors</string>
   <string name="tab_about">Sobre</string>
   <string name="visit_website">Visitar web</string>
-  <string name="trip_dep">srt</string>
-  <string name="trip_arr">arr</string>
   <string name="trip_removed">Trajecte esborrat</string>
   <string name="from">De</string>
   <string name="to">Cap a</string>

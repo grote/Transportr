@@ -20,9 +20,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="drawer_settings">Configurações</string>
   <string name="action_fav_trip">Marcar viagem como favorita</string>
   <string name="action_unfav_trip">Desmarcar viagem como favorita</string>
-  <string name="action_switch_locations">Alterar local De e Para</string>
   <string name="action_refresh">Atualizar</string>
-  <string name="action_navigation_expand">Mostrar Mais</string>
   <string name="action_location_map">Exibir Estações no Mapa</string>
   <string name="action_use_gps">Ligar GPS</string>
   <string name="action_share">Compartilhe</string>
@@ -54,8 +52,6 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
 ]]>
 </string>
   <string name="visit_website">Visite o Website</string>
-  <string name="trip_dep">De</string>
-  <string name="trip_arr">Para</string>
   <string name="trip_removed">Remover viagem</string>
   <string name="from">De</string>
   <string name="to">Para</string>

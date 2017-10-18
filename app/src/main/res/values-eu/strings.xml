@@ -20,9 +20,7 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="drawer_settings">Ezarpenak</string>
   <string name="action_fav_trip">Bidaia gogokoen bezala markatu</string>
   <string name="action_unfav_trip">Bidaia gogokoen bezala desmarkatu</string>
-  <string name="action_switch_locations">Nondik eta nora kokapenak trukatu</string>
   <string name="action_refresh">Freskatu</string>
-  <string name="action_navigation_expand">Gehiago erakutsi</string>
   <string name="action_location_map">Geltokiak mapan erakutsi</string>
   <string name="action_use_gps">GPSa aktibatu</string>
   <string name="action_share">Partekatu</string>
@@ -54,8 +52,6 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
 ]]>
 </string>
   <string name="visit_website">Webgunea bisitatu</string>
-  <string name="trip_dep">irt</string>
-  <string name="trip_arr">hel</string>
   <string name="trip_removed">Bidaia ezabatuta</string>
   <string name="from">Nondik</string>
   <string name="to">Nora</string>

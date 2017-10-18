@@ -8,9 +8,7 @@
   <string name="drawer_settings">Ayarlar</string>
   <string name="action_fav_trip">Geziyi Beğenilen Olarak İşaretle</string>
   <string name="action_unfav_trip">Geziyi Beğenilen Olarak İşaretleme</string>
-  <string name="action_switch_locations">Nereden Nereye konumunu değiştir</string>
   <string name="action_refresh">Tazele</string>
-  <string name="action_navigation_expand">Daha Fazla Göster</string>
   <string name="action_location_map">Haritada İstasyonları Göster</string>
   <string name="action_use_gps">GPS aç</string>
   <string name="action_share">Paylaş</string>
@@ -29,8 +27,6 @@
   <string name="tab_about">Hakkında</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nGPLv3 Özgür Yazılım Lisansı</string>
   <string name="visit_website">Websitesini Ziyaret Edin</string>
-  <string name="trip_dep">klk</string>
-  <string name="trip_arr">vrş</string>
   <string name="trip_removed">Silinen Gezi</string>
   <string name="from">Nereden</string>
   <string name="to">Nereye</string>

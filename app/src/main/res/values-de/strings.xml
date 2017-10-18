@@ -22,9 +22,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="drawer_settings">Einstellungen</string>
   <string name="action_fav_trip">Verbindung als Favorit markieren</string>
   <string name="action_unfav_trip">Markierung der Verbindung als Favorit aufheben</string>
-  <string name="action_switch_locations">Start und Ziel tauschen</string>
   <string name="action_refresh">Aktualisieren</string>
-  <string name="action_navigation_expand">Mehr anzeigen</string>
   <string name="action_location_map">Haltestellen auf der Karte anzeigen</string>
   <string name="action_use_gps">GPS einschalten</string>
   <string name="action_share">Teilen</string>
@@ -56,8 +54,6 @@ es welche gibt) anzeigen lassen.</string>
 ]]>
 </string>
   <string name="visit_website">Zur Webseite</string>
-  <string name="trip_dep">ab</string>
-  <string name="trip_arr">an</string>
   <string name="trip_removed">Gelöschte Verbindung</string>
   <string name="from">Von</string>
   <string name="to">Nach</string>

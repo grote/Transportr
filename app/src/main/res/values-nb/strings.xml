@@ -21,9 +21,13 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="drawer_settings">Innstillinger</string>
   <string name="action_fav_trip">Merk tur som favoritt</string>
   <string name="action_unfav_trip">Avmerk tur som favoritt</string>
-  <string name="action_switch_locations">Bytt til og fra</string>
+  <string name="action_switch_locations">Bytt fra og til</string>
+  <string name="action_time_type">Tiden er</string>
+  <string name="trip_dep">Avgang</string>
+  <string name="trip_arr">Ankomst</string>
   <string name="action_refresh">Gjenoppfrisk</string>
-  <string name="action_navigation_expand">Vis mer</string>
+  <string name="action_navigation_expand">Vis rutepunkt</string>
+  <string name="action_choose_products">Transporttype</string>
   <string name="action_location_map">Vis stasjoner i kart</string>
   <string name="action_use_gps">Skru på GPS</string>
   <string name="action_share">Del</string>
@@ -56,12 +60,10 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
 ]]>
 </string>
   <string name="visit_website">Besøk nettside</string>
-  <string name="trip_dep">avg</string>
-  <string name="trip_arr">ank</string>
   <string name="trip_removed">Fjernet  tur</string>
   <string name="from">Fra</string>
   <string name="to">Til</string>
-  <string name="via">Via</string>
+  <string name="via">Rutepunkt</string>
   <string name="search">Søk</string>
   <string name="from_here">Herfra</string>
   <string name="to_here">Hit</string>
@@ -143,6 +145,10 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="error_no_nearby_locations_capability">Gjeldende transportnettverk støtter ikke oppdagelse av stasjoner i nærheten.</string>
   <string name="error_trip_refresh_failed">Kunne ikke gjenoppfriske data for gjeldende tur</string>
   <string name="meter">m</string>
+  <plurals name="stops">
+    <item quantity="one">%d stopp</item>
+    <item quantity="other">%d stopp</item>
+  </plurals>
   <string name="system_default">Systemforvalg</string>
   <string name="times_include_delays">(Merk: Tidsforespeilinger inkluderer rapporterte forsinkelser)</string>
   <string name="home">Hjem</string>

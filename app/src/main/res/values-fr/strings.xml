@@ -16,9 +16,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="drawer_settings">Paramètres</string>
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
   <string name="action_unfav_trip">Supprimer la marque de trajet favori</string>
-  <string name="action_switch_locations">Inverser les points de départ et d\'arrivée</string>
   <string name="action_refresh">Actualiser</string>
-  <string name="action_navigation_expand">En montrer plus</string>
   <string name="action_location_map">Montrer les arrêts/stations sur la carte</string>
   <string name="action_use_gps">Activer le GPS</string>
   <string name="action_share">Partager</string>
@@ -50,8 +48,6 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
 ]]>
 </string>
   <string name="visit_website">Visiter le site Web</string>
-  <string name="trip_dep">dép.</string>
-  <string name="trip_arr">arr.</string>
   <string name="trip_removed">Trajet supprimé</string>
   <string name="from">De</string>
   <string name="to">À</string>

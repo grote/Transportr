@@ -19,9 +19,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="drawer_settings">Instellingen</string>
   <string name="action_fav_trip">Markeer reis als favoriet</string>
   <string name="action_unfav_trip">Verwijder reis uit favorieten</string>
-  <string name="action_switch_locations">Wissel begin- en eindpunt om</string>
   <string name="action_refresh">Vernieuw</string>
-  <string name="action_navigation_expand">Laat meer zien</string>
   <string name="action_location_map">Laat stations op kaart zien</string>
   <string name="action_use_gps">Schakel GPS in</string>
   <string name="action_share">Deel</string>
@@ -53,8 +51,6 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
 ]]>
 </string>
   <string name="visit_website">Bezoek website</string>
-  <string name="trip_dep">v.</string>
-  <string name="trip_arr">a.</string>
   <string name="trip_removed">Reis verwijderd</string>
   <string name="from">Van</string>
   <string name="to">Naar</string>
