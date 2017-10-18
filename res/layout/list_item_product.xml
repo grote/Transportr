@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:padding="5dp"
+        android:tint="?colorControlNormal"
         tools:ignore="ContentDescription"
         tools:src="@drawable/product_bus"/>
 

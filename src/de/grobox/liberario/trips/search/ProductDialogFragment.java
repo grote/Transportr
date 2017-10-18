@@ -146,7 +146,7 @@ public class ProductDialogFragment extends DialogFragment {
 
 		@Override
 		public int getLayoutRes() {
-			return R.layout.item_product_selectable;
+			return R.layout.list_item_product;
 		}
 
 		@Override
