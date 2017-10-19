@@ -197,4 +197,8 @@ abstract class DrawerActivity extends TransportrActivity {
 		drawer.openDrawer();
 	}
 
+	protected void closeDrawer() {
+		drawer.closeDrawer();
+	}
+
 }

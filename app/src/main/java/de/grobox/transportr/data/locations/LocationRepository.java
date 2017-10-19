@@ -17,6 +17,8 @@ import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.schildbach.pte.NetworkId;
 
+import static de.schildbach.pte.dto.LocationType.COORD;
+
 @Singleton
 public class LocationRepository extends AbstractManager {
 
@@ -81,6 +83,8 @@ public class LocationRepository extends AbstractManager {
 	}
 
 	public void addFavoriteLocation(WrapLocation wrapLocation, FavLocationType type) {
+		if (wrapLocation.type == COORD) return;
+
 		FavoriteLocation favoriteLocation;
 		if (wrapLocation instanceof FavoriteLocation) {
 			favoriteLocation = (FavoriteLocation) wrapLocation;

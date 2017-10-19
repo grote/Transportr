@@ -19,6 +19,8 @@ import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.schildbach.pte.NetworkId;
 
+import static de.schildbach.pte.dto.LocationType.COORD;
+
 public class SearchesRepository extends AbstractManager {
 
 	private final SearchesDao searchesDao;
@@ -61,6 +63,7 @@ public class SearchesRepository extends AbstractManager {
 	}
 
 	public void storeSearch(FavoriteTripItem item) {
+		if (item.getFrom().type == COORD || (item.getTo() != null && item.getTo().type == COORD)) return;
 		runOnBackgroundThread(() -> {
 			if (item.getUid() != 0) {
 				searchesDao.updateStoredSearch(item.getUid(), new Date());

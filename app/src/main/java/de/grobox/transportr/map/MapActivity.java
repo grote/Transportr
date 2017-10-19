@@ -46,6 +46,8 @@ import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerClickListener;
+import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerViewClickListener;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 
 import java.util.HashMap;
@@ -85,7 +87,7 @@ import static de.schildbach.pte.dto.NearbyLocationsResult.Status.OK;
 
 @ParametersAreNonnullByDefault
 public class MapActivity extends DrawerActivity
-		implements LocationViewListener, OnMapReadyCallback, LoaderCallbacks<NearbyLocationsResult> {
+		implements LocationViewListener, OnMapReadyCallback, LoaderCallbacks<NearbyLocationsResult>, OnMarkerClickListener, OnMarkerViewClickListener {
 
 	private final static int LOCATION_ZOOM = 14;
 
@@ -187,20 +189,8 @@ public class MapActivity extends DrawerActivity
 			search.hideSoftKeyboard();
 		});
 		map.setOnMapLongClickListener(point -> onLocationItemClick(new WrapLocation(point), FROM));
-		map.setOnMarkerClickListener(marker -> {
-			if (marker.equals(selectedLocationMarker)) {
-				if (locationFragment != null) search.setLocation(locationFragment.getLocation());
-				bottomSheetBehavior.setState(STATE_COLLAPSED);
-				return true;
-			} else if (nearbyLocations.containsKey(marker)) {
-				WrapLocation wrapLocation = new WrapLocation(nearbyLocations.get(marker));
-				onLocationItemClick(wrapLocation, FROM);
-				search.clearLocation();
-				return true;
-			} else {
-				return false;
-			}
-		});
+		map.setOnMarkerClickListener(this);
+		map.getMarkerViewManager().setOnMarkerViewClickListener(this);
 
 		// observe map related data
 		viewModel.getZoomTo().observe(this, this::zoomTo);
@@ -259,6 +249,7 @@ public class MapActivity extends DrawerActivity
 		if (transportNetworkInitialized) {
 			Log.w("TEST", "TRANSPORT NETWORK HAS CHANGED!!! " + network.getName(this));
 			search.setLocation(null);
+			closeDrawer();
 			recreate();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.bottomSheet, new SavedSearchesFragment(), SavedSearchesFragment.TAG)
@@ -310,8 +301,31 @@ public class MapActivity extends DrawerActivity
 	}
 
 	public void findNearbyStations(WrapLocation location) {
+		// TODO limit maxDistance to visible area at least, some providers return a lot of stations
 		Bundle args = NearbyLocationsLoader.getBundle(location.getLocation(), 0);
 		getSupportLoaderManager().restartLoader(LOADER_NEARBY_STATIONS, args, this).forceLoad();
+	}
+
+	@Override
+	public boolean onMarkerClick(@NonNull Marker marker) {
+		if (marker.equals(selectedLocationMarker)) {
+			if (locationFragment != null) search.setLocation(locationFragment.getLocation());
+			bottomSheetBehavior.setState(STATE_COLLAPSED);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean onMarkerClick(@NonNull Marker marker, @NonNull View view, @NonNull MapboxMap.MarkerViewAdapter adapter) {
+		// https://github.com/mapbox/mapbox-gl-native/issues/8236
+		if (nearbyLocations.containsKey(marker)) {
+			WrapLocation wrapLocation = new WrapLocation(nearbyLocations.get(marker));
+			onLocationItemClick(wrapLocation, FROM);
+			search.clearLocation();
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -330,7 +344,6 @@ public class MapActivity extends DrawerActivity
 						.icon(getNearbyLocationsIcon(getMarkerForProduct(location.products)))
 				);
 				nearbyLocations.put(marker, location);
-				Log.e("TEST", location.toString());
 			}
 		} else {
 			// TODO

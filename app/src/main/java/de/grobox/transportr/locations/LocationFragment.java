@@ -47,11 +47,9 @@ import javax.inject.Inject;
 import de.grobox.transportr.R;
 import de.grobox.transportr.departures.DeparturesActivity;
 import de.grobox.transportr.departures.DeparturesLoader;
-import de.grobox.transportr.favorites.locations.FavoriteLocationManager;
 import de.grobox.transportr.fragments.TransportrFragment;
 import de.grobox.transportr.locations.OsmReverseGeocoder.OsmReverseGeocoderCallback;
 import de.grobox.transportr.map.MapViewModel;
-import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Line;
@@ -63,6 +61,7 @@ import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.transportr.departures.DeparturesActivity.MAX_DEPARTURES;
 import static de.grobox.transportr.departures.DeparturesLoader.getBundle;
 import static de.grobox.transportr.utils.Constants.LOADER_DEPARTURES;
@@ -81,8 +80,7 @@ public class LocationFragment extends TransportrFragment
 	public static final String TAG = LocationFragment.class.getName();
 
 	@Inject	ViewModelProvider.Factory viewModelFactory;
-	@Inject TransportNetworkManager transportNetworkManager;
-	@Inject FavoriteLocationManager favoriteLocationManager;
+
 	private MapViewModel viewModel;
 	private WrapLocation location;
 	private SortedSet<Line> lines = new TreeSet<>();
@@ -203,7 +201,7 @@ public class LocationFragment extends TransportrFragment
 
 	@Override
 	public DeparturesLoader onCreateLoader(int id, Bundle args) {
-		return new DeparturesLoader(getContext(), transportNetworkManager.getTransportNetwork().getValue(), args);
+		return new DeparturesLoader(getContext(), viewModel.getTransportNetwork().getValue(), args);
 	}
 
 	@Override
@@ -234,6 +232,7 @@ public class LocationFragment extends TransportrFragment
 	public void onLocationRetrieved(@NonNull final WrapLocation location) {
 		runOnUiThread(() -> {
 			LocationFragment.this.location = location;
+			viewModel.clickLocation(location, FROM);
 			showLocation();
 		});
 	}
