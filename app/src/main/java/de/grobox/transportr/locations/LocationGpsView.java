@@ -36,7 +36,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
@@ -170,7 +169,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 		}
 
 		// clear input
-		setLocation(null, TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_gps));
+		setLocation(null, R.drawable.ic_gps, false);
 		ui.clear.setVisibility(View.VISIBLE);
 
 		// clear current GPS location, because we are looking to find a new one
@@ -209,7 +208,7 @@ public class LocationGpsView extends LocationView implements LocationListener {
 	}
 
 	public void onLocationChanged(WrapLocation location) {
-		setLocation(location, TransportrUtils.getTintedDrawable(getContext(), R.drawable.ic_gps));
+		setLocation(location, R.drawable.ic_gps, false);
 		if(gpsListener != null) gpsListener.onLocationChanged(location);
 		deactivateGPS();
 	}

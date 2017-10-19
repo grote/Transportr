@@ -33,6 +33,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -46,8 +47,10 @@ import de.grobox.transportr.data.locations.WorkLocation;
 import de.schildbach.pte.dto.SuggestedLocation;
 
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
+import static de.grobox.transportr.data.locations.FavoriteLocation.FromComparator;
+import static de.grobox.transportr.data.locations.FavoriteLocation.ToComparator;
+import static de.grobox.transportr.data.locations.FavoriteLocation.ViaComparator;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
-import static de.grobox.transportr.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.NORMAL;
 
 @ParametersAreNonnullByDefault
@@ -104,9 +107,16 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 			locations.add(workLocation);
 		}
 		if (includeGps) locations.add(new WrapLocation(GPS));
-//		locations.add(new WrapLocation(MAP));
 
 		if (includeFavs) {
+			switch (sort) {
+				case TO:
+					Collections.sort(favoriteLocations, ToComparator);
+				case VIA:
+					Collections.sort(favoriteLocations, ViaComparator);
+				default:
+					Collections.sort(favoriteLocations, FromComparator);
+			}
 			locations.addAll(favoriteLocations);
 		}
 	}
@@ -138,15 +148,10 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 		if (wrapLocation.getWrapType() == NORMAL) {
 			textView.setText(getHighlightedText(wrapLocation));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-		} else {
+		} else if(wrapLocation.getWrapType() == GPS) {
+			textView.setText(parent.getContext().getString(R.string.location_gps));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
-			if(wrapLocation.getWrapType() == GPS) {
-				textView.setText(parent.getContext().getString(R.string.location_gps));
-			} else if(wrapLocation.getWrapType() == MAP) {
-				textView.setText(parent.getContext().getString(R.string.location_map));
-			}
 		}
-		//imageView.setImageDrawable(getDrawableForLocation(getContext(), homeLocation, wrapLocation, locations.contains(wrapLocation)));
 		imageView.setImageResource(wrapLocation.getDrawable());
 
 		return view;
@@ -216,7 +221,6 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	}
 
 	void setSort(FavLocationType favLocationType) {
-		// TODO
 		sort = favLocationType;
 		updateLocations();
 		resetDropDownLocations();

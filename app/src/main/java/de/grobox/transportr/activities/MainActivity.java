@@ -60,7 +60,6 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.about.AboutMainFragment;
 import de.grobox.transportr.fragments.DeparturesFragment;
 import de.grobox.transportr.fragments.DirectionsFragment;
-import de.grobox.transportr.fragments.NearbyStationsFragment;
 import de.grobox.transportr.fragments.RecentTripsFragment;
 import de.grobox.transportr.networks.NetworkProviderFactory;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
@@ -144,7 +143,6 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		            getDrawerItem(DirectionsFragment.TAG, R.drawable.ic_menu_directions),
 		            getDrawerItem(RecentTripsFragment.TAG, R.drawable.ic_tab_recents),
 		            getDrawerItem(DeparturesFragment.TAG, R.drawable.ic_action_departures),
-		            getDrawerItem(NearbyStationsFragment.TAG, R.drawable.ic_tab_stations),
 		            new DividerDrawerItem(),
 		            getDrawerItem(SettingsFragment.TAG, R.drawable.ic_action_settings),
 		            getDrawerItem(TransportrChangeLog.TAG, R.drawable.ic_action_changelog),
@@ -272,8 +270,8 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 			switch(requestCode) {
 				case PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS: {
-					NearbyStationsFragment f = (NearbyStationsFragment) getFragment(NearbyStationsFragment.TAG);
-					if(f != null) f.activateGPS();
+//					NearbyStationsFragment f = (NearbyStationsFragment) getFragment(NearbyStationsFragment.TAG);
+//					if(f != null) f.activateGPS();
 					break;
 				}
 				case PR_ACCESS_FINE_LOCATION_DIRECTIONS: {
@@ -347,9 +345,9 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 				else if(tag.equals(DeparturesFragment.TAG)) {
 					item.withEnabled(provider.hasCapabilities(NetworkProvider.Capability.DEPARTURES));
 				}
-				else if(tag.equals(NearbyStationsFragment.TAG)) {
-					item.withEnabled(provider.hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS));
-				}
+//				else if(tag.equals(NearbyStationsFragment.TAG)) {
+//					item.withEnabled(provider.hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS));
+//				}
 				drawer.updateItem(item);
 			}
 		}
@@ -407,7 +405,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		if(tag.equals(DirectionsFragment.TAG)) return new DirectionsFragment();
 		if(tag.equals(RecentTripsFragment.TAG)) return new RecentTripsFragment();
 		if(tag.equals(DeparturesFragment.TAG)) return new DeparturesFragment();
-		if(tag.equals(NearbyStationsFragment.TAG)) return new NearbyStationsFragment();
+//		if(tag.equals(NearbyStationsFragment.TAG)) return new NearbyStationsFragment();
 		if(tag.equals(SettingsFragment.TAG)) return new SettingsFragment();
 		if(tag.equals(AboutMainFragment.TAG)) return new AboutMainFragment();
 
@@ -419,7 +417,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 		if(tag.equals(DirectionsFragment.TAG)) return getString(R.string.drawer_directions);
 		if(tag.equals(RecentTripsFragment.TAG)) return getString(R.string.drawer_recent_trips);
 		if(tag.equals(DeparturesFragment.TAG)) return getString(R.string.drawer_departures);
-		if(tag.equals(NearbyStationsFragment.TAG)) return getString(R.string.drawer_nearby_stations);
+//		if(tag.equals(NearbyStationsFragment.TAG)) return getString(R.string.drawer_nearby_stations);
 		if(tag.equals(SettingsFragment.TAG)) return getString(R.string.drawer_settings);
 		if(tag.equals(AboutMainFragment.TAG)) return getString(R.string.drawer_about);
 
@@ -484,9 +482,9 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 				case DeparturesFragment.TAG:
 					findDepartures();
 					break;
-				case NearbyStationsFragment.TAG:
-					findNearbyStations();
-					break;
+//				case NearbyStationsFragment.TAG:
+//					findNearbyStations();
+//					break;
 				case RecentTripsFragment.TAG:
 //				case SettingsFragment.TAG:
 				case AboutMainFragment.TAG:
@@ -520,12 +518,12 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 	}
 
 	private void findNearbyStations() {
-		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
-
-		if(!np.hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
-			Toast.makeText(getContext(), getString(R.string.error_no_nearby_locations_capability), Toast.LENGTH_SHORT).show();
-		}
-		switchFragment(NearbyStationsFragment.TAG);
+//		NetworkProvider np = NetworkProviderFactory.provider(Preferences.getNetworkId(getContext()));
+//
+//		if(!np.hasCapabilities(NetworkProvider.Capability.NEARBY_LOCATIONS)) {
+//			Toast.makeText(getContext(), getString(R.string.error_no_nearby_locations_capability), Toast.LENGTH_SHORT).show();
+//		}
+//		switchFragment(NearbyStationsFragment.TAG);
 	}
 
 	private void showOnboarding() {

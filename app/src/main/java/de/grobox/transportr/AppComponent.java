@@ -20,13 +20,12 @@ package de.grobox.transportr;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import de.grobox.transportr.map.MapActivity;
 import de.grobox.transportr.departures.DeparturesActivity;
-import de.grobox.transportr.favorites.trips.FavoriteTripsFragment;
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment;
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment;
+import de.grobox.transportr.favorites.trips.FavoriteTripsFragment;
 import de.grobox.transportr.locations.LocationFragment;
-import de.grobox.transportr.locations.LocationView;
+import de.grobox.transportr.map.MapActivity;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.settings.SettingsFragment;
 import de.grobox.transportr.trips.detail.TripDetailActivity;
@@ -55,7 +54,5 @@ public interface AppComponent {
 	void inject(SettingsFragment fragment);
 	void inject(HomePickerDialogFragment fragment);
 	void inject(WorkPickerDialogFragment fragment);
-
-	void inject(LocationView view);
 
 }

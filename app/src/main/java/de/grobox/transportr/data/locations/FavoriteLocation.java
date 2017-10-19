@@ -68,7 +68,16 @@ public class FavoriteLocation extends StoredLocation {
 	@Override
 	@DrawableRes
 	public int getDrawable() {
-		return R.drawable.ic_action_star;
+		switch (type) {
+			case ADDRESS:
+				return R.drawable.ic_location_address_fav;
+			case POI:
+				return R.drawable.ic_location_poi_fav;
+			case STATION:
+				return R.drawable.ic_location_station_fav;
+			default:
+				return R.drawable.ic_location;
+		}
 	}
 
 	int getFromCount() {

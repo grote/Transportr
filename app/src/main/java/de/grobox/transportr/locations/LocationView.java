@@ -19,10 +19,10 @@ package de.grobox.transportr.locations;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -30,7 +30,6 @@ import android.support.v4.view.ViewCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,18 +43,13 @@ import android.widget.ProgressBar;
 import java.util.List;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.data.locations.FavoriteLocation;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.data.locations.HomeLocation;
 import de.grobox.transportr.data.locations.WorkLocation;
 import de.grobox.transportr.locations.SuggestLocationsTask.SuggestLocationsTaskCallback;
 import de.grobox.transportr.networks.TransportNetwork;
-import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.SuggestLocationsResult;
-
-import static de.grobox.transportr.locations.WrapLocation.WrapType.MAP;
-import static de.grobox.transportr.utils.TransportrUtils.getDrawableForLocation;
 
 public class LocationView extends LinearLayout implements SuggestLocationsTaskCallback {
 
@@ -78,10 +72,6 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	public LocationView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-
-		if (!isInEditMode()) {
-			((TransportrApplication) getContext().getApplicationContext()).getComponent().inject(this);
-		}
 
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LocationView, 0, 0);
 		boolean includeHome = a.getBoolean(R.styleable.LocationView_homeLocation, false);
@@ -108,12 +98,14 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		ui.location.setOnFocusChangeListener(LocationView.this::onFocusChange);
 		ui.location.setOnClickListener(view -> LocationView.this.onClick());
 
-		if (!showIcon) ui.status.setVisibility(View.GONE);
-
-		ui.status.setOnClickListener(v -> {
-			getAdapter().resetDropDownLocations();
-			LocationView.this.onClick();
-		});
+		if (showIcon) {
+			ui.status.setOnClickListener(v -> {
+				getAdapter().resetDropDownLocations();
+				LocationView.this.post(this::onClick);
+			});
+		} else {
+			ui.status.setVisibility(GONE);
+		}
 
 		// clear text button
 		ui.clear.setOnClickListener(v -> clearLocationAndShowDropDown());
@@ -202,7 +194,6 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	public void setTransportNetwork(@NonNull TransportNetwork transportNetwork) {
-		Log.w("TEST", "setting new transport network: " + transportNetwork.getName(getContext()));
 		this.transportNetwork = transportNetwork;
 	}
 
@@ -225,7 +216,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		if(s.length() > 0) {
 			ui.clear.setVisibility(View.VISIBLE);
 			// clear location tag
-			setLocation(null, null, false);
+			setLocation(null, R.drawable.ic_location, false);
 
 			if(s.length() >= LocationAdapter.TYPING_THRESHOLD) {
 				onContentChanged();
@@ -257,7 +248,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	@Override
 	public void onSuggestLocationsResult(@Nullable SuggestLocationsResult suggestLocationsResult) {
-		ui.progress.setVisibility(View.GONE);
+		ui.progress.setVisibility(GONE);
 		if(suggestLocationsResult == null) return;
 
 		if(getAdapter() != null) {
@@ -267,7 +258,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	private void stopSuggestLocationsTask() {
 		if(task != null) task.cancel(true);
-		ui.progress.setVisibility(View.GONE);
+		ui.progress.setVisibility(GONE);
 	}
 
 	/* Setter and Getter */
@@ -276,7 +267,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		return (LocationAdapter) ui.location.getAdapter();
 	}
 
-	public void setLocation(WrapLocation loc, Drawable icon, boolean setText) {
+	public void setLocation(WrapLocation loc, @DrawableRes int icon, boolean setText) {
 		location = loc;
 
 		if(setText) {
@@ -287,24 +278,14 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 				stopSuggestLocationsTask();
 			} else {
 				ui.location.setText(null);
-				ui.clear.setVisibility(View.GONE);
+				ui.clear.setVisibility(GONE);
 			}
 		}
-
-		if(icon != null) {
-			ui.status.setImageDrawable(icon);
-		} else {
-			ui.status.setImageResource(R.drawable.ic_location);
-		}
-	}
-
-	public void setLocation(WrapLocation loc, Drawable icon) {
-		setLocation(loc, icon, true);
+		ui.status.setImageResource(icon);
 	}
 
 	public void setLocation(@Nullable WrapLocation loc) {
-		Drawable drawable = getDrawableForLocation(getContext(), loc);
-		setLocation(loc, drawable, true);
+		setLocation(loc, loc == null ? R.drawable.ic_location : loc.getDrawable(), true);
 	}
 
 	@Nullable
@@ -342,20 +323,8 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	public void onLocationItemClick(WrapLocation loc, View view) {
-		Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
-
-		// special case: home location
-		if(loc.getWrapType() == MAP) {
-			// prevent MAP from being shown in the TextView
-			ui.location.setText("");
-
-			TransportrUtils.showMap(getContext());
-		}
-		// all other cases
-		else {
-			setLocation(loc, icon);
-			ui.location.requestFocus();
-		}
+		setLocation(loc);  // TODO set via ViewModel
+		ui.location.requestFocus();
 
 		// hide soft-keyboard
 		hideSoftKeyboard();
@@ -370,7 +339,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	public void clearLocation() {
-		setLocation(null, null);
+		setLocation(null);
 		if(getAdapter() != null) {
 			getAdapter().resetSearchTerm();
 		}
@@ -381,7 +350,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		stopSuggestLocationsTask();
 		reset();
 		if (listener != null) listener.onLocationCleared(type);
-		ui.clear.setVisibility(View.GONE);
+		ui.clear.setVisibility(GONE);
 		if (isShown()) {
 			ui.location.requestFocus();
 			ui.location.showDropDown();

@@ -40,7 +40,7 @@ import static de.schildbach.pte.dto.LocationType.COORD;
 
 public class WrapLocation implements Serializable {
 
-	public enum WrapType { NORMAL, GPS, MAP }
+	public enum WrapType { NORMAL, GPS }
 
 	@Ignore
 	private WrapType wrapType;
@@ -120,8 +120,6 @@ public class WrapLocation implements Serializable {
 		switch (wrapType) {
 			case GPS:
 				return R.drawable.ic_gps;
-			case MAP:
-				return R.drawable.ic_action_location_map;
 			case NORMAL:
 				switch (type) {
 					case ADDRESS:
@@ -129,7 +127,7 @@ public class WrapLocation implements Serializable {
 					case POI:
 						return R.drawable.ic_action_about;
 					case STATION:
-						return R.drawable.ic_tab_stations;
+						return R.drawable.ic_location_station;
 					case COORD:
 						return R.drawable.ic_gps;
 				}

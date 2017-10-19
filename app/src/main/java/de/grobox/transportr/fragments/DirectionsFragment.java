@@ -73,7 +73,6 @@ import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationTy
 import static de.grobox.transportr.settings.Preferences.SHOW_ADV_DIRECTIONS;
 import static de.grobox.transportr.utils.TransportrUtils.fixToolbarIcon;
 import static de.grobox.transportr.utils.TransportrUtils.getButtonIconColor;
-import static de.grobox.transportr.utils.TransportrUtils.getDrawableForLocation;
 import static de.grobox.transportr.utils.TransportrUtils.getToolbarDrawable;
 
 @Deprecated
@@ -580,7 +579,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 				// swap location objects
 //				Location tmp = ui.to.getLocation();
 				if(!ui.from.isSearching()) {
-					ui.to.setLocation(ui.from.getLocation(), getDrawableForLocation(getContext(), ui.from.getLocation()));
+					ui.to.setLocation(ui.from.getLocation());
 				} else {
 					// TODO: GPS currently only supports from location, so don't swap it for now
 					ui.to.clearLocation();

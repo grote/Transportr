@@ -51,7 +51,6 @@ import de.grobox.transportr.activities.MainActivity;
 import de.grobox.transportr.data.locations.HomeLocation;
 import de.grobox.transportr.fragments.DeparturesFragment;
 import de.grobox.transportr.fragments.DirectionsFragment;
-import de.grobox.transportr.fragments.NearbyStationsFragment;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.map.MapActivity;
 import de.grobox.transportr.settings.Preferences;
@@ -71,7 +70,6 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
-import static de.grobox.transportr.locations.WrapLocation.WrapType.MAP;
 import static de.grobox.transportr.utils.Constants.DATE;
 import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.transportr.utils.Constants.FROM;
@@ -408,12 +406,12 @@ public class TransportrUtils {
 	}
 
 	static public void findNearbyStations(Context context, Location loc) {
-		Intent intent = new Intent(context, MainActivity.class);
-		intent.setAction(NearbyStationsFragment.TAG);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		intent.putExtra("location", loc);
-
-		context.startActivity(intent);
+//		Intent intent = new Intent(context, MainActivity.class);
+//		intent.setAction(NearbyStationsFragment.TAG);
+//		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//		intent.putExtra("location", loc);
+//
+//		context.startActivity(intent);
 	}
 
 	static public void showMap(Context context) {
@@ -610,9 +608,6 @@ public class TransportrUtils {
 		if(w.getWrapType() == GPS) {
 			return getTintedDrawable(context, R.drawable.ic_gps);
 		}
-		else if(w.getWrapType() == MAP) {
-			return getTintedDrawable(context, R.drawable.ic_action_location_map);
-		}
 		else if(is_fav) {
 			return getTintedDrawable(context, R.drawable.ic_action_star);
 		}
@@ -622,7 +617,7 @@ public class TransportrUtils {
 			} else if(w.type.equals(LocationType.POI)) {
 				return getTintedDrawable(context, R.drawable.ic_action_about);
 			} else if(w.type.equals(LocationType.STATION)) {
-				return getTintedDrawable(context, R.drawable.ic_tab_stations);
+				return getTintedDrawable(context, R.drawable.ic_location_station);
 			} else if(w.type.equals(LocationType.COORD)) {
 				return getTintedDrawable(context, R.drawable.ic_gps);
 			} else {
