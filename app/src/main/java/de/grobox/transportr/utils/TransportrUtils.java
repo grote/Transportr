@@ -672,6 +672,10 @@ public class TransportrUtils {
 		return new LatLng(location.getLatAsDouble(), location.getLonAsDouble());
 	}
 
+	public static WrapLocation convert(android.location.Location location) {
+		return new WrapLocation(Location.coord((int) (location.getLatitude() * 1E6), (int) (location.getLongitude() * 1E6)));
+	}
+
 	public static int dpToPx(Context context, int dp) {
 		DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
 		return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));

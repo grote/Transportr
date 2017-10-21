@@ -80,6 +80,7 @@
 		<item name="mapbox_uiLogo">false</item>
 		<item name="mapbox_uiTiltGestures">false</item>
 		<item name="mapbox_uiZoomControls">false</item>
+		<item name="mapbox_myLocation">true</item>
 	</style>
 
 </resources>

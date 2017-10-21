@@ -8,10 +8,9 @@
 
 	<com.mapbox.mapboxsdk.maps.MapView
 		android:id="@+id/map"
+		style="@style/MapStyle"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		style="@style/MapStyle"
-		app:mapbox_myLocation="false"
 		app:mapbox_uiCompassMarginTop="72dp"
 		app:mapbox_uiRotateGestures="true"/>
 

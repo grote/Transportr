@@ -20,6 +20,7 @@ package de.grobox.transportr.map;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -58,7 +59,6 @@ import javax.inject.Inject;
 
 import de.grobox.transportr.BuildConfig;
 import de.grobox.transportr.R;
-import de.grobox.transportr.activities.MainActivity;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.locations.LocationFragment;
 import de.grobox.transportr.locations.LocationView;
@@ -67,18 +67,20 @@ import de.grobox.transportr.locations.NearbyLocationsLoader;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
-import de.grobox.transportr.trips.search.DirectionsActivity;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
+import static android.graphics.PorterDuff.Mode.SRC_IN;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
+import static com.mapbox.mapboxsdk.constants.MyLocationTracking.TRACKING_FOLLOW;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.transportr.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.transportr.utils.Constants.LOADER_NEARBY_STATIONS;
+import static de.grobox.transportr.utils.TransportrUtils.convert;
 import static de.grobox.transportr.utils.TransportrUtils.findDirections;
 import static de.grobox.transportr.utils.TransportrUtils.getLatLng;
 import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
@@ -98,6 +100,7 @@ public class MapActivity extends DrawerActivity
 	private MapboxMap map;
 	private LocationView search;
 	private BottomSheetBehavior bottomSheetBehavior;
+	private FloatingActionButton gpsFab;
 
 	private @Nullable LocationFragment locationFragment;
 	private @Nullable Marker selectedLocationMarker;
@@ -109,7 +112,7 @@ public class MapActivity extends DrawerActivity
 		if (BuildConfig.DEBUG) enableStrictMode();
 		getComponent().inject(this);
 		ensureTransportNetworkSelected();
-		setContentView(R.layout.activity_new_map);
+		setContentView(R.layout.activity_map);
 		super.onCreate(savedInstanceState);
 
 		mapView = findViewById(R.id.map);
@@ -149,18 +152,35 @@ public class MapActivity extends DrawerActivity
 
 		FloatingActionButton directionsFab = findViewById(R.id.directionsFab);
 		directionsFab.setOnClickListener(view -> {
-			if (locationFragment != null && locationFragmentVisible()) {
-				findDirections(MapActivity.this, 0, new WrapLocation(GPS), null, locationFragment.getLocation(), null, true);
-			} else {
-				Intent intent = new Intent(MapActivity.this, DirectionsActivity.class);
-				startActivity(intent);
+			WrapLocation from = new WrapLocation(GPS);
+			if (map != null && map.getMyLocation() != null) {
+				from = convert(map.getMyLocation());
 			}
+			WrapLocation to = null;
+			if (locationFragment != null && locationFragmentVisible()) {
+				to = locationFragment.getLocation();
+			}
+			findDirections(MapActivity.this, 0, from, null, to, null, true);
 		});
-		FloatingActionButton gpsFab = findViewById(R.id.gpsFab);
+		gpsFab = findViewById(R.id.gpsFab);
 		gpsFab.setOnClickListener(view -> {
-			// TODO
-			Intent intent = new Intent(MapActivity.this, MainActivity.class);
-			startActivity(intent);
+			if (map != null) {
+				if (map.getMyLocation() == null) return;
+				LatLng coords = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
+				CameraUpdate update = CameraUpdateFactory.newLatLngZoom(coords, LOCATION_ZOOM);
+				map.animateCamera(update, 1000, new MapboxMap.CancelableCallback() {
+					@Override
+					public void onCancel() {
+
+					}
+
+					@Override
+					public void onFinish() {
+						Log.e("TEST", "FINISHED ANIMATION");
+						map.getTrackingSettings().setMyLocationTrackingMode(TRACKING_FOLLOW);
+					}
+				});
+			}
 		});
 
 		if (savedInstanceState == null) {
@@ -191,6 +211,20 @@ public class MapActivity extends DrawerActivity
 		map.setOnMapLongClickListener(point -> onLocationItemClick(new WrapLocation(point), FROM));
 		map.setOnMarkerClickListener(this);
 		map.getMarkerViewManager().setOnMarkerViewClickListener(this);
+
+		map.setOnMyLocationTrackingModeChangeListener(myLocationTrackingMode -> {
+			if (myLocationTrackingMode == TRACKING_FOLLOW) {
+				ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.fabBackground));
+				gpsFab.setBackgroundTintList(colorStateList);
+				gpsFab.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.fabForegroundFollow), SRC_IN);
+			} else {
+				ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.fabBackgroundMoved));
+				gpsFab.setBackgroundTintList(colorStateList);
+				gpsFab.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.fabForegroundMoved), SRC_IN);
+			}
+		});
+
+		zoomToMyLocation();
 
 		// observe map related data
 		viewModel.getZoomTo().observe(this, this::zoomTo);
@@ -291,6 +325,13 @@ public class MapActivity extends DrawerActivity
 		map.easeCamera(update, 1500);
 	}
 
+	private void zoomToMyLocation() {
+		if (map.getMyLocation() == null) return;
+		LatLng coords = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
+		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(coords, LOCATION_ZOOM);
+		map.moveCamera(update);
+	}
+
 	private boolean locationFragmentVisible() {
 		return locationFragment != null && locationFragment.isVisible() && bottomSheetBehavior.getState() != STATE_HIDDEN;
 	}
@@ -385,6 +426,7 @@ public class MapActivity extends DrawerActivity
 		threadPolicy.detectAll();
 		threadPolicy.penaltyLog();
 		StrictMode.setThreadPolicy(threadPolicy.build());
+
 		StrictMode.VmPolicy.Builder vmPolicy = new StrictMode.VmPolicy.Builder();
 		vmPolicy.detectAll();
 		vmPolicy.penaltyLog();
