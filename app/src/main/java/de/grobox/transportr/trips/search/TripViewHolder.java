@@ -18,12 +18,14 @@
 package de.grobox.transportr.trips.search;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener;
+import de.grobox.transportr.ui.LineView;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Individual;
 import de.schildbach.pte.dto.Trip.Leg;
@@ -34,8 +36,6 @@ import static android.view.View.VISIBLE;
 import static de.grobox.transportr.utils.DateUtils.getDelayText;
 import static de.grobox.transportr.utils.DateUtils.getDuration;
 import static de.grobox.transportr.utils.DateUtils.getTime;
-import static de.grobox.transportr.utils.TransportrUtils.addLineBox;
-import static de.grobox.transportr.utils.TransportrUtils.addWalkingBox;
 import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
 import static de.grobox.transportr.utils.TransportrUtils.setRelativeDepartureTime;
 
@@ -87,13 +87,15 @@ class TripViewHolder extends RecyclerView.ViewHolder {
 		// Lines and Trip Duration
 		lines.removeAllViews();
 		for (Leg leg : trip.legs) {
+			LineView lineView = (LineView) LayoutInflater.from(lines.getContext()).inflate(R.layout.list_item_line, lines, false);
 			if (leg instanceof Public) {
-				addLineBox(lines.getContext(), lines, ((Public) leg).line);
+				lineView.setLine(((Public) leg).line);
 			} else if (leg instanceof Individual) {
-				addWalkingBox(lines.getContext(), lines);
+				lineView.setWalk();
 			} else {
 				throw new RuntimeException();
 			}
+			lines.addView(lineView);
 		}
 		duration.setText(getDuration(trip.getDuration()));
 

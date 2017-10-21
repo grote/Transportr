@@ -15,6 +15,17 @@
 		<item name="android:layout_marginRight">4dp</item>
 	</style>
 
+	<style name="LineBox">
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:maxLines">1</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingEnd">4dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:layout_marginRight">4dp</item>
+	</style>
+
 	<style name="DownArrow">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>

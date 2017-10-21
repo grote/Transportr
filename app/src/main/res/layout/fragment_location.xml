@@ -44,7 +44,7 @@
 		app:layout_constraintTop_toTopOf="parent"
 		tools:text="Name of Location that can be very long and fill two lines"/>
 
-	<org.apmem.tools.layouts.FlowLayout
+	<android.support.v7.widget.RecyclerView
 		android:id="@+id/linesLayout"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
@@ -53,11 +53,8 @@
 		android:layout_marginTop="8dp"
 		app:layout_constraintLeft_toLeftOf="@+id/locationIcon"
 		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/locationName">
-
-		<include layout="@layout/line_view"/>
-
-	</org.apmem.tools.layouts.FlowLayout>
+		app:layout_constraintTop_toBottomOf="@+id/locationName"
+		tools:listitem="@layout/list_item_line"/>
 
 	<TextView
 		android:id="@+id/locationInfo"

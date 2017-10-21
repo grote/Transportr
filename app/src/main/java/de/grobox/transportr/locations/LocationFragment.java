@@ -27,6 +27,8 @@ import android.support.annotation.WorkerThread;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +39,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -50,13 +53,13 @@ import de.grobox.transportr.departures.DeparturesLoader;
 import de.grobox.transportr.fragments.TransportrFragment;
 import de.grobox.transportr.locations.OsmReverseGeocoder.OsmReverseGeocoderCallback;
 import de.grobox.transportr.map.MapViewModel;
-import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.LineDestination;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
+import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -83,12 +86,12 @@ public class LocationFragment extends TransportrFragment
 
 	private MapViewModel viewModel;
 	private WrapLocation location;
-	private SortedSet<Line> lines = new TreeSet<>();
+	private LineAdapter adapter = new LineAdapter();
 
 	private ImageView locationIcon;
 	private TextView locationName;
 	private TextView locationInfo;
-	private ViewGroup linesLayout;
+	private RecyclerView linesLayout;
 	private Button nearbyStationsButton;
 	private ProgressBar nearbyStationsProgress;
 
@@ -125,6 +128,8 @@ public class LocationFragment extends TransportrFragment
 		// Lines
 		linesLayout = v.findViewById(R.id.linesLayout);
 		linesLayout.setVisibility(GONE);
+		linesLayout.setAdapter(adapter);
+		linesLayout.setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
 
 		// Location Info
 		locationInfo = v.findViewById(R.id.locationInfo);
@@ -207,16 +212,15 @@ public class LocationFragment extends TransportrFragment
 	@Override
 	public void onLoadFinished(Loader<QueryDeparturesResult> loader, QueryDeparturesResult data) {
 		if (data != null && data.status == OK) {
+			SortedSet<Line> lines = new TreeSet<>();
 			for (StationDepartures s : data.stationDepartures) {
 				if (s.lines != null) {
 					for (LineDestination d : s.lines) lines.add(d.line);
 				}
 				for (Departure d : s.departures) lines.add(d.line);
 			}
-			linesLayout.removeAllViews();
-			for (Line l : lines) {
-				TransportrUtils.addLineBox(getContext(), linesLayout, l);
-			}
+			adapter.swapLines(new ArrayList<>(lines));
+
 			linesLayout.setAlpha(0f);
 			linesLayout.setVisibility(VISIBLE);
 			linesLayout.animate().setDuration(750).alpha(1f).start();

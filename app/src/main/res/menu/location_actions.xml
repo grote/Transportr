@@ -34,7 +34,7 @@
 
     <item
         android:id="@+id/action_show_nearby_stations"
-        android:icon="@drawable/ic_location_station"
+        android:icon="@drawable/ic_nearby_stations"
         app:showAsAction="always"
         android:title="@string/find_nearby_stations"/>
 

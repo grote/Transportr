@@ -25,7 +25,7 @@
 
     </RelativeLayout>
 
-    <org.apmem.tools.layouts.FlowLayout
+    <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/line"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-    </org.apmem.tools.layouts.FlowLayout>
+    </com.google.android.flexbox.FlexboxLayout>
 
     <LinearLayout
         android:layout_width="0dp"

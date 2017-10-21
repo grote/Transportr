@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<merge
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	tools:showIn="@layout/leg_details">
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:background="@drawable/line_box"
+	android:orientation="horizontal">
 
 	<ImageView
 		android:id="@+id/productView"
@@ -26,4 +29,4 @@
 		tools:text="123"
 		tools:visibility="visible"/>
 
-</merge>
+</LinearLayout>

@@ -34,9 +34,8 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.flexbox.FlexboxLayout;
 import com.mapbox.mapboxsdk.geometry.LatLng;
-
-import org.apmem.tools.layouts.FlowLayout;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -88,18 +87,18 @@ public class TransportrUtils {
 			// loop through all line boxes in the linearLayout
 			for(int i = 0; i < lineLayout.getChildCount(); ++i) {
 				// check if current line box is the same as the one we are about to add
-				if(line.label != null && line.label.equals(((LineView) lineLayout.getChildAt(i)).getLabel())) {
+				if(line.label != null && line.label.equals(((LineView) lineLayout.getChildAt(i)).getText())) {
 					// lines are equal, so bail out from here and don't add new line box
 					return;
 				}
 			}
 		}
 
-		LineView lineView = new LineView(context);
+		LineView lineView = new LineView(context, null);
 		lineView.setLine(line);
 
 		// set margin, because setting in in xml does not work
-		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+		FlexboxLayout.LayoutParams llp = new FlexboxLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
 		llp.setMargins(0, 5, 10, 5);
 		lineView.setLayoutParams(llp);
 
@@ -115,11 +114,11 @@ public class TransportrUtils {
 	}
 
 	static public void addWalkingBox(Context context, ViewGroup lineLayout, int index) {
-		LineView lineView = new LineView(context);
+		LineView lineView = new LineView(context, null);
 		lineView.setWalk();
 
 		// set margin, because setting in in xml does not work
-		FlowLayout.LayoutParams llp = new FlowLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+		FlexboxLayout.LayoutParams llp = new FlexboxLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
 		llp.setMargins(0, 5, 10, 5);
 		lineView.setLayoutParams(llp);
 
@@ -271,9 +270,10 @@ public class TransportrUtils {
 	}
 
 	@DrawableRes
-	static public int getDrawableForProduct(Product p) {
+	static public int getDrawableForProduct(@Nullable Product p) {
 		@DrawableRes
 		int image_res = R.drawable.product_bus;
+		if (p == null) return image_res;
 
 		switch(p) {
 			case HIGH_SPEED_TRAIN:
@@ -670,6 +670,11 @@ public class TransportrUtils {
 
 	public static LatLng getLatLng(Location location) {
 		return new LatLng(location.getLatAsDouble(), location.getLonAsDouble());
+	}
+
+	public static int dpToPx(Context context, int dp) {
+		DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+		return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
 	}
 
 }

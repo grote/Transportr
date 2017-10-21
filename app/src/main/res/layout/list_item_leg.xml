@@ -92,6 +92,7 @@
 
 	<de.grobox.transportr.ui.LineView
 		android:id="@+id/lineView"
+		style="@style/LineBox"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="8dp"
@@ -99,7 +100,10 @@
 		android:background="?selectableItemBackgroundBorderless"
 		app:layout_constraintBottom_toBottomOf="@+id/lineDestination"
 		app:layout_constraintStart_toStartOf="@+id/fromLocation"
-		app:layout_constraintTop_toTopOf="@+id/lineDestination"/>
+		app:layout_constraintTop_toTopOf="@+id/lineDestination"
+		tools:background="@drawable/line_box"
+		tools:drawableLeft="@drawable/product_bus"
+		tools:text="1337"/>
 
 	<TextView
 		android:id="@+id/lineDestination"

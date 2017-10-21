@@ -107,7 +107,7 @@ dependencies {
 
 	compile 'com.github.omadahealth:swipy:1.2.3'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
-	compile 'org.apmem.tools:layouts:1.10' // https://android-developers.googleblog.com/2017/02/build-flexible-layouts-with.html
+	compile 'com.google.android:flexbox:0.3.1'
 	compile 'com.mikepenz:materialdrawer:5.9.5'
 	compile 'com.mikepenz:aboutlibraries:5.9.7'
 	compile 'com.mikepenz:fastadapter-commons:2.6.3@aar'
@@ -164,7 +164,7 @@ dependencyVerification {
 			'com.android.support:recyclerview-v7:389cb47a7dabca4fb8c23657ff7c85ebc651428580d3a5ea0349eeb43ddea94b',
 			'com.android.support.constraint:constraint-layout:b0c688cc2b7172608f8153a689d746da40f71e52d7e2fe2bfd9df2f92db77085',
 			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
-			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
+			'com.google.android:flexbox:9e0f9ad8be417bf5f48c1edbc98c25ea5eb7847def9aeaa5eef3151b53e89df4',
 			'com.mikepenz:fastadapter-commons:7125dadccf3c80783fc5d7c6753f91f0284888e651f8a48fc4802466780e3e4c',
 			'uk.co.samuelwall:material-tap-target-prompt:6df17e7c371f9264bfe440506f91205dd47566869c1528891943a04a26c96a94',
 			'com.google.dagger:dagger:1e9fe8a7ba7ca663449cda3e4f973511aa4593dbecd93ef3eb2476ef98082f08',

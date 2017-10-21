@@ -186,7 +186,6 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 
 		int i = 0;
 		for(final Trip.Leg leg : trip.legs) {
-			TripDetailsAdapter.bindLeg(this, ui.legs.get(i), leg, true, showLineName);
 			i += 1;
 		}
 

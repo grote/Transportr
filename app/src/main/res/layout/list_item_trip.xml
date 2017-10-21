@@ -9,6 +9,7 @@
 	android:layout_marginBottom="4dp"
 	android:layout_marginTop="4dp"
 	android:clickable="true"
+	android:focusable="true"
 	android:foreground="?android:attr/selectableItemBackground"
 	app:cardCornerRadius="0dp">
 
@@ -65,22 +66,21 @@
 			app:layout_constraintTop_toTopOf="@+id/fromTime"
 			tools:text="From Location"/>
 
-		<org.apmem.tools.layouts.FlowLayout
+		<com.google.android.flexbox.FlexboxLayout
 			android:id="@+id/lines"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_marginEnd="8dp"
 			android:layout_marginRight="8dp"
 			android:layout_marginTop="4dp"
+			app:flexWrap="wrap"
 			app:layout_constraintLeft_toLeftOf="@+id/fromLocation"
 			app:layout_constraintRight_toLeftOf="@+id/duration"
 			app:layout_constraintTop_toBottomOf="@+id/fromLocation">
 
-			<de.grobox.transportr.ui.LineView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"/>
+			<include layout="@layout/list_item_line"/>
 
-		</org.apmem.tools.layouts.FlowLayout>
+		</com.google.android.flexbox.FlexboxLayout>
 
 		<TextView
 			android:id="@+id/duration"
