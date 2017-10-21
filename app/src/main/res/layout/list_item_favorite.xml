@@ -47,7 +47,7 @@
 			app:layout_constraintLeft_toRightOf="@+id/fromIcon"
 			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
 			app:layout_constraintTop_toTopOf="parent"
-			tools:text="From Station"/>
+			tools:text="From Station that can have a very long name"/>
 
 		<ImageView
 			android:id="@+id/viaIcon"
