@@ -370,7 +370,7 @@ public class TransportrUtils {
 		context.startActivity(intent);
 	}
 
-	static public void findDirections(Context context, long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, @Nullable Date date, boolean search) {
+	static public void findDirections(Context context, long uid, WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to, @Nullable Date date, boolean search) {
 		Intent intent = new Intent(context, DirectionsActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra(FAV_TRIP_UID, uid);

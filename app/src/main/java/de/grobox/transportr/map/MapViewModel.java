@@ -18,6 +18,7 @@ import de.grobox.transportr.utils.SingleLiveEvent;
 @Singleton
 public class MapViewModel extends SavedSearchesViewModel {
 
+	private final GpsController gpsController = new GpsController();
 	private final MutableLiveData<Integer> peekHeight = new MutableLiveData<>();
 	private final SingleLiveEvent<LatLng> zoomTo = new SingleLiveEvent<>();
 	private final SingleLiveEvent<WrapLocation> findNearbyStations = new SingleLiveEvent<>();
@@ -25,6 +26,10 @@ public class MapViewModel extends SavedSearchesViewModel {
 	@Inject
 	MapViewModel(TransportNetworkManager transportNetworkManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
 		super(transportNetworkManager, locationRepository, searchesRepository);
+	}
+
+	GpsController getGpsController() {
+		return gpsController;
 	}
 
 	LiveData<Integer> getPeekHeight() {

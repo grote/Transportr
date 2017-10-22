@@ -36,6 +36,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
@@ -65,10 +66,10 @@ import de.grobox.transportr.locations.LocationView;
 import de.grobox.transportr.locations.LocationView.LocationViewListener;
 import de.grobox.transportr.locations.NearbyLocationsLoader;
 import de.grobox.transportr.locations.WrapLocation;
+import de.grobox.transportr.map.GpsController.FabState;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.schildbach.pte.dto.Location;
-import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
 import static android.graphics.PorterDuff.Mode.SRC_IN;
@@ -77,14 +78,16 @@ import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static com.mapbox.mapboxsdk.constants.MyLocationTracking.TRACKING_FOLLOW;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
-import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
+import static de.grobox.transportr.locations.WrapLocation.WrapType.NORMAL;
+import static de.grobox.transportr.map.GpsController.FabState.FIX;
+import static de.grobox.transportr.map.GpsController.FabState.FOLLOW;
 import static de.grobox.transportr.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.transportr.utils.Constants.LOADER_NEARBY_STATIONS;
-import static de.grobox.transportr.utils.TransportrUtils.convert;
 import static de.grobox.transportr.utils.TransportrUtils.findDirections;
 import static de.grobox.transportr.utils.TransportrUtils.getLatLng;
 import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
 import static de.grobox.transportr.utils.TransportrUtils.getMarkerForProduct;
+import static de.schildbach.pte.dto.LocationType.STATION;
 import static de.schildbach.pte.dto.NearbyLocationsResult.Status.OK;
 
 @ParametersAreNonnullByDefault
@@ -96,6 +99,7 @@ public class MapActivity extends DrawerActivity
 	@Inject	ViewModelProvider.Factory viewModelFactory;
 
 	private MapViewModel viewModel;
+	private GpsController gpsController;
 	private MapView mapView;
 	private MapboxMap map;
 	private LocationView search;
@@ -142,6 +146,7 @@ public class MapActivity extends DrawerActivity
 
 		// get view model and observe data
 		viewModel = ViewModelProviders.of(this, viewModelFactory).get(MapViewModel.class);
+		gpsController = viewModel.getGpsController();
 		viewModel.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
 		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));
 		viewModel.getWork().observe(this, workLocation -> search.setWorkLocation(workLocation));
@@ -152,35 +157,38 @@ public class MapActivity extends DrawerActivity
 
 		FloatingActionButton directionsFab = findViewById(R.id.directionsFab);
 		directionsFab.setOnClickListener(view -> {
-			WrapLocation from = new WrapLocation(GPS);
-			if (map != null && map.getMyLocation() != null) {
-				from = convert(map.getMyLocation());
-			}
+			WrapLocation from = gpsController.getWrapLocation();
 			WrapLocation to = null;
 			if (locationFragment != null && locationFragmentVisible()) {
 				to = locationFragment.getLocation();
 			}
+			if (from.getWrapType() == NORMAL) {
+				// TODO check if we have this location already (or something close enough)
+				viewModel.clickLocation(from, FROM);
+			}
 			findDirections(MapActivity.this, 0, from, null, to, null, true);
 		});
+
 		gpsFab = findViewById(R.id.gpsFab);
 		gpsFab.setOnClickListener(view -> {
-			if (map != null) {
-				if (map.getMyLocation() == null) return;
-				LatLng coords = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
-				CameraUpdate update = CameraUpdateFactory.newLatLngZoom(coords, LOCATION_ZOOM);
-				map.animateCamera(update, 1000, new MapboxMap.CancelableCallback() {
-					@Override
-					public void onCancel() {
-
-					}
-
-					@Override
-					public void onFinish() {
-						Log.e("TEST", "FINISHED ANIMATION");
-						map.getTrackingSettings().setMyLocationTrackingMode(TRACKING_FOLLOW);
-					}
-				});
+			if (map == null) return;
+			if (map.getMyLocation() == null) {
+				Toast.makeText(this, R.string.warning_no_gps_fix, Toast.LENGTH_SHORT).show();
+				return;
 			}
+			LatLng coords = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
+			CameraUpdate update = CameraUpdateFactory.newLatLng(coords);
+			map.animateCamera(update, 750, new MapboxMap.CancelableCallback() {
+				@Override
+				public void onCancel() {
+
+				}
+
+				@Override
+				public void onFinish() {
+					map.getTrackingSettings().setMyLocationTrackingMode(TRACKING_FOLLOW);
+				}
+			});
 		});
 
 		if (savedInstanceState == null) {
@@ -199,8 +207,7 @@ public class MapActivity extends DrawerActivity
 	public void onMapReady(MapboxMap mapboxMap) {
 		map = mapboxMap;
 
-//		LatLng latLng = map.getCameraPosition().target;
-		Location location = new Location(LocationType.STATION, "fake");
+		Location location = new Location(STATION, "fake");
 		Bundle args = NearbyLocationsLoader.getBundle(location, 0);
 		getSupportLoaderManager().initLoader(LOADER_NEARBY_STATIONS, args, this);
 
@@ -212,19 +219,13 @@ public class MapActivity extends DrawerActivity
 		map.setOnMarkerClickListener(this);
 		map.getMarkerViewManager().setOnMarkerViewClickListener(this);
 
-		map.setOnMyLocationTrackingModeChangeListener(myLocationTrackingMode -> {
-			if (myLocationTrackingMode == TRACKING_FOLLOW) {
-				ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.fabBackground));
-				gpsFab.setBackgroundTintList(colorStateList);
-				gpsFab.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.fabForegroundFollow), SRC_IN);
-			} else {
-				ColorStateList colorStateList = ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.fabBackgroundMoved));
-				gpsFab.setBackgroundTintList(colorStateList);
-				gpsFab.getDrawable().setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.fabForegroundMoved), SRC_IN);
-			}
-		});
-
-		zoomToMyLocation();
+		if (map.getMyLocation() != null) {
+			gpsController.setLocation(map.getMyLocation());
+			zoomToMyLocation();
+		}
+		map.setOnMyLocationChangeListener(newLocation -> gpsController.setLocation(newLocation));
+		map.setOnMyLocationTrackingModeChangeListener(myLocationTrackingMode -> gpsController.setTrackingMode(myLocationTrackingMode));
+		gpsController.getFabState().observe(this, this::onNewFabState);
 
 		// observe map related data
 		viewModel.getZoomTo().observe(this, this::zoomTo);
@@ -279,9 +280,21 @@ public class MapActivity extends DrawerActivity
 		mapView.onDestroy();
 	}
 
-	public void onTransportNetworkChanged(TransportNetwork network) {
+	private void onNewFabState(@Nullable FabState fabState) {
+		int iconColor = ContextCompat.getColor(getApplicationContext(), R.color.fabForegroundInitial);
+		ColorStateList backgroundColor = ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.fabBackground));
+		if (fabState == FIX) {
+			iconColor = ContextCompat.getColor(getApplicationContext(), R.color.fabForegroundMoved);
+			backgroundColor = ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.fabBackgroundMoved));
+		} else if (fabState == FOLLOW) {
+			iconColor = ContextCompat.getColor(getApplicationContext(), R.color.fabForegroundFollow);
+		}
+		gpsFab.getDrawable().setColorFilter(iconColor, SRC_IN);
+		gpsFab.setBackgroundTintList(backgroundColor);
+	}
+
+	private void onTransportNetworkChanged(TransportNetwork network) {
 		if (transportNetworkInitialized) {
-			Log.w("TEST", "TRANSPORT NETWORK HAS CHANGED!!! " + network.getName(this));
 			search.setLocation(null);
 			closeDrawer();
 			recreate();

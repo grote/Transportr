@@ -19,24 +19,31 @@ import okhttp3.Response;
 import static de.schildbach.pte.dto.LocationType.ADDRESS;
 
 @ParametersAreNonnullByDefault
-class OsmReverseGeocoder {
+public class OsmReverseGeocoder {
 
 	private final OsmReverseGeocoderCallback callback;
 
-	OsmReverseGeocoder(OsmReverseGeocoderCallback callback) {
+	public OsmReverseGeocoder(OsmReverseGeocoderCallback callback) {
 		this.callback = callback;
 	}
 
-	@SuppressWarnings("StringBufferReplaceableByString")
 	void findLocation(final Location location) {
 		if (!location.hasLocation()) return;
+		findLocation(location.getLatAsDouble(), location.getLonAsDouble());
+	}
 
+	public void findLocation(final android.location.Location location) {
+		findLocation(location.getLatitude(), location.getLongitude());
+	}
+
+	@SuppressWarnings("StringBufferReplaceableByString")
+	private void findLocation(final double lat, final double lon) {
 		OkHttpClient client = new OkHttpClient();
 
 		// https://nominatim.openstreetmap.org/reverse?lat=52.5217&lon=13.4324&format=json
 		StringBuilder url = new StringBuilder("https://nominatim.openstreetmap.org/reverse?");
-		url.append("lat=").append(location.getLatAsDouble()).append("&");
-		url.append("lon=").append(location.getLonAsDouble()).append("&");
+		url.append("lat=").append(lat).append("&");
+		url.append("lon=").append(lon).append("&");
 		url.append("format=json");
 
 		Request request = new Request.Builder()
@@ -70,7 +77,7 @@ class OsmReverseGeocoder {
 					String place = address.optString("city", null);
 					if (place == null) place = address.optString("state", null);
 
-					final Location l = new Location(ADDRESS, null, location.lat, location.lon, place, name);
+					final Location l = new Location(ADDRESS, null, (int) (lat * 1E6), (int) (lon * 1E6), place, name);
 					callback.onLocationRetrieved(new WrapLocation(l));
 				} catch (JSONException e) {
 					throw new IOException(e);
@@ -79,7 +86,7 @@ class OsmReverseGeocoder {
 		});
 	}
 
-	interface OsmReverseGeocoderCallback {
+	public interface OsmReverseGeocoderCallback {
 		@WorkerThread
 		void onLocationRetrieved(WrapLocation location);
 	}
