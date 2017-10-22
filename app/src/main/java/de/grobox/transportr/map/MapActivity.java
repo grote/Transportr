@@ -163,8 +163,7 @@ public class MapActivity extends DrawerActivity
 				to = locationFragment.getLocation();
 			}
 			if (from.getWrapType() == NORMAL) {
-				// TODO check if we have this location already (or something close enough)
-				viewModel.clickLocation(from, FROM);
+				from = viewModel.addFavoriteIfNotExists(from);
 			}
 			findDirections(MapActivity.this, 0, from, null, to, null, true);
 		});

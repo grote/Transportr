@@ -12,6 +12,9 @@ import de.grobox.transportr.data.locations.WorkLocation;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.networks.TransportNetworkViewModel;
 
+import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
+import static de.schildbach.pte.dto.LocationType.ADDRESS;
+
 public abstract class LocationsViewModel extends TransportNetworkViewModel {
 
 	private final LocationRepository locationRepository;
@@ -50,6 +53,25 @@ public abstract class LocationsViewModel extends TransportNetworkViewModel {
 
 	public void clickLocation(WrapLocation location, FavLocationType type) {
 		locationRepository.addFavoriteLocation(location, type);
+	}
+
+	/**
+	 * This checks existing {@link ADDRESS} Locations for geographic proximity
+	 * before adding the given location as a favorite.
+	 * The idea is too prevent duplicates of addresses with slightly different coordinates.
+	 *
+	 * @return The given {@link WrapLocation} or if found, the existing one
+	 */
+	public WrapLocation addFavoriteIfNotExists(WrapLocation location) {
+		if (locations.getValue() != null) {
+			for (FavoriteLocation fav : locations.getValue()) {
+				if (fav.type == ADDRESS && fav.name != null && fav.name.equals(location.name) && fav.isSamePlace(location)) {
+					return fav;
+				}
+			}
+		}
+		clickLocation(location, FROM);
+		return location;
 	}
 
 }
