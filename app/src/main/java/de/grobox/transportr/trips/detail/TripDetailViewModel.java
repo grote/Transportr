@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.networks.TransportNetworkViewModel;
 import de.schildbach.pte.dto.Location;
@@ -25,8 +26,8 @@ public class TripDetailViewModel extends TransportNetworkViewModel implements Le
 	private MutableLiveData<LatLng> zoomLocation = new MutableLiveData<>();
 
 	@Inject
-	TripDetailViewModel(TransportNetworkManager transportNetworkManager) {
-		super(transportNetworkManager);
+	TripDetailViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager) {
+		super(application, transportNetworkManager);
 	}
 
 	public Trip getTrip() {

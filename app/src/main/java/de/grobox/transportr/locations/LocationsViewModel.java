@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
+import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.data.locations.FavoriteLocation;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.data.locations.HomeLocation;
@@ -23,8 +24,8 @@ public abstract class LocationsViewModel extends TransportNetworkViewModel {
 	private final LiveData<WorkLocation> work;
 	private final LiveData<List<FavoriteLocation>> locations;
 
-	public LocationsViewModel(TransportNetworkManager transportNetworkManager, LocationRepository locationRepository) {
-		super(transportNetworkManager);
+	public LocationsViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, LocationRepository locationRepository) {
+		super(application, transportNetworkManager);
 		this.locationRepository = locationRepository;
 		this.home = locationRepository.getHomeLocation();
 		this.work = locationRepository.getWorkLocation();

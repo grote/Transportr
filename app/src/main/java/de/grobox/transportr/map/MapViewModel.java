@@ -8,6 +8,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesRepository;
 import de.grobox.transportr.favorites.trips.SavedSearchesViewModel;
@@ -18,14 +19,16 @@ import de.grobox.transportr.utils.SingleLiveEvent;
 @Singleton
 public class MapViewModel extends SavedSearchesViewModel {
 
-	private final GpsController gpsController = new GpsController();
+	private final GpsController gpsController;
 	private final MutableLiveData<Integer> peekHeight = new MutableLiveData<>();
 	private final SingleLiveEvent<LatLng> zoomTo = new SingleLiveEvent<>();
 	private final SingleLiveEvent<WrapLocation> findNearbyStations = new SingleLiveEvent<>();
 
 	@Inject
-	MapViewModel(TransportNetworkManager transportNetworkManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
-		super(transportNetworkManager, locationRepository, searchesRepository);
+	MapViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, LocationRepository locationRepository,
+	             SearchesRepository searchesRepository) {
+		super(application, transportNetworkManager, locationRepository, searchesRepository);
+		gpsController = new GpsController(application.getApplicationContext());
 	}
 
 	GpsController getGpsController() {

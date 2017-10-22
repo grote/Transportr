@@ -1,13 +1,16 @@
 package de.grobox.transportr.networks;
 
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
 
-public abstract class TransportNetworkViewModel extends ViewModel {
+import de.grobox.transportr.TransportrApplication;
+
+public abstract class TransportNetworkViewModel extends AndroidViewModel {
 
 	private final LiveData<TransportNetwork> transportNetwork;
 
-	public TransportNetworkViewModel(TransportNetworkManager transportNetworkManager) {
+	public TransportNetworkViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager) {
+		super(application);
 		this.transportNetwork = transportNetworkManager.getTransportNetwork();
 	}
 

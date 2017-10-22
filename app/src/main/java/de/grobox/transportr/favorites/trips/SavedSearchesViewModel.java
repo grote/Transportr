@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
+import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesRepository;
 import de.grobox.transportr.locations.LocationsViewModel;
@@ -15,8 +16,9 @@ public abstract class SavedSearchesViewModel extends LocationsViewModel {
 
 	private final LiveData<List<FavoriteTripItem>> savedSearches;
 
-	public SavedSearchesViewModel(TransportNetworkManager transportNetworkManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
-		super(transportNetworkManager, locationRepository);
+	public SavedSearchesViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager,
+	                              LocationRepository locationRepository, SearchesRepository searchesRepository) {
+		super(application, transportNetworkManager, locationRepository);
 		this.searchesRepository = searchesRepository;
 		this.savedSearches = searchesRepository.getFavoriteTrips();
 	}

@@ -1,11 +1,16 @@
 package de.grobox.transportr.locations;
 
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.annotation.WorkerThread;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -19,11 +24,13 @@ import okhttp3.Response;
 import static de.schildbach.pte.dto.LocationType.ADDRESS;
 
 @ParametersAreNonnullByDefault
-public class OsmReverseGeocoder {
+public class ReverseGeocoder {
 
-	private final OsmReverseGeocoderCallback callback;
+	private final Context context;
+	private final ReverseGeocoderCallback callback;
 
-	public OsmReverseGeocoder(OsmReverseGeocoderCallback callback) {
+	public ReverseGeocoder(Context context, ReverseGeocoderCallback callback) {
+		this.context = context;
 		this.callback = callback;
 	}
 
@@ -36,8 +43,40 @@ public class OsmReverseGeocoder {
 		findLocation(location.getLatitude(), location.getLongitude());
 	}
 
-	@SuppressWarnings("StringBufferReplaceableByString")
 	private void findLocation(final double lat, final double lon) {
+		if (Geocoder.isPresent()) {
+			try {
+				findLocationWithGeocoder(lat, lon);
+			} catch (IOException e) {
+				if (!e.getMessage().equals("Service not Available")) {
+					e.printStackTrace();
+				}
+				findLocationWithOsm(lat, lon);
+			}
+		} else {
+			findLocationWithOsm(lat, lon);
+		}
+	}
+
+	private void findLocationWithGeocoder(final double lat, final double lon) throws IOException {
+		Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+		List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
+		if (addresses == null || addresses.size() == 0) return;
+
+		Address address = addresses.get(0);
+		String name = address.getThoroughfare();
+		if (name != null && address.getFeatureName() != null) name += " " + address.getFeatureName();
+		String place = address.getLocality();
+
+		int latInt = (int) (lat * 1E6);
+		int lonInt = (int) (lon * 1E6);
+		Location l = new Location(ADDRESS, null, latInt, lonInt, place, name);
+
+		callback.onLocationRetrieved(new WrapLocation(l));
+	}
+
+	@SuppressWarnings("StringBufferReplaceableByString")
+	private void findLocationWithOsm(final double lat, final double lon) {
 		OkHttpClient client = new OkHttpClient();
 
 		// https://nominatim.openstreetmap.org/reverse?lat=52.5217&lon=13.4324&format=json
@@ -88,7 +127,7 @@ public class OsmReverseGeocoder {
 		});
 	}
 
-	public interface OsmReverseGeocoderCallback {
+	public interface ReverseGeocoderCallback {
 		@WorkerThread
 		void onLocationRetrieved(WrapLocation location);
 	}

@@ -43,6 +43,11 @@ class AppModule {
 	}
 
 	@Provides
+	TransportrApplication provideTransportrApplication() {
+		return application;
+	}
+
+	@Provides
 	@Singleton
 	SettingsManager provideSettingsManager() {
 		return new SettingsManager(application.getApplicationContext());

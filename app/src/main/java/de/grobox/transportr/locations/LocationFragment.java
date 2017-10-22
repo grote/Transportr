@@ -51,7 +51,7 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.departures.DeparturesActivity;
 import de.grobox.transportr.departures.DeparturesLoader;
 import de.grobox.transportr.fragments.TransportrFragment;
-import de.grobox.transportr.locations.OsmReverseGeocoder.OsmReverseGeocoderCallback;
+import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback;
 import de.grobox.transportr.map.MapViewModel;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Line;
@@ -78,7 +78,7 @@ import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 
 @ParametersAreNonnullByDefault
 public class LocationFragment extends TransportrFragment
-		implements LoaderCallbacks<QueryDeparturesResult>, OsmReverseGeocoderCallback, OnGlobalLayoutListener {
+		implements LoaderCallbacks<QueryDeparturesResult>, ReverseGeocoderCallback, OnGlobalLayoutListener {
 
 	public static final String TAG = LocationFragment.class.getName();
 
@@ -136,7 +136,7 @@ public class LocationFragment extends TransportrFragment
 		showLocation();
 
 		if (location.getLocation().type == COORD) {
-			OsmReverseGeocoder geocoder = new OsmReverseGeocoder(this);
+			ReverseGeocoder geocoder = new ReverseGeocoder(getContext(), this);
 			geocoder.findLocation(location.getLocation());
 		}
 

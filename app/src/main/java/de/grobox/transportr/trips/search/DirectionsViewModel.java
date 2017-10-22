@@ -19,6 +19,7 @@ import java.util.Set;
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
+import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesRepository;
@@ -70,8 +71,9 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	private long favTripUid;
 
 	@Inject
-	DirectionsViewModel(TransportNetworkManager transportNetworkManager, SettingsManager settingsManager, LocationRepository locationRepository, SearchesRepository searchesRepository) {
-		super(transportNetworkManager, locationRepository, searchesRepository);
+	DirectionsViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, SettingsManager settingsManager,
+	                    LocationRepository locationRepository, SearchesRepository searchesRepository) {
+		super(application, transportNetworkManager, locationRepository, searchesRepository);
 		this.settingsManager = settingsManager;
 		now.setValue(true);
 		updatedCalendar.setValue(Calendar.getInstance());

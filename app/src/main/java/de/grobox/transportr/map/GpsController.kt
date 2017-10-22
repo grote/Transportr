@@ -3,23 +3,24 @@ package de.grobox.transportr.map
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.content.Context
 import android.location.Location
 import android.support.annotation.WorkerThread
 import com.mapbox.mapboxsdk.constants.MyLocationTracking.TRACKING_FOLLOW
 import de.grobox.transportr.AbstractManager
-import de.grobox.transportr.locations.OsmReverseGeocoder
-import de.grobox.transportr.locations.OsmReverseGeocoder.OsmReverseGeocoderCallback
+import de.grobox.transportr.locations.ReverseGeocoder
+import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.locations.WrapLocation.WrapType.GPS
 import de.grobox.transportr.map.GpsController.FabState.*
 
-internal class GpsController : AbstractManager(), OsmReverseGeocoderCallback {
+internal class GpsController(val context: Context) : AbstractManager(), ReverseGeocoderCallback {
 
     internal enum class FabState {
         NO_FIX, FIX, FOLLOW
     }
 
-    private val geoCoder = OsmReverseGeocoder(this)
+    private val geoCoder = ReverseGeocoder(context, this)
 
     private val fabState = MutableLiveData<FabState>()
 
