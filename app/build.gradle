@@ -130,6 +130,8 @@ dependencies {
 		exclude group: 'com.google.android', module: 'android'
 	}
 
+	testCompile 'junit:junit:4.12'
+
 	androidTestCompile 'com.android.support:multidex:1.0.2'
 	androidTestCompile("com.android.support.test.espresso:espresso-core:$espressoVersion") {
 		exclude group: 'com.android.support', module: 'support-annotations'

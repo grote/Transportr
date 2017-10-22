@@ -39,6 +39,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
@@ -521,21 +522,8 @@ public class TransportrUtils {
 	}
 
 	static public String getCoordinationName(double lat, double lon) {
-		String latStr;
-		try {
-			latStr = String.valueOf(lat).substring(0, 7);
-		} catch(StringIndexOutOfBoundsException e) {
-			latStr = String.valueOf(lat);
-		}
-
-		String lonStr;
-		try {
-			lonStr = String.valueOf(lon).substring(0, 7);
-		} catch(StringIndexOutOfBoundsException e) {
-			lonStr = String.valueOf(lon);
-		}
-
-		return latStr + "/" + lonStr;
+		DecimalFormat df = new DecimalFormat("#.###");
+		return df.format(lat) + '/' + df.format(lon);
 	}
 
 	static public Drawable getTintedDrawable(Context context, boolean dark, Drawable drawable) {

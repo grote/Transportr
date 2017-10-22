@@ -156,6 +156,18 @@ public class WrapLocation implements Serializable {
 		}
 	}
 
+	public boolean isSamePlace(@Nullable WrapLocation other) {
+		return other != null && isSamePlaceInt(other.lat, other.lon);
+	}
+
+	public boolean isSamePlace(double otherLat, double otherLon) {
+		return isSamePlaceInt((int) (otherLat * 1E6), (int) (otherLon * 1E6));
+	}
+
+	private boolean isSamePlaceInt(int otherLat, int otherLon) {
+		return (lat / 1000 == otherLat / 1000) && (lon / 1000 == otherLon / 1000);
+	}
+
 	@Override
 	public String toString() {
 		return getFullName();

@@ -40,9 +40,15 @@ internal class GpsController : AbstractManager(), OsmReverseGeocoderCallback {
         if (newLocation == null) return
 
         if (location == null || location!!.distanceTo(newLocation) > 50) {
+            // store location and last location
             lastLocation = location
             location = newLocation
-            geoCoder.findLocation(newLocation);
+
+            // check if we need to use the reverse geo coder
+            val isNew = wrapLocation.let { it == null || !it.isSamePlace(newLocation.latitude, newLocation.longitude) }
+            if (isNew) geoCoder.findLocation(newLocation)
+
+            // set new FAB state
             if (fabState.value == NO_FIX) {
                 fabState.value = FIX
             }

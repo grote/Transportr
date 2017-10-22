@@ -77,7 +77,9 @@ public class OsmReverseGeocoder {
 					String place = address.optString("city", null);
 					if (place == null) place = address.optString("state", null);
 
-					final Location l = new Location(ADDRESS, null, (int) (lat * 1E6), (int) (lon * 1E6), place, name);
+					int latInt = (int) (lat * 1E6);
+					int lonInt = (int) (lon * 1E6);
+					Location l = new Location(ADDRESS, null, latInt, lonInt, place, name);
 					callback.onLocationRetrieved(new WrapLocation(l));
 				} catch (JSONException e) {
 					throw new IOException(e);
