@@ -58,10 +58,7 @@ abstract class DrawerActivity extends TransportrActivity {
 	private Drawer drawer;
 	private AccountHeader accountHeader;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
+	protected void setupDrawer(Bundle savedInstanceState) {
 		// Accounts aka TransportNetworks
 		accountHeader = new AccountHeaderBuilder()
 				.withActivity(this)

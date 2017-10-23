@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<com.mapbox.mapboxsdk.maps.MapView
+		android:id="@+id/map"
+		style="@style/MapStyle"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:mapbox_uiCompassMarginTop="72dp"
+		app:mapbox_uiRotateGestures="true"/>
+
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/gpsFab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:clickable="true"
+		android:focusable="true"
+		android:tint="@color/fabForegroundInitial"
+		app:backgroundTint="@color/cardview_light_background"
+		app:behavior_autoHide="true"
+		app:elevation="4dp"
+		app:fabSize="normal"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:srcCompat="@drawable/ic_gps"/>
+
+</android.support.constraint.ConstraintLayout>

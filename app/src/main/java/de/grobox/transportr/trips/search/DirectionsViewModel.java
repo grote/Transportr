@@ -179,7 +179,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 
 	@Override
 	public void onLocationItemClick(WrapLocation loc, FavLocationType type) {
-		clickLocation(loc, type);
+		useLocation(loc, type);
 		if (type == FROM) {
 			setFromLocation(loc);
 		} else if (type == VIA) {

@@ -317,8 +317,12 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	/* Behavior */
 
 	protected void onFocusChange(View v, boolean hasFocus) {
-		if(hasFocus && ViewCompat.isAttachedToWindow(v) && v instanceof AutoCompleteTextView) {
-			((AutoCompleteTextView) v).showDropDown();
+		if (v instanceof AutoCompleteTextView && ViewCompat.isAttachedToWindow(v)) {
+			if (hasFocus) {
+				((AutoCompleteTextView) v).showDropDown();
+			} else {
+				hideSoftKeyboard();
+			}
 		}
 	}
 

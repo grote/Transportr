@@ -117,6 +117,7 @@ public class LocationFragment extends TransportrFragment
 		getComponent().inject(this);
 
 		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(MapViewModel.class);
+		viewModel.nearbyStationsFound().observe(this, found -> onNearbyStationsLoaded());
 
 		// Location
 		locationIcon = v.findViewById(R.id.locationIcon);
@@ -236,7 +237,7 @@ public class LocationFragment extends TransportrFragment
 	public void onLocationRetrieved(@NonNull final WrapLocation location) {
 		runOnUiThread(() -> {
 			LocationFragment.this.location = location;
-			viewModel.clickLocation(location, FROM);
+			viewModel.useLocation(location, FROM);
 			showLocation();
 		});
 	}

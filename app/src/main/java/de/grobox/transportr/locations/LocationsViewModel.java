@@ -52,7 +52,7 @@ public abstract class LocationsViewModel extends TransportNetworkViewModel {
 		return locations;
 	}
 
-	public void clickLocation(WrapLocation location, FavLocationType type) {
+	public void useLocation(WrapLocation location, FavLocationType type) {
 		locationRepository.addFavoriteLocation(location, type);
 	}
 
@@ -71,7 +71,7 @@ public abstract class LocationsViewModel extends TransportNetworkViewModel {
 				}
 			}
 		}
-		clickLocation(location, FROM);
+		useLocation(location, FROM);
 		return location;
 	}
 

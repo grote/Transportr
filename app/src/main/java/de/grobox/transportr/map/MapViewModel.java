@@ -20,9 +20,15 @@ import de.grobox.transportr.utils.SingleLiveEvent;
 public class MapViewModel extends SavedSearchesViewModel {
 
 	private final GpsController gpsController;
+
 	private final MutableLiveData<Integer> peekHeight = new MutableLiveData<>();
 	private final SingleLiveEvent<LatLng> zoomTo = new SingleLiveEvent<>();
+	private final MutableLiveData<WrapLocation> selectedLocation = new MutableLiveData<>();
 	private final SingleLiveEvent<WrapLocation> findNearbyStations = new SingleLiveEvent<>();
+	private final SingleLiveEvent<Boolean> nearbyStationsFound = new SingleLiveEvent<>();
+
+	final SingleLiveEvent<Void> mapClicked = new SingleLiveEvent<>();
+	final SingleLiveEvent<Void> markerClicked = new SingleLiveEvent<>();
 
 	@Inject
 	MapViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, LocationRepository locationRepository,
@@ -51,12 +57,28 @@ public class MapViewModel extends SavedSearchesViewModel {
 		zoomTo.setValue(latLng);
 	}
 
-	LiveData<WrapLocation> getFindNearbyStations() {
-		return findNearbyStations;
+	void selectLocation(WrapLocation location) {
+		selectedLocation.setValue(location);
+	}
+
+	LiveData<WrapLocation> getSelectedLocation() {
+		return selectedLocation;
 	}
 
 	public void findNearbyStations(WrapLocation location) {
 		findNearbyStations.setValue(location);
+	}
+
+	LiveData<WrapLocation> getFindNearbyStations() {
+		return findNearbyStations;
+	}
+
+	void setNearbyStationsFound(boolean found) {
+		nearbyStationsFound.setValue(found);
+	}
+
+	public LiveData<Boolean> nearbyStationsFound() {
+		return nearbyStationsFound;
 	}
 
 }
