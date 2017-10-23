@@ -31,4 +31,8 @@ public abstract class SavedSearchesViewModel extends LocationsViewModel {
 		searchesRepository.updateFavoriteState(item);
 	}
 
+	void removeFavoriteTrip(FavoriteTripItem item) {
+		searchesRepository.removeSearch(item);
+	}
+
 }

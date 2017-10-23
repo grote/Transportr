@@ -9,6 +9,8 @@ public interface FavoriteTripListener {
 
 	void onFavoriteChanged(FavoriteTripItem item, boolean isFavorite);
 
+	void onFavoriteDeleted(FavoriteTripItem item);
+
 	void changeHome();
 
 	void changeWork();

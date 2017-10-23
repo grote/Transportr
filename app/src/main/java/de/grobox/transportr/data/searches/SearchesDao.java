@@ -2,6 +2,7 @@ package de.grobox.transportr.data.searches;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.support.annotation.Nullable;
@@ -31,5 +32,8 @@ public interface SearchesDao {
 
 	@Query("UPDATE searches SET favorite = :favorite WHERE uid = :uid")
 	void setFavorite(long uid, boolean favorite);
+
+	@Delete
+	void delete(StoredSearch storedSearch);
 
 }

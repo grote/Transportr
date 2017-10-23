@@ -166,4 +166,11 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 		}
 	}
 
+	@Override
+	public void onFavoriteDeleted(FavoriteTripItem item) {
+		adapter.remove(item);
+		listAlreadyUpdated = true;
+		viewModel.removeFavoriteTrip(item);
+	}
+
 }

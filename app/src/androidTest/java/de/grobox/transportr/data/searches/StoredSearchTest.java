@@ -197,4 +197,19 @@ public class StoredSearchTest extends DbTest {
 		assertFalse(getValue(dao.getStoredSearches(DB)).get(0).favorite);
 	}
 
+	@Test
+	public void delete() throws Exception {
+		// store a new search
+		StoredSearch madeSearch = new StoredSearch(DB, f1, null, f3);
+		dao.storeSearch(madeSearch);
+
+		// get and remove search
+		List<StoredSearch> storedSearches = getValue(dao.getStoredSearches(DB));
+		assertEquals(1, storedSearches.size());
+		StoredSearch storedSearch = storedSearches.get(0);
+		dao.delete(storedSearch);
+		storedSearches = getValue(dao.getStoredSearches(DB));
+		assertEquals(0, storedSearches.size());
+	}
+
 }

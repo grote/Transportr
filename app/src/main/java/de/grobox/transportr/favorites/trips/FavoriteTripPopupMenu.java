@@ -46,6 +46,9 @@ public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
 				}
 				setFavState(context, item, trip.isFavorite(), false);
 				return true;
+			case R.id.action_trip_delete:
+				listener.onFavoriteDeleted(trip);
+				return true;
 			default:
 				return super.onMenuItemClick(item);
 		}

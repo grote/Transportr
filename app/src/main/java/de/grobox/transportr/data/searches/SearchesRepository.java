@@ -92,6 +92,11 @@ public class SearchesRepository extends AbstractManager {
 		runOnBackgroundThread(() -> searchesDao.setFavorite(item.getUid(), item.isFavorite()));
 	}
 
+	public void removeSearch(FavoriteTripItem item) {
+		if (item.getUid() == 0) throw new IllegalArgumentException();
+		runOnBackgroundThread(() -> searchesDao.delete(item));
+	}
+
 	@Nullable
 	private FavoriteLocation getFavoriteLocation(NetworkId networkId, @Nullable WrapLocation l) {
 		if (l == null) return null;

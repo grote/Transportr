@@ -157,4 +157,8 @@ class FavoriteTripAdapter extends RecyclerView.Adapter<AbstractFavoritesViewHold
 		items.updateItemAt(position, item);
 	}
 
+	void remove(FavoriteTripItem item) {
+		items.remove(item);
+	}
+
 }
