@@ -79,7 +79,6 @@ import static de.grobox.transportr.utils.TransportrUtils.getToolbarDrawable;
 public class DirectionsFragment extends TransportrFragment implements TripHandler {
 
 	public final static String TAG = "de.grobox.liberario.directions";
-	public final static String TASK_BRING_ME_HOME = "bring_me_home";
 	private ProgressDialog pd;
 
 	private DirectionsViewHolder ui;
@@ -396,7 +395,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 //				boolean search;
 //				Date date;
 //				String eSpecial = (String) intent.getSerializableExtra("special");
-//				if(eSpecial != null && eSpecial.equals(TASK_BRING_ME_HOME)) {
+//				if(eSpecial != null && eSpecial.equals(TASK_HOME)) {
 //					from = new WrapLocation(WrapLocation.WrapType.GPS);
 //					to = new WrapLocation(WrapLocation.WrapType.HOME);
 //					search = true;

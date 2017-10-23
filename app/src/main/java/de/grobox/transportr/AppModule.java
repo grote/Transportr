@@ -28,8 +28,6 @@ import de.grobox.transportr.data.locations.LocationDao;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesDao;
 import de.grobox.transportr.data.searches.SearchesRepository;
-import de.grobox.transportr.favorites.locations.FavoriteLocationManager;
-import de.grobox.transportr.favorites.trips.FavoriteTripManager;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.settings.SettingsManager;
 
@@ -56,22 +54,7 @@ class AppModule {
 	@Provides
 	@Singleton
 	TransportNetworkManager provideTransportNetworkManager(SettingsManager settingsManager) {
-		TransportNetworkManager manager = new TransportNetworkManager(settingsManager);
-//		manager.addOnTransportNetworkChangedListener(favoriteLocationManager);
-//		manager.addOnTransportNetworkChangedListener(favoriteTripManager);
-		return manager;
-	}
-
-	@Provides
-	@Singleton
-	FavoriteLocationManager provideFavoriteLocationManager(LocationRepository locationRepository, FavoriteTripManager favoriteTripManager) {
-		return new FavoriteLocationManager(application.getApplicationContext(), locationRepository, favoriteTripManager);
-	}
-
-	@Provides
-	@Singleton
-	FavoriteTripManager provideFavoriteTripManager(SearchesRepository searchesRepository) {
-		return new FavoriteTripManager(searchesRepository);
+		return new TransportNetworkManager(settingsManager);
 	}
 
 	@Provides

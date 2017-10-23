@@ -36,7 +36,6 @@ import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.networks.TransportNetworkManager;
-import de.grobox.transportr.utils.TransportrUtils;
 
 @ParametersAreNonnullByDefault
 public class SettingsFragment extends PreferenceFragmentCompat implements OnSharedPreferenceChangeListener {
@@ -68,26 +67,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 
 			ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
 			ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
-			return true;
-		});
-
-		Preference quickhome = findPreference("pref_key_create_quickhome_shortcut");
-		quickhome.setOnPreferenceClickListener(preference -> {
-			// create launcher shortcut
-			Intent addIntent = new Intent();
-			addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, TransportrUtils.getShortcutIntent(getContext()));
-			addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.widget_name_quickhome));
-			addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(getContext(), R.drawable.ic_quickhome_widget));
-			addIntent.putExtra("duplicate", false);
-			addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-			getContext().sendBroadcast(addIntent);
-
-			// switch to home-screen to let the user see the new shortcut
-			Intent startMain = new Intent(Intent.ACTION_MAIN);
-			startMain.addCategory(Intent.CATEGORY_HOME);
-			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			startActivity(startMain);
-
 			return true;
 		});
 	}

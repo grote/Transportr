@@ -74,6 +74,7 @@ import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.PromptSt
 
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 import static de.grobox.transportr.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
+import static de.grobox.transportr.trips.search.DirectionsActivity.TASK_HOME;
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.Builder;
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_DISMISSED;
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FINISHED;
@@ -219,7 +220,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "quickhome")
 					.setShortLabel(getString(R.string.widget_name_quickhome))
 					.setIcon(Icon.createWithResource(getContext(), R.drawable.ic_quickhome_widget))
-					.setIntent(TransportrUtils.getShortcutIntent(getContext()))
+					.setIntent(TransportrUtils.getShortcutIntent(getContext(), TASK_HOME))
 					.build();
 			shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
 		}

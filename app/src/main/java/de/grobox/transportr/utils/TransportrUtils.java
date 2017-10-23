@@ -50,7 +50,6 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.activities.MainActivity;
 import de.grobox.transportr.data.locations.HomeLocation;
 import de.grobox.transportr.fragments.DeparturesFragment;
-import de.grobox.transportr.fragments.DirectionsFragment;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.map.MapActivity;
 import de.grobox.transportr.settings.Preferences;
@@ -66,6 +65,9 @@ import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 
+import static android.content.Intent.ACTION_MAIN;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -372,7 +374,7 @@ public class TransportrUtils {
 
 	static public void findDirections(Context context, long uid, WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to, @Nullable Date date, boolean search) {
 		Intent intent = new Intent(context, DirectionsActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra(FAV_TRIP_UID, uid);
 		intent.putExtra(FROM, from);
 		intent.putExtra(VIA, via);
@@ -399,7 +401,7 @@ public class TransportrUtils {
 	static public void findDepartures(Context context, Location loc) {
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.setAction(DeparturesFragment.TAG);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra("location", loc);
 
 		context.startActivity(intent);
@@ -647,11 +649,12 @@ public class TransportrUtils {
 		return (int) (30 * metrics.density);
 	}
 
-	public static Intent getShortcutIntent(Context context) {
-		Intent shortcutIntent = new Intent(DirectionsFragment.TAG, Uri.EMPTY, context, MainActivity.class);
-		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		shortcutIntent.putExtra("special", DirectionsFragment.TASK_BRING_ME_HOME);
+	public static Intent getShortcutIntent(Context context, String type) {
+		Intent shortcutIntent = new Intent(context, DirectionsActivity.class);
+		shortcutIntent.setAction(ACTION_MAIN);
+		shortcutIntent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+		shortcutIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+		shortcutIntent.putExtra("special", type);
 		return shortcutIntent;
 	}
 

@@ -18,10 +18,14 @@
 package de.grobox.transportr.favorites.trips;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.transportr.R;
+
+import static de.grobox.transportr.trips.search.DirectionsActivity.TASK_HOME;
 
 class HomePopupMenu extends SpecialLocationPopupMenu {
 
@@ -37,6 +41,23 @@ class HomePopupMenu extends SpecialLocationPopupMenu {
 			default:
 				return super.onMenuItemClick(item);
 		}
+	}
+
+	@Override
+	protected String getShortcutIntentString() {
+		return TASK_HOME;
+	}
+
+	@Override
+	@StringRes
+	protected int getShortcutName() {
+		return R.string.widget_name_quickhome;
+	}
+
+	@Override
+	@DrawableRes
+	protected int getShortcutDrawable() {
+		return R.drawable.ic_quickhome_widget;
 	}
 
 }

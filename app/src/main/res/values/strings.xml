@@ -196,6 +196,7 @@ there are any).</string>
     <string name="action_set_locations">Edit search</string>
     <string name="action_swap_locations">Search return trip</string>
     <string name="action_change">Change</string>
+    <string name="action_add_shortcut">Add Launcher Shortcut</string>
 
     <string name="permission_explanation_gps">You need to grant the location permission in order to see your current position on the map.</string>
     <string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
@@ -208,6 +209,7 @@ there are any).</string>
     <string name="changelog_show_full">More…</string>
 
     <string name="widget_name_quickhome">Get Me Home</string>
+    <string name="widget_name_quickwork">Get To Work</string>
 
     <string name="np_region_australia">Australia</string>
     <string name="np_name_sydney" translatable="false">Transport NSW</string>

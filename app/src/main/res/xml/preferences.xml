@@ -64,12 +64,6 @@
 			android:title="@string/pref_language_title"
 			/>
 
-		<Preference
-			android:key="pref_key_create_quickhome_shortcut"
-			android:summary="@string/create_quickhome_shortcut"
-			android:title="@string/pref_quickhome"
-			/>
-
 	</PreferenceCategory>
 
 </PreferenceScreen>

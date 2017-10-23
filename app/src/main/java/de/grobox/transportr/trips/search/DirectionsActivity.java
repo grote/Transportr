@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.AppBarLayout.OnOffsetChangedListener;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -20,7 +19,6 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.activities.TransportrActivity;
 import de.grobox.transportr.locations.WrapLocation;
 
-import static de.grobox.transportr.fragments.DirectionsFragment.TASK_BRING_ME_HOME;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.transportr.utils.Constants.DATE;
 import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
@@ -33,6 +31,9 @@ import static de.grobox.transportr.utils.Constants.VIA;
 public class DirectionsActivity extends TransportrActivity implements OnOffsetChangedListener {
 
 	private final static String TAG = DirectionsActivity.class.getName();
+
+	public final static String TASK_HOME = "de.grobox.transportr.HOME";
+	public final static String TASK_WORK = "de.grobox.transportr.WORK";
 
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
@@ -83,9 +84,6 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		setIntent(intent);
-
-		Log.e(TAG, "ON NEW INTENT");
-
 		processIntent();
 	}
 
@@ -113,17 +111,24 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		Intent intent = getIntent();
 		if (intent == null) return;
 
-		Log.e(TAG, "PROCESSING NEW INTENT");
-
 		WrapLocation from, via, to;
 		boolean search;
 		Date date;
 		long uid = intent.getLongExtra(FAV_TRIP_UID, 0);
 		String special = (String) intent.getSerializableExtra("special");
-		if (special != null && special.equals(TASK_BRING_ME_HOME)) {
+		if (special != null) {
 			from = new WrapLocation(GPS);
-			to = viewModel.getHome().getValue();
 			search = true;
+			switch (special) {
+				case TASK_HOME:
+					to = viewModel.getHome().getValue();
+					break;
+				case TASK_WORK:
+					to = viewModel.getWork().getValue();
+					break;
+				default:
+					throw new IllegalArgumentException();
+			}
 		} else {
 			from = (WrapLocation) intent.getSerializableExtra(FROM);
 			to = (WrapLocation) intent.getSerializableExtra(TO);
@@ -137,7 +142,6 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 		// remove the intent (and clear its action) since it was already processed
 		// and should not be processed again
-		Log.e(TAG, "SETTIG INTENT NULL");
 		setIntent(null);
 	}
 

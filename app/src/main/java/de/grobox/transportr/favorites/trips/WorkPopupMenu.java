@@ -18,10 +18,14 @@
 package de.grobox.transportr.favorites.trips;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.transportr.R;
+
+import static de.grobox.transportr.trips.search.DirectionsActivity.TASK_WORK;
 
 class WorkPopupMenu extends SpecialLocationPopupMenu {
 
@@ -37,6 +41,23 @@ class WorkPopupMenu extends SpecialLocationPopupMenu {
 			default:
 				return super.onMenuItemClick(item);
 		}
+	}
+
+	@Override
+	protected String getShortcutIntentString() {
+		return TASK_WORK;
+	}
+
+	@Override
+	@StringRes
+	protected int getShortcutName() {
+		return R.string.widget_name_quickwork;
+	}
+
+	@Override
+	@DrawableRes
+	protected int getShortcutDrawable() {
+		return R.mipmap.ic_quickwork_widget;
 	}
 
 }
