@@ -42,9 +42,7 @@
 			android:layout_marginStart="48dp"
 			android:gravity="center_vertical"
 			app:elevation="@dimen/cardview_default_elevation"
-			app:favLocation="true"
 			app:hint="Search here"
-			app:homeLocation="true"
 			app:showIcon="false"/>
 
 	</android.support.v7.widget.CardView>

@@ -25,27 +25,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            app:favLocation="true"
-            app:hint="@string/from"
-            app:homeLocation="true"/>
+            app:hint="@string/from"/>
 
         <de.grobox.transportr.locations.LocationView
             android:id="@+id/viaLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/fromLocation"
-            app:favLocation="true"
-            app:hint="@string/via"
-            app:homeLocation="true"/>
+            app:hint="@string/via"/>
 
         <de.grobox.transportr.locations.LocationView
             android:id="@+id/toLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/viaLocation"
-            app:favLocation="true"
-            app:hint="@string/to"
-            app:homeLocation="true"/>
+            app:hint="@string/to"/>
 
         <LinearLayout
             android:id="@+id/dateLine"

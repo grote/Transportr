@@ -272,7 +272,7 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			switch(requestCode) {
 				case PR_ACCESS_FINE_LOCATION_NEARBY_STATIONS: {
 //					NearbyStationsFragment f = (NearbyStationsFragment) getFragment(NearbyStationsFragment.TAG);
-//					if(f != null) f.activateGPS();
+//					if(f != null) f.setSearching();
 					break;
 				}
 				case PR_ACCESS_FINE_LOCATION_DIRECTIONS: {

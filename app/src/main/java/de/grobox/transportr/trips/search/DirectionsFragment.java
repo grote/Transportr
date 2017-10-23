@@ -25,6 +25,7 @@ import javax.inject.Inject;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.activities.TransportrActivity;
+import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.fragments.TimeDateFragment;
 import de.grobox.transportr.fragments.TransportrFragment;
 import de.grobox.transportr.locations.LocationGpsView;
@@ -110,10 +111,14 @@ public class DirectionsFragment extends TransportrFragment {
 			via.setFavoriteLocations(favoriteLocations);
 			to.setFavoriteLocations(favoriteLocations);
 		});
-		viewModel.getFromLocation().observe(this, location -> from.setLocation(location));
+		viewModel.getFromLocation().observe(this, location -> {
+			from.setLocation(location);
+			to.requestFocus();
+		});
 		viewModel.getViaLocation().observe(this, location -> via.setLocation(location));
 		viewModel.getToLocation().observe(this, location -> to.setLocation(location));
 		viewModel.getCalendar().observe(this, this::onCalendarUpdated);
+		viewModel.findGpsLocation.observe(this, this::onFindGpsLocation);
 
 		setupClickListeners();
 
@@ -217,11 +222,12 @@ public class DirectionsFragment extends TransportrFragment {
 			public void onAnimationEnd(Animation animation) {
 				// swap location objects
 				WrapLocation tmp = to.getLocation();
-				if(!from.isSearching()) {
-					viewModel.setToLocation(from.getLocation());
-				} else {
+				if (from.isSearching()) {
+					viewModel.findGpsLocation.setValue(null);
 					// TODO: GPS currently only supports from location, so don't swap it for now
 					viewModel.setToLocation(null);
+				} else {
+					viewModel.setToLocation(from.getLocation());
 				}
 				viewModel.setFromLocation(tmp);
 
@@ -249,6 +255,20 @@ public class DirectionsFragment extends TransportrFragment {
 		MenuItem viaItem = menu.findItem(R.id.action_navigation_expand);
 		viaItem.setChecked(viaVisible);
 		viaCard.setVisibility(viaVisible ? VISIBLE : GONE);
+	}
+
+	void onFindGpsLocation(@Nullable FavLocationType type) {
+		if (type == null) {
+			viewModel.locationLiveData.removeObservers(DirectionsFragment.this);
+			return;
+		}
+		from.setSearching();
+		viewModel.locationLiveData.observe(this, location -> {
+			WrapLocation newLocation = viewModel.addFavoriteIfNotExists(location, type);
+			viewModel.setFromLocation(newLocation);
+			viewModel.search();
+			viewModel.locationLiveData.removeObservers(DirectionsFragment.this);
+		});
 	}
 
 }

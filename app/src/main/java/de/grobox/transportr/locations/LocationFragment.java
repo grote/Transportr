@@ -236,8 +236,7 @@ public class LocationFragment extends TransportrFragment
 	@WorkerThread
 	public void onLocationRetrieved(@NonNull final WrapLocation location) {
 		runOnUiThread(() -> {
-			LocationFragment.this.location = location;
-			viewModel.useLocation(location, FROM);
+			LocationFragment.this.location = viewModel.addFavoriteIfNotExists(location, FROM);
 			showLocation();
 		});
 	}

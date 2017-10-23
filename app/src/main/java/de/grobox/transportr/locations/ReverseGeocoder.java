@@ -5,6 +5,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.support.annotation.WorkerThread;
 
+import com.mapbox.mapboxsdk.geometry.LatLng;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,6 +22,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import static de.schildbach.pte.dto.LocationType.ADDRESS;
 
@@ -94,14 +97,19 @@ public class ReverseGeocoder {
 			@Override
 			public void onFailure(Call call, IOException e) {
 				e.printStackTrace();
+				callback.onLocationRetrieved(getWrapLocation(lat, lon));
 			}
 
 			@Override
 			public void onResponse(Call call, Response response) throws IOException {
-				String result = response.body().string();
-				response.body().close();
+				ResponseBody body = response.body();
+				if (!response.isSuccessful() || body == null) {
+					callback.onLocationRetrieved(getWrapLocation(lat, lon));
+					return;
+				}
 
-				if (!response.isSuccessful()) return;
+				String result = body.string();
+				body.close();
 
 				try {
 					JSONObject data = new JSONObject(result);
@@ -121,10 +129,15 @@ public class ReverseGeocoder {
 					Location l = new Location(ADDRESS, null, latInt, lonInt, place, name);
 					callback.onLocationRetrieved(new WrapLocation(l));
 				} catch (JSONException e) {
+					callback.onLocationRetrieved(getWrapLocation(lat, lon));
 					throw new IOException(e);
 				}
 			}
 		});
+	}
+
+	private WrapLocation getWrapLocation(double lat, double lon) {
+		return new WrapLocation(new LatLng(lat, lon));
 	}
 
 	public interface ReverseGeocoderCallback {

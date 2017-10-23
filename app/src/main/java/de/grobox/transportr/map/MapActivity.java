@@ -114,8 +114,8 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			if (locationFragment != null && locationFragmentVisible()) {
 				to = locationFragment.getLocation();
 			}
-			if (from.getWrapType() == NORMAL) {
-				from = viewModel.addFavoriteIfNotExists(from);
+			if (from != null && from.getWrapType() == NORMAL) {
+				from = viewModel.addFavoriteIfNotExists(from, FROM);
 			}
 			findDirections(MapActivity.this, 0, from, null, to, null, true);
 		});
@@ -157,7 +157,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	}
 
 	private void onLocationSelected(WrapLocation loc) {
-		viewModel.useLocation(loc, FROM);
+		viewModel.addFavoriteIfNotExists(loc, FROM);
 
 		locationFragment = LocationFragment.newInstance(loc);
 		getSupportFragmentManager().beginTransaction()

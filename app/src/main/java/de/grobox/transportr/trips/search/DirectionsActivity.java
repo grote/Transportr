@@ -17,6 +17,7 @@ import javax.inject.Inject;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.activities.TransportrActivity;
+import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.locations.WrapLocation;
 
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
@@ -147,10 +148,9 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 	private void presetFromTo(long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to, @Nullable Date date) {
 		viewModel.setFavTripUid(uid);
-		if (from != null && from.getWrapType() == GPS) {
-			// TODO
-//			activateGPS();
+		if (from == null || from.getWrapType() == GPS) {
 			viewModel.setFromLocation(null);
+			viewModel.findGpsLocation.setValue(FavLocationType.FROM);
 		} else {
 			viewModel.setFromLocation(from);
 		}

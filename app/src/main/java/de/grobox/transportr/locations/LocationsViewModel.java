@@ -63,7 +63,7 @@ public abstract class LocationsViewModel extends TransportNetworkViewModel {
 	 *
 	 * @return The given {@link WrapLocation} or if found, the existing one
 	 */
-	public WrapLocation addFavoriteIfNotExists(WrapLocation location) {
+	public WrapLocation addFavoriteIfNotExists(WrapLocation location, FavLocationType type) {
 		if (locations.getValue() != null) {
 			for (FavoriteLocation fav : locations.getValue()) {
 				if (fav.type == ADDRESS && fav.name != null && fav.name.equals(location.name) && fav.isSamePlace(location)) {
@@ -71,7 +71,7 @@ public abstract class LocationsViewModel extends TransportNetworkViewModel {
 				}
 			}
 		}
-		useLocation(location, FROM);
+		useLocation(location, type);
 		return location;
 	}
 

@@ -11,7 +11,6 @@ import de.grobox.transportr.AbstractManager
 import de.grobox.transportr.locations.ReverseGeocoder
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback
 import de.grobox.transportr.locations.WrapLocation
-import de.grobox.transportr.locations.WrapLocation.WrapType.GPS
 import de.grobox.transportr.map.GpsController.FabState.*
 
 internal class GpsController(val context: Context) : AbstractManager(), ReverseGeocoderCallback {
@@ -63,12 +62,12 @@ internal class GpsController(val context: Context) : AbstractManager(), ReverseG
 
     fun getFabState(): LiveData<FabState> = fabState
 
-    fun getWrapLocation(): WrapLocation {
+    fun getWrapLocation(): WrapLocation? {
         if (wrapLocation == null) {
             location?.let { return it.toWrapLocation() }
         }
         wrapLocation?.let { return it }
-        return WrapLocation(GPS)
+        return null
     }
 
 }

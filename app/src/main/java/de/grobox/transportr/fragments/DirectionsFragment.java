@@ -66,7 +66,6 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
-import static de.grobox.transportr.activities.MainActivity.PR_ACCESS_FINE_LOCATION_DIRECTIONS;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.TO;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.VIA;
@@ -100,26 +99,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		ui = new DirectionsViewHolder(v);
 
 		ui.from.setType(FROM);
-		ui.from.setCaller(PR_ACCESS_FINE_LOCATION_DIRECTIONS);
-		LocationGpsView.LocationGpsListener listener = new LocationGpsView.LocationGpsListener() {
-			@Override
-			public void activateGPS() {	}
-			@Override
-			public void deactivateGPS() { }
-			@Override
-			public void onLocationChanged(WrapLocation location) {
-				if(pd != null) {
-					pd.dismiss();
-				}
-
-				// query for trips if user pressed search already and we just have been waiting for the location
-				if(mAfterGpsTask != null) {
-					mAfterGpsTask.setFrom(location.getLocation());
-					mAfterGpsTask.execute();
-				}
-			}
-		};
-		ui.from.setLocationGpsListener(listener);
 
 		ui.via.setType(VIA);
 		ui.to.setType(TO);
@@ -426,7 +405,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 //		if(wfrom != null) {
 //			from = wfrom.getLocation();
 //			if(wfrom.getWrapType() == WrapLocation.WrapType.GPS) {
-//				activateGPS();
+//				setSearching();
 //				from = null;
 //			}
 //		} else {
@@ -495,7 +474,7 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 
 	public void activateGPS() {
 		if(ui.from != null) {
-			ui.from.activateGPS();
+			ui.from.setSearching();
 		}
 	}
 

@@ -25,6 +25,7 @@ import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesRepository;
 import de.grobox.transportr.favorites.trips.SavedSearchesViewModel;
 import de.grobox.transportr.fragments.TimeDateFragment.TimeDateListener;
+import de.grobox.transportr.locations.LocationLiveData;
 import de.grobox.transportr.locations.LocationView.LocationViewListener;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.TransportNetwork;
@@ -55,6 +56,9 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	private final MutableLiveData<WrapLocation> viaLocation = new MutableLiveData<>();
 	private final MutableLiveData<WrapLocation> toLocation = new MutableLiveData<>();
 
+	final LocationLiveData locationLiveData;
+	final MutableLiveData<FavLocationType> findGpsLocation = new MutableLiveData<>();
+
 	private final SingleLiveEvent<Void> showTrips = new SingleLiveEvent<>();
 	private final MutableLiveData<Set<Trip>> trips = new MutableLiveData<>();
 	private final SingleLiveEvent<String> queryError = new SingleLiveEvent<>();
@@ -80,6 +84,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		products.setValue(EnumSet.allOf(Product.class));
 		isDeparture.setValue(true);
 		isExpanded.setValue(false);
+		locationLiveData = new LocationLiveData(application.getApplicationContext());
 	}
 
 	LiveData<WrapLocation> getFromLocation() {
@@ -188,6 +193,8 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 			setToLocation(loc);
 		}
 		search();
+		// clear finding GPS location request
+		if (findGpsLocation.getValue() == type) findGpsLocation.setValue(null);
 	}
 
 	@Override
@@ -200,6 +207,8 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		} else {
 			setToLocation(null);
 		}
+		// clear finding GPS location request
+		if (findGpsLocation.getValue() == type) findGpsLocation.setValue(null);
 	}
 
 	/* Trip Queries */

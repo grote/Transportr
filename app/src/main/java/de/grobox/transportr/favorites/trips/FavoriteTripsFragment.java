@@ -23,6 +23,7 @@ import de.grobox.transportr.data.locations.WorkLocation;
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment;
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment;
 import de.grobox.transportr.fragments.TransportrFragment;
+import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.ui.LceAnimator;
 
 import static android.support.v7.util.SortedList.INVALID_POSITION;
@@ -34,7 +35,7 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 	public static final String TAG = FavoriteTripsFragment.class.getName();
 
 	@Inject	protected ViewModelProvider.Factory viewModelFactory;
-	private SavedSearchesViewModel viewModel;
+	protected SavedSearchesViewModel viewModel;
 
 	private ProgressBar progressBar;
 	private RecyclerView list;
@@ -150,13 +151,13 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 			if (item.getTo() == null) {
 				changeHome();
 			} else {
-				findDirections(getContext(), item.getUid(), item.getFrom(), item.getVia(), item.getTo());
+				findDirections(getContext(), item.getUid(), getCurrentFrom(item), item.getVia(), item.getTo());
 			}
 		} else if (item.getType() == FavoriteTripType.WORK) {
 			if (item.getTo() == null) {
 				changeWork();
 			} else {
-				findDirections(getContext(), item.getUid(), item.getFrom(), item.getVia(), item.getTo());
+				findDirections(getContext(), item.getUid(), getCurrentFrom(item), item.getVia(), item.getTo());
 			}
 		} else if (item.getType() == FavoriteTripType.TRIP) {
 			if (item.getFrom() == null || item.getTo() == null) throw new IllegalArgumentException();
@@ -164,6 +165,10 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 		} else {
 			throw new IllegalArgumentException();
 		}
+	}
+
+	protected WrapLocation getCurrentFrom(FavoriteTripItem item) {
+		return item.getFrom();
 	}
 
 	@Override

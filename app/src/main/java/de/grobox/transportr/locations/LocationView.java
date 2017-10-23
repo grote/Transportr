@@ -74,8 +74,6 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		super(context, attrs);
 
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LocationView, 0, 0);
-		boolean includeHome = a.getBoolean(R.styleable.LocationView_homeLocation, false);
-		boolean includeFavs = a.getBoolean(R.styleable.LocationView_favLocation, false);
 		boolean showIcon = a.getBoolean(R.styleable.LocationView_showIcon, true);
 		hint = a.getString(R.styleable.LocationView_hint);
 		a.recycle();
@@ -88,7 +86,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 		ui.location.setHint(hint);
 		if (!isInEditMode()) {
-			adapter = createLocationAdapter(includeHome, includeFavs);
+			adapter = new LocationAdapter(getContext());;
 			ui.location.setAdapter(adapter);
 		}
 		ui.location.setOnItemClickListener((parent, view, position, rowId) -> {
@@ -139,10 +137,6 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 			clear = view.findViewById(R.id.clearButton);
 			progress = view.findViewById(R.id.progress);
 		}
-	}
-
-	protected LocationAdapter createLocationAdapter(boolean includeHome, boolean includeFavs) {
-		return new LocationAdapter(getContext(), includeHome, false, includeFavs);
 	}
 
 	/* State Saving and Restoring */

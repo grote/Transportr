@@ -63,21 +63,17 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	private @Nullable List<SuggestedLocation> suggestedLocations;
 	private @Nullable CharSequence search;
 	private Filter filter = null;
-	private final boolean includeHome, includeGps, includeFavs;
 	private FavLocationType sort = FROM;
 
 	static final int TYPING_THRESHOLD = 3;
 
-	LocationAdapter(Context context, boolean includeHome, boolean includeGps, boolean includeFavs) {
+	LocationAdapter(Context context) {
 		super(context, R.layout.location_item);
-		this.includeHome = includeHome;
-		this.includeGps = includeGps;
-		this.includeFavs = includeFavs;
 	}
 
 	/* TODO new stuff */
 
-	public void setHomeLocation(@Nullable HomeLocation homeLocation) {
+	void setHomeLocation(@Nullable HomeLocation homeLocation) {
 		this.homeLocation = homeLocation;
 		updateLocations();
 		resetDropDownLocations();
@@ -96,9 +92,10 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 		resetDropDownLocations();
 	}
 
+	@SuppressWarnings("SuspiciousMethodCalls")
 	private void updateLocations() {
 		locations = new ArrayList<>();
-		if (includeHome && homeLocation != null) {
+		if (homeLocation != null) {
 			favoriteLocations.remove(homeLocation);
 			locations.add(homeLocation);
 		}
@@ -106,19 +103,15 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 			favoriteLocations.remove(workLocation);
 			locations.add(workLocation);
 		}
-		if (includeGps) locations.add(new WrapLocation(GPS));
-
-		if (includeFavs) {
-			switch (sort) {
-				case TO:
-					Collections.sort(favoriteLocations, ToComparator);
-				case VIA:
-					Collections.sort(favoriteLocations, ViaComparator);
-				default:
-					Collections.sort(favoriteLocations, FromComparator);
-			}
-			locations.addAll(favoriteLocations);
+		switch (sort) {
+			case TO:
+				Collections.sort(favoriteLocations, ToComparator);
+			case VIA:
+				Collections.sort(favoriteLocations, ViaComparator);
+			default:
+				Collections.sort(favoriteLocations, FromComparator);
 		}
+		locations.addAll(favoriteLocations);
 	}
 
 	@NonNull
