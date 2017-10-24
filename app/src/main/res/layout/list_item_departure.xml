@@ -20,7 +20,7 @@
 			android:layout_height="wrap_content"
 			android:textAppearance="@style/TextAppearance.AppCompat.Body2"
 			android:textStyle="normal|bold"
-			app:layout_constraintHorizontal_bias="1.0"
+			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="@+id/departureTimeAbs"
 			app:layout_constraintTop_toTopOf="@+id/line"
@@ -63,24 +63,26 @@
 
 		<de.grobox.transportr.ui.LineView
 			android:id="@+id/line"
+			style="@style/LineBox"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			app:layout_constraintLeft_toLeftOf="@+id/guideline"
-			app:layout_constraintTop_toTopOf="parent"/>
+			app:layout_constraintTop_toTopOf="parent"
+			tools:background="@drawable/line_box"
+			tools:backgroundTint="@color/about_libraries_accent"
+			tools:drawableLeft="@drawable/product_bus"
+			tools:text="1337"/>
 
 		<TextView
 			android:id="@+id/lineNameView"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="8dp"
 			android:layout_marginLeft="8dp"
 			android:layout_marginRight="8dp"
-			android:layout_marginStart="8dp"
 			app:layout_constraintBottom_toBottomOf="@+id/line"
 			app:layout_constraintLeft_toRightOf="@+id/line"
 			app:layout_constraintRight_toLeftOf="@+id/positionView"
 			app:layout_constraintTop_toTopOf="@+id/line"
-			app:layout_constraintVertical_bias="0.0"
 			tools:text="This is a description of the line that can be quite long"/>
 
 		<TextView
@@ -96,10 +98,10 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:contentDescription="@string/to"
-			app:srcCompat="@drawable/ic_right_arrow"
 			app:layout_constraintBottom_toBottomOf="@+id/destinationView"
 			app:layout_constraintLeft_toLeftOf="@+id/guideline"
-			app:layout_constraintTop_toTopOf="@+id/destinationView"/>
+			app:layout_constraintTop_toTopOf="@+id/destinationView"
+			app:srcCompat="@drawable/ic_right_arrow"/>
 
 		<TextView
 			android:id="@+id/destinationView"
