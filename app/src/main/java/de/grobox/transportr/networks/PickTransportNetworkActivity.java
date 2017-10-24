@@ -37,11 +37,12 @@ import javax.inject.Inject;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.activities.TransportrActivity;
+import de.grobox.transportr.map.MapActivity;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-public class PickTransportNetworkActivity extends TransportrActivity {
+public class PickTransportNetworkActivity extends TransportrActivity implements ISelectionListener<IItem> {
 
 	public final static String FORCE_NETWORK_SELECTION = "ForceNetworkSelection";
 
@@ -49,7 +50,7 @@ public class PickTransportNetworkActivity extends TransportrActivity {
 	TransportNetworkManager manager;
 	private FastItemAdapter<IItem> adapter;
 	private RecyclerView list;
-	private boolean backAllowed, selectAllowed = false;
+	private boolean firstStart, selectAllowed = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +62,11 @@ public class PickTransportNetworkActivity extends TransportrActivity {
 		Intent intent = getIntent();
 		ActionBar actionBar = getSupportActionBar();
 		if (intent.getBooleanExtra(FORCE_NETWORK_SELECTION, false)) {
-			backAllowed = false;
+			firstStart = true;
 			if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(false);
 			findViewById(R.id.firstRunTextView).setVisibility(VISIBLE);
 		} else {
-			backAllowed = true;
+			firstStart = false;
 			if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 			findViewById(R.id.firstRunTextView).setVisibility(GONE);
 		}
@@ -74,17 +75,7 @@ public class PickTransportNetworkActivity extends TransportrActivity {
 		adapter = new FastItemAdapter<>();
 		adapter.withSelectable(true);
 		adapter.getItemAdapter().withComparator(new RegionItem.RegionComparator(this));
-		adapter.withSelectionListener(new ISelectionListener<IItem>() {
-			@Override
-			public void onSelectionChanged(IItem item, boolean selected) {
-				if (!selectAllowed || !selected) return;
-				selectAllowed = false;
-				TransportNetworkItem networkItem = (TransportNetworkItem) item;
-				manager.setTransportNetwork(networkItem.getTransportNetwork());
-				setResult(RESULT_OK);
-				supportFinishAfterTransition();
-			}
-		});
+		adapter.withSelectionListener(this);
 		list = findViewById(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
@@ -104,11 +95,6 @@ public class PickTransportNetworkActivity extends TransportrActivity {
 	}
 
 	@Override
-	public void onBackPressed() {
-		if (backAllowed) super.onBackPressed();
-	}
-
-	@Override
 	public boolean onOptionsItemSelected(MenuItem menuItem) {
 		if (menuItem.getItemId() == android.R.id.home) {
 			onBackPressed();
@@ -116,6 +102,20 @@ public class PickTransportNetworkActivity extends TransportrActivity {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public void onSelectionChanged(IItem item, boolean selected) {
+		if (!selectAllowed || !selected) return;
+		selectAllowed = false;
+		TransportNetworkItem networkItem = (TransportNetworkItem) item;
+		manager.setTransportNetwork(networkItem.getTransportNetwork());
+		setResult(RESULT_OK);
+		if (firstStart) { // MapActivity was closed
+			Intent intent = new Intent(this, MapActivity.class);
+			startActivity(intent);
+		}
+		supportFinishAfterTransition();
 	}
 
 	private void selectItem() {

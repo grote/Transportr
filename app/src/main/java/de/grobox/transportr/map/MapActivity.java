@@ -125,26 +125,30 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		});
 
 		if (savedInstanceState == null) {
-			SavedSearchesFragment f = new SavedSearchesFragment();
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.bottomSheet, f, SavedSearchesFragment.TAG)
-					.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
-			bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
-			bottomSheetBehavior.setState(STATE_COLLAPSED);
+			showSavedSearches();
 		} else {
 			locationFragment = (LocationFragment) getSupportFragmentManager().findFragmentByTag(LocationFragment.TAG);
 		}
 	}
 
+	private void showSavedSearches() {
+		SavedSearchesFragment f = new SavedSearchesFragment();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.bottomSheet, f, SavedSearchesFragment.TAG)
+				.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
+		bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
+		bottomSheetBehavior.setState(STATE_COLLAPSED);
+	}
+
 	private void onTransportNetworkChanged(TransportNetwork network) {
 		if (transportNetworkInitialized) {
+			viewModel.selectLocation(null);
 			search.setLocation(null);
 			closeDrawer();
+			showSavedSearches();
 			recreate();
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.bottomSheet, new SavedSearchesFragment(), SavedSearchesFragment.TAG)
-					.commit();
 		} else {
+			// it didn't really change, this is just the first notification from LiveData Observer
 			search.setTransportNetwork(network);
 			transportNetworkInitialized = true;
 		}
@@ -160,7 +164,8 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		bottomSheetBehavior.setState(STATE_HIDDEN);
 	}
 
-	private void onLocationSelected(WrapLocation loc) {
+	private void onLocationSelected(@Nullable WrapLocation loc) {
+		if (loc == null) return;
 		viewModel.addFavoriteIfNotExists(loc, FROM);
 
 		locationFragment = LocationFragment.newInstance(loc);
@@ -189,6 +194,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 			intent.putExtra(FORCE_NETWORK_SELECTION, true);
 			startActivity(intent);
+			finish();
 		}
 	}
 

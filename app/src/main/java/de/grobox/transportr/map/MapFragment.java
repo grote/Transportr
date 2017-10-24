@@ -148,7 +148,8 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		return false;
 	}
 
-	private void onLocationSelected(WrapLocation location) {
+	private void onLocationSelected(@Nullable WrapLocation location) {
+		if (location == null) return;
 		LatLng latLng = getLatLng(location.getLocation());
 		addMarker(latLng);
 		zoomTo(latLng);

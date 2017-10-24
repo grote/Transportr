@@ -2,6 +2,7 @@ package de.grobox.transportr.map;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.Nullable;
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
@@ -57,7 +58,7 @@ public class MapViewModel extends SavedSearchesViewModel {
 		zoomTo.setValue(latLng);
 	}
 
-	void selectLocation(WrapLocation location) {
+	void selectLocation(@Nullable WrapLocation location) {
 		selectedLocation.setValue(location);
 	}
 
