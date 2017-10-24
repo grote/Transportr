@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.ui.StationPopupMenu;
 import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Product;
@@ -97,14 +96,6 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationH
 	public void onBindViewHolder(final StationHolder ui, final int position) {
 		final Location loc = getItem(position);
 
-		ui.item.setOnClickListener(new View.OnClickListener() {
-			                           @Override
-			                           public void onClick(View v) {
-				                           StationPopupMenu popup = new StationPopupMenu(ui.item.getContext(), ui.item, loc, start);
-				                           popup.show();
-			                           }
-		                           }
-		);
 		ui.station.setText(TransportrUtils.getLocationName(loc));
 
 		int dist = TransportrUtils.computeDistance(start, loc);

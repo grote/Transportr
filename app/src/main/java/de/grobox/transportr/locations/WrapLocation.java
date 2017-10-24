@@ -100,6 +100,10 @@ public class WrapLocation implements Serializable {
 		return !Strings.isNullOrEmpty(id);
 	}
 
+	public final boolean hasLocation() {
+		return lat != 0 || lon != 0;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if(o == this) {

@@ -23,7 +23,7 @@ public class MapViewModel extends SavedSearchesViewModel {
 	private final GpsController gpsController;
 
 	private final MutableLiveData<Integer> peekHeight = new MutableLiveData<>();
-	private final SingleLiveEvent<LatLng> zoomTo = new SingleLiveEvent<>();
+	private final MutableLiveData<LatLng> selectedLocationClicked = new MutableLiveData<>();
 	private final MutableLiveData<WrapLocation> selectedLocation = new MutableLiveData<>();
 	private final SingleLiveEvent<WrapLocation> findNearbyStations = new SingleLiveEvent<>();
 	private final SingleLiveEvent<Boolean> nearbyStationsFound = new SingleLiveEvent<>();
@@ -50,12 +50,12 @@ public class MapViewModel extends SavedSearchesViewModel {
 		this.peekHeight.setValue(peekHeight);
 	}
 
-	LiveData<LatLng> getZoomTo() {
-		return zoomTo;
+	LiveData<LatLng> getSelectedLocationClicked() {
+		return selectedLocationClicked;
 	}
 
-	public void zoomTo(LatLng latLng) {
-		zoomTo.setValue(latLng);
+	public void selectedLocationClicked(LatLng latLng) {
+		selectedLocationClicked.setValue(latLng);
 	}
 
 	void selectLocation(@Nullable WrapLocation location) {

@@ -123,8 +123,8 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		gpsController.getFabState().observe(this, this::onNewFabState);
 
 		// observe map related data
-		viewModel.getZoomTo().observe(this, this::zoomTo);
 		viewModel.getSelectedLocation().observe(this, this::onLocationSelected);
+		viewModel.getSelectedLocationClicked().observe(this, this::onSelectedLocationClicked);
 		viewModel.getFindNearbyStations().observe(this, this::findNearbyStations);
 	}
 
@@ -152,6 +152,11 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		if (location == null) return;
 		LatLng latLng = getLatLng(location.getLocation());
 		addMarker(latLng);
+		zoomTo(latLng);
+	}
+
+	private void onSelectedLocationClicked(@Nullable LatLng latLng) {
+		if (latLng == null) return;
 		zoomTo(latLng);
 	}
 

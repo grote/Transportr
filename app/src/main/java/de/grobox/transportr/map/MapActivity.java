@@ -31,6 +31,8 @@ import android.support.design.widget.BottomSheetBehavior.BottomSheetCallback;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
+import com.mapbox.mapboxsdk.geometry.LatLng;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
@@ -46,6 +48,7 @@ import de.grobox.transportr.networks.TransportNetwork;
 
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
+import static android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.NORMAL;
@@ -107,6 +110,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		viewModel.mapClicked.observe(this, no -> onMapClicked());
 		viewModel.markerClicked.observe(this, no -> onMarkerClicked());
 		viewModel.getSelectedLocation().observe(this, this::onLocationSelected);
+		viewModel.getSelectedLocationClicked().observe(this, this::onSelectedLocationClicked);
 		viewModel.getPeekHeight().observe(this, height -> {
 			if (height != null) bottomSheetBehavior.setPeekHeight(height);
 		});
@@ -173,6 +177,11 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 				.replace(R.id.bottomSheet, locationFragment, LocationFragment.TAG)
 				.commit(); // takes some time and empty bottomSheet will not be shown
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
+	}
+
+	private void onSelectedLocationClicked(@Nullable LatLng latLng) {
+		if (latLng == null) return;
+		bottomSheetBehavior.setState(STATE_EXPANDED);
 	}
 
 	private void onMapClicked() {

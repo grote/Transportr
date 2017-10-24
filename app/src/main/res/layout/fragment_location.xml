@@ -24,7 +24,7 @@
 		app:layout_constraintBottom_toBottomOf="@+id/locationName"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/locationName"
-		tools:ignore="ContentDescription"
+		tools:ignore="ContentDescription,RtlHardcoded"
 		tools:src="@drawable/ic_location_address_fav"/>
 
 	<TextView
@@ -42,6 +42,7 @@
 		app:layout_constraintLeft_toRightOf="@+id/locationIcon"
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
+		tools:ignore="RtlHardcoded"
 		tools:text="Name of Location that can be very long and fill two lines"/>
 
 	<android.support.v7.widget.RecyclerView
@@ -49,11 +50,11 @@
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_marginEnd="16dp"
-		android:layout_marginRight="16dp"
 		android:layout_marginTop="8dp"
+		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintLeft_toLeftOf="@+id/locationIcon"
-		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/locationName"
+		tools:layout_height="35dp"
 		tools:listitem="@layout/list_item_line"/>
 
 	<TextView
@@ -66,13 +67,29 @@
 		app:layout_constraintTop_toBottomOf="@+id/linesLayout"
 		tools:text="Place of Location, 12.34/56.78"/>
 
+	<ImageButton
+		android:id="@+id/overflowButton"
+		android:layout_width="@dimen/buttonSize"
+		android:layout_height="@dimen/buttonSize"
+		android:layout_marginStart="8dp"
+		android:adjustViewBounds="false"
+		android:background="?selectableItemBackgroundBorderless"
+		android:contentDescription="@string/more"
+		android:cropToPadding="false"
+		android:tint="?colorControlNormal"
+		app:layout_constraintBottom_toBottomOf="@+id/locationInfo"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toEndOf="@+id/locationInfo"
+		app:layout_constraintTop_toTopOf="@+id/locationInfo"
+		app:srcCompat="@drawable/ic_more_horiz"/>
+
 	<de.grobox.transportr.ui.ImageTextButton
 		android:id="@+id/departuresButton"
 		style="@style/Button"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="16dp"
-		android:layout_marginStart="16dp"
 		android:layout_marginTop="16dp"
 		android:background="?attr/selectableItemBackground"
 		android:drawablePadding="8dp"
@@ -89,10 +106,8 @@
 		style="@style/Button"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginEnd="16dp"
 		android:layout_marginLeft="16dp"
 		android:layout_marginRight="16dp"
-		android:layout_marginStart="16dp"
 		android:layout_marginTop="16dp"
 		android:background="?attr/selectableItemBackground"
 		android:drawablePadding="8dp"
@@ -121,7 +136,6 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginEnd="16dp"
-		android:layout_marginRight="16dp"
 		android:layout_marginTop="16dp"
 		android:background="?attr/selectableItemBackground"
 		android:drawablePadding="8dp"
@@ -129,8 +143,8 @@
 		android:maxWidth="120dp"
 		android:padding="8dp"
 		android:text="@string/action_share"
+		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintLeft_toRightOf="@+id/nearbyStationsButton"
-		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/locationInfo"/>
 
 </android.support.constraint.ConstraintLayout>

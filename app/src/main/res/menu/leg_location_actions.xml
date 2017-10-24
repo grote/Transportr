@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item
+		android:id="@+id/action_show_on_map"
+		android:icon="@drawable/ic_action_location_map"
+		android:title="@string/action_show_on_map"/>
+
+	<item
+		android:id="@+id/action_show_on_external_map"
+		android:icon="@drawable/ic_action_external_map"
+		android:title="@string/action_show_on_external_map"/>
+
+	<item
+		android:id="@+id/action_from_here"
+		android:icon="@drawable/ic_menu_directions"
+		android:title="@string/from_here"/>
+
+	<item
+		android:id="@+id/action_to_here"
+		android:icon="@drawable/ic_menu_directions"
+		android:title="@string/to_here"/>
+
+	<item
+		android:id="@+id/action_show_departures"
+		android:icon="@drawable/ic_action_departures"
+		android:title="@string/find_departures"/>
+
+	<item
+		android:id="@+id/action_show_nearby_stations"
+		android:icon="@drawable/ic_nearby_stations"
+		android:title="@string/find_nearby_stations"/>
+
+	<item
+		android:id="@+id/action_share"
+		android:icon="@drawable/ic_action_social_share"
+		android:title="@string/action_share"/>
+
+	<item
+		android:id="@+id/action_copy"
+		android:icon="@drawable/ic_action_content_content_copy"
+		android:title="@string/action_copy"/>
+
+</menu>

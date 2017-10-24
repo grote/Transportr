@@ -31,10 +31,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -122,15 +122,15 @@ public class LocationFragment extends TransportrFragment
 		// Location
 		locationIcon = v.findViewById(R.id.locationIcon);
 		locationName = v.findViewById(R.id.locationName);
-		OnClickListener locationClick = view -> viewModel.zoomTo(getLatLng(location.getLocation()));
-		locationIcon.setOnClickListener(locationClick);
-		locationName.setOnClickListener(locationClick);
+		locationIcon.setOnClickListener(view -> onLocationClicked());
+		locationName.setOnClickListener(view -> onLocationClicked());
 
 		// Lines
 		linesLayout = v.findViewById(R.id.linesLayout);
 		linesLayout.setVisibility(GONE);
 		linesLayout.setAdapter(adapter);
 		linesLayout.setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
+		linesLayout.setOnClickListener(view -> onLocationClicked());
 
 		// Location Info
 		locationInfo = v.findViewById(R.id.locationInfo);
@@ -166,6 +166,10 @@ public class LocationFragment extends TransportrFragment
 		Button shareButton = v.findViewById(R.id.shareButton);
 		shareButton.setOnClickListener(view -> startGeoIntent(getContext(), location.getLocation()));
 
+		// Overflow Button
+		ImageButton overflowButton = v.findViewById(R.id.overflowButton);
+		overflowButton.setOnClickListener(view -> new LocationPopupMenu(getContext(), view, location).show());
+
 		v.getViewTreeObserver().addOnGlobalLayoutListener(this);
 
 		return v;
@@ -194,6 +198,10 @@ public class LocationFragment extends TransportrFragment
 			locationInfoStr.append(getCoordinationName(location.getLocation()));
 		}
 		locationInfo.setText(locationInfoStr);
+	}
+
+	private void onLocationClicked() {
+		viewModel.selectedLocationClicked(getLatLng(location.getLocation()));
 	}
 
 	@Override
