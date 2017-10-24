@@ -7,6 +7,7 @@ import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresPermission;
 import android.support.annotation.WorkerThread;
 
 import com.mapbox.mapboxsdk.Mapbox;
@@ -15,6 +16,7 @@ import com.mapbox.services.android.telemetry.location.LocationEngineListener;
 
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static com.mapbox.services.android.telemetry.location.LocationEnginePriority.HIGH_ACCURACY;
 
 public class LocationLiveData extends LiveData<WrapLocation> implements LocationEngineListener, ReverseGeocoderCallback {
@@ -28,7 +30,7 @@ public class LocationLiveData extends LiveData<WrapLocation> implements Location
 	}
 
 	@Override
-//	@RequiresPermission(ACCESS_FINE_LOCATION) // TODO
+	@RequiresPermission(ACCESS_FINE_LOCATION)
 	public void observe(LifecycleOwner owner, Observer<WrapLocation> observer) {
 		super.observe(owner, observer);
 	}

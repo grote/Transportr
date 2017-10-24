@@ -45,11 +45,14 @@ import de.grobox.transportr.map.GpsController.FabState;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.NearbyLocationsResult;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static android.graphics.PorterDuff.Mode.SRC_IN;
 import static com.mapbox.mapboxsdk.constants.MyLocationTracking.TRACKING_FOLLOW;
 import static de.grobox.transportr.map.GpsController.FabState.FIX;
 import static de.grobox.transportr.map.GpsController.FabState.FOLLOW;
 import static de.grobox.transportr.utils.Constants.LOADER_NEARBY_STATIONS;
+import static de.grobox.transportr.utils.Constants.REQUEST_LOCATION_PERMISSION;
 import static de.grobox.transportr.utils.TransportrUtils.getLatLng;
 import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
 import static de.grobox.transportr.utils.TransportrUtils.getMarkerForProduct;
@@ -77,10 +80,15 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		getComponent().inject(this);
 
 		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(MapViewModel.class);
+		viewModel.getTransportNetwork().observe(this, transportNetwork -> requestPermission());
 		gpsController = viewModel.getGpsController();
 
 		gpsFab = v.findViewById(R.id.gpsFab);
 		gpsFab.setOnClickListener(view -> onGpsFabClick());
+
+		if (savedInstanceState == null && viewModel.getTransportNetwork().getValue() != null) {
+			requestPermission();
+		}
 
 		return v;
 	}
@@ -153,6 +161,10 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 
 	private void onGpsFabClick() {
 		if (map == null) return;
+		if (ContextCompat.checkSelfPermission(getContext(), ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
+			Toast.makeText(getContext(), R.string.permission_denied_gps, Toast.LENGTH_SHORT).show();
+			return;
+		}
 		if (map.getMyLocation() == null) {
 			Toast.makeText(getContext(), R.string.warning_no_gps_fix, Toast.LENGTH_SHORT).show();
 			return;
@@ -203,6 +215,31 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		Bundle args = NearbyLocationsLoader.getBundle(location.getLocation(), 0);
 		getActivity().getSupportLoaderManager().restartLoader(LOADER_NEARBY_STATIONS, args, this).forceLoad();
 	}
+
+	private void requestPermission() {
+		if (ContextCompat.checkSelfPermission(getContext(), ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) return;
+
+//		if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
+			// TODO Show an explanation to the user *asynchronously*
+			// After the user sees the explanation, try again to request the permission.
+//		}
+		requestPermissions(new String[] { ACCESS_FINE_LOCATION }, REQUEST_LOCATION_PERMISSION);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		if (requestCode != REQUEST_LOCATION_PERMISSION) return;
+		if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
+			if (map != null) {
+				map.setMyLocationEnabled(true);
+				zoomToMyLocation();
+			}
+		} else if (map != null) {
+			map.setMyLocationEnabled(false);
+		}
+	}
+
+	/* Nearby Stations Loader */
 
 	@Override
 	public Loader<NearbyLocationsResult> onCreateLoader(int id, Bundle args) {

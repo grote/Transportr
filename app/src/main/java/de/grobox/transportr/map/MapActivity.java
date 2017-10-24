@@ -22,6 +22,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.os.StrictMode.ThreadPolicy;
+import android.os.StrictMode.VmPolicy;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
@@ -89,8 +91,10 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 					bottomSheetBehavior.setPeekHeight(0);
 				}
 			}
+
 			@Override
-			public void onSlide(@NonNull View bottomSheet, float slideOffset) { }
+			public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+			}
 		});
 
 		// get view model and observe data
@@ -189,12 +193,12 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	}
 
 	private void enableStrictMode() {
-		StrictMode.ThreadPolicy.Builder threadPolicy = new StrictMode.ThreadPolicy.Builder();
+		ThreadPolicy.Builder threadPolicy = new ThreadPolicy.Builder();
 		threadPolicy.detectAll();
 		threadPolicy.penaltyLog();
 		StrictMode.setThreadPolicy(threadPolicy.build());
 
-		StrictMode.VmPolicy.Builder vmPolicy = new StrictMode.VmPolicy.Builder();
+		VmPolicy.Builder vmPolicy = new VmPolicy.Builder();
 		vmPolicy.detectAll();
 		vmPolicy.penaltyLog();
 		StrictMode.setVmPolicy(vmPolicy.build());

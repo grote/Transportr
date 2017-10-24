@@ -71,8 +71,6 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 		super(context, R.layout.location_item);
 	}
 
-	/* TODO new stuff */
-
 	void setHomeLocation(@Nullable HomeLocation homeLocation) {
 		this.homeLocation = homeLocation;
 		updateLocations();

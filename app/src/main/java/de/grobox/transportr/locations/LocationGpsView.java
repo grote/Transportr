@@ -18,12 +18,15 @@
 package de.grobox.transportr.locations;
 
 import android.content.Context;
+import android.support.annotation.RequiresPermission;
 import android.util.AttributeSet;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 
 import de.grobox.transportr.R;
+
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class LocationGpsView extends LocationView {
 
@@ -45,6 +48,7 @@ public class LocationGpsView extends LocationView {
 		super.clearLocationAndShowDropDown();
 	}
 
+	@RequiresPermission(ACCESS_FINE_LOCATION)
 	public void setSearching() {
 		if (searching) return;
 		searching = true;

@@ -15,6 +15,7 @@ public interface Constants {
 	String SEARCH = "search";
 
 	// Request Codes
+	int REQUEST_LOCATION_PERMISSION = 1;
 
 	// Loaders
 	int LOADER_DEPARTURES = 1;

@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -34,6 +35,8 @@ import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.utils.DateUtils;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static android.view.animation.Animation.RELATIVE_TO_SELF;
@@ -113,7 +116,7 @@ public class DirectionsFragment extends TransportrFragment {
 		});
 		viewModel.getFromLocation().observe(this, location -> {
 			from.setLocation(location);
-			to.requestFocus();
+			if (location != null) to.requestFocus();
 		});
 		viewModel.getViaLocation().observe(this, location -> via.setLocation(location));
 		viewModel.getToLocation().observe(this, location -> to.setLocation(location));
@@ -260,6 +263,9 @@ public class DirectionsFragment extends TransportrFragment {
 	void onFindGpsLocation(@Nullable FavLocationType type) {
 		if (type == null) {
 			viewModel.locationLiveData.removeObservers(DirectionsFragment.this);
+			return;
+		}
+		if (ContextCompat.checkSelfPermission(getContext(), ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
 			return;
 		}
 		from.setSearching();
