@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
+
+import java.util.Locale;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
@@ -23,6 +26,8 @@ public class SettingsManager {
 	private final static String NETWORK_ID_2 = "NetworkId2";
 	private final static String NETWORK_ID_3 = "NetworkId3";
 
+	private final static String LANGUAGE = "pref_key_language";
+	private final static String THEME = "pref_key_theme";
 	private final static String WALK_SPEED = "pref_key_walk_speed";
 	private final static String OPTIMIZE = "pref_key_optimize";
 
@@ -68,6 +73,31 @@ public class SettingsManager {
 		editor.putString(NETWORK_ID_2, networkId1);
 		editor.putString(NETWORK_ID_1, newNetworkId.name());
 		editor.apply();
+	}
+
+	public Locale getLocale() {
+		Locale locale;
+		String def = context.getString(R.string.pref_language_value_default);
+		String str = settings.getString(LANGUAGE, def);
+		if (str.equals(def)) {
+			locale = Locale.getDefault();
+		} else if (str.contains("_")) {
+			String[] lang_array = str.split("_");
+			locale = new Locale(lang_array[0], lang_array[1]);
+		} else {
+			locale = new Locale(str);
+		}
+		return locale;
+	}
+
+	public @StyleRes int getTheme() {
+		String dark = context.getString(R.string.pref_theme_value_dark);
+		String light = context.getString(R.string.pref_theme_value_light);
+		String theme = settings.getString(THEME, light);
+		if (theme.equals(dark)) {
+			return R.style.AppTheme;
+		}
+		return R.style.AppTheme_Light;
 	}
 
 	public WalkSpeed getWalkSpeed() {

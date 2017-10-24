@@ -73,6 +73,7 @@ there are any).</string>
     <string name="to">To</string>
     <string name="via">Via</string>
     <string name="search">Search</string>
+    <string name="search_hint">Search here</string>
     <string name="from_here">From Here</string>
     <string name="to_here">To Here</string>
     <string name="min"> min</string>

@@ -17,9 +17,7 @@
 
 package de.grobox.transportr.activities;
 
-import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,23 +28,23 @@ import android.view.MenuItem;
 
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import de.grobox.transportr.AppComponent;
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrApplication;
-import de.grobox.transportr.settings.Preferences;
+import de.grobox.transportr.settings.SettingsManager;
 
 public abstract class TransportrActivity extends AppCompatActivity {
 
+	@Inject SettingsManager settingsManager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		useLanguage(this);
+		getComponent().inject(this);
 
-		// Use current theme
-		if(Preferences.darkThemeEnabled(this)) {
-			setTheme(R.style.AppTheme);
-		} else {
-			setTheme(R.style.AppTheme_Light);
-		}
+		useLanguage();
+		setTheme(settingsManager.getTheme());
 
 		super.onCreate(savedInstanceState);
 	}
@@ -90,28 +88,12 @@ public abstract class TransportrActivity extends AppCompatActivity {
 		return fragment != null && fragment.isVisible();
 	}
 
-	protected static void useLanguage(Context context) {
-		String lang = Preferences.getLanguage(context);
-		if(!lang.equals(context.getString(R.string.pref_language_value_default))) {
-			Locale locale;
-			if(lang.contains("_")) {
-				String[] lang_array = lang.split("_");
-				locale = new Locale(lang_array[0], lang_array[1]);
-			} else {
-				locale = new Locale(lang);
-			}
-			Locale.setDefault(locale);
-			Configuration config = context.getResources().getConfiguration();
-			config.locale = locale;
-			context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
-		} else {
-			// use default language
-			context.getResources().updateConfiguration(Resources.getSystem().getConfiguration(), context.getResources().getDisplayMetrics());
-		}
-	}
-
-	protected void runOnThread(final Runnable task) {
-		new Thread(task).start();
+	private void useLanguage() {
+		Locale locale = settingsManager.getLocale();
+		Locale.setDefault(locale);
+		Configuration config = getResources().getConfiguration();
+		config.locale = locale;
+		getResources().updateConfiguration(config, getResources().getDisplayMetrics());
 	}
 
 }

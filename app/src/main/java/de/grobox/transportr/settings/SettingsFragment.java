@@ -33,6 +33,7 @@ import javax.inject.Inject;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrApplication;
+import de.grobox.transportr.map.MapActivity;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.networks.TransportNetworkManager;
@@ -104,7 +105,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 	}
 
 	private void reload() {
-		getActivity().recreate();
+		// getActivity().recreate() does only recreate SettingActivity
+
+		Intent intent = new Intent(getContext(), MapActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		getActivity().startActivity(intent);
+
+		getActivity().finish();
 	}
 
 }

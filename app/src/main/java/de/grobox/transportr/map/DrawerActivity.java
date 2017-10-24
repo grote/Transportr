@@ -19,6 +19,7 @@ package de.grobox.transportr.map;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
@@ -46,7 +47,6 @@ import de.grobox.transportr.settings.Preferences;
 import de.grobox.transportr.settings.SettingsActivity;
 import de.grobox.transportr.settings.SettingsFragment;
 import de.grobox.transportr.ui.TransportrChangeLog;
-import de.grobox.transportr.utils.TransportrUtils;
 
 import static android.support.v4.app.ActivityOptionsCompat.makeScaleUpAnimation;
 
@@ -146,7 +146,7 @@ abstract class DrawerActivity extends TransportrActivity {
 		}
 	}
 
-	private PrimaryDrawerItem getDrawerItem(final String tag, final int icon) {
+	private PrimaryDrawerItem getDrawerItem(final String tag, @DrawableRes final int icon) {
 		Drawer.OnDrawerItemClickListener onClick;
 		String name;
 
@@ -173,7 +173,8 @@ abstract class DrawerActivity extends TransportrActivity {
 		return new PrimaryDrawerItem()
 				.withName(name)
 				.withTag(tag)
-				.withIcon(TransportrUtils.getTintedDrawable(this, icon))
+				.withIcon(icon)
+				.withIconTintingEnabled(true)
 				.withSelectable(false)
 				.withOnDrawerItemClickListener(onClick);
 	}

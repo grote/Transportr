@@ -20,6 +20,7 @@ package de.grobox.transportr;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import de.grobox.transportr.activities.TransportrActivity;
 import de.grobox.transportr.departures.DeparturesActivity;
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment;
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment;
@@ -40,6 +41,7 @@ import de.grobox.transportr.trips.search.TripsFragment;
 @Component(modules = AppModule.class)
 public interface AppComponent {
 
+	void inject(TransportrActivity activity);
 	void inject(MapActivity activity);
 	void inject(PickTransportNetworkActivity activity);
 	void inject(DeparturesActivity activity);
