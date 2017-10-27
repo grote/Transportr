@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -25,7 +24,6 @@ import java.util.Calendar;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.activities.TransportrActivity;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.fragments.TimeDateFragment;
 import de.grobox.transportr.fragments.TransportrFragment;
@@ -78,14 +76,7 @@ public class DirectionsFragment extends TransportrFragment {
 		via = v.findViewById(R.id.viaLocation);
 		to = v.findViewById(R.id.toLocation);
 
-		((TransportrActivity) getActivity()).setSupportActionBar(toolbar);
-		ActionBar ab = ((TransportrActivity) getActivity()).getSupportActionBar();
-		if (ab != null) {
-			ab.setDisplayShowHomeEnabled(true);
-			ab.setDisplayHomeAsUpEnabled(true);
-			ab.setDisplayShowCustomEnabled(true);
-			ab.setDisplayShowTitleEnabled(false);
-		}
+		setUpToolbar(toolbar);
 
 		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(DirectionsViewModel.class);
 		TransportNetwork network = viewModel.getTransportNetwork().getValue();

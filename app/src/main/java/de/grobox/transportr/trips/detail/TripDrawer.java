@@ -182,7 +182,8 @@ class TripDrawer {
 		LatLngBounds latLngBounds = new LatLngBounds.Builder()
 				.includes(points)
 				.build();
-		map.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 32));
+		int padding = context.getResources().getDimensionPixelSize(R.dimen.mapPadding);
+		map.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, padding));
 	}
 
 }

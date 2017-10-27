@@ -350,7 +350,8 @@ public class TransportrUtils {
 		return image_res;
 	}
 
-	static public void share(Context context, Trip trip) {
+	static public void share(Context context, @Nullable Trip trip) {
+		if (trip == null) throw new IllegalStateException();
 		//noinspection deprecation
 		Intent sendIntent = new Intent()
 				                    .setAction(Intent.ACTION_SEND)
@@ -361,7 +362,8 @@ public class TransportrUtils {
 		context.startActivity(Intent.createChooser(sendIntent, context.getResources().getText(R.string.share_trip_via)));
 	}
 
-	static public void intoCalendar(Context context, Trip trip) {
+	static public void intoCalendar(Context context, @Nullable Trip trip) {
+		if (trip == null) throw new IllegalStateException();
 		Intent intent = new Intent(Intent.ACTION_EDIT)
 				                .setType("vnd.android.cursor.item/event")
 				                .putExtra("beginTime", trip.getFirstDepartureTime().getTime())

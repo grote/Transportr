@@ -19,23 +19,29 @@ import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Trip;
 import de.schildbach.pte.dto.Trip.Leg;
 
+import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.MIDDLE;
+
 public class TripDetailViewModel extends TransportNetworkViewModel implements LegClickListener {
 
-	private Trip trip;
+	enum SheetState { BOTTOM, MIDDLE, EXPANDED }
+
+	private MutableLiveData<Trip> trip = new MutableLiveData<>();
 	private MutableLiveData<LatLngBounds> zoomLeg = new MutableLiveData<>();
 	private MutableLiveData<LatLng> zoomLocation = new MutableLiveData<>();
+
+	final MutableLiveData<SheetState> sheetState = new MutableLiveData<>();
 
 	@Inject
 	TripDetailViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager) {
 		super(application, transportNetworkManager);
 	}
 
-	public Trip getTrip() {
+	public LiveData<Trip> getTrip() {
 		return trip;
 	}
 
 	public void setTrip(Trip trip) {
-		this.trip = trip;
+		this.trip.setValue(trip);
 	}
 
 	@Override
@@ -48,6 +54,7 @@ public class TripDetailViewModel extends TransportNetworkViewModel implements Le
 		}
 		LatLngBounds bounds = new LatLngBounds.Builder().includes(latLngs).build();
 		zoomLeg.setValue(bounds);
+		sheetState.setValue(MIDDLE);
 	}
 
 	@Override
@@ -55,6 +62,7 @@ public class TripDetailViewModel extends TransportNetworkViewModel implements Le
 		if (!location.hasLocation()) return;
 		LatLng latLng = new LatLng(location.getLatAsDouble(), location.getLonAsDouble());
 		zoomLocation.setValue(latLng);
+		sheetState.setValue(MIDDLE);
 	}
 
 	LiveData<LatLng> getZoomLocation() {

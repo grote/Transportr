@@ -18,11 +18,17 @@
 package de.grobox.transportr.fragments;
 
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.transportr.AppComponent;
 import de.grobox.transportr.TransportrApplication;
+import de.grobox.transportr.activities.TransportrActivity;
 
 
+@ParametersAreNonnullByDefault
 public abstract class TransportrFragment extends Fragment {
 
 	protected AppComponent getComponent() {
@@ -35,6 +41,17 @@ public abstract class TransportrFragment extends Fragment {
 
 	protected void runOnThread(final Runnable task) {
 		new Thread(task).start();
+	}
+
+	protected void setUpToolbar(Toolbar toolbar) {
+		((TransportrActivity) getActivity()).setSupportActionBar(toolbar);
+		ActionBar ab = ((TransportrActivity) getActivity()).getSupportActionBar();
+		if (ab != null) {
+			ab.setDisplayShowHomeEnabled(true);
+			ab.setDisplayHomeAsUpEnabled(true);
+			ab.setDisplayShowCustomEnabled(true);
+			ab.setDisplayShowTitleEnabled(false);
+		}
 	}
 
 }

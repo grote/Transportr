@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +13,19 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.transportr.R;
 import de.grobox.transportr.fragments.TransportrFragment;
 
-abstract class BaseMapFragment extends TransportrFragment implements OnMapReadyCallback {
+@ParametersAreNonnullByDefault
+abstract public class BaseMapFragment extends TransportrFragment implements OnMapReadyCallback {
 
 	protected MapView mapView;
 	protected MapboxMap map;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 
 		View v = inflater.inflate(getLayout(), container, false);
@@ -33,7 +37,7 @@ abstract class BaseMapFragment extends TransportrFragment implements OnMapReadyC
 	protected abstract @LayoutRes int getLayout();
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		mapView.onCreate(savedInstanceState);
 	}

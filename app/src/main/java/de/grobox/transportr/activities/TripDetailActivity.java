@@ -193,6 +193,7 @@ public class TripDetailActivity extends TransportrActivity implements AsyncQuery
 		ui.legs.get(trip.legs.size() - 1).divider.setVisibility(View.GONE);
 	}
 
+	// TODO MIGRATE TO NEW FRAGMENT!!!
 	private void reload() {
 		if(mMenu != null) {
 			mMenu.findItem(R.id.action_reload).setActionView(R.layout.actionbar_progress_actionview);
