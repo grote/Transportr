@@ -31,17 +31,12 @@ import static de.grobox.transportr.utils.Constants.VIA;
 @ParametersAreNonnullByDefault
 public class DirectionsActivity extends TransportrActivity implements OnOffsetChangedListener {
 
-	private final static String TAG = DirectionsActivity.class.getName();
-
 	public final static String TASK_HOME = "de.grobox.transportr.HOME";
 	public final static String TASK_WORK = "de.grobox.transportr.WORK";
 
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
-	@Nullable
-	private TripsFragment tripsFragment;
 	private DirectionsViewModel viewModel;
-
 	private FrameLayout fragmentContainer;
 
 	@Override
@@ -55,7 +50,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 		// get view model and observe data
 		viewModel = ViewModelProviders.of(this, viewModelFactory).get(DirectionsViewModel.class);
-		viewModel.showTrips().observe(this, v -> showTrips());
+		viewModel.showTrips.observe(this, v -> showTrips());
 
 		fragmentContainer = findViewById(R.id.fragmentContainer);
 
@@ -76,8 +71,11 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 	@Override
 	public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-		if (tripsFragment != null) {
-			tripsFragment.setSwipeEnabled(verticalOffset == 0);
+		if (verticalOffset == 0) {
+			viewModel.topSwipeEnabled.setValue(true);
+		} else {
+			Boolean enabled = viewModel.topSwipeEnabled.getValue();
+			if (enabled != null && enabled) viewModel.topSwipeEnabled.setValue(false);
 		}
 	}
 
@@ -89,17 +87,15 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	}
 
 	private void showFavorites() {
-		SavedSearchesFragment f = new SavedSearchesFragment();
 		getSupportFragmentManager()
 				.beginTransaction()
-				.replace(R.id.fragmentContainer, f, SavedSearchesFragment.TAG)
+				.replace(R.id.fragmentContainer, new SavedSearchesFragment(), SavedSearchesFragment.TAG)
 				.commit();
 	}
 
 	private void showTrips() {
-		tripsFragment = new TripsFragment();
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.fragmentContainer, tripsFragment, TripsFragment.TAG)
+				.replace(R.id.fragmentContainer, new TripsFragment(), TripsFragment.TAG)
 				.commit();
 		fragmentContainer.requestFocus();
 	}

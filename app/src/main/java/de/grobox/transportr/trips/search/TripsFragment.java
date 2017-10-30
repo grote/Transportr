@@ -26,11 +26,13 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.fragments.TransportrFragment;
 import de.grobox.transportr.trips.detail.TripDetailActivity;
 import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener;
+import de.grobox.transportr.trips.search.TripsRepository.QueryMoreState;
 import de.grobox.transportr.ui.LceAnimator;
 import de.schildbach.pte.dto.Trip;
 
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTTOM;
+import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.TOP;
 import static de.grobox.transportr.trips.detail.TripDetailActivity.TRIP;
 import static de.grobox.transportr.utils.TransportrUtils.getDragDistance;
 
@@ -46,6 +48,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 	private RecyclerView list;
 	private TripAdapter adapter;
 
+	private boolean topSwipingEnabled = false;
 	private SwipyRefreshLayoutDirection queryMoreDirection = BOTH;
 
 	@Override
@@ -68,6 +71,8 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		list.setHasFixedSize(false);
 
 		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(DirectionsViewModel.class);
+		viewModel.topSwipeEnabled.observe(this, this::onSwipeEnabledChanged);
+		viewModel.getQueryMoreState().observe(this, this::onQueryMoreStateChanged);
 		viewModel.getTrips().observe(this, this::onTripsLoaded);
 		viewModel.getQueryError().observe(this, this::onError);
 		viewModel.getQueryMoreError().observe(this, this::onMoreError);
@@ -81,20 +86,40 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		return v;
 	}
 
-	public void setSwipeEnabled(boolean enabled) {
-		if (swipe != null) {
-			if (swipe.isRefreshing()) return;
-			if (enabled && swipe.getDirection() == BOTH) return;
-			if (!enabled && swipe.getDirection() == BOTTOM) return;
-			swipe.setDirection(enabled ? BOTH : BOTTOM);
-		}
-	}
-
 	@Override
 	public void onRefresh(SwipyRefreshLayoutDirection direction) {
 		queryMoreDirection = direction;
 		boolean later = queryMoreDirection == BOTTOM;
 		viewModel.searchMore(later);
+	}
+
+	public void onSwipeEnabledChanged(boolean enabled) {
+		if (!swipe.isRefreshing() && enabled != topSwipingEnabled) {
+			updateSwipeState();
+		}
+		topSwipingEnabled = enabled;
+	}
+
+	private void onQueryMoreStateChanged(@Nullable QueryMoreState state) {
+		updateSwipeState();
+	}
+
+	private void updateSwipeState() {
+		Boolean topEnabled = viewModel.topSwipeEnabled.getValue();
+		QueryMoreState state = viewModel.getQueryMoreState().getValue();
+		if (topEnabled == null || state == null) return;
+
+		if (state == QueryMoreState.NONE) {
+			swipe.setEnabled(false);
+		} else if (!topEnabled && state == QueryMoreState.EARLIER) {
+			swipe.setEnabled(false);
+		} else {
+			swipe.setEnabled(true);
+			if (state == QueryMoreState.EARLIER) swipe.setDirection(TOP);
+			else if (state == QueryMoreState.LATER) swipe.setDirection(BOTTOM);
+			else if (!topEnabled && state == QueryMoreState.BOTH) swipe.setDirection(BOTTOM);
+			else swipe.setDirection(BOTH);
+		}
 	}
 
 	private void onTripsLoaded(@Nullable Set<Trip> trips) {
