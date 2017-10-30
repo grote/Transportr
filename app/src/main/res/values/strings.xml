@@ -145,6 +145,7 @@ there are any).</string>
     <string name="warning_permission_granted_action">Could not repeat last action automatically</string>
     <string name="warning_no_gps_fix">Could not locate your position, yet.</string>
 
+    <string name="error">Error</string>
     <string name="error_no_internet">No sufficient internet connection available</string>
     <string name="error_invalid_from">Invalid Start Location (From)</string>
     <string name="error_invalid_to">Invalid Destination (To)</string>
@@ -159,6 +160,17 @@ there are any).</string>
     <string name="error_no_departures_capability">The current transportation network does not support finding departures.</string>
     <string name="error_no_nearby_locations_capability">The current transportation network does not support finding nearby stations.</string>
     <string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
+
+    <string name="trip_error_ambiguous">Could not find the location. Please try searching with different locations.</string>
+    <string name="trip_error_too_close">The \'from\' and the \'to\' location are too close together.</string>
+    <string name="trip_error_unknown_from">Could not find the \'from\' location. Please try another one.</string>
+    <string name="trip_error_unknown_via">Could not find the \'via\' location. Please try another one.</string>
+    <string name="trip_error_unknown_to">Could not find the \'to\' location. Please try another one.</string>
+    <string name="trip_error_unresolvable_address">Could not find the provided address. Please try another one.</string>
+    <string name="trip_error_no_trips">No connections could be found :(</string>
+    <string name="trip_error_invalid_date">The search date is currently not supported by the data provider. Please try another date.</string>
+    <string name="trip_error_service_down">The data provider is currently down :(\nPlease try again later.</string>
+    <string name="try_again">Try Again</string>
 
     <string name="meter">m</string>
     <plurals name="stops">

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
@@ -44,6 +45,8 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 
 	private DirectionsViewModel viewModel;
 	private ProgressBar progressBar;
+	private View errorLayout;
+	private TextView errorText;
 	private SwipyRefreshLayout swipe;
 	private RecyclerView list;
 	private TripAdapter adapter;
@@ -56,8 +59,11 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		View v = inflater.inflate(R.layout.fragment_trips, container, false);
 		getComponent().inject(this);
 
-		// Progress Bar
+		// Progress Bar and Error View
 		progressBar = v.findViewById(R.id.progressBar);
+		errorLayout = v.findViewById(R.id.errorLayout);
+		errorText = errorLayout.findViewById(R.id.errorText);
+		errorLayout.findViewById(R.id.errorButton).setOnClickListener(view -> viewModel.search());
 
 		// Swipe to Refresh
 		swipe = v.findViewById(R.id.swipe);
@@ -81,7 +87,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		adapter.setHasStableIds(false);
 		list.setAdapter(adapter);
 
-		LceAnimator.showLoading(progressBar, list, null);
+		LceAnimator.showLoading(progressBar, list, errorLayout);
 
 		return v;
 	}
@@ -132,23 +138,20 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 			swipe.setRefreshing(false);
 			list.smoothScrollBy(0, queryMoreDirection == BOTTOM ? 200 : -200);
 		} else {
-			LceAnimator.showContent(progressBar, list, null);
+			LceAnimator.showContent(progressBar, list, errorLayout);
 		}
 	}
 
 	private void onError(@Nullable String error) {
 		if (error == null) return;
-		Log.e(TAG, "RECEIVED NEW QUERY ERROR: " + error);
-		Toast.makeText(getContext(), "Query Error: " + error, Toast.LENGTH_LONG).show();
-		LceAnimator.showContent(progressBar, list, null);
-//		LceAnimator.showErrorView(progressBar, list, errorView);
+		errorText.setText(error);
+		LceAnimator.showErrorView(progressBar, list, errorLayout);
 	}
 
 	private void onMoreError(@Nullable String error) {
 		if (error == null) return;
-		Log.e(TAG, "RECEIVED NEW MORE ERROR: " + error);
 		swipe.setRefreshing(false);
-		Toast.makeText(getContext(), "More Error: " + error, Toast.LENGTH_LONG).show();
+		Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
 	}
 
 	@Override

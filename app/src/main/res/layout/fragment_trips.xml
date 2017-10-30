@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<android.support.constraint.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +10,12 @@
 		android:id="@+id/swipe"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:srl_direction="both">
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:srl_direction="both"
+		tools:visibility="visible">
 
 		<android.support.v7.widget.RecyclerView
 			android:id="@+id/list"
@@ -26,6 +31,47 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
-		android:layout_marginTop="32dp"/>
+		android:layout_marginEnd="16dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/swipe"
+		tools:visibility="visible"/>
 
-</FrameLayout>
+	<LinearLayout
+		android:id="@+id/errorLayout"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_marginEnd="16dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		android:orientation="vertical"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/swipe">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:text="@string/error"
+			android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+		<TextView
+			android:id="@+id/errorText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			tools:text="This is a view for error text.\nThis text can be super long.\nIt can include stack traces of exceptions.\nBut it can also be just one sentence long."/>
+
+		<Button
+			android:id="@+id/errorButton"
+			style="@style/Button"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="@string/try_again"/>
+	</LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

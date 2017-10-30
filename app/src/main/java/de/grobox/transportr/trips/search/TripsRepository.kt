@@ -2,19 +2,22 @@ package de.grobox.transportr.trips.search
 
 
 import android.arch.lifecycle.MutableLiveData
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import de.grobox.transportr.R
 import de.grobox.transportr.data.searches.SearchesRepository
 import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.utils.SingleLiveEvent
 import de.schildbach.pte.NetworkProvider
 import de.schildbach.pte.dto.QueryTripsContext
 import de.schildbach.pte.dto.QueryTripsResult
-import de.schildbach.pte.dto.QueryTripsResult.Status.OK
+import de.schildbach.pte.dto.QueryTripsResult.Status.*
 import de.schildbach.pte.dto.Trip
 
 internal class TripsRepository(
+        private val ctx: Context,
         private val networkProvider: NetworkProvider,
         private val settingsManager: SettingsManager,
         private val searchesRepository: SearchesRepository) {
@@ -43,7 +46,8 @@ internal class TripsRepository(
     }
 
     fun search(query: TripQuery) {
-        clearState()  // reset current data
+        // reset current data
+        clearState()
 
         Log.i(TAG, "From: " + query.from.location)
         Log.i(TAG, "Via: " + if (query.via == null) "null" else query.via.location)
@@ -64,7 +68,7 @@ internal class TripsRepository(
                     searchesRepository.storeSearch(query.toFavoriteTripItem())
                     onQueryTripsResultReceived(queryTripsResult)
                 } else {
-                    queryError.postValue(queryTripsResult.status.name)
+                    queryError.postValue(queryTripsResult.getError())
                 }
             } catch (e: Exception) {
                 queryError.postValue(e.toString())
@@ -86,7 +90,7 @@ internal class TripsRepository(
                 if (queryTripsResult.status == OK && queryTripsResult.trips.size > 0) {
                     onQueryTripsResultReceived(queryTripsResult)
                 } else {
-                    queryMoreError.postValue(queryTripsResult.status.name)
+                    queryMoreError.postValue(queryTripsResult.getError())
                 }
             } catch (e: Exception) {
                 queryMoreError.postValue(e.toString())
@@ -117,5 +121,19 @@ internal class TripsRepository(
         }
         QueryMoreState.BOTH
     } ?: QueryMoreState.NONE
+
+    private fun QueryTripsResult.getError(): String = when(status) {
+        AMBIGUOUS -> ctx.getString(R.string.trip_error_ambiguous)
+        TOO_CLOSE -> ctx.getString(R.string.trip_error_too_close)
+        UNKNOWN_FROM -> ctx.getString(R.string.trip_error_unknown_from)
+        UNKNOWN_VIA -> ctx.getString(R.string.trip_error_unknown_via)
+        UNKNOWN_TO -> ctx.getString(R.string.trip_error_unknown_to)
+        UNRESOLVABLE_ADDRESS -> ctx.getString(R.string.trip_error_unresolvable_address)
+        NO_TRIPS -> ctx.getString(R.string.trip_error_no_trips)
+        INVALID_DATE -> ctx.getString(R.string.trip_error_invalid_date)
+        SERVICE_DOWN -> ctx.getString(R.string.trip_error_service_down)
+        OK -> throw IllegalArgumentException()
+        null -> throw IllegalStateException()
+    }
 
 }

@@ -68,7 +68,8 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		locationLiveData = new LocationLiveData(application.getApplicationContext());
 
 		if (getTransportNetwork().getValue() == null) throw new IllegalStateException();
-		tripsRepository = new TripsRepository(getTransportNetwork().getValue().getNetworkProvider(), settingsManager, searchesRepository);
+		tripsRepository = new TripsRepository(application.getApplicationContext(), getTransportNetwork().getValue().getNetworkProvider(),
+				settingsManager, searchesRepository);
 	}
 
 	LiveData<WrapLocation> getFromLocation() {
