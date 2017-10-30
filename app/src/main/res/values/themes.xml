@@ -19,6 +19,7 @@
         <item name="android:dialogTheme">@style/DialogTheme</item>
         <item name="android:alertDialogTheme">@style/DialogTheme</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="mapStyle">@string/mapbox_style_dark</item>
     </style>
 
     <style name="AppBaseTheme.Light" parent="MaterialDrawerTheme.Light.DarkToolbar">
@@ -35,6 +36,7 @@
         <item name="android:dialogTheme">@style/DialogTheme.Light</item>
         <item name="android:alertDialogTheme">@style/DialogTheme</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="mapStyle">@string/mapbox_style_mapbox_streets</item>
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme">
