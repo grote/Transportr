@@ -2,6 +2,7 @@ package de.grobox.transportr.trips.detail;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import javax.inject.Inject;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.activities.TransportrActivity;
+import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState;
 import de.grobox.transportr.ui.ThreeStateBottomSheetBehavior;
 import de.schildbach.pte.dto.Trip;
@@ -28,6 +30,9 @@ import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.M
 public class TripDetailActivity extends TransportrActivity {
 
 	public static final String TRIP = "de.schildbach.pte.dto.Trip";
+	public static final String FROM = "de.schildbach.pte.dto.Trip.from";
+	public static final String VIA = "de.schildbach.pte.dto.Trip.via";
+	public static final String TO = "de.schildbach.pte.dto.Trip.to";
 
 	@Inject	ViewModelProvider.Factory viewModelFactory;
 
@@ -40,8 +45,15 @@ public class TripDetailActivity extends TransportrActivity {
 		getComponent().inject(this);
 
 		TripDetailViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(TripDetailViewModel.class);
-		Trip trip = (Trip) getIntent().getSerializableExtra(TRIP);
+		Intent intent = getIntent();
+		Trip trip = (Trip) intent.getSerializableExtra(TRIP);
+		WrapLocation from = (WrapLocation) intent.getSerializableExtra(FROM);
+		WrapLocation via = (WrapLocation) intent.getSerializableExtra(VIA);
+		WrapLocation to = (WrapLocation) intent.getSerializableExtra(TO);
 		viewModel.setTrip(trip);
+		viewModel.from = from;
+		viewModel.via = via;
+		viewModel.to = to;
 
 		setContentView(R.layout.activity_trip_detail);
 		setUpCustomToolbar(true);

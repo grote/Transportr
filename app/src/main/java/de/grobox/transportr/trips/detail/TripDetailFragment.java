@@ -76,6 +76,7 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		Menu toolbarMenu = toolbar.getMenu();
 		inflater.inflate(R.menu.trip_details, toolbarMenu);
+		viewModel.tripReloadError.observe(this, this::onTripReloadError);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -83,7 +84,8 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_reload:
-				Toast.makeText(getContext(), "Not yet implemented :(", Toast.LENGTH_SHORT).show();
+				item.setActionView(R.layout.actionbar_progress_actionview);
+				viewModel.reloadTrip();
 				return true;
 			case R.id.action_share:
 				share(getContext(), viewModel.getTrip().getValue());
@@ -98,6 +100,9 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 
 	private void onTripChanged(@Nullable Trip trip) {
 		if (trip == null) return;
+
+		MenuItem reloadMenuItem = toolbar.getMenu().findItem(R.id.action_reload);
+		if (reloadMenuItem != null) reloadMenuItem.setActionView(null);
 
 		TransportNetwork network = viewModel.getTransportNetwork().getValue();
 		boolean showLineName = network != null && network.hasGoodLineNames();
@@ -130,6 +135,11 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 			toolbar.setVisibility(VISIBLE);
 			bottomBar.setVisibility(GONE);
 		}
+	}
+
+	private void onTripReloadError(@Nullable String error) {
+		toolbar.getMenu().findItem(R.id.action_reload).setActionView(null);
+		Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
 	}
 
 }

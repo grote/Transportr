@@ -9,6 +9,7 @@ import android.util.Log
 import de.grobox.transportr.R
 import de.grobox.transportr.data.searches.SearchesRepository
 import de.grobox.transportr.settings.SettingsManager
+import de.grobox.transportr.trips.TripQuery
 import de.grobox.transportr.utils.SingleLiveEvent
 import de.schildbach.pte.NetworkProvider
 import de.schildbach.pte.dto.QueryTripsContext

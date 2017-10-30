@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,10 @@ import de.schildbach.pte.dto.Trip;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTTOM;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.TOP;
+import static de.grobox.transportr.trips.detail.TripDetailActivity.FROM;
+import static de.grobox.transportr.trips.detail.TripDetailActivity.TO;
 import static de.grobox.transportr.trips.detail.TripDetailActivity.TRIP;
+import static de.grobox.transportr.trips.detail.TripDetailActivity.VIA;
 import static de.grobox.transportr.utils.TransportrUtils.getDragDistance;
 
 public class TripsFragment extends TransportrFragment implements OnRefreshListener, OnTripClickListener {
@@ -78,7 +80,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 
 		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(DirectionsViewModel.class);
 		viewModel.topSwipeEnabled.observe(this, this::onSwipeEnabledChanged);
-		viewModel.getQueryMoreState().observe(this, this::onQueryMoreStateChanged);
+		viewModel.getQueryMoreState().observe(this, state -> updateSwipeState());
 		viewModel.getTrips().observe(this, this::onTripsLoaded);
 		viewModel.getQueryError().observe(this, this::onError);
 		viewModel.getQueryMoreError().observe(this, this::onMoreError);
@@ -104,10 +106,6 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 			updateSwipeState();
 		}
 		topSwipingEnabled = enabled;
-	}
-
-	private void onQueryMoreStateChanged(@Nullable QueryMoreState state) {
-		updateSwipeState();
 	}
 
 	private void updateSwipeState() {
@@ -156,13 +154,12 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 
 	@Override
 	public void onClick(Trip trip) {
-		Log.e("TEST", trip.toString());
-
 		Intent i = new Intent(getContext(), TripDetailActivity.class);
 		i.putExtra(TRIP, trip);
-//		i.putExtra("de.schildbach.pte.dto.Trip.from", from);
-//		i.putExtra("de.schildbach.pte.dto.Trip.to", to);
-//		i.putExtra("de.schildbach.pte.dto.Trip.products", trip.products().toArray());
+		// unfortunately, PTE does not save these locations reliably in the Trip object
+		i.putExtra(FROM, viewModel.getFromLocation().getValue());
+		i.putExtra(VIA, viewModel.getViaLocation().getValue());
+		i.putExtra(TO, viewModel.getToLocation().getValue());
 		startActivity(i);
 	}
 

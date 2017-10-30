@@ -1,4 +1,4 @@
-package de.grobox.transportr.trips.search
+package de.grobox.transportr.trips
 
 import de.grobox.transportr.favorites.trips.FavoriteTripItem
 import de.grobox.transportr.locations.WrapLocation
@@ -10,10 +10,10 @@ class TripQuery internal constructor(
         val from: WrapLocation, val via: WrapLocation?, val to: WrapLocation,
         val date: Date,
         departure: Boolean?,
-        products: EnumSet<Product>?) {
+        products: Set<Product>?) {
 
-    val departure: Boolean = departure ?: true
-    val products: EnumSet<Product> = products ?: EnumSet.allOf(Product::class.java)
+    val departure = departure ?: true
+    val products: Set<Product> = products ?: EnumSet.allOf(Product::class.java)
 
     fun toFavoriteTripItem(): FavoriteTripItem {
         return FavoriteTripItem(uid, from, via, to)

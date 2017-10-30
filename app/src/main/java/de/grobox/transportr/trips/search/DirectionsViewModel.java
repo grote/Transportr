@@ -24,6 +24,7 @@ import de.grobox.transportr.locations.LocationView.LocationViewListener;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.settings.SettingsManager;
+import de.grobox.transportr.trips.TripQuery;
 import de.grobox.transportr.trips.search.TripsRepository.QueryMoreState;
 import de.grobox.transportr.utils.SingleLiveEvent;
 import de.schildbach.pte.dto.Product;

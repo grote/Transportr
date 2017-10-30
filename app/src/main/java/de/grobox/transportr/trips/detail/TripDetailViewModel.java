@@ -2,6 +2,7 @@ package de.grobox.transportr.trips.detail;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.Nullable;
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
@@ -11,9 +12,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrApplication;
+import de.grobox.transportr.locations.WrapLocation;
+import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.networks.TransportNetworkViewModel;
+import de.grobox.transportr.settings.SettingsManager;
+import de.grobox.transportr.trips.TripQuery;
+import de.grobox.transportr.utils.SingleLiveEvent;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Trip;
@@ -25,15 +32,21 @@ public class TripDetailViewModel extends TransportNetworkViewModel implements Le
 
 	enum SheetState { BOTTOM, MIDDLE, EXPANDED }
 
-	private MutableLiveData<Trip> trip = new MutableLiveData<>();
-	private MutableLiveData<LatLngBounds> zoomLeg = new MutableLiveData<>();
-	private MutableLiveData<LatLng> zoomLocation = new MutableLiveData<>();
+	private final SettingsManager settingsManager;
 
+	private final MutableLiveData<Trip> trip = new MutableLiveData<>();
+	private final MutableLiveData<LatLngBounds> zoomLeg = new MutableLiveData<>();
+	private final MutableLiveData<LatLng> zoomLocation = new MutableLiveData<>();
+
+	final SingleLiveEvent<String> tripReloadError = new SingleLiveEvent<>();
 	final MutableLiveData<SheetState> sheetState = new MutableLiveData<>();
 
+	@Nullable WrapLocation from, via, to;
+
 	@Inject
-	TripDetailViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager) {
+	TripDetailViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, SettingsManager settingsManager) {
 		super(application, transportNetworkManager);
+		this.settingsManager = settingsManager;
 	}
 
 	public LiveData<Trip> getTrip() {
@@ -71,6 +84,21 @@ public class TripDetailViewModel extends TransportNetworkViewModel implements Le
 
 	LiveData<LatLngBounds> getZoomLeg() {
 		return zoomLeg;
+	}
+
+	void reloadTrip() {
+		TransportNetwork network = getTransportNetwork().getValue();
+		if (network == null) throw new IllegalStateException();
+
+		Trip oldTrip = trip.getValue();
+		if (oldTrip == null) throw new IllegalStateException();
+
+		if (from == null || to == null) throw new IllegalStateException();
+
+		String errorString = getApplication().getString(R.string.error_trip_refresh_failed);
+		TripQuery query = new TripQuery(0, from, via, to, oldTrip.getFirstDepartureTime(), true, oldTrip.products());
+		new TripReloader(network.getNetworkProvider(), settingsManager, query, trip, errorString, tripReloadError)
+				.reload();
 	}
 
 }
