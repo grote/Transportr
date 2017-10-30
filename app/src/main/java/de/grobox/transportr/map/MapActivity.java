@@ -46,6 +46,7 @@ import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 
+import static android.content.Intent.ACTION_VIEW;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED;
@@ -129,7 +130,12 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		});
 
 		if (savedInstanceState == null) {
-			showSavedSearches();
+			Intent intent = getIntent();
+			if (intent != null && intent.getAction() != null && intent.getAction().equals(ACTION_VIEW) && intent.getData() != null) {
+				viewModel.setGeoUri(intent.getData());
+			} else {
+				showSavedSearches();
+			}
 		} else {
 			locationFragment = (LocationFragment) getSupportFragmentManager().findFragmentByTag(LocationFragment.TAG);
 		}

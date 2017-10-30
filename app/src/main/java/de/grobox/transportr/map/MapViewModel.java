@@ -2,13 +2,21 @@ package de.grobox.transportr.map;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesRepository;
@@ -33,9 +41,9 @@ public class MapViewModel extends SavedSearchesViewModel {
 
 	@Inject
 	MapViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, LocationRepository locationRepository,
-	             SearchesRepository searchesRepository) {
+	             SearchesRepository searchesRepository, GpsController gpsController) {
 		super(application, transportNetworkManager, locationRepository, searchesRepository);
-		gpsController = new GpsController(application.getApplicationContext());
+		this.gpsController = gpsController;
 	}
 
 	GpsController getGpsController() {
@@ -80,6 +88,30 @@ public class MapViewModel extends SavedSearchesViewModel {
 
 	public LiveData<Boolean> nearbyStationsFound() {
 		return nearbyStationsFound;
+	}
+
+	void setGeoUri(Uri geoUri) {
+		WrapLocation location = getWrapLocation(geoUri.toString());
+		if (location != null) {
+			selectLocation(location);
+		} else {
+			Log.w(MapViewModel.class.getSimpleName(), "Invalid geo intent: " + geoUri.toString());
+			Toast.makeText(getApplication().getApplicationContext(), R.string.error_geo_intent, Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	@Nullable
+	@VisibleForTesting
+	WrapLocation getWrapLocation(String geoUri) {
+		Pattern pattern = Pattern.compile("^geo:(-?\\d{1,3}(\\.\\d{1,8})?),(-?\\d{1,3}(\\.\\d{1,8})?).*");
+		Matcher matcher = pattern.matcher(geoUri);
+		if (matcher.matches()) {
+			double lat = Double.valueOf(matcher.group(1));
+			double lon = Double.valueOf(matcher.group(3));
+			if (lat == 0 && lon == 0) return null;
+			return new WrapLocation(new LatLng(lat, lon));
+		}
+		return null;
 	}
 
 }
