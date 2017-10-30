@@ -179,6 +179,7 @@ there are any).</string>
     </plurals>
     <string name="system_default">System Default</string>
     <string name="times_include_delays">(Attention: Times include reported delays)</string>
+    <string name="created_by">Created by %s</string>
 
     <string name="home">Home</string>
     <string name="home_dialog_title">Set Home Location</string>

@@ -78,6 +78,7 @@ import static de.grobox.transportr.utils.Constants.FROM;
 import static de.grobox.transportr.utils.Constants.SEARCH;
 import static de.grobox.transportr.utils.Constants.TO;
 import static de.grobox.transportr.utils.Constants.VIA;
+import static de.grobox.transportr.utils.DateUtils.getDate;
 import static de.grobox.transportr.utils.DateUtils.getDelayText;
 import static de.grobox.transportr.utils.DateUtils.getDifferenceInMinutes;
 import static de.grobox.transportr.utils.DateUtils.getTime;
@@ -185,29 +186,30 @@ public class TransportrUtils {
 		}
 	}
 
-	static private String tripToSubject(Context context, Trip trip, boolean tag) {
-		String str = "";
-
-		if(tag) str += "[" + context.getResources().getString(R.string.app_name) + "] ";
+	static private String tripToSubject(Context context, Trip trip) {
+		String str = "[" + context.getResources().getString(R.string.app_name) + "] ";
 
 		str += getTime(context, trip.getFirstDepartureTime()) + " ";
 		str += getLocationName(trip.from);
 		str += " → ";
 		str += getLocationName(trip.to) + " ";
 		str += getTime(context, trip.getLastArrivalTime());
-		str += " (" + DateUtils.getDate(context, trip.getFirstDepartureTime()) + ")";
+		str += " (" + getDate(context, trip.getFirstDepartureTime()) + ")";
 
 		return str;
 	}
 
 	static private String tripToString(Context context, Trip trip) {
-		String str = context.getString(R.string.times_include_delays) + "\n\n";
-
+		StringBuilder sb = new StringBuilder();
 		for(Leg leg : trip.legs) {
-			str += legToString(context, leg) + "\n\n";
+			sb.append(legToString(context, leg)).append("\n\n");
 		}
-
-		return str;
+		sb.append("\n\n")
+				.append(context.getString(R.string.times_include_delays))
+				.append("\n\n")
+				.append(context.getString(R.string.created_by, context.getString(R.string.app_name)))
+				.append("\n").append(context.getString(R.string.website));
+		return sb.toString();
 	}
 
 	static public String legToString(Context context, Leg leg) {
@@ -355,7 +357,7 @@ public class TransportrUtils {
 		//noinspection deprecation
 		Intent sendIntent = new Intent()
 				                    .setAction(Intent.ACTION_SEND)
-				                    .putExtra(Intent.EXTRA_SUBJECT, tripToSubject(context, trip, true))
+				                    .putExtra(Intent.EXTRA_SUBJECT, tripToSubject(context, trip))
 				                    .putExtra(Intent.EXTRA_TEXT, tripToString(context, trip))
 				                    .setType("text/plain")
 				                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
