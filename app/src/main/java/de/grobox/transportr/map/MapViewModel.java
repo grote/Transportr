@@ -2,6 +2,7 @@ package de.grobox.transportr.map;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
@@ -9,7 +10,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +22,7 @@ import javax.inject.Singleton;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrApplication;
+import de.grobox.transportr.data.locations.FavoriteLocation;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesRepository;
 import de.grobox.transportr.favorites.trips.SavedSearchesViewModel;
@@ -32,12 +37,14 @@ public class MapViewModel extends SavedSearchesViewModel {
 
 	private final MutableLiveData<Integer> peekHeight = new MutableLiveData<>();
 	private final MutableLiveData<LatLng> selectedLocationClicked = new MutableLiveData<>();
+	private final MutableLiveData<LatLngBounds> updatedLiveBounds = new MutableLiveData<>();
 	private final MutableLiveData<WrapLocation> selectedLocation = new MutableLiveData<>();
 	private final SingleLiveEvent<WrapLocation> findNearbyStations = new SingleLiveEvent<>();
 	private final SingleLiveEvent<Boolean> nearbyStationsFound = new SingleLiveEvent<>();
 
 	final SingleLiveEvent<Void> mapClicked = new SingleLiveEvent<>();
 	final SingleLiveEvent<Void> markerClicked = new SingleLiveEvent<>();
+	final LiveData<LatLngBounds> liveBounds = Transformations.switchMap(getLocations(), this::switchMap);
 
 	@Inject
 	MapViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, LocationRepository locationRepository,
@@ -88,6 +95,25 @@ public class MapViewModel extends SavedSearchesViewModel {
 
 	public LiveData<Boolean> nearbyStationsFound() {
 		return nearbyStationsFound;
+	}
+
+	private MutableLiveData<LatLngBounds> switchMap(List<FavoriteLocation> input) {
+		if (input == null) {
+			updatedLiveBounds.setValue(null);
+		} else {
+			List<LatLng> points = new ArrayList<>();
+			for (FavoriteLocation location : input) {
+				if (location.hasLocation()) points.add(location.getLatLng());
+			}
+			WrapLocation gpsLocation = gpsController.getWrapLocation();
+			if (gpsLocation != null && gpsLocation.hasLocation()) points.add(gpsLocation.getLatLng());
+			if (points.size() < 2) {
+				updatedLiveBounds.setValue(null);
+			} else {
+				updatedLiveBounds.setValue(new LatLngBounds.Builder().includes(points).build());
+			}
+		}
+		return updatedLiveBounds;
 	}
 
 	void setGeoUri(Uri geoUri) {

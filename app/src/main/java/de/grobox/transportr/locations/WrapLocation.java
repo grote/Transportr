@@ -161,6 +161,10 @@ public class WrapLocation implements Serializable {
 		}
 	}
 
+	public LatLng getLatLng() {
+		return new LatLng(lat / 1E6, lon / 1E6);
+	}
+
 	public boolean isSamePlace(@Nullable WrapLocation other) {
 		return other != null && isSamePlaceInt(other.lat, other.lon);
 	}

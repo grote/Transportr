@@ -29,6 +29,7 @@ import com.mapbox.mapboxsdk.annotations.MarkerViewOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdate;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerClickListener;
 import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerViewClickListener;
@@ -36,6 +37,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerViewClickListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
@@ -59,6 +61,7 @@ import static de.grobox.transportr.utils.TransportrUtils.getMarkerForProduct;
 import static de.schildbach.pte.dto.LocationType.STATION;
 import static de.schildbach.pte.dto.NearbyLocationsResult.Status.OK;
 
+@ParametersAreNonnullByDefault
 public class MapFragment extends BaseMapFragment implements LoaderCallbacks<NearbyLocationsResult>, OnMarkerClickListener, OnMarkerViewClickListener {
 
 	private final static int LOCATION_ZOOM = 14;
@@ -73,7 +76,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 	private Map<Marker, Location> nearbyLocations = new HashMap<>();
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = super.onCreateView(inflater, container, savedInstanceState);
 		assert v != null;
 
@@ -114,10 +117,20 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 
 		if (map.getMyLocation() != null) {
 			gpsController.setLocation(map.getMyLocation());
-			if (viewModel.getSelectedLocation().getValue() == null) {
-				zoomToMyLocation();
-			}
 		}
+
+		if (isFreshStart) {
+			// zoom to favorite locations or only current location, if no favorites exist
+			viewModel.liveBounds.observe(this, bounds -> {
+				if (bounds != null) {
+					zoomToBounds(bounds);
+					viewModel.liveBounds.removeObservers(this);
+				} else if (map.getMyLocation() != null) {
+					zoomToMyLocation();
+				}
+			});
+		}
+
 		map.setOnMyLocationChangeListener(newLocation -> gpsController.setLocation(newLocation));
 		map.setOnMyLocationTrackingModeChangeListener(myLocationTrackingMode -> gpsController.setTrackingMode(myLocationTrackingMode));
 		gpsController.getFabState().observe(this, this::onNewFabState);
@@ -185,7 +198,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 
 			@Override
 			public void onFinish() {
-				map.getTrackingSettings().setMyLocationTrackingMode(TRACKING_FOLLOW);
+				mapView.post(() -> map.getTrackingSettings().setMyLocationTrackingMode(TRACKING_FOLLOW));
 			}
 		});
 	}
@@ -214,6 +227,11 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		LatLng coords = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(coords, LOCATION_ZOOM);
 		map.moveCamera(update);
+	}
+
+	public void zoomToBounds(LatLngBounds latLngBounds) {
+		int padding = getResources().getDimensionPixelSize(R.dimen.mapPadding);
+		map.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, padding));
 	}
 
 	public void findNearbyStations(WrapLocation location) {
