@@ -2,6 +2,7 @@ package de.grobox.transportr.departures;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -63,6 +64,16 @@ public class DeparturesActivity extends TransportrActivity
 	private WrapLocation location;
 	private SearchState searchState = SearchState.INITIAL;
 	private Calendar calendar;
+	private final CountDownTimer listUpdateTimer = new CountDownTimer(Long.MAX_VALUE, 1000 * 30) {
+		@Override
+		public void onTick(long millisUntilFinished) {
+			adapter.notifyDataSetChanged();
+		}
+
+		@Override
+		public void onFinish() {
+		}
+	};
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -125,6 +136,18 @@ public class DeparturesActivity extends TransportrActivity
 		} else {
 			loader.forceLoad();
 		}
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		listUpdateTimer.start();
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		listUpdateTimer.cancel();
 	}
 
 	@Override
@@ -208,14 +231,11 @@ public class DeparturesActivity extends TransportrActivity
 
 	@Override
 	public DeparturesLoader onCreateLoader(int i, Bundle args) {
-		Log.e("TEST", "onCreateLoader!!! " + args.toString());
 		return new DeparturesLoader(this, manager.getTransportNetwork().getValue(), args);
 	}
 
 	@Override
 	public void onLoadFinished(Loader<QueryDeparturesResult> loader, QueryDeparturesResult departures) {
-		Log.e("TEST", "onLoadFinished!!! " + departures.toString());
-
 		if (departures.status == OK) {
 			for (StationDepartures s : departures.stationDepartures) {
 				adapter.addAll(s.departures);

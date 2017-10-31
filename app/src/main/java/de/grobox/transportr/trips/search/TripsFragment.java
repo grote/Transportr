@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -55,6 +56,16 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 
 	private boolean topSwipingEnabled = false;
 	private SwipyRefreshLayoutDirection queryMoreDirection = BOTH;
+	private final CountDownTimer listUpdateTimer = new CountDownTimer(Long.MAX_VALUE, 1000 * 30) {
+		@Override
+		public void onTick(long millisUntilFinished) {
+			adapter.notifyDataSetChanged();
+		}
+
+		@Override
+		public void onFinish() {
+		}
+	};
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -92,6 +103,18 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		LceAnimator.showLoading(progressBar, list, errorLayout);
 
 		return v;
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		listUpdateTimer.start();
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		listUpdateTimer.cancel();
 	}
 
 	@Override
