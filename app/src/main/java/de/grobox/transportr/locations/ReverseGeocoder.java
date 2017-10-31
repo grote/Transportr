@@ -64,11 +64,13 @@ public class ReverseGeocoder {
 	private void findLocationWithGeocoder(final double lat, final double lon) throws IOException {
 		Geocoder geocoder = new Geocoder(context, Locale.getDefault());
 		List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
-		if (addresses == null || addresses.size() == 0) return;
+		if (addresses == null || addresses.size() == 0) throw new IOException("No results");
 
 		Address address = addresses.get(0);
+
 		String name = address.getThoroughfare();
-		if (name != null && address.getFeatureName() != null) name += " " + address.getFeatureName();
+		if (name == null) throw new IOException("Empty Address");
+		if (address.getFeatureName() != null) name += " " + address.getFeatureName();
 		String place = address.getLocality();
 
 		int latInt = (int) (lat * 1E6);
