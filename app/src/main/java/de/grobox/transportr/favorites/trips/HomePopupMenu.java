@@ -57,7 +57,7 @@ class HomePopupMenu extends SpecialLocationPopupMenu {
 	@Override
 	@DrawableRes
 	protected int getShortcutDrawable() {
-		return R.drawable.ic_quickhome_widget;
+		return R.mipmap.ic_quickhome_widget;
 	}
 
 }
