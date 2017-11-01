@@ -66,9 +66,6 @@ class FavoriteTripViewHolder extends AbstractFavoritesViewHolder {
 
 		final FavoriteTripPopupMenu favPopup = new FavoriteTripPopupMenu(overflow.getContext(), overflow, item, listener);
 		overflow.setOnClickListener(v -> favPopup.show());
-
-		// workaround for from locations with more than one line not measuring properly
-		itemView.requestLayout();
 	}
 
 }
