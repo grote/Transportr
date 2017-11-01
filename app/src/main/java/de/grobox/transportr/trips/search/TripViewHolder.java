@@ -102,9 +102,9 @@ class TripViewHolder extends RecyclerView.ViewHolder {
 		// Arrival Time
 		Leg lastLeg = trip.legs.get(trip.legs.size() - 1);
 		if (lastLeg instanceof Public) {
-			toTime.setText(getTime(toTime.getContext(), ((Public) lastLeg).getDepartureTime(true)));
+			toTime.setText(getTime(toTime.getContext(), ((Public) lastLeg).getArrivalTime(true)));
 		} else {
-			toTime.setText(getTime(toTime.getContext(), lastLeg.getDepartureTime()));
+			toTime.setText(getTime(toTime.getContext(), lastLeg.getArrivalTime()));
 		}
 
 		// Arrival Delay

@@ -30,6 +30,7 @@ import static android.view.View.VISIBLE;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.BOTTOM;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.MIDDLE;
 import static de.grobox.transportr.utils.DateUtils.getDuration;
+import static de.grobox.transportr.utils.DateUtils.getTime;
 import static de.grobox.transportr.utils.TransportrUtils.intoCalendar;
 import static de.grobox.transportr.utils.TransportrUtils.share;
 
@@ -44,7 +45,7 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 	private Toolbar toolbar;
 	private RecyclerView list;
 	private View bottomBar;
-	private TextView from, to, duration;
+	private TextView fromTime, from, toTime, to, duration;
 
 	@Nullable
 	@Override
@@ -56,7 +57,9 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 		toolbar = v.findViewById(R.id.toolbar);
 		list = v.findViewById(R.id.list);
 		bottomBar = v.findViewById(R.id.bottomBar);
+		fromTime = bottomBar.findViewById(R.id.fromTime);
 		from = bottomBar.findViewById(R.id.from);
+		toTime = bottomBar.findViewById(R.id.toTime);
 		to = bottomBar.findViewById(R.id.to);
 		duration = bottomBar.findViewById(R.id.duration);
 
@@ -109,7 +112,9 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 		LegAdapter adapter = new LegAdapter(trip.legs, viewModel, showLineName);
 		list.setAdapter(adapter);
 
+		fromTime.setText(getTime(getContext(), trip.getFirstDepartureTime()));
 		from.setText(trip.from.uniqueShortName());
+		toTime.setText(getTime(getContext(), trip.getLastArrivalTime()));
 		to.setText(trip.to.uniqueShortName());
 		duration.setText(getDuration(trip.getDuration()));
 	}
