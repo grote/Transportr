@@ -156,7 +156,7 @@ internal class TripDrawer(private val context: Context) {
         // Get Drawable
         val drawable: Drawable
         if (type == MarkerType.STOP) {
-            drawable = ContextCompat.getDrawable(context, R.drawable.ic_marker_trip_stop)
+            drawable = ContextCompat.getDrawable(context, R.drawable.ic_marker_trip_stop) ?: throw RuntimeException()
             drawable.mutate().setColorFilter(backgroundColor, PorterDuff.Mode.SRC_IN)
         } else {
             val res: Int = when (type) {
