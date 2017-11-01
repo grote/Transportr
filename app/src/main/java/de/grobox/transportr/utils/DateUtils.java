@@ -19,22 +19,27 @@ package de.grobox.transportr.utils;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import de.grobox.transportr.R;
+
 import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public class DateUtils {
 
-	static public String getDate(Context context, Date date) {
+	public static String getDate(Context context, Date date) {
 		DateFormat df = android.text.format.DateFormat.getDateFormat(context);
 
 		return df.format(date);
 	}
 
-	static public String getTime(Context context, Date date) {
+	public static String getTime(Context context, Date date) {
 		DateFormat tf = android.text.format.DateFormat.getTimeFormat(context);
 
 		if (tf.getNumberFormat().getMinimumIntegerDigits() == 1) {
@@ -48,7 +53,7 @@ public class DateUtils {
 		return tf.format(date);
 	}
 
-	static public String getDuration(long duration) {
+	public static String getDuration(long duration) {
 		// get duration in minutes
 		duration = duration / 1000 / 60;
 
@@ -58,33 +63,19 @@ public class DateUtils {
 		return Long.toString(h) + ":" + (m < 10 ? "0" : "") + Long.toString(m);
 	}
 
-	static public String getDuration(Date start, Date end) {
+	public static String getDuration(Date start, Date end) {
 		return getDuration(end.getTime() - start.getTime());
-	}
-
-	static public long getDifferenceInMinutes(Date date) {
-		return getDelay(new Date(), date);
 	}
 
 	/**
 	 * Returns delay in minutes
 	 */
-	static public long getDelay(Date plannedTime, Date predictedTime) {
+	public static long getDelay(Date plannedTime, Date predictedTime) {
 		return (predictedTime.getTime() - plannedTime.getTime()) / 1000 / 60;
 	}
 
-	@Nullable
-	static public String getDelayString(long delay) {
+	public static String getDelayString(long delay) {
 		return (delay > 0 ? "+" : "-") + Long.toString(delay);
-	}
-
-	public static boolean isToday(Calendar calendar) {
-		return android.text.format.DateUtils.isToday(calendar.getTimeInMillis());
-	}
-
-	public static boolean isNow(Calendar calendar) {
-		long diff = Math.abs(calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
-		return diff < 10 * MINUTE_IN_MILLIS;
 	}
 
 	@Nullable
@@ -96,6 +87,35 @@ public class DateUtils {
 		} else {
 			return null;
 		}
+	}
+
+	public static boolean isToday(Calendar calendar) {
+		return android.text.format.DateUtils.isToday(calendar.getTimeInMillis());
+	}
+
+	public static boolean isNow(Calendar calendar) {
+		long diff = Math.abs(calendar.getTimeInMillis() - Calendar.getInstance().getTimeInMillis());
+		return diff < 10 * MINUTE_IN_MILLIS;
+	}
+
+	public static void setRelativeDepartureTime(TextView timeRel, Date date) {
+		long difference = getDifferenceInMinutes(date);
+		if (difference > 99 || difference < -99) {
+			timeRel.setVisibility(GONE);
+		} else if (difference == 0) {
+			timeRel.setText(timeRel.getContext().getString(R.string.now_small));
+			timeRel.setVisibility(VISIBLE);
+		} else if (difference > 0) {
+			timeRel.setText(timeRel.getContext().getString(R.string.in_x_minutes, difference));
+			timeRel.setVisibility(VISIBLE);
+		} else {
+			timeRel.setText(timeRel.getContext().getString(R.string.x_minutes_ago, difference * -1));
+			timeRel.setVisibility(VISIBLE);
+		}
+	}
+
+	private static long getDifferenceInMinutes(Date date) {
+		return getDelay(new Date(), date);
 	}
 
 }

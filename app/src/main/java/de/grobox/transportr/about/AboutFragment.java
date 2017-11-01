@@ -19,10 +19,9 @@ package de.grobox.transportr.about;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -32,19 +31,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import de.grobox.transportr.R;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
-public class AboutFragment extends Fragment {
+import de.grobox.transportr.R;
+import de.grobox.transportr.TransportrFragment;
+
+@ParametersAreNonnullByDefault
+public class AboutFragment extends TransportrFragment {
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_about, container, false);
 		Activity activity = getActivity();
 
 		String versionName;
 		try {
+			if (activity == null) throw new NameNotFoundException();
 			versionName = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
-		} catch (PackageManager.NameNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			versionName = "?.?";
 		}
 
@@ -56,20 +61,17 @@ public class AboutFragment extends Fragment {
 		TextView t = view.findViewById(R.id.aboutTextView);
 		t.setText(Html.fromHtml(
 				getString(R.string.about) +
-				String.format(getString(R.string.about_bottom), getString(R.string.website), getString(R.string.bugtracker), getString(R.string.website)+"#donate")
+						String.format(getString(R.string.about_bottom), getString(R.string.website), getString(R.string.bugtracker), getString(R.string.website) + "#donate")
 		));
 
 		// make links in about text clickable
 		t.setMovementMethod(LinkMovementMethod.getInstance());
-		t.setLinkTextColor(ContextCompat.getColor(activity, R.color.accent));
+		t.setLinkTextColor(ContextCompat.getColor(getContext(), R.color.accent));
 
 		Button website = view.findViewById(R.id.websiteButton);
-		website.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website)));
-				startActivity(launchBrowser);
-			}
+		website.setOnClickListener(v -> {
+			Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website)));
+			startActivity(launchBrowser);
 		});
 
 		return view;

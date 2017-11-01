@@ -20,7 +20,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.fragments.TransportrFragment;
+import de.grobox.transportr.TransportrFragment;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState;
 import de.schildbach.pte.dto.Trip;
@@ -31,8 +31,8 @@ import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.B
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.MIDDLE;
 import static de.grobox.transportr.utils.DateUtils.getDuration;
 import static de.grobox.transportr.utils.DateUtils.getTime;
-import static de.grobox.transportr.utils.TransportrUtils.intoCalendar;
-import static de.grobox.transportr.utils.TransportrUtils.share;
+import static de.grobox.transportr.trips.detail.TripUtils.intoCalendar;
+import static de.grobox.transportr.trips.detail.TripUtils.share;
 
 @ParametersAreNonnullByDefault
 public class TripDetailFragment extends TransportrFragment implements Toolbar.OnMenuItemClickListener {

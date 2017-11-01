@@ -21,10 +21,11 @@ import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirec
 
 import java.util.Set;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.fragments.TransportrFragment;
+import de.grobox.transportr.TransportrFragment;
 import de.grobox.transportr.trips.detail.TripDetailActivity;
 import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener;
 import de.grobox.transportr.trips.search.TripsRepository.QueryMoreState;
@@ -40,6 +41,7 @@ import static de.grobox.transportr.trips.detail.TripDetailActivity.TRIP;
 import static de.grobox.transportr.trips.detail.TripDetailActivity.VIA;
 import static de.grobox.transportr.utils.TransportrUtils.getDragDistance;
 
+@ParametersAreNonnullByDefault
 public class TripsFragment extends TransportrFragment implements OnRefreshListener, OnTripClickListener {
 
 	final static String TAG = TripsFragment.class.getName();
@@ -68,7 +70,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 	};
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_trips, container, false);
 		getComponent().inject(this);
 

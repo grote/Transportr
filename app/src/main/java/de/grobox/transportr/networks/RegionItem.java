@@ -24,7 +24,6 @@ import android.support.v4.view.ViewCompat;
 import android.view.View;
 
 import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.commons.items.AbstractExpandableItem;
 
@@ -65,19 +64,16 @@ class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, Tr
 		return new RegionViewHolder(view);
 	}
 
-	final private FastAdapter.OnClickListener<RegionItem> onClickListener = new FastAdapter.OnClickListener<RegionItem>() {
-		@Override
-		public boolean onClick(View v, IAdapter adapter, RegionItem item, int position) {
-			if (item.getSubItems() != null) {
-				if (!item.isExpanded()) {
-					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(180).start();
-				} else {
-					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(0).start();
-				}
-				return true;
+	final private FastAdapter.OnClickListener<RegionItem> onClickListener = (v, adapter, item, position) -> {
+		if (item.getSubItems() != null) {
+			if (!item.isExpanded()) {
+				ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(180).start();
+			} else {
+				ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(0).start();
 			}
-			return false;
+			return true;
 		}
+		return false;
 	};
 
 	@Override

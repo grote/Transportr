@@ -25,6 +25,8 @@ import android.util.Log;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 /**
  * A lifecycle-aware observable that sends only new updates after subscription, used for events like
  * navigation and Snackbar messages.
@@ -35,6 +37,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * <p>
  * Note that only one observer is going to be notified of changes.
  */
+@ParametersAreNonnullByDefault
 public class SingleLiveEvent<T> extends MutableLiveData<T> {
 
 	private static final String TAG = SingleLiveEvent.class.getSimpleName();

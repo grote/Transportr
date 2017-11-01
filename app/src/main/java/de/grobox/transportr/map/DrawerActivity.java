@@ -37,23 +37,23 @@ import com.mikepenz.materialdrawer.util.KeyboardUtil;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
+import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.about.AboutActivity;
 import de.grobox.transportr.about.AboutMainFragment;
-import de.grobox.transportr.activities.TransportrActivity;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.networks.TransportNetworkManager;
-import de.grobox.transportr.settings.Preferences;
 import de.grobox.transportr.settings.SettingsActivity;
 import de.grobox.transportr.settings.SettingsFragment;
+import de.grobox.transportr.settings.SettingsManager;
 import de.grobox.transportr.ui.TransportrChangeLog;
 
 import static android.support.v4.app.ActivityOptionsCompat.makeScaleUpAnimation;
 
 abstract class DrawerActivity extends TransportrActivity {
 
-	@Inject
-	TransportNetworkManager manager;
+	@Inject TransportNetworkManager manager;
+	@Inject SettingsManager settingsManager;
 
 	private Drawer drawer;
 	private AccountHeader accountHeader;
@@ -152,7 +152,8 @@ abstract class DrawerActivity extends TransportrActivity {
 
 		if (tag.equals(TransportrChangeLog.TAG)) {
 			onClick = (view, position, drawerItem) -> {
-				new TransportrChangeLog(DrawerActivity.this, Preferences.darkThemeEnabled(DrawerActivity.this)).getFullLogDialog().show();
+				boolean dark = settingsManager.getTheme() == R.style.AppTheme;
+				new TransportrChangeLog(DrawerActivity.this, dark).getFullLogDialog().show();
 				return true;
 			};
 			name = getString(R.string.drawer_changelog);

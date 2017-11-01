@@ -25,7 +25,7 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.ui.BasePopupMenu;
 
 import static de.grobox.transportr.utils.TransportrUtils.copyToClipboard;
-import static de.grobox.transportr.utils.TransportrUtils.presetDirections;
+import static de.grobox.transportr.utils.IntentUtils.presetDirections;
 
 public class LocationPopupMenu extends BasePopupMenu {
 

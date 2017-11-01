@@ -19,6 +19,7 @@ package de.grobox.transportr.trips.search;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,15 +39,16 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.settings.Preferences;
 import de.schildbach.pte.dto.Product;
 
 import static de.grobox.transportr.utils.TransportrUtils.getDrawableForProduct;
-import static de.grobox.transportr.utils.TransportrUtils.productToString;
 
+@ParametersAreNonnullByDefault
 public class ProductDialogFragment extends DialogFragment {
 
 	public static final String TAG = ProductDialogFragment.class.getSimpleName();
@@ -58,18 +60,7 @@ public class ProductDialogFragment extends DialogFragment {
 	private Button okButton;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		if(Preferences.darkThemeEnabled(getActivity())) {
-			setStyle(DialogFragment.STYLE_NO_TITLE, R.style.SetHomeDialogTheme);
-		} else {
-			setStyle(DialogFragment.STYLE_NO_TITLE, R.style.SetHomeDialogTheme_Light);
-		}
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_product_dialog, container);
 
 		// RecyclerView
@@ -78,7 +69,7 @@ public class ProductDialogFragment extends DialogFragment {
 		adapter = new FastItemAdapter<>();
 		adapter.withSelectable(true);
 		productsView.setAdapter(adapter);
-		for(Product product : Product.ALL) {
+		for (Product product : Product.ALL) {
 			adapter.add(new ProductItem(product));
 		}
 
@@ -122,7 +113,7 @@ public class ProductDialogFragment extends DialogFragment {
 
 	private EnumSet<Product> getProductsFromItems(Set<ProductItem> items) {
 		EnumSet<Product> products = EnumSet.noneOf(Product.class);
-		for(ProductItem item : items) {
+		for (ProductItem item : items) {
 			products.add(item.product);
 		}
 		return products;
@@ -154,7 +145,7 @@ public class ProductDialogFragment extends DialogFragment {
 			super.bindView(ui, payloads);
 
 			ui.image.setImageResource(getDrawableForProduct(product));
-			ui.name.setText(productToString(getContext(), product));
+			ui.name.setText(productToString(ui.name.getContext(), product));
 			ui.checkBox.setChecked(isSelected());
 			ui.layout.setOnClickListener(v -> {
 				int position = adapter.getAdapterPosition(ProductItem.this);
@@ -190,4 +181,28 @@ public class ProductDialogFragment extends DialogFragment {
 			}
 		}
 	}
+
+	private String productToString(Context context, Product p) {
+		if (p == Product.HIGH_SPEED_TRAIN)
+			return context.getString(R.string.product_high_speed_train);
+		else if (p == Product.REGIONAL_TRAIN)
+			return context.getString(R.string.product_regional_train);
+		else if (p == Product.SUBURBAN_TRAIN)
+			return context.getString(R.string.product_suburban_train);
+		else if (p == Product.SUBWAY)
+			return context.getString(R.string.product_subway);
+		else if (p == Product.TRAM)
+			return context.getString(R.string.product_tram);
+		else if (p == Product.BUS)
+			return context.getString(R.string.product_bus);
+		else if (p == Product.FERRY)
+			return context.getString(R.string.product_ferry);
+		else if (p == Product.CABLECAR)
+			return context.getString(R.string.product_cablecar);
+		else if (p == Product.ON_DEMAND)
+			return context.getString(R.string.product_on_demand);
+		else
+			throw new RuntimeException();
+	}
+
 }

@@ -16,7 +16,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.activities.TransportrActivity;
+import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.locations.WrapLocation;
 
@@ -44,6 +44,8 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		super.onCreate(savedInstanceState);
 		getComponent().inject(this);
 		setContentView(R.layout.activity_directions);
+
+//		setShowWhenLocked(true);  // TODO test with API < 27 and add preference
 
 		AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
 		appBarLayout.addOnOffsetChangedListener(this);
@@ -158,7 +160,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		}
 	}
 
-	private void searchFromTo(long uid, WrapLocation from, @Nullable WrapLocation via, WrapLocation to, Date date) {
+	private void searchFromTo(long uid, WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to, Date date) {
 		presetFromTo(uid, from, via, to, date);
 		viewModel.search();
 	}

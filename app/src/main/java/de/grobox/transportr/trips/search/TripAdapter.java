@@ -81,7 +81,7 @@ class TripAdapter extends RecyclerView.Adapter<TripViewHolder> {
 
 	@Override
 	public void onBindViewHolder(final TripViewHolder ui, final int position) {
-		Trip dep = getItem(position);
+		Trip dep = items.get(position);
 		ui.bind(dep, listener);
 	}
 
@@ -90,12 +90,8 @@ class TripAdapter extends RecyclerView.Adapter<TripViewHolder> {
 		return items.size();
 	}
 
-	public void addAll(Collection<Trip> departures) {
+	void addAll(Collection<Trip> departures) {
 		this.items.addAll(departures);
-	}
-
-	public Trip getItem(int position) {
-		return items.get(position);
 	}
 
 	public void clear() {

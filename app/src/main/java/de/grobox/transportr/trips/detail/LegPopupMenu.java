@@ -15,37 +15,35 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.transportr.ui;
+package de.grobox.transportr.trips.detail;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.ArrayList;
-
 import de.grobox.transportr.R;
 import de.grobox.transportr.locations.WrapLocation;
-import de.grobox.transportr.utils.TransportrUtils;
+import de.grobox.transportr.ui.BasePopupMenu;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip.Leg;
 
+import static de.grobox.transportr.trips.detail.TripUtils.legToString;
 import static de.grobox.transportr.utils.DateUtils.getTime;
 import static de.grobox.transportr.utils.TransportrUtils.copyToClipboard;
-import static de.grobox.transportr.utils.TransportrUtils.findDepartures;
-import static de.grobox.transportr.utils.TransportrUtils.findNearbyStations;
+import static de.grobox.transportr.utils.IntentUtils.findDepartures;
+import static de.grobox.transportr.utils.IntentUtils.findNearbyStations;
 import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
-import static de.grobox.transportr.utils.TransportrUtils.legToString;
-import static de.grobox.transportr.utils.TransportrUtils.presetDirections;
-import static de.grobox.transportr.utils.TransportrUtils.showLocationsOnMap;
+import static de.grobox.transportr.utils.IntentUtils.presetDirections;
+import static de.grobox.transportr.utils.IntentUtils.startGeoIntent;
 
 public class LegPopupMenu extends BasePopupMenu {
 	private Location loc1 = null;
 	private Location loc2 = null;
 	private String text;
 
-	public LegPopupMenu(Context context, View anchor, Leg leg, boolean is_last) {
+	LegPopupMenu(Context context, View anchor, Leg leg, boolean is_last) {
 		super(context, anchor);
 
 		if (is_last) {
@@ -65,11 +63,11 @@ public class LegPopupMenu extends BasePopupMenu {
 		showIcons();
 	}
 
-	public LegPopupMenu(Context context, View anchor, Leg leg) {
+	LegPopupMenu(Context context, View anchor, Leg leg) {
 		this(context, anchor, leg, false);
 	}
 
-	public LegPopupMenu(Context context, View anchor, Stop stop) {
+	LegPopupMenu(Context context, View anchor, Stop stop) {
 		super(context, anchor);
 
 		this.loc1 = stop.location;
@@ -82,19 +80,9 @@ public class LegPopupMenu extends BasePopupMenu {
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
-			// Show On Map
-			case R.id.action_show_on_map:
-				// remember station to arrive at
-				ArrayList<Location> loc_list = new ArrayList<>();
-				if (loc2 != null) loc_list.add(loc2);
-				loc_list.add(loc1);
-
-				showLocationsOnMap(context, loc_list, loc1);
-
-				return true;
 			// Show On External Map
 			case R.id.action_show_on_external_map:
-				TransportrUtils.startGeoIntent(context, loc1);
+				startGeoIntent(context, loc1);
 
 				return true;
 			// From Here
@@ -109,7 +97,7 @@ public class LegPopupMenu extends BasePopupMenu {
 				return true;
 			// Show Departures
 			case R.id.action_show_departures:
-				findDepartures(context, loc1);
+				findDepartures(context, new WrapLocation(loc1));
 
 				return true;
 			// Show Nearby Stations

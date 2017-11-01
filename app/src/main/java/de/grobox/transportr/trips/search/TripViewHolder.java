@@ -37,7 +37,7 @@ import static de.grobox.transportr.utils.DateUtils.getDelayText;
 import static de.grobox.transportr.utils.DateUtils.getDuration;
 import static de.grobox.transportr.utils.DateUtils.getTime;
 import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
-import static de.grobox.transportr.utils.TransportrUtils.setRelativeDepartureTime;
+import static de.grobox.transportr.utils.DateUtils.setRelativeDepartureTime;
 
 class TripViewHolder extends RecyclerView.ViewHolder {
 

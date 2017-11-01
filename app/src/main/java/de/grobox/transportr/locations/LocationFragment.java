@@ -48,11 +48,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
+import de.grobox.transportr.TransportrFragment;
 import de.grobox.transportr.departures.DeparturesActivity;
 import de.grobox.transportr.departures.DeparturesLoader;
-import de.grobox.transportr.fragments.TransportrFragment;
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback;
 import de.grobox.transportr.map.MapViewModel;
+import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Line;
 import de.schildbach.pte.dto.LineDestination;
@@ -69,10 +70,7 @@ import static de.grobox.transportr.departures.DeparturesActivity.MAX_DEPARTURES;
 import static de.grobox.transportr.departures.DeparturesLoader.getBundle;
 import static de.grobox.transportr.utils.Constants.LOADER_DEPARTURES;
 import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
-import static de.grobox.transportr.utils.TransportrUtils.getCoordinationName;
-import static de.grobox.transportr.utils.TransportrUtils.getDragDistance;
-import static de.grobox.transportr.utils.TransportrUtils.getLatLng;
-import static de.grobox.transportr.utils.TransportrUtils.startGeoIntent;
+import static de.grobox.transportr.utils.IntentUtils.startGeoIntent;
 import static de.schildbach.pte.dto.LocationType.COORD;
 import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 
@@ -110,12 +108,14 @@ public class LocationFragment extends TransportrFragment
 		super.onCreate(savedInstanceState);
 
 		Bundle args = getArguments();
+		if (args == null) throw new IllegalStateException();
 		location = (WrapLocation) args.getSerializable(WRAP_LOCATION);
 		if (location == null) throw new IllegalArgumentException("No location");
 
 		View v = inflater.inflate(R.layout.fragment_location, container, false);
 		getComponent().inject(this);
 
+		if (getActivity() == null) throw new IllegalStateException();
 		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(MapViewModel.class);
 		viewModel.nearbyStationsFound().observe(this, found -> onNearbyStationsLoaded());
 
@@ -137,7 +137,7 @@ public class LocationFragment extends TransportrFragment
 		showLocation();
 
 		if (location.getLocation().type == COORD) {
-			ReverseGeocoder geocoder = new ReverseGeocoder(getContext(), this);
+			ReverseGeocoder geocoder = new ReverseGeocoder(getActivity(), this);
 			geocoder.findLocation(location.getLocation());
 		}
 
@@ -164,7 +164,7 @@ public class LocationFragment extends TransportrFragment
 
 		// Share Location
 		Button shareButton = v.findViewById(R.id.shareButton);
-		shareButton.setOnClickListener(view -> startGeoIntent(getContext(), location.getLocation()));
+		shareButton.setOnClickListener(view -> startGeoIntent(getActivity(), location.getLocation()));
 
 		// Overflow Button
 		ImageButton overflowButton = v.findViewById(R.id.overflowButton);
@@ -178,11 +178,11 @@ public class LocationFragment extends TransportrFragment
 	@Override
 	public void onGlobalLayout() {
 		// set peek distance to show view header
-		if (getContext() == null) return;
+		if (getActivity() == null) return;
 		if (linesLayout.getBottom() > 0) {
-			viewModel.setPeekHeight(linesLayout.getBottom() + getDragDistance(getContext()));
+			viewModel.setPeekHeight(linesLayout.getBottom() + getResources().getDimensionPixelSize(R.dimen.locationPeekPadding));
 		} else if (locationInfo.getBottom() > 0) {
-			viewModel.setPeekHeight(locationInfo.getBottom() + getDragDistance(getContext()));
+			viewModel.setPeekHeight(locationInfo.getBottom() + getResources().getDimensionPixelSize(R.dimen.locationPeekPadding));
 		}
 	}
 
@@ -195,13 +195,13 @@ public class LocationFragment extends TransportrFragment
 		}
 		if (location.getLocation().hasLocation()) {
 			if (locationInfoStr.length() > 0) locationInfoStr.append(", ");
-			locationInfoStr.append(getCoordinationName(location.getLocation()));
+			locationInfoStr.append(TransportrUtils.getCoordsName(location.getLocation()));
 		}
 		locationInfo.setText(locationInfoStr);
 	}
 
 	private void onLocationClicked() {
-		viewModel.selectedLocationClicked(getLatLng(location.getLocation()));
+		viewModel.selectedLocationClicked(location.getLatLng());
 	}
 
 	@Override

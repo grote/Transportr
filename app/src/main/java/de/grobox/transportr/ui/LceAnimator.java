@@ -31,7 +31,8 @@ public class LceAnimator {
 
 	private final static int DURATION = 750;
 
-	private LceAnimator() {}
+	private LceAnimator() {
+	}
 
 	/**
 	 * Show the loading view. No animations, because sometimes loading things is pretty fast (i.e.
@@ -54,19 +55,21 @@ public class LceAnimator {
 		// Not visible yet, so animate the view in
 		AnimatorSet set = new AnimatorSet();
 		ObjectAnimator in = ObjectAnimator.ofFloat(errorView, View.ALPHA, 1f);
-		ObjectAnimator loadingOut = ObjectAnimator.ofFloat(loadingView,  View.ALPHA, 0f);
+		ObjectAnimator loadingOut = ObjectAnimator.ofFloat(loadingView, View.ALPHA, 0f);
 
 		set.playTogether(in, loadingOut);
 		set.setDuration(DURATION);
 
 		set.addListener(new AnimatorListenerAdapter() {
 
-			@Override public void onAnimationStart(Animator animation) {
+			@Override
+			public void onAnimationStart(Animator animation) {
 				super.onAnimationStart(animation);
 				errorView.setVisibility(View.VISIBLE);
 			}
 
-			@Override public void onAnimationEnd(Animator animation) {
+			@Override
+			public void onAnimationEnd(Animator animation) {
 				super.onAnimationEnd(animation);
 				loadingView.setVisibility(View.GONE);
 				loadingView.setAlpha(1f); // For future showLoading calls
@@ -106,13 +109,15 @@ public class LceAnimator {
 
 			set.addListener(new AnimatorListenerAdapter() {
 
-				@Override public void onAnimationStart(Animator animation) {
+				@Override
+				public void onAnimationStart(Animator animation) {
 					contentView.setTranslationY(0);
 					loadingView.setTranslationY(0);
 					contentView.setVisibility(View.VISIBLE);
 				}
 
-				@Override public void onAnimationEnd(Animator animation) {
+				@Override
+				public void onAnimationEnd(Animator animation) {
 					loadingView.setVisibility(View.GONE);
 					loadingView.setAlpha(1f); // For future showLoading calls
 					contentView.setTranslationY(0);

@@ -25,8 +25,8 @@ import android.view.View;
 import de.grobox.transportr.R;
 import de.grobox.transportr.ui.BasePopupMenu;
 
-import static de.grobox.transportr.utils.TransportrUtils.findDirections;
-import static de.grobox.transportr.utils.TransportrUtils.presetDirections;
+import static de.grobox.transportr.utils.IntentUtils.findDirections;
+import static de.grobox.transportr.utils.IntentUtils.presetDirections;
 
 abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 

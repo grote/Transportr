@@ -394,6 +394,7 @@ public interface TransportNetworks {
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.MERSEY)
+					.setName(R.string.np_name_mersey)
 					.setDescription(R.string.np_desc_mersey)
 					.setRegion(Region.GREAT_BRITAIN)
 					.setLogo(R.drawable.network_mersey_logo)

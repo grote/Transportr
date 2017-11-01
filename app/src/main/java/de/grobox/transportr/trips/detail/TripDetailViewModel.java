@@ -30,7 +30,7 @@ import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.M
 
 public class TripDetailViewModel extends TransportNetworkViewModel implements LegClickListener {
 
-	enum SheetState { BOTTOM, MIDDLE, EXPANDED }
+	enum SheetState {BOTTOM, MIDDLE, EXPANDED}
 
 	private final SettingsManager settingsManager;
 

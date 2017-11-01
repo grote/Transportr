@@ -62,9 +62,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 		manager.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
 
 		network_pref.setOnPreferenceClickListener(preference -> {
-		    Intent intent = new Intent(getActivity(), PickTransportNetworkActivity.class);
+			Intent intent = new Intent(getActivity(), PickTransportNetworkActivity.class);
 			View view = getView();
-			if(view != null) view = view.findFocus();
+			if (view != null) view = view.findFocus();
 
 			ActivityOptionsCompat options = ActivityOptionsCompat.makeScaleUpAnimation(view, (int) view.getX(), (int) view.getY(), 0, 0);
 			ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
@@ -86,13 +86,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		if(key.equals(Preferences.THEME)) {
+		if (key.equals(SettingsManager.THEME)) {
 			ListPreference themePref = (ListPreference) findPreference(key);
 			themePref.setSummary(themePref.getEntry());
 
 			reload();
-		}
-		else if(key.equals(Preferences.LANGUAGE)) {
+		} else if (key.equals(SettingsManager.LANGUAGE)) {
 			ListPreference langPref = (ListPreference) findPreference(key);
 			langPref.setSummary(langPref.getEntry());
 

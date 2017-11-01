@@ -24,12 +24,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.activities.TransportrActivity;
-import de.grobox.transportr.fragments.TimeDateFragment;
-import de.grobox.transportr.fragments.TimeDateFragment.TimeDateListener;
+import de.grobox.transportr.TransportrActivity;
+import de.grobox.transportr.ui.TimeDateFragment;
+import de.grobox.transportr.ui.TimeDateFragment.TimeDateListener;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.ui.LceAnimator;
@@ -46,6 +47,7 @@ import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
 import static de.grobox.transportr.utils.TransportrUtils.getDragDistance;
 import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 
+@ParametersAreNonnullByDefault
 public class DeparturesActivity extends TransportrActivity
 		implements LoaderCallbacks<QueryDeparturesResult>, TimeDateListener {
 
@@ -59,8 +61,8 @@ public class DeparturesActivity extends TransportrActivity
 	private RecyclerView list;
 	private DepartureAdapter adapter;
 
-	@Inject
-	TransportNetworkManager manager;
+	@Inject TransportNetworkManager manager;
+
 	private WrapLocation location;
 	private SearchState searchState = SearchState.INITIAL;
 	private Calendar calendar;
@@ -106,12 +108,7 @@ public class DeparturesActivity extends TransportrActivity
 		swipe.setColorSchemeResources(R.color.accent);
 		swipe.setDirection(SwipyRefreshLayoutDirection.BOTH);
 		swipe.setDistanceToTriggerSync(getDragDistance(this));
-		swipe.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
-			@Override
-			public void onRefresh(final SwipyRefreshLayoutDirection direction) {
-				loadMoreDepartures(direction != TOP);
-			}
-		});
+		swipe.setOnRefreshListener(direction -> loadMoreDepartures(direction != TOP));
 
 		// Departures List
 		adapter = new DepartureAdapter();

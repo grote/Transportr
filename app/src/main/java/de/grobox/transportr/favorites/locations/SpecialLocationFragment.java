@@ -32,6 +32,7 @@ import android.view.WindowManager.LayoutParams;
 
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.AppComponent;
@@ -42,11 +43,13 @@ import de.grobox.transportr.favorites.trips.FavoriteTripListener;
 import de.grobox.transportr.locations.LocationView;
 import de.grobox.transportr.locations.LocationsViewModel;
 import de.grobox.transportr.locations.WrapLocation;
-import de.grobox.transportr.settings.Preferences;
+import de.grobox.transportr.settings.SettingsManager;
 
+@ParametersAreNonnullByDefault
 abstract class SpecialLocationFragment extends DialogFragment implements LocationView.LocationViewListener {
 
 	@Inject protected ViewModelProvider.Factory viewModelFactory;
+	@Inject SettingsManager settingsManager;
 
 	protected LocationsViewModel viewModel;
 	protected @Nullable FavoriteTripListener listener;
@@ -54,12 +57,12 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 	private LocationView loc;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	@SuppressWarnings("ConstantConditions")
+	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		inject(((TransportrApplication) getActivity().getApplication()).getComponent());
 
-		if (Preferences.darkThemeEnabled(getActivity())) {
+		if (settingsManager.getTheme() == R.style.AppTheme) {
 			setStyle(DialogFragment.STYLE_NO_TITLE, R.style.SetHomeDialogTheme);
 		} else {
 			setStyle(DialogFragment.STYLE_NO_TITLE, R.style.SetHomeDialogTheme_Light);
@@ -69,9 +72,7 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 	protected abstract void inject(AppComponent component);
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_special_location, container);
 
 		// Initialize LocationView
@@ -95,7 +96,8 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 
 	protected abstract LocationsViewModel getViewModel();
 
-	protected abstract @StringRes int getHint();
+	@StringRes
+	protected abstract int getHint();
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {

@@ -13,7 +13,6 @@ import de.grobox.transportr.data.locations.WorkLocation;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.networks.TransportNetworkViewModel;
 
-import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.schildbach.pte.dto.LocationType.ADDRESS;
 
 public abstract class LocationsViewModel extends TransportNetworkViewModel {
@@ -52,7 +51,7 @@ public abstract class LocationsViewModel extends TransportNetworkViewModel {
 		return locations;
 	}
 
-	public void useLocation(WrapLocation location, FavLocationType type) {
+	protected void useLocation(WrapLocation location, FavLocationType type) {
 		locationRepository.addFavoriteLocation(location, type);
 	}
 

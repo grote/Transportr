@@ -40,7 +40,7 @@ import static de.schildbach.pte.dto.LocationType.COORD;
 
 public class WrapLocation implements Serializable {
 
-	public enum WrapType { NORMAL, GPS }
+	public enum WrapType {NORMAL, GPS}
 
 	@Ignore
 	private WrapType wrapType;
@@ -97,7 +97,7 @@ public class WrapLocation implements Serializable {
 		return id;
 	}
 
-	public boolean hasId() {
+	boolean hasId() {
 		return !Strings.isNullOrEmpty(id);
 	}
 
@@ -107,12 +107,12 @@ public class WrapLocation implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if(o == this) {
+		if (o == this) {
 			return true;
 		}
-		if(o instanceof WrapLocation) {
+		if (o instanceof WrapLocation) {
 			WrapLocation wLoc = (WrapLocation) o;
-			if(getLocation() == null) {
+			if (getLocation() == null) {
 				return wLoc.getLocation() == null;
 			}
 			return getLocation().equals(wLoc.getLocation());
@@ -143,7 +143,7 @@ public class WrapLocation implements Serializable {
 	public String getName() {
 		// FIXME improve
 		if (type.equals(LocationType.COORD)) {
-			return TransportrUtils.getCoordinationName(getLocation());
+			return TransportrUtils.getCoordsName(getLocation());
 		} else if (getLocation().uniqueShortName() != null) {
 			return getLocation().uniqueShortName();
 		} else if (hasId()) {
@@ -153,7 +153,7 @@ public class WrapLocation implements Serializable {
 		}
 	}
 
-	public String getFullName() {
+	String getFullName() {
 		if (name != null) {
 			return place == null ? name : name + ", " + place;
 		} else {

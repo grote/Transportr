@@ -86,12 +86,12 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 		ui.location.setHint(hint);
 		if (!isInEditMode()) {
-			adapter = new LocationAdapter(getContext());;
+			adapter = new LocationAdapter(getContext());
 			ui.location.setAdapter(adapter);
 		}
 		ui.location.setOnItemClickListener((parent, view, position, rowId) -> {
 			WrapLocation loc = getAdapter().getItem(position);
-			if(loc != null) onLocationItemClick(loc, view);
+			if (loc != null) onLocationItemClick(loc);
 		});
 		ui.location.setOnFocusChangeListener(LocationView.this::onFocusChange);
 		ui.location.setOnClickListener(view -> LocationView.this.onClick());
@@ -112,10 +112,12 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		ui.location.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				if((count == 1 && before == 0) || (count == 0 && before == 1)) handleTextChanged(s);
+				if ((count == 1 && before == 0) || (count == 0 && before == 1)) handleTextChanged(s);
 			}
+
 			public void afterTextChanged(Editable s) {
 			}
+
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			}
 		});
@@ -147,7 +149,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		bundle.putParcelable(SUPER_STATE, super.onSaveInstanceState());
 		bundle.putInt(TEXT_POSITION, ui.location.getSelectionStart());
 		bundle.putSerializable(LOCATION, location);
-		if(location == null && ui.location.getText().length() > 0) {
+		if (location == null && ui.location.getText().length() > 0) {
 			bundle.putString(TEXT, ui.location.getText().toString());
 		}
 		return bundle;
@@ -155,14 +157,13 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	@Override
 	public void onRestoreInstanceState(Parcelable state) {
-		if(state instanceof Bundle) { // implicit null check
+		if (state instanceof Bundle) { // implicit null check
 			Bundle bundle = (Bundle) state;
 			WrapLocation loc = (WrapLocation) bundle.getSerializable(LOCATION);
 			String text = bundle.getString(TEXT);
-			if(loc != null) {
+			if (loc != null) {
 				setLocation(loc);
-			}
-			else if(text != null && text.length() > 0) {
+			} else if (text != null && text.length() > 0) {
 				ui.location.setText(text);
 				ui.clear.setVisibility(View.VISIBLE);
 			}
@@ -176,7 +177,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	@Override
-	 protected void dispatchSaveInstanceState(SparseArray<Parcelable> container) {
+	protected void dispatchSaveInstanceState(SparseArray<Parcelable> container) {
 		// Makes sure that the state of the child views are not saved
 		super.dispatchFreezeSelfOnly(container);
 	}
@@ -207,12 +208,12 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	public void handleTextChanged(CharSequence s) {
 		// show clear button
-		if(s.length() > 0) {
+		if (s.length() > 0) {
 			ui.clear.setVisibility(View.VISIBLE);
 			// clear location tag
 			setLocation(null, R.drawable.ic_location, false);
 
-			if(s.length() >= LocationAdapter.TYPING_THRESHOLD) {
+			if (s.length() >= LocationAdapter.TYPING_THRESHOLD) {
 				onContentChanged();
 			}
 		} else {
@@ -243,15 +244,15 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	@Override
 	public void onSuggestLocationsResult(@Nullable SuggestLocationsResult suggestLocationsResult) {
 		ui.progress.setVisibility(GONE);
-		if(suggestLocationsResult == null) return;
+		if (suggestLocationsResult == null) return;
 
-		if(getAdapter() != null) {
+		if (getAdapter() != null) {
 			getAdapter().swapSuggestedLocations(suggestLocationsResult.suggestedLocations, ui.location.getText().toString());
 		}
 	}
 
 	private void stopSuggestLocationsTask() {
-		if(task != null) task.cancel(true);
+		if (task != null) task.cancel(true);
 		ui.progress.setVisibility(GONE);
 	}
 
@@ -264,8 +265,8 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	public void setLocation(WrapLocation loc, @DrawableRes int icon, boolean setText) {
 		location = loc;
 
-		if(setText) {
-			if(loc != null) {
+		if (setText) {
+			if (loc != null) {
 				ui.location.setText(loc.getName());
 				ui.location.dismissDropDown();
 				ui.clear.setVisibility(View.VISIBLE);
@@ -288,7 +289,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	public String getText() {
-		if(ui.location != null) {
+		if (ui.location != null) {
 			return ui.location.getText().toString();
 		} else {
 			return null;
@@ -320,25 +321,25 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		}
 	}
 
-	public void onLocationItemClick(WrapLocation loc, View view) {
+	public void onLocationItemClick(WrapLocation loc) {
 		setLocation(loc);  // TODO set via ViewModel
 		ui.location.requestFocus();
 
 		// hide soft-keyboard
 		hideSoftKeyboard();
 
-		if(listener != null) listener.onLocationItemClick(loc, type);
+		if (listener != null) listener.onLocationItemClick(loc, type);
 	}
 
 	public void onClick() {
-		if(getAdapter().getCount() > 0) {
+		if (getAdapter().getCount() > 0) {
 			ui.location.showDropDown();
 		}
 	}
 
 	public void clearLocation() {
 		setLocation(null);
-		if(getAdapter() != null) {
+		if (getAdapter() != null) {
 			getAdapter().resetSearchTerm();
 		}
 	}
@@ -356,13 +357,13 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	public void reset() {
-		if(getAdapter() != null) {
+		if (getAdapter() != null) {
 			getAdapter().reset();
 		}
 	}
 
 	public void resetIfEmpty() {
-		if(ui.location.getText().length() == 0) {
+		if (ui.location.getText().length() == 0) {
 			reset();
 		}
 	}
@@ -382,6 +383,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	public interface LocationViewListener {
 		void onLocationItemClick(WrapLocation loc, FavLocationType type);
+
 		void onLocationCleared(FavLocationType type);
 	}
 

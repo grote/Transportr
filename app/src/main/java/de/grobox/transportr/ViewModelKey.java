@@ -11,9 +11,9 @@ import java.lang.annotation.Target;
 import dagger.MapKey;
 
 @Documented
-@Target({ElementType.METHOD})
+@Target({ ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @MapKey
 @interface ViewModelKey {
-    Class<? extends ViewModel> value();
+	Class<? extends ViewModel> value();
 }

@@ -30,11 +30,15 @@ import android.view.ViewGroup;
 
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.transportr.R;
+import de.grobox.transportr.TransportrFragment;
 
-public class AboutMainFragment extends Fragment {
+@ParametersAreNonnullByDefault
+public class AboutMainFragment extends TransportrFragment {
 
-	public static final String TAG = "de.grobox.liberario.about";
+	public static final String TAG = AboutMainFragment.class.getSimpleName();
 	AboutPagerAdapter mPagerAdapter;
 
 	@Override
@@ -51,7 +55,6 @@ public class AboutMainFragment extends Fragment {
 
 		final TabLayout tabLayout = view.findViewById(R.id.tab_layout);
 		tabLayout.setupWithViewPager(viewPager);
-		tabLayout.setTabsFromPagerAdapter(mPagerAdapter);
 		tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
 		return view;
@@ -64,14 +67,14 @@ public class AboutMainFragment extends Fragment {
 
 		@Override
 		public Fragment getItem(int i) {
-			if(i == 1) {
+			if (i == 1) {
 				return new AboutDevelopersFragment();
-			} else if(i == 2) {
+			} else if (i == 2) {
 				return new LibsBuilder()
-						       // Pass the fields of your application to the lib so it can find all external lib information
-						       .withFields(R.string.class.getFields())
-						       // get the fragment
-						       .supportFragment();
+						// Pass the fields of your application to the lib so it can find all external lib information
+						.withFields(R.string.class.getFields())
+						// get the fragment
+						.supportFragment();
 			}
 			return new AboutFragment();
 		}
@@ -83,12 +86,13 @@ public class AboutMainFragment extends Fragment {
 
 		@Override
 		public CharSequence getPageTitle(int i) {
-			if(i == 1) {
+			if (i == 1) {
 				return getString(R.string.tab_devs);
-			} else if(i == 2) {
+			} else if (i == 2) {
 				return getString(R.string.tab_libraries);
 			}
 			return getString(R.string.tab_about);
 		}
 	}
+
 }

@@ -1,38 +1,26 @@
 package de.grobox.transportr.trips.detail;
 
 
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.ui.LegPopupMenu;
 import de.schildbach.pte.dto.Stop;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
-import static de.grobox.transportr.utils.TransportrUtils.setArrivalTimes;
-import static de.grobox.transportr.utils.TransportrUtils.setDepartureTimes;
 
-class StopViewHolder extends ViewHolder {
+class StopViewHolder extends BaseViewHolder {
 
-	private final TextView arrivalTime;
-	private final TextView arrivalDelay;
-	private final TextView departureTime;
-	private final TextView departureDelay;
 	private final ImageView circle;
 	private final TextView stopLocation;
 	private final ImageButton stopButton;
 
 	StopViewHolder(View v) {
 		super(v);
-		arrivalTime = v.findViewById(R.id.arrivalTime);
-		arrivalDelay = v.findViewById(R.id.arrivalDelay);
-		departureTime = v.findViewById(R.id.departureTime);
-		departureDelay = v.findViewById(R.id.departureDelay);
 		circle = v.findViewById(R.id.circle);
 		stopLocation = v.findViewById(R.id.stopLocation);
 		stopButton = v.findViewById(R.id.stopButton);
@@ -40,22 +28,22 @@ class StopViewHolder extends ViewHolder {
 
 	void bind(Stop stop, LegClickListener listener, int color) {
 		if (stop.getArrivalTime() != null) {
-			setArrivalTimes(arrivalTime.getContext(), arrivalTime, arrivalDelay, stop);
+			setArrivalTimes(fromTime, fromDelay, stop);
 		} else {
-			arrivalDelay.setVisibility(GONE);
+			fromDelay.setVisibility(GONE);
 		}
 
 		if (stop.getDepartureTime() != null) {
 			if (stop.getDepartureTime().equals(stop.getArrivalTime())) {
-				departureTime.setVisibility(GONE);
-				departureDelay.setVisibility(GONE);
+				toTime.setVisibility(GONE);
+				toDelay.setVisibility(GONE);
 			} else {
-				setDepartureTimes(departureTime.getContext(), departureTime, departureDelay, stop);
-				departureTime.setVisibility(VISIBLE);
+				setDepartureTimes(toTime, toDelay, stop);
+				toTime.setVisibility(VISIBLE);
 			}
 		} else {
-			departureTime.setVisibility(GONE);
-			departureDelay.setVisibility(GONE);
+			toTime.setVisibility(GONE);
+			toDelay.setVisibility(GONE);
 		}
 
 		circle.setColorFilter(color);

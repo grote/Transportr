@@ -10,27 +10,19 @@ Transportr trouve des itinéraires de chez vous, de votre position actuelle ou d
 
 Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les prochains départs incluant les retards (s\'il y en a). </string>
   <string name="onboarding_drawer_title">Découvrir plus de fonctions</string>
-  <string name="onboarding_drawer_text">Toquer sur cette icône pour ouvrir le tiroir de navigation et accéder à d\'autres fonctions de cette appli.</string>
-  <string name="drawer_changelog">Journal des changements</string>
+	<string name="drawer_changelog">Journal des changements</string>
   <string name="drawer_about">À propos</string>
   <string name="drawer_settings">Paramètres</string>
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
   <string name="action_unfav_trip">Supprimer la marque de trajet favori</string>
   <string name="action_refresh">Actualiser</string>
-  <string name="action_location_map">Montrer les arrêts/stations sur la carte</string>
-  <string name="action_use_gps">Activer le GPS</string>
-  <string name="action_share">Partager</string>
+	<string name="action_share">Partager</string>
   <string name="action_trip_calendar">Ajouter au calendrier</string>
   <string name="action_trip_delete">Supprimer le trajet</string>
   <string name="action_show_on_external_map">Montrer sur une carte externe</string>
   <string name="action_copy">Copier</string>
-  <string name="action_show_on_map">Montrer sur la carte</string>
-  <string name="action_show_all">Tout montrer</string>
-  <string name="drawer_directions">Itinéraires</string>
-  <string name="tab_fav_trips">Trajets favoris</string>
-  <string name="drawer_departures">Départs</string>
-  <string name="drawer_recent_trips">Trajets récents</string>
-  <string name="tab_libraries">Bibliothèques</string>
+	<string name="drawer_departures">Départs</string>
+	<string name="tab_libraries">Bibliothèques</string>
   <string name="tab_devs">Développeurs</string>
   <string name="tab_about">À propos</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
@@ -48,12 +40,10 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
 ]]>
 </string>
   <string name="visit_website">Visiter le site Web</string>
-  <string name="trip_removed">Trajet supprimé</string>
-  <string name="from">De</string>
+	<string name="from">De</string>
   <string name="to">À</string>
   <string name="via">via</string>
-  <string name="search">Rechercher</string>
-  <string name="from_here">D\'ici</string>
+	<string name="from_here">D\'ici</string>
   <string name="to_here">À ici</string>
   <string name="min">min</string>
   <string name="walk">Marche</string>
@@ -63,45 +53,24 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="network">Réseau</string>
   <string name="pick_network_activity">Choisir une zone</string>
   <string name="pick_network_first_run">Bienvenue à Transportr !\n\nVeuillez choisir le réseau de transport de votre région afin de poursuivre. Il peut être modifié en tout temps.</string>
-  <plurals name="clear_recent_trips">
-    <item quantity="one">Voulez-vous vraiment supprimer %1$d trajet de vos trajets récents ? Le compte d\'utilisation sera perdu.</item>
-    <item quantity="other">Voulez-vous vraiment supprimer %1$d trajets de vos trajets récents ? Le compte d\'utilisation sera perdu.</item>
-  </plurals>
-  <string name="trip_searching">Recherche de correspondances…</string>
-  <string name="stations_searching_position">Recherche de la position actuelle...</string>
+	<string name="stations_searching_position">Recherche de la position actuelle...</string>
   <string name="drawer_nearby_stations">Arrêts/stations à proximité</string>
   <string name="find_nearby_stations">Trouver des arrêts/stations à proximité</string>
   <string name="find_departures">Trouver des départs</string>
-  <string name="departure_station">Arrêt/station de départ</string>
-  <string name="share_trip_via">Partager ce trajet par...</string>
-  <string name="undo">Annuler</string>
-  <string name="fav_trips_empty">Vos trajets récents apparaîtront ici dès que vous commencerez à chercher le chemin.\n\n\nVous pourrez les trier par fréquence d\'utilisation ou dernière date d\'utilisation.</string>
-  <string name="more">Plus</string>
-  <string name="no_favourites">Aucun trajet favori.\n\nAjoutez-en sur la page « Trajets récents ».</string>
-  <string name="removing_from_favourites">Un trajet que vous avez sélectionné est marqué comme favori. Il sera aussi supprimé comme tel.</string>
-  <string name="create_quickhome_shortcut">Créer un raccourci dans votre lanceur qui vous guide vers chez vous</string>
-  <string name="change_time">Changer l\'heure</string>
+	<string name="share_trip_via">Partager ce trajet par...</string>
+	<string name="more">Plus</string>
+	<string name="change_time">Changer l\'heure</string>
   <string name="now">Maintenant</string>
   <string name="now_small">maintenant</string>
-  <string name="current_time_set">Heure réglée sur l\'heure actuelle.</string>
-  <string name="yesterday">hier</string>
+	<string name="yesterday">hier</string>
   <string name="today">Aujourd’hui</string>
   <string name="tomorrow">demain</string>
-  <string name="current_date_set">Date réglée sur la date actuelle.</string>
-  <string name="added_1h">1 heure a été ajoutée.</string>
-  <string name="in_x_minutes">dans %d min</string>
+	<string name="in_x_minutes">dans %d min</string>
   <string name="x_minutes_ago">il y a %d min</string>
   <string name="ok">OK</string>
   <string name="cancel">Annuler</string>
-  <string name="yes">Oui</string>
-  <string name="no">Non</string>
-  <string name="pref_transport_network">Réseau de transport</string>
-  <string name="pref_hide_departure_time">Cacher l\'heure de départ</string>
-  <string name="pref_hide_departure_time_summary">Ne montrer l\'heure d\'arrivée que lors de l\'affichage des arrêts intermédiaires</string>
-  <string name="pref_exit_app_on_back_press">Fermer l\'appli avec le bouton Retour</string>
-  <string name="pref_exit_app_on_back_press_summary">Toujours fermer l\'appli en appuyant sur le bouton Retour de l\'accueil</string>
-  <string name="pref_home">Point d\'origine</string>
-  <string name="pref_display">Affichage</string>
+	<string name="pref_transport_network">Réseau de transport</string>
+	<string name="pref_display">Affichage</string>
   <string name="pref_theme_title">Thème</string>
   <string name="pref_theme_light">Clair</string>
   <string name="pref_theme_dark">Sombre</string>
@@ -115,23 +84,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="pref_walk_speed_slow">Lente</string>
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Rapide</string>
-  <string name="pref_quickhome">Raccourci « À la maison »</string>
-  <string name="warning_departure_gap">Trop peu de départs ont été trouvés. Il pourrait y en avoir d\'autres cachés. Recherchez l\'heure exacte pour vous assurez qu\'il n\'en manque pas.</string>
-  <string name="warning_permission_granted_action">Impossible de répéter la dernière action automatiquement</string>
-  <string name="error_no_internet">Aucune connexion Internet suffisante disponible.</string>
-  <string name="error_invalid_from">Point de départ invalide (de)</string>
-  <string name="error_invalid_to">Destination invalide (vers)</string>
-  <string name="error_no_trips_found">Aucun itinéraire n\'a été trouvé</string>
-  <string name="error_no_location_provider">Impossible de trouver votre position. Veuillez activer le GPS !</string>
-  <string name="error_no_departures_found">Aucun départ n\'a été trouvé</string>
-  <string name="error_no_stations_found">Aucun arrêt/station trouvé</string>
-  <string name="error_no_proper_station">Le lieu fourni n\'est pas un arrêt/station valide</string>
-  <string name="error_only_autocomplete_station">Veuillez choisir un arrêt/station dans la liste de saisie automatique ! </string>
-  <string name="error_no_station_location">Impossible de trouver le lieu de cet/ces arrêt(s)/station(s)</string>
-  <string name="error_no_trips_capability">Le réseau de transport ne prend pas en charge la demande d\'itinéraire.</string>
-  <string name="error_no_departures_capability">Le réseau de transport sélectionné ne prend pas en charge la recherche de départs.</string>
-  <string name="error_no_nearby_locations_capability">Le réseau de transport sélectionné ne prend pas en charge la recherche d\'arrêts/stations à proximité.</string>
-  <string name="error_trip_refresh_failed">Impossible de rafraîchir les données pour le trajet actuel.</string>
+	<string name="error_trip_refresh_failed">Impossible de rafraîchir les données pour le trajet actuel.</string>
   <string name="meter">m</string>
   <string name="system_default">Valeur par défaut du système</string>
   <string name="times_include_delays">(Avertissement : les heures incluent les retards signalés)</string>
@@ -139,15 +92,9 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="home_dialog_title">Définir le point d\'origine</string>
   <string name="work">Travail</string>
   <string name="work_hint">Définir le lieu de travail</string>
-  <string name="work_dialog_title">Définir le lieu de travail</string>
-  <string name="tap_to_set">Toquer pour définir</string>
-  <string name="location">Lieu</string>
-  <string name="location_home">Cliquer pour définir le point d\'origine</string>
-  <string name="location_gps">Utiliser la position actuel</string>
-  <string name="location_map">Obtenir l\'emplacement à partir de la carte</string>
-  <string name="position_not_yet_known">La position n\'est pas encore connue</string>
-  <string name="position_no_gps">Le GPS est désactivé. La position sera très imprécise.</string>
-  <string name="select_products">Choisir un moyen de transport</string>
+	<string name="tap_to_set">Toquer pour définir</string>
+	<string name="location_gps">Utiliser la position actuel</string>
+	<string name="select_products">Choisir un moyen de transport</string>
   <string name="product_high_speed_train">Train à grande vitesse</string>
   <string name="product_regional_train">Train régional</string>
   <string name="product_suburban_train">Train de banlieue</string>
@@ -157,17 +104,11 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="product_ferry">Traversier</string>
   <string name="product_cablecar">Funiculaire</string>
   <string name="product_on_demand">À la demande</string>
-  <string name="action_fav_trips_sort">Trier la liste</string>
-  <string name="action_fav_trips_sort_recent">Dernière utilisation</string>
-  <string name="action_fav_trips_sort_most">Les plus utilisés</string>
-  <string name="action_set_locations">Modifier la recherche</string>
+	<string name="action_set_locations">Modifier la recherche</string>
   <string name="action_swap_locations">Rechercher le trajet de retour</string>
   <string name="action_change">Modifier</string>
-  <string name="permission_explanation_gps">Vous devez autoriser la localisation afin de voir votre position actuelle sur la carte.</string>
-  <string name="permission_denied_gps">Vous devez autoriser l\'accès à votre position pour que ceci fonctionne. Veuillez donner la permission dans les paramètres de l\'appli.</string>
-  <string name="permission_explanation_map">Les carrés de la carte doivent être stockés/mis en cache sur votre appareil. Sans ça, la carte ne fonctionnera pas.</string>
-  <string name="permission_denied_map">L\'affichage de la carte exige que les carrés soient stockés sur votre appareil. Veuillez donner la permission de stockage afin d\'utiliser la carte.</string>
-  <!--ckChangeLog-->
+	<string name="permission_denied_gps">Vous devez autoriser l\'accès à votre position pour que ceci fonctionne. Veuillez donner la permission dans les paramètres de l\'appli.</string>
+	<!--ckChangeLog-->
   <string name="changelog_full_title">Journal des changements</string>
   <string name="changelog_title">Nouveautés</string>
   <string name="changelog_show_full">Plus...</string>
@@ -179,8 +120,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_linz">Haute-Autriche, Linz</string>
   <string name="np_desc_oebb">Autriche</string>
   <string name="np_desc_stv">Styrie, Graz, Marbourg, Maribor</string>
-  <string name="np_desc_svv">Salzbourg</string>
-  <string name="np_desc_vor">Basse-Autriche, Burgenland, Vienne</string>
+	<string name="np_desc_vor">Basse-Autriche, Burgenland, Vienne</string>
   <string name="np_desc_vvt">Tyrol</string>
   <string name="np_desc_wien">Vienne</string>
   <string name="np_region_belgium">Belgique</string>
@@ -212,8 +152,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica, Lyon</string>
   <string name="np_name_frenchsouthwest">France - Sud-Ouest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
-  <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
-  <string name="np_name_paris">Paris</string>
+	<string name="np_name_paris">Paris</string>
   <string name="np_desc_paris">Île-de-France, France, Paris</string>
   <string name="np_region_gb">Grande-Bretagne</string>
   <string name="np_desc_mersey">Région métropolitaine de Liverpool</string>
@@ -228,8 +167,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_ding">Bade-Wurtemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Basse-Saxe, Hanovre, Hambourg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hambourg</string>
-  <string name="np_name_invg">Ingolstadt</string>
-  <string name="np_desc_invg">Ingolstadt</string>
+	<string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_kvv">Bade-Wurtemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Arrondissement de la Mark, Lüdenscheid</string>
   <string name="np_desc_mvv">Bavière, Munich</string>
@@ -237,8 +175,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_nvbw">Bade-Wurtemberg, Constance, Bâle, Bâle-Ville, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Francfort-sur-le-Main, Cassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_sh">Slesvig-Holsace, Kiel, Lübeck, Hambourg</string>
-  <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Fribourg-en-Brisgau</string>
+	<string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Fribourg-en-Brisgau</string>
   <string name="np_desc_vbb">Brandebourg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Basse-Saxe, Brême, Bremerhaven, Oldenbourg, Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangue, Bayreuth, Bamberg, Schwabach</string>
@@ -291,8 +228,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="np_desc_dub">Émirats arabes unis, Dubaï</string>
   <string name="np_region_usa">États-Unis d\'Amérique</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_desc_septa">Comtés de Bucks, Chester, Delaware, Montgomery et Philadelphie</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">États de New York et New Jersey</string>
+	<string name="np_name_usny" tools:keep="@string/np_name_usny">États de New York et New Jersey</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">« Global Transport » dans l\'état de l\'Oregon (É.-U.)</string>
   <string name="maintainer">Mainteneur</string>

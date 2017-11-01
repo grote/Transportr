@@ -56,10 +56,6 @@ enum Region {
 	private final @StringRes int name;
 	private final @Nullable String flag;
 
-	Region(@StringRes int name) {
-		this(name, null);
-	}
-
 	Region(@StringRes int name, @Nullable String flag) {
 		this.name = name;
 		this.flag = flag;

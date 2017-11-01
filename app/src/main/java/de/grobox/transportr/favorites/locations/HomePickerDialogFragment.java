@@ -17,10 +17,13 @@
 
 package de.grobox.transportr.favorites.locations;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.transportr.AppComponent;
 import de.grobox.transportr.R;
 import de.grobox.transportr.locations.WrapLocation;
 
+@ParametersAreNonnullByDefault
 public abstract class HomePickerDialogFragment extends SpecialLocationFragment {
 
 	public static final String TAG = HomePickerDialogFragment.class.getName();

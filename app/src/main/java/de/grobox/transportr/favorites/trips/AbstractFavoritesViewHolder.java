@@ -12,7 +12,7 @@ abstract class AbstractFavoritesViewHolder extends RecyclerView.ViewHolder {
 
 	protected final View layout;
 	protected final ImageView icon;
-	protected final ImageButton overflow;
+	final ImageButton overflow;
 
 	AbstractFavoritesViewHolder(View v) {
 		super(v);
@@ -23,12 +23,7 @@ abstract class AbstractFavoritesViewHolder extends RecyclerView.ViewHolder {
 
 	@CallSuper
 	void onBind(final FavoriteTripItem item, final FavoriteTripListener listener) {
-		layout.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				listener.onFavoriteClicked(item);
-			}
-		});
+		layout.setOnClickListener(v -> listener.onFavoriteClicked(item));
 	}
 
 }

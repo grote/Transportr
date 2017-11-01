@@ -3,10 +3,13 @@ package de.grobox.transportr.about;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.transportr.R;
-import de.grobox.transportr.activities.TransportrActivity;
+import de.grobox.transportr.TransportrActivity;
 
 
+@ParametersAreNonnullByDefault
 public class AboutActivity extends TransportrActivity {
 
 	@Override

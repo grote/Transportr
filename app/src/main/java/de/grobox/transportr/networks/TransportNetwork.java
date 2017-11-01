@@ -43,7 +43,7 @@ public class TransportNetwork {
 	private final @DrawableRes int logo;
 	private final boolean goodLineNames;
 
-	public enum Status { ALPHA, BETA, STABLE }
+	public enum Status {ALPHA, BETA, STABLE}
 
 	TransportNetwork(NetworkId id, Region region, int name, int description, int agencies, Status status, int logo, boolean goodLineNames) {
 		checkArgument(description != 0 || agencies != 0);
@@ -106,7 +106,7 @@ public class TransportNetwork {
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof TransportNetwork) {
-			TransportNetwork network = (TransportNetwork) o ;
+			TransportNetwork network = (TransportNetwork) o;
 			return this.id.equals(network.id);
 		}
 		return super.equals(o);

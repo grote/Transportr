@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.transportr.activities;
+package de.grobox.transportr;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -30,9 +30,6 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import de.grobox.transportr.AppComponent;
-import de.grobox.transportr.R;
-import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.settings.SettingsManager;
 
 public abstract class TransportrActivity extends AppCompatActivity {

@@ -10,7 +10,7 @@ import de.schildbach.pte.dto.Line
 
 internal class LineAdapter() : RecyclerView.Adapter<LineViewHolder>() {
 
-    private var lines : List<Line> = emptyList();
+    private var lines: List<Line> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LineViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_item_line, parent, false) as LineView
@@ -25,8 +25,8 @@ internal class LineAdapter() : RecyclerView.Adapter<LineViewHolder>() {
     override fun getItemCount() = lines.size
 
     fun swapLines(linesToSwap: List<Line>) {
-        lines = linesToSwap;
-        notifyDataSetChanged();
+        lines = linesToSwap
+        notifyDataSetChanged()
     }
 
 }

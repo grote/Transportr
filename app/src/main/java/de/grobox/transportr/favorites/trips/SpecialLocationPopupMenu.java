@@ -25,11 +25,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.transportr.R;
+import de.grobox.transportr.trips.search.DirectionsActivity;
 
+import static android.content.Intent.ACTION_MAIN;
 import static android.content.Intent.EXTRA_SHORTCUT_ICON_RESOURCE;
 import static android.content.Intent.EXTRA_SHORTCUT_INTENT;
 import static android.content.Intent.EXTRA_SHORTCUT_NAME;
-import static de.grobox.transportr.utils.TransportrUtils.getShortcutIntent;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 abstract class SpecialLocationPopupMenu extends AbstractFavoritesPopupMenu {
 
@@ -72,8 +75,19 @@ abstract class SpecialLocationPopupMenu extends AbstractFavoritesPopupMenu {
 
 	protected abstract String getShortcutIntentString();
 
-	protected abstract @StringRes int getShortcutName();
+	protected abstract @StringRes
+	int getShortcutName();
 
-	protected abstract @DrawableRes int getShortcutDrawable();
+	protected abstract @DrawableRes
+	int getShortcutDrawable();
+
+	private Intent getShortcutIntent(Context context, String type) {
+		Intent shortcutIntent = new Intent(context, DirectionsActivity.class);
+		shortcutIntent.setAction(ACTION_MAIN);
+		shortcutIntent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+		shortcutIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+		shortcutIntent.putExtra("special", type);
+		return shortcutIntent;
+	}
 
 }

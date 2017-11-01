@@ -18,7 +18,6 @@
 package de.grobox.transportr.networks;
 
 import android.os.Build;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -50,8 +49,8 @@ class RegionViewHolder extends RecyclerView.ViewHolder {
 			flag.setVisibility(GONE);
 		}
 		name.setText(region.getName());
-		if (expanded) ViewCompat.setRotation(chevron, 0);
-		else ViewCompat.setRotation(chevron, 180);
+		if (expanded) chevron.setRotation(0);
+		else chevron.setRotation(180);
 	}
 
 }

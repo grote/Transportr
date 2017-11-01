@@ -123,7 +123,7 @@ internal class TripsRepository(
         QueryMoreState.BOTH
     } ?: QueryMoreState.NONE
 
-    private fun QueryTripsResult.getError(): String = when(status) {
+    private fun QueryTripsResult.getError(): String = when (status) {
         AMBIGUOUS -> ctx.getString(R.string.trip_error_ambiguous)
         TOO_CLOSE -> ctx.getString(R.string.trip_error_too_close)
         UNKNOWN_FROM -> ctx.getString(R.string.trip_error_unknown_from)

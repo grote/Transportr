@@ -26,8 +26,8 @@ public class SettingsManager {
 	private final static String NETWORK_ID_2 = "NetworkId2";
 	private final static String NETWORK_ID_3 = "NetworkId3";
 
-	private final static String LANGUAGE = "pref_key_language";
-	private final static String THEME = "pref_key_theme";
+	final static String LANGUAGE = "pref_key_language";
+	final static String THEME = "pref_key_theme";
 	private final static String WALK_SPEED = "pref_key_walk_speed";
 	private final static String OPTIMIZE = "pref_key_optimize";
 

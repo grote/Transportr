@@ -36,6 +36,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerViewClickListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
@@ -46,6 +47,7 @@ import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.map.GpsController.FabState;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.NearbyLocationsResult;
+import de.schildbach.pte.dto.Product;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -55,9 +57,6 @@ import static de.grobox.transportr.map.GpsController.FabState.FIX;
 import static de.grobox.transportr.map.GpsController.FabState.FOLLOW;
 import static de.grobox.transportr.utils.Constants.LOADER_NEARBY_STATIONS;
 import static de.grobox.transportr.utils.Constants.REQUEST_LOCATION_PERMISSION;
-import static de.grobox.transportr.utils.TransportrUtils.getLatLng;
-import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
-import static de.grobox.transportr.utils.TransportrUtils.getMarkerForProduct;
 import static de.schildbach.pte.dto.LocationType.STATION;
 import static de.schildbach.pte.dto.NearbyLocationsResult.Status.OK;
 
@@ -163,7 +162,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 
 	private void onLocationSelected(@Nullable WrapLocation location) {
 		if (location == null) return;
-		LatLng latLng = getLatLng(location.getLocation());
+		LatLng latLng = location.getLatLng();
 		addMarker(latLng);
 		zoomTo(latLng);
 	}
@@ -244,8 +243,8 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		if (ContextCompat.checkSelfPermission(getContext(), ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) return;
 
 //		if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
-			// TODO Show an explanation to the user *asynchronously*
-			// After the user sees the explanation, try again to request the permission.
+		// TODO Show an explanation to the user *asynchronously*
+		// After the user sees the explanation, try again to request the permission.
 //		}
 		requestPermissions(new String[] { ACCESS_FINE_LOCATION }, REQUEST_LOCATION_PERMISSION);
 	}
@@ -267,7 +266,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 
 	@Override
 	public Loader<NearbyLocationsResult> onCreateLoader(int id, Bundle args) {
-		return new NearbyLocationsLoader(getContext(), args);
+		return new NearbyLocationsLoader(getContext(), viewModel.getTransportNetwork().getValue(), args);
 	}
 
 	@Override
@@ -275,10 +274,11 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		if (result != null && result.status == OK && result.locations != null && result.locations.size() > 0) {
 			for (Location location : result.locations) {
 				if (!location.hasLocation()) continue;
+				WrapLocation wrapLocation = new WrapLocation(location);
 				Marker marker = map.addMarker(new MarkerViewOptions()
-						.position(getLatLng(location))
-						.title(getLocationName(location))
-						.icon(getNearbyLocationsIcon(getMarkerForProduct(location.products)))
+						.position(wrapLocation.getLatLng())
+						.title(wrapLocation.getName())
+						.icon(getIconForProduct(location.products))
 				);
 				nearbyLocations.put(marker, location);
 			}
@@ -294,13 +294,52 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		nearbyLocations.clear();
 	}
 
+	private Icon getIconForProduct(@Nullable Set<Product> p) {
+		@DrawableRes
+		int image_res = R.drawable.product_bus_marker;
+
+		if (p != null && p.size() > 0) {
+			switch (p.iterator().next()) {
+				case HIGH_SPEED_TRAIN:
+					image_res = R.drawable.product_high_speed_train_marker;
+					break;
+				case REGIONAL_TRAIN:
+					image_res = R.drawable.product_regional_train_marker;
+					break;
+				case SUBURBAN_TRAIN:
+					image_res = R.drawable.product_suburban_train_marker;
+					break;
+				case SUBWAY:
+					image_res = R.drawable.product_subway_marker;
+					break;
+				case TRAM:
+					image_res = R.drawable.product_tram_marker;
+					break;
+				case BUS:
+					image_res = R.drawable.product_bus_marker;
+					break;
+				case FERRY:
+					image_res = R.drawable.product_ferry_marker;
+					break;
+				case CABLECAR:
+					image_res = R.drawable.product_cablecar_marker;
+					break;
+				case ON_DEMAND:
+					image_res = R.drawable.product_on_demand_marker;
+					break;
+			}
+		}
+		return getNearbyLocationsIcon(image_res);
+	}
+
 	private Icon getNearbyLocationsIcon(@DrawableRes int res) {
 		IconFactory iconFactory = IconFactory.getInstance(getContext());
 		Drawable drawable = ContextCompat.getDrawable(getContext(), res);
 		return iconFactory.fromBitmap(getBitmap(drawable));
 	}
 
-	private Bitmap getBitmap(Drawable drawable) {
+	private Bitmap getBitmap(@Nullable Drawable drawable) {
+		if (drawable == null) throw new IllegalArgumentException();
 		Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
 		Canvas canvas = new Canvas(bitmap);
 		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());

@@ -19,6 +19,7 @@ package de.grobox.transportr.networks;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,15 +34,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.activities.TransportrActivity;
+import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.map.MapActivity;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
+@ParametersAreNonnullByDefault
 public class PickTransportNetworkActivity extends TransportrActivity implements ISelectionListener<IItem> {
 
 	public final static String FORCE_NETWORK_SELECTION = "ForceNetworkSelection";
@@ -53,7 +56,7 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 	private boolean firstStart, selectAllowed = false;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pick_transport_network);
 		getComponent().inject(this);

@@ -8,7 +8,6 @@
 	android:background="?android:windowBackground">
 
 	<View
-		android:id="@+id/view"
 		style="@style/Divider"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="parent"/>

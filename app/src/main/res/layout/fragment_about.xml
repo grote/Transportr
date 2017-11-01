@@ -1,69 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+			xmlns:tools="http://schemas.android.com/tools"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_launcher"
-                android:contentDescription="@string/app_name"/>
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:contentDescription="@string/app_name"
+				android:src="@drawable/ic_launcher"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/aboutApp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    tools:text="Transportr 1.0.0"/>
+				<TextView
+					android:id="@+id/aboutApp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dp"
+					android:layout_marginStart="10dp"
+					tools:text="Transportr 1.0.0"/>
 
-                <TextView
-                    android:id="@+id/aboutTopTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/about_top"
-                    />
-            </LinearLayout>
-        </LinearLayout>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dp"
+					android:layout_marginStart="10dp"
+					android:text="@string/about_top"
+					/>
+			</LinearLayout>
+		</LinearLayout>
 
-        <TextView
-            android:id="@+id/aboutTextView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="fill_vertical|fill_horizontal|fill"
-            android:clickable="true"
-            android:linksClickable="true"
-            android:padding="10dp"
-            android:text="@string/about" />
+		<TextView
+			android:id="@+id/aboutTextView"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_gravity="fill_vertical|fill_horizontal|fill"
+			android:clickable="true"
+			android:linksClickable="true"
+			android:padding="10dp"
+			android:text="@string/about"/>
 
-        <Button
-            android:id="@+id/websiteButton"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/visit_website"/>
+		<Button
+			android:id="@+id/websiteButton"
+			style="@style/Widget.AppCompat.Button.Colored"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:text="@string/visit_website"/>
 
-    </LinearLayout>
+	</LinearLayout>
 </ScrollView>

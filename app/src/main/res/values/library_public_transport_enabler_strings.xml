@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+
 	<string name="define_public_transport_enabler"></string>
 	<!-- Author section -->
 	<string name="library_public_transport_enabler_author">Andreas Schildbach</string>

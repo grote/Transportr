@@ -14,7 +14,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.activities.TransportrActivity;
+import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState;
 import de.grobox.transportr.ui.ThreeStateBottomSheetBehavior;
@@ -34,13 +34,14 @@ public class TripDetailActivity extends TransportrActivity {
 	public static final String VIA = "de.schildbach.pte.dto.Trip.via";
 	public static final String TO = "de.schildbach.pte.dto.Trip.to";
 
-	@Inject	ViewModelProvider.Factory viewModelFactory;
+	@Inject ViewModelProvider.Factory viewModelFactory;
 
 	private ThreeStateBottomSheetBehavior bottomSheetBehavior;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+//		setShowWhenLocked(true);  // TODO test with API < 27 and add preference
 
 		getComponent().inject(this);
 

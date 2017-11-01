@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.activities.TransportrActivity;
+import de.grobox.transportr.TransportrActivity;
 
 
 public class SettingsActivity extends TransportrActivity {

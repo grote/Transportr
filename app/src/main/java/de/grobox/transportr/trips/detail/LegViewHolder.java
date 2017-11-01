@@ -3,7 +3,6 @@ package de.grobox.transportr.trips.detail;
 import android.support.annotation.ColorInt;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import com.google.common.base.Strings;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.ui.LegPopupMenu;
 import de.grobox.transportr.ui.LineView;
 import de.grobox.transportr.utils.DateUtils;
 import de.schildbach.pte.dto.Line;
@@ -31,18 +29,14 @@ import static de.grobox.transportr.trips.detail.LegViewHolder.LegType.FIRST_LAST
 import static de.grobox.transportr.trips.detail.LegViewHolder.LegType.MIDDLE;
 import static de.grobox.transportr.utils.DateUtils.getDuration;
 import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
-import static de.grobox.transportr.utils.TransportrUtils.setArrivalTimes;
-import static de.grobox.transportr.utils.TransportrUtils.setDepartureTimes;
 import static de.schildbach.pte.dto.Style.RED;
 
 
-class LegViewHolder extends ViewHolder {
+class LegViewHolder extends BaseViewHolder {
 
 	private final static int DEFAULT_LINE_COLOR = RED;
 	enum LegType {FIRST, MIDDLE, LAST, FIRST_LAST}
 
-	private final TextView fromTime;
-	private final TextView fromDelay;
 	private final ImageView fromCircle;
 	private final TextView fromLocation;
 	private final ImageButton fromButton;
@@ -56,8 +50,6 @@ class LegViewHolder extends ViewHolder {
 	private final ImageButton stopsButton;
 	private final RecyclerView stopsList;
 
-	private final TextView toTime;
-	private final TextView toDelay;
 	private final ImageView toCircle;
 	private final TextView toLocation;
 	private final ImageButton toButton;
@@ -65,8 +57,6 @@ class LegViewHolder extends ViewHolder {
 	LegViewHolder(View v) {
 		super(v);
 
-		fromTime = v.findViewById(R.id.fromTime);
-		fromDelay = v.findViewById(R.id.fromDelay);
 		fromCircle = v.findViewById(R.id.fromCircle);
 		fromLocation = v.findViewById(R.id.fromLocation);
 		fromButton = v.findViewById(R.id.fromButton);
@@ -80,8 +70,6 @@ class LegViewHolder extends ViewHolder {
 		stopsButton = v.findViewById(R.id.stopsButton);
 		stopsList = v.findViewById(R.id.stopsList);
 
-		toTime = v.findViewById(R.id.toTime);
-		toDelay = v.findViewById(R.id.toDelay);
 		toCircle = v.findViewById(R.id.toCircle);
 		toLocation = v.findViewById(R.id.toLocation);
 		toButton = v.findViewById(R.id.toButton);
@@ -122,8 +110,8 @@ class LegViewHolder extends ViewHolder {
 		if(leg instanceof Trip.Public) {
 			Trip.Public publicLeg = ((Trip.Public) leg);
 
-			setDepartureTimes(fromTime.getContext(), fromTime, fromDelay, publicLeg.departureStop);
-			setArrivalTimes(toTime.getContext(), toTime, toDelay, publicLeg.arrivalStop);
+			setDepartureTimes(fromTime, fromDelay, publicLeg.departureStop);
+			setArrivalTimes(toTime, toDelay, publicLeg.arrivalStop);
 
 			// Departure Platform
 			// TODO

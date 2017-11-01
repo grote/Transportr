@@ -15,7 +15,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.transportr.fragments;
+package de.grobox.transportr.ui;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -33,8 +33,9 @@ import android.widget.TimePicker;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.transportr.R;
-import de.grobox.transportr.settings.Preferences;
 import de.grobox.transportr.utils.DateUtils;
 
 import static android.text.format.DateFormat.getDateFormat;
@@ -44,6 +45,7 @@ import static java.util.Calendar.MINUTE;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 
+@ParametersAreNonnullByDefault
 public class TimeDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener, TimePicker.OnTimeChangedListener {
 
 	public static final String TAG = TimeDateFragment.class.getName();
@@ -66,16 +68,11 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 	private Calendar calendar;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		if(Preferences.darkThemeEnabled(getActivity())) {
-			setStyle(DialogFragment.STYLE_NO_TITLE, R.style.SetHomeDialogTheme);
-		} else {
-			setStyle(DialogFragment.STYLE_NO_TITLE, R.style.SetHomeDialogTheme_Light);
-		}
-
 		if (savedInstanceState == null) {
+			if (getArguments() == null) throw new IllegalArgumentException("Arguments missing");
 			calendar = (Calendar) getArguments().getSerializable(CALENDAR);
 			if (calendar == null) throw new IllegalArgumentException("Calendar missing");
 		} else {
@@ -84,7 +81,7 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_time_date, container);
 
 		// Time
@@ -149,13 +146,11 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 		this.listener = listener;
 	}
 
-	@SuppressWarnings("deprecation")
 	private void showTime(Calendar c) {
 		timePicker.setCurrentHour(c.get(HOUR_OF_DAY));
 		timePicker.setCurrentMinute(c.get(MINUTE));
 	}
 
-	@SuppressWarnings("WrongConstant")
 	private void showDate(Calendar c) {
 		Calendar now = Calendar.getInstance();
 		if (isSameMonth(now, c) && c.get(DAY_OF_MONTH) == now.get(DAY_OF_MONTH) - 1) {

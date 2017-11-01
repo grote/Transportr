@@ -54,12 +54,12 @@ import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.NORMAL;
 import static de.grobox.transportr.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
-import static de.grobox.transportr.utils.TransportrUtils.findDirections;
+import static de.grobox.transportr.utils.IntentUtils.findDirections;
 
 @ParametersAreNonnullByDefault
 public class MapActivity extends DrawerActivity implements LocationViewListener {
 
-	@Inject	ViewModelProvider.Factory viewModelFactory;
+	@Inject ViewModelProvider.Factory viewModelFactory;
 
 	private MapViewModel viewModel;
 	private GpsController gpsController;

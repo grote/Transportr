@@ -25,7 +25,7 @@ internal class GpsController(val context: Context) : AbstractManager(), ReverseG
 
     private var location: Location? = null
     private var lastLocation: Location? = null
-    private var wrapLocation : WrapLocation? = null
+    private var wrapLocation: WrapLocation? = null
 
     init {
         fabState.value = NO_FIX

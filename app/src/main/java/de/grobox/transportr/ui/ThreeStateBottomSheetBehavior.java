@@ -6,7 +6,6 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -48,29 +47,22 @@ public class ThreeStateBottomSheetBehavior<V extends View> extends BottomSheetBe
 
 		float middle = screenHeight / 2;
 
-//		Log.e("TEST", "CURRENT Y: " + currentY);
-
 		if (down) {
 			if (currentY >= screenHeight) {
 				setState(STATE_COLLAPSED);
-//				Log.e("TEST", "DOWN - AT THE END");
 			} else if (currentY > middle) {
 				setHideable(false);
 				setBottom();
-//				Log.e("TEST", "DOWN - BOTTOM HALF");
 			} else {
 				setHideable(true);
 				setMiddle();
-//				Log.e("TEST", "DOWN - BOTTOM TOP");
 			}
 		} else {
 			if (currentY > middle) {
 				setMiddle();
-//				Log.e("TEST", "UP - BOTTOM HALF");
 			} else {
 				setHideable(false);
 				setMiddle();
-//				Log.e("TEST", "UP - TOP HALF");
 			}
 		}
 	}
@@ -95,35 +87,6 @@ public class ThreeStateBottomSheetBehavior<V extends View> extends BottomSheetBe
 		if (getPeekHeight() != height) {
 			setPeekHeight(height);
 		}
-	}
-
-	@Override
-	public boolean onTouchEvent(CoordinatorLayout parent, V child, MotionEvent event) {
-//		Log.e("TEST", event.toString());
-
-		return super.onTouchEvent(parent, child, event);
-	}
-
-	@Override
-	public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, V child, View directTargetChild, View target, int nestedScrollAxes) {
-//		Log.e("TEST", "ON START SCROLL");
-//		Log.e("TEST", "getY: " + child.getY());
-
-//		if (child.getY() > screenHeight) setMiddle();
-
-		return super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, nestedScrollAxes);
-	}
-
-	@Override
-	public boolean onInterceptTouchEvent(CoordinatorLayout parent, V child, MotionEvent event) {
-//		Log.e("TEST", "INTERCEPT TOUCH: " + event.toString());
-		return super.onInterceptTouchEvent(parent, child, event);
-	}
-
-	@Override
-	public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, V child, View target) {
-//		Log.e("TEST", "ON STOP SCROLL");
-		super.onStopNestedScroll(coordinatorLayout, child, target);
 	}
 
 	@SuppressWarnings("unchecked")

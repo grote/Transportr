@@ -21,12 +21,13 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
-import de.grobox.transportr.fragments.TimeDateFragment;
-import de.grobox.transportr.fragments.TransportrFragment;
+import de.grobox.transportr.ui.TimeDateFragment;
+import de.grobox.transportr.TransportrFragment;
 import de.grobox.transportr.locations.LocationGpsView;
 import de.grobox.transportr.locations.LocationView;
 import de.grobox.transportr.locations.WrapLocation;
@@ -45,6 +46,7 @@ import static de.grobox.transportr.utils.DateUtils.getDate;
 import static de.grobox.transportr.utils.DateUtils.getTime;
 import static de.grobox.transportr.utils.DateUtils.isNow;
 
+@ParametersAreNonnullByDefault
 public class DirectionsFragment extends TransportrFragment {
 
 	@Inject ViewModelProvider.Factory viewModelFactory;
@@ -59,7 +61,7 @@ public class DirectionsFragment extends TransportrFragment {
 	private DirectionsViewModel viewModel;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_directions_form, container, false);
 		getComponent().inject(this);
 
@@ -144,7 +146,7 @@ public class DirectionsFragment extends TransportrFragment {
 				viewModel.setIsExpanded(!item.isChecked());
 				return true;
 			case R.id.action_choose_products:
-				new ProductDialogFragment().show(getFragmentManager(), ProductDialogFragment.TAG);
+				new ProductDialogFragment().show(getActivity().getSupportFragmentManager(), ProductDialogFragment.TAG);
 			default:
 				return super.onOptionsItemSelected(item);
 		}
@@ -152,6 +154,7 @@ public class DirectionsFragment extends TransportrFragment {
 
 	private void setupClickListeners() {
 		OnClickListener onTimeClickListener = view -> {
+			if (viewModel.getCalendar().getValue() == null) throw new IllegalStateException();
 			TimeDateFragment fragment = TimeDateFragment.newInstance(viewModel.getCalendar().getValue());
 			fragment.setTimeDateListener(viewModel);
 			fragment.show(getActivity().getSupportFragmentManager(), TimeDateFragment.TAG);
@@ -191,13 +194,15 @@ public class DirectionsFragment extends TransportrFragment {
 
 	private void swapLocations() {
 		float toToY = fromCard.getY() - toCard.getY();
-		Animation slideUp = new TranslateAnimation(RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, toToY);
+		Animation slideUp = new TranslateAnimation(RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF,
+				0.0f, Animation.ABSOLUTE, toToY);
 		slideUp.setDuration(400);
 		slideUp.setFillAfter(true);
 		slideUp.setFillEnabled(true);
 
 		float fromToY = toCard.getY() - fromCard.getY();
-		Animation slideDown = new TranslateAnimation(RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, fromToY);
+		Animation slideDown = new TranslateAnimation(RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF,
+				0.0f, Animation.ABSOLUTE, fromToY);
 		slideDown.setDuration(400);
 		slideDown.setFillAfter(true);
 		slideDown.setFillEnabled(true);
@@ -209,9 +214,11 @@ public class DirectionsFragment extends TransportrFragment {
 			@Override
 			public void onAnimationStart(Animation animation) {
 			}
+
 			@Override
 			public void onAnimationRepeat(Animation animation) {
 			}
+
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				// swap location objects

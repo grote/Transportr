@@ -14,27 +14,19 @@ e acompanhar seu progresso via GPS.
 Você pode também descobrir terminais por perto e visualizar os ônibus que está de saída (se existir algum). 
 </string>
   <string name="onboarding_drawer_title">Descubra mais recursos</string>
-  <string name="onboarding_drawer_text">Clique nesse ícone para abrir a gaveta de navegação para acessar mais recursos desse Aplicativo.</string>
-  <string name="drawer_changelog">Novidades</string>
+	<string name="drawer_changelog">Novidades</string>
   <string name="drawer_about">Sobre</string>
   <string name="drawer_settings">Configurações</string>
   <string name="action_fav_trip">Marcar viagem como favorita</string>
   <string name="action_unfav_trip">Desmarcar viagem como favorita</string>
   <string name="action_refresh">Atualizar</string>
-  <string name="action_location_map">Exibir Estações no Mapa</string>
-  <string name="action_use_gps">Ligar GPS</string>
-  <string name="action_share">Compartilhe</string>
+	<string name="action_share">Compartilhe</string>
   <string name="action_trip_calendar">Adicionar ao Calendário</string>
   <string name="action_trip_delete">Excluir Viagem</string>
   <string name="action_show_on_external_map">Mostrar no Mapa Externo</string>
   <string name="action_copy">Copiar</string>
-  <string name="action_show_on_map">Exibir no Mapa</string>
-  <string name="action_show_all">Mostrar todos</string>
-  <string name="drawer_directions">Direções</string>
-  <string name="tab_fav_trips">Viagens Favoritas</string>
-  <string name="drawer_departures">Partidas</string>
-  <string name="drawer_recent_trips">Viagens Recentes</string>
-  <string name="tab_libraries">Bibliotecas</string>
+	<string name="drawer_departures">Partidas</string>
+	<string name="tab_libraries">Bibliotecas</string>
   <string name="tab_devs">Desenvolvedores</string>
   <string name="tab_about">Sobre</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nLicença de Software Livre: GPLv3</string>
@@ -52,12 +44,10 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
 ]]>
 </string>
   <string name="visit_website">Visite o Website</string>
-  <string name="trip_removed">Remover viagem</string>
-  <string name="from">De</string>
+	<string name="from">De</string>
   <string name="to">Para</string>
   <string name="via">Via</string>
-  <string name="search">Pesquisar</string>
-  <string name="from_here">De</string>
+	<string name="from_here">De</string>
   <string name="to_here">Para</string>
   <string name="min">min</string>
   <string name="walk">Caminhar</string>
@@ -67,38 +57,22 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="network">Rede</string>
   <string name="pick_network_activity">Escolha a região</string>
   <string name="pick_network_first_run">Bem vinda ao Transportr!n\nPor favor, selecione a rede de transporte da sua região para continuar. Você pode mudar isso a qualquer momento.</string>
-  <string name="trip_searching">Pesquisando por conexões…</string>
-  <string name="stations_searching_position">Pesquisando por posição atual…</string>
+	<string name="stations_searching_position">Pesquisando por posição atual…</string>
   <string name="drawer_nearby_stations">Estações Próximas</string>
   <string name="find_nearby_stations">Localizar Estações Próximas</string>
   <string name="find_departures">Localizar Partidas</string>
-  <string name="departure_station">Estação de Partida</string>
-  <string name="share_trip_via">Compartilhar Viagem Via…</string>
-  <string name="undo">Voltar</string>
-  <string name="fav_trips_empty">Suas partidas recentes irão aparecer aqui quando começar a pesquisar por direções.\n\n\n Você poderá ordená-las como \"mais frequentes\" ou \"mais usadas\".</string>
-  <string name="more">Mais</string>
-  <string name="no_favourites">Não há partidas favoritas.\n\nAdicione uma em \"Viagens Recentes\".</string>
-  <string name="removing_from_favourites">A partida selecionada está marcada como partida favorita. Esta, também, será removida.</string>
-  <string name="change_time">Mudar hora</string>
+	<string name="share_trip_via">Compartilhar Viagem Via…</string>
+	<string name="more">Mais</string>
+	<string name="change_time">Mudar hora</string>
   <string name="now">Agora</string>
   <string name="now_small">agora</string>
-  <string name="current_time_set">O horário foi atualizado.</string>
-  <string name="yesterday">Ontem</string>
+	<string name="yesterday">Ontem</string>
   <string name="today">Hoje</string>
   <string name="tomorrow">Amanhã</string>
-  <string name="current_date_set">A data foi atualizada.</string>
-  <string name="added_1h">1 hora adicionada.</string>
-  <string name="ok">OK</string>
+	<string name="ok">OK</string>
   <string name="cancel">Cancelar</string>
-  <string name="yes">Sim</string>
-  <string name="no">Não</string>
-  <string name="pref_transport_network">Rede de Transporte</string>
-  <string name="pref_hide_departure_time">Ocultar horário de saída</string>
-  <string name="pref_hide_departure_time_summary">Mostrar apenas o horário de chegada quando há paradas intermediárias.</string>
-  <string name="pref_exit_app_on_back_press">Fechar o applicativo apartir do botão voltar</string>
-  <string name="pref_exit_app_on_back_press_summary">Sempre fechar o app quando precionador o botão de voltar na tela inicial</string>
-  <string name="pref_home">Localização da casa</string>
-  <string name="pref_display">Exibição</string>
+	<string name="pref_transport_network">Rede de Transporte</string>
+	<string name="pref_display">Exibição</string>
   <string name="pref_theme_title">Tema</string>
   <string name="pref_theme_light">Claro</string>
   <string name="pref_theme_dark">Escuro</string>
@@ -112,38 +86,16 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
-  <string name="pref_quickhome">\"Leve-me para casa\"-atalho</string>
-  <string name="warning_departure_gap">Encontre também algumas saídas. Pode haver saídas ocultas. Pesquise pela hora exata para ter certeza de que não está faltando nenhuma.</string>
-  <string name="warning_permission_granted_action">Não foi possível repetir automaticamente ultima ação</string>
-  <string name="error_no_internet">Conexão de internet disponível insuficiente</string>
-  <string name="error_invalid_from">Local de início inválido (De)</string>
-  <string name="error_invalid_to">Destino Inválido (Para)</string>
-  <string name="error_no_trips_found">Nenhuma direção localizada</string>
-  <string name="error_no_location_provider">Posição não localizada. Por favor, ative o GPS!</string>
-  <string name="error_no_departures_found">Nenhuma partida localizada</string>
-  <string name="error_no_stations_found">Estações não localizadas.</string>
-  <string name="error_no_proper_station">O local fornecido não é uma estação</string>
-  <string name="error_only_autocomplete_station">Selecione uma estação da lista!</string>
-  <string name="error_no_station_location">Não foi possível localizar o local dessa(s) estação(ões)</string>
-  <string name="error_no_trips_capability">Esta rede de transporte não suporta a consulta por direções.</string>
-  <string name="error_no_departures_capability">A atual rede de transporte não localiza a partida selecionada.</string>
-  <string name="error_no_nearby_locations_capability">A atual rede de transporte não suporta localizar estações próximas.</string>
-  <string name="error_trip_refresh_failed">Não foi possível atualizar os dados para a viagem selecionada.</string>
+	<string name="error_trip_refresh_failed">Não foi possível atualizar os dados para a viagem selecionada.</string>
   <string name="meter">m</string>
   <string name="system_default">Sistema Padrão</string>
   <string name="times_include_delays">(Atenção: Horários incluem atrasos)</string>
   <string name="home">Página Inicial</string>
   <string name="home_dialog_title">Configurar localização de Casa</string>
   <string name="work">Trabalho</string>
-  <string name="work_dialog_title">Definir local de trabalho</string>
-  <string name="tap_to_set">Pressione para fixar</string>
-  <string name="location">Local</string>
-  <string name="location_home">Clique para definir Local Inicial</string>
-  <string name="location_gps">Use Posição Atual</string>
-  <string name="location_map">Obter localização do Mapa</string>
-  <string name="position_not_yet_known">Posição ainda não conhecida</string>
-  <string name="position_no_gps">GPS desativado. A posição será muito imprecisa.</string>
-  <string name="select_products">Selecione os meios de transporte</string>
+	<string name="tap_to_set">Pressione para fixar</string>
+	<string name="location_gps">Use Posição Atual</string>
+	<string name="select_products">Selecione os meios de transporte</string>
   <string name="product_high_speed_train">Trem de Alta Velocidade</string>
   <string name="product_regional_train">Trem Regional</string>
   <string name="product_suburban_train">Trem Suburbano</string>
@@ -153,16 +105,10 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="product_ferry">Balsa</string>
   <string name="product_cablecar">Teleférico</string>
   <string name="product_on_demand">Por demanda</string>
-  <string name="action_fav_trips_sort">Listagem</string>
-  <string name="action_fav_trips_sort_recent">Último pesquisado</string>
-  <string name="action_fav_trips_sort_most">Mais pesquisado</string>
-  <string name="action_set_locations">Editar pesquisa</string>
+	<string name="action_set_locations">Editar pesquisa</string>
   <string name="action_swap_locations">Pesquisar viagem de retorno.</string>
-  <string name="permission_explanation_gps">Para visualizar sua posição atual no mapa, você precisa conceder permissão de localicação</string>
-  <string name="permission_denied_gps">Você não permitiu o acesso a sua localização, assim esse comando não irá funcionar. Por favor, conceda a permissão nas configurações do aplicativo.</string>
-  <string name="permission_explanation_map">O Mapa precisa ser armazenado na memória de seu dispositivo. Sem isso, o mapa não funcionará. </string>
-  <string name="permission_denied_map">Para a exibição do mapa, este, precisa estar armazenado na memória do seu dispositivo. Por favor, garanta a permissão na configuração para usar o mapa.</string>
-  <!--ckChangeLog-->
+	<string name="permission_denied_gps">Você não permitiu o acesso a sua localização, assim esse comando não irá funcionar. Por favor, conceda a permissão nas configurações do aplicativo.</string>
+	<!--ckChangeLog-->
   <string name="changelog_full_title">Novidades</string>
   <string name="changelog_title">O que é Novo</string>
   <string name="changelog_show_full">Mais</string>
@@ -173,8 +119,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Alta Áustria, Linz</string>
   <string name="np_desc_oebb">Áustria</string>
-  <string name="np_desc_svv">Salzburg</string>
-  <string name="np_desc_wien">Viena</string>
+	<string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bélgica</string>
   <string name="np_region_br">Brasil</string>
   <string name="np_name_br">Brasil</string>
@@ -200,8 +145,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_name_francenorthwest">Noroeste da França</string>
   <string name="np_name_frenchsouthwest">Sudeste da França</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limusino, Aquitânia, Sul Pirineus, Bordeaux, Toulouse</string>
-  <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
-  <string name="np_name_paris">Paris</string>
+	<string name="np_name_paris">Paris</string>
   <string name="np_desc_paris">Ilha de França, França, Paris</string>
   <string name="np_region_gb">Grã-Bretanha</string>
   <string name="np_desc_mersey">Região da cidade de Liverpool</string>
@@ -215,16 +159,14 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Baixa Saxônia, Hannover, Hamburgo, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburgo</string>
-  <string name="np_name_invg">Ingolstádio</string>
-  <string name="np_desc_invg">Ingolstadt</string>
+	<string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bavária, Munique</string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basileia, Basileia-Cidade, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburgo</string>
-  <string name="np_desc_vbb">Brandemburgo, Berlim</string>
+	<string name="np_desc_vbb">Brandemburgo, Berlim</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxônia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nurembergue, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -267,8 +209,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_dub">Emirados Árabes Unidos, Dubai</string>
   <string name="np_region_usa">Estados Unidos da América</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery e Condados da Filadélfia</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nova York e Nova Jersey</string>
+	<string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nova York e Nova Jersey</string>
   <string name="maintainer">Mantenedores</string>
   <string name="contributors">Contribuidores</string>
   <string name="translators">Tradutores</string>

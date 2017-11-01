@@ -19,8 +19,6 @@ and follow your progress via GPS.
 You can also discover nearby stations and show upcoming departures including the delays (if
 there are any).</string>
 
-    <string name="onboarding_drawer_title">Discover More Features</string>
-    <string name="onboarding_drawer_text">Tap this icon to open the navigation drawer to access more features of this app.</string>
     <string name="drawer_changelog">Changelog</string>
     <string name="drawer_about">About</string>
     <string name="drawer_settings">Settings</string>
@@ -33,20 +31,13 @@ there are any).</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_navigation_expand">Show Via</string>
     <string name="action_choose_products">Means of Transport</string>
-    <string name="action_location_map">Show Stations on Map</string>
-    <string name="action_use_gps">Turn on GPS</string>
     <string name="action_share">Share</string>
     <string name="action_trip_calendar">Add to Calendar</string>
     <string name="action_trip_delete">Delete Trip</string>
     <string name="action_show_on_external_map">Show on External Map</string>
     <string name="action_copy">Copy</string>
-    <string name="action_show_on_map">Show on Map</string>
-    <string name="action_show_all">Show All</string>
 
-    <string name="drawer_directions">Directions</string>
-    <string name="tab_fav_trips">Favourite Trips</string>
     <string name="drawer_departures">Departures</string>
-    <string name="drawer_recent_trips">Recent Trips</string>
 
     <string name="tab_libraries">Libraries</string>
     <string name="tab_devs">Developers</string>
@@ -68,11 +59,9 @@ there are any).</string>
 </string>
     <string name="visit_website">Visit Website</string>
 
-    <string name="trip_removed">Removed Trip</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="via">Via</string>
-    <string name="search">Search</string>
     <string name="search_hint">Search here</string>
     <string name="from_here">From Here</string>
     <string name="to_here">To Here</string>
@@ -84,47 +73,26 @@ there are any).</string>
     <string name="network">Network</string>
     <string name="pick_network_activity">Choose Area</string>
     <string name="pick_network_first_run">Welcome to Transportr!\n\nPlease select the transportation network from your area in order to continue. You can change this at any time.</string>
-    <plurals name="clear_recent_trips">
-        <item quantity="one">Are you sure that you want to delete %1$d trip from your recent trips? The usage count will be lost.</item>
-        <item quantity="other">Are you sure that you want to delete %1$d trips from your recent trips? The usage count will be lost.</item>
-    </plurals>
-    <string name="trip_searching">Searching for connections&#8230;</string>
     <string name="stations_searching_position">Searching for current position&#8230;</string>
     <string name="drawer_nearby_stations">Nearby Stations</string>
     <string name="find_nearby_stations">Find Nearby Stations</string>
     <string name="find_departures">Find Departures</string>
-    <string name="departure_station">Departure Station</string>
     <string name="share_trip_via">Share Trip Via&#8230;</string>
-    <string name="undo">Undo</string>
-    <string name="fav_trips_empty">Your recent trips will appear here once you start searching for directions.\n\n\nYou will be able to sort them by most frequently or most recently used.</string>
     <string name="more">More</string>
-    <string name="no_favourites">No favourite trips.\n\nAdd one on the \"Recent Trips\" page.</string>
-    <string name="removing_from_favourites">A trip you selected is marked as favourite trip. It will be removed there too.</string>
-    <string name="create_quickhome_shortcut">Create a shortcut in your launcher that gets you home</string>
 
     <string name="change_time">Change Time</string>
     <string name="now">Now</string>
 	<string name="now_small">now</string>
-    <string name="current_time_set">Time was set to current.</string>
     <string name="yesterday">Yesterday</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
-    <string name="current_date_set">Date was set to current.</string>
-    <string name="added_1h">1 hour was added.</string>
     <string name="in_x_minutes">in %dmin</string>
     <string name="x_minutes_ago">%dmin ago</string>
 
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
     
     <string name="pref_transport_network">Transport Network</string>
-    <string name="pref_hide_departure_time">Hide departure time</string>
-    <string name="pref_hide_departure_time_summary">Only show arrival time when displaying intermediate stops</string>
-    <string name="pref_exit_app_on_back_press">Close app with back button</string>
-    <string name="pref_exit_app_on_back_press_summary">Always close the app when pressing back button in start screen</string>
-    <string name="pref_home">Home Location</string>
     <string name="pref_display">Display</string>
     <string name="pref_theme_title">Theme</string>
     <string name="pref_theme_light">Light</string>
@@ -139,26 +107,10 @@ there are any).</string>
     <string name="pref_walk_speed_slow">Slow</string>
     <string name="pref_walk_speed_normal">Normal</string>
     <string name="pref_walk_speed_fast">Fast</string>
-    <string name="pref_quickhome">\"Get Me Home\"-shortcut</string>
 
-    <string name="warning_departure_gap">Found too few departures. There might be more hidden. Search for exact time to be sure none is missing.</string>
-    <string name="warning_permission_granted_action">Could not repeat last action automatically</string>
     <string name="warning_no_gps_fix">Could not locate your position, yet.</string>
 
     <string name="error">Error</string>
-    <string name="error_no_internet">No sufficient internet connection available</string>
-    <string name="error_invalid_from">Invalid Start Location (From)</string>
-    <string name="error_invalid_to">Invalid Destination (To)</string>
-    <string name="error_no_trips_found">No directions found</string>
-    <string name="error_no_location_provider">Cannot locate your position. Please turn on GPS!</string>
-    <string name="error_no_departures_found">No departures found</string>
-    <string name="error_no_stations_found">No stations found</string>
-    <string name="error_no_proper_station">The provided location is no proper station</string>
-    <string name="error_only_autocomplete_station">Please select a station from the autocompletion list!</string>
-    <string name="error_no_station_location">Cannot find the location of the(se) station(s)</string>
-    <string name="error_no_trips_capability">This transportation network does not support querying for directions.</string>
-    <string name="error_no_departures_capability">The current transportation network does not support finding departures.</string>
-    <string name="error_no_nearby_locations_capability">The current transportation network does not support finding nearby stations.</string>
     <string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
     <string name="error_geo_intent">Could not open external location</string>
 
@@ -186,14 +138,8 @@ there are any).</string>
     <string name="home_dialog_title">Set Home Location</string>
     <string name="work">Work</string>
     <string name="work_hint">Set Work Location</string>
-    <string name="work_dialog_title">Set Work Location</string>
     <string name="tap_to_set">Tap to set</string>
-    <string name="location">Location</string>
-    <string name="location_home">Click to set Home Location</string>
     <string name="location_gps">Use Current Position</string>
-    <string name="location_map">Get Location from Map</string>
-    <string name="position_not_yet_known">Position not yet known</string>
-    <string name="position_no_gps">GPS is turned off. Position will be very imprecise.</string>
 
     <string name="select_products">Select Means of Transport</string>
     <string name="product_high_speed_train">High-Speed Train</string>
@@ -205,18 +151,12 @@ there are any).</string>
     <string name="product_ferry">Ferry</string>
     <string name="product_cablecar">Cablecar</string>
     <string name="product_on_demand">On Demand</string>
-    <string name="action_fav_trips_sort">Sort List</string>
-    <string name="action_fav_trips_sort_recent">Last used</string>
-    <string name="action_fav_trips_sort_most">Most used</string>
     <string name="action_set_locations">Edit search</string>
     <string name="action_swap_locations">Search return trip</string>
     <string name="action_change">Change</string>
     <string name="action_add_shortcut">Add Launcher Shortcut</string>
 
-    <string name="permission_explanation_gps">You need to grant the location permission in order to see your current position on the map.</string>
     <string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
-    <string name="permission_explanation_map">Map tiles need to be stored/cached on your devices\' storage. The Map will not work without it.</string>
-    <string name="permission_denied_map">Showing the map requires tiles to be stored on your devices\' storage. Please grant the storage permission in order to use the map.</string>
 
     <!-- ckChangeLog -->
     <string name="changelog_full_title">Changelog</string>
@@ -238,7 +178,6 @@ there are any).</string>
     <string name="np_desc_oebb">Austria</string>
     <string name="np_name_stv" translatable="false">STV Verbund Linie</string>
     <string name="np_desc_stv">Styria, Graz, Marburg, Maribor</string>
-    <string name="np_desc_svv">Salzburg</string>
     <string name="np_desc_vor">Lower Austria, Burgenland, Vienna</string>
     <string name="np_desc_vvt">Tyrol</string>
     <string name="np_name_wien" translatable="false">Wiener Linien</string>
@@ -288,7 +227,6 @@ there are any).</string>
     <string name="np_name_frenchsouthwest">France South West</string>
     <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
     <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
-    <string name="np_desc_paca">Provence-Alpes-Côte d\'Azur</string>
     <string name="np_name_paris">Paris</string>
     <string name="np_desc_paris">Ile-de-France, France, Paris</string>
     <string name="np_desc_paris_networks" translatable="false">RATP, SNCF, Transilien, STIF</string>
@@ -311,7 +249,6 @@ there are any).</string>
     <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
     <string name="np_desc_gvh">Lower Saxony, Hanover, Hamburg, Bremerhaven</string>
     <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
-    <string name="np_name_invg">Ingolstadt</string>
     <string name="np_desc_invg">Ingolstadt</string>
     <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
     <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
@@ -322,7 +259,6 @@ there are any).</string>
     <string name="np_name_nvv" translatable="false">NVV/RMV</string>
     <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
     <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-    <string name="np_desc_sh">Schleswig-Holstein, Kiel, Lübeck, Hamburg</string>
     <string name="np_name_vagfr" translatable="false">VAG</string>
     <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
     <string name="np_desc_vbb">Brandenburg, Berlin</string>
@@ -401,7 +337,6 @@ there are any).</string>
     <string name="np_name_rtachicago" translatable="false">RTA</string>
     <string name="np_desc_rtachicago">Chicago</string>
     <string name="np_desc_rtachicago_networks" translatable="false">CTA, Metra, Pace</string>
-    <string name="np_desc_septa">Bucks, Chester, Delaware, Montgomery and Philadelphia Counties</string>
     <string name="np_name_usny" tools:keep="@string/np_name_usny">New York and New-Jersey States</string>
     <string name="np_desc_usny" translatable="false" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
     <string name="np_name_oregon">Oregon</string>

@@ -9,27 +9,19 @@ Transportr znajduje drogę z Twojego domu, z miejsca gdzie obecnie jesteś, lub 
 
 Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźnieniami (jeżeli takie wystąpią).</string>
   <string name="onboarding_drawer_title">Odkryj więcej funkcji</string>
-  <string name="onboarding_drawer_text">Dotknij tę ikonę, aby otworzyć pasek nawigacji i uzyskać dostęp do dalszych funkcji tej apki.</string>
-  <string name="drawer_changelog">Lista zmian</string>
+	<string name="drawer_changelog">Lista zmian</string>
   <string name="drawer_about">O aplikacji</string>
   <string name="drawer_settings">Ustawienia</string>
   <string name="action_fav_trip">Oznacz trasę jako ulubioną</string>
   <string name="action_unfav_trip">Wycofaj oznaczenie trasy jako ulubionej</string>
   <string name="action_refresh">Odśwież</string>
-  <string name="action_location_map">Pokaż przystanki na mapie</string>
-  <string name="action_use_gps">Włącz GPS</string>
-  <string name="action_share">Udostępnij</string>
+	<string name="action_share">Udostępnij</string>
   <string name="action_trip_calendar">Dodaj do Kalendarza</string>
   <string name="action_trip_delete">Usuń trasę</string>
   <string name="action_show_on_external_map">Pokaż na zewnętrznej mapie</string>
   <string name="action_copy">Kopiuj</string>
-  <string name="action_show_on_map">Pokaż na mapie</string>
-  <string name="action_show_all">Pokaż wszystko</string>
-  <string name="drawer_directions">Kierunki</string>
-  <string name="tab_fav_trips">Ulubione trasy</string>
-  <string name="drawer_departures">Odjazdy</string>
-  <string name="drawer_recent_trips">Ostatnie trasy</string>
-  <string name="tab_libraries">Biblioteki</string>
+	<string name="drawer_departures">Odjazdy</string>
+	<string name="tab_libraries">Biblioteki</string>
   <string name="tab_devs">Twórcy</string>
   <string name="tab_about">O</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nProgram na wolnej licencji: GPLv3</string>
@@ -47,12 +39,10 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
 ]]>
 </string>
   <string name="visit_website">Odwiedź stronę</string>
-  <string name="trip_removed">Usunięta trasa</string>
-  <string name="from">Z</string>
+	<string name="from">Z</string>
   <string name="to">Do</string>
   <string name="via">Przez</string>
-  <string name="search">Szukaj</string>
-  <string name="from_here">Stąd</string>
+	<string name="from_here">Stąd</string>
   <string name="to_here">Dotąd</string>
   <string name="min">min</string>
   <string name="walk">Pieszo</string>
@@ -62,47 +52,24 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="network">Sieć</string>
   <string name="pick_network_activity">Wybierz region</string>
   <string name="pick_network_first_run">Witamy w Transportr!\n\nProsimy wybrać najbliższą sieć transportową, aby kontynuować. Będzie można ją zmienić w dowolnym momencie.</string>
-  <plurals name="clear_recent_trips">
-    <item quantity="one">Czy chcesz na pewno usunąć %1$d trasę ze swoich ostatnich tras? Licznik użycia zostanie zresetowany.</item>
-    <item quantity="few">Czy chcesz na pewno usunąć %1$d trasy ze swoich ostatnich tras? Licznik użycia zostanie zresetowany.</item>
-    <item quantity="many"></item>
-    <item quantity="other">Czy chcesz na pewno usunąć %1$d tras ze swoich ostatnich tras? Licznik użycia zostanie zresetowany.</item>
-  </plurals>
-  <string name="trip_searching">Szukanie połączeń…</string>
-  <string name="stations_searching_position">Szukanie obecnej lokalizacji…</string>
+	<string name="stations_searching_position">Szukanie obecnej lokalizacji…</string>
   <string name="drawer_nearby_stations">Pobliskie stacje</string>
   <string name="find_nearby_stations">Szukaj pobliskich stacji</string>
   <string name="find_departures">Szukaj odjazdów</string>
-  <string name="departure_station">Odjazdy ze stacji</string>
-  <string name="share_trip_via">Udostępnij trasę przez…</string>
-  <string name="undo">Cofnij</string>
-  <string name="fav_trips_empty">Twoje ostatnie trasy pojawią się tutaj po tym jak zaczniesz szukać celów podróży.\n\n\nBędziesz mógł posortować je od ostatnich lub według najczęściej używanych.</string>
-  <string name="more">Więcej</string>
-  <string name="no_favourites">Brak ulubionych tras.\n\nDodaj jakąś na stronie \"Ostatnie trasy\".</string>
-  <string name="removing_from_favourites">Wybrana trasa dostała dodana do ulubionych. Zostanie ona stąd usunięta.</string>
-  <string name="create_quickhome_shortcut">Tworzy skrót w aplikacji uruchomieniowej przenoszący do domu</string>
-  <string name="change_time">Ustaw czas</string>
+	<string name="share_trip_via">Udostępnij trasę przez…</string>
+	<string name="more">Więcej</string>
+	<string name="change_time">Ustaw czas</string>
   <string name="now">Teraz</string>
   <string name="now_small">teraz</string>
-  <string name="current_time_set">Ustawiono obecny czas.</string>
-  <string name="yesterday">Wczoraj</string>
+	<string name="yesterday">Wczoraj</string>
   <string name="today">Dzisiaj</string>
   <string name="tomorrow">Jutro</string>
-  <string name="current_date_set">Ustawiono obecną godzinę.</string>
-  <string name="added_1h">Dodano 1 godzinę.</string>
-  <string name="in_x_minutes">za %dmin</string>
+	<string name="in_x_minutes">za %dmin</string>
   <string name="x_minutes_ago">%dmin temu</string>
   <string name="ok">OK</string>
   <string name="cancel">Anuluj</string>
-  <string name="yes">Tak</string>
-  <string name="no">Nie</string>
-  <string name="pref_transport_network">Sieć transportowa</string>
-  <string name="pref_hide_departure_time">Ukryj czasy odjazdów</string>
-  <string name="pref_hide_departure_time_summary">Pokaż tylko czasy przyjazdów podczas wyświetlania przystanków pośrednich</string>
-  <string name="pref_exit_app_on_back_press">Zamknij program przyciskiem wstecz</string>
-  <string name="pref_exit_app_on_back_press_summary">Zawsze zamykaj aplikację przy naciśnięciu przycisku cofania na ekranie głównym</string>
-  <string name="pref_home">Lokalizacja domowa</string>
-  <string name="pref_display">Wyświetlanie</string>
+	<string name="pref_transport_network">Sieć transportowa</string>
+	<string name="pref_display">Wyświetlanie</string>
   <string name="pref_theme_title">Motyw</string>
   <string name="pref_theme_light">Jasny</string>
   <string name="pref_theme_dark">Ciemny</string>
@@ -116,23 +83,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="pref_walk_speed_slow">Powoli</string>
   <string name="pref_walk_speed_normal">Normalnie</string>
   <string name="pref_walk_speed_fast">Szybko</string>
-  <string name="pref_quickhome">Skrót \"Do domu!\"</string>
-  <string name="warning_departure_gap">Zbyt mało odjazdów. Być może niektóre są ukryte. Wyszukaj przy użyciu dokładnego czasu, aby być pewnym, że żadnych nie brakuje.</string>
-  <string name="warning_permission_granted_action">Nie można automatycznie powtórzyć ostatniej czynności</string>
-  <string name="error_no_internet">Brak sprawnego połączenia internetowego</string>
-  <string name="error_invalid_from">Niepoprawny punkt początkowy (Z)</string>
-  <string name="error_invalid_to">Niepoprawny cel (Do)</string>
-  <string name="error_no_trips_found">Nie znaleziono kierunków</string>
-  <string name="error_no_location_provider">Nie można określić Twojej pozycji. Prosimy włączyć GPS!</string>
-  <string name="error_no_departures_found">Nie znaleziono odjazdów</string>
-  <string name="error_no_stations_found">Nie znaleziono przystanków</string>
-  <string name="error_no_proper_station">Wpisana lokalizacja nie jest prawidłowym przystankiem</string>
-  <string name="error_only_autocomplete_station">Prosimy wybrać przystanek z podanych propozycji!</string>
-  <string name="error_no_station_location">Nie można odnaleźć lokalizacji podanych przystanków</string>
-  <string name="error_no_trips_capability">Wybrana sieć transportowa nie wspiera szukania po kierunkach.</string>
-  <string name="error_no_departures_capability">Wybrana sieć transportowa nie wspiera wyszukiwania odjazdów.</string>
-  <string name="error_no_nearby_locations_capability">Wybrana sieć transportowa nie wspiera wyszukiwania pobliskich stacji.</string>
-  <string name="error_trip_refresh_failed">Nie można odświeżyć danych dla obecnej trasy.</string>
+	<string name="error_trip_refresh_failed">Nie można odświeżyć danych dla obecnej trasy.</string>
   <string name="meter">m</string>
   <plurals name="stops">
     <item quantity="one">%d przystanek</item>
@@ -146,15 +97,9 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="home_dialog_title">Ustaw lokalizację domową</string>
   <string name="work">Praca</string>
   <string name="work_hint">Ustaw miejsce pracy</string>
-  <string name="work_dialog_title">Ustaw miejsce pracy</string>
-  <string name="tap_to_set">Stuknij, aby ustawić</string>
-  <string name="location">Położenie</string>
-  <string name="location_home">Kliknij aby ustawić lokalizację domową</string>
-  <string name="location_gps">Użyj obecnej pozycji</string>
-  <string name="location_map">Wybierz lokalizację na mapie</string>
-  <string name="position_not_yet_known">Pozycja nie jest jeszcze znana</string>
-  <string name="position_no_gps">GPS jest wyłączony. Pozycja będzie mało precyzyjna.</string>
-  <string name="select_products">Wybierz środki transportu</string>
+	<string name="tap_to_set">Stuknij, aby ustawić</string>
+	<string name="location_gps">Użyj obecnej pozycji</string>
+	<string name="select_products">Wybierz środki transportu</string>
   <string name="product_high_speed_train">Szybka kolej</string>
   <string name="product_regional_train">Koleje regionalne</string>
   <string name="product_suburban_train">Kolej podmiejska</string>
@@ -164,17 +109,11 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="product_ferry">Prom</string>
   <string name="product_cablecar">Kolej linowa</string>
   <string name="product_on_demand">Na żądanie</string>
-  <string name="action_fav_trips_sort">Sortuj listę</string>
-  <string name="action_fav_trips_sort_recent">Ostatnio używane</string>
-  <string name="action_fav_trips_sort_most">Najczęściej używane</string>
-  <string name="action_set_locations">Edytuj wyszukiwanie</string>
+	<string name="action_set_locations">Edytuj wyszukiwanie</string>
   <string name="action_swap_locations">Szukaj drogi powrotnej</string>
   <string name="action_change">Zmień</string>
-  <string name="permission_explanation_gps">Musisz zezwolić aplikacji na dostęp do lokalizacji, aby wyświetlić swoją obecną pozycję na mapie.</string>
-  <string name="permission_denied_gps">Nie zezwoliłeś na dostęp do lokalizacji, więc ta funkcja nie będzie działała. Prosimy przydzielić uprawnienia w ustawieniach aplikacji.</string>
-  <string name="permission_explanation_map">Kafelki map potrzebują być przechowywane w pamięci urządzenia. Mapa nie będzie działała bez tego.</string>
-  <string name="permission_denied_map">Wyświetlanie mapy wymaga przechowywania plików map w pamięci urządzenia. Prosimy zezwolić aplikacji na zapisywanie do pamięci w ustawieniach aplikacji.</string>
-  <!--ckChangeLog-->
+	<string name="permission_denied_gps">Nie zezwoliłeś na dostęp do lokalizacji, więc ta funkcja nie będzie działała. Prosimy przydzielić uprawnienia w ustawieniach aplikacji.</string>
+	<!--ckChangeLog-->
   <string name="changelog_full_title">Lista zmian</string>
   <string name="changelog_title">Co nowego</string>
   <string name="changelog_show_full">Więcej…</string>
@@ -186,8 +125,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_linz">Górna Austria, Linz</string>
   <string name="np_desc_oebb">Austria</string>
   <string name="np_desc_stv">Styria, Graz, Marburg, Maribor</string>
-  <string name="np_desc_svv">Salzburg</string>
-  <string name="np_desc_vor">Dolna Austria, Burgenland, Wiedeń</string>
+	<string name="np_desc_vor">Dolna Austria, Burgenland, Wiedeń</string>
   <string name="np_desc_vvt">Tyrol</string>
   <string name="np_desc_wien">Wiedeń</string>
   <string name="np_region_belgium">Belgia</string>
@@ -219,8 +157,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_frenchsoutheast">Prowansja-Alpy-Lazurowe Wybrzeże, Rodan-Alpy, Langwedocja-Roussillon, Owernia, Korsyka, Lyon</string>
   <string name="np_name_frenchsouthwest">Francja południowo-zachodnia</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Akwitania, Midi-Pireneje, Bordeaux, Tuluza</string>
-  <string name="np_desc_paca">Prowansja-Alpy-Lazurowe Wybrzeże</string>
-  <string name="np_name_paris">Paryż</string>
+	<string name="np_name_paris">Paryż</string>
   <string name="np_desc_paris">Francja, Île-de-France, Paryż</string>
   <string name="np_region_gb">Wielka Brytania</string>
   <string name="np_desc_mersey">Liverpool City Region</string>
@@ -235,8 +172,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_ding">Badenia-Wirtembergia, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Dolna Saksonia, Hanower, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
-  <string name="np_name_invg">Ingolstadt</string>
-  <string name="np_desc_invg">Ingolstadt</string>
+	<string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_kvv">Badenia-Wirtembergia, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bawaria, Monachium</string>
@@ -244,8 +180,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_nvbw">Badenia-Wirtembergia, Konstancja, Bazylea, Bazylea-Miasto, Reutlingen, Rottweil, Tybinga, Sigmaringen</string>
   <string name="np_desc_nvv">Hesja, Frankfurt nad Menem, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_sh">Szlezwik-Holsztyn, Kilonia, Lubeka, Hamburg</string>
-  <string name="np_desc_vagfr">Alzacja, Dolny Ren, Strasburg, Fryburg Bryzgowijski</string>
+	<string name="np_desc_vagfr">Alzacja, Dolny Ren, Strasburg, Fryburg Bryzgowijski</string>
   <string name="np_desc_vbb">Brandenburgia, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Dolna Saksonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Norymberga, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
@@ -298,8 +233,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_dub">Zjednoczone Emiraty Arabskie, Dubaj</string>
   <string name="np_region_usa">USA</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_desc_septa">Hrabstwa Bucks, Chester, Delaware, Montgomery i Philadelphia</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">Stany Nowy Jork i New Jersey</string>
+	<string name="np_name_usny" tools:keep="@string/np_name_usny">Stany Nowy Jork i New Jersey</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Global Transport w stanie Oregon (USA)</string>
   <string name="maintainer">Opiekun</string>

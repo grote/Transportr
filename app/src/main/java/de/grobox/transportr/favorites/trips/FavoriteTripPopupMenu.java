@@ -18,18 +18,17 @@
 package de.grobox.transportr.favorites.trips;
 
 import android.content.Context;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.transportr.R;
 
-import static de.grobox.transportr.utils.TransportrUtils.setFavState;
-
 public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
 
-	public FavoriteTripPopupMenu(Context context, View anchor, FavoriteTripItem trip, FavoriteTripListener listener) {
+	FavoriteTripPopupMenu(Context context, View anchor, FavoriteTripItem trip, FavoriteTripListener listener) {
 		super(context, anchor, trip, listener);
-		setFavState(context, getMenu().findItem(R.id.action_mark_favorite), trip.isFavorite(), false);
+		setFavState(getMenu().findItem(R.id.action_mark_favorite), trip.isFavorite());
 	}
 
 	@Override
@@ -44,13 +43,25 @@ public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
 				if (listener != null) {
 					listener.onFavoriteChanged(trip, !trip.isFavorite());
 				}
-				setFavState(context, item, trip.isFavorite(), false);
+				setFavState(item, trip.isFavorite());
 				return true;
 			case R.id.action_trip_delete:
 				listener.onFavoriteDeleted(trip);
 				return true;
 			default:
 				return super.onMenuItemClick(item);
+		}
+	}
+
+	private void setFavState(MenuItem item, boolean is_fav) {
+		if (is_fav) {
+			item.setTitle(R.string.action_unfav_trip);
+			item.setIcon(R.drawable.ic_action_star_empty);
+			DrawableCompat.setTint(item.getIcon(), iconColor);
+		} else {
+			item.setTitle(R.string.action_fav_trip);
+			item.setIcon(R.drawable.ic_action_star);
+			DrawableCompat.setTint(item.getIcon(), iconColor);
 		}
 	}
 

@@ -18,7 +18,7 @@ import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesRepository;
 import de.grobox.transportr.favorites.trips.SavedSearchesViewModel;
-import de.grobox.transportr.fragments.TimeDateFragment.TimeDateListener;
+import de.grobox.transportr.ui.TimeDateFragment.TimeDateListener;
 import de.grobox.transportr.locations.LocationLiveData;
 import de.grobox.transportr.locations.LocationView.LocationViewListener;
 import de.grobox.transportr.locations.WrapLocation;
@@ -52,7 +52,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	private final MutableLiveData<EnumSet<Product>> products = new MutableLiveData<>();
 	private final MutableLiveData<Boolean> isDeparture = new MutableLiveData<>();
 	private final MutableLiveData<Boolean> isExpanded = new MutableLiveData<>();
-	final SingleLiveEvent<Void> showTrips = new SingleLiveEvent<Void>();
+	final SingleLiveEvent<Void> showTrips = new SingleLiveEvent<>();
 	final MutableLiveData<Boolean> topSwipeEnabled = new MutableLiveData<>();
 	private long favTripUid;
 

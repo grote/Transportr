@@ -14,11 +14,14 @@ import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.location.LocationSource;
 import com.mapbox.services.android.telemetry.location.LocationEngineListener;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static com.mapbox.services.android.telemetry.location.LocationEnginePriority.HIGH_ACCURACY;
 
+@ParametersAreNonnullByDefault
 public class LocationLiveData extends LiveData<WrapLocation> implements LocationEngineListener, ReverseGeocoderCallback {
 
 	private final Context context;

@@ -51,10 +51,11 @@ class FavoriteTripViewHolder extends AbstractFavoritesViewHolder {
 			icon.setImageResource(R.drawable.ic_time);
 		}
 
+		if (item.getTo() == null) throw new IllegalStateException();
 		from.setText(item.getFrom().getName());
 		to.setText(item.getTo().getName());
 
-		if(item.getVia() != null) {
+		if (item.getVia() != null) {
 			via.setText(item.getVia().getName());
 			via.setVisibility(VISIBLE);
 			viaIcon.setVisibility(VISIBLE);

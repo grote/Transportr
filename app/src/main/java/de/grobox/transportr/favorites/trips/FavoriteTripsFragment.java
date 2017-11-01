@@ -22,19 +22,22 @@ import de.grobox.transportr.data.locations.HomeLocation;
 import de.grobox.transportr.data.locations.WorkLocation;
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment;
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment;
-import de.grobox.transportr.fragments.TransportrFragment;
+import de.grobox.transportr.TransportrFragment;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.ui.LceAnimator;
 
 import static android.support.v7.util.SortedList.INVALID_POSITION;
-import static de.grobox.transportr.utils.TransportrUtils.findDirections;
+import static de.grobox.transportr.favorites.trips.FavoriteTripType.HOME;
+import static de.grobox.transportr.favorites.trips.FavoriteTripType.TRIP;
+import static de.grobox.transportr.favorites.trips.FavoriteTripType.WORK;
+import static de.grobox.transportr.utils.IntentUtils.findDirections;
 
 @ParametersAreNonnullByDefault
 public abstract class FavoriteTripsFragment extends TransportrFragment implements FavoriteTripListener {
 
 	public static final String TAG = FavoriteTripsFragment.class.getName();
 
-	@Inject	protected ViewModelProvider.Factory viewModelFactory;
+	@Inject protected ViewModelProvider.Factory viewModelFactory;
 	protected SavedSearchesViewModel viewModel;
 
 	private ProgressBar progressBar;
@@ -147,19 +150,19 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 
 	@Override
 	public void onFavoriteClicked(FavoriteTripItem item) {
-		if (item.getType() == FavoriteTripType.HOME) {
+		if (item.getType() == HOME) {
 			if (item.getTo() == null) {
 				changeHome();
 			} else {
 				findDirections(getContext(), item.getUid(), getCurrentFrom(item), item.getVia(), item.getTo());
 			}
-		} else if (item.getType() == FavoriteTripType.WORK) {
+		} else if (item.getType() == WORK) {
 			if (item.getTo() == null) {
 				changeWork();
 			} else {
 				findDirections(getContext(), item.getUid(), getCurrentFrom(item), item.getVia(), item.getTo());
 			}
-		} else if (item.getType() == FavoriteTripType.TRIP) {
+		} else if (item.getType() == TRIP) {
 			if (item.getFrom() == null || item.getTo() == null) throw new IllegalArgumentException();
 			findDirections(getContext(), item.getUid(), item.getFrom(), item.getVia(), item.getTo());
 		} else {

@@ -16,7 +16,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.fragments.TransportrFragment;
+import de.grobox.transportr.TransportrFragment;
 
 @ParametersAreNonnullByDefault
 abstract public class BaseMapFragment extends TransportrFragment implements OnMapReadyCallback {
@@ -37,7 +37,8 @@ abstract public class BaseMapFragment extends TransportrFragment implements OnMa
 		return v;
 	}
 
-	protected abstract @LayoutRes int getLayout();
+	@LayoutRes
+	protected abstract int getLayout();
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

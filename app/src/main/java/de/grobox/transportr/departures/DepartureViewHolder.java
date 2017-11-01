@@ -1,9 +1,9 @@
 package de.grobox.transportr.departures;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.common.base.Strings;
@@ -20,8 +20,7 @@ import static de.grobox.transportr.utils.DateUtils.getDelay;
 import static de.grobox.transportr.utils.DateUtils.getDelayString;
 import static de.grobox.transportr.utils.DateUtils.getTime;
 import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
-import static de.grobox.transportr.utils.TransportrUtils.getTintedDrawable;
-import static de.grobox.transportr.utils.TransportrUtils.setRelativeDepartureTime;
+import static de.grobox.transportr.utils.DateUtils.setRelativeDepartureTime;
 
 class DepartureViewHolder extends RecyclerView.ViewHolder {
 
@@ -31,7 +30,6 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 	private final TextView timeRel;
 	private final TextView timeAbs;
 	private final TextView delay;
-	private final ImageView arrow;
 	private final TextView destination;
 	private final TextView position;
 	private final TextView message;
@@ -45,7 +43,6 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 		timeRel = v.findViewById(R.id.departureTimeRel);
 		timeAbs = v.findViewById(R.id.departureTimeAbs);
 		delay = v.findViewById(R.id.delay);
-		arrow = v.findViewById(R.id.arrowView);
 		destination = v.findViewById(R.id.destinationView);
 		position = v.findViewById(R.id.positionView);
 		message = v.findViewById(R.id.messageView);
@@ -75,7 +72,6 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 		lineName.setText(dep.line.name);
 
 		// line destination
-		arrow.setImageDrawable(getTintedDrawable(arrow.getContext(), arrow.getDrawable()));
 		if (dep.destination != null) {
 			destination.setText(getLocationName(dep.destination));
 		} else {
@@ -112,7 +108,8 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 		} else {
 			delay.setText(getDelayString(delayTime));
 			delay.setVisibility(VISIBLE);
-			// TODO color delay green if negative (never seen in the wild so far)
+			if (delayTime <= 0) delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_green_500));
+			else delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_red_500));
 		}
 	}
 

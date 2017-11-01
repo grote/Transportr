@@ -12,7 +12,7 @@ import de.grobox.transportr.networks.TransportNetworkManager;
 
 public abstract class SavedSearchesViewModel extends LocationsViewModel {
 
-	protected final SearchesRepository searchesRepository;
+	private final SearchesRepository searchesRepository;
 
 	private final LiveData<List<FavoriteTripItem>> savedSearches;
 

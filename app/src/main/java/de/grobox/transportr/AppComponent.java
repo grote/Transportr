@@ -20,7 +20,6 @@ package de.grobox.transportr;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import de.grobox.transportr.activities.TransportrActivity;
 import de.grobox.transportr.departures.DeparturesActivity;
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment;
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment;

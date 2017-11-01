@@ -54,8 +54,8 @@ public class DeparturesLoader extends AsyncTaskLoader<QueryDeparturesResult> {
 	public QueryDeparturesResult loadInBackground() {
 		NetworkProvider np = network.getNetworkProvider();
 
-		Log.i(TAG, "Departures (" + maxDepartures + "): " + stationId);
-		Log.i(TAG, "Date: " + date.toString());
+		Log.d(TAG, "Departures (" + maxDepartures + "): " + stationId);
+		Log.d(TAG, "Date: " + date.toString());
 
 		try {
 			return np.queryDepartures(stationId, date, maxDepartures, false);

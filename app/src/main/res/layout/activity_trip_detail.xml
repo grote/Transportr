@@ -19,7 +19,6 @@
 		app:elevation="0dp">
 
 		<android.support.design.widget.CollapsingToolbarLayout
-			android:id="@+id/collapsingToolbar"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			app:layout_scrollFlags="enterAlways"

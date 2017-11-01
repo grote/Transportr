@@ -85,7 +85,6 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 
 	void setFavoriteLocations(List<FavoriteLocation> favoriteLocations) {
 		this.favoriteLocations = favoriteLocations;
-		// TODO sort
 		updateLocations();
 		resetDropDownLocations();
 	}
@@ -134,12 +133,12 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 		TextView textView = view.findViewById(R.id.textView);
 
 		WrapLocation wrapLocation = getItem(position);
-		if(wrapLocation == null || wrapLocation.getLocation() == null) return view;
+		if (wrapLocation == null || wrapLocation.getLocation() == null) return view;
 
 		if (wrapLocation.getWrapType() == NORMAL) {
 			textView.setText(getHighlightedText(wrapLocation));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-		} else if(wrapLocation.getWrapType() == GPS) {
+		} else if (wrapLocation.getWrapType() == GPS) {
 			textView.setText(parent.getContext().getString(R.string.location_gps));
 			textView.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
 		}
@@ -149,7 +148,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	}
 
 	private Spanned getHighlightedText(WrapLocation l) {
-		if(search != null && search.length() >= TYPING_THRESHOLD) {
+		if (search != null && search.length() >= TYPING_THRESHOLD) {
 			String regex = "(?i)(" + Pattern.quote(search.toString()) + ")";
 			String str = l.getFullName().replaceAll(regex, "<b>$1</b>");
 			return Html.fromHtml(str);

@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/titleView"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +21,6 @@
         tools:listitem="@layout/list_item_product"/>
 
     <include
-        android:id="@+id/include"
         layout="@layout/ok_cancel"/>
 
 </LinearLayout>

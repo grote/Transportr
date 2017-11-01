@@ -18,6 +18,9 @@
 package de.grobox.transportr.ui;
 
 import android.content.Context;
+import android.support.annotation.ColorInt;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -26,17 +29,23 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import de.grobox.transportr.utils.TransportrUtils;
+import de.grobox.transportr.R;
 
 public abstract class BasePopupMenu extends PopupMenu implements OnMenuItemClickListener {
 
 	protected Context context;
+	@ColorInt
+	protected final int iconColor;
 
 	public BasePopupMenu(Context context, View anchor) {
 		super(context, anchor);
 
 		this.context = context;
 		setOnMenuItemClickListener(this);
+
+		TypedValue typedValue = new TypedValue();
+		context.getTheme().resolveAttribute(R.attr.colorControlNormal, typedValue, true);
+		iconColor = typedValue.data;
 	}
 
 	protected void showIcons() {
@@ -44,8 +53,8 @@ public abstract class BasePopupMenu extends PopupMenu implements OnMenuItemClick
 		// see: http://stackoverflow.com/a/18431605
 		try {
 			Field[] fields = BasePopupMenu.class.getSuperclass().getDeclaredFields();
-			for(Field field : fields) {
-				if("mPopup".equals(field.getName())) {
+			for (Field field : fields) {
+				if ("mPopup".equals(field.getName())) {
 					field.setAccessible(true);
 					Object menuPopupHelper = field.get(this);
 					Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
@@ -59,8 +68,8 @@ public abstract class BasePopupMenu extends PopupMenu implements OnMenuItemClick
 		}
 
 		// colorize icons according to theme
-		for(int i = 0; i < getMenu().size(); i++) {
-			getMenu().getItem(i).setIcon(TransportrUtils.getTintedDrawable(context, getMenu().getItem(i).getIcon()));
+		for (int i = 0; i < getMenu().size(); i++) {
+			DrawableCompat.setTint(getMenu().getItem(i).getIcon(), iconColor);
 		}
 	}
 
