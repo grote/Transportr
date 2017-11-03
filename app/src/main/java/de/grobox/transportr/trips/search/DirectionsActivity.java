@@ -17,6 +17,8 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.locations.WrapLocation;
+import de.grobox.transportr.trips.search.SavedSearchesFragment.HomePickerFragment;
+import de.grobox.transportr.trips.search.SavedSearchesFragment.WorkPickerFragment;
 
 import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
@@ -29,8 +31,8 @@ import static de.grobox.transportr.utils.Constants.VIA;
 @ParametersAreNonnullByDefault
 public class DirectionsActivity extends TransportrActivity implements OnOffsetChangedListener {
 
-	public final static String TASK_HOME = "de.grobox.transportr.HOME";
-	public final static String TASK_WORK = "de.grobox.transportr.WORK";
+	public final static String INTENT_URI_HOME = "transportr://home";
+	public final static String INTENT_URI_WORK = "transportr://work";
 
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
@@ -114,16 +116,18 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		WrapLocation from, via, to;
 		boolean search;
 		long uid = intent.getLongExtra(FAV_TRIP_UID, 0);
-		String special = (String) intent.getSerializableExtra("special");
-		if (special != null) {
+		String data = intent.getDataString();
+		if (data != null) {
 			from = new WrapLocation(GPS);
 			search = true;
-			switch (special) {
-				case TASK_HOME:
+			switch (data) {
+				case INTENT_URI_HOME:
 					to = viewModel.getHome().getValue();
+					if (to == null) new HomePickerFragment().show(getSupportFragmentManager(), HomePickerFragment.TAG);
 					break;
-				case TASK_WORK:
+				case INTENT_URI_WORK:
 					to = viewModel.getWork().getValue();
+					if (to == null) new WorkPickerFragment().show(getSupportFragmentManager(), WorkPickerFragment.TAG);
 					break;
 				default:
 					throw new IllegalArgumentException();

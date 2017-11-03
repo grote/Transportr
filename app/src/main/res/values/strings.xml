@@ -140,8 +140,10 @@ there are any).</string>
 
     <string name="home">Home</string>
     <string name="home_dialog_title">Set Home Location</string>
+    <string name="widget_name_quickhome">Get Me Home</string>
     <string name="work">Work</string>
     <string name="work_hint">Set Work Location</string>
+    <string name="widget_name_quickwork">Get To Work</string>
     <string name="tap_to_set">Tap to set</string>
 	<string name="action_set_locations">Edit search</string>
 	<string name="action_swap_locations">Search return trip</string>
@@ -166,9 +168,6 @@ there are any).</string>
     <string name="changelog_full_title">Changelog</string>
     <string name="changelog_title">What\'s New</string>
     <string name="changelog_show_full">More…</string>
-
-    <string name="widget_name_quickhome">Get Me Home</string>
-    <string name="widget_name_quickwork">Get To Work</string>
 
     <string name="np_region_australia">Australia</string>
     <string name="np_name_sydney" translatable="false">Transport NSW</string>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:targetApi="n_mr1">
+
+	<shortcut
+		android:enabled="true"
+		android:icon="@mipmap/ic_launcher_home"
+		android:shortcutId="home"
+		android:shortcutLongLabel="@string/widget_name_quickhome"
+		android:shortcutShortLabel="@string/home">
+
+		<intent
+			android:action="android.intent.action.SEARCH"
+			android:data="transportr://home"
+			android:targetClass="de.grobox.transportr.trips.search.DirectionsActivity"
+			android:targetPackage="de.grobox.liberario"/>
+		<!-- FIXME make targetPackage equal to _actual_ applicationId -->
+
+	</shortcut>
+
+	<shortcut
+		android:enabled="true"
+		android:icon="@mipmap/ic_launcher_work"
+		android:shortcutId="work"
+		android:shortcutLongLabel="@string/widget_name_quickwork"
+		android:shortcutShortLabel="@string/work">
+
+		<intent
+			android:action="android.intent.action.SEARCH"
+			android:data="transportr://work"
+			android:targetClass="de.grobox.transportr.trips.search.DirectionsActivity"
+			android:targetPackage="de.grobox.liberario"/>
+		<!-- FIXME make targetPackage equal to _actual_ applicationId -->
+
+	</shortcut>
+
+</shortcuts>

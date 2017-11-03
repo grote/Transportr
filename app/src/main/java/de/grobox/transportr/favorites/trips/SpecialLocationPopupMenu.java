@@ -19,6 +19,7 @@ package de.grobox.transportr.favorites.trips;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.view.MenuItem;
@@ -27,7 +28,7 @@ import android.view.View;
 import de.grobox.transportr.R;
 import de.grobox.transportr.trips.search.DirectionsActivity;
 
-import static android.content.Intent.ACTION_MAIN;
+import static android.content.Intent.ACTION_SEARCH;
 import static android.content.Intent.EXTRA_SHORTCUT_ICON_RESOURCE;
 import static android.content.Intent.EXTRA_SHORTCUT_INTENT;
 import static android.content.Intent.EXTRA_SHORTCUT_NAME;
@@ -83,10 +84,10 @@ abstract class SpecialLocationPopupMenu extends AbstractFavoritesPopupMenu {
 
 	private Intent getShortcutIntent(Context context, String type) {
 		Intent shortcutIntent = new Intent(context, DirectionsActivity.class);
-		shortcutIntent.setAction(ACTION_MAIN);
+		shortcutIntent.setAction(ACTION_SEARCH);
 		shortcutIntent.addFlags(FLAG_ACTIVITY_NEW_TASK);
 		shortcutIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
-		shortcutIntent.putExtra("special", type);
+		shortcutIntent.setData(Uri.parse(type));
 		return shortcutIntent;
 	}
 

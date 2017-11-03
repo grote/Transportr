@@ -25,7 +25,7 @@ import android.view.View;
 
 import de.grobox.transportr.R;
 
-import static de.grobox.transportr.trips.search.DirectionsActivity.TASK_HOME;
+import static de.grobox.transportr.trips.search.DirectionsActivity.INTENT_URI_HOME;
 
 class HomePopupMenu extends SpecialLocationPopupMenu {
 
@@ -45,7 +45,7 @@ class HomePopupMenu extends SpecialLocationPopupMenu {
 
 	@Override
 	protected String getShortcutIntentString() {
-		return TASK_HOME;
+		return INTENT_URI_HOME;
 	}
 
 	@Override
@@ -57,7 +57,7 @@ class HomePopupMenu extends SpecialLocationPopupMenu {
 	@Override
 	@DrawableRes
 	protected int getShortcutDrawable() {
-		return R.mipmap.ic_quickhome_widget;
+		return R.mipmap.ic_launcher_home;
 	}
 
 }

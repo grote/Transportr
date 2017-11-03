@@ -25,7 +25,7 @@ import android.view.View;
 
 import de.grobox.transportr.R;
 
-import static de.grobox.transportr.trips.search.DirectionsActivity.TASK_WORK;
+import static de.grobox.transportr.trips.search.DirectionsActivity.INTENT_URI_WORK;
 
 class WorkPopupMenu extends SpecialLocationPopupMenu {
 
@@ -45,7 +45,7 @@ class WorkPopupMenu extends SpecialLocationPopupMenu {
 
 	@Override
 	protected String getShortcutIntentString() {
-		return TASK_WORK;
+		return INTENT_URI_WORK;
 	}
 
 	@Override
@@ -57,7 +57,7 @@ class WorkPopupMenu extends SpecialLocationPopupMenu {
 	@Override
 	@DrawableRes
 	protected int getShortcutDrawable() {
-		return R.mipmap.ic_quickwork_widget;
+		return R.mipmap.ic_launcher_work;
 	}
 
 }
