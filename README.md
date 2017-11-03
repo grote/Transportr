@@ -4,7 +4,7 @@ Transportr
 The public transport companion that respects your privacy and your freedom.
 Transportr is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. 
 
-[![Transportr Logo](/res/drawable-xhdpi/ic_launcher.png)](http://transportr.grobox.de)
+[![Transportr Logo](/app/src/main/res/mipmap-xhdpi/ic_launcher.png)](http://transportr.grobox.de)
 [![Build Status](https://travis-ci.org/grote/Transportr.svg?branch=master)](https://travis-ci.org/grote/Transportr)
 
 Please **[visit the website](http://transportr.grobox.de)** for more information!
@@ -30,15 +30,15 @@ Pre-releases and beta versions for advanced users are available via [a special F
 
 Screenshots
 -----------
-[<img src="art/screenshots/drawer.png" width="200">](artwork/screenshots/drawer.png)
-[<img src="art/screenshots/directions.png" width="200">](artwork/screenshots/directions.png)
-[<img src="art/screenshots/trips.png" width="200">](artwork/screenshots/trips.png)
-[<img src="art/screenshots/trip_details.png" width="200">](artwork/screenshots/trip_details.png)
-[<img src="art/screenshots/favorite_trips.png" width="200">](artwork/screenshots/favorite_trips.png)
-[<img src="art/screenshots/departures.png" width="200">](artwork/screenshots/departures.png)
-[<img src="art/screenshots/nearby_stations.png" width="200">](artwork/screenshots/nearby_stations.png)
-[<img src="art/screenshots/nearby_stations_map.png" width="200">](artwork/screenshots/nearby_stations_map.png)
-[<img src="art/screenshots/about.png" width="200">](artwork/screenshots/about.png)
+[<img src="artwork/screenshots/drawer.png" width="200">](artwork/screenshots/drawer.png)
+[<img src="artwork/screenshots/directions.png" width="200">](artwork/screenshots/directions.png)
+[<img src="artwork/screenshots/trips.png" width="200">](artwork/screenshots/trips.png)
+[<img src="artwork/screenshots/trip_details.png" width="200">](artwork/screenshots/trip_details.png)
+[<img src="artwork/screenshots/favorite_trips.png" width="200">](artwork/screenshots/favorite_trips.png)
+[<img src="artwork/screenshots/departures.png" width="200">](artwork/screenshots/departures.png)
+[<img src="artwork/screenshots/nearby_stations.png" width="200">](artwork/screenshots/nearby_stations.png)
+[<img src="artwork/screenshots/nearby_stations_map.png" width="200">](artwork/screenshots/nearby_stations_map.png)
+[<img src="artwork/screenshots/about.png" width="200">](artwork/screenshots/about.png)
 
 
 Building From Source
