@@ -13,7 +13,9 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -101,7 +103,7 @@ public class MapViewModel extends SavedSearchesViewModel {
 		if (input == null) {
 			updatedLiveBounds.setValue(null);
 		} else {
-			List<LatLng> points = new ArrayList<>();
+			Set<LatLng> points = new HashSet<>();
 			for (FavoriteLocation location : input) {
 				if (location.hasLocation()) points.add(location.getLatLng());
 			}
@@ -110,7 +112,7 @@ public class MapViewModel extends SavedSearchesViewModel {
 			if (points.size() < 2) {
 				updatedLiveBounds.setValue(null);
 			} else {
-				updatedLiveBounds.setValue(new LatLngBounds.Builder().includes(points).build());
+				updatedLiveBounds.setValue(new LatLngBounds.Builder().includes(new ArrayList<>(points)).build());
 			}
 		}
 		return updatedLiveBounds;

@@ -10,7 +10,8 @@
 
 	<android.support.design.widget.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 		<android.support.design.widget.CollapsingToolbarLayout
 			android:layout_width="match_parent"
@@ -34,7 +35,6 @@
 					android:layout_height="wrap_content"
 					android:padding="8dp"
 					android:text="@string/pick_network_first_run"
-					android:textAppearance="?android:textAppearanceInverse"
 					android:textColor="?android:textColorPrimary"
 					android:textSize="16sp"/>
 
