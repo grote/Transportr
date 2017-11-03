@@ -41,7 +41,8 @@
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/appBar"
-		app:srl_direction="both">
+		app:srl_direction="both"
+		tools:visibility="visible">
 
 		<android.support.v7.widget.RecyclerView
 			android:id="@+id/list"
@@ -51,5 +52,42 @@
 			tools:listitem="@layout/list_item_departure"/>
 
 	</com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
+	<LinearLayout
+		android:id="@+id/errorLayout"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_marginEnd="16dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		android:orientation="vertical"
+		android:visibility="invisible"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/swipe"
+		tools:visibility="visible">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:text="@string/error"
+			android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+		<TextView
+			android:id="@+id/errorText"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			tools:text="This is a view for error text.\nThis text can be super long.\nIt can include stack traces of exceptions.\nBut it can also be just one sentence long."/>
+
+		<Button
+			android:id="@+id/errorButton"
+			style="@style/Button"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="@string/try_again"/>
+	</LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

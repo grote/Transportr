@@ -115,8 +115,11 @@ there are any).</string>
 	<string name="pref_show_when_locked_summary">Show over lock screen</string>
 
     <string name="error">Error</string>
+    <string name="error_no_internet">Internet connection required. Please make sure your internet access is working.</string>
     <string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
     <string name="error_geo_intent">Could not open external location</string>
+    <string name="error_find_nearby_stations">Could not find nearby stations</string>
+    <string name="error_departures">Could not find any departures</string>
 
     <string name="trip_error_ambiguous">Could not find the location. Please try searching with different locations.</string>
     <string name="trip_error_too_close">The \'from\' and the \'to\' location are too close together.</string>

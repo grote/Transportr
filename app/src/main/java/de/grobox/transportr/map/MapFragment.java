@@ -15,7 +15,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -290,8 +289,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 			} catch (InvalidLatLngBoundsException ignored) {
 			}
 		} else {
-			// TODO
-			Log.e("TEST", "ERROR loading nearby stations.");
+			Toast.makeText(getContext(), R.string.error_find_nearby_stations, Toast.LENGTH_SHORT).show();
 		}
 		viewModel.setNearbyStationsFound(true);
 	}

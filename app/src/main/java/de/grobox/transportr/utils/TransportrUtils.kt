@@ -20,6 +20,7 @@ package de.grobox.transportr.utils
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.net.ConnectivityManager
 import android.support.annotation.DrawableRes
 import android.util.DisplayMetrics
 import de.grobox.transportr.R
@@ -87,6 +88,13 @@ object TransportrUtils {
     fun dpToPx(context: Context, dp: Int): Int {
         val displayMetrics = context.resources.displayMetrics
         return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
+    }
+
+    @JvmStatic
+    fun hasInternet(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = cm.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }
 
 }

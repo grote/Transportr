@@ -11,6 +11,7 @@ import de.grobox.transportr.data.searches.SearchesRepository
 import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.trips.TripQuery
 import de.grobox.transportr.utils.SingleLiveEvent
+import de.grobox.transportr.utils.TransportrUtils
 import de.schildbach.pte.NetworkProvider
 import de.schildbach.pte.dto.QueryTripsContext
 import de.schildbach.pte.dto.QueryTripsResult
@@ -72,7 +73,11 @@ internal class TripsRepository(
                     queryError.postValue(queryTripsResult.getError())
                 }
             } catch (e: Exception) {
-                queryError.postValue(e.toString())
+                if (!TransportrUtils.hasInternet(ctx)) {
+                    queryError.postValue(ctx.getString(R.string.error_no_internet))
+                } else {
+                    queryError.postValue(e.toString())
+                }
             }
         }.start()
     }

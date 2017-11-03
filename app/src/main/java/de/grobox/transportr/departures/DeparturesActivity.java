@@ -11,11 +11,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
@@ -29,11 +30,12 @@ import javax.inject.Inject;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
-import de.grobox.transportr.ui.TimeDateFragment;
-import de.grobox.transportr.ui.TimeDateFragment.TimeDateListener;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.ui.LceAnimator;
+import de.grobox.transportr.ui.TimeDateFragment;
+import de.grobox.transportr.ui.TimeDateFragment.TimeDateListener;
+import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
@@ -57,6 +59,8 @@ public class DeparturesActivity extends TransportrActivity
 	private enum SearchState {INITIAL, TOP, BOTTOM}
 
 	private ProgressBar progressBar;
+	private View errorLayout;
+	private TextView errorText;
 	private SwipyRefreshLayout swipe;
 	private RecyclerView list;
 	private DepartureAdapter adapter;
@@ -100,9 +104,6 @@ public class DeparturesActivity extends TransportrActivity
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 
-		// Progress Bar
-		progressBar = findViewById(R.id.progressBar);
-
 		// Swipe to Refresh
 		swipe = findViewById(R.id.swipe);
 		swipe.setColorSchemeResources(R.color.accent);
@@ -117,11 +118,20 @@ public class DeparturesActivity extends TransportrActivity
 		list.setAdapter(adapter);
 		list.setLayoutManager(new LinearLayoutManager(this));
 
-		LceAnimator.showLoading(progressBar, list, null);
-
 		// Loader
 		Bundle args = getBundle(location.getId(), new Date(), MAX_DEPARTURES);
 		Loader<QueryDeparturesResult> loader = getSupportLoaderManager().initLoader(LOADER_DEPARTURES, args, this);
+
+		// Progress Bar and Error View
+		progressBar = findViewById(R.id.progressBar);
+		errorLayout = findViewById(R.id.errorLayout);
+		errorText = errorLayout.findViewById(R.id.errorText);
+		errorLayout.findViewById(R.id.errorButton).setOnClickListener(view -> {
+			LceAnimator.showLoading(progressBar, list, errorLayout);
+			getSupportLoaderManager().restartLoader(LOADER_DEPARTURES, args, this).forceLoad();
+		});
+
+		LceAnimator.showLoading(progressBar, list, errorLayout);
 
 		if (savedInstanceState != null) {
 			calendar = (Calendar) savedInstanceState.getSerializable(DATE);
@@ -232,23 +242,26 @@ public class DeparturesActivity extends TransportrActivity
 	}
 
 	@Override
-	public void onLoadFinished(Loader<QueryDeparturesResult> loader, QueryDeparturesResult departures) {
-		if (departures.status == OK) {
+	public void onLoadFinished(Loader<QueryDeparturesResult> loader, @Nullable QueryDeparturesResult departures) {
+		if (departures != null && departures.status == OK) {
 			for (StationDepartures s : departures.stationDepartures) {
 				adapter.addAll(s.departures);
 			}
+			if (searchState == SearchState.INITIAL) {
+				LceAnimator.showContent(progressBar, list, errorLayout);
+			} else {
+				// scroll smoothly up or down when we have new trips
+				list.smoothScrollBy(0, searchState == SearchState.BOTTOM ? 150 : -150);
+			}
 		} else {
-			// TODO
-			Log.e("TEST", "LOAD FAILED!!!");
+			if (!TransportrUtils.hasInternet(this)) {
+				errorText.setText(R.string.error_no_internet);
+			} else {
+				errorText.setText(R.string.error_departures);
+			}
+			LceAnimator.showErrorView(progressBar, list, errorLayout);
 		}
 		swipe.setRefreshing(false);
-
-		if (searchState == SearchState.INITIAL) {
-			LceAnimator.showContent(progressBar, list, null);
-		} else {
-			// scroll smoothly up or down when we have new trips
-			list.smoothScrollBy(0, searchState == SearchState.BOTTOM ? 150 : -150);
-		}
 	}
 
 	@Override
