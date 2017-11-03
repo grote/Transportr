@@ -46,6 +46,7 @@ import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 
+import static android.content.Intent.ACTION_SEARCH;
 import static android.content.Intent.ACTION_VIEW;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
@@ -54,6 +55,7 @@ import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.NORMAL;
 import static de.grobox.transportr.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
+import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
 
 @ParametersAreNonnullByDefault
@@ -129,8 +131,10 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			findDirections(MapActivity.this, 0, from, null, to);
 		});
 
+		Intent intent = getIntent();
+		if (intent != null) onNewIntent(intent);
+
 		if (savedInstanceState == null) {
-			Intent intent = getIntent();
 			if (intent != null && intent.getAction() != null && intent.getAction().equals(ACTION_VIEW) && intent.getData() != null) {
 				viewModel.setGeoUri(intent.getData());
 			} else {
@@ -210,6 +214,19 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			intent.putExtra(FORCE_NETWORK_SELECTION, true);
 			startActivity(intent);
 			finish();
+		}
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		if (intent == null || intent.getAction() == null) return;
+
+		// nearby stations search
+		if (intent.getAction().equals(ACTION_SEARCH)) {
+			WrapLocation location = (WrapLocation) intent.getSerializableExtra(WRAP_LOCATION);
+			viewModel.selectLocation(location);
+			viewModel.findNearbyStations(location);
 		}
 	}
 

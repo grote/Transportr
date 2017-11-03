@@ -83,7 +83,7 @@ public class MapViewModel extends SavedSearchesViewModel {
 		return selectedLocation;
 	}
 
-	public void findNearbyStations(WrapLocation location) {
+	void findNearbyStations(WrapLocation location) {
 		findNearbyStations.setValue(location);
 	}
 

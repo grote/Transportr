@@ -53,6 +53,7 @@ import de.grobox.transportr.departures.DeparturesActivity;
 import de.grobox.transportr.departures.DeparturesLoader;
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback;
 import de.grobox.transportr.map.MapViewModel;
+import de.grobox.transportr.utils.IntentUtils;
 import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.Departure;
 import de.schildbach.pte.dto.Line;
@@ -159,12 +160,12 @@ public class LocationFragment extends TransportrFragment
 		nearbyStationsButton.setOnClickListener(view -> {
 			nearbyStationsButton.setVisibility(INVISIBLE);
 			nearbyStationsProgress.setVisibility(VISIBLE);
-			viewModel.findNearbyStations(location);
+			IntentUtils.findNearbyStations(getContext(), location);
 		});
 
 		// Share Location
 		Button shareButton = v.findViewById(R.id.shareButton);
-		shareButton.setOnClickListener(view -> startGeoIntent(getActivity(), location.getLocation()));
+		shareButton.setOnClickListener(view -> startGeoIntent(getActivity(), location));
 
 		// Overflow Button
 		ImageButton overflowButton = v.findViewById(R.id.overflowButton);

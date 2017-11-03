@@ -97,7 +97,7 @@ public class WrapLocation implements Serializable {
 		return id;
 	}
 
-	boolean hasId() {
+	public boolean hasId() {
 		return !Strings.isNullOrEmpty(id);
 	}
 

@@ -25,33 +25,29 @@ import android.view.View;
 import de.grobox.transportr.R;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.ui.BasePopupMenu;
-import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Stop;
 import de.schildbach.pte.dto.Trip.Leg;
 
 import static de.grobox.transportr.trips.detail.TripUtils.legToString;
 import static de.grobox.transportr.utils.DateUtils.getTime;
-import static de.grobox.transportr.utils.TransportrUtils.copyToClipboard;
 import static de.grobox.transportr.utils.IntentUtils.findDepartures;
 import static de.grobox.transportr.utils.IntentUtils.findNearbyStations;
-import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
 import static de.grobox.transportr.utils.IntentUtils.presetDirections;
 import static de.grobox.transportr.utils.IntentUtils.startGeoIntent;
+import static de.grobox.transportr.utils.TransportrUtils.copyToClipboard;
+import static de.grobox.transportr.utils.TransportrUtils.getLocationName;
 
 public class LegPopupMenu extends BasePopupMenu {
-	private Location loc1 = null;
-	private Location loc2 = null;
+	private final WrapLocation loc1;
 	private final String text;
 
-	LegPopupMenu(Context context, View anchor, Leg leg, boolean is_last) {
+	LegPopupMenu(Context context, View anchor, Leg leg, boolean isLast) {
 		super(context, anchor);
 
-		if (is_last) {
-			this.loc1 = leg.arrival;
-			this.loc2 = leg.departure;
+		if (isLast) {
+			this.loc1 = new WrapLocation(leg.arrival);
 		} else {
-			this.loc1 = leg.departure;
-			this.loc2 = leg.arrival;
+			this.loc1 = new WrapLocation(leg.departure);
 		}
 		this.text = legToString(context, leg);
 		this.getMenuInflater().inflate(R.menu.leg_location_actions, getMenu());
@@ -59,7 +55,6 @@ public class LegPopupMenu extends BasePopupMenu {
 		if (!loc1.hasId()) {
 			getMenu().removeItem(R.id.action_show_departures);
 		}
-
 		showIcons();
 	}
 
@@ -70,7 +65,7 @@ public class LegPopupMenu extends BasePopupMenu {
 	LegPopupMenu(Context context, View anchor, Stop stop) {
 		super(context, anchor);
 
-		this.loc1 = stop.location;
+		this.loc1 = new WrapLocation(stop.location);
 		this.text = getTime(context, stop.getArrivalTime()) + " " + getLocationName(stop.location);
 		this.getMenuInflater().inflate(R.menu.location_actions, getMenu());
 
@@ -87,17 +82,17 @@ public class LegPopupMenu extends BasePopupMenu {
 				return true;
 			// From Here
 			case R.id.action_from_here:
-				presetDirections(context, 0, new WrapLocation(loc1), null, null);
+				presetDirections(context, 0, loc1, null, null);
 
 				return true;
 			// To Here
 			case R.id.action_to_here:
-				presetDirections(context, 0, null, null, new WrapLocation(loc1));
+				presetDirections(context, 0, null, null, loc1);
 
 				return true;
 			// Show Departures
 			case R.id.action_show_departures:
-				findDepartures(context, new WrapLocation(loc1));
+				findDepartures(context, loc1);
 
 				return true;
 			// Show Nearby Stations
@@ -109,7 +104,7 @@ public class LegPopupMenu extends BasePopupMenu {
 			case R.id.action_share:
 				Intent sendIntent = new Intent()
 						.setAction(Intent.ACTION_SEND)
-						.putExtra(Intent.EXTRA_SUBJECT, getLocationName(loc1))
+						.putExtra(Intent.EXTRA_SUBJECT, loc1.getName())
 						.putExtra(Intent.EXTRA_TEXT, text)
 						.setType("text/plain")
 						.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
@@ -118,7 +113,7 @@ public class LegPopupMenu extends BasePopupMenu {
 				return true;
 			// Copy Leg to Clipboard
 			case R.id.action_copy:
-				copyToClipboard(context, getLocationName(loc1));
+				copyToClipboard(context, loc1.getName());
 
 				return true;
 			default:

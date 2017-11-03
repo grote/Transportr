@@ -28,6 +28,7 @@ import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.annotations.MarkerViewOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdate;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.exceptions.InvalidLatLngBoundsException;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -272,6 +273,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 	@Override
 	public void onLoadFinished(Loader<NearbyLocationsResult> loader, @Nullable NearbyLocationsResult result) {
 		if (result != null && result.status == OK && result.locations != null && result.locations.size() > 0) {
+			LatLngBounds.Builder builder = new LatLngBounds.Builder();
 			for (Location location : result.locations) {
 				if (!location.hasLocation()) continue;
 				WrapLocation wrapLocation = new WrapLocation(location);
@@ -281,6 +283,11 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 						.icon(getIconForProduct(location.products))
 				);
 				nearbyLocations.put(marker, location);
+				builder.include(wrapLocation.getLatLng());
+			}
+			try {
+				zoomToBounds(builder.build());
+			} catch (InvalidLatLngBoundsException ignored) {
 			}
 		} else {
 			// TODO
