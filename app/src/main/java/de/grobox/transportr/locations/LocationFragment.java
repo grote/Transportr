@@ -195,7 +195,7 @@ public class LocationFragment extends TransportrFragment
 		}
 		if (location.getLocation().hasLocation()) {
 			if (locationInfoStr.length() > 0) locationInfoStr.append(", ");
-			locationInfoStr.append(TransportrUtils.getCoordsName(location.getLocation()));
+			locationInfoStr.append(TransportrUtils.getCoordName(location.getLocation()));
 		}
 		locationInfo.setText(locationInfoStr);
 	}

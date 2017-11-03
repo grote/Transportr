@@ -11,5 +11,6 @@
 	<dimen name="buttonSize">48dp</dimen>
 	<dimen name="mapPadding">56dp</dimen>
 	<dimen name="locationPeekPadding">32dp</dimen>
+	<dimen name="dragToRefreshDistance">96dp</dimen>
 
 </resources>
