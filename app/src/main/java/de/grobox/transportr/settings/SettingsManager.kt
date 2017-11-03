@@ -8,13 +8,11 @@ import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider.Optimize
 import de.schildbach.pte.NetworkProvider.WalkSpeed
 import java.util.*
-import javax.annotation.ParametersAreNonnullByDefault
 import javax.inject.Inject
 
-@ParametersAreNonnullByDefault
+
 class SettingsManager @Inject constructor(private val context: Context) {
 
-    private val sharedPreferences = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
     private val settings = PreferenceManager.getDefaultSharedPreferences(context)
 
     val locale: Locale
@@ -66,7 +64,7 @@ class SettingsManager @Inject constructor(private val context: Context) {
         if (i == 2) networkSettingsStr = NETWORK_ID_2
         else if (i == 3) networkSettingsStr = NETWORK_ID_3
 
-        val networkStr = sharedPreferences.getString(networkSettingsStr, null) ?: return null
+        val networkStr = settings.getString(networkSettingsStr, null) ?: return null
 
         return try {
             NetworkId.valueOf(networkStr)
@@ -76,12 +74,12 @@ class SettingsManager @Inject constructor(private val context: Context) {
     }
 
     fun setNetworkId(newNetworkId: NetworkId) {
-        val networkId1 = sharedPreferences.getString(NETWORK_ID_1, "")
+        val networkId1 = settings.getString(NETWORK_ID_1, "")
         if (networkId1 == newNetworkId.name) {
             return  // same network selected
         }
-        val networkId2 = sharedPreferences.getString(NETWORK_ID_2, "")
-        val editor = sharedPreferences.edit()
+        val networkId2 = settings.getString(NETWORK_ID_2, "")
+        val editor = settings.edit()
         if (networkId2 != newNetworkId.name) {
             editor.putString(NETWORK_ID_3, networkId2)
         }
@@ -95,14 +93,12 @@ class SettingsManager @Inject constructor(private val context: Context) {
     }
 
     companion object {
-        private val PREFS = "LiberarioPrefs"
-
         private val NETWORK_ID_1 = "NetworkId"
         private val NETWORK_ID_2 = "NetworkId2"
         private val NETWORK_ID_3 = "NetworkId3"
 
-        internal @JvmField val LANGUAGE = "pref_key_language"
-        internal @JvmField val THEME = "pref_key_theme"
+        @JvmField internal val LANGUAGE = "pref_key_language"
+        @JvmField internal val THEME = "pref_key_theme"
         private val SHOW_WHEN_LOCKED = "pref_key_show_when_locked"
         private val WALK_SPEED = "pref_key_walk_speed"
         private val OPTIMIZE = "pref_key_optimize"
