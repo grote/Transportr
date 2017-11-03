@@ -22,6 +22,7 @@ import de.schildbach.pte.dto.Trip;
 
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED;
+import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.BOTTOM;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.EXPANDED;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.MIDDLE;
@@ -41,7 +42,6 @@ public class TripDetailActivity extends TransportrActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		setShowWhenLocked(true);  // TODO test with API < 27 and add preference
 
 		getComponent().inject(this);
 
@@ -55,6 +55,11 @@ public class TripDetailActivity extends TransportrActivity {
 		viewModel.from = from;
 		viewModel.via = via;
 		viewModel.to = to;
+
+		if (viewModel.showWhenLocked()) {
+			//noinspection deprecation
+			getWindow().addFlags(FLAG_SHOW_WHEN_LOCKED);
+		}
 
 		setContentView(R.layout.activity_trip_detail);
 		setUpCustomToolbar(true);

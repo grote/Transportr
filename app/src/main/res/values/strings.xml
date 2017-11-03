@@ -111,8 +111,8 @@ there are any).</string>
     <string name="pref_walk_speed_slow">Slow</string>
     <string name="pref_walk_speed_normal">Normal</string>
     <string name="pref_walk_speed_fast">Fast</string>
-
-    <string name="warning_no_gps_fix">Could not locate your position, yet.</string>
+	<string name="pref_show_when_locked_title">Show trip and search results even when screen is locked</string>
+	<string name="pref_show_when_locked_summary">Show over lock screen</string>
 
     <string name="error">Error</string>
     <string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
@@ -148,6 +148,7 @@ there are any).</string>
 	<string name="action_change">Change</string>
 	<string name="action_add_shortcut">Add Launcher Shortcut</string>
     <string name="location_gps">Use Current Position</string>
+	<string name="warning_no_gps_fix">Could not locate your position, yet.</string>
     <string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
 
     <string name="select_products">Select Means of Transport</string>

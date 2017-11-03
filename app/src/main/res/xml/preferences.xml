@@ -9,8 +9,7 @@
 		<Preference
 			android:key="pref_key_network"
 			android:summary="@string/pick_network_activity"
-			android:title="@string/network"
-			/>
+			android:title="@string/network"/>
 
 	</PreferenceCategory>
 
@@ -25,8 +24,7 @@
 			android:key="pref_key_optimize"
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
-			android:title="@string/pref_optimize"
-			/>
+			android:title="@string/pref_optimize"/>
 
 		<ListPreference
 			android:defaultValue="@string/pref_walk_speed_value_default"
@@ -35,8 +33,7 @@
 			android:key="pref_key_walk_speed"
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
-			android:title="@string/pref_walk_speed"
-			/>
+			android:title="@string/pref_walk_speed"/>
 
 	</PreferenceCategory>
 
@@ -51,8 +48,7 @@
 			android:key="pref_key_theme"
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
-			android:title="@string/pref_theme_title"
-			/>
+			android:title="@string/pref_theme_title"/>
 
 		<ListPreference
 			android:defaultValue="@string/pref_language_value_default"
@@ -61,8 +57,13 @@
 			android:key="pref_key_language"
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
-			android:title="@string/pref_language_title"
-			/>
+			android:title="@string/pref_language_title"/>
+
+		<CheckBoxPreference
+			android:defaultValue="true"
+			android:key="pref_key_show_when_locked"
+			android:summary="@string/pref_show_when_locked_title"
+			android:title="@string/pref_show_when_locked_summary"/>
 
 	</PreferenceCategory>
 

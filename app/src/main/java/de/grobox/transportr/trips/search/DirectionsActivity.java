@@ -18,6 +18,7 @@ import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.locations.WrapLocation;
 
+import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.transportr.utils.Constants.FROM;
@@ -42,14 +43,17 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		getComponent().inject(this);
 		setContentView(R.layout.activity_directions);
 
-//		setShowWhenLocked(true);  // TODO test with API < 27 and add preference
-
-		AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
-		appBarLayout.addOnOffsetChangedListener(this);
-
 		// get view model and observe data
 		viewModel = ViewModelProviders.of(this, viewModelFactory).get(DirectionsViewModel.class);
 		viewModel.showTrips.observe(this, v -> showTrips());
+
+		if (viewModel.showWhenLocked()) {
+			//noinspection deprecation
+			getWindow().addFlags(FLAG_SHOW_WHEN_LOCKED);
+		}
+
+		AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
+		appBarLayout.addOnOffsetChangedListener(this);
 
 		fragmentContainer = findViewById(R.id.fragmentContainer);
 

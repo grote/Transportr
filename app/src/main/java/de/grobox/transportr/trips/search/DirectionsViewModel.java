@@ -37,6 +37,7 @@ import static de.grobox.transportr.utils.DateUtils.isNow;
 public class DirectionsViewModel extends SavedSearchesViewModel implements TimeDateListener, LocationViewListener {
 
 	private final TripsRepository tripsRepository;
+	private final SettingsManager settingsManager;
 
 	private final MutableLiveData<WrapLocation> fromLocation = new MutableLiveData<>();
 	private final MutableLiveData<WrapLocation> viaLocation = new MutableLiveData<>();
@@ -67,9 +68,14 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		topSwipeEnabled.setValue(false);
 		locationLiveData = new LocationLiveData(application.getApplicationContext());
 
+		this.settingsManager = settingsManager;
 		if (getTransportNetwork().getValue() == null) throw new IllegalStateException();
 		tripsRepository = new TripsRepository(application.getApplicationContext(), getTransportNetwork().getValue().getNetworkProvider(),
 				settingsManager, searchesRepository);
+	}
+
+	boolean showWhenLocked() {
+		return settingsManager.showWhenLocked();
 	}
 
 	LiveData<WrapLocation> getFromLocation() {

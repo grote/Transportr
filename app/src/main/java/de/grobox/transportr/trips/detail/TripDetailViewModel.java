@@ -49,6 +49,10 @@ public class TripDetailViewModel extends TransportNetworkViewModel implements Le
 		this.settingsManager = settingsManager;
 	}
 
+	boolean showWhenLocked() {
+		return settingsManager.showWhenLocked();
+	}
+
 	public LiveData<Trip> getTrip() {
 		return trip;
 	}
