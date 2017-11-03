@@ -6,8 +6,8 @@ jdk: oraclejdk8
 
 android:
   components:
-    - build-tools-26.0.2
-    - android-26
+    - build-tools-27.0.0
+    - android-27
     - tools
     - android-22
     - sys-img-armeabi-v7a-android-22
@@ -25,9 +25,9 @@ before_script:
     - ./pre-build.sh
 
     # update gradle
-    - wget https://services.gradle.org/distributions/gradle-4.2.1-bin.zip
-    - unzip -qq gradle-4.2.1-bin.zip
-    - export GRADLE_HOME=$PWD/gradle-4.2.1
+    - wget https://services.gradle.org/distributions/gradle-4.3-bin.zip
+    - unzip -qq gradle-4.3-bin.zip
+    - export GRADLE_HOME=$PWD/gradle-4.3
     - export PATH=$GRADLE_HOME/bin:$PATH
     - gradle -v
     - gradle dependencies || true
