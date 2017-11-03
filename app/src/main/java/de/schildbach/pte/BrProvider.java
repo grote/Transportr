@@ -26,7 +26,7 @@ import okhttp3.HttpUrl;
 
 public class BrProvider extends AbstractNavitiaProvider
 {
-	private static String API_REGION = "br";
+	private static final String API_REGION = "br";
 
 	public BrProvider(final HttpUrl api, final String authorization)
 	{

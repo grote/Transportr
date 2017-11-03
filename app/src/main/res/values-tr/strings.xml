@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Gizliliğinize ve özgürlüğünüze saygı duyan toplu taşıma rehberi.</string>
-  <string name="onboarding_drawer_title">Daha Fazla Özelliği Keşfedin</string>
 	<string name="drawer_changelog">Sürüm Notları</string>
   <string name="drawer_about">Hakkında</string>
   <string name="drawer_settings">Ayarlar</string>

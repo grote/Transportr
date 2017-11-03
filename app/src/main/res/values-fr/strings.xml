@@ -9,7 +9,6 @@ Vous trouverez des instructions sur la page d\'accueil.
 Transportr trouve des itinéraires de chez vous, de votre position actuelle ou d\'un arrêt/station donné vers n\'importe quel lieu. Vous pouvez aussi enregistrer des trajets entiers préférés et y accéder ultérieurement d\'un seul glisser. Bien sûr, vous pouvez aussi faire apparaître votre trajet sur la carte et suivre votre déplacement par GPS.
 
 Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les prochains départs incluant les retards (s\'il y en a). </string>
-  <string name="onboarding_drawer_title">Découvrir plus de fonctions</string>
 	<string name="drawer_changelog">Journal des changements</string>
   <string name="drawer_about">À propos</string>
   <string name="drawer_settings">Paramètres</string>

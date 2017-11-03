@@ -39,7 +39,6 @@ import de.grobox.transportr.TransportrFragment;
 public class AboutMainFragment extends TransportrFragment {
 
 	public static final String TAG = AboutMainFragment.class.getSimpleName();
-	AboutPagerAdapter mPagerAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class AboutMainFragment extends TransportrFragment {
 		// don't recreate the fragments when changing tabs
 		viewPager.setOffscreenPageLimit(3);
 
-		mPagerAdapter = new AboutPagerAdapter(getChildFragmentManager());
+		AboutPagerAdapter mPagerAdapter = new AboutPagerAdapter(getChildFragmentManager());
 		viewPager.setAdapter(mPagerAdapter);
 
 		final TabLayout tabLayout = view.findViewById(R.id.tab_layout);

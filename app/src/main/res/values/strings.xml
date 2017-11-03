@@ -59,12 +59,14 @@ there are any).</string>
 </string>
     <string name="visit_website">Visit Website</string>
 
+    <string name="open_navigation_drawer">Open Navigation Drawer</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="via">Via</string>
     <string name="search_hint">Search here</string>
     <string name="from_here">From Here</string>
     <string name="to_here">To Here</string>
+    <string name="clear_location">Clear Location</string>
     <string name="min"> min</string>
     <string name="walk">Walk</string>
     <string name="position">Platform</string>
@@ -88,6 +90,8 @@ there are any).</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="in_x_minutes">in %dmin</string>
     <string name="x_minutes_ago">%dmin ago</string>
+    <string name="time_picker_previous_day">Previous Day</string>
+    <string name="time_picker_next_day">Next Day</string>
 
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -139,7 +143,12 @@ there are any).</string>
     <string name="work">Work</string>
     <string name="work_hint">Set Work Location</string>
     <string name="tap_to_set">Tap to set</string>
+	<string name="action_set_locations">Edit search</string>
+	<string name="action_swap_locations">Search return trip</string>
+	<string name="action_change">Change</string>
+	<string name="action_add_shortcut">Add Launcher Shortcut</string>
     <string name="location_gps">Use Current Position</string>
+    <string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
 
     <string name="select_products">Select Means of Transport</string>
     <string name="product_high_speed_train">High-Speed Train</string>
@@ -151,12 +160,6 @@ there are any).</string>
     <string name="product_ferry">Ferry</string>
     <string name="product_cablecar">Cablecar</string>
     <string name="product_on_demand">On Demand</string>
-    <string name="action_set_locations">Edit search</string>
-    <string name="action_swap_locations">Search return trip</string>
-    <string name="action_change">Change</string>
-    <string name="action_add_shortcut">Add Launcher Shortcut</string>
-
-    <string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
 
     <!-- ckChangeLog -->
     <string name="changelog_full_title">Changelog</string>

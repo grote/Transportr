@@ -18,6 +18,7 @@ package de.grobox.transportr;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
+import android.support.annotation.NonNull;
 
 import java.util.Map;
 
@@ -36,8 +37,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
 		this.creators = creators;
 	}
 
-	@SuppressWarnings("unchecked")
+	@NonNull
 	@Override
+	@SuppressWarnings("unchecked")
 	public <T extends ViewModel> T create(Class<T> modelClass) {
 		Provider<? extends ViewModel> creator = creators.get(modelClass);
 		if (creator == null) {

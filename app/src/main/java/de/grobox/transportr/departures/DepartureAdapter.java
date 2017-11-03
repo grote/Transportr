@@ -29,9 +29,9 @@ import java.util.Date;
 import de.grobox.transportr.R;
 import de.schildbach.pte.dto.Departure;
 
-public class DepartureAdapter extends RecyclerView.Adapter<DepartureViewHolder> {
+class DepartureAdapter extends RecyclerView.Adapter<DepartureViewHolder> {
 
-	private SortedList<Departure> items = new SortedList<>(Departure.class, new SortedList.Callback<Departure>() {
+	private final SortedList<Departure> items = new SortedList<>(Departure.class, new SortedList.Callback<Departure>() {
 		@Override
 		public void onInserted(int position, int count) {
 			notifyItemRangeInserted(position, count);

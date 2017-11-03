@@ -23,7 +23,7 @@ public abstract class LocationsViewModel extends TransportNetworkViewModel {
 	private final LiveData<WorkLocation> work;
 	private final LiveData<List<FavoriteLocation>> locations;
 
-	public LocationsViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, LocationRepository locationRepository) {
+	protected LocationsViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, LocationRepository locationRepository) {
 		super(application, transportNetworkManager);
 		this.locationRepository = locationRepository;
 		this.home = locationRepository.getHomeLocation();
@@ -56,7 +56,7 @@ public abstract class LocationsViewModel extends TransportNetworkViewModel {
 	}
 
 	/**
-	 * This checks existing {@link ADDRESS} Locations for geographic proximity
+	 * This checks existing ADDRESS Locations for geographic proximity
 	 * before adding the given location as a favorite.
 	 * The idea is too prevent duplicates of addresses with slightly different coordinates.
 	 *

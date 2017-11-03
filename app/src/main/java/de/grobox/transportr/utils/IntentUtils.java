@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Date;
 
 import de.grobox.transportr.departures.DeparturesActivity;
 import de.grobox.transportr.locations.WrapLocation;
@@ -18,7 +17,6 @@ import de.grobox.transportr.trips.search.DirectionsActivity;
 import de.schildbach.pte.dto.Location;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static de.grobox.transportr.utils.Constants.DATE;
 import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.transportr.utils.Constants.FROM;
 import static de.grobox.transportr.utils.Constants.SEARCH;
@@ -28,8 +26,7 @@ import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
 
 public class IntentUtils {
 
-	public static void findDirections(Context context, long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to,
-	                                  @Nullable Date date, boolean search) {
+	public static void findDirections(Context context, long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to, boolean search) {
 		Intent intent = new Intent(context, DirectionsActivity.class);
 		intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		intent.putExtra(FAV_TRIP_UID, uid);
@@ -37,23 +34,15 @@ public class IntentUtils {
 		intent.putExtra(VIA, via);
 		intent.putExtra(TO, to);
 		intent.putExtra(SEARCH, search);
-		if (date != null) {
-			intent.putExtra(DATE, date);
-		}
 		context.startActivity(intent);
 	}
 
-	public static void presetDirections(Context context, long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to) {
-		findDirections(context, uid, from, via, to, null, false);
-	}
-
-	public static void findDirections(Context context, long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to,
-	                                  @Nullable Date date) {
-		findDirections(context, uid, from, via, to, date, true);
-	}
-
 	public static void findDirections(Context context, long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to) {
-		findDirections(context, uid, from, via, to, null);
+		findDirections(context, uid, from, via, to, true);
+	}
+
+	public static void presetDirections(Context context, long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to) {
+		findDirections(context, uid, from, via, to, false);
 	}
 
 	public static void findDepartures(Context context, WrapLocation location) {

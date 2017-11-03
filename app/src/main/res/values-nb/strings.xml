@@ -14,7 +14,6 @@ fremtidige turer i ett enkelt drag. Du kan selvsagt også vise turen i kartet
 og følge framdrift via GPS.
 
 Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsinkelser (hvis det skulle være noen).</string>
-  <string name="onboarding_drawer_title">Oppdag flere funksjoner</string>
 	<string name="drawer_changelog">Endringslogg</string>
   <string name="drawer_about">Om</string>
   <string name="drawer_settings">Innstillinger</string>

@@ -13,7 +13,6 @@
 もちろん、地図上であなたの旅行を表示し、GPS 経由であなたの進行状況を追跡することもできます。
 
 近くの駅を探して、遅れを含む今後の出発を表示することもできます (もしあれば)。</string>
-  <string name="onboarding_drawer_title">その他の機能を探す</string>
 	<string name="drawer_changelog">変更履歴</string>
   <string name="drawer_about">アプリについて</string>
   <string name="drawer_settings">設定</string>

@@ -13,7 +13,6 @@ e acompanhar seu progresso via GPS.
 
 Você pode também descobrir terminais por perto e visualizar os ônibus que está de saída (se existir algum). 
 </string>
-  <string name="onboarding_drawer_title">Descubra mais recursos</string>
 	<string name="drawer_changelog">Novidades</string>
   <string name="drawer_about">Sobre</string>
   <string name="drawer_settings">Configurações</string>

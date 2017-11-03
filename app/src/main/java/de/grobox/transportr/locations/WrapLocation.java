@@ -43,16 +43,16 @@ public class WrapLocation implements Serializable {
 	public enum WrapType {NORMAL, GPS}
 
 	@Ignore
-	private WrapType wrapType;
+	private final WrapType wrapType;
 
-	public LocationType type;
+	public final LocationType type;
 	public @Nullable String id;
 	public int lat, lon;
 	public @Nullable String place;
 	public @Nullable String name;
 	public @Nullable Set<Product> products;
 
-	public WrapLocation(LocationType type, @Nullable String id, int lat, int lon, @Nullable String place, @Nullable String name, @Nullable Set<Product> products) {
+	protected WrapLocation(LocationType type, @Nullable String id, int lat, int lon, @Nullable String place, @Nullable String name, @Nullable Set<Product> products) {
 		this.wrapType = NORMAL;
 		this.type = type;
 		this.id = id;

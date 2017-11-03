@@ -21,7 +21,7 @@ import okhttp3.HttpUrl;
 
 public class SpainProvider extends AbstractNavitiaProvider
 {
-	private static String API_REGION = "es";
+	private static final String API_REGION = "es";
 
 	public SpainProvider(final HttpUrl api, final String authorization)
 	{

@@ -37,7 +37,7 @@ import static de.grobox.transportr.favorites.trips.FavoriteTripType.WORK;
 @ParametersAreNonnullByDefault
 class FavoriteTripAdapter extends RecyclerView.Adapter<AbstractFavoritesViewHolder> {
 
-	private SortedList<FavoriteTripItem> items = new SortedList<>(FavoriteTripItem.class, new SortedList.Callback<FavoriteTripItem>() {
+	private final SortedList<FavoriteTripItem> items = new SortedList<>(FavoriteTripItem.class, new SortedList.Callback<FavoriteTripItem>() {
 		@Override
 		public void onInserted(int position, int count) {
 			notifyItemRangeInserted(position, count);

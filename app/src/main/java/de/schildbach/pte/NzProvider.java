@@ -30,7 +30,7 @@ import okhttp3.HttpUrl;
  */
 public class NzProvider extends AbstractNavitiaProvider
 {
-	private static String API_REGION = "nz";
+	private static final String API_REGION = "nz";
 
 	public NzProvider(final HttpUrl api, final String authorization)
 	{

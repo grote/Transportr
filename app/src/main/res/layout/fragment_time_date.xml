@@ -24,7 +24,8 @@
 		android:tint="?attr/colorControlNormal"
 		app:layout_constraintBottom_toBottomOf="@+id/dateView"
 		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/dateView"/>
+		app:layout_constraintTop_toTopOf="@+id/dateView"
+		android:contentDescription="@string/time_picker_previous_day"/>
 
 	<TextView
 		android:id="@+id/dateView"
@@ -49,7 +50,8 @@
 		android:tint="?attr/colorControlNormal"
 		app:layout_constraintBottom_toBottomOf="@+id/dateView"
 		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/dateView"/>
+		app:layout_constraintTop_toTopOf="@+id/dateView"
+		android:contentDescription="@string/time_picker_next_day"/>
 
 	<Button
 		android:id="@+id/cancelButton"

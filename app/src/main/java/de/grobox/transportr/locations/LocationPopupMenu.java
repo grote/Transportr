@@ -29,7 +29,7 @@ import static de.grobox.transportr.utils.IntentUtils.presetDirections;
 
 public class LocationPopupMenu extends BasePopupMenu {
 
-	private WrapLocation location;
+	private final WrapLocation location;
 
 	LocationPopupMenu(Context context, View anchor, WrapLocation location) {
 		super(context, anchor);

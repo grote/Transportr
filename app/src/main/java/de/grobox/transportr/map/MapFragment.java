@@ -72,7 +72,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 
 	private FloatingActionButton gpsFab;
 	private @Nullable Marker selectedLocationMarker;
-	private Map<Marker, Location> nearbyLocations = new HashMap<>();
+	private final Map<Marker, Location> nearbyLocations = new HashMap<>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -215,7 +215,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		gpsFab.setBackgroundTintList(backgroundColor);
 	}
 
-	public void zoomTo(LatLng latLng) {
+	private void zoomTo(LatLng latLng) {
 		CameraUpdate update = map.getCameraPosition().zoom < LOCATION_ZOOM ?
 				CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM) : CameraUpdateFactory.newLatLng(latLng);
 		map.easeCamera(update, 1500);
@@ -228,12 +228,12 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		map.moveCamera(update);
 	}
 
-	public void zoomToBounds(LatLngBounds latLngBounds) {
+	private void zoomToBounds(LatLngBounds latLngBounds) {
 		int padding = getResources().getDimensionPixelSize(R.dimen.mapPadding);
 		map.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, padding));
 	}
 
-	public void findNearbyStations(WrapLocation location) {
+	private void findNearbyStations(WrapLocation location) {
 		// TODO limit maxDistance to visible area at least, some providers return a lot of stations
 		Bundle args = NearbyLocationsLoader.getBundle(location.getLocation(), 0);
 		getActivity().getSupportLoaderManager().restartLoader(LOADER_NEARBY_STATIONS, args, this).forceLoad();

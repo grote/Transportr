@@ -8,7 +8,7 @@ import de.grobox.transportr.ui.LineView
 import de.schildbach.pte.dto.Line
 
 
-internal class LineAdapter() : RecyclerView.Adapter<LineViewHolder>() {
+internal class LineAdapter : RecyclerView.Adapter<LineViewHolder>() {
 
     private var lines: List<Line> = emptyList()
 

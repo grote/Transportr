@@ -76,6 +76,7 @@
 		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toEndOf="@+id/circle"
 		app:layout_constraintTop_toTopOf="@+id/circle"
+		tools:ignore="RtlSymmetry"
 		tools:text="An intermediate stop that can have a very long name"/>
 
 	<ImageButton

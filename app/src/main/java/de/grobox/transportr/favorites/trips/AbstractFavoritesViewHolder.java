@@ -10,8 +10,8 @@ import de.grobox.transportr.R;
 
 abstract class AbstractFavoritesViewHolder extends RecyclerView.ViewHolder {
 
-	protected final View layout;
-	protected final ImageView icon;
+	private final View layout;
+	final ImageView icon;
 	final ImageButton overflow;
 
 	AbstractFavoritesViewHolder(View v) {

@@ -9,7 +9,7 @@ public abstract class TransportNetworkViewModel extends AndroidViewModel {
 
 	private final LiveData<TransportNetwork> transportNetwork;
 
-	public TransportNetworkViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager) {
+	protected TransportNetworkViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager) {
 		super(application);
 		this.transportNetwork = transportNetworkManager.getTransportNetwork();
 	}

@@ -57,7 +57,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	private final static String TEXT = "text";
 	private final static String TEXT_POSITION = "textPosition";
 	private final static int AUTO_COMPLETION_DELAY = 300;
-	protected final static String SUPER_STATE = "superState";
+	private final static String SUPER_STATE = "superState";
 
 	private LocationAdapter adapter;
 	private SuggestLocationsTask task;
@@ -65,8 +65,8 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	private WrapLocation location;
 	private boolean suggestLocationsTaskPending = false;
 	protected final LocationViewHolder ui;
-	protected LocationViewListener listener;
-	protected String hint;
+	private LocationViewListener listener;
+	protected final String hint;
 
 	private FavLocationType type = FavLocationType.FROM;
 
@@ -128,10 +128,10 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	protected static class LocationViewHolder {
-		public ImageView status;
-		public AutoCompleteTextView location;
-		ProgressBar progress;
-		public ImageButton clear;
+		public final ImageView status;
+		public final AutoCompleteTextView location;
+		final ProgressBar progress;
+		public final ImageButton clear;
 
 		private LocationViewHolder(View view) {
 			status = view.findViewById(R.id.statusButton);
@@ -206,7 +206,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	/* Auto-Completion */
 
-	public void handleTextChanged(CharSequence s) {
+	private void handleTextChanged(CharSequence s) {
 		// show clear button
 		if (s.length() > 0) {
 			ui.clear.setVisibility(View.VISIBLE);
@@ -258,7 +258,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 
 	/* Setter and Getter */
 
-	protected LocationAdapter getAdapter() {
+	private LocationAdapter getAdapter() {
 		return (LocationAdapter) ui.location.getAdapter();
 	}
 
@@ -288,7 +288,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		return this.location;
 	}
 
-	public String getText() {
+	private String getText() {
 		if (ui.location != null) {
 			return ui.location.getText().toString();
 		} else {
@@ -301,17 +301,13 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		getAdapter().setSort(type);
 	}
 
-	public FavLocationType getType() {
-		return type;
-	}
-
 	public void setHint(@StringRes int hint) {
 		ui.location.setHint(hint);
 	}
 
 	/* Behavior */
 
-	protected void onFocusChange(View v, boolean hasFocus) {
+	private void onFocusChange(View v, boolean hasFocus) {
 		if (v instanceof AutoCompleteTextView && ViewCompat.isAttachedToWindow(v)) {
 			if (hasFocus) {
 				((AutoCompleteTextView) v).showDropDown();
@@ -321,7 +317,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		}
 	}
 
-	public void onLocationItemClick(WrapLocation loc) {
+	private void onLocationItemClick(WrapLocation loc) {
 		setLocation(loc);  // TODO set via ViewModel
 		ui.location.requestFocus();
 
@@ -368,7 +364,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		}
 	}
 
-	public void hideSoftKeyboard() {
+	private void hideSoftKeyboard() {
 		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (imm != null) {
 			imm.hideSoftInputFromWindow(ui.location.getWindowToken(), 0);

@@ -126,7 +126,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			if (from != null && from.getWrapType() == NORMAL) {
 				from = viewModel.addFavoriteIfNotExists(from, FROM);
 			}
-			findDirections(MapActivity.this, 0, from, null, to, null, true);
+			findDirections(MapActivity.this, 0, from, null, to);
 		});
 
 		if (savedInstanceState == null) {

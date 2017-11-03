@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	tools:showIn="@layout/nearbystations_header">
+	tools:showIn="@layout/activity_map">
 
 	<ImageView
 		android:id="@+id/statusButton"
@@ -13,7 +13,8 @@
 		android:background="?attr/selectableItemBackgroundBorderless"
 		android:scaleType="center"
 		android:tint="?colorControlNormal"
-		app:srcCompat="@drawable/ic_location"/>
+		app:srcCompat="@drawable/ic_location"
+		android:contentDescription="@string/open_navigation_drawer"/>
 
 	<AutoCompleteTextView
 		android:id="@+id/location"
@@ -43,6 +44,7 @@
 		android:tint="?colorControlNormal"
 		android:visibility="gone"
 		app:srcCompat="@drawable/ic_action_content_remove"
-		tools:visibility="visible"/>
+		tools:visibility="visible"
+		android:contentDescription="@string/clear_location"/>
 
 </merge>

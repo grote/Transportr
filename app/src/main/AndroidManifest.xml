@@ -35,6 +35,7 @@
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
 		android:theme="@style/AppTheme.Light"
 		tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
@@ -61,11 +62,13 @@
 		<activity
 			android:name="de.grobox.transportr.departures.DeparturesActivity"
 			android:label="@string/drawer_departures"
-			android:parentActivityName="de.grobox.transportr.map.MapActivity"/>
+			android:parentActivityName="de.grobox.transportr.map.MapActivity"
+			tools:targetApi="jelly_bean"/>
 
 		<activity
 			android:name="de.grobox.transportr.trips.detail.TripDetailActivity"
-			android:parentActivityName="de.grobox.transportr.trips.search.DirectionsActivity"/>
+			android:parentActivityName="de.grobox.transportr.trips.search.DirectionsActivity"
+			tools:targetApi="jelly_bean"/>
 
 		<activity
 			android:name="de.grobox.transportr.networks.PickTransportNetworkActivity"

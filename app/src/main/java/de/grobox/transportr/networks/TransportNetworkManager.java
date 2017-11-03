@@ -33,7 +33,7 @@ public class TransportNetworkManager {
 
 	private final SettingsManager settingsManager;
 
-	private MutableLiveData<TransportNetwork> transportNetwork = new MutableLiveData<>();
+	private final MutableLiveData<TransportNetwork> transportNetwork = new MutableLiveData<>();
 	private final LiveData<NetworkId> networkId = Transformations.map(transportNetwork, TransportNetwork::getId);
 	private @Nullable TransportNetwork transportNetwork2, transportNetwork3;
 

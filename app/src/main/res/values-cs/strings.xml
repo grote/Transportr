@@ -2,7 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Veřejná doprava respektuje vaše soukromí a svobodu.</string>
   <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr je nezisková app, která byla vyvinuta lidmi z celého světa, aby se používání veřejné dopravy stalo tak jednoduché, jak je to jen možné, ať jste kdekoli. V současné době funguje nejlépe v Evropě, ale také podporuje mnoho míst po celém světě. Pokud žijete v nepodporované oblasti, zvažte jeho přidání do Transportr. Pokyny jsou k dispozici na domovské stránce. Transportr najde trasu z domova, vaší aktuální polohy nebo danou stanici od odkudkoliv budete chtít jet. Můžete také uložit celé cesty jako oblíbené a najít další cesty s jednou ranou. Samozřejmě, můžete také zobrazit na mapě svou cestu a sledovat svůj pokrok pomocí GPS. Můžete také objevovat blízké stanice a ukázat nejbližší odjezdy včetně zpoždění (pokud existují).</string>
-  <string name="onboarding_drawer_title">Objevte více možností</string>
   <string name="drawer_changelog">Seznam změn</string>
   <string name="drawer_about">O</string>
   <string name="drawer_settings">Nastavení</string>

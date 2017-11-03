@@ -8,7 +8,6 @@ Obecnie, działa najlepiej w Europie, ale także inne miejsca na świecie są ws
 Transportr znajduje drogę z Twojego domu, z miejsca gdzie obecnie jesteś, lub z określonego przystanku do dowolnego miejsca gdzie chcesz się dostać. Możesz dodać całe trasy do ulubionych i szukać nowych tras jednym kliknięciem. Oczywiście, możesz zobaczyć swoją trasę na mapie i śledzić swój postęp za pomocą GPS.
 
 Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźnieniami (jeżeli takie wystąpią).</string>
-  <string name="onboarding_drawer_title">Odkryj więcej funkcji</string>
 	<string name="drawer_changelog">Lista zmian</string>
   <string name="drawer_about">O aplikacji</string>
   <string name="drawer_settings">Ustawienia</string>

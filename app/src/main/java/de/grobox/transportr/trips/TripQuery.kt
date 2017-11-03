@@ -12,7 +12,7 @@ class TripQuery internal constructor(
         departure: Boolean?,
         products: Set<Product>?) {
 
-    val departure = departure ?: true
+    val departure = departure != false
     val products: Set<Product> = products ?: EnumSet.allOf(Product::class.java)
 
     fun toFavoriteTripItem(): FavoriteTripItem {

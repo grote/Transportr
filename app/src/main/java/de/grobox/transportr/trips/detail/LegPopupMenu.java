@@ -41,7 +41,7 @@ import static de.grobox.transportr.utils.IntentUtils.startGeoIntent;
 public class LegPopupMenu extends BasePopupMenu {
 	private Location loc1 = null;
 	private Location loc2 = null;
-	private String text;
+	private final String text;
 
 	LegPopupMenu(Context context, View anchor, Leg leg, boolean is_last) {
 		super(context, anchor);

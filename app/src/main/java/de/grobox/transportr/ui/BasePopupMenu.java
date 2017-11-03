@@ -33,11 +33,11 @@ import de.grobox.transportr.R;
 
 public abstract class BasePopupMenu extends PopupMenu implements OnMenuItemClickListener {
 
-	protected Context context;
+	protected final Context context;
 	@ColorInt
 	protected final int iconColor;
 
-	public BasePopupMenu(Context context, View anchor) {
+	protected BasePopupMenu(Context context, View anchor) {
 		super(context, anchor);
 
 		this.context = context;

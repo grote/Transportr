@@ -30,7 +30,7 @@ import de.schildbach.pte.dto.Trip;
 
 class TripAdapter extends RecyclerView.Adapter<TripViewHolder> {
 
-	private SortedList<Trip> items = new SortedList<>(Trip.class, new SortedList.Callback<Trip>() {
+	private final SortedList<Trip> items = new SortedList<>(Trip.class, new SortedList.Callback<Trip>() {
 		@Override
 		public void onInserted(int position, int count) {
 			notifyItemRangeInserted(position, count);
@@ -92,10 +92,6 @@ class TripAdapter extends RecyclerView.Adapter<TripViewHolder> {
 
 	void addAll(Collection<Trip> departures) {
 		this.items.addAll(departures);
-	}
-
-	public void clear() {
-		items.clear();
 	}
 
 	interface OnTripClickListener {

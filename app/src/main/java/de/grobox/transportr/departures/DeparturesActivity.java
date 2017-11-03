@@ -178,7 +178,7 @@ public class DeparturesActivity extends TransportrActivity
 	}
 
 	@Override
-	public void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday) {
+	public void onTimeAndDateSet(Calendar calendar) {
 		this.calendar = calendar;
 		adapter.clear();
 		searchState = SearchState.INITIAL;
@@ -189,7 +189,7 @@ public class DeparturesActivity extends TransportrActivity
 		getSupportLoaderManager().restartLoader(LOADER_DEPARTURES, args, this).forceLoad();
 	}
 
-	public void loadMoreDepartures(boolean later) {
+	private void loadMoreDepartures(boolean later) {
 		Date date = new Date();
 		int maxDepartures = MAX_DEPARTURES;
 		int count = adapter.getItemCount();

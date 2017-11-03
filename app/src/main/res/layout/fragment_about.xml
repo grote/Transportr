@@ -51,6 +51,7 @@
 			android:layout_height="fill_parent"
 			android:layout_gravity="fill_vertical|fill_horizontal|fill"
 			android:clickable="true"
+			android:focusable="true"
 			android:linksClickable="true"
 			android:padding="10dp"
 			android:text="@string/about"/>

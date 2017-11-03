@@ -186,7 +186,7 @@ abstract class DrawerActivity extends TransportrActivity {
 		throw new IllegalArgumentException("Could not find fragment name");
 	}
 
-	protected void openPickNetworkProviderActivity() {
+	private void openPickNetworkProviderActivity() {
 		Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 		ActivityOptionsCompat options = makeScaleUpAnimation(getCurrentFocus(), 0, 0, 0, 0);
 		ActivityCompat.startActivity(this, intent, options.toBundle());

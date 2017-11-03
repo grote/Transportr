@@ -179,7 +179,6 @@
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="8dp"
 		android:layout_marginStart="8dp"
-		android:nestedScrollingEnabled="false"
 		app:layout_constraintEnd_toStartOf="@+id/duration"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/stopsButton"

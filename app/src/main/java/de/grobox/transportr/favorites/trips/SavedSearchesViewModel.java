@@ -16,7 +16,7 @@ public abstract class SavedSearchesViewModel extends LocationsViewModel {
 
 	private final LiveData<List<FavoriteTripItem>> savedSearches;
 
-	public SavedSearchesViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager,
+	protected SavedSearchesViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager,
 	                              LocationRepository locationRepository, SearchesRepository searchesRepository) {
 		super(application, transportNetworkManager, locationRepository);
 		this.searchesRepository = searchesRepository;

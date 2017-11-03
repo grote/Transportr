@@ -27,7 +27,7 @@
 			android:layout_height="48dp"
 			android:background="?attr/selectableItemBackground"
 			android:clickable="true"
-			android:contentDescription="@string/onboarding_drawer_title"
+			android:contentDescription="@string/material_drawer_open"
 			android:focusable="true"
 			android:scaleType="center"
 			android:src="@drawable/ic_menu_black"
@@ -69,7 +69,6 @@
 		android:id="@+id/bottomSheet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:elevation="5dp"
 		app:behavior_hideable="true"
 		app:elevation="5dp"
 		app:layout_behavior="android.support.design.widget.BottomSheetBehavior"/>

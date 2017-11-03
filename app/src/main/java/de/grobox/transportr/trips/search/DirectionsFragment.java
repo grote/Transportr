@@ -177,7 +177,7 @@ public class DirectionsFragment extends TransportrFragment {
 		to.setLocationViewListener(viewModel);
 	}
 
-	void onCalendarUpdated(@Nullable Calendar calendar) {
+	private void onCalendarUpdated(@Nullable Calendar calendar) {
 		if (calendar == null) return;
 		if (isNow(calendar)) {
 			time.setText(R.string.now);
@@ -240,7 +240,7 @@ public class DirectionsFragment extends TransportrFragment {
 		});
 	}
 
-	void onIsDepartureChanged(boolean isDeparture) {
+	private void onIsDepartureChanged(boolean isDeparture) {
 		if (menu == null) throw new IllegalStateException("Menu is null");
 		if (isDeparture) {
 			MenuItem departureItem = menu.findItem(R.id.action_departure);
@@ -251,14 +251,14 @@ public class DirectionsFragment extends TransportrFragment {
 		}
 	}
 
-	void onViaVisibleChanged(boolean viaVisible) {
+	private void onViaVisibleChanged(boolean viaVisible) {
 		if (menu == null) throw new IllegalStateException("Menu is null");
 		MenuItem viaItem = menu.findItem(R.id.action_navigation_expand);
 		viaItem.setChecked(viaVisible);
 		viaCard.setVisibility(viaVisible ? VISIBLE : GONE);
 	}
 
-	void onFindGpsLocation(@Nullable FavLocationType type) {
+	private void onFindGpsLocation(@Nullable FavLocationType type) {
 		if (type == null) {
 			viewModel.locationLiveData.removeObservers(DirectionsFragment.this);
 			return;

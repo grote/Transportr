@@ -36,7 +36,6 @@ import java.util.Calendar;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.utils.DateUtils;
 
 import static android.text.format.DateFormat.getDateFormat;
 import static java.util.Calendar.DAY_OF_MONTH;
@@ -110,9 +109,7 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 		Button okButton = v.findViewById(R.id.okButton);
 		okButton.setOnClickListener(view -> {
 			if (listener != null) {
-				boolean now = DateUtils.isNow(calendar);
-				boolean today = DateUtils.isToday(calendar);
-				listener.onTimeAndDateSet(calendar, now, today);
+				listener.onTimeAndDateSet(calendar);
 			}
 			dismiss();
 		});
@@ -170,7 +167,7 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 	}
 
 	public interface TimeDateListener {
-		void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday);
+		void onTimeAndDateSet(Calendar calendar);
 	}
 
 }

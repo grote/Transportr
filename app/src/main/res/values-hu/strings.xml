@@ -8,7 +8,6 @@ Jelenleg a legjobban Európán belül működik, de sok más helyet is támogat 
 A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy adott megállótól oda, ahova menni szeretnél. Teljes utakat menthetsz el a kedvenceid közé, és a legközelebbi kapcsolódásokat is egyszerűen megtalálhatod. Az utakat természetesen megtekintheted térképen is, és követheted a haladásodat GPS segítségével.
 
 Állomásokat is kereshetsz vele a közelben, és a legközelebbi indulásokat is megtekintheted, az esetleges késésekkel együtt.</string>
-  <string name="onboarding_drawer_title">Fedezz fel további funkciókat</string>
 	<string name="drawer_changelog">Változtatási napló</string>
   <string name="drawer_about">Az alkalmazásról</string>
   <string name="drawer_settings">Beállítások</string>

@@ -34,14 +34,14 @@ public class StoredSearch {
 
 	@PrimaryKey(autoGenerate = true)
 	protected long uid;
-	protected @Nullable NetworkId networkId;
+	protected final @Nullable NetworkId networkId;
 
 	@ColumnInfo(name = "from_id")
-	long fromId;
+	final long fromId;
 	@ColumnInfo(name = "via_id")
 	@Nullable Long viaId;
 	@ColumnInfo(name = "to_id")
-	long toId;
+	final long toId;
 	public int count;
 	public Date lastUsed;
 	public boolean favorite;
@@ -84,10 +84,6 @@ public class StoredSearch {
 	@Nullable
 	public NetworkId getNetworkId() {
 		return networkId;
-	}
-
-	public int getCount() {
-		return count;
 	}
 
 	public boolean isFavorite() {

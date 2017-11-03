@@ -119,7 +119,7 @@ public class ProductDialogFragment extends DialogFragment {
 		return products;
 	}
 
-	void setOkEnabled(boolean enabled) {
+	private void setOkEnabled(boolean enabled) {
 		okButton.setEnabled(enabled);
 	}
 
@@ -166,10 +166,10 @@ public class ProductDialogFragment extends DialogFragment {
 		}
 
 		class ViewHolder extends RecyclerView.ViewHolder {
-			private ViewGroup layout;
-			private ImageView image;
-			private TextView name;
-			private CheckBox checkBox;
+			private final ViewGroup layout;
+			private final ImageView image;
+			private final TextView name;
+			private final CheckBox checkBox;
 
 			ViewHolder(View v) {
 				super(v);

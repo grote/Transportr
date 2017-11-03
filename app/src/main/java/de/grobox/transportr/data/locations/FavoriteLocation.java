@@ -110,10 +110,10 @@ public class FavoriteLocation extends StoredLocation {
 		return super.toString() + "[" + fromCount + "]";
 	}
 
-	public static Comparator<FavoriteLocation> FromComparator = (loc1, loc2) -> loc2.getFromCount() - loc1.getFromCount();
+	public static final Comparator<FavoriteLocation> FromComparator = (loc1, loc2) -> loc2.getFromCount() - loc1.getFromCount();
 
-	public static Comparator<FavoriteLocation> ViaComparator = (loc1, loc2) -> loc2.getViaCount() - loc1.getViaCount();
+	public static final Comparator<FavoriteLocation> ViaComparator = (loc1, loc2) -> loc2.getViaCount() - loc1.getViaCount();
 
-	public static Comparator<FavoriteLocation> ToComparator = (loc1, loc2) -> loc2.getToCount() - loc1.getToCount();
+	public static final Comparator<FavoriteLocation> ToComparator = (loc1, loc2) -> loc2.getToCount() - loc1.getToCount();
 
 }

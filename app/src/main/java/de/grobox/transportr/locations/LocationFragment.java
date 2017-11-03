@@ -84,7 +84,7 @@ public class LocationFragment extends TransportrFragment
 
 	private MapViewModel viewModel;
 	private WrapLocation location;
-	private LineAdapter adapter = new LineAdapter();
+	private final LineAdapter adapter = new LineAdapter();
 
 	private ImageView locationIcon;
 	private TextView locationName;
@@ -249,7 +249,7 @@ public class LocationFragment extends TransportrFragment
 		});
 	}
 
-	public void onNearbyStationsLoaded() {
+	private void onNearbyStationsLoaded() {
 		nearbyStationsButton.setVisibility(VISIBLE);
 		nearbyStationsButton.setEnabled(false);
 		nearbyStationsProgress.setVisibility(INVISIBLE);

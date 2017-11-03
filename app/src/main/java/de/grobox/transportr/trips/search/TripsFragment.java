@@ -126,7 +126,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		viewModel.searchMore(later);
 	}
 
-	public void onSwipeEnabledChanged(boolean enabled) {
+	private void onSwipeEnabledChanged(boolean enabled) {
 		if (!swipe.isRefreshing() && enabled != topSwipingEnabled) {
 			updateSwipeState();
 		}

@@ -6,7 +6,6 @@ import android.arch.lifecycle.Transformations;
 import android.support.annotation.Nullable;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -18,7 +17,6 @@ import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesRepository;
 import de.grobox.transportr.favorites.trips.SavedSearchesViewModel;
-import de.grobox.transportr.ui.TimeDateFragment.TimeDateListener;
 import de.grobox.transportr.locations.LocationLiveData;
 import de.grobox.transportr.locations.LocationView.LocationViewListener;
 import de.grobox.transportr.locations.WrapLocation;
@@ -26,6 +24,7 @@ import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.settings.SettingsManager;
 import de.grobox.transportr.trips.TripQuery;
 import de.grobox.transportr.trips.search.TripsRepository.QueryMoreState;
+import de.grobox.transportr.ui.TimeDateFragment.TimeDateListener;
 import de.grobox.transportr.utils.SingleLiveEvent;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Trip;
@@ -108,14 +107,8 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		return calendar;
 	}
 
-	void setDate(Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		setCalendar(calendar);
-	}
-
 	@Override
-	public void onTimeAndDateSet(Calendar calendar, boolean isNow, boolean isToday) {
+	public void onTimeAndDateSet(Calendar calendar) {
 		setCalendar(calendar);
 		search();
 	}

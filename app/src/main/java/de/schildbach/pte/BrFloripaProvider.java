@@ -21,7 +21,7 @@ import okhttp3.HttpUrl;
 
 public class BrFloripaProvider extends AbstractNavitiaProvider
 {
-	private static String API_REGION = "br-floripa";
+	private static final String API_REGION = "br-floripa";
 
 	public BrFloripaProvider(final HttpUrl api, final String authorization)
 	{

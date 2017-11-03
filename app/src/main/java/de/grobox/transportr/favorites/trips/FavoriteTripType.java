@@ -33,10 +33,4 @@ public enum FavoriteTripType {
 		return value;
 	}
 
-	static FavoriteTripType fromValue(int value) {
-		for (FavoriteTripType s : values())
-			if (s.value == value) return s;
-		throw new IllegalArgumentException();
-	}
-
 }

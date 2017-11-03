@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">El company de transport públic que respecta la teva privacitat i llibertat.</string>
-  <string name="onboarding_drawer_title">Descobreix més característiques</string>
   <string name="drawer_changelog">Canvis</string>
   <string name="drawer_about">Sobre</string>
   <string name="drawer_settings">Configuració</string>

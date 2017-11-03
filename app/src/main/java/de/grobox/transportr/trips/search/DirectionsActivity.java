@@ -10,8 +10,6 @@ import android.support.design.widget.AppBarLayout.OnOffsetChangedListener;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import java.util.Date;
-
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
@@ -21,7 +19,6 @@ import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.locations.WrapLocation;
 
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
-import static de.grobox.transportr.utils.Constants.DATE;
 import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.transportr.utils.Constants.FROM;
 import static de.grobox.transportr.utils.Constants.SEARCH;
@@ -102,7 +99,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		fragmentContainer.requestFocus();
 	}
 
-	boolean isShowingTrips() {
+	private boolean isShowingTrips() {
 		return fragmentIsVisible(TripsFragment.TAG);
 	}
 
@@ -112,7 +109,6 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 		WrapLocation from, via, to;
 		boolean search;
-		Date date;
 		long uid = intent.getLongExtra(FAV_TRIP_UID, 0);
 		String special = (String) intent.getSerializableExtra("special");
 		if (special != null) {
@@ -134,17 +130,16 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 			search = intent.getBooleanExtra(SEARCH, false);
 		}
 		via = (WrapLocation) intent.getSerializableExtra(VIA);
-		date = (Date) intent.getSerializableExtra(DATE);
 
-		if (search) searchFromTo(uid, from, via, to, date);
-		else presetFromTo(uid, from, via, to, date);
+		if (search) searchFromTo(uid, from, via, to);
+		else presetFromTo(uid, from, via, to);
 
 		// remove the intent (and clear its action) since it was already processed
 		// and should not be processed again
 		setIntent(null);
 	}
 
-	private void presetFromTo(long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to, @Nullable Date date) {
+	private void presetFromTo(long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to) {
 		viewModel.setFavTripUid(uid);
 		if (from == null || from.getWrapType() == GPS) {
 			viewModel.setFromLocation(null);
@@ -154,14 +149,10 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		}
 		viewModel.setViaLocation(via);
 		viewModel.setToLocation(to);
-
-		if (date != null) {
-			viewModel.setDate(date);
-		}
 	}
 
-	private void searchFromTo(long uid, WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to, Date date) {
-		presetFromTo(uid, from, via, to, date);
+	private void searchFromTo(long uid, WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to) {
+		presetFromTo(uid, from, via, to);
 		viewModel.search();
 	}
 

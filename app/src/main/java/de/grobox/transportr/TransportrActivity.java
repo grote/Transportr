@@ -55,7 +55,7 @@ public abstract class TransportrActivity extends AppCompatActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public AppComponent getComponent() {
+	protected AppComponent getComponent() {
 		return ((TransportrApplication) getApplication()).getComponent();
 	}
 

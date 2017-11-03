@@ -16,7 +16,7 @@ public abstract class StoredLocation extends WrapLocation {
 
 	@PrimaryKey(autoGenerate = true)
 	private final long uid;
-	private NetworkId networkId;
+	private final NetworkId networkId;
 
 	StoredLocation(long uid, NetworkId networkId, LocationType type, @Nullable String id, int lat, int lon, @Nullable String place, @Nullable String name, @Nullable Set<Product> products) {
 		super(type, id, lat, lon, place, name, products);
