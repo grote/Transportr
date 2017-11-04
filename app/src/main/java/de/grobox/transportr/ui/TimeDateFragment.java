@@ -113,6 +113,12 @@ public class TimeDateFragment extends DialogFragment implements DatePickerDialog
 			}
 			dismiss();
 		});
+		v.findViewById(R.id.nowButton).setOnClickListener(view -> {
+			if (listener != null) {
+				listener.onTimeAndDateSet(Calendar.getInstance());
+			}
+			dismiss();
+		});
 		Button cancelButton = v.findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(view -> dismiss());
 

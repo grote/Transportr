@@ -62,6 +62,18 @@
 		android:layout_marginRight="8dp"
 		android:text="@string/cancel"
 		app:layout_constraintBottom_toBottomOf="@+id/okButton"
+		app:layout_constraintRight_toLeftOf="@+id/nowButton"
+		app:layout_constraintTop_toTopOf="@+id/okButton"/>
+
+	<Button
+		android:id="@+id/nowButton"
+		style="@style/Widget.AppCompat.Button.Borderless.Colored"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		android:text="@string/now"
+		app:layout_constraintBottom_toBottomOf="@+id/okButton"
 		app:layout_constraintRight_toLeftOf="@+id/okButton"
 		app:layout_constraintTop_toTopOf="@+id/okButton"/>
 
