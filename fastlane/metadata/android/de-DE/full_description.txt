@@ -1,7 +1,14 @@
-Transportr ist eine nicht-kommerzielle Anwendung, welche von Menschen überall auf der Welt entwickelt wird, um die Nutzung von öffentlichen Verkehrsmitteln zu erleichtern, egal wo du bist.
+Transportr ist eine nicht-kommerzielle Anwendung, welche von Menschen überall auf der Welt entwickelt wird,
+um die Nutzung von öffentlichen Verkehrsmitteln zu erleichtern, egal wo du bist.
 
-Zur Zeit funktioniert dies am besten in Europa, aber es werden auch viele Orte weltweit unterstützt. Wenn du in einer nicht unterstützten Region lebst, kannst du sie zu Transportr hinzufügen. Eine Anleitung hierzu ist auf der Homepage verfügbar.
+Zur Zeit funktioniert dies am besten in Europa, aber es werden auch viele Orte weltweit unterstützt.
+Wenn du in einer nicht unterstützten Region lebst, kannst du sie zu Transportr hinzufügen.
+Eine Anleitung hierzu ist auf der Homepage verfügbar.
 
-Transportr findet Verbindungen von deinem zu Hause, deiner aktuellen Position oder einer bestimmten Haltestelle zu einem beliebigen Ziel. Du kannst auch komplette Routen als Favoriten speichern und findest somit die nächsten Verbindungen ganz einfach. Selbstverständlich kannst du deine Route auch auf einer Karte anzeigen und dem Verlauf über GPS folgen.
+Transportr findet Verbindungen von deinem zu Hause, deiner aktuellen Position oder einer bestimmten Haltestelle zu
+einem beliebigen Ziel. Du kannst auch komplette Routen als Favoriten speichern und findest
+somit die nächsten Verbindungen ganz einfach. Selbstverständlich kannst du deine Route auch auf einer Karte
+anzeigen und dem Verlauf über GPS folgen.
 
-Du kannst auch Haltestellen in der Nähe finden und bevorstehende Abfahrten einschliesslich der Verzögerungen (wenn es welche gibt) anzeigen lassen.
+Du kannst auch Haltestellen in der Nähe finden und bevorstehende Abfahrten einschliesslich der Verzögerungen (wenn
+es welche gibt) anzeigen lassen.

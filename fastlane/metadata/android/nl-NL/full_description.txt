@@ -1,0 +1,11 @@
+Transportr is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken, waar je ook bent.
+
+Het ondersteunt veel locaties over heel de wereld, maar werkt momenteel het best in Europa. Als je in een niet-ondersteund gebied woont, kun je het aan Transportr toevoegen.
+Instructies staan op de homepage.
+
+Transportr vindt verbindingen vanaf je huis, je huidige positie, of een gegeven station naar
+waar je ook heen wilt gaan. Je kan ook volledige routes als favorieten opslaan en
+met één enkele swipe naar latere verbindingen zoeken. Natuurlijk kan je ook je locatie op de kaart tonen
+en je positie in het traject volgen via GPS.
+
+Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief vertragingen (als er zijn).

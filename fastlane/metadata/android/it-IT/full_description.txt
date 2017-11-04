@@ -3,6 +3,6 @@ Transportr è un'app non-profit sviluppata da persone di tutto il mondo per rend
 Attualmente l'app funziona meglio in Europa ma supporta anche altre città del resto del mondo. Se vivi in una zona non supportata, considera l'idea di aggiungerla su Transportr.
 Le istruzioni sono disponibili sul sito ufficiale.
 
-Transportr trova la direzione da casa tua, dalla tua posizione o da un luogo preciso verso qualunque posto tu voglia andare. Puoi anche salvare il percorso intero tra i preferiti e trovare il prossimo viaggio con una strisciata. Certamente puoi anche visualizzare il tuo percorso sulla mappa e seguirne l'avanzamento via GPS.
+Transportr trova la direzione da casa tua, dalla tua posizione o da un luogo preciso verso qualunque posto tu voglia andare. Puoi anche salvare il percorso intero tra i preferiti e trovare il prossimo viaggio con una strisciata. Certamente puoi anche visualizzare il tuo percorso sulla mappa e seguirne l'avanzamento via  GPS.
 
 Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi i ritardi (se ce ne sono).

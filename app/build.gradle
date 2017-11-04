@@ -69,7 +69,8 @@ android {
 	* signingKeyAlias=alias
 	* signingKeyPassword=xxx
 	*/
-	if (project.hasProperty('signingStoreLocation') && project.hasProperty('signingStorePassword') && project.hasProperty('signingKeyAlias') && project.hasProperty('signingKeyPassword')) {
+	if (!project.hasProperty('buildServer') && project.hasProperty('signingStoreLocation') && project.hasProperty('signingStorePassword') &&
+			project.hasProperty('signingKeyAlias') && project.hasProperty('signingKeyPassword')) {
 		signingConfigs {
 			release {
 				storeFile file(signingStoreLocation)

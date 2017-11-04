@@ -1,6 +1,8 @@
-Transportr es una aplicacion sin ánimo de lucro desarrollada por personas de todo el mundo para hacer el uso del transporte público lo más fácil posible donde sea que estés.
+Transportr es una aplicacion sin ánimo de lucro desarrollada por personas de todo el mundo para hacer el uso del transporte público lo más fácil posible donde sea que estés. 
 
 Actualmente, funciona mejor en Europa, pero también admite muchos otros lugares del planeta. Si vives en un área sin soporte, considera agregarla a Transportr.
 Las instrucciones están disponibles en nuestra página web.
 
 Transportr encuentra direcciones desde tu casa, tu posición actual o una estación dada hasta donde quieras ir. También es posible guardar viajes completos como favoritos y encontrar próximos viajes con un movimiento. Por supuesto, también puede mostrar el recorrido en el mapa y seguir el progreso via GPS.
+
+También es posible descubrir estaciones cercanas y ver las próximas partidas incluyendo las demoras (si las hay).

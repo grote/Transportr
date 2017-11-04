@@ -1,0 +1,7 @@
+A Transportr egy non-profit alkalmazás, amit világszerte azért feljesztenek, hogy egyszerűbbé tegyék a tömegközlekedés használatát, akárhol is legyél.
+
+Jelenleg a legjobban Európán belül működik, de sok más helyet is támogat világszerte. Ha egy olyan helyen élsz, amit még nem támogatott, segíts hozzáadni a Transportr-hez! Útmutatást ezzel kapcsolatban a honlapunkon találsz.
+
+A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy adott megállótól oda, ahova menni szeretnél. Teljes utakat menthetsz el a kedvenceid közé, és a legközelebbi kapcsolódásokat is egyszerűen megtalálhatod. Az utakat természetesen megtekintheted térképen is, és követheted a haladásodat GPS segítségével.
+
+Állomásokat is kereshetsz vele a közelben, és a legközelebbi indulásokat is megtekintheted, az esetleges késésekkel együtt.
