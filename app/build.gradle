@@ -146,7 +146,7 @@ dependencies {
 		exclude group: 'com.android.support', module: 'recyclerview-v7'
 		exclude group: 'com.google.code.findbugs'
 	}
-	androidTestCompile('tools.fastlane:screengrab:1.0.0') {
+	androidTestCompile('tools.fastlane:screengrab:1.1.0') {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
 	}

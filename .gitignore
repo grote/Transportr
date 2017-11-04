@@ -15,3 +15,5 @@ local.properties
 
 # Fastlane
 Gemfile.lock
+/fastlane/report.xml
+/fastlane/README.md

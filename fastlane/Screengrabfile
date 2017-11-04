@@ -1,5 +1,6 @@
 app_package_name "de.grobox.liberario.debug"
-locales ['en-US','cs-CZ','de-DE','es-ES','fr-FR','it-IT','pl-PL','pt-BR']
-app_apk_path "build/outputs/apk/Transportr-debug.apk"
-tests_apk_path "build/outputs/apk/Transportr-debug-androidTest.apk"
+locales ['cs-CZ','de-DE','en-US','es-ES','eu-ES','fr-FR','hu-HU','it-IT','ja-JP','nl-NL','pl-PL','pt-BR','ta-IN']
+app_apk_path "app/build/outputs/apk/debug/app-debug.apk"
+tests_apk_path "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
+use_tests_in_packages ['de.grobox.transportr.networks']
 clear_previous_screenshots TRUE
