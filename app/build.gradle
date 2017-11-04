@@ -8,7 +8,7 @@ android {
 	buildToolsVersion "27.0.0"
 
 	defaultConfig {
-		versionCode 48
+		versionCode 100
 		versionName "2.0.0-preview1"
 
 		applicationId "de.grobox.liberario"
