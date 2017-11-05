@@ -173,6 +173,9 @@ there are any).</string>
     <string name="changelog_show_full">More…</string>
 
     <string name="np_region_australia">Australia</string>
+    <string name="np_name_australia" translatable="false">Australia</string>
+    <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
+    <string name="np_desc_australia_networks" translatable="false">PTV, Transport NSW, TRANSLink, Transperth, Adelaide Metro, Metro Tasmania</string>
     <string name="np_name_sydney" translatable="false">Transport NSW</string>
     <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
 
