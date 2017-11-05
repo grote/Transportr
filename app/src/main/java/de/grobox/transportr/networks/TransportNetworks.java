@@ -465,6 +465,16 @@ interface TransportNetworks {
 			// Australia
 
 			new TransportNetworkBuilder()
+					.setId(NetworkId.AUSTRALIA)
+					.setName(R.string.np_name_australia)
+					.setDescription(R.string.np_desc_australia)
+					.setAgencies(R.string.np_desc_australia_networks)
+					.setRegion(Region.AUSTRALIA)
+					.setLogo(R.drawable.network_aus_logo)
+					.setStatus(BETA)
+					.build(),
+
+			new TransportNetworkBuilder()
 					.setId(NetworkId.SYDNEY)
 					.setName(R.string.np_name_sydney)
 					.setDescription(R.string.np_desc_sydney)
