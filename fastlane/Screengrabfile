@@ -3,5 +3,5 @@ locales ['cs-CZ','de-DE','en-US','es-ES','eu-ES','fr-FR','hu-HU','it-IT','ja-JP'
 app_apk_path "app/build/outputs/apk/debug/app-debug.apk"
 tests_apk_path "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
 test_instrumentation_runner "de.grobox.transportr.MockTestRunner"
-use_tests_in_classes ['de.grobox.transportr.networks.PickTransportNetworkActivityTest', 'de.grobox.transportr.map.MapActivityTest']
+use_tests_in_classes ['de.grobox.transportr.networks.PickTransportNetworkActivityTest', 'de.grobox.transportr.map.MapActivityTest', 'de.grobox.transportr.trips.TripsTest']
 clear_previous_screenshots TRUE
