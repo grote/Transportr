@@ -66,7 +66,6 @@ import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.transportr.departures.DeparturesActivity.MAX_DEPARTURES;
 import static de.grobox.transportr.departures.DeparturesLoader.getBundle;
 import static de.grobox.transportr.utils.Constants.LOADER_DEPARTURES;
@@ -245,7 +244,7 @@ public class LocationFragment extends TransportrFragment
 	@WorkerThread
 	public void onLocationRetrieved(@NonNull final WrapLocation location) {
 		runOnUiThread(() -> {
-			LocationFragment.this.location = viewModel.addFavoriteIfNotExists(location, FROM);
+			LocationFragment.this.location = location;
 			showLocation();
 		});
 	}

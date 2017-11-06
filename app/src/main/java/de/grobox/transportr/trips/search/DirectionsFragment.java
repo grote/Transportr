@@ -268,8 +268,7 @@ public class DirectionsFragment extends TransportrFragment {
 		}
 		from.setSearching();
 		viewModel.locationLiveData.observe(this, location -> {
-			WrapLocation newLocation = viewModel.addFavoriteIfNotExists(location, type);
-			viewModel.setFromLocation(newLocation);
+			viewModel.setFromLocation(location);
 			viewModel.search();
 			viewModel.locationLiveData.removeObservers(DirectionsFragment.this);
 		});

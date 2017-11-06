@@ -52,8 +52,6 @@ import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
-import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
-import static de.grobox.transportr.locations.WrapLocation.WrapType.NORMAL;
 import static de.grobox.transportr.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
@@ -125,9 +123,6 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			if (locationFragment != null && locationFragmentVisible()) {
 				to = locationFragment.getLocation();
 			}
-			if (from != null && from.getWrapType() == NORMAL) {
-				from = viewModel.addFavoriteIfNotExists(from, FROM);
-			}
 			findDirections(MapActivity.this, 0, from, null, to);
 		});
 
@@ -180,7 +175,6 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 
 	private void onLocationSelected(@Nullable WrapLocation loc) {
 		if (loc == null) return;
-		viewModel.addFavoriteIfNotExists(loc, FROM);
 
 		locationFragment = LocationFragment.newInstance(loc);
 		getSupportFragmentManager().beginTransaction()

@@ -7,6 +7,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import de.grobox.transportr.R
+import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.*
+import de.grobox.transportr.data.locations.LocationRepository
 import de.grobox.transportr.data.searches.SearchesRepository
 import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.trips.TripQuery
@@ -22,6 +24,7 @@ internal class TripsRepository(
         private val ctx: Context,
         private val networkProvider: NetworkProvider,
         private val settingsManager: SettingsManager,
+        private val locationRepository: LocationRepository,
         private val searchesRepository: SearchesRepository) {
 
     companion object {
@@ -67,12 +70,19 @@ internal class TripsRepository(
                         query.date, query.departure, query.products, settingsManager.optimize, settingsManager.walkSpeed,
                         null, null)
                 if (queryTripsResult.status == OK && queryTripsResult.trips.size > 0) {
-                    searchesRepository.storeSearch(query.toFavoriteTripItem())
+                    // deliver result first, so UI can get updated
                     onQueryTripsResultReceived(queryTripsResult)
+                    // store locations (needed for references in stored search)
+                    val from = locationRepository.addFavoriteLocation(query.from, FROM)
+                    val via = query.via?.let { locationRepository.addFavoriteLocation(it, VIA) }
+                    val to = locationRepository.addFavoriteLocation(query.to, TO)
+                    // store search query
+                    searchesRepository.storeSearch(query.uid, from, via, to)
                 } else {
                     queryError.postValue(queryTripsResult.getError())
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
                 if (!TransportrUtils.hasInternet(ctx)) {
                     queryError.postValue(ctx.getString(R.string.error_no_internet))
                 } else {

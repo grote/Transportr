@@ -18,12 +18,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
+import de.grobox.transportr.TransportrFragment;
 import de.grobox.transportr.data.locations.HomeLocation;
 import de.grobox.transportr.data.locations.WorkLocation;
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment;
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment;
-import de.grobox.transportr.TransportrFragment;
-import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.ui.LceAnimator;
 
 import static android.support.v7.util.SortedList.INVALID_POSITION;
@@ -154,13 +153,13 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 			if (item.getTo() == null) {
 				changeHome();
 			} else {
-				findDirections(getContext(), item.getUid(), getCurrentFrom(item), item.getVia(), item.getTo(), true, true);
+				findDirections(getContext(), item.getUid(), item.getFrom(), item.getVia(), item.getTo(), true, true);
 			}
 		} else if (item.getType() == WORK) {
 			if (item.getTo() == null) {
 				changeWork();
 			} else {
-				findDirections(getContext(), item.getUid(), getCurrentFrom(item), item.getVia(), item.getTo(), true, true);
+				findDirections(getContext(), item.getUid(), item.getFrom(), item.getVia(), item.getTo(), true, true);
 			}
 		} else if (item.getType() == TRIP) {
 			if (item.getFrom() == null || item.getTo() == null) throw new IllegalArgumentException();
@@ -168,10 +167,6 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 		} else {
 			throw new IllegalArgumentException();
 		}
-	}
-
-	protected WrapLocation getCurrentFrom(FavoriteTripItem item) {
-		return item.getFrom();
 	}
 
 	@Override

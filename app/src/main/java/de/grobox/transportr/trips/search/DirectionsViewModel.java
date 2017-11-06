@@ -71,7 +71,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		this.settingsManager = settingsManager;
 		if (getTransportNetwork().getValue() == null) throw new IllegalStateException();
 		tripsRepository = new TripsRepository(application.getApplicationContext(), getTransportNetwork().getValue().getNetworkProvider(),
-				settingsManager, searchesRepository);
+				settingsManager, locationRepository, searchesRepository);
 	}
 
 	boolean showWhenLocked() {
@@ -165,7 +165,6 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 
 	@Override
 	public void onLocationItemClick(WrapLocation loc, FavLocationType type) {
-		useLocation(loc, type);
 		if (type == FROM) {
 			setFromLocation(loc);
 		} else if (type == VIA) {
