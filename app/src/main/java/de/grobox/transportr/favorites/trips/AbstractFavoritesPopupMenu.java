@@ -20,15 +20,26 @@
 package de.grobox.transportr.favorites.trips;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.MenuRes;
 import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.transportr.R;
+import de.grobox.transportr.trips.search.DirectionsActivity;
 import de.grobox.transportr.ui.BasePopupMenu;
 
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
 import static de.grobox.transportr.utils.IntentUtils.presetDirections;
+
+import static android.content.Intent.ACTION_SEARCH;
+import static android.content.Intent.EXTRA_SHORTCUT_ICON_RESOURCE;
+import static android.content.Intent.EXTRA_SHORTCUT_INTENT;
+import static android.content.Intent.EXTRA_SHORTCUT_NAME;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 
@@ -63,5 +74,36 @@ abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 				return super.onMenuItemClick(item);
 		}
 	}
+
+	protected void addShortcut(String shortcutName) {
+		// create launcher shortcut
+		Intent addIntent = new Intent();
+		addIntent.putExtra(EXTRA_SHORTCUT_INTENT, getShortcutIntent());
+		addIntent.putExtra(EXTRA_SHORTCUT_NAME, shortcutName);
+		addIntent.putExtra(EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(context, getShortcutDrawable()));
+		addIntent.putExtra("duplicate", false);
+		addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+		context.sendBroadcast(addIntent);
+
+		// switch to home-screen to let the user see the new shortcut
+		Intent startMain = new Intent(Intent.ACTION_MAIN);
+		startMain.addCategory(Intent.CATEGORY_HOME);
+		startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(startMain);
+	}
+
+	protected Intent getShortcutIntent() {
+		Intent shortcutIntent = new Intent(context, DirectionsActivity.class);
+		shortcutIntent.setAction(ACTION_SEARCH);
+		shortcutIntent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+		shortcutIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+		shortcutIntent.setData(Uri.parse(getShortcutIntentString()));
+		return shortcutIntent;
+	}
+
+	protected abstract String getShortcutIntentString();
+
+	protected abstract @DrawableRes
+	int getShortcutDrawable();
 
 }

@@ -161,6 +161,8 @@ there are any).</string>
 	<string name="work_hint">Set Work Location</string>
 	<string name="widget_name_quickwork">Get To Work</string>
 	<string name="tap_to_set">Tap to set</string>
+	<string name="widget_name_favorites">%1$s to %2$s</string>
+	<string name="widget_name_favorites_via">%1$s to %2$s (via %3$s)</string>
 	<string name="action_set_locations">Edit search</string>
 	<string name="action_swap_locations">Search return trip</string>
 	<string name="action_change">Change</string>

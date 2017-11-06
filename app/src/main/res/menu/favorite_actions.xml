@@ -18,6 +18,12 @@
 		android:title="@string/action_fav_trip"/>
 
 	<item
+		android:id="@+id/action_add_shortcut"
+		android:icon="@drawable/ic_add_shortcut"
+		android:title="@string/action_add_shortcut"
+		android:visible="false"/>
+
+	<item
 		android:id="@+id/action_trip_delete"
 		android:icon="@drawable/ic_delete"
 		android:title="@string/action_trip_delete"/>
