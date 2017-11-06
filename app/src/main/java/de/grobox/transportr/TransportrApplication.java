@@ -34,7 +34,11 @@ public class TransportrApplication extends Application {
 				"pk.eyJ1IjoidG92b2s3IiwiYSI6ImNpeTA1OG82YjAwN3YycXA5cWJ6NThmcWIifQ.QpURhF9y7XBMLmWhELsOnw");
 		MapboxTelemetry.getInstance().setTelemetryEnabled(false);
 
-		component = DaggerAppComponent.builder()
+		component = createComponent();
+	}
+
+	protected AppComponent createComponent() {
+		return DaggerAppComponent.builder()
 				.appModule(new AppModule(this))
 				.build();
 	}

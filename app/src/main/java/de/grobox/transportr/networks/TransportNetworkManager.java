@@ -21,6 +21,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
@@ -53,13 +54,7 @@ public class TransportNetworkManager {
 	@Nullable
 	private TransportNetwork loadTransportNetwork(int i) {
 		NetworkId networkId = settingsManager.getNetworkId(i);
-
-		if (networkId != null) {
-			for (TransportNetwork network : TransportNetworks.networks) {
-				if (network.getId().equals(networkId)) return network;
-			}
-		}
-		return null;
+		return getTransportNetworkByNetworkId(networkId);
 	}
 
 	public LiveData<TransportNetwork> getTransportNetwork() {
@@ -95,6 +90,21 @@ public class TransportNetworkManager {
 		// swap remaining networks
 		this.transportNetwork2 = this.transportNetwork.getValue();
 		this.transportNetwork.setValue(network);
+	}
+
+	@Nullable
+	public TransportNetwork getTransportNetworkByNetworkId(@Nullable NetworkId networkId) {
+		if (networkId != null) {
+			for (TransportNetwork network : TransportNetworks.networks) {
+				if (network.getId().equals(networkId)) return network;
+			}
+		}
+		return null;
+	}
+
+	@VisibleForTesting
+	public void clearTransportNetwork() {
+		transportNetwork.setValue(null);
 	}
 
 }

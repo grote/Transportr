@@ -23,7 +23,7 @@ import de.schildbach.pte.NetworkId;
 import static de.grobox.transportr.networks.TransportNetwork.Status.ALPHA;
 import static de.grobox.transportr.networks.TransportNetwork.Status.BETA;
 
-interface TransportNetworks {
+public interface TransportNetworks {
 
 	TransportNetwork[] networks = {
 

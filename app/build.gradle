@@ -15,7 +15,7 @@ android {
 		minSdkVersion 15
 		targetSdkVersion 27
 
-		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+		testInstrumentationRunner 'de.grobox.transportr.MockTestRunner'
 		javaCompileOptions {
 			annotationProcessorOptions {
 				arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
@@ -150,6 +150,7 @@ dependencies {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
 	}
+	androidTestDebugAnnotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 }
 
 dependencyVerification {

@@ -1,12 +1,35 @@
 package de.grobox.transportr
 
-import android.content.Context
+import android.support.annotation.CallSuper
 import android.support.test.InstrumentationRegistry
 import android.util.Log
+import de.schildbach.pte.NetworkId
+import org.junit.Before
+import org.junit.ClassRule
 import tools.fastlane.screengrab.Screengrab
-import java.io.File
+import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy
+import tools.fastlane.screengrab.locale.LocaleTestRule
 
 abstract class ScreengrabTest {
+
+    companion object {
+        @JvmField
+        @ClassRule
+        val localeTestRule = LocaleTestRule()
+    }
+
+    private val app = InstrumentationRegistry.getTargetContext().applicationContext as TestApplication
+    val component = app.component as TestComponent
+
+    @Before
+    @CallSuper
+    open fun setUp() {
+        Screengrab.setDefaultScreenshotStrategy(UiAutomatorScreenshotStrategy())
+    }
+
+    protected fun getNetworkId(): NetworkId {
+        return NetworkId.DB;
+    }
 
     protected fun makeScreenshot(filename: String) {
         try {
@@ -23,17 +46,6 @@ abstract class ScreengrabTest {
             Thread.sleep(millis.toLong())
         } catch (e: InterruptedException) {
             e.printStackTrace()
-        }
-    }
-
-    protected fun resetSharedPreferences() {
-        val root = InstrumentationRegistry.getTargetContext().filesDir.parentFile
-        val sharedPreferencesFileNames = File(root, "shared_prefs").list()
-        for (fileName in sharedPreferencesFileNames) {
-            InstrumentationRegistry.getTargetContext().getSharedPreferences(fileName.replace(".xml", ""), Context.MODE_PRIVATE)
-                    .edit()
-                    .clear()
-                    .commit()
         }
     }
 
