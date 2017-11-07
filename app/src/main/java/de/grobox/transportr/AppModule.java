@@ -17,13 +17,10 @@
 
 package de.grobox.transportr;
 
-import android.arch.persistence.room.Room;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import de.grobox.transportr.data.Db;
 import de.grobox.transportr.data.locations.LocationDao;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesDao;
@@ -56,24 +53,6 @@ class AppModule {
 	@Singleton
 	TransportNetworkManager provideTransportNetworkManager(SettingsManager settingsManager) {
 		return new TransportNetworkManager(settingsManager);
-	}
-
-	@Provides
-	@Singleton
-	Db provideDb() {
-		return Room.databaseBuilder(application.getApplicationContext(), Db.class, Db.DATABASE_NAME).build();
-	}
-
-	@Provides
-	@Singleton
-	LocationDao locationDao(Db db) {
-		return db.locationDao();
-	}
-
-	@Provides
-	@Singleton
-	SearchesDao searchesDao(Db db) {
-		return db.searchesDao();
 	}
 
 	@Provides

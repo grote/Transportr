@@ -52,7 +52,7 @@ class PickTransportNetworkActivityTest : ScreengrabTest() {
         onView(withId(R.id.firstRunTextView))
                 .check(matches(isDisplayed()))
                 .check(matches(withText(R.string.pick_network_first_run)))
-        makeScreenshot("FirstStart")
+        makeScreenshot("1_FirstStart")
 
         // hack to find region position in list
         val regionList = ArrayList(EnumSet.allOf(Region::class.java))
