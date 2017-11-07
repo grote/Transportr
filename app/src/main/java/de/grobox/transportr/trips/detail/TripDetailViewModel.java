@@ -100,7 +100,7 @@ public class TripDetailViewModel extends TransportNetworkViewModel implements Le
 		if (from == null || to == null) throw new IllegalStateException();
 
 		String errorString = getApplication().getString(R.string.error_trip_refresh_failed);
-		TripQuery query = new TripQuery(0, from, via, to, oldTrip.getFirstDepartureTime(), true, oldTrip.products());
+		TripQuery query = new TripQuery(from, via, to, oldTrip.getFirstDepartureTime(), true, oldTrip.products());
 		new TripReloader(network.getNetworkProvider(), settingsManager, query, trip, errorString, tripReloadError)
 				.reload();
 	}

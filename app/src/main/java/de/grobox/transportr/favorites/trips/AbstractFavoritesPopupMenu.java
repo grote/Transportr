@@ -51,11 +51,11 @@ abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 		switch (item.getItemId()) {
 			// Swap Locations
 			case R.id.action_swap_locations:
-				findDirections(context, 0, trip.getTo(), trip.getVia(), trip.getFrom(), true, true);
+				findDirections(context, trip.getTo(), trip.getVia(), trip.getFrom(), true, true);
 				return true;
 			// Preset Locations
 			case R.id.action_set_locations:
-				presetDirections(context, trip.getUid(), trip.getFrom(), trip.getVia(), trip.getTo(), true);
+				presetDirections(context, trip.getFrom(), trip.getVia(), trip.getTo(), true);
 				return true;
 			default:
 				return super.onMenuItemClick(item);

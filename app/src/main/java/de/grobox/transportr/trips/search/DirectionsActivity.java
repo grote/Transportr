@@ -22,7 +22,6 @@ import de.grobox.transportr.trips.search.SavedSearchesFragment.WorkPickerFragmen
 
 import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
-import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.transportr.utils.Constants.FROM;
 import static de.grobox.transportr.utils.Constants.SEARCH;
 import static de.grobox.transportr.utils.Constants.TO;
@@ -92,6 +91,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 	}
 
 	private void showFavorites() {
+		viewModel.isFavTrip().setValue(null);
 		getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.fragmentContainer, new SavedSearchesFragment(), SavedSearchesFragment.TAG)
@@ -115,7 +115,6 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 		WrapLocation from, via, to;
 		boolean search;
-		long uid = intent.getLongExtra(FAV_TRIP_UID, 0);
 		String data = intent.getDataString();
 		if (data != null) {
 			from = new WrapLocation(GPS);
@@ -139,16 +138,15 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		}
 		via = (WrapLocation) intent.getSerializableExtra(VIA);
 
-		if (search) searchFromTo(uid, from, via, to);
-		else presetFromTo(uid, from, via, to);
+		if (search) searchFromTo(from, via, to);
+		else presetFromTo(from, via, to);
 
 		// remove the intent (and clear its action) since it was already processed
 		// and should not be processed again
 		setIntent(null);
 	}
 
-	private void presetFromTo(long uid, @Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to) {
-		viewModel.setFavTripUid(uid);
+	private void presetFromTo(@Nullable WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to) {
 		if (from == null || from.getWrapType() == GPS) {
 			viewModel.setFromLocation(null);
 			viewModel.findGpsLocation.setValue(FavLocationType.FROM);
@@ -159,8 +157,8 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 		viewModel.setToLocation(to);
 	}
 
-	private void searchFromTo(long uid, WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to) {
-		presetFromTo(uid, from, via, to);
+	private void searchFromTo(WrapLocation from, @Nullable WrapLocation via, @Nullable WrapLocation to) {
+		presetFromTo(from, via, to);
 		viewModel.search();
 	}
 

@@ -17,6 +17,7 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -25,13 +26,13 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
-import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
-import de.grobox.transportr.ui.TimeDateFragment;
 import de.grobox.transportr.TransportrFragment;
+import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.locations.LocationGpsView;
 import de.grobox.transportr.locations.LocationView;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.TransportNetwork;
+import de.grobox.transportr.ui.TimeDateFragment;
 import de.grobox.transportr.utils.DateUtils;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -52,7 +53,7 @@ public class DirectionsFragment extends TransportrFragment {
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
 	private @Nullable Menu menu;
-	private View timeIcon;
+	private ImageView favIcon, timeIcon;
 	private TextView date, time;
 	private LocationGpsView from;
 	private LocationView via, to;
@@ -67,6 +68,7 @@ public class DirectionsFragment extends TransportrFragment {
 
 		setHasOptionsMenu(true);
 		Toolbar toolbar = v.findViewById(R.id.toolbar);
+		favIcon = toolbar.findViewById(R.id.favIcon);
 		timeIcon = toolbar.findViewById(R.id.timeIcon);
 		date = toolbar.findViewById(R.id.date);
 		time = toolbar.findViewById(R.id.time);
@@ -115,6 +117,7 @@ public class DirectionsFragment extends TransportrFragment {
 		viewModel.getToLocation().observe(this, location -> to.setLocation(location));
 		viewModel.getCalendar().observe(this, this::onCalendarUpdated);
 		viewModel.findGpsLocation.observe(this, this::onFindGpsLocation);
+		viewModel.isFavTrip().observe(this, this::onFavStatusChanged);
 
 		setupClickListeners();
 
@@ -153,6 +156,9 @@ public class DirectionsFragment extends TransportrFragment {
 	}
 
 	private void setupClickListeners() {
+		favIcon.setVisibility(VISIBLE);
+		favIcon.setOnClickListener(view -> viewModel.toggleFavTrip());
+
 		OnClickListener onTimeClickListener = view -> {
 			if (viewModel.getCalendar().getValue() == null) throw new IllegalStateException();
 			TimeDateFragment fragment = TimeDateFragment.newInstance(viewModel.getCalendar().getValue());
@@ -272,6 +278,19 @@ public class DirectionsFragment extends TransportrFragment {
 			viewModel.search();
 			viewModel.locationLiveData.removeObservers(DirectionsFragment.this);
 		});
+	}
+
+	private void onFavStatusChanged(@Nullable Boolean isFav) {
+		if (isFav == null) {
+			favIcon.setVisibility(GONE);
+		} else {
+			favIcon.setVisibility(VISIBLE);
+			if (isFav) {
+				favIcon.setImageResource(R.drawable.ic_action_star);
+			} else {
+				favIcon.setImageResource(R.drawable.ic_action_star_empty);
+			}
+		}
 	}
 
 }

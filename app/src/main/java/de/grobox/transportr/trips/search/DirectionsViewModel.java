@@ -54,7 +54,6 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	private final MutableLiveData<Boolean> isExpanded = new MutableLiveData<>();
 	final SingleLiveEvent<Void> showTrips = new SingleLiveEvent<>();
 	final MutableLiveData<Boolean> topSwipeEnabled = new MutableLiveData<>();
-	private long favTripUid;
 
 	@Inject
 	DirectionsViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager, SettingsManager settingsManager,
@@ -159,8 +158,12 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		isExpanded.setValue(expanded);
 	}
 
-	void setFavTripUid(long favTripUid) {
-		this.favTripUid = favTripUid;
+	MutableLiveData<Boolean> isFavTrip() {
+		return tripsRepository.isFavTrip();
+	}
+
+	void toggleFavTrip() {
+		tripsRepository.toggleFavState();
 	}
 
 	@Override
@@ -204,7 +207,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 			if (calendar == null) return;
 		}
 
-		TripQuery tripQuery = new TripQuery(favTripUid, fromLocation.getValue(), viaLocation.getValue(), toLocation.getValue(),
+		TripQuery tripQuery = new TripQuery(fromLocation.getValue(), viaLocation.getValue(), toLocation.getValue(),
 				calendar.getTime(), isDeparture.getValue(), products.getValue());
 
 		tripsRepository.search(tripQuery);

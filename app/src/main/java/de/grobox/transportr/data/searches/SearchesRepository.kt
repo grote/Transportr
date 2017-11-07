@@ -3,6 +3,7 @@ package de.grobox.transportr.data.searches
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.Transformations
+import android.support.annotation.WorkerThread
 import de.grobox.transportr.AbstractManager
 import de.grobox.transportr.data.locations.FavoriteLocation
 import de.grobox.transportr.data.locations.LocationDao
@@ -45,29 +46,33 @@ class SearchesRepository @Inject constructor(
         }
     }
 
-    fun storeSearch(uid: Long, from: FavoriteLocation?, via: FavoriteLocation?, to: FavoriteLocation?) {
-        if (from == null || to == null) return
+    @WorkerThread
+    fun storeSearch(from: FavoriteLocation?, via: FavoriteLocation?, to: FavoriteLocation?): Long {
+        if (from == null || to == null) return 0L
         if (from.type == COORD || via != null && via.type == COORD || to.type == COORD) throw IllegalStateException("COORD made it through")
         if (from.uid == 0L || to.uid == 0L) throw IllegalStateException("From or To wasn't saved properly :(")
 
-        runOnBackgroundThread {
-            if (uid != 0L) {
-                searchesDao.updateStoredSearch(uid, Date())
-            } else {
-                // try to find existing stored search
-                var storedSearch = searchesDao.getStoredSearch(networkId.value!!, from.uid, via?.uid, to.uid)
-                if (storedSearch == null) {
-                    // no search was found, so create a new one
-                    storedSearch = StoredSearch(networkId.value!!, from, via, to)
-                }
-                searchesDao.storeSearch(storedSearch)
-            }
+        // try to find existing stored search
+        var storedSearch = searchesDao.getStoredSearch(networkId.value!!, from.uid, via?.uid, to.uid)
+        if (storedSearch == null) {
+            // no search was found, so create a new one
+            storedSearch = StoredSearch(networkId.value!!, from, via, to)
         }
+        return searchesDao.storeSearch(storedSearch)
+    }
+
+    @WorkerThread
+    fun isFavorite(uid: Long): Boolean {
+        return searchesDao.isFavorite(uid)
     }
 
     fun updateFavoriteState(item: FavoriteTripItem) {
-        if (item.getUid() == 0L) throw IllegalArgumentException()
-        runOnBackgroundThread { searchesDao.setFavorite(item.getUid(), item.isFavorite) }
+        updateFavoriteState(item.uid, item.isFavorite)
+    }
+
+    fun updateFavoriteState(uid: Long, isFavorite: Boolean) {
+        if (uid == 0L) throw IllegalArgumentException()
+        runOnBackgroundThread { searchesDao.setFavorite(uid, isFavorite) }
     }
 
     fun removeSearch(item: FavoriteTripItem) {

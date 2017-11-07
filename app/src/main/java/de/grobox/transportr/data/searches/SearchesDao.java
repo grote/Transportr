@@ -30,6 +30,9 @@ public interface SearchesDao {
 	@Query("UPDATE searches SET count = count + 1, lastUsed = :lastUsed WHERE uid = :uid")
 	void updateStoredSearch(long uid, Date lastUsed);
 
+	@Query("SELECT favorite FROM searches WHERE uid = :uid")
+	boolean isFavorite(long uid);
+
 	@Query("UPDATE searches SET favorite = :favorite WHERE uid = :uid")
 	void setFavorite(long uid, boolean favorite);
 

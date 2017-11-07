@@ -19,10 +19,9 @@ object IntentUtils {
 
     @JvmStatic
     @JvmOverloads
-    fun findDirections(context: Context, uid: Long = 0, from: WrapLocation?, via: WrapLocation?, to: WrapLocation?, search: Boolean = true, clearTop: Boolean = false) {
+    fun findDirections(context: Context, from: WrapLocation?, via: WrapLocation?, to: WrapLocation?, search: Boolean = true, clearTop: Boolean = false) {
         val intent = Intent(context, DirectionsActivity::class.java)
         if (clearTop) intent.flags = FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        intent.putExtra(FAV_TRIP_UID, uid)
         intent.putExtra(FROM, from)
         intent.putExtra(VIA, via)
         intent.putExtra(TO, to)
@@ -32,8 +31,8 @@ object IntentUtils {
 
     @JvmStatic
     @JvmOverloads
-    fun presetDirections(context: Context, uid: Long, from: WrapLocation?, via: WrapLocation?, to: WrapLocation?, clearTop: Boolean = false) {
-        findDirections(context, uid, from, via, to, false, clearTop)
+    fun presetDirections(context: Context, from: WrapLocation?, via: WrapLocation?, to: WrapLocation?, clearTop: Boolean = false) {
+        findDirections(context, from, via, to, false, clearTop)
     }
 
     @JvmStatic

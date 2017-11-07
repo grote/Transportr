@@ -37,7 +37,9 @@ internal class TripsRepository(
     val queryMoreState = MutableLiveData<QueryMoreState>()
     val queryError = SingleLiveEvent<String>()
     val queryMoreError = SingleLiveEvent<String>()
+    val isFavTrip = MutableLiveData<Boolean>()
 
+    private var uid: Long = 0L
     private var queryTripsContext: QueryTripsContext? = null
 
     init {
@@ -48,6 +50,8 @@ internal class TripsRepository(
         trips.value = null
         queryMoreState.value = QueryMoreState.NONE
         queryTripsContext = null
+        isFavTrip.value = null
+        uid = 0L
     }
 
     fun search(query: TripQuery) {
@@ -77,7 +81,9 @@ internal class TripsRepository(
                     val via = query.via?.let { locationRepository.addFavoriteLocation(it, VIA) }
                     val to = locationRepository.addFavoriteLocation(query.to, TO)
                     // store search query
-                    searchesRepository.storeSearch(query.uid, from, via, to)
+                    uid = searchesRepository.storeSearch(from, via, to)
+                    // set fav status
+                    isFavTrip.postValue(searchesRepository.isFavorite(uid))
                 } else {
                     queryError.postValue(queryTripsResult.getError())
                 }
@@ -150,6 +156,13 @@ internal class TripsRepository(
         SERVICE_DOWN -> ctx.getString(R.string.trip_error_service_down)
         OK -> throw IllegalArgumentException()
         null -> throw IllegalStateException()
+    }
+
+    fun toggleFavState() {
+        val oldFavState = isFavTrip.value
+        if (uid == 0L || oldFavState == null) throw IllegalStateException()
+        searchesRepository.updateFavoriteState(uid, !oldFavState)
+        isFavTrip.value = !oldFavState
     }
 
 }

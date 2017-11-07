@@ -123,7 +123,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			if (locationFragment != null && locationFragmentVisible()) {
 				to = locationFragment.getLocation();
 			}
-			findDirections(MapActivity.this, 0, from, null, to);
+			findDirections(MapActivity.this, from, null, to);
 		});
 
 		Intent intent = getIntent();

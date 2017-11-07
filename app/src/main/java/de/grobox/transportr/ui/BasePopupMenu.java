@@ -69,7 +69,7 @@ public abstract class BasePopupMenu extends PopupMenu implements OnMenuItemClick
 
 		// colorize icons according to theme
 		for (int i = 0; i < getMenu().size(); i++) {
-			DrawableCompat.setTint(getMenu().getItem(i).getIcon(), iconColor);
+			DrawableCompat.setTint(getMenu().getItem(i).getIcon().mutate(), iconColor);
 		}
 	}
 

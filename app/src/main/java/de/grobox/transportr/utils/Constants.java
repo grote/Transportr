@@ -6,7 +6,6 @@ public interface Constants {
 	String DATE = "Date";
 	String WRAP_LOCATION = "WrapLocation";
 	String LOCATION = "Location";
-	String FAV_TRIP_UID = "uid";
 	String FROM = "from";
 	String VIA = "via";
 	String TO = "to";

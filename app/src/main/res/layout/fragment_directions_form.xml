@@ -20,12 +20,28 @@
 
 		<RelativeLayout
 			android:layout_width="match_parent"
-			android:layout_height="48dp">
+			android:layout_height="@dimen/buttonSize">
+
+			<ImageView
+				android:id="@+id/favIcon"
+				android:layout_width="@dimen/buttonSize"
+				android:layout_height="@dimen/buttonSize"
+				android:layout_toLeftOf="@+id/timeIcon"
+				android:layout_toStartOf="@+id/timeIcon"
+				android:background="?selectableItemBackgroundBorderless"
+				android:clickable="true"
+				android:contentDescription="@string/action_fav_trip"
+				android:focusable="true"
+				android:scaleType="center"
+				android:tint="@color/md_white_1000"
+				android:visibility="gone"
+				app:srcCompat="@drawable/ic_action_star_empty"
+				tools:visibility="visible"/>
 
 			<ImageView
 				android:id="@+id/timeIcon"
-				android:layout_width="48dp"
-				android:layout_height="48dp"
+				android:layout_width="@dimen/buttonSize"
+				android:layout_height="@dimen/buttonSize"
 				android:layout_toLeftOf="@+id/time"
 				android:layout_toStartOf="@+id/time"
 				android:background="?selectableItemBackgroundBorderless"

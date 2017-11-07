@@ -45,7 +45,7 @@ public class LocationPopupMenu extends BasePopupMenu {
 		switch (item.getItemId()) {
 			// From Here
 			case R.id.action_from_here:
-				presetDirections(context, 0, location, null, null);
+				presetDirections(context, location, null, null);
 				return true;
 			// Copy Station to Clipboard
 			case R.id.action_copy:
