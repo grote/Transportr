@@ -43,9 +43,9 @@ public class LocationGpsView extends LocationView {
 	}
 
 	@Override
-	protected void clearLocationAndShowDropDown() {
+	protected void clearLocationAndShowDropDown(boolean setText) {
 		clearSearching();
-		super.clearLocationAndShowDropDown();
+		super.clearLocationAndShowDropDown(setText);
 	}
 
 	@RequiresPermission(ACCESS_FINE_LOCATION)

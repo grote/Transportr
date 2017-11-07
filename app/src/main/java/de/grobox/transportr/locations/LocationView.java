@@ -106,13 +106,13 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		}
 
 		// clear text button
-		ui.clear.setOnClickListener(v -> clearLocationAndShowDropDown());
+		ui.clear.setOnClickListener(v -> clearLocationAndShowDropDown(true));
 
 		// From text input changed
 		ui.location.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				if ((count == 1 && before == 0) || (count == 0 && before == 1)) handleTextChanged(s);
+				if (count - before == 1 || (before == 1 && count == 0)) handleTextChanged(s);
 			}
 
 			public void afterTextChanged(Editable s) {
@@ -217,7 +217,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 				onContentChanged();
 			}
 		} else {
-			clearLocationAndShowDropDown();
+			clearLocationAndShowDropDown(false);
 		}
 	}
 
@@ -262,7 +262,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		return (LocationAdapter) ui.location.getAdapter();
 	}
 
-	public void setLocation(WrapLocation loc, @DrawableRes int icon, boolean setText) {
+	public void setLocation(@Nullable WrapLocation loc, @DrawableRes int icon, boolean setText) {
 		location = loc;
 
 		if (setText) {
@@ -272,7 +272,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 				ui.clear.setVisibility(View.VISIBLE);
 				stopSuggestLocationsTask();
 			} else {
-				ui.location.setText(null);
+				if (ui.location.getText().length() > 0) ui.location.setText(null);
 				ui.clear.setVisibility(GONE);
 			}
 		}
@@ -334,21 +334,25 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	}
 
 	public void clearLocation() {
-		setLocation(null);
+		clearLocation(true);
+	}
+
+	private void clearLocation(boolean setText) {
+		setLocation(null, R.drawable.ic_location, setText);
 		if (getAdapter() != null) {
 			getAdapter().resetSearchTerm();
 		}
 	}
 
-	protected void clearLocationAndShowDropDown() {
-		clearLocation();
+	protected void clearLocationAndShowDropDown(boolean setText) {
+		clearLocation(setText);
 		stopSuggestLocationsTask();
 		reset();
 		if (listener != null) listener.onLocationCleared(type);
 		ui.clear.setVisibility(GONE);
 		if (isShown()) {
 			ui.location.requestFocus();
-			ui.location.showDropDown();
+			ui.location.post(ui.location::showDropDown);
 		}
 	}
 
