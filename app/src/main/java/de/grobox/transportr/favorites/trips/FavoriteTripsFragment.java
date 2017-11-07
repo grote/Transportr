@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import java.util.List;
@@ -62,17 +61,10 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 		viewModel.getWork().observe(this, this::onWorkLocationChanged);
 		viewModel.getFavoriteTrips().observe(this, this::onFavoriteTripsChanged);
 
-		if (!hasTopMargin()) {
-			FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) list.getLayoutParams();
-			params.topMargin = 0;
-			list.setLayoutParams(params);
-		}
 		return v;
 	}
 
 	abstract protected SavedSearchesViewModel getViewModel();
-
-	abstract protected boolean hasTopMargin();
 
 	private void onHomeLocationChanged(@Nullable HomeLocation home) {
 		FavoriteTripItem oldHome = adapter.getHome();

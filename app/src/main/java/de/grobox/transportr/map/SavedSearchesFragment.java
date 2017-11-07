@@ -19,11 +19,6 @@ public class SavedSearchesFragment extends FavoriteTripsFragment {
 	}
 
 	@Override
-	protected boolean hasTopMargin() {
-		return true;
-	}
-
-	@Override
 	protected HomePickerDialogFragment getHomePickerDialogFragment() {
 		return new HomePickerFragment();
 	}

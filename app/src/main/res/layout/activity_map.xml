@@ -69,6 +69,7 @@
 		android:id="@+id/bottomSheet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:elevation="5dp"
 		app:behavior_hideable="true"
 		app:elevation="5dp"
 		app:layout_behavior="android.support.design.widget.BottomSheetBehavior"/>
