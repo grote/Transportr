@@ -66,6 +66,19 @@
 			app:layout_constraintTop_toTopOf="@+id/fromTime"
 			tools:text="From Location"/>
 
+		<ImageView
+			android:id="@+id/warning"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:contentDescription="@string/trip_issue"
+			android:tint="@color/md_red_500"
+			app:layout_constraintBottom_toTopOf="@+id/toTime"
+			app:layout_constraintEnd_toEndOf="@+id/fromTime"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/fromDelay"
+			app:srcCompat="@drawable/ic_warning"
+			tools:visibility="visible"/>
+
 		<com.google.android.flexbox.FlexboxLayout
 			android:id="@+id/lines"
 			android:layout_width="0dp"
@@ -74,8 +87,8 @@
 			android:layout_marginRight="8dp"
 			android:layout_marginTop="4dp"
 			app:flexWrap="wrap"
+			app:layout_constraintEnd_toStartOf="@+id/duration"
 			app:layout_constraintLeft_toLeftOf="@+id/fromLocation"
-			app:layout_constraintRight_toLeftOf="@+id/duration"
 			app:layout_constraintTop_toBottomOf="@+id/fromLocation">
 
 			<include layout="@layout/list_item_line"/>
@@ -86,11 +99,11 @@
 			android:id="@+id/duration"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="16dp"
-			android:layout_marginTop="16dp"
-			app:layout_constraintBottom_toBottomOf="parent"
+			android:layout_marginBottom="8dp"
+			android:layout_marginTop="8dp"
+			app:layout_constraintBottom_toBottomOf="@+id/lines"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintTop_toTopOf="@+id/lines"
 			tools:text="1:30"/>
 
 		<TextView

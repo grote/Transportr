@@ -130,6 +130,7 @@ there are any).</string>
     <string name="trip_error_no_trips">No connections could be found :(</string>
     <string name="trip_error_invalid_date">The search date is currently not supported by the data provider. Please try another date.</string>
     <string name="trip_error_service_down">The data provider is currently down :(\nPlease try again later.</string>
+    <string name="trip_issue">There might be a problem with this connection.</string>
     <string name="try_again">Try Again</string>
 
     <string name="meter">m</string>
