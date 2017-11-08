@@ -83,7 +83,7 @@ class LegViewHolder extends BaseViewHolder {
 		fromLocation.setOnClickListener(view -> listener.onLocationClick(leg.departure));
 		toLocation.setOnClickListener(view -> listener.onLocationClick(leg.arrival));
 
-		fromButton.setOnClickListener(view -> new LegPopupMenu(fromButton.getContext(), fromLocation, leg).show());
+		fromButton.setOnClickListener(view -> new LegPopupMenu(fromButton.getContext(), fromLocation, leg, false).show());
 		toButton.setOnClickListener(view -> new LegPopupMenu(toButton.getContext(), toLocation, leg, true).show());
 
 		// Line bar
