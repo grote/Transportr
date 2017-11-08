@@ -116,9 +116,9 @@ class MapActivityTest : ScreengrabTest() {
         if (list == null) return
         else Thread {
             for (i in 1 until list.size step 2) {
-                searchesRepository.storeSearch(0, list[i - 1], null, list[i])
+                val uid = searchesRepository.storeSearch(list[i - 1], null, list[i])
                 if (i == 1) {
-                    val item = FavoriteTripItem(1, list[i - 1], null, list[i])
+                    val item = FavoriteTripItem(uid, list[i - 1], null, list[i])
                     item.favorite = true
                     searchesRepository.updateFavoriteState(item)
                 }

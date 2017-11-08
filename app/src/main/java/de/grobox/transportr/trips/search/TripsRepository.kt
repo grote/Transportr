@@ -92,7 +92,7 @@ internal class TripsRepository(
                 if (!TransportrUtils.hasInternet(ctx)) {
                     queryError.postValue(ctx.getString(R.string.error_no_internet))
                 } else {
-                    queryError.postValue(e.toString())
+                    queryError.postValue("$e\n${e.stackTrace[0]}\n${e.stackTrace[1]}\n${e.stackTrace[2]}")
                 }
             }
         }.start()

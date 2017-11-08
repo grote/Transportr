@@ -167,7 +167,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 
 	private void onError(@Nullable String error) {
 		if (error == null) return;
-		errorText.setText(error);
+		errorText.setText(error + "\n\n" + getString(R.string.trip_error_pte));
 		LceAnimator.showErrorView(progressBar, list, errorLayout);
 	}
 
