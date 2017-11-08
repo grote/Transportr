@@ -90,7 +90,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Schnell</string>
 	<string name="error_trip_refresh_failed">Es war nicht möglich die aktuelle Verbindung zu aktualisieren.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">Systemstandard</string>
   <string name="times_include_delays">(Achtung: Zeiten beinhalten gemeldete Verspätungen)</string>
   <string name="home">Zuhause</string>

@@ -87,7 +87,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="pref_walk_speed_normal">Normaal</string>
   <string name="pref_walk_speed_fast">Snel</string>
 	<string name="error_trip_refresh_failed">Kon de data voor de reis niet herladen.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">Systeemstandaard</string>
   <string name="times_include_delays">(Let op: Tijd is inclusief gerapporteerde vertragingen)</string>
   <string name="home">Thuis</string>

@@ -88,7 +88,7 @@
   <string name="pref_walk_speed_normal">通常</string>
   <string name="pref_walk_speed_fast">速い</string>
 	<string name="error_trip_refresh_failed">現在の旅行のデータを更新できませんでした。</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">システム デフォルト</string>
   <string name="times_include_delays">(注意: 時間には報告された遅延が含まれます)</string>
   <string name="home">自宅</string>

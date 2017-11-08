@@ -83,7 +83,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="pref_walk_speed_normal">Norme</string>
   <string name="pref_walk_speed_fast">Rapide</string>
 	<string name="error_trip_refresh_failed">Ne povas aktualigi datumojn por nunan kurson.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d haltejo</item>
     <item quantity="other">%d haltejoj</item>

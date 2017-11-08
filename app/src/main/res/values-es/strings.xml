@@ -84,7 +84,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
 	<string name="error_trip_refresh_failed">No se han podido actualizar los datos de viaje actual.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">Predeterminado del sistema</string>
   <string name="times_include_delays">(Atención: Los tiempos incluyen demoras reportadas)</string>
   <string name="home">Inicio</string>

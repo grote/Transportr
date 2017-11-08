@@ -57,7 +57,7 @@
   <string name="pref_walk_speed_slow">Yavaş</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Hızlı</string>
-	<string name="meter">m</string>
+	<string name="meter">%d m</string>
   <string name="system_default">Sistem Varsayılanı</string>
   <string name="home">Ev</string>
   <string name="home_dialog_title">Ev Konumunu Ayarla</string>

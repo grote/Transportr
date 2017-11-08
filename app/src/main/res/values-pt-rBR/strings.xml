@@ -86,7 +86,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
 	<string name="error_trip_refresh_failed">Não foi possível atualizar os dados para a viagem selecionada.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">Sistema Padrão</string>
   <string name="times_include_delays">(Atenção: Horários incluem atrasos)</string>
   <string name="home">Página Inicial</string>

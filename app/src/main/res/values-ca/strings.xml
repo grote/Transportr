@@ -53,7 +53,7 @@
   <string name="pref_walk_speed_slow">Lenta</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Ràpida</string>
-	<string name="meter">m</string>
+	<string name="meter">%d m</string>
   <string name="system_default">Per defecte del sistema</string>
   <string name="home">Casa</string>
 	<string name="location_gps">Utilitzar posició actual</string>

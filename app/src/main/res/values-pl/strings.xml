@@ -83,7 +83,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="pref_walk_speed_normal">Normalnie</string>
   <string name="pref_walk_speed_fast">Szybko</string>
 	<string name="error_trip_refresh_failed">Nie można odświeżyć danych dla obecnej trasy.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d przystanek</item>
     <item quantity="few">%d przystanki</item>

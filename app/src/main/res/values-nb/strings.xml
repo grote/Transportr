@@ -96,7 +96,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="pref_walk_speed_normal">Normalt</string>
   <string name="pref_walk_speed_fast">Raskt</string>
 	<string name="error_trip_refresh_failed">Kunne ikke gjenoppfriske data for gjeldende tur</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d stopp</item>
     <item quantity="other">%d stopp</item>

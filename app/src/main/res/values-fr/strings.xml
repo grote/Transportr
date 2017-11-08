@@ -84,7 +84,7 @@ Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les proch
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Rapide</string>
 	<string name="error_trip_refresh_failed">Impossible de rafraîchir les données pour le trajet actuel.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">Valeur par défaut du système</string>
   <string name="times_include_delays">(Avertissement : les heures incluent les retards signalés)</string>
   <string name="home">Origine</string>

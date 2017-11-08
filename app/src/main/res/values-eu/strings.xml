@@ -88,7 +88,7 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="pref_walk_speed_normal">Arrunta</string>
   <string name="pref_walk_speed_fast">Bizkor</string>
 	<string name="error_trip_refresh_failed">Ezin izan dira datuak freskatu uneko bidairako.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">Sistemaren lehenetsia</string>
   <string name="times_include_delays">(Adi: denborek jakinarazitako atzerapenak dauzkate)</string>
   <string name="home">Etxea</string>

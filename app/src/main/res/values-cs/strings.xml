@@ -62,7 +62,7 @@
   <string name="pref_walk_speed_normal">Normalně</string>
   <string name="pref_walk_speed_fast">Rychle</string>
   <string name="error_trip_refresh_failed">Nepodařilo se aktualizovat data pro aktuální cestu.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">Výchozí nastavení systému</string>
   <string name="times_include_delays">Pozor. Časy zahrnují hlášené zpoždění</string>
   <string name="home">Domů</string>

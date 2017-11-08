@@ -83,7 +83,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="pref_walk_speed_normal">Átlagos</string>
   <string name="pref_walk_speed_fast">Gyors</string>
 	<string name="error_trip_refresh_failed">Nem lehetett az aktuális útvonallal kapcsolatos adatokat frissíteni.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">Alapértelmezett (rendszer)</string>
   <string name="times_include_delays">(Figyelem: Az jelzett időpontokba a jelentett késések is beleszámítanak)</string>
   <string name="home">Otthon</string>

@@ -12,13 +12,13 @@ import de.schildbach.pte.dto.Stop
 import kotlinx.android.synthetic.main.list_item_stop.view.*
 
 
-internal class StopViewHolder(v: View) : BaseViewHolder(v) {
+internal class StopViewHolder(v: View, listener: LegClickListener) : BaseViewHolder(v, listener) {
 
     private val circle: ImageView = v.circle
     private val stopLocation: TextView = v.stopLocation
     private val stopButton: ImageButton = v.stopButton
 
-    fun bind(stop: Stop, listener: LegClickListener, color: Int) {
+    fun bind(stop: Stop, color: Int) {
         if (stop.arrivalTime != null) {
             setArrivalTimes(fromTime, fromDelay, stop)
         } else {
@@ -42,14 +42,7 @@ internal class StopViewHolder(v: View) : BaseViewHolder(v) {
 
         stopLocation.text = getLocationName(stop.location)
         stopLocation.setOnClickListener { listener.onLocationClick(stop.location) }
-
-        // platforms
-//		if (stop.plannedArrivalPosition != null) {
-//			arrivalPlatform.setText(stop.plannedArrivalPosition.name);
-//		}
-//		if (stop.plannedDeparturePosition != null) {
-//			departurePlatform.setText(stop.plannedDeparturePosition.name);
-//		}
+        stopLocation.addPlatform(stop.arrivalPosition)
 
         // show popup on button click
         stopButton.setOnClickListener { LegPopupMenu(stopButton.context, stopButton, stop).show() }

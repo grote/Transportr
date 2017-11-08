@@ -84,7 +84,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Veloce</string>
 	<string name="error_trip_refresh_failed">Impossibile aggiornare i dati per l\'attuale percorso.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="system_default">Predefinito di sistema</string>
   <string name="times_include_delays">(Attenzione: gli orari includono i ritardi riportati)</string>
   <string name="home">Casa</string>

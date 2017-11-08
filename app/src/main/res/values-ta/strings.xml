@@ -69,7 +69,7 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="pref_walk_speed_normal">சராசரியாக</string>
   <string name="pref_walk_speed_fast">வேகமாக</string>
 	<string name="error_trip_refresh_failed">தற்போதைய பயணத்திற்கான தரவை புதுப்பிக்க இயலவில்லை.</string>
-  <string name="meter">m</string>
+  <string name="meter">%d m</string>
   <string name="home">முகப்பு</string>
   <string name="home_dialog_title">வசிப்பிடத்தை அமைக்க</string>
 	<string name="location_gps">தற்சமயம் இருக்குமிடத்தை பயன்படுத்து</string>

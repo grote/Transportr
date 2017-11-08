@@ -134,11 +134,17 @@ there are any).</string>
     <string name="trip_issue">There might be a problem with this connection.</string>
     <string name="try_again">Try Again</string>
 
-    <string name="meter">m</string>
+	<!-- This string shows the number of meters one has to walk. Please keep the translation short. -->
+    <string name="meter">%d m</string>
+
     <plurals name="stops">
         <item quantity="one">%d Stop</item>
         <item quantity="other">%d Stops</item>
     </plurals>
+
+    <!-- This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name. -->
+    <string name="platform">(Platform %s)</string>
+
     <string name="system_default">System Default</string>
     <string name="times_include_delays">(Attention: Times include reported delays)</string>
     <string name="created_by">Created by %s</string>
