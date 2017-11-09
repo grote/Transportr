@@ -2,23 +2,18 @@ package de.grobox.transportr.trips.detail
 
 
 import android.content.Context
-import android.graphics.Bitmap.Config.ARGB_8888
-import android.graphics.Bitmap.createBitmap
-import android.graphics.Canvas
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.support.annotation.ColorInt
 import android.support.v4.content.ContextCompat
 import com.mapbox.mapboxsdk.annotations.Icon
-import com.mapbox.mapboxsdk.annotations.IconFactory
-import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.annotations.PolylineOptions
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import de.grobox.transportr.R
+import de.grobox.transportr.map.MapDrawer
 import de.grobox.transportr.utils.DateUtils.getTime
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.Point
@@ -27,9 +22,7 @@ import de.schildbach.pte.dto.Trip
 import de.schildbach.pte.dto.Trip.*
 import java.util.*
 
-internal class TripDrawer(private val context: Context) {
-
-    private val iconFactory = IconFactory.getInstance(context)
+internal class TripDrawer(context: Context) : MapDrawer(context) {
 
     private enum class MarkerType {
         BEGIN, CHANGE, STOP, END, WALK
@@ -38,7 +31,7 @@ internal class TripDrawer(private val context: Context) {
     fun draw(map: MapboxMap, trip: Trip) {
         // draw leg path first, so it is always at the bottom
         var i = 1
-        val allPoints = ArrayList<LatLng>()
+        val builder = LatLngBounds.Builder()
         for (leg in trip.legs) {
             // add path if it is missing
             if (leg.path == null) calculatePath(leg)
@@ -90,9 +83,9 @@ internal class TripDrawer(private val context: Context) {
                 }
             }
             i += 1
-            allPoints.addAll(points)
+            builder.includes(points)
         }
-        centerOnTrip(map, allPoints)
+        zoomToBounds(map, builder, false)
     }
 
     private fun calculatePath(leg: Leg) {
@@ -142,14 +135,7 @@ internal class TripDrawer(private val context: Context) {
     }
 
     private fun markLocation(map: MapboxMap, location: Location, icon: Icon, text: String) {
-        if (!location.hasLocation()) return
-        val position = LatLng(location.latAsDouble, location.lonAsDouble)
-        map.addMarker(MarkerOptions()
-                .icon(icon)
-                .position(position)
-                .title(location.uniqueShortName())
-                .snippet(text)
-        )
+        markLocation(map, location, icon, location.uniqueShortName(), text)
     }
 
     private fun getMarkerIcon(type: MarkerType, backgroundColor: Int, foregroundColor: Int): Icon {
@@ -207,20 +193,6 @@ internal class TripDrawer(private val context: Context) {
             text += "${context.getString(R.string.trip_dep)}: ${getTime(context, it)}"
         }
         return text
-    }
-
-    private fun centerOnTrip(map: MapboxMap, points: List<LatLng>) {
-        val latLngBounds = LatLngBounds.Builder().includes(points).build()
-        val padding = context.resources.getDimensionPixelSize(R.dimen.mapPadding)
-        map.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, padding))
-    }
-
-    private fun Drawable.toIcon(): Icon {
-        val bitmap = createBitmap(intrinsicWidth, intrinsicHeight, ARGB_8888)
-        val canvas = Canvas(bitmap)
-        setBounds(0, 0, canvas.width, canvas.height)
-        draw(canvas)
-        return iconFactory.fromBitmap(bitmap)
     }
 
 }

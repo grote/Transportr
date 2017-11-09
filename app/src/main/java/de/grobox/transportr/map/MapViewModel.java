@@ -44,6 +44,7 @@ public class MapViewModel extends SavedSearchesViewModel {
 	private final SingleLiveEvent<WrapLocation> findNearbyStations = new SingleLiveEvent<>();
 	private final SingleLiveEvent<Boolean> nearbyStationsFound = new SingleLiveEvent<>();
 
+	final MutableLiveData<Boolean> isFreshStart = new MutableLiveData<>();
 	final SingleLiveEvent<Void> mapClicked = new SingleLiveEvent<>();
 	final SingleLiveEvent<Void> markerClicked = new SingleLiveEvent<>();
 	final LiveData<LatLngBounds> liveBounds = Transformations.switchMap(getLocations(), this::switchMap);
@@ -53,6 +54,7 @@ public class MapViewModel extends SavedSearchesViewModel {
 	             SearchesRepository searchesRepository, GpsController gpsController) {
 		super(application, transportNetworkManager, locationRepository, searchesRepository);
 		this.gpsController = gpsController;
+		this.isFreshStart.setValue(true);
 	}
 
 	GpsController getGpsController() {

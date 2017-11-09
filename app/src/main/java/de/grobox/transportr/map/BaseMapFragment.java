@@ -23,7 +23,6 @@ abstract public class BaseMapFragment extends TransportrFragment implements OnMa
 
 	protected MapView mapView;
 	protected MapboxMap map;
-	protected boolean isFreshStart;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,8 +30,6 @@ abstract public class BaseMapFragment extends TransportrFragment implements OnMa
 
 		View v = inflater.inflate(getLayout(), container, false);
 		mapView = v.findViewById(R.id.map);
-
-		isFreshStart = savedInstanceState == null;
 
 		return v;
 	}
@@ -69,7 +66,6 @@ abstract public class BaseMapFragment extends TransportrFragment implements OnMa
 	public void onPause() {
 		super.onPause();
 		mapView.onPause();
-		isFreshStart = false;
 	}
 
 	@Override

@@ -3,11 +3,7 @@ package de.grobox.transportr.map;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,23 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.mapbox.mapboxsdk.annotations.Icon;
-import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
-import com.mapbox.mapboxsdk.annotations.MarkerViewOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdate;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.exceptions.InvalidLatLngBoundsException;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerClickListener;
-import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerViewClickListener;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
@@ -45,9 +32,9 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.locations.NearbyLocationsLoader;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.map.GpsController.FabState;
+import de.grobox.transportr.networks.TransportNetwork;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.NearbyLocationsResult;
-import de.schildbach.pte.dto.Product;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -61,7 +48,7 @@ import static de.schildbach.pte.dto.LocationType.STATION;
 import static de.schildbach.pte.dto.NearbyLocationsResult.Status.OK;
 
 @ParametersAreNonnullByDefault
-public class MapFragment extends BaseMapFragment implements LoaderCallbacks<NearbyLocationsResult>, OnMarkerClickListener, OnMarkerViewClickListener {
+public class MapFragment extends BaseMapFragment implements LoaderCallbacks<NearbyLocationsResult>, OnMarkerClickListener {
 
 	private final static int LOCATION_ZOOM = 14;
 
@@ -72,7 +59,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 
 	private FloatingActionButton gpsFab;
 	private @Nullable Marker selectedLocationMarker;
-	private final Map<Marker, Location> nearbyLocations = new HashMap<>();
+	private NearbyStationsDrawer nearbyStationsDrawer;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,11 +69,13 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		getComponent().inject(this);
 
 		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(MapViewModel.class);
-		viewModel.getTransportNetwork().observe(this, transportNetwork -> requestPermission());
+		viewModel.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
 		gpsController = viewModel.getGpsController();
 
 		gpsFab = v.findViewById(R.id.gpsFab);
 		gpsFab.setOnClickListener(view -> onGpsFabClick());
+
+		nearbyStationsDrawer = new NearbyStationsDrawer(getContext());
 
 		if (savedInstanceState == null && viewModel.getTransportNetwork().getValue() != null) {
 			requestPermission();
@@ -112,22 +101,9 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		map.setOnMapClickListener(point -> viewModel.mapClicked.call());
 		map.setOnMapLongClickListener(point -> viewModel.selectLocation(new WrapLocation(point)));
 		map.setOnMarkerClickListener(this);
-		map.getMarkerViewManager().setOnMarkerViewClickListener(this);
 
 		if (map.getMyLocation() != null) {
 			gpsController.setLocation(map.getMyLocation());
-		}
-
-		if (isFreshStart) {
-			// zoom to favorite locations or only current location, if no favorites exist
-			viewModel.liveBounds.observe(this, bounds -> {
-				if (bounds != null) {
-					zoomToBounds(bounds);
-					viewModel.liveBounds.removeObservers(this);
-				} else if (map.getMyLocation() != null) {
-					zoomToMyLocation();
-				}
-			});
 		}
 
 		map.setOnMyLocationChangeListener(newLocation -> gpsController.setLocation(newLocation));
@@ -135,9 +111,24 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		gpsController.getFabState().observe(this, this::onNewFabState);
 
 		// observe map related data
+		viewModel.isFreshStart.observe(this, this::onFreshStart);
 		viewModel.getSelectedLocation().observe(this, this::onLocationSelected);
 		viewModel.getSelectedLocationClicked().observe(this, this::onSelectedLocationClicked);
 		viewModel.getFindNearbyStations().observe(this, this::findNearbyStations);
+	}
+
+	private void onFreshStart(@Nullable Boolean isFreshStart) {
+		if (isFreshStart != null && !isFreshStart) return;
+		// zoom to favorite locations or only current location, if no favorites exist
+		viewModel.liveBounds.observe(this, bounds -> {
+			if (bounds != null) {
+				zoomToBounds(bounds);
+				viewModel.liveBounds.removeObservers(this);
+			} else if (map.getMyLocation() != null) {
+				zoomToMyLocation();
+			}
+		});
+		viewModel.isFreshStart.setValue(false);
 	}
 
 	@Override
@@ -146,18 +137,23 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 			viewModel.markerClicked.call();
 			return true;
 		}
-		return false;
-	}
-
-	@Override
-	public boolean onMarkerClick(@NonNull Marker marker, @NonNull View view, @NonNull MapboxMap.MarkerViewAdapter adapter) {
-		// https://github.com/mapbox/mapbox-gl-native/issues/8236
-		if (nearbyLocations.containsKey(marker)) {
-			WrapLocation wrapLocation = new WrapLocation(nearbyLocations.get(marker));
+		WrapLocation wrapLocation = nearbyStationsDrawer.getClickedNearbyStation(marker);
+		if (wrapLocation != null) {
 			viewModel.selectLocation(wrapLocation);
 			return true;
 		}
 		return false;
+	}
+
+	private void onTransportNetworkChanged(@Nullable TransportNetwork network) {
+		requestPermission();
+		if (network != null && map != null) {
+			// stop observing fresh start, so we get only updated when activity was recreated
+			viewModel.isFreshStart.removeObservers(this);
+			viewModel.isFreshStart.setValue(true);
+			// prevent loader from re-adding nearby stations
+			getActivity().getSupportLoaderManager().destroyLoader(LOADER_NEARBY_STATIONS);
+		}
 	}
 
 	private void onLocationSelected(@Nullable WrapLocation location) {
@@ -230,12 +226,12 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 
 	private void zoomToBounds(LatLngBounds latLngBounds) {
 		int padding = getResources().getDimensionPixelSize(R.dimen.mapPadding);
-		map.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, padding));
+		CameraUpdate update = CameraUpdateFactory.newLatLngBounds(latLngBounds, padding);
+		map.moveCamera(update);
 	}
 
 	private void findNearbyStations(WrapLocation location) {
-		// TODO limit maxDistance to visible area at least, some providers return a lot of stations
-		Bundle args = NearbyLocationsLoader.getBundle(location.getLocation(), 0);
+		Bundle args = NearbyLocationsLoader.getBundle(location.getLocation(), 1000);
 		getActivity().getSupportLoaderManager().restartLoader(LOADER_NEARBY_STATIONS, args, this).forceLoad();
 	}
 
@@ -272,22 +268,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 	@Override
 	public void onLoadFinished(Loader<NearbyLocationsResult> loader, @Nullable NearbyLocationsResult result) {
 		if (result != null && result.status == OK && result.locations != null && result.locations.size() > 0) {
-			LatLngBounds.Builder builder = new LatLngBounds.Builder();
-			for (Location location : result.locations) {
-				if (!location.hasLocation()) continue;
-				WrapLocation wrapLocation = new WrapLocation(location);
-				Marker marker = map.addMarker(new MarkerViewOptions()
-						.position(wrapLocation.getLatLng())
-						.title(wrapLocation.getName())
-						.icon(getIconForProduct(location.products))
-				);
-				nearbyLocations.put(marker, location);
-				builder.include(wrapLocation.getLatLng());
-			}
-			try {
-				zoomToBounds(builder.build());
-			} catch (InvalidLatLngBoundsException ignored) {
-			}
+			nearbyStationsDrawer.draw(map, result.locations);
 		} else {
 			Toast.makeText(getContext(), R.string.error_find_nearby_stations, Toast.LENGTH_SHORT).show();
 		}
@@ -296,60 +277,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 
 	@Override
 	public void onLoaderReset(Loader<NearbyLocationsResult> loader) {
-		nearbyLocations.clear();
-	}
-
-	private Icon getIconForProduct(@Nullable Set<Product> p) {
-		@DrawableRes
-		int image_res = R.drawable.product_bus_marker;
-
-		if (p != null && p.size() > 0) {
-			switch (p.iterator().next()) {
-				case HIGH_SPEED_TRAIN:
-					image_res = R.drawable.product_high_speed_train_marker;
-					break;
-				case REGIONAL_TRAIN:
-					image_res = R.drawable.product_regional_train_marker;
-					break;
-				case SUBURBAN_TRAIN:
-					image_res = R.drawable.product_suburban_train_marker;
-					break;
-				case SUBWAY:
-					image_res = R.drawable.product_subway_marker;
-					break;
-				case TRAM:
-					image_res = R.drawable.product_tram_marker;
-					break;
-				case BUS:
-					image_res = R.drawable.product_bus_marker;
-					break;
-				case FERRY:
-					image_res = R.drawable.product_ferry_marker;
-					break;
-				case CABLECAR:
-					image_res = R.drawable.product_cablecar_marker;
-					break;
-				case ON_DEMAND:
-					image_res = R.drawable.product_on_demand_marker;
-					break;
-			}
-		}
-		return getNearbyLocationsIcon(image_res);
-	}
-
-	private Icon getNearbyLocationsIcon(@DrawableRes int res) {
-		IconFactory iconFactory = IconFactory.getInstance(getContext());
-		Drawable drawable = ContextCompat.getDrawable(getContext(), res);
-		return iconFactory.fromBitmap(getBitmap(drawable));
-	}
-
-	private Bitmap getBitmap(@Nullable Drawable drawable) {
-		if (drawable == null) throw new IllegalArgumentException();
-		Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-		Canvas canvas = new Canvas(bitmap);
-		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-		drawable.draw(canvas);
-		return bitmap;
+		nearbyStationsDrawer.reset();
 	}
 
 }
