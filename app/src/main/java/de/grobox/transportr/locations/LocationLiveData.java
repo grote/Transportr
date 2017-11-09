@@ -19,7 +19,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static com.mapbox.services.android.telemetry.location.LocationEnginePriority.HIGH_ACCURACY;
+import static com.mapbox.services.android.telemetry.location.LocationEnginePriority.BALANCED_POWER_ACCURACY;
 
 @ParametersAreNonnullByDefault
 public class LocationLiveData extends LiveData<WrapLocation> implements LocationEngineListener, ReverseGeocoderCallback {
@@ -27,6 +27,8 @@ public class LocationLiveData extends LiveData<WrapLocation> implements Location
 	private final Context context;
 	private final LocationSource locationSource = Mapbox.getLocationSource();
 
+	// TODO often the GPS request is dropped after some time, WHY?
+	// ActivityManager: Launch timeout has expired, giving up wake lock!
 	public LocationLiveData(Context context) {
 		super();
 		this.context = context;
@@ -43,10 +45,11 @@ public class LocationLiveData extends LiveData<WrapLocation> implements Location
 	protected void onActive() {
 		super.onActive();
 		locationSource.activate();
-		locationSource.setPriority(HIGH_ACCURACY);
+		locationSource.setPriority(BALANCED_POWER_ACCURACY);
 		locationSource.setInterval(5000);
 		locationSource.addLocationEngineListener(this);
 		locationSource.requestLocationUpdates();
+		// TODO what happens where when GPS is turned off?
 	}
 
 	@Override

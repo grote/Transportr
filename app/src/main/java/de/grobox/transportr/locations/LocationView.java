@@ -65,10 +65,10 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 	private WrapLocation location;
 	private boolean suggestLocationsTaskPending = false;
 	protected final LocationViewHolder ui;
-	private LocationViewListener listener;
+	protected LocationViewListener listener;
 	protected final String hint;
 
-	private FavLocationType type = FavLocationType.FROM;
+	protected FavLocationType type = FavLocationType.FROM;
 
 	public LocationView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -268,6 +268,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		if (setText) {
 			if (loc != null) {
 				ui.location.setText(loc.getName());
+				ui.location.setSelection(loc.getName().length());
 				ui.location.dismissDropDown();
 				ui.clear.setVisibility(View.VISIBLE);
 				stopSuggestLocationsTask();

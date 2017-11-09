@@ -273,6 +273,7 @@ public class DirectionsFragment extends TransportrFragment {
 			return;
 		}
 		from.setSearching();
+		to.requestFocus();
 		viewModel.locationLiveData.observe(this, location -> {
 			viewModel.setFromLocation(location);
 			viewModel.search();
