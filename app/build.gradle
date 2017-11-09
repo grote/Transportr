@@ -9,8 +9,8 @@ android {
 	buildToolsVersion "27.0.0"
 
 	defaultConfig {
-		versionCode 100
-		versionName "2.0.0-preview1"
+		versionCode 101
+		versionName "2.0.0-preview2"
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 15
@@ -157,15 +157,15 @@ dependencies {
 dependencyVerification {
 	verify = [
 			'android.arch.core:common:5192934cd73df32e2c15722ed7fc488dde90baaec9ae030010dd1a80fb4e74e1',
-			'android.arch.core:runtime:e9d773cbec8883e5b876b973b49801af2eb2d959b22a11d37b80398b132b9119',
-			'android.arch.lifecycle:common-java8:aa554cc815d690811e26b555c7ac7f8fc5dfc082fbc528235c39e624cf4e7851',
+			'android.arch.core:runtime:9e08fc5c4d6e48f58c6865b55ba0e72a88f907009407767274187a873e524734',
+			'android.arch.lifecycle:common-java8:4ff802b0f31e571d31d21b90e56bb03fe7c2ba03c987420db31cd09634e6f38c',
 			'android.arch.lifecycle:common:ff0215b54e7cbaaa898f8fd00e265ed6ea198859e10604bc1c5e78477df48b5c',
-			'android.arch.lifecycle:extensions:c4dda80aed2eba07a8b0f3c4ff4f91455d068bfbdf347836524dfd4a6c6bf965',
+			'android.arch.lifecycle:extensions:851f718fd2afda1e7aa93537dae1a5c1fe47710db62dcd7cd24c4b3b14ef0d90',
 			'android.arch.lifecycle:runtime:d0b36278878c82b838acc4308595bec61a3b5f6e7f2acc34172d7e071b2cf26d',
-			'android.arch.persistence.room:common:db305bd1935ee03b5fb49e3a8a74d681833a670bff43073fe5f8095c1ee8aefb',
-			'android.arch.persistence.room:runtime:99f474402143d2590a97f033e237415948e55fb807f5443d4a088a7075cb18fd',
-			'android.arch.persistence:db-framework:d0e8fdc8d6601043f834ef05b2207196a794478967246d80c50d629706425921',
-			'android.arch.persistence:db:4723ad8d886761c8dd0d917114a0480fa8a4cc267b716dfbf9eb68f7b2f67a1d',
+			'android.arch.persistence.room:common:79bd49220d50c773882ef0e033c90c065fd5e5fd0eb16ca507dc8b3e78bd65f8',
+			'android.arch.persistence.room:runtime:29e291f48708311ce9a9f2bb1b87bcee20282c5f9b8ffeedd0389a1fb417482a',
+			'android.arch.persistence:db-framework:e8310c66979f8823cfe583951abfde96824b176289ba77b750a25be00d25981a',
+			'android.arch.persistence:db:7c0a51d5fc890a8fb94a3370ff599243ec3485cca63daba3cc2bb197835dc521',
 			'com.android.support.constraint:constraint-layout-solver:8c62525a9bc5cff5633a96cb9b32fffeccaf41b8841aa87fc22607070dea9b8d',
 			'com.android.support.constraint:constraint-layout:b0c688cc2b7172608f8153a689d746da40f71e52d7e2fe2bfd9df2f92db77085',
 			'com.android.support:animated-vector-drawable:abf922bd9a6591e76bc187d36f2bb664bd79b898eb76d4f7a7bb061ff3548748',

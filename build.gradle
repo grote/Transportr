@@ -3,7 +3,7 @@ buildscript {
 	ext.kotlinVersion = '1.1.51'
 	ext.daggerVersion = '2.11'
 	ext.supportVersion = '27.0.0'
-	ext.archVersion = '1.0.0-rc1'
+	ext.archVersion = '1.0.0'
 	ext.espressoVersion = '3.0.1'
 
 	repositories {

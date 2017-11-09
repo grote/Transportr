@@ -15,19 +15,25 @@ anzeigen und dem Verlauf über GPS folgen.
 
 Du kannst auch Haltestellen in der Nähe finden und bevorstehende Abfahrten einschliesslich der Verzögerungen (wenn
 es welche gibt) anzeigen lassen.</string>
-	<string name="drawer_changelog">Änderungsprotokoll</string>
+  <string name="drawer_changelog">Änderungsprotokoll</string>
   <string name="drawer_about">Über</string>
   <string name="drawer_settings">Einstellungen</string>
   <string name="action_fav_trip">Verbindung als Favorit markieren</string>
   <string name="action_unfav_trip">Markierung der Verbindung als Favorit aufheben</string>
+  <string name="action_switch_locations">Von und Nach vertauschen</string>
+  <string name="action_time_type">Zeit ist</string>
+  <string name="trip_dep">Abfahrt</string>
+  <string name="trip_arr">Ankunft</string>
   <string name="action_refresh">Aktualisieren</string>
-	<string name="action_share">Teilen</string>
+  <string name="action_navigation_expand">Anzeigen über</string>
+  <string name="action_choose_products">Verkehrsmittel</string>
+  <string name="action_share">Teilen</string>
   <string name="action_trip_calendar">Zum Kalender hinzufügen</string>
   <string name="action_trip_delete">Verbindung löschen</string>
   <string name="action_show_on_external_map">Auf externer Karte anzeigen</string>
   <string name="action_copy">Kopieren</string>
-	<string name="drawer_departures">Abfahrten</string>
-	<string name="tab_libraries">Bibliotheken</string>
+  <string name="drawer_departures">Abfahrten</string>
+  <string name="tab_libraries">Bibliotheken</string>
   <string name="tab_devs">Entwickler</string>
   <string name="tab_about">Über</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
@@ -45,11 +51,14 @@ es welche gibt) anzeigen lassen.</string>
 ]]>
 </string>
   <string name="visit_website">Zur Webseite</string>
-	<string name="from">Von</string>
+  <string name="open_navigation_drawer">Navigationsschuber öffnen</string>
+  <string name="from">Von</string>
   <string name="to">Nach</string>
   <string name="via">Über</string>
-	<string name="from_here">Von hier</string>
+  <string name="search_hint">Hier suchen</string>
+  <string name="from_here">Von hier</string>
   <string name="to_here">Verbindung zum aktuellen Standort suchen</string>
+  <string name="clear_location">Ort löschen</string>
   <string name="min"> min</string>
   <string name="walk">Fußweg</string>
   <string name="position">Bahnsteig</string>
@@ -58,24 +67,26 @@ es welche gibt) anzeigen lassen.</string>
   <string name="network">Netzwerk</string>
   <string name="pick_network_activity">Wähle eine Region</string>
   <string name="pick_network_first_run">Willkommen bei Transportr! Bitte wähle einen Verkehrsverbund aus, um fortzufahren. Diesen kannst du jederzeit ändern.</string>
-	<string name="stations_searching_position">Suche nach aktueller Position…</string>
+  <string name="stations_searching_position">Suche nach aktueller Position…</string>
   <string name="drawer_nearby_stations">Haltestellen in der Nähe</string>
   <string name="find_nearby_stations">Haltestellen in der Umgebung suchen</string>
   <string name="find_departures">Abfahrten suchen</string>
-	<string name="share_trip_via">Verbindungen teilen mit…</string>
-	<string name="more">Mehr</string>
-	<string name="change_time">Zeit ändern</string>
+  <string name="share_trip_via">Verbindungen teilen mit…</string>
+  <string name="more">Mehr</string>
+  <string name="change_time">Zeit ändern</string>
   <string name="now">Jetzt</string>
   <string name="now_small">jetzt</string>
-	<string name="yesterday">Gestern</string>
+  <string name="yesterday">Gestern</string>
   <string name="today">Heute</string>
   <string name="tomorrow">Morgen</string>
-	<string name="in_x_minutes">in %d min</string>
+  <string name="in_x_minutes">in %d min</string>
   <string name="x_minutes_ago">vor %d min</string>
+  <string name="time_picker_previous_day">Vorheriger Tag</string>
+  <string name="time_picker_next_day">Nächster Tag</string>
   <string name="ok">OK</string>
   <string name="cancel">Abbrechen</string>
-	<string name="pref_transport_network">Verkehrsverbund</string>
-	<string name="pref_display">Anzeige</string>
+  <string name="pref_transport_network">Verkehrsverbund</string>
+  <string name="pref_display">Anzeige</string>
   <string name="pref_theme_title">Thema</string>
   <string name="pref_theme_light">Hell</string>
   <string name="pref_theme_dark">Dunkel</string>
@@ -89,17 +100,49 @@ es welche gibt) anzeigen lassen.</string>
   <string name="pref_walk_speed_slow">Langsam</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Schnell</string>
-	<string name="error_trip_refresh_failed">Es war nicht möglich die aktuelle Verbindung zu aktualisieren.</string>
-  <string name="meter">%d m</string>
+  <string name="pref_show_when_locked_title">Zeige Fahrt und Suchtreffer auch wenn der Bildschirm gesperrt ist</string>
+  <string name="pref_show_when_locked_summary">Über dem Sperrbildschirm anzeigen</string>
+  <string name="error">Fehler</string>
+  <string name="error_no_internet">Eine Internetverbindung wird benötigt. Bitte stelle sicher, dass dein Internetzugang funktioniert.</string>
+  <string name="error_trip_refresh_failed">Es war nicht möglich die aktuelle Verbindung zu aktualisieren.</string>
+  <string name="error_geo_intent">Konnte externe Position nicht öffnen</string>
+  <string name="error_find_nearby_stations">Konnte keine Haltestellen in der Nähe finden</string>
+  <string name="error_departures">Konnte keine Abfahrten finden</string>
+  <string name="trip_error_ambiguous">Konnte den Ort nicht finden. Bitte versuche mit anderen Orten zu suchen.</string>
+  <string name="trip_error_too_close">Die Orte \'von\' und \'nach\' sind zu nahe beieinander.</string>
+  <string name="trip_error_unknown_from">Konnte den Ort \'von\' nicht finden. Bitte versuche es mit einem anderen.</string>
+  <string name="trip_error_unknown_via">Konnte den Ort \'via\' nicht finden. Bitte versuche es mit einem anderen.</string>
+  <string name="trip_error_unknown_to">Konnte den Ort \'nach\' nicht finden. Bitte versuche es mit einem anderen.</string>
+  <string name="trip_error_unresolvable_address">Konnte die eingegebene Adresse nicht finden. Bitte versuche es mit einer anderen.</string>
+  <string name="trip_error_no_trips">Keine Verbindungen gefunden :(</string>
+  <string name="trip_error_invalid_date">Das Suchdatum wird momentan nicht von der Datenquelle unterstützt. Bitte versuche ein anderes Datum.</string>
+  <string name="trip_error_service_down">Die Datenquelle ist momentan nicht erreichbar :(\nBitte versuche es später noch einmal.</string>
+  <string name="trip_error_pte">Wenn du diesen Fehler melden möchtest, kannst du ihn bitte direkt an den Public Transport Enabler melden und einen Screenshot hinzufügen.</string>
+  <string name="trip_issue">Es könnte ein Problem mit dieser Verbindung geben.</string>
+  <string name="try_again">Noch einmal versuchen</string>
+  <string name="meter">m</string>
+  <plurals name="stops">
+    <item quantity="one">%d Haltestelle</item>
+    <item quantity="other">%d Haltestellen</item>
+  </plurals>
   <string name="system_default">Systemstandard</string>
   <string name="times_include_delays">(Achtung: Zeiten beinhalten gemeldete Verspätungen)</string>
+  <string name="created_by">Erstellt von %s</string>
   <string name="home">Zuhause</string>
   <string name="home_dialog_title">Heimatadresse festlegen</string>
+  <string name="widget_name_quickhome">Nach Hause</string>
   <string name="work">Arbeit</string>
   <string name="work_hint">Arbeitsort festlegen</string>
-	<string name="tap_to_set">Zum Festlegen tippen</string>
-	<string name="location_gps">Aktuelle Position verwenden</string>
-	<string name="select_products">Wähle das Verkehrsmittel</string>
+  <string name="widget_name_quickwork">Zur Arbeit kommen</string>
+  <string name="tap_to_set">Zum Festlegen tippen</string>
+  <string name="action_set_locations">Suche bearbeiten</string>
+  <string name="action_swap_locations">Rückfahrt suchen</string>
+  <string name="action_change">Ändern</string>
+  <string name="action_add_shortcut">Verknüpfung auf dem Starter hinzufügen</string>
+  <string name="location_gps">Aktuelle Position verwenden</string>
+  <string name="warning_no_gps_fix">Konnte deine Position noch nicht bestimmen.</string>
+  <string name="permission_denied_gps">Da du den Zugriff auf deinen aktuellen Standort nicht freigegeben hast, wird diese Funktion nicht funktionieren. Bitte erlaube den Standortzugriff in den Einstellungen.</string>
+  <string name="select_products">Wähle das Verkehrsmittel</string>
   <string name="product_high_speed_train">Hochgeschwindigkeitszug</string>
   <string name="product_regional_train">Regionalbahn</string>
   <string name="product_suburban_train">S-Bahn</string>
@@ -109,23 +152,19 @@ es welche gibt) anzeigen lassen.</string>
   <string name="product_ferry">Fähre</string>
   <string name="product_cablecar">Seilbahn</string>
   <string name="product_on_demand">Auf Nachfrage</string>
-	<string name="action_set_locations">Suche bearbeiten</string>
-  <string name="action_swap_locations">Rückfahrt suchen</string>
-  <string name="action_change">Ändern</string>
-	<string name="permission_denied_gps">Da du den Zugriff auf deinen aktuellen Standort nicht freigegeben hast, wird diese Funktion nicht funktionieren. Bitte erlaube den Standortzugriff in den Einstellungen.</string>
-	<!--ckChangeLog-->
+  <!--ckChangeLog-->
   <string name="changelog_full_title">Änderungsprotokoll</string>
   <string name="changelog_title">Was gibt\'s Neues</string>
   <string name="changelog_show_full">Mehr…</string>
-  <string name="widget_name_quickhome">Nach Hause</string>
   <string name="np_region_australia">Australien</string>
+  <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australien, Neusüdwales, Sydney</string>
   <string name="np_region_austria">Österreich</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Oberösterreich, Linz</string>
   <string name="np_desc_oebb">Österreich</string>
   <string name="np_desc_stv">Steiermark, Graz, Marburg, Marburg an der Drau</string>
-	<string name="np_desc_vor">Niederösterreich, Burgenland, Wien</string>
+  <string name="np_desc_vor">Niederösterreich, Burgenland, Wien</string>
   <string name="np_desc_vvt">Tirol</string>
   <string name="np_desc_wien">Wien</string>
   <string name="np_region_belgium">Belgien</string>
@@ -157,7 +196,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhone-Alpen, Languedoc-Roussillon, Auvergne, Korsika, Lyon</string>
   <string name="np_name_frenchsouthwest">Frankreich Südwest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
-	<string name="np_name_paris">Paris</string>
+  <string name="np_name_paris">Paris</string>
   <string name="np_desc_paris">Ile-de-France, Frankreich, Paris</string>
   <string name="np_region_gb">Großbritannien</string>
   <string name="np_desc_mersey">Region Liverpool</string>
@@ -172,7 +211,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Niedersachsen, Hannover, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
-	<string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bayern, München</string>
@@ -180,7 +219,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vagfr">Elsass, Nieder-Rhein, Straßburg, Freiburg im Breisgau</string>
+  <string name="np_desc_vagfr">Elsass, Nieder-Rhein, Straßburg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
@@ -233,7 +272,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_dub">Vereinigte Arabische Emirate, Dubai</string>
   <string name="np_region_usa">Vereinigte Staaten von Amerika</string>
   <string name="np_desc_rtachicago">Chicago</string>
-	<string name="np_name_usny" tools:keep="@string/np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Global Transport im Bundesstaat Oregon (USA)</string>
   <string name="maintainer">Koordinator</string>

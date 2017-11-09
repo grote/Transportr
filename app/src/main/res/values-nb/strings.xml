@@ -14,7 +14,7 @@ fremtidige turer i ett enkelt drag. Du kan selvsagt også vise turen i kartet
 og følge framdrift via GPS.
 
 Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsinkelser (hvis det skulle være noen).</string>
-	<string name="drawer_changelog">Endringslogg</string>
+  <string name="drawer_changelog">Endringslogg</string>
   <string name="drawer_about">Om</string>
   <string name="drawer_settings">Innstillinger</string>
   <string name="action_fav_trip">Merk tur som favoritt</string>
@@ -26,13 +26,13 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="action_refresh">Gjenoppfrisk</string>
   <string name="action_navigation_expand">Vis rutepunkt</string>
   <string name="action_choose_products">Transporttype</string>
-	<string name="action_share">Del</string>
+  <string name="action_share">Del</string>
   <string name="action_trip_calendar">Legg til i kalender</string>
   <string name="action_trip_delete">Slett tur</string>
   <string name="action_show_on_external_map">Vis på eksternt kart</string>
   <string name="action_copy">Kopier</string>
-	<string name="drawer_departures">Avganger</string>
-	<string name="tab_libraries">Bibliotek</string>
+  <string name="drawer_departures">Avganger</string>
+  <string name="tab_libraries">Bibliotek</string>
   <string name="tab_devs">Utviklere</string>
   <string name="tab_about">Om</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nFriprog-lisens: GPLv3</string>
@@ -51,11 +51,14 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
 ]]>
 </string>
   <string name="visit_website">Besøk nettside</string>
-	<string name="from">Fra</string>
+  <string name="open_navigation_drawer">Åpne navigasjonsskuff</string>
+  <string name="from">Fra</string>
   <string name="to">Til</string>
   <string name="via">Rutepunkt</string>
-	<string name="from_here">Herfra</string>
+  <string name="search_hint">Søk her</string>
+  <string name="from_here">Herfra</string>
   <string name="to_here">Hit</string>
+  <string name="clear_location">Tøm plassering</string>
   <string name="min">min</string>
   <string name="walk">Gå</string>
   <string name="position">Plattform</string>
@@ -64,24 +67,26 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="network">Nettverk</string>
   <string name="pick_network_activity">Velg område</string>
   <string name="pick_network_first_run">Velkommen til Transportr!\n\nVelg transportnettverk for ditt nærområde for å fortsette. Du kan endre dette når som helst.</string>
-	<string name="stations_searching_position">Søker etter gjeldende plassering…</string>
+  <string name="stations_searching_position">Søker etter gjeldende plassering…</string>
   <string name="drawer_nearby_stations">Stasjoner i nærheten</string>
   <string name="find_nearby_stations">Finn stasjoner i nærheten</string>
   <string name="find_departures">Finn avganger</string>
-	<string name="share_trip_via">Del tur via…</string>
-	<string name="more">Mer</string>
-	<string name="change_time">Avgangstid</string>
+  <string name="share_trip_via">Del tur via…</string>
+  <string name="more">Mer</string>
+  <string name="change_time">Avgangstid</string>
   <string name="now">Nå</string>
   <string name="now_small">nå</string>
-	<string name="yesterday">I går</string>
+  <string name="yesterday">I går</string>
   <string name="today">I dag</string>
   <string name="tomorrow">I morgen</string>
-	<string name="in_x_minutes">om %dmin</string>
+  <string name="in_x_minutes">om %dmin</string>
   <string name="x_minutes_ago">%dmin siden</string>
+  <string name="time_picker_previous_day">Forrige dag</string>
+  <string name="time_picker_next_day">Neste dag</string>
   <string name="ok">OK</string>
   <string name="cancel">Avbryt</string>
-	<string name="pref_transport_network">Transportnettverk</string>
-	<string name="pref_display">Visning</string>
+  <string name="pref_transport_network">Transportnettverk</string>
+  <string name="pref_display">Visning</string>
   <string name="pref_theme_title">Drakt</string>
   <string name="pref_theme_light">Lys</string>
   <string name="pref_theme_dark">Mørk</string>
@@ -95,21 +100,49 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="pref_walk_speed_slow">Tregt</string>
   <string name="pref_walk_speed_normal">Normalt</string>
   <string name="pref_walk_speed_fast">Raskt</string>
-	<string name="error_trip_refresh_failed">Kunne ikke gjenoppfriske data for gjeldende tur</string>
-  <string name="meter">%d m</string>
+  <string name="pref_show_when_locked_title">Vis tur og søkeresultater når skjermen er låst</string>
+  <string name="pref_show_when_locked_summary">Vis over låseskjerm</string>
+  <string name="error">Feil</string>
+  <string name="error_no_internet">Internettilkobling kreves. Forsikre deg om at internettilgangen virker.</string>
+  <string name="error_trip_refresh_failed">Kunne ikke gjenoppfriske data for gjeldende tur</string>
+  <string name="error_geo_intent">Kunne ikke åpne ekstern plassering</string>
+  <string name="error_find_nearby_stations">Kunne ikke finne stasjoner i nærheten</string>
+  <string name="error_departures">Kunne ikke finne noen avganger</string>
+  <string name="trip_error_ambiguous">Kunne ikke finne plasseringen. Prøv å søke med forskjellige plasseringer.</string>
+  <string name="trip_error_too_close">\"Fra\" og \"Til\" -plasseringene er for nære hverandre.</string>
+  <string name="trip_error_unknown_from">Kunne ikke finne \"fra\"-plasseringen. Prøv noe annet.</string>
+  <string name="trip_error_unknown_via">Kunne ikke finne \"via\"-plasseringen. Prøv noe annet.</string>
+  <string name="trip_error_unknown_to">Kunne ikke finne \"til\"-plasseringen. Prøv noe annet.</string>
+  <string name="trip_error_unresolvable_address">Kunne ikke finne oppgitt adresse. Prøv noe annet.</string>
+  <string name="trip_error_no_trips">Ingen tilkoblinger ble funnet :(</string>
+  <string name="trip_error_invalid_date">Søkedatoen er ikke støttet av datatilbyderen. Prøv en annen dato.</string>
+  <string name="trip_error_service_down">Datatilbyderen er for tiden nede :(\n Prøv igjen senere.</string>
+  <string name="trip_error_pte">Hvis du ønsker å innrapportere denne feilen, send din rapport til public-transport-enabler direkte og legg ved en skjermavbildning.</string>
+  <string name="trip_issue">Det kan være et problem med denne tilkoblingen.</string>
+  <string name="try_again">Prøv igjen</string>
+  <string name="meter">m</string>
   <plurals name="stops">
     <item quantity="one">%d stopp</item>
     <item quantity="other">%d stopp</item>
   </plurals>
   <string name="system_default">Systemforvalg</string>
   <string name="times_include_delays">(Merk: Tidsforespeilinger inkluderer rapporterte forsinkelser)</string>
+  <string name="created_by">Opprettet av %s</string>
   <string name="home">Hjem</string>
   <string name="home_dialog_title">Sett hjemmeposisjon</string>
+  <string name="widget_name_quickhome">Få meg hjem</string>
   <string name="work">Arbeid</string>
   <string name="work_hint">Sett arbeidsplassering</string>
-	<string name="tap_to_set">Trykk for å velge</string>
-	<string name="location_gps">Bruk gjeldende plassering</string>
-	<string name="select_products">Velg transporttype</string>
+  <string name="widget_name_quickwork">Kom deg på arbeid</string>
+  <string name="tap_to_set">Trykk for å velge</string>
+  <string name="action_set_locations">Rediger søk</string>
+  <string name="action_swap_locations">Søk etter retur</string>
+  <string name="action_change">Endre</string>
+  <string name="action_add_shortcut">Legg til oppstartersnarvei</string>
+  <string name="location_gps">Bruk gjeldende plassering</string>
+  <string name="warning_no_gps_fix">Kunne ikke finne din plasseringen, enda.</string>
+  <string name="permission_denied_gps">Du har ikke gitt tilgang til din plassering, så denne funksjonen vil ikke fungere. Gi tilgang i programinnstillingene.</string>
+  <string name="select_products">Velg transporttype</string>
   <string name="product_high_speed_train">Høyhastighetstog</string>
   <string name="product_regional_train">Regiontog</string>
   <string name="product_suburban_train">Forstadstog</string>
@@ -119,23 +152,19 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="product_ferry">Ferge</string>
   <string name="product_cablecar">Gondolbane</string>
   <string name="product_on_demand">Ved behov</string>
-	<string name="action_set_locations">Rediger søk</string>
-  <string name="action_swap_locations">Søk etter retur</string>
-  <string name="action_change">Endre</string>
-	<string name="permission_denied_gps">Du har ikke gitt tilgang til din plassering, så denne funksjonen vil ikke fungere. Gi tilgang i programinnstillingene.</string>
-	<!--ckChangeLog-->
+  <!--ckChangeLog-->
   <string name="changelog_full_title">Endringslogg</string>
   <string name="changelog_title">Nyheter</string>
   <string name="changelog_show_full">Mer…</string>
-  <string name="widget_name_quickhome">Få meg hjem</string>
   <string name="np_region_australia">Australia</string>
+  <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
   <string name="np_region_austria">Østerrike</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Øvre Østerrike, Linz</string>
   <string name="np_desc_oebb">Østerrike</string>
   <string name="np_desc_stv">Steiermark, Graz, Marburg, Maribor</string>
-	<string name="np_desc_vor">Niederösterreich, Burgenland, Wien</string>
+  <string name="np_desc_vor">Niederösterreich, Burgenland, Wien</string>
   <string name="np_desc_vvt">Tyrol</string>
   <string name="np_desc_wien">Wien</string>
   <string name="np_region_belgium">Belgia</string>
@@ -167,7 +196,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_frenchsoutheast">Provence-Alpes-Côtes d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Korsika, Lyon</string>
   <string name="np_name_frenchsouthwest">Frankrike sør-vest</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
-	<string name="np_name_paris">Paris</string>
+  <string name="np_name_paris">Paris</string>
   <string name="np_desc_paris">Ile-de-France, Frankrike, Paris</string>
   <string name="np_region_gb">Storbritannia</string>
   <string name="np_desc_mersey">Liverpool byområdet</string>
@@ -182,7 +211,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Niedersachsen, Hannover, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
-	<string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bavaria, München</string>
@@ -190,7 +219,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vagfr">Elsass, Bas-Rhin, Straßburg, Freiburg im Breisgau</string>
+  <string name="np_desc_vagfr">Elsass, Bas-Rhin, Straßburg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
@@ -243,7 +272,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_dub">De forente arabiske emirater, Dubai</string>
   <string name="np_region_usa">Amerikas forente stater</string>
   <string name="np_desc_rtachicago">Chicago</string>
-	<string name="np_name_usny" tools:keep="@string/np_name_usny">Statene New York og New-Jersey</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">Statene New York og New-Jersey</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Transport for hele staten Oregon (USA)</string>
   <string name="maintainer">Utgivelsesansvarlig</string>
