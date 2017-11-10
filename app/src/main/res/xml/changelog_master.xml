@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+	<release version="2.0.0-preview2" versioncode="101">
+		<change>New Design and complete code rewrite</change>
+		<change>Shiny new map given a more prominent place</change>
+		<change>Current location is used by default</change>
+		<change>Trip overview shows warning icon if there is a problem</change>
+		<change>Add your "Work" place</change>
+		<change>Addresses will be saved</change>
+		<change>Round icon for new Android versions</change>
+	</release>
+
+    <release version="1.1.8" versioncode="48">
+        <change>Fixed various networks (e.g. Belgium, NSW, HSL, etc.)</change>
+        <change>Fixed bug when searching nearby stations from current location</change>
+        <change>Fixed bug with BVG network when refreshing a trip</change>
+        <change>Fixed crash when user has no calendar app installed</change>
+    </release>
+
     <release version="1.1.7" versioncode="47">
         <change>New setting: Add "Get me home" shortcut to launcher (Thanks Patrick!)</change>
         <change>Added Oregon, USA (Thanks craftguy!)</change>

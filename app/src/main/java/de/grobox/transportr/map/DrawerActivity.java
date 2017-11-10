@@ -109,6 +109,7 @@ abstract class DrawerActivity extends TransportrActivity {
 					}
 				})
 				.withFireOnInitialOnClick(false)
+				.withShowDrawerOnFirstLaunch(false)
 				.withSavedInstance(savedInstanceState)
 				.build();
 
@@ -154,7 +155,7 @@ abstract class DrawerActivity extends TransportrActivity {
 
 		if (tag.equals(TransportrChangeLog.TAG)) {
 			onClick = (view, position, drawerItem) -> {
-				boolean dark = settingsManager.getTheme() == R.style.AppTheme;
+				boolean dark = settingsManager.isDarkTheme();
 				new TransportrChangeLog(DrawerActivity.this, dark).getFullLogDialog().show();
 				return true;
 			};

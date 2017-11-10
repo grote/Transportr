@@ -28,7 +28,7 @@ import de.grobox.transportr.R;
 
 public class TransportrChangeLog extends ChangeLog {
 
-	public final static String TAG = TransportrChangeLog.class.getName();
+	public final static String TAG = TransportrChangeLog.class.getSimpleName();
 
 	public TransportrChangeLog(Context context, boolean dark) {
 		super(new ContextThemeWrapper(context, getDialogTheme(dark)), theme(dark));

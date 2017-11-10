@@ -47,6 +47,7 @@ import de.grobox.transportr.locations.LocationView.LocationViewListener;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
+import de.grobox.transportr.ui.TransportrChangeLog;
 
 import static android.content.Intent.ACTION_SEARCH;
 import static android.content.Intent.ACTION_VIEW;
@@ -137,6 +138,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			} else {
 				showSavedSearches();
 			}
+			checkAndShowChangelog();
 		} else {
 			locationFragment = (LocationFragment) getSupportFragmentManager().findFragmentByTag(LocationFragment.TAG);
 		}
@@ -223,6 +225,13 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			WrapLocation location = (WrapLocation) intent.getSerializableExtra(WRAP_LOCATION);
 			viewModel.selectLocation(location);
 			viewModel.findNearbyStations(location);
+		}
+	}
+
+	private void checkAndShowChangelog() {
+		TransportrChangeLog cl = new TransportrChangeLog(this, settingsManager.isDarkTheme());
+		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
+			cl.getLogDialog().show();
 		}
 	}
 

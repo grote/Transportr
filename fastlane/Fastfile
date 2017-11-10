@@ -18,6 +18,17 @@ platform :android do
     gradle(task: "test")
   end
 
+  desc "Import app descriptions"
+  lane :metadata do
+    system './generate_metadata.py'
+  end
+
+  desc "Import changelog"
+  lane :changelog do
+    system './generate_changelog.py'
+  end
+
+  desc "Take localized screenshots"
   lane :screenshots do
 	screengrab
   end

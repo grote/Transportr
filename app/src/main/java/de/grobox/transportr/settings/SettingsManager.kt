@@ -58,6 +58,11 @@ class SettingsManager @Inject constructor(private val context: Context) {
             } else R.style.AppTheme_Light
         }
 
+    val isDarkTheme: Boolean
+        get() {
+            return theme == R.style.AppTheme
+        }
+
     val walkSpeed: WalkSpeed
         get() {
             return try {

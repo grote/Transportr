@@ -46,7 +46,7 @@ public class LocationLiveData extends LiveData<WrapLocation> implements Location
 	private final Context context;
 	private final LocationSource locationSource = Mapbox.getLocationSource();
 
-	// TODO often the GPS request is dropped after some time, WHY?
+	// TODO often the GPS request is dropped after some time, WHY? Lost 1?
 	// ActivityManager: Launch timeout has expired, giving up wake lock!
 	public LocationLiveData(Context context) {
 		super();

@@ -64,7 +64,7 @@ abstract class SpecialLocationFragment extends DialogFragment implements Locatio
 		super.onCreate(savedInstanceState);
 		inject(((TransportrApplication) getActivity().getApplication()).getComponent());
 
-		if (settingsManager.getTheme() == R.style.AppTheme) {
+		if (settingsManager.isDarkTheme()) {
 			setStyle(DialogFragment.STYLE_NO_TITLE, R.style.SetHomeDialogTheme);
 		} else {
 			setStyle(DialogFragment.STYLE_NO_TITLE, R.style.SetHomeDialogTheme_Light);
