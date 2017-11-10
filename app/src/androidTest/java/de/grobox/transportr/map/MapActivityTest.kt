@@ -76,7 +76,10 @@ class MapActivityTest : ScreengrabTest() {
             val transportNetwork: TransportNetwork = manager.getTransportNetworkByNetworkId(getNetworkId()) ?: throw RuntimeException()
             manager.setTransportNetwork(transportNetwork)
         }
+    }
 
+    @Test
+    fun favoritesTest() {
         locationRepository.setHomeLocation(getFrom(0))
         locationRepository.setWorkLocation(getTo(0))
 
@@ -84,12 +87,11 @@ class MapActivityTest : ScreengrabTest() {
         locationRepository.addFavoriteLocation(getTo(1), FROM)
         locationRepository.addFavoriteLocation(getFrom(2), FROM)
         locationRepository.addFavoriteLocation(getTo(2), FROM)
-        locationRepository.favoriteLocations.observe(activityRule.activity, Observer { this.addSavedSearches(it) })
-    }
 
-    @Test
-    fun favoritesTest() {
-        sleep(1500)
+        sleep(500)
+        locationRepository.favoriteLocations.observe(activityRule.activity, Observer { this.addSavedSearches(it) })
+        sleep(1000)
+
         makeScreenshot("2_SavedSearches")
     }
 
@@ -132,12 +134,14 @@ class MapActivityTest : ScreengrabTest() {
     }
 
     private fun addSavedSearches(list: List<FavoriteLocation>?) {
-        if (list == null) return
-        else Thread {
-            for (i in 1 until list.size step 2) {
-                val uid = searchesRepository.storeSearch(list[i - 1], null, list[i])
+        if (list == null || list.size < 4) return
+        Thread {
+            // copy the list to avoid it changing mid-flight
+            val locations = list.toList()
+            for (i in 1 until locations.size step 2) {
+                val uid = searchesRepository.storeSearch(locations[i - 1], null, locations[i])
                 if (i == 1) {
-                    val item = FavoriteTripItem(uid, list[i - 1], null, list[i])
+                    val item = FavoriteTripItem(uid, locations[i - 1], null, locations[i])
                     item.favorite = true
                     searchesRepository.updateFavoriteState(item)
                 }

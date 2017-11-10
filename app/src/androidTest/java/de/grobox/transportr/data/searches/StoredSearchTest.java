@@ -48,6 +48,7 @@ public class StoredSearchTest extends DbTest {
 	private FavoriteLocation f1, f2, f3;
 
 	@Before
+	@Override
 	public void createDb() throws Exception {
 		super.createDb();
 		dao = db.searchesDao();

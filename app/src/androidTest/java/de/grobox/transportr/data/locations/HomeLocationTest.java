@@ -42,6 +42,7 @@ public class HomeLocationTest extends DbTest {
 	private LocationDao dao;
 
 	@Before
+	@Override
 	public void createDb() throws Exception {
 		super.createDb();
 		dao = db.locationDao();
