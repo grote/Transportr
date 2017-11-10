@@ -10,6 +10,7 @@ local.properties
 # Android Studio files
 .idea/*
 !.idea/codeStyleSettings.xml
+!.idea/copyright
 *.iml
 .gradle/
 
