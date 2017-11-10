@@ -30,9 +30,7 @@
   <string name="via">Přes</string>
   <string name="from_here">Odsud</string>
   <string name="to_here">Zde</string>
-  <string name="min">min</string>
   <string name="walk">Chůze.</string>
-  <string name="position">Platforma</string>
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Síť</string>
@@ -42,6 +40,7 @@
   <string name="find_departures">Hledat odjezdy</string>
   <string name="share_trip_via">Sdílet cestu přes…</string>
   <string name="more">Více</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="now">Nyní.</string>
   <string name="today">Dnes</string>
   <string name="ok">OK</string>
@@ -62,12 +61,16 @@
   <string name="pref_walk_speed_normal">Normalně</string>
   <string name="pref_walk_speed_fast">Rychle</string>
   <string name="error_trip_refresh_failed">Nepodařilo se aktualizovat data pro aktuální cestu.</string>
-  <string name="meter">%d m</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Výchozí nastavení systému</string>
   <string name="times_include_delays">Pozor. Časy zahrnují hlášené zpoždění</string>
   <string name="home">Domů</string>
   <string name="home_dialog_title">Nastavte vaši domácí pozici</string>
+  <string name="action_set_locations">Editace vyhledávání</string>
+  <string name="action_swap_locations">Zobrazit zpáteční cestu</string>
   <string name="location_gps">Použít aktuální pozici.</string>
+  <string name="permission_denied_gps">Neumožnil jste přístup k vaší poloze, takže tato funkce nebude fungovat. Prosím udělit oprávnění v nastavení aplikace.</string>
   <string name="select_products">Vyberte dopravní prostředky</string>
   <string name="product_high_speed_train">Rychlík</string>
   <string name="product_regional_train">Regionální vlak</string>
@@ -78,16 +81,15 @@
   <string name="product_ferry">Trajekt</string>
   <string name="product_cablecar">Lanovka</string>
   <string name="product_on_demand">Na požádání</string>
-  <string name="action_set_locations">Editace vyhledávání</string>
-  <string name="action_swap_locations">Zobrazit zpáteční cestu</string>
-  <string name="permission_denied_gps">Neumožnil jste přístup k vaší poloze, takže tato funkce nebude fungovat. Prosím udělit oprávnění v nastavení aplikace.</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">Seznam změn</string>
   <string name="changelog_title">Co je nového</string>
   <string name="changelog_show_full">Více...</string>
   <string name="np_desc_br_floripa">Mnoho autobusových linek, žádné Executivos</string>
+  <string name="np_region_europe">Evropa</string>
   <string name="np_name_rt">Evropa</string>
   <string name="np_desc_db">Většina Německa</string>
+  <string name="np_region_spain">Španělsko</string>
   <string name="np_name_spain">Španělsko</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_desc_dub">Spojené arabské Emiráty, Dubai</string>

@@ -31,7 +31,6 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
@@ -89,7 +88,6 @@ abstract class DrawerActivity extends TransportrActivity {
 				.withActivity(this)
 				.withAccountHeader(accountHeader)
 				.addDrawerItems(
-						new DividerDrawerItem(),
 						getDrawerItem(SettingsFragment.TAG, R.drawable.ic_action_settings),
 						getDrawerItem(TransportrChangeLog.TAG, R.drawable.ic_action_changelog),
 						getDrawerItem(AboutMainFragment.TAG, R.drawable.ic_action_about)

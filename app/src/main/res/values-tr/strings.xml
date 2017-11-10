@@ -1,54 +1,53 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Gizliliğinize ve özgürlüğünüze saygı duyan toplu taşıma rehberi.</string>
-	<string name="drawer_changelog">Sürüm Notları</string>
+  <string name="drawer_changelog">Sürüm Notları</string>
   <string name="drawer_about">Hakkında</string>
   <string name="drawer_settings">Ayarlar</string>
   <string name="action_fav_trip">Geziyi Beğenilen Olarak İşaretle</string>
   <string name="action_unfav_trip">Geziyi Beğenilen Olarak İşaretleme</string>
   <string name="action_refresh">Tazele</string>
-	<string name="action_share">Paylaş</string>
+  <string name="action_share">Paylaş</string>
   <string name="action_trip_calendar">Takvime ekle</string>
   <string name="action_trip_delete">Geziyi Sil</string>
   <string name="action_show_on_external_map">Dış Haritada Göster</string>
   <string name="action_copy">Kopyala</string>
-	<string name="drawer_departures">Gelişler</string>
-	<string name="tab_libraries">Kütüphaneler</string>
+  <string name="drawer_departures">Gelişler</string>
+  <string name="tab_libraries">Kütüphaneler</string>
   <string name="tab_devs">Geliştiriciler</string>
   <string name="tab_about">Hakkında</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nGPLv3 Özgür Yazılım Lisansı</string>
   <string name="visit_website">Websitesini Ziyaret Edin</string>
-	<string name="from">Nereden</string>
+  <string name="from">Nereden</string>
   <string name="to">Nereye</string>
   <string name="via">İle</string>
-	<string name="from_here">Buradan</string>
+  <string name="from_here">Buradan</string>
   <string name="to_here">Buraya</string>
-  <string name="min">dk</string>
   <string name="walk">Yürüyüş</string>
-  <string name="position">Platform</string>
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Ağ</string>
   <string name="pick_network_activity">Alanı Seçin</string>
   <string name="pick_network_first_run">Transportr\'a hoşgeldiniz!\n\nDevam edebilmek için lütfen bölgenizdeki ulaşım ağınızı seçiniz. Seçiminizi her zaman değiştirebilirsiniz.</string>
-	<string name="stations_searching_position">Mevcut konum aranıyor...</string>
+  <string name="stations_searching_position">Mevcut konum aranıyor...</string>
   <string name="drawer_nearby_stations">Yakındaki İstasyonlar</string>
   <string name="find_nearby_stations">Yakındaki İstasyonları Bul</string>
   <string name="find_departures">Kalkışları Bul</string>
-	<string name="share_trip_via">Geziyi Paylaş...</string>
-	<string name="more">Daha Fazla</string>
-	<string name="change_time">Zamanı Değiştirin</string>
+  <string name="share_trip_via">Geziyi Paylaş...</string>
+  <string name="more">Daha Fazla</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="change_time">Zamanı Değiştirin</string>
   <string name="now">Şimdi</string>
   <string name="now_small">şimdi</string>
-	<string name="yesterday">Dün</string>
+  <string name="yesterday">Dün</string>
   <string name="today">Bugün</string>
   <string name="tomorrow">Yarın</string>
-	<string name="in_x_minutes">%d dk içerisinde</string>
+  <string name="in_x_minutes">%d dk içerisinde</string>
   <string name="x_minutes_ago">%d dk önce</string>
   <string name="ok">Tamam</string>
   <string name="cancel">İptal</string>
-	<string name="pref_transport_network">Ulaşım Ağı</string>
-	<string name="pref_display">Görüntü</string>
+  <string name="pref_transport_network">Ulaşım Ağı</string>
+  <string name="pref_display">Görüntü</string>
   <string name="pref_theme_title">Tema</string>
   <string name="pref_theme_light">Açık</string>
   <string name="pref_theme_dark">Koyu</string>
@@ -57,12 +56,17 @@
   <string name="pref_walk_speed_slow">Yavaş</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Hızlı</string>
-	<string name="meter">%d m</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Sistem Varsayılanı</string>
   <string name="home">Ev</string>
   <string name="home_dialog_title">Ev Konumunu Ayarla</string>
-	<string name="location_gps">Mevcut Konumu Kullan</string>
-	<string name="product_high_speed_train">Yüksek Hızlı Tren</string>
+  <string name="widget_name_quickhome">Beni Eve Götür</string>
+  <string name="action_set_locations">Aramaya Ekle</string>
+  <string name="action_swap_locations">Dönüş turu ara</string>
+  <string name="action_change">Değiştir</string>
+  <string name="location_gps">Mevcut Konumu Kullan</string>
+  <string name="product_high_speed_train">Yüksek Hızlı Tren</string>
   <string name="product_regional_train">Bölgesel Tren</string>
   <string name="product_suburban_train">Banliyö Treni</string>
   <string name="product_subway">Metro</string>
@@ -71,14 +75,10 @@
   <string name="product_ferry">Feribot</string>
   <string name="product_cablecar">Teleferik</string>
   <string name="product_on_demand">Talep Üzerine</string>
-	<string name="action_set_locations">Aramaya Ekle</string>
-  <string name="action_swap_locations">Dönüş turu ara</string>
-  <string name="action_change">Değiştir</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">Sürüm Notları</string>
   <string name="changelog_title">Neler Yeni</string>
   <string name="changelog_show_full">Daha Fazla...</string>
-  <string name="widget_name_quickhome">Beni Eve Götür</string>
   <string name="np_region_australia">Avustralya</string>
   <string name="np_desc_sydney">Avustralya, Yeni Güney Wales, Sydney</string>
   <string name="np_region_austria">Avusturya</string>
@@ -86,7 +86,7 @@
   <string name="np_desc_linz">Yukarı Avusturya, Linz</string>
   <string name="np_desc_oebb">Avusturya</string>
   <string name="np_desc_stv">Styria, Graz, Marburg, Maribor</string>
-	<string name="np_desc_vor">Aşağı Avusturya, Burgenland, Viyana</string>
+  <string name="np_desc_vor">Aşağı Avusturya, Burgenland, Viyana</string>
   <string name="np_desc_vvt">Tyrol</string>
   <string name="np_desc_wien">Viyana</string>
   <string name="np_region_belgium">Belçika</string>
@@ -115,7 +115,7 @@
   <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica, Lyon</string>
   <string name="np_name_frenchsouthwest">Güney Batı Fransa</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
-	<string name="np_name_paris">Paris</string>
+  <string name="np_name_paris">Paris</string>
   <string name="np_desc_paris">Ile-de-France, Fransa, Paris</string>
   <string name="np_region_gb">Büyük Britanya</string>
   <string name="np_desc_mersey">Liverpool Şehir Bölgesi</string>
@@ -130,7 +130,7 @@
   <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Aşağı Saksonya, Hanover, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
-	<string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bavarya, Münih</string>
@@ -138,7 +138,7 @@
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
+  <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>

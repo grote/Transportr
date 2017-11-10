@@ -12,19 +12,19 @@ met één enkele swipe naar latere verbindingen zoeken. Natuurlijk kan je ook je
 en je positie in het traject volgen via GPS.
 
 Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief vertragingen (als er zijn).</string>
-	<string name="drawer_changelog">Lijst van veranderingen</string>
+  <string name="drawer_changelog">Lijst van veranderingen</string>
   <string name="drawer_about">Over</string>
   <string name="drawer_settings">Instellingen</string>
   <string name="action_fav_trip">Markeer reis als favoriet</string>
   <string name="action_unfav_trip">Verwijder reis uit favorieten</string>
   <string name="action_refresh">Vernieuw</string>
-	<string name="action_share">Deel</string>
+  <string name="action_share">Deel</string>
   <string name="action_trip_calendar">Voeg toe aan kalender</string>
   <string name="action_trip_delete">Reis verwijderen</string>
   <string name="action_show_on_external_map">Laat op externe kaart zien</string>
   <string name="action_copy">Kopieer</string>
-	<string name="drawer_departures">Vertrekken</string>
-	<string name="tab_libraries">Bibliotheken</string>
+  <string name="drawer_departures">Vertrekken</string>
+  <string name="tab_libraries">Bibliotheken</string>
   <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nVrije softwarelicentie: GPLv3</string>
@@ -42,37 +42,36 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
 ]]>
 </string>
   <string name="visit_website">Bezoek website</string>
-	<string name="from">Van</string>
+  <string name="from">Van</string>
   <string name="to">Naar</string>
   <string name="via">Via</string>
-	<string name="from_here">Vanaf hier</string>
+  <string name="from_here">Vanaf hier</string>
   <string name="to_here">Naar hier</string>
-  <string name="min"> min</string>
   <string name="walk">Wandel</string>
-  <string name="position">Perron</string>
   <string name="alpha">alfa</string>
   <string name="beta">bèta</string>
   <string name="network">Netwerk</string>
   <string name="pick_network_activity">Kies vervoergebied</string>
   <string name="pick_network_first_run">Welkom bij Transportr!\n\nKies hieronder een vervoersnetwerk uit je regio om door te gaan. Je kan dit later steeds veranderen.</string>
-	<string name="stations_searching_position">Je positie wordt bepaald …</string>
+  <string name="stations_searching_position">Je positie wordt bepaald …</string>
   <string name="drawer_nearby_stations">Stations in de buurt</string>
   <string name="find_nearby_stations">Zoek naar stations in de buurt</string>
   <string name="find_departures">Vertrektijden</string>
-	<string name="share_trip_via">Deel verbinding via …</string>
-	<string name="more">Meer</string>
-	<string name="change_time">Verander tijdstip</string>
+  <string name="share_trip_via">Deel verbinding via …</string>
+  <string name="more">Meer</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="change_time">Verander tijdstip</string>
   <string name="now">Nu</string>
   <string name="now_small">nu</string>
-	<string name="yesterday">Gisteren</string>
+  <string name="yesterday">Gisteren</string>
   <string name="today">Vandaag</string>
   <string name="tomorrow">Morgen</string>
-	<string name="in_x_minutes">over %dmin</string>
+  <string name="in_x_minutes">over %dmin</string>
   <string name="x_minutes_ago">%dmin geleden</string>
   <string name="ok">OK</string>
   <string name="cancel">Annuleer</string>
-	<string name="pref_transport_network">Vervoernetwerk</string>
-	<string name="pref_display">Weergave</string>
+  <string name="pref_transport_network">Vervoernetwerk</string>
+  <string name="pref_display">Weergave</string>
   <string name="pref_theme_title">Thema</string>
   <string name="pref_theme_light">Licht</string>
   <string name="pref_theme_dark">Donker</string>
@@ -86,16 +85,22 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="pref_walk_speed_slow">Langzaam</string>
   <string name="pref_walk_speed_normal">Normaal</string>
   <string name="pref_walk_speed_fast">Snel</string>
-	<string name="error_trip_refresh_failed">Kon de data voor de reis niet herladen.</string>
-  <string name="meter">%d m</string>
+  <string name="error_trip_refresh_failed">Kon de data voor de reis niet herladen.</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Systeemstandaard</string>
   <string name="times_include_delays">(Let op: Tijd is inclusief gerapporteerde vertragingen)</string>
   <string name="home">Thuis</string>
   <string name="home_dialog_title">Stel thuislocatie in</string>
+  <string name="widget_name_quickhome">OV: naar huis</string>
   <string name="work">Werk</string>
-	<string name="tap_to_set">Tap om in te stellen</string>
-	<string name="location_gps">Gebruik huidige locatie</string>
-	<string name="select_products">Kies transportmiddelen</string>
+  <string name="work_hint">Stel locatie van werkplaats in</string>
+  <string name="tap_to_set">Tap om in te stellen</string>
+  <string name="action_set_locations">Bewerk zoekopdracht</string>
+  <string name="action_swap_locations">Zoek naar terugreis</string>
+  <string name="location_gps">Gebruik huidige locatie</string>
+  <string name="permission_denied_gps">Je hebt geen toegang tot je locatie gegeven, dus deze functionaliteit zal niet werken. Geef toestemming in de applicatieinstellingen.</string>
+  <string name="select_products">Kies transportmiddelen</string>
   <string name="product_high_speed_train">InterCity- of hogesnelheidstrein</string>
   <string name="product_regional_train">Lokale trein</string>
   <string name="product_suburban_train">Stadstrein</string>
@@ -105,14 +110,10 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="product_ferry">Veerboot</string>
   <string name="product_cablecar">Kabelbaan</string>
   <string name="product_on_demand">Op aanvraag</string>
-	<string name="action_set_locations">Bewerk zoekopdracht</string>
-  <string name="action_swap_locations">Zoek naar terugreis</string>
-	<string name="permission_denied_gps">Je hebt geen toegang tot je locatie gegeven, dus deze functionaliteit zal niet werken. Geef toestemming in de applicatieinstellingen.</string>
-	<!--ckChangeLog-->
+  <!--ckChangeLog-->
   <string name="changelog_full_title">Lijst van veranderingen</string>
   <string name="changelog_title">Veranderingen</string>
   <string name="changelog_show_full">Meer …</string>
-  <string name="widget_name_quickhome">OV: naar huis</string>
   <string name="np_region_australia">Australië</string>
   <string name="np_desc_sydney">Australië, Nieuw-Zuid-Wales, Sydney</string>
   <string name="np_region_austria">Oostenrijk</string>
@@ -120,7 +121,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_linz">Opper-Oostenrijk, Linz</string>
   <string name="np_desc_oebb">Oostenrijk</string>
   <string name="np_desc_stv">Stiermarken, Graz, Marburg, Maribor</string>
-	<string name="np_desc_vor">Neder-Oostenrijk, Burgenland, Wenen</string>
+  <string name="np_desc_vor">Neder-Oostenrijk, Burgenland, Wenen</string>
   <string name="np_desc_vvt">Tirol</string>
   <string name="np_desc_wien">Wenen</string>
   <string name="np_region_belgium">België</string>
@@ -152,7 +153,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica, Lyon</string>
   <string name="np_name_frenchsouthwest">Zuidwesten van Frankrijk</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitanië, Midi-Pyrénées, Bordeaux, Toulouse</string>
-	<string name="np_name_paris">Parijs</string>
+  <string name="np_name_paris">Parijs</string>
   <string name="np_desc_paris">Île-de-France, Frankrijk, Parijs</string>
   <string name="np_region_gb">Groot-Brittannië</string>
   <string name="np_desc_mersey">Regio rond stad Liverpool</string>
@@ -167,7 +168,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Nedersaksen, Hannover, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
-	<string name="np_desc_invg">Ingolstadt</string>
+  <string name="np_desc_invg">Ingolstadt</string>
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Beieren, München</string>
@@ -175,7 +176,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Bazel, Bazel-Stad, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vagfr">Elzas, Bas-Rhin, Straatsburg, Freiburg im Breisgau</string>
+  <string name="np_desc_vagfr">Elzas, Bas-Rhin, Straatsburg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlijn</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Nedersaksen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Neurenberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
@@ -227,7 +228,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_dub">Verenigde Arabische Emiraten, Dubai</string>
   <string name="np_region_usa">Verenigde Staten</string>
   <string name="np_desc_rtachicago">Chicago</string>
-	<string name="np_name_usny" tools:keep="@string/np_name_usny">New York en New-Jersey staten</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">New York en New-Jersey staten</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Alle OV in de staat Oregon (VS)</string>
   <string name="maintainer">Onderhouder</string>

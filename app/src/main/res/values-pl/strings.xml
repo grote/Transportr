@@ -52,9 +52,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="from_here">Stąd</string>
   <string name="to_here">Dotąd</string>
   <string name="clear_location">Wyczyść</string>
-  <string name="min">min</string>
   <string name="walk">Pieszo</string>
-  <string name="position">Peron</string>
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Sieć</string>
@@ -66,6 +64,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="find_departures">Szukaj odjazdów</string>
   <string name="share_trip_via">Udostępnij trasę przez…</string>
   <string name="more">Więcej</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="change_time">Ustaw czas</string>
   <string name="now">Teraz</string>
   <string name="now_small">teraz</string>
@@ -113,13 +112,14 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="trip_error_pte">Jeżeli chcesz zaraportować ten problem, prosimy zgłosić go do bezpośrednio do public-transport-enabler i dołączyć zrzut ekranu.</string>
   <string name="trip_issue">Może być problem z tym połączeniem.</string>
   <string name="try_again">Spróbuj ponownie</string>
-  <string name="meter">m</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <plurals name="stops">
     <item quantity="one">%d przystanek</item>
     <item quantity="few">%d przystanki</item>
     <item quantity="many">%d przystanków</item>
     <item quantity="other">%d przystanków</item>
   </plurals>
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Domyślny systemowy</string>
   <string name="times_include_delays">(Uwaga: Czasy uwzględniają odnotowane opóźnienia)</string>
   <string name="created_by">Utworzony przez %s</string>

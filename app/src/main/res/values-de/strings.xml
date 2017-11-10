@@ -59,9 +59,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="from_here">Von hier</string>
   <string name="to_here">Verbindung zum aktuellen Standort suchen</string>
   <string name="clear_location">Ort löschen</string>
-  <string name="min"> min</string>
   <string name="walk">Fußweg</string>
-  <string name="position">Bahnsteig</string>
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Netzwerk</string>
@@ -73,6 +71,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="find_departures">Abfahrten suchen</string>
   <string name="share_trip_via">Verbindungen teilen mit…</string>
   <string name="more">Mehr</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="change_time">Zeit ändern</string>
   <string name="now">Jetzt</string>
   <string name="now_small">jetzt</string>
@@ -120,11 +119,12 @@ es welche gibt) anzeigen lassen.</string>
   <string name="trip_error_pte">Wenn du diesen Fehler melden möchtest, kannst du ihn bitte direkt an den Public Transport Enabler melden und einen Screenshot hinzufügen.</string>
   <string name="trip_issue">Es könnte ein Problem mit dieser Verbindung geben.</string>
   <string name="try_again">Noch einmal versuchen</string>
-  <string name="meter">m</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <plurals name="stops">
     <item quantity="one">%d Haltestelle</item>
     <item quantity="other">%d Haltestellen</item>
   </plurals>
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Systemstandard</string>
   <string name="times_include_delays">(Achtung: Zeiten beinhalten gemeldete Verspätungen)</string>
   <string name="created_by">Erstellt von %s</string>

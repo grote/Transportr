@@ -15,13 +15,13 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="action_fav_trip">இப்பயணத்தை பிடித்தமானதாக தேர்வு செய்</string>
   <string name="action_unfav_trip">இப்பயணத்தை பிடித்தமான பட்டியலிலிருந்து நீக்கு</string>
   <string name="action_refresh">புதுப்பி</string>
-	<string name="action_share">பகிர்தல்</string>
+  <string name="action_share">பகிர்தல்</string>
   <string name="action_trip_calendar">நாட்காட்டியில் சேர்க்க</string>
   <string name="action_trip_delete">பயணத்தை ரத்து செய்</string>
   <string name="action_show_on_external_map">மாற்று வரைபடத்தில் காண்க</string>
   <string name="action_copy">நகல்</string>
-	<string name="drawer_departures">புறப்பாடு</string>
-	<string name="tab_libraries">துணை நிரல்கள்</string>
+  <string name="drawer_departures">புறப்பாடு</string>
+  <string name="tab_libraries">துணை நிரல்கள்</string>
   <string name="tab_devs">உருவாக்கியவர்கள்</string>
   <string name="tab_about">விபரம்</string>
   <string name="about">
@@ -38,25 +38,24 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
 ]]>
 </string>
   <string name="visit_website">வலைதளத்திற்கு செல்</string>
-	<string name="from">புறப்படும் இடம்</string>
+  <string name="from">புறப்படும் இடம்</string>
   <string name="to">சேருமிடம்</string>
   <string name="via">வழியாக</string>
   <string name="from_here">இங்கிருந்து</string>
   <string name="to_here">இதுவரை</string>
-  <string name="min">நிமிடங்கள்</string>
   <string name="walk">நடை</string>
-  <string name="position">மேடை</string>
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">பிணைப்பு</string>
-	<string name="stations_searching_position">தற்சமயம் இருக்குமிடத்தை கணிக்க முயற்சிக்கிறோம்...</string>
+  <string name="stations_searching_position">தற்சமயம் இருக்குமிடத்தை கணிக்க முயற்சிக்கிறோம்...</string>
   <string name="drawer_nearby_stations">அருகிலுள்ள நிலையங்கள்</string>
   <string name="find_nearby_stations">அருகிலுள்ள நிலையங்களை தேடு</string>
   <string name="find_departures">புறப்பாடுகளை தேடு</string>
-	<string name="share_trip_via">பயணத்தை இதன் வழி பகிர</string>
-	<string name="more">மேலும்</string>
-	<string name="pref_transport_network">போக்குவரத்து பிணையம்</string>
-	<string name="pref_display">காட்சி</string>
+  <string name="share_trip_via">பயணத்தை இதன் வழி பகிர</string>
+  <string name="more">மேலும்</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="pref_transport_network">போக்குவரத்து பிணையம்</string>
+  <string name="pref_display">காட்சி</string>
   <string name="pref_theme_light">மென்மையான</string>
   <string name="pref_theme_dark">கருமையான</string>
   <string name="pref_language_title">மொழி</string>
@@ -68,18 +67,19 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="pref_walk_speed_slow">மெதுவாக</string>
   <string name="pref_walk_speed_normal">சராசரியாக</string>
   <string name="pref_walk_speed_fast">வேகமாக</string>
-	<string name="error_trip_refresh_failed">தற்போதைய பயணத்திற்கான தரவை புதுப்பிக்க இயலவில்லை.</string>
-  <string name="meter">%d m</string>
+  <string name="error_trip_refresh_failed">தற்போதைய பயணத்திற்கான தரவை புதுப்பிக்க இயலவில்லை.</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="home">முகப்பு</string>
   <string name="home_dialog_title">வசிப்பிடத்தை அமைக்க</string>
-	<string name="location_gps">தற்சமயம் இருக்குமிடத்தை பயன்படுத்து</string>
-	<string name="select_products">போக்குவரத்து முறையை தேர்ந்தெடுக்க</string>
+  <string name="action_set_locations">தேடலை செரிவு செய்</string>
+  <string name="location_gps">தற்சமயம் இருக்குமிடத்தை பயன்படுத்து</string>
+  <string name="select_products">போக்குவரத்து முறையை தேர்ந்தெடுக்க</string>
   <string name="product_high_speed_train">அதி-வேக இரயில்</string>
   <string name="product_regional_train">உள்ளூர் இரயில்</string>
   <string name="product_subway">சுரங்கப் பாதை</string>
   <string name="product_bus">பேருந்து</string>
   <string name="product_on_demand">தேவைக்கேற்ப</string>
-	<string name="action_set_locations">தேடலை செரிவு செய்</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">மாற்றப்பதிவு</string>
   <string name="changelog_show_full">மேலும்...</string>
@@ -89,8 +89,9 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_desc_ivb">இன்ஸ்ப்ரக்</string>
   <string name="np_desc_linz">அப்பர் ஆஸ்திரியா, லின்ஸ்</string>
   <string name="np_desc_oebb">ஆஸ்ட்ரியா</string>
-	<string name="np_region_belgium">பெல்ஜியம்</string>
+  <string name="np_region_belgium">பெல்ஜியம்</string>
   <string name="np_region_br">பிரேசில்</string>
+  <string name="np_name_br">பிரேசில்</string>
   <string name="np_region_canada">கனடா</string>
   <string name="np_region_denmark">டென்மார்க்</string>
   <string name="np_desc_dsb">டென்மார்க், கோபன்ஹேகன்</string>
@@ -99,6 +100,7 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_region_finland">ஃபின்லாந்து</string>
   <string name="np_desc_hsl">ஹெல்சின்கி</string>
   <string name="np_region_france">பிரான்ஸ்</string>
+  <string name="np_name_paris">பாரிஸ்</string>
   <string name="np_region_gb">கிரேட் பிரட்டன்</string>
   <string name="np_desc_mersey">லிவர்பூல் நகரப் பகுதி</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">பிர்மிங்கம்</string>
@@ -117,12 +119,15 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_region_israel" tools:keep="@string/np_region_israel">இஸ்ரேல்</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">இஸ்ரேல், ஜெருசலேம்</string>
   <string name="np_region_italy">இத்தாலி</string>
+  <string name="np_name_it">இத்தாலி</string>
   <string name="np_region_luxembourg">லக்ஸம்பர்க்</string>
+  <string name="np_desc_lu">லக்ஸம்பர்க்</string>
   <string name="np_region_netherlands">நெதர்லாந்து</string>
   <string name="np_desc_ns">நெதர்லாந்து, ஆம்ஸ்டர்டாம்</string>
   <string name="np_region_norway">நார்வே</string>
   <string name="np_desc_nri">நார்வே, ஓஸ்லோ, பெர்கென்</string>
   <string name="np_region_nz">நியூசிலாந்து</string>
+  <string name="np_name_nz">நியூசிலாந்து</string>
   <string name="np_region_poland">போலாந்து</string>
   <string name="np_region_spain">ஸ்பெயின்</string>
   <string name="np_name_spain">ஸ்பெயின்</string>
@@ -130,12 +135,14 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_desc_se">சுவீடன், ஸ்டாக்ஹோம்</string>
   <string name="np_region_switzerland">சுவிச்சர்லாந்து</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_desc_sbb">சுவிச்சர்லாந்து</string>
   <string name="np_desc_zvv">சூரிச்</string>
   <string name="np_region_uae">யுனைட்டட் அரபு எமிரேட்ஸ்</string>
   <string name="np_desc_dub">யுனைட்டட் அரபு எமிரேட்ஸ்</string>
   <string name="np_region_usa">யுனைட்டட் ஸ்டேட்ஸ் ஆஃப் அமெரிக்கா</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">நியூயார்க் மற்றும் நியு ஜெர்சி மாகாணங்கள்</string>
   <string name="maintainer">பராமரிப்பாளர்</string>
+  <string name="contributors">பங்களிப்பாளர்கள்</string>
   <string name="translators">மொழிபெயர்பாளர்கள்</string>
   <string name="dutch">டச்சு</string>
   <string name="french">ஃபிரெஞ்சு</string>

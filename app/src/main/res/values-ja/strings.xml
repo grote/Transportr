@@ -13,19 +13,19 @@
 もちろん、地図上であなたの旅行を表示し、GPS 経由であなたの進行状況を追跡することもできます。
 
 近くの駅を探して、遅れを含む今後の出発を表示することもできます (もしあれば)。</string>
-	<string name="drawer_changelog">変更履歴</string>
+  <string name="drawer_changelog">変更履歴</string>
   <string name="drawer_about">アプリについて</string>
   <string name="drawer_settings">設定</string>
   <string name="action_fav_trip">旅行をお気に入りにする</string>
   <string name="action_unfav_trip">旅行をお気に入りから解除</string>
   <string name="action_refresh">更新</string>
-	<string name="action_share">共有</string>
+  <string name="action_share">共有</string>
   <string name="action_trip_calendar">カレンダーに追加</string>
   <string name="action_trip_delete">旅行を削除</string>
   <string name="action_show_on_external_map">外部の地図上に表示</string>
   <string name="action_copy">コピー</string>
-	<string name="drawer_departures">出発</string>
-	<string name="tab_libraries">ライブラリー</string>
+  <string name="drawer_departures">出発</string>
+  <string name="tab_libraries">ライブラリー</string>
   <string name="tab_devs">開発者</string>
   <string name="tab_about">アプリについて</string>
   <string name="about_top">© 2013 – 2017 Torsten Grote\nフリーソフトウェアライセンス: GPLv3</string>
@@ -43,37 +43,36 @@
 ]]>
 </string>
   <string name="visit_website">Webサイトを訪問</string>
-	<string name="from">出発</string>
+  <string name="from">出発</string>
   <string name="to">目的地</string>
   <string name="via">経由</string>
-	<string name="from_here">ここから</string>
+  <string name="from_here">ここから</string>
   <string name="to_here">ここに</string>
-  <string name="min">分</string>
   <string name="walk">徒歩</string>
-  <string name="position">プラットフォーム</string>
   <string name="alpha">アルファ</string>
   <string name="beta">ベータ</string>
   <string name="network">ネットワーク</string>
   <string name="pick_network_activity">地域を選択</string>
   <string name="pick_network_first_run">Transportr へようこそ!\n\n続行するには、地域から交通網を選択してください。 これはいつでも変更できます。</string>
-	<string name="stations_searching_position">現在の位置を検索中…</string>
+  <string name="stations_searching_position">現在の位置を検索中…</string>
   <string name="drawer_nearby_stations">近くの駅</string>
   <string name="find_nearby_stations">近くの駅を検索</string>
   <string name="find_departures">出発を検索</string>
-	<string name="share_trip_via">旅行を共有…</string>
-	<string name="more">さらに</string>
-	<string name="change_time">時間を変更</string>
+  <string name="share_trip_via">旅行を共有…</string>
+  <string name="more">さらに</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="change_time">時間を変更</string>
   <string name="now">今</string>
   <string name="now_small">今</string>
-	<string name="yesterday">昨日</string>
+  <string name="yesterday">昨日</string>
   <string name="today">今日</string>
   <string name="tomorrow">明日</string>
-	<string name="in_x_minutes">%d分で</string>
+  <string name="in_x_minutes">%d分で</string>
   <string name="x_minutes_ago">%d分前</string>
   <string name="ok">OK</string>
   <string name="cancel">キャンセル</string>
-	<string name="pref_transport_network">交通網</string>
-	<string name="pref_display">表示</string>
+  <string name="pref_transport_network">交通網</string>
+  <string name="pref_display">表示</string>
   <string name="pref_theme_title">テーマ</string>
   <string name="pref_theme_light">ライト</string>
   <string name="pref_theme_dark">ダーク</string>
@@ -87,17 +86,23 @@
   <string name="pref_walk_speed_slow">遅い</string>
   <string name="pref_walk_speed_normal">通常</string>
   <string name="pref_walk_speed_fast">速い</string>
-	<string name="error_trip_refresh_failed">現在の旅行のデータを更新できませんでした。</string>
-  <string name="meter">%d m</string>
+  <string name="error_trip_refresh_failed">現在の旅行のデータを更新できませんでした。</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">システム デフォルト</string>
   <string name="times_include_delays">(注意: 時間には報告された遅延が含まれます)</string>
   <string name="home">自宅</string>
   <string name="home_dialog_title">自宅の場所を設定</string>
+  <string name="widget_name_quickhome">自宅に帰る</string>
   <string name="work">仕事</string>
   <string name="work_hint">仕事の場所を設定</string>
-	<string name="tap_to_set">タップして設定</string>
-	<string name="location_gps">現在の位置を使用する</string>
-	<string name="select_products">交通手段の選択</string>
+  <string name="tap_to_set">タップして設定</string>
+  <string name="action_set_locations">検索の編集</string>
+  <string name="action_swap_locations">帰りの旅行を検索</string>
+  <string name="action_change">変更</string>
+  <string name="location_gps">現在の位置を使用する</string>
+  <string name="permission_denied_gps">場所のアクセスが許可されていないため、この機能は動作しません。 アプリの設定でアクセス許可を付与してください。</string>
+  <string name="select_products">交通手段の選択</string>
   <string name="product_high_speed_train">高速列車</string>
   <string name="product_regional_train">地方の列車</string>
   <string name="product_suburban_train">近郊列車</string>
@@ -107,15 +112,10 @@
   <string name="product_ferry">フェリー</string>
   <string name="product_cablecar">ケーブルカー</string>
   <string name="product_on_demand">オンデマンド</string>
-	<string name="action_set_locations">検索の編集</string>
-  <string name="action_swap_locations">帰りの旅行を検索</string>
-  <string name="action_change">変更</string>
-	<string name="permission_denied_gps">場所のアクセスが許可されていないため、この機能は動作しません。 アプリの設定でアクセス許可を付与してください。</string>
-	<!--ckChangeLog-->
+  <!--ckChangeLog-->
   <string name="changelog_full_title">変更履歴</string>
   <string name="changelog_title">新着情報</string>
   <string name="changelog_show_full">さらに…</string>
-  <string name="widget_name_quickhome">自宅に帰る</string>
   <string name="np_region_australia">オーストラリア</string>
   <string name="np_desc_sydney">オーストラリア、ニューサウスウェールズ州、シドニー</string>
   <string name="np_region_austria">オーストリア</string>
@@ -123,7 +123,7 @@
   <string name="np_desc_linz">アッパーオーストリア、リンツ</string>
   <string name="np_desc_oebb">オーストリア</string>
   <string name="np_desc_stv">スティリア、グラーツ、マールブルク、マリボル</string>
-	<string name="np_desc_vor">ニーダーエスターライヒ州、ブルゲンラント州、ウィーン</string>
+  <string name="np_desc_vor">ニーダーエスターライヒ州、ブルゲンラント州、ウィーン</string>
   <string name="np_desc_vvt">チロル</string>
   <string name="np_desc_wien">ウィーン</string>
   <string name="np_region_belgium">ベルギー</string>
@@ -155,7 +155,7 @@
   <string name="np_desc_frenchsoutheast">プロヴァンス=アルプ=コート・ダジュール、ローヌ=アルプ地域圏、ラングドック=ルシヨン、オーヴェルニュ、コルシカ島、リヨン</string>
   <string name="np_name_frenchsouthwest">フランス南西部</string>
   <string name="np_desc_frenchsouthwest">ポワトゥーシャラント、リムーザン、アキテーヌ、ミディピレネー、ボルドー、トゥールーズ</string>
-	<string name="np_name_paris">パリ</string>
+  <string name="np_name_paris">パリ</string>
   <string name="np_desc_paris">イル=ド=フランス、フランス、パリ</string>
   <string name="np_region_gb">イギリス</string>
   <string name="np_desc_mersey">リバプールシティ地域</string>
@@ -170,7 +170,7 @@
   <string name="np_desc_ding">バーデン・ヴュルテンベルク、ウルム、ノイ・ウルム</string>
   <string name="np_desc_gvh">ニーダーザクセン、ハノーバー、ハンブルク、ブレーマーハーフェン</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">ハンブルク</string>
-	<string name="np_desc_invg">インゴルシュタット</string>
+  <string name="np_desc_invg">インゴルシュタット</string>
   <string name="np_desc_kvv">バーデン・ヴュルテンベルク、カールスルーエ</string>
   <string name="np_desc_mvg">マールキッシャー・クライス、ルデンスシッド</string>
   <string name="np_desc_mvv">バイエルン、ミュンヘン</string>
@@ -178,7 +178,7 @@
   <string name="np_desc_nvbw">バーデン・ヴュルテンベルク、コンスタンツ、バーゼル、バーゼル・シュタット、ロイトリンゲン、ロットワイル、テュービンゲン、シグマリンゲン</string>
   <string name="np_desc_nvv">ヘッセン、フランクフルト・アム・マイン、カッセル</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">ロストック</string>
-	<string name="np_desc_vagfr">アルザス、バスライン、ストラスブール、フライブルク・イム・ブライスガウ</string>
+  <string name="np_desc_vagfr">アルザス、バスライン、ストラスブール、フライブルク・イム・ブライスガウ</string>
   <string name="np_desc_vbb">ブランデンブルク、ベルリン</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">ニーダーザクセン、ブレーメン、ブレーマーハーフェン、オルデンブルク (オルデンブルク)、オスナブリュック</string>
   <string name="np_desc_vgn">ニュルンベルク、フュルト、エルランゲン、バイロイト、バンベルク、シュヴァバッハ</string>
@@ -231,7 +231,7 @@
   <string name="np_desc_dub">アラブ首長国連邦、ドバイ</string>
   <string name="np_region_usa">アメリカ合衆国</string>
   <string name="np_desc_rtachicago">シカゴ</string>
-	<string name="np_name_usny" tools:keep="@string/np_name_usny">ニューヨークとニュージャージー州</string>
+  <string name="np_name_usny" tools:keep="@string/np_name_usny">ニューヨークとニュージャージー州</string>
   <string name="np_name_oregon">オレゴン</string>
   <string name="np_desc_oregon">オレゴン州 (米国) のグローバルトランスポート</string>
   <string name="maintainer">メンテナー</string>

@@ -59,9 +59,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="from_here">Herfra</string>
   <string name="to_here">Hit</string>
   <string name="clear_location">Tøm plassering</string>
-  <string name="min">min</string>
   <string name="walk">Gå</string>
-  <string name="position">Plattform</string>
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Nettverk</string>
@@ -73,6 +71,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="find_departures">Finn avganger</string>
   <string name="share_trip_via">Del tur via…</string>
   <string name="more">Mer</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="change_time">Avgangstid</string>
   <string name="now">Nå</string>
   <string name="now_small">nå</string>
@@ -120,11 +119,14 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="trip_error_pte">Hvis du ønsker å innrapportere denne feilen, send din rapport til public-transport-enabler direkte og legg ved en skjermavbildning.</string>
   <string name="trip_issue">Det kan være et problem med denne tilkoblingen.</string>
   <string name="try_again">Prøv igjen</string>
-  <string name="meter">m</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d stopp</item>
     <item quantity="other">%d stopp</item>
   </plurals>
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
+  <string name="platform">(Plattform %s)</string>
   <string name="system_default">Systemforvalg</string>
   <string name="times_include_delays">(Merk: Tidsforespeilinger inkluderer rapporterte forsinkelser)</string>
   <string name="created_by">Opprettet av %s</string>

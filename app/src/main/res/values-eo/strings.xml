@@ -52,9 +52,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="from_here">El tie</string>
   <string name="to_here">Al tie</string>
   <string name="clear_location">Forviŝi</string>
-  <string name="min">min</string>
   <string name="walk">Iru</string>
-  <string name="position">Stacio</string>
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Reto</string>
@@ -66,6 +64,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="find_departures">Serĉi forveturojn</string>
   <string name="share_trip_via">Kunhavigi kurson per…</string>
   <string name="more">Pli</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="change_time">Ŝanĝi tempon</string>
   <string name="now">Nun</string>
   <string name="now_small">nun</string>
@@ -113,11 +112,12 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="trip_error_pte">Se vi volas raporti tiun ĉi eraron, bonvolu raporti ĝin al senpere al public-transport-enabler kaj kunigu ekranokopion.</string>
   <string name="trip_issue">Povas okazi problemo kun tiu ĉi komunikilo.</string>
   <string name="try_again">Reprovi</string>
-  <string name="meter">m</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <plurals name="stops">
     <item quantity="one">%d haltejo</item>
     <item quantity="other">%d haltejoj</item>
   </plurals>
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Sistema implicita</string>
   <string name="times_include_delays">(Atentu: tempoj enhavas raportitajn malfruojn)</string>
   <string name="created_by">Kreita de %s</string>

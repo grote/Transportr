@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress ALL -->
+<resources>
+
+	<string name="define_mapbox"></string>
+	<!-- Author section -->
+	<string name="library_mapbox_author">Mapbox</string>
+	<string name="library_mapbox_authorWebsite">https://www.mapbox.com</string>
+	<!-- Library section -->
+	<string name="library_mapbox_libraryName">@string/mapbox_attributionsDialogTitle</string>
+	<string name="library_mapbox_libraryDescription">The Mapbox Android Map SDK is an open source toolset for displaying maps inside of your Android application.</string>
+	<string name="library_mapbox_libraryWebsite">https://www.mapbox.com/android-sdk/</string>
+	<string name="library_mapbox_libraryVersion">5</string>
+	<!-- OpenSource section -->
+	<string name="library_mapbox_isOpenSource">true</string>
+	<string name="library_mapbox_repositoryLink">https://github.com/mapbox/mapbox-gl-native/</string>
+	<!-- ClassPath for autoDetect section -->
+	<string name="library_mapbox_classPath">com.mapbox.mapboxsdk</string>
+	<!-- License section -->
+	<string name="libray_mapbox_licenseVersion">2.0</string>
+	<string name="libray_mapbox_licenseLink">https://github.com/mapbox/mapbox-gl-native/blob/master/LICENSE.md</string>
+	<string name="libray_mapbox_licenseContent">Apache</string>
+	<!-- Custom variables section -->
+</resources>
