@@ -61,10 +61,14 @@ internal class MapViewModel @Inject internal constructor(
 
     fun selectedLocationClicked(latLng: LatLng) {
         selectedLocationClicked.value = latLng
+        // reset the selected location right away, observers will ignore this update
+        selectedLocationClicked.value = null
     }
 
     fun selectLocation(location: WrapLocation?) {
         selectedLocation.value = location
+        // reset the selected location right away, observers will ignore this update
+        selectedLocation.value = null
     }
 
     fun getSelectedLocation(): LiveData<WrapLocation> {
