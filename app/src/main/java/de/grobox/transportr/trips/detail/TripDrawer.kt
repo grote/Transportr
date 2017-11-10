@@ -28,7 +28,7 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
         BEGIN, CHANGE, STOP, END, WALK
     }
 
-    fun draw(map: MapboxMap, trip: Trip) {
+    fun draw(map: MapboxMap, trip: Trip, zoom: Boolean) {
         // draw leg path first, so it is always at the bottom
         var i = 1
         val builder = LatLngBounds.Builder()
@@ -85,7 +85,9 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
             i += 1
             builder.includes(points)
         }
-        zoomToBounds(map, builder, false)
+        if (zoom) {
+            zoomToBounds(map, builder, false)
+        }
     }
 
     private fun calculatePath(leg: Leg) {

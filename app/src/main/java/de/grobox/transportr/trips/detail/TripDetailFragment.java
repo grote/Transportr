@@ -70,7 +70,7 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 
 		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(TripDetailViewModel.class);
 		viewModel.getTrip().observe(this, this::onTripChanged);
-		viewModel.sheetState.observe(this, this::onSheetStateChanged);
+		viewModel.getSheetState().observe(this, this::onSheetStateChanged);
 
 		return v;
 	}
@@ -79,7 +79,7 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		Menu toolbarMenu = toolbar.getMenu();
 		inflater.inflate(R.menu.trip_details, toolbarMenu);
-		viewModel.tripReloadError.observe(this, this::onTripReloadError);
+		viewModel.getTripReloadError().observe(this, this::onTripReloadError);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
@@ -120,11 +120,11 @@ public class TripDetailFragment extends TransportrFragment implements Toolbar.On
 	}
 
 	private void onToolbarClose() {
-		viewModel.sheetState.setValue(BOTTOM);
+		viewModel.getSheetState().setValue(BOTTOM);
 	}
 
 	private void onBottomBarClick() {
-		viewModel.sheetState.setValue(MIDDLE);
+		viewModel.getSheetState().setValue(MIDDLE);
 	}
 
 	private void onSheetStateChanged(@Nullable SheetState sheetState) {

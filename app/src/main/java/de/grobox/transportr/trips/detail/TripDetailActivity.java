@@ -52,9 +52,9 @@ public class TripDetailActivity extends TransportrActivity {
 		WrapLocation via = (WrapLocation) intent.getSerializableExtra(VIA);
 		WrapLocation to = (WrapLocation) intent.getSerializableExtra(TO);
 		viewModel.setTrip(trip);
-		viewModel.from = from;
-		viewModel.via = via;
-		viewModel.to = to;
+		viewModel.setFrom(from);
+		viewModel.setVia(via);
+		viewModel.setTo(to);
 
 		if (viewModel.showWhenLocked()) {
 			//noinspection deprecation
@@ -71,12 +71,12 @@ public class TripDetailActivity extends TransportrActivity {
 			public void onStateChanged(@NonNull View bottomSheet, int newState) {
 				if (newState == STATE_COLLAPSED) {
 					if (bottomSheetBehavior.isMiddle()) {
-						viewModel.sheetState.setValue(MIDDLE);
+						viewModel.getSheetState().setValue(MIDDLE);
 					} else if (bottomSheetBehavior.isBottom()) {
-						viewModel.sheetState.setValue(BOTTOM);
+						viewModel.getSheetState().setValue(BOTTOM);
 					}
 				} else if (newState == STATE_EXPANDED) {
-					viewModel.sheetState.setValue(EXPANDED);
+					viewModel.getSheetState().setValue(EXPANDED);
 				}
 			}
 
@@ -84,10 +84,10 @@ public class TripDetailActivity extends TransportrActivity {
 			public void onSlide(@NonNull View bottomSheet, float slideOffset) {
 			}
 		});
-		viewModel.sheetState.observe(this, this::onSheetStateChanged);
+		viewModel.getSheetState().observe(this, this::onSheetStateChanged);
 
 		if (savedInstanceState == null) {
-			viewModel.sheetState.setValue(MIDDLE);
+			viewModel.getSheetState().setValue(MIDDLE);
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.topContainer, new TripMapFragment(), TripMapFragment.TAG)
 					.add(R.id.bottomContainer, new TripDetailFragment(), TripDetailFragment.TAG)
