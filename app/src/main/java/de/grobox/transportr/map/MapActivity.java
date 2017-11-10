@@ -108,8 +108,8 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));
 		viewModel.getWork().observe(this, workLocation -> search.setWorkLocation(workLocation));
 		viewModel.getLocations().observe(this, favoriteLocations -> search.setFavoriteLocations(favoriteLocations));
-		viewModel.mapClicked.observe(this, no -> onMapClicked());
-		viewModel.markerClicked.observe(this, no -> onMarkerClicked());
+		viewModel.getMapClicked().observe(this, no -> onMapClicked());
+		viewModel.getMarkerClicked().observe(this, no -> onMarkerClicked());
 		viewModel.getSelectedLocation().observe(this, this::onLocationSelected);
 		viewModel.getSelectedLocationClicked().observe(this, this::onSelectedLocationClicked);
 		viewModel.getPeekHeight().observe(this, height -> {

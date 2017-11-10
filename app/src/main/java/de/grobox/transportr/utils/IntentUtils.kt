@@ -7,6 +7,7 @@ import android.content.Intent.ACTION_SEARCH
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.net.Uri
 import android.util.Log
+import com.mapbox.mapboxsdk.geometry.LatLng
 import de.grobox.transportr.departures.DeparturesActivity
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.map.MapActivity
@@ -14,6 +15,7 @@ import de.grobox.transportr.trips.search.DirectionsActivity
 import de.grobox.transportr.utils.Constants.*
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
+import java.util.regex.Pattern
 
 object IntentUtils {
 
@@ -69,6 +71,18 @@ object IntentUtils {
             Log.d(context.javaClass.simpleName, "Starting geo intent: " + geo.toString())
             context.startActivity(intent)
         }
+    }
+
+    @JvmStatic
+    fun getWrapLocation(geoUri: String): WrapLocation? {
+        val pattern = Pattern.compile("^geo:(-?\\d{1,3}(\\.\\d{1,8})?),(-?\\d{1,3}(\\.\\d{1,8})?).*")
+        val matcher = pattern.matcher(geoUri)
+        if (matcher.matches()) {
+            val lat: Double = matcher.group(1).toDouble()
+            val lon: Double = matcher.group(3).toDouble()
+            return if (lat == 0.0 && lon == 0.0) null else WrapLocation(LatLng(lat, lon))
+        }
+        return null
     }
 
 }

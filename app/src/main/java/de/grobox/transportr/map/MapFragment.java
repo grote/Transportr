@@ -98,7 +98,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		Bundle args = NearbyLocationsLoader.getBundle(location, 0);
 		getActivity().getSupportLoaderManager().initLoader(LOADER_NEARBY_STATIONS, args, this);
 
-		map.setOnMapClickListener(point -> viewModel.mapClicked.call());
+		map.setOnMapClickListener(point -> viewModel.getMapClicked().call());
 		map.setOnMapLongClickListener(point -> viewModel.selectLocation(new WrapLocation(point)));
 		map.setOnMarkerClickListener(this);
 
@@ -111,7 +111,7 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		gpsController.getFabState().observe(this, this::onNewFabState);
 
 		// observe map related data
-		viewModel.isFreshStart.observe(this, this::onFreshStart);
+		viewModel.isFreshStart().observe(this, this::onFreshStart);
 		viewModel.getSelectedLocation().observe(this, this::onLocationSelected);
 		viewModel.getSelectedLocationClicked().observe(this, this::onSelectedLocationClicked);
 		viewModel.getFindNearbyStations().observe(this, this::findNearbyStations);
@@ -120,21 +120,21 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 	private void onFreshStart(@Nullable Boolean isFreshStart) {
 		if (isFreshStart != null && !isFreshStart) return;
 		// zoom to favorite locations or only current location, if no favorites exist
-		viewModel.liveBounds.observe(this, bounds -> {
+		viewModel.getLiveBounds().observe(this, bounds -> {
 			if (bounds != null) {
 				zoomToBounds(bounds);
-				viewModel.liveBounds.removeObservers(this);
+				viewModel.getLiveBounds().removeObservers(this);
 			} else if (map.getMyLocation() != null) {
 				zoomToMyLocation();
 			}
 		});
-		viewModel.isFreshStart.setValue(false);
+		viewModel.isFreshStart().setValue(false);
 	}
 
 	@Override
 	public boolean onMarkerClick(@NonNull Marker marker) {
 		if (marker.equals(selectedLocationMarker)) {
-			viewModel.markerClicked.call();
+			viewModel.getMarkerClicked().call();
 			return true;
 		}
 		WrapLocation wrapLocation = nearbyStationsDrawer.getClickedNearbyStation(marker);
@@ -149,8 +149,8 @@ public class MapFragment extends BaseMapFragment implements LoaderCallbacks<Near
 		requestPermission();
 		if (network != null && map != null) {
 			// stop observing fresh start, so we get only updated when activity was recreated
-			viewModel.isFreshStart.removeObservers(this);
-			viewModel.isFreshStart.setValue(true);
+			viewModel.isFreshStart().removeObservers(this);
+			viewModel.isFreshStart().setValue(true);
 			// prevent loader from re-adding nearby stations
 			getActivity().getSupportLoaderManager().destroyLoader(LOADER_NEARBY_STATIONS);
 		}
