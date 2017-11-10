@@ -267,6 +267,7 @@ public class DirectionsFragment extends TransportrFragment {
 	private void onFindGpsLocation(@Nullable FavLocationType type) {
 		if (type == null) {
 			viewModel.locationLiveData.removeObservers(DirectionsFragment.this);
+			from.clearSearching();
 			return;
 		}
 		if (ContextCompat.checkSelfPermission(getContext(), ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {

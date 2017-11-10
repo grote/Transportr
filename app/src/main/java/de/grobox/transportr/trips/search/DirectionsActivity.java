@@ -151,6 +151,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 			viewModel.setFromLocation(null);
 			viewModel.findGpsLocation.setValue(FavLocationType.FROM);
 		} else {
+			viewModel.findGpsLocation.setValue(null);
 			viewModel.setFromLocation(from);
 		}
 		viewModel.setViaLocation(via);

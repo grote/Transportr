@@ -78,7 +78,7 @@ class LocationGpsView(context: Context, attrs: AttributeSet) : LocationView(cont
         ui.clear.visibility = VISIBLE
     }
 
-    private fun clearSearching() {
+    fun clearSearching() {
         if (!isSearching) return
 
         ui.status.clearAnimation()
