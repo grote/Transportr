@@ -55,7 +55,7 @@ internal abstract class MapDrawer(protected val context: Context) {
             val padding = context.resources.getDimensionPixelSize(R.dimen.mapPadding)
             val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds, padding)
             if (animate) {
-                map.easeCamera(cameraUpdate)
+                map.easeCamera(cameraUpdate, 750)
             } else {
                 map.moveCamera(cameraUpdate)
             }

@@ -67,9 +67,7 @@ there are any).</string>
     <string name="from_here">From Here</string>
     <string name="to_here">To Here</string>
     <string name="clear_location">Clear Location</string>
-    <string name="min"> min</string>
     <string name="walk">Walk</string>
-    <string name="position">Platform</string>
     <string name="alpha">alpha</string>
     <string name="beta">beta</string>
     <string name="network">Network</string>
@@ -81,6 +79,9 @@ there are any).</string>
     <string name="find_departures">Find Departures</string>
     <string name="share_trip_via">Share Trip Via&#8230;</string>
     <string name="more">More</string>
+
+    <!-- Shows a short(!) representation of how long you need to walk, e.g. "for 5 min" -->
+    <string name="for_x_min">for %d min</string>
 
     <string name="change_time">Change Time</string>
     <string name="now">Now</string>
