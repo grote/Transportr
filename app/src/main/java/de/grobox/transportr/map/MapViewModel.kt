@@ -86,8 +86,12 @@ internal class MapViewModel @Inject internal constructor(
 
     fun selectLocation(location: WrapLocation?) {
         selectedLocation.value = location
-        // reset the selected location right away, observers will ignore this update
-        selectedLocation.value = null
+        // do not reset the selected location right away, will break incoming geo intent
+        // the observing fragment will call clearSelectedLocation() instead when it is done
+    }
+
+    fun clearSelectedLocation() {
+        selectedLocation.postValue(null)
     }
 
     fun getSelectedLocation(): LiveData<WrapLocation> {

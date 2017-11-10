@@ -152,6 +152,7 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 		LatLng latLng = location.getLatLng();
 		addMarker(latLng);
 		animateTo(latLng, LOCATION_ZOOM);
+		viewModel.clearSelectedLocation();
 	}
 
 	private void onSelectedLocationClicked(@Nullable LatLng latLng) {

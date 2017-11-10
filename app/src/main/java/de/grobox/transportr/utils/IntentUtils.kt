@@ -85,6 +85,7 @@ object IntentUtils {
 
         // show station on external map
         val intent = Intent(Intent.ACTION_VIEW)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         intent.data = geo
         if (intent.resolveActivity(context.packageManager) != null) {
             Log.d(context.javaClass.simpleName, "Starting geo intent: " + geo.toString())

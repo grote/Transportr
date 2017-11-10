@@ -133,11 +133,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		if (intent != null) onNewIntent(intent);
 
 		if (savedInstanceState == null) {
-			if (intent != null && intent.getAction() != null && intent.getAction().equals(ACTION_VIEW) && intent.getData() != null) {
-				viewModel.setGeoUri(intent.getData());
-			} else {
-				showSavedSearches();
-			}
+			showSavedSearches();
 			checkAndShowChangelog();
 		} else {
 			locationFragment = (LocationFragment) getSupportFragmentManager().findFragmentByTag(LocationFragment.TAG);
@@ -220,8 +216,9 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		super.onNewIntent(intent);
 		if (intent == null || intent.getAction() == null) return;
 
-		// nearby stations search
-		if (intent.getAction().equals(ACTION_SEARCH)) {
+		if (intent.getAction().equals(ACTION_VIEW) && intent.getData() != null) {
+			viewModel.setGeoUri(intent.getData());
+		} else if (intent.getAction().equals(ACTION_SEARCH)) {
 			WrapLocation location = (WrapLocation) intent.getSerializableExtra(WRAP_LOCATION);
 			viewModel.selectLocation(location);
 			viewModel.findNearbyStations(location);
