@@ -95,7 +95,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 				if (newState == STATE_HIDDEN) {
 					search.clearLocation();
 					search.reset();
-					bottomSheetBehavior.setPeekHeight(0);
+					viewModel.setPeekHeight(0);
 				}
 			}
 
@@ -145,8 +145,8 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, f, SavedSearchesFragment.TAG)
 				.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
-		bottomSheetBehavior.setPeekHeight(PEEK_HEIGHT_AUTO);
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
+		viewModel.setPeekHeight(PEEK_HEIGHT_AUTO);
 	}
 
 	private void onTransportNetworkChanged(TransportNetwork network) {
