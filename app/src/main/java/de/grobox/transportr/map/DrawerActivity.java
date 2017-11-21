@@ -50,6 +50,7 @@ import de.grobox.transportr.settings.SettingsManager;
 import de.grobox.transportr.ui.TransportrChangeLog;
 
 import static android.support.v4.app.ActivityOptionsCompat.makeScaleUpAnimation;
+import static android.support.v7.widget.RecyclerView.NO_POSITION;
 
 abstract class DrawerActivity extends TransportrActivity {
 
@@ -109,6 +110,7 @@ abstract class DrawerActivity extends TransportrActivity {
 				.withFireOnInitialOnClick(false)
 				.withShowDrawerOnFirstLaunch(false)
 				.withSavedInstance(savedInstanceState)
+				.withSelectedItem(NO_POSITION)
 				.build();
 
 		// add transport networks to header
