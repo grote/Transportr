@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="website" translatable="false">https://transportr.grobox.de/?utm_source=app</string>
+    <string name="website" translatable="false">https://transportr.grobox.de/</string>
+    <string name="website_source_app" translatable="false">"?utm_source=app"</string>
+    <string name="website_source_shared" translatable="false">"?utm_source=shared_trip"</string>
     <string name="bugtracker" translatable="false">https://github.com/grote/Transportr/issues</string>
 
     <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">The public transport companion that respects your privacy and your freedom.</string>
@@ -147,7 +149,8 @@ there are any).</string>
     <string name="platform">(Platform %s)</string>
 
     <string name="system_default">System Default</string>
-    <string name="times_include_delays">(Attention: Times include reported delays)</string>
+    <string name="trip_share_date">Date: %s</string>
+    <string name="times_include_delays">(Attention: Times may include reported delays)</string>
     <string name="created_by">Created by %s</string>
 
     <string name="home">Home</string>

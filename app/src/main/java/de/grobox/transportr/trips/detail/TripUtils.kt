@@ -22,11 +22,11 @@ package de.grobox.transportr.trips.detail
 import android.content.Context
 import android.content.Intent
 import de.grobox.transportr.R
-import de.grobox.transportr.utils.DateUtils.getDate
-import de.grobox.transportr.utils.DateUtils.getTime
+import de.grobox.transportr.utils.DateUtils.*
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Trip
+import java.util.*
 
 internal object TripUtils {
 
@@ -70,14 +70,21 @@ internal object TripUtils {
 
     private fun tripToString(context: Context, trip: Trip): String {
         val sb = StringBuilder()
+
+        // show date first, if trip doesn't start today
+        val calendar = Calendar.getInstance()
+        calendar.time = trip.firstDepartureTime
+        val isToday = isToday(calendar)
+        if (!isToday) {
+            sb.append(context.getString(R.string.trip_share_date, getDate(context, trip.firstDepartureTime))).append("\n\n")
+        }
+
         for (leg in trip.legs) {
             sb.append(legToString(context, leg)).append("\n\n")
         }
-        sb.append("\n")
-                .append(context.getString(R.string.times_include_delays))
-                .append("\n\n")
-                .append(context.getString(R.string.created_by, context.getString(R.string.app_name)))
-                .append("\n").append(context.getString(R.string.website))
+        if (isToday) sb.append(context.getString(R.string.times_include_delays)).append("\n\n")
+        sb.append(context.getString(R.string.created_by, context.getString(R.string.app_name)))
+                .append("\n").append(context.getString(R.string.website)).append(context.getString(R.string.website_source_shared))
         return sb.toString()
     }
 
@@ -112,15 +119,15 @@ internal object TripUtils {
     }
 
     private fun getEmojiForProduct(p: Product?): String = when (p) {
-        Product.HIGH_SPEED_TRAIN -> "\uD83D\uDE84"
-        Product.REGIONAL_TRAIN -> "\uD83D\uDE86"
-        Product.SUBURBAN_TRAIN -> "\uD83D\uDE88"
-        Product.SUBWAY -> "\uD83D\uDE87"
-        Product.TRAM -> "\uD83D\uDE8A"
-        Product.BUS -> "\uD83D\uDE8C"
+        Product.HIGH_SPEED_TRAIN -> "🚄"
+        Product.REGIONAL_TRAIN -> "🚆"
+        Product.SUBURBAN_TRAIN -> "🚈"
+        Product.SUBWAY -> "🚇"
+        Product.TRAM -> "🚊"
+        Product.BUS -> "🚌"
         Product.FERRY -> "⛴️"
-        Product.CABLECAR -> "\uD83D\uDEA1"
-        Product.ON_DEMAND -> "\uD83D\uDE96"
+        Product.CABLECAR -> "🚡"
+        Product.ON_DEMAND -> "🚖"
         null -> ""
     }
 

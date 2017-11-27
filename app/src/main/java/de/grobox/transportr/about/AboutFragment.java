@@ -63,7 +63,7 @@ public class AboutFragment extends TransportrFragment {
 		TextView t = view.findViewById(R.id.aboutTextView);
 		t.setText(Html.fromHtml(
 				getString(R.string.about) +
-						String.format(getString(R.string.about_bottom), getString(R.string.website), getString(R.string.bugtracker), getString(R.string.website) + "#donate")
+						String.format(getString(R.string.about_bottom), getString(R.string.website) + getString(R.string.website_source_app), getString(R.string.bugtracker), getString(R.string.website) + getString(R.string.website_source_app) + "#donate")
 		));
 
 		// make links in about text clickable
@@ -72,7 +72,7 @@ public class AboutFragment extends TransportrFragment {
 
 		Button website = view.findViewById(R.id.websiteButton);
 		website.setOnClickListener(v -> {
-			Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website)));
+			Intent launchBrowser = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website) + getString(R.string.website_source_app)));
 			startActivity(launchBrowser);
 		});
 
