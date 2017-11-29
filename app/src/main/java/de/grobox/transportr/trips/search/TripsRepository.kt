@@ -24,6 +24,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.support.annotation.WorkerThread
 import android.util.Log
 import de.grobox.transportr.R
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.*
@@ -38,6 +39,9 @@ import de.schildbach.pte.dto.QueryTripsContext
 import de.schildbach.pte.dto.QueryTripsResult
 import de.schildbach.pte.dto.QueryTripsResult.Status.*
 import de.schildbach.pte.dto.Trip
+import java.io.InterruptedIOException
+import java.net.SocketTimeoutException
+import kotlin.concurrent.thread
 
 internal class TripsRepository(
         private val ctx: Context,
@@ -60,6 +64,7 @@ internal class TripsRepository(
 
     private var uid: Long = 0L
     private var queryTripsContext: QueryTripsContext? = null
+    private var queryTripsTask = Thread()
 
     init {
         queryMoreState.value = QueryMoreState.NONE
@@ -78,7 +83,7 @@ internal class TripsRepository(
         clearState()
 
         Log.i(TAG, "From: " + query.from.location)
-        Log.i(TAG, "Via: " + if (query.via == null) "null" else query.via.location)
+        Log.i(TAG, "Via: " + (if (query.via == null) "null" else query.via.location))
         Log.i(TAG, "To: " + query.to.location)
         Log.i(TAG, "Date: " + query.date)
         Log.i(TAG, "Departure: " + query.departure)
@@ -86,35 +91,45 @@ internal class TripsRepository(
         Log.i(TAG, "Optimize for: " + settingsManager.optimize)
         Log.i(TAG, "Walk Speed: " + settingsManager.walkSpeed)
 
-        Thread {
-            try {
-                val queryTripsResult = networkProvider.queryTrips(
-                        query.from.location, if (query.via == null) null else query.via.location, query.to.location,
-                        query.date, query.departure, query.products, settingsManager.optimize, settingsManager.walkSpeed,
-                        null, null)
-                if (queryTripsResult.status == OK && queryTripsResult.trips.size > 0) {
-                    // deliver result first, so UI can get updated
-                    onQueryTripsResultReceived(queryTripsResult)
-                    // store locations (needed for references in stored search)
-                    val from = locationRepository.addFavoriteLocation(query.from, FROM)
-                    val via = query.via?.let { locationRepository.addFavoriteLocation(it, VIA) }
-                    val to = locationRepository.addFavoriteLocation(query.to, TO)
-                    // store search query
-                    uid = searchesRepository.storeSearch(from, via, to)
-                    // set fav status
-                    isFavTrip.postValue(searchesRepository.isFavorite(uid))
-                } else {
-                    queryError.postValue(queryTripsResult.getError())
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                if (!TransportrUtils.hasInternet(ctx)) {
-                    queryError.postValue(ctx.getString(R.string.error_no_internet))
-                } else {
-                    queryError.postValue("$e\n${e.stackTrace[0]}\n${e.stackTrace[1]}\n${e.stackTrace[2]}")
-                }
+        if (queryTripsTask.isAlive && !queryTripsTask.isInterrupted) {
+            queryTripsTask.interrupt()
+        }
+        queryTripsTask = thread(true) { queryTrips(query) }
+    }
+
+    @WorkerThread
+    private fun queryTrips(query: TripQuery) {
+        try {
+            val queryTripsResult = networkProvider.queryTrips(
+                    query.from.location, if (query.via == null) null else query.via.location, query.to.location,
+                    query.date, query.departure, query.products, settingsManager.optimize, settingsManager.walkSpeed,
+                    null, null)
+            if (queryTripsResult.status == OK && queryTripsResult.trips.size > 0) {
+                // deliver result first, so UI can get updated
+                onQueryTripsResultReceived(queryTripsResult)
+                // store locations (needed for references in stored search)
+                val from = locationRepository.addFavoriteLocation(query.from, FROM)
+                val via = query.via?.let { locationRepository.addFavoriteLocation(it, VIA) }
+                val to = locationRepository.addFavoriteLocation(query.to, TO)
+                // store search query
+                uid = searchesRepository.storeSearch(from, via, to)
+                // set fav status
+                isFavTrip.postValue(searchesRepository.isFavorite(uid))
+            } else {
+                queryError.postValue(queryTripsResult.getError())
             }
-        }.start()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            if (e is InterruptedIOException && e !is SocketTimeoutException) {
+                // return, because this thread was interrupted
+            } else if (!TransportrUtils.hasInternet(ctx)) {
+                queryError.postValue(ctx.getString(R.string.error_no_internet))
+            } else if (e is SocketTimeoutException) {
+                queryError.postValue(ctx.getString(R.string.error_connection_failure))
+            } else {
+                queryError.postValue("$e\n${e.stackTrace[0]}\n${e.stackTrace[1]}\n${e.stackTrace[2]}")
+            }
+        }
     }
 
     fun searchMore(later: Boolean) {
@@ -125,7 +140,7 @@ internal class TripsRepository(
         Log.i(TAG, "QueryTripsContext: " + queryTripsContext!!.toString())
         Log.i(TAG, "Later: " + later)
 
-        Thread {
+        thread(true) {
             try {
                 val queryTripsResult = networkProvider.queryMoreTrips(queryTripsContext, later)
                 if (queryTripsResult.status == OK && queryTripsResult.trips.size > 0) {
@@ -136,7 +151,7 @@ internal class TripsRepository(
             } catch (e: Exception) {
                 queryMoreError.postValue(e.toString())
             }
-        }.start()
+        }
     }
 
     private fun onQueryTripsResultReceived(queryTripsResult: QueryTripsResult) {

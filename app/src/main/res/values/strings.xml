@@ -119,6 +119,7 @@ there are any).</string>
 
     <string name="error">Error</string>
     <string name="error_no_internet">Internet connection required. Please make sure your internet access is working.</string>
+    <string name="error_connection_failure">Connection failed. Please try again.</string>
     <string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
     <string name="error_geo_intent">Could not open external location</string>
     <string name="error_find_nearby_stations">Could not find nearby stations</string>
