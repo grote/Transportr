@@ -222,7 +222,7 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		if (now.getValue() != null && now.getValue()) {
 			calendar = Calendar.getInstance();
 		} else {
-			calendar = getCalendar().getValue();
+			calendar = updatedCalendar.getValue();
 			if (calendar == null) return;
 		}
 

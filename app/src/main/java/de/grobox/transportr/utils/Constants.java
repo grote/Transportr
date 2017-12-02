@@ -23,12 +23,14 @@ public interface Constants {
 
 	// Serialization
 	String DATE = "Date";
+	String DEPARTURE = "departure";
 	String WRAP_LOCATION = "WrapLocation";
 	String LOCATION = "Location";
 	String FROM = "from";
 	String VIA = "via";
 	String TO = "to";
 	String SEARCH = "search";
+	String EXPANDED = "expanded";
 
 	// Request Codes
 	int REQUEST_LOCATION_PERMISSION = 1;

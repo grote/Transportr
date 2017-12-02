@@ -22,6 +22,7 @@ package de.grobox.transportr.trips.search;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -62,6 +63,9 @@ import static android.view.animation.Animation.RELATIVE_TO_SELF;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.TO;
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.VIA;
+import static de.grobox.transportr.utils.Constants.DATE;
+import static de.grobox.transportr.utils.Constants.DEPARTURE;
+import static de.grobox.transportr.utils.Constants.EXPANDED;
 import static de.grobox.transportr.utils.DateUtils.getDate;
 import static de.grobox.transportr.utils.DateUtils.getTime;
 import static de.grobox.transportr.utils.DateUtils.isNow;
@@ -141,6 +145,28 @@ public class DirectionsFragment extends TransportrFragment {
 		setupClickListeners();
 
 		return v;
+	}
+
+	@Override
+	@SuppressWarnings("ConstantConditions")
+	public void onSaveInstanceState(@NonNull Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putSerializable(DATE, viewModel.getCalendar().getValue());
+		outState.putBoolean(EXPANDED, viewModel.getIsExpanded().getValue());
+		outState.putBoolean(DEPARTURE, viewModel.getIsDeparture().getValue());
+	}
+
+	@Override
+	public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+		super.onViewStateRestored(savedInstanceState);
+		if (savedInstanceState != null && viewModel.getTrips().getValue() == null) {
+			viewModel.setIsExpanded(savedInstanceState.getBoolean(EXPANDED, false));
+			viewModel.setIsDeparture(savedInstanceState.getBoolean(DEPARTURE, true));
+			viewModel.setFromLocation(from.getLocation());
+			viewModel.setViaLocation(via.getLocation());
+			viewModel.setToLocation(to.getLocation());
+			viewModel.onTimeAndDateSet((Calendar) savedInstanceState.getSerializable(DATE));
+		}
 	}
 
 	@Override
