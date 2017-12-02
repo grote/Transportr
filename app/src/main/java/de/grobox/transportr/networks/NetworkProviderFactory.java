@@ -19,6 +19,7 @@ package de.grobox.transportr.networks;
 
 import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
+import java.util.Locale;
 
 import de.schildbach.pte.*;
 import okhttp3.HttpUrl;
@@ -554,7 +555,14 @@ public final class NetworkProviderFactory {
 					return provider;
 			}
 
-			final NegentweeProvider provider = new NegentweeProvider();
+			NegentweeProvider.Language lang;
+			if (Locale.getDefault().getLanguage().equals("nl")) {
+				lang = NegentweeProvider.Language.NL_NL;
+			} else {
+				lang = NegentweeProvider.Language.EN_GB;
+			}
+
+			final NegentweeProvider provider = new NegentweeProvider(lang);
 			negentweeProviderRef = new SoftReference<>(provider);
 			return provider;
 		} else if (networkId.equals(NetworkId.DSB)) {
