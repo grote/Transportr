@@ -104,6 +104,8 @@ public final class NetworkProviderFactory {
 	private static Reference<CostaRicaProvider> costaRicaProviderRef;
 	private static Reference<GhanaProvider> ghanaProviderRef;
 	private static Reference<NewyorkProvider> newYorkProviderRef;
+	private static Reference<ManaguaProvider> managuaProviderRef;
+	private static Reference<EsteliProvider> esteliProviderRef;
 
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 	private static final String VAO = "{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}";
@@ -877,6 +879,26 @@ public final class NetworkProviderFactory {
 
 			final NewyorkProvider provider = new NewyorkProvider(NAVITIA);
 			newYorkProviderRef = new SoftReference<>(provider);
+			return provider;
+		} else if (networkId.equals(NetworkId.MANAGUA)) {
+			if (managuaProviderRef != null) {
+				final ManaguaProvider provider = managuaProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final ManaguaProvider provider = new ManaguaProvider(NAVITIA);
+			managuaProviderRef = new SoftReference<>(provider);
+			return provider;
+		} else if (networkId.equals(NetworkId.ESTELI)) {
+			if (esteliProviderRef != null) {
+				final EsteliProvider provider = esteliProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final EsteliProvider provider = new EsteliProvider(NAVITIA);
+			esteliProviderRef = new SoftReference<>(provider);
 			return provider;
 		} else {
 			throw new IllegalArgumentException(networkId.name());

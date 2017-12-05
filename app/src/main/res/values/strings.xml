@@ -377,6 +377,12 @@ there are any).</string>
 	<string name="np_name_ghana">Ghana</string>
 	<string name="np_desc_ghana">Accra</string>
 
+	<string name="np_region_nicaragua">Nicaragua</string>
+	<string name="np_name_managua">Managua</string>
+	<string name="np_desc_managua">Buses of the Collective Urban Transport</string>
+	<string name="np_name_esteli">Esteli</string>
+	<string name="np_desc_esteli">Urban buses of Estelí</string>
+
 	<string name="maintainer">Maintainer</string>
 	<string name="contributors">Contributors</string>
 	<string name="translators">Translators</string>

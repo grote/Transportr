@@ -643,6 +643,25 @@ public interface TransportNetworks {
 					.setGoodLineNames(true)
 					.build(),
 
+			// Nicaragua
+
+			new TransportNetworkBuilder()
+					.setId(NetworkId.MANAGUA)
+					.setName(R.string.np_name_managua)
+					.setDescription(R.string.np_desc_managua)
+					.setRegion(Region.NICARAGUA)
+					.setStatus(ALPHA)
+					.setGoodLineNames(true)
+					.build(),
+
+			new TransportNetworkBuilder()
+					.setId(NetworkId.ESTELI)
+					.setName(R.string.np_name_esteli)
+					.setDescription(R.string.np_desc_esteli)
+					.setRegion(Region.NICARAGUA)
+					.setStatus(ALPHA)
+					.setGoodLineNames(true)
+					.build(),
 	};
 
 }
