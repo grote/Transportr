@@ -463,6 +463,13 @@ public interface TransportNetworks {
 					.setLogo(R.drawable.network_oregon_logo)
 					.setStatus(ALPHA)
 					.build(),
+			new TransportNetworkBuilder()
+					.setId(NetworkId.NEWYORK)
+					.setName(R.string.np_name_usny)
+					.setDescription(R.string.np_desc_usny)
+					.setRegion(Region.USA)
+					.setStatus(ALPHA)
+					.build(),
 
 			// Australia
 
@@ -604,6 +611,30 @@ public interface TransportNetworks {
 					.setStatus(ALPHA)
 					.setGoodLineNames(true)
 					.build(),
+
+			// Costa Rica
+
+			new TransportNetworkBuilder()
+					.setId(NetworkId.CR)
+					.setName(R.string.np_name_costa_rica)
+					.setDescription(R.string.np_desc_costa_rica)
+					.setAgencies(R.string.np_desc_costa_rica_networks)
+					.setRegion(Region.COSTA_RICA)
+					.setStatus(ALPHA)
+					.setGoodLineNames(true)
+					.build(),
+
+			// Africa
+
+			new TransportNetworkBuilder()
+					.setId(NetworkId.GHANA)
+					.setName(R.string.np_name_ghana)
+					.setDescription(R.string.np_desc_ghana)
+					.setRegion(Region.AFRICA)
+					.setStatus(ALPHA)
+					.setGoodLineNames(true)
+					.build(),
+
 	};
 
 }

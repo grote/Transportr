@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="website" translatable="false">https://transportr.grobox.de/</string>
-    <string name="website_source_app" translatable="false">"?utm_source=app"</string>
-    <string name="website_source_shared" translatable="false">"?utm_source=shared_trip"</string>
-    <string name="bugtracker" translatable="false">https://github.com/grote/Transportr/issues</string>
+	<string name="website" translatable="false">https://transportr.grobox.de/</string>
+	<string name="website_source_app" translatable="false">"?utm_source=app"</string>
+	<string name="website_source_shared" translatable="false">"?utm_source=shared_trip"</string>
+	<string name="bugtracker" translatable="false">https://github.com/grote/Transportr/issues</string>
 
-    <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">The public transport companion that respects your privacy and your freedom.</string>
-    <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr is a non-profit app developed by people around the world to make
+	<string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">The public transport companion that respects your privacy and your freedom.</string>
+	<string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr is a non-profit app developed by people around the world to make
 using public transport as easy as possible wherever you are.
 
 Currently, it works best in Europe, but also supports many places world-wide. If
@@ -21,367 +21,376 @@ and follow your progress via GPS.
 You can also discover nearby stations and show upcoming departures including the delays (if
 there are any).</string>
 
-    <string name="drawer_changelog">Changelog</string>
-    <string name="drawer_about">About</string>
-    <string name="drawer_settings">Settings</string>
-    <string name="action_fav_trip">Mark Trip as Favourite</string>
-    <string name="action_unfav_trip">Unmark Trip as Favourite</string>
-    <string name="action_switch_locations">Swap From and To</string>
-    <string name="action_time_type">Time is</string>
-    <string name="trip_dep">Departure</string>
-    <string name="trip_arr">Arrival</string>
-    <string name="action_refresh">Refresh</string>
-    <string name="action_navigation_expand">Show Via</string>
-    <string name="action_choose_products">Means of Transport</string>
-    <string name="action_share">Share</string>
-    <string name="action_trip_calendar">Add to Calendar</string>
-    <string name="action_trip_delete">Delete Trip</string>
-    <string name="action_show_on_external_map">Show on External Map</string>
-    <string name="action_copy">Copy</string>
+	<string name="drawer_changelog">Changelog</string>
+	<string name="drawer_about">About</string>
+	<string name="drawer_settings">Settings</string>
+	<string name="action_fav_trip">Mark Trip as Favourite</string>
+	<string name="action_unfav_trip">Unmark Trip as Favourite</string>
+	<string name="action_switch_locations">Swap From and To</string>
+	<string name="action_time_type">Time is</string>
+	<string name="trip_dep">Departure</string>
+	<string name="trip_arr">Arrival</string>
+	<string name="action_refresh">Refresh</string>
+	<string name="action_navigation_expand">Show Via</string>
+	<string name="action_choose_products">Means of Transport</string>
+	<string name="action_share">Share</string>
+	<string name="action_trip_calendar">Add to Calendar</string>
+	<string name="action_trip_delete">Delete Trip</string>
+	<string name="action_show_on_external_map">Show on External Map</string>
+	<string name="action_copy">Copy</string>
 
-    <string name="drawer_departures">Departures</string>
+	<string name="drawer_departures">Departures</string>
 
-    <string name="tab_libraries">Libraries</string>
-    <string name="tab_devs">Developers</string>
-    <string name="tab_about">About</string>
+	<string name="tab_libraries">Libraries</string>
+	<string name="tab_devs">Developers</string>
+	<string name="tab_about">About</string>
 
-    <string name="about_top">© 2013 &#8211; 2017 Torsten Grote\nFree Software License: GPLv3</string>
-    <string name="about">
+	<string name="about_top">© 2013 &#8211; 2017 Torsten Grote\nFree Software License: GPLv3</string>
+	<string name="about">
 <![CDATA[
 <p>Transportr is a public transport companion that respects your privacy and your freedom. It is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. This app is Free Software, so you can freely use, study, share and improve it.</p>
 <p>There is no guarantee for the correctness of the data. Please only use this app at your own risk.</p>
 ]]>
 </string>
-    <string name="about_bottom">
+	<string name="about_bottom">
 <![CDATA[
 <p><b>Contributions</b> are encouraged and appreciated. If you would like to contribute please go to <a href="%1$s">the Transportr homepage</a> for more information.</p>
 <p>If you find any issues with this app, please report them at <a href="%2$s">the issue tracker</a>.</p>
 <p><b>Donations</b> options are listed on <a href="%3$s">the Transportr website</a>.</p>
 ]]>
 </string>
-    <string name="visit_website">Visit Website</string>
+	<string name="visit_website">Visit Website</string>
 
-    <string name="open_navigation_drawer">Open Navigation Drawer</string>
-    <string name="from">From</string>
-    <string name="to">To</string>
-    <string name="via">Via</string>
-    <string name="search_hint">Search here</string>
-    <string name="from_here">From Here</string>
-    <string name="to_here">To Here</string>
-    <string name="clear_location">Clear Location</string>
-    <string name="walk">Walk</string>
-    <string name="alpha">alpha</string>
-    <string name="beta">beta</string>
-    <string name="network">Network</string>
-    <string name="pick_network_activity">Choose Area</string>
-    <string name="pick_network_first_run">Welcome to Transportr!\n\nPlease select the transportation network from your area in order to continue. You can change this at any time.</string>
-    <string name="stations_searching_position">Searching for current position&#8230;</string>
-    <string name="drawer_nearby_stations">Nearby Stations</string>
-    <string name="find_nearby_stations">Find Nearby Stations</string>
-    <string name="find_departures">Find Departures</string>
-    <string name="share_trip_via">Share Trip Via&#8230;</string>
-    <string name="more">More</string>
+	<string name="open_navigation_drawer">Open Navigation Drawer</string>
+	<string name="from">From</string>
+	<string name="to">To</string>
+	<string name="via">Via</string>
+	<string name="search_hint">Search here</string>
+	<string name="from_here">From Here</string>
+	<string name="to_here">To Here</string>
+	<string name="clear_location">Clear Location</string>
+	<string name="walk">Walk</string>
+	<string name="alpha">alpha</string>
+	<string name="beta">beta</string>
+	<string name="network">Network</string>
+	<string name="pick_network_activity">Choose Area</string>
+	<string name="pick_network_first_run">Welcome to Transportr!\n\nPlease select the transportation network from your area in order to continue. You can change this at any time.</string>
+	<string name="stations_searching_position">Searching for current position&#8230;</string>
+	<string name="drawer_nearby_stations">Nearby Stations</string>
+	<string name="find_nearby_stations">Find Nearby Stations</string>
+	<string name="find_departures">Find Departures</string>
+	<string name="share_trip_via">Share Trip Via&#8230;</string>
+	<string name="more">More</string>
 
-    <!-- Shows a short(!) representation of how long you need to walk, e.g. "for 5 min" -->
-    <string name="for_x_min">for %d min</string>
+	<!-- Shows a short(!) representation of how long you need to walk, e.g. "for 5 min" -->
+	<string name="for_x_min">for %d min</string>
 
-    <string name="change_time">Change Time</string>
-    <string name="now">Now</string>
+	<string name="change_time">Change Time</string>
+	<string name="now">Now</string>
 	<string name="now_small">now</string>
-    <string name="yesterday">Yesterday</string>
-    <string name="today">Today</string>
-    <string name="tomorrow">Tomorrow</string>
-    <string name="in_x_minutes">in %dmin</string>
-    <string name="x_minutes_ago">%dmin ago</string>
-    <string name="time_picker_previous_day">Previous Day</string>
-    <string name="time_picker_next_day">Next Day</string>
+	<string name="yesterday">Yesterday</string>
+	<string name="today">Today</string>
+	<string name="tomorrow">Tomorrow</string>
+	<string name="in_x_minutes">in %dmin</string>
+	<string name="x_minutes_ago">%dmin ago</string>
+	<string name="time_picker_previous_day">Previous Day</string>
+	<string name="time_picker_next_day">Next Day</string>
 
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    
-    <string name="pref_transport_network">Transport Network</string>
-    <string name="pref_display">Display</string>
-    <string name="pref_theme_title">Theme</string>
-    <string name="pref_theme_light">Light</string>
-    <string name="pref_theme_dark">Dark</string>
-    <string name="pref_language_title">Language</string>
-    <string name="pref_directions_routing">Directions and Trip Routing</string>
-    <string name="pref_optimize">Optimize for</string>
-    <string name="pref_optimize_least_duration">Least Duration</string>
-    <string name="pref_optimize_least_changes">Least Changes</string>
-    <string name="pref_optimize_least_walking">Least Walking</string>
-    <string name="pref_walk_speed">Walk Speed</string>
-    <string name="pref_walk_speed_slow">Slow</string>
-    <string name="pref_walk_speed_normal">Normal</string>
-    <string name="pref_walk_speed_fast">Fast</string>
+	<string name="ok">OK</string>
+	<string name="cancel">Cancel</string>
+
+	<string name="pref_transport_network">Transport Network</string>
+	<string name="pref_display">Display</string>
+	<string name="pref_theme_title">Theme</string>
+	<string name="pref_theme_light">Light</string>
+	<string name="pref_theme_dark">Dark</string>
+	<string name="pref_language_title">Language</string>
+	<string name="pref_directions_routing">Directions and Trip Routing</string>
+	<string name="pref_optimize">Optimize for</string>
+	<string name="pref_optimize_least_duration">Least Duration</string>
+	<string name="pref_optimize_least_changes">Least Changes</string>
+	<string name="pref_optimize_least_walking">Least Walking</string>
+	<string name="pref_walk_speed">Walk Speed</string>
+	<string name="pref_walk_speed_slow">Slow</string>
+	<string name="pref_walk_speed_normal">Normal</string>
+	<string name="pref_walk_speed_fast">Fast</string>
 	<string name="pref_show_when_locked_title">Show trip and search results even when screen is locked</string>
 	<string name="pref_show_when_locked_summary">Show over lock screen</string>
 
-    <string name="error">Error</string>
-    <string name="error_no_internet">Internet connection required. Please make sure your internet access is working.</string>
-    <string name="error_connection_failure">Connection failed. Please try again.</string>
-    <string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
-    <string name="error_geo_intent">Could not open external location</string>
-    <string name="error_find_nearby_stations">Could not find nearby stations</string>
-    <string name="error_departures">Could not find any departures</string>
+	<string name="error">Error</string>
+	<string name="error_no_internet">Internet connection required. Please make sure your internet access is working.</string>
+	<string name="error_connection_failure">Connection failed. Please try again.</string>
+	<string name="error_trip_refresh_failed">Could not refresh data for current trip.</string>
+	<string name="error_geo_intent">Could not open external location</string>
+	<string name="error_find_nearby_stations">Could not find nearby stations</string>
+	<string name="error_departures">Could not find any departures</string>
 
-    <string name="trip_error_ambiguous">Could not find the location. Please try searching with different locations.</string>
-    <string name="trip_error_too_close">The \'from\' and the \'to\' location are too close together.</string>
-    <string name="trip_error_unknown_from">Could not find the \'from\' location. Please try another one.</string>
-    <string name="trip_error_unknown_via">Could not find the \'via\' location. Please try another one.</string>
-    <string name="trip_error_unknown_to">Could not find the \'to\' location. Please try another one.</string>
-    <string name="trip_error_unresolvable_address">Could not find the provided address. Please try another one.</string>
-    <string name="trip_error_no_trips">No connections could be found :(</string>
-    <string name="trip_error_invalid_date">The search date is currently not supported by the data provider. Please try another date.</string>
-    <string name="trip_error_service_down">The data provider is currently down :(\nPlease try again later.</string>
-    <string name="trip_error_pte">If you want to report this error, please report it to public-transport-enabler directly and attach a screenshot.</string>
-    <string name="trip_issue">There might be a problem with this connection.</string>
-    <string name="try_again">Try Again</string>
+	<string name="trip_error_ambiguous">Could not find the location. Please try searching with different locations.</string>
+	<string name="trip_error_too_close">The \'from\' and the \'to\' location are too close together.</string>
+	<string name="trip_error_unknown_from">Could not find the \'from\' location. Please try another one.</string>
+	<string name="trip_error_unknown_via">Could not find the \'via\' location. Please try another one.</string>
+	<string name="trip_error_unknown_to">Could not find the \'to\' location. Please try another one.</string>
+	<string name="trip_error_unresolvable_address">Could not find the provided address. Please try another one.</string>
+	<string name="trip_error_no_trips">No connections could be found :(</string>
+	<string name="trip_error_invalid_date">The search date is currently not supported by the data provider. Please try another date.</string>
+	<string name="trip_error_service_down">The data provider is currently down :(\nPlease try again later.</string>
+	<string name="trip_error_pte">If you want to report this error, please report it to public-transport-enabler directly and attach a screenshot.</string>
+	<string name="trip_issue">There might be a problem with this connection.</string>
+	<string name="try_again">Try Again</string>
 
 	<!-- This string shows the number of meters one has to walk. Please keep the translation short. -->
-    <string name="meter">%d m</string>
+	<string name="meter">%d m</string>
 
-    <plurals name="stops">
-        <item quantity="one">%d Stop</item>
-        <item quantity="other">%d Stops</item>
-    </plurals>
+	<plurals name="stops">
+		<item quantity="one">%d Stop</item>
+		<item quantity="other">%d Stops</item>
+	</plurals>
 
-    <!-- This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name. -->
-    <string name="platform">(Platform %s)</string>
+	<!-- This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name. -->
+	<string name="platform">(Platform %s)</string>
 
-    <string name="system_default">System Default</string>
-    <string name="trip_share_date">Date: %s</string>
-    <string name="times_include_delays">(Attention: Times may include reported delays)</string>
-    <string name="created_by">Created by %s</string>
+	<string name="system_default">System Default</string>
+	<string name="trip_share_date">Date: %s</string>
+	<string name="times_include_delays">(Attention: Times may include reported delays)</string>
+	<string name="created_by">Created by %s</string>
 
-    <string name="home">Home</string>
-    <string name="home_dialog_title">Set Home Location</string>
-    <string name="widget_name_quickhome">Get Me Home</string>
-    <string name="work">Work</string>
-    <string name="work_hint">Set Work Location</string>
-    <string name="widget_name_quickwork">Get To Work</string>
-    <string name="tap_to_set">Tap to set</string>
+	<string name="home">Home</string>
+	<string name="home_dialog_title">Set Home Location</string>
+	<string name="widget_name_quickhome">Get Me Home</string>
+	<string name="work">Work</string>
+	<string name="work_hint">Set Work Location</string>
+	<string name="widget_name_quickwork">Get To Work</string>
+	<string name="tap_to_set">Tap to set</string>
 	<string name="action_set_locations">Edit search</string>
 	<string name="action_swap_locations">Search return trip</string>
 	<string name="action_change">Change</string>
 	<string name="action_add_shortcut">Add Launcher Shortcut</string>
-    <string name="location_gps">Use Current Position</string>
+	<string name="location_gps">Use Current Position</string>
 	<string name="warning_no_gps_fix">Could not locate your position, yet.</string>
-    <string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
+	<string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
 
-    <string name="select_products">Select Means of Transport</string>
-    <string name="product_high_speed_train">High-Speed Train</string>
-    <string name="product_regional_train">Regional Train</string>
-    <string name="product_suburban_train">Suburban Train</string>
-    <string name="product_subway">Subway</string>
-    <string name="product_tram">Tram</string>
-    <string name="product_bus">Bus</string>
-    <string name="product_ferry">Ferry</string>
-    <string name="product_cablecar">Cablecar</string>
-    <string name="product_on_demand">On Demand</string>
+	<string name="select_products">Select Means of Transport</string>
+	<string name="product_high_speed_train">High-Speed Train</string>
+	<string name="product_regional_train">Regional Train</string>
+	<string name="product_suburban_train">Suburban Train</string>
+	<string name="product_subway">Subway</string>
+	<string name="product_tram">Tram</string>
+	<string name="product_bus">Bus</string>
+	<string name="product_ferry">Ferry</string>
+	<string name="product_cablecar">Cablecar</string>
+	<string name="product_on_demand">On Demand</string>
 
-    <!-- ckChangeLog -->
-    <string name="changelog_full_title">Changelog</string>
-    <string name="changelog_title">What\'s New</string>
-    <string name="changelog_show_full">More…</string>
+	<!-- ckChangeLog -->
+	<string name="changelog_full_title">Changelog</string>
+	<string name="changelog_title">What\'s New</string>
+	<string name="changelog_show_full">More…</string>
 
-    <string name="np_region_australia">Australia</string>
-    <string name="np_name_australia" translatable="false">Australia</string>
-    <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
-    <string name="np_desc_australia_networks" translatable="false">PTV, Transport NSW, TRANSLink, Transperth, Adelaide Metro, Metro Tasmania</string>
-    <string name="np_name_sydney" translatable="false">Transport NSW</string>
-    <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
+	<string name="np_region_australia">Australia</string>
+	<string name="np_name_australia" translatable="false">Australia</string>
+	<string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
+	<string name="np_desc_australia_networks" translatable="false">PTV, Transport NSW, TRANSLink, Transperth, Adelaide Metro, Metro Tasmania</string>
+	<string name="np_name_sydney" translatable="false">Transport NSW</string>
+	<string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
 
-    <string name="np_region_austria">Austria</string>
-    <string name="np_desc_ivb">Innsbruck</string>
-    <string name="np_name_linz" translatable="false">Linz AG Linien</string>
-    <string name="np_desc_linz">Upper Austria, Linz</string>
-    <string name="np_name_oebb" translatable="false">ÖBB</string>
-    <string name="np_desc_oebb">Austria</string>
-    <string name="np_name_stv" translatable="false">STV Verbund Linie</string>
-    <string name="np_desc_stv">Styria, Graz, Marburg, Maribor</string>
-    <string name="np_desc_vor">Lower Austria, Burgenland, Vienna</string>
-    <string name="np_desc_vvt">Tyrol</string>
-    <string name="np_name_wien" translatable="false">Wiener Linien</string>
-    <string name="np_desc_wien">Vienna</string>
+	<string name="np_region_austria">Austria</string>
+	<string name="np_desc_ivb">Innsbruck</string>
+	<string name="np_name_linz" translatable="false">Linz AG Linien</string>
+	<string name="np_desc_linz">Upper Austria, Linz</string>
+	<string name="np_name_oebb" translatable="false">ÖBB</string>
+	<string name="np_desc_oebb">Austria</string>
+	<string name="np_name_stv" translatable="false">STV Verbund Linie</string>
+	<string name="np_desc_stv">Styria, Graz, Marburg, Maribor</string>
+	<string name="np_desc_vor">Lower Austria, Burgenland, Vienna</string>
+	<string name="np_desc_vvt">Tyrol</string>
+	<string name="np_name_wien" translatable="false">Wiener Linien</string>
+	<string name="np_desc_wien">Vienna</string>
 
-    <string name="np_region_belgium">Belgium</string>
-    <string name="np_desc_sncb">Public transport in Belgium</string>
-    <string name="np_desc_sncb_networks" translatable="false">SNCB-NMBS, De Lijn, TEC, MIVB-STIB</string>
+	<string name="np_region_belgium">Belgium</string>
+	<string name="np_desc_sncb">Public transport in Belgium</string>
+	<string name="np_desc_sncb_networks" translatable="false">SNCB-NMBS, De Lijn, TEC, MIVB-STIB</string>
 
-    <string name="np_region_br">Brazil</string>
-    <string name="np_name_br">Brazil</string>
-    <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte and Porto Alegre</string>
-    <string name="np_desc_br_networks" translatable="false">SPTRANS, BH Trans, EPTC</string>
-    <string name="np_name_br_floripa">Florianópolis</string>
-    <string name="np_desc_br_floripa">Many bus routes, no Executivos</string>
-    <string name="np_desc_br_floripa_networks" translatable="false">SIM</string>
+	<string name="np_region_br">Brazil</string>
+	<string name="np_name_br">Brazil</string>
+	<string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte and Porto Alegre</string>
+	<string name="np_desc_br_networks" translatable="false">SPTRANS, BH Trans, EPTC</string>
+	<string name="np_name_br_floripa">Florianópolis</string>
+	<string name="np_desc_br_floripa">Many bus routes, no Executivos</string>
+	<string name="np_desc_br_floripa_networks" translatable="false">SIM</string>
 
-    <string name="np_region_canada">Canada</string>
-    <string name="np_name_ontario">Ontario</string>
-    <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
-    <string name="np_desc_ontario_networks" translatable="false">Toronto Transit Commission - TTC, OC Transpo</string>
-    <string name="np_name_quebec">Quebec</string>
-    <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
-    <string name="np_desc_quebec_networks" translatable="false">AMT, STM, STL</string>
+	<string name="np_region_canada">Canada</string>
+	<string name="np_name_ontario">Ontario</string>
+	<string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
+	<string name="np_desc_ontario_networks" translatable="false">Toronto Transit Commission - TTC, OC Transpo</string>
+	<string name="np_name_quebec">Quebec</string>
+	<string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+	<string name="np_desc_quebec_networks" translatable="false">AMT, STM, STL</string>
 
-    <string name="np_region_denmark">Denmark</string>
-    <string name="np_desc_dsb">Denmark, Copenhagen</string>
+	<string name="np_region_denmark">Denmark</string>
+	<string name="np_desc_dsb">Denmark, Copenhagen</string>
 
-    <string name="np_region_europe">Europe</string>
-    <string name="np_name_rt">Europe</string>
-    <string name="np_desc_rt">Long-distance trains only</string>
-    <string name="np_desc_rt_networks">Railteam alliance</string>
+	<string name="np_region_europe">Europe</string>
+	<string name="np_name_rt">Europe</string>
+	<string name="np_desc_rt">Long-distance trains only</string>
+	<string name="np_desc_rt_networks">Railteam alliance</string>
 
-    <string name="np_region_finland">Finland</string>
-    <string name="np_desc_hsl">Helsinki</string>
+	<string name="np_region_finland">Finland</string>
+	<string name="np_desc_hsl">Helsinki</string>
 
-    <string name="np_region_france">France</string>
-    <string name="np_name_francenortheast">France North East</string>
-    <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
-    <string name="np_desc_francenortheast_networks" translatable="false">SNCF, CTS, Transpole, STAN, LE MET</string>
-    <string name="np_name_francenorthwest">France North West</string>
-    <string name="np_desc_francenorthwest">Brittany, Pays de la Loire, Centre, Lower Normandy, Upper Normandy</string>
-    <string name="np_desc_francenorthwest_networks" translatable="false">LILA, Star, TAN, IRIGO, SNCF</string>
-    <string name="np_name_frenchsoutheast">France South East</string>
-    <string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica, Lyon</string>
-    <string name="np_desc_frenchsoutheast_networks" translatable="false">MTM, Aix en Bus, Transisère, Ligne d\'Azur, SNCF, TCL</string>
-    <string name="np_name_frenchsouthwest">France South West</string>
-    <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
-    <string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
-    <string name="np_name_paris">Paris</string>
-    <string name="np_desc_paris">Ile-de-France, France, Paris</string>
-    <string name="np_desc_paris_networks" translatable="false">RATP, SNCF, Transilien, STIF</string>
+	<string name="np_region_france">France</string>
+	<string name="np_name_francenortheast">France North East</string>
+	<string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
+	<string name="np_desc_francenortheast_networks" translatable="false">SNCF, CTS, Transpole, STAN, LE MET</string>
+	<string name="np_name_francenorthwest">France North West</string>
+	<string name="np_desc_francenorthwest">Brittany, Pays de la Loire, Centre, Lower Normandy, Upper Normandy</string>
+	<string name="np_desc_francenorthwest_networks" translatable="false">LILA, Star, TAN, IRIGO, SNCF</string>
+	<string name="np_name_frenchsoutheast">France South East</string>
+	<string name="np_desc_frenchsoutheast">Provence-Alpes-Côte d\'Azur, Rhône-Alpes, Languedoc-Roussillon, Auvergne, Corsica, Lyon</string>
+	<string name="np_desc_frenchsoutheast_networks" translatable="false">MTM, Aix en Bus, Transisère, Ligne d\'Azur, SNCF, TCL</string>
+	<string name="np_name_frenchsouthwest">France South West</string>
+	<string name="np_desc_frenchsouthwest">Poitou-Charentes, Limousin, Aquitaine, Midi-Pyrénées, Bordeaux, Toulouse</string>
+	<string name="np_desc_frenchsouthwest_networks" translatable="false">SNCF, TransGironde, TBC, Tisséo</string>
+	<string name="np_name_paris">Paris</string>
+	<string name="np_desc_paris">Ile-de-France, France, Paris</string>
+	<string name="np_desc_paris_networks" translatable="false">RATP, SNCF, Transilien, STIF</string>
 
-    <string name="np_region_gb">Great Britain</string>
-    <string name="np_name_mersey" translatable="false">Merseytravel</string>
-    <string name="np_desc_mersey">Liverpool City Region</string>
-    <string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
-    <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
+	<string name="np_region_gb">Great Britain</string>
+	<string name="np_name_mersey" translatable="false">Merseytravel</string>
+	<string name="np_desc_mersey">Liverpool City Region</string>
+	<string name="np_desc_tlem">Greater London, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
+	<string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
 
-    <string name="np_region_germany">Germany</string>
-    <string name="np_desc_avv">Augsburg</string>
-    <string name="np_name_bayern" translatable="false">BEG</string>
-    <string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
-    <string name="np_name_bsvag" translatable="false">BSVG</string>
-    <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
-    <string name="np_desc_bvg">Berlin</string>
-    <string name="np_name_db" translatable="false">Deutsche Bahn</string>
-    <string name="np_desc_db">Most of Germany</string>
-    <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
-    <string name="np_desc_gvh">Lower Saxony, Hanover, Hamburg, Bremerhaven</string>
-    <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
-    <string name="np_desc_invg">Ingolstadt</string>
-    <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
-    <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
-    <string name="np_desc_mvv">Bavaria, Munich</string>
-    <string name="np_name_nasa" translatable="false">INSA</string>
-    <string name="np_desc_nasa">Saxony, Leipzig, Saxony-Anhalt, Magdeburg, Halle</string>
-    <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
-    <string name="np_name_nvv" translatable="false">NVV/RMV</string>
-    <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
-    <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-    <string name="np_name_vagfr" translatable="false">VAG</string>
-    <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
-    <string name="np_desc_vbb">Brandenburg, Berlin</string>
-    <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
-    <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
-    <string name="np_desc_vgn_networks" translatable="false">VAG, DB, ESTW, infra fürth, Stadtwerke Bayreuth, Stadtwerke Schwabach, STWB, GPV, GkV</string>
-    <string name="np_desc_vgs">Saarland, Saarbrücken</string>
-    <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
-    <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
-    <string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
-    <string name="np_desc_vrr">North Rhine-Westphalia, Cologne, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
-    <string name="np_desc_vrs">Cologne, Bonn</string>
-    <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
-    <string name="np_desc_vvo">Saxony, Dresden</string>
-    <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
-    <string name="np_desc_vvv">Vogtland, Plauen</string>
-    <string name="np_desc_vmt">Mittelthüringen</string>
+	<string name="np_region_germany">Germany</string>
+	<string name="np_desc_avv">Augsburg</string>
+	<string name="np_name_bayern" translatable="false">BEG</string>
+	<string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
+	<string name="np_name_bsvag" translatable="false">BSVG</string>
+	<string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
+	<string name="np_desc_bvg">Berlin</string>
+	<string name="np_name_db" translatable="false">Deutsche Bahn</string>
+	<string name="np_desc_db">Most of Germany</string>
+	<string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
+	<string name="np_desc_gvh">Lower Saxony, Hanover, Hamburg, Bremerhaven</string>
+	<string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
+	<string name="np_desc_invg">Ingolstadt</string>
+	<string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
+	<string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
+	<string name="np_desc_mvv">Bavaria, Munich</string>
+	<string name="np_name_nasa" translatable="false">INSA</string>
+	<string name="np_desc_nasa">Saxony, Leipzig, Saxony-Anhalt, Magdeburg, Halle</string>
+	<string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
+	<string name="np_name_nvv" translatable="false">NVV/RMV</string>
+	<string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
+	<string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+	<string name="np_name_vagfr" translatable="false">VAG</string>
+	<string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
+	<string name="np_desc_vbb">Brandenburg, Berlin</string>
+	<string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+	<string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+	<string name="np_desc_vgn_networks" translatable="false">VAG, DB, ESTW, infra fürth, Stadtwerke Bayreuth, Stadtwerke Schwabach, STWB, GPV, GkV</string>
+	<string name="np_desc_vgs">Saarland, Saarbrücken</string>
+	<string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
+	<string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
+	<string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
+	<string name="np_desc_vrr">North Rhine-Westphalia, Cologne, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+	<string name="np_desc_vrs">Cologne, Bonn</string>
+	<string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
+	<string name="np_desc_vvo">Saxony, Dresden</string>
+	<string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
+	<string name="np_desc_vvv">Vogtland, Plauen</string>
+	<string name="np_desc_vmt">Mittelthüringen</string>
 
-    <string name="np_region_ireland">Ireland</string>
-    <string name="np_desc_tfi">Ireland, Dublin, Belfast</string>
+	<string name="np_region_ireland">Ireland</string>
+	<string name="np_desc_tfi">Ireland, Dublin, Belfast</string>
 
-    <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
-    <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
+	<string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
+	<string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
 
-    <string name="np_region_italy">Italy</string>
-    <string name="np_name_it">Italy</string>
-    <string name="np_desc_it">Rome, Milan, Turin, Venice, Palermo, Trento</string>
-    <string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
+	<string name="np_region_italy">Italy</string>
+	<string name="np_name_it">Italy</string>
+	<string name="np_desc_it">Rome, Milan, Turin, Venice, Palermo, Trento</string>
+	<string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
 
-    <string name="np_region_liechtenstein">Liechtenstein</string>
-    <string name="np_name_vmobil">VVV</string>
-    <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
+	<string name="np_region_liechtenstein">Liechtenstein</string>
+	<string name="np_name_vmobil">VVV</string>
+	<string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
 
-    <string name="np_region_luxembourg">Luxembourg</string>
-    <string name="np_name_lu" translatable="false">Verkéiersverbond</string>
-    <string name="np_desc_lu">Luxembourg</string>
-    <string name="np_desc_lu_networks" translatable="false">AVL, SNCFL, FLEAA, RGTR, TICE</string>
+	<string name="np_region_luxembourg">Luxembourg</string>
+	<string name="np_name_lu" translatable="false">Verkéiersverbond</string>
+	<string name="np_desc_lu">Luxembourg</string>
+	<string name="np_desc_lu_networks" translatable="false">AVL, SNCFL, FLEAA, RGTR, TICE</string>
 
-    <string name="np_region_netherlands">Netherlands</string>
-    <string name="np_desc_ns">Netherlands, Amsterdam</string>
-    <string name="np_name_negentwee" translatable="false">9292.nl</string>
-    <string name="np_desc_negentwee">All public transport in the Netherlands</string>
+	<string name="np_region_netherlands">Netherlands</string>
+	<string name="np_desc_ns">Netherlands, Amsterdam</string>
+	<string name="np_name_negentwee" translatable="false">9292.nl</string>
+	<string name="np_desc_negentwee">All public transport in the Netherlands</string>
 
-    <string name="np_region_norway">Norway</string>
-    <string name="np_desc_nri">Norway, Oslo, Bergen</string>
+	<string name="np_region_norway">Norway</string>
+	<string name="np_desc_nri">Norway, Oslo, Bergen</string>
 
-    <string name="np_region_nz">New Zealand</string>
-    <string name="np_name_nz">New Zealand</string>
-    <string name="np_desc_nz">New-Zealand, Wellington, Auckland</string>
-    <string name="np_desc_nz_networks" translatable="false">Go Wellington, Tranz Metro, Auckland Transport</string>
+	<string name="np_region_nz">New Zealand</string>
+	<string name="np_name_nz">New Zealand</string>
+	<string name="np_desc_nz">New-Zealand, Wellington, Auckland</string>
+	<string name="np_desc_nz_networks" translatable="false">Go Wellington, Tranz Metro, Auckland Transport</string>
 
-    <string name="np_region_poland">Poland</string>
-    <string name="np_name_pl" translatable="false">PKP</string>
-    <string name="np_desc_pl">Poland, railways in Poland</string>
+	<string name="np_region_poland">Poland</string>
+	<string name="np_name_pl" translatable="false">PKP</string>
+	<string name="np_desc_pl">Poland, railways in Poland</string>
 
-    <string name="np_region_spain">Spain</string>
-    <string name="np_name_spain">Spain</string>
-    <string name="np_desc_spain">Madrid, Barcelona, Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
-    <string name="np_desc_spain_networks" translatable="false">CRTM, TMB, FGC, Moveuskadi, Metrovalencia, EMT Valencia, TRAM, CTM, EMT Palma, CIME, Tranvía, TITSA, TILP, Transporte Interurbano de Navarra</string>
+	<string name="np_region_spain">Spain</string>
+	<string name="np_name_spain">Spain</string>
+	<string name="np_desc_spain">Madrid, Barcelona, Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
+	<string name="np_desc_spain_networks" translatable="false">CRTM, TMB, FGC, Moveuskadi, Metrovalencia, EMT Valencia, TRAM, CTM, EMT Palma, CIME, Tranvía, TITSA, TILP, Transporte Interurbano de Navarra</string>
 
-    <string name="np_region_sweden">Sweden</string>
-    <string name="np_desc_se">Sweden, Stockholm</string>
+	<string name="np_region_sweden">Sweden</string>
+	<string name="np_desc_se">Sweden, Stockholm</string>
 
-    <string name="np_region_switzerland">Switzerland</string>
-    <!-- SBB is german/international, CFF is french and FFS is italian! So this IS translatable. -->
-    <string name="np_name_sbb" translatable="true">SBB</string>
-    <string name="np_desc_sbb">Switzerland</string>
-    <string name="np_desc_vbl">Lucerne</string>
-    <string name="np_desc_zvv">Zurich</string>
+	<string name="np_region_switzerland">Switzerland</string>
+	<!-- SBB is german/international, CFF is french and FFS is italian! So this IS translatable. -->
+	<string name="np_name_sbb" translatable="true">SBB</string>
+	<string name="np_desc_sbb">Switzerland</string>
+	<string name="np_desc_vbl">Lucerne</string>
+	<string name="np_desc_zvv">Zurich</string>
 
-    <string name="np_region_uae">United Arab Emirates</string>
-    <string name="np_name_dub">Dubai</string>
-    <string name="np_desc_dub">United Arab Emirates, Dubai</string>
+	<string name="np_region_uae">United Arab Emirates</string>
+	<string name="np_name_dub">Dubai</string>
+	<string name="np_desc_dub">United Arab Emirates, Dubai</string>
 
-    <string name="np_region_usa">United States of America</string>
-    <string name="np_name_rtachicago" translatable="false">RTA</string>
-    <string name="np_desc_rtachicago">Chicago</string>
-    <string name="np_desc_rtachicago_networks" translatable="false">CTA, Metra, Pace</string>
-    <string name="np_name_usny" tools:keep="@string/np_name_usny">New York and New-Jersey States</string>
-    <string name="np_desc_usny" translatable="false" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
-    <string name="np_name_oregon">Oregon</string>
-    <string name="np_desc_oregon">Global Transport in Oregon State (USA)</string>
+	<string name="np_region_usa">United States of America</string>
+	<string name="np_name_rtachicago" translatable="false">RTA</string>
+	<string name="np_desc_rtachicago">Chicago</string>
+	<string name="np_desc_rtachicago_networks" translatable="false">CTA, Metra, Pace</string>
+	<string name="np_name_usny">New York and New-Jersey States</string>
+	<string name="np_desc_usny" translatable="false">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+	<string name="np_name_oregon">Oregon</string>
+	<string name="np_desc_oregon">Global Transport in Oregon State (USA)</string>
 
-    <string name="maintainer">Maintainer</string>
-    <string name="contributors">Contributors</string>
-    <string name="translators">Translators</string>
-    <string name="dutch">Dutch</string>
-    <string name="french">French</string>
-    <string name="german">German</string>
-    <string name="italian">Italian</string>
-    <string name="portuguese_br">Portuguese\n(Brazil)</string>
-    <string name="spanish">Spanish</string>
-    <string name="turkish">Turkish</string>
-    <string name="norwegian_bokmal">Norwegian\nBokmål</string>
-    <string name="basque">Basque</string>
-    <string name="english">English</string>
-    <string name="catalan">Catalan</string>
-    <string name="polish">Polish</string>
-    <string name="tamil">Tamil</string>
-    <string name="esperanto">Esperanto</string>
-    <string name="czech">Czech</string>
-    <string name="hungarian">Hungarian</string>
+	<string name="np_region_costa_rica">Costa Rica</string>
+	<string name="np_name_costa_rica">Costa Rica</string>
+	<string name="np_desc_costa_rica" translatable="false">Tren Urbano</string>
+	<string name="np_desc_costa_rica_networks" translatable="false">INCOFER</string>
+
+	<string name="np_region_africa">Africa</string>
+	<string name="np_name_ghana">Ghana</string>
+	<string name="np_desc_ghana">Accra</string>
+
+	<string name="maintainer">Maintainer</string>
+	<string name="contributors">Contributors</string>
+	<string name="translators">Translators</string>
+	<string name="dutch">Dutch</string>
+	<string name="french">French</string>
+	<string name="german">German</string>
+	<string name="italian">Italian</string>
+	<string name="portuguese_br">Portuguese\n(Brazil)</string>
+	<string name="spanish">Spanish</string>
+	<string name="turkish">Turkish</string>
+	<string name="norwegian_bokmal">Norwegian\nBokmål</string>
+	<string name="basque">Basque</string>
+	<string name="english">English</string>
+	<string name="catalan">Catalan</string>
+	<string name="polish">Polish</string>
+	<string name="tamil">Tamil</string>
+	<string name="esperanto">Esperanto</string>
+	<string name="czech">Czech</string>
+	<string name="hungarian">Hungarian</string>
 
 </resources>

@@ -121,7 +121,7 @@ dependencies {
 	compile "com.google.dagger:dagger:$daggerVersion"
 	annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	compile('com.gitlab.opentransitmap:public-transport-enabler:6614f42817') {
+	compile('com.gitlab.opentransitmap:public-transport-enabler:056e612d17') {
 		exclude module: 'service'
 		exclude group: 'org.json' // provided by Android
 		exclude group: 'net.sf.kxml' // provided by Android
@@ -187,8 +187,8 @@ dependencyVerification {
 			'com.android.support:support-vector-drawable:67154ea191f735496502214bc6da6195738829a8e9d59e8042a1e030a2c7f19c',
 			'com.android.support:transition:8a46d152391bd1598d1778ae889b3aeaff77a17d0caaa29446df6e26a28c4e4b',
 			'com.github.omadahealth:swipy:63bff6e181742e3e243c29b595062ca65b4274bf7033c65460924f64f65c01e0',
-			'com.gitlab.opentransitmap.public-transport-enabler:enabler:2d450f09164c67ee638b78f02c58183f76d860439e4a3020498befafe4f9de65',
-			'com.gitlab.opentransitmap:public-transport-enabler:6428a2b60614b2544d1523aa5a96bfe926c2d9caffd04ec2f48cb5e9150dd7a1',
+			'com.gitlab.opentransitmap.public-transport-enabler:enabler:e7b925bad041f57c9247b84347aa3030c916da17fe4dfac00b4c368e6949c802',
+			'com.gitlab.opentransitmap:public-transport-enabler:a3091cefd112c6e1c38f69110dda0ff8c341f0569f81050b7b1f92ad239d33f2',
 			'com.google.android:flexbox:9e0f9ad8be417bf5f48c1edbc98c25ea5eb7847def9aeaa5eef3151b53e89df4',
 			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'com.google.code.gson:gson:c6221763bd79c4f1c3dc7f750b5f29a0bb38b367b81314c4f71896e340c40825',

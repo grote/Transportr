@@ -100,6 +100,9 @@ public final class NetworkProviderFactory {
 	private static Reference<RtaChicagoProvider> rtaChicagoProviderRef;
 	private static Reference<OregonProvider> oregonProviderRef;
 	private static Reference<AustraliaProvider> australiaProviderRef;
+	private static Reference<CostaRicaProvider> costaRicaProviderRef;
+	private static Reference<GhanaProvider> ghanaProviderRef;
+	private static Reference<NewyorkProvider> newYorkProviderRef;
 
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 	private static final String VAO = "{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}";
@@ -833,6 +836,36 @@ public final class NetworkProviderFactory {
 
 			final AustraliaProvider provider = new AustraliaProvider(NAVITIA);
 			australiaProviderRef = new SoftReference<>(provider);
+			return provider;
+		} else if (networkId.equals(NetworkId.CR)) {
+			if (costaRicaProviderRef != null) {
+				final CostaRicaProvider provider = costaRicaProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final CostaRicaProvider provider = new CostaRicaProvider(null);
+			costaRicaProviderRef = new SoftReference<>(provider);
+			return provider;
+		} else if (networkId.equals(NetworkId.GHANA)) {
+			if (ghanaProviderRef != null) {
+				final GhanaProvider provider = ghanaProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final GhanaProvider provider = new GhanaProvider(NAVITIA);
+			ghanaProviderRef = new SoftReference<>(provider);
+			return provider;
+		} else if (networkId.equals(NetworkId.NEWYORK)) {
+			if (newYorkProviderRef != null) {
+				final NewyorkProvider provider = newYorkProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final NewyorkProvider provider = new NewyorkProvider(NAVITIA);
+			newYorkProviderRef = new SoftReference<>(provider);
 			return provider;
 		} else {
 			throw new IllegalArgumentException(networkId.name());
