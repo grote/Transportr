@@ -184,6 +184,7 @@ internal class TripsRepository(
         UNKNOWN_FROM -> ctx.getString(R.string.trip_error_unknown_from)
         UNKNOWN_VIA -> ctx.getString(R.string.trip_error_unknown_via)
         UNKNOWN_TO -> ctx.getString(R.string.trip_error_unknown_to)
+        UNKNOWN_LOCATION -> ctx.getString(R.string.trip_error_unknown_from)
         UNRESOLVABLE_ADDRESS -> ctx.getString(R.string.trip_error_unresolvable_address)
         NO_TRIPS -> ctx.getString(R.string.trip_error_no_trips)
         INVALID_DATE -> ctx.getString(R.string.trip_error_invalid_date)

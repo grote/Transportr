@@ -46,20 +46,14 @@ Building From Source
 
 If you want to start working on Transportr and if you haven't done already, you should [familiarize yourself with Android development](https://developer.android.com/training/basics/firstapp/index.html) and [set up a development environment](https://developer.android.com/sdk/index.html).
 
-The next step is to clone the source code repository. Please make sure to also clone the git submodules that contain external libraries.
+The next step is to clone the source code repository.
 
-    $ git submodule init
-    $ git submodule update
-
-Then, you also need to run the following command to build the public transport enabler library.
-
-    $ ./pre-build.sh
+    $ git clone https://github.com/grote/Transportr.git
 
 If you don't want to use an IDE like Android Studio, you can build Transportr on the command line as follows.
 
+    $ cd Transportr
     $ gradle assembleRelease
-
-The resulting unsigned apk file will be found at `build/outputs/apk/transportr-release-unsigned.apk`.
 
 License
 -------

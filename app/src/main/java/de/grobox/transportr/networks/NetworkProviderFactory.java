@@ -101,7 +101,6 @@ public final class NetworkProviderFactory {
 	private static Reference<OregonProvider> oregonProviderRef;
 	private static Reference<AustraliaProvider> australiaProviderRef;
 
-	private static final HttpUrl NAVITIA_API = HttpUrl.parse("https://api.navitia.io/v1/");
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 	private static final String VAO = "{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}";
 
@@ -702,7 +701,7 @@ public final class NetworkProviderFactory {
 					return provider;
 			}
 
-			final NzProvider provider = new NzProvider(NAVITIA_API, NAVITIA);
+			final NzProvider provider = new NzProvider(NAVITIA);
 			nzProviderRef = new SoftReference<>(provider);
 			return provider;
 		} else if (networkId.equals(NetworkId.SPAIN)) {
@@ -712,7 +711,7 @@ public final class NetworkProviderFactory {
 					return provider;
 			}
 
-			final SpainProvider provider = new SpainProvider(NAVITIA_API, NAVITIA);
+			final SpainProvider provider = new SpainProvider(NAVITIA);
 			spainProviderRef = new SoftReference<>(provider);
 			return provider;
 		} else if (networkId.equals(NetworkId.BR)) {
@@ -722,7 +721,7 @@ public final class NetworkProviderFactory {
 					return provider;
 			}
 
-			final BrProvider provider = new BrProvider(NAVITIA_API, NAVITIA);
+			final BrProvider provider = new BrProvider(NAVITIA);
 			brProviderRef = new SoftReference<>(provider);
 			return provider;
 		} else if (networkId.equals(NetworkId.BRFLORIPA)) {
