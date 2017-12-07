@@ -630,7 +630,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.GHANA)
 					.setName(R.string.np_name_ghana)
 					.setDescription(R.string.np_desc_ghana)
-					.setRegion(Region.AFRICA)
+					.setRegion(Region.GHANA)
 					.setStatus(ALPHA)
 					.setGoodLineNames(true)
 					.build(),
