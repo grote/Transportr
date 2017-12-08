@@ -30,7 +30,7 @@ import de.grobox.transportr.trips.detail.TripDetailViewModel;
 import de.grobox.transportr.trips.search.DirectionsViewModel;
 
 @Module
-abstract class ViewModelModule {
+public abstract class ViewModelModule {
 
 	@Binds
 	@IntoMap
