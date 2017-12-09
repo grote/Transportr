@@ -55,7 +55,7 @@ enum Region {
 	BRAZIL(R.string.np_region_br, "🇧🇷"),
 	CANADA(R.string.np_region_canada, "🇨🇦"),
 	COSTA_RICA(R.string.np_region_costa_rica, "🇨🇷"),
-	AFRICA(R.string.np_region_africa, "🌍");
+	GHANA(R.string.np_region_ghana, "🇬🇭");
 
 	private final @StringRes int name;
 	private final @Nullable String flag;
