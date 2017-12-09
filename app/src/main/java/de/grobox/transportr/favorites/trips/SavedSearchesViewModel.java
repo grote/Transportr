@@ -42,7 +42,7 @@ public abstract class SavedSearchesViewModel extends LocationsViewModel {
 		this.savedSearches = searchesRepository.getFavoriteTrips();
 	}
 
-	LiveData<List<FavoriteTripItem>> getFavoriteTrips() {
+	public LiveData<List<FavoriteTripItem>> getFavoriteTrips() {
 		return savedSearches;
 	}
 

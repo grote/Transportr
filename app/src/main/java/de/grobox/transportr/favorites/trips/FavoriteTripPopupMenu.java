@@ -20,17 +20,24 @@
 package de.grobox.transportr.favorites.trips;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.transportr.R;
+
+import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
+import static de.grobox.transportr.trips.search.DirectionsActivity.INTENT_URI_FAVORITE;
 
 public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
 
 	FavoriteTripPopupMenu(Context context, View anchor, FavoriteTripItem trip, FavoriteTripListener listener) {
 		super(context, anchor, trip, listener);
 		setFavState(getMenu().findItem(R.id.action_mark_favorite), trip.isFavorite());
+		getMenu().findItem(R.id.action_add_shortcut).setVisible(trip.isFavorite());
 	}
 
 	@Override
@@ -46,6 +53,9 @@ public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
 					listener.onFavoriteChanged(trip, !trip.isFavorite());
 				}
 				setFavState(item, trip.isFavorite());
+				return true;
+			case R.id.action_add_shortcut:
+				addShortcut(getShortcutName());
 				return true;
 			case R.id.action_trip_delete:
 				listener.onFavoriteDeleted(trip);
@@ -65,6 +75,31 @@ public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
 			item.setIcon(R.drawable.ic_action_star);
 			DrawableCompat.setTint(item.getIcon(), iconColor);
 		}
+	}
+
+	@Override
+	protected Intent getShortcutIntent() {
+		Intent shortcutIntent;
+		shortcutIntent = super.getShortcutIntent();
+		shortcutIntent.putExtra(FAV_TRIP_UID, trip.getUid());
+		return shortcutIntent;
+	}
+
+	@Override
+	protected String getShortcutIntentString() {
+		return INTENT_URI_FAVORITE;
+	}
+
+	private String getShortcutName() {
+		return (trip.getVia() == null)
+			? context.getString(R.string.widget_name_favorites, trip.getFrom(), trip.getTo())
+			: context.getString(R.string.widget_name_favorites_via, trip.getFrom(), trip.getTo(), trip.getVia());
+	}
+
+	@Override
+	@DrawableRes
+	protected int getShortcutDrawable() {
+		return R.mipmap.ic_launcher_favorite;
 	}
 
 }

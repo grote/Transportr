@@ -19,6 +19,9 @@
 
 package de.grobox.transportr.trips.search;
 
+import java.util.List;
+
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -35,6 +38,7 @@ import javax.inject.Inject;
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
+import de.grobox.transportr.favorites.trips.FavoriteTripItem;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.trips.search.SavedSearchesFragment.HomePickerFragment;
 import de.grobox.transportr.trips.search.SavedSearchesFragment.WorkPickerFragment;
@@ -42,6 +46,7 @@ import de.grobox.transportr.trips.search.SavedSearchesFragment.WorkPickerFragmen
 import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.transportr.utils.Constants.FROM;
+import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.transportr.utils.Constants.SEARCH;
 import static de.grobox.transportr.utils.Constants.TO;
 import static de.grobox.transportr.utils.Constants.VIA;
@@ -51,6 +56,7 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 
 	public final static String INTENT_URI_HOME = "transportr://home";
 	public final static String INTENT_URI_WORK = "transportr://work";
+	public final static String INTENT_URI_FAVORITE = "transportr://favorite";
 
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
@@ -147,6 +153,22 @@ public class DirectionsActivity extends TransportrActivity implements OnOffsetCh
 					to = viewModel.getWork().getValue();
 					if (to == null) new WorkPickerFragment().show(getSupportFragmentManager(), WorkPickerFragment.TAG);
 					break;
+				case INTENT_URI_FAVORITE:
+					long uid = intent.getLongExtra(FAV_TRIP_UID, 0);
+
+					LiveData<List<FavoriteTripItem>> tripsLiveData;
+					tripsLiveData = viewModel.getFavoriteTrips();
+					tripsLiveData.observe(this, trips -> {
+						for (FavoriteTripItem trip : trips) {
+							if (trip.getUid() == uid) {
+								searchFromTo(trip.getFrom(), trip.getVia(), trip.getTo());
+								tripsLiveData.removeObservers(this); // everything is done
+								break;
+							}
+						}
+					});
+					setIntent(null);
+					return; // will be finished in viewmodel's loaded trips
 				default:
 					throw new IllegalArgumentException();
 			}
