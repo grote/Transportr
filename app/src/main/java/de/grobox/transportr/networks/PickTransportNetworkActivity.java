@@ -23,16 +23,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.util.SortedList;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
+import com.google.common.collect.RowSortedTable;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.ISelectionListener;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.expandable.ExpandableExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,14 +93,40 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
 
-		Map<Region, List<TransportNetwork>> networksByRegion = getTransportNetworksByRegion();
-		for (Region region : networksByRegion.keySet()) {
-			RegionItem regionItem = new RegionItem(region);
-			List<TransportNetwork> networks = networksByRegion.get(region);
-			List<TransportNetworkItem> networkItems = new ArrayList<>(networks.size());
-			for (TransportNetwork n : networks) networkItems.add(new TransportNetworkItem(n));
-			regionItem.withSubItems(networkItems);
-			adapter.add(regionItem);
+		Map<Region, List<Region>> regions = getRegionsByRegion();
+		for (Continent continent : Continent.values()) {
+			if (!regions.containsKey(continent)) {
+				continue;
+			}
+			ContinentItem continentItem = new ContinentItem(continent);
+			List<Region> subRegions = regions.get(continent);
+			List<RegionItem> subRegionItems = new ArrayList<>(subRegions.size());
+			for (Region subRegion : subRegions) {
+				if (subRegion instanceof Country) {
+					Country country = (Country)subRegion;
+					if (!regions.containsKey(country)) {
+						continue;
+					}
+					CountryItem countryItem = new CountryItem(country);
+					List<Region> networks = regions.get(country);
+					List<RegionItem> networkItems = new ArrayList<>(networks.size());
+					for (Region network : networks) {
+						if (!(network instanceof TransportNetwork))
+							continue;
+						networkItems.add(new TransportNetworkItem((TransportNetwork)network));
+					}
+					countryItem.withSubItems(networkItems);
+					subRegionItems.add(countryItem);
+				} else if (subRegion instanceof TransportNetwork) {
+					TransportNetwork network = (TransportNetwork)subRegion;
+					subRegionItems.add(new TransportNetworkItem(network));
+				}
+			}
+
+			Collections.sort(subRegionItems, new RegionItem.RegionComparator(this));
+			continentItem.withSubItems(subRegionItems);
+			adapter.add(continentItem);
+
 		}
 		if (savedInstanceState != null) adapter.withSavedInstanceState(savedInstanceState);
 
@@ -134,9 +163,25 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 			selectAllowed = true;
 			return;
 		}
-		int pos = adapter.getPosition(new RegionItem(network.getRegion()));
+		int pos = -1;
+		Region region = network.getRegion();
+		Continent continent = null;
+		Country country = null;
+		if (region instanceof Country) {
+			country = (Country)region;
+			continent = country.getContinent();
+		} else if (region instanceof Continent) {
+			continent = (Continent)region;
+		}
+		pos = adapter.getPosition(new ContinentItem(continent));
 		if (pos != -1) {
 			expandableExtension.expand(pos);
+			if (country != null) {
+				pos = adapter.getPosition(new CountryItem(country));
+				if (pos != -1) {
+					expandableExtension.expand(pos);
+				}
+			}
 			pos = adapter.getPosition(new TransportNetworkItem(network));
 			if (pos != -1) {
 				adapter.select(pos, false);
@@ -146,19 +191,53 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 			}
 		}
 	}
+	
+	private HashMap<Region, List<Region>> getRegionsByRegion() {
 
-	private HashMap<Region, List<TransportNetwork>> getTransportNetworksByRegion() {
-		HashMap<Region, List<TransportNetwork>> networks = new HashMap<>();
+		HashMap<Region, List<Region>> regions = new HashMap<>();
 		for (TransportNetwork n : TransportNetworks.networks) {
-			if (networks.containsKey(n.getRegion())) {
-				networks.get(n.getRegion()).add(n);
+			Region region = n.getRegion();
+			Country country;
+			Continent continent;
+			if (region instanceof Country) {
+				country = (Country)region;
+				continent = country.getContinent();
+
+				List<Region> countries = new ArrayList<>();
+				List<Region> networks = new ArrayList<>();
+
+				if (regions.containsKey(continent))
+					countries = regions.get(continent);
+				if (!countries.contains(country))
+					countries.add(country);
+				if (!regions.containsKey(continent))
+					regions.put(continent, countries);
+
+				if (regions.containsKey(country)) {
+					networks = regions.get(country);
+				}
+				networks.add(n);
+				if (!regions.containsKey(country)) {
+					regions.put(country, networks);
+				}
+
+			} else if (region instanceof Continent) {
+				continent = (Continent)region;
+
+				List<Region> networks = new ArrayList<>();
+
+				if (regions.containsKey(continent)) {
+					networks = regions.get(continent);
+				}
+				networks.add(n);
+				if (!regions.containsKey(continent)) {
+					regions.put(continent, networks);
+				}
 			} else {
-				List<TransportNetwork> list = new ArrayList<>();
-				list.add(n);
-				networks.put(n.getRegion(), list);
+				continue;
 			}
 		}
-		return networks;
+		return regions;
 	}
 
 }

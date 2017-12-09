@@ -149,6 +149,13 @@ es welche gibt) anzeigen lassen.</string>
   <string name="changelog_full_title">Änderungsprotokoll</string>
   <string name="changelog_title">Was gibt\'s Neues</string>
   <string name="changelog_show_full">Mehr…</string>
+  <string name="np_continent_europe">Europa</string>
+  <string name="np_continent_africa">Afrika</string>
+  <string name="np_continent_north_america">Nordamerika</string>
+  <string name="np_continent_central_america">Zentralamerika</string>
+  <string name="np_continent_south_america">Südamerika</string>
+  <string name="np_continent_asia">Asien</string>
+  <string name="np_continent_oceania">Ozeanien</string>
   <string name="np_region_australia">Australien</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australien, Neusüdwales, Sydney</string>
@@ -174,7 +181,6 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Québec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Dänemark</string>
   <string name="np_desc_dsb">Dänemark, Kopenhagen</string>
-  <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">Nur Fernzüge</string>
   <string name="np_desc_rt_networks">Railteam-Allianz</string>
@@ -231,7 +237,6 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
-  <string name="np_region_italy">Italien</string>
   <string name="np_name_it">Italien</string>
   <string name="np_desc_it">Rom, Mailand, Turin, Venedig, Palermo, Trient</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -244,12 +249,10 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_negentwee">Sämtliche öffentliche Verkehrsmittel in Belgien</string>
   <string name="np_region_norway">Norwegen</string>
   <string name="np_desc_nri">Norwegen, Oslo, Bergen</string>
-  <string name="np_region_nz">Neuseeland</string>
   <string name="np_name_nz">Neuseeland</string>
   <string name="np_desc_nz">Neuseeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, Eisenbahnen in Polen</string>
-  <string name="np_region_spain">Spanien</string>
   <string name="np_name_spain">Spanien</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma, Navarra</string>
   <string name="np_region_sweden">Schweden</string>

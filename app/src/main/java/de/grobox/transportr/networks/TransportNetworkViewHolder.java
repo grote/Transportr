@@ -31,24 +31,24 @@ import static android.view.View.VISIBLE;
 import static de.grobox.transportr.networks.TransportNetwork.Status.ALPHA;
 import static de.grobox.transportr.networks.TransportNetwork.Status.STABLE;
 
-class TransportNetworkViewHolder extends RecyclerView.ViewHolder {
+class TransportNetworkViewHolder extends RegionViewHolder {
 
 	private final ImageView logo;
-	private final TextView name;
 	private final TextView desc;
 	private final TextView status;
 
 	TransportNetworkViewHolder(View v) {
 		super(v);
 		logo = v.findViewById(R.id.logo);
-		name = v.findViewById(R.id.name);
 		desc = v.findViewById(R.id.desc);
 		status = v.findViewById(R.id.status);
 	}
 
-	void bind(TransportNetwork network) {
+	@Override
+	void bind(Region region, boolean expanded) {
+		super.bind(region, expanded);
+		TransportNetwork network = (TransportNetwork)region;
 		logo.setImageResource(network.getLogo());
-		name.setText(network.getName(name.getContext()));
 		desc.setText(network.getDescription(desc.getContext()));
 		if (network.getStatus() == STABLE) {
 			status.setVisibility(GONE);

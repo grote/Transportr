@@ -78,10 +78,8 @@
   <string name="changelog_title">Co je nového</string>
   <string name="changelog_show_full">Více...</string>
   <string name="np_desc_br_floripa">Mnoho autobusových linek, žádné Executivos</string>
-  <string name="np_region_europe">Evropa</string>
   <string name="np_name_rt">Evropa</string>
   <string name="np_desc_db">Většina Německa</string>
-  <string name="np_region_spain">Španělsko</string>
   <string name="np_name_spain">Španělsko</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_desc_dub">Spojené arabské Emiráty, Dubai</string>

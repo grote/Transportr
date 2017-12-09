@@ -120,7 +120,6 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Dánia</string>
   <string name="np_desc_dsb">Dánia, Koppenhága</string>
-  <string name="np_region_europe">Európa</string>
   <string name="np_name_rt">Európa</string>
   <string name="np_desc_rt">Csak hosszútávú vonatok </string>
   <string name="np_desc_rt_networks">Railteam alliance</string>
@@ -177,7 +176,6 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_desc_tfi">Írország, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Izrael</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Izrael, Jeruzsálem</string>
-  <string name="np_region_italy">Olaszország</string>
   <string name="np_name_it">Olaszország</string>
   <string name="np_desc_it">Róma, Milánó, Torinó, Velence, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -190,13 +188,11 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_desc_negentwee">A teljes Holland tömegközlekedési hálózat</string>
   <string name="np_region_norway">Norvégia</string>
   <string name="np_desc_nri">Norvégia, Oslo, Bergen</string>
-  <string name="np_region_nz">Új-zéland</string>
   <string name="np_name_nz">Új-zéland</string>
   <string name="np_desc_nz">Új-Zéland, Welligton, Auckland</string>
   <string name="np_region_poland">Lengyelország</string>
   <string name="np_desc_pl">Lengyelország, vasúti útvonalak Lengyelországban</string>
-  <string name="np_region_spain">Spanyolország</string>
-  <string name="np_name_spain">Spanyolország</string>
+	<string name="np_name_spain">Spanyolország</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baszkföld, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_region_sweden">Svédország</string>
   <string name="np_desc_se">Svédország, Stockholm</string>

@@ -19,8 +19,36 @@
 
 package de.grobox.transportr.networks;
 
-import android.content.Context;
+import android.os.Build;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-interface Region {
-	String getName(Context context);
+import de.grobox.transportr.R;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
+class CountryViewHolder extends ParentRegionViewHolder {
+
+	private final TextView flag;
+
+	CountryViewHolder(View v) {
+		super(v);
+		flag = v.findViewById(R.id.flag);
+	}
+
+	@Override
+	void bind(Region region, boolean expanded) {
+		super.bind(region, expanded);
+		Country country = (Country)region;
+		if (Build.VERSION.SDK_INT >= 21) {
+			flag.setText(country.getFlag());
+			flag.setVisibility(VISIBLE);
+		} else {
+			flag.setVisibility(GONE);
+		}
+	}
+
 }

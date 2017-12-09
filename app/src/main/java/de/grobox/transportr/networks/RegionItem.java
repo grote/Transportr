@@ -26,6 +26,8 @@ import android.support.v4.view.ViewCompat;
 import android.view.View;
 
 import com.mikepenz.fastadapter.IItem;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
 import com.mikepenz.fastadapter.listeners.OnClickListener;
 
@@ -37,57 +39,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.transportr.R;
 
 @ParametersAreNonnullByDefault
-class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, TransportNetworkItem> {
+abstract class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, RegionItem> {
 
-	private final Region region;
-
-	RegionItem(Region region) {
-		super();
-		this.region = region;
-	}
-
-	@IdRes
-	@Override
-	public int getType() {
-		return R.id.list_item_transport_region;
-	}
-
-	@Override
-	@LayoutRes
-	public int getLayoutRes() {
-		return R.layout.list_item_transport_region;
-	}
-
-	@Override
-	public void bindView(RegionViewHolder ui, List<Object> payloads) {
-		super.bindView(ui, payloads);
-		ui.bind(region, isExpanded());
-	}
-
-	@Override
-	public RegionViewHolder getViewHolder(View view) {
-		return new RegionViewHolder(view);
-	}
-
-	@Override
-	public long getIdentifier() {
-		return region.getName();
-	}
-
-	@Override
-	public OnClickListener<RegionItem> getOnItemClickListener() {
-		return (v, adapter, item, position) -> {
-			if (item.getSubItems() != null) {
-				if (!item.isExpanded()) {
-					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(180).start();
-				} else {
-					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(0).start();
-				}
-				return true;
-			}
-			return false;
-		};
-	}
+	protected abstract String getName(Context context);
 
 	static class RegionComparator implements Comparator<IItem> {
 
@@ -102,10 +56,38 @@ class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, Tr
 		public int compare(IItem i1, IItem i2) {
 			if (i1 instanceof RegionItem && i2 instanceof RegionItem) {
 				// sort regions alphabetically
-				return ((RegionItem) i1).region.getName(context).compareTo(((RegionItem) i2).region.getName(context));
+				return ((RegionItem) i1).getName(context).compareTo(((RegionItem) i2).getName(context));
 			}
 			return 0;
 		}
 	}
+}
 
+abstract class ParentRegionItem extends RegionItem {
+	
+	@Override
+	public OnClickListener<RegionItem> getOnItemClickListener() {
+		return (v, adapter, item, position) -> {
+			if (item.getSubItems() != null) {
+				if (!item.isExpanded()) {
+					List<RegionItem> subItems = item.getSubItems();
+					for (RegionItem subItem : subItems) {
+						if (subItem.getSubItems() != null && subItem.isExpanded()) {
+							boolean test = subItem.isExpanded();
+							subItem.withIsExpanded(false);
+							test = subItem.isExpanded();
+							subItem.withIsExpanded(false);
+							test = subItem.isExpanded();
+							((ItemAdapter<RegionItem>)adapter).getFastAdapter().notifyAdapterDataSetChanged();
+						}
+					}
+					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(180).start();
+				} else {
+					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(0).start();
+				}
+				return true;
+			}
+			return false;
+		};
+	}
 }

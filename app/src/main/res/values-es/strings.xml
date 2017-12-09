@@ -105,6 +105,13 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="changelog_full_title">Cambios</string>
   <string name="changelog_title">Novedades</string>
   <string name="changelog_show_full">Más...</string>
+  <string name="np_continent_europe">Europa</string>
+  <string name="np_continent_africa">Africa</string>
+  <string name="np_continent_north_america">América del Norte</string>
+  <string name="np_continent_central_america">América Central</string>
+  <string name="np_continent_south_america">América del Sur</string>
+  <string name="np_continent_asia">Asia</string>
+  <string name="np_continent_oceania">Oceanía</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_sydney">Australia, Nueva Gales del Sur, Sídney</string>
   <string name="np_region_austria">Austria</string>
@@ -129,7 +136,6 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Dinamarca</string>
   <string name="np_desc_dsb">Dinamarca, Copenhague</string>
-  <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">sólo larga distancia</string>
   <string name="np_desc_rt_networks">Alianza Railteam</string>
@@ -186,7 +192,6 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_tfi">Irlanda, Dublín, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalén</string>
-  <string name="np_region_italy">Italia</string>
   <string name="np_name_it">Italia</string>
   <string name="np_desc_it">Roma, Milano, Turín, Venecia, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -199,13 +204,11 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_negentwee">Todo el transporte público de Países Bajos</string>
   <string name="np_region_norway">Noruega</string>
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
-  <string name="np_region_nz">Nueva Zelanda</string>
   <string name="np_name_nz">Nueva Zelanda</string>
   <string name="np_desc_nz">Nueva Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, lineas de ferrocarriles en Polonia</string>
-  <string name="np_region_spain">España</string>
-  <string name="np_name_spain">España</string>
+	<string name="np_name_spain">España</string>
   <string name="np_desc_spain">Madrid, Barcelona, Euskadi - País Vasco, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_region_sweden">Suecia</string>
   <string name="np_desc_se">Suecia, Estocolmo</string>

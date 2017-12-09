@@ -20,7 +20,39 @@
 package de.grobox.transportr.networks;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 
-interface Region {
-	String getName(Context context);
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import de.grobox.transportr.R;
+
+@ParametersAreNonnullByDefault
+enum Continent implements Region {
+
+	EUROPE(R.string.np_continent_europe),
+	AFRICA(R.string.np_continent_africa),
+	NORTH_AMERICA(R.string.np_continent_north_america),
+	CENTRAL_AMERICA(R.string.np_continent_central_america),
+	SOUTH_AMERICA(R.string.np_continent_south_america),
+	ASIA(R.string.np_continent_asia),
+	OCEANIA(R.string.np_continent_oceania);
+
+
+	private final @StringRes int name;
+
+	Continent(@StringRes int name) {
+		this.name = name;
+	}
+
+	@StringRes
+	public int getName() {
+		return name;
+	}
+
+	@Override
+	public String getName(Context context) {
+		return context.getString(name);
+	}
+
 }

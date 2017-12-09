@@ -168,7 +168,6 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L’Assomption, Outaouais, Sud-Ouest, Québec, Haut-Saint-Laurent, Lanaudière, La Presqu’Île, Laurentides, Montréal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danemark</string>
   <string name="np_desc_dsb">Danemark, Copenhague</string>
-  <string name="np_region_europe">Europe</string>
   <string name="np_name_rt">Europe</string>
   <string name="np_desc_rt">Trains longue distance seulement</string>
   <string name="np_desc_rt_networks">Alliance Railteam</string>
@@ -225,7 +224,6 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="np_desc_tfi">Irlande, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israël</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israël, Jérusalem</string>
-  <string name="np_region_italy">Italie</string>
   <string name="np_name_it">Italie</string>
   <string name="np_desc_it">Rome, Milan, Turin, Venise, Palerme, Trente</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -238,12 +236,10 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="np_desc_negentwee">Tous les transports en commun des Pays-Bas</string>
   <string name="np_region_norway">Norvège</string>
   <string name="np_desc_nri">Norvège, Oslo, Bergen</string>
-  <string name="np_region_nz">Nouvelle-Zélande</string>
   <string name="np_name_nz">Nouvelle-Zélande</string>
   <string name="np_desc_nz">Nouvelle-Zélande, Wellington, Auckland</string>
   <string name="np_region_poland">Pologne</string>
   <string name="np_desc_pl">Pologne, chemins de fer en Pologne</string>
-  <string name="np_region_spain">Espagne</string>
   <string name="np_name_spain">Espagne</string>
   <string name="np_desc_spain">Madrid, Barcelone, Pays basque, Valence, Alicante, Majorque, Minore, Tenerife, La Palma, Navarre</string>
   <string name="np_region_sweden">Suède</string>

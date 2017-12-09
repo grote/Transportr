@@ -34,7 +34,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 @Immutable
 @ParametersAreNonnullByDefault
-public class TransportNetwork {
+public class TransportNetwork implements Region {
 
 	private final NetworkId id;
 	private final Region region;
@@ -71,6 +71,7 @@ public class TransportNetwork {
 		return region;
 	}
 
+	@Override
 	public String getName(Context context) {
 		if (name == 0) {
 			return id.name();

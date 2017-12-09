@@ -178,6 +178,14 @@ there are any).</string>
 	<string name="changelog_full_title">Changelog</string>
 	<string name="changelog_title">What\'s New</string>
 	<string name="changelog_show_full">More…</string>
+	
+	<string name="np_continent_europe">Europe</string>
+	<string name="np_continent_africa">Africa</string>
+	<string name="np_continent_north_america">North America</string>
+	<string name="np_continent_central_america">Central America</string>
+	<string name="np_continent_south_america">South America</string>
+	<string name="np_continent_asia">Asia</string>
+	<string name="np_continent_oceania">Oceania</string>
 
 	<string name="np_region_australia">Australia</string>
 	<string name="np_name_australia" translatable="false">Australia</string>
@@ -222,7 +230,6 @@ there are any).</string>
 	<string name="np_region_denmark">Denmark</string>
 	<string name="np_desc_dsb">Denmark, Copenhagen</string>
 
-	<string name="np_region_europe">Europe</string>
 	<string name="np_name_rt">Europe</string>
 	<string name="np_desc_rt">Long-distance trains only</string>
 	<string name="np_desc_rt_networks">Railteam alliance</string>
@@ -299,7 +306,6 @@ there are any).</string>
 	<string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
 	<string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
 
-	<string name="np_region_italy">Italy</string>
 	<string name="np_name_it">Italy</string>
 	<string name="np_desc_it">Rome, Milan, Turin, Venice, Palermo, Trento</string>
 	<string name="np_desc_it_networks" translatable="false">ATM, GTT, AMAT, ACTV</string>
@@ -321,7 +327,6 @@ there are any).</string>
 	<string name="np_region_norway">Norway</string>
 	<string name="np_desc_nri">Norway, Oslo, Bergen</string>
 
-	<string name="np_region_nz">New Zealand</string>
 	<string name="np_name_nz">New Zealand</string>
 	<string name="np_desc_nz">New-Zealand, Wellington, Auckland</string>
 	<string name="np_desc_nz_networks" translatable="false">Go Wellington, Tranz Metro, Auckland Transport</string>
@@ -330,7 +335,6 @@ there are any).</string>
 	<string name="np_name_pl" translatable="false">PKP</string>
 	<string name="np_desc_pl">Poland, railways in Poland</string>
 
-	<string name="np_region_spain">Spain</string>
 	<string name="np_name_spain">Spain</string>
 	<string name="np_desc_spain">Madrid, Barcelona, Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
 	<string name="np_desc_spain_networks" translatable="false">CRTM, TMB, FGC, Moveuskadi, Metrovalencia, EMT Valencia, TRAM, CTM, EMT Palma, CIME, Tranvía, TITSA, TILP, Transporte Interurbano de Navarra</string>
@@ -360,12 +364,10 @@ there are any).</string>
 	<string name="np_name_oregon">Oregon</string>
 	<string name="np_desc_oregon">Global Transport in Oregon State (USA)</string>
 
-	<string name="np_region_costa_rica">Costa Rica</string>
 	<string name="np_name_costa_rica">Costa Rica</string>
 	<string name="np_desc_costa_rica" translatable="false">Tren Urbano</string>
 	<string name="np_desc_costa_rica_networks" translatable="false">INCOFER</string>
 
-	<string name="np_region_africa">Africa</string>
 	<string name="np_name_ghana">Ghana</string>
 	<string name="np_desc_ghana">Accra</string>
 	

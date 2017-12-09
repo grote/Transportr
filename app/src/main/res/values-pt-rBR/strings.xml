@@ -168,7 +168,6 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Dinamarca</string>
   <string name="np_desc_dsb">Dinamarca, Copenhague</string>
-  <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">Apenas trens de longa distancia</string>
   <string name="np_desc_rt_networks">aliança Railteam</string>
@@ -217,7 +216,6 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_tfi">Irlanda, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalém</string>
-  <string name="np_region_italy">Itália</string>
   <string name="np_name_it">Itália </string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
@@ -227,11 +225,9 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_ns">Países Baixos, Amsterdã</string>
   <string name="np_region_norway">Noruega</string>
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
-  <string name="np_region_nz">Nova Zelândia</string>
   <string name="np_name_nz">Nova Zelândia </string>
   <string name="np_region_poland">Polônia</string>
   <string name="np_desc_pl">Polônia, ferrovias na Polônia</string>
-  <string name="np_region_spain">Espanha</string>
   <string name="np_name_spain">Espanha</string>
   <string name="np_region_sweden">Suécia</string>
   <string name="np_desc_se">Suécia, Estocolmo</string>

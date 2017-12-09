@@ -22,12 +22,14 @@ package de.grobox.transportr.networks;
 import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 
 import com.mikepenz.fastadapter.IItem;
-import com.mikepenz.fastadapter.ISubItem;
 import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
+import com.mikepenz.fastadapter.listeners.OnClickListener;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -35,50 +37,46 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.transportr.R;
 
 @ParametersAreNonnullByDefault
-class TransportNetworkItem extends RegionItem {
+class ContinentItem extends ParentRegionItem {
 
-	protected final TransportNetwork network;
+	private final Continent continent;
 
-	TransportNetworkItem(TransportNetwork network) {
+	ContinentItem(Continent continent) {
 		super();
-		this.network = network;
+		this.continent = continent;
 	}
-
+	
 	@Override
 	protected String getName(Context context) {
-		return this.network.getName(context);
+		return this.continent.getName(context);
 	}
 
 	@IdRes
 	@Override
 	public int getType() {
-		return R.id.list_item_transport_network;
+		return R.id.list_item_transport_continent;
 	}
 
 	@Override
 	@LayoutRes
 	public int getLayoutRes() {
-		return R.layout.list_item_transport_network;
+		return R.layout.list_item_transport_continent;
 	}
 
 	@Override
 	public void bindView(RegionViewHolder ui, List<Object> payloads) {
 		super.bindView(ui, payloads);
-		ui.bind(network, false);
+		ui.bind(continent, isExpanded());
 	}
 
 	@Override
-	public TransportNetworkViewHolder getViewHolder(View view) {
-		return new TransportNetworkViewHolder(view);
+	public ContinentViewHolder getViewHolder(View view) {
+		return new ContinentViewHolder(view);
 	}
 
 	@Override
 	public long getIdentifier() {
-		return network.getId().ordinal();
-	}
-
-	TransportNetwork getTransportNetwork() {
-		return network;
+		return continent.getName();
 	}
 
 }

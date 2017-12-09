@@ -19,7 +19,6 @@
 
 package de.grobox.transportr.networks;
 
-import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,32 +26,30 @@ import android.widget.TextView;
 
 import de.grobox.transportr.R;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
-class RegionViewHolder extends RecyclerView.ViewHolder {
-
-	private final TextView flag;
-	private final TextView name;
-	private final ImageView chevron;
+abstract class RegionViewHolder extends RecyclerView.ViewHolder {
+	protected final TextView name;
 
 	RegionViewHolder(View v) {
 		super(v);
-		flag = v.findViewById(R.id.flag);
 		name = v.findViewById(R.id.name);
+	}
+
+	void bind(Region region, boolean expanded) {
+		 name.setText(region.getName(name.getContext()));
+	}
+}
+
+abstract class ParentRegionViewHolder extends RegionViewHolder {
+	protected final ImageView chevron;
+
+	ParentRegionViewHolder(View v) {
+		super(v);
 		chevron = v.findViewById(R.id.chevron);
 	}
 
 	void bind(Region region, boolean expanded) {
-		if (Build.VERSION.SDK_INT >= 21) {
-			flag.setText(region.getFlag());
-			flag.setVisibility(VISIBLE);
-		} else {
-			flag.setVisibility(GONE);
-		}
-		name.setText(region.getName());
+		super.bind(region, expanded);
 		if (expanded) chevron.setRotation(0);
 		else chevron.setRotation(180);
 	}
-
 }

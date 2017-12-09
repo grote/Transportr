@@ -100,7 +100,6 @@
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danimarka</string>
   <string name="np_desc_dsb">Danimarka, Kopenhag</string>
-  <string name="np_region_europe">Avrupa</string>
   <string name="np_name_rt">Avrupa</string>
   <string name="np_desc_rt">Sadece Uzun Yol Trenleri</string>
   <string name="np_region_finland">Finlandiya</string>
@@ -156,7 +155,6 @@
   <string name="np_desc_tfi">İrlanda, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">İsrail</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">İsrail, Kudüs</string>
-  <string name="np_region_italy">İtalya</string>
   <string name="np_name_it">İtalya</string>
   <string name="np_desc_it">Roma, Milan, Turin, Venedik, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Lihtenştayn</string>
@@ -168,12 +166,10 @@
   <string name="np_desc_negentwee">Hollanda\'daki tüm toplu taşımalar</string>
   <string name="np_region_norway">Norveç</string>
   <string name="np_desc_nri">Norveç, Oslo, Bergen</string>
-  <string name="np_region_nz">Yeni Zelanda</string>
   <string name="np_name_nz">Yeni Zelanda</string>
   <string name="np_desc_nz">Yeni Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonya</string>
   <string name="np_desc_pl">Polonya, Polonya demiryolları</string>
-  <string name="np_region_spain">İspanya</string>
   <string name="np_name_spain">İspanya</string>
   <string name="np_desc_spain">Madrid, Barselona, Bask Ülkesi, Valensiya, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_region_sweden">İsveç</string>

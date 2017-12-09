@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-	android:id="@+id/list_item_transport_region"
+	android:id="@+id/list_item_transport_country"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -41,7 +41,7 @@
 		app:layout_constraintLeft_toRightOf="@+id/flag"
 		app:layout_constraintRight_toLeftOf="@+id/chevron"
 		app:layout_constraintTop_toTopOf="parent"
-		tools:text="Network Provider Region"/>
+		tools:text="Network Provider Country"/>
 
 	<ImageView
 		android:id="@+id/chevron"

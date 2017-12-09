@@ -19,8 +19,20 @@
 
 package de.grobox.transportr.networks;
 
-import android.content.Context;
+import android.os.Build;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-interface Region {
-	String getName(Context context);
+import de.grobox.transportr.R;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
+class ContinentViewHolder extends ParentRegionViewHolder {
+
+	ContinentViewHolder(View v) {
+		super(v);
+	}
 }
