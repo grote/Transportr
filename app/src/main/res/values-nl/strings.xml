@@ -229,6 +229,8 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_region_usa">Verenigde Staten</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">New York en New-Jersey staten</string>
+  <string name="np_name_california">California</string>
+  <string name="np_desc_california">Alle OV in de staat California (VS)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Alle OV in de staat Oregon (VS)</string>
   <string name="maintainer">Onderhouder</string>

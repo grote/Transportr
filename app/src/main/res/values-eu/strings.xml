@@ -232,6 +232,8 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="np_region_usa">Ameriketako Estatu Batuak</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">New York eta New-Jersey estatuak</string>
+  <string name="np_name_california">California</string>
+  <string name="np_desc_california">California estatuko (EEBB) garraio orokorra</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Oregon estatuko (EEBB) garraio orokorra</string>
   <string name="maintainer">Mantentzailea</string>

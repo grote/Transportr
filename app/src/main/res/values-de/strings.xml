@@ -273,6 +273,8 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_region_usa">Vereinigte Staaten von Amerika</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
+  <string name="np_name_california">California</string>
+  <string name="np_desc_california">Global Transport im Bundesstaat California (USA)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Global Transport im Bundesstaat Oregon (USA)</string>
   <string name="maintainer">Koordinator</string>

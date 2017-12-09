@@ -228,6 +228,8 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_region_usa">Estados Unidos de América</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nueva York y Nueva Jersey</string>
+  <string name="np_name_california">California</string>
+  <string name="np_desc_california">Transporte global en estado de California (EUA)</string>
   <string name="np_name_oregon">Oregón</string>
   <string name="np_desc_oregon">Transporte global en estado de Oregón (EUA)</string>
   <string name="maintainer">Mantenedor</string>

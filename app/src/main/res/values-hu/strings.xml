@@ -227,6 +227,8 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_region_usa">Amerikai Egyesült Államok</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">New York és New-Jersey államok</string>
+  <string name="np_name_california">California</string>
+  <string name="np_desc_california">Global Transport California államban (USA)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Global Transport Oregon államban (USA)</string>
   <string name="maintainer">Fenntartó</string>
