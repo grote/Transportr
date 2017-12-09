@@ -23,12 +23,17 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.view.View;
 
-import com.mikepenz.fastadapter.commons.items.AbstractExpandableItem;
+import com.mikepenz.fastadapter.IItem;
+import com.mikepenz.fastadapter.ISubItem;
+import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
 
 import java.util.List;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.transportr.R;
 
+@ParametersAreNonnullByDefault
 class TransportNetworkItem extends AbstractExpandableItem<RegionItem, TransportNetworkViewHolder, TransportNetworkItem> {
 
 	private final TransportNetwork network;

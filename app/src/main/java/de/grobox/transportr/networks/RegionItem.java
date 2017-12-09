@@ -25,15 +25,18 @@ import android.support.annotation.LayoutRes;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 
-import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
-import com.mikepenz.fastadapter.commons.items.AbstractExpandableItem;
+import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
+import com.mikepenz.fastadapter.listeners.OnClickListener;
 
 import java.util.Comparator;
 import java.util.List;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import de.grobox.transportr.R;
 
+@ParametersAreNonnullByDefault
 class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, TransportNetworkItem> {
 
 	private final Region region;
@@ -66,26 +69,24 @@ class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, Tr
 		return new RegionViewHolder(view);
 	}
 
-	final private FastAdapter.OnClickListener<RegionItem> onClickListener = (v, adapter, item, position) -> {
-		if (item.getSubItems() != null) {
-			if (!item.isExpanded()) {
-				ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(180).start();
-			} else {
-				ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(0).start();
-			}
-			return true;
-		}
-		return false;
-	};
-
 	@Override
 	public long getIdentifier() {
 		return region.getName();
 	}
 
 	@Override
-	public FastAdapter.OnClickListener<RegionItem> getOnItemClickListener() {
-		return onClickListener;
+	public OnClickListener<RegionItem> getOnItemClickListener() {
+		return (v, adapter, item, position) -> {
+			if (item.getSubItems() != null) {
+				if (!item.isExpanded()) {
+					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(180).start();
+				} else {
+					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(0).start();
+				}
+				return true;
+			}
+			return false;
+		};
 	}
 
 	static class RegionComparator implements Comparator<IItem> {

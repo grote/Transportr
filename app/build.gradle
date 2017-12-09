@@ -111,9 +111,10 @@ dependencies {
 	implementation 'com.github.omadahealth:swipy:1.2.3'
 	implementation 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	implementation 'com.google.android:flexbox:0.3.1'
-	implementation 'com.mikepenz:materialdrawer:5.9.5'
-	implementation 'com.mikepenz:aboutlibraries:5.9.7'
-	implementation 'com.mikepenz:fastadapter-commons:2.6.3@aar'
+	implementation 'com.mikepenz:materialdrawer:6.0.0'
+	implementation 'com.mikepenz:aboutlibraries:6.0.0'
+	implementation 'com.mikepenz:fastadapter-commons:3.0.3@aar'
+	implementation 'com.mikepenz:fastadapter-extensions-expandable:3.0.3@aar'
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.1.0'
 	implementation('com.mapbox.mapboxsdk:mapbox-android-sdk:5.1.4@aar') {
 		transitive = true
@@ -225,12 +226,13 @@ dependencyVerification {
 			'com.mapbox.mapboxsdk:mapbox-java-core:2.2.3:mapbox-java-core-2.2.3.jar:99cc79e1f681658cdf907541e034884b62dbad042b45d619a8b5360ca956b573',
 			'com.mapbox.mapboxsdk:mapbox-java-geojson:2.2.3:mapbox-java-geojson-2.2.3.jar:fe643e894295dcf62bd952ad6e58aa5d28c2db40091544922125d7336e9d5f35',
 			'com.mapzen.android:lost:1.1.1:lost-1.1.1.aar:6e2a7bfb1627587cf17e7788fc16eb2a293f1fb03c1cd9715da4cf5c9d33fefe',
-			'com.mikepenz:aboutlibraries:5.9.7:aboutlibraries-5.9.7.aar:f724205fa6382deba3080918fecf9d946a8819d6aa14f0a6347bcc170ed234ea',
-			'com.mikepenz:fastadapter-commons:2.6.3:fastadapter-commons-2.6.3.aar:7125dadccf3c80783fc5d7c6753f91f0284888e651f8a48fc4802466780e3e4c',
-			'com.mikepenz:fastadapter:2.6.3:fastadapter-2.6.3.aar:abd501599a7fd983127791cff50cf1595d360eba95a336479bce37e7953ca560',
-			'com.mikepenz:iconics-core:2.9.1:iconics-core-2.9.1.aar:998967c7e422c87bac3436d889912c07735ce814e88aa250ca2d018ba046b7c1',
-			'com.mikepenz:materialdrawer:5.9.5:materialdrawer-5.9.5.aar:f7b380cd85ae55bcd3111855bd9104ba86b5c1160e8a31ae89fe1725c5f3c587',
-			'com.mikepenz:materialize:1.0.3:materialize-1.0.3.aar:f215825cf9215af4c2807e3df25228b87d7b8f28fc8ccf122c9c5a93dfa13b8a',
+			'com.mikepenz:aboutlibraries:6.0.0:aboutlibraries-6.0.0.aar:9d59e0c6caddda8bdcac1f8dd46ca824dde671b3201e6612a9ca297470da66a1',
+			'com.mikepenz:fastadapter-commons:3.0.3:fastadapter-commons-3.0.3.aar:c73e2b079523431ec9313fbcf82f5d659ce47aeae1838965869eaadf81a2c0bd',
+			'com.mikepenz:fastadapter-extensions-expandable:3.0.3:fastadapter-extensions-expandable-3.0.3.aar:5f4b78a877ab9e44e7f15dd69decbfcfc38ba45359bb6ee659d5043fdd931a7b',
+			'com.mikepenz:fastadapter:3.0.0:fastadapter-3.0.0.aar:6a75d94586448e9222fc36a3e0a0a6d61d3bd30bedb125f681a956b310816e7e',
+			'com.mikepenz:iconics-core:2.9.5:iconics-core-2.9.5.aar:4250d3082eb20029137574f2f9240bfc6a1f0dd2ce72b7290e75bea8a9cf3b14',
+			'com.mikepenz:materialdrawer:6.0.0:materialdrawer-6.0.0.aar:e3c43bf540fa220c90108c96e6f6c76ccc971fb100cb4616158650a495a44bf3',
+			'com.mikepenz:materialize:1.1.1:materialize-1.1.1.aar:0b85d3df906c36ad423271efdaafd4fa3dfb6211400ee91328201c341e7028b8',
 			'com.squareup.okhttp3:logging-interceptor:3.8.1:logging-interceptor-3.8.1.jar:1e84fce63c46ce41fb7f8ca65d5b67ffe61aa0350e964288e66391fda7399ff8',
 			'com.squareup.okhttp3:okhttp:3.8.1:okhttp-3.8.1.jar:c1d57f913f74f61d424d4250a92723ba9a61affc12a0ab194d84cc179b472841',
 			'com.squareup.okio:okio:1.13.0:okio-1.13.0.jar:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',

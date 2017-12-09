@@ -30,6 +30,7 @@ import android.view.MenuItem;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.ISelectionListener;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter.expandable.ExpandableExtension;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,6 +55,7 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 	@Inject
 	TransportNetworkManager manager;
 	private FastItemAdapter<IItem> adapter;
+	private ExpandableExtension<IItem> expandableExtension;
 	private RecyclerView list;
 	private boolean firstStart, selectAllowed = false;
 
@@ -77,10 +79,13 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 		}
 		setResult(RESULT_CANCELED);
 
+
 		adapter = new FastItemAdapter<>();
 		adapter.withSelectable(true);
 		adapter.getItemAdapter().withComparator(new RegionItem.RegionComparator(this));
 		adapter.withSelectionListener(this);
+		expandableExtension = new ExpandableExtension<>();
+		adapter.addExtension(expandableExtension);
 		list = findViewById(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
@@ -94,7 +99,7 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 			regionItem.withSubItems(networkItems);
 			adapter.add(regionItem);
 		}
-		adapter.withSavedInstanceState(savedInstanceState);
+		if (savedInstanceState != null) adapter.withSavedInstanceState(savedInstanceState);
 
 		selectItem();
 	}
@@ -110,8 +115,8 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 	}
 
 	@Override
-	public void onSelectionChanged(IItem item, boolean selected) {
-		if (!selectAllowed || !selected) return;
+	public void onSelectionChanged(@Nullable IItem item, boolean selected) {
+		if (item == null || !selectAllowed || !selected) return;
 		selectAllowed = false;
 		TransportNetworkItem networkItem = (TransportNetworkItem) item;
 		manager.setTransportNetwork(networkItem.getTransportNetwork());
@@ -131,7 +136,7 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 		}
 		int pos = adapter.getPosition(new RegionItem(network.getRegion()));
 		if (pos != -1) {
-			adapter.expand(pos);
+			expandableExtension.expand(pos);
 			pos = adapter.getPosition(new TransportNetworkItem(network));
 			if (pos != -1) {
 				adapter.select(pos, false);
