@@ -21,23 +21,25 @@ package de.grobox.transportr.favorites.trips;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.graphics.drawable.DrawableCompat;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.MenuItem;
 import android.view.View;
 
 import de.grobox.transportr.R;
 
-import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
 import static de.grobox.transportr.trips.search.DirectionsActivity.INTENT_URI_FAVORITE;
+import static de.grobox.transportr.utils.Constants.FAV_TRIP_UID;
 
 public class FavoriteTripPopupMenu extends AbstractFavoritesPopupMenu {
 
 	FavoriteTripPopupMenu(Context context, View anchor, FavoriteTripItem trip, FavoriteTripListener listener) {
 		super(context, anchor, trip, listener);
 		setFavState(getMenu().findItem(R.id.action_mark_favorite), trip.isFavorite());
-		getMenu().findItem(R.id.action_add_shortcut).setVisible(trip.isFavorite());
+		if (Build.VERSION.SDK_INT < 26) { // https://developer.android.com/about/versions/oreo/android-8.0-changes.html#as
+			getMenu().findItem(R.id.action_add_shortcut).setVisible(trip.isFavorite());
+		}
 	}
 
 	@Override

@@ -31,15 +31,14 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.trips.search.DirectionsActivity;
 import de.grobox.transportr.ui.BasePopupMenu;
 
-import static de.grobox.transportr.utils.IntentUtils.findDirections;
-import static de.grobox.transportr.utils.IntentUtils.presetDirections;
-
 import static android.content.Intent.ACTION_SEARCH;
 import static android.content.Intent.EXTRA_SHORTCUT_ICON_RESOURCE;
 import static android.content.Intent.EXTRA_SHORTCUT_INTENT;
 import static android.content.Intent.EXTRA_SHORTCUT_NAME;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static de.grobox.transportr.utils.IntentUtils.findDirections;
+import static de.grobox.transportr.utils.IntentUtils.presetDirections;
 
 abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 
@@ -75,7 +74,7 @@ abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 		}
 	}
 
-	protected void addShortcut(String shortcutName) {
+	void addShortcut(String shortcutName) {
 		// create launcher shortcut
 		Intent addIntent = new Intent();
 		addIntent.putExtra(EXTRA_SHORTCUT_INTENT, getShortcutIntent());
@@ -103,7 +102,7 @@ abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 
 	protected abstract String getShortcutIntentString();
 
-	protected abstract @DrawableRes
-	int getShortcutDrawable();
+	@DrawableRes
+	protected abstract int getShortcutDrawable();
 
 }
