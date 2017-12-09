@@ -268,8 +268,6 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_region_usa">USA</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Stany Nowy Jork i New Jersey</string>
-  <string name="np_name_california">California</string>
-  <string name="np_desc_california">Global Transport w stanie California (USA)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Global Transport w stanie Oregon (USA)</string>
   <string name="maintainer">Opiekun</string>

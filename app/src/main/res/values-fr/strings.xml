@@ -269,8 +269,6 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="np_region_usa">États-Unis d’Amérique</string>
   <string name="np_desc_rtachicago">Chicago</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">États de New York et New Jersey</string>
-  <string name="np_name_california">California</string>
-  <string name="np_desc_california">« Global Transport » dans l’état de l’California (É.-U.)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">« Global Transport » dans l’état de l’Oregon (É.-U.)</string>
   <string name="maintainer">Mainteneur</string>

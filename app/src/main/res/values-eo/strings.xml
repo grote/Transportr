@@ -266,8 +266,6 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_region_usa">Usono</string>
   <string name="np_desc_rtachicago">Ĉikago</string>
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Nov-Jorkio kaj Nov-Ĵerzejo Ŝtatoj</string>
-  <string name="np_name_california">California</string>
-  <string name="np_desc_california">Global Transport en California Ŝtato (Usono)</string>
   <string name="np_name_oregon">Oregono</string>
   <string name="np_desc_oregon">Global Transport en Oregono Ŝtato (Usono)</string>
   <string name="maintainer">Prizorganto</string>
