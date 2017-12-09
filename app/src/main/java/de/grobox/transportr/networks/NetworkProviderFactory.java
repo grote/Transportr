@@ -98,6 +98,7 @@ public final class NetworkProviderFactory {
 	private static Reference<OntarioProvider> ontarioProviderRef;
 	private static Reference<QuebecProvider> quebecProviderRef;
 	private static Reference<RtaChicagoProvider> rtaChicagoProviderRef;
+	private static Reference<CaliforniaProvider> californiaProviderRef;
 	private static Reference<OregonProvider> oregonProviderRef;
 	private static Reference<AustraliaProvider> australiaProviderRef;
 	private static Reference<CostaRicaProvider> costaRicaProviderRef;
@@ -816,6 +817,16 @@ public final class NetworkProviderFactory {
 
 			final RtaChicagoProvider provider = new RtaChicagoProvider();
 			rtaChicagoProviderRef = new SoftReference<>(provider);
+			return provider;
+		} else if (networkId.equals(NetworkId.CALIFORNIA)) {
+			if (californiaProviderRef != null) {
+				final CaliforniaProvider provider = californiaProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final CaliforniaProvider provider = new CaliforniaProvider(NAVITIA);
+			californiaProviderRef = new SoftReference<>(provider);
 			return provider;
 		} else if (networkId.equals(NetworkId.OREGON)) {
 			if (oregonProviderRef != null) {

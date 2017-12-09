@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">El asistente de transporte público que respeta tu privacidad y tu libertad.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr es una aplicacion sin ánimo de lucro desarrollada por personas de todo el mundo para hacer el uso del transporte público lo más fácil posible donde sea que estés. 
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr es una aplicacion sin ánimo de lucro desarrollada por personas de todo el mundo para hacer el uso del transporte público lo más fácil posible donde sea que estés.
 
 Actualmente, funciona mejor en Europa, pero también admite muchos otros lugares del planeta. Si vives en un área sin soporte, considera agregarla a Transportr.
 Las instrucciones están disponibles en nuestra página web.
