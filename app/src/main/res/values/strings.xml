@@ -364,7 +364,7 @@ there are any).</string>
 	<string name="np_name_usny">New York and New-Jersey States</string>
 	<string name="np_desc_usny" translatable="false">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
 	<string name="np_name_california">California</string>
-	<string name="np_desc_california">Global Transport in Calfornia State (USA)</string>
+	<string name="np_desc_california">Public transport in California (USA)</string>
 	<string name="np_name_oregon">Oregon</string>
 	<string name="np_desc_oregon">Global Transport in Oregon State (USA)</string>
 
