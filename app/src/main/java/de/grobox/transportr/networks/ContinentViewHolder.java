@@ -32,7 +32,16 @@ import static android.view.View.VISIBLE;
 
 class ContinentViewHolder extends ParentRegionViewHolder {
 
+	private final ImageView contour;
+
 	ContinentViewHolder(View v) {
 		super(v);
+		contour = v.findViewById(R.id.contour);
+	}
+
+	void bind(Region region, boolean expanded) {
+		super.bind(region, expanded);
+		Continent continent = (Continent)region;
+		contour.setImageResource(continent.getContour());
 	}
 }

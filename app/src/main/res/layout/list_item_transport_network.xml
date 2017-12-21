@@ -11,8 +11,8 @@
 
 	<ImageView
 		android:id="@+id/logo"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_width="64dp"
+		android:layout_height="match_parent"
 		android:contentDescription="@string/network"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="parent"

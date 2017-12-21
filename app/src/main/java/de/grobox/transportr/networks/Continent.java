@@ -20,6 +20,7 @@
 package de.grobox.transportr.networks;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
@@ -30,24 +31,31 @@ import de.grobox.transportr.R;
 @ParametersAreNonnullByDefault
 enum Continent implements Region {
 
-	EUROPE(R.string.np_continent_europe),
-	AFRICA(R.string.np_continent_africa),
-	NORTH_AMERICA(R.string.np_continent_north_america),
-	CENTRAL_AMERICA(R.string.np_continent_central_america),
-	SOUTH_AMERICA(R.string.np_continent_south_america),
-	ASIA(R.string.np_continent_asia),
-	OCEANIA(R.string.np_continent_oceania);
+	EUROPE(R.string.np_continent_europe, R.drawable.continent_europe),
+	AFRICA(R.string.np_continent_africa, R.drawable.continent_africa),
+	NORTH_AMERICA(R.string.np_continent_north_america, R.drawable.continent_north_america),
+	CENTRAL_AMERICA(R.string.np_continent_central_america, R.drawable.continent_central_america),
+	SOUTH_AMERICA(R.string.np_continent_south_america, R.drawable.continent_south_america),
+	ASIA(R.string.np_continent_asia, R.drawable.continent_asia),
+	OCEANIA(R.string.np_continent_oceania, R.drawable.continent_oceania);
 
 
 	private final @StringRes int name;
+	private final @DrawableRes int contour;
 
-	Continent(@StringRes int name) {
+	Continent(@StringRes int name, @DrawableRes int contour) {
 		this.name = name;
+		this.contour = contour;
 	}
 
 	@StringRes
 	public int getName() {
 		return name;
+	}
+
+	@DrawableRes
+	public int getContour() {
+		return contour;
 	}
 
 	@Override
