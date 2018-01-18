@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress ALL -->
+<resources>
+	<!-- Author section -->
+	<string name="library_swipyrefreshlayout_author">OrangeGangsters</string>
+	<string name="library_swipyrefreshlayout_authorWebsite">https://github.com/omadahealth</string>
+	<!-- Library section -->
+	<string name="library_swipyrefreshlayout_libraryName">SwipyRefreshLayout</string>
+	<string name="library_swipyrefreshlayout_libraryDescription">Eine SwipeRefreshLayout-Erweiterung, die es ermöglicht, in beide Richtungen zu wischen (API 9+).</string>
+	<string name="library_swipyrefreshlayout_libraryVersion">1.2.3</string>
+	<!-- OpenSource section -->
+	<string name="library_swipyrefreshlayout_isOpenSource">true</string>
+	<string name="library_swipyrefreshlayout_repositoryLink">https://github.com/omadahealth/SwipyRefreshLayout</string>
+	<!-- ClassPath for autoDetect section -->
+	<string name="library_swipyrefreshlayout_classPath">com.omadahealth.github.swipyrefreshlayout.library</string>
+	<!-- License section -->
+	<string name="library_swipyrefreshlayout_licenseId">mit</string>
+	<!-- Custom variables section -->
+</resources>

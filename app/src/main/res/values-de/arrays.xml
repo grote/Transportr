@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme -->
+
+    <!-- Language -->
+    <string-array name="pref_language_values">
+        <item></item>
+        <item>en</item>
+        <item>de</item>
+        <item>es</item>
+        <item>eu</item>
+        <item>fr</item>
+        <item>it</item>
+        <item>nb</item>
+        <item>nl</item>
+        <item>pt_BR</item>
+        <item>tr</item>
+        <item>ca</item>
+        <item>pl</item>
+        <item>ta</item>
+        <item>eo</item>
+        <item>cs</item>
+        <item>hu</item>
+    </string-array>
+
+    <!-- Optimize -->
+    <string-array name="pref_optimize_values">
+        <item></item>
+        <item>MINDEST_ÄNDERUNGEN</item>
+        <item>Am wenigsten zu Fuß</item>
+    </string-array>
+
+    <!-- Walk Speed -->
+    <string-array name="pref_walk_speed_values">
+        <item>LANGSAM</item>
+        <item></item>
+        <item>SCHNELL</item>
+    </string-array>
+
+</resources>
