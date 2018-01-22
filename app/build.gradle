@@ -7,7 +7,7 @@ apply plugin: 'witness'
 android {
 
 	compileSdkVersion 27
-	buildToolsVersion "27.0.2"
+	buildToolsVersion "27.0.3"
 
 	defaultConfig {
 		versionCode 103
@@ -136,7 +136,7 @@ dependencies {
 	}
 
 	testImplementation 'junit:junit:4.12'
-	testImplementation 'org.mockito:mockito-core:2.8.9'
+	testImplementation 'org.mockito:mockito-core:2.13.0'
 	testImplementation "android.arch.core:core-testing:$archVersion"
 
 	androidTestImplementation 'com.android.support:multidex:1.0.2'
@@ -242,8 +242,8 @@ dependencyVerification {
 			'de.cketti.library.changelog:ckchangelog:1.2.2:ckchangelog-1.2.2.aar:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
 			'javax.inject:javax.inject:1:javax.inject-1.jar:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
 			'junit:junit:4.12:junit-4.12.jar:59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a',
-			'net.bytebuddy:byte-buddy-agent:1.6.14:byte-buddy-agent-1.6.14.jar:c141a2d6809c3eeff4a43d25992826abccebdd4b793af3e7a5f346e88ae73a33',
-			'net.bytebuddy:byte-buddy:1.6.14:byte-buddy-1.6.14.jar:917758b3c651e278a15a029ba1d42dbf802d8b0e1fe2aa4b81c5750c64f461c1',
+			'net.bytebuddy:byte-buddy-agent:1.7.9:byte-buddy-agent-1.7.9.jar:ac1a993befb528c3271a83a9ad9c42d363d399e9deb26e0470e3c4962066c550',
+			'net.bytebuddy:byte-buddy:1.7.9:byte-buddy-1.7.9.jar:2ea2ada12b790d16ac7f6e6c065cb55cbcdb6ba519355f5958851159cad3b16a',
 			'net.sf.kxml:kxml2:2.3.0:kxml2-2.3.0.jar:f264dd9f79a1fde10ce5ecc53221eff24be4c9331c830b7d52f2f08a7b633de2',
 			'org.antlr:antlr4:4.5.3:antlr4-4.5.3.jar:a32de739cfdf515774e696f91aa9697d2e7731e5cb5045ca8a4b657f8b1b4fb4',
 			'org.codehaus.mojo:animal-sniffer-annotations:1.14:animal-sniffer-annotations-1.14.jar:2068320bd6bad744c3673ab048f67e30bef8f518996fa380033556600669905d',
@@ -255,15 +255,15 @@ dependencyVerification {
 			'org.jacoco:org.jacoco.ant:0.7.4.201502262128:org.jacoco.ant-0.7.4.201502262128.jar:013ce2a68ba57a3c59215ae0dec4df3498c078062a38c3b94c841fc14450f283',
 			'org.jacoco:org.jacoco.core:0.7.4.201502262128:org.jacoco.core-0.7.4.201502262128.jar:ec4c74554312fac5116350164786f91b35c9e082fa4ea598bfa42b5db05d7abb',
 			'org.jacoco:org.jacoco.report:0.7.4.201502262128:org.jacoco.report-0.7.4.201502262128.jar:7a3554c605e088e7e323b1084656243f0444fa353e2f2dee1f1a4204eb64ff09',
-			'org.jetbrains.kotlin:kotlin-annotation-processing-gradle:1.2.0:kotlin-annotation-processing-gradle-1.2.0.jar:c7ed16d340738c03237aba302e7f2bf37711043e00d7c11e09fb51b2bd3aac1d',
-			'org.jetbrains.kotlin:kotlin-compiler-embeddable:1.2.0:kotlin-compiler-embeddable-1.2.0.jar:c26f8033c2426f4bb2667afa4641f3e1fcb8149150df22fd102a75e9c4e1c4e0',
-			'org.jetbrains.kotlin:kotlin-reflect:1.2.0:kotlin-reflect-1.2.0.jar:4f48a872bad6e4d9c053f4ad610d11e4012ad7e58dc19a03dd5eb811f36069dd',
-			'org.jetbrains.kotlin:kotlin-script-runtime:1.2.0:kotlin-script-runtime-1.2.0.jar:c96553aa53c1008fb406657b0802aeb2f3a2977579d35b119e24c81aea4859ce',
-			'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.0:kotlin-stdlib-jre7-1.2.0.jar:c7a20fb951d437797afe8980aff6c1e5a03f310c661ba58ba1d4fa90cb0f2926',
-			'org.jetbrains.kotlin:kotlin-stdlib:1.2.0:kotlin-stdlib-1.2.0.jar:05cfd9f5ac0b41910703a8925f7211a495909b27a2ffdd1c5106f1689aeafcd4',
+			'org.jetbrains.kotlin:kotlin-annotation-processing-gradle:1.2.20:kotlin-annotation-processing-gradle-1.2.20.jar:81b4a409dc7e596eba6cbd36411a9d5c385a83c83028a24ed99b9039b8fdef67',
+			'org.jetbrains.kotlin:kotlin-compiler-embeddable:1.2.20:kotlin-compiler-embeddable-1.2.20.jar:ef2a51ccf156f5e1548c75f300ef9ed25a6b018d904b9ae6e305bcdbe85bfcb0',
+			'org.jetbrains.kotlin:kotlin-reflect:1.2.20:kotlin-reflect-1.2.20.jar:efd4261cd20e68f06ca30ce74161d4cd32133a27e175139596946a1307d611c5',
+			'org.jetbrains.kotlin:kotlin-script-runtime:1.2.20:kotlin-script-runtime-1.2.20.jar:ff6099fcecf498a10875b571086aa321629222f2bd295fa579c58c2703e155da',
+			'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.20:kotlin-stdlib-jre7-1.2.20.jar:968720de8052410005b8eb5c155d03bec36817d17ae1c7d1c5c6ff2517438fe3',
+			'org.jetbrains.kotlin:kotlin-stdlib:1.2.20:kotlin-stdlib-1.2.20.jar:79b23d59bf9d457483ab1368f3b02d7423a6e7841533c95abc5aab20a3069be4',
 			'org.jetbrains:annotations:13.0:annotations-13.0.jar:ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478',
-			'org.mockito:mockito-core:2.8.9:mockito-core-2.8.9.jar:a2bb9b8b40d81bb02ccb84259524c0f4911f73c6577bfc7ddd940b8fc729b6e6',
-			'org.objenesis:objenesis:2.5:objenesis-2.5.jar:293328e1b0d31ed30bb89fca542b6c52fac00989bb0e62eb9d98d630c4dd6b7c',
+			'org.mockito:mockito-core:2.13.0:mockito-core-2.13.0.jar:92a746b37cf8c5730a5e7b35fd7d8cd72700089435ff92ee03ed8384d4eb3377',
+			'org.objenesis:objenesis:2.6:objenesis-2.6.jar:5e168368fbc250af3c79aa5fef0c3467a2d64e5a7bd74005f25d8399aeb0708d',
 			'org.ow2.asm:asm-debug-all:5.0.1:asm-debug-all-5.0.1.jar:4734de5b515a454b0096db6971fb068e5f70e6f10bbee2b3bd2fdfe5d978ed57',
 			'org.slf4j:slf4j-api:1.7.25:slf4j-api-1.7.25.jar:18c4a0095d5c1da6b817592e767bb23d29dd2f560ad74df75ff3961dbde25b79',
 			'org.xerial:sqlite-jdbc:3.20.1:sqlite-jdbc-3.20.1.jar:3d09ac1caebd6ea3bd82a1d1819a2cf6e251869dbaae43712caf6a65f40d40eb',
