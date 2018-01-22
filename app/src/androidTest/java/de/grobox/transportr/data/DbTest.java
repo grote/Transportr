@@ -52,7 +52,7 @@ abstract public class DbTest {
 	 * Room calculates the LiveData's value lazily when there is an observer.
 	 * This forces it to return the expected value right away.
 	 */
-	protected  <T> T getValue(final LiveData<T> liveData) throws InterruptedException {
+	public static <T> T getValue(final LiveData<T> liveData) throws InterruptedException {
 		final Object[] data = new Object[1];
 		final CountDownLatch latch = new CountDownLatch(1);
 		Observer<T> observer = new Observer<T>() {

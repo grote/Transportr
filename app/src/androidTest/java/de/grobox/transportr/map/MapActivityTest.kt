@@ -34,6 +34,7 @@ import android.support.test.rule.GrantPermissionRule
 import android.support.test.runner.AndroidJUnit4
 import de.grobox.transportr.R
 import de.grobox.transportr.ScreengrabTest
+import de.grobox.transportr.data.DbTest
 import de.grobox.transportr.data.locations.FavoriteLocation
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM
 import de.grobox.transportr.data.locations.LocationRepository
@@ -42,6 +43,7 @@ import de.grobox.transportr.favorites.trips.FavoriteTripItem
 import de.grobox.transportr.networks.TransportNetwork
 import de.grobox.transportr.networks.TransportNetworkManager
 import org.hamcrest.CoreMatchers.anything
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.FixMethodOrder
 import org.junit.Rule
@@ -73,8 +75,11 @@ class MapActivityTest : ScreengrabTest() {
 
         activityRule.runOnUiThread {
             component.inject(this)
-            val transportNetwork: TransportNetwork = manager.getTransportNetworkByNetworkId(getNetworkId()) ?: throw RuntimeException()
+            val networkId = getNetworkId()
+            val transportNetwork: TransportNetwork = manager.getTransportNetworkByNetworkId(networkId) ?: throw RuntimeException()
             manager.setTransportNetwork(transportNetwork)
+            // ensure networkId got updated before continuing
+            assertEquals(networkId, DbTest.getValue(manager.networkId))
         }
     }
 
