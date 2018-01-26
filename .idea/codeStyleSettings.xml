@@ -51,10 +51,16 @@
           <option name="SPACE_AFTER_CLOSING_ANGLE_BRACKET_IN_TYPE_ARGUMENT" value="true" />
           <option name="DO_NOT_WRAP_AFTER_SINGLE_ANNOTATION" value="true" />
         </JavaCodeStyleSettings>
+        <JetCodeStyleSettings>
+          <option name="CONTINUATION_INDENT_IN_PARAMETER_LISTS" value="false" />
+          <option name="CONTINUATION_INDENT_IN_ARGUMENT_LISTS" value="false" />
+          <option name="CONTINUATION_INDENT_FOR_EXPRESSION_BODIES" value="false" />
+          <option name="CONTINUATION_INDENT_FOR_CHAINED_CALLS" value="false" />
+          <option name="CONTINUATION_INDENT_IN_SUPERTYPE_LISTS" value="false" />
+          <option name="CONTINUATION_INDENT_IN_IF_CONDITIONS" value="false" />
+          <option name="WRAP_EXPRESSION_BODY_FUNCTIONS" value="1" />
+        </JetCodeStyleSettings>
         <Objective-C-extensions>
-          <option name="GENERATE_INSTANCE_VARIABLES_FOR_PROPERTIES" value="ASK" />
-          <option name="RELEASE_STYLE" value="IVAR" />
-          <option name="TYPE_QUALIFIERS_PLACEMENT" value="BEFORE" />
           <file>
             <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Import" />
             <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Macro" />
@@ -256,6 +262,17 @@
               </section>
             </rules>
           </arrangement>
+        </codeStyleSettings>
+        <codeStyleSettings language="kotlin">
+          <option name="CALL_PARAMETERS_WRAP" value="5" />
+          <option name="CALL_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
+          <option name="CALL_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />
+          <option name="METHOD_PARAMETERS_WRAP" value="5" />
+          <option name="METHOD_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
+          <option name="METHOD_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />
+          <option name="EXTENDS_LIST_WRAP" value="1" />
+          <option name="METHOD_CALL_CHAIN_WRAP" value="1" />
+          <option name="ASSIGNMENT_WRAP" value="1" />
         </codeStyleSettings>
       </value>
     </option>
