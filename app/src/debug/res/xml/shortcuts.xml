@@ -15,8 +15,7 @@
 			android:action="search"
 			android:data="transportr://home"
 			android:targetClass="de.grobox.transportr.trips.search.DirectionsActivity"
-			android:targetPackage="de.grobox.liberario"/>
-		<!-- FIXME This is duplicated for debug to make targetPackage equal to _actual_ applicationId -->
+			android:targetPackage="de.grobox.liberario.debug"/>
 
 	</shortcut>
 
@@ -31,8 +30,7 @@
 			android:action="search"
 			android:data="transportr://work"
 			android:targetClass="de.grobox.transportr.trips.search.DirectionsActivity"
-			android:targetPackage="de.grobox.liberario"/>
-		<!-- FIXME This is duplicated for debug to make targetPackage equal to _actual_ applicationId -->
+			android:targetPackage="de.grobox.liberario.debug"/>
 
 	</shortcut>
 

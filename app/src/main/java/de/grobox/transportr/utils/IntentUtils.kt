@@ -22,7 +22,6 @@ package de.grobox.transportr.utils
 
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.ACTION_SEARCH
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.net.Uri
 import android.util.Log
@@ -31,6 +30,8 @@ import de.grobox.transportr.departures.DeparturesActivity
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.map.MapActivity
 import de.grobox.transportr.trips.search.DirectionsActivity
+import de.grobox.transportr.trips.search.DirectionsActivity.Companion.ACTION_PRE_FILL
+import de.grobox.transportr.trips.search.DirectionsActivity.Companion.ACTION_SEARCH
 import de.grobox.transportr.utils.Constants.*
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
@@ -43,10 +44,11 @@ object IntentUtils {
     fun findDirections(context: Context, from: WrapLocation?, via: WrapLocation?, to: WrapLocation?, search: Boolean = true, clearTop: Boolean = false) {
         val intent = Intent(context, DirectionsActivity::class.java)
         if (clearTop) intent.flags = FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        if (search) intent.action = ACTION_SEARCH
+        else intent.action = ACTION_PRE_FILL
         intent.putExtra(FROM, from)
         intent.putExtra(VIA, via)
         intent.putExtra(TO, to)
-        intent.putExtra(SEARCH, search)
         context.startActivity(intent)
     }
 

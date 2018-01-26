@@ -33,6 +33,7 @@ import de.grobox.transportr.ScreengrabTest
 import de.grobox.transportr.networks.TransportNetwork
 import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.trips.search.DirectionsActivity
+import de.grobox.transportr.trips.search.DirectionsActivity.Companion.ACTION_SEARCH
 import de.grobox.transportr.utils.Constants
 import org.junit.Before
 import org.junit.Rule
@@ -66,9 +67,9 @@ class TripsTest : ScreengrabTest() {
     @Test
     fun searchTest() {
         val intent = Intent()
+        intent.action = ACTION_SEARCH
         intent.putExtra(Constants.FROM, getFrom(0))
         intent.putExtra(Constants.TO, getTo(0))
-        intent.putExtra(Constants.SEARCH, true)
         activityRule.launchActivity(intent)
 
         sleep(2500)

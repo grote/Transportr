@@ -30,7 +30,6 @@ public interface Constants {
 	String FROM = "from";
 	String VIA = "via";
 	String TO = "to";
-	String SEARCH = "search";
 	String EXPANDED = "expanded";
 
 	// Request Codes

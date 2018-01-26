@@ -31,12 +31,12 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.trips.search.DirectionsActivity;
 import de.grobox.transportr.ui.BasePopupMenu;
 
-import static android.content.Intent.ACTION_SEARCH;
 import static android.content.Intent.EXTRA_SHORTCUT_ICON_RESOURCE;
 import static android.content.Intent.EXTRA_SHORTCUT_INTENT;
 import static android.content.Intent.EXTRA_SHORTCUT_NAME;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static de.grobox.transportr.trips.search.DirectionsActivity.ACTION_SEARCH;
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
 import static de.grobox.transportr.utils.IntentUtils.presetDirections;
 
