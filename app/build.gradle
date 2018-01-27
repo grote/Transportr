@@ -116,9 +116,11 @@ dependencies {
 	implementation 'com.mikepenz:fastadapter-commons:3.0.3@aar'
 	implementation 'com.mikepenz:fastadapter-extensions-expandable:3.0.3@aar'
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.1.0'
-	implementation('com.mapbox.mapboxsdk:mapbox-android-sdk:5.1.4@aar') {
+	implementation('com.mapbox.mapboxsdk:mapbox-android-sdk:5.3.2@aar') {
 		transitive = true
 	}
+	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0'
+	implementation 'com.mapzen.android:lost:3.0.4'
 
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
@@ -220,12 +222,13 @@ dependencyVerification {
 			'com.google.googlejavaformat:google-java-format:1.3:google-java-format-1.3.jar:5dd8baead3215d1a185c69d804fd7af50a8ac206d663ba914a32ff22015b0554',
 			'com.google.guava:guava:21.0:guava-21.0.jar:972139718abc8a4893fa78cba8cf7b2c903f35c97aaf44fa3031b0669948b480',
 			'com.google.guava:guava:23.0-android:guava-23.0-android.jar:c8cea78328d2c50a3be2d4548f6fbc723516b5438251f5803008778f3ff5a3ed',
-			'com.jakewharton.timber:timber:4.5.1:timber-4.5.1.aar:d553d3d3e883ce7d061f1b21b95d6ee0840f3bfbf6d3bd51c5671f0b0f0b0091',
-			'com.mapbox.mapboxsdk:mapbox-android-sdk:5.1.4:mapbox-android-sdk-5.1.4.aar:e9171795125faacf7d4a5c6643b902622798ecf49b157d5bfa7d5f46c4f8b7ed',
-			'com.mapbox.mapboxsdk:mapbox-android-telemetry:2.2.3:mapbox-android-telemetry-2.2.3.aar:bb912ad3d55af402b0cac5e7874c07296bea860675843998a3902400f20435d8',
-			'com.mapbox.mapboxsdk:mapbox-java-core:2.2.3:mapbox-java-core-2.2.3.jar:99cc79e1f681658cdf907541e034884b62dbad042b45d619a8b5360ca956b573',
-			'com.mapbox.mapboxsdk:mapbox-java-geojson:2.2.3:mapbox-java-geojson-2.2.3.jar:fe643e894295dcf62bd952ad6e58aa5d28c2db40091544922125d7336e9d5f35',
-			'com.mapzen.android:lost:1.1.1:lost-1.1.1.aar:6e2a7bfb1627587cf17e7788fc16eb2a293f1fb03c1cd9715da4cf5c9d33fefe',
+			'com.jakewharton.timber:timber:4.6.0:timber-4.6.0.aar:35c22867f2673132e97e17857d36bb2fc25f5790f0425406833ed0254d62fc66',
+			'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0:mapbox-android-plugin-locationlayer-0.3.0.aar:8c65339d03655badde67c1c1e08ae02fdb955be2cc8d55e1a6898590ca0e6137',
+			'com.mapbox.mapboxsdk:mapbox-android-sdk:5.3.2:mapbox-android-sdk-5.3.2.aar:4c1d13af32b6d4f788b23f8e18b8089711bd28a26b879e589bf5b9bf0ff26721',
+			'com.mapbox.mapboxsdk:mapbox-android-telemetry:2.2.9:mapbox-android-telemetry-2.2.9.aar:7319ae68bb41035db8b21bc2216a9f560d12c5681c12a2137069ca993f1718dd',
+			'com.mapbox.mapboxsdk:mapbox-java-core:2.2.9:mapbox-java-core-2.2.9.jar:0bd929e2f8194e0a4031a9a3fcb22aa0731b641fd3b8ff5598446637cd4b3300',
+			'com.mapbox.mapboxsdk:mapbox-java-geojson:2.2.9:mapbox-java-geojson-2.2.9.jar:e888f38e36173a1ac39f3ba08fe6ba50d809b5d05ca8de5c143dee35114bfd91',
+			'com.mapzen.android:lost:3.0.4:lost-3.0.4.aar:7c95374ddd406356a6a3085c93e1a549feb68e919b29a8f0f194bc47f27788c0',
 			'com.mikepenz:aboutlibraries:6.0.0:aboutlibraries-6.0.0.aar:9d59e0c6caddda8bdcac1f8dd46ca824dde671b3201e6612a9ca297470da66a1',
 			'com.mikepenz:fastadapter-commons:3.0.3:fastadapter-commons-3.0.3.aar:c73e2b079523431ec9313fbcf82f5d659ce47aeae1838965869eaadf81a2c0bd',
 			'com.mikepenz:fastadapter-extensions-expandable:3.0.3:fastadapter-extensions-expandable-3.0.3.aar:5f4b78a877ab9e44e7f15dd69decbfcfc38ba45359bb6ee659d5043fdd931a7b',
@@ -234,7 +237,7 @@ dependencyVerification {
 			'com.mikepenz:materialdrawer:6.0.0:materialdrawer-6.0.0.aar:e3c43bf540fa220c90108c96e6f6c76ccc971fb100cb4616158650a495a44bf3',
 			'com.mikepenz:materialize:1.1.1:materialize-1.1.1.aar:0b85d3df906c36ad423271efdaafd4fa3dfb6211400ee91328201c341e7028b8',
 			'com.squareup.okhttp3:logging-interceptor:3.8.1:logging-interceptor-3.8.1.jar:1e84fce63c46ce41fb7f8ca65d5b67ffe61aa0350e964288e66391fda7399ff8',
-			'com.squareup.okhttp3:okhttp:3.8.1:okhttp-3.8.1.jar:c1d57f913f74f61d424d4250a92723ba9a61affc12a0ab194d84cc179b472841',
+			'com.squareup.okhttp3:okhttp:3.9.1:okhttp-3.9.1.jar:a0d01017a42bba26e507fc6d448bb36e536f4b6e612f7c42de30bbdac2b7785e',
 			'com.squareup.okio:okio:1.13.0:okio-1.13.0.jar:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
 			'com.squareup:javapoet:1.8.0:javapoet-1.8.0.jar:8e108c92027bb428196f10fa11cffbe589f7648a6af2016d652279385fdfd789',
 			'com.squareup:javawriter:2.1.1:javawriter-2.1.1.jar:f699823d0081f69cbb676c1845ea222e0ada79bc88a53e5d22d8bd02d328f57e',

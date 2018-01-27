@@ -85,7 +85,6 @@ class LocationGpsView(context: Context, attrs: AttributeSet) : LocationView(cont
 
         ui.status.clearAnimation()
         ui.location.hint = hint
-        listener.onLocationCleared(type)
 
         isSearching = false
     }

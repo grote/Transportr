@@ -29,9 +29,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
 import android.support.annotation.WorkerThread;
 
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.location.LocationSource;
 import com.mapbox.services.android.telemetry.location.LocationEngineListener;
+import com.mapbox.services.android.telemetry.location.LostLocationEngine;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -44,13 +43,13 @@ import static com.mapbox.services.android.telemetry.location.LocationEnginePrior
 public class LocationLiveData extends LiveData<WrapLocation> implements LocationEngineListener, ReverseGeocoderCallback {
 
 	private final Context context;
-	private final LocationSource locationSource = Mapbox.getLocationSource();
+	private final LostLocationEngine locationEngine;
 
-	// TODO often the GPS request is dropped after some time, WHY? Lost 1?
-	// ActivityManager: Launch timeout has expired, giving up wake lock!
+	// FIXME: ActivityManager: Launch timeout has expired, giving up wake lock!
 	public LocationLiveData(Context context) {
 		super();
 		this.context = context;
+		this.locationEngine = new LostLocationEngine(context);
 	}
 
 	@Override
@@ -63,20 +62,20 @@ public class LocationLiveData extends LiveData<WrapLocation> implements Location
 	@SuppressLint("MissingPermission")
 	protected void onActive() {
 		super.onActive();
-		locationSource.activate();
-		locationSource.setPriority(BALANCED_POWER_ACCURACY);
-		locationSource.setInterval(5000);
-		locationSource.addLocationEngineListener(this);
-		locationSource.requestLocationUpdates();
+		locationEngine.activate();
+		locationEngine.setPriority(BALANCED_POWER_ACCURACY);
+		locationEngine.setInterval(5000);
+		locationEngine.addLocationEngineListener(this);
+		locationEngine.requestLocationUpdates();
 		// TODO what happens where when GPS is turned off?
 	}
 
 	@Override
 	protected void onInactive() {
 		super.onInactive();
-		locationSource.removeLocationUpdates();
-		locationSource.removeLocationEngineListener(this);
-		locationSource.deactivate();
+		locationEngine.removeLocationUpdates();
+		locationEngine.removeLocationEngineListener(this);
+		locationEngine.deactivate();
 	}
 
 	@Override
@@ -86,7 +85,7 @@ public class LocationLiveData extends LiveData<WrapLocation> implements Location
 
 	@Override
 	public void onLocationChanged(Location location) {
-		locationSource.removeLocationUpdates();
+		locationEngine.removeLocationUpdates();
 		new Thread(() -> {
 			ReverseGeocoder geocoder = new ReverseGeocoder(context, this);
 			geocoder.findLocation(location);

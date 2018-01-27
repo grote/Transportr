@@ -20,10 +20,12 @@
 package de.grobox.transportr.map;
 
 import android.content.res.ColorStateList;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresPermission;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -36,26 +38,33 @@ import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.geometry.LatLngBounds;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerMode;
+import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin;
+import com.mapbox.services.android.telemetry.location.LocationEngineListener;
+import com.mapbox.services.android.telemetry.location.LocationEnginePriority;
+import com.mapbox.services.android.telemetry.location.LostLocationEngine;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.transportr.R;
+import timber.log.Timber;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static android.graphics.PorterDuff.Mode.SRC_IN;
 import static com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLng;
 import static com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLngZoom;
-import static com.mapbox.mapboxsdk.constants.MyLocationTracking.TRACKING_FOLLOW;
 import static de.grobox.transportr.map.GpsController.FabState.FIX;
 import static de.grobox.transportr.map.GpsController.FabState.FOLLOW;
 import static de.grobox.transportr.utils.Constants.REQUEST_LOCATION_PERMISSION;
 
 @ParametersAreNonnullByDefault
-abstract public class GpsMapFragment extends BaseMapFragment {
+abstract public class GpsMapFragment extends BaseMapFragment implements LocationEngineListener {
 
 	protected final static int LOCATION_ZOOM = 14;
 
+	private LocationLayerPlugin locationPlugin;
+	private @Nullable LostLocationEngine locationEngine;
 	protected GpsController gpsController;
 	protected FloatingActionButton gpsFab;
 	protected int mapPadding;
@@ -69,22 +78,67 @@ abstract public class GpsMapFragment extends BaseMapFragment {
 
 		gpsFab = v.findViewById(R.id.gpsFab);
 		gpsFab.setOnClickListener(view -> onGpsFabClick());
-
 		return v;
+	}
+
+	@Override
+	@CallSuper
+	@SuppressWarnings({ "MissingPermission" })
+	public void onStart() {
+		super.onStart();
+		if (locationEngine != null) {
+			locationEngine.requestLocationUpdates();
+			locationEngine.addLocationEngineListener(this);
+		}
+	}
+
+	@Override
+	@CallSuper
+	public void onStop() {
+		super.onStop();
+		if (locationEngine != null) {
+			locationEngine.removeLocationEngineListener(this);
+			locationEngine.removeLocationUpdates();
+		}
 	}
 
 	@Override
 	@CallSuper
 	public void onMapReady(MapboxMap mapboxMap) {
 		super.onMapReady(mapboxMap);
+		enableLocationPlugin();
 
-		if (map.getMyLocation() != null) {
-			gpsController.setLocation(map.getMyLocation());
+		if (locationEngine != null && ContextCompat.checkSelfPermission(getContext(), ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
+			gpsController.setLocation(locationEngine.getLastLocation());
 		}
 
-		map.setOnMyLocationChangeListener(newLocation -> gpsController.setLocation(newLocation));
-		map.setOnMyLocationTrackingModeChangeListener(myLocationTrackingMode -> gpsController.setTrackingMode(myLocationTrackingMode));
+		// TODO
+//		map.setOnMyLocationTrackingModeChangeListener(myLocationTrackingMode -> gpsController.setTrackingMode(myLocationTrackingMode));
 		gpsController.getFabState().observe(this, this::onNewFabState);
+	}
+
+	private void enableLocationPlugin() {
+		// Check if permissions are enabled and if not request
+		if (ContextCompat.checkSelfPermission(getContext(), ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
+			// Create an instance of LOST location engine
+			initializeLocationEngine();
+
+			if (locationPlugin == null) {
+				locationPlugin = new LocationLayerPlugin(mapView, map, locationEngine);
+				locationPlugin.setLocationLayerEnabled(LocationLayerMode.TRACKING);
+			}
+		} else {
+			requestPermission();
+		}
+	}
+
+	@RequiresPermission(ACCESS_FINE_LOCATION)
+	private void initializeLocationEngine() {
+		locationEngine = new LostLocationEngine(getContext());
+		locationEngine.setPriority(LocationEnginePriority.HIGH_ACCURACY);
+		locationEngine.activate();
+
+		locationEngine.addLocationEngineListener(this);
 	}
 
 	protected void animateTo(@Nullable LatLng latLng, int zoom) {
@@ -117,11 +171,11 @@ abstract public class GpsMapFragment extends BaseMapFragment {
 			Toast.makeText(getContext(), R.string.permission_denied_gps, Toast.LENGTH_SHORT).show();
 			return;
 		}
-		if (map.getMyLocation() == null) {
+		if (locationPlugin.getLastKnownLocation() == null) {
 			Toast.makeText(getContext(), R.string.warning_no_gps_fix, Toast.LENGTH_SHORT).show();
 			return;
 		}
-		LatLng coords = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
+		LatLng coords = new LatLng(locationPlugin.getLastKnownLocation().getLatitude(), locationPlugin.getLastKnownLocation().getLongitude());
 		CameraUpdate update = map.getCameraPosition().zoom < LOCATION_ZOOM ? newLatLngZoom(coords, LOCATION_ZOOM) : newLatLng(coords);
 		map.easeCamera(update, 750, new MapboxMap.CancelableCallback() {
 			@Override
@@ -131,7 +185,8 @@ abstract public class GpsMapFragment extends BaseMapFragment {
 
 			@Override
 			public void onFinish() {
-				mapView.post(() -> map.getTrackingSettings().setMyLocationTrackingMode(TRACKING_FOLLOW));
+				// TODO manual tracking
+//				mapView.post(() -> map.getTrackingSettings().setMyLocationTrackingMode(TRACKING_FOLLOW));
 			}
 		});
 	}
@@ -163,12 +218,23 @@ abstract public class GpsMapFragment extends BaseMapFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		if (requestCode != REQUEST_LOCATION_PERMISSION) return;
 		if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
-			if (map != null) {
-				map.setMyLocationEnabled(true);
-			}
-		} else if (map != null) {
-			map.setMyLocationEnabled(false);
+			enableLocationPlugin();
 		}
+	}
+
+	@Override
+	@SuppressWarnings({ "MissingPermission" })
+	public void onConnected() {
+		if (locationEngine != null) {
+			locationEngine.requestLocationUpdates();
+		}
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		Timber.e("NEW LOCATION: %s", location);
+		// TODO add manual tracking here
+		gpsController.setLocation(location);
 	}
 
 }
