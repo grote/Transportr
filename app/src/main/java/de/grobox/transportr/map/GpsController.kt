@@ -25,17 +25,20 @@ import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.location.Location
 import android.support.annotation.WorkerThread
-import com.mapbox.mapboxsdk.constants.MyLocationTracking.TRACKING_FOLLOW
 import de.grobox.transportr.AbstractManager
 import de.grobox.transportr.locations.ReverseGeocoder
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback
 import de.grobox.transportr.locations.WrapLocation
-import de.grobox.transportr.map.GpsController.GpsState.*
+import de.grobox.transportr.map.GpsController.Companion.GPS_FIX_EXPIRY
+import java.util.*
+import java.util.concurrent.TimeUnit
+
+internal data class GpsState(var hasFix: Boolean, var isOld: Boolean, var isTracking: Boolean)
 
 internal class GpsController(val context: Context) : AbstractManager(), ReverseGeocoderCallback {
 
-    internal enum class GpsState {
-        NO_FIX, FIX, FOLLOW
+    companion object {
+        internal val GPS_FIX_EXPIRY = TimeUnit.SECONDS.toMillis(3)
     }
 
     private val geoCoder = ReverseGeocoder(context, this)
@@ -47,7 +50,7 @@ internal class GpsController(val context: Context) : AbstractManager(), ReverseG
     private var wrapLocation: WrapLocation? = null
 
     init {
-        gpsState.value = NO_FIX
+        gpsState.value = GpsState(false, false, false)
     }
 
     @WorkerThread
@@ -66,21 +69,21 @@ internal class GpsController(val context: Context) : AbstractManager(), ReverseG
             // check if we need to use the reverse geo coder
             val isNew = wrapLocation.let { it == null || !it.isSamePlace(newLocation.latitude, newLocation.longitude) }
             if (isNew) geoCoder.findLocation(newLocation)
-
-            // set new FAB state
-            if (gpsState.value == NO_FIX) {
-                gpsState.value = FIX
-            }
+        }
+        // set new FAB state if location is recent
+        if (!newLocation.isOld()) {
+            updateGpsState(hasFix = true, isOld = false)
         }
     }
 
-    fun setTrackingMode(mode: Int) = when (mode) {
-        TRACKING_FOLLOW -> gpsState.value = FOLLOW
-        else -> if (location == null) gpsState.value = NO_FIX else gpsState.value = FIX
-    }
-
-    fun setGpsState(gpsState: GpsState) {
-        this.gpsState.value = gpsState
+    internal fun updateGpsState(hasFix: Boolean? = null, isOld: Boolean? = null, isTracking: Boolean? = null) {
+        val newState = GpsState(
+            hasFix ?: gpsState.value!!.hasFix,
+            isOld ?: gpsState.value!!.isOld,
+            isTracking ?: gpsState.value!!.isTracking
+        )
+        // only set a new value if it is different from the old
+        if (newState != gpsState.value) gpsState.value = newState
     }
 
     fun getGpsState(): LiveData<GpsState> = gpsState
@@ -98,4 +101,8 @@ internal class GpsController(val context: Context) : AbstractManager(), ReverseG
 fun Location.toWrapLocation(): WrapLocation {
     val loc = de.schildbach.pte.dto.Location.coord((latitude * 1E6).toInt(), (longitude * 1E6).toInt())
     return WrapLocation(loc)
+}
+
+fun Location.isOld(): Boolean {
+    return Date().time > time + GPS_FIX_EXPIRY
 }

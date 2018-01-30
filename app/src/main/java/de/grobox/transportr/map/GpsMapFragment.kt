@@ -27,6 +27,7 @@ import android.content.res.ColorStateList
 import android.graphics.PorterDuff.Mode.SRC_IN
 import android.location.Location
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.support.annotation.CallSuper
 import android.support.annotation.RequiresPermission
 import android.support.design.widget.FloatingActionButton
@@ -45,9 +46,9 @@ import com.mapbox.services.android.telemetry.location.LocationEngineListener
 import com.mapbox.services.android.telemetry.location.LocationEnginePriority
 import com.mapbox.services.android.telemetry.location.LostLocationEngine
 import de.grobox.transportr.R
-import de.grobox.transportr.map.GpsController.GpsState.FIX
-import de.grobox.transportr.map.GpsController.GpsState.FOLLOW
+import de.grobox.transportr.map.GpsController.Companion.GPS_FIX_EXPIRY
 import de.grobox.transportr.utils.Constants.REQUEST_LOCATION_PERMISSION
+import java.util.concurrent.TimeUnit.SECONDS
 
 abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
 
@@ -59,6 +60,18 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
 
     companion object {
         protected const val LOCATION_ZOOM = 14
+    }
+
+    private val timer = object : CountDownTimer(Long.MAX_VALUE, GPS_FIX_EXPIRY) {
+        override fun onTick(millisUntilFinished: Long) {
+            val location = locationPlugin?.lastKnownLocation
+            if (location == null) gpsController.updateGpsState(hasFix = false)
+            else if (location.isOld()) {
+                gpsController.updateGpsState(isOld = true)
+            }
+        }
+
+        override fun onFinish() {}
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -78,6 +91,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
             it.requestLocationUpdates()
             it.addLocationEngineListener(this)
         }
+        timer.start()
     }
 
     @CallSuper
@@ -88,6 +102,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
             it.removeLocationUpdates()
         }
         super.onStop()
+        timer.cancel()
     }
 
     override fun onDestroyView() {
@@ -106,10 +121,12 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
             }
         }
 
-        gpsController.getGpsState().observe(this, Observer<GpsController.GpsState> { this.onNewGpsState(it) })
+        gpsController.getGpsState().observe(this, Observer<GpsState> { onNewGpsState(it!!) })
         map?.addOnScrollListener {
-            if (gpsController.getGpsState().value == FOLLOW) {
-                gpsController.setGpsState(FIX)
+            gpsController.getGpsState().value?.let {
+                if (it.isTracking) {
+                    gpsController.updateGpsState(isTracking = false)
+                }
             }
         }
     }
@@ -134,6 +151,8 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
         locationEngine = LostLocationEngine(context)
         locationEngine?.let {
             it.priority = LocationEnginePriority.HIGH_ACCURACY
+            it.interval = SECONDS.toMillis(1).toInt()
+            it.smallestDisplacement = 0f
             it.activate()
             it.addLocationEngineListener(this)
         }
@@ -153,21 +172,29 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
             val latLng = LatLng(location.latitude, location.longitude)
             val update = if (map.cameraPosition.zoom < LOCATION_ZOOM) newLatLngZoom(latLng, LOCATION_ZOOM.toDouble()) else newLatLng(latLng)
             map.easeCamera(update, 750)
-            gpsController.setGpsState(FOLLOW)
+            gpsController.updateGpsState(isTracking = true)
         }
     }
 
-    private fun onNewGpsState(gpsState: GpsController.GpsState?) {
+    private fun onNewGpsState(gpsState: GpsState) {
+        // Floating GPS Action Button Style
         var iconColor = ContextCompat.getColor(context, R.color.fabForegroundInitial)
         var backgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.fabBackground))
-        if (gpsState === FIX) {
+        if (gpsState.hasFix && !gpsState.isOld && !gpsState.isTracking) {
             iconColor = ContextCompat.getColor(context, R.color.fabForegroundMoved)
             backgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.fabBackgroundMoved))
-        } else if (gpsState === FOLLOW) {
+        } else if (gpsState.hasFix && !gpsState.isOld && gpsState.isTracking) {
             iconColor = ContextCompat.getColor(context, R.color.fabForegroundFollow)
         }
         gpsFab.drawable.setColorFilter(iconColor, SRC_IN)
         gpsFab.backgroundTintList = backgroundColor
+
+        // Location Marker Icon Style
+        if (gpsState.isOld) {
+            locationPlugin?.applyStyle(R.style.LocationLayerOld)
+        } else {
+            locationPlugin?.applyStyle(R.style.LocationLayer)
+        }
     }
 
     private fun requestPermission() {
@@ -189,11 +216,10 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
     }
 
     override fun onLocationChanged(location: Location) {
-        gpsController.setLocation(location)
-
-        if (gpsController.getGpsState().value == FOLLOW) {
+        if (gpsController.getGpsState().value!!.isTracking) {
             map?.animateCamera(newLatLng(LatLng(location.latitude, location.longitude)))
         }
+        gpsController.setLocation(location)
     }
 
     protected fun getLastKnownLocation() = locationPlugin?.lastKnownLocation
