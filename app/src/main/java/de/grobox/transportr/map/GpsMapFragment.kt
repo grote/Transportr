@@ -45,10 +45,9 @@ import com.mapbox.services.android.telemetry.location.LocationEngineListener
 import com.mapbox.services.android.telemetry.location.LocationEnginePriority
 import com.mapbox.services.android.telemetry.location.LostLocationEngine
 import de.grobox.transportr.R
-import de.grobox.transportr.map.GpsController.FabState.FIX
-import de.grobox.transportr.map.GpsController.FabState.FOLLOW
+import de.grobox.transportr.map.GpsController.GpsState.FIX
+import de.grobox.transportr.map.GpsController.GpsState.FOLLOW
 import de.grobox.transportr.utils.Constants.REQUEST_LOCATION_PERMISSION
-import timber.log.Timber
 
 abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
 
@@ -74,6 +73,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
     @SuppressLint("MissingPermission")
     override fun onStart() {
         super.onStart()
+        locationPlugin?.onStart()
         locationEngine?.let {
             it.requestLocationUpdates()
             it.addLocationEngineListener(this)
@@ -82,11 +82,17 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
 
     @CallSuper
     override fun onStop() {
-        super.onStop()
+        locationPlugin?.onStop()
         locationEngine?.let {
             it.removeLocationEngineListener(this)
             it.removeLocationUpdates()
         }
+        super.onStop()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        locationEngine?.deactivate()
     }
 
     @CallSuper
@@ -100,9 +106,12 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
             }
         }
 
-        // TODO
-        //		map.setOnMyLocationTrackingModeChangeListener(myLocationTrackingMode -> gpsController.setTrackingMode(myLocationTrackingMode));
-        gpsController.getFabState().observe(this, Observer<GpsController.FabState> { this.onNewFabState(it) })
+        gpsController.getGpsState().observe(this, Observer<GpsController.GpsState> { this.onNewGpsState(it) })
+        map?.addOnScrollListener {
+            if (gpsController.getGpsState().value == FOLLOW) {
+                gpsController.setGpsState(FIX)
+            }
+        }
     }
 
     private fun enableLocationPlugin() {
@@ -111,9 +120,9 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
             // Create an instance of LOST location engine
             initializeLocationEngine()
 
-            if (locationPlugin == null) {
+            if (locationPlugin == null && map != null) {
                 locationPlugin = LocationLayerPlugin(mapView, map!!, locationEngine)
-                locationPlugin!!.setLocationLayerEnabled(LocationLayerMode.TRACKING)
+                locationPlugin!!.setLocationLayerEnabled(LocationLayerMode.COMPASS)
             }
         } else {
             requestPermission()
@@ -143,40 +152,28 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
         map?.let { map ->
             val latLng = LatLng(location.latitude, location.longitude)
             val update = if (map.cameraPosition.zoom < LOCATION_ZOOM) newLatLngZoom(latLng, LOCATION_ZOOM.toDouble()) else newLatLng(latLng)
-            map.easeCamera(update, 750, object : MapboxMap.CancelableCallback {
-                override fun onCancel() {
-
-                }
-
-                override fun onFinish() {
-                    // TODO manual tracking
-//	    			mapView.post(() -> map.getTrackingSettings().setMyLocationTrackingMode(TRACKING_FOLLOW));
-                }
-            })
+            map.easeCamera(update, 750)
+            gpsController.setGpsState(FOLLOW)
         }
     }
 
-    private fun onNewFabState(fabState: GpsController.FabState?) {
+    private fun onNewGpsState(gpsState: GpsController.GpsState?) {
         var iconColor = ContextCompat.getColor(context, R.color.fabForegroundInitial)
         var backgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.fabBackground))
-        if (fabState === FIX) {
+        if (gpsState === FIX) {
             iconColor = ContextCompat.getColor(context, R.color.fabForegroundMoved)
             backgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.fabBackgroundMoved))
-        } else if (fabState === FOLLOW) {
+        } else if (gpsState === FOLLOW) {
             iconColor = ContextCompat.getColor(context, R.color.fabForegroundFollow)
         }
         gpsFab.drawable.setColorFilter(iconColor, SRC_IN)
         gpsFab.backgroundTintList = backgroundColor
     }
 
-    protected fun requestPermission() {
-        if (ContextCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) return
-
-        //		if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
-        // TODO Show an explanation to the user *asynchronously*
-        // After the user sees the explanation, try again to request the permission.
-        //		}
-        requestPermissions(arrayOf(ACCESS_FINE_LOCATION), REQUEST_LOCATION_PERMISSION)
+    private fun requestPermission() {
+        if (ContextCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(ACCESS_FINE_LOCATION), REQUEST_LOCATION_PERMISSION)
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -192,9 +189,13 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
     }
 
     override fun onLocationChanged(location: Location) {
-        Timber.e("NEW LOCATION: %s", location)
-        // TODO add manual tracking here
         gpsController.setLocation(location)
+
+        if (gpsController.getGpsState().value == FOLLOW) {
+            map?.animateCamera(newLatLng(LatLng(location.latitude, location.longitude)))
+        }
     }
+
+    protected fun getLastKnownLocation() = locationPlugin?.lastKnownLocation
 
 }

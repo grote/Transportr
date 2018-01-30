@@ -57,12 +57,12 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync(this)
     }
 
     override fun onStart() {
         super.onStart()
         mapView.onStart()
-        mapView.getMapAsync(this)
     }
 
     @CallSuper

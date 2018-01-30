@@ -30,24 +30,24 @@ import de.grobox.transportr.AbstractManager
 import de.grobox.transportr.locations.ReverseGeocoder
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback
 import de.grobox.transportr.locations.WrapLocation
-import de.grobox.transportr.map.GpsController.FabState.*
+import de.grobox.transportr.map.GpsController.GpsState.*
 
 internal class GpsController(val context: Context) : AbstractManager(), ReverseGeocoderCallback {
 
-    internal enum class FabState {
+    internal enum class GpsState {
         NO_FIX, FIX, FOLLOW
     }
 
     private val geoCoder = ReverseGeocoder(context, this)
 
-    private val fabState = MutableLiveData<FabState>()
+    private val gpsState = MutableLiveData<GpsState>()
 
     private var location: Location? = null
     private var lastLocation: Location? = null
     private var wrapLocation: WrapLocation? = null
 
     init {
-        fabState.value = NO_FIX
+        gpsState.value = NO_FIX
     }
 
     @WorkerThread
@@ -68,18 +68,22 @@ internal class GpsController(val context: Context) : AbstractManager(), ReverseG
             if (isNew) geoCoder.findLocation(newLocation)
 
             // set new FAB state
-            if (fabState.value == NO_FIX) {
-                fabState.value = FIX
+            if (gpsState.value == NO_FIX) {
+                gpsState.value = FIX
             }
         }
     }
 
     fun setTrackingMode(mode: Int) = when (mode) {
-        TRACKING_FOLLOW -> fabState.value = FOLLOW
-        else -> if (location == null) fabState.value = NO_FIX else fabState.value = FIX
+        TRACKING_FOLLOW -> gpsState.value = FOLLOW
+        else -> if (location == null) gpsState.value = NO_FIX else gpsState.value = FIX
     }
 
-    fun getFabState(): LiveData<FabState> = fabState
+    fun setGpsState(gpsState: GpsState) {
+        this.gpsState.value = gpsState
+    }
+
+    fun getGpsState(): LiveData<GpsState> = gpsState
 
     fun getWrapLocation(): WrapLocation? {
         if (wrapLocation == null) {

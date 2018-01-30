@@ -76,10 +76,6 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 
 		nearbyStationsDrawer = new NearbyStationsDrawer(getContext());
 
-		if (savedInstanceState == null && viewModel.getTransportNetwork().getValue() != null) {
-			requestPermission();
-		}
-
 		return v;
 	}
 
@@ -115,7 +111,7 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 			if (bounds != null) {
 				zoomToBounds(bounds);
 				viewModel.getLiveBounds().removeObservers(this);
-			} else if (getMap().getMyLocation() != null) {
+			} else if (getLastKnownLocation() != null) {
 				zoomToMyLocation();
 			}
 		});
@@ -137,7 +133,6 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 	}
 
 	private void onTransportNetworkChanged(@Nullable TransportNetwork network) {
-		requestPermission();
 		if (network != null && getMap() != null) {
 			// stop observing fresh start, so we get only updated when activity was recreated
 			viewModel.isFreshStart().removeObservers(this);
@@ -166,8 +161,8 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 	}
 
 	private void zoomToMyLocation() {
-		if (getMap().getMyLocation() == null) return;
-		LatLng coords = new LatLng(getMap().getMyLocation().getLatitude(), getMap().getMyLocation().getLongitude());
+		if (getMap() == null || getLastKnownLocation() == null) return;
+		LatLng coords = new LatLng(getLastKnownLocation().getLatitude(), getLastKnownLocation().getLongitude());
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(coords, GpsMapFragment.LOCATION_ZOOM);
 		getMap().moveCamera(update);
 	}

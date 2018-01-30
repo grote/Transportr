@@ -58,9 +58,6 @@ class TripMapFragment : GpsMapFragment() {
         viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
         gpsController = viewModel.gpsController
 
-        if (savedInstanceState == null) {
-            requestPermission()
-        }
         return v
     }
 
