@@ -88,6 +88,7 @@ internal class MapViewModel @Inject internal constructor(
         selectedLocation.value = location
         // do not reset the selected location right away, will break incoming geo intent
         // the observing fragment will call clearSelectedLocation() instead when it is done
+        gpsController.updateGpsState(isTracking = false)
     }
 
     fun clearSelectedLocation() {

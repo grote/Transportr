@@ -36,6 +36,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLng
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLngZoom
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -59,7 +60,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
     private lateinit var gpsFab: FloatingActionButton
 
     companion object {
-        protected const val LOCATION_ZOOM = 14
+        const val LOCATION_ZOOM = 14
     }
 
     private val timer = object : CountDownTimer(Long.MAX_VALUE, GPS_FIX_EXPIRY) {
@@ -220,6 +221,13 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
             map?.animateCamera(newLatLng(LatLng(location.latitude, location.longitude)))
         }
         gpsController.setLocation(location)
+    }
+
+    fun zoomToMyLocation() {
+        val location = getLastKnownLocation() ?: return
+        val latLng = LatLng(location.latitude, location.longitude)
+        val update = CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM.toDouble())
+        map?.moveCamera(update)
     }
 
     protected fun getLastKnownLocation() = locationPlugin?.lastKnownLocation
