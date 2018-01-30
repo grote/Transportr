@@ -27,6 +27,8 @@
 -dontnote com.mikepenz.iconics.**
 -dontnote com.mikepenz.materialize.view.**
 
+-dontwarn com.mapbox.services.android.telemetry.location.GoogleLocationEngine
+
 -dontnote com.omadahealth.github.swipyrefreshlayout.library.**
 -dontwarn org.slf4j.**
 -keep class ch.qos.logback.classic.android.LogcatAppender
