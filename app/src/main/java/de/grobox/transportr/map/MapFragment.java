@@ -97,9 +97,9 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 		Bundle args = NearbyLocationsLoader.getBundle(location, 0);
 		getActivity().getSupportLoaderManager().initLoader(LOADER_NEARBY_STATIONS, args, this);
 
-		map.setOnMapClickListener(point -> viewModel.getMapClicked().call());
-		map.setOnMapLongClickListener(point -> viewModel.selectLocation(new WrapLocation(point)));
-		map.setOnMarkerClickListener(this);
+		getMap().setOnMapClickListener(point -> viewModel.getMapClicked().call());
+		getMap().setOnMapLongClickListener(point -> viewModel.selectLocation(new WrapLocation(point)));
+		getMap().setOnMarkerClickListener(this);
 
 		// observe map related data
 		viewModel.isFreshStart().observe(this, this::onFreshStart);
@@ -115,7 +115,7 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 			if (bounds != null) {
 				zoomToBounds(bounds);
 				viewModel.getLiveBounds().removeObservers(this);
-			} else if (map.getMyLocation() != null) {
+			} else if (getMap().getMyLocation() != null) {
 				zoomToMyLocation();
 			}
 		});
@@ -138,7 +138,7 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 
 	private void onTransportNetworkChanged(@Nullable TransportNetwork network) {
 		requestPermission();
-		if (network != null && map != null) {
+		if (network != null && getMap() != null) {
 			// stop observing fresh start, so we get only updated when activity was recreated
 			viewModel.isFreshStart().removeObservers(this);
 			viewModel.isFreshStart().setValue(true);
@@ -151,25 +151,25 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 		if (location == null) return;
 		LatLng latLng = location.getLatLng();
 		addMarker(latLng);
-		animateTo(latLng, LOCATION_ZOOM);
+		animateTo(latLng, GpsMapFragment.LOCATION_ZOOM);
 		viewModel.clearSelectedLocation();
 	}
 
 	private void onSelectedLocationClicked(@Nullable LatLng latLng) {
 		if (latLng == null) return;
-		animateTo(latLng, LOCATION_ZOOM);
+		animateTo(latLng, GpsMapFragment.LOCATION_ZOOM);
 	}
 
 	private void addMarker(LatLng latLng) {
-		if (selectedLocationMarker != null) map.removeMarker(selectedLocationMarker);
-		selectedLocationMarker = map.addMarker(new MarkerOptions().position(latLng));
+		if (selectedLocationMarker != null) getMap().removeMarker(selectedLocationMarker);
+		selectedLocationMarker = getMap().addMarker(new MarkerOptions().position(latLng));
 	}
 
 	private void zoomToMyLocation() {
-		if (map.getMyLocation() == null) return;
-		LatLng coords = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
-		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(coords, LOCATION_ZOOM);
-		map.moveCamera(update);
+		if (getMap().getMyLocation() == null) return;
+		LatLng coords = new LatLng(getMap().getMyLocation().getLatitude(), getMap().getMyLocation().getLongitude());
+		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(coords, GpsMapFragment.LOCATION_ZOOM);
+		getMap().moveCamera(update);
 	}
 
 	private void findNearbyStations(WrapLocation location) {
@@ -187,7 +187,7 @@ public class MapFragment extends GpsMapFragment implements LoaderCallbacks<Nearb
 	@Override
 	public void onLoadFinished(Loader<NearbyLocationsResult> loader, @Nullable NearbyLocationsResult result) {
 		if (result != null && result.status == OK && result.locations != null && result.locations.size() > 0) {
-			nearbyStationsDrawer.draw(map, result.locations);
+			nearbyStationsDrawer.draw(getMap(), result.locations);
 		} else {
 			Toast.makeText(getContext(), R.string.error_find_nearby_stations, Toast.LENGTH_SHORT).show();
 		}

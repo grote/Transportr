@@ -42,7 +42,12 @@ class TripMapFragment : GpsMapFragment() {
         val TAG: String = TripMapFragment::class.java.simpleName
     }
 
-    @Inject internal lateinit var viewModelFactory: ViewModelProvider.Factory
+    override val layout: Int
+        @LayoutRes
+        get() = R.layout.fragment_trip_map
+
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: TripDetailViewModel
 
@@ -59,11 +64,6 @@ class TripMapFragment : GpsMapFragment() {
         return v
     }
 
-    @LayoutRes
-    override fun getLayout(): Int {
-        return R.layout.fragment_trip_map
-    }
-
     override fun onMapReady(mapboxMap: MapboxMap) {
         super.onMapReady(mapboxMap)
 
@@ -72,7 +72,7 @@ class TripMapFragment : GpsMapFragment() {
         activity!!.windowManager.defaultDisplay.getMetrics(metrics)
         val topPadding = mapPadding / 2
         val bottomPadding = mapView.height / 4
-        map.setPadding(0, topPadding, 0, bottomPadding)
+        map!!.setPadding(0, topPadding, 0, bottomPadding)
 
         viewModel.getTrip().observe(this, Observer { onTripChanged(it) })
         viewModel.getZoomLocation().observe(this, Observer { this.animateTo(it) })
@@ -84,7 +84,7 @@ class TripMapFragment : GpsMapFragment() {
 
         val tripDrawer = TripDrawer(context)
         val zoom = viewModel.isFreshStart.value ?: throw IllegalStateException()
-        tripDrawer.draw(map, trip, zoom)
+        tripDrawer.draw(map!!, trip, zoom)
         if (zoom) {
             // do not zoom again when returning to this Fragment
             viewModel.isFreshStart.value = false

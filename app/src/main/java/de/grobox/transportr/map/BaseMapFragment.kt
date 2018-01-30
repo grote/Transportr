@@ -1,0 +1,134 @@
+/*
+ *    Transportr
+ *
+ *    Copyright (c) 2013 - 2017 Torsten Grote
+ *
+ *    This program is Free Software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as
+ *    published by the Free Software Foundation, either version 3 of the
+ *    License, or (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package de.grobox.transportr.map
+
+import android.os.Bundle
+import android.support.annotation.CallSuper
+import android.support.annotation.LayoutRes
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.geometry.LatLngBounds
+import com.mapbox.mapboxsdk.maps.MapView
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
+import de.grobox.transportr.R
+import de.grobox.transportr.TransportrFragment
+
+abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
+
+    protected lateinit var mapView: MapView
+    protected var map: MapboxMap? = null
+    protected var mapPadding: Int = 0
+
+    @get:LayoutRes
+    protected abstract val layout: Int
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+
+        val v = inflater.inflate(layout, container, false)
+        mapView = v.findViewById(R.id.map)
+
+        mapPadding = resources.getDimensionPixelSize(R.dimen.mapPadding)
+
+        return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mapView.onCreate(savedInstanceState)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mapView.onStart()
+        mapView.getMapAsync(this)
+    }
+
+    @CallSuper
+    override fun onMapReady(mapboxMap: MapboxMap) {
+        map = mapboxMap
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mapView.onDestroy()
+    }
+
+    protected fun animateTo(latLng: LatLng?, zoom: Int) {
+        if (latLng == null) return
+        map?.let { map ->
+            val update = if (map.cameraPosition.zoom < zoom) CameraUpdateFactory.newLatLngZoom(
+                latLng,
+                zoom.toDouble()
+            ) else CameraUpdateFactory.newLatLng(latLng)
+            map.easeCamera(update, 1500)
+        }
+    }
+
+    private fun zoomToBounds(latLngBounds: LatLngBounds?, animate: Boolean) {
+        if (latLngBounds == null) return
+        val update = CameraUpdateFactory.newLatLngBounds(latLngBounds, mapPadding)
+        map?.let { map ->
+            if (animate) {
+                map.easeCamera(update)
+            } else {
+                map.moveCamera(update)
+            }
+        }
+    }
+
+    protected fun zoomToBounds(latLngBounds: LatLngBounds?) {
+        zoomToBounds(latLngBounds, false)
+    }
+
+    protected fun animateToBounds(latLngBounds: LatLngBounds?) {
+        zoomToBounds(latLngBounds, true)
+    }
+
+}
