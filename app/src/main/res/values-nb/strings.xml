@@ -35,7 +35,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="tab_libraries">Bibliotek</string>
   <string name="tab_devs">Utviklere</string>
   <string name="tab_about">Om</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nFriprog-lisens: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nFriprog-lisens: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transport er en lommekamerat for offentlig transport som respekterer ditt privatliv og frihet. Det er et veldedig program utviklet av folk fra hele verden, til hjelp med offentlig transport, i den hensikt å gjøre transport enklest mulig der du er. Dette programmet er fri programvare, så du kan fritt bruke, dele, og forbedre det. </p>
@@ -50,7 +50,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
 <p><b>Donasjoner</b> dine valg er listet opp på <a href="%3$s">Transportr-nettsiden</a>.</p>
 ]]>
 </string>
-  <string name="visit_website">Besøk nettside</string>
+  <string name="about_visit_website">Besøk nettside</string>
   <string name="open_navigation_drawer">Åpne navigasjonsskuff</string>
   <string name="from">Fra</string>
   <string name="to">Til</string>

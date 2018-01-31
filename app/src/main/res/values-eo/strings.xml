@@ -29,7 +29,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="tab_libraries">Bibliotekoj</string>
   <string name="tab_devs">Programistoj</string>
   <string name="tab_about">Pri</string>
-  <string name="about_top">© 2013 – 2017 Torsten GROTE\nProgramo laŭ la libera permesilo: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten GROTE\nProgramo laŭ la libera permesilo: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr estas helpilo por publika transporto kiu respektas vian privatecon kaj liberecon. Ĝi estas ne-profita aplikaĵo programita de homoj de la tuta mondo por igi uzadon de publika transporto kiel eble pli facila, kie ajn vi estas. Tiu ĉi aplikaĵo estas Libera Programo, do vi povas libere uzi, analizi, kunhavigi kaj plibonigi ĝin.</p>
@@ -43,7 +43,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
 <p>Ebloj de <b>donacioj</b> estas priskribitaj je <a href="%3$s">la retpaĝo de Transportr</a>.</p>
 ]]>
 </string>
-  <string name="visit_website">Viziti retpaĝon</string>
+  <string name="about_visit_website">Viziti retpaĝon</string>
   <string name="open_navigation_drawer">Malfermi navigan tir-menuon</string>
   <string name="from">El</string>
   <string name="to">Al</string>

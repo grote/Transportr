@@ -27,7 +27,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="tab_libraries">Bibliotheken</string>
   <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nVrije softwarelicentie: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nVrije softwarelicentie: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr is een assistent voor het openbaar vervoer die jouw privacy en vrijheid respecteert. Het is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken, waar je ook bent. Deze app is Vrije Software, dus je kan deze vrij gebruiken, bestuderen, delen en verbeteren.</p>
@@ -41,7 +41,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
 <p>Mogelijke manieren om <b>giften</b> te doen, staan op <a href="%3$s">de Transportr-website</a>.</p>
 ]]>
 </string>
-  <string name="visit_website">Bezoek website</string>
+  <string name="about_visit_website">Bezoek website</string>
   <string name="from">Van</string>
   <string name="to">Naar</string>
   <string name="via">Via</string>

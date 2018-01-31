@@ -37,7 +37,7 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
 <p><b>நன்கொடை</b> செய்ய விரும்பினால், அதற்கான விபரங்கள் <a href="%3$s">Transportr வலைதளத்தில்</a>.</p>
 ]]>
 </string>
-  <string name="visit_website">வலைதளத்திற்கு செல்</string>
+  <string name="about_visit_website">வலைதளத்திற்கு செல்</string>
   <string name="from">புறப்படும் இடம்</string>
   <string name="to">சேருமிடம்</string>
   <string name="via">வழியாக</string>

@@ -24,7 +24,7 @@
 <p><b>Dary</b> možnosti jsou uvedeny <a href="%3$s">Na webových stránkách Transportr </a>.</p>
 ]]>
 </string>
-  <string name="visit_website">Navštívit webové stránky</string>
+  <string name="about_visit_website">Navštívit webové stránky</string>
   <string name="from">Z</string>
   <string name="to">Do</string>
   <string name="via">Přes</string>

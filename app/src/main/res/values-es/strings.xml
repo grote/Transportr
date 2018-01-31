@@ -24,7 +24,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="tab_libraries">Biblioteca</string>
   <string name="tab_devs">Desarrolladores</string>
   <string name="tab_about">A cerca de</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nLicencia de software libre: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nLicencia de software libre: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr es un asistente de transporte público que respeta tu privacidad y tu libertad. Es una aplicacion sin ánimo de lucro desarrollada por personas de todo el mundo para hacer el uso del transporte público lo más fácil posible dondequiera que estés. Esta aplicación es un software libre, para que puedas utilizarla libremente, estudiarla, compartirla y mejorarla.</p>
@@ -38,7 +38,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
 <p>Las opciones para <b>donativos</b> están listadas en <a href="%3$s">la página web de Transportr</a>.</p>
 ]]>
 </string>
-  <string name="visit_website">Visitar sitio web</string>
+  <string name="about_visit_website">Visitar sitio web</string>
   <string name="from">De</string>
   <string name="to">A</string>
   <string name="via">Via</string>

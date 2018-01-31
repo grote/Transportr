@@ -40,7 +40,6 @@ import javax.inject.Inject;
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.about.AboutActivity;
-import de.grobox.transportr.about.AboutMainFragment;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.networks.TransportNetworkManager;
@@ -91,7 +90,7 @@ abstract class DrawerActivity extends TransportrActivity {
 				.addDrawerItems(
 						getDrawerItem(SettingsFragment.TAG, R.drawable.ic_action_settings),
 						getDrawerItem(TransportrChangeLog.TAG, R.drawable.ic_action_changelog),
-						getDrawerItem(AboutMainFragment.TAG, R.drawable.ic_action_about)
+						getDrawerItem(AboutActivity.TAG, R.drawable.ic_action_about)
 				)
 				.withOnDrawerListener(new Drawer.OnDrawerListener() {
 					@Override
@@ -166,7 +165,7 @@ abstract class DrawerActivity extends TransportrActivity {
 				if (tag.equals(SettingsFragment.TAG)) {
 					Intent i = new Intent(DrawerActivity.this, SettingsActivity.class);
 					startActivity(i);
-				} else if (tag.equals(AboutMainFragment.TAG)) {
+				} else if (tag.equals(AboutActivity.TAG)) {
 					Intent i = new Intent(DrawerActivity.this, AboutActivity.class);
 					startActivity(i);
 				}
@@ -185,7 +184,7 @@ abstract class DrawerActivity extends TransportrActivity {
 
 	private String getFragmentName(String tag) {
 		if (tag.equals(SettingsFragment.TAG)) return getString(R.string.drawer_settings);
-		if (tag.equals(AboutMainFragment.TAG)) return getString(R.string.drawer_about);
+		if (tag.equals(AboutActivity.TAG)) return getString(R.string.drawer_about);
 		throw new IllegalArgumentException("Could not find fragment name");
 	}
 

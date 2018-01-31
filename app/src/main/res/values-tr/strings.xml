@@ -16,8 +16,8 @@
   <string name="tab_libraries">Kütüphaneler</string>
   <string name="tab_devs">Geliştiriciler</string>
   <string name="tab_about">Hakkında</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nGPLv3 Özgür Yazılım Lisansı</string>
-  <string name="visit_website">Websitesini Ziyaret Edin</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nGPLv3 Özgür Yazılım Lisansı</string>
+  <string name="about_visit_website">Websitesini Ziyaret Edin</string>
   <string name="from">Nereden</string>
   <string name="to">Nereye</string>
   <string name="via">İle</string>

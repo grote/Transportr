@@ -23,7 +23,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="tab_libraries">Könyvtárak</string>
   <string name="tab_devs">Fejlesztők</string>
   <string name="tab_about">Információ</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nSzabad szoftver licensz: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nSzabad szoftver licensz: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>A Transportr egy tömegközlekedési alkalmazás, ami tiszteletben tartja a privátszférád és a szabadságod. Egy non-profit alkalmazás, amit világszerte azért fejlesztenek, hogy a lehető legegyszerűbbé tegyék a tömegközlekedés használatát, akárhol is legyél. Ez az alkalmazás szabad szoftver, így szabadon használhatod, tanulmányozhatod, megoszthatod, és továbbfejlesztheted.</p>
@@ -37,7 +37,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
 <p><b>Adomány</b>ozási lehetőségekről a <a href="%3$s">Transportr honlapján</a> tájékozódhatsz.</p>
 ]]>
 </string>
-  <string name="visit_website">Honlap megtekintése</string>
+  <string name="about_visit_website">Honlap megtekintése</string>
   <string name="from">Kiindulási pont</string>
   <string name="to">Célpont</string>
   <string name="via">Érintett pont</string>

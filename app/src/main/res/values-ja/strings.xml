@@ -28,7 +28,7 @@
   <string name="tab_libraries">ライブラリー</string>
   <string name="tab_devs">開発者</string>
   <string name="tab_about">アプリについて</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nフリーソフトウェアライセンス: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nフリーソフトウェアライセンス: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr はあなたのプライバシーとあなたの自由を尊重する公共交通機関のコンパニオンです。 あなたがどこにいても可能な限り公共交通機関を簡単に使用するために世界中の人々によって開発された非営利のアプリです。 このアプリはフリーソフトウェアなので、自由に使用、学習、共有、改善することができます。</p>
@@ -42,7 +42,7 @@
 <p><b>寄付</b> の選択肢は <a href="%3$s">Transportr Webサイト</a> に掲示してあります。</p>
 ]]>
 </string>
-  <string name="visit_website">Webサイトを訪問</string>
+  <string name="about_visit_website">Webサイトを訪問</string>
   <string name="from">出発</string>
   <string name="to">目的地</string>
   <string name="via">経由</string>

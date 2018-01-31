@@ -1,68 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-			xmlns:tools="http://schemas.android.com/tools"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
-	<LinearLayout
+	<android.support.constraint.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:layout_height="wrap_content">
 
-		<LinearLayout
-			android:layout_width="match_parent"
+		<ImageView
+			android:id="@+id/appIcon"
+			android:layout_width="64dp"
+			android:layout_height="64dp"
+			android:layout_margin="16dp"
+			android:contentDescription="@string/app_name"
+			android:src="@mipmap/ic_launcher"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+		<TextView
+			android:id="@+id/appNameVersion"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:orientation="horizontal">
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="16dp"
+			android:textColor="?android:textColorPrimary"
+			android:textSize="16sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/appIcon"
+			app:layout_constraintTop_toTopOf="@+id/appIcon"
+			tools:text="Transportr 2.0.0"/>
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_vertical"
-				android:contentDescription="@string/app_name"
-				android:src="@mipmap/ic_launcher"/>
-
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-
-				<TextView
-					android:id="@+id/aboutApp"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="10dp"
-					android:layout_marginStart="10dp"
-					tools:text="Transportr 1.0.0"/>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginLeft="10dp"
-					android:layout_marginStart="10dp"
-					android:text="@string/about_top"
-					/>
-			</LinearLayout>
-		</LinearLayout>
+		<TextView
+			android:id="@+id/copyright"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="8dp"
+			android:layout_marginRight="8dp"
+			android:layout_marginTop="8dp"
+			android:text="@string/about_copyright"
+			app:layout_constraintBottom_toBottomOf="@+id/appIcon"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="@+id/appNameVersion"
+			app:layout_constraintTop_toBottomOf="@+id/appNameVersion"/>
 
 		<TextView
 			android:id="@+id/aboutTextView"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:layout_gravity="fill_vertical|fill_horizontal|fill"
-			android:clickable="true"
-			android:focusable="true"
-			android:linksClickable="true"
-			android:padding="10dp"
-			android:text="@string/about"/>
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:text="@string/about_description"
+			android:textColor="?android:textColorPrimary"
+			android:textSize="16sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/appIcon"/>
+
+		<TextView
+			android:id="@+id/warningTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:text="@string/about_warning_title"
+			android:textColor="@color/md_red_500"
+			android:textSize="16sp"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/aboutTextView"/>
+
+		<TextView
+			android:id="@+id/warningText"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="8dp"
+			android:text="@string/about_warning_text"
+			android:textColor="@color/md_red_500"
+			android:textSize="16sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/warningTitle"/>
+
+		<TextView
+			android:id="@+id/contributions"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:text="@string/about_contributions"
+			android:textColor="?android:textColorPrimary"
+			android:textSize="16sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/warningText"/>
 
 		<Button
 			android:id="@+id/websiteButton"
 			style="@style/Widget.AppCompat.Button.Colored"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:text="@string/visit_website"/>
+			android:layout_marginTop="16dp"
+			android:text="@string/about_visit_website"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/contributions"/>
 
-	</LinearLayout>
+	</android.support.constraint.ConstraintLayout>
+
 </ScrollView>

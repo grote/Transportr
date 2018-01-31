@@ -29,7 +29,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="tab_libraries">Biblioteki</string>
   <string name="tab_devs">Twórcy</string>
   <string name="tab_about">O</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nProgram na wolnej licencji: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nProgram na wolnej licencji: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr jest asystentem transportu publicznego, który szanuje Twoją prywatność i wolność. Jest darmową aplikacją tworzoną przez ludzi z całego świata mającą na celu ułatwienie korzystania z transportu publicznego jak tylko się da i gdziekolwiek jesteś. To jest Wolne Oprogramowanie, więc możesz z niego dowolnie korzystać, analizować je, kopiować i ulepszać.</p>
@@ -43,7 +43,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
 <p>Możliwości <b>dotacji</b> są wymienione na <a href="%3$s">stronie internetowej Transportr</a>.</p>
 ]]>
 </string>
-  <string name="visit_website">Odwiedź stronę</string>
+  <string name="about_visit_website">Odwiedź stronę</string>
   <string name="open_navigation_drawer">Otwórz menu nawigacji</string>
   <string name="from">Z</string>
   <string name="to">Do</string>

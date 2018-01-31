@@ -45,21 +45,12 @@ there are any).</string>
 	<string name="tab_devs">Developers</string>
 	<string name="tab_about">About</string>
 
-	<string name="about_top">© 2013 &#8211; 2017 Torsten Grote\nFree Software License: GPLv3</string>
-	<string name="about">
-<![CDATA[
-<p>Transportr is a public transport companion that respects your privacy and your freedom. It is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. This app is Free Software, so you can freely use, study, share and improve it.</p>
-<p>There is no guarantee for the correctness of the data. Please only use this app at your own risk.</p>
-]]>
-</string>
-	<string name="about_bottom">
-<![CDATA[
-<p><b>Contributions</b> are encouraged and appreciated. If you would like to contribute please go to <a href="%1$s">the Transportr homepage</a> for more information.</p>
-<p>If you find any issues with this app, please report them at <a href="%2$s">the issue tracker</a>.</p>
-<p><b>Donations</b> options are listed on <a href="%3$s">the Transportr website</a>.</p>
-]]>
-</string>
-	<string name="visit_website">Visit Website</string>
+	<string name="about_copyright">© 2013 &#8211; 2018 Torsten Grote\nFree Software License: GPLv3+</string>
+	<string name="about_description">Transportr is a public transport companion developed by people around the world to make using public transport as easy as possible wherever you are.</string>
+	<string name="about_warning_title">Warning</string>
+	<string name="about_warning_text">There is no guarantee for the correctness of the (externally provided) data. Please use this app only at your own risk.</string>
+	<string name="about_contributions">This app is Free Software, so you can freely use, study, share and improve it. Contributions are encouraged and appreciated. If you would like to contribute, please visit the homepage for more information.</string>
+	<string name="about_visit_website">Visit Website</string>
 
 	<string name="open_navigation_drawer">Open Navigation Drawer</string>
 	<string name="from">From</string>

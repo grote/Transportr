@@ -28,7 +28,7 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="tab_libraries">Liburutegiak</string>
   <string name="tab_devs">Garatzaileak</string>
   <string name="tab_about">Honi buruz</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nSoftware askeko lizentzia: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nSoftware askeko lizentzia: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr garraio publikoarekin lagunduko dizu zure pribatutasuna eta askatasunari begirunea erakutsiz. Irabazi asmorik gabeko aplikazio bat da, mundu osoko jendeak garatuta, zauden tokian zaudela garraio publikoa erabiltzea errazagoa izan dadin. Aplikazio hau software librea da, libre zara berau erabili, ikertu, partekatu eta hobetzeko.</p>
@@ -42,7 +42,7 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
 <p><b>Dohaintza</b> aukerak ere <a href="%3$s">Transportr webgunean</a> ikusi daitezke.</p>
 ]]>
 </string>
-  <string name="visit_website">Webgunea bisitatu</string>
+  <string name="about_visit_website">Webgunea bisitatu</string>
   <string name="from">Nondik</string>
   <string name="to">Nora</string>
   <string name="via">Hemendik pasatuz</string>

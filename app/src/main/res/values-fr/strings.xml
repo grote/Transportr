@@ -30,7 +30,7 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="tab_libraries">Bibliothèques</string>
   <string name="tab_devs">Développeurs</string>
   <string name="tab_about">À propos</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nLicence de logiciel libre : LPGv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr est un compagnon de transport en commun qui respecte vos données personnelles et votre liberté. C’est une appli sans but lucratif, développée par des personnes dans le monde entier pour faciliter autant que possible l’utilisation des transports collectifs, où que vous soyez. Cette appli est un logiciel libre et ouvert. Vous pouvez donc l’utiliser gratuitement, l’étudier, la partager et l’améliorer.</p>
@@ -44,7 +44,7 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
 <p>Les options de <b>don</b> sont listées sur <a href="%3$s">le site Web de Transportr</a>.</p>
 ]]>
 </string>
-  <string name="visit_website">Visiter le site Web</string>
+  <string name="about_visit_website">Visiter le site Web</string>
   <string name="open_navigation_drawer">Ouvrir le tiroir de navigation</string>
   <string name="from">De</string>
   <string name="to">À</string>

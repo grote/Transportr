@@ -36,7 +36,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="tab_libraries">Bibliotheken</string>
   <string name="tab_devs">Entwickler</string>
   <string name="tab_about">Über</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nFreie Software Lizenz: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr ist dein Begleiter für den öffentlichen Nah- und Fernverkehr der deine Privatsphäre und Freiheit respektiert. Es ist eine gemeinnützige App entwickelt von Menschen aus aller Welt mit dem Ziel die Benutzung des öffentlichen Verkehrs so einfach wie möglich zu machen, ganz gleich wo du bist. Diese App ist Freie Software, es steht dir also frei sie zu nutzen, zu verstehen wie sie funktioniert, sie zu verteilen und zu verbessern.</p>
@@ -50,7 +50,7 @@ es welche gibt) anzeigen lassen.</string>
 <p><b>Spendenmöglichkeiten</b> sind auf <a href="%3$s">der Transportr Webseite</a> aufgeführt.</p>
 ]]>
 </string>
-  <string name="visit_website">Zur Webseite</string>
+  <string name="about_visit_website">Zur Webseite</string>
   <string name="open_navigation_drawer">Navigationsschuber öffnen</string>
   <string name="from">Von</string>
   <string name="to">Nach</string>

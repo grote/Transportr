@@ -28,7 +28,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="tab_libraries">Bibliotecas</string>
   <string name="tab_devs">Desenvolvedores</string>
   <string name="tab_about">Sobre</string>
-  <string name="about_top">© 2013 – 2017 Torsten Grote\nLicença de Software Livre: GPLv3</string>
+  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nLicença de Software Livre: GPLv3</string>
   <string name="about">
 <![CDATA[
 <p>Transportr é um aplicativo de transporte público que respeita a sua privacidade e liberdade. É um aplicativo sem fins lucrativos, desenvolvido por pessoas ao redor do mundo que querem utilizar o sistema de transporte público, de forma fácil onde quer que esteja. Por ser um aplicativo de software livre, você pode livremente utilizar, estudar, compartilhar e melhorá-lo.</p>
@@ -42,7 +42,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
 <p><b> Doações</b> Veja as opções disponíveis no <a href="%3$s"> Transportr website</a>.</p>
 ]]>
 </string>
-  <string name="visit_website">Visite o Website</string>
+  <string name="about_visit_website">Visite o Website</string>
   <string name="from">De</string>
   <string name="to">Para</string>
   <string name="via">Via</string>
