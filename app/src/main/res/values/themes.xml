@@ -18,6 +18,10 @@
         <item name="android:alertDialogTheme">@style/DialogTheme</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="mapStyle">@string/mapbox_style_dark</item>
+
+        <item name="about_libraries_card">@color/cardview_dark_background</item>
+        <item name="about_libraries_title_openSource">@color/about_libraries_title_openSource_dark</item>
+        <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
     </style>
 
     <style name="AppBaseTheme.Light" parent="MaterialDrawerTheme.Light.DarkToolbar">
