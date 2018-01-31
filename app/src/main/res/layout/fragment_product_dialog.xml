@@ -1,26 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<android.support.constraint.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
-    <TextView
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:padding="10dp"
-        android:text="@string/select_products"/>
+	<TextView
+		android:id="@+id/title"
+		style="@style/TextAppearance.AppCompat.Title"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="8dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="8dp"
+		android:gravity="center_vertical"
+		android:padding="10dp"
+		android:text="@string/select_products"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/productsView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/list_item_product"/>
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/productsView"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginStart="8dp"
+		app:layout_constraintBottom_toTopOf="@+id/divider"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/title"
+		tools:listitem="@layout/list_item_product"/>
 
-    <include
-        layout="@layout/ok_cancel"/>
+	<View
+		android:id="@+id/divider"
+		android:layout_width="0dp"
+		android:layout_height="1px"
+		android:background="@color/about_libraries_dividerLight_openSource"
+		app:layout_constraintBottom_toTopOf="@+id/okButton"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"/>
 
-</LinearLayout>
+	<Button
+		android:id="@+id/cancelButton"
+		style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:text="@string/cancel"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/guideline"
+		app:layout_constraintStart_toStartOf="parent"/>
+
+	<android.support.constraint.Guideline
+		android:id="@+id/guideline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintGuide_percent="0.5"/>
+
+	<Button
+		android:id="@+id/okButton"
+		style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:text="@string/ok"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guideline"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -19,6 +19,7 @@
 
 package de.grobox.transportr.trips.search;
 
+import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -29,6 +30,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -90,11 +92,27 @@ public class ProductDialogFragment extends DialogFragment {
 			viewModel.setProducts(products);
 			getDialog().cancel();
 		});
-
 		// Cancel Button
 		Button cancelButton = v.findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(view -> getDialog().cancel());
+
 		return v;
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+
+		// adjust width and height to be shown properly in landscape orientation
+		Dialog dialog = getDialog();
+		if (dialog != null) {
+			Window window = dialog.getWindow();
+			if (window != null) {
+				int width = ViewGroup.LayoutParams.MATCH_PARENT;
+				int height = ViewGroup.LayoutParams.MATCH_PARENT;
+				window.setLayout(width, height);
+			}
+		}
 	}
 
 	@Override

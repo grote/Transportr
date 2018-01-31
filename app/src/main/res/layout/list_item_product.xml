@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<android.support.constraint.ConstraintLayout
+	android:id="@+id/linearLayout"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/productImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:padding="5dp"
-        android:tint="?colorControlNormal"
-        tools:ignore="ContentDescription"
-        tools:src="@drawable/product_bus"/>
+	<ImageView
+		android:id="@+id/productImage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:padding="5dp"
+		android:tint="?colorControlNormal"
+		app:layout_constraintEnd_toStartOf="@+id/productName"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:ignore="ContentDescription"
+		tools:src="@drawable/product_bus"/>
 
-    <TextView
-        android:id="@+id/productName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:text="@string/product_bus"/>
+	<TextView
+		android:id="@+id/productName"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:text="@string/product_bus"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/productCheckBox"
+		app:layout_constraintStart_toEndOf="@+id/productImage"
+		app:layout_constraintTop_toTopOf="parent"/>
 
-    <CheckBox
-        android:id="@+id/productCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:clickable="false"/>
+	<CheckBox
+		android:id="@+id/productCheckBox"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:clickable="false"
+		app:layout_constraintBaseline_toBaselineOf="@+id/productName"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/productName"/>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
