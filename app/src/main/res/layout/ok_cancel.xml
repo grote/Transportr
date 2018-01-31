@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:showIn="@layout/fragment_special_location"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	tools:showIn="@layout/fragment_product_dialog">
 
-    <include layout="@layout/divider_horizontal"/>
+	<include layout="@layout/divider_horizontal"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        style="@style/Widget.AppCompat.ButtonBar.AlertDialog">
+	<LinearLayout
+		style="@style/Widget.AppCompat.ButtonBar.AlertDialog"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/cancelButton"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxLines="1"
-            android:text="@string/cancel" />
+		<Button
+			android:id="@+id/cancelButton"
+			style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:maxLines="1"
+			android:text="@string/cancel"/>
 
-        <Button
-            android:id="@+id/okButton"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxLines="1"
-            android:text="@string/ok" />
-    </LinearLayout>
+		<Button
+			android:id="@+id/okButton"
+			style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:maxLines="1"
+			android:text="@string/ok"/>
+	</LinearLayout>
 
 </LinearLayout>

@@ -77,7 +77,7 @@ public class DateUtils {
 	}
 
 	public static String getDelayString(long delay) {
-		return (delay > 0 ? "+" : "-") + Long.toString(delay);
+		return (delay > 0 ? "+" : "") + Long.toString(delay);
 	}
 
 	@Nullable

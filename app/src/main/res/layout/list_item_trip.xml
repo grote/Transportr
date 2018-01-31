@@ -88,7 +88,7 @@
 			android:layout_marginTop="4dp"
 			app:flexWrap="wrap"
 			app:layout_constraintEnd_toStartOf="@+id/duration"
-			app:layout_constraintLeft_toLeftOf="@+id/fromLocation"
+			app:layout_constraintStart_toStartOf="@+id/fromLocation"
 			app:layout_constraintTop_toBottomOf="@+id/fromLocation">
 
 			<include layout="@layout/list_item_line"/>

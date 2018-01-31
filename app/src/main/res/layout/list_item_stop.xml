@@ -47,6 +47,13 @@
 		tools:text="+3"
 		tools:visibility="visible"/>
 
+	<android.support.constraint.Barrier
+		android:id="@+id/barrier"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:barrierDirection="end"
+		app:constraint_referenced_ids="fromTime,toTime"/>
+
 	<ImageView
 		android:id="@+id/circle"
 		android:layout_width="20dp"
@@ -57,7 +64,7 @@
 		android:layout_marginTop="8dp"
 		android:src="@drawable/leg_circle_middle"
 		app:layout_constraintBottom_toBottomOf="@+id/toTime"
-		app:layout_constraintStart_toEndOf="@+id/fromTime"
+		app:layout_constraintStart_toEndOf="@+id/barrier"
 		app:layout_constraintTop_toTopOf="@+id/fromTime"
 		tools:ignore="ContentDescription"
 		tools:tint="@color/md_red_300"/>

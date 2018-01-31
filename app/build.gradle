@@ -101,7 +101,7 @@ dependencies {
 	implementation "com.android.support:cardview-v7:$supportVersion"
 	implementation "com.android.support:recyclerview-v7:$supportVersion"
 	implementation "com.android.support:preference-v14:$supportVersion"
-	implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+	implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta4'
 
 	implementation "android.arch.lifecycle:extensions:$archVersion"
 	implementation "android.arch.persistence.room:runtime:$archVersion"
@@ -175,8 +175,8 @@ dependencyVerification {
 			'android.arch.persistence.room:runtime:1.0.0:runtime-1.0.0.aar:29e291f48708311ce9a9f2bb1b87bcee20282c5f9b8ffeedd0389a1fb417482a',
 			'android.arch.persistence:db-framework:1.0.0:db-framework-1.0.0.aar:e8310c66979f8823cfe583951abfde96824b176289ba77b750a25be00d25981a',
 			'android.arch.persistence:db:1.0.0:db-1.0.0.aar:7c0a51d5fc890a8fb94a3370ff599243ec3485cca63daba3cc2bb197835dc521',
-			'com.android.support.constraint:constraint-layout-solver:1.0.2:constraint-layout-solver-1.0.2.jar:8c62525a9bc5cff5633a96cb9b32fffeccaf41b8841aa87fc22607070dea9b8d',
-			'com.android.support.constraint:constraint-layout:1.0.2:constraint-layout-1.0.2.aar:b0c688cc2b7172608f8153a689d746da40f71e52d7e2fe2bfd9df2f92db77085',
+			'com.android.support.constraint:constraint-layout-solver:1.1.0-beta4:constraint-layout-solver-1.1.0-beta4.jar:aa84c890d28fd9519bb009cfd046da3e1e82dfc7f4d5871d1232c3f464646e53',
+			'com.android.support.constraint:constraint-layout:1.1.0-beta4:constraint-layout-1.1.0-beta4.aar:dfc8c2dcb896e35b44210e1dbddbfbc4ddbbeddf3bbc76823a2960e8aa3b4b94',
 			'com.android.support.test.espresso:espresso-contrib:3.0.1:espresso-contrib-3.0.1.aar:bb166e58a70842053f843b29af1b7113c8a49c79556855adf9648ebd08b8fc9a',
 			'com.android.support.test.espresso:espresso-core:3.0.1:espresso-core-3.0.1.aar:dbca1a46db203a7ef12aa7cea37e5d5345900f83401b32d5f60f220991290948',
 			'com.android.support.test.espresso:espresso-idling-resource:3.0.1:espresso-idling-resource-3.0.1.aar:d834e12b690cadc79c1f2a74d59a9bfc4dce25e824c012b56509367a94ced002',

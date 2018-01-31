@@ -228,8 +228,7 @@
 		android:textColor="?android:textColorPrimary"
 		android:textSize="16sp"
 		app:layout_constraintEnd_toStartOf="@+id/toButton"
-		app:layout_constraintLeft_toLeftOf="@+id/fromLocation"
-		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/fromLocation"
 		app:layout_constraintTop_toBottomOf="@+id/stopsList"
 		app:layout_goneMarginTop="8dp"
 		tools:text="To Location has also a very long name"/>
