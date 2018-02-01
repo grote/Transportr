@@ -202,7 +202,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	}
 
 	private void ensureTransportNetworkSelected() {
-		TransportNetwork network = manager.getTransportNetwork().getValue();
+		TransportNetwork network = getManager().getTransportNetwork().getValue();
 		if (network == null) {
 			Intent intent = new Intent(this, PickTransportNetworkActivity.class);
 			intent.putExtra(FORCE_NETWORK_SELECTION, true);
@@ -226,7 +226,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	}
 
 	private void checkAndShowChangelog() {
-		TransportrChangeLog cl = new TransportrChangeLog(this, settingsManager.isDarkTheme());
+		TransportrChangeLog cl = new TransportrChangeLog(this, getSettingsManager().isDarkTheme());
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
 		}
