@@ -87,6 +87,10 @@
 			android:name="de.grobox.transportr.about.AboutActivity"
 			android:label="@string/drawer_about"/>
 
+		<activity
+			android:name=".about.ContributorsActivity"
+			android:label="@string/drawer_contributors"/>
+
 	</application>
 
 </manifest>

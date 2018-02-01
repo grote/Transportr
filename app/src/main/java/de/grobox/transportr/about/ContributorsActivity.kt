@@ -1,7 +1,7 @@
 /*
  *    Transportr
  *
- *    Copyright (c) 2013 - 2017 Torsten Grote
+ *    Copyright (c) 2013 - 2018 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -23,17 +23,16 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.mikepenz.aboutlibraries.LibsBuilder
 
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrActivity
 import kotlinx.android.synthetic.main.activity_about.*
 
-class AboutActivity : TransportrActivity() {
+class ContributorsActivity : TransportrActivity() {
 
     companion object {
         @JvmField
-        val TAG : String = AboutActivity::class.java.simpleName
+        val TAG : String = ContributorsActivity::class.java.simpleName
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,20 +40,16 @@ class AboutActivity : TransportrActivity() {
         setContentView(R.layout.activity_about)
         setUpCustomToolbar(false)
 
-        pager.adapter = AboutPagerAdapter(supportFragmentManager)
+        pager.adapter = ContributorsPagerAdapter(supportFragmentManager)
         tabLayout.setupWithViewPager(pager)
     }
 
-    private inner class AboutPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    private inner class ContributorsPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
         override fun getItem(i: Int): Fragment {
             return when (i) {
-                0 -> AboutFragment()
-                1 -> LibsBuilder()
-                    // Pass the fields of your application to the lib so it can find all external lib information
-                    .withFields(R.string::class.java.fields)
-                    // get the fragment
-                    .supportFragment()
+                0 -> ContributorFragment()
+                1 -> TranslatorsFragment()
                 else -> throw IllegalArgumentException()
             }
         }
@@ -65,8 +60,8 @@ class AboutActivity : TransportrActivity() {
 
         override fun getPageTitle(i: Int): CharSequence? {
             return when (i) {
-                0 -> getString(R.string.tab_about)
-                1 -> getString(R.string.tab_libraries)
+                0 -> getString(R.string.contributors)
+                1 -> getString(R.string.translators)
                 else -> throw IllegalArgumentException()
             }
         }

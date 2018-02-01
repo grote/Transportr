@@ -31,6 +31,7 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
@@ -40,6 +41,7 @@ import javax.inject.Inject;
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.about.AboutActivity;
+import de.grobox.transportr.about.ContributorsActivity;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.networks.TransportNetworkManager;
@@ -89,7 +91,9 @@ abstract class DrawerActivity extends TransportrActivity {
 				.withAccountHeader(accountHeader)
 				.addDrawerItems(
 						getDrawerItem(SettingsFragment.TAG, R.drawable.ic_action_settings),
+						new DividerDrawerItem(),
 						getDrawerItem(TransportrChangeLog.TAG, R.drawable.ic_action_changelog),
+						getDrawerItem(ContributorsActivity.TAG, R.drawable.ic_people),
 						getDrawerItem(AboutActivity.TAG, R.drawable.ic_action_about)
 				)
 				.withOnDrawerListener(new Drawer.OnDrawerListener() {
@@ -168,10 +172,13 @@ abstract class DrawerActivity extends TransportrActivity {
 				} else if (tag.equals(AboutActivity.TAG)) {
 					Intent i = new Intent(DrawerActivity.this, AboutActivity.class);
 					startActivity(i);
+				} else if (tag.equals(ContributorsActivity.TAG)) {
+					Intent i = new Intent(DrawerActivity.this, ContributorsActivity.class);
+					startActivity(i);
 				}
 				return true;
 			};
-			name = getFragmentName(tag);
+			name = getDrawerItemName(tag);
 		}
 		return new PrimaryDrawerItem()
 				.withName(name)
@@ -182,9 +189,10 @@ abstract class DrawerActivity extends TransportrActivity {
 				.withOnDrawerItemClickListener(onClick);
 	}
 
-	private String getFragmentName(String tag) {
+	private String getDrawerItemName(String tag) {
 		if (tag.equals(SettingsFragment.TAG)) return getString(R.string.drawer_settings);
 		if (tag.equals(AboutActivity.TAG)) return getString(R.string.drawer_about);
+		if (tag.equals(ContributorsActivity.TAG)) return getString(R.string.drawer_contributors);
 		throw new IllegalArgumentException("Could not find fragment name");
 	}
 

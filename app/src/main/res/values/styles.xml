@@ -29,6 +29,12 @@
 		<item name="android:layout_marginTop">8dp</item>
 	</style>
 
+	<style name="ContributorsCard" parent="CardView">
+		<item name="cardBackgroundColor">?attr/cardBackgroundColor</item>
+		<item name="cardCornerRadius">2dp</item>
+		<item name="cardUseCompatPadding">true</item>
+	</style>
+
 	<style name="Button" parent="Widget.AppCompat.Button.Borderless.Colored">
 		<item name="android:textColor">@color/buttonColor</item>
 	</style>
