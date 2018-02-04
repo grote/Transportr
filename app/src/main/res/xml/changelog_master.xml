@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-	<release version="2.0.0-beta1" versioncode="102">
+	<release version="2.0.0-beta3" versioncode="104">
 		<change>New Design and complete code rewrite</change>
 		<change>Shiny new map given a more prominent place</change>
 		<change>Current location is used by default</change>
