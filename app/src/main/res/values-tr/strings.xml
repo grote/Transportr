@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Gizliliğinize ve özgürlüğünüze saygı duyan toplu taşıma rehberi.</string>
+  <string name="drawer_settings">Ayarlar</string>
   <string name="drawer_changelog">Sürüm Notları</string>
   <string name="drawer_about">Hakkında</string>
-  <string name="drawer_settings">Ayarlar</string>
+  <string name="drawer_contributors">Katkıda Bulunanlar</string>
   <string name="action_fav_trip">Geziyi Beğenilen Olarak İşaretle</string>
   <string name="action_unfav_trip">Geziyi Beğenilen Olarak İşaretleme</string>
   <string name="action_refresh">Tazele</string>
@@ -13,10 +14,8 @@
   <string name="action_show_on_external_map">Dış Haritada Göster</string>
   <string name="action_copy">Kopyala</string>
   <string name="drawer_departures">Gelişler</string>
-  <string name="tab_libraries">Kütüphaneler</string>
-  <string name="tab_devs">Geliştiriciler</string>
   <string name="tab_about">Hakkında</string>
-  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nGPLv3 Özgür Yazılım Lisansı</string>
+  <string name="tab_libraries">Kütüphaneler</string>
   <string name="about_visit_website">Websitesini Ziyaret Edin</string>
   <string name="from">Nereden</string>
   <string name="to">Nereye</string>
@@ -188,7 +187,7 @@
   <string name="np_desc_dub">Birleşik Arap Emirlikleri, Dubai</string>
   <string name="np_region_usa">Amerika Birleşik Devletleri</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">New York ve New-Jersey Eyaletleri</string>
+  <string name="np_name_usny">New York ve New-Jersey Eyaletleri</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="contributors">Katkıda Bulunanlar</string>
   <string name="translators">Çevirmenler</string>
@@ -196,10 +195,8 @@
   <string name="french">Fransızca</string>
   <string name="german">Almanca</string>
   <string name="italian">İtalyanca</string>
-  <string name="portuguese_br">Portekizce\n(Brezilya)</string>
   <string name="spanish">İspanyolca</string>
   <string name="turkish">Türkçe</string>
-  <string name="norwegian_bokmal">Norveççe\nBokmål</string>
   <string name="basque">Baskça</string>
   <string name="english">İngilizce</string>
   <string name="catalan">Katalanca</string>

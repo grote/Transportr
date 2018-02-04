@@ -2,9 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Veřejná doprava respektuje vaše soukromí a svobodu.</string>
   <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr je nezisková app, která byla vyvinuta lidmi z celého světa, aby se používání veřejné dopravy stalo tak jednoduché, jak je to jen možné, ať jste kdekoli. V současné době funguje nejlépe v Evropě, ale také podporuje mnoho míst po celém světě. Pokud žijete v nepodporované oblasti, zvažte jeho přidání do Transportr. Pokyny jsou k dispozici na domovské stránce. Transportr najde trasu z domova, vaší aktuální polohy nebo danou stanici od odkudkoliv budete chtít jet. Můžete také uložit celé cesty jako oblíbené a najít další cesty s jednou ranou. Samozřejmě, můžete také zobrazit na mapě svou cestu a sledovat svůj pokrok pomocí GPS. Můžete také objevovat blízké stanice a ukázat nejbližší odjezdy včetně zpoždění (pokud existují).</string>
+  <string name="drawer_settings">Nastavení</string>
   <string name="drawer_changelog">Seznam změn</string>
   <string name="drawer_about">O</string>
-  <string name="drawer_settings">Nastavení</string>
+  <string name="drawer_contributors">Příspívatelé</string>
   <string name="action_fav_trip">Označit cestu jako oblíbenou</string>
   <string name="action_unfav_trip">Neoznačit cestu jako oblíbený</string>
   <string name="action_refresh">Obnovit</string>
@@ -14,16 +15,8 @@
   <string name="action_show_on_external_map">Zobrazit na externí mapě</string>
   <string name="action_copy">Kopírování</string>
   <string name="drawer_departures">Odjezdy</string>
-  <string name="tab_libraries">Knihovny</string>
-  <string name="tab_devs">Vývojáři</string>
   <string name="tab_about">O</string>
-  <string name="about_bottom">
-    <![CDATA[
-<p><b>Příspěvky</b> jsou podporovány a oceňovány. Pokud byste chtěli přispět přejděte na <a href="%1$s">the Transportr homepage</a> pro více informací.</p>
-<p>Pokud zjistíte nějaké problémy s touto aplikací, oznamte je na <a href="%2$s">sledování problémů </a>.</p>
-<p><b>Dary</b> možnosti jsou uvedeny <a href="%3$s">Na webových stránkách Transportr </a>.</p>
-]]>
-</string>
+  <string name="tab_libraries">Knihovny</string>
   <string name="about_visit_website">Navštívit webové stránky</string>
   <string name="from">Z</string>
   <string name="to">Do</string>
@@ -64,7 +57,6 @@
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Výchozí nastavení systému</string>
-  <string name="times_include_delays">Pozor. Časy zahrnují hlášené zpoždění</string>
   <string name="home">Domů</string>
   <string name="home_dialog_title">Nastavte vaši domácí pozici</string>
   <string name="action_set_locations">Editace vyhledávání</string>
@@ -102,7 +94,6 @@
   <string name="italian">Italsky</string>
   <string name="spanish">Španělsky</string>
   <string name="turkish">Turecky.</string>
-  <string name="norwegian_bokmal">Norsky</string>
   <string name="basque">Baskicko</string>
   <string name="english">Anglicky</string>
   <string name="catalan">Katalánsko</string>

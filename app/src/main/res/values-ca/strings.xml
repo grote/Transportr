@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">El company de transport públic que respecta la teva privacitat i llibertat.</string>
+  <string name="drawer_settings">Configuració</string>
   <string name="drawer_changelog">Canvis</string>
   <string name="drawer_about">Sobre</string>
-  <string name="drawer_settings">Configuració</string>
+  <string name="drawer_contributors">Col·laboradors</string>
   <string name="action_fav_trip">Marcar trajecte com a favorit</string>
   <string name="action_unfav_trip">Desmarcar trajecte com a favorit</string>
   <string name="action_refresh">Actualitzar</string>
@@ -13,9 +14,8 @@
   <string name="action_show_on_external_map">Mostrar a mapa extern</string>
   <string name="action_copy">Copiar</string>
   <string name="drawer_departures">Sortides</string>
-  <string name="tab_libraries">Biblioteques</string>
-  <string name="tab_devs">Desenvolupadors</string>
   <string name="tab_about">Sobre</string>
+  <string name="tab_libraries">Biblioteques</string>
   <string name="about_visit_website">Visitar web</string>
   <string name="from">De</string>
   <string name="to">Cap a</string>
@@ -163,7 +163,7 @@
   <string name="np_desc_dub">Emirats Àrabs Units, Dubai</string>
   <string name="np_region_usa">Estats Units d\'Amèrica</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">Estats de New York i New-Jersey</string>
+  <string name="np_name_usny">Estats de New York i New-Jersey</string>
   <string name="maintainer">Mantenidor</string>
   <string name="contributors">Col·laboradors</string>
   <string name="translators">Traductors</string>
@@ -171,10 +171,8 @@
   <string name="french">Francès</string>
   <string name="german">Alemany</string>
   <string name="italian">Italià</string>
-  <string name="portuguese_br">Portuguès\n(Brasil)</string>
   <string name="spanish">Espanyol</string>
   <string name="turkish">Turc</string>
-  <string name="norwegian_bokmal">Noruec\nBokmål</string>
   <string name="basque">Eusquera</string>
   <string name="english">Anglès</string>
   <string name="catalan">Català</string>

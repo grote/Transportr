@@ -116,9 +116,7 @@ dependencies {
 	implementation 'com.mikepenz:fastadapter-commons:3.0.3@aar'
 	implementation 'com.mikepenz:fastadapter-extensions-expandable:3.0.3@aar'
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.1.0'
-	implementation('com.mapbox.mapboxsdk:mapbox-android-sdk:5.3.2@aar') {
-		transitive = true
-	}
+	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.4.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0'
 	implementation 'com.mapzen.android:lost:3.0.4'
 
@@ -224,7 +222,7 @@ dependencyVerification {
 			'com.google.guava:guava:23.0-android:guava-23.0-android.jar:c8cea78328d2c50a3be2d4548f6fbc723516b5438251f5803008778f3ff5a3ed',
 			'com.jakewharton.timber:timber:4.6.0:timber-4.6.0.aar:35c22867f2673132e97e17857d36bb2fc25f5790f0425406833ed0254d62fc66',
 			'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0:mapbox-android-plugin-locationlayer-0.3.0.aar:8c65339d03655badde67c1c1e08ae02fdb955be2cc8d55e1a6898590ca0e6137',
-			'com.mapbox.mapboxsdk:mapbox-android-sdk:5.3.2:mapbox-android-sdk-5.3.2.aar:4c1d13af32b6d4f788b23f8e18b8089711bd28a26b879e589bf5b9bf0ff26721',
+			'com.mapbox.mapboxsdk:mapbox-android-sdk:5.4.0:mapbox-android-sdk-5.4.0.aar:dcc04b24d65d883de89be2b5f7fe5ca0d254af23873a3a7abd6944e85a56e7a6',
 			'com.mapbox.mapboxsdk:mapbox-android-telemetry:2.2.9:mapbox-android-telemetry-2.2.9.aar:7319ae68bb41035db8b21bc2216a9f560d12c5681c12a2137069ca993f1718dd',
 			'com.mapbox.mapboxsdk:mapbox-java-core:2.2.9:mapbox-java-core-2.2.9.jar:0bd929e2f8194e0a4031a9a3fcb22aa0731b641fd3b8ff5598446637cd4b3300',
 			'com.mapbox.mapboxsdk:mapbox-java-geojson:2.2.9:mapbox-java-geojson-2.2.9.jar:e888f38e36173a1ac39f3ba08fe6ba50d809b5d05ca8de5c143dee35114bfd91',

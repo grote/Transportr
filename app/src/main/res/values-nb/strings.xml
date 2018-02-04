@@ -14,9 +14,10 @@ fremtidige turer i ett enkelt drag. Du kan selvsagt også vise turen i kartet
 og følge framdrift via GPS.
 
 Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsinkelser (hvis det skulle være noen).</string>
+  <string name="drawer_settings">Innstillinger</string>
   <string name="drawer_changelog">Endringslogg</string>
   <string name="drawer_about">Om</string>
-  <string name="drawer_settings">Innstillinger</string>
+  <string name="drawer_contributors">Bidragsytere</string>
   <string name="action_fav_trip">Merk tur som favoritt</string>
   <string name="action_unfav_trip">Avmerk tur som favoritt</string>
   <string name="action_switch_locations">Bytt fra og til</string>
@@ -32,24 +33,8 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="action_show_on_external_map">Vis på eksternt kart</string>
   <string name="action_copy">Kopier</string>
   <string name="drawer_departures">Avganger</string>
-  <string name="tab_libraries">Bibliotek</string>
-  <string name="tab_devs">Utviklere</string>
   <string name="tab_about">Om</string>
-  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nFriprog-lisens: GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>Transport er en lommekamerat for offentlig transport som respekterer ditt privatliv og frihet. Det er et veldedig program utviklet av folk fra hele verden, til hjelp med offentlig transport, i den hensikt å gjøre transport enklest mulig der du er. Dette programmet er fri programvare, så du kan fritt bruke, dele, og forbedre det. </p>
-<p>Det gis ingen garantier for at ting stemmer. Bruk programmet på egen risiko.</p>
-]]>
-
-</string>
-  <string name="about_bottom">
-<![CDATA[
-<p><b>Bidrag</b> oppfordres og settes pris på. Hvis du har noe å hjelpe til med , gå til <a href="%1$s">Transportr-hjemmesiden</a> for mer informasjon.</p>
-<p>Rapporter ethvert problem med programmet til <a href="%2$s">feiloversikten</a>.</p>
-<p><b>Donasjoner</b> dine valg er listet opp på <a href="%3$s">Transportr-nettsiden</a>.</p>
-]]>
-</string>
+  <string name="tab_libraries">Bibliotek</string>
   <string name="about_visit_website">Besøk nettside</string>
   <string name="open_navigation_drawer">Åpne navigasjonsskuff</string>
   <string name="from">Fra</string>
@@ -72,6 +57,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="share_trip_via">Del tur via…</string>
   <string name="more">Mer</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="for_x_min">i %d min</string>
   <string name="change_time">Avgangstid</string>
   <string name="now">Nå</string>
   <string name="now_small">nå</string>
@@ -103,6 +89,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="pref_show_when_locked_summary">Vis over låseskjerm</string>
   <string name="error">Feil</string>
   <string name="error_no_internet">Internettilkobling kreves. Forsikre deg om at internettilgangen virker.</string>
+  <string name="error_connection_failure">Tilkobling mislyktes. Prøv igjen.</string>
   <string name="error_trip_refresh_failed">Kunne ikke gjenoppfriske data for gjeldende tur</string>
   <string name="error_geo_intent">Kunne ikke åpne ekstern plassering</string>
   <string name="error_find_nearby_stations">Kunne ikke finne stasjoner i nærheten</string>
@@ -128,7 +115,8 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="platform">(Plattform %s)</string>
   <string name="system_default">Systemforvalg</string>
-  <string name="times_include_delays">(Merk: Tidsforespeilinger inkluderer rapporterte forsinkelser)</string>
+  <string name="trip_share_date">Dato: %s</string>
+  <string name="times_include_delays">(Merk: Tidsforespeilinger kan inkludere rapporterte forsinkelser)</string>
   <string name="created_by">Opprettet av %s</string>
   <string name="home">Hjem</string>
   <string name="home_dialog_title">Sett hjemmeposisjon</string>
@@ -137,6 +125,8 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="work_hint">Sett arbeidsplassering</string>
   <string name="widget_name_quickwork">Kom deg på arbeid</string>
   <string name="tap_to_set">Trykk for å velge</string>
+  <string name="widget_name_favorites">%1$s til %2$s</string>
+  <string name="widget_name_favorites_via">%1$s til %2$s (via %3$s)</string>
   <string name="action_set_locations">Rediger søk</string>
   <string name="action_swap_locations">Søk etter retur</string>
   <string name="action_change">Endre</string>
@@ -274,9 +264,15 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_dub">De forente arabiske emirater, Dubai</string>
   <string name="np_region_usa">Amerikas forente stater</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">Statene New York og New-Jersey</string>
+  <string name="np_name_usny">Statene New York og New-Jersey</string>
+  <string name="np_name_california">California</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Transport for hele staten Oregon (USA)</string>
+  <string name="np_region_costa_rica">Costa Rica</string>
+  <string name="np_name_costa_rica">Costa Rica</string>
+  <string name="np_region_africa">Afrika</string>
+  <string name="np_name_ghana">Ghana</string>
+  <string name="np_desc_ghana">Accra</string>
   <string name="maintainer">Utgivelsesansvarlig</string>
   <string name="contributors">Bidragsytere</string>
   <string name="translators">Oversettere</string>
@@ -284,10 +280,8 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="french">Fransk</string>
   <string name="german">Tysk</string>
   <string name="italian">Italiensk</string>
-  <string name="portuguese_br">Portugisisk\n(Brasil)</string>
   <string name="spanish">Spansk</string>
   <string name="turkish">Tyrkisk</string>
-  <string name="norwegian_bokmal">Norsk \nbokmål</string>
   <string name="basque">Baskisk</string>
   <string name="english">Engelsk</string>
   <string name="catalan">Katalansk</string>

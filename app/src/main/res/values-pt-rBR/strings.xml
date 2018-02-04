@@ -13,41 +13,36 @@ e acompanhar seu progresso via GPS.
 
 Você pode também descobrir terminais por perto e visualizar os ônibus que está de saída (se existir algum). 
 </string>
+  <string name="drawer_settings">Configurações</string>
   <string name="drawer_changelog">Novidades</string>
   <string name="drawer_about">Sobre</string>
-  <string name="drawer_settings">Configurações</string>
+  <string name="drawer_contributors">Contribuidores</string>
   <string name="action_fav_trip">Marcar viagem como favorita</string>
   <string name="action_unfav_trip">Desmarcar viagem como favorita</string>
+  <string name="action_switch_locations">Alternar Início e Fim</string>
+  <string name="action_time_type">O tempo é</string>
+  <string name="trip_dep">Saída</string>
+  <string name="trip_arr">Chegada</string>
   <string name="action_refresh">Atualizar</string>
+  <string name="action_navigation_expand">Exibir Via</string>
+  <string name="action_choose_products">Meios de Transporte</string>
   <string name="action_share">Compartilhe</string>
   <string name="action_trip_calendar">Adicionar ao Calendário</string>
   <string name="action_trip_delete">Excluir Viagem</string>
   <string name="action_show_on_external_map">Mostrar no Mapa Externo</string>
   <string name="action_copy">Copiar</string>
   <string name="drawer_departures">Partidas</string>
-  <string name="tab_libraries">Bibliotecas</string>
-  <string name="tab_devs">Desenvolvedores</string>
   <string name="tab_about">Sobre</string>
-  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nLicença de Software Livre: GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>Transportr é um aplicativo de transporte público que respeita a sua privacidade e liberdade. É um aplicativo sem fins lucrativos, desenvolvido por pessoas ao redor do mundo que querem utilizar o sistema de transporte público, de forma fácil onde quer que esteja. Por ser um aplicativo de software livre, você pode livremente utilizar, estudar, compartilhar e melhorá-lo.</p>
-<p> Não há garantia na exatidão dos dados. Por favor, apenas utilize o aplicativo a seu próprio risco.</p>
-]]>
-</string>
-  <string name="about_bottom">
-<![CDATA[
-<p><b>Contribuições</b> são encorajadas e apreciadas. Se você gostaria de contribuir, por favor, faça isso <a href="%1$s">Transportr  website </a> para maiores informações.</p>
-<p>Se encontrar qualquer problema com esse aplicativo, por favor, reporte isso para <a href="%2$s"> a central de desenvolvimento </a>.</p>
-<p><b> Doações</b> Veja as opções disponíveis no <a href="%3$s"> Transportr website</a>.</p>
-]]>
-</string>
+  <string name="tab_libraries">Bibliotecas</string>
   <string name="about_visit_website">Visite o Website</string>
+  <string name="open_navigation_drawer">Abrir Planejador de Percurso</string>
   <string name="from">De</string>
   <string name="to">Para</string>
   <string name="via">Via</string>
-  <string name="from_here">De</string>
-  <string name="to_here">Para</string>
+  <string name="search_hint">Busque aqui</string>
+  <string name="from_here">Daqui</string>
+  <string name="to_here">Para cá</string>
+  <string name="clear_location">Limpar Localização</string>
   <string name="walk">Caminhar</string>
   <string name="alpha">alfa</string>
   <string name="beta">beta</string>
@@ -61,12 +56,17 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="share_trip_via">Compartilhar Viagem Via…</string>
   <string name="more">Mais</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="for_x_min">por %d min</string>
   <string name="change_time">Mudar hora</string>
   <string name="now">Agora</string>
   <string name="now_small">agora</string>
   <string name="yesterday">Ontem</string>
   <string name="today">Hoje</string>
   <string name="tomorrow">Amanhã</string>
+  <string name="in_x_minutes">em %dmin</string>
+  <string name="x_minutes_ago">%dmin atrás</string>
+  <string name="time_picker_previous_day">Dia Anterior</string>
+  <string name="time_picker_next_day">Dia Seguinte</string>
   <string name="ok">OK</string>
   <string name="cancel">Cancelar</string>
   <string name="pref_transport_network">Rede de Transporte</string>
@@ -84,21 +84,55 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
+  <string name="pref_show_when_locked_title">Mostrar viagem e resultados de pesquisa mesmo quando a tela estiver bloqueada</string>
+  <string name="pref_show_when_locked_summary">Mostrar sobre a tela bloqueada</string>
+  <string name="error">Erro</string>
+  <string name="error_no_internet">É necessária uma conexão com a internet. Por favor, verifique se seu acesso à internet está funcionando.</string>
+  <string name="error_connection_failure">A conexão falhou. Por favor, tente novamente.</string>
   <string name="error_trip_refresh_failed">Não foi possível atualizar os dados para a viagem selecionada.</string>
+  <string name="error_geo_intent">Não foi possível abrir a localização externa</string>
+  <string name="error_find_nearby_stations">Não foi possível encontrar estações próximas</string>
+  <string name="error_departures">Não foi possível encontrar nenhuma partida</string>
+  <string name="trip_error_ambiguous">Não foi possível encontrar a localização. Por favor tente buscar lugares diferentes. </string>
+  <string name="trip_error_too_close">As localizações de \'a partir de\' e \'para\' são muito próximas entre si.</string>
+  <string name="trip_error_unknown_from">Não foi possível encontrar a localização \'a partir de\'. Por favor tente outra.</string>
+  <string name="trip_error_unknown_via">Não foi possível encontrar a localização \'via\'. Por favor tente outra.</string>
+  <string name="trip_error_unknown_to">Não foi possível encontrar a localização \'para\'. Por favor tente outra.</string>
+  <string name="trip_error_unresolvable_address">Não foi possível encontrar o endereço solicitado. Por favor tente outro.</string>
+  <string name="trip_error_no_trips">Nenhuma conexão encontrada :(</string>
+  <string name="trip_error_invalid_date">A data buscada não é suportada atualmente pelo provedor de dados. Por favor tente outra data.</string>
+  <string name="trip_error_service_down">O provedor de dados está offline :(\nPor favor tente novamente mais tarde.</string>
+  <string name="trip_error_pte">Se quiser reportar esse erro, por favor o faça diretamente a um facilitador de transporte público e anexe uma captura de tela.</string>
+  <string name="trip_issue">Pode haver um problema com essas conexão.</string>
+  <string name="try_again">Tente novamente</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <string name="meter">%d m</string>
+  <plurals name="stops">
+    <item quantity="one">%d Paradas</item>
+    <item quantity="other">%d Paradas</item>
+  </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="system_default">Sistema Padrão</string>
-  <string name="times_include_delays">(Atenção: Horários incluem atrasos)</string>
+  <string name="platform">(Platforma %s)</string>
+  <string name="system_default">Padrão do Sistema</string>
+  <string name="trip_share_date">Data: %s</string>
+  <string name="times_include_delays">(Atenção: Os tempos podem incluir atrasos relatados)</string>
+  <string name="created_by">Criado por %s</string>
   <string name="home">Página Inicial</string>
   <string name="home_dialog_title">Configurar localização de Casa</string>
   <string name="widget_name_quickhome">Leve-me para casa</string>
   <string name="work">Trabalho</string>
   <string name="work_hint">Definir local de trabalho</string>
+  <string name="widget_name_quickwork">Ir ao Trabalho</string>
   <string name="tap_to_set">Pressione para fixar</string>
+  <string name="widget_name_favorites">%1$s para %2$s</string>
+  <string name="widget_name_favorites_via">%1$s para %2$s (via %3$s)</string>
   <string name="action_set_locations">Editar pesquisa</string>
   <string name="action_swap_locations">Pesquisar viagem de retorno.</string>
+  <string name="action_change">Modificar</string>
+  <string name="action_add_shortcut">Adicionar atalho ao Lançador</string>
   <string name="location_gps">Use Posição Atual</string>
-  <string name="permission_denied_gps">Você não permitiu o acesso a sua localização, assim esse comando não irá funcionar. Por favor, conceda a permissão nas configurações do aplicativo.</string>
+  <string name="warning_no_gps_fix">Ainda não foi possível determinar sua localização.</string>
+  <string name="permission_denied_gps">Você não permitiu o acesso à sua localização, assim esse comando não irá funcionar. Por favor, conceda a permissão nas configurações do aplicativo.</string>
   <string name="select_products">Selecione os meios de transporte</string>
   <string name="product_high_speed_train">Trem de Alta Velocidade</string>
   <string name="product_regional_train">Trem Regional</string>
@@ -121,6 +155,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_oebb">Áustria</string>
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bélgica</string>
+  <string name="np_desc_sncb">Transporte público na Bélgica</string>
   <string name="np_region_br">Brasil</string>
   <string name="np_name_br">Brasil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte e Porto Alegre</string>
@@ -143,6 +178,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_name_francenortheast">Nordeste da França</string>
   <string name="np_desc_francenortheast">Estrasburgo, Metz, Lila, Nanci</string>
   <string name="np_name_francenorthwest">Noroeste da França</string>
+  <string name="np_name_frenchsoutheast">Sudeste da França</string>
   <string name="np_name_frenchsouthwest">Sudeste da França</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limusino, Aquitânia, Sul Pirineus, Bordeaux, Toulouse</string>
   <string name="np_name_paris">Paris</string>
@@ -209,7 +245,15 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_dub">Emirados Árabes Unidos, Dubai</string>
   <string name="np_region_usa">Estados Unidos da América</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nova York e Nova Jersey</string>
+  <string name="np_name_usny">Estados de Nova York e Nova Jersey</string>
+  <string name="np_name_california">Califórnia</string>
+  <string name="np_desc_california">Transporte público na Califórnia (EUA)</string>
+  <string name="np_name_oregon">Oregon</string>
+  <string name="np_desc_oregon">Transporte Global no estado de Oregon (EUA)</string>
+  <string name="np_region_costa_rica">Costa Rica</string>
+  <string name="np_name_costa_rica">Costa Rica</string>
+  <string name="np_region_africa">África</string>
+  <string name="np_name_ghana">Gana</string>
   <string name="maintainer">Mantenedores</string>
   <string name="contributors">Contribuidores</string>
   <string name="translators">Tradutores</string>
@@ -217,14 +261,14 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="french">Francês</string>
   <string name="german">Alemão</string>
   <string name="italian">Italiano</string>
-  <string name="portuguese_br">Português\n(Brasil)</string>
   <string name="spanish">Espanhol</string>
   <string name="turkish">Turco</string>
-  <string name="norwegian_bokmal">Norueguês\nBokmål</string>
   <string name="basque">Basco</string>
   <string name="english">Inglês </string>
   <string name="catalan">Catalão</string>
   <string name="polish">Polonês </string>
   <string name="tamil">Tâmil</string>
   <string name="esperanto">Esperanto</string>
+  <string name="czech">Tcheco</string>
+  <string name="hungarian">Húngaro</string>
 </resources>

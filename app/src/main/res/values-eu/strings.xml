@@ -13,54 +13,50 @@ Bidai osoak gorde ditzakezu ere gogokoen bezala,
 eta hurrengo bidaiak keinu batekin aurkitu. Noski, zure bidaia mapan ikusi dezakezu eta jarraipena GPS bidez egin.
 
 Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek barne (egonez gero).</string>
+  <string name="drawer_settings">Ezarpenak</string>
   <string name="drawer_changelog">Aldaketen zerrenda</string>
   <string name="drawer_about">Honi buruz</string>
-  <string name="drawer_settings">Ezarpenak</string>
-  <string name="action_fav_trip">Bidaia gogokoen bezala markatu</string>
-  <string name="action_unfav_trip">Bidaia gogokoen bezala desmarkatu</string>
+  <string name="drawer_contributors">Laguntzaileak</string>
+  <string name="action_fav_trip">Markatu bidaia gogoko gisa</string>
+  <string name="action_unfav_trip">Desmarkatu bidaia gogokoetatik</string>
+  <string name="action_switch_locations">Alderantzikatu \'nondik\' eta \'nora\'</string>
+  <string name="action_time_type">Orduaren esanahia</string>
+  <string name="trip_dep">Irteera</string>
+  <string name="trip_arr">Iritsiera</string>
   <string name="action_refresh">Freskatu</string>
+  <string name="action_navigation_expand">Erakutsi erdibidea</string>
+  <string name="action_choose_products">Garraiobideak</string>
   <string name="action_share">Partekatu</string>
-  <string name="action_trip_calendar">Egutegira gehitu</string>
-  <string name="action_trip_delete">Bidaia ezabatu</string>
-  <string name="action_show_on_external_map">Kanpoko mapan erakutsi</string>
+  <string name="action_trip_calendar">Gehitu egutegira</string>
+  <string name="action_trip_delete">Ezabatu bidaia</string>
+  <string name="action_show_on_external_map">Erakutsi kanpoko mapan</string>
   <string name="action_copy">Kopiatu</string>
   <string name="drawer_departures">Irteerak</string>
-  <string name="tab_libraries">Liburutegiak</string>
-  <string name="tab_devs">Garatzaileak</string>
   <string name="tab_about">Honi buruz</string>
-  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nSoftware askeko lizentzia: GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>Transportr garraio publikoarekin lagunduko dizu zure pribatutasuna eta askatasunari begirunea erakutsiz. Irabazi asmorik gabeko aplikazio bat da, mundu osoko jendeak garatuta, zauden tokian zaudela garraio publikoa erabiltzea errazagoa izan dadin. Aplikazio hau software librea da, libre zara berau erabili, ikertu, partekatu eta hobetzeko.</p>
-<p>Ezin dugu datuen zehaztasuna bermatu. Aplikazio honi ematen diozun erabilera zure erantzukizuna da.</p>
-]]>
-</string>
-  <string name="about_bottom">
-<![CDATA[
-<p><b>Parte hartzea</b>  ongi etorria da eta eskertzen da. Parte hartu nahi baduzu zoaz <a href="%1$s">Transportr webgunera</a> informazio gehiagorako.</p>
-<p>Aplikazio honekin arazorik baduzu, jakinarazi <a href="%2$s">arazoen arbelean</a>.</p>
-<p><b>Dohaintza</b> aukerak ere <a href="%3$s">Transportr webgunean</a> ikusi daitezke.</p>
-]]>
-</string>
-  <string name="about_visit_website">Webgunea bisitatu</string>
+  <string name="tab_libraries">Liburutegiak</string>
+  <string name="about_visit_website">Bisitatu webgunea</string>
+  <string name="open_navigation_drawer">Ireki nabigazioaren tiradera</string>
   <string name="from">Nondik</string>
   <string name="to">Nora</string>
-  <string name="via">Hemendik pasatuz</string>
+  <string name="via">Erdibidea</string>
+  <string name="search_hint">Bilatu hemen</string>
   <string name="from_here">Hemendik</string>
   <string name="to_here">Hona</string>
+  <string name="clear_location">Garbitu kokalekua</string>
   <string name="walk">Ibili</string>
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">Sarea</string>
-  <string name="pick_network_activity">Tokia hautatu</string>
+  <string name="pick_network_activity">Hautatu ingurunea</string>
   <string name="pick_network_first_run">Ongi etorri Transportr-era!\n\nMesedez hautatu ezazu zure inguruko garraio sarea jarraitzeko. Edozein momentutan aldatu ahal izango duzu.</string>
   <string name="stations_searching_position">Uneko kokapena bilatzen...</string>
-  <string name="drawer_nearby_stations">Hurbileko geltokiak</string>
-  <string name="find_nearby_stations">Hurbileko geltokiak aurkitu</string>
-  <string name="find_departures">Irteerak aurkitu</string>
-  <string name="share_trip_via">Bidaia partekatu honekin...</string>
+  <string name="drawer_nearby_stations">Inguruko geltokiak</string>
+  <string name="find_nearby_stations">Bilatu inguruko geltokiak</string>
+  <string name="find_departures">Bilatu irteerak</string>
+  <string name="share_trip_via">Partekatu bidaia honekin...</string>
   <string name="more">Gehiago</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="for_x_min">%d minutuz</string>
   <string name="change_time">Denbora aldatu</string>
   <string name="now">Orain</string>
   <string name="now_small">orain</string>
@@ -69,6 +65,8 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="tomorrow">Bihar</string>
   <string name="in_x_minutes">%dmin barru</string>
   <string name="x_minutes_ago">duela %dmin</string>
+  <string name="time_picker_previous_day">Aurreko eguna</string>
+  <string name="time_picker_next_day">Hurrengo eguna</string>
   <string name="ok">Ados</string>
   <string name="cancel">Utzi</string>
   <string name="pref_transport_network">Garraio sarea</string>
@@ -77,8 +75,8 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="pref_theme_light">Argia</string>
   <string name="pref_theme_dark">Iluna</string>
   <string name="pref_language_title">Hizkuntza</string>
-  <string name="pref_directions_routing">Norabideak eta bidai bideraketa</string>
-  <string name="pref_optimize">Honetarako optimizatu</string>
+  <string name="pref_directions_routing">Jarraibideak eta bidaiaren kalkulua</string>
+  <string name="pref_optimize">Optimizatu honetarako</string>
   <string name="pref_optimize_least_duration">Iraupen gutxien</string>
   <string name="pref_optimize_least_changes">Aldaketa gutxien</string>
   <string name="pref_optimize_least_walking">Gutxien ibili beharra</string>
@@ -86,23 +84,56 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="pref_walk_speed_slow">Poliki</string>
   <string name="pref_walk_speed_normal">Arrunta</string>
   <string name="pref_walk_speed_fast">Bizkor</string>
+  <string name="pref_show_when_locked_title">Erakutsi bidaia eta bilaketaren emaitzak pantaila blokeatuta badago ere</string>
+  <string name="pref_show_when_locked_summary">Erakutsi blokeo-pantailaren gainean</string>
+  <string name="error">Errorea</string>
+  <string name="error_no_internet">Internet konexioa behar da. Egiaztatu zure internet konexioa badabilela.</string>
+  <string name="error_connection_failure">Konexioak huts egin du. Saiatu berriro.</string>
   <string name="error_trip_refresh_failed">Ezin izan dira datuak freskatu uneko bidairako.</string>
+  <string name="error_geo_intent">Ezin izan da kanpo kokalekua ireki</string>
+  <string name="error_find_nearby_stations">Ezin izan dira inguruko geltokiak aurkitu</string>
+  <string name="error_departures">Ezin izan da irteerarik aurkitu</string>
+  <string name="trip_error_ambiguous">Ezin izan da kokalekua aurkitu. Saiatu kokaleku desberdinak bilatzen.</string>
+  <string name="trip_error_too_close">\'nondik\' eta \'nora\' kokalekuak elkarrengandik hurbilegi daude.</string>
+  <string name="trip_error_unknown_from">Ezin izan da \'nondik\' kokalekua aurkitu. Saiatu beste batekin.</string>
+  <string name="trip_error_unknown_via">Ezin izan da \'erdibidea\' kokalekua aurkitu. Saiatu beste batekin.</string>
+  <string name="trip_error_unknown_to">Ezin izan da \'nora\' kokalekua aurkitu. Saiatu beste batekin.</string>
+  <string name="trip_error_unresolvable_address">Ezin izan da emandako helbidea aurkitu. Saiatu beste batekin.</string>
+  <string name="trip_error_no_trips">Ezin izan da garraioen konexiorik aurkitu :(</string>
+  <string name="trip_error_invalid_date">Datuen hornitzaileak ez du bilaketa data onartzen. Saiatu beste data batekin.</string>
+  <string name="trip_error_service_down">Datuen hornitzailea ez dago eskuragarri:(\n Saiatu geroago.</string>
+  <string name="trip_error_pte">Errore honen berri eman nahi baduzu, egizu public-transport-enabler proiektuan zuzenean eta gehitu pantaila-argazki bat.</string>
+  <string name="trip_issue">Arazoren bat egon daiteke konexio honekin.</string>
+  <string name="try_again">Saiatu berriro</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <string name="meter">%d m</string>
+  <plurals name="stops">
+    <item quantity="one">Geldialdi %d</item>
+    <item quantity="other">%d geldialdi</item>
+  </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
+  <string name="platform">(%s plataforma)</string>
   <string name="system_default">Sistemaren lehenetsia</string>
-  <string name="times_include_delays">(Adi: denborek jakinarazitako atzerapenak dauzkate)</string>
+  <string name="trip_share_date">Data: %s</string>
+  <string name="times_include_delays">(Adi: Denborek atzerapen ezagunak barne-har ditzakete)</string>
+  <string name="created_by">%s-k sortua</string>
   <string name="home">Etxea</string>
-  <string name="home_dialog_title">Etxeko kokalekua ezarri</string>
+  <string name="home_dialog_title">Ezarri etxeko kokalekua</string>
   <string name="widget_name_quickhome">Eraman nazazu etxera</string>
   <string name="work">Lana</string>
-  <string name="work_hint">Laneko kokalekua ezarri</string>
+  <string name="work_hint">Ezarri laneko kokalekua</string>
+  <string name="widget_name_quickwork">Joan lanera</string>
   <string name="tap_to_set">Ukitu ezartzeko</string>
-  <string name="action_set_locations">Bilaketa editatu</string>
+  <string name="widget_name_favorites">%1$s &gt; %2$s</string>
+  <string name="widget_name_favorites_via">%1$s &gt; %2$s (erdibidea %3$s)</string>
+  <string name="action_set_locations">Editatu bilaketa</string>
   <string name="action_swap_locations">Bilatu itzultzeko bidaia</string>
   <string name="action_change">Aldatu</string>
-  <string name="location_gps">Uneko kokapena erabili</string>
+  <string name="action_add_shortcut">Gehitu lasterbidea abiarazlean</string>
+  <string name="location_gps">Erabili uneko kokapena</string>
+  <string name="warning_no_gps_fix">Ezin izan da zure kokalekua aurkitu oraindik</string>
   <string name="permission_denied_gps">Ez duzu zure kokalekua atzemateko baimena eman, funtzionaltasun hau ez da ibiliko. Eman baimena aplikazioaren ezarpenetan.</string>
-  <string name="select_products">Garriobideak hautatu</string>
+  <string name="select_products">Hautatu garriobideak</string>
   <string name="product_high_speed_train">Abiadura handiko trena</string>
   <string name="product_regional_train">Eskualdeko trena</string>
   <string name="product_suburban_train">Hiri inguruko trena</string>
@@ -110,13 +141,14 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="product_tram">Tranbia</string>
   <string name="product_bus">Autobusa</string>
   <string name="product_ferry">Ferrya</string>
-  <string name="product_cablecar">Teleferiko</string>
+  <string name="product_cablecar">Teleferikoa</string>
   <string name="product_on_demand">Eskariaren arabera</string>
   <!--ckChangeLog-->
   <string name="changelog_full_title">Aldaketen zerrenda</string>
   <string name="changelog_title">Zer da berria</string>
   <string name="changelog_show_full">Gehiago...</string>
   <string name="np_region_australia">Australia</string>
+  <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Sydney, Hegoaldeko Gales Berria, Australia</string>
   <string name="np_region_austria">Austria</string>
   <string name="np_desc_ivb">Innsbruck</string>
@@ -231,9 +263,16 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="np_desc_dub">Arabiar Emirerri Batuak, Dubai</string>
   <string name="np_region_usa">Ameriketako Estatu Batuak</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">New York eta New-Jersey estatuak</string>
+  <string name="np_name_usny">New York eta New-Jersey estatuak</string>
+  <string name="np_name_california">Kalifornia</string>
+  <string name="np_desc_california">Kaliforniako (EEBB) garraio publikoa</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Oregon estatuko (EEBB) garraio orokorra</string>
+  <string name="np_region_costa_rica">Costa Rica</string>
+  <string name="np_name_costa_rica">Costa Rica</string>
+  <string name="np_region_africa">Afrika</string>
+  <string name="np_name_ghana">Ghana</string>
+  <string name="np_desc_ghana">Accra</string>
   <string name="maintainer">Mantentzailea</string>
   <string name="contributors">Laguntzaileak</string>
   <string name="translators">Itzultzaileak</string>
@@ -241,10 +280,8 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="french">Frantsesa</string>
   <string name="german">Alemaniera</string>
   <string name="italian">Italiera</string>
-  <string name="portuguese_br">Portugalera\n(Brasil)</string>
   <string name="spanish">Gaztelania</string>
   <string name="turkish">Turkiera</string>
-  <string name="norwegian_bokmal">Norvegiera\nBokmål</string>
   <string name="basque">Euskara</string>
   <string name="english">Ingelesa</string>
   <string name="catalan">Katalana</string>

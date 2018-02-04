@@ -1,17 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">El asistente de transporte público que respeta tu privacidad y tu libertad.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr es una aplicacion sin ánimo de lucro desarrollada por personas de todo el mundo para hacer el uso del transporte público lo más fácil posible donde sea que estés.
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr es una aplicacion sin ánimo de lucro desarrollada por personas de todo el mundo para hacer el uso del transporte público lo más fácil posible donde sea que estés. 
 
-Actualmente, funciona mejor en Europa, pero también admite muchos otros lugares del planeta. Si vives en un área sin soporte, considera agregarla a Transportr.
+Actualmente funciona mejor en Europa, pero también admite muchos otros lugares del planeta. Si vives en un área sin soporte, considera agregarla a Transportr.
 Las instrucciones están disponibles en nuestra página web.
 
 Transportr encuentra direcciones desde tu casa, tu posición actual o una estación dada hasta donde quieras ir. También es posible guardar viajes completos como favoritos y encontrar próximos viajes con un movimiento. Por supuesto, también puede mostrar el recorrido en el mapa y seguir el progreso via GPS.
 
 También es posible descubrir estaciones cercanas y ver las próximas partidas incluyendo las demoras (si las hay).</string>
+  <string name="drawer_settings">Ajustes</string>
   <string name="drawer_changelog">Registro de cambios</string>
   <string name="drawer_about">Acerca de</string>
-  <string name="drawer_settings">Ajustes</string>
+  <string name="drawer_contributors">Colaboradores</string>
   <string name="action_fav_trip">Marcar viaje como favorito</string>
   <string name="action_unfav_trip">Desmarcar viaje como favorito</string>
   <string name="action_refresh">Actualizar</string>
@@ -21,23 +22,8 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="action_show_on_external_map">Mostrar en mapa externo</string>
   <string name="action_copy">Copiar</string>
   <string name="drawer_departures">Salidas</string>
-  <string name="tab_libraries">Biblioteca</string>
-  <string name="tab_devs">Desarrolladores</string>
   <string name="tab_about">A cerca de</string>
-  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nLicencia de software libre: GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>Transportr es un asistente de transporte público que respeta tu privacidad y tu libertad. Es una aplicacion sin ánimo de lucro desarrollada por personas de todo el mundo para hacer el uso del transporte público lo más fácil posible dondequiera que estés. Esta aplicación es un software libre, para que puedas utilizarla libremente, estudiarla, compartirla y mejorarla.</p>
-<p>No hay ninguna garantía sobre la exactitud de los datos. Por favor, use esta aplicación sólo bajo su propia responsabilidad.</p>
-]]>
-</string>
-  <string name="about_bottom">
-<![CDATA[
-<p>Los <b>aportes</b> son alentados y apreciados. Si deseas contribuir, por favor vaya a <a href="%1$s">la página principal de Transportr</a> para más información.</p>
-<p>Si encuentra algún problema con esta aplicación, por favor informe en <a href="%2$s">el rastreador de problemas</a>.</p>
-<p>Las opciones para <b>donativos</b> están listadas en <a href="%3$s">la página web de Transportr</a>.</p>
-]]>
-</string>
+  <string name="tab_libraries">Biblioteca</string>
   <string name="about_visit_website">Visitar sitio web</string>
   <string name="from">De</string>
   <string name="to">A</string>
@@ -83,10 +69,16 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
   <string name="error_trip_refresh_failed">No se han podido actualizar los datos de viaje actual.</string>
+  <string name="trip_error_unknown_to">No puedo encontrar el lugar de destino. Por favor, pruebe con otro.</string>
+  <string name="trip_error_unresolvable_address">No puedo encontrar la dirección proporcionada. Por favor, Intente con otra.</string>
+  <string name="trip_error_invalid_date">El proveedor de datos no permite esta búsqueda por fecha. Pruebe con otra fecha.</string>
+  <string name="trip_error_service_down">El proveedor de datos está fuera de servicio :(
+Inténtelo de nuevo más tarde, por favor.</string>
+  <string name="trip_issue">Puede haber un problema con esta conexión.</string>
+  <string name="try_again">Intentar de nuevo</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Predeterminado del sistema</string>
-  <string name="times_include_delays">(Atención: Los tiempos incluyen demoras reportadas)</string>
   <string name="home">Inicio</string>
   <string name="home_dialog_title">Establecer la ubicación inicial</string>
   <string name="widget_name_quickhome">Llévame a casa</string>
@@ -97,6 +89,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="action_swap_locations">Buscar viaje de vuelta</string>
   <string name="action_change">Cambiar</string>
   <string name="location_gps">Usar la posición actual</string>
+  <string name="warning_no_gps_fix">Todavía no puedo localizar tu posición.</string>
   <string name="permission_denied_gps">No permitiste el acceso a tu ubicación, por lo que esta funcionalidad no estará disponible. Por favor, concede permiso en la configuración de la aplicación.</string>
   <string name="select_products">Seleccionar medio de transporte</string>
   <string name="product_high_speed_train">Tren de alta velocidad</string>
@@ -227,7 +220,7 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_desc_dub">Emiratos Árabes Unidos, Dubái</string>
   <string name="np_region_usa">Estados Unidos de América</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nueva York y Nueva Jersey</string>
+  <string name="np_name_usny">Estados de Nueva York y Nueva Jersey</string>
   <string name="np_name_oregon">Oregón</string>
   <string name="np_desc_oregon">Transporte global en estado de Oregón (EUA)</string>
   <string name="maintainer">Mantenedor</string>
@@ -237,10 +230,8 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="french">Francés</string>
   <string name="german">Alemán</string>
   <string name="italian">Italiano</string>
-  <string name="portuguese_br">Portugués\n(Brasil)</string>
   <string name="spanish">Castellano</string>
   <string name="turkish">Turco</string>
-  <string name="norwegian_bokmal">Noruego\nBokmål</string>
   <string name="basque">Euskera</string>
   <string name="english">Inglés</string>
   <string name="catalan">Catalán</string>

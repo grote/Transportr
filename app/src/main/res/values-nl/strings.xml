@@ -12,9 +12,10 @@ met één enkele swipe naar latere verbindingen zoeken. Natuurlijk kan je ook je
 en je positie in het traject volgen via GPS.
 
 Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief vertragingen (als er zijn).</string>
+  <string name="drawer_settings">Instellingen</string>
   <string name="drawer_changelog">Lijst van veranderingen</string>
   <string name="drawer_about">Over</string>
-  <string name="drawer_settings">Instellingen</string>
+  <string name="drawer_contributors">Bijdragers</string>
   <string name="action_fav_trip">Markeer reis als favoriet</string>
   <string name="action_unfav_trip">Verwijder reis uit favorieten</string>
   <string name="action_refresh">Vernieuw</string>
@@ -24,23 +25,8 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="action_show_on_external_map">Laat op externe kaart zien</string>
   <string name="action_copy">Kopieer</string>
   <string name="drawer_departures">Vertrekken</string>
-  <string name="tab_libraries">Bibliotheken</string>
-  <string name="tab_devs">Ontwikkelaars</string>
   <string name="tab_about">Over</string>
-  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nVrije softwarelicentie: GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>Transportr is een assistent voor het openbaar vervoer die jouw privacy en vrijheid respecteert. Het is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken, waar je ook bent. Deze app is Vrije Software, dus je kan deze vrij gebruiken, bestuderen, delen en verbeteren.</p>
-<p>Er is geen garantie voor de correctheid van de data. Je gebruikt deze app op je eigen risico.</p>
-]]>
-</string>
-  <string name="about_bottom">
-<![CDATA[
-<p><b>Contributies</b> zijn welkom en worden erg gewaardeerd. Als je mee wil helpen, ga dan naar <a href="%1$s">de homepage van Transportr</a> voor meer informatie.</p>
-<p>Als je problemen met de app vindt, rapporteer deze dan op <a href="%2$s">de issue-tracker</a>.</p>
-<p>Mogelijke manieren om <b>giften</b> te doen, staan op <a href="%3$s">de Transportr-website</a>.</p>
-]]>
-</string>
+  <string name="tab_libraries">Bibliotheken</string>
   <string name="about_visit_website">Bezoek website</string>
   <string name="from">Van</string>
   <string name="to">Naar</string>
@@ -89,7 +75,6 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Systeemstandaard</string>
-  <string name="times_include_delays">(Let op: Tijd is inclusief gerapporteerde vertragingen)</string>
   <string name="home">Thuis</string>
   <string name="home_dialog_title">Stel thuislocatie in</string>
   <string name="widget_name_quickhome">OV: naar huis</string>
@@ -228,7 +213,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_dub">Verenigde Arabische Emiraten, Dubai</string>
   <string name="np_region_usa">Verenigde Staten</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">New York en New-Jersey staten</string>
+  <string name="np_name_usny">New York en New-Jersey staten</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Alle OV in de staat Oregon (VS)</string>
   <string name="maintainer">Onderhouder</string>
@@ -238,10 +223,8 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="french">Frans</string>
   <string name="german">Duits</string>
   <string name="italian">Italiaans</string>
-  <string name="portuguese_br">Portugees\n(Brazilië)</string>
   <string name="spanish">Spaans</string>
   <string name="turkish">Turks</string>
-  <string name="norwegian_bokmal">Noors\nBokmål</string>
   <string name="basque">Baskisch</string>
   <string name="english">Engels</string>
   <string name="catalan">Catalaans</string>

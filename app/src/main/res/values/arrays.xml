@@ -31,6 +31,7 @@
         <item>@string/esperanto</item>
         <item>@string/czech</item>
         <item>@string/hungarian</item>
+        <item>@string/japanese</item>
     </string-array>
     <string-array name="pref_language_values">
         <item>@string/pref_language_value_default</item>
@@ -50,6 +51,7 @@
         <item>eo</item>
         <item>cs</item>
         <item>hu</item>
+        <item>ja</item>
     </string-array>
     <string name="pref_language_value_default" translatable="false">default</string>
 

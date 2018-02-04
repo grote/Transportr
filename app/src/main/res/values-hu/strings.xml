@@ -8,9 +8,10 @@ Jelenleg a legjobban Európán belül működik, de sok más helyet is támogat 
 A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy adott megállótól oda, ahova menni szeretnél. Teljes utakat menthetsz el a kedvenceid közé, és a legközelebbi kapcsolódásokat is egyszerűen megtalálhatod. Az utakat természetesen megtekintheted térképen is, és követheted a haladásodat GPS segítségével.
 
 Állomásokat is kereshetsz vele a közelben, és a legközelebbi indulásokat is megtekintheted, az esetleges késésekkel együtt.</string>
+  <string name="drawer_settings">Beállítások</string>
   <string name="drawer_changelog">Változtatási napló</string>
   <string name="drawer_about">Az alkalmazásról</string>
-  <string name="drawer_settings">Beállítások</string>
+  <string name="drawer_contributors">Hozzájárulók</string>
   <string name="action_fav_trip">Megjelölés kedvencként</string>
   <string name="action_unfav_trip">Eltávolítás a kedvencek közül</string>
   <string name="action_refresh">Frissítés</string>
@@ -20,23 +21,8 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="action_show_on_external_map">Külső térképen megjelenítés</string>
   <string name="action_copy">Másolás</string>
   <string name="drawer_departures">Indulások</string>
-  <string name="tab_libraries">Könyvtárak</string>
-  <string name="tab_devs">Fejlesztők</string>
   <string name="tab_about">Információ</string>
-  <string name="about_copyright">© 2013 – 2017 Torsten Grote\nSzabad szoftver licensz: GPLv3</string>
-  <string name="about">
-<![CDATA[
-<p>A Transportr egy tömegközlekedési alkalmazás, ami tiszteletben tartja a privátszférád és a szabadságod. Egy non-profit alkalmazás, amit világszerte azért fejlesztenek, hogy a lehető legegyszerűbbé tegyék a tömegközlekedés használatát, akárhol is legyél. Ez az alkalmazás szabad szoftver, így szabadon használhatod, tanulmányozhatod, megoszthatod, és továbbfejlesztheted.</p>
-<p>Az adatok helyességéért felelősséget semmilyen formában nem vállalunk. Az alkalmazást kizárólag saját felelősségedre használd.</p>
-]]>
-</string>
-  <string name="about_bottom">
-<![CDATA[
-<p>Szeretnénk bátorítani arra, hogy <b>Hozzájárulj</b> az alkalmazás továbbfejlesztéséhez. További információkért kérlek, látogass el a <a href="%1$s">Transportr honlapjára</a>.</p>
-<p>Ha bármilyen problémát tapasztalsz az alkalmazás működésével kapcsolatban, kérlek jelentsd nekünk a <a href="%2$s">problémakövetőn</a> keresztül.</p>
-<p><b>Adomány</b>ozási lehetőségekről a <a href="%3$s">Transportr honlapján</a> tájékozódhatsz.</p>
-]]>
-</string>
+  <string name="tab_libraries">Könyvtárak</string>
   <string name="about_visit_website">Honlap megtekintése</string>
   <string name="from">Kiindulási pont</string>
   <string name="to">Célpont</string>
@@ -85,7 +71,6 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Alapértelmezett (rendszer)</string>
-  <string name="times_include_delays">(Figyelem: Az jelzett időpontokba a jelentett késések is beleszámítanak)</string>
   <string name="home">Otthon</string>
   <string name="home_dialog_title">Az otthon pozíciójának beállítása</string>
   <string name="widget_name_quickhome">Vigyél Haza</string>
@@ -226,7 +211,7 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="np_desc_dub">Egyesült Arab Emirátusok, Dubaj</string>
   <string name="np_region_usa">Amerikai Egyesült Államok</string>
   <string name="np_desc_rtachicago">Chicago</string>
-  <string name="np_name_usny" tools:keep="@string/np_name_usny">New York és New-Jersey államok</string>
+  <string name="np_name_usny">New York és New-Jersey államok</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Global Transport Oregon államban (USA)</string>
   <string name="maintainer">Fenntartó</string>
@@ -236,10 +221,8 @@ A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy ado
   <string name="french">Francia</string>
   <string name="german">Német</string>
   <string name="italian">Olasz</string>
-  <string name="portuguese_br">brazíliai portugál</string>
   <string name="spanish">Spanyol</string>
   <string name="turkish">Török</string>
-  <string name="norwegian_bokmal">Norvég bokmál</string>
   <string name="basque">Baszk</string>
   <string name="english">Angol</string>
   <string name="catalan">Katalán</string>
