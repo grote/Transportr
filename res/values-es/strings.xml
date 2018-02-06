@@ -280,6 +280,10 @@ También es posible descubrir estaciones cercanas y ver las próximas partidas i
   <string name="np_name_usny" tools:keep="@string/np_name_usny">Estados de Nueva York y Nueva Jersey</string>
   <string name="np_name_oregon">Oregón</string>
   <string name="np_desc_oregon">Transporte global en estado de Oregón (EUA)</string>
+  <string name="np_region_central_america">América Central</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_desc_nicaragua">Rutas del Transporte Urbano Colectivo de Managua y de Estelí</string>  
+  
   <string name="maintainer">Mantenedor</string>
   <string name="contributors">Colaboradores</string>
   <string name="translators">Traductores</string>

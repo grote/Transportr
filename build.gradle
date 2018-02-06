@@ -75,7 +75,7 @@ dependencyVerification {
 			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'com.squareup.okio:okio:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
 			'com.google.errorprone:error_prone_annotations:cb4cfad870bf563a07199f3ebea5763f0dec440fcda0b318640b1feaa788656b',
-			'com.google.j2objc:j2objc-annotations:40ceb7157feb263949e0f503fe5f71689333a621021aa20ce0d0acee3badaa0f',
+			//'com.google.j2objc:j2objc-annotations:40ceb7157feb263949e0f503fe5f71689333a621021aa20ce0d0acee3badaa0f',
 			'org.codehaus.mojo:animal-sniffer-annotations:2068320bd6bad744c3673ab048f67e30bef8f518996fa380033556600669905d',
 	]
 }
