@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 import de.grobox.transportr.R;
 
-abstract class RegionViewHolder extends RecyclerView.ViewHolder {
+abstract class RegionViewHolder<Reg extends Region> extends RecyclerView.ViewHolder {
 	protected final TextView name;
 
 	RegionViewHolder(View v) {
@@ -34,12 +34,12 @@ abstract class RegionViewHolder extends RecyclerView.ViewHolder {
 		name = v.findViewById(R.id.name);
 	}
 
-	void bind(Region region, boolean expanded) {
+	void bind(Reg region, boolean expanded) {
 		 name.setText(region.getName(name.getContext()));
 	}
 }
 
-abstract class ParentRegionViewHolder extends RegionViewHolder {
+abstract class ParentRegionViewHolder<Reg extends Region> extends RegionViewHolder<Reg> {
 	protected final ImageView chevron;
 
 	ParentRegionViewHolder(View v) {
@@ -47,7 +47,8 @@ abstract class ParentRegionViewHolder extends RegionViewHolder {
 		chevron = v.findViewById(R.id.chevron);
 	}
 
-	void bind(Region region, boolean expanded) {
+	@Override
+	void bind(Reg region, boolean expanded) {
 		super.bind(region, expanded);
 		if (expanded) chevron.setRotation(0);
 		else chevron.setRotation(180);

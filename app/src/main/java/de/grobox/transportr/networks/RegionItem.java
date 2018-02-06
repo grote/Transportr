@@ -20,14 +20,8 @@
 package de.grobox.transportr.networks;
 
 import android.content.Context;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.support.v4.view.ViewCompat;
-import android.view.View;
 
-import com.mikepenz.fastadapter.IItem;
-import com.mikepenz.fastadapter.adapters.ItemAdapter;
-import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
 import com.mikepenz.fastadapter.listeners.OnClickListener;
 
@@ -39,11 +33,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.transportr.R;
 
 @ParametersAreNonnullByDefault
-abstract class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, RegionItem> {
+abstract class RegionItem<Parent extends ParentRegionItem, VH extends RegionViewHolder, Child extends RegionItem> extends AbstractExpandableItem<Parent, VH, Child> {
 
 	protected abstract String getName(Context context);
 
-	static class RegionComparator implements Comparator<IItem> {
+	static class RegionComparator implements Comparator<RegionItem> {
 
 		private final Context context;
 
@@ -53,32 +47,25 @@ abstract class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewH
 		}
 
 		@Override
-		public int compare(IItem i1, IItem i2) {
-			if (i1 instanceof RegionItem && i2 instanceof RegionItem) {
-				// sort regions alphabetically
-				return ((RegionItem) i1).getName(context).compareTo(((RegionItem) i2).getName(context));
-			}
-			return 0;
+		public int compare(RegionItem r1, RegionItem r2) {
+			// sort regions alphabetically
+			return r1.getName(context).compareTo(r2.getName(context));
 		}
 	}
 }
 
-abstract class ParentRegionItem extends RegionItem {
+abstract class ParentRegionItem<Parent extends ParentRegionItem, VH extends RegionViewHolder, Child extends RegionItem> extends RegionItem<Parent, VH, Child> {
 	
 	@Override
-	public OnClickListener<RegionItem> getOnItemClickListener() {
+	public OnClickListener<Parent> getOnItemClickListener() {
 		return (v, adapter, item, position) -> {
 			if (item.getSubItems() != null) {
 				if (!item.isExpanded()) {
-					List<RegionItem> subItems = item.getSubItems();
-					for (RegionItem subItem : subItems) {
+					List<Child> subItems = item.getSubItems();
+					for (Child subItem : subItems) {
 						if (subItem.getSubItems() != null && subItem.isExpanded()) {
-							boolean test = subItem.isExpanded();
 							subItem.withIsExpanded(false);
-							test = subItem.isExpanded();
-							subItem.withIsExpanded(false);
-							test = subItem.isExpanded();
-							((ItemAdapter<RegionItem>)adapter).getFastAdapter().notifyAdapterDataSetChanged();
+							adapter.getFastAdapter().notifyAdapterDataSetChanged();
 						}
 					}
 					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(180).start();

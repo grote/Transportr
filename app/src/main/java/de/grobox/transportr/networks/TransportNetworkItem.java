@@ -24,10 +24,6 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.view.View;
 
-import com.mikepenz.fastadapter.IItem;
-import com.mikepenz.fastadapter.ISubItem;
-import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
-
 import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -35,7 +31,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.transportr.R;
 
 @ParametersAreNonnullByDefault
-class TransportNetworkItem extends RegionItem {
+class TransportNetworkItem extends RegionItem<ParentRegionItem, TransportNetworkViewHolder, RegionItem> {
 
 	protected final TransportNetwork network;
 
@@ -62,7 +58,7 @@ class TransportNetworkItem extends RegionItem {
 	}
 
 	@Override
-	public void bindView(RegionViewHolder ui, List<Object> payloads) {
+	public void bindView(TransportNetworkViewHolder ui, List<Object> payloads) {
 		super.bindView(ui, payloads);
 		ui.bind(network, false);
 	}

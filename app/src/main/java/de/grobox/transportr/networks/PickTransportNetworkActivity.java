@@ -23,12 +23,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.util.SortedList;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
-import com.google.common.collect.RowSortedTable;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.ISelectionListener;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
@@ -82,18 +80,18 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 		}
 		setResult(RESULT_CANCELED);
 
-
 		adapter = new FastItemAdapter<>();
 		adapter.withSelectable(true);
-		adapter.getItemAdapter().withComparator(new RegionItem.RegionComparator(this));
 		adapter.withSelectionListener(this);
 		expandableExtension = new ExpandableExtension<>();
+		expandableExtension.withOnlyOneExpandedItem(true);
 		adapter.addExtension(expandableExtension);
 		list = findViewById(R.id.list);
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
 
 		Map<Region, List<Region>> regions = getRegionsByRegion();
+		List<ContinentItem> continentItems = new ArrayList<>(Continent.values().length);
 		for (Continent continent : Continent.values()) {
 			if (!regions.containsKey(continent)) {
 				continue;
@@ -109,7 +107,7 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 					}
 					CountryItem countryItem = new CountryItem(country);
 					List<Region> networks = regions.get(country);
-					List<RegionItem> networkItems = new ArrayList<>(networks.size());
+					List<TransportNetworkItem> networkItems = new ArrayList<>(networks.size());
 					for (Region network : networks) {
 						if (!(network instanceof TransportNetwork))
 							continue;
@@ -125,8 +123,12 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 
 			Collections.sort(subRegionItems, new RegionItem.RegionComparator(this));
 			continentItem.withSubItems(subRegionItems);
-			adapter.add(continentItem);
+			continentItems.add(continentItem);
 
+		}
+		Collections.sort(continentItems, new RegionItem.RegionComparator(this));
+		for (ContinentItem c : continentItems) {
+			adapter.add(c);
 		}
 		if (savedInstanceState != null) adapter.withSavedInstanceState(savedInstanceState);
 

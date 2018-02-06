@@ -30,7 +30,7 @@ import de.grobox.transportr.R;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-class ContinentViewHolder extends ParentRegionViewHolder {
+class ContinentViewHolder extends ParentRegionViewHolder<Continent> {
 
 	private final ImageView contour;
 
@@ -39,9 +39,9 @@ class ContinentViewHolder extends ParentRegionViewHolder {
 		contour = v.findViewById(R.id.contour);
 	}
 
-	void bind(Region region, boolean expanded) {
-		super.bind(region, expanded);
-		Continent continent = (Continent)region;
+	@Override
+	void bind(Continent continent, boolean expanded) {
+		super.bind(continent, expanded);
 		contour.setImageResource(continent.getContour());
 	}
 }

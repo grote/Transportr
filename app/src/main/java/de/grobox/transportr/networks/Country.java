@@ -44,7 +44,7 @@ enum Country implements Region {
 	IRELAND(R.string.np_region_ireland, "🇮🇪", Continent.EUROPE),
 	POLAND(R.string.np_region_poland, "🇵🇱", Continent.EUROPE),
 	UAE(R.string.np_region_uae, "🇦🇪", Continent.ASIA),
-	USA(R.string.np_region_usa, "🇺🇸", Continent.NORTH_AMERICA),
+	USA(R.string.np_region_usa, "🇺🇸", Continent.NORTH_AMERICA), //TODO: it seems there's a problem with the flag
 	AUSTRALIA(R.string.np_region_australia, "🇦🇺", Continent.OCEANIA),
 	FRANCE(R.string.np_region_france, "🇫🇷", Continent.EUROPE),
 	BRAZIL(R.string.np_region_br, "🇧🇷", Continent.SOUTH_AMERICA),

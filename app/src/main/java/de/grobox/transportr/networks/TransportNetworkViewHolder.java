@@ -31,7 +31,7 @@ import static android.view.View.VISIBLE;
 import static de.grobox.transportr.networks.TransportNetwork.Status.ALPHA;
 import static de.grobox.transportr.networks.TransportNetwork.Status.STABLE;
 
-class TransportNetworkViewHolder extends RegionViewHolder {
+class TransportNetworkViewHolder extends RegionViewHolder<TransportNetwork> {
 
 	private final ImageView logo;
 	private final TextView desc;
@@ -45,9 +45,8 @@ class TransportNetworkViewHolder extends RegionViewHolder {
 	}
 
 	@Override
-	void bind(Region region, boolean expanded) {
-		super.bind(region, expanded);
-		TransportNetwork network = (TransportNetwork)region;
+	void bind(TransportNetwork network, boolean expanded) {
+		super.bind(network, expanded);
 		logo.setImageResource(network.getLogo());
 		desc.setText(network.getDescription(desc.getContext()));
 		if (network.getStatus() == STABLE) {

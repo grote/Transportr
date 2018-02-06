@@ -113,8 +113,9 @@ dependencies {
 	implementation 'com.google.android:flexbox:0.3.1'
 	implementation 'com.mikepenz:materialdrawer:6.0.0'
 	implementation 'com.mikepenz:aboutlibraries:6.0.0'
-	implementation 'com.mikepenz:fastadapter-commons:3.0.5@aar'
-	implementation 'com.mikepenz:fastadapter-extensions-expandable:3.0.5@aar'
+	implementation 'com.mikepenz:fastadapter:3.2.3@aar'
+	implementation 'com.mikepenz:fastadapter-commons:3.2.3@aar'
+	implementation 'com.mikepenz:fastadapter-extensions-expandable:3.2.3@aar'
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.1.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.4.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0'
@@ -228,9 +229,6 @@ dependencyVerification {
 			'com.mapbox.mapboxsdk:mapbox-java-geojson:2.2.9:mapbox-java-geojson-2.2.9.jar:e888f38e36173a1ac39f3ba08fe6ba50d809b5d05ca8de5c143dee35114bfd91',
 			'com.mapzen.android:lost:3.0.4:lost-3.0.4.aar:7c95374ddd406356a6a3085c93e1a549feb68e919b29a8f0f194bc47f27788c0',
 			'com.mikepenz:aboutlibraries:6.0.0:aboutlibraries-6.0.0.aar:9d59e0c6caddda8bdcac1f8dd46ca824dde671b3201e6612a9ca297470da66a1',
-			'com.mikepenz:fastadapter-commons:3.0.3:fastadapter-commons-3.0.3.aar:c73e2b079523431ec9313fbcf82f5d659ce47aeae1838965869eaadf81a2c0bd',
-			'com.mikepenz:fastadapter-extensions-expandable:3.0.3:fastadapter-extensions-expandable-3.0.3.aar:5f4b78a877ab9e44e7f15dd69decbfcfc38ba45359bb6ee659d5043fdd931a7b',
-			'com.mikepenz:fastadapter:3.0.0:fastadapter-3.0.0.aar:6a75d94586448e9222fc36a3e0a0a6d61d3bd30bedb125f681a956b310816e7e',
 			'com.mikepenz:iconics-core:2.9.5:iconics-core-2.9.5.aar:4250d3082eb20029137574f2f9240bfc6a1f0dd2ce72b7290e75bea8a9cf3b14',
 			'com.mikepenz:materialdrawer:6.0.0:materialdrawer-6.0.0.aar:e3c43bf540fa220c90108c96e6f6c76ccc971fb100cb4616158650a495a44bf3',
 			'com.mikepenz:materialize:1.1.1:materialize-1.1.1.aar:0b85d3df906c36ad423271efdaafd4fa3dfb6211400ee91328201c341e7028b8',

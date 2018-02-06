@@ -30,7 +30,7 @@ import de.grobox.transportr.R;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-class CountryViewHolder extends ParentRegionViewHolder {
+class CountryViewHolder extends ParentRegionViewHolder<Country> {
 
 	private final TextView flag;
 
@@ -40,9 +40,8 @@ class CountryViewHolder extends ParentRegionViewHolder {
 	}
 
 	@Override
-	void bind(Region region, boolean expanded) {
-		super.bind(region, expanded);
-		Country country = (Country)region;
+	void bind(Country country, boolean expanded) {
+		super.bind(country, expanded);
 		if (Build.VERSION.SDK_INT >= 21) {
 			flag.setText(country.getFlag());
 			flag.setVisibility(VISIBLE);
