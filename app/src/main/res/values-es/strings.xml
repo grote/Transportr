@@ -223,6 +223,12 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_name_usny">Estados de Nueva York y Nueva Jersey</string>
   <string name="np_name_oregon">Oregón</string>
   <string name="np_desc_oregon">Transporte global en estado de Oregón (EUA)</string>
+
+  <string name="np_name_managua">Managua</string>
+  <string name="np_desc_managua">Rutas del Transporte Urbano Colectivo</string>
+  <string name="np_name_esteli">Estelí</string>
+  <string name="np_desc_esteli">Urbanos de Estelí</string>
+
   <string name="maintainer">Mantenedor</string>
   <string name="contributors">Colaboradores</string>
   <string name="translators">Traductores</string>
