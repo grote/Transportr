@@ -73,14 +73,9 @@ class PickTransportNetworkActivityTest : ScreengrabTest() {
                 .check(matches(withText(R.string.pick_network_first_run)))
         makeScreenshot("1_FirstStart")
 
-        // hack to find region position in list
-        val regionList = ArrayList(EnumSet.allOf(Country::class.java)) //TODO: pretty sure it will break :/
-        val context = InstrumentationRegistry.getTargetContext()
-        Collections.sort(regionList) { r1, r2 -> context.getString(r1.getName()).compareTo(context.getString(r2.getName())) }
-
         // select DB network provider
         onView(withId(R.id.list))
-                .perform(scrollToPosition<RecyclerView.ViewHolder>(regionList.indexOf(Country.GERMANY) + 5))
+                .perform(actionOnItem<RecyclerView.ViewHolder>(withChild(withText(R.string.np_continent_europe)), click()))
                 .perform(actionOnItem<RecyclerView.ViewHolder>(withChild(withText(R.string.np_region_germany)), click()))
                 .perform(actionOnItem<RecyclerView.ViewHolder>(withChild(withText(R.string.np_name_db)), click()))
     }
