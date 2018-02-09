@@ -104,6 +104,7 @@ public final class NetworkProviderFactory {
 	private static Reference<CostaRicaProvider> costaRicaProviderRef;
 	private static Reference<GhanaProvider> ghanaProviderRef;
 	private static Reference<NewyorkProvider> newYorkProviderRef;
+	private static Reference<NicaraguaProvider> nicaraguaProviderRef;
 
 	private static final String NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca";
 	private static final String VAO = "{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}";
@@ -877,6 +878,16 @@ public final class NetworkProviderFactory {
 
 			final NewyorkProvider provider = new NewyorkProvider(NAVITIA);
 			newYorkProviderRef = new SoftReference<>(provider);
+			return provider;
+		} else if (networkId.equals(NetworkId.NICARAGUA)) {
+			if (nicaraguaProviderRef != null) {
+				final NicaraguaProvider provider = nicaraguaProviderRef.get();
+				if (provider != null)
+					return provider;
+			}
+
+			final NicaraguaProvider provider = new NicaraguaProvider(NAVITIA);
+			nicaraguaProviderRef = new SoftReference<>(provider);
 			return provider;
 		} else {
 			throw new IllegalArgumentException(networkId.name());
