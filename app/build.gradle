@@ -123,7 +123,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:f540e9748e') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:0c95a708') {
 		exclude module: 'service'
 		exclude group: 'org.json' // provided by Android
 		exclude group: 'net.sf.kxml' // provided by Android
@@ -204,8 +204,8 @@ dependencyVerification {
 			'com.github.tony19:apktool-lib:1.4.4-3:apktool-lib-1.4.4-3.jar:bdc4e93b1dd6661698feedacc37d203801076deddd7fb350daf98611637a5cd6',
 			'com.github.tony19:logback-android-classic:1.1.1-6:logback-android-classic-1.1.1-6.jar:0d0939c2cd797ecb0b7d679f1e2314a9889a90a633f2fc5b66f11316cbd6626b',
 			'com.github.tony19:logback-android-core:1.1.1-6:logback-android-core-1.1.1-6.jar:9548fd28988d62a8f67b72fafc67167f91f061001513ae25f53921f2982c8c01',
-			'com.gitlab.opentransitmap.public-transport-enabler:enabler:f540e9748e:enabler-f540e9748e.jar:75aa66b301ce38c7447cba8c982751bf0c789b492ee186f7bc0d47899dfb7c73',
-			'com.gitlab.opentransitmap:public-transport-enabler:f540e9748e:public-transport-enabler-f540e9748e.jar:2b947050d2a6112366aa5a349169bdd1c43584e56d2faf411f9de9617086e58b',
+			'com.gitlab.opentransitmap.public-transport-enabler:enabler:0c95a708:enabler-0c95a708.jar:ed00f32ba69432bef4011d59a5867ea0995a781f5fe3db2a8af3dabe151854a4',
+			'com.gitlab.opentransitmap:public-transport-enabler:0c95a708:public-transport-enabler-0c95a708.jar:dfa4560601d65694cfa8ff25c862ee2083fc61938e77a654c542b36a70e2cd69',
 			'com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.0:accessibility-test-framework-2.0.jar:cdf16ef8f5b8023d003ce3cc1b0d51bda737762e2dab2fedf43d1c4292353f7f',
 			'com.google.android:flexbox:0.3.1:flexbox-0.3.1.aar:9e0f9ad8be417bf5f48c1edbc98c25ea5eb7847def9aeaa5eef3151b53e89df4',
 			'com.google.auto:auto-common:0.6:auto-common-0.6.jar:6d8ffa9dc95db8b1e7399a622946d129093959cbe5d6b54cfe27d2542302d8e1',

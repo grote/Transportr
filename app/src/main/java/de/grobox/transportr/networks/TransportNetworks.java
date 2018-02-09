@@ -642,6 +642,18 @@ public interface TransportNetworks {
 					.setStatus(ALPHA)
 					.setGoodLineNames(true)
 					.build(),
+					
+			// Central America
+			
+			new TransportNetworkBuilder()
+				.setId(NetworkId.NICARAGUA)
+				.setName(R.string.np_name_nicaragua)
+		 		.setDescription(R.string.np_desc_nicaragua)
+		 		.setRegion(Region.CENTRAL_AMERICA)
+				.setLogo(R.drawable.network_nicaragua_logo)
+		 		.setStatus(ALPHA)
+				.setGoodLineNames(true)
+				.build(),
 
 	};
 
