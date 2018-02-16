@@ -261,9 +261,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_california">Transport publiczny w Stanie Kalifornia (USA)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Global Transport w stanie Oregon (USA)</string>
-  <string name="np_region_costa_rica">Kostaryka</string>
   <string name="np_name_costa_rica">Kostaryka</string>
-  <string name="np_region_africa">Afryka</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Akra</string>
   <string name="maintainer">Opiekun</string>

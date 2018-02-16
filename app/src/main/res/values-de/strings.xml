@@ -273,9 +273,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_california">Öffentliche Verkehrsmittel in Kalifornien (USA)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Global Transport im Bundesstaat Oregon (USA)</string>
-  <string name="np_region_costa_rica">Costa Rica</string>
   <string name="np_name_costa_rica">Costa Rica</string>
-  <string name="np_region_africa">Afrika</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
   <string name="maintainer">Koordinator</string>

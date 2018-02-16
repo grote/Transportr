@@ -260,10 +260,6 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_california">Trasporto pubblico in California (USA)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Trasporto pubblico nello Stato dell\'Oregon (USA)</string>
-  <string name="np_region_costa_rica">Costa Rica</string>
-  <string name="np_name_costa_rica">Costa Rica</string>
-  <string name="np_region_africa">Africa</string>
-  <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
   <string name="maintainer">Mantenitori</string>
   <string name="contributors">Contributori</string>

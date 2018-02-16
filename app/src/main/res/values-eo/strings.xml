@@ -259,9 +259,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_california">Publika transporto en Kalifornio (Usono)</string>
   <string name="np_name_oregon">Oregono</string>
   <string name="np_desc_oregon">Global Transport en Oregono Ŝtato (Usono)</string>
-  <string name="np_region_costa_rica">Kostariko</string>
   <string name="np_name_costa_rica">Kostariko</string>
-  <string name="np_region_africa">Afriko</string>
   <string name="np_name_ghana">Ganao</string>
   <string name="np_desc_ghana">Akrao</string>
   <string name="maintainer">Prizorganto</string>

@@ -263,9 +263,7 @@
   <string name="np_desc_california">カリフォルニアの公共交通機関 (米国)</string>
   <string name="np_name_oregon">オレゴン</string>
   <string name="np_desc_oregon">オレゴン州 (米国) のグローバルトランスポート</string>
-  <string name="np_region_costa_rica">コスタリカ</string>
   <string name="np_name_costa_rica">コスタリカ</string>
-  <string name="np_region_africa">アフリカ</string>
   <string name="np_name_ghana">ガーナ</string>
   <string name="np_desc_ghana">アクラ</string>
   <string name="maintainer">メンテナー</string>

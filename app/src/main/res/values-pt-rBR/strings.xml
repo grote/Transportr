@@ -246,9 +246,7 @@ Você pode também descobrir terminais por perto e visualizar os ônibus que est
   <string name="np_desc_california">Transporte público na Califórnia (EUA)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Transporte Global no estado de Oregon (EUA)</string>
-  <string name="np_region_costa_rica">Costa Rica</string>
   <string name="np_name_costa_rica">Costa Rica</string>
-  <string name="np_region_africa">África</string>
   <string name="np_name_ghana">Gana</string>
   <string name="maintainer">Mantenedores</string>
   <string name="contributors">Contribuidores</string>

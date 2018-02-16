@@ -264,9 +264,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_name_california">California</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Transport for hele staten Oregon (USA)</string>
-  <string name="np_region_costa_rica">Costa Rica</string>
   <string name="np_name_costa_rica">Costa Rica</string>
-  <string name="np_region_africa">Afrika</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
   <string name="maintainer">Utgivelsesansvarlig</string>
