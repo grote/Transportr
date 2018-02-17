@@ -165,7 +165,6 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 			selectAllowed = true;
 			return;
 		}
-		int pos = -1;
 		Region region = network.getRegion();
 		Continent continent = null;
 		Country country = null;
@@ -175,7 +174,7 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 		} else if (region instanceof Continent) {
 			continent = (Continent)region;
 		}
-		pos = adapter.getPosition(new ContinentItem(continent));
+		int pos = adapter.getPosition(new ContinentItem(continent));
 		if (pos != -1) {
 			expandableExtension.expand(pos);
 			if (country != null) {

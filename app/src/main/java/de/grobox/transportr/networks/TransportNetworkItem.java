@@ -42,7 +42,7 @@ class TransportNetworkItem extends RegionItem<ParentRegionItem, TransportNetwork
 
 	@Override
 	protected String getName(Context context) {
-		return this.network.getName(context);
+		return network.getName(context);
 	}
 
 	@IdRes

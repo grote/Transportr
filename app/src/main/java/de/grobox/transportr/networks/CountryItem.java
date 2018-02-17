@@ -42,7 +42,7 @@ class CountryItem extends ParentRegionItem<ContinentItem, CountryViewHolder, Tra
 
 	@Override
 	protected String getName(Context context) {
-		return this.country.getName(context);
+		return country.getName(context);
 	}
 
 	@IdRes
