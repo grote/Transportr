@@ -106,7 +106,7 @@ there are any).</string>
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    
+
     <string name="pref_transport_network">Transport Network</string>
     <string name="pref_hide_departure_time">Hide departure time</string>
     <string name="pref_hide_departure_time_summary">Only show arrival time when displaying intermediate stops</string>
@@ -369,7 +369,10 @@ there are any).</string>
     <string name="np_desc_usny" translatable="false" tools:keep="@string/np_desc_usny">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
     <string name="np_name_oregon">Oregon</string>
     <string name="np_desc_oregon">Global Transport in Oregon State (USA)</string>
-
+    <string name="np_region_central_america">Central America</string>
+    <string name="np_name_nicaragua">Nicaragua</string>
+    <string name="np_desc_nicaragua">Urban, rural and countrywide Buses provided by MapaNica.net and OpenStreetMap collaborators</string>
+    
     <string name="maintainer">Maintainer</string>
     <string name="contributors">Contributors</string>
     <string name="translators">Translators</string>

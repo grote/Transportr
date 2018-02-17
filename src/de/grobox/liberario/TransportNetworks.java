@@ -553,6 +553,16 @@ public class TransportNetworks {
 				.setGoodLineNames(true)
 		);
 
+		// Nicaragua
+		region = region(R.string.np_region_central_america, "\ud83c\udf0e");
+
+		list.add(new TransportNetwork(context, NetworkId.NICARAGUA)
+				.setName(getString(R.string.np_name_nicaragua))
+		 		.setDescription(getString(R.string.np_desc_nicaragua))
+		 		.setRegion(region)
+		 		.setStatus(TransportNetwork.Status.ALPHA)
+				.setGoodLineNames(true)
+		);
 		return list;
 	}
 

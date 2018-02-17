@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+	
+	<release version="1.1.9" versioncode="49">
+		<change>Added Nicaragua</change>
+	</release>
 
     <release version="1.1.8" versioncode="48">
         <change>Fixed various networks (e.g. Belgium, NSW, HSL, etc.)</change>
