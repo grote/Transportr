@@ -12,7 +12,7 @@
 
 -dontnote com.google.common.**
 -dontwarn com.google.common.**
--dontwarn com.google.errorprone.**
+-dontwarn com.google.errorprone.annotations.**
 -dontnote android.support.v4.**
 -dontnote android.support.v7.**
 -dontnote android.support.design.widget.**
@@ -29,6 +29,7 @@
 
 -dontnote org.osmdroid.views.MapView
 -dontnote org.osmdroid.views.overlay.ItemizedOverlayControlView
+-dontwarn org.osmdroid.tileprovider.modules.NetworkAvailabliltyCheck
 -dontnote com.orangegangsters.github.swipyrefreshlayout.library.**
 -dontwarn de.schildbach.pte.**
 -dontwarn org.slf4j.**

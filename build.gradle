@@ -1,6 +1,18 @@
+allprojects {
+	repositories {
+		jcenter()
+		maven {
+			url "https://maven.google.com"
+		}
+	}
+}
+
 buildscript {
 	repositories {
 		jcenter()
+		maven {
+			url "https://maven.google.com"
+		}
 	}
 	dependencies {
 		classpath 'com.android.tools.build:gradle:2.3.3'
@@ -12,7 +24,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'witness'
 
 dependencies {
-	def supportVersion = '25.3.1'
+	def supportVersion = '26.1.0'
 	compile "com.android.support:appcompat-v7:$supportVersion"
 	compile "com.android.support:design:$supportVersion"
 	compile "com.android.support:cardview-v7:$supportVersion"
@@ -22,17 +34,17 @@ dependencies {
 	compile 'com.github.orangegangsters:swipy:1.2.3'
 	compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	compile 'org.apmem.tools:layouts:1.10'
-	compile 'com.mikepenz:materialdrawer:5.8.1'
-	compile 'com.mikepenz:aboutlibraries:5.9.1'
-	compile 'com.mikepenz:fastadapter-commons:2.1.0@aar'
+	compile 'com.mikepenz:materialdrawer:5.9.5'
+	compile 'com.mikepenz:aboutlibraries:5.9.7'
+	compile 'com.mikepenz:fastadapter-commons:2.6.3@aar'
 	compile 'org.osmdroid:osmdroid-android:5.6.1'
-	compile 'uk.co.samuelwall:material-tap-target-prompt:1.6.3'
+	compile 'uk.co.samuelwall:material-tap-target-prompt:2.1.0'
 
 	compile(project(':sublibs:public-transport-enabler:enabler')) {
 		exclude group: 'org.json' // provided by Android
 		exclude group: 'net.sf.kxml' // provided by Android
 	}
-	debugCompile 'org.slf4j:slf4j-api:1.7.21'
+	debugCompile 'org.slf4j:slf4j-api:1.7.25'
 	debugCompile 'com.github.tony19:logback-android-core:1.1.1-6'
 	debugCompile('com.github.tony19:logback-android-classic:1.1.1-6') {
 		exclude group: 'com.google.android', module: 'android'
@@ -41,49 +53,45 @@ dependencies {
 
 dependencyVerification {
 	verify = [
-			'com.android.support:preference-v14:970904d676ea886d0be459e7e5e36c0db650daefea5bbe80cc59146091905be5',
+			'com.android.support:preference-v14:f340c88589184fd53ad46aebbba1ae5b88b5919f92ed085bf0f687a58d0e0e17',
 			'com.github.orangegangsters:swipy:153d03ab51b7c3672e0dfb60963dc4b983c3bf0fd39adbff576cd5179b8edbda',
-			'com.mikepenz:materialdrawer:91716d14c7537e8d490cc505b979430e03ac5cf7b4bdb72eb0afab23da02c22e',
-			'com.mikepenz:aboutlibraries:70a36d5f49efab987783fec44139f9810e46c4fac3e2d147e2602270a48d5017',
-			'com.android.support:preference-v7:b37d8193c65cf8eb3c4ba9cbfc6d5c96042177901622717fb089290bef784a58',
-			'com.android.support:design:a3e83064fe99d0a4369f9b46d8bfbe77d0c3022fffdee4be3ac3857b87cc89e3',
-			'com.android.support:appcompat-v7:ac1ebbc46589195dda3e0b1becfe410bafd75bdf3edd1cd9acf04850f3895830',
-			'com.android.support:cardview-v7:defc17032ffa600a82e1c7d96bb574aa5ed64e2b57e28414a245da7d6db0c666',
-			'com.android.support:recyclerview-v7:375974a8724e359d97d77fa8522c614f813a3ac4583c1807f154a3f9a054b0a1',
+			'com.mikepenz:materialdrawer:f7b380cd85ae55bcd3111855bd9104ba86b5c1160e8a31ae89fe1725c5f3c587',
+			'com.mikepenz:aboutlibraries:f724205fa6382deba3080918fecf9d946a8819d6aa14f0a6347bcc170ed234ea',
+			'com.android.support:preference-v7:42672e51c06c6e26a40798d3379ede97ee42076c84592d670c4e5c96630c50f1',
+			'com.android.support:design:76f5fbb365bf2d622af5df8a4205904409250305685e38670bf654ac90c2494d',
+			'com.android.support:appcompat-v7:9d44e7bf343dfd19a55e3e6f4c4e733b68d32509e0b0af5b32f2981f4f1dedd8',
+			'com.android.support:cardview-v7:7ea56ed5560b629ee1c0f24af6693e32974fbc8b91b544052cd2c14b176c85e0',
+			'com.android.support:recyclerview-v7:389cb47a7dabca4fb8c23657ff7c85ebc651428580d3a5ea0349eeb43ddea94b',
 			'de.cketti.library.changelog:ckchangelog:e113de0f4bc42b983dd6b690b67d76f29975167c2204e3792831961740889d78',
 			'org.apmem.tools:layouts:25f878e7faa5c384ed0861889104e5f10a40e5682eaf80c9abb47559c367b348',
-			'com.mikepenz:fastadapter-commons:ff7c751a839c18575a4a4221c2cfc3fa9bb72846f4b346803a64d405b4393483',
+			'com.mikepenz:fastadapter-commons:7125dadccf3c80783fc5d7c6753f91f0284888e651f8a48fc4802466780e3e4c',
 			'org.osmdroid:osmdroid-android:e64a97b8302a50bedf6c4c6ff024291008f72103b17a728801132ebdce0492ed',
-			'uk.co.samuelwall:material-tap-target-prompt:b53287592ddbe4a7c79aadea8092524c0760a1daa51c7cae928c445b0c192406',
-			'com.android.support:transition:36c688825a8c0e6e879e18886de83dc90673322822d5b606ee302f70fb558e16',
-			'com.android.support:support-v4:07d389154bcf73b47e514964df1578136b26cba78257b8a577a3ccb54beff0ae',
-			'com.android.support:support-fragment:541d6393c1e024453aca2a14f31bea0c7270ff4e2a02783f3528aa426367444d',
-			'com.android.support:support-core-ui:6182278a6653e6c111c888963626cbb16f2d0022571cb239760475119e0b92a8',
-			'com.android.support:support-media-compat:cbed07d07e0e84fdb4b75712f5fd946229a8af155933c9a92e41db64d00791e0',
-			'com.android.support:support-core-utils:32fac02eb2c20a77fa3e3bc3ede62392a19613f72b8f8e10f5dfa84bb4c89ea1',
-			'com.android.support:animated-vector-drawable:4bc46edf1946b32d518b41416d1734e915e0cbb28021de3b340527419b070691',
-			'com.android.support:support-vector-drawable:13728f337f36d1c02d52198a6c20724edb447a0875454d829f95cb9eb4aa293b',
-			'com.android.support:support-compat:e02d781268dc60aab6638d8dc20156ea11ca20b962d294b85e6f1e8418cabfa7',
-			'com.android.support:support-annotations:aedf76962584adfaed2bd3fcaa22406461c4310237fc27e301128edaa2dba2fa',
-			'com.mikepenz:materialize:942ccf5e2aa1a46803aa884e8dc7bbaf2a9e8e9996a0cf92e3fe2f44a8592ba4',
-			'com.mikepenz:iconics-core:fdaec9164d5dccd213e1e80610b29dbd33a6e36ccd56ca3e8d4e4a802ac962d5',
-			'com.mikepenz:fastadapter:bee864e3dcb54b6c6126335f58b92ecb17a4b70b58a270279c91e9c96ac1b963',
+			'uk.co.samuelwall:material-tap-target-prompt:6df17e7c371f9264bfe440506f91205dd47566869c1528891943a04a26c96a94',
+			'com.android.support:transition:c5d3d1204997f80af1f4a3a315a54b1a23543c554963cef831da726aac34b56f',
+			'com.android.support:support-v4:36d8385de1be7791231acb933b757198f97cb53bc7d046e8c4bc403d214caaca',
+			'com.android.support:support-fragment:a0ab3369ef40fe199160692f0463a5f63f1277ebfb64dd587c76fdb128d76b32',
+			'com.android.support:animated-vector-drawable:d5905aee3c8a4ac75e069a73b914c0a41b9b36b0e6b04126719fca22659d3cc8',
+			'com.android.support:support-core-ui:82f538051599335ea881ec264407547cab52be750f16ce099cfb27754fc755ff',
+			'com.android.support:support-media-compat:9d8cee7cd40eff22ebdeb90c8e70f5ee96c5bd25cb2c3e3b3940e27285a3e98a',
+			'com.android.support:support-core-utils:4fda6d4eb430971e3b1dad7456988333f374b0f4ba15f99839ca1a0ab5155c8a',
+			'com.android.support:support-vector-drawable:1151b7f0ea29c9a9a8fee042a1dbe82f196632d801c438d08b279e131c767118',
+			'com.android.support:support-compat:7d6da01cf9766b1705c6c80cfc12274a895b406c4c287900b07a56145ca6c030',
+			'com.android.support:support-annotations:99d6199ad5a09a0e5e8a49a4cc08f818483ddcfd7eedea2f9923412daf982309',
+			'com.mikepenz:materialize:f215825cf9215af4c2807e3df25228b87d7b8f28fc8ccf122c9c5a93dfa13b8a',
+			'com.mikepenz:iconics-core:998967c7e422c87bac3436d889912c07735ce814e88aa250ca2d018ba046b7c1',
+			'com.mikepenz:fastadapter:abd501599a7fd983127791cff50cf1595d360eba95a336479bce37e7953ca560',
 			'com.squareup.okhttp3:logging-interceptor:1e84fce63c46ce41fb7f8ca65d5b67ffe61aa0350e964288e66391fda7399ff8',
 			'com.squareup.okhttp3:okhttp:c1d57f913f74f61d424d4250a92723ba9a61affc12a0ab194d84cc179b472841',
 			'com.google.guava:guava:c8cea78328d2c50a3be2d4548f6fbc723516b5438251f5803008778f3ff5a3ed',
 			'org.slf4j:slf4j-api:18c4a0095d5c1da6b817592e767bb23d29dd2f560ad74df75ff3961dbde25b79',
 			'com.google.code.findbugs:jsr305:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
+			'android.arch.lifecycle:runtime:e4e34e5d02bd102e8d39ddbc29f9ead8a15a61e367993d02238196ac48509ad8',
 			'com.squareup.okio:okio:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
 			'com.google.errorprone:error_prone_annotations:cb4cfad870bf563a07199f3ebea5763f0dec440fcda0b318640b1feaa788656b',
-			//'com.google.j2objc:j2objc-annotations:40ceb7157feb263949e0f503fe5f71689333a621021aa20ce0d0acee3badaa0f',
 			'org.codehaus.mojo:animal-sniffer-annotations:2068320bd6bad744c3673ab048f67e30bef8f518996fa380033556600669905d',
+			'android.arch.lifecycle:common:86bf301a20ad0cd0a391e22a52e6fbf90575c096ff83233fa9fd0d52b3219121',
+			'android.arch.core:common:5192934cd73df32e2c15722ed7fc488dde90baaec9ae030010dd1a80fb4e74e1',
 	]
-}
-
-allprojects {
-	repositories {
-		jcenter()
-	}
 }
 
 android {
@@ -91,9 +99,9 @@ android {
 		versionCode 48
 		versionName "1.1.8"
 
-		compileSdkVersion 25
-		targetSdkVersion 25
-		buildToolsVersion "25.0.2"
+		compileSdkVersion 26
+		targetSdkVersion 26
+		buildToolsVersion '26.0.2'
 		minSdkVersion 14
 	}
 

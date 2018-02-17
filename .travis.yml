@@ -1,7 +1,15 @@
 language: android
 sudo: true # travis-ci/travis-ci#5582 implies this could help against killed build-jobs
-before_script: ./pre-build.sh && sed -i "s#com.android.tools.build:gradle:.*'#com.android.tools.build:gradle:1.5.0'#" build.gradle
-jdk: openjdk7
+before_script:
+    # update gradle
+    - wget https://services.gradle.org/distributions/gradle-4.3-bin.zip
+    - unzip -qq gradle-4.3-bin.zip
+    - export GRADLE_HOME=$PWD/gradle-4.3
+    - export PATH=$GRADLE_HOME/bin:$PATH
+    - gradle -v
+    - gradle dependencies || true
+    - ./pre-build.sh
+jdk: oraclejdk8
 before_cache:
     - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
     - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -11,8 +19,7 @@ cache:
 android:
   components:
     - tools
-    - build-tools-25.0.2
-    - android-25
+    - build-tools-26.0.2
+    - android-26
     - extra-android-m2repository
 script: gradle build connectedCheck -PbuildServer
-

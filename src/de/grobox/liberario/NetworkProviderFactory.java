@@ -859,7 +859,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final NzProvider provider = new NzProvider(NAVITIA_API, NAVITIA);
+			final NzProvider provider = new NzProvider(NAVITIA);
 			nzProviderRef = new SoftReference<>(provider);
 			return provider;
 		}
@@ -872,7 +872,7 @@ public final class NetworkProviderFactory
 					return provider;
 			}
 
-			final SpainProvider provider = new SpainProvider(NAVITIA_API, NAVITIA);
+			final SpainProvider provider = new SpainProvider(NAVITIA);
 			spainProviderRef = new SoftReference<>(provider);
 			return provider;
 		}

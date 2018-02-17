@@ -46,7 +46,6 @@ import android.widget.Toast;
 
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
-import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -711,7 +710,6 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 	}
 
 	class ProductItem extends AbstractItem<ProductDialogFragment.ProductItem, ProductItem.ViewHolder> {
-		private final ViewHolderFactory<? extends ProductItem.ViewHolder> FACTORY = new ProductItem.ItemFactory();
 		private final Product product;
 
 		ProductItem(Product product) {
@@ -741,14 +739,8 @@ public class DirectionsFragment extends TransportrFragment implements TripHandle
 		}
 
 		@Override
-		public ViewHolderFactory<? extends ProductItem.ViewHolder> getFactory() {
-			return FACTORY;
-		}
-
-		class ItemFactory implements ViewHolderFactory<ProductItem.ViewHolder> {
-			public ProductItem.ViewHolder create(View v) {
-				return new ProductItem.ViewHolder(v);
-			}
+		public ViewHolder getViewHolder(View view) {
+			return new ViewHolder(view);
 		}
 
 		class ViewHolder extends RecyclerView.ViewHolder {

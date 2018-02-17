@@ -41,7 +41,6 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -74,9 +73,12 @@ import de.grobox.liberario.fragments.SettingsFragment;
 import de.grobox.liberario.utils.TransportrUtils;
 import de.schildbach.pte.NetworkProvider;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.OnHidePromptListener;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.Builder;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.PromptStateChangeListener;
 
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_DISMISSED;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FINISHED;
 
 public class MainActivity extends TransportrActivity implements FragmentManager.OnBackStackChangedListener {
 
@@ -562,24 +564,22 @@ public class MainActivity extends TransportrActivity implements FragmentManager.
 			}
 			if(target == null) return;
 
-			new MaterialTapTargetPrompt.Builder(this)
+			new Builder(this)
 					.setTarget(target)
 					.setPrimaryText(R.string.onboarding_drawer_title)
 					.setSecondaryText(R.string.onboarding_drawer_text)
-					.setBackgroundColourFromRes(R.color.primary)
+					.setBackgroundColour(ContextCompat.getColor(MainActivity.this, R.color.primary))
 					.setIcon(R.drawable.ic_menu)
-					.setIconDrawableColourFilterFromRes(R.color.primary)
-					.setOnHidePromptListener(new OnHidePromptListener() {
+					.setIconDrawableColourFilter(ContextCompat.getColor(MainActivity.this, R.color.primary))
+					.setPromptStateChangeListener(new PromptStateChangeListener() {
 						@Override
-						public void onHidePrompt(MotionEvent motionEvent, boolean b) {
-						}
-
-						@Override
-						public void onHidePromptComplete() {
-							getDefaultSharedPreferences(getContext())
-									.edit()
-									.putBoolean(ONBOARDING_DRAWER, false)
-									.apply();
+						public void onPromptStateChanged(MaterialTapTargetPrompt materialTapTargetPrompt, int i) {
+							if (i == STATE_DISMISSED || i == STATE_FINISHED) {
+								getDefaultSharedPreferences(getContext())
+										.edit()
+										.putBoolean(ONBOARDING_DRAWER, false)
+										.apply();
+							}
 						}
 					})
 					.show();
