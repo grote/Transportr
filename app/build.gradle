@@ -101,7 +101,7 @@ dependencies {
 	implementation "com.android.support:cardview-v7:$supportVersion"
 	implementation "com.android.support:recyclerview-v7:$supportVersion"
 	implementation "com.android.support:preference-v14:$supportVersion"
-	implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta4'
+	implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
 
 	implementation "android.arch.lifecycle:extensions:$archVersion"
 	implementation "android.arch.persistence.room:runtime:$archVersion"
@@ -116,7 +116,7 @@ dependencies {
 	implementation 'com.mikepenz:fastadapter-commons:3.0.3@aar'
 	implementation 'com.mikepenz:fastadapter-extensions-expandable:3.0.3@aar'
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.1.0'
-	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.4.0'
+	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.4.1'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0'
 	implementation 'com.mapzen.android:lost:3.0.4'
 
@@ -173,8 +173,8 @@ dependencyVerification {
 			'android.arch.persistence.room:runtime:1.0.0:runtime-1.0.0.aar:29e291f48708311ce9a9f2bb1b87bcee20282c5f9b8ffeedd0389a1fb417482a',
 			'android.arch.persistence:db-framework:1.0.0:db-framework-1.0.0.aar:e8310c66979f8823cfe583951abfde96824b176289ba77b750a25be00d25981a',
 			'android.arch.persistence:db:1.0.0:db-1.0.0.aar:7c0a51d5fc890a8fb94a3370ff599243ec3485cca63daba3cc2bb197835dc521',
-			'com.android.support.constraint:constraint-layout-solver:1.1.0-beta4:constraint-layout-solver-1.1.0-beta4.jar:aa84c890d28fd9519bb009cfd046da3e1e82dfc7f4d5871d1232c3f464646e53',
-			'com.android.support.constraint:constraint-layout:1.1.0-beta4:constraint-layout-1.1.0-beta4.aar:dfc8c2dcb896e35b44210e1dbddbfbc4ddbbeddf3bbc76823a2960e8aa3b4b94',
+			'com.android.support.constraint:constraint-layout-solver:1.1.0-beta5:constraint-layout-solver-1.1.0-beta5.jar:7d90306f3dd57f63cfea824cf30ec1898641eaa9204328c48365d1d9fef9f7a8',
+			'com.android.support.constraint:constraint-layout:1.1.0-beta5:constraint-layout-1.1.0-beta5.aar:22bfea587e6e8a50c9be0f3c57e671f1ad214d36a3d434a1e9da9b08013dd344',
 			'com.android.support.test.espresso:espresso-contrib:3.0.1:espresso-contrib-3.0.1.aar:bb166e58a70842053f843b29af1b7113c8a49c79556855adf9648ebd08b8fc9a',
 			'com.android.support.test.espresso:espresso-core:3.0.1:espresso-core-3.0.1.aar:dbca1a46db203a7ef12aa7cea37e5d5345900f83401b32d5f60f220991290948',
 			'com.android.support.test.espresso:espresso-idling-resource:3.0.1:espresso-idling-resource-3.0.1.aar:d834e12b690cadc79c1f2a74d59a9bfc4dce25e824c012b56509367a94ced002',
@@ -222,7 +222,7 @@ dependencyVerification {
 			'com.google.guava:guava:23.0-android:guava-23.0-android.jar:c8cea78328d2c50a3be2d4548f6fbc723516b5438251f5803008778f3ff5a3ed',
 			'com.jakewharton.timber:timber:4.6.0:timber-4.6.0.aar:35c22867f2673132e97e17857d36bb2fc25f5790f0425406833ed0254d62fc66',
 			'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0:mapbox-android-plugin-locationlayer-0.3.0.aar:8c65339d03655badde67c1c1e08ae02fdb955be2cc8d55e1a6898590ca0e6137',
-			'com.mapbox.mapboxsdk:mapbox-android-sdk:5.4.0:mapbox-android-sdk-5.4.0.aar:dcc04b24d65d883de89be2b5f7fe5ca0d254af23873a3a7abd6944e85a56e7a6',
+			'com.mapbox.mapboxsdk:mapbox-android-sdk:5.4.1:mapbox-android-sdk-5.4.1.aar:324e5b95152f9480b59550af7a17e9f29c49ce4f55e97392b0dde503c8b24359',
 			'com.mapbox.mapboxsdk:mapbox-android-telemetry:2.2.9:mapbox-android-telemetry-2.2.9.aar:7319ae68bb41035db8b21bc2216a9f560d12c5681c12a2137069ca993f1718dd',
 			'com.mapbox.mapboxsdk:mapbox-java-core:2.2.9:mapbox-java-core-2.2.9.jar:0bd929e2f8194e0a4031a9a3fcb22aa0731b641fd3b8ff5598446637cd4b3300',
 			'com.mapbox.mapboxsdk:mapbox-java-geojson:2.2.9:mapbox-java-geojson-2.2.9.jar:e888f38e36173a1ac39f3ba08fe6ba50d809b5d05ca8de5c143dee35114bfd91',
