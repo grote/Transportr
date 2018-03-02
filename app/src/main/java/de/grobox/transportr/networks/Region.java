@@ -21,6 +21,13 @@ package de.grobox.transportr.networks;
 
 import android.content.Context;
 
+import java.util.List;
+
 interface Region {
 	String getName(Context context);
+}
+interface ParentRegion extends Region {
+	int getName();
+	void addSubRegion(Region region);
+	List<Region> getSubRegions();
 }

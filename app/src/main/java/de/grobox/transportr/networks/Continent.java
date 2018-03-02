@@ -24,12 +24,15 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.transportr.R;
 
 @ParametersAreNonnullByDefault
-enum Continent implements Region {
+enum Continent implements ParentRegion {
 
 	EUROPE(R.string.np_continent_europe, R.drawable.continent_europe),
 	AFRICA(R.string.np_continent_africa, R.drawable.continent_africa),
@@ -42,12 +45,15 @@ enum Continent implements Region {
 
 	private final @StringRes int name;
 	private final @DrawableRes int contour;
+	private List<Region> subRegions;
 
 	Continent(@StringRes int name, @DrawableRes int contour) {
 		this.name = name;
 		this.contour = contour;
+		this.subRegions = new ArrayList<>();
 	}
 
+	@Override
 	@StringRes
 	public int getName() {
 		return name;
@@ -61,6 +67,16 @@ enum Continent implements Region {
 	@Override
 	public String getName(Context context) {
 		return context.getString(name);
+	}
+
+	@Override
+	public void addSubRegion(Region subRegion) {
+		subRegions.add(subRegion);
+	}
+
+	@Override
+	public List<Region> getSubRegions() {
+		return subRegions;
 	}
 
 }

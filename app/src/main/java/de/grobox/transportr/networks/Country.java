@@ -23,12 +23,15 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.transportr.R;
 
 @ParametersAreNonnullByDefault
-enum Country implements Region {
+enum Country implements ParentRegion {
 
 	GERMANY(R.string.np_region_germany, "🇩🇪", Continent.EUROPE),
 	AUSTRIA(R.string.np_region_austria, "🇦🇹", Continent.EUROPE),
@@ -53,13 +56,17 @@ enum Country implements Region {
 	private final @StringRes int name;
 	private final @Nullable String flag;
 	private final Continent continent;
+	private List<Region> subRegions;
 
 	Country(@StringRes int name, @Nullable String flag, Continent continent) {
 		this.name = name;
 		this.flag = flag;
 		this.continent = continent;
+		this.continent.addSubRegion(this);
+		this.subRegions = new ArrayList<>();
 	}
 
+	@Override
 	@StringRes
 	public int getName() {
 		return name;
@@ -74,9 +81,19 @@ enum Country implements Region {
 	public String getFlag() {
 		return flag;
 	}
-	
+
 	public Continent getContinent() {
 		return continent;
+	}
+
+	@Override
+	public void addSubRegion(Region subRegion) {
+		subRegions.add(subRegion);
+	}
+
+	@Override
+	public List<Region> getSubRegions() {
+		return subRegions;
 	}
 
 }

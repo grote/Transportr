@@ -90,23 +90,16 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 		list.setLayoutManager(new LinearLayoutManager(this));
 		list.setAdapter(adapter);
 
-		Map<Region, List<Region>> regions = getRegionsByRegion();
 		List<ContinentItem> continentItems = new ArrayList<>(Continent.values().length);
 		for (Continent continent : Continent.values()) {
-			if (!regions.containsKey(continent)) {
-				continue;
-			}
 			ContinentItem continentItem = new ContinentItem(continent);
-			List<Region> subRegions = regions.get(continent);
+			List<Region> subRegions = continent.getSubRegions();
 			List<RegionItem> subRegionItems = new ArrayList<>(subRegions.size());
 			for (Region subRegion : subRegions) {
 				if (subRegion instanceof Country) {
 					Country country = (Country)subRegion;
-					if (!regions.containsKey(country)) {
-						continue;
-					}
 					CountryItem countryItem = new CountryItem(country);
-					List<Region> networks = regions.get(country);
+					List<Region> networks = country.getSubRegions();
 					List<TransportNetworkItem> networkItems = new ArrayList<>(networks.size());
 					for (Region network : networks) {
 						if (!(network instanceof TransportNetwork))
@@ -124,8 +117,8 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 			Collections.sort(subRegionItems, new RegionItem.RegionComparator(this));
 			continentItem.withSubItems(subRegionItems);
 			continentItems.add(continentItem);
-
 		}
+
 		Collections.sort(continentItems, new RegionItem.RegionComparator(this));
 		for (ContinentItem c : continentItems) {
 			adapter.add(c);
@@ -192,53 +185,4 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 			}
 		}
 	}
-	
-	private HashMap<Region, List<Region>> getRegionsByRegion() {
-
-		HashMap<Region, List<Region>> regions = new HashMap<>();
-		for (TransportNetwork n : TransportNetworks.networks) {
-			Region region = n.getRegion();
-			Country country;
-			Continent continent;
-			if (region instanceof Country) {
-				country = (Country)region;
-				continent = country.getContinent();
-
-				List<Region> countries = new ArrayList<>();
-				List<Region> networks = new ArrayList<>();
-
-				if (regions.containsKey(continent))
-					countries = regions.get(continent);
-				if (!countries.contains(country))
-					countries.add(country);
-				if (!regions.containsKey(continent))
-					regions.put(continent, countries);
-
-				if (regions.containsKey(country)) {
-					networks = regions.get(country);
-				}
-				networks.add(n);
-				if (!regions.containsKey(country)) {
-					regions.put(country, networks);
-				}
-
-			} else if (region instanceof Continent) {
-				continent = (Continent)region;
-
-				List<Region> networks = new ArrayList<>();
-
-				if (regions.containsKey(continent)) {
-					networks = regions.get(continent);
-				}
-				networks.add(n);
-				if (!regions.containsKey(continent)) {
-					regions.put(continent, networks);
-				}
-			} else {
-				continue;
-			}
-		}
-		return regions;
-	}
-
 }

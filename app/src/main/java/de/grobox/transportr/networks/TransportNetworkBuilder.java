@@ -35,7 +35,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 class TransportNetworkBuilder {
 
 	private NetworkId id;
-	private Region region;
+	private ParentRegion region;
 	private @StringRes int name;
 	private @StringRes int description;
 	private @StringRes int agencies;
@@ -58,7 +58,7 @@ class TransportNetworkBuilder {
 		return this;
 	}
 
-	TransportNetworkBuilder setRegion(Region region) {
+	TransportNetworkBuilder setRegion(ParentRegion region) {
 		this.region = region;
 		return this;
 	}
