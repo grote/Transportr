@@ -158,7 +158,7 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
 
     /* Nearby Stations Loader */
 
-    override fun onCreateLoader(id: Int, args: Bundle): Loader<NearbyLocationsResult> {
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<NearbyLocationsResult> {
         return NearbyLocationsLoader(context, viewModel.transportNetwork.value, args)
     }
 
