@@ -19,6 +19,7 @@
 
 package de.grobox.transportr.networks;
 
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,36 +29,24 @@ import de.grobox.transportr.R;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static de.grobox.transportr.networks.TransportNetwork.Status.ALPHA;
-import static de.grobox.transportr.networks.TransportNetwork.Status.STABLE;
 
-class TransportNetworkViewHolder extends RegionViewHolder<TransportNetwork> {
+class CountryViewHolder extends ParentRegionViewHolder<Country> {
 
-	private final ImageView logo;
-	private final TextView desc;
-	private final TextView status;
+	private final TextView flag;
 
-	TransportNetworkViewHolder(View v) {
+	CountryViewHolder(View v) {
 		super(v);
-		logo = v.findViewById(R.id.logo);
-		desc = v.findViewById(R.id.desc);
-		status = v.findViewById(R.id.status);
+		flag = v.findViewById(R.id.flag);
 	}
 
 	@Override
-	void bind(TransportNetwork network, boolean expanded) {
-		super.bind(network, expanded);
-		logo.setImageResource(network.getLogo());
-		desc.setText(network.getDescription(desc.getContext()));
-		if (network.getStatus() == STABLE) {
-			status.setVisibility(GONE);
+	void bind(Country country, boolean expanded) {
+		super.bind(country, expanded);
+		if (Build.VERSION.SDK_INT >= 21) {
+			flag.setText(country.getFlag());
+			flag.setVisibility(VISIBLE);
 		} else {
-			if (network.getStatus() == ALPHA) {
-				status.setText(status.getContext().getString(R.string.alpha));
-			} else {
-				status.setText(status.getContext().getString(R.string.beta));
-			}
-			status.setVisibility(VISIBLE);
+			flag.setVisibility(GONE);
 		}
 	}
 

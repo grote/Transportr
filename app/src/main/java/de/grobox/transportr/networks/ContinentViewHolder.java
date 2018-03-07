@@ -19,6 +19,7 @@
 
 package de.grobox.transportr.networks;
 
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,37 +29,19 @@ import de.grobox.transportr.R;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static de.grobox.transportr.networks.TransportNetwork.Status.ALPHA;
-import static de.grobox.transportr.networks.TransportNetwork.Status.STABLE;
 
-class TransportNetworkViewHolder extends RegionViewHolder<TransportNetwork> {
+class ContinentViewHolder extends ParentRegionViewHolder<Continent> {
 
-	private final ImageView logo;
-	private final TextView desc;
-	private final TextView status;
+	private final ImageView contour;
 
-	TransportNetworkViewHolder(View v) {
+	ContinentViewHolder(View v) {
 		super(v);
-		logo = v.findViewById(R.id.logo);
-		desc = v.findViewById(R.id.desc);
-		status = v.findViewById(R.id.status);
+		contour = v.findViewById(R.id.contour);
 	}
 
 	@Override
-	void bind(TransportNetwork network, boolean expanded) {
-		super.bind(network, expanded);
-		logo.setImageResource(network.getLogo());
-		desc.setText(network.getDescription(desc.getContext()));
-		if (network.getStatus() == STABLE) {
-			status.setVisibility(GONE);
-		} else {
-			if (network.getStatus() == ALPHA) {
-				status.setText(status.getContext().getString(R.string.alpha));
-			} else {
-				status.setText(status.getContext().getString(R.string.beta));
-			}
-			status.setVisibility(VISIBLE);
-		}
+	void bind(Continent continent, boolean expanded) {
+		super.bind(continent, expanded);
+		contour.setImageResource(continent.getContour());
 	}
-
 }

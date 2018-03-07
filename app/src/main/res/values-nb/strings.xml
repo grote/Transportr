@@ -173,7 +173,6 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Le Sud-Ouest, Québec, Montérégie, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danmark</string>
   <string name="np_desc_dsb">Danmark, København</string>
-  <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">Bare langdistansetog</string>
   <string name="np_desc_rt_networks">Railteam-alliansen</string>
@@ -230,7 +229,6 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_tfi">Irland, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
-  <string name="np_region_italy">Italia</string>
   <string name="np_name_it">Italia</string>
   <string name="np_desc_it">Rom, Milano, Torino, Venedig, Palermo, Trient</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -243,12 +241,10 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_negentwee">All offentlig transport i Holland</string>
   <string name="np_region_norway">Norge</string>
   <string name="np_desc_nri">Norge, Oslo, Bergen</string>
-  <string name="np_region_nz">Ny-Zealand</string>
   <string name="np_name_nz">Ny-Zealand</string>
   <string name="np_desc_nz">Ny-Zealand, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, jernbane i Polen</string>
-  <string name="np_region_spain">Spania</string>
   <string name="np_name_spain">Spania</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baskerland, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_region_sweden">Sverige</string>
@@ -268,9 +264,7 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_name_california">California</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Transport for hele staten Oregon (USA)</string>
-  <string name="np_region_costa_rica">Costa Rica</string>
   <string name="np_name_costa_rica">Costa Rica</string>
-  <string name="np_region_africa">Afrika</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
   <string name="maintainer">Utgivelsesansvarlig</string>

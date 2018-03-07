@@ -123,7 +123,6 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Denemarken</string>
   <string name="np_desc_dsb">Denemarken, Kopenhagen</string>
-  <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">Alleen langeafstandstreinen</string>
   <string name="np_desc_rt_networks">Railteam-alliantie</string>
@@ -180,7 +179,6 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_tfi">Ierland, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israël</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israël, Jeruzalem</string>
-  <string name="np_region_italy">Italië</string>
   <string name="np_name_it">Italie</string>
   <string name="np_desc_it">Rome, Milaan, Turijn, Venetië, Palermo, Trente</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -193,12 +191,10 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_negentwee">Alle OV in Nederland</string>
   <string name="np_region_norway">Noorwegen</string>
   <string name="np_desc_nri">Noorwegen, Oslo, Bergen</string>
-  <string name="np_region_nz">Nieuw-Zeeland</string>
   <string name="np_name_nz">Nieuw-Zeeland</string>
   <string name="np_desc_nz">Nieuw-Zeeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, spoorwegen in Polen</string>
-  <string name="np_region_spain">Spanje</string>
   <string name="np_name_spain">Spanje</string>
   <string name="np_region_sweden">Zweden</string>
   <string name="np_desc_se">Zweden, Stockholm</string>

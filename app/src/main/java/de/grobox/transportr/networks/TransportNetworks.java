@@ -33,7 +33,7 @@ public interface TransportNetworks {
 
 			new TransportNetworkBuilder()
 					.setId(NetworkId.RT)
-					.setRegion(Region.EUROPE)
+					.setRegion(Continent.EUROPE)
 					.setName(R.string.np_name_rt)
 					.setDescription(R.string.np_desc_rt)
 					.setAgencies(R.string.np_desc_rt_networks)
@@ -47,45 +47,45 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_db)
 					.setDescription(R.string.np_desc_db)
 					.setLogo(R.drawable.network_db_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.BVG)
 					.setDescription(R.string.np_desc_bvg)
 					.setLogo(R.drawable.network_bvg_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VBB)
 					.setDescription(R.string.np_desc_vbb)
 					.setLogo(R.drawable.network_vbb_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.BAYERN)
 					.setName(R.string.np_name_bayern)
 					.setDescription(R.string.np_desc_bayern)
 					.setLogo(R.drawable.network_bayern_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.AVV)
 					.setDescription(R.string.np_desc_avv)
 					.setLogo(R.drawable.network_avv_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.setStatus(BETA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.MVV)
 					.setDescription(R.string.np_desc_mvv)
 					.setLogo(R.drawable.network_mvv_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.INVG)
 					.setDescription(R.string.np_desc_invg)
 					.setLogo(R.drawable.network_invg_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.setStatus(BETA)
 					.build(),
 			new TransportNetworkBuilder()
@@ -93,45 +93,45 @@ public interface TransportNetworks {
 					.setDescription(R.string.np_desc_vgn)
 					.setAgencies(R.string.np_desc_vgn_networks)
 					.setLogo(R.drawable.network_vgn_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.setStatus(BETA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VVM)
 					.setDescription(R.string.np_desc_vvm)
 					.setLogo(R.drawable.network_vvm_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VMV)
 					.setDescription(R.string.np_desc_vmv)
 					.setLogo(R.drawable.network_vmv_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.GVH)
 					.setDescription(R.string.np_desc_gvh)
 					.setLogo(R.drawable.network_gvh_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.BSVAG)
 					.setName(R.string.np_name_bsvag)
 					.setDescription(R.string.np_desc_bsvag)
 					.setLogo(R.drawable.network_bsvag_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VVO)
 					.setDescription(R.string.np_desc_vvo)
 					.setLogo(R.drawable.network_vvo_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VMS)
 					.setDescription(R.string.np_desc_vms)
 					.setLogo(R.drawable.network_vms_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.setStatus(BETA)
 					.build(),
 			new TransportNetworkBuilder()
@@ -139,87 +139,87 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_nasa)
 					.setDescription(R.string.np_desc_nasa)
 					.setLogo(R.drawable.network_nasa_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.setStatus(BETA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VRR)
 					.setDescription(R.string.np_desc_vrr)
 					.setLogo(R.drawable.network_vrr_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.MVG)
 					.setDescription(R.string.np_desc_mvg)
 					.setLogo(R.drawable.network_mvg_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.NVV)
 					.setName(R.string.np_name_nvv)
 					.setDescription(R.string.np_desc_nvv)
 					.setLogo(R.drawable.network_nvv_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VRN)
 					.setDescription(R.string.np_desc_vrn)
 					.setLogo(R.drawable.network_vrn_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VVS)
 					.setDescription(R.string.np_desc_vvs)
 					.setLogo(R.drawable.network_vvs_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.DING)
 					.setDescription(R.string.np_desc_ding)
 					.setLogo(R.drawable.network_ding_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.KVV)
 					.setDescription(R.string.np_desc_kvv)
 					.setLogo(R.drawable.network_kvv_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VAGFR)
 					.setName(R.string.np_name_vagfr)
 					.setDescription(R.string.np_desc_vagfr)
 					.setLogo(R.drawable.network_vagfr_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.NVBW)
 					.setDescription(R.string.np_desc_nvbw)
 					.setLogo(R.drawable.network_nvbw_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VVV)
 					.setDescription(R.string.np_desc_vvv)
 					.setLogo(R.drawable.network_vvv_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VGS)
 					.setDescription(R.string.np_desc_vgs)
 					.setLogo(R.drawable.network_vgs_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VRS)
 					.setDescription(R.string.np_desc_vrs)
 					.setLogo(R.drawable.network_vrs_logo)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VMT)
 					.setDescription(R.string.np_desc_vmt)
-					.setRegion(Region.GERMANY)
+					.setRegion(Country.GERMANY)
 					.build(),
 
 			// Austria
@@ -229,53 +229,53 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_oebb)
 					.setDescription(R.string.np_desc_oebb)
 					.setLogo(R.drawable.network_oebb_logo)
-					.setRegion(Region.AUSTRIA)
+					.setRegion(Country.AUSTRIA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VOR)
 					.setDescription(R.string.np_desc_vor)
 					.setLogo(R.drawable.network_vor_logo)
-					.setRegion(Region.AUSTRIA)
+					.setRegion(Country.AUSTRIA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.LINZ)
 					.setName(R.string.np_name_linz)
 					.setDescription(R.string.np_desc_linz)
 					.setLogo(R.drawable.network_linz_logo)
-					.setRegion(Region.AUSTRIA)
+					.setRegion(Country.AUSTRIA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VVT)
 					.setDescription(R.string.np_desc_vvt)
 					.setLogo(R.drawable.network_vvt_logo)
-					.setRegion(Region.AUSTRIA)
+					.setRegion(Country.AUSTRIA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.IVB)
 					.setDescription(R.string.np_desc_ivb)
 					.setLogo(R.drawable.network_ivb_logo)
-					.setRegion(Region.AUSTRIA)
+					.setRegion(Country.AUSTRIA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.STV)
 					.setName(R.string.np_name_stv)
 					.setDescription(R.string.np_desc_stv)
 					.setLogo(R.drawable.network_stv_logo)
-					.setRegion(Region.AUSTRIA)
+					.setRegion(Country.AUSTRIA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.WIEN)
 					.setName(R.string.np_name_wien)
 					.setDescription(R.string.np_desc_wien)
 					.setLogo(R.drawable.network_wien_logo)
-					.setRegion(Region.AUSTRIA)
+					.setRegion(Country.AUSTRIA)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VMOBIL)
 					.setName(R.string.np_name_vmobil)
 					.setDescription(R.string.np_desc_vmobil)
 					.setLogo(R.drawable.network_vmobil_logo)
-					.setRegion(Region.AUSTRIA)
+					.setRegion(Country.AUSTRIA)
 					.build(),
 
 			// Liechtenstein
@@ -285,7 +285,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_vmobil)
 					.setDescription(R.string.np_desc_vmobil)
 					.setLogo(R.drawable.network_vmobil_logo)
-					.setRegion(Region.LIECHTENSTEIN)
+					.setRegion(Country.LIECHTENSTEIN)
 					.build(),
 
 			// Switzerland
@@ -295,19 +295,19 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_sbb)
 					.setDescription(R.string.np_desc_sbb)
 					.setLogo(R.drawable.network_sbb_logo)
-					.setRegion(Region.SWITZERLAND)
+					.setRegion(Country.SWITZERLAND)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.VBL)
 					.setDescription(R.string.np_desc_vbl)
 					.setLogo(R.drawable.network_vbl_logo)
-					.setRegion(Region.SWITZERLAND)
+					.setRegion(Country.SWITZERLAND)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.ZVV)
 					.setDescription(R.string.np_desc_zvv)
 					.setLogo(R.drawable.network_zvv_logo)
-					.setRegion(Region.SWITZERLAND)
+					.setRegion(Country.SWITZERLAND)
 					.build(),
 
 			// Belgium
@@ -318,7 +318,7 @@ public interface TransportNetworks {
 					.setDescription(R.string.np_desc_sncb)
 					.setAgencies(R.string.np_desc_sncb_networks)
 					.setLogo(R.drawable.network_sncb_logo)
-					.setRegion(Region.BELGIUM)
+					.setRegion(Continent.EUROPE)
 					.build(),
 
 			// Luxembourg
@@ -328,7 +328,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_lu)
 					.setDescription(R.string.np_desc_lu)
 					.setAgencies(R.string.np_desc_lu_networks)
-					.setRegion(Region.LUXEMBOURG)
+					.setRegion(Country.LUXEMBOURG)
 					.build(),
 
 			// Netherlands
@@ -337,7 +337,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.NS)
 					.setDescription(R.string.np_desc_ns)
 					.setLogo(R.drawable.network_ns_logo)
-					.setRegion(Region.NETHERLANDS)
+					.setRegion(Country.NETHERLANDS)
 					.setStatus(BETA)
 					.build(),
 
@@ -346,7 +346,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_negentwee)
 					.setDescription(R.string.np_desc_negentwee)
 					.setLogo(R.drawable.network_negentwee_logo)
-					.setRegion(Region.NETHERLANDS)
+					.setRegion(Country.NETHERLANDS)
 					.setStatus(ALPHA)
 					.build(),
 
@@ -356,7 +356,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.DSB)
 					.setDescription(R.string.np_desc_dsb)
 					.setLogo(R.drawable.network_dsb_logo)
-					.setRegion(Region.DENMARK)
+					.setRegion(Country.DENMARK)
 					.build(),
 
 			// Sweden
@@ -365,7 +365,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.SE)
 					.setDescription(R.string.np_desc_se)
 					.setLogo(R.drawable.network_se_logo)
-					.setRegion(Region.SWEDEN)
+					.setRegion(Country.SWEDEN)
 					.build(),
 
 			// Norway
@@ -374,7 +374,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.NRI)
 					.setDescription(R.string.np_desc_nri)
 					.setLogo(R.drawable.network_nri_logo)
-					.setRegion(Region.NORWAY)
+					.setRegion(Country.NORWAY)
 					.build(),
 
 			// Finland
@@ -382,7 +382,7 @@ public interface TransportNetworks {
 			new TransportNetworkBuilder()
 					.setId(NetworkId.HSL)
 					.setDescription(R.string.np_desc_hsl)
-					.setRegion(Region.FINLAND)
+					.setRegion(Country.FINLAND)
 					.setLogo(R.drawable.network_hsl_logo)
 					.setStatus(BETA)
 					.build(),
@@ -392,13 +392,13 @@ public interface TransportNetworks {
 			new TransportNetworkBuilder()
 					.setId(NetworkId.TLEM)
 					.setDescription(R.string.np_desc_tlem)
-					.setRegion(Region.GREAT_BRITAIN)
+					.setRegion(Country.GREAT_BRITAIN)
 					.build(),
 			new TransportNetworkBuilder()
 					.setId(NetworkId.MERSEY)
 					.setName(R.string.np_name_mersey)
 					.setDescription(R.string.np_desc_mersey)
-					.setRegion(Region.GREAT_BRITAIN)
+					.setRegion(Country.GREAT_BRITAIN)
 					.setLogo(R.drawable.network_mersey_logo)
 					.build(),
 
@@ -407,7 +407,7 @@ public interface TransportNetworks {
 			new TransportNetworkBuilder()
 					.setId(NetworkId.TFI)
 					.setDescription(R.string.np_desc_tfi)
-					.setRegion(Region.IRELAND)
+					.setRegion(Country.IRELAND)
 					.setLogo(R.drawable.network_tfi_logo)
 					.build(),
 
@@ -418,7 +418,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_it)
 					.setDescription(R.string.np_desc_it)
 					.setAgencies(R.string.np_desc_it_networks)
-					.setRegion(Region.ITALY)
+					.setRegion(Continent.EUROPE)
 					.setLogo(R.drawable.network_it_logo)
 					.setStatus(BETA)
 					.setGoodLineNames(true)
@@ -430,7 +430,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.PL)
 					.setName(R.string.np_name_pl)
 					.setDescription(R.string.np_desc_pl)
-					.setRegion(Region.POLAND)
+					.setRegion(Country.POLAND)
 					.setLogo(R.drawable.network_pl_logo)
 					.build(),
 
@@ -440,7 +440,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.DUB)
 					.setName(R.string.np_name_dub)
 					.setDescription(R.string.np_desc_dub)
-					.setRegion(Region.UAE)
+					.setRegion(Country.UAE)
 					.setStatus(BETA)
 					.build(),
 
@@ -451,7 +451,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_rtachicago)
 					.setDescription(R.string.np_desc_rtachicago)
 					.setAgencies(R.string.np_desc_rtachicago_networks)
-					.setRegion(Region.USA)
+					.setRegion(Country.USA)
 					.setLogo(R.drawable.network_rtachicago_logo)
 					.setStatus(BETA)
 					.build(),
@@ -459,7 +459,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.CALIFORNIA)
 					.setName(R.string.np_name_california)
 					.setDescription(R.string.np_desc_california)
-					.setRegion(Region.USA)
+					.setRegion(Country.USA)
 					.setLogo(R.drawable.network_california_logo)
 					.setStatus(ALPHA)
 					.build(),
@@ -467,7 +467,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.OREGON)
 					.setName(R.string.np_name_oregon)
 					.setDescription(R.string.np_desc_oregon)
-					.setRegion(Region.USA)
+					.setRegion(Country.USA)
 					.setLogo(R.drawable.network_oregon_logo)
 					.setStatus(ALPHA)
 					.build(),
@@ -475,7 +475,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.NEWYORK)
 					.setName(R.string.np_name_usny)
 					.setDescription(R.string.np_desc_usny)
-					.setRegion(Region.USA)
+					.setRegion(Country.USA)
 					.setStatus(ALPHA)
 					.build(),
 
@@ -486,7 +486,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_australia)
 					.setDescription(R.string.np_desc_australia)
 					.setAgencies(R.string.np_desc_australia_networks)
-					.setRegion(Region.AUSTRALIA)
+					.setRegion(Country.AUSTRALIA)
 					.setLogo(R.drawable.network_aus_logo)
 					.setStatus(BETA)
 					.build(),
@@ -495,7 +495,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.SYDNEY)
 					.setName(R.string.np_name_sydney)
 					.setDescription(R.string.np_desc_sydney)
-					.setRegion(Region.AUSTRALIA)
+					.setRegion(Country.AUSTRALIA)
 					.setLogo(R.drawable.network_sydney_logo)
 					.build(),
 
@@ -506,7 +506,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_paris)
 					.setDescription(R.string.np_desc_paris)
 					.setAgencies(R.string.np_desc_paris_networks)
-					.setRegion(Region.FRANCE)
+					.setRegion(Country.FRANCE)
 					.setLogo(R.drawable.network_paris_logo)
 					.setStatus(BETA)
 					.build(),
@@ -515,7 +515,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_frenchsouthwest)
 					.setDescription(R.string.np_desc_frenchsouthwest)
 					.setAgencies(R.string.np_desc_frenchsouthwest_networks)
-					.setRegion(Region.FRANCE)
+					.setRegion(Country.FRANCE)
 					.setLogo(R.drawable.network_francesouthwest_logo)
 					.setStatus(BETA)
 					.setGoodLineNames(true)
@@ -525,7 +525,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_francenortheast)
 					.setDescription(R.string.np_desc_francenortheast)
 					.setAgencies(R.string.np_desc_francenortheast_networks)
-					.setRegion(Region.FRANCE)
+					.setRegion(Country.FRANCE)
 					.setLogo(R.drawable.network_francenortheast_logo)
 					.setStatus(ALPHA)
 					.setGoodLineNames(true)
@@ -535,7 +535,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_francenorthwest)
 					.setDescription(R.string.np_desc_francenorthwest)
 					.setAgencies(R.string.np_desc_francenorthwest_networks)
-					.setRegion(Region.FRANCE)
+					.setRegion(Country.FRANCE)
 					.setLogo(R.drawable.network_francenorthwest_logo)
 					.setStatus(ALPHA)
 					.build(),
@@ -544,7 +544,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_frenchsoutheast)
 					.setDescription(R.string.np_desc_frenchsoutheast)
 					.setAgencies(R.string.np_desc_frenchsoutheast_networks)
-					.setRegion(Region.FRANCE)
+					.setRegion(Country.FRANCE)
 					.setLogo(R.drawable.network_francesoutheast_logo)
 					.setStatus(BETA)
 					.setGoodLineNames(true)
@@ -557,7 +557,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_nz)
 					.setDescription(R.string.np_desc_nz)
 					.setAgencies(R.string.np_desc_nz_networks)
-					.setRegion(Region.NEW_ZEALAND)
+					.setRegion(Continent.OCEANIA)
 					.setLogo(R.drawable.network_nz_logo)
 					.setStatus(BETA)
 					.build(),
@@ -569,7 +569,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_spain)
 					.setDescription(R.string.np_desc_spain)
 					.setAgencies(R.string.np_desc_spain_networks)
-					.setRegion(Region.SPAIN)
+					.setRegion(Continent.EUROPE)
 					.setLogo(R.drawable.network_spain_logo)
 					.setStatus(BETA)
 					.build(),
@@ -581,7 +581,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_br)
 					.setDescription(R.string.np_desc_br)
 					.setAgencies(R.string.np_desc_br_networks)
-					.setRegion(Region.BRAZIL)
+					.setRegion(Country.BRAZIL)
 					.setLogo(R.drawable.network_br_logo)
 					.setStatus(ALPHA)
 					.setGoodLineNames(true)
@@ -591,7 +591,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_br_floripa)
 					.setDescription(R.string.np_desc_br_floripa)
 					.setAgencies(R.string.np_desc_br_floripa_networks)
-					.setRegion(Region.BRAZIL)
+					.setRegion(Country.BRAZIL)
 					.setLogo(R.drawable.network_brfloripa_logo)
 					.setStatus(ALPHA)
 					.setGoodLineNames(true)
@@ -604,7 +604,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_ontario)
 					.setDescription(R.string.np_desc_ontario)
 					.setAgencies(R.string.np_desc_ontario_networks)
-					.setRegion(Region.CANADA)
+					.setRegion(Country.CANADA)
 					.setLogo(R.drawable.network_ontario_logo)
 					.setStatus(BETA)
 					.setGoodLineNames(true)
@@ -614,7 +614,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_quebec)
 					.setDescription(R.string.np_desc_quebec)
 					.setAgencies(R.string.np_desc_quebec_networks)
-					.setRegion(Region.CANADA)
+					.setRegion(Country.CANADA)
 					.setLogo(R.drawable.network_quebec_logo)
 					.setStatus(ALPHA)
 					.setGoodLineNames(true)
@@ -627,7 +627,7 @@ public interface TransportNetworks {
 					.setName(R.string.np_name_costa_rica)
 					.setDescription(R.string.np_desc_costa_rica)
 					.setAgencies(R.string.np_desc_costa_rica_networks)
-					.setRegion(Region.COSTA_RICA)
+					.setRegion(Continent.CENTRAL_AMERICA)
 					.setStatus(ALPHA)
 					.setGoodLineNames(true)
 					.build(),
@@ -638,7 +638,7 @@ public interface TransportNetworks {
 					.setId(NetworkId.GHANA)
 					.setName(R.string.np_name_ghana)
 					.setDescription(R.string.np_desc_ghana)
-					.setRegion(Region.AFRICA)
+					.setRegion(Continent.AFRICA)
 					.setStatus(ALPHA)
 					.setGoodLineNames(true)
 					.build(),
@@ -649,7 +649,7 @@ public interface TransportNetworks {
 				.setId(NetworkId.NICARAGUA)
 				.setName(R.string.np_name_nicaragua)
 		 		.setDescription(R.string.np_desc_nicaragua)
-		 		.setRegion(Region.CENTRAL_AMERICA)
+		 		.setRegion(Continent.CENTRAL_AMERICA)
 				.setLogo(R.drawable.network_nicaragua_logo)
 		 		.setStatus(ALPHA)
 				.setGoodLineNames(true)

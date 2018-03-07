@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-	android:id="@+id/list_item_transport_region"
+	android:id="@+id/list_item_transport_country"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="48dp"
+	android:layout_height="wrap_content"
+	android:minHeight="48dp"
 	android:background="?selectableItemBackground">
 
 	<TextView
 		android:id="@+id/flag"
-		android:layout_width="wrap_content"
-		android:layout_height="0dp"
-		android:layout_marginBottom="8dp"
-		android:layout_marginLeft="8dp"
-		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
+		android:layout_width="48dp"
+		android:layout_height="match_parent"
+		android:layout_margin="8dp"
 		android:gravity="center_vertical"
 		android:textAppearance="@style/TextAppearance.AppCompat"
 		android:textSize="18sp"
+		android:textAlignment="center"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
@@ -27,21 +26,19 @@
 	<TextView
 		android:id="@+id/name"
 		android:layout_width="0dp"
-		android:layout_height="0dp"
+		android:layout_height="wrap_content"
 		android:layout_marginBottom="8dp"
-		android:layout_marginEnd="8dp"
-		android:layout_marginLeft="8dp"
+		android:layout_marginLeft="72dp"
 		android:layout_marginRight="8dp"
-		android:layout_marginStart="8dp"
 		android:layout_marginTop="8dp"
 		android:gravity="center_vertical"
 		android:textAppearance="@style/TextAppearance.AppCompat"
 		android:textSize="18sp"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintLeft_toRightOf="@+id/flag"
+		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toLeftOf="@+id/chevron"
 		app:layout_constraintTop_toTopOf="parent"
-		tools:text="Network Provider Region"/>
+		tools:text="Network Provider Country"/>
 
 	<ImageView
 		android:id="@+id/chevron"

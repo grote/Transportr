@@ -82,7 +82,6 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_region_canada">கனடா</string>
   <string name="np_region_denmark">டென்மார்க்</string>
   <string name="np_desc_dsb">டென்மார்க், கோபன்ஹேகன்</string>
-  <string name="np_region_europe">ஐரோப்பா</string>
   <string name="np_name_rt">ஐரோப்பா</string>
   <string name="np_region_finland">ஃபின்லாந்து</string>
   <string name="np_desc_hsl">ஹெல்சின்கி</string>
@@ -105,7 +104,6 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_desc_tfi">ஐயர்லாந்து, டப்லின், பெல்ஃபாஸ்ட்</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">இஸ்ரேல்</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">இஸ்ரேல், ஜெருசலேம்</string>
-  <string name="np_region_italy">இத்தாலி</string>
   <string name="np_name_it">இத்தாலி</string>
   <string name="np_region_luxembourg">லக்ஸம்பர்க்</string>
   <string name="np_desc_lu">லக்ஸம்பர்க்</string>
@@ -113,10 +111,8 @@ Transportr, நீங்கள் வசிக்கும் இடத்தி
   <string name="np_desc_ns">நெதர்லாந்து, ஆம்ஸ்டர்டாம்</string>
   <string name="np_region_norway">நார்வே</string>
   <string name="np_desc_nri">நார்வே, ஓஸ்லோ, பெர்கென்</string>
-  <string name="np_region_nz">நியூசிலாந்து</string>
   <string name="np_name_nz">நியூசிலாந்து</string>
   <string name="np_region_poland">போலாந்து</string>
-  <string name="np_region_spain">ஸ்பெயின்</string>
   <string name="np_name_spain">ஸ்பெயின்</string>
   <string name="np_region_sweden">சுவீடன்</string>
   <string name="np_desc_se">சுவீடன், ஸ்டாக்ஹோம்</string>

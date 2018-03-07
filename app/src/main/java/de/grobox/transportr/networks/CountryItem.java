@@ -31,50 +31,46 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.transportr.R;
 
 @ParametersAreNonnullByDefault
-class TransportNetworkItem extends RegionItem<ParentRegionItem, TransportNetworkViewHolder, RegionItem> {
+class CountryItem extends ParentRegionItem<ContinentItem, CountryViewHolder, TransportNetworkItem> {
 
-	protected final TransportNetwork network;
+	protected final Country country;
 
-	TransportNetworkItem(TransportNetwork network) {
+	CountryItem(Country country) {
 		super();
-		this.network = network;
+		this.country = country;
 	}
 
 	@Override
 	protected String getName(Context context) {
-		return network.getName(context);
+		return country.getName(context);
 	}
 
 	@IdRes
 	@Override
 	public int getType() {
-		return R.id.list_item_transport_network;
+		return R.id.list_item_transport_country;
 	}
 
 	@Override
 	@LayoutRes
 	public int getLayoutRes() {
-		return R.layout.list_item_transport_network;
+		return R.layout.list_item_transport_country;
 	}
 
 	@Override
-	public void bindView(TransportNetworkViewHolder ui, List<Object> payloads) {
+	public void bindView(CountryViewHolder ui, List<Object> payloads) {
 		super.bindView(ui, payloads);
-		ui.bind(network, false);
+		ui.bind(country, isExpanded());
 	}
 
 	@Override
-	public TransportNetworkViewHolder getViewHolder(View view) {
-		return new TransportNetworkViewHolder(view);
+	public CountryViewHolder getViewHolder(View view) {
+		return new CountryViewHolder(view);
 	}
 
 	@Override
 	public long getIdentifier() {
-		return network.getId().ordinal();
-	}
-
-	TransportNetwork getTransportNetwork() {
-		return network;
+		return country.getName();
 	}
 
 }

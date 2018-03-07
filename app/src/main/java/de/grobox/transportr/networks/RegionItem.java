@@ -20,12 +20,8 @@
 package de.grobox.transportr.networks;
 
 import android.content.Context;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.support.v4.view.ViewCompat;
-import android.view.View;
 
-import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.expandable.items.AbstractExpandableItem;
 import com.mikepenz.fastadapter.listeners.OnClickListener;
 
@@ -37,59 +33,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import de.grobox.transportr.R;
 
 @ParametersAreNonnullByDefault
-class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, TransportNetworkItem> {
+abstract class RegionItem<Parent extends ParentRegionItem, VH extends RegionViewHolder, Child extends RegionItem> extends AbstractExpandableItem<Parent, VH, Child> {
 
-	private final Region region;
+	protected abstract String getName(Context context);
 
-	RegionItem(Region region) {
-		super();
-		this.region = region;
-	}
-
-	@IdRes
-	@Override
-	public int getType() {
-		return R.id.list_item_transport_region;
-	}
-
-	@Override
-	@LayoutRes
-	public int getLayoutRes() {
-		return R.layout.list_item_transport_region;
-	}
-
-	@Override
-	public void bindView(RegionViewHolder ui, List<Object> payloads) {
-		super.bindView(ui, payloads);
-		ui.bind(region, isExpanded());
-	}
-
-	@Override
-	public RegionViewHolder getViewHolder(View view) {
-		return new RegionViewHolder(view);
-	}
-
-	@Override
-	public long getIdentifier() {
-		return region.getName();
-	}
-
-	@Override
-	public OnClickListener<RegionItem> getOnItemClickListener() {
-		return (v, adapter, item, position) -> {
-			if (item.getSubItems() != null) {
-				if (!item.isExpanded()) {
-					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(180).start();
-				} else {
-					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(0).start();
-				}
-				return true;
-			}
-			return false;
-		};
-	}
-
-	static class RegionComparator implements Comparator<IItem> {
+	static class RegionComparator implements Comparator<RegionItem> {
 
 		private final Context context;
 
@@ -99,13 +47,34 @@ class RegionItem extends AbstractExpandableItem<RegionItem, RegionViewHolder, Tr
 		}
 
 		@Override
-		public int compare(IItem i1, IItem i2) {
-			if (i1 instanceof RegionItem && i2 instanceof RegionItem) {
-				// sort regions alphabetically
-				return ((RegionItem) i1).region.getName(context).compareTo(((RegionItem) i2).region.getName(context));
-			}
-			return 0;
+		public int compare(RegionItem r1, RegionItem r2) {
+			// sort regions alphabetically
+			return r1.getName(context).compareTo(r2.getName(context));
 		}
 	}
+}
 
+abstract class ParentRegionItem<Parent extends ParentRegionItem, VH extends RegionViewHolder, Child extends RegionItem> extends RegionItem<Parent, VH, Child> {
+	
+	@Override
+	public OnClickListener<Parent> getOnItemClickListener() {
+		return (v, adapter, item, position) -> {
+			if (item.getSubItems() != null) {
+				if (!item.isExpanded()) {
+					List<Child> subItems = item.getSubItems();
+					for (Child subItem : subItems) {
+						if (subItem.getSubItems() != null && subItem.isExpanded()) {
+							subItem.withIsExpanded(false);
+							adapter.getFastAdapter().notifyAdapterDataSetChanged();
+						}
+					}
+					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(180).start();
+				} else {
+					ViewCompat.animate(v.findViewById(R.id.chevron)).rotation(0).start();
+				}
+				return true;
+			}
+			return false;
+		};
+	}
 }

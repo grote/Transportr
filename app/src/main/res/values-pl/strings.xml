@@ -169,7 +169,6 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Dania</string>
   <string name="np_desc_dsb">Dania, Kopenhaga</string>
-  <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">Tylko pociągi długodystansowe</string>
   <string name="np_desc_rt_networks">Sieć Railteam</string>
@@ -226,7 +225,6 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_tfi">Irlandia, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Izrael</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Izrael, Jerozolima</string>
-  <string name="np_region_italy">Włochy</string>
   <string name="np_name_it">Włochy</string>
   <string name="np_desc_it">Rzym, Mediolan, Turyn, Wenecja, Palermo, Trydent</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -239,12 +237,10 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_negentwee">Transport publiczny w Holandii</string>
   <string name="np_region_norway">Norwegia</string>
   <string name="np_desc_nri">Norwegia, Oslo, Bergen</string>
-  <string name="np_region_nz">Nowa Zelandia</string>
   <string name="np_name_nz">Nowa Zelandia</string>
   <string name="np_desc_nz">Nowa Zelandia, Wellington, Auckland</string>
   <string name="np_region_poland">Polska</string>
   <string name="np_desc_pl">Polska, koleje w Polsce</string>
-  <string name="np_region_spain">Hiszpania</string>
   <string name="np_name_spain">Hiszpania</string>
   <string name="np_desc_spain">Madryt, Barcelona, Kraj Basków, Walencja, Alicante, Majorka, Minorka, Teneryfa, La Palma, Nawarra</string>
   <string name="np_region_sweden">Szwecja</string>
@@ -265,9 +261,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_california">Transport publiczny w Stanie Kalifornia (USA)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Global Transport w stanie Oregon (USA)</string>
-  <string name="np_region_costa_rica">Kostaryka</string>
   <string name="np_name_costa_rica">Kostaryka</string>
-  <string name="np_region_africa">Afryka</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Akra</string>
   <string name="maintainer">Opiekun</string>

@@ -167,7 +167,6 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Kebekio, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montrealo, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danujo</string>
   <string name="np_desc_dsb">Danujo, Kopenhago</string>
-  <string name="np_region_europe">Eŭropo</string>
   <string name="np_name_rt">Eŭropo</string>
   <string name="np_desc_rt">Nur long-distancaj vagonaroj</string>
   <string name="np_desc_rt_networks">Societo Railteam</string>
@@ -224,7 +223,6 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_tfi">Irlando, Dublino, Belfasto</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israelo</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israelo, Jerusalemo</string>
-  <string name="np_region_italy">Italujo</string>
   <string name="np_name_it">Italujo</string>
   <string name="np_desc_it">Romo, Milano, Torino, Venecio, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Liĥtenŝtejno</string>
@@ -237,12 +235,10 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_negentwee">Publika transporto en Nederlando</string>
   <string name="np_region_norway">Norvegujo</string>
   <string name="np_desc_nri">Norvegujo, Oslo, Bergen</string>
-  <string name="np_region_nz">Nov-Zelando</string>
   <string name="np_name_nz">Nov-Zelando</string>
   <string name="np_desc_nz">Nov-Zelando, Velingtono, Auckland</string>
   <string name="np_region_poland">Polujo</string>
   <string name="np_desc_pl">Polujo, fervojo en Polujo</string>
-  <string name="np_region_spain">Hispanujo</string>
   <string name="np_name_spain">Hispanujo</string>
   <string name="np_desc_spain">Madrido, Barcelono, Eŭskujo, Valencio, Alakanto, Majorko, Minorko, Tenerifo, La Palma, Navaro</string>
   <string name="np_region_sweden">Svedujo</string>
@@ -263,9 +259,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_california">Publika transporto en Kalifornio (Usono)</string>
   <string name="np_name_oregon">Oregono</string>
   <string name="np_desc_oregon">Global Transport en Oregono Ŝtato (Usono)</string>
-  <string name="np_region_costa_rica">Kostariko</string>
   <string name="np_name_costa_rica">Kostariko</string>
-  <string name="np_region_africa">Afriko</string>
   <string name="np_name_ghana">Ganao</string>
   <string name="np_desc_ghana">Akrao</string>
   <string name="maintainer">Prizorganto</string>

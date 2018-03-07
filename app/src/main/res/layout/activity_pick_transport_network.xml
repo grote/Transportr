@@ -49,6 +49,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior"
-		tools:listitem="@layout/list_item_transport_region"/>
+		tools:listitem="@layout/list_item_transport_continent"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -20,64 +20,14 @@
 package de.grobox.transportr.networks;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 
-import de.grobox.transportr.R;
-
-@ParametersAreNonnullByDefault
-enum Region {
-
-	EUROPE(R.string.np_region_europe, "🇪🇺"),
-	GERMANY(R.string.np_region_germany, "🇩🇪"),
-	AUSTRIA(R.string.np_region_austria, "🇦🇹"),
-	LIECHTENSTEIN(R.string.np_region_liechtenstein, "🇱🇮"),
-	SWITZERLAND(R.string.np_region_switzerland, "🇨🇭"),
-	BELGIUM(R.string.np_region_belgium, "🇧🇪"),
-	LUXEMBOURG(R.string.np_region_luxembourg, "🇱🇺"),
-	NETHERLANDS(R.string.np_region_netherlands, "🇳🇱"),
-	DENMARK(R.string.np_region_denmark, "🇩🇰"),
-	SWEDEN(R.string.np_region_sweden, "🇸🇪"),
-	NORWAY(R.string.np_region_norway, "🇳🇴"),
-	FINLAND(R.string.np_region_finland, "🇫🇮"),
-	GREAT_BRITAIN(R.string.np_region_gb, "🇬🇧"),
-	IRELAND(R.string.np_region_ireland, "🇮🇪"),
-	ITALY(R.string.np_region_italy, "🇮🇹"),
-	POLAND(R.string.np_region_poland, "🇵🇱"),
-	UAE(R.string.np_region_uae, "🇦🇪"),
-	USA(R.string.np_region_usa, "🇺🇸"),
-	AUSTRALIA(R.string.np_region_australia, "🇦🇺"),
-	FRANCE(R.string.np_region_france, "🇫🇷"),
-	NEW_ZEALAND(R.string.np_region_nz, "🇳🇿"),
-	SPAIN(R.string.np_region_spain, "🇪🇸"),
-	BRAZIL(R.string.np_region_br, "🇧🇷"),
-	CANADA(R.string.np_region_canada, "🇨🇦"),
-	COSTA_RICA(R.string.np_region_costa_rica, "🇨🇷"),
-	AFRICA(R.string.np_region_africa, "🌍"),
-	CENTRAL_AMERICA(R.string.np_region_central_america, "🌎");
-
-	private final @StringRes int name;
-	private final @Nullable String flag;
-
-	Region(@StringRes int name, @Nullable String flag) {
-		this.name = name;
-		this.flag = flag;
-	}
-
-	@StringRes
-	public int getName() {
-		return name;
-	}
-
-	public String getName(Context context) {
-		return context.getString(name);
-	}
-
-	@Nullable
-	public String getFlag() {
-		return flag;
-	}
-
+interface Region {
+	String getName(Context context);
+}
+interface ParentRegion extends Region {
+	int getName();
+	void addSubRegion(Region region);
+	List<Region> getSubRegions();
 }

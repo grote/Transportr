@@ -171,7 +171,6 @@
   <string name="np_desc_quebec">ドゥ-モンターニュ、ラバル、ラソンプシオン、ウタウエ、南西部、ケベック、オー-サン-ローラン、ラノディエール地域、ラ・プレスクイル、ローレンティッド地域、モントリオール、レムーラン、リシュリューバレー、シャンブリーリシュリュー-カリニャン、ルシヨン、ソレル-ヴァレンヌザ、Le Richelain、シャーブルック、サントジュリー</string>
   <string name="np_region_denmark">デンマーク</string>
   <string name="np_desc_dsb">デンマーク、コペンハーゲン</string>
-  <string name="np_region_europe">ヨーロッパ</string>
   <string name="np_name_rt">ヨーロッパ</string>
   <string name="np_desc_rt">長距離列車のみ</string>
   <string name="np_desc_rt_networks">鉄道アライアンス</string>
@@ -228,7 +227,6 @@
   <string name="np_desc_tfi">アイルランド、ダブリン、ベルファスト</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">イスラエル</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">イスラエル、エルサレム</string>
-  <string name="np_region_italy">イタリア</string>
   <string name="np_name_it">イタリア</string>
   <string name="np_desc_it">ローマ、ミラノ、トリノ、ヴェネツィア、パレルモ、トレント</string>
   <string name="np_region_liechtenstein">リヒテンシュタイン</string>
@@ -241,12 +239,10 @@
   <string name="np_desc_negentwee">オランダのすべての公共交通機関</string>
   <string name="np_region_norway">ノルウェー</string>
   <string name="np_desc_nri">ノルウェー、オスロ、ベルゲン</string>
-  <string name="np_region_nz">ニュージーランド</string>
   <string name="np_name_nz">ニュージーランド</string>
   <string name="np_desc_nz">ニュージーランド、ウェリントン、オークランド</string>
   <string name="np_region_poland">ポーランド</string>
   <string name="np_desc_pl">ポーランド、ポーランドの鉄道</string>
-  <string name="np_region_spain">スペイン</string>
   <string name="np_name_spain">スペイン</string>
   <string name="np_desc_spain">マドリード、バルセロナ、バスク地方、バレンシア、アリカンテ、マヨルカ、メノルカ、テネリフェ、ラ・パルマ、ナバラ</string>
   <string name="np_region_sweden">スウェーデン</string>
@@ -267,9 +263,7 @@
   <string name="np_desc_california">カリフォルニアの公共交通機関 (米国)</string>
   <string name="np_name_oregon">オレゴン</string>
   <string name="np_desc_oregon">オレゴン州 (米国) のグローバルトランスポート</string>
-  <string name="np_region_costa_rica">コスタリカ</string>
   <string name="np_name_costa_rica">コスタリカ</string>
-  <string name="np_region_africa">アフリカ</string>
   <string name="np_name_ghana">ガーナ</string>
   <string name="np_desc_ghana">アクラ</string>
   <string name="maintainer">メンテナー</string>

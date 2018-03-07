@@ -90,7 +90,6 @@
   <string name="np_name_quebec">Quebec</string>
   <string name="np_region_denmark">Dinamarca</string>
   <string name="np_desc_dsb">Dinamarca, Copenhagen</string>
-  <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_region_finland">Finlàndia</string>
   <string name="np_desc_hsl">Helsinki</string>
@@ -136,7 +135,6 @@
   <string name="np_desc_tfi">Irlanda, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
-  <string name="np_region_italy">Itàlia</string>
   <string name="np_name_it">Itàlia</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
@@ -146,11 +144,9 @@
   <string name="np_desc_ns">Holanda, Amsterdam</string>
   <string name="np_region_norway">Noruega</string>
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
-  <string name="np_region_nz">Nova Zelanda</string>
   <string name="np_name_nz">Nova Zelanda</string>
   <string name="np_region_poland">Polònia</string>
   <string name="np_desc_pl">Polònia, trens a Polònia</string>
-  <string name="np_region_spain">Espanya</string>
   <string name="np_name_spain">Espanya</string>
   <string name="np_region_sweden">Suècia</string>
   <string name="np_desc_se">Suècia, Estocolm</string>

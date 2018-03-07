@@ -24,6 +24,8 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
+import java.util.List;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.annotation.concurrent.Immutable;
 
@@ -34,10 +36,10 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 @Immutable
 @ParametersAreNonnullByDefault
-public class TransportNetwork {
+public class TransportNetwork implements Region {
 
 	private final NetworkId id;
-	private final Region region;
+	private final ParentRegion region;
 	private final @StringRes int name;
 	private final @StringRes int description;
 	private final @StringRes int agencies;
@@ -47,7 +49,7 @@ public class TransportNetwork {
 
 	public enum Status {ALPHA, BETA, STABLE}
 
-	TransportNetwork(NetworkId id, Region region, int name, int description, int agencies, Status status, int logo, boolean goodLineNames) {
+	TransportNetwork(NetworkId id, ParentRegion region, int name, int description, int agencies, Status status, int logo, boolean goodLineNames) {
 		checkArgument(description != 0 || agencies != 0);
 		this.id = id;
 		this.region = region;
@@ -57,6 +59,7 @@ public class TransportNetwork {
 		this.status = status;
 		this.logo = logo;
 		this.goodLineNames = goodLineNames;
+		this.region.addSubRegion(this);
 	}
 
 	public NetworkId getId() {
@@ -71,6 +74,7 @@ public class TransportNetwork {
 		return region;
 	}
 
+	@Override
 	public String getName(Context context) {
 		if (name == 0) {
 			return id.name();

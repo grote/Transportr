@@ -172,7 +172,6 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danimarka</string>
   <string name="np_desc_dsb">Danimarka, Kopenhage</string>
-  <string name="np_region_europe">Europa</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">Distantzia handiko trenak soilik</string>
   <string name="np_desc_rt_networks">Railteam aliantza</string>
@@ -229,7 +228,6 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="np_desc_tfi">Irlanda, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalem</string>
-  <string name="np_region_italy">Italia</string>
   <string name="np_name_it">Italia</string>
   <string name="np_desc_it">Roma, Milan, Turin, Venezia, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
@@ -242,12 +240,10 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="np_desc_negentwee">Herbehereetako garraio publiko guztia </string>
   <string name="np_region_norway">Norvegia</string>
   <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
-  <string name="np_region_nz">Zeelanda Berria</string>
   <string name="np_name_nz">Zeelanda Berria</string>
   <string name="np_desc_nz">Zeelanda Berria, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, Poloniako trenbideak</string>
-  <string name="np_region_spain">Espainia</string>
   <string name="np_name_spain">Espainia</string>
   <string name="np_desc_spain">Madril, Bartzelona, Euskadi, Nafarroa, Valentzia, Alacant, Mallorca, Menorca, Tenerife, La Palma</string>
   <string name="np_region_sweden">Suedia</string>
@@ -268,9 +264,7 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="np_desc_california">Kaliforniako (EEBB) garraio publikoa</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Oregon estatuko (EEBB) garraio orokorra</string>
-  <string name="np_region_costa_rica">Costa Rica</string>
   <string name="np_name_costa_rica">Costa Rica</string>
-  <string name="np_region_africa">Afrika</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
   <string name="maintainer">Mantentzailea</string>
