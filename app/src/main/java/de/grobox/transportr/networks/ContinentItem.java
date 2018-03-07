@@ -22,6 +22,7 @@ package de.grobox.transportr.networks;
 import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import java.util.List;
@@ -63,6 +64,7 @@ class ContinentItem extends ParentRegionItem<ParentRegionItem, ContinentViewHold
 		ui.bind(continent, isExpanded());
 	}
 
+	@NonNull
 	@Override
 	public ContinentViewHolder getViewHolder(View view) {
 		return new ContinentViewHolder(view);

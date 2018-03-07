@@ -48,6 +48,9 @@ abstract class RegionItem<Parent extends ParentRegionItem, VH extends RegionView
 
 		@Override
 		public int compare(RegionItem r1, RegionItem r2) {
+			// sort countries before networks
+			if (r1 instanceof TransportNetworkItem && r2 instanceof ParentRegionItem) return 1;
+			if (r1 instanceof ParentRegionItem && r2 instanceof TransportNetworkItem) return -1;
 			// sort regions alphabetically
 			return r1.getName(context).compareTo(r2.getName(context));
 		}

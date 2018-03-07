@@ -22,6 +22,7 @@ package de.grobox.transportr.networks;
 import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import java.util.List;
@@ -33,7 +34,7 @@ import de.grobox.transportr.R;
 @ParametersAreNonnullByDefault
 class CountryItem extends ParentRegionItem<ContinentItem, CountryViewHolder, TransportNetworkItem> {
 
-	protected final Country country;
+	private final Country country;
 
 	CountryItem(Country country) {
 		super();
@@ -63,6 +64,7 @@ class CountryItem extends ParentRegionItem<ContinentItem, CountryViewHolder, Tra
 		ui.bind(country, isExpanded());
 	}
 
+	@NonNull
 	@Override
 	public CountryViewHolder getViewHolder(View view) {
 		return new CountryViewHolder(view);

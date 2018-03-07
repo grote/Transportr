@@ -21,10 +21,9 @@ package de.grobox.transportr.networks;
 
 import android.content.Context;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
-
-import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.annotation.concurrent.Immutable;
@@ -74,6 +73,7 @@ public class TransportNetwork implements Region {
 		return region;
 	}
 
+	@NonNull
 	@Override
 	public String getName(Context context) {
 		if (name == 0) {

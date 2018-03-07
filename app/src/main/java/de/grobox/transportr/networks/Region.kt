@@ -17,37 +17,25 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.transportr.networks;
+package de.grobox.transportr.networks
 
-import android.os.Build;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.content.Context
+import android.support.annotation.StringRes
 
-import de.grobox.transportr.R;
+internal interface Region {
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
+    fun getName(context: Context): String
 
-class CountryViewHolder extends ParentRegionViewHolder<Country> {
+}
 
-	private final TextView flag;
 
-	CountryViewHolder(View v) {
-		super(v);
-		flag = v.findViewById(R.id.flag);
-	}
+internal interface ParentRegion : Region {
 
-	@Override
-	void bind(Country country, boolean expanded) {
-		super.bind(country, expanded);
-		if (Build.VERSION.SDK_INT >= 21) {
-			flag.setText(country.getFlag());
-			flag.setVisibility(VISIBLE);
-		} else {
-			flag.setVisibility(GONE);
-		}
-	}
+    @get:StringRes
+    val name: Int
+
+    val subRegions: List<Region>
+
+    fun addSubRegion(region: Region)
 
 }

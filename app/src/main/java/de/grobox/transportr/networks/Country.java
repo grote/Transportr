@@ -20,7 +20,7 @@
 package de.grobox.transportr.networks;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import java.util.ArrayList;
@@ -43,22 +43,21 @@ enum Country implements ParentRegion {
 	SWEDEN(R.string.np_region_sweden, "🇸🇪", Continent.EUROPE),
 	NORWAY(R.string.np_region_norway, "🇳🇴", Continent.EUROPE),
 	FINLAND(R.string.np_region_finland, "🇫🇮", Continent.EUROPE),
+	FRANCE(R.string.np_region_france, "🇫🇷", Continent.EUROPE),
 	GREAT_BRITAIN(R.string.np_region_gb, "🇬🇧", Continent.EUROPE),
 	IRELAND(R.string.np_region_ireland, "🇮🇪", Continent.EUROPE),
 	POLAND(R.string.np_region_poland, "🇵🇱", Continent.EUROPE),
 	UAE(R.string.np_region_uae, "🇦🇪", Continent.ASIA),
-	USA(R.string.np_region_usa, "🇺🇸", Continent.NORTH_AMERICA), //TODO: it seems there's a problem with the flag
 	AUSTRALIA(R.string.np_region_australia, "🇦🇺", Continent.OCEANIA),
-	FRANCE(R.string.np_region_france, "🇫🇷", Continent.EUROPE),
-	BRAZIL(R.string.np_region_br, "🇧🇷", Continent.SOUTH_AMERICA),
-	CANADA(R.string.np_region_canada, "🇨🇦", Continent.NORTH_AMERICA);
+	CANADA(R.string.np_region_canada, "🇨🇦", Continent.NORTH_AMERICA),
+	USA(R.string.np_region_usa, "🇺🇸", Continent.NORTH_AMERICA);
 
 	private final @StringRes int name;
-	private final @Nullable String flag;
+	private final String flag;
 	private final Continent continent;
 	private List<Region> subRegions;
 
-	Country(@StringRes int name, @Nullable String flag, Continent continent) {
+	Country(@StringRes int name, String flag, Continent continent) {
 		this.name = name;
 		this.flag = flag;
 		this.continent = continent;
@@ -77,7 +76,6 @@ enum Country implements ParentRegion {
 		return context.getString(name);
 	}
 
-	@Nullable
 	public String getFlag() {
 		return flag;
 	}
@@ -91,6 +89,7 @@ enum Country implements ParentRegion {
 		subRegions.add(subRegion);
 	}
 
+	@NonNull
 	@Override
 	public List<Region> getSubRegions() {
 		return subRegions;

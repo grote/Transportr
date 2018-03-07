@@ -34,9 +34,7 @@ import com.mikepenz.fastadapter.expandable.ExpandableExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
@@ -159,13 +157,15 @@ public class PickTransportNetworkActivity extends TransportrActivity implements 
 			return;
 		}
 		Region region = network.getRegion();
-		Continent continent = null;
+		Continent continent;
 		Country country = null;
 		if (region instanceof Country) {
 			country = (Country)region;
 			continent = country.getContinent();
 		} else if (region instanceof Continent) {
 			continent = (Continent)region;
+		} else {
+			throw new IllegalStateException();
 		}
 		int pos = adapter.getPosition(new ContinentItem(continent));
 		if (pos != -1) {

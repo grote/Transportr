@@ -21,16 +21,18 @@ package de.grobox.transportr.networks;
 
 import android.content.Context;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.concurrent.Immutable;
 
 import de.grobox.transportr.R;
 
+@Immutable
 @ParametersAreNonnullByDefault
 enum Continent implements ParentRegion {
 
@@ -45,12 +47,11 @@ enum Continent implements ParentRegion {
 
 	private final @StringRes int name;
 	private final @DrawableRes int contour;
-	private List<Region> subRegions;
+	private final List<Region> subRegions = new ArrayList<>();
 
 	Continent(@StringRes int name, @DrawableRes int contour) {
 		this.name = name;
 		this.contour = contour;
-		this.subRegions = new ArrayList<>();
 	}
 
 	@Override
@@ -74,6 +75,7 @@ enum Continent implements ParentRegion {
 		subRegions.add(subRegion);
 	}
 
+	@NonNull
 	@Override
 	public List<Region> getSubRegions() {
 		return subRegions;

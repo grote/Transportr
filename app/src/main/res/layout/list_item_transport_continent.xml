@@ -5,44 +5,36 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="48dp"
+	android:layout_height="wrap_content"
 	android:background="?selectableItemBackground">
 
 	<ImageView
 		android:id="@+id/contour"
-		android:layout_width="64dp"
-		android:layout_height="match_parent"
-		android:layout_margin="8dp"
-		android:contentDescription="@string/np_continent_africa"
+		android:layout_width="wrap_content"
+		android:layout_height="64dp"
+		android:padding="8dp"
+		android:tint="?colorControlNormal"
+		tools:ignore="ContentDescription"
 		tools:src="@drawable/continent_africa"/>
 
 	<TextView
 		android:id="@+id/name"
 		android:layout_width="wrap_content"
 		android:layout_height="0dp"
-		android:layout_marginBottom="8dp"
-		android:layout_marginEnd="8dp"
-		android:layout_marginLeft="8dp"
-		android:layout_marginRight="8dp"
-		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
+		android:layout_margin="8dp"
 		android:gravity="center_vertical"
 		android:textAppearance="@style/TextAppearance.AppCompat"
-		android:textStyle="bold"
 		android:textSize="18sp"
+		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintLeft_toRightOf="@+id/contour"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintBottom_toBottomOf="parent"
 		tools:text="Network Provider Continent"/>
 
 	<ImageView
 		android:id="@+id/chevron"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="8dp"
-		android:layout_marginEnd="8dp"
-		android:layout_marginRight="8dp"
-		android:layout_marginTop="8dp"
+		android:layout_margin="8dp"
 		android:tint="?colorControlNormal"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
