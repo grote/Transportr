@@ -61,7 +61,7 @@ internal class TransportNetworkViewHolder(v: View) : RegionViewHolder<TransportN
     }
 }
 
-internal abstract class ParentRegionViewHolder<in Reg : Region>(v: View) : RegionViewHolder<Reg>(v) {
+internal abstract class ExpandableRegionViewHolder<in Reg : Region>(v: View) : RegionViewHolder<Reg>(v) {
     private val chevron: ImageView = v.findViewById(R.id.chevron)
 
     override fun bind(region: Reg, expanded: Boolean) {
@@ -73,7 +73,7 @@ internal abstract class ParentRegionViewHolder<in Reg : Region>(v: View) : Regio
     }
 }
 
-internal class CountryViewHolder(v: View) : ParentRegionViewHolder<Country>(v) {
+internal class CountryViewHolder(v: View) : ExpandableRegionViewHolder<Country>(v) {
     private val flag: TextView = v.findViewById(R.id.flag)
 
     override fun bind(region: Country, expanded: Boolean) {
@@ -87,7 +87,7 @@ internal class CountryViewHolder(v: View) : ParentRegionViewHolder<Country>(v) {
     }
 }
 
-internal class ContinentViewHolder(v: View) : ParentRegionViewHolder<Continent>(v) {
+internal class ContinentViewHolder(v: View) : ExpandableRegionViewHolder<Continent>(v) {
     private val contour: ImageView = v.findViewById(R.id.contour)
 
     override fun bind(region: Continent, expanded: Boolean) {

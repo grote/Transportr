@@ -20,22 +20,9 @@
 package de.grobox.transportr.networks
 
 import android.content.Context
-import android.support.annotation.StringRes
 
 internal interface Region {
 
     fun getName(context: Context): String
-
-}
-
-
-internal interface ParentRegion : Region {
-
-    @get:StringRes
-    val name: Int
-
-    val subRegions: List<Region>
-
-    fun addSubRegion(region: Region)
 
 }

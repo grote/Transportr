@@ -17,24 +17,18 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.transportr.networks;
+package de.grobox.transportr.networks
 
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.LiveData
 
-import de.grobox.transportr.TransportrApplication;
+import de.grobox.transportr.TransportrApplication
 
-public abstract class TransportNetworkViewModel extends AndroidViewModel {
+abstract class TransportNetworkViewModel protected constructor(
+    application: TransportrApplication,
+    manager: TransportNetworkManager
+) : AndroidViewModel(application) {
 
-	private final LiveData<TransportNetwork> transportNetwork;
-
-	protected TransportNetworkViewModel(TransportrApplication application, TransportNetworkManager transportNetworkManager) {
-		super(application);
-		this.transportNetwork = transportNetworkManager.getTransportNetwork();
-	}
-
-	public LiveData<TransportNetwork> getTransportNetwork() {
-		return transportNetwork;
-	}
+    val transportNetwork: LiveData<TransportNetwork> = manager.transportNetwork
 
 }

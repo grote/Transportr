@@ -24,7 +24,8 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.contrib.RecyclerViewActions.*
+import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItem
+import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.LargeTest
 import android.support.test.rule.ActivityTestRule
@@ -33,14 +34,13 @@ import android.support.v7.widget.RecyclerView
 import de.grobox.transportr.R
 import de.grobox.transportr.ScreengrabTest
 import de.grobox.transportr.map.MapActivity
-import de.grobox.transportr.networks.TransportNetwork
+import de.schildbach.pte.NetworkId
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.*
 import javax.inject.Inject
-import de.schildbach.pte.NetworkId
 
 
 @LargeTest
@@ -74,27 +74,10 @@ class PickTransportNetworkActivityTest : ScreengrabTest() {
                 .check(matches(withText(R.string.pick_network_first_run)))
         makeScreenshot("1_FirstStart")
 
-        // some hacking to find network position in list
+        // find network position in list
         val context = InstrumentationRegistry.getTargetContext()
+        val (continentIndex, countryIndex, networkIndex) = getTransportNetworkPositions(context, getTransportNetwork(NetworkId.DB)!!)
 
-        val continentList = ArrayList(EnumSet.allOf(Continent::class.java))
-        Collections.sort(continentList) { r1, r2 -> r1.getName(context).compareTo(r2.getName(context)) }
-
-        val countryList = Continent.EUROPE.getSubRegions()
-        Collections.sort(countryList) { r1, r2 -> r1.getName(context).compareTo(r2.getName(context)) }
-
-        val networkList = Country.GERMANY.getSubRegions()
-
-        // select DB network provider
-        val continentIndex = continentList.indexOf(Continent.EUROPE)
-        val countryIndex = countryList.indexOf(Country.GERMANY)
-        var networkIndex = -1
-        for (network in networkList) {
-            networkIndex++
-            if ((network as TransportNetwork).getId() == NetworkId.DB) {
-                break
-            }
-        }
         onView(withId(R.id.list))
                 .perform(scrollToPosition<RecyclerView.ViewHolder>(continentIndex + 5))
                 .perform(actionOnItem<RecyclerView.ViewHolder>(withChild(withText(R.string.np_continent_europe)), click()))
