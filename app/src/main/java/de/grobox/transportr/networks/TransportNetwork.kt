@@ -22,15 +22,12 @@ package de.grobox.transportr.networks
 import android.content.Context
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
-
-import javax.annotation.ParametersAreNonnullByDefault
-import javax.annotation.concurrent.Immutable
-
+import com.google.common.base.Preconditions.checkArgument
+import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider
-import de.grobox.transportr.R;
-
-import com.google.common.base.Preconditions.checkArgument
+import java.lang.ref.SoftReference
+import javax.annotation.concurrent.Immutable
 
 @Immutable
 data class TransportNetwork internal constructor(
@@ -40,15 +37,18 @@ data class TransportNetwork internal constructor(
     @field:StringRes private val agencies: Int = 0,
     val status: Status = Status.STABLE,
     @field:DrawableRes @get:DrawableRes val logo: Int = R.drawable.network_placeholder,
-    private val goodLineNames: Boolean = false
+    private val goodLineNames: Boolean = false,
+    private val itemIdExtra: Int = 0,
+    private val factory: () -> NetworkProvider
 ) : Region {
 
     enum class Status {
         ALPHA, BETA, STABLE
     }
 
-    val networkProvider: NetworkProvider
-        get() = NetworkProviderFactory.provider(id)
+    val networkProvider: NetworkProvider by lazy { networkProviderRef.get() ?: getNetworkProviderReference().get()!! }
+    private val networkProviderRef by lazy { getNetworkProviderReference() }
+    private fun getNetworkProviderReference() = SoftReference<NetworkProvider>(factory.invoke())
 
     init {
         checkArgument(description != 0 || agencies != 0)
@@ -79,7 +79,7 @@ data class TransportNetwork internal constructor(
     }
 
     internal fun getItem(): TransportNetworkItem {
-        return TransportNetworkItem(this)
+        return TransportNetworkItem(this, itemIdExtra)
     }
 
 }

@@ -23,7 +23,9 @@ import android.content.Context
 import de.grobox.transportr.R
 import de.grobox.transportr.networks.TransportNetwork.Status.ALPHA
 import de.grobox.transportr.networks.TransportNetwork.Status.BETA
-import de.schildbach.pte.NetworkId
+import de.schildbach.pte.*
+import okhttp3.HttpUrl
+import java.util.*
 
 private val networks = arrayOf(
     Continent(
@@ -36,7 +38,15 @@ private val networks = arrayOf(
                         name = R.string.np_name_rt,
                         description = R.string.np_desc_rt,
                         agencies = R.string.np_desc_rt_networks,
-                        logo = R.drawable.network_rt_logo
+                        logo = R.drawable.network_rt_logo,
+                        factory = { RtProvider() }
+                    ),
+                    TransportNetwork(
+                        id = NetworkId.DB,
+                        name = R.string.np_name_db,
+                        description = R.string.np_desc_db2,
+                        logo = R.drawable.network_db_logo,
+                        factory = { BahnProvider() }
                     )
                 )
             ),
@@ -46,152 +56,181 @@ private val networks = arrayOf(
                         id = NetworkId.DB,
                         name = R.string.np_name_db,
                         description = R.string.np_desc_db,
-                        logo = R.drawable.network_db_logo
+                        logo = R.drawable.network_db_logo,
+                        itemIdExtra = 1,
+                        factory = { BahnProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.BVG,
                         description = R.string.np_desc_bvg,
-                        logo = R.drawable.network_bvg_logo
+                        logo = R.drawable.network_bvg_logo,
+                        factory = { BvgProvider("{\"aid\":\"1Rxs112shyHLatUX4fofnmdxK\",\"type\":\"AID\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.VBB,
                         description = R.string.np_desc_vbb,
-                        logo = R.drawable.network_vbb_logo
+                        logo = R.drawable.network_vbb_logo,
+                        factory = { VbbProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.BAYERN,
                         name = R.string.np_name_bayern,
                         description = R.string.np_desc_bayern,
-                        logo = R.drawable.network_bayern_logo
+                        logo = R.drawable.network_bayern_logo,
+                        factory = { BayernProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.AVV,
                         description = R.string.np_desc_avv,
                         logo = R.drawable.network_avv_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { AvvProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.MVV,
                         description = R.string.np_desc_mvv,
-                        logo = R.drawable.network_mvv_logo
+                        logo = R.drawable.network_mvv_logo,
+                        factory = { MvvProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.INVG,
                         description = R.string.np_desc_invg,
                         logo = R.drawable.network_invg_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { InvgProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VGN,
                         description = R.string.np_desc_vgn,
                         agencies = R.string.np_desc_vgn_networks,
                         logo = R.drawable.network_vgn_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { VgnProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VVM,
                         description = R.string.np_desc_vvm,
-                        logo = R.drawable.network_vvm_logo
+                        logo = R.drawable.network_vvm_logo,
+                        factory = { VvmProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VMV,
                         description = R.string.np_desc_vmv,
-                        logo = R.drawable.network_vmv_logo
+                        logo = R.drawable.network_vmv_logo,
+                        factory = { VmvProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.GVH,
                         description = R.string.np_desc_gvh,
-                        logo = R.drawable.network_gvh_logo
+                        logo = R.drawable.network_gvh_logo,
+                        factory = { GvhProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.BSVAG,
                         name = R.string.np_name_bsvag,
                         description = R.string.np_desc_bsvag,
-                        logo = R.drawable.network_bsvag_logo
+                        logo = R.drawable.network_bsvag_logo,
+                        factory = { BsvagProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VVO,
                         description = R.string.np_desc_vvo,
-                        logo = R.drawable.network_vvo_logo
+                        logo = R.drawable.network_vvo_logo,
+                        factory = { VvoProvider(HttpUrl.parse("http://efaproxy.fahrinfo.uptrade.de/standard/")) }
                     ),
                     TransportNetwork(
                         id = NetworkId.VMS,
                         description = R.string.np_desc_vms,
                         logo = R.drawable.network_vms_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { VmsProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.NASA,
                         name = R.string.np_name_nasa,
                         description = R.string.np_desc_nasa,
                         logo = R.drawable.network_nasa_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { NasaProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VRR,
                         description = R.string.np_desc_vrr,
-                        logo = R.drawable.network_vrr_logo
+                        logo = R.drawable.network_vrr_logo,
+                        factory = { VrrProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.MVG,
                         description = R.string.np_desc_mvg,
-                        logo = R.drawable.network_mvg_logo
+                        logo = R.drawable.network_mvg_logo,
+                        factory = { MvgProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.NVV,
                         name = R.string.np_name_nvv,
                         description = R.string.np_desc_nvv,
-                        logo = R.drawable.network_nvv_logo
+                        logo = R.drawable.network_nvv_logo,
+                        factory = { NvvProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VRN,
                         description = R.string.np_desc_vrn,
-                        logo = R.drawable.network_vrn_logo
+                        logo = R.drawable.network_vrn_logo,
+                        factory = { VrnProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VVS,
                         description = R.string.np_desc_vvs,
-                        logo = R.drawable.network_vvs_logo
+                        logo = R.drawable.network_vvs_logo,
+                        factory = { VvsProvider(HttpUrl.parse("http://www2.vvs.de/oeffi/")) }
                     ),
                     TransportNetwork(
                         id = NetworkId.DING,
                         description = R.string.np_desc_ding,
-                        logo = R.drawable.network_ding_logo
+                        logo = R.drawable.network_ding_logo,
+                        factory = { DingProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.KVV,
                         description = R.string.np_desc_kvv,
-                        logo = R.drawable.network_kvv_logo
+                        logo = R.drawable.network_kvv_logo,
+                        factory = { KvvProvider(HttpUrl.parse("http://213.144.24.66/oeffi/")) }
                     ),
                     TransportNetwork(
                         id = NetworkId.VAGFR,
                         name = R.string.np_name_vagfr,
                         description = R.string.np_desc_vagfr,
-                        logo = R.drawable.network_vagfr_logo
+                        logo = R.drawable.network_vagfr_logo,
+                        factory = { VagfrProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.NVBW,
                         description = R.string.np_desc_nvbw,
-                        logo = R.drawable.network_nvbw_logo
+                        logo = R.drawable.network_nvbw_logo,
+                        factory = { NvbwProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VVV,
                         description = R.string.np_desc_vvv,
-                        logo = R.drawable.network_vvv_logo
+                        logo = R.drawable.network_vvv_logo,
+                        factory = { VvvProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VGS,
                         description = R.string.np_desc_vgs,
-                        logo = R.drawable.network_vgs_logo
+                        logo = R.drawable.network_vgs_logo,
+                        factory = { VgsProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VRS,
                         description = R.string.np_desc_vrs,
-                        logo = R.drawable.network_vrs_logo
+                        logo = R.drawable.network_vrs_logo,
+                        factory = { VrsProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VMT,
-                        description = R.string.np_desc_vmt
+                        description = R.string.np_desc_vmt,
+                        factory = { VmtProvider("{\"aid\":\"vj5d7i3g9m5d7e3\",\"type\":\"AID\"}") }
                     )
                 )
             ),
@@ -201,46 +240,54 @@ private val networks = arrayOf(
                         id = NetworkId.OEBB,
                         name = R.string.np_name_oebb,
                         description = R.string.np_desc_oebb,
-                        logo = R.drawable.network_oebb_logo
+                        logo = R.drawable.network_oebb_logo,
+                        factory = { OebbProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VOR,
                         description = R.string.np_desc_vor,
-                        logo = R.drawable.network_vor_logo
+                        logo = R.drawable.network_vor_logo,
+                        factory = { VorProvider(VAO) }
                     ),
                     TransportNetwork(
                         id = NetworkId.LINZ,
                         name = R.string.np_name_linz,
                         description = R.string.np_desc_linz,
-                        logo = R.drawable.network_linz_logo
+                        logo = R.drawable.network_linz_logo,
+                        factory = { LinzProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VVT,
                         description = R.string.np_desc_vvt,
-                        logo = R.drawable.network_vvt_logo
+                        logo = R.drawable.network_vvt_logo,
+                        factory = { VvtProvider(VAO) }
                     ),
                     TransportNetwork(
                         id = NetworkId.IVB,
                         description = R.string.np_desc_ivb,
-                        logo = R.drawable.network_ivb_logo
+                        logo = R.drawable.network_ivb_logo,
+                        factory = { IvbProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.STV,
                         name = R.string.np_name_stv,
                         description = R.string.np_desc_stv,
-                        logo = R.drawable.network_stv_logo
+                        logo = R.drawable.network_stv_logo,
+                        factory = { StvProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.WIEN,
                         name = R.string.np_name_wien,
                         description = R.string.np_desc_wien,
-                        logo = R.drawable.network_wien_logo
+                        logo = R.drawable.network_wien_logo,
+                        factory = { WienProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VMOBIL,
                         name = R.string.np_name_vmobil,
                         description = R.string.np_desc_vmobil,
-                        logo = R.drawable.network_vmobil_logo
+                        logo = R.drawable.network_vmobil_logo,
+                        factory = { VmobilProvider(VAO) }
                     )
                 )
             ),
@@ -250,7 +297,9 @@ private val networks = arrayOf(
                         id = NetworkId.VMOBIL,
                         name = R.string.np_name_vmobil,
                         description = R.string.np_desc_vmobil,
-                        logo = R.drawable.network_vmobil_logo
+                        logo = R.drawable.network_vmobil_logo,
+                        itemIdExtra = 1,
+                        factory = { VmobilProvider(VAO) }
                     )
                 )
             ),
@@ -260,17 +309,20 @@ private val networks = arrayOf(
                         id = NetworkId.SBB,
                         name = R.string.np_name_sbb,
                         description = R.string.np_desc_sbb,
-                        logo = R.drawable.network_sbb_logo
+                        logo = R.drawable.network_sbb_logo,
+                        factory = { SbbProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VBL,
                         description = R.string.np_desc_vbl,
-                        logo = R.drawable.network_vbl_logo
+                        logo = R.drawable.network_vbl_logo,
+                        factory = { VblProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.ZVV,
                         description = R.string.np_desc_zvv,
-                        logo = R.drawable.network_zvv_logo
+                        logo = R.drawable.network_zvv_logo,
+                        factory = { ZvvProvider() }
                     )
                 )
             ),
@@ -281,7 +333,8 @@ private val networks = arrayOf(
                         name = R.string.np_region_belgium,
                         description = R.string.np_desc_sncb,
                         agencies = R.string.np_desc_sncb_networks,
-                        logo = R.drawable.network_sncb_logo
+                        logo = R.drawable.network_sncb_logo,
+                        factory = { SncbProvider() }
                     )
                 )
             ),
@@ -291,7 +344,8 @@ private val networks = arrayOf(
                         id = NetworkId.LU,
                         name = R.string.np_name_lu,
                         description = R.string.np_desc_lu,
-                        agencies = R.string.np_desc_lu_networks
+                        agencies = R.string.np_desc_lu_networks,
+                        factory = { LuProvider() }
                     )
                 )
             ),
@@ -301,14 +355,22 @@ private val networks = arrayOf(
                         id = NetworkId.NS,
                         description = R.string.np_desc_ns,
                         logo = R.drawable.network_ns_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { NsProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.NEGENTWEE,
                         name = R.string.np_name_negentwee,
                         description = R.string.np_desc_negentwee,
                         logo = R.drawable.network_negentwee_logo,
-                        status = ALPHA
+                        status = ALPHA,
+                        factory = {
+                            if (Locale.getDefault().language == "nl") {
+                                NegentweeProvider(NegentweeProvider.Language.NL_NL)
+                            } else {
+                                NegentweeProvider(NegentweeProvider.Language.EN_GB)
+                            }
+                        }
                     )
                 )
             ),
@@ -317,7 +379,8 @@ private val networks = arrayOf(
                     TransportNetwork(
                         id = NetworkId.DSB,
                         description = R.string.np_desc_dsb,
-                        logo = R.drawable.network_dsb_logo
+                        logo = R.drawable.network_dsb_logo,
+                        factory = { DsbProvider() }
                     )
                 )
             ),
@@ -326,7 +389,8 @@ private val networks = arrayOf(
                     TransportNetwork(
                         id = NetworkId.SE,
                         description = R.string.np_desc_se,
-                        logo = R.drawable.network_se_logo
+                        logo = R.drawable.network_se_logo,
+                        factory = { SeProvider() }
                     )
                 )
             ),
@@ -335,7 +399,8 @@ private val networks = arrayOf(
                     TransportNetwork(
                         id = NetworkId.NRI,
                         description = R.string.np_desc_nri,
-                        logo = R.drawable.network_nri_logo
+                        logo = R.drawable.network_nri_logo,
+                        factory = { NriProvider() }
                     )
                 )
             ),
@@ -345,7 +410,8 @@ private val networks = arrayOf(
                         id = NetworkId.HSL,
                         description = R.string.np_desc_hsl,
                         logo = R.drawable.network_hsl_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { HslProvider("pte_hsl", "Eixaeb9tnohcah7A") }
                     )
                 )
             ),
@@ -353,13 +419,15 @@ private val networks = arrayOf(
                 R.string.np_region_gb, flag = "🇬🇧", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.TLEM,
-                        description = R.string.np_desc_tlem
+                        description = R.string.np_desc_tlem,
+                        factory = { TlemProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.MERSEY,
                         name = R.string.np_name_mersey,
                         description = R.string.np_desc_mersey,
-                        logo = R.drawable.network_mersey_logo
+                        logo = R.drawable.network_mersey_logo,
+                        factory = { MerseyProvider() }
                     )
                 )
             ),
@@ -368,7 +436,8 @@ private val networks = arrayOf(
                     TransportNetwork(
                         id = NetworkId.TFI,
                         description = R.string.np_desc_tfi,
-                        logo = R.drawable.network_tfi_logo
+                        logo = R.drawable.network_tfi_logo,
+                        factory = { TfiProvider() }
                     )
                 )
             ),
@@ -381,7 +450,8 @@ private val networks = arrayOf(
                         agencies = R.string.np_desc_it_networks,
                         logo = R.drawable.network_it_logo,
                         status = BETA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { ItalyProvider(NAVITIA) }
                     )
                 )
             ),
@@ -391,7 +461,8 @@ private val networks = arrayOf(
                         id = NetworkId.PL,
                         name = R.string.np_name_pl,
                         description = R.string.np_desc_pl,
-                        logo = R.drawable.network_pl_logo
+                        logo = R.drawable.network_pl_logo,
+                        factory = { PlProvider() }
                     )
                 )
             ),
@@ -403,7 +474,8 @@ private val networks = arrayOf(
                         description = R.string.np_desc_paris,
                         agencies = R.string.np_desc_paris_networks,
                         logo = R.drawable.network_paris_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { ParisProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.FRANCESOUTHWEST,
@@ -412,7 +484,8 @@ private val networks = arrayOf(
                         agencies = R.string.np_desc_frenchsouthwest_networks,
                         logo = R.drawable.network_francesouthwest_logo,
                         status = BETA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { FranceSouthWestProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.FRANCENORTHEAST,
@@ -421,7 +494,8 @@ private val networks = arrayOf(
                         agencies = R.string.np_desc_francenortheast_networks,
                         logo = R.drawable.network_francenortheast_logo,
                         status = ALPHA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { FranceNorthEastProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.FRANCENORTHWEST,
@@ -429,7 +503,8 @@ private val networks = arrayOf(
                         description = R.string.np_desc_francenorthwest,
                         agencies = R.string.np_desc_francenorthwest_networks,
                         logo = R.drawable.network_francenorthwest_logo,
-                        status = ALPHA
+                        status = ALPHA,
+                        factory = { FranceNorthWestProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.FRANCESOUTHEAST,
@@ -438,7 +513,8 @@ private val networks = arrayOf(
                         agencies = R.string.np_desc_frenchsoutheast_networks,
                         logo = R.drawable.network_francesoutheast_logo,
                         status = BETA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { FranceSouthEastProvider(NAVITIA) }
                     )
                 )
             ),
@@ -450,7 +526,8 @@ private val networks = arrayOf(
                         description = R.string.np_desc_spain,
                         agencies = R.string.np_desc_spain_networks,
                         logo = R.drawable.network_spain_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { SpainProvider(NAVITIA) }
                     )
                 )
             )
@@ -465,7 +542,8 @@ private val networks = arrayOf(
                         name = R.string.np_name_ghana,
                         description = R.string.np_desc_ghana,
                         status = ALPHA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { GhanaProvider(NAVITIA) }
                     )
                 )
             )
@@ -481,27 +559,31 @@ private val networks = arrayOf(
                         description = R.string.np_desc_rtachicago,
                         agencies = R.string.np_desc_rtachicago_networks,
                         logo = R.drawable.network_rtachicago_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { RtaChicagoProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.CALIFORNIA,
                         name = R.string.np_name_california,
                         description = R.string.np_desc_california,
                         logo = R.drawable.network_california_logo,
-                        status = ALPHA
+                        status = ALPHA,
+                        factory = { CaliforniaProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.OREGON,
                         name = R.string.np_name_oregon,
                         description = R.string.np_desc_oregon,
                         logo = R.drawable.network_oregon_logo,
-                        status = ALPHA
+                        status = ALPHA,
+                        factory = { OregonProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.NEWYORK,
                         name = R.string.np_name_usny,
                         description = R.string.np_desc_usny,
-                        status = ALPHA
+                        status = ALPHA,
+                        factory = { NewyorkProvider(NAVITIA) }
                     )
                 )
             ),
@@ -514,7 +596,8 @@ private val networks = arrayOf(
                         agencies = R.string.np_desc_ontario_networks,
                         logo = R.drawable.network_ontario_logo,
                         status = BETA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { OntarioProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.QUEBEC,
@@ -523,7 +606,8 @@ private val networks = arrayOf(
                         agencies = R.string.np_desc_quebec_networks,
                         logo = R.drawable.network_quebec_logo,
                         status = ALPHA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { QuebecProvider(NAVITIA) }
                     )
                 )
             )
@@ -539,7 +623,8 @@ private val networks = arrayOf(
                         description = R.string.np_desc_costa_rica,
                         agencies = R.string.np_desc_costa_rica_networks,
                         status = ALPHA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { CostaRicaProvider(null) }
                     )
                 )
             ),
@@ -551,7 +636,8 @@ private val networks = arrayOf(
                         description = R.string.np_desc_nicaragua,
                         logo = R.drawable.network_nicaragua_logo,
                         status = ALPHA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { NicaraguaProvider(NAVITIA) }
                     )
                 )
             )
@@ -568,7 +654,8 @@ private val networks = arrayOf(
                         agencies = R.string.np_desc_br_networks,
                         logo = R.drawable.network_br_logo,
                         status = ALPHA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { BrProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.BRFLORIPA,
@@ -577,7 +664,8 @@ private val networks = arrayOf(
                         agencies = R.string.np_desc_br_floripa_networks,
                         logo = R.drawable.network_brfloripa_logo,
                         status = ALPHA,
-                        goodLineNames = true
+                        goodLineNames = true,
+                        factory = { BrFloripaProvider(HttpUrl.parse("https://transportr.grobox.de/api/v1/"), null) }
                     )
                 )
             )
@@ -591,7 +679,8 @@ private val networks = arrayOf(
                         id = NetworkId.DUB,
                         name = R.string.np_name_dub,
                         description = R.string.np_desc_dub,
-                        status = BETA
+                        status = BETA,
+                        factory = { DubProvider() }
                     )
                 )
             )
@@ -607,13 +696,15 @@ private val networks = arrayOf(
                         description = R.string.np_desc_australia,
                         agencies = R.string.np_desc_australia_networks,
                         logo = R.drawable.network_aus_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { AustraliaProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.SYDNEY,
                         name = R.string.np_name_sydney,
                         description = R.string.np_desc_sydney,
-                        logo = R.drawable.network_sydney_logo
+                        logo = R.drawable.network_sydney_logo,
+                        factory = { SydneyProvider() }
                     )
                 )
             ),
@@ -625,13 +716,17 @@ private val networks = arrayOf(
                         description = R.string.np_desc_nz,
                         agencies = R.string.np_desc_nz_networks,
                         logo = R.drawable.network_nz_logo,
-                        status = BETA
+                        status = BETA,
+                        factory = { NzProvider(NAVITIA) }
                     )
                 )
             )
         )
     )
 )
+
+private const val NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca"
+private const val VAO = "{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}"
 
 internal fun getContinentItems(context: Context): List<ContinentItem> {
     return List(networks.size, { i ->
