@@ -28,6 +28,9 @@
 -dontnote com.mikepenz.materialize.view.**
 
 -dontwarn com.mapbox.services.android.telemetry.location.GoogleLocationEngine
+-dontwarn com.google.auto.value.**
+
+-dontwarn okhttp3.internal.platform.ConscryptPlatform
 
 -dontnote com.omadahealth.github.swipyrefreshlayout.library.**
 -dontwarn org.slf4j.**
