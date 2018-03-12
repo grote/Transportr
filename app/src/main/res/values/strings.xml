@@ -162,6 +162,7 @@ there are any).</string>
 	<string name="location_gps">Use Current Position</string>
 	<string name="warning_no_gps_fix">Could not locate your position, yet.</string>
 	<string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
+	<string name="warning_gps_off">Location is off. Please turn it on in settings.</string>
 
 	<string name="select_products">Select Means of Transport</string>
 	<string name="product_high_speed_train">High-Speed Train</string>

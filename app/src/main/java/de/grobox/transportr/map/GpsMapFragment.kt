@@ -42,7 +42,6 @@ import com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLngZoom
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerMode
-import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerOptions
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin
 import com.mapbox.services.android.telemetry.location.LocationEngineListener
 import com.mapbox.services.android.telemetry.location.LocationEnginePriority
@@ -163,6 +162,10 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
     private fun onGpsFabClick() {
         if (ContextCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
             Toast.makeText(context, R.string.permission_denied_gps, Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (!hasLocationProviders(context)) {
+            Toast.makeText(context, R.string.warning_gps_off, Toast.LENGTH_SHORT).show()
             return
         }
         val location = locationPlugin?.lastKnownLocation

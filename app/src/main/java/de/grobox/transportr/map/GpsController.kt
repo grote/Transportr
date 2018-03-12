@@ -24,6 +24,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.location.Location
+import android.location.LocationManager
 import android.support.annotation.WorkerThread
 import de.grobox.transportr.AbstractManager
 import de.grobox.transportr.locations.ReverseGeocoder
@@ -105,4 +106,11 @@ fun Location.toWrapLocation(): WrapLocation {
 
 fun Location.isOld(): Boolean {
     return Date().time > time + GPS_FIX_EXPIRY
+}
+
+fun hasLocationProviders(context: Context): Boolean {
+    val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    val activeProviders = locationManager.getProviders(true)
+
+    return activeProviders.size > 1 || (activeProviders.size == 1 && activeProviders[0] != "passive")
 }
