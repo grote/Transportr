@@ -117,8 +117,8 @@ dependencies {
 	implementation 'com.mikepenz:fastadapter-commons:3.2.3@aar'
 	implementation 'com.mikepenz:fastadapter-extensions-expandable:3.2.3@aar'
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.1.0'
-	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.4.1'
-	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0'
+	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0'
+	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.4.0'
 	implementation 'com.mapzen.android:lost:3.0.4'
 
 	implementation "com.google.dagger:dagger:$daggerVersion"
@@ -226,11 +226,11 @@ dependencyVerification {
 			'com.google.guava:guava:21.0:guava-21.0.jar:972139718abc8a4893fa78cba8cf7b2c903f35c97aaf44fa3031b0669948b480',
 			'com.google.guava:guava:23.0-android:guava-23.0-android.jar:c8cea78328d2c50a3be2d4548f6fbc723516b5438251f5803008778f3ff5a3ed',
 			'com.jakewharton.timber:timber:4.6.0:timber-4.6.0.aar:35c22867f2673132e97e17857d36bb2fc25f5790f0425406833ed0254d62fc66',
-			'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.3.0:mapbox-android-plugin-locationlayer-0.3.0.aar:8c65339d03655badde67c1c1e08ae02fdb955be2cc8d55e1a6898590ca0e6137',
-			'com.mapbox.mapboxsdk:mapbox-android-sdk:5.4.1:mapbox-android-sdk-5.4.1.aar:324e5b95152f9480b59550af7a17e9f29c49ce4f55e97392b0dde503c8b24359',
-			'com.mapbox.mapboxsdk:mapbox-android-telemetry:2.2.9:mapbox-android-telemetry-2.2.9.aar:7319ae68bb41035db8b21bc2216a9f560d12c5681c12a2137069ca993f1718dd',
-			'com.mapbox.mapboxsdk:mapbox-java-core:2.2.9:mapbox-java-core-2.2.9.jar:0bd929e2f8194e0a4031a9a3fcb22aa0731b641fd3b8ff5598446637cd4b3300',
-			'com.mapbox.mapboxsdk:mapbox-java-geojson:2.2.9:mapbox-java-geojson-2.2.9.jar:e888f38e36173a1ac39f3ba08fe6ba50d809b5d05ca8de5c143dee35114bfd91',
+			'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.4.0:mapbox-android-plugin-locationlayer-0.4.0.aar:e7f677f2aaa88a6853938bfd225f9848cb205a70d5ef688d5b314bdb9f59fda5',
+			'com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0:mapbox-android-sdk-5.5.0.aar:cc527b94389ded19c6133f3c19444e8a3d1f6edc42bb1fc835d9e9a5e4ad4abc',
+			'com.mapbox.mapboxsdk:mapbox-android-telemetry:2.2.10:mapbox-android-telemetry-2.2.10.aar:a03ebeb420a28287099ae5aa673c4efb3729452eab2c57b69945691d6c2cdaa6',
+			'com.mapbox.mapboxsdk:mapbox-java-core:2.2.10:mapbox-java-core-2.2.10.jar:6ca6f57519554b41892b802e1a6bf441809fa5627bc1e518b238da4058caeea9',
+			'com.mapbox.mapboxsdk:mapbox-java-geojson:2.2.10:mapbox-java-geojson-2.2.10.jar:a587f7e958ae2750819b4bbbd4ba8d5479ecbbd532b7d825fece52299f0c2e81',
 			'com.mapzen.android:lost:3.0.4:lost-3.0.4.aar:7c95374ddd406356a6a3085c93e1a549feb68e919b29a8f0f194bc47f27788c0',
 			'com.mikepenz:aboutlibraries:6.0.2:aboutlibraries-6.0.2.aar:15f4397e6891ab397dbc27feb5f30a91102c2ab24c73cae3da10037bc3844793',
 			'com.mikepenz:fastadapter-commons:3.2.3:fastadapter-commons-3.2.3.aar:ed37e7b54de434dc4278f5850f140d35e622bcb7fb241beb105b2e58fad6ac51',
@@ -240,8 +240,8 @@ dependencyVerification {
 			'com.mikepenz:materialdrawer:6.0.4:materialdrawer-6.0.4.aar:fe405efe1e3d142fc34604db932a9cb4328062d3049439837142068b2c491896',
 			'com.mikepenz:materialize:1.1.2:materialize-1.1.2.aar:2834b735fefcb2e1ab356e926a652396a4ece0dffc05184ea755366c3d2ee79f',
 			'com.squareup.okhttp3:logging-interceptor:3.8.1:logging-interceptor-3.8.1.jar:1e84fce63c46ce41fb7f8ca65d5b67ffe61aa0350e964288e66391fda7399ff8',
-			'com.squareup.okhttp3:okhttp:3.9.1:okhttp-3.9.1.jar:a0d01017a42bba26e507fc6d448bb36e536f4b6e612f7c42de30bbdac2b7785e',
-			'com.squareup.okio:okio:1.13.0:okio-1.13.0.jar:734269c3ebc5090e3b23566db558f421f0b4027277c79ad5d176b8ec168bb850',
+			'com.squareup.okhttp3:okhttp:3.10.0:okhttp-3.10.0.jar:4aca3e552afb1ceb47f8956685f6295a276e49fa03f9066f8b6be83bec56fb66',
+			'com.squareup.okio:okio:1.14.0:okio-1.14.0.jar:4633c331f50642ebe795dc089d6a5928aff43071c9d17e7840a009eea2fe95a3',
 			'com.squareup:javapoet:1.8.0:javapoet-1.8.0.jar:8e108c92027bb428196f10fa11cffbe589f7648a6af2016d652279385fdfd789',
 			'com.squareup:javawriter:2.1.1:javawriter-2.1.1.jar:f699823d0081f69cbb676c1845ea222e0ada79bc88a53e5d22d8bd02d328f57e',
 			'commons-codec:commons-codec:1.10:commons-codec-1.10.jar:4241dfa94e711d435f29a4604a3e2de5c4aa3c165e23bd066be6fc1fc4309569',

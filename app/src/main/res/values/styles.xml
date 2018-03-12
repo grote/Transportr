@@ -62,8 +62,12 @@
 		<item name="mapbox_myLocation">false</item>
 	</style>
 
+	<style name="LocationLayer" parent="mapbox_LocationLayer">
+		<item name="mapbox_enableStaleState">false</item>
+	</style>
+
 	<style name="LocationLayerOld" parent="LocationLayer">
-		<item name="foregroundDrawable">@drawable/mapbox_user_icon_old</item>
+		<item name="mapbox_foregroundDrawable">@drawable/mapbox_user_icon_old</item>
 	</style>
 
 </resources>

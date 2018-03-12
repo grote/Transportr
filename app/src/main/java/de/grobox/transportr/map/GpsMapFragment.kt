@@ -42,6 +42,7 @@ import com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLngZoom
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerMode
+import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerOptions
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin
 import com.mapbox.services.android.telemetry.location.LocationEngineListener
 import com.mapbox.services.android.telemetry.location.LocationEnginePriority
@@ -139,7 +140,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
             initializeLocationEngine()
 
             if (locationPlugin == null && map != null) {
-                locationPlugin = LocationLayerPlugin(mapView, map!!, locationEngine)
+                locationPlugin = LocationLayerPlugin(mapView, map!!, locationEngine, R.style.LocationLayer)
                 locationPlugin!!.setLocationLayerEnabled(LocationLayerMode.COMPASS)
             }
         } else {
@@ -191,11 +192,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
         gpsFab.backgroundTintList = backgroundColor
 
         // Location Marker Icon Style
-        if (gpsState.isOld) {
-            locationPlugin?.applyStyle(R.style.LocationLayerOld)
-        } else {
-            locationPlugin?.applyStyle(R.style.LocationLayer)
-        }
+        locationPlugin?.applyStyle(if (gpsState.isOld) R.style.LocationLayerOld else R.style.LocationLayer)
     }
 
     private fun requestPermission() {
