@@ -354,6 +354,7 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		if (listener != null) listener.onLocationCleared(type);
 		ui.clear.setVisibility(GONE);
 		if (isShown()) {
+			showSoftKeyboard();
 			ui.location.requestFocus();
 			ui.location.post(ui.location::showDropDown);
 		}
@@ -365,9 +366,10 @@ public class LocationView extends LinearLayout implements SuggestLocationsTaskCa
 		}
 	}
 
-	public void resetIfEmpty() {
-		if (ui.location.getText().length() == 0) {
-			reset();
+	private void showSoftKeyboard() {
+		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		if (imm != null) {
+			imm.showSoftInput(ui.location, 0);
 		}
 	}
 

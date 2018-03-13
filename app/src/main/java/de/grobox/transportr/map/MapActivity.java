@@ -171,6 +171,10 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	@Override
 	public void onLocationCleared(FavLocationType type) {
 		bottomSheetBehavior.setState(STATE_HIDDEN);
+		viewModel.selectLocation(null);
+		search.postDelayed(() -> { // show dropdown again after it got hidden by hiding the bottom sheet
+			search.onClick();
+		}, 500);
 	}
 
 	private void onLocationSelected(@Nullable WrapLocation loc) {
