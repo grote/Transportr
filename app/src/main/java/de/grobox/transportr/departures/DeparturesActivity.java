@@ -22,6 +22,7 @@ package de.grobox.transportr.departures;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -36,6 +37,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
@@ -59,7 +61,6 @@ import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
 import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.TOP;
 import static de.grobox.transportr.departures.DeparturesLoader.getBundle;
 import static de.grobox.transportr.utils.Constants.DATE;
@@ -129,6 +130,7 @@ public class DeparturesActivity extends TransportrActivity
 		swipe.setDirection(SwipyRefreshLayoutDirection.BOTH);
 		swipe.setDistanceToTriggerSync(getDragDistance(this));
 		swipe.setOnRefreshListener(direction -> loadMoreDepartures(direction != TOP));
+		swipe.setEnabled(false);
 
 		// Departures List
 		adapter = new DepartureAdapter();
@@ -211,8 +213,7 @@ public class DeparturesActivity extends TransportrActivity
 		this.calendar = calendar;
 		adapter.clear();
 		searchState = SearchState.INITIAL;
-		progressBar.setVisibility(VISIBLE);
-		list.setVisibility(INVISIBLE);
+		LceAnimator.showLoading(progressBar, list, errorLayout);
 
 		Bundle args = getBundle(location.getId(), calendar.getTime(), MAX_DEPARTURES);
 		getSupportLoaderManager().restartLoader(LOADER_DEPARTURES, args, this).forceLoad();
@@ -255,8 +256,9 @@ public class DeparturesActivity extends TransportrActivity
 		getSupportLoaderManager().restartLoader(LOADER_DEPARTURES, args, this).forceLoad();
 	}
 
+	@NonNull
 	@Override
-	public DeparturesLoader onCreateLoader(int i, Bundle args) {
+	public DeparturesLoader onCreateLoader(int i, @Nullable Bundle args) {
 		return new DeparturesLoader(this, manager.getTransportNetwork().getValue(), args);
 	}
 
@@ -272,20 +274,26 @@ public class DeparturesActivity extends TransportrActivity
 				// scroll smoothly up or down when we have new trips
 				list.smoothScrollBy(0, searchState == SearchState.BOTTOM ? 150 : -150);
 			}
+			swipe.setEnabled(true);
 		} else {
+			int errorMsg = R.string.error_departures;
 			if (!TransportrUtils.hasInternet(this)) {
-				errorText.setText(R.string.error_no_internet);
-			} else {
-				errorText.setText(R.string.error_departures);
+				errorMsg = R.string.error_no_internet;
 			}
-			LceAnimator.showErrorView(progressBar, list, errorLayout);
+			if (searchState == SearchState.INITIAL) {
+				errorText.setText(errorMsg);
+				LceAnimator.showErrorView(progressBar, list, errorLayout);
+				swipe.setEnabled(false);
+			} else {
+				Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+				swipe.setEnabled(true);
+			}
 		}
 		swipe.setRefreshing(false);
 	}
 
 	@Override
 	public void onLoaderReset(Loader<QueryDeparturesResult> loader) {
-		adapter.clear();
 	}
 
 }

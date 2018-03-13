@@ -42,7 +42,7 @@
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/appBar"
 		app:srl_direction="both"
-		tools:visibility="visible">
+		tools:visibility="invisible">
 
 		<android.support.v7.widget.RecyclerView
 			android:id="@+id/list"
@@ -56,15 +56,14 @@
 	<LinearLayout
 		android:id="@+id/errorLayout"
 		android:layout_width="0dp"
-		android:layout_height="match_parent"
-		android:layout_marginEnd="16dp"
-		android:layout_marginStart="16dp"
-		android:layout_marginTop="16dp"
+		android:layout_height="0dp"
+		android:layout_margin="16dp"
 		android:orientation="vertical"
 		android:visibility="invisible"
+		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/swipe"
+		app:layout_constraintTop_toBottomOf="@+id/appBar"
 		tools:visibility="visible">
 
 		<TextView
@@ -88,6 +87,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="16dp"
 			android:text="@string/try_again"/>
+
 	</LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
