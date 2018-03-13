@@ -134,11 +134,12 @@ internal class TripsRepository(
 
     fun searchMore(later: Boolean) {
         if (queryTripsContext == null) throw IllegalStateException("No query context")
-        if (later && !queryTripsContext!!.canQueryLater()) throw IllegalStateException("Can not query later")
-        if (!later && !queryTripsContext!!.canQueryEarlier()) throw IllegalStateException("Can not query earlier")
 
         Log.i(TAG, "QueryTripsContext: " + queryTripsContext!!.toString())
         Log.i(TAG, "Later: " + later)
+
+        if (later && !queryTripsContext!!.canQueryLater()) throw IllegalStateException("Can not query later")
+        if (!later && !queryTripsContext!!.canQueryEarlier()) throw IllegalStateException("Can not query earlier")
 
         thread(true) {
             try {

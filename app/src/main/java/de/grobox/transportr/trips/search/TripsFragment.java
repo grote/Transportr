@@ -112,7 +112,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 
 		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(DirectionsViewModel.class);
 		viewModel.topSwipeEnabled.observe(this, this::onSwipeEnabledChanged);
-		viewModel.getQueryMoreState().observe(this, state -> updateSwipeState());
+		viewModel.getQueryMoreState().observe(this, this::updateSwipeState);
 		viewModel.getTrips().observe(this, this::onTripsLoaded);
 		viewModel.getQueryError().observe(this, this::onError);
 		viewModel.getQueryMoreError().observe(this, this::onMoreError);
@@ -147,14 +147,13 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 
 	private void onSwipeEnabledChanged(boolean enabled) {
 		if (!swipe.isRefreshing() && enabled != topSwipingEnabled) {
-			updateSwipeState();
+			updateSwipeState(viewModel.getQueryMoreState().getValue());
 		}
 		topSwipingEnabled = enabled;
 	}
 
-	private void updateSwipeState() {
+	private void updateSwipeState(@Nullable QueryMoreState state) {
 		Boolean topEnabled = viewModel.topSwipeEnabled.getValue();
-		QueryMoreState state = viewModel.getQueryMoreState().getValue();
 		if (topEnabled == null || state == null) return;
 
 		if (state == QueryMoreState.NONE) {
