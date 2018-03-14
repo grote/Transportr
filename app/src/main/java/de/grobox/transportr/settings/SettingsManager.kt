@@ -83,6 +83,11 @@ class SettingsManager @Inject constructor(private val context: Context) {
             }
         }
 
+    fun showLocationFragmentOnboarding(): Boolean = settings.getBoolean(LOCATION_ONBOARDING, true)
+    fun locationFragmentOnboardingShown() {
+        settings.edit().putBoolean(LOCATION_ONBOARDING, false).apply()
+    }
+
     fun getNetworkId(i: Int): NetworkId? {
         var networkSettingsStr = NETWORK_ID_1
         if (i == 2) networkSettingsStr = NETWORK_ID_2
@@ -117,15 +122,16 @@ class SettingsManager @Inject constructor(private val context: Context) {
     }
 
     companion object {
-        private val NETWORK_ID_1 = "NetworkId"
-        private val NETWORK_ID_2 = "NetworkId2"
-        private val NETWORK_ID_3 = "NetworkId3"
+        private const val NETWORK_ID_1 = "NetworkId"
+        private const val NETWORK_ID_2 = "NetworkId2"
+        private const val NETWORK_ID_3 = "NetworkId3"
 
-        @JvmField internal val LANGUAGE = "pref_key_language"
-        @JvmField internal val THEME = "pref_key_theme"
-        private val SHOW_WHEN_LOCKED = "pref_key_show_when_locked"
-        private val WALK_SPEED = "pref_key_walk_speed"
-        private val OPTIMIZE = "pref_key_optimize"
+        internal const val LANGUAGE = "pref_key_language"
+        internal const val THEME = "pref_key_theme"
+        private const val SHOW_WHEN_LOCKED = "pref_key_show_when_locked"
+        private const val WALK_SPEED = "pref_key_walk_speed"
+        private const val OPTIMIZE = "pref_key_optimize"
+        private const val LOCATION_ONBOARDING = "locationOnboarding"
     }
 
 }

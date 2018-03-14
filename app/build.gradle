@@ -116,7 +116,7 @@ dependencies {
 	implementation 'com.mikepenz:fastadapter:3.2.3@aar'
 	implementation 'com.mikepenz:fastadapter-commons:3.2.3@aar'
 	implementation 'com.mikepenz:fastadapter-extensions-expandable:3.2.3@aar'
-	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.1.0'
+	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.7.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.4.0'
 	implementation 'com.mapzen.android:lost:3.0.4'
@@ -274,6 +274,6 @@ dependencyVerification {
 			'org.slf4j:slf4j-api:1.7.25:slf4j-api-1.7.25.jar:18c4a0095d5c1da6b817592e767bb23d29dd2f560ad74df75ff3961dbde25b79',
 			'org.xerial:sqlite-jdbc:3.20.1:sqlite-jdbc-3.20.1.jar:3d09ac1caebd6ea3bd82a1d1819a2cf6e251869dbaae43712caf6a65f40d40eb',
 			'tools.fastlane:screengrab:1.1.0:screengrab-1.1.0.aar:03ce3868ee8a0082d14e7a1de0999f91531c0cc794392688beb08ee9bc4495fd',
-			'uk.co.samuelwall:material-tap-target-prompt:2.1.0:material-tap-target-prompt-2.1.0.aar:6df17e7c371f9264bfe440506f91205dd47566869c1528891943a04a26c96a94',
+			'uk.co.samuelwall:material-tap-target-prompt:2.7.0:material-tap-target-prompt-2.7.0.aar:03dd3e3d6c1e658dc4f8bf4c1fd30fc5a26f0527d8864e1319594d52db8c3dd4',
 	]
 }

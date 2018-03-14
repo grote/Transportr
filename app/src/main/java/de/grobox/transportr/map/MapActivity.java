@@ -31,6 +31,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetBehavior.BottomSheetCallback;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -48,6 +49,9 @@ import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.ui.TransportrChangeLog;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground;
+import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
 
 import static android.content.Intent.ACTION_VIEW;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
@@ -185,6 +189,25 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 				.replace(R.id.bottomSheet, locationFragment, LocationFragment.TAG)
 				.commit(); // takes some time and empty bottomSheet will not be shown
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
+
+		// show on-boarding dialog
+		if (settingsManager.showLocationFragmentOnboarding()) {
+			new MaterialTapTargetPrompt.Builder(this)
+					.setTarget(R.id.bottomSheet)
+					.setPrimaryText(R.string.onboarding_location_title)
+					.setSecondaryText(R.string.onboarding_location_message)
+					.setBackgroundColour(ContextCompat.getColor(this, R.color.primary))
+					.setFocalPadding(R.dimen.buttonSize)
+					.setPromptBackground(new RectanglePromptBackground())
+					.setPromptFocal(new RectanglePromptFocal())
+					.setPromptStateChangeListener((prompt, state) -> {
+						if (state == MaterialTapTargetPrompt.STATE_DISMISSED) {
+							settingsManager.locationFragmentOnboardingShown();
+							viewModel.selectedLocationClicked(loc.getLatLng());
+						}
+					})
+					.show();
+		}
 	}
 
 	private void onSelectedLocationClicked(@Nullable LatLng latLng) {

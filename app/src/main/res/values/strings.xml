@@ -164,6 +164,9 @@ there are any).</string>
 	<string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
 	<string name="warning_gps_off">Location is off. Please turn it on in settings.</string>
 
+	<string name="onboarding_location_title">Pull up</string>
+	<string name="onboarding_location_message">More features are hiding below</string>
+
 	<string name="select_products">Select Means of Transport</string>
 	<string name="product_high_speed_train">High-Speed Train</string>
 	<string name="product_regional_train">Regional Train</string>
@@ -380,6 +383,7 @@ there are any).</string>
 	<string name="maintainer">Maintainer</string>
 	<string name="contributors">Contributors</string>
 	<string name="translators">Translators</string>
+
 	<string name="dutch">Dutch</string>
 	<string name="french">French</string>
 	<string name="german">German</string>
