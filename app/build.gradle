@@ -10,8 +10,8 @@ android {
 	buildToolsVersion "27.0.3"
 
 	defaultConfig {
-		versionCode 104
-		versionName "2.0.0-beta3"
+		versionCode 105
+		versionName "2.0.0-rc1"
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 15
@@ -110,12 +110,12 @@ dependencies {
 
 	implementation 'com.github.omadahealth:swipy:1.2.3'
 	implementation 'de.cketti.library.changelog:ckchangelog:1.2.2'
-	implementation 'com.google.android:flexbox:0.3.1'
-	implementation 'com.mikepenz:materialdrawer:6.0.4'
-	implementation 'com.mikepenz:aboutlibraries:6.0.2'
-	implementation 'com.mikepenz:fastadapter:3.2.3@aar'
-	implementation 'com.mikepenz:fastadapter-commons:3.2.3@aar'
-	implementation 'com.mikepenz:fastadapter-extensions-expandable:3.2.3@aar'
+	implementation 'com.google.android:flexbox:0.3.2'
+	implementation 'com.mikepenz:materialdrawer:6.0.6'
+	implementation 'com.mikepenz:aboutlibraries:6.0.6'
+	implementation "com.mikepenz:fastadapter:$fastadapterVersion"
+	implementation "com.mikepenz:fastadapter-commons:$fastadapterVersion"
+	implementation "com.mikepenz:fastadapter-extensions-expandable:$fastadapterVersion"
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.7.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.4.0'
@@ -124,7 +124,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:0c95a708') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:193210eb') {
 		exclude module: 'service'
 		exclude group: 'org.json' // provided by Android
 		exclude group: 'net.sf.kxml' // provided by Android
@@ -209,10 +209,10 @@ dependencyVerification {
 			'com.github.tony19:apktool-lib:1.4.4-3:apktool-lib-1.4.4-3.jar:bdc4e93b1dd6661698feedacc37d203801076deddd7fb350daf98611637a5cd6',
 			'com.github.tony19:logback-android-classic:1.1.1-6:logback-android-classic-1.1.1-6.jar:0d0939c2cd797ecb0b7d679f1e2314a9889a90a633f2fc5b66f11316cbd6626b',
 			'com.github.tony19:logback-android-core:1.1.1-6:logback-android-core-1.1.1-6.jar:9548fd28988d62a8f67b72fafc67167f91f061001513ae25f53921f2982c8c01',
-			'com.gitlab.opentransitmap.public-transport-enabler:enabler:0c95a708:enabler-0c95a708.jar:ed00f32ba69432bef4011d59a5867ea0995a781f5fe3db2a8af3dabe151854a4',
-			'com.gitlab.opentransitmap:public-transport-enabler:0c95a708:public-transport-enabler-0c95a708.jar:dfa4560601d65694cfa8ff25c862ee2083fc61938e77a654c542b36a70e2cd69',
+			'com.gitlab.opentransitmap.public-transport-enabler:enabler:193210eb:enabler-193210eb.jar:e7229a60b861fabb1010272109c9ce179da43d9b17a10573aedb45b44c8bd8b8',
+			'com.gitlab.opentransitmap:public-transport-enabler:193210eb:public-transport-enabler-193210eb.jar:fca9f4c252c2743bdbafdbf8bf6480db02daad203ea345e121af5124ffc240d9',
 			'com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.0:accessibility-test-framework-2.0.jar:cdf16ef8f5b8023d003ce3cc1b0d51bda737762e2dab2fedf43d1c4292353f7f',
-			'com.google.android:flexbox:0.3.1:flexbox-0.3.1.aar:9e0f9ad8be417bf5f48c1edbc98c25ea5eb7847def9aeaa5eef3151b53e89df4',
+			'com.google.android:flexbox:0.3.2:flexbox-0.3.2.aar:610a6a00695e873b4b6b785b7dce1c60f6a5964044b6d093b4d1060cbf13c278',
 			'com.google.auto:auto-common:0.6:auto-common-0.6.jar:6d8ffa9dc95db8b1e7399a622946d129093959cbe5d6b54cfe27d2542302d8e1',
 			'com.google.code.findbugs:jsr305:3.0.0:jsr305-3.0.0.jar:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'com.google.code.findbugs:jsr305:3.0.1:jsr305-3.0.1.jar:c885ce34249682bc0236b4a7d56efcc12048e6135a5baf7a9cde8ad8cda13fcd',
@@ -232,12 +232,12 @@ dependencyVerification {
 			'com.mapbox.mapboxsdk:mapbox-java-core:2.2.10:mapbox-java-core-2.2.10.jar:6ca6f57519554b41892b802e1a6bf441809fa5627bc1e518b238da4058caeea9',
 			'com.mapbox.mapboxsdk:mapbox-java-geojson:2.2.10:mapbox-java-geojson-2.2.10.jar:a587f7e958ae2750819b4bbbd4ba8d5479ecbbd532b7d825fece52299f0c2e81',
 			'com.mapzen.android:lost:3.0.4:lost-3.0.4.aar:7c95374ddd406356a6a3085c93e1a549feb68e919b29a8f0f194bc47f27788c0',
-			'com.mikepenz:aboutlibraries:6.0.2:aboutlibraries-6.0.2.aar:15f4397e6891ab397dbc27feb5f30a91102c2ab24c73cae3da10037bc3844793',
-			'com.mikepenz:fastadapter-commons:3.2.3:fastadapter-commons-3.2.3.aar:ed37e7b54de434dc4278f5850f140d35e622bcb7fb241beb105b2e58fad6ac51',
-			'com.mikepenz:fastadapter-extensions-expandable:3.2.3:fastadapter-extensions-expandable-3.2.3.aar:6fc50aadde5ff1304355bc22c1a235c0e2334e46573f0ba30df0bc3b2402cd74',
-			'com.mikepenz:fastadapter:3.2.3:fastadapter-3.2.3.aar:8546c124056f71b242dfc8362fdaa75a59d9353e4544c81cd78d4371f52ad2bd',
+			'com.mikepenz:aboutlibraries:6.0.6:aboutlibraries-6.0.6.aar:2185034d931afe0a086115b7c200865402a28a8841635791d88195988c43d260',
+			'com.mikepenz:fastadapter-commons:3.2.4:fastadapter-commons-3.2.4.aar:4d5860ff1778a37cf33af62e62462ea214d8d4d5939143236b61afb33e4fe842',
+			'com.mikepenz:fastadapter-extensions-expandable:3.2.4:fastadapter-extensions-expandable-3.2.4.aar:a8cfb8e9024bb0126d5c2382dfec62f03113bf34ca405e840abc451cc69c2820',
+			'com.mikepenz:fastadapter:3.2.4:fastadapter-3.2.4.aar:634d582c4b3906c593ff39271c23cf23e6dc1e8dc6aeb0f560d0d44627aa4d9e',
 			'com.mikepenz:iconics-core:3.0.2:iconics-core-3.0.2.aar:aedb0e72ac3d4341f3caf0d1c7dd4a1733eb6031a6b764c8921ff1d51987a6dd',
-			'com.mikepenz:materialdrawer:6.0.4:materialdrawer-6.0.4.aar:fe405efe1e3d142fc34604db932a9cb4328062d3049439837142068b2c491896',
+			'com.mikepenz:materialdrawer:6.0.6:materialdrawer-6.0.6.aar:8b2005769fb5455369c65b1a361d26cf38f3bd5c5c0edc19a6693f438f863427',
 			'com.mikepenz:materialize:1.1.2:materialize-1.1.2.aar:2834b735fefcb2e1ab356e926a652396a4ece0dffc05184ea755366c3d2ee79f',
 			'com.squareup.okhttp3:logging-interceptor:3.8.1:logging-interceptor-3.8.1.jar:1e84fce63c46ce41fb7f8ca65d5b67ffe61aa0350e964288e66391fda7399ff8',
 			'com.squareup.okhttp3:okhttp:3.10.0:okhttp-3.10.0.jar:4aca3e552afb1ceb47f8956685f6295a276e49fa03f9066f8b6be83bec56fb66',

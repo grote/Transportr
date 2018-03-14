@@ -4,6 +4,7 @@ buildscript {
 		kotlinVersion = '1.2.30'
 		daggerVersion = '2.11'
 		supportVersion = '27.1.0'
+		fastadapterVersion = '3.2.4@aar'
 		espressoVersion = '3.0.1'
 	}
 
