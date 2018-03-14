@@ -31,7 +31,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetBehavior.BottomSheetCallback;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -49,9 +48,8 @@ import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.ui.TransportrChangeLog;
+import de.grobox.transportr.utils.OnboardingBuilder;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
-import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground;
-import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal;
 
 import static android.content.Intent.ACTION_VIEW;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
@@ -192,14 +190,10 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 
 		// show on-boarding dialog
 		if (settingsManager.showLocationFragmentOnboarding()) {
-			new MaterialTapTargetPrompt.Builder(this)
+			new OnboardingBuilder(this)
 					.setTarget(R.id.bottomSheet)
 					.setPrimaryText(R.string.onboarding_location_title)
 					.setSecondaryText(R.string.onboarding_location_message)
-					.setBackgroundColour(ContextCompat.getColor(this, R.color.primary))
-					.setFocalPadding(R.dimen.buttonSize)
-					.setPromptBackground(new RectanglePromptBackground())
-					.setPromptFocal(new RectanglePromptFocal())
 					.setPromptStateChangeListener((prompt, state) -> {
 						if (state == MaterialTapTargetPrompt.STATE_DISMISSED) {
 							settingsManager.locationFragmentOnboardingShown();
@@ -253,7 +247,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	}
 
 	private void checkAndShowChangelog() {
-		TransportrChangeLog cl = new TransportrChangeLog(this, getSettingsManager().isDarkTheme());
+		TransportrChangeLog cl = new TransportrChangeLog(this, settingsManager.isDarkTheme());
 		if(cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
 		}

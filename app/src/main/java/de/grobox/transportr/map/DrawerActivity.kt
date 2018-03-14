@@ -44,7 +44,6 @@ import de.grobox.transportr.networks.PickTransportNetworkActivity
 import de.grobox.transportr.networks.TransportNetwork
 import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.settings.SettingsActivity
-import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.ui.TransportrChangeLog
 import javax.inject.Inject
 
@@ -52,8 +51,6 @@ internal abstract class DrawerActivity : TransportrActivity() {
 
     @Inject
     protected lateinit var manager: TransportNetworkManager
-    @Inject
-    protected lateinit var settingsManager: SettingsManager
 
     private lateinit var drawer: Drawer
     private lateinit var accountHeader: AccountHeader

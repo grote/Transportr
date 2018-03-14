@@ -36,7 +36,7 @@ import de.grobox.transportr.settings.SettingsManager;
 
 public abstract class TransportrActivity extends AppCompatActivity {
 
-	@Inject SettingsManager settingsManager;
+	@Inject public SettingsManager settingsManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

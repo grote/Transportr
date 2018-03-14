@@ -37,7 +37,9 @@ import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState;
 import de.grobox.transportr.ui.ThreeStateBottomSheetBehavior;
+import de.grobox.transportr.utils.OnboardingBuilder;
 import de.schildbach.pte.dto.Trip;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED;
@@ -111,6 +113,24 @@ public class TripDetailActivity extends TransportrActivity {
 					.add(R.id.topContainer, new TripMapFragment(), TripMapFragment.TAG)
 					.add(R.id.bottomContainer, new TripDetailFragment(), TripDetailFragment.TAG)
 					.commit();
+
+			showOnboarding();
+		}
+	}
+
+	private void showOnboarding() {
+		if (settingsManager.showTripDetailFragmentOnboarding()) {
+			new OnboardingBuilder(this)
+					.setTarget(R.id.bottomContainer)
+					.setPrimaryText(R.string.onboarding_location_title)
+					.setSecondaryText(R.string.onboarding_location_message)
+					.setPromptStateChangeListener((prompt, state) -> {
+						if (state == MaterialTapTargetPrompt.STATE_DISMISSED) {
+							settingsManager.tripDetailOnboardingShown();
+							bottomSheetBehavior.setState(STATE_EXPANDED);
+						}
+					})
+					.show();
 		}
 	}
 
