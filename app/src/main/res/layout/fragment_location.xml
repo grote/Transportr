@@ -99,17 +99,17 @@
 		android:maxWidth="120dp"
 		android:padding="8dp"
 		android:text="@string/drawer_departures"
-		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintRight_toLeftOf="@+id/nearbyStationsButton"
-		app:layout_constraintTop_toBottomOf="@+id/locationInfo"/>
+		app:layout_constraintEnd_toStartOf="@+id/nearbyStationsButton"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/locationInfo"
+		tools:visibility="visible"/>
 
 	<de.grobox.transportr.ui.ImageTextButton
 		android:id="@+id/nearbyStationsButton"
 		style="@style/Button"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="16dp"
-		android:layout_marginRight="16dp"
 		android:layout_marginTop="16dp"
 		android:background="?attr/selectableItemBackground"
 		android:drawablePadding="8dp"
@@ -117,8 +117,9 @@
 		android:maxWidth="120dp"
 		android:padding="8dp"
 		android:text="@string/drawer_nearby_stations"
-		app:layout_constraintLeft_toRightOf="@+id/departuresButton"
-		app:layout_constraintRight_toLeftOf="@+id/shareButton"
+		app:layout_constraintEnd_toStartOf="@+id/shareButton"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toEndOf="@+id/departuresButton"
 		app:layout_constraintTop_toBottomOf="@+id/locationInfo"/>
 
 	<ProgressBar
@@ -147,7 +148,8 @@
 		android:padding="8dp"
 		android:text="@string/action_share"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintLeft_toRightOf="@+id/nearbyStationsButton"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toEndOf="@+id/nearbyStationsButton"
 		app:layout_constraintTop_toBottomOf="@+id/locationInfo"/>
 
 </android.support.constraint.ConstraintLayout>
