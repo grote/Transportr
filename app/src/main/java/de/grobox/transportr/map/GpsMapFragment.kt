@@ -40,6 +40,7 @@ import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLng
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLngZoom
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerMode
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin
@@ -88,10 +89,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
     override fun onStart() {
         super.onStart()
         locationPlugin?.onStart()
-        locationEngine?.let {
-            it.requestLocationUpdates()
-            it.addLocationEngineListener(this)
-        }
+        locationEngine?.addLocationEngineListener(this)
         timer.start()
     }
 
@@ -159,6 +157,11 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
         }
     }
 
+    @SuppressLint("MissingPermission")
+    override fun onConnected() {
+        locationEngine?.requestLocationUpdates()
+    }
+
     private fun onGpsFabClick() {
         if (ContextCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
             Toast.makeText(context, R.string.permission_denied_gps, Toast.LENGTH_SHORT).show()
@@ -211,11 +214,6 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
         }
     }
 
-    @SuppressLint("MissingPermission")
-    override fun onConnected() {
-        locationEngine?.requestLocationUpdates()
-    }
-
     override fun onLocationChanged(location: Location) {
         if (gpsController.getGpsState().value!!.isTracking) {
             map?.animateCamera(newLatLng(LatLng(location.latitude, location.longitude)))
@@ -228,6 +226,16 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
         val latLng = LatLng(location.latitude, location.longitude)
         val update = CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM.toDouble())
         map?.moveCamera(update)
+    }
+
+    override fun animateTo(latLng: LatLng?, zoom: Int) {
+        gpsController.updateGpsState(isTracking = false)
+        super.animateTo(latLng, zoom)
+    }
+
+    override fun zoomToBounds(latLngBounds: LatLngBounds?, animate: Boolean) {
+        gpsController.updateGpsState(isTracking = false)
+        super.zoomToBounds(latLngBounds, animate)
     }
 
     protected fun getLastKnownLocation() = locationPlugin?.lastKnownLocation

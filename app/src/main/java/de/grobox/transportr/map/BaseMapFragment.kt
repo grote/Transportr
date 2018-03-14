@@ -100,7 +100,7 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
         mapView.onDestroy()
     }
 
-    protected fun animateTo(latLng: LatLng?, zoom: Int) {
+    protected open fun animateTo(latLng: LatLng?, zoom: Int) {
         if (latLng == null) return
         map?.let { map ->
             val update = if (map.cameraPosition.zoom < zoom) CameraUpdateFactory.newLatLngZoom(
@@ -111,7 +111,7 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
         }
     }
 
-    private fun zoomToBounds(latLngBounds: LatLngBounds?, animate: Boolean) {
+    protected open fun zoomToBounds(latLngBounds: LatLngBounds?, animate: Boolean) {
         if (latLngBounds == null) return
         val update = CameraUpdateFactory.newLatLngBounds(latLngBounds, mapPadding)
         map?.let { map ->
