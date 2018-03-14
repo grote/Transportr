@@ -152,7 +152,10 @@ public class DeparturesActivity extends TransportrActivity
 			getSupportLoaderManager().restartLoader(LOADER_DEPARTURES, args, this).forceLoad();
 		});
 
-		LceAnimator.showLoading(progressBar, list, errorLayout);
+		if (loader.isReset()) {
+			LceAnimator.showLoading(progressBar, list, errorLayout);
+			loader.forceLoad();
+		}
 
 		if (savedInstanceState != null) {
 			calendar = (Calendar) savedInstanceState.getSerializable(DATE);
@@ -161,8 +164,6 @@ public class DeparturesActivity extends TransportrActivity
 			if (fragments != null && fragments.size() > 0 && fragments.get(0) instanceof TimeDateFragment) {
 				((TimeDateFragment) fragments.get(0)).setTimeDateListener(this);
 			}
-		} else {
-			loader.forceLoad();
 		}
 	}
 
