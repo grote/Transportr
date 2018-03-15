@@ -25,12 +25,12 @@ Pre-releases and beta versions for advanced users are available via [a special F
 
 Screenshots
 -----------
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png)
 
 
 Building From Source

@@ -136,7 +136,7 @@ internal class TripsRepository(
         if (queryTripsContext == null) throw IllegalStateException("No query context")
 
         Log.i(TAG, "QueryTripsContext: " + queryTripsContext!!.toString())
-        Log.i(TAG, "Later: " + later)
+        Log.i(TAG, "Later: $later")
 
         if (later && !queryTripsContext!!.canQueryLater()) throw IllegalStateException("Can not query later")
         if (!later && !queryTripsContext!!.canQueryEarlier()) throw IllegalStateException("Can not query earlier")
@@ -167,7 +167,7 @@ internal class TripsRepository(
     }
 
     private fun getQueryMoreStateFromContext(context: QueryTripsContext?): QueryMoreState = context?.let {
-        if (it.canQueryEarlier() && it.canQueryLater()) {
+        return if (it.canQueryEarlier() && it.canQueryLater()) {
             QueryMoreState.BOTH
         } else if (it.canQueryEarlier()) {
             QueryMoreState.EARLIER
@@ -176,7 +176,6 @@ internal class TripsRepository(
         } else {
             QueryMoreState.NONE
         }
-        QueryMoreState.BOTH
     } ?: QueryMoreState.NONE
 
     private fun QueryTripsResult.getError(): String = when (status) {
