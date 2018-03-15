@@ -145,7 +145,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	private void showSavedSearches() {
 		SavedSearchesFragment f = new SavedSearchesFragment();
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.bottomSheet, f, SavedSearchesFragment.TAG)
+				.replace(R.id.bottomSheet, f, SavedSearchesFragment.class.getSimpleName())
 				.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
 		viewModel.setPeekHeight(PEEK_HEIGHT_AUTO);

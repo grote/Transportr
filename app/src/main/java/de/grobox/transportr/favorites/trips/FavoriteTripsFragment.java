@@ -22,6 +22,7 @@ package de.grobox.transportr.favorites.trips;
 import android.animation.ObjectAnimator;
 import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +42,7 @@ import de.grobox.transportr.data.locations.HomeLocation;
 import de.grobox.transportr.data.locations.WorkLocation;
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment;
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment;
+import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.ui.LceAnimator;
 
 import static android.support.v7.util.SortedList.INVALID_POSITION;
@@ -50,12 +52,10 @@ import static de.grobox.transportr.favorites.trips.FavoriteTripType.WORK;
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
 
 @ParametersAreNonnullByDefault
-public abstract class FavoriteTripsFragment extends TransportrFragment implements FavoriteTripListener {
-
-	public static final String TAG = FavoriteTripsFragment.class.getName();
+public abstract class FavoriteTripsFragment<VM extends SavedSearchesViewModel> extends TransportrFragment implements FavoriteTripListener {
 
 	@Inject protected ViewModelProvider.Factory viewModelFactory;
-	protected SavedSearchesViewModel viewModel;
+	protected VM viewModel;
 
 	private ProgressBar progressBar;
 	private RecyclerView list;
@@ -65,7 +65,6 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_favorites, container, false);
-		getComponent().inject(this);
 
 		progressBar = v.findViewById(R.id.progressBar);
 
@@ -83,7 +82,7 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 		return v;
 	}
 
-	abstract protected SavedSearchesViewModel getViewModel();
+	abstract protected VM getViewModel();
 
 	private void onHomeLocationChanged(@Nullable HomeLocation home) {
 		FavoriteTripItem oldHome = adapter.getHome();
@@ -144,7 +143,7 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 	public void changeHome() {
 		HomePickerDialogFragment f = getHomePickerDialogFragment();
 		f.setListener(this);
-		f.show(getActivity().getSupportFragmentManager(), HomePickerDialogFragment.TAG);
+		f.show(getActivity().getSupportFragmentManager(), HomePickerDialogFragment.class.getSimpleName());
 	}
 
 	protected abstract HomePickerDialogFragment getHomePickerDialogFragment();
@@ -153,7 +152,7 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 	public void changeWork() {
 		WorkPickerDialogFragment f = getWorkPickerDialogFragment();
 		f.setListener(this);
-		f.show(getActivity().getSupportFragmentManager(), WorkPickerDialogFragment.TAG);
+		f.show(getActivity().getSupportFragmentManager(), WorkPickerDialogFragment.class.getSimpleName());
 	}
 
 	protected abstract WorkPickerDialogFragment getWorkPickerDialogFragment();
@@ -164,13 +163,13 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 			if (item.getTo() == null) {
 				changeHome();
 			} else {
-				findDirections(getContext(), item.getFrom(), item.getVia(), item.getTo(), true, true);
+				onSpecialLocationClicked(item.getTo());
 			}
 		} else if (item.getType() == WORK) {
 			if (item.getTo() == null) {
 				changeWork();
 			} else {
-				findDirections(getContext(), item.getFrom(), item.getVia(), item.getTo(), true, true);
+				onSpecialLocationClicked(item.getTo());
 			}
 		} else if (item.getType() == TRIP) {
 			if (item.getFrom() == null || item.getTo() == null) throw new IllegalArgumentException();
@@ -179,6 +178,8 @@ public abstract class FavoriteTripsFragment extends TransportrFragment implement
 			throw new IllegalArgumentException();
 		}
 	}
+
+	protected abstract void onSpecialLocationClicked(@NonNull WrapLocation location);
 
 	@Override
 	public void onFavoriteDeleted(FavoriteTripItem item) {

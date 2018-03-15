@@ -17,32 +17,25 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.transportr.favorites.locations;
+package de.grobox.transportr.favorites.locations
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import de.grobox.transportr.AppComponent
+import de.grobox.transportr.R
+import de.grobox.transportr.locations.WrapLocation
 
-import de.grobox.transportr.AppComponent;
-import de.grobox.transportr.R;
-import de.grobox.transportr.locations.WrapLocation;
 
-@ParametersAreNonnullByDefault
-public abstract class WorkPickerDialogFragment extends SpecialLocationFragment {
+abstract class HomePickerDialogFragment : SpecialLocationFragment() {
 
-	public static final String TAG = WorkPickerDialogFragment.class.getName();
+    override fun inject(component: AppComponent) {
+        component.inject(this)
+    }
 
-	@Override
-	protected void inject(AppComponent component) {
-		component.inject(this);
-	}
+    override fun getHint(): Int {
+        return R.string.home_dialog_title
+    }
 
-	@Override
-	protected int getHint() {
-		return R.string.work_hint;
-	}
-
-	@Override
-	protected void onSpecialLocationSet(WrapLocation location) {
-		viewModel.setWork(location);
-	}
+    override fun onSpecialLocationSet(location: WrapLocation) {
+        viewModel.setHome(location)
+    }
 
 }

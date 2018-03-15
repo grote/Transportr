@@ -26,7 +26,6 @@ import de.grobox.transportr.data.DbModule;
 import de.grobox.transportr.departures.DeparturesActivity;
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment;
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment;
-import de.grobox.transportr.favorites.trips.FavoriteTripsFragment;
 import de.grobox.transportr.locations.LocationFragment;
 import de.grobox.transportr.map.MapActivity;
 import de.grobox.transportr.map.MapFragment;
@@ -52,7 +51,8 @@ public interface AppComponent {
 
 	void inject(MapFragment fragment);
 	void inject(LocationFragment fragment);
-	void inject(FavoriteTripsFragment fragment);
+	void inject(de.grobox.transportr.map.SavedSearchesFragment fragment);
+	void inject(de.grobox.transportr.trips.search.SavedSearchesFragment fragment);
 	void inject(DirectionsFragment fragment);
 	void inject(TripsFragment fragment);
 	void inject(TripMapFragment fragment);

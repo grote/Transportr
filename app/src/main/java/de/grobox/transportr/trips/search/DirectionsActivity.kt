@@ -108,7 +108,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
         viewModel.isFavTrip.value = null
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer, SavedSearchesFragment(), SavedSearchesFragment.TAG)
+            .replace(R.id.fragmentContainer, SavedSearchesFragment(), SavedSearchesFragment::class.java.simpleName)
             .commit()
     }
 
@@ -145,7 +145,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
                 val liveData = viewModel.home
                 liveData.observe(this, Observer { home ->
                     if (home == null) {
-                        HomePickerFragment().show(supportFragmentManager, HomePickerFragment.TAG)
+                        HomePickerFragment().show(supportFragmentManager, HomePickerFragment::class.java.simpleName)
                     } else {
                         searchFromTo(WrapLocation(GPS), via, home)
                     }
@@ -155,7 +155,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
                 val liveData = viewModel.work
                 liveData.observe(this, Observer { work ->
                     if (work == null) {
-                        WorkPickerFragment().show(supportFragmentManager, WorkPickerFragment.TAG)
+                        WorkPickerFragment().show(supportFragmentManager, WorkPickerFragment::class.java.simpleName)
                     } else {
                         searchFromTo(WrapLocation(GPS), via, work)
                     }

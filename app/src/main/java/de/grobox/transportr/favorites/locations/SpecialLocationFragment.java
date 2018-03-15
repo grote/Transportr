@@ -48,7 +48,7 @@ import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.settings.SettingsManager;
 
 @ParametersAreNonnullByDefault
-abstract class SpecialLocationFragment extends DialogFragment implements LocationView.LocationViewListener {
+public abstract class SpecialLocationFragment extends DialogFragment implements LocationView.LocationViewListener {
 
 	@Inject protected ViewModelProvider.Factory viewModelFactory;
 	@Inject SettingsManager settingsManager;
