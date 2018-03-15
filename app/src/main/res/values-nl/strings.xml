@@ -1,17 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">De assistent voor het openbaar vervoer die jouw privacy en vrijheid respecteert.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken, waar je ook bent.
-
-Het ondersteunt veel locaties over heel de wereld, maar werkt momenteel het best in Europa. Als je in een niet-ondersteund gebied woont, kun je het aan Transportr toevoegen.
-Instructies staan op de homepage.
-
-Transportr vindt verbindingen vanaf je huis, je huidige positie, of een gegeven station naar
-waar je ook heen wilt gaan. Je kan ook volledige routes als favorieten opslaan en
-met één enkele swipe naar latere verbindingen zoeken. Natuurlijk kan je ook je locatie op de kaart tonen
-en je positie in het traject volgen via GPS.
-
-Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief vertragingen (als er zijn).</string>
   <string name="drawer_settings">Instellingen</string>
   <string name="drawer_changelog">Lijst van veranderingen</string>
   <string name="drawer_about">Over</string>
@@ -99,6 +87,7 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="changelog_full_title">Lijst van veranderingen</string>
   <string name="changelog_title">Veranderingen</string>
   <string name="changelog_show_full">Meer …</string>
+  <string name="np_continent_europe">Europa</string>
   <string name="np_region_australia">Australië</string>
   <string name="np_desc_sydney">Australië, Nieuw-Zuid-Wales, Sydney</string>
   <string name="np_region_austria">Oostenrijk</string>
@@ -118,7 +107,6 @@ Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief 
   <string name="np_desc_br_floripa">Veel busroutes, geen Executivos</string>
   <string name="np_region_canada">Canada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Denemarken</string>

@@ -1,19 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Lommekameraten for offentlig transport som respekterer ditt personvern og din frihet.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr er et veldedig program utviklet av folk fra hele verden, til hjelp med offentlig transport, i den hensikt å gjøre det enkelt, og mulig, hvor som helst.
-
-Fungerer for tiden best i Europa, men støtter også mange steder rundt omkring i verden. Hvis
-du bor i et område som ikke er støttet kan du legge det til i Transportr.
-
-Instruksjoner finner du på hjemmesiden.
-
-Transportr viser veien fra ditt hjem, din gjeldende plassering eller en gitt stasjon til
-hvorhen du ønsker å dra. Du kan også lagre hele turer som favoritter og finne
-fremtidige turer i ett enkelt drag. Du kan selvsagt også vise turen i kartet
-og følge framdrift via GPS.
-
-Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsinkelser (hvis det skulle være noen).</string>
   <string name="drawer_settings">Innstillinger</string>
   <string name="drawer_changelog">Endringslogg</string>
   <string name="drawer_about">Om</string>
@@ -148,6 +134,8 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="changelog_full_title">Endringslogg</string>
   <string name="changelog_title">Nyheter</string>
   <string name="changelog_show_full">Mer…</string>
+  <string name="np_continent_europe">Europa</string>
+  <string name="np_continent_africa">Afrika</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
@@ -168,7 +156,6 @@ Du kan oppdage stasjoner i nærheten og vise kommende avganger, inkludert forsin
   <string name="np_desc_br_floripa">Mange bussruter, ingen for herrefolk</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
   <string name="np_name_quebec">Québec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Le Sud-Ouest, Québec, Montérégie, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danmark</string>

@@ -1,18 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Le compagnon de transport en commun qui respecte vos données personnelles et votre liberté.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr est une appli sans but lucratif développée par des personnes du monde entier pour faciliter le plus possible l’utilisation des transports en commun, où que vous soyez.
-
-Actuellement, elle fonctionne de manière optimale en Europe, mais prend aussi en charge de nombreux endroits de par le monde. Si vous habitez dans une région qui n’est pas prise en charge, envisagez de l’ajouter à Transportr.
-Vous trouverez des instructions sur la page d’accueil.
-
-Transportr trouve des itinéraires de chez vous, de votre position actuelle ou d’un arrêt/station donné vers n’importe quel lieu. Vous pouvez aussi enregistrer des trajets entiers préférés et y accéder ultérieurement d’un seul glisser. Bien sûr, vous pouvez aussi faire apparaître votre trajet sur la carte et suivre votre déplacement par GPS.
-
-Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les prochains départs incluant les retards (s’il y en a). </string>
   <string name="drawer_settings">Paramètres</string>
   <string name="drawer_changelog">Journal des changements</string>
   <string name="drawer_about">À propos</string>
-  <string name="drawer_contributors">Contributeurs</string>
+  <string name="drawer_contributors">Collaborateurs</string>
+  <string name="drawer_report_issue">Signaler un problème</string>
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
   <string name="action_unfav_trip">Supprimer la marque de trajet favori</string>
   <string name="action_switch_locations">Interchanger De et À</string>
@@ -30,6 +22,11 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="drawer_departures">Départs</string>
   <string name="tab_about">À propos</string>
   <string name="tab_libraries">Bibliothèques</string>
+  <string name="about_copyright">© 2013 - 2018 Torsten Grote\nLicence de logiciel libre : LPGv3+</string>
+  <string name="about_description">Transportr est un compagnon de transports en commun développé par des personnes partout dans le monde afin de faciliter autant que possible l’utilisation des transports en commun où que vous soyez.</string>
+  <string name="about_warning_title">Avertissement</string>
+  <string name="about_warning_text">Il n’existe aucune garantie quant à l’exactitude des données (provenant de sources externes). Veuillez utiliser cette appli à vos propres risques.</string>
+  <string name="about_contributions">Cette appli est un logiciel libre et vous pouvez l’utiliser, l’examiner, la partager et l’améliorer librement. Les contributions sont encouragées et valorisées. Si vous souhaitez collaborer à ce projet, de plus amples renseignements se trouvent sur la page d’accueil.</string>
   <string name="about_visit_website">Visiter le site Web</string>
   <string name="open_navigation_drawer">Ouvrir le tiroir de navigation</string>
   <string name="from">De</string>
@@ -129,6 +126,9 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="location_gps">Utiliser la position actuel</string>
   <string name="warning_no_gps_fix">Impossible de trouver votre position, pour l’instant.</string>
   <string name="permission_denied_gps">Vous devez autoriser l’accès à votre position pour que ceci fonctionne. Veuillez donner la permission dans les paramètres de l’appli.</string>
+  <string name="warning_gps_off">La localisation est désactivée. Veuillez l’activer dans les paramètres.</string>
+  <string name="onboarding_location_title">Tirer vers le haut</string>
+  <string name="onboarding_location_message">D’autres fonctions se cachent ci-dessous</string>
   <string name="select_products">Choisir un moyen de transport</string>
   <string name="product_high_speed_train">Train à grande vitesse</string>
   <string name="product_regional_train">Train régional</string>
@@ -143,6 +143,13 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="changelog_full_title">Journal des changements</string>
   <string name="changelog_title">Nouveautés</string>
   <string name="changelog_show_full">Plus...</string>
+  <string name="np_continent_europe">Europe</string>
+  <string name="np_continent_africa">Afrique</string>
+  <string name="np_continent_north_america">Amérique du Nord</string>
+  <string name="np_continent_central_america">Amérique centrale</string>
+  <string name="np_continent_south_america">Amérique du Sud</string>
+  <string name="np_continent_asia">Asie</string>
+  <string name="np_continent_oceania">Océanie</string>
   <string name="np_region_australia">Australie</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adélaïde, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australie, Nouvelle-Galles du Sud, Sydney</string>
@@ -163,7 +170,7 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="np_desc_br_floripa">De nombreux trajets de bus, pas d’Executivos</string>
   <string name="np_region_canada">Canada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, région de Waterloo</string>
   <string name="np_name_quebec">Québec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L’Assomption, Outaouais, Sud-Ouest, Québec, Haut-Saint-Laurent, Lanaudière, La Presqu’Île, Laurentides, Montréal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danemark</string>
@@ -194,6 +201,7 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="np_desc_bsvag">Brunswick, Wolfsbourg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">La plupart de l’Allemagne</string>
+  <string name="np_desc_db2">Connexions sur longue distance en Europe</string>
   <string name="np_desc_ding">Bade-Wurtemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Basse-Saxe, Hanovre, Hambourg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hambourg</string>
@@ -263,15 +271,20 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
+  <string name="np_region_central_america">Amérique centrale</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_desc_nicaragua">Les parcours et horaires des autobus urbains, ruraux et nationaux sont fournis par les collaborateurs de MapaNica.net et d’OpenStreetMap</string>
   <string name="maintainer">Mainteneur</string>
-  <string name="contributors">Contributeurs</string>
+  <string name="contributors">Collaborateurs</string>
   <string name="translators">Traducteurs</string>
   <string name="dutch">Néerlandais</string>
   <string name="french">Français</string>
   <string name="german">Allemand</string>
   <string name="italian">Italien</string>
+  <string name="portuguese_br">Portugais (Brésil)</string>
   <string name="spanish">Espagnol</string>
   <string name="turkish">Turc</string>
+  <string name="norwegian_bokmal">Norvégien Bokmål</string>
   <string name="basque">Basque</string>
   <string name="english">Anglais</string>
   <string name="catalan">Catalan</string>
@@ -280,4 +293,5 @@ Vous pouvez aussi découvrir les arrêts, stations alentour et afficher les proc
   <string name="esperanto">Espéranto</string>
   <string name="czech">Tchèque</string>
   <string name="hungarian">Hongrois</string>
+  <string name="japanese">Japonais</string>
 </resources>

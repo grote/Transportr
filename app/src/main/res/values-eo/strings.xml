@@ -1,17 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">La helpilo por publika transporto kiu respektas vian privatecon kaj liberecon.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr estas ne-profit-cela aplikaĵo programita de homoj de la tuta mondo por igi uzadon de publika transporto kiel eble pli facila, kie ajn vi estas.
-
-Nune, ĝi plej bone funkcias en Eŭropo, sed aliaj regionoj de la mondo estas ankaŭ subtenataj. Se vi loĝas en nesubtenata regiono, konsideru aldoni ĝin al Transportr. Instrukcioj estas disponeblaj sur la retpaĝo.
-
-Transportr trovas direktojn el via hejmo, el via nuna pozicio, aŭ el elektita stacio kien ajn vi volus veturi. Vi ankaŭ povas konservi tutajn kursojn kiel ŝatatajn kaj serĉi pluajn kursojn per unu movado de fingro. Sendube vi povas rigardi vian kurson sur la mapo kaj spuri viajn paŝojn per GPS.
-
-Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn inkluzive malfruojn (se iu ajn ekzistas).</string>
   <string name="drawer_settings">Agordoj</string>
   <string name="drawer_changelog">Ŝanĝoprotokolo</string>
   <string name="drawer_about">Pri</string>
   <string name="drawer_contributors">Kontribuantoj</string>
+  <string name="drawer_report_issue">Raporti eraron</string>
   <string name="action_fav_trip">Marki kurson kiel ŝatatan</string>
   <string name="action_unfav_trip">Malmarki kurson kiel ŝatatan</string>
   <string name="action_switch_locations">Anstataŭigi komencpunkton per celo</string>
@@ -29,6 +22,11 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="drawer_departures">Forveturoj</string>
   <string name="tab_about">Pri</string>
   <string name="tab_libraries">Bibliotekoj</string>
+  <string name="about_copyright">© 2013 – 2018 Torsten GROTE\nProgramo laŭ la libera permesilo: GPLv3+</string>
+  <string name="about_description">Transportr estas publik-transporta helpilo programita de homoj ĉirkaŭ la mondo por igi uzadon de publika transporto kiel eble facile, kie ajn vi estas.</string>
+  <string name="about_warning_title">Averto</string>
+  <string name="about_warning_text">Estas neniu garantio pri korekteco de (ekstere-provizataj) datumoj. Bonvolu uzi tiun ĉi aplikaĵon nur sub via risko.</string>
+  <string name="about_contributions">Tiu ĉi aplikaĵo estas Libera Programaro, do vi povas libere kaj senpage uzi, analizi, diskonigi kaj plibonigi ĝin. Kontribuaĵoj estas konsilindaj kaj laŭdindaj. Se vi volus kontribui, bonvolu viziti la retejon por pli da informoj.</string>
   <string name="about_visit_website">Viziti retpaĝon</string>
   <string name="open_navigation_drawer">Malfermi navigan tir-menuon</string>
   <string name="from">El</string>
@@ -128,6 +126,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="location_gps">Uzi nunan pozicion</string>
   <string name="warning_no_gps_fix">Ankoraŭ ne povas determini vian pozicion.</string>
   <string name="permission_denied_gps">Vi malpermesis al aplikaĵo aliri vian lokon, do tiu ĉi ne funkcios. Bonvolu doni la permeson en agordoj de aplikaĵoj.</string>
+  <string name="warning_gps_off">Determinado de pozicio malŝaltita. Bonvolu aktivigi ĝin en agordoj.</string>
   <string name="select_products">Elekti specojn de transportiloj</string>
   <string name="product_high_speed_train">Vagonaro rapidega</string>
   <string name="product_regional_train">Vagonaro regiona</string>
@@ -142,6 +141,13 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="changelog_full_title">Ŝanĝoprotokolo</string>
   <string name="changelog_title">Kio estas nova</string>
   <string name="changelog_show_full">Pli…</string>
+  <string name="np_continent_europe">Eŭropo</string>
+  <string name="np_continent_africa">Afriko</string>
+  <string name="np_continent_north_america">Nordameriko</string>
+  <string name="np_continent_central_america">Centr-Ameriko</string>
+  <string name="np_continent_south_america">Sudameriko</string>
+  <string name="np_continent_asia">Azio</string>
+  <string name="np_continent_oceania">Oceanio</string>
   <string name="np_region_australia">Aŭstralio</string>
   <string name="np_desc_australia">Melburno, Sidnejo, Brisbano, Perto, Adelajdo, Hobarto, Launceston, Burnie</string>
   <string name="np_desc_sydney">Aŭstralio, Novsudkimrio, Sidnejo</string>
@@ -162,7 +168,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_br_floripa">Diversaj aŭtobusaj kursoj, sen ‘Executivos’</string>
   <string name="np_region_canada">Kanado</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Otavo, Toronto</string>
+  <string name="np_desc_ontario">Ontario, Otavo, Toronto, Mississauga, Regiono Waterloo</string>
   <string name="np_name_quebec">Kebekio</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Kebekio, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montrealo, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danujo</string>
@@ -193,6 +199,7 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_desc_bsvag">Brunsvigo, Wolfsburg</string>
   <string name="np_desc_bvg">Berlino</string>
   <string name="np_desc_db">Plejparto de Germanujo</string>
+  <string name="np_desc_db2">Long-distancaj konektoj en Eŭropo</string>
   <string name="np_desc_ding">Baden-Virtembergo, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Malsupra Saksujo, Hanovro, Hamburgo, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburgo</string>
@@ -262,6 +269,9 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="np_name_costa_rica">Kostariko</string>
   <string name="np_name_ghana">Ganao</string>
   <string name="np_desc_ghana">Akrao</string>
+  <string name="np_region_central_america">Centr-Ameriko</string>
+  <string name="np_name_nicaragua">Nikaragvo</string>
+  <string name="np_desc_nicaragua">Veturtabeloj de urbaj, vilaĝaj kaj tutlandaj aŭtobusoj liverataj de kontribuintoj de MapaNica.net kaj OpenStreetMap</string>
   <string name="maintainer">Prizorganto</string>
   <string name="contributors">Kontribuantoj</string>
   <string name="translators">Tradukantoj</string>
@@ -269,8 +279,10 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="french">Franca</string>
   <string name="german">Germana</string>
   <string name="italian">Itala</string>
+  <string name="portuguese_br">Portugala (Brazila)</string>
   <string name="spanish">Hispana</string>
   <string name="turkish">Turka</string>
+  <string name="norwegian_bokmal">Norvega Bokmål</string>
   <string name="basque">Eŭska</string>
   <string name="english">Angla</string>
   <string name="catalan">Kataluna</string>
@@ -279,4 +291,5 @@ Vi ankaŭ povas esplori proksimajn staciojn kaj rigardi baldaŭajn forveturojn i
   <string name="esperanto">Esperanto</string>
   <string name="czech">Ĉeĥa</string>
   <string name="hungarian">Hungara</string>
+  <string name="japanese">Japana</string>
 </resources>

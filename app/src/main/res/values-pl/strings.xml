@@ -1,17 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Asystent transportu publicznego który szanuje Twoją prywatność i wolność.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr jest darmową aplikacją stworzoną przez ludzi z całego świata po to, aby korzystanie z transportu publicznego było jak najłatwiejsze gdziekolwiek jesteś.
-
-Obecnie, działa najlepiej w Europie, ale także inne miejsca na świecie są wspierane. Jeżeli Twój obszar zamieszkania nie jest wspierany, rozważ dodanie go do programu Transportr. Instrukcje znajdziesz na stronie.
-
-Transportr znajduje drogę z Twojego domu, z miejsca gdzie obecnie jesteś, lub z określonego przystanku do dowolnego miejsca gdzie chcesz się dostać. Możesz dodać całe trasy do ulubionych i szukać nowych tras jednym kliknięciem. Oczywiście, możesz zobaczyć swoją trasę na mapie i śledzić swój postęp za pomocą GPS.
-
-Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźnieniami (jeżeli takie wystąpią).</string>
   <string name="drawer_settings">Ustawienia</string>
   <string name="drawer_changelog">Lista zmian</string>
   <string name="drawer_about">O aplikacji</string>
   <string name="drawer_contributors">Pomocnicy</string>
+  <string name="drawer_report_issue">Zgłoś problem</string>
   <string name="action_fav_trip">Oznacz trasę jako ulubioną</string>
   <string name="action_unfav_trip">Wycofaj oznaczenie trasy jako ulubionej</string>
   <string name="action_switch_locations">Odwróć trasę</string>
@@ -29,6 +22,11 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="drawer_departures">Odjazdy</string>
   <string name="tab_about">O</string>
   <string name="tab_libraries">Biblioteki</string>
+  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nProgram na wolnej licencji: GPLv3+</string>
+  <string name="about_description">Transportr jest towarzyszem transportu publicznego stworzonego przez ludzi z całego świata, aby korzystanie z komunikacji zbiorowej było jak najłatwiejsze, gdziekolwiek jesteś.</string>
+  <string name="about_warning_title">Ostrzeżenie</string>
+  <string name="about_warning_text">Nie można zagwarantować poprawności (dostarczanych przez zewnętrzne podmioty) danych. Używasz tej aplikacji tylko na własne ryzyko.</string>
+  <string name="about_contributions">Ten program jest Wolnym Oprogramowaniem, więc możesz z niego dowolnie korzystać, analizować go, dzielić się nim i go ulepszać. Ulepszenia są zawsze mile widziane. Jeżeli chciałbyś coś poprawić, prosimy odwiedzić stronę programu po więcej informacji.</string>
   <string name="about_visit_website">Odwiedź stronę</string>
   <string name="open_navigation_drawer">Otwórz menu nawigacji</string>
   <string name="from">Z</string>
@@ -130,6 +128,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="location_gps">Użyj obecnej pozycji</string>
   <string name="warning_no_gps_fix">Jeszcze nie udało się określić Twojej pozycji.</string>
   <string name="permission_denied_gps">Nie zezwoliłeś na dostęp do lokalizacji, więc ta funkcja nie będzie działała. Prosimy przydzielić uprawnienia w ustawieniach aplikacji.</string>
+  <string name="warning_gps_off">Odnajdywanie lokalizacji wyłączone. Prosimy włączyć je w ustawieniach.</string>
   <string name="select_products">Wybierz środki transportu</string>
   <string name="product_high_speed_train">Szybka kolej</string>
   <string name="product_regional_train">Koleje regionalne</string>
@@ -144,6 +143,13 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="changelog_full_title">Lista zmian</string>
   <string name="changelog_title">Co nowego</string>
   <string name="changelog_show_full">Więcej…</string>
+  <string name="np_continent_europe">Europa</string>
+  <string name="np_continent_africa">Afryka</string>
+  <string name="np_continent_north_america">Ameryka Północna</string>
+  <string name="np_continent_central_america">Ameryka Środkowa</string>
+  <string name="np_continent_south_america">Ameryka Południowa</string>
+  <string name="np_continent_asia">Azja</string>
+  <string name="np_continent_oceania">Oceania</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australia, Nowa Południowa Walia, Sydney</string>
@@ -164,7 +170,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_br_floripa">Wiele linii autobusowych, bez „Executivos”</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Region Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Dania</string>
@@ -195,6 +201,7 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_desc_bsvag">Brunszwik, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Większość Niemiec</string>
+  <string name="np_desc_db2">Długodystansowe połączenia po Europie</string>
   <string name="np_desc_ding">Badenia-Wirtembergia, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Dolna Saksonia, Hanower, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
@@ -264,6 +271,9 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="np_name_costa_rica">Kostaryka</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Akra</string>
+  <string name="np_region_central_america">Ameryka Środkowa</string>
+  <string name="np_name_nicaragua">Nikaragua</string>
+  <string name="np_desc_nicaragua">Rozkłady jazdy miejskich, wiejskich i krajowych autobusów dostarczane przez twórców MapaNica.net i OpenStreetMap</string>
   <string name="maintainer">Opiekun</string>
   <string name="contributors">Pomocnicy</string>
   <string name="translators">Tłumacze</string>
@@ -271,8 +281,10 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="french">Francuski</string>
   <string name="german">Niemiecki</string>
   <string name="italian">Włoski</string>
+  <string name="portuguese_br">Portugalski (Brazylia)</string>
   <string name="spanish">Hiszpański</string>
   <string name="turkish">Turecki</string>
+  <string name="norwegian_bokmal">Norweski Bokmål</string>
   <string name="basque">Baskijski</string>
   <string name="english">Angielski</string>
   <string name="catalan">Kataloński</string>
@@ -281,4 +293,5 @@ Możesz także przeszukiwać pobliskie stacje i przyszłe odjazdy wraz z opóźn
   <string name="esperanto">Esperanto</string>
   <string name="czech">Czeski</string>
   <string name="hungarian">Węgierski</string>
+  <string name="japanese">Japoński</string>
 </resources>

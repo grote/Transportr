@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">El company de transport públic que respecta la teva privacitat i llibertat.</string>
   <string name="drawer_settings">Configuració</string>
   <string name="drawer_changelog">Canvis</string>
   <string name="drawer_about">Sobre</string>
@@ -72,6 +71,7 @@
   <string name="changelog_full_title">Canvis</string>
   <string name="changelog_title">Què hi ha de nou</string>
   <string name="changelog_show_full">Més</string>
+  <string name="np_continent_europe">Europa</string>
   <string name="np_region_australia">Austràlia</string>
   <string name="np_desc_sydney">Austràlia, Nova Gales del Sud, Sydney</string>
   <string name="np_region_austria">Àustria</string>
@@ -86,7 +86,6 @@
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_region_canada">Canadà</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_region_denmark">Dinamarca</string>
   <string name="np_desc_dsb">Dinamarca, Copenhagen</string>

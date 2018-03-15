@@ -1,18 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">あなたのプライバシーと自由を尊重する公共交通機関のコンパニオン。</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr は、あなたがどこにいても可能な限り公共交通機関を簡単に使用するために、
-世界中の人々によって開発された非営利のアプリです。
-
-現在、ヨーロッパで最も効果的ですが、世界中の多くの場所でサポートされています。
-サポートされていない地域に住んでいる場合は、Transportr に追加することを検討してください。
-手順はホームページで入手できます。
-
-あなたの家、現在の位置、または指定された駅からあなたが行きたいところまでの道順を探します。
-また、旅行全体をお気に入りとして保存し、次の旅行を 1 回のスワイプで見つけることもできます。
-もちろん、地図上であなたの旅行を表示し、GPS 経由であなたの進行状況を追跡することもできます。
-
-近くの駅を探して、遅れを含む今後の出発を表示することもできます (もしあれば)。</string>
   <string name="drawer_settings">設定</string>
   <string name="drawer_changelog">変更履歴</string>
   <string name="drawer_about">アプリについて</string>
@@ -146,6 +133,8 @@
   <string name="changelog_full_title">変更履歴</string>
   <string name="changelog_title">新着情報</string>
   <string name="changelog_show_full">さらに…</string>
+  <string name="np_continent_europe">ヨーロッパ</string>
+  <string name="np_continent_africa">アフリカ</string>
   <string name="np_region_australia">オーストラリア</string>
   <string name="np_desc_australia">メルボルン, シドニー, ブリスベン, パース, アデレード, ホバート, ローンセストン, バーニー</string>
   <string name="np_desc_sydney">オーストラリア、ニューサウスウェールズ州、シドニー</string>
@@ -166,7 +155,6 @@
   <string name="np_desc_br_floripa">多くのバス路線、ビジネス外</string>
   <string name="np_region_canada">カナダ</string>
   <string name="np_name_ontario">オンタリオ</string>
-  <string name="np_desc_ontario">オンタリオ、オタワ、トロント</string>
   <string name="np_name_quebec">ケベック</string>
   <string name="np_desc_quebec">ドゥ-モンターニュ、ラバル、ラソンプシオン、ウタウエ、南西部、ケベック、オー-サン-ローラン、ラノディエール地域、ラ・プレスクイル、ローレンティッド地域、モントリオール、レムーラン、リシュリューバレー、シャンブリーリシュリュー-カリニャン、ルシヨン、ソレル-ヴァレンヌザ、Le Richelain、シャーブルック、サントジュリー</string>
   <string name="np_region_denmark">デンマーク</string>

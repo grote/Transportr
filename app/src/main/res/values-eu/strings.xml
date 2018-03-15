@@ -1,22 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Zure pribatutasuna eta askatasuna errespetatzen dituen garrio publikoen aplikazio laguntzailea.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr irabazi asmorik gabeko aplikazioa bat da,
-garrio publikoa edonon zaudela ahalik eta errazen erabiltzeko mundu osoko pertsonek garatua.
-
-Une honetan, Europan funtzionatzen du hobekien, baina mundu osoko leku asko onartzen ditu ere.
-Onartu gabeko leku batean bizi bazara, kontuan hartu Transportrera gehitu dezakezula.
-Jarraibideak etxeko orrian eskuragarri daude.
-
-Transportrek zure etxetik, zure uneko kokapenetik edo zehaztutako geltoki batetik joan nahi duzun edonora norabideak aurkitzen ditu.
-Bidai osoak gorde ditzakezu ere gogokoen bezala,
-eta hurrengo bidaiak keinu batekin aurkitu. Noski, zure bidaia mapan ikusi dezakezu eta jarraipena GPS bidez egin.
-
-Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek barne (egonez gero).</string>
   <string name="drawer_settings">Ezarpenak</string>
   <string name="drawer_changelog">Aldaketen zerrenda</string>
   <string name="drawer_about">Honi buruz</string>
   <string name="drawer_contributors">Laguntzaileak</string>
+  <string name="drawer_report_issue">Eman arazoaren berri</string>
   <string name="action_fav_trip">Markatu bidaia gogoko gisa</string>
   <string name="action_unfav_trip">Desmarkatu bidaia gogokoetatik</string>
   <string name="action_switch_locations">Alderantzikatu \'nondik\' eta \'nora\'</string>
@@ -34,6 +22,11 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="drawer_departures">Irteerak</string>
   <string name="tab_about">Honi buruz</string>
   <string name="tab_libraries">Liburutegiak</string>
+  <string name="about_copyright">© 2013 – 2018 Torsten Grote\Software lizentzia librea: GPLv3+</string>
+  <string name="about_description">Transportr garraio publikorako aplikazio lagungarri bat da, mundu osoko jendeak garatutakoa, garraio publikoa erabiltzea ahalik eta errazena izan dadin zauden tokian zaudela.</string>
+  <string name="about_warning_title">Abisua</string>
+  <string name="about_warning_text">Ezin da bermatu (kanpotik eskuratutako) informazioaren zehaztasuna. Erabili aplikazio hau zure ardurapean.</string>
+  <string name="about_contributions">Aplikazio hau software librea da, libreki erabili dezakezu, ikertu, partekatu eta hobetu. Ekarpenak ongi etorriak dira eta eskertzen dira. Ekarpenik egin nahi ba duzu, bisitatu hasiera orria informazio gehiagorako.</string>
   <string name="about_visit_website">Bisitatu webgunea</string>
   <string name="open_navigation_drawer">Ireki nabigazioaren tiradera</string>
   <string name="from">Nondik</string>
@@ -147,6 +140,8 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="changelog_full_title">Aldaketen zerrenda</string>
   <string name="changelog_title">Zer da berria</string>
   <string name="changelog_show_full">Gehiago...</string>
+  <string name="np_continent_europe">Europa</string>
+  <string name="np_continent_africa">Afrika</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Sydney, Hegoaldeko Gales Berria, Australia</string>
@@ -167,7 +162,7 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="np_desc_br_floripa">Autobus bide anitz, ez Executivos</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo eskualdea</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danimarka</string>
@@ -274,8 +269,10 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="french">Frantsesa</string>
   <string name="german">Alemaniera</string>
   <string name="italian">Italiera</string>
+  <string name="portuguese_br">Portugalera (Brasil)</string>
   <string name="spanish">Gaztelania</string>
   <string name="turkish">Turkiera</string>
+  <string name="norwegian_bokmal">Norvegiera Bokmål</string>
   <string name="basque">Euskara</string>
   <string name="english">Ingelesa</string>
   <string name="catalan">Katalana</string>
@@ -284,4 +281,5 @@ Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek 
   <string name="esperanto">Esperantoa</string>
   <string name="czech">Txekiera</string>
   <string name="hungarian">Hungariera</string>
+  <string name="japanese">Japoniera</string>
 </resources>

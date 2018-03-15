@@ -1,24 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Der Begleiter für öffentliche Verkehrsmittel, der deine Privatsphäre und deine Freiheit respektiert. </string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr ist eine nicht-kommerzielle Anwendung, welche von Menschen überall auf der Welt entwickelt wird,
-um die Nutzung von öffentlichen Verkehrsmitteln zu erleichtern, egal wo du bist.
-
-Zur Zeit funktioniert dies am besten in Europa, aber es werden auch viele Orte weltweit unterstützt.
-Wenn du in einer nicht unterstützten Region lebst, kannst du sie zu Transportr hinzufügen.
-Eine Anleitung hierzu ist auf der Homepage verfügbar.
-
-Transportr findet Verbindungen von deinem zu Hause, deiner aktuellen Position oder einer bestimmten Haltestelle zu
-einem beliebigen Ziel. Du kannst auch komplette Routen als Favoriten speichern und findest
-somit die nächsten Verbindungen ganz einfach. Selbstverständlich kannst du deine Route auch auf einer Karte
-anzeigen und dem Verlauf über GPS folgen.
-
-Du kannst auch Haltestellen in der Nähe finden und bevorstehende Abfahrten einschliesslich der Verzögerungen (wenn
-es welche gibt) anzeigen lassen.</string>
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Freier öffentlicher Nahverkehr</string>
   <string name="drawer_settings">Einstellungen</string>
   <string name="drawer_changelog">Änderungsprotokoll</string>
   <string name="drawer_about">Über</string>
   <string name="drawer_contributors">Beitragende</string>
+  <string name="drawer_report_issue">Problem melden</string>
   <string name="action_fav_trip">Verbindung als Favorit markieren</string>
   <string name="action_unfav_trip">Markierung der Verbindung als Favorit aufheben</string>
   <string name="action_switch_locations">Von und Nach vertauschen</string>
@@ -36,6 +23,11 @@ es welche gibt) anzeigen lassen.</string>
   <string name="drawer_departures">Abfahrten</string>
   <string name="tab_about">Über</string>
   <string name="tab_libraries">Bibliotheken</string>
+  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+</string>
+  <string name="about_description">Transportr ist ein Begleiter im öffentlichen Verkehr, der von Menschen auf der ganzen Welt entwickelt wurde, um die Benutzung öffentlicher Verkehrsmittel so einfach wie möglich zu machen, egal wo Sie sich gerade befinden.</string>
+  <string name="about_warning_title">Warnung</string>
+  <string name="about_warning_text">Es wird keine Gewähr für die Richtigkeit der (extern zur Verfügung gestellten) Daten übernommen. Bitte benutzen Sie diese App nur auf eigene Gefahr.</string>
+  <string name="about_contributions">Diese App ist Freie Software, so dass Sie sie frei benutzen, studieren, teilen und verbessern können. Beiträge sind erwünscht und willkommen. Wenn Sie einen Beitrag leisten möchten, besuchen Sie bitte die Homepage für weitere Informationen.</string>
   <string name="about_visit_website">Zur Webseite</string>
   <string name="open_navigation_drawer">Navigationsschuber öffnen</string>
   <string name="from">Von</string>
@@ -135,6 +127,9 @@ es welche gibt) anzeigen lassen.</string>
   <string name="location_gps">Aktuelle Position verwenden</string>
   <string name="warning_no_gps_fix">Konnte deine Position noch nicht bestimmen.</string>
   <string name="permission_denied_gps">Da du den Zugriff auf deinen aktuellen Standort nicht freigegeben hast, wird diese Funktion nicht funktionieren. Bitte erlaube den Standortzugriff in den Einstellungen.</string>
+  <string name="warning_gps_off">Der Standort ist ausgeschaltet. Bitte schalte es in den Einstellungen ein.</string>
+  <string name="onboarding_location_title">Hochziehen</string>
+  <string name="onboarding_location_message">Weitere Funktionen verbergen sich weiter unten</string>
   <string name="select_products">Wähle das Verkehrsmittel</string>
   <string name="product_high_speed_train">Hochgeschwindigkeitszug</string>
   <string name="product_regional_train">Regionalbahn</string>
@@ -176,7 +171,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_br_floripa">Viele Buslinien, keine Executivos</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo Region</string>
   <string name="np_name_quebec">Québec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Québec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Dänemark</string>
@@ -207,6 +202,7 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Fast ganz Deutschland</string>
+  <string name="np_desc_db2">Fernverbindungen in Europa</string>
   <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Niedersachsen, Hannover, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburg</string>
@@ -276,6 +272,9 @@ es welche gibt) anzeigen lassen.</string>
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
+  <string name="np_region_central_america">Zentralamerika</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_desc_nicaragua">Städtische, ländliche und landesweite Busse, die von MapaNica.net und OpenStreetMap-Unterstützern bereitgestellt werden</string>
   <string name="maintainer">Koordinator</string>
   <string name="contributors">Beitragende</string>
   <string name="translators">Übersetzer</string>
@@ -283,8 +282,10 @@ es welche gibt) anzeigen lassen.</string>
   <string name="french">Französisch</string>
   <string name="german">Deutsch</string>
   <string name="italian">Italienisch</string>
+  <string name="portuguese_br">Portugiesisch (Brasilien)</string>
   <string name="spanish">Spanisch</string>
   <string name="turkish">Türkisch</string>
+  <string name="norwegian_bokmal">Norwegische Buchsprache</string>
   <string name="basque">Baskisch</string>
   <string name="english">Englisch</string>
   <string name="catalan">Katalanisch</string>
@@ -293,4 +294,5 @@ es welche gibt) anzeigen lassen.</string>
   <string name="esperanto">Esperanto</string>
   <string name="czech">Tschechisch</string>
   <string name="hungarian">Ungarisch</string>
+  <string name="japanese">Japanisch</string>
 </resources>

@@ -1,18 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">L\'app di trasporto pubblico che rispetta la tua privacy e la tua libertà.</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr è un\'app non-profit sviluppata da persone di tutto il mondo per rendere l\'uso del trasporto pubblico il più semplice possibile ovunque tu sia.
-
-Attualmente l\'app funziona meglio in Europa ma supporta anche altre città del resto del mondo. Se vivi in una zona non supportata, considera l\'idea di aggiungerla su Transportr.
-Le istruzioni sono disponibili sul sito ufficiale.
-
-Transportr trova la direzione da casa tua, dalla tua posizione o da un luogo preciso verso qualunque posto tu voglia andare. Puoi anche salvare il percorso intero tra i preferiti e trovare il prossimo viaggio con una strisciata. Certamente puoi anche visualizzare il tuo percorso sulla mappa e seguirne l\'avanzamento via  GPS.
-
-Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi i ritardi (se ce ne sono).</string>
   <string name="drawer_settings">Impostazioni</string>
   <string name="drawer_changelog">Registro delle modifiche</string>
   <string name="drawer_about">Informazioni</string>
   <string name="drawer_contributors">Contributori</string>
+  <string name="drawer_report_issue">Segnala problema</string>
   <string name="action_fav_trip">Segna viaggio come preferito</string>
   <string name="action_unfav_trip">Rimuovi viaggio dai preferiti</string>
   <string name="action_switch_locations">Scambia Da e A</string>
@@ -30,6 +22,11 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="drawer_departures">Partenze</string>
   <string name="tab_about">Informazioni</string>
   <string name="tab_libraries">Librerie</string>
+  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+</string>
+  <string name="about_description">Transportr è un\'app di trasporto pubblico sviluppata da persone di tutto il mondo per rendere il trasporto pubblico il più semplice possibile ovunque tu sia.</string>
+  <string name="about_warning_title">Attenzione</string>
+  <string name="about_warning_text">Non c\'è alcuna garanzia per la correttezza dei dati (di terze parti). Usa quest\'app a tuo rischio.</string>
+  <string name="about_contributions">Quest\'app è software libero, così sei libero di usarlo, studiarlo, condividerlo e migliorarlo. I contributi sono apprezzati e incoraggiati. Se volete contribuire, visita il sito per maggiori informazioni.</string>
   <string name="about_visit_website">Visita il sito</string>
   <string name="open_navigation_drawer">Apri menù laterale</string>
   <string name="from">Da</string>
@@ -86,7 +83,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="error_no_internet">Una connessione ad internet è necessaria. Assicurati che la tua rete è funzionante.</string>
   <string name="error_connection_failure">Connessione fallita. Riprova per favore.</string>
   <string name="error_trip_refresh_failed">Impossibile aggiornare i dati per l\'attuale percorso.</string>
-  <string name="error_geo_intent">Impossibile aprire posizione</string>
+  <string name="error_geo_intent">Impossibile aprire la posizione</string>
   <string name="error_find_nearby_stations">Impossibile trovare le stazioni vicine</string>
   <string name="error_departures">Impossibile trovare alcuna partenza</string>
   <string name="trip_error_ambiguous">Impossibile trovare il posto. Prova con un posto differente.</string>
@@ -129,6 +126,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="location_gps">Utilizza posizione corrente</string>
   <string name="warning_no_gps_fix">Ancora impossibile trovare la tua posizione.</string>
   <string name="permission_denied_gps">Non hai permesso di accedere alla tua posizione, per cui questa funzionalità non può funzionare. Si prega di concedere i permessi nelle impostazioni.</string>
+  <string name="warning_gps_off">La geolocalizzazione è disattivata. Attivala nelle impostazioni.</string>
   <string name="select_products">Seleziona mezzi di trasporto</string>
   <string name="product_high_speed_train">Treno ad alta velocità</string>
   <string name="product_regional_train">Treno regionale</string>
@@ -143,6 +141,13 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="changelog_full_title">Registro delle modifiche</string>
   <string name="changelog_title">Novità</string>
   <string name="changelog_show_full">Più...</string>
+  <string name="np_continent_europe">Europa</string>
+  <string name="np_continent_africa">Africa</string>
+  <string name="np_continent_north_america">America settentrionale</string>
+  <string name="np_continent_central_america">America centrale</string>
+  <string name="np_continent_south_america">America meridionale</string>
+  <string name="np_continent_asia">Asia</string>
+  <string name="np_continent_oceania">Oceania</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
@@ -163,7 +168,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_br_floripa">Molti viaggi in autobus, niente Executivos</string>
   <string name="np_region_canada">Canada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, regione Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_region_denmark">Danimarca</string>
@@ -194,6 +199,7 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlino</string>
   <string name="np_desc_db">Maggior parte della Germania</string>
+  <string name="np_desc_db2">Treni a lunga percorrenza in Europa</string>
   <string name="np_desc_ding">Baden-Württemberg, Ulma, Nuova Ulma</string>
   <string name="np_desc_gvh">Bassa Sassonia, Hannover, Amburgo, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Amburgo</string>
@@ -260,7 +266,12 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="np_desc_california">Trasporto pubblico in California (USA)</string>
   <string name="np_name_oregon">Oregon</string>
   <string name="np_desc_oregon">Trasporto pubblico nello Stato dell\'Oregon (USA)</string>
+  <string name="np_name_costa_rica">Costa Rica</string>
+  <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
+  <string name="np_region_central_america">America centrale</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_desc_nicaragua">Autobus urbani, rurali e nazionali ottenuti da MapaNica.net e collaboratori di OpenStreetMap</string>
   <string name="maintainer">Mantenitori</string>
   <string name="contributors">Contributori</string>
   <string name="translators">Traduttori</string>
@@ -268,8 +279,10 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="french">Francese</string>
   <string name="german">Tedesco</string>
   <string name="italian">Italiano</string>
+  <string name="portuguese_br">Portoghese (Brasile)</string>
   <string name="spanish">Spagnolo</string>
   <string name="turkish">Turco</string>
+  <string name="norwegian_bokmal">Norvegese Bokmål</string>
   <string name="basque">Basco</string>
   <string name="english">Inglese</string>
   <string name="catalan">Catalano</string>
@@ -278,4 +291,5 @@ Puoi anche scoprire stazioni vicine e visualizzare le prossime partenze, inclusi
   <string name="esperanto">Esperanto</string>
   <string name="czech">Ceco</string>
   <string name="hungarian">Ungherese</string>
+  <string name="japanese">Giapponese</string>
 </resources>
