@@ -31,6 +31,7 @@ platform :android do
   desc "Take localized screenshots"
   lane :screenshots do
 	screengrab
+	system './rename_screenshots.py'
   end
 
   desc "Deploy a new version to the Google Play"

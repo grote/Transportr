@@ -37,11 +37,13 @@ import de.grobox.transportr.ScreengrabTest
 import de.grobox.transportr.data.DbTest
 import de.grobox.transportr.data.locations.FavoriteLocation
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM
+import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.TO
 import de.grobox.transportr.data.locations.LocationRepository
 import de.grobox.transportr.data.searches.SearchesRepository
 import de.grobox.transportr.favorites.trips.FavoriteTripItem
 import de.grobox.transportr.networks.TransportNetwork
 import de.grobox.transportr.networks.TransportNetworkManager
+import de.grobox.transportr.waitForId
 import org.hamcrest.CoreMatchers.anything
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -65,9 +67,12 @@ class MapActivityTest : ScreengrabTest() {
     @JvmField
     val permissionRule: GrantPermissionRule = GrantPermissionRule.grant(Manifest.permission.ACCESS_FINE_LOCATION)
 
-    @Inject lateinit var manager: TransportNetworkManager
-    @Inject lateinit var locationRepository: LocationRepository
-    @Inject lateinit var searchesRepository: SearchesRepository
+    @Inject
+    lateinit var manager: TransportNetworkManager
+    @Inject
+    lateinit var locationRepository: LocationRepository
+    @Inject
+    lateinit var searchesRepository: SearchesRepository
 
     @Before
     override fun setUp() {
@@ -75,7 +80,6 @@ class MapActivityTest : ScreengrabTest() {
 
         activityRule.runOnUiThread {
             component.inject(this)
-            val networkId = getNetworkId()
             val transportNetwork: TransportNetwork = manager.getTransportNetworkByNetworkId(networkId) ?: throw RuntimeException()
             manager.setTransportNetwork(transportNetwork)
             // ensure networkId got updated before continuing
@@ -89,13 +93,15 @@ class MapActivityTest : ScreengrabTest() {
         locationRepository.setWorkLocation(getTo(0))
 
         locationRepository.addFavoriteLocation(getFrom(1), FROM)
-        locationRepository.addFavoriteLocation(getTo(1), FROM)
+        locationRepository.addFavoriteLocation(getTo(1), TO)
         locationRepository.addFavoriteLocation(getFrom(2), FROM)
-        locationRepository.addFavoriteLocation(getTo(2), FROM)
+        locationRepository.addFavoriteLocation(getTo(2), TO)
 
-        sleep(500)
+        onView(isRoot()).perform(waitForId(R.id.title))
         locationRepository.favoriteLocations.observe(activityRule.activity, Observer { this.addSavedSearches(it) })
-        sleep(1000)
+
+        onView(isRoot()).perform(waitForId(R.id.fromIcon))
+        sleep(2500)
 
         makeScreenshot("2_SavedSearches")
     }
@@ -104,37 +110,37 @@ class MapActivityTest : ScreengrabTest() {
     fun searchLocationShowDeparturesTest() {
         // search for station
         onView(withId(R.id.location))
-                .perform(typeText("Berlin Hbf"))
+            .perform(typeText(departureStation))
 
         // click station
         onData(anything())
-                .inRoot(isPlatformPopup())
-                .atPosition(0)
-                .perform(click())
+            .inRoot(isPlatformPopup())
+            .atPosition(0)
+            .perform(click())
 
         // assert bottom sheet is shown
         onView(withId(R.id.bottomSheet))
-                .check(matches(isDisplayed()))
+            .check(matches(isDisplayed()))
         onView(withId(R.id.locationName))
-                .check(matches(withText("Berlin Hbf")))
+            .check(matches(withText(departureStation)))
         onView(withId(R.id.locationIcon))
-                .check(matches(isDisplayed()))
+            .check(matches(isDisplayed()))
 
         // expand bottom sheet
         onView(withId(R.id.locationName))
-                .perform(click())
+            .perform(click())
         onView(withId(R.id.departuresButton))
-                .check(matches(isDisplayed()))
+            .check(matches(isDisplayed()))
 
         // wait for departures to load and then make screenshot
-        sleep(1500)
+        onView(isRoot()).perform(waitForId(R.id.linesLayout))
         makeScreenshot("5_Station")
 
         // click departure button
         onView(withId(R.id.departuresButton))
-                .perform(click())
+            .perform(click())
 
-        sleep(1500)
+        onView(isRoot()).perform(waitForId(R.id.line))
         makeScreenshot("6_Departures")
     }
 

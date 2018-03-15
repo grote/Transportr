@@ -23,6 +23,7 @@ import android.content.Intent
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import android.support.test.espresso.matcher.ViewMatchers.isRoot
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.filters.LargeTest
 import android.support.test.rule.ActivityTestRule
@@ -35,6 +36,7 @@ import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.trips.search.DirectionsActivity
 import de.grobox.transportr.trips.search.DirectionsActivity.Companion.ACTION_SEARCH
 import de.grobox.transportr.utils.Constants
+import de.grobox.transportr.waitForId
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -59,7 +61,7 @@ class TripsTest : ScreengrabTest() {
 
         activityRule.runOnUiThread {
             component.inject(this)
-            val transportNetwork: TransportNetwork = manager.getTransportNetworkByNetworkId(getNetworkId()) ?: throw RuntimeException()
+            val transportNetwork: TransportNetwork = manager.getTransportNetworkByNetworkId(networkId) ?: throw RuntimeException()
             manager.setTransportNetwork(transportNetwork)
         }
     }
@@ -72,12 +74,16 @@ class TripsTest : ScreengrabTest() {
         intent.putExtra(Constants.TO, getTo(0))
         activityRule.launchActivity(intent)
 
-        sleep(2500)
+        // wait for trips to be found
+        onView(isRoot()).perform(waitForId(R.id.lines))
+        sleep(1000)
         makeScreenshot("3_Trips")
 
         onView(withId(R.id.list))
-                .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
 
+        // wait for map to appear and give extra time for it to load
+        onView(isRoot()).perform(waitForId(R.id.map))
         sleep(2500)
         makeScreenshot("4_TripDetails")
     }

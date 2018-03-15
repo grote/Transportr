@@ -24,7 +24,7 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItem
+import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.filters.LargeTest
@@ -39,7 +39,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.*
 import javax.inject.Inject
 
 
@@ -70,21 +69,27 @@ class PickTransportNetworkActivityTest : ScreengrabTest() {
         sleep(500)
 
         onView(withId(R.id.firstRunTextView))
-                .check(matches(isDisplayed()))
-                .check(matches(withText(R.string.pick_network_first_run)))
-        makeScreenshot("1_FirstStart")
+            .check(matches(isDisplayed()))
+            .check(matches(withText(R.string.pick_network_first_run)))
 
         // find network position in list
         val context = InstrumentationRegistry.getTargetContext()
         val (continentIndex, countryIndex, networkIndex) = getTransportNetworkPositions(context, getTransportNetwork(NetworkId.DB)!!)
+        val countryPos = continentIndex + countryIndex + 1
+        val networkPos = countryPos + networkIndex + 1
 
         onView(withId(R.id.list))
-                .perform(scrollToPosition<RecyclerView.ViewHolder>(continentIndex + 5))
-                .perform(actionOnItem<RecyclerView.ViewHolder>(withChild(withText(R.string.np_continent_europe)), click()))
-                .perform(scrollToPosition<RecyclerView.ViewHolder>(continentIndex + countryIndex + 5))
-                .perform(actionOnItem<RecyclerView.ViewHolder>(withChild(withText(R.string.np_region_germany)), click()))
-                .perform(scrollToPosition<RecyclerView.ViewHolder>(continentIndex + countryIndex + networkIndex + 5))
-                .perform(actionOnItem<RecyclerView.ViewHolder>(withChild(withText(R.string.np_name_db)), click()))
+            .perform(scrollToPosition<RecyclerView.ViewHolder>(continentIndex))
+            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(continentIndex, click()))
+            .perform(scrollToPosition<RecyclerView.ViewHolder>(countryPos))
+            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(countryPos, click()))
+
+        sleep(500)
+        makeScreenshot("1_FirstStart")
+
+        onView(withId(R.id.list))
+            .perform(scrollToPosition<RecyclerView.ViewHolder>(networkPos + 5))
+            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(networkPos, click()))
     }
 
 }

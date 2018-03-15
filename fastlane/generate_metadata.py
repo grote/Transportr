@@ -46,11 +46,17 @@ def main():
         print(LANG_MAP[entry])
         print("Parsing %s..." % strings_file)
         e = ElementTree.parse(strings_file).getroot()
+        title = e.find('.//string[@name="google_play_title"]')
         short_desc = e.find('.//string[@name="google_play_short_desc"]')
         full_desc = e.find('.//string[@name="google_play_full_desc"]')
         if short_desc is None or full_desc is None:
             print("Warning: Skipping %s because of incomplete translation" % entry)
             continue
+        if title:
+            save_file(title.text, LANG_MAP[entry], 'title.txt')
+        else:
+            directory_path = os.path.join(PATH, METADATA_PATH, LANG_MAP[entry])
+            copy_title(directory_path)
         save_file(short_desc.text, LANG_MAP[entry], 'short_description.txt')
         save_file(full_desc.text, LANG_MAP[entry], 'full_description.txt')
 
@@ -59,12 +65,13 @@ def save_file(text, directory, filename):
     directory_path = os.path.join(PATH, METADATA_PATH, directory)
     if not os.path.exists(directory_path):
         os.makedirs(directory_path)
-    if filename == 'short_description.txt':
+    if filename == 'title.txt':
+        limit = 50
+    elif filename == 'short_description.txt':
         limit = 80
     else:
-        limit = 0
+        limit = 4000
     text = clean_text(text, limit)
-    check_title(directory_path)
     file_path = os.path.join(directory_path, filename)
     print("Writing %s..." % file_path)
     with open(file_path, 'w') as f:
@@ -74,12 +81,12 @@ def save_file(text, directory, filename):
 def clean_text(text, limit=0):
     text = text.replace('\\\'', '\'')
     if limit != 0 and len(text) > limit:
-        print("Warning: Short Description longer than 80 characters, truncating...")
+        print("Warning: Text longer than %d characters, truncating..." % limit)
         text = text[:limit]
     return text
 
 
-def check_title(directory):
+def copy_title(directory):
     title_path = os.path.join(directory, 'title.txt')
     if os.path.exists(title_path):
         return

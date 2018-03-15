@@ -9,16 +9,11 @@ Transportr is a non-profit app developed by people around the world to make usin
 
 Please **[visit the website](http://transportr.grobox.de)** for more information!
 
-**Warning:** The `master` branch is currently a big construction site in preparation of version 2.
-If you are looking for the source code of the latest release,
-please check out the `v1` branch.
-
 If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues). Contributions are both encouraged and appreciated. If you like to contribute please [check the website](http://transportr.grobox.de/#contribute) for more information.
 
 The upstream repository is at: https://github.com/grote/Transportr
 
 [![Follow @TransportrApp](artwork/twitter.png)](https://twitter.com/TransportrApp)
-[![Flattr me](artwork/flattr.png)](https://flattr.com/thing/1921242)
 
 Get Transportr
 --------------
@@ -30,15 +25,12 @@ Pre-releases and beta versions for advanced users are available via [a special F
 
 Screenshots
 -----------
-[<img src="artwork/screenshots/drawer.png" width="200">](artwork/screenshots/drawer.png)
-[<img src="artwork/screenshots/directions.png" width="200">](artwork/screenshots/directions.png)
-[<img src="artwork/screenshots/trips.png" width="200">](artwork/screenshots/trips.png)
-[<img src="artwork/screenshots/trip_details.png" width="200">](artwork/screenshots/trip_details.png)
-[<img src="artwork/screenshots/favorite_trips.png" width="200">](artwork/screenshots/favorite_trips.png)
-[<img src="artwork/screenshots/departures.png" width="200">](artwork/screenshots/departures.png)
-[<img src="artwork/screenshots/nearby_stations.png" width="200">](artwork/screenshots/nearby_stations.png)
-[<img src="artwork/screenshots/nearby_stations_map.png" width="200">](artwork/screenshots/nearby_stations_map.png)
-[<img src="artwork/screenshots/about.png" width="200">](artwork/screenshots/about.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png" width="300">](fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png)
 
 
 Building From Source
