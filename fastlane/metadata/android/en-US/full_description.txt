@@ -1,14 +1,37 @@
-Transportr is a non-profit app developed by people around the world to make
-using public transport as easy as possible wherever you are.
 
-Currently, it works best in Europe, but also supports many places world-wide. If
-you live in an unsupported area, consider adding it to Transportr.
-Instructions are available on the homepage.
+Transportr is a non-profit app developed by people around the world in their free time.
+They want to make the use of public transport as easy as possible for everybody.
 
-Transportr finds directions from your home, your current position or a given station to
-wherever you want to go. You can also save entire trips as favorites and find
-next trips with one swipe. Of course, you can also show your trip on the map
-and follow your progress via GPS.
+This app uses the data of various local public transport agencies
+and provides a unified interface for them.
+It can not verify the correctness of the data
+and therefore <i>offers no guarantees</i> for the displayed information.
+Please use at your own risk.
 
-You can also discover nearby stations and show upcoming departures including the delays (if
-there are any).
+<b>🛣️ Trip Routing</b>. Just tell Transportr where you want to go!
+It will find the best connections for you, advises you where to change buses,
+and even gives you an estimated time of arrival.
+
+<b>⏱️ Live Departures</b>. Shows upcoming departures from any and all stations.
+In <i>supported</i> areas, real-time delays will be shown as well.
+
+<b>🗽 Software Freedom</b>. The source code for Transportr is 100% open.
+You can freely use, study, share and improve it.
+This app is only as good as <i>you</i> make it.
+You can even add your city yourself, if it is not already supported.
+
+<b>🛰️ Finds your Position.</b> Transportr uses GPS satellite navigation
+to keep track of your current position - so you never get lost.
+You can find nearby stations to start a new trip
+and then see how far along the journey you are.
+
+<b>🌟 Remembers Favorite Places.</b> To get you where you need to go faster,
+Transportr saves frequently used locations and trips.
+That way you do not need to type them over and over again.
+
+<b>🚫 No Ads, No Tracking</b>. This app does not display ads
+or annoying notifications.
+It also does not use tracking tools such as Google Analytics to spy on you.
+
+<b>🗺️ Beautiful Maps</b>. Displays stations or your entire trip on a map
+and always knows where you are to not miss where to get off the bus.

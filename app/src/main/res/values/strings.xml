@@ -7,7 +7,8 @@
 
 	<string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Open Source Public Transit</string>
 	<string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Free Public Transport Assistant without Ads or Tracking</string>
-	<string name="google_play_full_desc" tools:keep="@string/google_play_full_desc">Transportr is a non-profit app developed by people around the world in their free time.
+	<string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Transportr is a non-profit app developed by people around the world in their free time.
 They want to make the use of public transport as easy as possible for everybody.
 
 This app uses the data of various local public transport agencies
@@ -42,7 +43,8 @@ or annoying notifications.
 It also does not use tracking tools such as Google Analytics to spy on you.
 
 <b>🗺️ Beautiful Maps</b>. Displays stations or your entire trip on a map
-and always knows where you are to not miss where to get off the bus.</string>
+and always knows where you are to not miss where to get off the bus.
+]]></string>
 
 	<string name="drawer_settings">Settings</string>
 	<string name="drawer_changelog">Changelog</string>
