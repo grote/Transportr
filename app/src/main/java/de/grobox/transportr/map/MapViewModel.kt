@@ -57,14 +57,10 @@ internal class MapViewModel @Inject internal constructor(
     private val findNearbyStations = SingleLiveEvent<WrapLocation>()
     private val nearbyStationsFound = SingleLiveEvent<Boolean>()
 
-    val isFreshStart = MutableLiveData<Boolean>()
     val mapClicked = SingleLiveEvent<Void>()
     val markerClicked = SingleLiveEvent<Void>()
     val liveBounds: LiveData<LatLngBounds> = Transformations.switchMap<List<FavoriteLocation>, LatLngBounds>(locations, this::switchMap)
-
-    init {
-        this.isFreshStart.value = true
-    }
+    var transportNetworkWasChanged = false
 
     fun getPeekHeight(): LiveData<Int> {
         return peekHeight
@@ -133,8 +129,9 @@ internal class MapViewModel @Inject internal constructor(
                     .filter { it.hasLocation() }
                     .map { it.latLng as LatLng }
                     .toMutableSet()
-            val gpsLocation = gpsController.getWrapLocation()
-            if (gpsLocation != null && gpsLocation.hasLocation()) points.add(gpsLocation.latLng)
+            home.value?.let { if (it.hasLocation()) points.add(it.latLng) }
+            work.value?.let { if (it.hasLocation()) points.add(it.latLng) }
+            gpsController.getWrapLocation()?.let { if (it.hasLocation()) points.add(it.latLng) }
             if (points.size < 2) {
                 updatedLiveBounds.setValue(null)
             } else {

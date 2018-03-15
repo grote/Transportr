@@ -81,32 +81,36 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
         val args = NearbyLocationsLoader.getBundle(location, 0)
         activity?.supportLoaderManager?.initLoader(LOADER_NEARBY_STATIONS, args, this)
 
-        map!!.let { map ->
-            map.addOnMapClickListener { viewModel.mapClicked.call() }
-            map.addOnMapLongClickListener { point -> viewModel.selectLocation(WrapLocation(point)) }
-            map.setOnMarkerClickListener(this)
+        mapboxMap.addOnMapClickListener { viewModel.mapClicked.call() }
+        mapboxMap.addOnMapLongClickListener { point -> viewModel.selectLocation(WrapLocation(point)) }
+        mapboxMap.setOnMarkerClickListener(this)
+
+        if (viewModel.transportNetworkWasChanged || mapboxMap.isInitialPosition()) {
+            zoomInOnFreshStart()
+            viewModel.transportNetworkWasChanged = false
         }
 
         // observe map related data
-        viewModel.isFreshStart.observe(this, Observer { onFreshStart(it) })
         viewModel.getSelectedLocation().observe(this, Observer { onLocationSelected(it) })
         viewModel.getSelectedLocationClicked().observe(this, Observer { onSelectedLocationClicked(it) })
         viewModel.getFindNearbyStations().observe(this, Observer { findNearbyStations(it) })
     }
 
-    private fun onFreshStart(isFreshStart: Boolean?) {
-        if (isFreshStart != null && !isFreshStart) return
+    private fun MapboxMap.isInitialPosition(): Boolean {
+        return cameraPosition.zoom == minZoomLevel &&
+                cameraPosition.target == LatLng(0.0, 0.0)
+    }
 
+    private fun zoomInOnFreshStart() {
         // zoom to favorite locations or only current location, if no favorites exist
         viewModel.liveBounds.observe(this, Observer { bounds ->
             if (bounds != null) {
                 zoomToBounds(bounds)
-                viewModel.liveBounds.removeObservers(this)
             } else if (getLastKnownLocation() != null) {
                 zoomToMyLocation()
             }
+            viewModel.liveBounds.removeObservers(this)
         })
-        viewModel.isFreshStart.value = false
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
@@ -124,9 +128,8 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
 
     private fun onTransportNetworkChanged(network: TransportNetwork?) {
         if (network != null && map != null) {
-            // stop observing fresh start, so we get only updated when activity was recreated
-            viewModel.isFreshStart.removeObservers(this)
-            viewModel.isFreshStart.value = true
+            // activity will reload and then zoom in to new area because this is set
+            viewModel.transportNetworkWasChanged = true
             // prevent loader from re-adding nearby stations
             activity?.supportLoaderManager?.destroyLoader(LOADER_NEARBY_STATIONS)
         }
