@@ -1,7 +1,7 @@
 /*
  *    Transportr
  *
- *    Copyright (c) 2013 - 2017 Torsten Grote
+ *    Copyright (c) 2013 - 2018 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -45,7 +45,9 @@ abstract public class DbTest {
 
 	@After
 	public void closeDb() throws IOException {
-		db.close();
+		// observing live data sometimes still tries to access the DB after this was called
+		// not closing the in-memory DB for tests only seems to be safe enough
+//		db.close();
 	}
 
 	/**

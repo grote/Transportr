@@ -1,7 +1,7 @@
 /*
  *    Transportr
  *
- *    Copyright (c) 2013 - 2017 Torsten Grote
+ *    Copyright (c) 2013 - 2018 Torsten Grote
  *
  *    This program is Free Software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as
@@ -25,7 +25,7 @@ import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.data.locations.LocationRepository
 import de.grobox.transportr.data.searches.SearchesRepository
 import de.grobox.transportr.networks.TransportNetworkManager
-import org.junit.Assert.assertTrue
+import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -55,9 +55,8 @@ class MapViewModelTest {
     }
 
     @Test
-    fun freshStart() {
-        val isFreshStart = viewModel.isFreshStart.value as Boolean
-        assertTrue(isFreshStart)
+    fun transportNetworkDidNotChangeInitially() {
+        assertFalse(viewModel.transportNetworkWasChanged)
     }
 
 }
