@@ -124,7 +124,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:193210eb') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:2c1290cc') {
 		exclude module: 'service'
 		exclude group: 'org.json' // provided by Android
 		exclude group: 'net.sf.kxml' // provided by Android
@@ -209,8 +209,8 @@ dependencyVerification {
 			'com.github.tony19:apktool-lib:1.4.4-3:apktool-lib-1.4.4-3.jar:bdc4e93b1dd6661698feedacc37d203801076deddd7fb350daf98611637a5cd6',
 			'com.github.tony19:logback-android-classic:1.1.1-6:logback-android-classic-1.1.1-6.jar:0d0939c2cd797ecb0b7d679f1e2314a9889a90a633f2fc5b66f11316cbd6626b',
 			'com.github.tony19:logback-android-core:1.1.1-6:logback-android-core-1.1.1-6.jar:9548fd28988d62a8f67b72fafc67167f91f061001513ae25f53921f2982c8c01',
-			'com.gitlab.opentransitmap.public-transport-enabler:enabler:193210eb:enabler-193210eb.jar:e7229a60b861fabb1010272109c9ce179da43d9b17a10573aedb45b44c8bd8b8',
-			'com.gitlab.opentransitmap:public-transport-enabler:193210eb:public-transport-enabler-193210eb.jar:fca9f4c252c2743bdbafdbf8bf6480db02daad203ea345e121af5124ffc240d9',
+			'com.gitlab.opentransitmap.public-transport-enabler:enabler:2c1290cc:enabler-2c1290cc.jar:28cacece3a8b7502198c6641a679c4f9002c1c7dbd15ecac4ff5adad4bd4a910',
+			'com.gitlab.opentransitmap:public-transport-enabler:2c1290cc:public-transport-enabler-2c1290cc.jar:2b4062e79e4b9bb6bbf68ed63e39552b6354a6465c965697113c8d003c758db9',
 			'com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.0:accessibility-test-framework-2.0.jar:cdf16ef8f5b8023d003ce3cc1b0d51bda737762e2dab2fedf43d1c4292353f7f',
 			'com.google.android:flexbox:0.3.2:flexbox-0.3.2.aar:610a6a00695e873b4b6b785b7dce1c60f6a5964044b6d093b4d1060cbf13c278',
 			'com.google.auto:auto-common:0.6:auto-common-0.6.jar:6d8ffa9dc95db8b1e7399a622946d129093959cbe5d6b54cfe27d2542302d8e1',

@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr — Appli libre de transport en commun</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Assistant gratuit de transport en commun sans publicité ni suivi à la trace</string>
   <string name="drawer_settings">Paramètres</string>
   <string name="drawer_changelog">Journal des changements</string>
   <string name="drawer_about">À propos</string>

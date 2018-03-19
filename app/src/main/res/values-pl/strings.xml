@@ -1,5 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Otwartoźródłowy asystent transportu publicznego bez reklam i śledzenia</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Transportr jest aplikacją non-profit tworzoną hobbistycznie przez ludzi z całego świata. Celem jest jak najbardziej ułatwić wszystkim korzystanie z transportu publicznego.
+
+Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarcza dla nich wspólny interfejs. Nie jest możliwe sprawdzenie poprawności tych danych, więc <i>nie jest udzielana żadna gwarancja</i> na wyświetlane informacje i używasz jej na swoje własne ryzyko.
+
+<b>🛣️ Wyznaczanie trasy</b>: po prostu podaj aplikacji Transportr gdzie chcesz jechać! Znajdzie ona dla Ciebie najlepsze połączenia, podpowiedzi gdzie się przesiąść i nawet oczekiwany czas przybycia.
+
+<b>⏱️ Odjazdy na żywo</b>: wyświetlanie przyszłych odjazdów z wybranego lub wszystkich przystanków. Na <i>wspieranych</i> obszarach są wyświetlane opóźnienia w czasie rzeczywistym.
+
+<b>🗽 Wolne oprogramowanie</b>: kod źródłowy aplikacji Transportr jest otwarty w 100%. Możesz z aplikacji dowolnie korzystać, dzielić się, analizować i ulepszać. To <i>Ty</i> decydujesz jak dobra jest ta aplikacja. Możesz nawet dodać swoje miasto, jeżeli nie jest jeszcze wspierane. 
+
+<b>🛰️ Odnajdywanie pozycji</b>: Transportr korzysta z nawigacji satelitarnej GPS, aby śledzić Twoją pozycję - więc się nie zgubisz. Możesz wyszukać pobliskie przystanki, aby rozpocząć nową podróż i śledzić postęp swojej wyprawy.
+
+<b>🌟 Pamięć ulubionych miejsc</b>: aby szybciej dostać się do celu, Transportr zapamiętuje często używane miejsca i trasy. Dzięki temu nie będziesz musiał wielokrotnie wpisywać tego samego.
+
+<b>🚫 Brak reklam i śledzenia</b>: ta aplikacja nie wyświetla reklam i denerwujących okienek. Nie korzysta też z modułów śledzących takich jak Google Analytics.
+
+<b>🗺️ Ładne mapy</b>: wyświetlanie przystanków czy też całej trasy na mapie i aktualnej pozycji, po to aby nie przegapić, kiedy masz wysiąść.
+]]></string>
   <string name="drawer_settings">Ustawienia</string>
   <string name="drawer_changelog">Lista zmian</string>
   <string name="drawer_about">O aplikacji</string>
@@ -129,6 +150,8 @@
   <string name="warning_no_gps_fix">Jeszcze nie udało się określić Twojej pozycji.</string>
   <string name="permission_denied_gps">Nie zezwoliłeś na dostęp do lokalizacji, więc ta funkcja nie będzie działała. Prosimy przydzielić uprawnienia w ustawieniach aplikacji.</string>
   <string name="warning_gps_off">Odnajdywanie lokalizacji wyłączone. Prosimy włączyć je w ustawieniach.</string>
+  <string name="onboarding_location_title">Przesuń w górę</string>
+  <string name="onboarding_location_message">Więcej funkcji poniżej</string>
   <string name="select_products">Wybierz środki transportu</string>
   <string name="product_high_speed_train">Szybka kolej</string>
   <string name="product_regional_train">Koleje regionalne</string>

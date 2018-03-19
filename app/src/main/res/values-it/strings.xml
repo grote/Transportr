@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - trasporto pubblico open source</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Assistente per il trasporto pubblico gratis e senza pubblicità o tracciatori</string>
   <string name="drawer_settings">Impostazioni</string>
   <string name="drawer_changelog">Registro delle modifiche</string>
   <string name="drawer_about">Informazioni</string>

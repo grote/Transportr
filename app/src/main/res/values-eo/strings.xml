@@ -1,5 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Malfermkoda asistilo por publika transporto sen reklamoj kaj spurado</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Transportr estas ne-profit-cela aplikaĵo evoluigata de homoj de la tuta mondo libertempe. Ili volas igi uzadon de publika transporto kiel eble plej facilan por ĉiu. 
+
+Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto kaj liveras unuigitan fasadon por ilin. Oni ne povas verigi korektecon de datumoj do <i>estas nenia garantio</i> pri liverataj informoj.  Uzu nur sub via risko.
+
+<b>🛣️ Difini kurson</b>: simple enigu al Transportr kien vi volas veturi! Ĝi trovos plej bonajn konektojn por vi kaj konsilos kie ŝanĝi al alia transportilo kaj eĉ montros proksimuman tempon de alveno.
+
+<b>⏱️ Tujaj forveturoj</b>: montras baldaŭajn forveturojn el iu aŭ ĉiuj stacioj. Krom tio, en <i>subtenataj</i> areoj malfruojn estos montrataj realtempe.
+
+<b>🗽 Libera programaro</b>: la fontkodo de Transportr estas libera en 100%. Vi povas senlime uzi, analizi, kunhavigi kaj plibonigi ĝin. Tiu ĉi aplikaĵo estas tiel bona, kiel <i>vi</i> faras ĝin. Vi eĉ povas aldoni vian urbon, se ĝi ankoraŭ ne estas subtenata.
+
+<b>🛰️ Trovi vian pozicion</b>: Transport uzas navigan sistemon GPS por spuri vian pozicion por ke vi neniam perdiĝu.Vi povas facile trovi proksimajn staciojn por komenci novan kurson kaj vidigi kiel via vojaĝo progresas.
+
+<b>🌟Memori ŝatatajn lokojn</b>: por akiri alcelan lokon pli rapide, Transportr memoras ofte uzatajn lokojn kaj kursojn. Tiel vi ne devas reentajpi ilin plurfoje.
+
+<b>🚫 Neniuj reklamoj kaj spurado</b>: tiu ĉi aplikaĵo ne montras iujn reklamojn aŭ kolerigajn atentigojn. Ĝi ankaŭ ne enhavas spurantajn ilojn, kiel Google Analytics.
+
+<b>🗺️ Belaj mapoj</b>: ĝi montras haltejojn aŭ vian tutan kurson sur la mapo kaj vi ĉiam scias kie vi estas por ke vi ne preterveturu ejon por elaŭtobusiĝi.
+]]></string>
   <string name="drawer_settings">Agordoj</string>
   <string name="drawer_changelog">Ŝanĝoprotokolo</string>
   <string name="drawer_about">Pri</string>
@@ -127,6 +148,8 @@
   <string name="warning_no_gps_fix">Ankoraŭ ne povas determini vian pozicion.</string>
   <string name="permission_denied_gps">Vi malpermesis al aplikaĵo aliri vian lokon, do tiu ĉi ne funkcios. Bonvolu doni la permeson en agordoj de aplikaĵoj.</string>
   <string name="warning_gps_off">Determinado de pozicio malŝaltita. Bonvolu aktivigi ĝin en agordoj.</string>
+  <string name="onboarding_location_title">Ŝovumu supren</string>
+  <string name="onboarding_location_message">Pliaj ebloj sube</string>
   <string name="select_products">Elekti specojn de transportiloj</string>
   <string name="product_high_speed_train">Vagonaro rapidega</string>
   <string name="product_regional_train">Vagonaro regiona</string>
