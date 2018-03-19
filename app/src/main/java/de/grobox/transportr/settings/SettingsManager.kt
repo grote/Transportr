@@ -93,6 +93,11 @@ class SettingsManager @Inject constructor(private val context: Context) {
         settings.edit().putBoolean(TRIP_DETAIL_ONBOARDING, false).apply()
     }
 
+    fun showDirectionsOnboarding(): Boolean = settings.getBoolean(DIRECTIONS_ONBOARDING, true)
+    fun directionsOnboardingShown() {
+        settings.edit().putBoolean(DIRECTIONS_ONBOARDING, false).apply()
+    }
+
     fun getNetworkId(i: Int): NetworkId? {
         var networkSettingsStr = NETWORK_ID_1
         if (i == 2) networkSettingsStr = NETWORK_ID_2
@@ -138,6 +143,7 @@ class SettingsManager @Inject constructor(private val context: Context) {
         private const val OPTIMIZE = "pref_key_optimize"
         private const val LOCATION_ONBOARDING = "locationOnboarding"
         private const val TRIP_DETAIL_ONBOARDING = "tripDetailOnboarding"
+        private const val DIRECTIONS_ONBOARDING = "directionsOnboarding"
     }
 
 }

@@ -49,7 +49,6 @@ import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.ui.TransportrChangeLog;
 import de.grobox.transportr.utils.OnboardingBuilder;
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 import static android.content.Intent.ACTION_VIEW;
 import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO;
@@ -60,6 +59,8 @@ import static de.grobox.transportr.networks.PickTransportNetworkActivity.FORCE_N
 import static de.grobox.transportr.trips.search.DirectionsActivity.ACTION_SEARCH;
 import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_DISMISSED;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FOCAL_PRESSED;
 
 @ParametersAreNonnullByDefault
 public class MapActivity extends DrawerActivity implements LocationViewListener {
@@ -195,7 +196,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 					.setPrimaryText(R.string.onboarding_location_title)
 					.setSecondaryText(R.string.onboarding_location_message)
 					.setPromptStateChangeListener((prompt, state) -> {
-						if (state == MaterialTapTargetPrompt.STATE_DISMISSED) {
+						if (state == STATE_DISMISSED || state == STATE_FOCAL_PRESSED) {
 							settingsManager.locationFragmentOnboardingShown();
 							viewModel.selectedLocationClicked(loc.getLatLng());
 						}

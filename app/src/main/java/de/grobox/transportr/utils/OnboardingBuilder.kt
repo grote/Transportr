@@ -24,7 +24,9 @@ import android.support.v4.content.ContextCompat
 import android.util.TypedValue
 import de.grobox.transportr.R
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
+import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground
 import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground
+import uk.co.samuelwall.materialtaptargetprompt.extras.focals.CirclePromptFocal
 import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal
 
 
@@ -39,6 +41,16 @@ class OnboardingBuilder(activity: Activity) : MaterialTapTargetPrompt.Builder(ac
         val typedValue = TypedValue()
         activity.theme.resolveAttribute(android.R.attr.windowBackground, typedValue, true)
         focalColour = typedValue.data
+    }
+
+}
+
+class IconOnboardingBuilder(activity: Activity) : MaterialTapTargetPrompt.Builder(activity) {
+
+    init {
+        backgroundColour = ContextCompat.getColor(activity, R.color.primary)
+        promptBackground = CirclePromptBackground()
+        promptFocal = CirclePromptFocal()
     }
 
 }

@@ -39,7 +39,6 @@ import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState;
 import de.grobox.transportr.ui.ThreeStateBottomSheetBehavior;
 import de.grobox.transportr.utils.OnboardingBuilder;
 import de.schildbach.pte.dto.Trip;
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED;
@@ -47,6 +46,8 @@ import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.BOTTOM;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.EXPANDED;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.MIDDLE;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_DISMISSED;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FOCAL_PRESSED;
 
 @ParametersAreNonnullByDefault
 public class TripDetailActivity extends TransportrActivity {
@@ -125,7 +126,7 @@ public class TripDetailActivity extends TransportrActivity {
 					.setPrimaryText(R.string.onboarding_location_title)
 					.setSecondaryText(R.string.onboarding_location_message)
 					.setPromptStateChangeListener((prompt, state) -> {
-						if (state == MaterialTapTargetPrompt.STATE_DISMISSED) {
+						if (state == STATE_DISMISSED || state == STATE_FOCAL_PRESSED) {
 							settingsManager.tripDetailOnboardingShown();
 							bottomSheetBehavior.setState(STATE_EXPANDED);
 						}

@@ -52,8 +52,10 @@ import de.grobox.transportr.locations.LocationGpsView;
 import de.grobox.transportr.locations.LocationView;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.networks.TransportNetwork;
+import de.grobox.transportr.settings.SettingsManager;
 import de.grobox.transportr.ui.TimeDateFragment;
 import de.grobox.transportr.utils.DateUtils;
+import de.grobox.transportr.utils.IconOnboardingBuilder;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -69,12 +71,16 @@ import static de.grobox.transportr.utils.Constants.EXPANDED;
 import static de.grobox.transportr.utils.DateUtils.getDate;
 import static de.grobox.transportr.utils.DateUtils.getTime;
 import static de.grobox.transportr.utils.DateUtils.isNow;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_DISMISSED;
+import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FOCAL_PRESSED;
 
 @ParametersAreNonnullByDefault
 public class DirectionsFragment extends TransportrFragment {
 
+	@Inject SettingsManager settingsManager;
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
+	private Toolbar toolbar;
 	private @Nullable Menu menu;
 	private ImageView favIcon, timeIcon;
 	private TextView date, time;
@@ -90,7 +96,7 @@ public class DirectionsFragment extends TransportrFragment {
 		getComponent().inject(this);
 
 		setHasOptionsMenu(true);
-		Toolbar toolbar = v.findViewById(R.id.toolbar);
+		toolbar = v.findViewById(R.id.toolbar);
 		favIcon = toolbar.findViewById(R.id.favIcon);
 		timeIcon = toolbar.findViewById(R.id.timeIcon);
 		date = toolbar.findViewById(R.id.date);
@@ -176,6 +182,21 @@ public class DirectionsFragment extends TransportrFragment {
 		viewModel.getIsDeparture().observe(this, this::onIsDepartureChanged);
 		viewModel.getIsExpanded().observe(this, this::onViaVisibleChanged);
 		super.onCreateOptionsMenu(menu, inflater);
+
+		// onboarding for overflow menu
+		if (getActivity() != null && settingsManager.showDirectionsOnboarding()) {
+			new IconOnboardingBuilder(getActivity())
+					.setTarget(toolbar.getChildAt(toolbar.getChildCount() - 1))
+					.setPrimaryText(R.string.onboarding_directions_title)
+					.setSecondaryText(R.string.onboarding_directions_message)
+					.setIcon(R.drawable.ic_more_vert)
+					.setPromptStateChangeListener((prompt, state) -> {
+						if (state == STATE_DISMISSED || state == STATE_FOCAL_PRESSED) {
+							settingsManager.directionsOnboardingShown();
+						}
+					})
+					.show();
+		}
 	}
 
 	@Override
