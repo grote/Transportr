@@ -55,11 +55,11 @@ internal class GpsController(val context: Context) : AbstractManager(), ReverseG
     }
 
     @WorkerThread
-    override fun onLocationRetrieved(location: WrapLocation?) {
-        runOnUiThread { if (location != null) wrapLocation = location }
+    override fun onLocationRetrieved(location: WrapLocation) {
+        runOnUiThread { wrapLocation = location }
     }
 
-    fun setLocation(newLocation: Location?) {
+    fun setLocation(newLocation: Location?, useGeoCoder: Boolean) {
         if (newLocation == null) return
 
         if (location == null || location!!.distanceTo(newLocation) > 50) {
@@ -67,9 +67,11 @@ internal class GpsController(val context: Context) : AbstractManager(), ReverseG
             lastLocation = location
             location = newLocation
 
-            // check if we need to use the reverse geo coder
-            val isNew = wrapLocation.let { it == null || !it.isSamePlace(newLocation.latitude, newLocation.longitude) }
-            if (isNew) geoCoder.findLocation(newLocation)
+            if (useGeoCoder) {
+                // check if we need to use the reverse geo coder
+                val isNew = wrapLocation.let { it == null || !it.isSamePlace(newLocation.latitude, newLocation.longitude) }
+                if (isNew) geoCoder.findLocation(newLocation)
+            }
         }
         // set new FAB state if location is recent
         if (!newLocation.isOld()) {

@@ -56,6 +56,8 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
 
     private var selectedLocationMarker: Marker? = null
 
+    override var useGeoCoder: Boolean = true
+
     override val layout: Int
         @LayoutRes
         get() = R.layout.fragment_map

@@ -60,6 +60,8 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
     private var locationEngine: LostLocationEngine? = null
     private lateinit var gpsFab: FloatingActionButton
 
+    protected open var useGeoCoder = false
+
     companion object {
         const val LOCATION_ZOOM = 14
     }
@@ -116,7 +118,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
 
         locationEngine?.let {
             if (ContextCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
-                gpsController.setLocation(it.lastLocation)
+                gpsController.setLocation(it.lastLocation, useGeoCoder)
             }
         }
 
@@ -218,7 +220,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
         if (gpsController.getGpsState().value!!.isTracking) {
             map?.animateCamera(newLatLng(LatLng(location.latitude, location.longitude)))
         }
-        gpsController.setLocation(location)
+        gpsController.setLocation(location, useGeoCoder)
     }
 
     fun zoomToMyLocation() {
