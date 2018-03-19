@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-	<release version="2.0.0-rc1" versioncode="105">
+	<release version="2.0.0-rc2" versioncode="106">
 		<change>New Design and complete code rewrite</change>
 		<change>Shiny new map given a more prominent place</change>
 		<change>Current location is used by default</change>
@@ -9,7 +9,7 @@
 		<change>Add your "Work" place</change>
 		<change>Addresses will be saved</change>
 		<change>Round icon for new Android versions</change>
-		<change>Added New York, Ghana, Costa Rica, Nicaragua</change>
+		<change>Added New York, Ghana, Costa Rica</change>
 	</release>
 
     <release version="1.1.8" versioncode="48">
