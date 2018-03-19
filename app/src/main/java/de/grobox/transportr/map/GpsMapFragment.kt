@@ -91,7 +91,11 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
     override fun onStart() {
         super.onStart()
         locationPlugin?.onStart()
-        locationEngine?.addLocationEngineListener(this)
+        locationEngine?.let {
+            it.addLocationEngineListener(this)
+            // work-around for https://github.com/mapbox/mapbox-plugins-android/issues/371
+            it.requestLocationUpdates()
+        }
         timer.start()
     }
 

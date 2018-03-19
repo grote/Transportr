@@ -53,6 +53,8 @@ class LocationLiveData(private val context: Context) : LiveData<WrapLocation>(),
             locationEngine.interval = 5000
             locationEngine.activate()
             locationEngine.addLocationEngineListener(this)
+            // work-around for https://github.com/mapbox/mapbox-plugins-android/issues/371
+            locationEngine.requestLocationUpdates()
         } else {
             value = null
         }
@@ -79,8 +81,8 @@ class LocationLiveData(private val context: Context) : LiveData<WrapLocation>(),
     }
 
     @WorkerThread
-    override fun onLocationRetrieved(loc: WrapLocation) {
-        postValue(loc)
+    override fun onLocationRetrieved(location: WrapLocation) {
+        postValue(location)
     }
 
 }
