@@ -93,7 +93,7 @@ internal abstract class DrawerActivity : TransportrActivity() {
                 }),
                 DividerDrawerItem(),
                 getDrawerItem(R.string.drawer_changelog, R.drawable.ic_action_changelog, {
-                    TransportrChangeLog(this, settingsManager.isDarkTheme).fullLogDialog.show()
+                    TransportrChangeLog(this, settingsManager).fullLogDialog.show()
                 }),
                 getDrawerItem(R.string.drawer_contributors, R.drawable.ic_people, {
                     val intent = Intent(this, ContributorsActivity::class.java)

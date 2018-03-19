@@ -20,6 +20,7 @@
 package de.grobox.transportr.settings
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.support.annotation.StyleRes
 import de.grobox.transportr.R
@@ -32,7 +33,7 @@ import javax.inject.Inject
 
 class SettingsManager @Inject constructor(private val context: Context) {
 
-    private val settings = PreferenceManager.getDefaultSharedPreferences(context)
+    val settings: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     val locale: Locale
         get() {
