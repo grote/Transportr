@@ -36,11 +36,13 @@ internal val CONTRIBUTORS = listOf(
         R.string.contributors, listOf(
             Contributor("ByteHamster"),
             Contributor("Chimo"),
+            Contributor("Felix Delattre"),
             Contributor("Hartmut Goebel"),
             Contributor("Jochen Sprickerhof"),
             Contributor("Patrick Kanzler"),
             Contributor("kas70"),
             Contributor("Mats Sjöberg"),
+            Contributor("Mikolai Gütschow"),
             Contributor("mray"),
             Contributor("Noxsense"),
             Contributor("Paspartout"),

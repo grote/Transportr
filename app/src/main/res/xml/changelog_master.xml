@@ -9,10 +9,15 @@
 		<change>Add your "Work" place</change>
 		<change>Addresses will be saved</change>
 		<change>Round icon for new Android versions</change>
-		<change>Added New York, Ghana, Costa Rica</change>
+		<change>Added New York, California, Ghana and Costa Rica</change>
 	</release>
 
-    <release version="1.1.8" versioncode="48">
+	<release version="1.1.9" versioncode="49">
+		<change>Added Nicaragua (Thanks MapaNica!)</change>
+		<change>Fixed various issues with some transport networks</change>
+	</release>
+
+	<release version="1.1.8" versioncode="48">
         <change>Fixed various networks (e.g. Belgium, NSW, HSL, etc.)</change>
         <change>Fixed bug when searching nearby stations from current location</change>
         <change>Fixed bug with BVG network when refreshing a trip</change>
