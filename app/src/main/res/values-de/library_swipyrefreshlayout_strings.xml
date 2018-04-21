@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress ALL -->
+<resources>
+	<!-- Author section -->
+	<!-- Library section -->
+	<string name="library_swipyrefreshlayout_libraryDescription">Eine SwipeRefreshLayout-Erweiterung, die es erlaubt in beide Richtungen zu wischen (API 9+)</string>
+	<!-- OpenSource section -->
+	<!-- ClassPath for autoDetect section -->
+	<!-- License section -->
+	<!-- Custom variables section -->
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress ALL -->
+<resources>
+
+	<!-- Author section -->
+	<!-- Library section -->
+	<string name="library_mapbox_libraryDescription">Das Mapbox Android Map SDK ist eine quelloffene Werkzeugsammlung um Karten innerhalb von Android Apps anzuzeigen.</string>
+	<!-- OpenSource section -->
+	<!-- ClassPath for autoDetect section -->
+	<!-- License section -->
+	<!-- Custom variables section -->
+</resources>
