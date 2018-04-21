@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress ALL -->
+<resources>
+
+	<!-- Author section -->
+	<!-- Library section -->
+	<string name="library_public_transport_enabler_libraryDescription">Die Bibliothek bietet Verbindungen zu vielen ÖPVN Anbietern weltweit.</string>
+	<!-- OpenSource section -->
+	<!-- ClassPath for autoDetect section -->
+	<!-- License section -->
+	<!-- Custom variables section -->
+</resources>
