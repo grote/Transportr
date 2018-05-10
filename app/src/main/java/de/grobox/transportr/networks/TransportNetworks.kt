@@ -608,6 +608,17 @@ private val networks = arrayOf(
                         status = ALPHA,
                         goodLineNames = true,
                         factory = { QuebecProvider(NAVITIA) }
+                    ),
+                    TransportNetwork(
+                            id = NetworkId.BRITISHCOLUMBIA,
+                            name = R.string.np_name_britishcolumbia,
+                            description = R.string.np_desc_britishcolumbia,
+                            agencies = R.string.np_desc_britishcolumbia_networks,
+                            logo = R.drawable.network_britishcolumbia_logo,
+                            status = ALPHA,
+                            // check the line below
+                            goodLineNames = true,
+                            factory = { BritishColumbiaProvider(NAVITIA) }
                     )
                 )
             )
