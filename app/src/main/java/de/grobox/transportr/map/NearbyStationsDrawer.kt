@@ -62,7 +62,8 @@ internal class NearbyStationsDrawer(context: Context) : MapDrawer(context) {
     }
 
     private fun getIconForProduct(p: Set<Product>?): Icon {
-        val res = when (p?.iterator()?.next()) {
+        val firstProduct = if (p == null || p.isEmpty()) null else p.iterator().next()
+        val res = when (firstProduct) {
             Product.HIGH_SPEED_TRAIN -> R.drawable.product_high_speed_train_marker
             Product.REGIONAL_TRAIN -> R.drawable.product_regional_train_marker
             Product.SUBURBAN_TRAIN -> R.drawable.product_suburban_train_marker
