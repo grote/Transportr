@@ -257,6 +257,9 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_name_quebec">Quebec</string>
 	<string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
 	<string name="np_desc_quebec_networks" translatable="false">AMT, STM, STL</string>
+	<string name="np_name_britishcolumbia">British Columbia</string>
+	<string name="np_desc_britishcolumbia">Public transportation in BC</string>
+	<string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) and BC Transit (rest of BC)</string>
 
 	<string name="np_region_denmark">Denmark</string>
 	<string name="np_desc_dsb">Denmark, Copenhagen</string>
