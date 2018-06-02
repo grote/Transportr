@@ -374,6 +374,10 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_spain">Madrid, Barcelona, Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
 	<string name="np_desc_spain_networks" translatable="false">CRTM, TMB, FGC, Moveuskadi, Metrovalencia, EMT Valencia, TRAM, CTM, EMT Palma, CIME, Tranvía, TITSA, TILP, Transporte Interurbano de Navarra</string>
 
+	<string name="np_name_hungary">Hungary</string>
+	<string name="np_desc_hungary">Budapest, Miskolc</string>
+	<string name="np_desc_hungary_networks" translatable="false">BKK, MKV</string>
+
 	<string name="np_region_sweden">Sweden</string>
 	<string name="np_desc_se">Sweden, Stockholm</string>
 

@@ -530,6 +530,19 @@ private val networks = arrayOf(
                         factory = { SpainProvider(NAVITIA) }
                     )
                 )
+            ),
+            Country(
+                R.string.np_name_hungary, flag = "🇭🇺", networks = listOf(
+                    TransportNetwork(
+                        id = NetworkId.HUNGARY,
+                        name = R.string.np_name_hungary,
+                        description = R.string.np_desc_hungary,
+                        agencies = R.string.np_desc_hungary_networks,
+                        logo = R.drawable.network_hungary_logo,
+                        status = BETA,
+                        factory = { HungaryProvider(NAVITIA) }
+                    )
+                )
             )
         )
     ),
