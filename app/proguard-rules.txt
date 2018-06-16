@@ -38,6 +38,9 @@
 -dontwarn ch.qos.logback.core.net.**
 -dontnote ch.qos.logback.core.rolling.helper.FileStoreUtil
 
+-dontwarn afu.org.checkerframework.checker.**
+-dontwarn org.checkerframework.checker.**
+
 -keep class de.schildbach.pte.dto.**
 -dontwarn de.schildbach.pte.**
 
