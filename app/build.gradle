@@ -44,6 +44,10 @@ android {
 			multiDexEnabled true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
 			testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt', 'proguard-test.txt'
+
+			lintOptions {
+				disable 'ProtectedPermissions'
+			}
 		}
 	}
 
@@ -120,6 +124,8 @@ dependencies {
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.4.0'
 	implementation 'com.mapzen.android:lost:3.0.4'
+	// only added because of lint bug Timber 4.6.0
+	implementation 'com.jakewharton.timber:timber:4.7.0'
 
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
@@ -258,7 +264,7 @@ dependencyVerification {
 			'com.google.jimfs:jimfs:1.1:jimfs-1.1.jar:c4828e28d7c0a930af9387510b3bada7daa5c04d7c25a75c7b8b081f1c257ddd',
 			'com.google.protobuf:protobuf-java:3.4.0:protobuf-java-3.4.0.jar:dce7e66b32456a1b1198da0caff3a8acb71548658391e798c79369241e6490a4',
 			'com.googlecode.json-simple:json-simple:1.1:json-simple-1.1.jar:2d9484f4c649f708f47f9a479465fc729770ee65617dca3011836602264f6439',
-			'com.jakewharton.timber:timber:4.6.0:timber-4.6.0.aar:35c22867f2673132e97e17857d36bb2fc25f5790f0425406833ed0254d62fc66',
+			'com.jakewharton.timber:timber:4.7.0:timber-4.7.0.aar:0a0c00e23cae78dd1790e4dfd8b6d1a500f4eaa358c37f6e2a43fa43c8909fe7',
 			'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.4.0:mapbox-android-plugin-locationlayer-0.4.0.aar:e7f677f2aaa88a6853938bfd225f9848cb205a70d5ef688d5b314bdb9f59fda5',
 			'com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0:mapbox-android-sdk-5.5.0.aar:cc527b94389ded19c6133f3c19444e8a3d1f6edc42bb1fc835d9e9a5e4ad4abc',
 			'com.mapbox.mapboxsdk:mapbox-android-telemetry:2.2.10:mapbox-android-telemetry-2.2.10.aar:a03ebeb420a28287099ae5aa673c4efb3729452eab2c57b69945691d6c2cdaa6',
