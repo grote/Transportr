@@ -215,8 +215,9 @@ public class LocationFragment extends TransportrFragment
 		}
 	}
 
+	@NonNull
 	@Override
-	public DeparturesLoader onCreateLoader(int id, Bundle args) {
+	public DeparturesLoader onCreateLoader(int id, @Nullable Bundle args) {
 		return new DeparturesLoader(getContext(), viewModel.getTransportNetwork().getValue(), args);
 	}
 
@@ -245,6 +246,7 @@ public class LocationFragment extends TransportrFragment
 	@Override
 	@WorkerThread
 	public void onLocationRetrieved(@NonNull final WrapLocation location) {
+		if (getActivity() == null) return;
 		runOnUiThread(() -> {
 			LocationFragment.this.location = location;
 			showLocation();
