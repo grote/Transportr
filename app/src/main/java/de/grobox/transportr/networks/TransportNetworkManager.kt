@@ -48,10 +48,6 @@ constructor(private val settingsManager: SettingsManager) {
         return getTransportNetworkByNetworkId(networkId)
     }
 
-    fun getTransportNetwork(): LiveData<TransportNetwork> {
-        return transportNetwork
-    }
-
     fun getTransportNetwork(i: Int): TransportNetwork? {
         return if (i == 0 || i == 1) {
             transportNetwork.value

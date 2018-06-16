@@ -41,6 +41,7 @@ class ReverseGeocoder(private val context: Context, private val callback: Revers
     }
 
     fun findLocation(location: android.location.Location) {
+        if (location.latitude == 0.0 && location.latitude == 0.0) return
         findLocation(location.latitude, location.longitude)
     }
 
@@ -89,7 +90,7 @@ class ReverseGeocoder(private val context: Context, private val callback: Revers
         url.append("format=json")
 
         val request = Request.Builder()
-            .header("User-Agent", "Transportr (https://transportr.grobox.de)")
+            .header("User-Agent", "Transportr (https://transportr.app)")
             .url(url.toString())
             .build()
 
