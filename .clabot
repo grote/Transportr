@@ -4,7 +4,8 @@
     "ialokim",
     "xamanu",
     "jtracey",
-    "anjandev"
+    "anjandev",
+    "urbalazs"
   ],
   "label": "cla-signed ✔️",
   "message": "Thank you for your pull request and welcome to our community! We require contributors to sign our [Contributor License Agreement](https://github.com/grote/Transportr/blob/master/CLA.md), and we don't seem to have the user {{usersWithoutCLA}} on file. In order for your code to get reviewed and merged, please explicitly state that you accept the agreement."
