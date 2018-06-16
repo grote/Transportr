@@ -1,7 +1,7 @@
 buildscript {
 
 	ext {
-		kotlinVersion = '1.2.30'
+		kotlinVersion = '1.2.50'
 		daggerVersion = '2.11'
 		supportVersion = '27.1.0'
 		fastadapterVersion = '3.2.4@aar'
@@ -14,7 +14,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.0.1'
+		classpath 'com.android.tools.build:gradle:3.1.3'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 		classpath files('app/libs/gradle-witness.jar')
 	}
