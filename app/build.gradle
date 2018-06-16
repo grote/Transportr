@@ -124,7 +124,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:ca195d49') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:e0917d31') {
 		exclude module: 'service'
 		exclude group: 'org.json' // provided by Android
 		exclude group: 'net.sf.kxml' // provided by Android
@@ -234,25 +234,26 @@ dependencyVerification {
 			'com.github.tony19:apktool-lib:1.4.4-3:apktool-lib-1.4.4-3.jar:bdc4e93b1dd6661698feedacc37d203801076deddd7fb350daf98611637a5cd6',
 			'com.github.tony19:logback-android-classic:1.1.1-6:logback-android-classic-1.1.1-6.jar:0d0939c2cd797ecb0b7d679f1e2314a9889a90a633f2fc5b66f11316cbd6626b',
 			'com.github.tony19:logback-android-core:1.1.1-6:logback-android-core-1.1.1-6.jar:9548fd28988d62a8f67b72fafc67167f91f061001513ae25f53921f2982c8c01',
-			'com.gitlab.opentransitmap.public-transport-enabler:enabler:ca195d49:enabler-ca195d49.jar:bace06cbcb4f6a09d404ac3fe0f4dd7568109ed988180c25a67b2edc86b4ed21',
-			'com.gitlab.opentransitmap:public-transport-enabler:ca195d49:public-transport-enabler-ca195d49.jar:b2b6853391eead108c9a9170fc21fa949a18a63231e3f7c61e86049fe28233d7',
+			'com.gitlab.opentransitmap.public-transport-enabler:enabler:e0917d31:enabler-e0917d31.jar:92fc107c53cca8114b3a6b0e8dd7272743d60b9204cad8163dc2b7408d827f0e',
+			'com.gitlab.opentransitmap:public-transport-enabler:e0917d31:public-transport-enabler-e0917d31.jar:b2cf88dac77c0ebb1b831c1fe5989f585004ea2c181b31ca3036d5d55bdf0c69',
 			'com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.0:accessibility-test-framework-2.0.jar:cdf16ef8f5b8023d003ce3cc1b0d51bda737762e2dab2fedf43d1c4292353f7f',
 			'com.google.android:flexbox:0.3.2:flexbox-0.3.2.aar:610a6a00695e873b4b6b785b7dce1c60f6a5964044b6d093b4d1060cbf13c278',
 			'com.google.auto:auto-common:0.6:auto-common-0.6.jar:6d8ffa9dc95db8b1e7399a622946d129093959cbe5d6b54cfe27d2542302d8e1',
 			'com.google.code.findbugs:jsr305:1.3.9:jsr305-1.3.9.jar:905721a0eea90a81534abb7ee6ef4ea2e5e645fa1def0a5cd88402df1b46c9ed',
-			'com.google.code.findbugs:jsr305:3.0.0:jsr305-3.0.0.jar:bec0b24dcb23f9670172724826584802b80ae6cbdaba03bdebdef9327b962f6a',
 			'com.google.code.findbugs:jsr305:3.0.1:jsr305-3.0.1.jar:c885ce34249682bc0236b4a7d56efcc12048e6135a5baf7a9cde8ad8cda13fcd',
+			'com.google.code.findbugs:jsr305:3.0.2:jsr305-3.0.2.jar:766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7',
 			'com.google.code.gson:gson:2.7:gson-2.7.jar:2d43eb5ea9e133d2ee2405cc14f5ee08951b8361302fdd93494a3a997b508d32',
 			'com.google.code.gson:gson:2.8.0:gson-2.8.0.jar:c6221763bd79c4f1c3dc7f750b5f29a0bb38b367b81314c4f71896e340c40825',
 			'com.google.dagger:dagger-compiler:2.11:dagger-compiler-2.11.jar:07855c49eb0ba92e308f50e4039edcf8ad6d694b2ca9fcf5bfc160cab377f460',
 			'com.google.dagger:dagger-producers:2.11:dagger-producers-2.11.jar:debbab6d28bfad85fae88b555f653b6cd54af8f8d1b5e8c9b8e42d176bc25bdf',
 			'com.google.dagger:dagger:2.11:dagger-2.11.jar:1e9fe8a7ba7ca663449cda3e4f973511aa4593dbecd93ef3eb2476ef98082f08',
 			'com.google.errorprone:error_prone_annotations:2.0.18:error_prone_annotations-2.0.18.jar:cb4cfad870bf563a07199f3ebea5763f0dec440fcda0b318640b1feaa788656b',
+			'com.google.errorprone:error_prone_annotations:2.1.3:error_prone_annotations-2.1.3.jar:03d0329547c13da9e17c634d1049ea2ead093925e290567e1a364fd6b1fc7ff8',
 			'com.google.errorprone:javac:9-dev-r3297-1-shaded:javac-9-dev-r3297-1-shaded.jar:116a8d0b96b15fa55041d2288d0be5bea59b918284d07a4af05db047fbe4ac66',
 			'com.google.googlejavaformat:google-java-format:1.3:google-java-format-1.3.jar:5dd8baead3215d1a185c69d804fd7af50a8ac206d663ba914a32ff22015b0554',
 			'com.google.guava:guava:21.0:guava-21.0.jar:972139718abc8a4893fa78cba8cf7b2c903f35c97aaf44fa3031b0669948b480',
 			'com.google.guava:guava:22.0:guava-22.0.jar:1158e94c7de4da480873f0b4ab4a1da14c0d23d4b1902cc94a58a6f0f9ab579e',
-			'com.google.guava:guava:23.0-android:guava-23.0-android.jar:c8cea78328d2c50a3be2d4548f6fbc723516b5438251f5803008778f3ff5a3ed',
+			'com.google.guava:guava:25.1-android:guava-25.1-android.jar:f7b8f8fed176b9cf6831b98cb07320d7fbe91d99b29999f752c3821dfe45bdc8',
 			'com.google.j2objc:j2objc-annotations:1.1:j2objc-annotations-1.1.jar:40ceb7157feb263949e0f503fe5f71689333a621021aa20ce0d0acee3badaa0f',
 			'com.google.jimfs:jimfs:1.1:jimfs-1.1.jar:c4828e28d7c0a930af9387510b3bada7daa5c04d7c25a75c7b8b081f1c257ddd',
 			'com.google.protobuf:protobuf-java:3.4.0:protobuf-java-3.4.0.jar:dce7e66b32456a1b1198da0caff3a8acb71548658391e798c79369241e6490a4',
@@ -271,7 +272,7 @@ dependencyVerification {
 			'com.mikepenz:iconics-core:3.0.2:iconics-core-3.0.2.aar:aedb0e72ac3d4341f3caf0d1c7dd4a1733eb6031a6b764c8921ff1d51987a6dd',
 			'com.mikepenz:materialdrawer:6.0.6:materialdrawer-6.0.6.aar:8b2005769fb5455369c65b1a361d26cf38f3bd5c5c0edc19a6693f438f863427',
 			'com.mikepenz:materialize:1.1.2:materialize-1.1.2.aar:2834b735fefcb2e1ab356e926a652396a4ece0dffc05184ea755366c3d2ee79f',
-			'com.squareup.okhttp3:logging-interceptor:3.8.1:logging-interceptor-3.8.1.jar:1e84fce63c46ce41fb7f8ca65d5b67ffe61aa0350e964288e66391fda7399ff8',
+			'com.squareup.okhttp3:logging-interceptor:3.10.0:logging-interceptor-3.10.0.jar:f86fca703c2d6fc76cba73c46957d2b1161dff20f1e271f79adef27bbf1bdfa1',
 			'com.squareup.okhttp3:okhttp:3.10.0:okhttp-3.10.0.jar:4aca3e552afb1ceb47f8956685f6295a276e49fa03f9066f8b6be83bec56fb66',
 			'com.squareup.okio:okio:1.14.0:okio-1.14.0.jar:4633c331f50642ebe795dc089d6a5928aff43071c9d17e7840a009eea2fe95a3',
 			'com.squareup:javapoet:1.8.0:javapoet-1.8.0.jar:8e108c92027bb428196f10fa11cffbe589f7648a6af2016d652279385fdfd789',
@@ -299,6 +300,7 @@ dependencyVerification {
 			'org.apache.httpcomponents:httpmime:4.1:httpmime-4.1.jar:31629566148e8a47688ae43b420abc3ecd783ed15b33bebc00824bf24c9b15aa',
 			'org.bouncycastle:bcpkix-jdk15on:1.56:bcpkix-jdk15on-1.56.jar:7043dee4e9e7175e93e0b36f45b1ec1ecb893c5f755667e8b916eb8dd201c6ca',
 			'org.bouncycastle:bcprov-jdk15on:1.56:bcprov-jdk15on-1.56.jar:963e1ee14f808ffb99897d848ddcdb28fa91ddda867eb18d303e82728f878349',
+			'org.checkerframework:checker-compat-qual:2.0.0:checker-compat-qual-2.0.0.jar:a40b2ce6d8551e5b90b1bf637064303f32944d61b52ab2014e38699df573941b',
 			'org.codehaus.groovy:groovy-all:2.4.12:groovy-all-2.4.12.jar:6a56af4bd48903d56bec62821876cadefafd007360cc6bd0d8f7aa8d72b38be4',
 			'org.codehaus.mojo:animal-sniffer-annotations:1.14:animal-sniffer-annotations-1.14.jar:2068320bd6bad744c3673ab048f67e30bef8f518996fa380033556600669905d',
 			'org.glassfish.jaxb:jaxb-core:2.2.11:jaxb-core-2.2.11.jar:37bcaee8ebb04362c8352a5bf6221b86967ecdab5164c696b10b9a2bb587b2aa',
