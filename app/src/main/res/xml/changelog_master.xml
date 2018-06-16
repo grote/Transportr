@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-	<release version="2.0.0-rc2" versioncode="106">
+	<release version="2.0.0-rc3" versioncode="107">
 		<change>New Design and complete code rewrite</change>
 		<change>Shiny new map given a more prominent place</change>
 		<change>Current location is used by default</change>
@@ -10,6 +10,7 @@
 		<change>Addresses will be saved</change>
 		<change>Round icon for new Android versions</change>
 		<change>Added New York, California, Ghana and Costa Rica</change>
+		<change>New translation: Russian</change>
 	</release>
 
 	<release version="1.1.9" versioncode="49">
