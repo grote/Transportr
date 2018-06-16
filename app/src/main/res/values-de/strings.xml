@@ -1,6 +1,45 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Freier öffentlicher Nahverkehr</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Freier Assistent für den öffentlichen Nahverkehr ohne Werbung und Tracking</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Transportr ist eine nicht-kommerzielle App, die von Menschen auf der ganzen Welt in ihrer Freizeit entwickelt wurde.
+Sie wollen die Nutzung der öffentlichen Verkehrsmittel für alle so einfach wie möglich machen.
+
+Diese App nutzt die Daten verschiedener öffentlicher Verkehrsbetriebe
+und stellt dir eine einheitliche Benutzeroberfläche zur Verfügung.
+Sie kann die Richtigkeit der Daten nicht überprüfen
+und bietet daher <i>keine Gewähr</i> für die dargestellten Informationen.
+Die Benutzung erfolgt auf eigene Gefahr.
+
+<b>🛣️ Reiseroute</b>. Sage Transportr einfach, wohin du willst!
+Er findet die besten Verbindungen für dich, sagt dir, wo du umsteigen musst,
+und gibt dir sogar eine geschätzte Ankunftszeit an.
+
+<b>⏱️ Live Abfahrten</b>. Zeigt bevorstehende Abfahrten von allen Stationen an.
+In <i>unterstützten</i> Regionen werden auch Echtzeit-Verzögerungen angezeigt.
+
+<b>🗽 Freie Software</b>. Der Quellcode von Transportr ist zu 100% offen.
+Du kannst es frei benutzen, studieren, teilen und verbessern.
+Diese App ist nur so gut, wie <i>du</i> sie machst.
+Du kannst deine Stadt sogar selbst hinzufügen, wenn sie nicht bereits unterstützt wird.
+
+<b>🛰️ Findet deine Position.</b> Transportr nutzt GPS-Satellitennavigation,
+um den Überblick über deine aktuelle Position zu behalten - damit du dich nie verirrst.
+Du kannst nahegelegene Stationen finden, um eine neue Tour zu starten
+und dann sehen, wie weit du entfernt bist.
+
+<b>🌟 Erinnert sich an bevorzugte Orte.</b> Damit du schneller ans Ziel kommst,
+speichert Transportr häufig genutzte Orte und Fahrten.
+Auf diese Weise musst du sie nicht immer wieder neu eingeben.
+
+<b>🚫 Keine Werbung, kein Tracking</b>. Diese App zeigt keine Werbung
+oder lästige Benachrichtigungen an.
+Es verwendet auch keine Tracking-Tools wie Google Analytics, um dich auszuspionieren.
+
+<b>🗺️ Schöne Karten</b>. Zeigt die Stationen oder die gesamte Strecke auf einer Karte an
+und weiß immer, wo man aussteigen muss.
+]]></string>
   <string name="drawer_settings">Einstellungen</string>
   <string name="drawer_changelog">Änderungsprotokoll</string>
   <string name="drawer_about">Über</string>
@@ -130,6 +169,8 @@
   <string name="warning_gps_off">Der Standort ist ausgeschaltet. Bitte schalte es in den Einstellungen ein.</string>
   <string name="onboarding_location_title">Hochziehen</string>
   <string name="onboarding_location_message">Weitere Funktionen verbergen sich weiter unten</string>
+  <string name="onboarding_directions_title">Weitere Suchoptionen</string>
+  <string name="onboarding_directions_message">Klicke auf dieses Symbol, um die erweiterten Sucheinstellungen anzuzeigen.</string>
   <string name="select_products">Wähle das Verkehrsmittel</string>
   <string name="product_high_speed_train">Hochgeschwindigkeitszug</string>
   <string name="product_regional_train">Regionalbahn</string>
@@ -174,6 +215,9 @@
   <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo Region</string>
   <string name="np_name_quebec">Québec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Québec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">British Columbia</string>
+  <string name="np_desc_britishcolumbia">Öffentliche Verkehrsmittel in BC</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) und BC Transit (Rest von BC)</string>
   <string name="np_region_denmark">Dänemark</string>
   <string name="np_desc_dsb">Dänemark, Kopenhagen</string>
   <string name="np_name_rt">Europa</string>

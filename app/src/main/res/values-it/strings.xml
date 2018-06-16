@@ -129,6 +129,10 @@
   <string name="warning_no_gps_fix">Ancora impossibile trovare la tua posizione.</string>
   <string name="permission_denied_gps">Non hai permesso di accedere alla tua posizione, per cui questa funzionalità non può funzionare. Si prega di concedere i permessi nelle impostazioni.</string>
   <string name="warning_gps_off">La geolocalizzazione è disattivata. Attivala nelle impostazioni.</string>
+  <string name="onboarding_location_title">Trascina</string>
+  <string name="onboarding_location_message">Altre funzioni sono nascoste sotto</string>
+  <string name="onboarding_directions_title">Ricerca avanzata</string>
+  <string name="onboarding_directions_message">Premi su questa icona per rivelare le impostazioni per la ricerca avanzata</string>
   <string name="select_products">Seleziona mezzi di trasporto</string>
   <string name="product_high_speed_train">Treno ad alta velocità</string>
   <string name="product_regional_train">Treno regionale</string>
@@ -173,6 +177,9 @@
   <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, regione Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">Columbia Britannica</string>
+  <string name="np_desc_britishcolumbia">Trasporto pubblico in Columbia Britannica</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) e BC Transit (resto della Columbia Britannica)</string>
   <string name="np_region_denmark">Danimarca</string>
   <string name="np_desc_dsb">Danimarca, Copenhagen</string>
   <string name="np_name_rt">Europa</string>

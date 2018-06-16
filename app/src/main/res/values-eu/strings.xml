@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Kode irekiko garraio publikoa</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Garraio publikoarentzako aplikazio lagungarria, iragarki eta tracker gabe</string>
   <string name="drawer_settings">Ezarpenak</string>
   <string name="drawer_changelog">Aldaketen zerrenda</string>
   <string name="drawer_about">Honi buruz</string>
@@ -126,6 +128,11 @@
   <string name="location_gps">Erabili uneko kokapena</string>
   <string name="warning_no_gps_fix">Ezin izan da zure kokalekua aurkitu oraindik</string>
   <string name="permission_denied_gps">Ez duzu zure kokalekua atzemateko baimena eman, funtzionaltasun hau ez da ibiliko. Eman baimena aplikazioaren ezarpenetan.</string>
+  <string name="warning_gps_off">Kokapena desgaituta dago. Gaitu ezarpenetan.</string>
+  <string name="onboarding_location_title">Geldialdia</string>
+  <string name="onboarding_location_message">Ezaugarri gehiago azpian ezkutatuta</string>
+  <string name="onboarding_directions_title">Bilaketa aukera gehiago</string>
+  <string name="onboarding_directions_message">Egin klik ikono honetan bilaketa aurreratuaren ezarpenak agerrarazteko.</string>
   <string name="select_products">Hautatu garriobideak</string>
   <string name="product_high_speed_train">Abiadura handiko trena</string>
   <string name="product_regional_train">Eskualdeko trena</string>
@@ -142,6 +149,11 @@
   <string name="changelog_show_full">Gehiago...</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">Afrika</string>
+  <string name="np_continent_north_america">Ipar Amerika</string>
+  <string name="np_continent_central_america">Ertamerika</string>
+  <string name="np_continent_south_america">Hego Amerika</string>
+  <string name="np_continent_asia">Asia</string>
+  <string name="np_continent_oceania">Ozeania</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Sydney, Hegoaldeko Gales Berria, Australia</string>
@@ -193,6 +205,7 @@
   <string name="np_desc_bsvag">Brunswick, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Alemaniako gehiena</string>
+  <string name="np_desc_db2">Distantzia handiko konexioak Europan</string>
   <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Saxonia behera, Hanover, Hamburg, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hanburgo</string>
@@ -262,6 +275,9 @@
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
+  <string name="np_region_central_america">Ertamerika</string>
+  <string name="np_name_nicaragua">Nikaragua</string>
+  <string name="np_desc_nicaragua">Hiri, herri eta herrialdeko autobusak MapaNica.net eta OpenStreetMap laguntzaileei esker</string>
   <string name="maintainer">Mantentzailea</string>
   <string name="contributors">Laguntzaileak</string>
   <string name="translators">Itzultzaileak</string>

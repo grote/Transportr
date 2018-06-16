@@ -431,5 +431,6 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="czech">Czech</string>
 	<string name="hungarian">Hungarian</string>
 	<string name="japanese">Japanese</string>
+	<string name="russian">Russian</string>
 
 </resources>

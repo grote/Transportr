@@ -148,6 +148,12 @@ internal val LANGUAGES = listOf(
         )
     ),
     ContributorGroup(
+        R.string.russian, listOf(
+            Contributor("Dmitry Grechka"),
+            Contributor("Илья Пономарев")
+        )
+    ),
+    ContributorGroup(
         R.string.spanish, listOf(
             Contributor("Adolfo Jayme Barrientos"),
             Contributor("acuccaro"),
