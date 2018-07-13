@@ -1,8 +1,27 @@
-Transportr est une appli sans but lucratif développée par des personnes du monde entier pour faciliter le plus possible l'utilisation des transports en commun, où que vous soyez.
 
-Actuellement, elle fonctionne de manière optimale en Europe, mais prend aussi en charge de nombreux endroits de par le monde. Si vous habitez dans une région qui n'est pas prise en charge, envisagez de l'ajouter à Transportr.
-Vous trouverez des instructions sur la page d'accueil.
+Transportr est une appli sans but lucratif développée par des personnes du monde entier pendant leur temps libre.
+Elles souhaitent faciliter autant que possible l’utilisation des transports en commun, pour tous.
 
-Transportr trouve des itinéraires de chez vous, de votre position actuelle ou d'un arrêt/station donné vers n'importe quel lieu. Vous pouvez aussi enregistrer des trajets entiers préférés et y accéder ultérieurement d'un seul glisser. Bien sûr, vous pouvez aussi faire apparaître votre trajet sur la carte et suivre votre déplacement par GPS.
+Cette appli utilise les données de divers organismes locaux de transport en commun tout en fournissant une interface unifiée pour ces données.
+Elle ne peut pas vérifier la justesse de ces données et par conséquent <i>n’offre aucune garantie</i> quant aux renseignements affichés.
+Veuillez l’utiliser à vos propres risques.
 
-Vous pouvez aussi découvrir les arrêts/stations alentour et afficher les prochains départs incluant les retards (s'il y en a). 
+<b>🛣️ Itinéraires</b>. Indiquez seulement à Transportr où vous souhaitez aller !
+Elle trouvera les meilleures correspondances pour vous, vous indiquera où changer de bus,
+et vous donnera même une heure d’arrivée prévue.
+
+<b>⏱️ Départs en direct</b>. Elle affiche les départs à venir pour tous les arrêts et stations.
+Pour les zones <i>prises en charge</i>, les retards sont aussi affichés en temps réel.
+
+<b>🗽 Liberté logicielle</b>. Transportr est à code source ouvert, à 100 %.
+Vous pouvez l’utiliser, l’examiner, la partager et l’améliorer librement.
+L’appli sera aussi bonne que <i>vous</i> la rendrez.
+Vous pouvez même ajouter votre propre ville, si elle n’est pas déjà prise en charge.
+<b>🛰️ Trouve votre position géographique</b>. Transportr utilise une navigation GPS par satellites pour suivre votre position actuelle afin que vous ne soyez jamais perdu.
+Vous pouvez trouver les arrêts et stations à proximité pour commencer un nouveau trajet et vous rendre ainsi compte de la progression de votre parcours.
+<b>🌟 Se souvient de vos endroits préférés</b>. Afin d’accélérer vos déplacements, Transportr enregistre les endroits et trajets utilisés fréquemment afin que vous n’ayez pas à les saisir tout le temps.
+
+<b>🚫 Pas de publicité, pas de suivi à la trace</b>. Cette appli n’affiche aucune publicité ni notification ennuyante.
+Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vous espionner.
+
+<b>🗺️De belles cartes</b>. Elle affiche les arrêts et stations de votre trajet entier sur une carte et sait toujours où vous vous trouvez afin que vous ne ratiez jamais votre arrêt.

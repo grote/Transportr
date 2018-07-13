@@ -3,6 +3,8 @@
 # All available actions: https://docs.fastlane.tools/actions
 # can also be listed using the `fastlane actions` command
 
+opt_out_usage
+
 # If you want to automatically update fastlane if a new version is available:
 # update_fastlane
 
@@ -34,10 +36,9 @@ platform :android do
 	system './rename_screenshots.py'
   end
 
-  desc "Deploy a new version to the Google Play"
+  desc "Deploy a new version to the Google Play (beta track)"
   lane :deploy do
-    gradle(task: "assembleRelease")
-    supply
+    upload_to_play_store(track: 'beta', apk: 'release/app-release.apk')
   end
 end
 

@@ -239,6 +239,7 @@
   <string name="portuguese_br">Portekizce (Brezilya)</string>
   <string name="spanish">İspanyolca</string>
   <string name="turkish">Türkçe</string>
+  <string name="norwegian_bokmal">Norveççe</string>
   <string name="basque">Baskça</string>
   <string name="english">İngilizce</string>
   <string name="catalan">Katalanca</string>
@@ -247,4 +248,5 @@
   <string name="czech">Çekçe</string>
   <string name="hungarian">Macarca</string>
   <string name="japanese">Japonca</string>
+  <string name="russian">Rusça</string>
 </resources>

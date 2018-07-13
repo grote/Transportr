@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-	<string name="website" translatable="false">https://transportr.grobox.de/</string>
+	<string name="website" translatable="false">https://transportr.app/</string>
 	<string name="website_source_app" translatable="false">"?utm_source=app"</string>
 	<string name="website_source_shared" translatable="false">"?utm_source=shared_trip"</string>
 	<string name="bug_tracker" translatable="false">https://github.com/grote/Transportr/issues?q=is%3Aissue</string>

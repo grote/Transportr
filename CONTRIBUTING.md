@@ -3,7 +3,7 @@
 Contributions are very welcome and encouraged.
 This is a non-profit initiative that has been built exclusively by volunteers.
 
-Many different ways to contribute are already listed [on the Transportr homepage](https://transportr.grobox.de/#contribute).
+Many different ways to contribute are already listed [on the Transportr homepage](https://transportr.app/contribute).
 Here, we focus on contributions made via GitHub.
 
 ## Creating Issues

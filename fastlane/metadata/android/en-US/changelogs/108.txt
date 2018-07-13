@@ -1,0 +1,9 @@
+* New Design and complete code rewrite
+* Shiny new map given a more prominent place
+* Current location is used by default
+* Trip overview shows warning icon if there is a problem
+* Add your "Work" place
+* Addresses will be saved
+* Round icon for new Android versions
+* Added New York, California, Ghana and Costa Rica
+* New translation: Russian

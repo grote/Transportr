@@ -1,7 +1,41 @@
-A Transportr egy non-profit alkalmazás, amit világszerte azért feljesztenek, hogy egyszerűbbé tegyék a tömegközlekedés használatát, akárhol is legyél.
 
-Jelenleg a legjobban Európán belül működik, de sok más helyet is támogat világszerte. Ha egy olyan helyen élsz, amit még nem támogatott, segíts hozzáadni a Transportr-hez! Útmutatást ezzel kapcsolatban a honlapunkon találsz.
+A Transportr egy nonprofit alkalmazás, amelyet emberek a szabadidejükben fejlesztenek
+a világ minden tájáról. Azt szeretnék, hogy a tömegközlekedés olyan könnyű legyen
+mindenki számára, amennyire csak lehetséges.
 
-A Transportr irányt mutat az otthonodtól, jelenlegi helyzetedtől vagy egy adott megállótól oda, ahova menni szeretnél. Teljes utakat menthetsz el a kedvenceid közé, és a legközelebbi kapcsolódásokat is egyszerűen megtalálhatod. Az utakat természetesen megtekintheted térképen is, és követheted a haladásodat GPS segítségével.
+Ez az alkalmazás számos tömegközlekedési cég adatait használja, és
+egységes felületet biztosít hozzájuk.
+Az adatok helyességét viszont nem tudjuk ellenőrizni,
+és ezért <i>garanciát sem vállalunk</i> a megjelenített információkért.
+A saját felelősségére használja.
 
-Állomásokat is kereshetsz vele a közelben, és a legközelebbi indulásokat is megtekintheted, az esetleges késésekkel együtt.
+<b>🛣️ Útvonaltervezés</b>. Csak mondja meg a Tansportrnek, hogy merre menne!
+Megkeresi Önnek a legjobb csatlakozást, és tanácsot ad hogy szálljon át,
+és még a becslt érkezési időt is megmondja.
+
+<b>⏱️ Élő indulások</b>. Megjeleníti a soron következő indulásokat minden megállóhoz.
+A <i>támogatott</i> területeken a valós idejű adatok is megjelennek.
+
+<b>🗽 Szoftverszabadság</b>. A Transportr forráskódja 100%-ban nyílt.
+Szabadon használhatja, tanulmányozhatja, megoszthatja és fejlesztheti.
+Ez az csak annyira jó, amennyire <i>Ön</i> azzá teszi.
+A saját városát is hozzáadhatja, ha meg az nem támogatott.
+
+<b>🛰️ Megtalálja a helyzetét.</b> A Transportr GPS műholdas navigáció használ
+a jelenlegi pozíciója követésére – agy sosem téved el.
+Megtalálhatja a közeli állomások egy új utazás elkezdéséhez,
+majd láthatja, hogy milyen messzire viszi az útja.
+
+<b>🌟 Megjegyzi a kedvenc helyeit.</b> Hogy gyorsabban megtalálja merre kell mennie,
+a Transportr elmenti a gyakran használt helyeit és útjait.
+Így nem kell őket újra és újra begépelnie.
+
+<b>🚫 Nincsenek reklámok, nincs követés</b>. Az app nem jelenít meg reklámokat
+vagy idegesítő értesítéseket. Emellett nem használ olyan követő eszközöket,
+mint a Google Analytics, amely kémkedik Ön után.
+
+<b>🗺️ Gyönyörű térképek</b>. Megjeleníti az állomásokat a teljes utazása
+alatt egy térképen, és mindig megmutatja hogy hol van, így nem téveszti el,
+hogy hol kell leszállnia a buszról…
+
+

@@ -676,7 +676,7 @@ private val networks = arrayOf(
                         logo = R.drawable.network_brfloripa_logo,
                         status = ALPHA,
                         goodLineNames = true,
-                        factory = { BrFloripaProvider(HttpUrl.parse("https://transportr.grobox.de/api/v1/"), null) }
+                        factory = { BrFloripaProvider(HttpUrl.parse("https://api.transportr.app/floripa/v1/"), null) }
                     )
                 )
             )

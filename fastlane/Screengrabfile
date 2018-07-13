@@ -1,5 +1,5 @@
 app_package_name "de.grobox.liberario.debug"
-locales ['cs-CZ','de-DE','en-US','es-ES','eu-ES','fr-FR','hu-HU','it-IT','nl-NL','pl-PL','pt-BR','ta-IN']
+locales ['cs-CZ','de-DE','en-US','es-ES','eu-ES','fr-FR','hu-HU','it-IT','nl-NL','pl-PL','pt-BR','ru-RU','ta-IN']
 app_apk_path "app/build/outputs/apk/debug/app-debug.apk"
 tests_apk_path "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
 test_instrumentation_runner "de.grobox.transportr.MockTestRunner"

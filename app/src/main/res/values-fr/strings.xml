@@ -329,4 +329,5 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="czech">Tchèque</string>
   <string name="hungarian">Hongrois</string>
   <string name="japanese">Japonais</string>
+  <string name="russian">Russe</string>
 </resources>
