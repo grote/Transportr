@@ -1,9 +1,11 @@
 buildscript {
 
 	ext {
-		kotlinVersion = '1.2.50'
+		kotlinVersion = '1.2.51'
 		daggerVersion = '2.11'
-		supportVersion = '27.1.0'
+		supportVersion = '27.1.1'
+		lifecycleVersion = "1.1.1"
+		roomVersion = "1.1.1"
 		fastadapterVersion = '3.2.4@aar'
 		espressoVersion = '3.0.1'
 	}

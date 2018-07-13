@@ -7,7 +7,7 @@ apply plugin: 'witness'
 android {
 
 	compileSdkVersion 27
-	buildToolsVersion "27.0.3"
+	buildToolsVersion "28.0.1"
 
 	defaultConfig {
 		versionCode 108
@@ -105,12 +105,12 @@ dependencies {
 	implementation "com.android.support:cardview-v7:$supportVersion"
 	implementation "com.android.support:recyclerview-v7:$supportVersion"
 	implementation "com.android.support:preference-v14:$supportVersion"
-	implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
+	implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
-	implementation "android.arch.lifecycle:extensions:1.1.0"
-	implementation "android.arch.lifecycle:common-java8:1.1.0"
-	implementation "android.arch.persistence.room:runtime:1.0.0"
-	kapt "android.arch.persistence.room:compiler:1.0.0"
+	implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
+	implementation "android.arch.lifecycle:common-java8:$lifecycleVersion"
+	implementation "android.arch.persistence.room:runtime:$roomVersion"
+	kapt "android.arch.persistence.room:compiler:$roomVersion"
 
 	implementation 'com.github.omadahealth:swipy:1.2.3'
 	implementation 'de.cketti.library.changelog:ckchangelog:1.2.2'
@@ -138,16 +138,13 @@ dependencies {
 		exclude group: 'junit'
 	}
 	debugImplementation 'org.slf4j:slf4j-api:1.7.25'
-	debugImplementation 'com.github.tony19:logback-android-core:1.1.1-6'
-	debugImplementation('com.github.tony19:logback-android-classic:1.1.1-6') {
-		exclude group: 'com.google.android', module: 'android'
-	}
+	debugImplementation 'com.github.tony19:logback-android:1.1.1-12'
 
 	testImplementation 'junit:junit:4.12'
 	testImplementation 'org.mockito:mockito-core:2.13.0'
-	testImplementation "android.arch.core:core-testing:1.1.0"
+	testImplementation "android.arch.core:core-testing:$lifecycleVersion"
 
-	androidTestImplementation 'com.android.support:multidex:1.0.2'
+	androidTestImplementation 'com.android.support:multidex:1.0.3'
 	androidTestImplementation("com.android.support.test.espresso:espresso-core:$espressoVersion") {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
@@ -169,48 +166,49 @@ dependencies {
 
 dependencyVerification {
 	verify = [
-			'android.arch.core:common:1.1.0:common-1.1.0.jar:d34824b794bc92ff8f647a9bb13a7c73de920de5b47075b5d2c4f0770e9b8bfd',
-			'android.arch.core:core-testing:1.1.0:core-testing-1.1.0.aar:347e7597fd8d88743430e177bd92e69d0700ab41e3b438718f23d3cc6c108c1f',
-			'android.arch.core:runtime:1.1.0:runtime-1.1.0.aar:83400f7575bcfb8a2eeec64e05590f037bfaed1e56aa3a4214d20e55878445e3',
-			'android.arch.lifecycle:common-java8:1.1.0:common-java8-1.1.0.jar:d09d80eeb79ec42a54440238210fb93c7bc3fb5398540c79fb390f1e5725a3f8',
-			'android.arch.lifecycle:common:1.1.0:common-1.1.0.jar:614e31cfd33255dc4d5f5d8e62cfa6be2fbbc2a35643a79dc3ed008004c30807',
-			'android.arch.lifecycle:extensions:1.1.0:extensions-1.1.0.aar:340c888720534f83600ef65208a4946eceb90f14d9614f5ddcf65c43777f54a5',
-			'android.arch.lifecycle:livedata-core:1.1.0:livedata-core-1.1.0.aar:14e57ff8ffb65a80c7e72d91f2076acccdaf2970f234c6261e03a6127eb5206b',
-			'android.arch.lifecycle:livedata:1.1.0:livedata-1.1.0.aar:a49f05fcc3c1973d4a812f978ddf76d736cc022f34b2c3be06be017ea8f89885',
-			'android.arch.lifecycle:runtime:1.1.0:runtime-1.1.0.aar:094fd793924dd6a5136753e599ac8174a8147f4a401386b694ba7d818c223e2e',
-			'android.arch.lifecycle:viewmodel:1.1.0:viewmodel-1.1.0.aar:6407c93a5ea9850661dca42a0068d6f3deccefd7228ee69bae1c35d70cbc2557',
-			'android.arch.persistence.room:common:1.0.0:common-1.0.0.jar:79bd49220d50c773882ef0e033c90c065fd5e5fd0eb16ca507dc8b3e78bd65f8',
-			'android.arch.persistence.room:compiler:1.0.0:compiler-1.0.0.jar:ad4a990e3675375c7de72c20c3358967a13370fdfc7d59f62d21285d52946e3c',
-			'android.arch.persistence.room:migration:1.0.0:migration-1.0.0.jar:f132f06116276e8333d7f02f1995f82f614d9e4bf61af9f7d1970c5bb521edb7',
-			'android.arch.persistence.room:runtime:1.0.0:runtime-1.0.0.aar:29e291f48708311ce9a9f2bb1b87bcee20282c5f9b8ffeedd0389a1fb417482a',
-			'android.arch.persistence:db-framework:1.0.0:db-framework-1.0.0.aar:e8310c66979f8823cfe583951abfde96824b176289ba77b750a25be00d25981a',
-			'android.arch.persistence:db:1.0.0:db-1.0.0.aar:7c0a51d5fc890a8fb94a3370ff599243ec3485cca63daba3cc2bb197835dc521',
-			'com.android.support.constraint:constraint-layout-solver:1.1.0-beta5:constraint-layout-solver-1.1.0-beta5.jar:7d90306f3dd57f63cfea824cf30ec1898641eaa9204328c48365d1d9fef9f7a8',
-			'com.android.support.constraint:constraint-layout:1.1.0-beta5:constraint-layout-1.1.0-beta5.aar:22bfea587e6e8a50c9be0f3c57e671f1ad214d36a3d434a1e9da9b08013dd344',
+			'android.arch.core:common:1.1.1:common-1.1.1.jar:3a616a32f433e9e23f556b38575c31b013613d3ae85206263b7625fe1f4c151a',
+			'android.arch.core:core-testing:1.1.1:core-testing-1.1.1.aar:150a6f028af6c57ca6de66cb185a135cdcf737f597443acc4cf8aeeec064fff3',
+			'android.arch.core:runtime:1.1.1:runtime-1.1.1.aar:c3215aa5873311b3f88a6f4e4a3c25ad89971bc127de8c3e1291c57f93a05c39',
+			'android.arch.lifecycle:common-java8:1.1.1:common-java8-1.1.1.jar:7078b5c8ccb94203df9cc2a463c69cf0021596e6cf966d78fbfd697aaafe0630',
+			'android.arch.lifecycle:common:1.1.1:common-1.1.1.jar:8d378e88ebd5189e09eef623414812c868fd90aa519d6160e2311fb8b81cff56',
+			'android.arch.lifecycle:extensions:1.1.1:extensions-1.1.1.aar:429426b2feec2245ffc5e75b3b5309bedb36159cf06dc71843ae43526ac289b6',
+			'android.arch.lifecycle:livedata-core:1.1.1:livedata-core-1.1.1.aar:d6fdd8b985d6178d7ea2f16986a24e83f1bee936b74d43167c69e08d3cc12c50',
+			'android.arch.lifecycle:livedata:1.1.1:livedata-1.1.1.aar:50ab0490c1ff1a7cfb4e554032998b080888946d0dd424f39900efc4a1bcd750',
+			'android.arch.lifecycle:runtime:1.1.1:runtime-1.1.1.aar:c4e4be66c1b2f0abec593571454e1de14013f7e0f96bf2a9f212931a48cae550',
+			'android.arch.lifecycle:viewmodel:1.1.1:viewmodel-1.1.1.aar:7de29cfaba77d6b5d5be234c57f6812d0150d087e63941af22ba1d1f8e2bc96a',
+			'android.arch.persistence.room:common:1.1.1:common-1.1.1.jar:fa506873be8a7de9685389b6539ad5849b39731328454b6db151bcab8a9577c3',
+			'android.arch.persistence.room:compiler:1.1.1:compiler-1.1.1.jar:564f85dc98e6dcf069ea4b7ad7e29b6462992867aea098881397162bd2084780',
+			'android.arch.persistence.room:migration:1.1.1:migration-1.1.1.jar:bc78a8114736735e387b36224fc0cf0593564aebbe8a97b92278a5808c402d25',
+			'android.arch.persistence.room:runtime:1.1.1:runtime-1.1.1.aar:d05c78d494dc700fd6dbc0e873451aebb2510ffbb070c82179055cb10bdd8822',
+			'android.arch.persistence:db-framework:1.1.1:db-framework-1.1.1.aar:f9d1629574008e815a494390857f2125cb3e2cfc291aef8b63625bb3fdc5f360',
+			'android.arch.persistence:db:1.1.1:db-1.1.1.aar:4ed3c473a2da0944203a66a9e84f4c2fb3bca9854c5d4a263a56b1aec4a52e74',
+			'com.android.support.constraint:constraint-layout-solver:1.1.2:constraint-layout-solver-1.1.2.jar:55f82d93e188b5183b71f4f3bace5725c900b737c3514c841114e225627ff88f',
+			'com.android.support.constraint:constraint-layout:1.1.2:constraint-layout-1.1.2.aar:839a7e16fc50adfabaa8cb753e675ed63f94e1e91ba9115ce43b0d6a37fe8aa6',
 			'com.android.support.test.espresso:espresso-contrib:3.0.1:espresso-contrib-3.0.1.aar:bb166e58a70842053f843b29af1b7113c8a49c79556855adf9648ebd08b8fc9a',
 			'com.android.support.test.espresso:espresso-core:3.0.1:espresso-core-3.0.1.aar:dbca1a46db203a7ef12aa7cea37e5d5345900f83401b32d5f60f220991290948',
 			'com.android.support.test.espresso:espresso-idling-resource:3.0.1:espresso-idling-resource-3.0.1.aar:d834e12b690cadc79c1f2a74d59a9bfc4dce25e824c012b56509367a94ced002',
 			'com.android.support.test:rules:1.0.1:rules-1.0.1.aar:7ca0f88390c6472177c576355955b63dc64c990405a946fd1e316f6fce233434',
 			'com.android.support.test:runner:1.0.1:runner-1.0.1.aar:c773e2cecbb0a86351f284c91620e7badeac5413da5a95e86f243d411774c42d',
-			'com.android.support:animated-vector-drawable:27.1.0:animated-vector-drawable-27.1.0.aar:1216b3a9ff63d083fa8dfe60503097854bb7bc1351f5442e18efdf2398a9532f',
-			'com.android.support:appcompat-v7:27.1.0:appcompat-v7-27.1.0.aar:bfcd982c4ce9611e6a9883fdbbdcb933e51687034f4317bce8ab86d1b3d3a98b',
-			'com.android.support:cardview-v7:27.1.0:cardview-v7-27.1.0.aar:074c06da88c5a8dd77dd785a8f6eb8125a5f1381dfe7e62cc9f497d6620db022',
-			'com.android.support:design:27.1.0:design-27.1.0.aar:9901a57c967980525af60a4de7894b25122f25980c4c778cd69637df61d47152',
+			'com.android.support:animated-vector-drawable:27.1.1:animated-vector-drawable-27.1.1.aar:59670473f6e98fda792f7bef25dd7292b0a3106031c7a5e30eb020bf26f077bd',
+			'com.android.support:appcompat-v7:27.1.1:appcompat-v7-27.1.1.aar:0c7808fbbc5838d831e32e3c0a6f84e1f2c981deb8f11e010650f2b57923a335',
+			'com.android.support:cardview-v7:27.1.1:cardview-v7-27.1.1.aar:8ed955dd037d82a7b4bbcaedb4f896523c3e4c1bf3ca698ce807c350767a2886',
+			'com.android.support:design:27.1.1:design-27.1.1.aar:7225973f7ee03765008a9c2f17a40b154c6885169fef022276e811c926a2202c',
 			'com.android.support:multidex-instrumentation:1.0.2:multidex-instrumentation-1.0.2.aar:b48db30d7e96af32f400af4b91d3b95481d8fff3146278190eb3b922d3846f15',
 			'com.android.support:multidex:1.0.2:multidex-1.0.2.aar:7cd48755c7cfdb6dd2d21cbb02236ec390f6ac91cde87eb62f475b259ab5301d',
-			'com.android.support:preference-v14:27.1.0:preference-v14-27.1.0.aar:0e5d1a22869151b1a30eb589674b3fd2a7aa7ac1b94010b2669576f9d10d5b30',
-			'com.android.support:preference-v7:27.1.0:preference-v7-27.1.0.aar:bce464b3aece8747fa1b4c01a0003da9f8b352c3bb5359b7b7bb02597d80963d',
-			'com.android.support:recyclerview-v7:27.1.0:recyclerview-v7-27.1.0.aar:32b25acbd6ffa6e4a44c5191f10539f8d2e9848cb80702e343d3bbb2d63f6c54',
+			'com.android.support:multidex:1.0.3:multidex-1.0.3.aar:ecf6098572e23b5155bab3b9a82b2fd1530eda6c6c157745e0f5287c66eec60c',
+			'com.android.support:preference-v14:27.1.1:preference-v14-27.1.1.aar:dc058932e6fd93bf57d23fcc2f22351c21e5125e513721e4b0b03374341ad400',
+			'com.android.support:preference-v7:27.1.1:preference-v7-27.1.1.aar:a1798a826b4097d00e49280f412b21af08f9bf1179c2e3838dc339d9f843416d',
+			'com.android.support:recyclerview-v7:27.1.1:recyclerview-v7-27.1.1.aar:d735e4727878e99ef3980c10d15dc3468462fd509d4fb60cb8bd20b0f735085c',
 			'com.android.support:support-annotations:26.1.0:support-annotations-26.1.0.jar:99d6199ad5a09a0e5e8a49a4cc08f818483ddcfd7eedea2f9923412daf982309',
-			'com.android.support:support-annotations:27.1.0:support-annotations-27.1.0.jar:3365960206c3d2b09e845f555e7f88f8effc8d2f00b369e66c4be384029299cf',
-			'com.android.support:support-compat:27.1.0:support-compat-27.1.0.aar:8369a3258c190a33929709b5ef2da4069ed74e753594e8336d624f1c06962708',
-			'com.android.support:support-core-ui:27.1.0:support-core-ui-27.1.0.aar:ed2dd33302e64676e84061cc4e280c720b1e160202cdd7d102453d0f4b86e06a',
-			'com.android.support:support-core-utils:27.1.0:support-core-utils-27.1.0.aar:4579b2131df13bb47e1fd15c4b36159692e9c9b51aa6e7f70c97f46c36c16da6',
-			'com.android.support:support-fragment:27.1.0:support-fragment-27.1.0.aar:b35eee0fafdf4a7a475ee6964223102d90017e68145e8ec458c52af0a9668b13',
-			'com.android.support:support-media-compat:27.1.0:support-media-compat-27.1.0.aar:897d37f263c16a15fd284e70ab5c9a987d3f60d2026294819c7f597bb5f3bb14',
-			'com.android.support:support-v4:27.1.0:support-v4-27.1.0.aar:7da1ec65c1b3bf69195f02dd061eedd6139a8a1983f442f3909714a52ef79e3f',
-			'com.android.support:support-vector-drawable:27.1.0:support-vector-drawable-27.1.0.aar:ad92e92090efd268a0716bce098636270f5cc3dfdde12f86e36e330b4f8aca06',
-			'com.android.support:transition:27.1.0:transition-27.1.0.aar:4c67b4ab242128de2ec05e237e49efc0e195d9f9d4e760445aa7fc30a5ef4017',
+			'com.android.support:support-annotations:27.1.1:support-annotations-27.1.1.jar:3365960206c3d2b09e845f555e7f88f8effc8d2f00b369e66c4be384029299cf',
+			'com.android.support:support-compat:27.1.1:support-compat-27.1.1.aar:880ce01ff5be42b233ff8ec0c61cefb7dc3dc9500fea9e24423214813ac27ea2',
+			'com.android.support:support-core-ui:27.1.1:support-core-ui-27.1.1.aar:a3ae20e6d5dffba69ac97b99846d2738003af8563843d5f3c9dc4c35b4804241',
+			'com.android.support:support-core-utils:27.1.1:support-core-utils-27.1.1.aar:61036832c54e8701aae954fc3bf96d1d80bf8d9dd531bff77d72def456ba087a',
+			'com.android.support:support-fragment:27.1.1:support-fragment-27.1.1.aar:ec72d6ac36a1a0e6523bbddba33d73ffad070b9b3dd246cc44d8727a41ddb5e6',
+			'com.android.support:support-media-compat:27.1.1:support-media-compat-27.1.1.aar:55e9837dda88b74a8c812c63a78c63fd83c6c039a8c22d318492663a493585eb',
+			'com.android.support:support-v4:27.1.1:support-v4-27.1.1.aar:4f41dfc3e89f2738e45c86264a85c0934d055ee8ebe2020e23c97f303b80a48b',
+			'com.android.support:support-vector-drawable:27.1.1:support-vector-drawable-27.1.1.aar:1c0f421114cf4627cf208776d6eb4f76340c78b7e96fe6e12b3e6eb950caf1b9',
+			'com.android.support:transition:27.1.1:transition-27.1.1.aar:c0765b2f3c78696567ec5b3f519d22da1e3df11ac994625adf4bb4dc571caacc',
 			'com.android.tools.analytics-library:protos:26.1.3:protos-26.1.3.jar:818c9f256f141d9dafec03a1aa2b94d240b2c140acfd7ee31a8b3e6c2b9479e3',
 			'com.android.tools.analytics-library:shared:26.1.3:shared-26.1.3.jar:7110706c7ada96c8b6f5ca80c478291bc7899d46277de2c48527e045442401a3',
 			'com.android.tools.analytics-library:tracker:26.1.3:tracker-26.1.3.jar:4155424bf2ce4872da83332579a1707252bc66cbd77c5144fdc4483d0f2e1418',
@@ -238,9 +236,7 @@ dependencyVerification {
 			'com.android.tools:sdk-common:26.1.3:sdk-common-26.1.3.jar:1948603ca9ff22c7ebb3178000bffa3a9dd2ca1cc5cb0c793cae08468b8fcfc1',
 			'com.android.tools:sdklib:26.1.3:sdklib-26.1.3.jar:4adcfaad9514607098d2c51503c39811112d3050f4d1e744c01c7f08f591032b',
 			'com.github.omadahealth:swipy:1.2.3:swipy-1.2.3.aar:63bff6e181742e3e243c29b595062ca65b4274bf7033c65460924f64f65c01e0',
-			'com.github.tony19:apktool-lib:1.4.4-3:apktool-lib-1.4.4-3.jar:bdc4e93b1dd6661698feedacc37d203801076deddd7fb350daf98611637a5cd6',
-			'com.github.tony19:logback-android-classic:1.1.1-6:logback-android-classic-1.1.1-6.jar:0d0939c2cd797ecb0b7d679f1e2314a9889a90a633f2fc5b66f11316cbd6626b',
-			'com.github.tony19:logback-android-core:1.1.1-6:logback-android-core-1.1.1-6.jar:9548fd28988d62a8f67b72fafc67167f91f061001513ae25f53921f2982c8c01',
+			'com.github.tony19:logback-android:1.1.1-12:logback-android-1.1.1-12.aar:3102228f0e408e3c003b34e96a604e9b9f59d314dcf8f03aa78d9d3648198932',
 			'com.gitlab.opentransitmap.public-transport-enabler:enabler:e0917d31:enabler-e0917d31.jar:92fc107c53cca8114b3a6b0e8dd7272743d60b9204cad8163dc2b7408d827f0e',
 			'com.gitlab.opentransitmap:public-transport-enabler:e0917d31:public-transport-enabler-e0917d31.jar:b2cf88dac77c0ebb1b831c1fe5989f585004ea2c181b31ca3036d5d55bdf0c69',
 			'com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.0:accessibility-test-framework-2.0.jar:cdf16ef8f5b8023d003ce3cc1b0d51bda737762e2dab2fedf43d1c4292353f7f',
@@ -296,6 +292,8 @@ dependencyVerification {
 			'javax.inject:javax.inject:1:javax.inject-1.jar:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
 			'javax.xml.bind:jaxb-api:2.2.12-b140109.1041:jaxb-api-2.2.12-b140109.1041.jar:b5e60cd8b7b5ff01ce4a74c5dd008f4fbd14ced3495d0b47b85cfedc182211f2',
 			'junit:junit:4.12:junit-4.12.jar:59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a',
+			'me.eugeniomarletti.kotlin.metadata:kotlin-compiler-lite:1.0.3-k-1.2.40:kotlin-compiler-lite-1.0.3-k-1.2.40.jar:7d0e1e47dc984ffc0f4bc4285e6298f8515a68d2a6cec28f107af95916b42f40',
+			'me.eugeniomarletti.kotlin.metadata:kotlin-metadata:1.4.0:kotlin-metadata-1.4.0.jar:82e70eef0d1482dae059e951dece1286d6032196316a8143eb2c6d2d2959e48d',
 			'net.bytebuddy:byte-buddy-agent:1.7.9:byte-buddy-agent-1.7.9.jar:ac1a993befb528c3271a83a9ad9c42d363d399e9deb26e0470e3c4962066c550',
 			'net.bytebuddy:byte-buddy:1.7.9:byte-buddy-1.7.9.jar:2ea2ada12b790d16ac7f6e6c065cb55cbcdb6ba519355f5958851159cad3b16a',
 			'net.sf.jopt-simple:jopt-simple:4.9:jopt-simple-4.9.jar:26c5856e954b5f864db76f13b86919b59c6eecf9fd930b96baa8884626baf2f5',
@@ -316,16 +314,16 @@ dependencyVerification {
 			'org.hamcrest:hamcrest-core:1.3:hamcrest-core-1.3.jar:66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9',
 			'org.hamcrest:hamcrest-integration:1.3:hamcrest-integration-1.3.jar:70f418efbb506c5155da5f9a5a33262ea08a9e4d7fea186aa9015c41a7224ac2',
 			'org.hamcrest:hamcrest-library:1.3:hamcrest-library-1.3.jar:711d64522f9ec410983bd310934296da134be4254a125080a0416ec178dfad1c',
-			'org.jetbrains.kotlin:kotlin-annotation-processing-gradle:1.2.50:kotlin-annotation-processing-gradle-1.2.50.jar:d418611cdba4c8ed11c41969a83b7742f9f86d6a265817fea5a09873d5f1f0d9',
-			'org.jetbrains.kotlin:kotlin-compiler-embeddable:1.2.50:kotlin-compiler-embeddable-1.2.50.jar:33c29ae4279164e2238b93f66cc2e5c26d985ad208aa3f86d70ddba01a0d8b5a',
+			'org.jetbrains.kotlin:kotlin-annotation-processing-gradle:1.2.51:kotlin-annotation-processing-gradle-1.2.51.jar:2baec687c8f25772f3d91006335af2883d660ee407d64669d0177b68bbf484b7',
+			'org.jetbrains.kotlin:kotlin-compiler-embeddable:1.2.51:kotlin-compiler-embeddable-1.2.51.jar:fd7d5314396131e5e048b487ca429030553f7ac2a268f700c8fca4da9bd51b1e',
 			'org.jetbrains.kotlin:kotlin-reflect:1.2.0:kotlin-reflect-1.2.0.jar:4f48a872bad6e4d9c053f4ad610d11e4012ad7e58dc19a03dd5eb811f36069dd',
-			'org.jetbrains.kotlin:kotlin-script-runtime:1.2.50:kotlin-script-runtime-1.2.50.jar:b7dfcf2570f333c61c6c50590ee7c042e022d90c9359dd179fdb4820a6bf64d1',
-			'org.jetbrains.kotlin:kotlin-stdlib-common:1.2.50:kotlin-stdlib-common-1.2.50.jar:77129af18d7fc2d3f19e4f2cb140fa47dd602e493c33bd02e79134a62a1bb000',
-			'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.50:kotlin-stdlib-jdk7-1.2.50.jar:d5b7968cf9d623436cb2d781031a12c79438d1f0b96f47a79a8dc5acfe20ee59',
+			'org.jetbrains.kotlin:kotlin-script-runtime:1.2.51:kotlin-script-runtime-1.2.51.jar:430895a1eef72b80973fe7e0658ca6efb5f5168aeaca176b173bf9edd7ea977c',
+			'org.jetbrains.kotlin:kotlin-stdlib-common:1.2.51:kotlin-stdlib-common-1.2.51.jar:5276f7b587157c39a581dcadd46341b108af874fa944170d11882f4ac4406ca9',
+			'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.51:kotlin-stdlib-jdk7-1.2.51.jar:588f0af9b8c7c798eefc1667408d8f58f201a5e4cd9ec3e2c559e93750f64837',
 			'org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.0:kotlin-stdlib-jre7-1.2.0.jar:c7a20fb951d437797afe8980aff6c1e5a03f310c661ba58ba1d4fa90cb0f2926',
 			'org.jetbrains.kotlin:kotlin-stdlib-jre8:1.2.0:kotlin-stdlib-jre8-1.2.0.jar:633524eee6ef1941f7cb1dab7ee3927b0a221ceee9047aeb5515f4cbb990c82a',
 			'org.jetbrains.kotlin:kotlin-stdlib:1.2.0:kotlin-stdlib-1.2.0.jar:05cfd9f5ac0b41910703a8925f7211a495909b27a2ffdd1c5106f1689aeafcd4',
-			'org.jetbrains.kotlin:kotlin-stdlib:1.2.50:kotlin-stdlib-1.2.50.jar:620b79d2ed94273b73588747b543adfe89b37e5d7aa2e34bab13eb2b92a15714',
+			'org.jetbrains.kotlin:kotlin-stdlib:1.2.51:kotlin-stdlib-1.2.51.jar:12c862d478aad2cb72251ee6541f04b0b7651bdf05577a81d95e907cecf8802c',
 			'org.jetbrains.trove4j:trove4j:20160824:trove4j-20160824.jar:1917871c8deb468307a584680c87a44572f5a8b0b98c6d397fc0f5f86596dbe7',
 			'org.jetbrains:annotations:13.0:annotations-13.0.jar:ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478',
 			'org.jvnet.staxex:stax-ex:1.7.7:stax-ex-1.7.7.jar:a31ff7d77163c0deb09e7fee59ad35ae44c2cee2cc8552a116ccd1583d813fb4',
