@@ -161,6 +161,7 @@ dependencies {
 	}
 	androidTestImplementation('tools.fastlane:screengrab:1.1.0') {
 		exclude group: 'com.android.support', module: 'support-annotations'
+		exclude group: 'com.android.support.test.uiautomator'
 		exclude group: 'com.google.code.findbugs'
 	}
 	kaptAndroidTestDebug "com.google.dagger:dagger-compiler:$daggerVersion"
@@ -189,7 +190,6 @@ dependencyVerification {
 			'com.android.support.test.espresso:espresso-contrib:3.0.1:espresso-contrib-3.0.1.aar:bb166e58a70842053f843b29af1b7113c8a49c79556855adf9648ebd08b8fc9a',
 			'com.android.support.test.espresso:espresso-core:3.0.1:espresso-core-3.0.1.aar:dbca1a46db203a7ef12aa7cea37e5d5345900f83401b32d5f60f220991290948',
 			'com.android.support.test.espresso:espresso-idling-resource:3.0.1:espresso-idling-resource-3.0.1.aar:d834e12b690cadc79c1f2a74d59a9bfc4dce25e824c012b56509367a94ced002',
-			'com.android.support.test.uiautomator:uiautomator-v18:2.1.2:uiautomator-v18-2.1.2.aar:ebedea0ff22ad4a31bb59c58b3fc3f047f235c1e9650468df6da47e02487719d',
 			'com.android.support.test:rules:1.0.1:rules-1.0.1.aar:7ca0f88390c6472177c576355955b63dc64c990405a946fd1e316f6fce233434',
 			'com.android.support.test:runner:1.0.1:runner-1.0.1.aar:c773e2cecbb0a86351f284c91620e7badeac5413da5a95e86f243d411774c42d',
 			'com.android.support:animated-vector-drawable:27.1.0:animated-vector-drawable-27.1.0.aar:1216b3a9ff63d083fa8dfe60503097854bb7bc1351f5442e18efdf2398a9532f',
