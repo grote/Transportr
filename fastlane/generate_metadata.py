@@ -52,7 +52,7 @@ def main():
         if short_desc is None or full_desc is None:
             print("Warning: Skipping %s because of incomplete translation" % entry)
             continue
-        if title:
+        if title is not None:
             save_file(title.text, LANG_MAP[entry], 'title.txt')
         else:
             directory_path = os.path.join(PATH, METADATA_PATH, LANG_MAP[entry])
