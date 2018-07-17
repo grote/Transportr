@@ -19,6 +19,7 @@
 
 package de.grobox.transportr.departures;
 
+import android.support.annotation.NonNull;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -70,16 +71,16 @@ class DepartureAdapter extends RecyclerView.Adapter<DepartureViewHolder> {
 		}
 	});
 
+	@NonNull
 	@Override
-	public DepartureViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+	public DepartureViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 		View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_departure, viewGroup, false);
 		return new DepartureViewHolder(v);
 	}
 
 	@Override
-	public void onBindViewHolder(final DepartureViewHolder ui, final int position) {
-		final Departure dep = getItem(position);
-		ui.bind(dep);
+	public void onBindViewHolder(@NonNull final DepartureViewHolder ui, final int position) {
+		ui.bind(getItem(position));
 	}
 
 	@Override

@@ -31,6 +31,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -220,7 +221,7 @@ public class DeparturesActivity extends TransportrActivity
 		getSupportLoaderManager().restartLoader(LOADER_DEPARTURES, args, this).forceLoad();
 	}
 
-	private void loadMoreDepartures(boolean later) {
+	private synchronized void loadMoreDepartures(boolean later) {
 		Date date = new Date();
 		int maxDepartures = MAX_DEPARTURES;
 		int count = adapter.getItemCount();
@@ -234,18 +235,21 @@ public class DeparturesActivity extends TransportrActivity
 			} else {
 				itemPos = count - 1;
 			}
+			// FIXME for some reason this can crash
+			Log.i(DeparturesActivity.class.getSimpleName(), "Count: " + count + " Get Item: " + itemPos);
 			date = adapter.getItem(itemPos).getTime();
 		}
 		// search from beginning + safety margin
 		else {
 			Date earliest = adapter.getEarliestDate();
 			Date latest;
-
+			int itemPos;
 			if (count >= MAX_DEPARTURES) {
-				latest = adapter.getItem(MAX_DEPARTURES - 1).getTime();
+				itemPos = MAX_DEPARTURES - 1;
 			} else {
-				latest = adapter.getItem(count - 1).getTime();
+				itemPos = count - 1;
 			}
+			latest = adapter.getItem(itemPos).getTime();
 			long span = latest.getTime() - earliest.getTime();
 			date.setTime(earliest.getTime() - span);
 
