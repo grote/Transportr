@@ -13,25 +13,25 @@
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toTopOf="parent"/>
 
-	<ImageButton
+	<android.support.v7.widget.AppCompatImageButton
 		android:id="@+id/prevDateButton"
 		android:layout_width="48dp"
 		android:layout_height="0dp"
 		android:layout_marginLeft="16dp"
 		android:layout_marginStart="16dp"
-		android:background="?selectableItemBackgroundBorderless"
+		android:background="?attr/selectableItemBackgroundBorderless"
 		android:contentDescription="@string/time_picker_previous_day"
-		android:tint="?colorControlNormal"
 		app:layout_constraintBottom_toBottomOf="@+id/dateView"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/dateView"
-		app:srcCompat="@drawable/ic_chevron_left"/>
+		app:srcCompat="@drawable/ic_chevron_left"
+		app:tint="?attr/colorControlNormal"/>
 
 	<TextView
 		android:id="@+id/dateView"
 		android:layout_width="0dp"
 		android:layout_height="48dp"
-		android:background="?selectableItemBackground"
+		android:background="?attr/selectableItemBackground"
 		android:clickable="true"
 		android:focusable="true"
 		android:gravity="center"
@@ -41,19 +41,19 @@
 		app:layout_constraintRight_toLeftOf="@+id/nextDateButton"
 		app:layout_constraintTop_toBottomOf="@+id/timePicker"/>
 
-	<ImageButton
+	<android.support.v7.widget.AppCompatImageButton
 		android:id="@+id/nextDateButton"
 		android:layout_width="48dp"
 		android:layout_height="0dp"
 		android:layout_marginEnd="16dp"
 		android:layout_marginRight="16dp"
-		android:background="?selectableItemBackgroundBorderless"
+		android:background="?attr/selectableItemBackgroundBorderless"
 		android:contentDescription="@string/time_picker_next_day"
-		android:tint="?colorControlNormal"
 		app:layout_constraintBottom_toBottomOf="@+id/dateView"
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/dateView"
-		app:srcCompat="@drawable/ic_chevron_right"/>
+		app:srcCompat="@drawable/ic_chevron_right"
+		app:tint="?attr/colorControlNormal"/>
 
 	<Button
 		android:id="@+id/cancelButton"

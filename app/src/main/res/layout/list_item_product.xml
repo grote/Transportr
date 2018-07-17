@@ -7,15 +7,15 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 
-	<ImageView
+	<android.support.v7.widget.AppCompatImageView
 		android:id="@+id/productImage"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:padding="5dp"
-		android:tint="?colorControlNormal"
 		app:layout_constraintEnd_toStartOf="@+id/productName"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
+		app:tint="?attr/colorControlNormal"
 		tools:ignore="ContentDescription"
 		tools:src="@drawable/product_bus"/>
 
