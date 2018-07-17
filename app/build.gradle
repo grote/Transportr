@@ -144,7 +144,7 @@ dependencies {
 	testImplementation 'org.mockito:mockito-core:2.13.0'
 	testImplementation "android.arch.core:core-testing:$lifecycleVersion"
 
-	androidTestImplementation 'com.android.support:multidex:1.0.3'
+	androidTestImplementation 'com.android.support:multidex:1.0.2'
 	androidTestImplementation("com.android.support.test.espresso:espresso-core:$espressoVersion") {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
@@ -195,7 +195,6 @@ dependencyVerification {
 			'com.android.support:design:27.1.1:design-27.1.1.aar:7225973f7ee03765008a9c2f17a40b154c6885169fef022276e811c926a2202c',
 			'com.android.support:multidex-instrumentation:1.0.2:multidex-instrumentation-1.0.2.aar:b48db30d7e96af32f400af4b91d3b95481d8fff3146278190eb3b922d3846f15',
 			'com.android.support:multidex:1.0.2:multidex-1.0.2.aar:7cd48755c7cfdb6dd2d21cbb02236ec390f6ac91cde87eb62f475b259ab5301d',
-			'com.android.support:multidex:1.0.3:multidex-1.0.3.aar:ecf6098572e23b5155bab3b9a82b2fd1530eda6c6c157745e0f5287c66eec60c',
 			'com.android.support:preference-v14:27.1.1:preference-v14-27.1.1.aar:dc058932e6fd93bf57d23fcc2f22351c21e5125e513721e4b0b03374341ad400',
 			'com.android.support:preference-v7:27.1.1:preference-v7-27.1.1.aar:a1798a826b4097d00e49280f412b21af08f9bf1179c2e3838dc339d9f843416d',
 			'com.android.support:recyclerview-v7:27.1.1:recyclerview-v7-27.1.1.aar:d735e4727878e99ef3980c10d15dc3468462fd509d4fb60cb8bd20b0f735085c',
