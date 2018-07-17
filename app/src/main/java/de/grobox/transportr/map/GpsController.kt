@@ -31,6 +31,7 @@ import de.grobox.transportr.locations.ReverseGeocoder
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.map.GpsController.Companion.GPS_FIX_EXPIRY
+import de.schildbach.pte.dto.Location.coord
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -101,8 +102,9 @@ internal class GpsController(val context: Context) : AbstractManager(), ReverseG
 
 }
 
-fun Location.toWrapLocation(): WrapLocation {
-    val loc = de.schildbach.pte.dto.Location.coord((latitude * 1E6).toInt(), (longitude * 1E6).toInt())
+fun Location.toWrapLocation(): WrapLocation? {
+    if (latitude == 0.0 && longitude == 0.0) return null
+    val loc = coord((latitude * 1E6).toInt(), (longitude * 1E6).toInt())
     return WrapLocation(loc)
 }
 
