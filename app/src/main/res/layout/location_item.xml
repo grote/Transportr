@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="fill_parent"
+	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 
 	<ImageView
@@ -10,19 +11,25 @@
 		android:layout_width="32dp"
 		android:layout_height="32dp"
 		android:padding="3dp"
-		android:scaleType="fitCenter"
 		android:tint="?colorControlNormal"
 		tools:ignore="ContentDescription"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/textView"
+		app:layout_constraintBottom_toBottomOf="@+id/textView"
 		tools:src="@drawable/ic_action_home"/>
 
 	<TextView
 		android:id="@+id/textView"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:ellipsize="middle"
-		android:gravity="center_vertical"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
 		android:padding="3dp"
-		android:text="Medium Text"
-		android:singleLine="true"/>
+		app:layout_constraintStart_toEndOf="@+id/imageView"
+		app:layout_constraintEnd_toEndOf="parent"
+		android:text="Medium Text"/>
 
-</LinearLayout>
+	<View
+		style="@style/Divider"
+		android:layout_width="0dp"
+		app:layout_constraintBottom_toBottomOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
