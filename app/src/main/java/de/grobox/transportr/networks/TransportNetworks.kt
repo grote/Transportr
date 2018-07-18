@@ -194,7 +194,7 @@ private val networks = arrayOf(
                         id = NetworkId.KVV,
                         description = R.string.np_desc_kvv,
                         logo = R.drawable.network_kvv_logo,
-                        factory = { KvvProvider(HttpUrl.parse("http://213.144.24.66/oeffi/")) }
+                        factory = { KvvProvider(HttpUrl.parse("https://projekte.kvv-efa.de/oeffi/")) }
                     ),
                     TransportNetwork(
                         id = NetworkId.VAGFR,
