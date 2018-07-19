@@ -262,12 +262,12 @@ private val networks = arrayOf(
                         logo = R.drawable.network_vvt_logo,
                         factory = { VvtProvider(VAO) }
                     ),
-                    TransportNetwork(
-                        id = NetworkId.IVB,
-                        description = R.string.np_desc_ivb,
-                        logo = R.drawable.network_ivb_logo,
-                        factory = { IvbProvider() }
-                    ),
+//                    TransportNetwork(
+//                        id = NetworkId.IVB,
+//                        description = R.string.np_desc_ivb,
+//                        logo = R.drawable.network_ivb_logo,
+//                        factory = { IvbProvider() }
+//                    ),
                     TransportNetwork(
                         id = NetworkId.STV,
                         name = R.string.np_name_stv,
@@ -740,9 +740,9 @@ private const val NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca"
 private const val VAO = "{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}"
 
 internal fun getContinentItems(context: Context): List<ContinentItem> {
-    return List(networks.size, { i ->
+    return List(networks.size) { i ->
         networks[i].getItem(context)
-    }).sortedBy { it.getName(context) }
+    }.sortedBy { it.getName(context) }
 }
 
 internal fun getTransportNetwork(id: NetworkId): TransportNetwork? {

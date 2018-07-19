@@ -2,6 +2,8 @@
 <changelog>
 
     <release version="2.0.1" versioncode="109">
+        <change>Fix KVV network</change>
+        <change>Remove IVB network, use VVT instead</change>
         <change>Fix crash due to invalid GPS location</change>
         <change>Fix crash on Android 4 for time setting and product dialog</change>
     </release>
