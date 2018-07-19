@@ -1,0 +1,42 @@
+
+Transportr és una aplicació sense ànim de lucre desenvolupada per persones de tot el món en el seu temps lliure .
+Volen fer que l'ús del transport públic sigui el més fàcil possible per a tothom.
+
+Aquesta aplicació fa servir les dades de diverses agències de transport públic locals
+ i proporciona una interfície unificada per a ells.
+ No pot verificar la correcció de les dades
+ i, per tant, <i>no ofereix garanties </i> per a la informació mostrada. 
+Utilitza-la sota el teu propi risc.
+
+<b>🛣️ Enrutament de viatges</b>. 
+ Simplement explica a Transportr on vols anar!
+Trobarà les millors connexions per a tu, t'informarà d'on canviar els autobusos,
+ i fins i tot et proporciona una hora estimada d'arribada.
+
+<b>⏱️ Sortides en directe</b>. Mostra les properes sortides de qualsevol o de totes les estacions.
+En àrees<i>suportades</i> també es mostraran retards en temps real.
+
+<b>🗽Llibertat de programari</b>. 
+El codi font de Transportr és 100% obert.
+Pots utilitzar-lo, estudiar-lo, compartir-lo i millorar-lo. Aquesta aplicació és tan bona com <i> TU</i> la facis.
+També pots afegir la teva ciutat, si encara no és compatible.
+
+<b>🛰️ Troba la teva posició.</b> 
+Transportr fa servir el GPS de navegació per satèl·lit 
+per fer un seguiment de la teva posició actual, de manera que mai et perdis.
+Pots trobar estacions properes per començar un nou viatge i, a continuació, veuràs fins on et trobes del viatge
+
+<b>🌟 Recorda els llocs preferits.</b> 
+Per arribar a on necessitis anar més ràpid, 
+Transportsr desa ubicacions i viatges freqüentment utilitzats.
+D'aquesta manera no cal que els escriguis una i altra vegada.
+
+<b>🚫 Sense anuncis, sense seguiment</b>. T
+Aquesta aplicació no mostra anuncis 
+ni molestes notificacions.
+ A més, no utilitza eines de seguiment com Google Analytics per espiar-te
+
+
+<b>🗺️ Mapes bonics</b>. 
+Mostra les estacions o tot el viatge en un mapa 
+i sempre saber on ets per no perdre on baixar de l'autobús. 

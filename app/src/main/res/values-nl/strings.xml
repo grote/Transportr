@@ -2,6 +2,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - open-bron Openbaar Vervoer</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Gratis openbaar vervoer-hulpmiddel zonder advertenties of tracking</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Transportr is een niet-commerciële app ontwikkeld door mensen over de hele wereld in hun vrije tijd. Zij willen het gebruik van openbaar vervoer zo makkelijk mogelijk maken voor iedereen.
+
+Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbieders, zoals 9292, NS en Railteam, en geeft deze overzichtelijk weer. De app kan de correctheid van de gegevens niet verifiëren en <i>biedt daarom geen garanties</i> voor de weergegeven informatie. Gebruik op eigen risico.
+
+<b>🛣️ Routebeschrijvingen</b>. Vertel Transportr gewoon waar je heen wilt gaan! Het vindt de beste verbindingen voor je, adviseert je waar je van bus moet veranderen, en geeft zelf een verwachte aankomsttijd.
+
+<b>⏱️ Live vertrektijden</b>. Laat de vertrektijden zien van elk station. In <i>ondersteunde</i> gebieden worden ook vertragingen weergegeven.
+
+<b>🗽 Softwarevrijheid</b>. De broncode van Transportr is 100% open. Je kan het vrij bekijken, bestuderen, delen of het verbeteren. Deze app is zo goed als <i>jij</i> het maakt! Je kan zelfs je eigen stad toevoegen, als het nog niet ondersteund wordt.
+
+<b>🛰️ Vind je locatie.</b> Transportr gebruikt GPS satellietnavigatie om je locatie bij te houden zodat je nooit verdwaalt. Je kan de dichtstbijzijnde stations vinden om een nieuwe reis te beginnen en te zien hoe ver je bent op je reis.
+
+<b>🌟 Onthoud favoriete plaatsen.</b> Om sneller te gaan naar waar je wilt zijn slaat Transportr vaak gebruikte locaties en reizen op. Op die manier hoef je ze niet steeds opnieuw in te typen.
+
+<b>🚫 Geen reclame, volgt je niet</b>. Deze app bevat geen reclames of irritante notificaties. Het gebruikt ook geen volgtechnieken zoals Google Analytics om je te bespioneren. 
+
+<b>🗺️ Prachtige kaarten</b>. Bekijk stations van je hele reis op een kaart en weet altijd waar je bent om je bushalte niet te missen.
+]]></string>
   <string name="drawer_settings">Instellingen</string>
   <string name="drawer_changelog">Wijzigingslog</string>
   <string name="drawer_about">Over</string>
@@ -28,6 +47,7 @@
   <string name="about_description">Transportr is een openbaar vervoer-hulpmiddel, ontwikkeld door mensen van over de hele wereld om het gebruik van openbaar vervoer zo makkelijk mogelijk te maken.</string>
   <string name="about_warning_title">Waarschuwing</string>
   <string name="about_warning_text">Wij geven geen garantie op de (extern aangeleverde) gegevens. Gebruik de app op eigen risico.</string>
+  <string name="about_contributions">Deze app is vrije software, dus je kunt het vrij gebruiken, bestuderen, delen of verbeteren. Bijdragen worden aangemoedigd en gewaardeerd. Als je wilt bijdragen, bezoek dan de homepagina voor meer informatie.</string>
   <string name="about_visit_website">Website bezoeken</string>
   <string name="open_navigation_drawer">Navigatiemenu openen</string>
   <string name="from">Van</string>

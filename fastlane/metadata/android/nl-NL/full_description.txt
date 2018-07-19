@@ -1,11 +1,18 @@
-Transportr is een non-profit app ontwikkeld door mensen overal ter wereld om het gebruik van het openbaar vervoer zo makkelijk mogelijk te maken, waar je ook bent.
 
-Het ondersteunt veel locaties over heel de wereld, maar werkt momenteel het best in Europa. Als je in een niet-ondersteund gebied woont, kun je het aan Transportr toevoegen.
-Instructies staan op de homepage.
+Transportr is een niet-commerciële app ontwikkeld door mensen over de hele wereld in hun vrije tijd. Zij willen het gebruik van openbaar vervoer zo makkelijk mogelijk maken voor iedereen.
 
-Transportr vindt verbindingen vanaf je huis, je huidige positie, of een gegeven station naar
-waar je ook heen wilt gaan. Je kan ook volledige routes als favorieten opslaan en
-met één enkele swipe naar latere verbindingen zoeken. Natuurlijk kan je ook je locatie op de kaart tonen
-en je positie in het traject volgen via GPS.
+Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbieders, zoals 9292, NS en Railteam, en geeft deze overzichtelijk weer. De app kan de correctheid van de gegevens niet verifiëren en <i>biedt daarom geen garanties</i> voor de weergegeven informatie. Gebruik op eigen risico.
 
-Je kan ook dichtbijgelegen stations vinden en vertrektijden bekijken, inclusief vertragingen (als er zijn).
+<b>🛣️ Routebeschrijvingen</b>. Vertel Transportr gewoon waar je heen wilt gaan! Het vindt de beste verbindingen voor je, adviseert je waar je van bus moet veranderen, en geeft zelf een verwachte aankomsttijd.
+
+<b>⏱️ Live vertrektijden</b>. Laat de vertrektijden zien van elk station. In <i>ondersteunde</i> gebieden worden ook vertragingen weergegeven.
+
+<b>🗽 Softwarevrijheid</b>. De broncode van Transportr is 100% open. Je kan het vrij bekijken, bestuderen, delen of het verbeteren. Deze app is zo goed als <i>jij</i> het maakt! Je kan zelfs je eigen stad toevoegen, als het nog niet ondersteund wordt.
+
+<b>🛰️ Vind je locatie.</b> Transportr gebruikt GPS satellietnavigatie om je locatie bij te houden zodat je nooit verdwaalt. Je kan de dichtstbijzijnde stations vinden om een nieuwe reis te beginnen en te zien hoe ver je bent op je reis.
+
+<b>🌟 Onthoud favoriete plaatsen.</b> Om sneller te gaan naar waar je wilt zijn slaat Transportr vaak gebruikte locaties en reizen op. Op die manier hoef je ze niet steeds opnieuw in te typen.
+
+<b>🚫 Geen reclame, volgt je niet</b>. Deze app bevat geen reclames of irritante notificaties. Het gebruikt ook geen volgtechnieken zoals Google Analytics om je te bespioneren. 
+
+<b>🗺️ Prachtige kaarten</b>. Bekijk stations van je hele reis op een kaart en weet altijd waar je bent om je bushalte niet te missen.

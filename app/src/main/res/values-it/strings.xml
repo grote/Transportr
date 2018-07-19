@@ -2,6 +2,44 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - trasporto pubblico open source</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Assistente per il trasporto pubblico gratis e senza pubblicità o tracciatori</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Transportr è un\'app non-profit sviluppata da persone di tutto il mondo nel loro tempo libero.
+Il loro obiettivo è quello di rendere l\'uso del trasporto pubblico il più semplice possibile per tutti.
+
+Quest\'app usa i dati di varie aziende di trasporto pubblico locali
+e li fornisce in un\'interfaccia unificata.
+L\'app non può verificare la correttezza dei dati,
+perciò <i>non fornisce alcuna garanzia</i> per le informazioni mostrate.
+Usa l\'app a tuo rischio.
+
+<b>🛣️ Organizza il tuo viaggio</b>. Dì a Transportr dove vuoi andare!
+L\'app troverà il collegamento migliore per te, ti avverte quando cambiare mezzo
+e persino ti dice il tempo previsto di arrivo.
+
+<b>⏱️ Partenze in tempo reale</b>. Mostra le prossime partenze da qualsiasi stazione.
+Nelle aree <i>supportate</i> l\'app mostra anche il ritardo in tempo reale.
+
+<b>🗽 Libertà del software</b>. Il codice sorgente di Transportr è 100% aperto.
+Puoi liberamente utilizzarlo, studiarlo, condividerlo e migliorarlo.
+Quest\'app è buona perché sei <i>tu</i> a renderla così.
+Puoi anche aggiungere la tua città da solo se non ancora supportata.
+
+<b>🛰️ Trova la tua posizione.</b> Transportr usa la navigazione satellitare GPS
+per mantenere traccia della tua posizione così non potrai mai perderti.
+Puoi anche trovare le stazioni più vicine per fare un nuovo percorso
+e quindi vedere quanto lontano sei dall\'arrivo.
+
+<b>🌟 Ricorda i posti preferiti.</b> Per andare dove devi andare rapidamente,
+Transportr salva i posti e i viaggi utilizzati frequentemente.
+In questo modo non devi riscriverli ogni volta.
+
+<b>🚫 Nessuna pubblicità, nessun tracciamento</b>. Questa\'app non mostra pubblicità
+o noiose notifiche.
+Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
+
+<b>🗺️ Mappe bellissime</b>. Mostra le stazioni o l\'intero tragitto sulla mappa
+e mostra sempre dove sei per non perderti la fermata dove devi scendere.
+]]></string>
   <string name="drawer_settings">Impostazioni</string>
   <string name="drawer_changelog">Registro delle modifiche</string>
   <string name="drawer_about">Informazioni</string>
@@ -301,4 +339,5 @@
   <string name="czech">Ceco</string>
   <string name="hungarian">Ungherese</string>
   <string name="japanese">Giapponese</string>
+  <string name="russian">Russo</string>
 </resources>

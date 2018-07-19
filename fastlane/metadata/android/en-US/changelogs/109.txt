@@ -1,0 +1,4 @@
+* Fix KVV network
+* Remove IVB network, use VVT instead
+* Fix crash due to invalid GPS location
+* Fix crash on Android 4 for time setting and product dialog
