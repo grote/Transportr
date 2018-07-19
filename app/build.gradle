@@ -10,8 +10,8 @@ android {
 	buildToolsVersion "28.0.1"
 
 	defaultConfig {
-		versionCode 108
-		versionName "2.0.0"
+		versionCode 109
+		versionName "2.0.1"
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 15
