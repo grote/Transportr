@@ -407,11 +407,11 @@ private val networks = arrayOf(
             Country(
                 R.string.np_region_finland, flag = "🇫🇮", networks = listOf(
                     TransportNetwork(
-                        id = NetworkId.HSL,
+                        id = NetworkId.FI,
                         description = R.string.np_desc_hsl,
                         logo = R.drawable.network_hsl_logo,
                         status = BETA,
-                        factory = { HslProvider("pte_hsl", "Eixaeb9tnohcah7A") }
+                        factory = { HslProvider(NAVITIA) }
                     )
                 )
             ),
