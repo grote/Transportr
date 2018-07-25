@@ -463,6 +463,14 @@ private val networks = arrayOf(
                         description = R.string.np_desc_pl,
                         logo = R.drawable.network_pl_logo,
                         factory = { PlProvider() }
+                    ),
+                    TransportNetwork(
+                        id = NetworkId.PLNAVITIA,
+                        name = R.string.np_name_pl_navitia,
+                        description = R.string.np_desc_pl_navitia,
+                        agencies = R.string.np_desc_pl_navitia_networks,
+                        logo = R.drawable.network_pl_navitia_logo,
+                        factory = { PlNavitiaProvider(NAVITIA) }
                     )
                 )
             ),
