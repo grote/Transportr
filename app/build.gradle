@@ -130,7 +130,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:9c909718') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:621c95e0') {
 		exclude module: 'service'
 		exclude group: 'org.json' // provided by Android
 		exclude group: 'net.sf.kxml' // provided by Android
