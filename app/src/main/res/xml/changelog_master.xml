@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="2.0.2" versioncode="110">
+        <change>Added Hungary provider</change>
+        <change>Added Municipal Transports of Poland</change>
+    </release>
+
     <release version="2.0.1" versioncode="109">
         <change>Fix KVV network</change>
         <change>Remove IVB network, use VVT instead</change>
