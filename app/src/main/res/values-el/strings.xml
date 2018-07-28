@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Δημόσιες μεταφορές ανοιχτού κώδικα</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Δωρεάν βοηθός δημόσιων μεταφορών χωρίς διαφημίσεις ή παρακολούθηση</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Το Transportr είναι μία εφαρμογή μη-κερδοσκοπική που αναπτύσσεται από άτομα σε όλο τον κόσμο στον ελεύθερο τους χρόνο.
+Θέλουν να κάνουν την χρήση των δημόσιων μεταφορών όσο το δυνατό ευκολότερη για όλους.
+
+Αυτή η εφαρμογή χρησιμοποιεί δεδομένα από διάφορες τοπικές δημόσιες υπηρεσίες
+και παρέχει μία ενοποιημένη διεπαφή για αυτές.
+Δεν μπορεί να επιβεβαιώσει την ορθότητα των δεδομένων και επομένως
+<i>δεν παρέχει εγγυήσεις</i> για τις προβαλλόμενες πληροφορίες.
+Παρακαλώ χρησιμοποιήστε τη με δική σας ευθύνη.
+
+<b>🛣️ Δρομολόγηση ταξιδιού</b>. Απλά πείτε στο Transportr που θέλετε να πάτε!
+Βρίσκει τις καλύτερες συνδέσεις για εσάς, σας συμβουλέψει για το που να αλλάξετε λεωφορεία,
+και ακόμη σας δίνει μια εκτιμώμενη ώρα άφιξης.
+
+<b>⏱️ Ζωντανές αναχωρήσεις</b>. Εμφανίζει επερχόμενες αναχωρήσεις από οποιοδήποτε ή από όλους τους σταθμούς.
+Σε <i>υποστηριζόμενες</i> περιοχές, εμφανίζονται επίσης οι καθυστερήσεις σε πραγματικό χρόνο.
+
+<b>🗽 Ελευθερία λογισμικού</b>. Ο πηγαίος κώδικας του Transportr είναι 100% ανοιχτός.
+Μπορείτε ελεύθερα να χρησιμοποιείτε, μελετάτε, μοιράζεστε και να τον βελτιώνετε.
+Αυτή η εφαρμογή είναι τόσο καλή όσο <i>εσείς</i> που την κάνετε.
+Μπορείτε ακόμη να προσθέσετε την πόλη σας μόνοι σας, εάν δεν υποστηρίζετε ήδη.
+
+<b>🛰️ Βρίσκει την τοποθεσία σας.</b> Το Transportr χρησιμοποιεί την πλοήγηση με GPS
+για να ιχνηλατεί την τρέχουσα τοποθεσία σας - ώστε να μην χαθείτε ποτέ.
+Μπορείτε να βρείτε κοντινούς σταθμούς για να ξεκινήσετε ένα ταξίδι
+και μετά να δείτε πόσο έχει εξελιχθεί το ταξίδι σας.
+
+<b>🌟 Θυμάται αγαπημένες τοποθεσίες.</b> Για να σας πάει γρηγορότερα όπου χρειάζεται να πάτε,
+Το Transportr αποθηκεύει συχνά χρησιμοποιούμενες τοποθεσίες και ταξίδια.
+Με αυτό τον τρόπο δεν χρειάζεται να τα πληκτρολογείτε ξανά και ξανά.
+
+<b>🚫 Όχι διαφημίσεις, Όχι παρακολούθηση</b>. Αυτή η εφαρμογή δεν προβάλει διαφημίσεις
+ή ενοχλητικές ειδοποιήσεις.
+Επίσης δεν χρησιμοποιεί εργαλεία παρακολούθησης όπως το Google Analytics για να σας κατασκοπεύει.
+
+<b>🗺️ Υπέροχοι χάρτες</b>. Προβάλει σταθμούς ή ολόκληρο το ταξίδι σας σε χάρτη
+και πάντα ξέρει που είστε ώστε να μην χάσετε το σημείο που θα κατέβετε από το λεωφορείο.
+]]></string>
+  <string name="drawer_settings">Ρυθμίσεις</string>
+  <string name="drawer_changelog">Καταγραφή αλλαγών</string>
+  <string name="drawer_about">Σχετικά</string>
+  <string name="drawer_contributors">Συνεισφέροντες</string>
+  <string name="drawer_report_issue">Αναφορά προβλήματος</string>
+  <string name="action_fav_trip">Σημείωση ταξιδιού ως αγαπημένο</string>
+  <string name="action_unfav_trip">Αποσημείωση ταξιδιού ως αγαπημένο</string>
+  <string name="action_switch_locations">Εναλλαγή Από και Προς</string>
+  <string name="action_time_type">Η ώρα είναι</string>
+  <string name="trip_dep">Αναχώρηση</string>
+  <string name="trip_arr">Άφιξη</string>
+  <string name="action_refresh">Ανανέωση</string>
+  <string name="action_navigation_expand">Εμφάνιση ενδιάμεσων στάσεων</string>
+  <string name="action_choose_products">Μέσα μεταφοράς</string>
+  <string name="action_share">Μοίρασμα</string>
+  <string name="action_trip_calendar">Προσθήκη στο ημερολόγιο</string>
+  <string name="action_trip_delete">Διαγραφή ταξιδιού</string>
+  <string name="action_show_on_external_map">Εμφάνιση σε εξωτερικό χάρτη</string>
+  <string name="action_copy">Αντιγραφή</string>
+  <string name="drawer_departures">Αναχωρήσεις</string>
+  <string name="tab_about">Σχετικά</string>
+  <string name="tab_libraries">Βιβλιοθήκες</string>
+  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+\nΑρχική μετάφραση: Βαγγέλης Σκαρμούτσος</string>
+  <string name="about_description">Το Transportr είναι ένα εγχειρίδιο δημόσιων μεταφορών που αναπτύχθηκε από ανθρώπους σε όλο τον κόσμο για να κάνει τις δημόσιες μεταφορές όσο γίνεται πιο εύκολες όπου κι αν είστε.</string>
+  <string name="about_warning_title">Προειδοποίηση</string>
+  <string name="about_warning_text">Δεν υπάρχει εγγύηση για την ορθότητα των (εξωτερικώς παρεχόμενων) δεδομένων. Παρακαλώ χρησιμοποιήστε αυτή την εφαρμογή μόνο με δική σας ευθύνη.</string>
+  <string name="about_contributions">Αυτή η εφαρμογή είναι Ελεύθερο Λογισμικό, έτσι μπορείτε να την χρησιμοποιήσετε ελεύθερα, να την μελετήσετε, να την μοιραστείτε και να την βελτιώσετε. Οι συνεισφορές προτρέπονται και εκτιμούνται. Αν θέλετε να συνεισφέρετε, παρακαλώ επισκεφτείτε τον ιστοτόπο μας για περισσότερες πληροφορίες.</string>
+  <string name="about_visit_website">Επίσκεψη ιστοτόπου</string>
+  <string name="open_navigation_drawer">Open Navigation Drawer</string>
+  <string name="from">Από</string>
+  <string name="to">Προς</string>
+  <string name="via">Διαμέσου</string>
+  <string name="search_hint">Αναζήτηση εδώ</string>
+  <string name="from_here">Από εδώ</string>
+  <string name="to_here">Προς εδώ</string>
+  <string name="clear_location">Καθαρισμός τοποθεσίας</string>
+  <string name="walk">Περπάτημα</string>
+  <string name="alpha">alpha</string>
+  <string name="beta">beta</string>
+  <string name="network">Δίκτυο</string>
+  <string name="pick_network_activity">Επιλέξτε περιοχή</string>
+  <string name="pick_network_first_run">Καλώς ήλθατε στο Transportr!\n\nΠαρακαλώ επιλέξτε μεταφορικό δίκτυο από την περιοχή σας για να συνεχίσετε. Μπορείτε να το αλλάξετε οποιαδήποτε στιγμή.</string>
+  <string name="stations_searching_position">Αναζήτηση τρέχουσας θέσης...</string>
+  <string name="drawer_nearby_stations">Κοντινοί σταθμοί</string>
+  <string name="find_nearby_stations">Εύρεση κοντινών σταθμών</string>
+  <string name="find_departures">Εύρεση αναχωρήσεων</string>
+  <string name="share_trip_via">Μοίρασμα ενδιάμεσων τοποθεσιων ταξιδιού </string>
+  <string name="more">Περισσότερα</string>
+  <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
+  <string name="for_x_min">για %d min</string>
+  <string name="change_time">Αλλαγή ώρας</string>
+  <string name="now">Τώρα</string>
+  <string name="now_small">τώρα</string>
+  <string name="yesterday">Εχθές</string>
+  <string name="today">Σήμερα</string>
+  <string name="tomorrow">Αύριο</string>
+  <string name="in_x_minutes">σε %dmin</string>
+  <string name="x_minutes_ago">%dmin πριν</string>
+  <string name="time_picker_previous_day">Προηγούμενη μέρα</string>
+  <string name="time_picker_next_day">Επόμενη μέρα</string>
+  <string name="ok">ΟΚ</string>
+  <string name="cancel">Άκυρο</string>
+  <string name="pref_transport_network">Δίκτυο μεταφοράς</string>
+  <string name="pref_display">Προβολή</string>
+  <string name="pref_theme_title">Θέμα</string>
+  <string name="pref_theme_light">Ανοιχτό</string>
+  <string name="pref_theme_dark">Σκούρο</string>
+  <string name="pref_language_title">Γλώσσα</string>
+  <string name="pref_directions_routing">Κατευθύνσεις και δρομολόγηση ταξιδιού</string>
+  <string name="pref_optimize">Βελτιστοποίηση για</string>
+  <string name="pref_optimize_least_duration">Ελάχιστη διάρκεια</string>
+  <string name="pref_optimize_least_changes">Ελάχιστες αλλαγές</string>
+  <string name="pref_optimize_least_walking">Ελάχιστο περπάτημα</string>
+  <string name="pref_walk_speed">Ταχύτητα βάδισης</string>
+  <string name="pref_walk_speed_slow">Αργή</string>
+  <string name="pref_walk_speed_normal">Φυσιολογική</string>
+  <string name="pref_walk_speed_fast">Γρήγορη</string>
+  <string name="pref_show_when_locked_title">Εμφάνιση ταξιδιού και αναζήτηση αποτελεσμάτων ακόμη κι όταν η οθόνη είναι κλειδωμένη</string>
+  <string name="pref_show_when_locked_summary">Εμφάνιση πάνω από την οθόνη κλειδώματος</string>
+  <string name="error">Σφάλμα</string>
+  <string name="error_no_internet">Απαιτείται σύνδεση διαδικτύου. Παρακαλώ σιγουρευτείτε ότι η πρόσβαση σας στο διαδίκτυο λειτουργεί.</string>
+  <string name="error_connection_failure">Η σύνδεση απέτυχε. Παρακαλώ δοκιμάστε ξανά.</string>
+  <string name="error_trip_refresh_failed">Τα δεδομένα από το τρέχον ταξίδι δεν μπόρεσαν να ανανεωθούν.</string>
+  <string name="error_geo_intent">Δεν μπόρεσε να ανοιχθεί η εξωτερική τοποθεσία</string>
+  <string name="error_find_nearby_stations">Δεν μπόρεσαν να βρεθούν κοντινοί σταθμοί</string>
+  <string name="error_departures">Δεν μπόρεσαν να βρεθούν αναχωρήσεις</string>
+  <string name="trip_error_ambiguous">Δεν μπόρεσε να βρεθεί η τοποθεσία. Παρακαλώ δοκιμάστε αναζήτηση με διαφορετικές τοποθεσίες.</string>
+  <string name="trip_error_too_close">Οι τοποθεσίες \'από\' και \'προς\' είναι πολύ κοντά μεταξύ τους.</string>
+  <string name="trip_error_unknown_from">Δεν μπόρεσε να βρεθεί η τοποθεσία \'από\'. Παρακαλώ δοκιμάστε κάποια άλλη.</string>
+  <string name="trip_error_unknown_via">Δεν μπόρεσε να βρεθεί η τοποθεσία \'διαμέσου\". Παρακαλώ δοκιμάστε κάποια άλλη.</string>
+  <string name="trip_error_unknown_to">Δεν μπόρεσε να βρεθεί η τοποθεσία \'προς\'. Παρακαλώ δοκιμάστε κάποια άλλη.</string>
+  <string name="trip_error_unresolvable_address">Δεν μπόρεσε να βρεθεί η παρεχόμενη διεύθυνση. Παρακαλώ δοκιμάστε κάποια άλλη.</string>
+  <string name="trip_error_no_trips">Δεν μπόρεσαν να βρεθούν σύνδεσμοι :(</string>
+  <string name="trip_error_invalid_date">Η ημερομηνία αναζήτησης δεν υποστηρίζεται προς το παρόν από τον πάροχο δεδομένων. Παρακαλώ δοκιμάστε άλλη ημερομηνία.</string>
+  <string name="trip_error_service_down">Ο πάροχος δεδομένων είναι προς το παρόν μη διαθέσιμος :(\nΠαρακαλώ δοκιμάστε ξανά αργότερα.</string>
+  <string name="trip_error_pte">Αν θέλετε να αναφέρετε αυτό το σφάλμα, παρακαλώ αναφέρετε το απ\'΄ευθείας στο public-transport-enabler και επισυνάψτε μια οθονολήψη.</string>
+  <string name="trip_issue">Ίσως να υπάρχει πρόβλημα με αυτή τη σύνδεση.</string>
+  <string name="try_again">Δοκιμάστε ξανά</string>
+  <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <string name="meter">%d m</string>
+  <plurals name="stops">
+    <item quantity="one">%d Στάση</item>
+    <item quantity="other">%d Στάσεις</item>
+  </plurals>
+  <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
+  <string name="platform">(Πλατφόρμα %s)</string>
+  <string name="system_default">Προεπιλογή συστήματος</string>
+  <string name="trip_share_date">Ημερομηνία: %s</string>
+  <string name="times_include_delays">(Προσοχή: Οι χρόνοι μπορεί να περιέχουν αναφερόμενες καθυστερήσεις)</string>
+  <string name="created_by">Δημιουργήθηκε από %s</string>
+  <string name="home">Σπίτι</string>
+  <string name="home_dialog_title">Ορισμός τοποθεσίας σπιτιού</string>
+  <string name="widget_name_quickhome">Πάνε με στο σπίτι</string>
+  <string name="work">Δουλειά</string>
+  <string name="work_hint">Ορισμός τοποθεσίας δουλειάς</string>
+  <string name="widget_name_quickwork">Πάνε στην δουλειά</string>
+  <string name="tap_to_set">Πατήστε για ορισμό</string>
+  <string name="widget_name_favorites">%1$s προς %2$s</string>
+  <string name="widget_name_favorites_via">%1$s προς %2$s (μέσω %3$s)</string>
+  <string name="action_set_locations">Επεξεργασία αναζήτησης</string>
+  <string name="action_swap_locations">Αναζήτηση ταξιδιού επιστροφής</string>
+  <string name="action_change">Αλλαγή</string>
+  <string name="action_add_shortcut">Προσθήκη συντόμευσης εκκίνησης</string>
+  <string name="location_gps">Χρήση τρέχουσας θέσης</string>
+  <string name="warning_no_gps_fix">Δεν μπόρεσε να βρεθεί η τοποθεσία σου ακόμη.</string>
+  <string name="permission_denied_gps">Δεν έδωσες πρόσβαση στην τοποθεσίας σου, έτσι αυτή η λειτουργικότητα δεν θα δουλέψει. Παρακαλώ χορηγήστε άδεις στις ρυθμίσεις της εφαρμογής.</string>
+  <string name="warning_gps_off">Η τοποθεσία είναι σβηστή. Παρακαλώ ανάψτε την στις ρυθμίσεις.</string>
+  <string name="onboarding_location_title">Σύρετε επάνω</string>
+  <string name="onboarding_location_message">Περισσότερα χαρακτηριστικά κρύβονται παρακάτω</string>
+  <string name="onboarding_directions_title">Περισσότερες επιλογές αναζήτησης</string>
+  <string name="onboarding_directions_message">Με κλικ σε αυτό το εικονίδιο αποκαλύπτονται προχωρημένες ρυθμίσεις αναζήτησης.</string>
+  <string name="select_products">Επιλογή μέσων μεταφοράς</string>
+  <string name="product_high_speed_train">Τρένο υψηλής ταχύτητας</string>
+  <string name="product_regional_train">Τοπικό τρένο</string>
+  <string name="product_suburban_train">Προαστιακό τρένο</string>
+  <string name="product_subway">Μετρό</string>
+  <string name="product_tram">Τραμ</string>
+  <string name="product_bus">Λεωφορείο</string>
+  <string name="product_ferry">Φέρι</string>
+  <string name="product_cablecar">Τελεφερίκ</string>
+  <string name="product_on_demand">Κατά ζήτηση</string>
+  <!--ckChangeLog-->
+  <string name="changelog_full_title">Καταγραφή αλλαγών</string>
+  <string name="changelog_title">Τι νέο υπάρχει</string>
+  <string name="changelog_show_full">Περισσότερα...</string>
+  <string name="np_continent_europe">Ευρώπη</string>
+  <string name="np_continent_africa">Αφρική</string>
+  <string name="np_continent_north_america">Βόρεια Αμερική</string>
+  <string name="np_continent_central_america">Κεντρική Αμερική</string>
+  <string name="np_continent_south_america">Νότια Αμερική</string>
+  <string name="np_continent_asia">Ασία</string>
+  <string name="np_continent_oceania">Ωκεανία</string>
+  <string name="np_region_australia">Αυστραλία</string>
+  <string name="np_desc_australia">Μελβούρνη, Σίδνεϊ, Μπρίσμπεϊν, Πέρθ, Αδελαΐδα, Χόμπαρτ, Launceston, Burnie</string>
+  <string name="np_desc_sydney">Αυστραλία, Νέα Νότια Ουαλία, Σίδνεϊ</string>
+  <string name="np_region_austria">Αυστρία</string>
+  <string name="np_desc_ivb">Ίνσμπουρκ</string>
+  <string name="np_desc_linz">Άνω Αυστρία, Λίντς</string>
+  <string name="np_desc_oebb">Αυστρία</string>
+  <string name="np_desc_stv">Στυρία, Γκρατς, Μάρμπουργκ, Μαριμπόρ</string>
+  <string name="np_desc_vor">Κάτω Αυστρία, Βουργουνδία, Βιέννη</string>
+  <string name="np_desc_vvt">Τύρολο</string>
+  <string name="np_desc_wien">Βιέννη</string>
+  <string name="np_region_belgium">Βέλγιο</string>
+  <string name="np_desc_sncb">Δημόσιες μεταφορές στο Βέλγιο</string>
+  <string name="np_region_br">Βραζιλία</string>
+  <string name="np_name_br">Βραζιλία</string>
+  <string name="np_desc_br">Σάο Πάολο, Ρίο ντε Τζανέιρο, Belo Horizonte και Πόρτο Αλέγκρε</string>
+  <string name="np_name_br_floripa">Φλοριανόπολις</string>
+  <string name="np_desc_br_floripa">Πολλαπλές διαδρομές λεωφορείων, όχι Executivos</string>
+  <string name="np_region_canada">Καναδάς</string>
+  <string name="np_name_ontario">Οντάριο</string>
+  <string name="np_desc_ontario">Οντάριο, Οτάβα, Τορόντο, Mississauga, περιοχή Waterloo</string>
+  <string name="np_name_quebec">Κεμπέκ</string>
+  <string name="np_desc_quebec">Deux-Montagnes, Λαβάλ, L\'Assomption, Outaouais, Νοτιοδυτικά, Κεμπέκ, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Μόντρεαλ, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">Βρετανική Κολούμπια</string>
+  <string name="np_desc_britishcolumbia">Δημόσιες μεταφορές στην ΒΚ</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Μετρό Βανκούβερ) και BC Transit (υπόλοιπο της ΒΚ)</string>
+  <string name="np_region_denmark">Δανία</string>
+  <string name="np_desc_dsb">Δανία, Κοπενχάγη</string>
+  <string name="np_name_rt">Ευρώπη</string>
+  <string name="np_desc_rt">Μόνο τρένα μεγάλων αποστάσεων</string>
+  <string name="np_desc_rt_networks">Railteam συμμαχία</string>
+  <string name="np_region_finland">Φιλλανδία</string>
+  <string name="np_desc_hsl">Ελσίνκι</string>
+  <string name="np_region_france">Γαλλία</string>
+  <string name="np_name_francenortheast">Γαλλία Βόρεια Ανατολικά</string>
+  <string name="np_desc_francenortheast">Στρασβούργο, Μέτσε, Λίλη, Νανσί</string>
+  <string name="np_name_francenorthwest">Γαλλία Βόρεια Δυτικά</string>
+  <string name="np_desc_francenorthwest">Βρετάνη, Πεΐ ντε λα Λουάρ, Κέντρο, Κάτω Νορμανδία, Άνω Νορμανδία</string>
+  <string name="np_name_frenchsoutheast">Γαλλία Νότια Ανατολικά</string>
+  <string name="np_desc_frenchsoutheast">Προβηγκία-Άλπεις-Γαλλική Ριβιέρα, Ροδανός-Άλπεις, Λανγκεντόκ-Ρουσιγιόν, Αυβερνέ, Κορσική, Λυών</string>
+  <string name="np_name_frenchsouthwest">Γαλλία Νότια Δυτικά</string>
+  <string name="np_desc_frenchsouthwest">Πουατού-Σαρέντ, Λιμουζίν, Ακουιτανία, Μίνι-Πυρηναία, Μπορντό, Τουλούζη</string>
+  <string name="np_name_paris">Παρίσι</string>
+  <string name="np_desc_paris">Ile-de-France, Γαλλία, Παρίσι</string>
+  <string name="np_region_gb">Μεγάλη Βρετανία</string>
+  <string name="np_desc_mersey">Περιοχή Πόλης Λίβερπουλ</string>
+  <string name="np_desc_tlem">Ευρύτερο Λονδίνο, Μπίρμινγκχαμ, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, Ανατολικό Σάσεξ, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, Δυτικό Σάσεξ, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Κορνουάλη, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Πλύμουθ, Torbay, Bournemouth, Poole</string>
+  <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Μπίρμινγκχαμ</string>
+  <string name="np_region_germany">Γερμανία</string>
+  <string name="np_desc_avv">Άουσμπουργκ</string>
+  <string name="np_desc_bayern">Βαυαρία, Würzburg, Ρέγκενσμπουργκ</string>
+  <string name="np_desc_bsvag">Braunschweig, Βόλφσμπουργκ</string>
+  <string name="np_desc_bvg">Βερολίνο</string>
+  <string name="np_desc_db">Το περισσότερη της Γερμανίας</string>
+  <string name="np_desc_db2">Συνδέσεις μεγάλων αποστάσεων στην Ευρώπη</string>
+  <string name="np_desc_ding">Μπάντεν-Βυρτεμβέργη, Ουλμ, Νέου-Ουλμ</string>
+  <string name="np_desc_gvh">Κάτω Σαξονία, Ανόβερο, Χάμπουργκ, Bremerhaven</string>
+  <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Αμβούργο</string>
+  <string name="np_desc_invg">Ίνγκολστατ</string>
+  <string name="np_desc_kvv">Μπάντεν-Βυρτεμβέργη, Καρλσρούη</string>
+  <string name="np_desc_mvg">Märkischer Kreis, Λουντενσάιντ</string>
+  <string name="np_desc_mvv">Βαβαρία, Μόναχο</string>
+  <string name="np_desc_nasa">Σαξωνία, Λειψία, Saxony-Anhalt, Magdeburg, Halle</string>
+  <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Βασιλεία, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
+  <string name="np_desc_nvv">Hesse, Φρανκρούρτη Kassel</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Ρόστοκ</string>
+  <string name="np_desc_vagfr">Αλσατία, Bas-Rhin, Στρασβούργο, Freiburg im Breisgau</string>
+  <string name="np_desc_vbb">Βρανδεμβούργο, Βερολίνο</string>
+  <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Κάτω Σαξωνία, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
+  <string name="np_desc_vgn">Νυρεμβέργη, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_desc_vgs">Σάαρλαντ, Σααρμπρύκεν</string>
+  <string name="np_desc_vms">Mittelsachsen, Κέμνιτς</string>
+  <string name="np_desc_vmv">Μεκλεμβούργο-Δυτικής Πομερανίας, Schwerin</string>
+  <string name="np_desc_vrn">Μπάντεν-Βυρτεμβέργη, Ρηνανία-Παλατινάτο, Μανχάιμ, Mainz, Trier</string>
+  <string name="np_desc_vrr">Βόρεια Ρηνανία-Βεστφαλία, Κολωνία, Βόνη, Έσσεν, Ντόρτμουντ, Ντίσελντορφ, Μόναχο, Πάντερμπορν, Χόκερ</string>
+  <string name="np_desc_vrs">Κολωνία, Βόνη</string>
+  <string name="np_desc_vvm">Σβάμπα, Κεντρική Σβάμπα,, Krumbach, Günzburg, Memmingen</string>
+  <string name="np_desc_vvo">Σαξονία, Δρέσδη</string>
+  <string name="np_desc_vvs">Μπάντεν-Βυρτεμβέργη, Στουτγάρδη</string>
+  <string name="np_desc_vvv">Vogtland, Πλάουεν</string>
+  <string name="np_desc_vmt">Κεντρική Θουριγγία</string>
+  <string name="np_region_ireland">Ιρλανδία</string>
+  <string name="np_desc_tfi">Ιρλανδία, Δουβλίνο, Μπέλφαστ</string>
+  <string name="np_region_israel" tools:keep="@string/np_region_israel">Ισραήλ</string>
+  <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Ισραήλ, Ιερουσαλήμ</string>
+  <string name="np_name_it">Ιταλία</string>
+  <string name="np_desc_it">Ρώμη, Μιλάνο, Τορίνο, Βενετία, Παλέρμο, Τρέντο</string>
+  <string name="np_region_liechtenstein">Λιχτενστάιν</string>
+  <string name="np_name_vmobil">VVV Όμιλος μεταφορών Vorarlberg</string>
+  <string name="np_desc_vmobil">Λιχτενστάιν, Vorarlberg, Bregenz</string>
+  <string name="np_region_luxembourg">Λουξεμβούργο</string>
+  <string name="np_desc_lu">Λουξεμβούργο</string>
+  <string name="np_region_netherlands">Ολλανδία</string>
+  <string name="np_desc_ns">Ολλανδία, Άμστερνταμ</string>
+  <string name="np_desc_negentwee">Όλες οι δημόσιες μεταφορές της Ολλανδίας</string>
+  <string name="np_region_norway">Νορβηγία</string>
+  <string name="np_desc_nri">Νορβηγία, Όσλο, Bergen</string>
+  <string name="np_name_nz">Νέα Ζηλανδία</string>
+  <string name="np_desc_nz">Νέα Ζηλανδία, Ουέλιγκτον, Όκλαντ</string>
+  <string name="np_region_poland">Πολωνία</string>
+  <string name="np_desc_pl">Πολωνία, αυτοκινητόδρομοι στην Πολωνία</string>
+  <string name="np_name_spain">Ισπανία</string>
+  <string name="np_desc_spain">Μαδρίτη, Βαρκελώνη, Κομητεία Βάσκων, Βαλένθια, Αλικάντε, Μαλόρκα, Μενόρκα, Τενερίφη, Λα Πάλμα, Ναβάρα</string>
+  <string name="np_region_sweden">Σουηδία</string>
+  <string name="np_desc_se">Σουηδία, Στοκχόλμη</string>
+  <string name="np_region_switzerland">Ελβετία</string>
+  <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_name_sbb" translatable="true">SBB Ελβετικοί Ομοσπονδιακοί Σιδηρόδρομοι</string>
+  <string name="np_desc_sbb">Ελβετία</string>
+  <string name="np_desc_vbl">Λουκέρνη</string>
+  <string name="np_desc_zvv">Ζυρίχη</string>
+  <string name="np_region_uae">Ενωμένα Αραβικά Εμιράτα</string>
+  <string name="np_name_dub">Ντουμπάι</string>
+  <string name="np_desc_dub">Ενωμένα Αραβικά Εμιράτα, Ντουμπάι</string>
+  <string name="np_region_usa">Ενωμένες Πολιτείες Αμερικής</string>
+  <string name="np_desc_rtachicago">Σικάγο</string>
+  <string name="np_name_usny">Πολιτείες Νέας Υόρκης και Νιου Τζέρσεϊ</string>
+  <string name="np_name_california">Καλιφόρνια</string>
+  <string name="np_desc_california">Δημόσιες μεταφορές στην Καλιφόρνια (USA)</string>
+  <string name="np_name_oregon">Όρεγκον</string>
+  <string name="np_desc_oregon">Γενικές μεταφορές στην πολιτεία Όρεγκον (USA)</string>
+  <string name="np_name_costa_rica">Κόστα Ρίκα</string>
+  <string name="np_name_ghana">Γκάνα</string>
+  <string name="np_desc_ghana">Άκκρα</string>
+  <string name="np_region_central_america">Κεντρική Αμερική</string>
+  <string name="np_name_nicaragua">Νικαράγουα</string>
+  <string name="np_desc_nicaragua">Αστικά, αγροτικά και εθνικά δρομολόγια λεωφορείων που παρέχονται από τους συνεργάτες MapaNica.net και OpenStreetMap</string>
+  <string name="maintainer">Συντηρητής</string>
+  <string name="contributors">Συνεισφέροντες</string>
+  <string name="translators">Μεταφραστές</string>
+  <string name="dutch">Ολανδικά</string>
+  <string name="french">Γαλλικά</string>
+  <string name="german">Γερμανικά</string>
+  <string name="italian">Ιταλικά</string>
+  <string name="portuguese_br">Πορτογαλλικά (Βραζιλίας)</string>
+  <string name="spanish">Ισπανικά</string>
+  <string name="turkish">Τουρκικά</string>
+  <string name="norwegian_bokmal">Νορβηγικό Bokmål</string>
+  <string name="basque">Βασκικά</string>
+  <string name="english">Αγγλικά</string>
+  <string name="catalan">Καταλανικά</string>
+  <string name="polish">ολωνικά</string>
+  <string name="tamil">Ταμίλ</string>
+  <string name="esperanto">Εσπεράντο</string>
+  <string name="czech">Τσέχικα</string>
+  <string name="hungarian">Ουγγρικά</string>
+  <string name="japanese">Ιαπωνικά</string>
+  <string name="russian">Ρωσικά</string>
+</resources>

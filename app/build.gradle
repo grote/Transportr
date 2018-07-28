@@ -130,7 +130,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:621c95e0') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:3d40bd7c') {
 		exclude module: 'service'
 		exclude group: 'org.json' // provided by Android
 		exclude group: 'net.sf.kxml' // provided by Android
@@ -236,8 +236,8 @@ dependencyVerification {
 			'com.android.tools:sdklib:26.1.3:sdklib-26.1.3.jar:4adcfaad9514607098d2c51503c39811112d3050f4d1e744c01c7f08f591032b',
 			'com.github.omadahealth:swipy:1.2.3:swipy-1.2.3.aar:63bff6e181742e3e243c29b595062ca65b4274bf7033c65460924f64f65c01e0',
 			'com.github.tony19:logback-android:1.1.1-12:logback-android-1.1.1-12.aar:3102228f0e408e3c003b34e96a604e9b9f59d314dcf8f03aa78d9d3648198932',
-			'com.gitlab.opentransitmap.public-transport-enabler:enabler:621c95e0:enabler-621c95e0.jar:f9c32d974fda8b9b55db46c1c906d73064b69e10750a861421783a1ab7858cde',
-			'com.gitlab.opentransitmap:public-transport-enabler:621c95e0:public-transport-enabler-621c95e0.jar:04b6563460aa5da463f22eeba5fc69c6b39165d9de8df0e3367e45b833441a7b',
+			'com.gitlab.opentransitmap.public-transport-enabler:enabler:3d40bd7c:enabler-3d40bd7c.jar:f53d71cee9b4b318f32c193e5560397c7a2094db1a73b177cf091c763c801dfe',
+			'com.gitlab.opentransitmap:public-transport-enabler:3d40bd7c:public-transport-enabler-3d40bd7c.jar:63ad97d40efb23a4206f3ef00b27d062d4d96c6b032513c12d95c5f97b0c64dc',
 			'com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.0:accessibility-test-framework-2.0.jar:cdf16ef8f5b8023d003ce3cc1b0d51bda737762e2dab2fedf43d1c4292353f7f',
 			'com.google.android:flexbox:0.3.2:flexbox-0.3.2.aar:610a6a00695e873b4b6b785b7dce1c60f6a5964044b6d093b4d1060cbf13c278',
 			'com.google.auto:auto-common:0.6:auto-common-0.6.jar:6d8ffa9dc95db8b1e7399a622946d129093959cbe5d6b54cfe27d2542302d8e1',

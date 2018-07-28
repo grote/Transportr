@@ -276,8 +276,13 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_desc_nz">Nowa Zelandia, Wellington, Auckland</string>
   <string name="np_region_poland">Polska</string>
   <string name="np_desc_pl">Polska, koleje w Polsce</string>
+  <string name="np_name_pl_navitia">Transport miejski w Polsce</string>
+  <string name="np_desc_pl_navitia">Warszawa, Wrocław, Szczecin, Gdańsk, Gdynia, Sopot</string>
+  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mała, Sevibus/DLA Długołęka, Warbus Miekinia, ZDiTM Szczecin, A21 Długołęka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdańsk</string>
   <string name="np_name_spain">Hiszpania</string>
   <string name="np_desc_spain">Madryt, Barcelona, Kraj Basków, Walencja, Alicante, Majorka, Minorka, Teneryfa, La Palma, Nawarra</string>
+  <string name="np_name_hungary">Węgry</string>
+  <string name="np_desc_hungary">Budapeszt, Miszkolc</string>
   <string name="np_region_sweden">Szwecja</string>
   <string name="np_desc_se">Szwecja, Sztokholm</string>
   <string name="np_region_switzerland">Szwajcaria</string>

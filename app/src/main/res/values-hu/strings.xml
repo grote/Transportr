@@ -219,6 +219,9 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo régió</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">Brit Columbia</string>
+  <string name="np_desc_britishcolumbia">Tömegközlekedés Brit Columbiában</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) és BC Transit (BC többi része)</string>
   <string name="np_region_denmark">Dánia</string>
   <string name="np_desc_dsb">Dánia, Koppenhága</string>
   <string name="np_name_rt">Európa</string>
@@ -340,4 +343,5 @@ hogy hol kell leszállnia a buszról…
   <string name="czech">Cseh</string>
   <string name="hungarian">Magyar</string>
   <string name="japanese">Japán</string>
+  <string name="russian">Orosz</string>
 </resources>
