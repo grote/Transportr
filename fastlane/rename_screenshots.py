@@ -14,6 +14,7 @@ REGEX = re.compile(r'(^\d_\w+)_\d{13}\.png$')
 REGEX_IN_FILE = re.compile(r'(\d_\w+)_\d{13}\.png', re.MULTILINE)
 PATH = os.path.dirname(os.path.realpath(__file__))
 
+
 def main():
     for path in glob.glob("%s%s" % (os.path.join(PATH, METADATA_PATH), GLOB)):
         filename = os.path.basename(path)
@@ -27,15 +28,15 @@ def main():
         else:
             print("Warning: Path did not match %s" % path)
 
-    # rename fiels also in screenshot overview file
+    # rename fields also in screenshot overview file
     overview = os.path.join(PATH, METADATA_PATH, 'screenshots.html')
     with open(overview, 'r') as f:
-        filedata = f.read()
+        file_data = f.read()
 
-    filedata = REGEX_IN_FILE.sub(r'\1.png', filedata)
+    file_data = REGEX_IN_FILE.sub(r'\1.png', file_data)
 
     with open(overview, 'w') as f:
-        f.write(filedata)
+        f.write(file_data)
 
 
 if __name__ == "__main__":
