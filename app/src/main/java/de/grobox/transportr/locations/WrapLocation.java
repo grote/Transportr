@@ -80,7 +80,7 @@ public class WrapLocation implements Serializable {
 		this.type = COORD;
 		this.lat = (int) (latLng.getLatitude() * 1E6);
 		this.lon = (int) (latLng.getLongitude() * 1E6);
-		checkArgument(lat != 0 && lon != 0, "Null Island is not a valid location");
+		checkArgument(lat != 0 || lon != 0, "Null Island is not a valid location");
 	}
 
 	public WrapType getWrapType() {
