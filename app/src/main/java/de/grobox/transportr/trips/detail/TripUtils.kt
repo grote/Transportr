@@ -21,6 +21,8 @@ package de.grobox.transportr.trips.detail
 
 import android.content.Context
 import android.content.Intent
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import de.grobox.transportr.R
 import de.grobox.transportr.utils.DateUtils.*
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
@@ -46,24 +48,26 @@ internal object TripUtils {
     fun intoCalendar(context: Context, trip: Trip?) {
         if (trip == null) throw IllegalStateException()
         val intent = Intent(Intent.ACTION_EDIT)
-                .setType("vnd.android.cursor.item/event")
-                .putExtra("beginTime", trip.firstDepartureTime.time)
-                .putExtra("endTime", trip.lastArrivalTime.time)
-                .putExtra("title", trip.from.name + " → " + trip.to.name)
-                .putExtra("description", tripToString(context, trip))
+            .setType("vnd.android.cursor.item/event")
+            .putExtra("beginTime", trip.firstDepartureTime.time)
+            .putExtra("endTime", trip.lastArrivalTime.time)
+            .putExtra("title", trip.from.name + " → " + trip.to.name)
+            .putExtra("description", tripToString(context, trip))
         if (trip.from.place != null) intent.putExtra("eventLocation", trip.from.place)
-        context.startActivity(intent)
+        if (intent.resolveActivity(context.packageManager) != null) {
+            context.startActivity(intent)
+        } else {
+            Toast.makeText(context, context.getString(R.string.error_no_calendar), LENGTH_LONG).show()
+        }
     }
 
     private fun tripToSubject(context: Context, trip: Trip): String {
-        var str = "[" + context.resources.getString(R.string.app_name) + "] "
+        var str = "[${context.resources.getString(R.string.app_name)}] "
 
-        str += getTime(context, trip.firstDepartureTime) + " "
-        str += getLocationName(trip.from)
-        str += " → "
-        str += getLocationName(trip.to)!! + " "
+        str += "${getTime(context, trip.firstDepartureTime)} "
+        str += "${getLocationName(trip.from)} → ${getLocationName(trip.to)} "
         str += getTime(context, trip.lastArrivalTime)
-        str += " (" + getDate(context, trip.firstDepartureTime) + ")"
+        str += " (${getDate(context, trip.firstDepartureTime)})"
 
         return str
     }
