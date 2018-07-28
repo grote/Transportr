@@ -54,13 +54,13 @@ internal class SavedSearchesFragment : FavoriteTripsFragment<MapViewModel>() {
     }
 
     class HomePickerFragment : HomePickerDialogFragment() {
-        override fun getViewModel(): LocationsViewModel {
+        override fun viewModel(): LocationsViewModel {
             return ViewModelProviders.of(activity!!, viewModelFactory).get(viewModelClass)
         }
     }
 
     class WorkPickerFragment : WorkPickerDialogFragment() {
-        override fun getViewModel(): LocationsViewModel {
+        override fun viewModel(): LocationsViewModel {
             return ViewModelProviders.of(activity!!, viewModelFactory).get(viewModelClass)
         }
     }

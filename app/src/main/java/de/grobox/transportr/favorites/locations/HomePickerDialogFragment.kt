@@ -26,12 +26,10 @@ import de.grobox.transportr.locations.WrapLocation
 
 abstract class HomePickerDialogFragment : SpecialLocationFragment() {
 
+    override val hint = R.string.home_dialog_title
+
     override fun inject(component: AppComponent) {
         component.inject(this)
-    }
-
-    override fun getHint(): Int {
-        return R.string.home_dialog_title
     }
 
     override fun onSpecialLocationSet(location: WrapLocation) {

@@ -26,12 +26,10 @@ import de.grobox.transportr.locations.WrapLocation
 
 abstract class WorkPickerDialogFragment : SpecialLocationFragment() {
 
+    override val hint = R.string.work_hint
+
     override fun inject(component: AppComponent) {
         component.inject(this)
-    }
-
-    override fun getHint(): Int {
-        return R.string.work_hint
     }
 
     override fun onSpecialLocationSet(location: WrapLocation) {
