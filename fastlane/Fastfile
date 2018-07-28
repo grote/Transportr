@@ -40,6 +40,11 @@ platform :android do
   lane :deploy do
     upload_to_play_store(track: 'beta', apk: 'release/app-release.apk')
   end
+
+  desc "Deploy a new version without screenshots"
+  lane :deploy_no_screenshots do
+    upload_to_play_store(track: 'beta', apk: 'release/app-release.apk', skip_upload_images:'true', skip_upload_screenshots:'true')
+  end
 end
 
 

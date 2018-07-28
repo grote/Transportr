@@ -21,7 +21,6 @@ package de.grobox.transportr;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.multidex.MultiDex;
 
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.services.android.telemetry.MapboxTelemetry;
@@ -33,7 +32,7 @@ public class TransportrApplication extends Application {
 	@Override
 	protected void attachBaseContext(Context base) {
 		super.attachBaseContext(base);
-		if (BuildConfig.BUILD_TYPE.equals("debug")) MultiDex.install(this);
+//		if (BuildConfig.BUILD_TYPE.equals("debug")) MultiDex.install(this);
 	}
 
 	@Override

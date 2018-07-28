@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="2.0.2" versioncode="110">
-        <change>Added Hungary provider</change>
-        <change>Added Municipal Transports of Poland</change>
+    <release version="2.0.2" versioncode="111">
+        <change>Added data source for Hungary (Thanks Balázs!)</change>
+        <change>Added data source for Municipal Transports of Poland (Thanks Michel!)</change>
+        <change>Fix data source for Finland (Thanks Adrian!)</change>
+        <change>New translation: Greek (Thanks Vangelis!)</change>
+        <change>Improve location auto-completion list (Thanks Sylvia!)</change>
+        <change>Fix crash when adding trip to calendar without calendar installed</change>
+        <change>Fix crash when sharing an intermediate stop without arrival time</change>
+        <change>Fix crash related to setting home or work location</change>
     </release>
 
     <release version="2.0.1" versioncode="109">

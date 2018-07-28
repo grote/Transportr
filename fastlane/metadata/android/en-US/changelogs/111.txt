@@ -1,0 +1,8 @@
+* Added data source for Hungary (Thanks Balázs!)
+* Added data source for Municipal Transports of Poland (Thanks Michel!)
+* Fix data source for Finland (Thanks Adrian!)
+* New translation: Greek (Thanks Vangelis!)
+* Improve location auto-completion list (Thanks Sylvia!)
+* Fix crash when adding trip to calendar without calendar installed
+* Fix crash when sharing an intermediate stop without arrival time
+* Fix crash related to setting home or work location

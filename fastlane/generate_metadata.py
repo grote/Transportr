@@ -16,6 +16,7 @@ LANG_MAP = {
     'values-ca': 'ca',
     'values-cs': 'cs-CZ',
     'values-de': 'de-DE',
+    'values-el': 'el-GR',
     'values-es': 'es-ES',
     'values-eu': 'eu-ES',
     'values-fr': 'fr-FR',
@@ -25,6 +26,7 @@ LANG_MAP = {
     'values-nl': 'nl-NL',
     'values-pl': 'pl-PL',
     'values-pt-rBR': 'pt-BR',
+    'values-ru': 'ru-RU',
     'values-ta': 'ta-IN',
     'values-tr': 'tr-TR',
 }
