@@ -41,7 +41,8 @@ public class DateUtils {
 		return df.format(date);
 	}
 
-	public static String getTime(Context context, Date date) {
+	public static String getTime(Context context, @Nullable Date date) {
+		if (date == null) return "";
 		DateFormat tf = android.text.format.DateFormat.getTimeFormat(context);
 
 		if (tf.getNumberFormat().getMinimumIntegerDigits() == 1) {

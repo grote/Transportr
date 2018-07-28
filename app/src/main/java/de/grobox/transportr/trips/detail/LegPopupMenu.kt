@@ -38,7 +38,8 @@ import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.Stop
 import de.schildbach.pte.dto.Trip.Leg
 
-class LegPopupMenu private constructor(context: Context, anchor: View, location: Location, private val text: String) : BasePopupMenu(context, anchor) {
+class LegPopupMenu private constructor(context: Context, anchor: View, location: Location, private val text: String) :
+    BasePopupMenu(context, anchor) {
 
     private val loc1: WrapLocation = WrapLocation(location)
 
@@ -46,7 +47,7 @@ class LegPopupMenu private constructor(context: Context, anchor: View, location:
             this(context, anchor, if (isLast) leg.arrival else leg.departure, legToString(context, leg))
 
     internal constructor(context: Context, anchor: View, stop: Stop) :
-            this(context, anchor, stop.location, getTime(context, stop.arrivalTime) + " " + getLocationName(stop.location))
+            this(context, anchor, stop.location, "${getTime(context, stop.arrivalTime)} ${getLocationName(stop.location)}")
 
     init {
         this.menuInflater.inflate(R.menu.leg_location_actions, menu)
