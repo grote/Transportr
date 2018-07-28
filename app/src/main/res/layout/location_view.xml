@@ -23,8 +23,11 @@
 		android:layout_weight="1"
 		android:background="@android:color/transparent"
 		android:completionThreshold="1"
+		android:dropDownHeight="wrap_content"
+		android:dropDownWidth="match_parent"
 		android:inputType="text|textNoSuggestions|textAutoComplete|textFilter"
-		android:maxLines="1"/>
+		android:maxLines="1"
+		tools:ignore="LabelFor"/>
 
 	<ProgressBar
 		android:id="@+id/progress"
