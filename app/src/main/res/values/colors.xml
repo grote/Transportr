@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="holo_red_light">#ffff4444</color>
     <color name="walking">#ffea00</color>
 
@@ -9,7 +9,7 @@
     <color name="accent">#e53935</color>
 
     <!-- To enable accent color in settings for devices with API <21 -->
-    <color name="preference_fallback_accent_color">@color/accent</color>
+    <color name="preference_fallback_accent_color" tools:override="true">@color/accent</color>
 
     <color name="drawableTintDark">#ffffffff</color>
     <color name="drawableTintLight">@color/md_grey_600</color>

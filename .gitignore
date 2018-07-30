@@ -3,6 +3,7 @@ release/
 
 # generated files
 build/
+captures/
 
 # Local configuration file (sdk path, etc)
 local.properties

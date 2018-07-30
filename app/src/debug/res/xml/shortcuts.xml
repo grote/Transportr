@@ -6,17 +6,35 @@
 
 	<shortcut
 		android:enabled="true"
+		android:icon="@mipmap/ic_launcher_directions"
+		android:shortcutId="directions"
+		android:shortcutLongLabel="@string/directions_search"
+		android:shortcutShortLabel="@string/directions">
+		<intent
+			android:action="android.intent.action.MAIN"
+			android:targetClass="de.grobox.transportr.map.MapActivity"
+			android:targetPackage="de.grobox.liberario.debug"/>
+		<intent
+			android:action="search"
+			android:targetClass="de.grobox.transportr.trips.search.DirectionsActivity"
+			android:targetPackage="de.grobox.liberario.debug"/>
+	</shortcut>
+
+	<shortcut
+		android:enabled="true"
 		android:icon="@mipmap/ic_launcher_home"
 		android:shortcutId="home"
 		android:shortcutLongLabel="@string/widget_name_quickhome"
 		android:shortcutShortLabel="@string/home">
-
+		<intent
+			android:action="android.intent.action.MAIN"
+			android:targetClass="de.grobox.transportr.map.MapActivity"
+			android:targetPackage="de.grobox.liberario.debug"/>
 		<intent
 			android:action="search"
 			android:data="transportr://home"
 			android:targetClass="de.grobox.transportr.trips.search.DirectionsActivity"
 			android:targetPackage="de.grobox.liberario.debug"/>
-
 	</shortcut>
 
 	<shortcut
@@ -25,13 +43,15 @@
 		android:shortcutId="work"
 		android:shortcutLongLabel="@string/widget_name_quickwork"
 		android:shortcutShortLabel="@string/work">
-
+		<intent
+			android:action="android.intent.action.MAIN"
+			android:targetClass="de.grobox.transportr.map.MapActivity"
+			android:targetPackage="de.grobox.liberario.debug"/>
 		<intent
 			android:action="search"
 			android:data="transportr://work"
 			android:targetClass="de.grobox.transportr.trips.search.DirectionsActivity"
 			android:targetPackage="de.grobox.liberario.debug"/>
-
 	</shortcut>
 
 </shortcuts>

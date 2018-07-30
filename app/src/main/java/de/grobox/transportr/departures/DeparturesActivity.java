@@ -48,12 +48,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.inject.Inject;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.locations.WrapLocation;
-import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.ui.LceAnimator;
 import de.grobox.transportr.ui.TimeDateFragment;
 import de.grobox.transportr.ui.TimeDateFragment.TimeDateListener;
@@ -86,8 +84,6 @@ public class DeparturesActivity extends TransportrActivity
 	private RecyclerView list;
 	private DepartureAdapter adapter;
 
-	@Inject TransportNetworkManager manager;
-
 	private WrapLocation location;
 	private SearchState searchState = SearchState.INITIAL;
 	private Calendar calendar;
@@ -112,8 +108,6 @@ public class DeparturesActivity extends TransportrActivity
 			throw new IllegalArgumentException("No Location");
 
 		setContentView(R.layout.activity_departures);
-
-		getComponent().inject(this);
 
 		// Toolbar
 		Toolbar toolbar = findViewById(R.id.toolbar);

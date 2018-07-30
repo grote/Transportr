@@ -66,6 +66,8 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="action_show_on_external_map">Show on External Map</string>
 	<string name="action_copy">Copy</string>
 
+	<string name="directions">Directions</string>
+	<string name="directions_search">Search Directions</string>
 	<string name="drawer_departures">Departures</string>
 
 	<string name="tab_about">About</string>

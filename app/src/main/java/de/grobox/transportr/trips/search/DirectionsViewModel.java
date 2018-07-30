@@ -39,12 +39,15 @@ import de.grobox.transportr.favorites.trips.SavedSearchesViewModel;
 import de.grobox.transportr.locations.LocationLiveData;
 import de.grobox.transportr.locations.LocationView.LocationViewListener;
 import de.grobox.transportr.locations.WrapLocation;
+import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.networks.TransportNetworkManager;
+import de.grobox.transportr.networks.TransportNetworksKt;
 import de.grobox.transportr.settings.SettingsManager;
 import de.grobox.transportr.trips.TripQuery;
 import de.grobox.transportr.trips.search.TripsRepository.QueryMoreState;
 import de.grobox.transportr.ui.TimeDateFragment.TimeDateListener;
 import de.grobox.transportr.utils.SingleLiveEvent;
+import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.dto.Product;
 import de.schildbach.pte.dto.Trip;
 
@@ -87,8 +90,10 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		locationLiveData = new LocationLiveData(application.getApplicationContext());
 
 		this.settingsManager = settingsManager;
-		if (getTransportNetwork().getValue() == null) throw new IllegalStateException();
-		tripsRepository = new TripsRepository(application.getApplicationContext(), getTransportNetwork().getValue().getNetworkProvider(),
+		TransportNetwork network = getTransportNetwork().getValue();
+		if (network == null) network = TransportNetworksKt.getTransportNetwork(NetworkId.DB);
+		if (network == null) throw new IllegalArgumentException();
+		tripsRepository = new TripsRepository(application.getApplicationContext(), network.getNetworkProvider(),
 				settingsManager, locationRepository, searchesRepository);
 	}
 

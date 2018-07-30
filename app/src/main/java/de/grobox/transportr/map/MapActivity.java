@@ -45,7 +45,6 @@ import de.grobox.transportr.locations.LocationFragment;
 import de.grobox.transportr.locations.LocationView;
 import de.grobox.transportr.locations.LocationView.LocationViewListener;
 import de.grobox.transportr.locations.WrapLocation;
-import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.ui.TransportrChangeLog;
 import de.grobox.transportr.utils.OnboardingBuilder;
@@ -55,7 +54,6 @@ import static android.support.design.widget.BottomSheetBehavior.PEEK_HEIGHT_AUTO
 import static android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED;
 import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
-import static de.grobox.transportr.networks.PickTransportNetworkActivity.FORCE_NETWORK_SELECTION;
 import static de.grobox.transportr.trips.search.DirectionsActivity.ACTION_SEARCH;
 import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
@@ -80,7 +78,6 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		super.onCreate(savedInstanceState);
 		if (BuildConfig.DEBUG) enableStrictMode();
 		getComponent().inject(this);
-		ensureTransportNetworkSelected();
 		setContentView(R.layout.activity_map);
 		setupDrawer(savedInstanceState);
 
@@ -190,14 +187,14 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
 
 		// show on-boarding dialog
-		if (settingsManager.showLocationFragmentOnboarding()) {
+		if (getSettingsManager().showLocationFragmentOnboarding()) {
 			new OnboardingBuilder(this)
 					.setTarget(R.id.bottomSheet)
 					.setPrimaryText(R.string.onboarding_location_title)
 					.setSecondaryText(R.string.onboarding_location_message)
 					.setPromptStateChangeListener((prompt, state) -> {
 						if (state == STATE_DISMISSED || state == STATE_FOCAL_PRESSED) {
-							settingsManager.locationFragmentOnboardingShown();
+							getSettingsManager().locationFragmentOnboardingShown();
 							viewModel.selectedLocationClicked(loc.getLatLng());
 						}
 					})
@@ -223,16 +220,6 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		return locationFragment != null && locationFragment.isVisible() && bottomSheetBehavior.getState() != STATE_HIDDEN;
 	}
 
-	private void ensureTransportNetworkSelected() {
-		TransportNetwork network = getManager().getTransportNetwork().getValue();
-		if (network == null) {
-			Intent intent = new Intent(this, PickTransportNetworkActivity.class);
-			intent.putExtra(FORCE_NETWORK_SELECTION, true);
-			startActivity(intent);
-			finish();
-		}
-	}
-
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
@@ -248,7 +235,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	}
 
 	private void checkAndShowChangelog() {
-		TransportrChangeLog cl = new TransportrChangeLog(this, settingsManager);
+		TransportrChangeLog cl = new TransportrChangeLog(this, getSettingsManager());
 		if (cl.isFirstRun() && !cl.isFirstRunEver()) {
 			cl.getLogDialog().show();
 		}

@@ -42,15 +42,10 @@ import de.grobox.transportr.about.AboutActivity
 import de.grobox.transportr.about.ContributorsActivity
 import de.grobox.transportr.networks.PickTransportNetworkActivity
 import de.grobox.transportr.networks.TransportNetwork
-import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.settings.SettingsActivity
 import de.grobox.transportr.ui.TransportrChangeLog
-import javax.inject.Inject
 
 internal abstract class DrawerActivity : TransportrActivity() {
-
-    @Inject
-    protected lateinit var manager: TransportNetworkManager
 
     private lateinit var drawer: Drawer
     private lateinit var accountHeader: AccountHeader
@@ -87,26 +82,26 @@ internal abstract class DrawerActivity : TransportrActivity() {
             .withActivity(this)
             .withAccountHeader(accountHeader)
             .addDrawerItems(
-                getDrawerItem(R.string.drawer_settings, R.drawable.ic_action_settings, {
+                getDrawerItem(R.string.drawer_settings, R.drawable.ic_action_settings) {
                     val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
-                }),
+                },
                 DividerDrawerItem(),
-                getDrawerItem(R.string.drawer_changelog, R.drawable.ic_action_changelog, {
+                getDrawerItem(R.string.drawer_changelog, R.drawable.ic_action_changelog) {
                     TransportrChangeLog(this, settingsManager).fullLogDialog.show()
-                }),
-                getDrawerItem(R.string.drawer_contributors, R.drawable.ic_people, {
+                },
+                getDrawerItem(R.string.drawer_contributors, R.drawable.ic_people) {
                     val intent = Intent(this, ContributorsActivity::class.java)
                     startActivity(intent)
-                }),
-                getDrawerItem(R.string.drawer_report_issue, R.drawable.ic_bug_report, {
+                },
+                getDrawerItem(R.string.drawer_report_issue, R.drawable.ic_bug_report) {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.bug_tracker)))
                     startActivity(intent)
-                }),
-                getDrawerItem(R.string.drawer_about, R.drawable.ic_action_about, {
+                },
+                getDrawerItem(R.string.drawer_about, R.drawable.ic_action_about) {
                     val intent = Intent(this, AboutActivity::class.java)
                     startActivity(intent)
-                })
+                }
             )
             .withOnDrawerListener(object : Drawer.OnDrawerListener {
                 override fun onDrawerOpened(drawerView: View) {

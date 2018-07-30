@@ -120,14 +120,14 @@ public class TripDetailActivity extends TransportrActivity {
 	}
 
 	private void showOnboarding() {
-		if (settingsManager.showTripDetailFragmentOnboarding()) {
+		if (getSettingsManager().showTripDetailFragmentOnboarding()) {
 			new OnboardingBuilder(this)
 					.setTarget(R.id.bottomContainer)
 					.setPrimaryText(R.string.onboarding_location_title)
 					.setSecondaryText(R.string.onboarding_location_message)
 					.setPromptStateChangeListener((prompt, state) -> {
 						if (state == STATE_DISMISSED || state == STATE_FOCAL_PRESSED) {
-							settingsManager.tripDetailOnboardingShown();
+							getSettingsManager().tripDetailOnboardingShown();
 							bottomSheetBehavior.setState(STATE_EXPANDED);
 						}
 					})
