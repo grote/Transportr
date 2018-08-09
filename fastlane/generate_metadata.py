@@ -17,6 +17,7 @@ LANG_MAP = {
     'values-cs': 'cs-CZ',
     'values-de': 'de-DE',
     'values-el': 'el-GR',
+    'values-eo': 'eo',
     'values-es': 'es-ES',
     'values-eu': 'eu-ES',
     'values-fr': 'fr-FR',
