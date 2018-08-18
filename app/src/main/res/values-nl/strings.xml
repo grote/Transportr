@@ -205,7 +205,6 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_rt">Alleen langeafstandstreinen</string>
   <string name="np_desc_rt_networks">Railteam-alliantie</string>
   <string name="np_region_finland">Finland</string>
-  <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">Frankrijk</string>
   <string name="np_name_francenortheast">Noordoosten van Frankrijk</string>
   <string name="np_desc_francenortheast">Straatsburg, Metz, Rijsel, Nancy</string>

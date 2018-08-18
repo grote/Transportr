@@ -224,7 +224,6 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="np_desc_rt">Solo treni a lunga percorrenza</string>
   <string name="np_desc_rt_networks">Railteam</string>
   <string name="np_region_finland">Finlandia</string>
-  <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">Francia</string>
   <string name="np_name_francenortheast">Francia nord-orientale</string>
   <string name="np_desc_francenortheast">Strasburgo, Metz, Lilla, Nancy</string>

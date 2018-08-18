@@ -226,7 +226,6 @@ Transportr сохраняет часто используемые местопо
   <string name="np_desc_rt">Только поезда дальнего следования</string>
   <string name="np_desc_rt_networks">Railteam alliance</string>
   <string name="np_region_finland">Финляндия</string>
-  <string name="np_desc_hsl">Хельсинки</string>
   <string name="np_region_france">Франция</string>
   <string name="np_name_francenortheast">Франция Северо-Восток</string>
   <string name="np_desc_francenortheast">Страсбург, Нанси, Лилль, Нанси</string>

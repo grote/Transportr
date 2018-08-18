@@ -140,7 +140,6 @@
   <string name="np_name_rt">Avrupa</string>
   <string name="np_desc_rt">Sadece Uzun Yol Trenleri</string>
   <string name="np_region_finland">Finlandiya</string>
-  <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">Fransa</string>
   <string name="np_name_francenortheast">Kuzey Doğu Fransa</string>
   <string name="np_desc_francenortheast">Strazburg, Metz, Lille, Nancy</string>
