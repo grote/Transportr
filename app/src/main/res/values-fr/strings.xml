@@ -214,7 +214,6 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_desc_rt">Trains longue distance seulement</string>
   <string name="np_desc_rt_networks">Alliance Railteam</string>
   <string name="np_region_finland">Finlande</string>
-  <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">France</string>
   <string name="np_name_francenortheast">France — Nord-est</string>
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>

@@ -228,7 +228,6 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_rt">Csak távolsági vonatok </string>
   <string name="np_desc_rt_networks">Railteam szövetség</string>
   <string name="np_region_finland">Finnország</string>
-  <string name="np_desc_hsl">Helsinki</string>
   <string name="np_region_france">Franciaország</string>
   <string name="np_name_francenortheast">Északkelet-Franciaország</string>
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
