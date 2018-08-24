@@ -27,6 +27,7 @@ import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout.OnRe
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
@@ -186,6 +188,8 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 	private void onError(@Nullable String error) {
 		if (error == null) return;
 		errorText.setText(error + "\n\n" + getString(R.string.trip_error_pte));
+		Pattern pteMatcher = Pattern.compile("public-transport-enabler");
+		Linkify.addLinks(errorText, pteMatcher, "https://github.com/schildbach/public-transport-enabler/issues");
 		LceAnimator.showErrorView(progressBar, list, errorLayout);
 	}
 

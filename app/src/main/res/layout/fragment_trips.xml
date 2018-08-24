@@ -64,6 +64,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="16dp"
 			android:textIsSelectable="true"
+			android:linksClickable="true"
 			tools:text="This is a view for error text.\nThis text can be super long.\nIt can include stack traces of exceptions.\nBut it can also be just one sentence long."/>
 
 		<Button
