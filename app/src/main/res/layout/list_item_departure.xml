@@ -114,7 +114,7 @@
 			app:layout_constraintTop_toBottomOf="@+id/lineNameView"
 			tools:text="Zoologischer Garten (S+U)"/>
 
-		<TextView
+		<de.grobox.transportr.departures.ExpandableTextView
 			android:id="@+id/messageView"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
