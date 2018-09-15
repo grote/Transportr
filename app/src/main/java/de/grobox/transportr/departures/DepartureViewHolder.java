@@ -107,10 +107,10 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 
 		// show message if available
 		if (Strings.isNullOrEmpty(dep.message)) {
-		//	message.setVisibility(GONE);
+			message.setVisibility(GONE);
 		} else {
-		//	message.setText(dep.message);
-		//	message.setVisibility(VISIBLE);
+			message.setText(dep.message);
+			message.setVisibility(VISIBLE);
 		}
 
 		// TODO show line from here on
@@ -122,16 +122,13 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 	}
 
 	private void bindDelay(long delayTime) {
-		delayTime = 99999;
 		if (delayTime == 0) {
-	//		delay.setVisibility(GONE);
+			delay.setVisibility(GONE);
 		} else {
-			// String delayText = getDelayString(delayTime);
-			String delayText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin lobortis magna, sit amet egestas nisi gravida vitae. Nam euismod sollicitudin eleifend. Donec lobortis nibh vel nulla molestie blandit. Nullam semper, massa id pellentesque pulvinar, quam tellus posuere eros, ac tristique nisl quam at justo. Proin sit amet magna sit amet libero dapibus malesuada nec non massa. Maecenas elementum leo et fringilla pellentesque. Phasellus vehicula ornare lorem nec aliquet. Duis semper laoreet nunc, at suscipit odio semper nec. Nam molestie efficitur enim, sit amet dapibus nibh lacinia scelerisque. Aliquam porttitor, leo vitae convallis cursus, sem magna gravida nunc, in accumsan dui lacus at enim.\n" +
-					"\n";
-			message.setText(delayText);
-//			if (delayTime <= 0) delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_green_500));
-//			else delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_red_500));
+			delay.setText(getDelayString(delayTime));
+            delay.setVisibility(VISIBLE);
+            if (delayTime <= 0) delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_green_500));
+            else delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_red_500));
 		}
 	}
 
