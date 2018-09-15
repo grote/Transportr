@@ -126,9 +126,9 @@ class DepartureViewHolder extends RecyclerView.ViewHolder {
 			delay.setVisibility(GONE);
 		} else {
 			delay.setText(getDelayString(delayTime));
-            delay.setVisibility(VISIBLE);
-            if (delayTime <= 0) delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_green_500));
-            else delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_red_500));
+			delay.setVisibility(VISIBLE);
+			if (delayTime <= 0) delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_green_500));
+			else delay.setTextColor(ContextCompat.getColor(delay.getContext(), R.color.md_red_500));
 		}
 	}
 
