@@ -21,6 +21,8 @@ package de.grobox.transportr.trips.search;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -196,6 +198,12 @@ public class DirectionsFragment extends TransportrFragment {
 						}
 					})
 					.show();
+		}
+
+		Drawable drawable = menu.findItem(R.id.action_swap_locations).getIcon();
+		if (drawable != null) {
+			drawable.mutate();
+			drawable.setColorFilter(0xffffffff, PorterDuff.Mode.SRC_ATOP);
 		}
 	}
 
