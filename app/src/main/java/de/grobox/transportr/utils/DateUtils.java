@@ -117,7 +117,7 @@ public class DateUtils {
 		}
 	}
 
-	private static long getDifferenceInMinutes(Date date) {
+	public static long getDifferenceInMinutes(Date date) {
 		return getDelay(new Date(), date);
 	}
 

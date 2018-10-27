@@ -19,13 +19,23 @@
 
 package de.grobox.transportr.departures;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -67,6 +77,7 @@ import static de.grobox.transportr.utils.Constants.LOADER_DEPARTURES;
 import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
 import static de.grobox.transportr.utils.TransportrUtils.getDragDistance;
 import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
+import static de.grobox.transportr.utils.DateUtils.getDifferenceInMinutes;
 
 @ParametersAreNonnullByDefault
 public class DeparturesActivity extends TransportrActivity
@@ -83,7 +94,7 @@ public class DeparturesActivity extends TransportrActivity
 	private SwipyRefreshLayout swipe;
 	private RecyclerView list;
 	private DepartureAdapter adapter;
-
+	private String CHANNEL_ID ="yolo";
 	private WrapLocation location;
 	private SearchState searchState = SearchState.INITIAL;
 	private Calendar calendar;
@@ -162,11 +173,66 @@ public class DeparturesActivity extends TransportrActivity
 		}
 	}
 
+	class NotificationTask extends AsyncTask<Long,Void,Void> {
+
+		/*private Context mContext;
+		private int NOTIFICATION_ID = 1;
+		private Notification mNotification;
+		private NotificationManager mNotificationManager;
+*/
+		@Override
+		protected Void doInBackground(Long... params) {
+			String notificationText;
+			while (true) {
+				notificationText = "";
+				for (int i=0; i<8; i++) {
+					if (getDifferenceInMinutes(adapter.getItem(i).getTime())>-1){
+						notificationText = notificationText
+								+ getDifferenceInMinutes(adapter.getItem(i).getTime()) + "min - "
+								+ adapter.getItem(i).line.label + " "
+								+ adapter.getItem(i).destination.name;
+						if (i!=7) notificationText = notificationText + "\n";
+					}
+				}
+				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(DeparturesActivity.this, CHANNEL_ID)
+						.setSmallIcon(R.drawable.ic_launcher_foreground)
+						.setStyle(new NotificationCompat.BigTextStyle().bigText(notificationText))
+						.setContentText(notificationText)
+						.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+				NotificationManagerCompat notificationManager = NotificationManagerCompat.from(DeparturesActivity.this);
+
+				// notificationId is a unique int for each notification that you must define
+				notificationManager.notify(3, mBuilder.build());
+				try {
+					Thread.sleep(30000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	private void createNotificationChannel() {
+		// Create the NotificationChannel, but only on API 26+ because
+		// the NotificationChannel class is new and not in the support library
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			CharSequence name = getString(R.string.channel_name);
+			String description = getString(R.string.channel_description);
+			int importance = NotificationManager.IMPORTANCE_DEFAULT;
+			NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+			channel.setDescription(description);
+			// Register the channel with the system; you can't change the importance
+			// or other notification behaviors after this
+			NotificationManager notificationManager = getSystemService(NotificationManager.class);
+			notificationManager.createNotificationChannel(channel);
+		}
+	}
 	@Override
 	public void onStart() {
 		super.onStart();
 		listUpdateTimer.start();
 	}
+
 
 	@Override
 	public void onStop() {
@@ -289,10 +355,12 @@ public class DeparturesActivity extends TransportrActivity
 			}
 		}
 		swipe.setRefreshing(false);
+		createNotificationChannel();
+		Long previousDate = new Long(System.currentTimeMillis());
+		new NotificationTask().execute(previousDate);
 	}
 
 	@Override
 	public void onLoaderReset(Loader<QueryDeparturesResult> loader) {
 	}
-
 }

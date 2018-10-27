@@ -444,5 +444,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="japanese">Japanese</string>
 	<string name="russian">Russian</string>
 	<string name="greek">Greek</string>
+	<string name="channel_name">DepartuesNotification</string>
+	<string name="channel_description">Ticker notifications</string>
 
 </resources>

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-	package="de.grobox.transportr"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:installLocation="auto">
+<manifest package="de.grobox.transportr"
+		  xmlns:android="http://schemas.android.com/apk/res/android"
+		  xmlns:tools="http://schemas.android.com/tools"
+		  android:installLocation="auto">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -29,7 +28,7 @@
 		android:required="false"/>
 
 	<application
-		android:name="de.grobox.transportr.TransportrApplication"
+		android:name=".TransportrApplication"
 		android:allowBackup="false"
 		android:hardwareAccelerated="true"
 		android:icon="@mipmap/ic_launcher"
@@ -38,56 +37,50 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme.Light"
 		tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
 		<activity
-			android:name="de.grobox.transportr.map.MapActivity"
+			android:name=".map.MapActivity"
 			android:label="@string/app_name"
 			android:launchMode="singleTop"
 			android:windowSoftInputMode="stateHidden|adjustPan">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
+
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
+
 				<data android:scheme="geo"/>
+
 				<category android:name="android.intent.category.DEFAULT"/>
 			</intent-filter>
 
 			<meta-data
 				android:name="android.app.shortcuts"
 				android:resource="@xml/shortcuts"/>
-
 		</activity>
-
 		<activity
-			android:name="de.grobox.transportr.trips.search.DirectionsActivity"
+			android:name=".trips.search.DirectionsActivity"
 			android:exported="true"
 			android:windowSoftInputMode="stateHidden"/>
-
 		<activity
-			android:name="de.grobox.transportr.departures.DeparturesActivity"
+			android:name=".departures.DeparturesActivity"
 			android:label="@string/drawer_departures"
-			android:parentActivityName="de.grobox.transportr.map.MapActivity"
+			android:parentActivityName=".map.MapActivity"
 			tools:targetApi="jelly_bean"/>
-
 		<activity
-			android:name="de.grobox.transportr.trips.detail.TripDetailActivity"
-			android:parentActivityName="de.grobox.transportr.trips.search.DirectionsActivity"
+			android:name=".trips.detail.TripDetailActivity"
+			android:parentActivityName=".trips.search.DirectionsActivity"
 			tools:targetApi="jelly_bean"/>
-
 		<activity
-			android:name="de.grobox.transportr.networks.PickTransportNetworkActivity"
+			android:name=".networks.PickTransportNetworkActivity"
 			android:label="@string/pick_network_activity"/>
-
 		<activity
-			android:name="de.grobox.transportr.settings.SettingsActivity"
+			android:name=".settings.SettingsActivity"
 			android:label="@string/drawer_settings"/>
-
 		<activity
-			android:name="de.grobox.transportr.about.AboutActivity"
+			android:name=".about.AboutActivity"
 			android:label="@string/drawer_about"/>
-
 		<activity
 			android:name=".about.ContributorsActivity"
 			android:label="@string/drawer_contributors"/>
