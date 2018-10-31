@@ -19,17 +19,13 @@
 
 package de.grobox.transportr.departures;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -89,6 +85,7 @@ public class DeparturesActivity extends TransportrActivity
 	private enum SearchState {INITIAL, TOP, BOTTOM}
 
 	private ProgressBar progressBar;
+	private AsyncTask notificationTask;
 	private View errorLayout;
 	private TextView errorText;
 	private SwipyRefreshLayout swipe;
@@ -173,25 +170,22 @@ public class DeparturesActivity extends TransportrActivity
 		}
 	}
 
-	class NotificationTask extends AsyncTask<Long,Void,Void> {
+	class NotificationTask extends AsyncTask<Void, Void, Void> {
 
-		/*private Context mContext;
-		private int NOTIFICATION_ID = 1;
-		private Notification mNotification;
-		private NotificationManager mNotificationManager;
-*/
 		@Override
-		protected Void doInBackground(Long... params) {
+		protected Void doInBackground(Void... params) {
+			createNotificationChannel();
 			String notificationText;
-			while (true) {
+			long time= System.currentTimeMillis();
+			while (!isCancelled() && time>=System.currentTimeMillis()-600000) {
 				notificationText = "";
-				for (int i=0; i<8; i++) {
-					if (getDifferenceInMinutes(adapter.getItem(i).getTime())>-1){
+				for (int i = 0; i < 8; i++) {
+					if (getDifferenceInMinutes(adapter.getItem(i).getTime()) > -1) {
 						notificationText = notificationText
 								+ getDifferenceInMinutes(adapter.getItem(i).getTime()) + "min - "
 								+ adapter.getItem(i).line.label + " "
 								+ adapter.getItem(i).destination.name;
-						if (i!=7) notificationText = notificationText + "\n";
+						if (i != 7) notificationText = notificationText + "\n";
 					}
 				}
 				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(DeparturesActivity.this, CHANNEL_ID)
@@ -210,6 +204,10 @@ public class DeparturesActivity extends TransportrActivity
 					e.printStackTrace();
 				}
 			}
+			if (time<System.currentTimeMillis()-600000) {
+				this.cancel(true);
+			}
+			return null;
 		}
 	}
 	private void createNotificationChannel() {
@@ -265,9 +263,29 @@ public class DeparturesActivity extends TransportrActivity
 				fragment.setTimeDateListener(this);
 				fragment.show(getSupportFragmentManager(), TimeDateFragment.TAG);
 				return true;
+			case R.id.action_notification:
+				if (notificationTask != null) {
+					if (this.notificationTask.getStatus() == AsyncTask.Status.RUNNING) {
+						notificationTask.cancel(true);
+						Toast.makeText(this, "Pushing departure updates has been stopped.", Toast.LENGTH_SHORT).show();
+					}
+					else {
+						startNotificationTask();
+					}
+				}
+				else {
+					startNotificationTask();
+				}
+				//Todo - end async loop after 10 min, end on click again, change look
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
+	}
+
+	private void startNotificationTask() {
+		notificationTask = new NotificationTask().execute();
+		Toast.makeText(this, "Pushing departure updates for the next 10 minutes.", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -355,12 +373,18 @@ public class DeparturesActivity extends TransportrActivity
 			}
 		}
 		swipe.setRefreshing(false);
-		createNotificationChannel();
-		Long previousDate = new Long(System.currentTimeMillis());
-		new NotificationTask().execute(previousDate);
 	}
 
 	@Override
 	public void onLoaderReset(Loader<QueryDeparturesResult> loader) {
+	}
+
+	@Override
+	protected void onDestroy() {
+		if (this.notificationTask != null) {
+			notificationTask.cancel(true);
+		}
+
+		super.onDestroy();
 	}
 }

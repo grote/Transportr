@@ -8,5 +8,10 @@
 		android:icon="@drawable/ic_time"
 		android:title="@string/change_time"
 		app:showAsAction="always"/>
+	<item
+		android:id="@+id/action_notification"
+		android:icon="@drawable/action_notification"
+		android:title="@string/change_time"
+		app:showAsAction="always"/>
 
 </menu>
