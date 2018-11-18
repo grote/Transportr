@@ -100,3 +100,5 @@ object TransportrUtils {
     }
 
 }
+
+fun Location.hasLocation() = latAs1E6 != 0 || lonAs1E6 != 0

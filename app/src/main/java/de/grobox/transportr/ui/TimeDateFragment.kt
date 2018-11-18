@@ -82,7 +82,7 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
 
         // Date
         dateView.setOnClickListener {
-            DatePickerDialog(context, this@TimeDateFragment, calendar.get(YEAR), calendar.get(MONTH), calendar.get(DAY_OF_MONTH))
+            DatePickerDialog(context!!, this@TimeDateFragment, calendar.get(YEAR), calendar.get(MONTH), calendar.get(DAY_OF_MONTH))
                     .show()
         }
         showDate(calendar)

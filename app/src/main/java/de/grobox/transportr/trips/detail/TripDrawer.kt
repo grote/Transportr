@@ -34,6 +34,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import de.grobox.transportr.R
 import de.grobox.transportr.map.MapDrawer
 import de.grobox.transportr.utils.DateUtils.getTime
+import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.Point
 import de.schildbach.pte.dto.Stop
@@ -113,19 +114,19 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
         if (leg.path == null) leg.path = ArrayList()
 
         if (leg.departure != null && leg.departure.hasLocation()) {
-            leg.path.add(Point(leg.departure.lat, leg.departure.lon))
+            leg.path.add(Point.fromDouble(leg.departure.latAsDouble, leg.departure.lonAsDouble))
         }
 
         if (leg is Public) {
             leg.intermediateStops?.filter {
                 it.location != null && it.location.hasLocation()
             }?.forEach {
-                leg.path.add(Point(it.location.lat, it.location.lon))
+                leg.path.add(Point.fromDouble(it.location.latAsDouble, it.location.lonAsDouble))
             }
         }
 
         if (leg.arrival != null && leg.arrival.hasLocation()) {
-            leg.path.add(Point(leg.arrival.lat, leg.arrival.lon))
+            leg.path.add(Point.fromDouble(leg.arrival.latAsDouble, leg.arrival.lonAsDouble))
         }
     }
 

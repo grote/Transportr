@@ -34,6 +34,7 @@ import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.trips.TripQuery
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.MIDDLE
 import de.grobox.transportr.utils.SingleLiveEvent
+import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.Trip
 import de.schildbach.pte.dto.Trip.Leg

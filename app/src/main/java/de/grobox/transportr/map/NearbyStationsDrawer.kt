@@ -27,6 +27,7 @@ import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import de.grobox.transportr.R
 import de.grobox.transportr.locations.WrapLocation
+import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.Product
 import java.util.*

@@ -23,8 +23,10 @@ import android.content.Context
 import android.location.Geocoder
 import android.support.annotation.WorkerThread
 import com.mapbox.mapboxsdk.geometry.LatLng
+import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.LocationType.ADDRESS
+import de.schildbach.pte.dto.Point
 import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -66,9 +68,8 @@ class ReverseGeocoder(private val context: Context, private val callback: Revers
                 if (address.featureName != null) name += " " + address.featureName
                 val place = address.locality
 
-                val latInt = (lat * 1E6).toInt()
-                val lonInt = (lon * 1E6).toInt()
-                val l = Location(ADDRESS, null, latInt, lonInt, place, name)
+                val point = Point.fromDouble(lat, lon)
+                val l = Location(ADDRESS, null, point, place, name)
 
                 callback.onLocationRetrieved(WrapLocation(l))
             } catch (e: IOException) {
@@ -124,9 +125,8 @@ class ReverseGeocoder(private val context: Context, private val callback: Revers
                     var place: String? = address.optString("city", null)
                     if (place == null) place = address.optString("state", null)
 
-                    val latInt = (lat * 1E6).toInt()
-                    val lonInt = (lon * 1E6).toInt()
-                    val l = Location(ADDRESS, null, latInt, lonInt, place, name)
+                    val point = Point.fromDouble(lat, lon)
+                    val l = Location(ADDRESS, null, point, place, name)
 
                     callback.onLocationRetrieved(WrapLocation(l))
                 } catch (e: JSONException) {
