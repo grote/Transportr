@@ -121,7 +121,7 @@ dependencies {
 	implementation "com.mikepenz:fastadapter:$fastadapterVersion"
 	implementation "com.mikepenz:fastadapter-commons:$fastadapterVersion"
 	implementation "com.mikepenz:fastadapter-extensions-expandable:$fastadapterVersion"
-	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.8.0'
+	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.14.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0'
 	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.4.0'
 	implementation 'com.mapzen.android:lost:3.0.4'

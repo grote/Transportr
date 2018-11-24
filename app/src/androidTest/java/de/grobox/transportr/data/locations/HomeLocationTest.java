@@ -27,6 +27,7 @@ import org.junit.runner.RunWith;
 
 import de.grobox.transportr.data.DbTest;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Product;
 
 import static de.schildbach.pte.NetworkId.DB;
@@ -54,7 +55,7 @@ public class HomeLocationTest extends DbTest {
 		assertNull(getValue(dao.getHomeLocation(DB)));
 
 		// create a complete station location
-		Location location = new Location(STATION, "stationId", 23, 42, "place", "name", Product.ALL);
+		Location location = new Location(STATION, "stationId", Point.from1E6(23, 42), "place", "name", Product.ALL);
 		long uid1 = dao.addHomeLocation(new HomeLocation(DB, location));
 
 		// assert that location has been inserted and retrieved properly
@@ -64,14 +65,14 @@ public class HomeLocationTest extends DbTest {
 		assertEquals(DB, homeLocation.getNetworkId());
 		assertEquals(location.type, homeLocation.type);
 		assertEquals(location.id, homeLocation.id);
-		assertEquals(location.lat, homeLocation.lat);
-		assertEquals(location.lon, homeLocation.lon);
+		assertEquals(location.getLatAs1E6(), homeLocation.lat);
+		assertEquals(location.getLonAs1E6(), homeLocation.lon);
 		assertEquals(location.place, homeLocation.place);
 		assertEquals(location.name, homeLocation.name);
 		assertEquals(location.products, homeLocation.products);
 
 		// create a different home location
-		location = new Location(ADDRESS, null, 1337, 0, "place2", "name2", null);
+		location = new Location(ADDRESS, null, Point.from1E6(1337, 0), "place2", "name2", null);
 		dao.addHomeLocation(new HomeLocation(DB, location));
 
 		// assert that old home location has been replaced properly
@@ -81,8 +82,8 @@ public class HomeLocationTest extends DbTest {
 		assertEquals(DB, homeLocation.getNetworkId());
 		assertEquals(location.type, homeLocation.type);
 		assertEquals(location.id, homeLocation.id);
-		assertEquals(location.lat, homeLocation.lat);
-		assertEquals(location.lon, homeLocation.lon);
+		assertEquals(location.getLatAs1E6(), homeLocation.lat);
+		assertEquals(location.getLonAs1E6(), homeLocation.lon);
 		assertEquals(location.place, homeLocation.place);
 		assertEquals(location.name, homeLocation.name);
 		assertEquals(location.products, homeLocation.products);
