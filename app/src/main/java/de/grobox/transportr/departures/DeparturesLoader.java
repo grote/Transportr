@@ -21,7 +21,7 @@ package de.grobox.transportr.departures;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.content.AsyncTaskLoader;
+import androidx.loader.content.AsyncTaskLoader;
 import android.util.Log;
 
 import java.util.Date;

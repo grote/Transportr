@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="2.0.3" versioncode="112">
+        <change>Don't show search results over lockscreen anymore</change>
+        <change>Add Persian translation (Thanks Reza!)</change>
+        <change>Add Chinese (Taiwan) translation (Thanks Gerrit!)</change>
+        <change>Fix home and work location input in dark theme</change>
+    </release>
+
     <release version="2.0.2" versioncode="111">
         <change>Added data source for Hungary (Thanks Balázs!)</change>
         <change>Added data source for Municipal Transports of Poland (Thanks Michel!)</change>

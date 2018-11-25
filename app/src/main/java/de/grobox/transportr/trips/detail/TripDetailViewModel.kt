@@ -20,8 +20,8 @@
 package de.grobox.transportr.trips.detail
 
 import android.app.Application
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import de.grobox.transportr.R
@@ -34,6 +34,7 @@ import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.trips.TripQuery
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.MIDDLE
 import de.grobox.transportr.utils.SingleLiveEvent
+import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.Trip
 import de.schildbach.pte.dto.Trip.Leg

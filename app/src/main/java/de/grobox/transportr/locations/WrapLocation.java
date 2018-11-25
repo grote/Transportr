@@ -19,9 +19,9 @@
 
 package de.grobox.transportr.locations;
 
-import android.arch.persistence.room.Ignore;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.Nullable;
+import androidx.room.Ignore;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
 
 import com.google.common.base.Strings;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -33,6 +33,7 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.LocationType;
+import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Product;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -66,7 +67,7 @@ public class WrapLocation implements Serializable {
 	}
 
 	public WrapLocation(Location l) {
-		this(l.type, l.id, l.lat, l.lon, l.place, l.name, l.products);
+		this(l.type, l.id, l.getLatAs1E6(), l.getLonAs1E6(), l.place, l.name, l.products);
 	}
 
 	public WrapLocation(WrapType wrapType) {
@@ -88,10 +89,11 @@ public class WrapLocation implements Serializable {
 	}
 
 	public Location getLocation() {
+		Point point = Point.from1E6(lat, lon);
 		if (type == LocationType.ANY && id != null) {
-			return new Location(type, null, lat, lon, place, name, products);
+			return new Location(type, null, point, place, name, products);
 		}
-		return new Location(type, id, lat, lon, place, name, products);
+		return new Location(type, id, point, place, name, products);
 	}
 
 	@Nullable

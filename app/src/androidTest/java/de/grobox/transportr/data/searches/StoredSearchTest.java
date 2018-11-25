@@ -19,8 +19,6 @@
 
 package de.grobox.transportr.data.searches;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +26,7 @@ import org.junit.runner.RunWith;
 import java.util.Date;
 import java.util.List;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import de.grobox.transportr.data.DbTest;
 import de.grobox.transportr.data.locations.FavoriteLocation;
 import de.grobox.transportr.data.locations.LocationDao;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -173,7 +173,7 @@
 		app:srcCompat="@drawable/ic_action_navigation_unfold_more"
 		tools:visibility="visible"/>
 
-	<android.support.v7.widget.RecyclerView
+	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/stopsList"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
@@ -245,4 +245,4 @@
 		app:layout_constraintTop_toTopOf="@+id/toLocation"
 		app:srcCompat="@drawable/ic_more_vert"/>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

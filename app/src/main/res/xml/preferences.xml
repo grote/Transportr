@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<PreferenceCategory
 		android:key="pref_key_transport_network"
-		android:title="@string/pref_transport_network">
+		android:title="@string/pref_transport_network"
+		app:iconSpaceReserved="false">
 
 		<Preference
 			android:key="pref_key_network"
 			android:summary="@string/pick_network_activity"
-			android:title="@string/network"/>
+			android:title="@string/network"
+			app:iconSpaceReserved="false"/>
 
 	</PreferenceCategory>
 
 	<PreferenceCategory
 		android:key="pref_key_directions"
-		android:title="@string/pref_directions_routing">
+		android:title="@string/pref_directions_routing"
+		app:iconSpaceReserved="false">
 
 		<ListPreference
 			android:defaultValue="@string/pref_optimize_value_default"
@@ -24,7 +28,8 @@
 			android:key="pref_key_optimize"
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
-			android:title="@string/pref_optimize"/>
+			android:title="@string/pref_optimize"
+			app:iconSpaceReserved="false"/>
 
 		<ListPreference
 			android:defaultValue="@string/pref_walk_speed_value_default"
@@ -33,13 +38,15 @@
 			android:key="pref_key_walk_speed"
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
-			android:title="@string/pref_walk_speed"/>
+			android:title="@string/pref_walk_speed"
+			app:iconSpaceReserved="false"/>
 
 	</PreferenceCategory>
 
 	<PreferenceCategory
 		android:key="pref_key_display"
-		android:title="@string/pref_display">
+		android:title="@string/pref_display"
+		app:iconSpaceReserved="false">
 
 		<ListPreference
 			android:defaultValue="@string/pref_theme_value_light"
@@ -48,7 +55,8 @@
 			android:key="pref_key_theme"
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
-			android:title="@string/pref_theme_title"/>
+			android:title="@string/pref_theme_title"
+			app:iconSpaceReserved="false"/>
 
 		<ListPreference
 			android:defaultValue="@string/pref_language_value_default"
@@ -57,13 +65,15 @@
 			android:key="pref_key_language"
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
-			android:title="@string/pref_language_title"/>
+			android:title="@string/pref_language_title"
+			app:iconSpaceReserved="false"/>
 
 		<CheckBoxPreference
 			android:defaultValue="true"
 			android:key="pref_key_show_when_locked"
 			android:summary="@string/pref_show_when_locked_title"
-			android:title="@string/pref_show_when_locked_summary"/>
+			android:title="@string/pref_show_when_locked_summary"
+			app:iconSpaceReserved="false"/>
 
 	</PreferenceCategory>
 

@@ -97,7 +97,7 @@ private val networks = arrayOf(
                         description = R.string.np_desc_invg,
                         logo = R.drawable.network_invg_logo,
                         status = BETA,
-                        factory = { InvgProvider() }
+                        factory = { InvgProvider("{\"type\":\"AID\",\"aid\":\"GITvwi3BGOmTQ2a5\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.VGN,
@@ -170,7 +170,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_nvv,
                         description = R.string.np_desc_nvv,
                         logo = R.drawable.network_nvv_logo,
-                        factory = { NvvProvider() }
+                        factory = { NvvProvider("{\"type\":\"AID\",\"aid\":\"Kt8eNOH7qjVeSxNA\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.VRN,
@@ -241,7 +241,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_oebb,
                         description = R.string.np_desc_oebb,
                         logo = R.drawable.network_oebb_logo,
-                        factory = { OebbProvider() }
+                        factory = { OebbProvider("{\"type\":\"AID\",\"aid\":\"OWDL4fE4ixNiPBBm\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.VOR,
@@ -322,7 +322,7 @@ private val networks = arrayOf(
                         id = NetworkId.ZVV,
                         description = R.string.np_desc_zvv,
                         logo = R.drawable.network_zvv_logo,
-                        factory = { ZvvProvider() }
+                        factory = { ZvvProvider("{\"type\":\"AID\",\"aid\":\"hf7mcf9bv3nv8g5f\"}") }
                     )
                 )
             ),
@@ -345,7 +345,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_lu,
                         description = R.string.np_desc_lu,
                         agencies = R.string.np_desc_lu_networks,
-                        factory = { LuProvider() }
+                        factory = { LuProvider("{\"type\":\"AID\",\"aid\":\"Aqf9kNqJLjxFx6vv\"}") }
                     )
                 )
             ),
@@ -380,7 +380,7 @@ private val networks = arrayOf(
                         id = NetworkId.DSB,
                         description = R.string.np_desc_dsb,
                         logo = R.drawable.network_dsb_logo,
-                        factory = { DsbProvider() }
+                        factory = { DsbProvider("{\"type\":\"AID\",\"aid\":\"irkmpm9mdznstenr-android\"}") }
                     )
                 )
             ),
@@ -390,17 +390,7 @@ private val networks = arrayOf(
                         id = NetworkId.SE,
                         description = R.string.np_desc_se,
                         logo = R.drawable.network_se_logo,
-                        factory = { SeProvider() }
-                    )
-                )
-            ),
-            Country(
-                R.string.np_region_norway, flag = "🇳🇴", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.NRI,
-                        description = R.string.np_desc_nri,
-                        logo = R.drawable.network_nri_logo,
-                        factory = { NriProvider() }
+                        factory = { SeProvider("{\"type\":\"AID\",\"aid\":\"h5o3n7f4t2m8l9x1\"}") }
                     )
                 )
             ),

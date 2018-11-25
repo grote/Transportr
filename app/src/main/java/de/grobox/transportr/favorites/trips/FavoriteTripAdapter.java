@@ -19,9 +19,9 @@
 
 package de.grobox.transportr.favorites.trips;
 
-import android.support.annotation.Nullable;
-import android.support.v7.util.SortedList;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.SortedList;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +32,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import de.grobox.transportr.R;
 
-import static android.support.v7.util.SortedList.INVALID_POSITION;
+import static androidx.recyclerview.widget.SortedList.INVALID_POSITION;
 import static de.grobox.transportr.favorites.trips.FavoriteTripType.HOME;
 import static de.grobox.transportr.favorites.trips.FavoriteTripType.WORK;
 

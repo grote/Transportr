@@ -21,13 +21,15 @@ package de.grobox.transportr.ui;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import de.grobox.transportr.R;
 
 
@@ -53,9 +55,8 @@ public class ThreeStateBottomSheetBehavior<V extends View> extends BottomSheetBe
 	}
 
 	@Override
-	public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, V child, View target, int dx, int dy, int[] consumed) {
-		super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
-
+	public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V child, @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
+		super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
 		if (screenHeight == 0) {
 			setScreenHeight(coordinatorLayout.getHeight());
 		}

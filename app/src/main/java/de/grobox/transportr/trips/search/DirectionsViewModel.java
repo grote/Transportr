@@ -19,11 +19,6 @@
 
 package de.grobox.transportr.trips.search;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Transformations;
-import android.support.annotation.Nullable;
-
 import java.util.Calendar;
 import java.util.EnumSet;
 import java.util.Set;
@@ -31,6 +26,10 @@ import java.util.Set;
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import de.grobox.transportr.TransportrApplication;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.data.locations.LocationRepository;
@@ -59,7 +58,6 @@ import static de.grobox.transportr.utils.DateUtils.isNow;
 public class DirectionsViewModel extends SavedSearchesViewModel implements TimeDateListener, LocationViewListener {
 
 	private final TripsRepository tripsRepository;
-	private final SettingsManager settingsManager;
 
 	private final MutableLiveData<WrapLocation> fromLocation = new MutableLiveData<>();
 	private final MutableLiveData<WrapLocation> viaLocation = new MutableLiveData<>();
@@ -89,16 +87,11 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		topSwipeEnabled.setValue(false);
 		locationLiveData = new LocationLiveData(application.getApplicationContext());
 
-		this.settingsManager = settingsManager;
 		TransportNetwork network = getTransportNetwork().getValue();
 		if (network == null) network = TransportNetworksKt.getTransportNetwork(NetworkId.DB);
 		if (network == null) throw new IllegalArgumentException();
 		tripsRepository = new TripsRepository(application.getApplicationContext(), network.getNetworkProvider(),
 				settingsManager, locationRepository, searchesRepository);
-	}
-
-	boolean showWhenLocked() {
-		return settingsManager.showWhenLocked();
 	}
 
 	LiveData<WrapLocation> getFromLocation() {

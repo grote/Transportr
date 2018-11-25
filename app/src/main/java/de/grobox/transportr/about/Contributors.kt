@@ -19,7 +19,7 @@
 
 package de.grobox.transportr.about
 
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import de.grobox.transportr.R
 
 
@@ -69,6 +69,11 @@ internal val LANGUAGES = listOf(
         )
     ),
     ContributorGroup(
+        R.string.taiwanese, listOf(
+            Contributor("Gerrit Schultz")
+        )
+    ),
+    ContributorGroup(
         R.string.czech, listOf(
             Contributor("Miloš Koliáš")
         )
@@ -82,6 +87,11 @@ internal val LANGUAGES = listOf(
     ContributorGroup(
         R.string.esperanto, listOf(
             Contributor("Verdulo")
+        )
+    ),
+    ContributorGroup(
+        R.string.farsi, listOf(
+            Contributor("Reza Ghasemi")
         )
     ),
     ContributorGroup(

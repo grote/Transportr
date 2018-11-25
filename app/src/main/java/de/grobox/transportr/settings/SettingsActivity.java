@@ -20,7 +20,7 @@
 package de.grobox.transportr.settings;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;

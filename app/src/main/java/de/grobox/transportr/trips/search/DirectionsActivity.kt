@@ -19,15 +19,14 @@
 
 package de.grobox.transportr.trips.search
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.AppBarLayout.OnOffsetChangedListener
 import android.view.MenuItem
-import android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrActivity
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
@@ -65,12 +64,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
 
         // get view model and observe data
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DirectionsViewModel::class.java)
-        viewModel.showTrips.observe(this, Observer { _ -> showTrips() })
-
-        if (viewModel.showWhenLocked()) {
-            @Suppress("DEPRECATION")
-            window.addFlags(FLAG_SHOW_WHEN_LOCKED)
-        }
+        viewModel.showTrips.observe(this, Observer { showTrips() })
 
         appBarLayout.addOnOffsetChangedListener(this)
 

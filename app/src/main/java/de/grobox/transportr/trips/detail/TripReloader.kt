@@ -19,8 +19,8 @@
 
 package de.grobox.transportr.trips.detail
 
-import android.arch.lifecycle.MutableLiveData
-import android.support.annotation.WorkerThread
+import androidx.lifecycle.MutableLiveData
+import androidx.annotation.WorkerThread
 import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.trips.TripQuery
 import de.grobox.transportr.utils.SingleLiveEvent

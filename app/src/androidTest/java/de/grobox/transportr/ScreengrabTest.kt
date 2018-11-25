@@ -19,9 +19,9 @@
 
 package de.grobox.transportr
 
-import android.support.annotation.CallSuper
-import android.support.test.InstrumentationRegistry
 import android.util.Log
+import androidx.annotation.CallSuper
+import androidx.test.core.app.ApplicationProvider
 import de.grobox.transportr.locations.WrapLocation
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.dto.LocationType.STATION
@@ -42,7 +42,7 @@ abstract class ScreengrabTest {
         val localeTestRule = LocaleTestRule()
     }
 
-    private val app = InstrumentationRegistry.getTargetContext().applicationContext as TestApplication
+    private val app = ApplicationProvider.getApplicationContext<TestApplication>()
     val component = app.component as TestComponent
 
     @Before

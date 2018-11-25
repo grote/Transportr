@@ -22,8 +22,8 @@ package de.grobox.transportr.favorites.trips;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
-import android.support.v4.graphics.drawable.DrawableCompat;
+import androidx.annotation.DrawableRes;
+import androidx.core.graphics.drawable.DrawableCompat;
 import android.view.MenuItem;
 import android.view.View;
 

@@ -19,10 +19,6 @@
 
 package de.grobox.transportr.trips.detail
 
-import android.support.annotation.ColorInt
-import android.support.v4.content.ContextCompat.getColor
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.text.Html.fromHtml
 import android.view.View
 import android.view.View.GONE
@@ -30,6 +26,10 @@ import android.view.View.VISIBLE
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat.getColor
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.common.base.Strings
 import com.google.common.base.Strings.isNullOrEmpty
 import de.grobox.transportr.R

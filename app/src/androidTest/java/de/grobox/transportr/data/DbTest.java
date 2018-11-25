@@ -19,27 +19,34 @@
 
 package de.grobox.transportr.data;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.arch.persistence.room.Room;
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.test.InstrumentationRegistry;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.Nullable;
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.room.Room;
+
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
 abstract public class DbTest {
+
+	@Rule
+	public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
 	protected Db db;
 
 	@Before
 	public void createDb() throws Exception {
-		Context context = InstrumentationRegistry.getContext();
+		Context context = getApplicationContext();
 		db = Room.inMemoryDatabaseBuilder(context, Db.class).build();
 	}
 

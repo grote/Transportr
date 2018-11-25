@@ -23,4 +23,10 @@
     <color name="fabForegroundFollow">@color/fabBackgroundMoved</color>
     <color name="fabForegroundMoved">@color/md_white_1000</color>
 
+    <!-- Material Drawer -->
+    <color name="material_drawer_header_selection_text">#FFFFFFFF</color>
+    <color name="material_drawer_header_selection_subtext">#B3FFFFFF</color>
+    <color name="material_drawer_dark_header_selection_text">#FFFFFFFF</color>
+    <color name="material_drawer_dark_header_selection_subtext">#B3FFFFFF</color>
+
 </resources>

@@ -22,7 +22,6 @@ package de.grobox.transportr.ui
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.text.format.DateFormat.getDateFormat
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +29,7 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.TimePicker.OnTimeChangedListener
+import androidx.fragment.app.DialogFragment
 import de.grobox.transportr.R
 import kotlinx.android.synthetic.main.fragment_time_date.*
 import java.util.*
@@ -82,7 +82,7 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
 
         // Date
         dateView.setOnClickListener {
-            DatePickerDialog(context, this@TimeDateFragment, calendar.get(YEAR), calendar.get(MONTH), calendar.get(DAY_OF_MONTH))
+            DatePickerDialog(context!!, this@TimeDateFragment, calendar.get(YEAR), calendar.get(MONTH), calendar.get(DAY_OF_MONTH))
                     .show()
         }
         showDate(calendar)

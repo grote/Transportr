@@ -19,17 +19,17 @@
 
 package de.grobox.transportr.favorites.locations
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.annotation.StringRes
-import android.support.v4.app.DialogFragment
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager.LayoutParams
+import androidx.annotation.StringRes
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.mikepenz.materialdrawer.util.KeyboardUtil
 import de.grobox.transportr.AppComponent
 import de.grobox.transportr.R
@@ -63,7 +63,7 @@ abstract class SpecialLocationFragment : DialogFragment(), LocationView.Location
         super.onCreate(savedInstanceState)
         inject((activity!!.application as TransportrApplication).component)
         setStyle(
-            DialogFragment.STYLE_NO_TITLE,
+            STYLE_NO_TITLE,
             if (settingsManager.isDarkTheme) R.style.SetHomeDialogTheme else R.style.SetHomeDialogTheme_Light
         )
     }

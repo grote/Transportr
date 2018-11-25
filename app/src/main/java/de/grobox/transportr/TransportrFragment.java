@@ -20,16 +20,12 @@
 package de.grobox.transportr;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-
-import de.grobox.transportr.AppComponent;
-import de.grobox.transportr.TransportrActivity;
-import de.grobox.transportr.TransportrApplication;
 
 
 @ParametersAreNonnullByDefault

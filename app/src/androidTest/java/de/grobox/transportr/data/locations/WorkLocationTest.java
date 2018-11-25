@@ -21,9 +21,12 @@ package de.grobox.transportr.data.locations;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import de.grobox.transportr.data.DbTest;
 import de.schildbach.pte.dto.Location;
+import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Product;
 
 import static de.schildbach.pte.NetworkId.DB;
@@ -33,6 +36,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+@RunWith(AndroidJUnit4.class)
 public class WorkLocationTest extends DbTest {
 
 	private LocationDao dao;
@@ -50,7 +54,7 @@ public class WorkLocationTest extends DbTest {
 		assertNull(getValue(dao.getWorkLocation(DB)));
 
 		// create a complete station location
-		Location location = new Location(STATION, "stationId", 23, 42, "place", "name", Product.ALL);
+		Location location = new Location(STATION, "stationId", Point.from1E6(23, 42), "place", "name", Product.ALL);
 		long uid1 = dao.addWorkLocation(new WorkLocation(DB, location));
 
 		// assert that location has been inserted and retrieved properly
@@ -60,14 +64,14 @@ public class WorkLocationTest extends DbTest {
 		assertEquals(DB, workLocation.getNetworkId());
 		assertEquals(location.type, workLocation.type);
 		assertEquals(location.id, workLocation.id);
-		assertEquals(location.lat, workLocation.lat);
-		assertEquals(location.lon, workLocation.lon);
+		assertEquals(location.getLatAs1E6(), workLocation.lat);
+		assertEquals(location.getLonAs1E6(), workLocation.lon);
 		assertEquals(location.place, workLocation.place);
 		assertEquals(location.name, workLocation.name);
 		assertEquals(location.products, workLocation.products);
 
 		// create a different home location
-		location = new Location(ADDRESS, null, 1337, 0, "place2", "name2", null);
+		location = new Location(ADDRESS, null, Point.from1E6(1337, 0), "place2", "name2", null);
 		dao.addWorkLocation(new WorkLocation(DB, location));
 
 		// assert that old home location has been replaced properly
@@ -77,8 +81,8 @@ public class WorkLocationTest extends DbTest {
 		assertEquals(DB, workLocation.getNetworkId());
 		assertEquals(location.type, workLocation.type);
 		assertEquals(location.id, workLocation.id);
-		assertEquals(location.lat, workLocation.lat);
-		assertEquals(location.lon, workLocation.lon);
+		assertEquals(location.getLatAs1E6(), workLocation.lat);
+		assertEquals(location.getLonAs1E6(), workLocation.lon);
 		assertEquals(location.place, workLocation.place);
 		assertEquals(location.name, workLocation.name);
 		assertEquals(location.products, workLocation.products);

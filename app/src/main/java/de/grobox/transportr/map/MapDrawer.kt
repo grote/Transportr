@@ -33,6 +33,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import de.grobox.transportr.R
+import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 
 internal abstract class MapDrawer(protected val context: Context) {

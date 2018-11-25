@@ -22,7 +22,7 @@ package de.grobox.transportr.settings
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import android.support.annotation.StyleRes
+import androidx.annotation.StyleRes
 import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider.Optimize
@@ -38,7 +38,7 @@ class SettingsManager @Inject constructor(private val context: Context) {
     val locale: Locale
         get() {
             val default = context.getString(R.string.pref_language_value_default)
-            val str = settings.getString(LANGUAGE, default)
+            val str = settings.getString(LANGUAGE, default) ?: default
             return when {
                 str == default -> Locale.getDefault()
                 str.contains("_") -> {
@@ -67,7 +67,8 @@ class SettingsManager @Inject constructor(private val context: Context) {
     val walkSpeed: WalkSpeed
         get() {
             return try {
-                WalkSpeed.valueOf(settings.getString(WALK_SPEED, context.getString(R.string.pref_walk_speed_value_default)))
+                val default = context.getString(R.string.pref_walk_speed_value_default)
+                WalkSpeed.valueOf(settings.getString(WALK_SPEED, default) ?: default)
             } catch (e: IllegalArgumentException) {
                 e.printStackTrace()
                 WalkSpeed.NORMAL
@@ -77,7 +78,8 @@ class SettingsManager @Inject constructor(private val context: Context) {
     val optimize: Optimize
         get() {
             return try {
-                Optimize.valueOf(settings.getString(OPTIMIZE, context.getString(R.string.pref_optimize_value_default)))
+                val default = context.getString(R.string.pref_optimize_value_default)
+                Optimize.valueOf(settings.getString(OPTIMIZE, default) ?: default)
             } catch (e: IllegalArgumentException) {
                 e.printStackTrace()
                 Optimize.LEAST_DURATION

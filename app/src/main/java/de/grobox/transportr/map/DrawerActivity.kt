@@ -22,11 +22,11 @@ package de.grobox.transportr.map
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat.makeScaleUpAnimation
-import android.support.v7.widget.RecyclerView.NO_POSITION
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat.makeScaleUpAnimation
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import android.view.View
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder

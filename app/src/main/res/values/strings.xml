@@ -133,7 +133,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="pref_walk_speed_slow">Slow</string>
 	<string name="pref_walk_speed_normal">Normal</string>
 	<string name="pref_walk_speed_fast">Fast</string>
-	<string name="pref_show_when_locked_title">Show trip and search results even when screen is locked</string>
+	<string name="pref_show_when_locked_title">Show trip even when screen is locked</string>
 	<string name="pref_show_when_locked_summary">Show over lock screen</string>
 
 	<string name="error">Error</string>
@@ -444,5 +444,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="japanese">Japanese</string>
 	<string name="russian">Russian</string>
 	<string name="greek">Greek</string>
+	<string name="farsi">Persian</string>
+	<string name="taiwanese">Chinese (Taiwan)</string>
 
 </resources>

@@ -19,9 +19,9 @@
 
 package de.grobox.transportr.data.locations;
 
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.Nullable;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.annotation.Nullable;
 
 import java.util.Set;
 
@@ -55,7 +55,7 @@ public abstract class StoredLocation extends WrapLocation {
 
 	@Ignore
 	StoredLocation(NetworkId networkId, Location l) {
-		this(0, networkId, l.type, l.id, l.lat, l.lon, l.place, l.name, l.products);
+		this(0, networkId, l.type, l.id, l.getLatAs1E6(), l.getLonAs1E6(), l.place, l.name, l.products);
 	}
 
 	public long getUid() {

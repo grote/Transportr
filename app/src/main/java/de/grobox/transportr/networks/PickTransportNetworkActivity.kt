@@ -21,12 +21,13 @@ package de.grobox.transportr.networks
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.os.PersistableBundle
 import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.fastadapter.IItem
 import com.mikepenz.fastadapter.ISelectionListener
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
@@ -83,9 +84,9 @@ class PickTransportNetworkActivity : TransportrActivity(), ISelectionListener<II
         selectItem()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
         val newState = adapter.saveInstanceState(outState)
-        super.onSaveInstanceState(newState)
+        super.onSaveInstanceState(newState, outPersistentState)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

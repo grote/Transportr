@@ -20,8 +20,8 @@
 package de.grobox.transportr.data;
 
 
-import android.arch.persistence.room.TypeConverter;
-import android.support.annotation.Nullable;
+import androidx.room.TypeConverter;
+import androidx.annotation.Nullable;
 
 import java.util.Date;
 import java.util.Set;
