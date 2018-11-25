@@ -20,8 +20,8 @@
 package de.grobox.transportr.map
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.annotation.LayoutRes
+import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

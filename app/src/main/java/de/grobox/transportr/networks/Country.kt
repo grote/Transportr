@@ -20,7 +20,7 @@
 package de.grobox.transportr.networks
 
 import android.content.Context
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import javax.annotation.concurrent.Immutable
 
 @Immutable

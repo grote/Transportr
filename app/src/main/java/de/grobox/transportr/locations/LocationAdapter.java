@@ -21,8 +21,6 @@ package de.grobox.transportr.locations;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
@@ -41,6 +39,8 @@ import java.util.regex.Pattern;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import de.grobox.transportr.R;
 import de.grobox.transportr.data.locations.FavoriteLocation;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;

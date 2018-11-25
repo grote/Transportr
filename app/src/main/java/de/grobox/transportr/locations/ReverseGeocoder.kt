@@ -21,7 +21,7 @@ package de.grobox.transportr.locations
 
 import android.content.Context
 import android.location.Geocoder
-import android.support.annotation.WorkerThread
+import androidx.annotation.WorkerThread
 import com.mapbox.mapboxsdk.geometry.LatLng
 import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location

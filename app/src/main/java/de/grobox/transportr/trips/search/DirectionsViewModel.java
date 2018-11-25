@@ -19,10 +19,10 @@
 
 package de.grobox.transportr.trips.search;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Transformations;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+import androidx.annotation.Nullable;
 
 import java.util.Calendar;
 import java.util.EnumSet;

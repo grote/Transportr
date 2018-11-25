@@ -23,7 +23,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.net.ConnectivityManager
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 import android.util.DisplayMetrics
 import de.grobox.transportr.R
 import de.schildbach.pte.dto.Location

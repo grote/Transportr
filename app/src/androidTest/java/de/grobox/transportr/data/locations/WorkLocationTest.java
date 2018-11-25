@@ -21,7 +21,9 @@ package de.grobox.transportr.data.locations;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import de.grobox.transportr.data.DbTest;
 import de.schildbach.pte.dto.Location;
 import de.schildbach.pte.dto.Point;
@@ -34,6 +36,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+@RunWith(AndroidJUnit4.class)
 public class WorkLocationTest extends DbTest {
 
 	private LocationDao dao;

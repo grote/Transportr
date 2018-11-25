@@ -19,7 +19,7 @@
 
 package de.grobox.transportr.data;
 
-import android.arch.persistence.room.Room;
+import androidx.room.Room;
 
 import javax.inject.Singleton;
 

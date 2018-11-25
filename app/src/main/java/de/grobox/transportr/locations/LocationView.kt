@@ -25,9 +25,9 @@ import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.AsyncTask.Status.FINISHED
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
-import android.support.v4.view.ViewCompat
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.core.view.ViewCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet

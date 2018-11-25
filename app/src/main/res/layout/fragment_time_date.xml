@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
@@ -13,7 +13,7 @@
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toTopOf="parent"/>
 
-	<android.support.v7.widget.AppCompatImageButton
+	<androidx.appcompat.widget.AppCompatImageButton
 		android:id="@+id/prevDateButton"
 		android:layout_width="48dp"
 		android:layout_height="0dp"
@@ -41,7 +41,7 @@
 		app:layout_constraintRight_toLeftOf="@+id/nextDateButton"
 		app:layout_constraintTop_toBottomOf="@+id/timePicker"/>
 
-	<android.support.v7.widget.AppCompatImageButton
+	<androidx.appcompat.widget.AppCompatImageButton
 		android:id="@+id/nextDateButton"
 		android:layout_width="48dp"
 		android:layout_height="0dp"
@@ -90,4 +90,4 @@
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/dateView"/>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

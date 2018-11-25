@@ -20,17 +20,17 @@
 package de.grobox.transportr.networks
 
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
-import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.filters.LargeTest
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.InstrumentationRegistry.getTargetContext
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
+import androidx.test.rule.ActivityTestRule
 import de.grobox.transportr.R
 import de.grobox.transportr.ScreengrabTest
 import de.grobox.transportr.map.MapActivity
@@ -73,7 +73,7 @@ class PickTransportNetworkActivityTest : ScreengrabTest() {
             .check(matches(withText(R.string.pick_network_first_run)))
 
         // find network position in list
-        val context = InstrumentationRegistry.getTargetContext()
+        val context = getTargetContext()
         val (continentIndex, countryIndex, networkIndex) = getTransportNetworkPositions(context, getTransportNetwork(NetworkId.DB)!!)
         val countryPos = continentIndex + countryIndex + 1
         val networkPos = countryPos + networkIndex + 1

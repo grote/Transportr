@@ -20,7 +20,7 @@
 package de.grobox.transportr.map
 
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.data.locations.LocationRepository
 import de.grobox.transportr.data.searches.SearchesRepository

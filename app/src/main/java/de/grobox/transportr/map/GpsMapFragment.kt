@@ -21,17 +21,17 @@ package de.grobox.transportr.map
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.content.res.ColorStateList
 import android.graphics.PorterDuff.Mode.SRC_IN
 import android.location.Location
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.support.annotation.CallSuper
-import android.support.annotation.RequiresPermission
-import android.support.design.widget.FloatingActionButton
-import android.support.v4.content.ContextCompat
+import androidx.annotation.CallSuper
+import androidx.annotation.RequiresPermission
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

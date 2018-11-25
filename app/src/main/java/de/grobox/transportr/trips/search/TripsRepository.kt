@@ -20,11 +20,11 @@
 package de.grobox.transportr.trips.search
 
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.support.annotation.WorkerThread
+import androidx.annotation.WorkerThread
 import android.util.Log
 import de.grobox.transportr.R
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.*

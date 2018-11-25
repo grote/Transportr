@@ -19,9 +19,9 @@
 
 package de.grobox.transportr.locations;
 
-import android.arch.persistence.room.Ignore;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.Nullable;
+import androidx.room.Ignore;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
 
 import com.google.common.base.Strings;
 import com.mapbox.mapboxsdk.geometry.LatLng;

@@ -101,23 +101,23 @@ android {
 dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-	implementation "com.android.support:appcompat-v7:$supportVersion"
-	implementation "com.android.support:design:$supportVersion"
-	implementation "com.android.support:cardview-v7:$supportVersion"
-	implementation "com.android.support:recyclerview-v7:$supportVersion"
-	implementation "com.android.support:preference-v14:$supportVersion"
-	implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+	implementation 'androidx.appcompat:appcompat:1.0.2'
+	implementation 'com.google.android.material:material:1.0.0'
+	implementation 'androidx.cardview:cardview:1.0.0'
+	implementation 'androidx.recyclerview:recyclerview:1.0.0'
+	implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
+	implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-	implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
-	implementation "android.arch.lifecycle:common-java8:$lifecycleVersion"
-	implementation "android.arch.persistence.room:runtime:$roomVersion"
-	kapt "android.arch.persistence.room:compiler:$roomVersion"
+	implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+	implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
+	implementation 'androidx.room:room-runtime:2.0.0'
+	kapt 'androidx.room:room-compiler:2.0.0'
 
 	implementation 'com.github.omadahealth:swipy:1.2.3'
 	implementation 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	implementation 'com.google.android:flexbox:0.3.2'
-	implementation 'com.mikepenz:materialdrawer:6.0.6'
-	implementation 'com.mikepenz:aboutlibraries:6.0.6'
+	implementation 'com.mikepenz:materialdrawer:6.1.1'
+	implementation 'com.mikepenz:aboutlibraries:6.2.0'
 	implementation "com.mikepenz:fastadapter:$fastadapterVersion"
 	implementation "com.mikepenz:fastadapter-commons:$fastadapterVersion"
 	implementation "com.mikepenz:fastadapter-extensions-expandable:$fastadapterVersion"
@@ -144,15 +144,17 @@ dependencies {
 	debugImplementation 'com.github.tony19:logback-android:1.1.1-12'
 
 	testImplementation 'junit:junit:4.12'
-	testImplementation 'org.mockito:mockito-core:2.13.0'
-	testImplementation "android.arch.core:core-testing:$lifecycleVersion"
+	testImplementation 'org.mockito:mockito-core:2.19.0'
+	testImplementation 'androidx.arch.core:core-testing:2.0.0'
 
-	androidTestImplementation 'com.android.support:multidex:1.0.2'
-	androidTestImplementation("com.android.support.test.espresso:espresso-core:$espressoVersion") {
+	androidTestImplementation "androidx.test:core:1.0.0"
+	androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
+	androidTestImplementation "androidx.test.ext:junit:1.0.0"
+	androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0') {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
 	}
-	androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$espressoVersion") {
+	androidTestImplementation('androidx.test.espresso:espresso-contrib:3.1.0') {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.android.support', module: 'support-v4'
 		exclude group: 'com.android.support', module: 'design'

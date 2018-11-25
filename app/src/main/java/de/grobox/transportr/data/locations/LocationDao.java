@@ -19,18 +19,17 @@
 
 package de.grobox.transportr.data.locations;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.support.annotation.Nullable;
-
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.Query;
 import de.schildbach.pte.NetworkId;
 import de.schildbach.pte.dto.LocationType;
 
-import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
+import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface LocationDao {

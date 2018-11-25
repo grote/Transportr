@@ -21,13 +21,13 @@ package de.grobox.transportr.locations
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
 import android.content.Context
 import android.location.Location
-import android.support.annotation.RequiresPermission
-import android.support.annotation.WorkerThread
+import androidx.annotation.RequiresPermission
+import androidx.annotation.WorkerThread
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import com.mapbox.services.android.telemetry.location.LocationEngineListener
 import com.mapbox.services.android.telemetry.location.LocationEnginePriority.BALANCED_POWER_ACCURACY
 import com.mapbox.services.android.telemetry.location.LostLocationEngine
@@ -40,7 +40,7 @@ class LocationLiveData(private val context: Context) : LiveData<WrapLocation>(),
     private val locationEngine: LostLocationEngine = LostLocationEngine(context)
 
     @RequiresPermission(ACCESS_FINE_LOCATION)
-    override fun observe(owner: LifecycleOwner, observer: Observer<WrapLocation>) {
+    override fun observe(owner: LifecycleOwner, observer: Observer<in WrapLocation>) {
         super.observe(owner, observer)
     }
 

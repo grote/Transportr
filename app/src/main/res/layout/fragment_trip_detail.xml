@@ -7,12 +7,12 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical">
 
-	<android.support.design.widget.AppBarLayout
+	<com.google.android.material.appbar.AppBarLayout
 		android:id="@+id/appBarLayout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-		<android.support.v7.widget.Toolbar
+		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
 			style="@style/ToolbarStyle"
 			android:layout_width="match_parent"
@@ -21,7 +21,7 @@
 			app:navigationIcon="@drawable/ic_action_content_remove"
 			tools:visibility="visible"/>
 
-		<android.support.constraint.ConstraintLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/bottomBar"
 			android:layout_width="match_parent"
 			android:layout_height="@dimen/mapPadding"
@@ -106,11 +106,11 @@
 				app:layout_constraintTop_toTopOf="parent"
 				tools:text="0:42"/>
 
-		</android.support.constraint.ConstraintLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
 
-	</android.support.design.widget.AppBarLayout>
+	</com.google.android.material.appbar.AppBarLayout>
 
-	<android.support.v7.widget.RecyclerView
+	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/list"
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:tools="http://schemas.android.com/tools"

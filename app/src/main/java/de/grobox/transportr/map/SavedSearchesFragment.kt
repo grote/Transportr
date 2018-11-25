@@ -19,7 +19,7 @@
 
 package de.grobox.transportr.map
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment
 import de.grobox.transportr.favorites.trips.FavoriteTripsFragment

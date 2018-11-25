@@ -19,7 +19,7 @@
 
 package de.grobox.transportr.favorites.trips;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.google.common.base.Objects;
 

@@ -20,7 +20,7 @@
 package de.grobox.transportr.utils;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.TextView;
 
 import java.text.DateFormat;

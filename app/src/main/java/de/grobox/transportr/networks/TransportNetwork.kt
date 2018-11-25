@@ -20,8 +20,8 @@
 package de.grobox.transportr.networks
 
 import android.content.Context
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.google.common.base.Preconditions.checkArgument
 import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId

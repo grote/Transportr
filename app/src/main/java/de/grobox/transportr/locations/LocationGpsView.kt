@@ -21,7 +21,7 @@ package de.grobox.transportr.locations
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Context
-import android.support.annotation.RequiresPermission
+import androidx.annotation.RequiresPermission
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet

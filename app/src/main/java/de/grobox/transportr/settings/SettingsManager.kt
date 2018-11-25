@@ -22,7 +22,7 @@ package de.grobox.transportr.settings
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import android.support.annotation.StyleRes
+import androidx.annotation.StyleRes
 import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider.Optimize

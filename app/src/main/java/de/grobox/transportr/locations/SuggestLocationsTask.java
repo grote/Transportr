@@ -20,7 +20,7 @@
 package de.grobox.transportr.locations;
 
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
