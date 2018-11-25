@@ -102,6 +102,7 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
 	implementation 'androidx.appcompat:appcompat:1.0.2'
+	implementation 'androidx.preference:preference:1.1.0-alpha01'
 	implementation 'com.google.android.material:material:1.0.0'
 	implementation 'androidx.cardview:cardview:1.0.0'
 	implementation 'androidx.recyclerview:recyclerview:1.0.0'

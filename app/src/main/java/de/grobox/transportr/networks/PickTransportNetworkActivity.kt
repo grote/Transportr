@@ -21,6 +21,7 @@ package de.grobox.transportr.networks
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
@@ -83,9 +84,9 @@ class PickTransportNetworkActivity : TransportrActivity(), ISelectionListener<II
         selectItem()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
         val newState = adapter.saveInstanceState(outState)
-        super.onSaveInstanceState(newState)
+        super.onSaveInstanceState(newState, outPersistentState)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
