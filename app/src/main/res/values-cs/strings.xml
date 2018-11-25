@@ -12,6 +12,7 @@
   <string name="action_trip_delete">Smazat cestu</string>
   <string name="action_show_on_external_map">Zobrazit na externí mapě</string>
   <string name="action_copy">Kopírování</string>
+  <string name="directions">Instrukce</string>
   <string name="drawer_departures">Odjezdy</string>
   <string name="tab_about">O</string>
   <string name="tab_libraries">Knihovny</string>

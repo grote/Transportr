@@ -34,6 +34,8 @@
         <item>@string/japanese</item>
         <item>@string/russian</item>
         <item>@string/greek</item>
+        <item>@string/farsi</item>
+        <item>@string/taiwanese</item>
     </string-array>
     <string-array name="pref_language_values">
         <item>@string/pref_language_value_default</item>
@@ -56,6 +58,8 @@
         <item>ja</item>
         <item>ru</item>
         <item>el</item>
+        <item>fa</item>
+        <item>zh_TW</item>
     </string-array>
     <string name="pref_language_value_default" translatable="false">default</string>
 
