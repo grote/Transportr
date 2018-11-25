@@ -394,19 +394,19 @@ private val networks = arrayOf(
                     )
                 )
             ),
-//            Country(
-//                R.string.np_region_finland, flag = "🇫🇮", networks = listOf(
-//                    TransportNetwork(
-//                        id = NetworkId.FI,
-//                        name = R.string.np_region_finland,
-//                        description = R.string.np_desc_fi,
-//                        agencies = R.string.np_desc_fi_networks,
-//                        logo = R.drawable.network_fi_logo,
-//                        status = BETA,
-//                        factory = { Finland(NAVITIA) }
-//                    )
-//                )
-//            ),
+            Country(
+                R.string.np_region_finland, flag = "🇫🇮", networks = listOf(
+                    TransportNetwork(
+                        id = NetworkId.FI,
+                        name = R.string.np_region_finland,
+                        description = R.string.np_desc_fi,
+                        agencies = R.string.np_desc_fi_networks,
+                        logo = R.drawable.network_fi_logo,
+                        status = BETA,
+                        factory = { HslProvider(NAVITIA) }
+                    )
+                )
+            ),
             Country(
                 R.string.np_region_gb, flag = "🇬🇧", networks = listOf(
                     TransportNetwork(
