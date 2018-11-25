@@ -6,7 +6,7 @@
 		android:id="@+id/action_swap_locations"
 		android:icon="@drawable/ic_menu_swap_location"
 		android:title="@string/action_switch_locations"
-		app:showAsAction="never"/>
+		app:showAsAction="ifRoom"/>
 
 	<item
 		android:icon="@drawable/ic_time"
