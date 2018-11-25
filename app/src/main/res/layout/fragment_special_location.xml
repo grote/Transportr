@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<de.grobox.transportr.locations.LocationView
-	android:id="@+id/location_input"
+<androidx.cardview.widget.CardView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	app:hint="@string/home_dialog_title">
+	android:layout_height="48dp"
+	android:layout_marginEnd="16dp"
+	android:layout_marginLeft="16dp"
+	android:layout_marginRight="16dp"
+	android:layout_marginStart="16dp"
+	android:layout_marginTop="16dp">
 
-	<requestFocus/>
+	<de.grobox.transportr.locations.LocationView
+		android:id="@+id/location_input"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:hint="@string/home_dialog_title">
 
-</de.grobox.transportr.locations.LocationView>
+		<requestFocus/>
+
+	</de.grobox.transportr.locations.LocationView>
+
+</androidx.cardview.widget.CardView>
