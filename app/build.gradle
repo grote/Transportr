@@ -11,8 +11,8 @@ android {
 	buildToolsVersion "28.0.3"
 
 	defaultConfig {
-		versionCode 111
-		versionName "2.0.2"
+		versionCode 112
+		versionName "2.0.3"
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 15
@@ -102,7 +102,9 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
 	implementation 'androidx.appcompat:appcompat:1.0.2'
-	implementation 'androidx.preference:preference:1.1.0-alpha01'
+	implementation('androidx.preference:preference:1.1.0-alpha01') {
+		because 'fixes bug with preference categories'
+	}
 	implementation 'com.google.android.material:material:1.0.0'
 	implementation 'androidx.cardview:cardview:1.0.0'
 	implementation 'androidx.recyclerview:recyclerview:1.0.0'

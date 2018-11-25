@@ -1,0 +1,7 @@
+* Add launcher shortcut for directions search
+* Show swap location button in directions search (Thanks ByteHamster!)
+* Don't show search results over lockscreen anymore
+* Add Persian translation (Thanks Reza!)
+* Add Chinese (Taiwan) translation (Thanks Gerrit!)
+* Fix home and work location input in dark theme
+* Disable Android's auto-fill feature for location views

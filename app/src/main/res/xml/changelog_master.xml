@@ -2,10 +2,13 @@
 <changelog>
 
     <release version="2.0.3" versioncode="112">
+        <change>Add launcher shortcut for directions search</change>
+        <change>Show swap location button in directions search (Thanks ByteHamster!)</change>
         <change>Don't show search results over lockscreen anymore</change>
         <change>Add Persian translation (Thanks Reza!)</change>
         <change>Add Chinese (Taiwan) translation (Thanks Gerrit!)</change>
         <change>Fix home and work location input in dark theme</change>
+        <change>Disable Android's auto-fill feature for location views</change>
     </release>
 
     <release version="2.0.2" versioncode="111">
