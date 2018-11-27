@@ -70,7 +70,10 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
     protected val hint: String?
 
     var type = FavLocationType.FROM
-        set(type) = adapter.setSort(type)
+        set(type) {
+            field = type
+            adapter.setSort(type)
+        }
 
     private val text: String?
         get() = if (ui.location.text != null) {
