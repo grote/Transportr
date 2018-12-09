@@ -21,7 +21,7 @@
 		android:id="@+id/action_add_shortcut"
 		android:icon="@drawable/ic_add_shortcut"
 		android:title="@string/action_add_shortcut"
-		android:visible="false"/>
+		android:visible="true"/>
 
 	<item
 		android:id="@+id/action_trip_delete"

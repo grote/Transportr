@@ -22,20 +22,21 @@ package de.grobox.transportr.favorites.trips;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.MenuRes;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.MenuRes;
+import androidx.core.content.pm.ShortcutInfoCompat;
 import de.grobox.transportr.R;
 import de.grobox.transportr.trips.search.DirectionsActivity;
 import de.grobox.transportr.ui.BasePopupMenu;
 
-import static android.content.Intent.EXTRA_SHORTCUT_ICON_RESOURCE;
-import static android.content.Intent.EXTRA_SHORTCUT_INTENT;
-import static android.content.Intent.EXTRA_SHORTCUT_NAME;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static androidx.core.content.pm.ShortcutManagerCompat.isRequestPinShortcutSupported;
+import static androidx.core.content.pm.ShortcutManagerCompat.requestPinShortcut;
+import static androidx.core.graphics.drawable.IconCompat.createWithResource;
 import static de.grobox.transportr.trips.search.DirectionsActivity.ACTION_SEARCH;
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
 import static de.grobox.transportr.utils.IntentUtils.presetDirections;
@@ -51,7 +52,10 @@ abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 		this.trip = trip;
 		this.listener = listener;
 		getMenuInflater().inflate(getMenuRes(), getMenu());
-
+		if (!isRequestPinShortcutSupported(context)) {
+			MenuItem item = getMenu().findItem(R.id.action_add_shortcut);
+			if (item != null) item.setVisible(false);
+		}
 		showIcons();
 	}
 
@@ -75,20 +79,13 @@ abstract class AbstractFavoritesPopupMenu extends BasePopupMenu {
 	}
 
 	void addShortcut(String shortcutName) {
-		// create launcher shortcut
-		Intent addIntent = new Intent();
-		addIntent.putExtra(EXTRA_SHORTCUT_INTENT, getShortcutIntent());
-		addIntent.putExtra(EXTRA_SHORTCUT_NAME, shortcutName);
-		addIntent.putExtra(EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(context, getShortcutDrawable()));
-		addIntent.putExtra("duplicate", false);
-		addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-		context.sendBroadcast(addIntent);
-
-		// switch to home-screen to let the user see the new shortcut
-		Intent startMain = new Intent(Intent.ACTION_MAIN);
-		startMain.addCategory(Intent.CATEGORY_HOME);
-		startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		context.startActivity(startMain);
+		ShortcutInfoCompat info = new ShortcutInfoCompat.Builder(context, shortcutName)
+				.setIntent(getShortcutIntent())
+				.setShortLabel(shortcutName)
+				.setIcon(createWithResource(context, getShortcutDrawable()))
+				.setAlwaysBadged()
+				.build();
+		requestPinShortcut(context, info, null);
 	}
 
 	protected Intent getShortcutIntent() {

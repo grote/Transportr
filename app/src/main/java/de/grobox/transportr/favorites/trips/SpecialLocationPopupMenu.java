@@ -20,20 +20,16 @@
 package de.grobox.transportr.favorites.trips;
 
 import android.content.Context;
-import android.os.Build;
-import androidx.annotation.StringRes;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.StringRes;
 import de.grobox.transportr.R;
 
 abstract class SpecialLocationPopupMenu extends AbstractFavoritesPopupMenu {
 
 	SpecialLocationPopupMenu(Context context, View anchor, FavoriteTripItem trip, FavoriteTripListener listener) {
 		super(context, anchor, trip, listener);
-		if (Build.VERSION.SDK_INT >= 26) { // https://developer.android.com/about/versions/oreo/android-8.0-changes.html#as
-			getMenu().findItem(R.id.action_add_shortcut).setVisible(false);
-		}
 	}
 
 	@Override
