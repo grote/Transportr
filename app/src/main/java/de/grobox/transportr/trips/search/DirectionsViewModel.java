@@ -164,6 +164,11 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		return isDeparture;
 	}
 
+	void toggleDeparture() {
+		isDeparture.setValue(!(isDeparture.getValue() == null || isDeparture.getValue()));
+		search();
+	}
+
 	void setIsDeparture(boolean departure) {
 		isDeparture.setValue(departure);
 		search();
