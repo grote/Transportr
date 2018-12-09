@@ -15,7 +15,7 @@ android {
 		versionName "2.0.3"
 
 		applicationId "de.grobox.liberario"
-		minSdkVersion 15
+		minSdkVersion 16
 		targetSdkVersion 28
 
 		testInstrumentationRunner 'de.grobox.transportr.MockTestRunner'
@@ -38,8 +38,6 @@ android {
 			applicationIdSuffix ".debug"
 			versionNameSuffix "-debug"
 			resValue "string", "app_name", "Transportr Devel"
-//			shrinkResources true
-//			minifyEnabled true
 			shrinkResources false
 			minifyEnabled false
 			multiDexEnabled true
@@ -134,7 +132,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:4354c4a8') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:c1c2b1e1') {
 		exclude module: 'service'
 		exclude group: 'com.google.guava', module: 'listenablefuture'
 		exclude group: 'com.google.guava', module: 'failureaccess'

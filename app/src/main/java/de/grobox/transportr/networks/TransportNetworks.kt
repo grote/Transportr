@@ -46,7 +46,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_db,
                         description = R.string.np_desc_db2,
                         logo = R.drawable.network_db_logo,
-                        factory = { BahnProvider() }
+                        factory = { BahnProvider("{\"type\":\"AID\",\"aid\":\"n91dB8Z77MLdoR0K\"}") }
                     )
                 )
             ),
@@ -58,7 +58,7 @@ private val networks = arrayOf(
                         description = R.string.np_desc_db,
                         logo = R.drawable.network_db_logo,
                         itemIdExtra = 1,
-                        factory = { BahnProvider() }
+                        factory = { BahnProvider("{\"type\":\"AID\",\"aid\":\"n91dB8Z77MLdoR0K\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.BVG,
@@ -195,13 +195,6 @@ private val networks = arrayOf(
                         description = R.string.np_desc_kvv,
                         logo = R.drawable.network_kvv_logo,
                         factory = { KvvProvider(HttpUrl.parse("https://projekte.kvv-efa.de/oeffi/")) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.VAGFR,
-                        name = R.string.np_name_vagfr,
-                        description = R.string.np_desc_vagfr,
-                        logo = R.drawable.network_vagfr_logo,
-                        factory = { VagfrProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.NVBW,
@@ -397,13 +390,13 @@ private val networks = arrayOf(
             Country(
                 R.string.np_region_finland, flag = "🇫🇮", networks = listOf(
                     TransportNetwork(
-                        id = NetworkId.FI,
+                        id = NetworkId.FINLAND,
                         name = R.string.np_region_finland,
                         description = R.string.np_desc_fi,
                         agencies = R.string.np_desc_fi_networks,
                         logo = R.drawable.network_fi_logo,
                         status = BETA,
-                        factory = { HslProvider(NAVITIA) }
+                        factory = { FinlandProvider(NAVITIA) }
                     )
                 )
             ),
