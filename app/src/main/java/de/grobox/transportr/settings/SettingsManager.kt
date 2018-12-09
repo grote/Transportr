@@ -96,11 +96,6 @@ class SettingsManager @Inject constructor(private val context: Context) {
         settings.edit().putBoolean(TRIP_DETAIL_ONBOARDING, false).apply()
     }
 
-    fun showDirectionsOnboarding(): Boolean = settings.getBoolean(DIRECTIONS_ONBOARDING, true)
-    fun directionsOnboardingShown() {
-        settings.edit().putBoolean(DIRECTIONS_ONBOARDING, false).apply()
-    }
-
     fun getNetworkId(i: Int): NetworkId? {
         var networkSettingsStr = NETWORK_ID_1
         if (i == 2) networkSettingsStr = NETWORK_ID_2
