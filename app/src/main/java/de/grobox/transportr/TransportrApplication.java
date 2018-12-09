@@ -32,7 +32,7 @@ public class TransportrApplication extends Application {
 	@Override
 	protected void attachBaseContext(Context base) {
 		super.attachBaseContext(base);
-//		if (BuildConfig.BUILD_TYPE.equals("debug")) MultiDex.install(this);
+//		MultiDex.install(this);
 	}
 
 	@Override
