@@ -3,6 +3,9 @@
 
     <release version="2.0.4" versioncode="113">
         <change>Support trip launcher shortcuts on more devices</change>
+        <change>Remove VAGFR transport network, use NVBW instead</change>
+        <change>Fix start location field in directions search (Thanks ajbruin!)</change>
+        <change>Re-enable data sources that don't use https on Android 9 (Thanks hoejmann!)</change>
     </release>
 
     <release version="2.0.3" versioncode="112">

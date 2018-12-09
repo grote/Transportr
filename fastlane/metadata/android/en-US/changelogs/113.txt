@@ -1,0 +1,4 @@
+* Support trip launcher shortcuts on more devices
+* Remove VAGFR transport network, use NVBW instead
+* Fix start location field in directions search (Thanks ajbruin!)
+* Re-enable data sources that don't use https on Android 9 (Thanks hoejmann!)
