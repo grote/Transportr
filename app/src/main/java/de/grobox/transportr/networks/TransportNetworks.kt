@@ -212,7 +212,7 @@ private val networks = arrayOf(
                         id = NetworkId.VGS,
                         description = R.string.np_desc_vgs,
                         logo = R.drawable.network_vgs_logo,
-                        factory = { VgsProvider() }
+                        factory = { VgsProvider("{\"type\":\"AID\",\"aid\":\"51XfsVqgbdA6oXzHrx75jhlocRg6Xe\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.VRS,
