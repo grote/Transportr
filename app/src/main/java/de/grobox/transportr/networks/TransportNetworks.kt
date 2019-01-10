@@ -46,7 +46,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_db,
                         description = R.string.np_desc_db2,
                         logo = R.drawable.network_db_logo,
-                        factory = { BahnProvider("{\"type\":\"AID\",\"aid\":\"n91dB8Z77MLdoR0K\"}") }
+                        factory = { DbProvider("{\"type\":\"AID\",\"aid\":\"n91dB8Z77MLdoR0K\"}", "bdI8UVj40K5fvxwf".toByteArray(Charsets.UTF_8)) }
                     )
                 )
             ),
@@ -58,7 +58,7 @@ private val networks = arrayOf(
                         description = R.string.np_desc_db,
                         logo = R.drawable.network_db_logo,
                         itemIdExtra = 1,
-                        factory = { BahnProvider("{\"type\":\"AID\",\"aid\":\"n91dB8Z77MLdoR0K\"}") }
+                        factory = { DbProvider("{\"type\":\"AID\",\"aid\":\"n91dB8Z77MLdoR0K\"}", "bdI8UVj40K5fvxwf".toByteArray(Charsets.UTF_8)) }
                     ),
                     TransportNetwork(
                         id = NetworkId.BVG,
@@ -70,7 +70,7 @@ private val networks = arrayOf(
                         id = NetworkId.VBB,
                         description = R.string.np_desc_vbb,
                         logo = R.drawable.network_vbb_logo,
-                        factory = { VbbProvider() }
+                        factory = { VbbProvider("{\"type\":\"AID\",\"aid\":\"hafas-vbb-apps\"}", "RCTJM2fFxFfxxQfI".toByteArray(Charsets.UTF_8)) }
                     ),
                     TransportNetwork(
                         id = NetworkId.BAYERN,
@@ -97,7 +97,7 @@ private val networks = arrayOf(
                         description = R.string.np_desc_invg,
                         logo = R.drawable.network_invg_logo,
                         status = BETA,
-                        factory = { InvgProvider("{\"type\":\"AID\",\"aid\":\"GITvwi3BGOmTQ2a5\"}") }
+                        factory = { InvgProvider("{\"type\":\"AID\",\"aid\":\"GITvwi3BGOmTQ2a5\"}", "ERxotxpwFT7uYRsI".toByteArray(Charsets.UTF_8)) }
                     ),
                     TransportNetwork(
                         id = NetworkId.VGN,
@@ -151,7 +151,7 @@ private val networks = arrayOf(
                         description = R.string.np_desc_nasa,
                         logo = R.drawable.network_nasa_logo,
                         status = BETA,
-                        factory = { NasaProvider() }
+                        factory = { NasaProvider("{\"aid\":\"nasa-apps\",\"type\":\"AID\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.VRR,
@@ -212,7 +212,7 @@ private val networks = arrayOf(
                         id = NetworkId.VGS,
                         description = R.string.np_desc_vgs,
                         logo = R.drawable.network_vgs_logo,
-                        factory = { VgsProvider("{\"type\":\"AID\",\"aid\":\"51XfsVqgbdA6oXzHrx75jhlocRg6Xe\"}") }
+                        factory = { VgsProvider("{\"type\":\"AID\",\"aid\":\"51XfsVqgbdA6oXzHrx75jhlocRg6Xe\"}", "HJtlubisvxiJxss".toByteArray(Charsets.UTF_8)) }
                     ),
                     TransportNetwork(
                         id = NetworkId.VRS,
@@ -327,7 +327,7 @@ private val networks = arrayOf(
                         description = R.string.np_desc_sncb,
                         agencies = R.string.np_desc_sncb_networks,
                         logo = R.drawable.network_sncb_logo,
-                        factory = { SncbProvider() }
+                        factory = { SncbProvider("{\"type\":\"AID\",\"aid\":\"sncb-mobi\"}") }
                     )
                 )
             ),
