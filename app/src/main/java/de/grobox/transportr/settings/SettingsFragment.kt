@@ -55,7 +55,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreatePreferences(savedInstanceState: Bundle, s: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, s: String?) {
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences)
 
