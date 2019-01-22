@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<item
+		android:id="@+id/action_swap_locations"
+		android:icon="@drawable/ic_menu_swap_location"
+		android:title="@string/action_switch_locations"
+		app:showAsAction="ifRoom"/>
+
+	<item
+		android:icon="@drawable/ic_time"
+		android:title="@string/action_time_type"
+		app:showAsAction="never">
+
+		<menu>
+			<group
+				android:checkableBehavior="single">
+				<item
+					android:id="@+id/action_arrival"
+					android:title="@string/trip_arr"/>
+				<item
+					android:id="@+id/action_departure"
+					android:checked="true"
+					android:title="@string/trip_dep"/>
+			</group>
+		</menu>
+
+	</item>
 
 	<item
 		android:id="@+id/action_navigation_expand"
 		android:checkable="true"
-		android:icon="@drawable/ic_action_navigation_unfold_more_white"
+		android:icon="@drawable/ic_action_navigation_unfold_more"
 		android:title="@string/action_navigation_expand"
-		app:showAsAction="always"/>
+		app:showAsAction="never"/>
+
+	<item
+		android:id="@+id/action_choose_products"
+		android:icon="@drawable/product_bus"
+		android:title="@string/action_choose_products"
+		app:showAsAction="never"/>
 
 </menu>
