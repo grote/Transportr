@@ -1,0 +1,3 @@
+* Show exact trip polylines on map for more networks
+* Fix VGS network
+* Fix crash on opening settings

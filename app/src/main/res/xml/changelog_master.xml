@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="2.0.5" versioncode="114">
+        <change>Show exact trip polylines on map for more networks</change>
+        <change>Fix VGS network</change>
+        <change>Fix crash on opening settings</change>
+    </release>
+
     <release version="2.0.4" versioncode="113">
         <change>Support trip launcher shortcuts on more devices</change>
         <change>Remove VAGFR transport network, use NVBW instead</change>
