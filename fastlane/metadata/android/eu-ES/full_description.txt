@@ -1,12 +1,37 @@
-Transportr irabazi asmorik gabeko aplikazioa bat da,
-garrio publikoa edonon zaudela ahalik eta errazen erabiltzeko mundu osoko pertsonek garatua.
 
-Une honetan, Europan funtzionatzen du hobekien, baina mundu osoko leku asko onartzen ditu ere.
-Onartu gabeko leku batean bizi bazara, kontuan hartu Transportrera gehitu dezakezula.
-Jarraibideak etxeko orrian eskuragarri daude.
+Transportr irabazi asmorik gabeko aplikazioa bat da, mundu osoko pertsonek bere denbora librean garatua.
 
-Transportrek zure etxetik, zure uneko kokapenetik edo zehaztutako geltoki batetik joan nahi duzun edonora norabideak aurkitzen ditu.
-Bidai osoak gorde ditzakezu ere gogokoen bezala,
-eta hurrengo bidaiak keinu batekin aurkitu. Noski, zure bidaia mapan ikusi dezakezu eta jarraipena GPS bidez egin.
+Garraio publikoa erabiltzea denontzat ahal beste erraztu nahi dute
 
-Hurbileko geltokiak aurkitu ditzakezu ere eta hurrengo irteerak ikusi atzerapek barne (egonez gero).
+Aplikazio honek hainbat garraio agentzien tokiko datuak darabiltza eta interfaze bateratu bat eskaintzen du.
+Ezin du datuen zuzentasuna egiaztatu
+hortaz <i>ez du bermerik eskaintzen</i> emandako informazioaren inguruan.
+Erabili zure erantzukizunaren pean.
+
+<b>🛣️ Bidaien planifikazioa</b>. Esan Transportr aplikazioari nora joan nahi duzun!
+Konexiorik egokiena aurkituko du zuretzat, autobusez noiz aldatu esaten dizu,
+eta iritsiera ordua kalkulatzen dizu ere.
+
+<b>⏱️ Zuzeneko irteerak</b>. Geltoki guztietako irteerak erakutsi ditzake.
+<i>Onartutako</i> zonaldeetan, atzerapenak denbora errealean erakutsiko ditu ere.
+
+<b>🗽 Software askatasuna</b>. Transportr aplikazioaren iturburu kodea  librea da % 100ean.
+Libreki erabili, ikertu, elkarbanatu eta hobetu dezakezu.
+<i>Zuk</i> hobetzen duzu aplikazio hau.
+Zure hiria zuk zeuk gehitu dezakezu ere, oraindik euskarririk ez badago.
+
+<b>🛰️ Zure kokalekua aurkitzen du.</b> Transportr aplikazioak GPS sateliteen bidezko orientazioa darabil
+zure uneko kokalekua zein den jakiteko, eta ez zaitezen inoiz galdu.
+Bidai berri bat hasteko inguruko geltokiak aurkitu ditzakezu
+eta bidaian zenbat aurreratu duzun ikusi dezakezu.
+
+<b>🌟 Zure gogoko tokiak gogoratzen ditu.</b> Behar duzun tokira azkarrago hel zaitezen,
+Transportr aplikazioak maiz erabilitako toki eta bidaiak gordetzen ditu.
+Honela ez dituzu behin eta berriro idatzi behar.
+
+<b>🚫 Iragarkitik ez, jarraipenik ez</b>. Aplikazio honek ez du iragarkirik bistaratzen
+edo jakinarazpen gogaikarririk.
+Ez du ezta Google Analytics edo antzeko tresnarik erabiltzen zu zelatatzeko.
+
+<b>🗺️ Mapa ederrak</b>. Geltokiak edo zure bidai osoa mapa batean erakusten dizu
+eta beti daki non zauden autobusetik non jaitsi jakin dezazun.

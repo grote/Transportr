@@ -2,6 +2,44 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Kode irekiko garraio publikoa</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Garraio publikoarentzako aplikazio lagungarria, iragarki eta tracker gabe</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Transportr irabazi asmorik gabeko aplikazioa bat da, mundu osoko pertsonek bere denbora librean garatua.
+
+Garraio publikoa erabiltzea denontzat ahal beste erraztu nahi dute
+
+Aplikazio honek hainbat garraio agentzien tokiko datuak darabiltza eta interfaze bateratu bat eskaintzen du.
+Ezin du datuen zuzentasuna egiaztatu
+hortaz <i>ez du bermerik eskaintzen</i> emandako informazioaren inguruan.
+Erabili zure erantzukizunaren pean.
+
+<b>🛣️ Bidaien planifikazioa</b>. Esan Transportr aplikazioari nora joan nahi duzun!
+Konexiorik egokiena aurkituko du zuretzat, autobusez noiz aldatu esaten dizu,
+eta iritsiera ordua kalkulatzen dizu ere.
+
+<b>⏱️ Zuzeneko irteerak</b>. Geltoki guztietako irteerak erakutsi ditzake.
+<i>Onartutako</i> zonaldeetan, atzerapenak denbora errealean erakutsiko ditu ere.
+
+<b>🗽 Software askatasuna</b>. Transportr aplikazioaren iturburu kodea  librea da % 100ean.
+Libreki erabili, ikertu, elkarbanatu eta hobetu dezakezu.
+<i>Zuk</i> hobetzen duzu aplikazio hau.
+Zure hiria zuk zeuk gehitu dezakezu ere, oraindik euskarririk ez badago.
+
+<b>🛰️ Zure kokalekua aurkitzen du.</b> Transportr aplikazioak GPS sateliteen bidezko orientazioa darabil
+zure uneko kokalekua zein den jakiteko, eta ez zaitezen inoiz galdu.
+Bidai berri bat hasteko inguruko geltokiak aurkitu ditzakezu
+eta bidaian zenbat aurreratu duzun ikusi dezakezu.
+
+<b>🌟 Zure gogoko tokiak gogoratzen ditu.</b> Behar duzun tokira azkarrago hel zaitezen,
+Transportr aplikazioak maiz erabilitako toki eta bidaiak gordetzen ditu.
+Honela ez dituzu behin eta berriro idatzi behar.
+
+<b>🚫 Iragarkitik ez, jarraipenik ez</b>. Aplikazio honek ez du iragarkirik bistaratzen
+edo jakinarazpen gogaikarririk.
+Ez du ezta Google Analytics edo antzeko tresnarik erabiltzen zu zelatatzeko.
+
+<b>🗺️ Mapa ederrak</b>. Geltokiak edo zure bidai osoa mapa batean erakusten dizu
+eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
+]]></string>
   <string name="drawer_settings">Ezarpenak</string>
   <string name="drawer_changelog">Aldaketen zerrenda</string>
   <string name="drawer_about">Honi buruz</string>
@@ -21,6 +59,8 @@
   <string name="action_trip_delete">Ezabatu bidaia</string>
   <string name="action_show_on_external_map">Erakutsi kanpoko mapan</string>
   <string name="action_copy">Kopiatu</string>
+  <string name="directions">Norabideak</string>
+  <string name="directions_search">Bilatu jarraibideak</string>
   <string name="drawer_departures">Irteerak</string>
   <string name="tab_about">Honi buruz</string>
   <string name="tab_libraries">Liburutegiak</string>
@@ -79,7 +119,7 @@
   <string name="pref_walk_speed_slow">Poliki</string>
   <string name="pref_walk_speed_normal">Arrunta</string>
   <string name="pref_walk_speed_fast">Bizkor</string>
-  <string name="pref_show_when_locked_title">Erakutsi bidaia eta bilaketaren emaitzak pantaila blokeatuta badago ere</string>
+  <string name="pref_show_when_locked_title">Erakutsi bidaia pantaila blokeatuta dagoenean ere</string>
   <string name="pref_show_when_locked_summary">Erakutsi blokeo-pantailaren gainean</string>
   <string name="error">Errorea</string>
   <string name="error_no_internet">Internet konexioa behar da. Egiaztatu zure internet konexioa badabilela.</string>
@@ -88,6 +128,7 @@
   <string name="error_geo_intent">Ezin izan da kanpo kokalekua ireki</string>
   <string name="error_find_nearby_stations">Ezin izan dira inguruko geltokiak aurkitu</string>
   <string name="error_departures">Ezin izan da irteerarik aurkitu</string>
+  <string name="error_no_calendar">Ez dago egutegirik instalatuta :(</string>
   <string name="trip_error_ambiguous">Ezin izan da kokalekua aurkitu. Saiatu kokaleku desberdinak bilatzen.</string>
   <string name="trip_error_too_close">\'nondik\' eta \'nora\' kokalekuak elkarrengandik hurbilegi daude.</string>
   <string name="trip_error_unknown_from">Ezin izan da \'nondik\' kokalekua aurkitu. Saiatu beste batekin.</string>
@@ -177,12 +218,16 @@
   <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo eskualdea</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">Columbia Britainiarra</string>
+  <string name="np_desc_britishcolumbia">Columbia Britainiarreko garraio publikoa</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) eta BC Transit (Columbia Britainiarra)</string>
   <string name="np_region_denmark">Danimarka</string>
   <string name="np_desc_dsb">Danimarka, Kopenhage</string>
   <string name="np_name_rt">Europa</string>
   <string name="np_desc_rt">Distantzia handiko trenak soilik</string>
   <string name="np_desc_rt_networks">Railteam aliantza</string>
   <string name="np_region_finland">Finlandia</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">Frantzia</string>
   <string name="np_name_francenortheast">Frantzia ipar ekialdea</string>
   <string name="np_desc_francenortheast">Estrasburgo, Metz, Lille, Nancy</string>
@@ -251,8 +296,13 @@
   <string name="np_desc_nz">Zeelanda Berria, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, Poloniako trenbideak</string>
+  <string name="np_name_pl_navitia">Poloniako garraio munizipalak</string>
+  <string name="np_desc_pl_navitia">Warsaw, Wroclaw, Szczecin, Gdansk, Gdynia, Sopot</string>
+  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus/DLA Dlugoleka, Warbus Miekinia, ZDiTM Szczecin, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdansk</string>
   <string name="np_name_spain">Espainia</string>
   <string name="np_desc_spain">Madril, Bartzelona, Euskadi, Nafarroa, Valentzia, Alacant, Mallorca, Menorca, Tenerife, La Palma</string>
+  <string name="np_name_hungary">Hungaria</string>
+  <string name="np_desc_hungary">Budapest, Miskolc</string>
   <string name="np_region_sweden">Suedia</string>
   <string name="np_desc_se">Suedia, Stockholm</string>
   <string name="np_region_switzerland">Suitza</string>
@@ -297,4 +347,8 @@
   <string name="czech">Txekiera</string>
   <string name="hungarian">Hungariera</string>
   <string name="japanese">Japoniera</string>
+  <string name="russian">Errusiera</string>
+  <string name="greek">Greziera</string>
+  <string name="farsi">Persiera</string>
+  <string name="taiwanese">Txinera (Taiwan)</string>
 </resources>

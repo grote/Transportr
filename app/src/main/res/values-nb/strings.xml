@@ -18,6 +18,7 @@
   <string name="action_trip_delete">Slett tur</string>
   <string name="action_show_on_external_map">Vis på eksternt kart</string>
   <string name="action_copy">Kopier</string>
+  <string name="directions">Veivisning</string>
   <string name="drawer_departures">Avganger</string>
   <string name="tab_about">Om</string>
   <string name="tab_libraries">Bibliotek</string>
@@ -71,7 +72,6 @@
   <string name="pref_walk_speed_slow">Tregt</string>
   <string name="pref_walk_speed_normal">Normalt</string>
   <string name="pref_walk_speed_fast">Raskt</string>
-  <string name="pref_show_when_locked_title">Vis tur og søkeresultater når skjermen er låst</string>
   <string name="pref_show_when_locked_summary">Vis over låseskjerm</string>
   <string name="error">Feil</string>
   <string name="error_no_internet">Internettilkobling kreves. Forsikre deg om at internettilgangen virker.</string>

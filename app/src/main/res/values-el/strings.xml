@@ -117,7 +117,6 @@
   <string name="pref_walk_speed_slow">Αργή</string>
   <string name="pref_walk_speed_normal">Φυσιολογική</string>
   <string name="pref_walk_speed_fast">Γρήγορη</string>
-  <string name="pref_show_when_locked_title">Εμφάνιση ταξιδιού και αναζήτηση αποτελεσμάτων ακόμη κι όταν η οθόνη είναι κλειδωμένη</string>
   <string name="pref_show_when_locked_summary">Εμφάνιση πάνω από την οθόνη κλειδώματος</string>
   <string name="error">Σφάλμα</string>
   <string name="error_no_internet">Απαιτείται σύνδεση διαδικτύου. Παρακαλώ σιγουρευτείτε ότι η πρόσβαση σας στο διαδίκτυο λειτουργεί.</string>

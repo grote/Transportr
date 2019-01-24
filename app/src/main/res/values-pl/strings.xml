@@ -40,6 +40,8 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="action_trip_delete">Usuń trasę</string>
   <string name="action_show_on_external_map">Pokaż na zewnętrznej mapie</string>
   <string name="action_copy">Kopiuj</string>
+  <string name="directions">Kierunki</string>
+  <string name="directions_search">Znajdź trasę</string>
   <string name="drawer_departures">Odjazdy</string>
   <string name="tab_about">O</string>
   <string name="tab_libraries">Biblioteki</string>
@@ -98,7 +100,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="pref_walk_speed_slow">Powoli</string>
   <string name="pref_walk_speed_normal">Normalnie</string>
   <string name="pref_walk_speed_fast">Szybko</string>
-  <string name="pref_show_when_locked_title">Wyświetl trasy i wyniki wyszukiwania nawet gdy ekran jest zablokowany</string>
+  <string name="pref_show_when_locked_title">Wyświetl trasę nawet gdy ekran jest zablokowany</string>
   <string name="pref_show_when_locked_summary">Wyświetl na ekranie blokady</string>
   <string name="error">Błąd</string>
   <string name="error_no_internet">Wymagane połączenie z internetem. Upewnij się, że Twoje połączenie internetowe działa.</string>
@@ -107,6 +109,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="error_geo_intent">Nie można otworzyć zewnętrznej lokalizacji.</string>
   <string name="error_find_nearby_stations">Nie można znaleźć pobliskich stacji.</string>
   <string name="error_departures">Nie można znaleźć żadnych odjazdów</string>
+  <string name="error_no_calendar">Brak zainstalowanego kalendarza :(</string>
   <string name="trip_error_ambiguous">Nie można znaleźć lokalizacji. Spróbuj wyszukać innej lokalizacji.</string>
   <string name="trip_error_too_close">Lokalizacje „z” i „do” są zbyt blisko siebie.</string>
   <string name="trip_error_unknown_from">Nie można odnaleźć lokalizacji „z”. Spróbuj inną.</string>
@@ -207,6 +210,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_desc_rt">Tylko pociągi długodystansowe</string>
   <string name="np_desc_rt_networks">Sieć Railteam</string>
   <string name="np_region_finland">Finlandia</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">Francja</string>
   <string name="np_name_francenortheast">Francja północno-wschodnia</string>
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
@@ -327,4 +331,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="hungarian">Węgierski</string>
   <string name="japanese">Japoński</string>
   <string name="russian">Rosyjski</string>
+  <string name="greek">Grecki</string>
+  <string name="farsi">Perski</string>
+  <string name="taiwanese">Chiński (Tajwan)</string>
 </resources>

@@ -59,6 +59,8 @@ Transportr сохраняет часто используемые местопо
   <string name="action_trip_delete">Удалить поездку</string>
   <string name="action_show_on_external_map">Показать на внешней карте</string>
   <string name="action_copy">Копировать</string>
+  <string name="directions">Направление</string>
+  <string name="directions_search">Поиск направлений</string>
   <string name="drawer_departures">Отправление</string>
   <string name="tab_about">О приложении</string>
   <string name="tab_libraries">Библиотека</string>
@@ -117,7 +119,6 @@ Transportr сохраняет часто используемые местопо
   <string name="pref_walk_speed_slow">Медленно</string>
   <string name="pref_walk_speed_normal">Нормально</string>
   <string name="pref_walk_speed_fast">Быстро</string>
-  <string name="pref_show_when_locked_title">Показывать маршрут и результаты поиска на заблокированном экране</string>
   <string name="pref_show_when_locked_summary">Показывать на заблокированном экране</string>
   <string name="error">Ошибка</string>
   <string name="error_no_internet">Требуется подключение к интернету. Пожалуйста, убедитесь в Вашем интернет-соединении.</string>
@@ -126,6 +127,7 @@ Transportr сохраняет часто используемые местопо
   <string name="error_geo_intent">Не удалось открыть внешнее расположение</string>
   <string name="error_find_nearby_stations">Не удалось найти остановки рядом</string>
   <string name="error_departures">Не может найти любую отправную точку</string>
+  <string name="error_no_calendar">Календарь не установлен :(</string>
   <string name="trip_error_ambiguous">Не удалось найти адрес. Попробуйте поискать другой адрес.</string>
   <string name="trip_error_too_close">\'Откуда\' и \'куда\' расположены слишком близко друг к другу.</string>
   <string name="trip_error_unknown_from">Не удалось найти расположение \'откуда\'. Пожалуйста, попробуйте еще раз.</string>
@@ -294,8 +296,12 @@ Transportr сохраняет часто используемые местопо
   <string name="np_desc_nz">Новая Зеландия, Веллингтон, Окленд</string>
   <string name="np_region_poland">Польша</string>
   <string name="np_desc_pl">Польша, железные дороги в Польше</string>
+  <string name="np_name_pl_navitia">Городской транспорт Польши</string>
+  <string name="np_desc_pl_navitia">Варшава, Вроцлав, Щецин, Гданьск, Гдыня, Сопот</string>
   <string name="np_name_spain">Испания</string>
   <string name="np_desc_spain">Мадрид, Барселона, Страна Басков, Валенсия, Аликанте, Майорка, Менорка, Тенерифе, Ла-Пальма, Наварра</string>
+  <string name="np_name_hungary">Венгрия</string>
+  <string name="np_desc_hungary">Будапешт, Мишкольц</string>
   <string name="np_region_sweden">Швеция</string>
   <string name="np_desc_se">Швеция, Стокгольм</string>
   <string name="np_region_switzerland">Швейцария</string>
@@ -340,4 +346,6 @@ Transportr сохраняет часто используемые местопо
   <string name="czech">Чешский</string>
   <string name="hungarian">Венгерский</string>
   <string name="japanese">Японский</string>
+  <string name="russian">Русский</string>
+  <string name="greek">Греческий</string>
 </resources>

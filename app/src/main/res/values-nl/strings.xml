@@ -100,7 +100,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="pref_walk_speed_slow">Langzaam</string>
   <string name="pref_walk_speed_normal">Normaal</string>
   <string name="pref_walk_speed_fast">Snel</string>
-  <string name="pref_show_when_locked_title">Reis- en zoekresultaten tonen, zelfs als het scherm vergrendeld is</string>
+  <string name="pref_show_when_locked_title">Reis tonen, zelfs als het scherm vergrendeld is</string>
   <string name="pref_show_when_locked_summary">Op vergrendelscherm tonen</string>
   <string name="error">Fout</string>
   <string name="error_no_internet">Internetverbinding vereist. Zorg ervoor dat je verbonden bent met het internet.</string>
@@ -330,4 +330,6 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="japanese">Japans</string>
   <string name="russian">Russisch</string>
   <string name="greek">Grieks</string>
+  <string name="farsi">Perzisch</string>
+  <string name="taiwanese">Chinees (Taiwan)</string>
 </resources>

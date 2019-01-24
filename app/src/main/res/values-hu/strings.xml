@@ -11,34 +11,34 @@ Ez az alkalmazás számos tömegközlekedési cég adatait használja, és
 egységes felületet biztosít hozzájuk.
 Az adatok helyességét viszont nem tudjuk ellenőrizni,
 és ezért <i>garanciát sem vállalunk</i> a megjelenített információkért.
-A saját felelősségére használja.
+Saját felelősségére használja.
 
 <b>🛣️ Útvonaltervezés</b>. Csak mondja meg a Tansportrnek, hogy merre menne!
 Megkeresi Önnek a legjobb csatlakozást, és tanácsot ad hogy szálljon át,
-és még a becslt érkezési időt is megmondja.
+és még a becsült érkezési időt is megmondja.
 
 <b>⏱️ Élő indulások</b>. Megjeleníti a soron következő indulásokat minden megállóhoz.
 A <i>támogatott</i> területeken a valós idejű adatok is megjelennek.
 
 <b>🗽 Szoftverszabadság</b>. A Transportr forráskódja 100%-ban nyílt.
 Szabadon használhatja, tanulmányozhatja, megoszthatja és fejlesztheti.
-Ez az csak annyira jó, amennyire <i>Ön</i> azzá teszi.
-A saját városát is hozzáadhatja, ha meg az nem támogatott.
+Ez csak annyira jó, amennyire <i>Ön</i> azzá teszi.
+A saját városát is hozzáadhatja, ha az még nem támogatott.
 
-<b>🛰️ Megtalálja a helyzetét.</b> A Transportr GPS műholdas navigáció használ
-a jelenlegi pozíciója követésére – agy sosem téved el.
-Megtalálhatja a közeli állomások egy új utazás elkezdéséhez,
+<b>🛰️ Megtalálja a helyzetét.</b> A Transportr GPS műholdas navigációt használ
+a jelenlegi pozíciója követésére – így sosem téved el.
+Megtalálhatja a közeli megállókat egy új utazás elkezdéséhez,
 majd láthatja, hogy milyen messzire viszi az útja.
 
 <b>🌟 Megjegyzi a kedvenc helyeit.</b> Hogy gyorsabban megtalálja merre kell mennie,
 a Transportr elmenti a gyakran használt helyeit és útjait.
 Így nem kell őket újra és újra begépelnie.
 
-<b>🚫 Nincsenek reklámok, nincs követés</b>. Az app nem jelenít meg reklámokat
+<b>🚫 Nincsenek reklámok, nincs követés</b>. Az alkalmazás nem jelenít meg reklámokat
 vagy idegesítő értesítéseket. Emellett nem használ olyan követő eszközöket,
 mint a Google Analytics, amely kémkedik Ön után.
 
-<b>🗺️ Gyönyörű térképek</b>. Megjeleníti az állomásokat a teljes utazása
+<b>🗺️ Gyönyörű térképek</b>. Megjeleníti a megállókat a teljes utazása
 alatt egy térképen, és mindig megmutatja hogy hol van, így nem téveszti el,
 hogy hol kell leszállnia a buszról…
 ]]>
@@ -63,6 +63,8 @@ hogy hol kell leszállnia a buszról…
   <string name="action_trip_delete">Útvonal törlése</string>
   <string name="action_show_on_external_map">Megjelenítés külső térképen</string>
   <string name="action_copy">Másolás</string>
+  <string name="directions">Útvonalak</string>
+  <string name="directions_search">Útvonalak keresése</string>
   <string name="drawer_departures">Indulások</string>
   <string name="tab_about">Névjegy</string>
   <string name="tab_libraries">Programkönyvtárak</string>
@@ -87,21 +89,21 @@ hogy hol kell leszállnia a buszról…
   <string name="pick_network_activity">Válasszon területet</string>
   <string name="pick_network_first_run">Üdvözli a Transportr!\n\nA folytatáshoz válassza ki a tömegközlekedési hálózatot a területről. Ezt bármikor megváltoztathatja.</string>
   <string name="stations_searching_position">Jelenlegi helyzet keresése…</string>
-  <string name="drawer_nearby_stations">Közeli állomások</string>
-  <string name="find_nearby_stations">Közeli állomások keresése</string>
+  <string name="drawer_nearby_stations">Közeli megállók</string>
+  <string name="find_nearby_stations">Közeli megállók keresése</string>
   <string name="find_departures">Indulások keresése</string>
   <string name="share_trip_via">Útvonal megosztása…</string>
   <string name="more">Több</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
-  <string name="for_x_min">%d percre</string>
+  <string name="for_x_min">%d perc</string>
   <string name="change_time">Idő megváltoztatása</string>
   <string name="now">Most</string>
   <string name="now_small">most</string>
   <string name="yesterday">Tegnap</string>
   <string name="today">Ma</string>
   <string name="tomorrow">Holnap</string>
-  <string name="in_x_minutes">%dperc múlva</string>
-  <string name="x_minutes_ago">%dperccel ezelőtt</string>
+  <string name="in_x_minutes">%d perce</string>
+  <string name="x_minutes_ago">%d perce</string>
   <string name="time_picker_previous_day">Előző nap</string>
   <string name="time_picker_next_day">Következő nap</string>
   <string name="ok">OK</string>
@@ -121,15 +123,16 @@ hogy hol kell leszállnia a buszról…
   <string name="pref_walk_speed_slow">Lassú</string>
   <string name="pref_walk_speed_normal">Normál</string>
   <string name="pref_walk_speed_fast">Gyors</string>
-  <string name="pref_show_when_locked_title">Útvonal és keresési eredmények megjelenítése akkor is, ha a kijelző zárolva van</string>
+  <string name="pref_show_when_locked_title">Útvonal megjelenítése akkor is, ha a kijelző zárolt</string>
   <string name="pref_show_when_locked_summary">Megjelenítés a zárolási képernyő fölött</string>
   <string name="error">Hiba</string>
   <string name="error_no_internet">Internetkapcsolat szükséges. Győződjön meg arról, hogy az internet-hozzáférése működik.</string>
   <string name="error_connection_failure">Kapcsolódás sikertelen. Próbálja újra.</string>
   <string name="error_trip_refresh_failed">Nem sikerült frissíteni az adatokat a jelenlegi útvonalhoz.</string>
   <string name="error_geo_intent">Nem sikerült megnyitni a külső helyet</string>
-  <string name="error_find_nearby_stations">Nem sikerült megtalálni a közeli állomásokat</string>
+  <string name="error_find_nearby_stations">Nem sikerült megtalálni a közeli megállókat</string>
   <string name="error_departures">Nem sikerül megtalálni egyetlen indulást sem</string>
+  <string name="error_no_calendar">Nincs telepített naptáralkalmazás :(</string>
   <string name="trip_error_ambiguous">Nem sikerült megtalálni a helyet. Próbáljon meg eltérő helyeket keresni.</string>
   <string name="trip_error_too_close">A „kiindulópont” és a „célpont” helyek túl közel vannak egymáshoz.</string>
   <string name="trip_error_unknown_from">Nem sikerült megtalálni a „kiindulópont” helyet. Próbáljon egy másikat.</string>
@@ -143,7 +146,7 @@ hogy hol kell leszállnia a buszról…
   <string name="trip_issue">Probléma lehet ezzel a csatlakozással.</string>
   <string name="try_again">Próbálja újra</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
-  <string name="meter">%d p</string>
+  <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d megálló</item>
     <item quantity="other">%d megálló</item>
@@ -228,6 +231,7 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_rt">Csak távolsági vonatok </string>
   <string name="np_desc_rt_networks">Railteam szövetség</string>
   <string name="np_region_finland">Finnország</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">Franciaország</string>
   <string name="np_name_francenortheast">Északkelet-Franciaország</string>
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
@@ -296,8 +300,13 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_nz">Új-Zéland, Welligton, Auckland</string>
   <string name="np_region_poland">Lengyelország</string>
   <string name="np_desc_pl">Lengyelország, vasutak Lengyelországban</string>
+  <string name="np_name_pl_navitia">Lengyel városi közlekedés</string>
+  <string name="np_desc_pl_navitia">Varsó, Wroclaw, Szczecin, Gdansk, Gdynia, Sopot</string>
+  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus/DLA Dlugoleka, Warbus Miekinia, ZDiTM Szczecin, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdansk</string>
   <string name="np_name_spain">Spanyolország</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baszkföld, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
+  <string name="np_name_hungary">Magyarország</string>
+  <string name="np_desc_hungary">Budapest, Miskolc</string>
   <string name="np_region_sweden">Svédország</string>
   <string name="np_desc_se">Svédország, Stockholm</string>
   <string name="np_region_switzerland">Svájc</string>
@@ -343,4 +352,7 @@ hogy hol kell leszállnia a buszról…
   <string name="hungarian">Magyar</string>
   <string name="japanese">Japán</string>
   <string name="russian">Orosz</string>
+  <string name="greek">Görög</string>
+  <string name="farsi">Perzsa</string>
+  <string name="taiwanese">Kínai (Taiwan)</string>
 </resources>

@@ -17,6 +17,7 @@
   <string name="action_trip_delete">Geziyi Sil</string>
   <string name="action_show_on_external_map">Dış Haritada Göster</string>
   <string name="action_copy">Kopyala</string>
+  <string name="directions">Yollar</string>
   <string name="drawer_departures">Gelişler</string>
   <string name="tab_about">Hakkında</string>
   <string name="tab_libraries">Kütüphaneler</string>
@@ -91,6 +92,8 @@
   <string name="home">Ev</string>
   <string name="home_dialog_title">Ev Konumunu Ayarla</string>
   <string name="widget_name_quickhome">Beni Eve Götür</string>
+  <string name="widget_name_favorites">%1$s\'den %2$s\'e</string>
+  <string name="widget_name_favorites_via">%1$s\'den %2$s\'e (%3$s ile)</string>
   <string name="action_set_locations">Aramaya Ekle</string>
   <string name="action_swap_locations">Dönüş turu ara</string>
   <string name="action_change">Değiştir</string>
@@ -116,6 +119,7 @@
   <string name="np_continent_asia">Asya</string>
   <string name="np_continent_oceania">Okyanusya</string>
   <string name="np_region_australia">Avustralya</string>
+  <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Avustralya, Yeni Güney Wales, Sydney</string>
   <string name="np_region_austria">Avusturya</string>
   <string name="np_desc_ivb">Innsbruck</string>
@@ -130,16 +134,19 @@
   <string name="np_region_br">Brezilya</string>
   <string name="np_name_br">Brezilya</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte ve Porto Alegre</string>
+  <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
   <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo Bölgesi</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">British Columbia</string>
   <string name="np_region_denmark">Danimarka</string>
   <string name="np_desc_dsb">Danimarka, Kopenhag</string>
   <string name="np_name_rt">Avrupa</string>
   <string name="np_desc_rt">Sadece Uzun Yol Trenleri</string>
   <string name="np_region_finland">Finlandiya</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">Fransa</string>
   <string name="np_name_francenortheast">Kuzey Doğu Fransa</string>
   <string name="np_desc_francenortheast">Strazburg, Metz, Lille, Nancy</string>
@@ -207,8 +214,11 @@
   <string name="np_desc_nz">Yeni Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonya</string>
   <string name="np_desc_pl">Polonya, Polonya demiryolları</string>
+  <string name="np_desc_pl_navitia">Varşova, Wroclaw, Szczecin, Gdansk, Gdynia, Sopot</string>
   <string name="np_name_spain">İspanya</string>
   <string name="np_desc_spain">Madrid, Barselona, Bask Ülkesi, Valensiya, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
+  <string name="np_name_hungary">Macaristan</string>
+  <string name="np_desc_hungary">Budapeşte, Miskolc</string>
   <string name="np_region_sweden">İsveç</string>
   <string name="np_desc_se">İsveç, Stockholm</string>
   <string name="np_region_switzerland">İsviçre</string>
@@ -243,9 +253,13 @@
   <string name="english">İngilizce</string>
   <string name="catalan">Katalanca</string>
   <string name="polish">Lehçe</string>
+  <string name="tamil">Tamilce</string>
   <string name="esperanto">Esperantoca</string>
   <string name="czech">Çekçe</string>
   <string name="hungarian">Macarca</string>
   <string name="japanese">Japonca</string>
   <string name="russian">Rusça</string>
+  <string name="greek">Yunanca</string>
+  <string name="farsi">Farsça</string>
+  <string name="taiwanese">Çince (Tayvan)</string>
 </resources>

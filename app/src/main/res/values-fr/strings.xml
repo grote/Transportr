@@ -49,6 +49,8 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="action_trip_delete">Supprimer le trajet</string>
   <string name="action_show_on_external_map">Montrer sur une carte externe</string>
   <string name="action_copy">Copier</string>
+  <string name="directions">Itinéraires</string>
+  <string name="directions_search">Chercher des itinéraires</string>
   <string name="drawer_departures">Départs</string>
   <string name="tab_about">À propos</string>
   <string name="tab_libraries">Bibliothèques</string>
@@ -62,7 +64,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="from">De</string>
   <string name="to">À</string>
   <string name="via">via</string>
-  <string name="search_hint">Rechercher ici</string>
+  <string name="search_hint">Chercher ici</string>
   <string name="from_here">D’ici</string>
   <string name="to_here">À ici</string>
   <string name="clear_location">Effacer le lieu</string>
@@ -107,7 +109,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="pref_walk_speed_slow">Lente</string>
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Rapide</string>
-  <string name="pref_show_when_locked_title">Afficher les résultats de déplacement et de recherche même si l’écran est verrouillé</string>
+  <string name="pref_show_when_locked_title">Afficher le trajet même si l’écran est verrouillé</string>
   <string name="pref_show_when_locked_summary">Afficher par-dessus l’écran verrouillé</string>
   <string name="error">Erreur</string>
   <string name="error_no_internet">Une connexion à Internet est exigée. Veuillez vous assurer que votre accès à Internet fonctionne.</string>
@@ -116,6 +118,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="error_geo_intent">Impossible d’ouvrir le lieu externe</string>
   <string name="error_find_nearby_stations">Impossible de trouver des arrêts, stations à proximité</string>
   <string name="error_departures">Impossible de trouver des départs</string>
+  <string name="error_no_calendar">Aucun agenda n’est installé :(</string>
   <string name="trip_error_ambiguous">Impossible de trouver le lieu. Veuillez tenter votre recherche avec des lieux différents.</string>
   <string name="trip_error_too_close">Les lieux « de » et « à » sont trop proches l’un de l’autre.</string>
   <string name="trip_error_unknown_from">Impossible de trouver le lieu « de ». Veuillez en essayer un autre.</string>
@@ -150,7 +153,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="widget_name_favorites">%1$s à %2$s</string>
   <string name="widget_name_favorites_via">%1$s à %2$s (via %3$s)</string>
   <string name="action_set_locations">Modifier la recherche</string>
-  <string name="action_swap_locations">Rechercher le trajet de retour</string>
+  <string name="action_swap_locations">Chercher le trajet de retour</string>
   <string name="action_change">Modifier</string>
   <string name="action_add_shortcut">Ajouter un raccourci de lanceur</string>
   <string name="location_gps">Utiliser la position actuel</string>
@@ -214,6 +217,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_desc_rt">Trains longue distance seulement</string>
   <string name="np_desc_rt_networks">Alliance Railteam</string>
   <string name="np_region_finland">Finlande</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">France</string>
   <string name="np_name_francenortheast">France — Nord-est</string>
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
@@ -334,4 +338,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="hungarian">Hongrois</string>
   <string name="japanese">Japonais</string>
   <string name="russian">Russe</string>
+  <string name="greek">Grec</string>
+  <string name="farsi">Persan</string>
+  <string name="taiwanese">Chinois (Taiwan)</string>
 </resources>

@@ -12,6 +12,7 @@
   <string name="action_trip_delete">பயணத்தை ரத்து செய்</string>
   <string name="action_show_on_external_map">மாற்று வரைபடத்தில் காண்க</string>
   <string name="action_copy">நகல்</string>
+  <string name="directions">வழிகள்</string>
   <string name="drawer_departures">புறப்பாடு</string>
   <string name="tab_about">விபரம்</string>
   <string name="tab_libraries">துணை நிரல்கள்</string>

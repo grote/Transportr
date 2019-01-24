@@ -1,12 +1,46 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Transporte público de código abierto</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Asistente de transporte libre y gratuito sin publicidad ni seguimiento</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Transportr es una aplicación sin ánimo de lucro desarrollada por gente de todo el mundo en su tiempo libre. 
+Quieren hacer el uso del transporte público tan sencillo como sea posible para todo el mundo. 
+Esta app hace uso de datos de varias agencias de transporte público y provee una interfaz unificada para ellos. 
+No se puede verificar la exactitud de los datos, y por tanto <i>no ofrece garantías</i> de la información mostrada. 
+Por favor, úsala bajo tu propio riesgo. 
+
+<b>🛣️ Itinerario de viaje</b>. ¡Simplemente dile a Transportr dónde quieres ir!
+Encontrará las mejores conexiones para ti, te avisará dónde hacer transbordos de autobus y hasta te dará una estimación de la hora de llegada. 
+
+<b>⏱️ Próximas salidas</b>. Muestra las próximas salidas de todas y cada una de las estaciones. 
+<i>Cuando sea posible</i>, también se mostrarán retrasos en tiempo real. 
+
+<b>🗽 Software libre</b>. El código fuente de Transportr es 100% abierto.
+Puedes utilizarlo, estudiarlo, compartirlo y mejorarlo de forma totalmente libre. 
+Esta aplicación es tan buena como <i>tú</i> la hagas. 
+Puedes incluso añadir una ciudad por ti mismo, si aún no está soportada. 
+
+<b> 🛰️ Encuentra tu posición</b>. Transportr usa navegación por satélite GPS para hacer un seguimiento de tu posición actual, para que nunca te pierdas. 
+Puedes encontrar estaciones cercanas para comenzar un nuevo viaje. 
+y ver cómo de lejos estás en tu viaje. 
+
+<b>🌟 Recuerda tus sitios favoritos</b>. Para llevarte donde tienes que ir de forma más rápida, 
+Transportr guarda frecuentemente la posición del usuario y sus viajes. 
+De esta forma no necesitas reescribirlos una y otra vez. 
+
+<b>🚫 Sin publicidad, sin seguimiento</b>. Esta app no muestra anuncios ni notificaciones molestas. 
+Tampoco hace uso de herramientas de seguimiento como Google Analytics para espiarte. 
+
+<b>🗺️ Mapas bonitos</b>. Muestra las estaciones de todo tu viaje en un mapa 
+para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del bus. 
+]]></string>
   <string name="drawer_settings">Ajustes</string>
   <string name="drawer_changelog">Registro de cambios</string>
   <string name="drawer_about">Acerca de</string>
   <string name="drawer_contributors">Colaboradores</string>
-  <string name="drawer_report_issue">Informar de un error</string>
-  <string name="action_fav_trip">Marcar trayecto como favorito</string>
-  <string name="action_unfav_trip">Desmarcar trayecto como favorito</string>
+  <string name="drawer_report_issue">Informar error</string>
+  <string name="action_fav_trip">Marcar viaje como favorito</string>
+  <string name="action_unfav_trip">Desmarcar viaje como favorito</string>
   <string name="action_switch_locations">Intercambiar origen y destino</string>
   <string name="action_time_type">Hora actual</string>
   <string name="trip_dep">Salida</string>
@@ -16,9 +50,11 @@
   <string name="action_choose_products">Medios de transporte</string>
   <string name="action_share">Compartir</string>
   <string name="action_trip_calendar">Agregar al calendario</string>
-  <string name="action_trip_delete">Eliminar trayecto</string>
+  <string name="action_trip_delete">Eliminar viaje</string>
   <string name="action_show_on_external_map">Mostrar en un mapa externo</string>
   <string name="action_copy">Copiar</string>
+  <string name="directions">Indicaciones</string>
+  <string name="directions_search">Buscar indicaciones</string>
   <string name="drawer_departures">Salidas</string>
   <string name="tab_about">Acerca de</string>
   <string name="tab_libraries">Bibliotecas de software</string>
@@ -77,7 +113,7 @@
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
-  <string name="pref_show_when_locked_title">Mostrar el viaje y los resultados de búsqueda incluso cuando la pantalla esté bloqueada</string>
+  <string name="pref_show_when_locked_title">Mostrar el trayecto incluso cuando la pantalla está bloqueada</string>
   <string name="pref_show_when_locked_summary">Superponer a la pantalla de bloqueo</string>
   <string name="error">Error</string>
   <string name="error_no_internet">Se necesita conexión a internet. Por favor, asegúrate de que tu conexión a internet funciona adecuadamente.</string>
@@ -86,6 +122,7 @@
   <string name="error_geo_intent">No se pudo abrir la ubicación externa</string>
   <string name="error_find_nearby_stations">No se pudieron encontrar estaciones cercanas</string>
   <string name="error_departures">No se pudieron encontrar salidas</string>
+  <string name="error_no_calendar">No hay ningún calendario instalado :(</string>
   <string name="trip_error_ambiguous">No se pudo encontrar la ubicación. Por favor, prueba buscando diferentes ubicaciones.</string>
   <string name="trip_error_too_close">El origen y el destino están demasiado cerca uno del otro.</string>
   <string name="trip_error_unknown_from">No se pudo ubicar el origen. Por favor, prueba con otro.</string>
@@ -127,6 +164,11 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="location_gps">Usar la posición actual</string>
   <string name="warning_no_gps_fix">Todavía no puedo localizar tu posición.</string>
   <string name="permission_denied_gps">No permitiste el acceso a tu ubicación, por lo que esta funcionalidad no estará disponible. Por favor, concede el permiso en la configuración de la aplicación.</string>
+  <string name="warning_gps_off">La geolocalización está apagada. Por favor, enciéndela en los ajustes.</string>
+  <string name="onboarding_location_title">Arrastra hacia arriba</string>
+  <string name="onboarding_location_message">Hay más datos aquí abajo</string>
+  <string name="onboarding_directions_title">Más opciones de búsqueda</string>
+  <string name="onboarding_directions_message">Haz clic en este icono para mostrar opciones de búsqueda avanzadas</string>
   <string name="select_products">Seleccionar medio de transporte</string>
   <string name="product_high_speed_train">Tren de alta velocidad</string>
   <string name="product_regional_train">Tren regional</string>
@@ -143,7 +185,11 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="changelog_show_full">Más...</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">África</string>
+  <string name="np_continent_north_america">América del Norte</string>
   <string name="np_continent_central_america">América Central</string>
+  <string name="np_continent_south_america">América del Sur</string>
+  <string name="np_continent_asia">Asia</string>
+  <string name="np_continent_oceania">Oceanía</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sídney, Brisbane, Perth, Adelaida, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australia, Nueva Gales del Sur, Sídney</string>
@@ -167,12 +213,16 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, región de Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">Columbia Británica</string>
+  <string name="np_desc_britishcolumbia">Transporte público en Columbia Británica</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) y BC Transit (resto de British Columbia)</string>
   <string name="np_region_denmark">Dinamarca</string>
   <string name="np_desc_dsb">Dinamarca, Copenhague</string>
   <string name="np_name_rt">Europa</string>
-  <string name="np_desc_rt">sólo larga distancia</string>
+  <string name="np_desc_rt">Sólo trenes de larga distancia</string>
   <string name="np_desc_rt_networks">Alianza Railteam</string>
   <string name="np_region_finland">Finlandia</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">Francia</string>
   <string name="np_name_francenortheast">Noreste de Francia</string>
   <string name="np_desc_francenortheast">Estrasburgo, Metz, Lille, Nancy</string>
@@ -194,6 +244,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_bsvag">Brunswick, Wolfsburgo</string>
   <string name="np_desc_bvg">Berlín</string>
   <string name="np_desc_db">La mayor parte de Alemania</string>
+  <string name="np_desc_db2">Conexiones de larga distancia en Europa</string>
   <string name="np_desc_ding">Baden-Württemberg, Ulm, Neu-Ulm</string>
   <string name="np_desc_gvh">Baja Sajonia, Hannover, Hamburgo, Bremerhaven</string>
   <string name="np_desc_hvv" tools:keep="@string/np_desc_hvv">Hamburgo</string>
@@ -240,8 +291,13 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_nz">Nueva Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, lineas de ferrocarriles en Polonia</string>
+  <string name="np_name_pl_navitia">Transportes municipales de Polonia</string>
+  <string name="np_desc_pl_navitia">Varsovia, Wroclaw, Szczecin, Gdansk, Gdynia, Sopot</string>
+  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus/DLA Dlugoleka, Warbus Miekinia, ZDiTM Szczecin, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdansk</string>
   <string name="np_name_spain">España</string>
   <string name="np_desc_spain">Madrid, Barcelona, Euskadi - País Vasco, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
+  <string name="np_name_hungary">Hungría</string>
+  <string name="np_desc_hungary">Budapest, Miskolc</string>
   <string name="np_region_sweden">Suecia</string>
   <string name="np_desc_se">Suecia, Estocolmo</string>
   <string name="np_region_switzerland">Suiza</string>
@@ -286,4 +342,8 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="czech">Checo</string>
   <string name="hungarian">Hungáro</string>
   <string name="japanese">Japonés</string>
+  <string name="russian">Rusia</string>
+  <string name="greek">Griego</string>
+  <string name="farsi">Persa</string>
+  <string name="taiwanese">Chino (Taiwán)</string>
 </resources>

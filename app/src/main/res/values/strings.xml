@@ -446,5 +446,6 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="greek">Greek</string>
 	<string name="farsi">Persian</string>
 	<string name="taiwanese">Chinese (Taiwan)</string>
+	<string name="swedish">Swedish</string>
 
 </resources>

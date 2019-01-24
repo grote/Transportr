@@ -59,6 +59,8 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="action_trip_delete">Elimina viaggio</string>
   <string name="action_show_on_external_map">Mostra su mappa esterna</string>
   <string name="action_copy">Copia</string>
+  <string name="directions">Direzioni</string>
+  <string name="directions_search">Cerca direzioni</string>
   <string name="drawer_departures">Partenze</string>
   <string name="tab_about">Informazioni</string>
   <string name="tab_libraries">Librerie</string>
@@ -117,7 +119,7 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normale</string>
   <string name="pref_walk_speed_fast">Veloce</string>
-  <string name="pref_show_when_locked_title">Mostra percorso e risultati della ricerca quando lo schermo è bloccato</string>
+  <string name="pref_show_when_locked_title">Mostra il percorso anche con lo schermo bloccato</string>
   <string name="pref_show_when_locked_summary">Mostra quando lo schermo è bloccato</string>
   <string name="error">Errore</string>
   <string name="error_no_internet">Una connessione ad internet è necessaria. Assicurati che la tua rete è funzionante.</string>
@@ -126,6 +128,7 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="error_geo_intent">Impossibile aprire la posizione</string>
   <string name="error_find_nearby_stations">Impossibile trovare le stazioni vicine</string>
   <string name="error_departures">Impossibile trovare alcuna partenza</string>
+  <string name="error_no_calendar">Nessun calendario installato :(</string>
   <string name="trip_error_ambiguous">Impossibile trovare il posto. Prova con un posto differente.</string>
   <string name="trip_error_too_close">I posti \"da\" e \"a\" sono troppo vicini.</string>
   <string name="trip_error_unknown_from">Impossibile trovare il posto di partenza. Prova con uno differente.</string>
@@ -224,6 +227,7 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="np_desc_rt">Solo treni a lunga percorrenza</string>
   <string name="np_desc_rt_networks">Railteam</string>
   <string name="np_region_finland">Finlandia</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">Francia</string>
   <string name="np_name_francenortheast">Francia nord-orientale</string>
   <string name="np_desc_francenortheast">Strasburgo, Metz, Lilla, Nancy</string>
@@ -344,4 +348,7 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="hungarian">Ungherese</string>
   <string name="japanese">Giapponese</string>
   <string name="russian">Russo</string>
+  <string name="greek">Grecia</string>
+  <string name="farsi">Persiano</string>
+  <string name="taiwanese">Cinese (Taiwan)</string>
 </resources>

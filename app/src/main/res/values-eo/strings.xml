@@ -40,6 +40,8 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="action_trip_delete">Forigi kurson</string>
   <string name="action_show_on_external_map">Montri sur ekstera mapo</string>
   <string name="action_copy">Kopii</string>
+  <string name="directions">Direktoj</string>
+  <string name="directions_search">Serĉi direktojn</string>
   <string name="drawer_departures">Forveturoj</string>
   <string name="tab_about">Pri</string>
   <string name="tab_libraries">Bibliotekoj</string>
@@ -98,7 +100,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="pref_walk_speed_slow">Malrapide</string>
   <string name="pref_walk_speed_normal">Norme</string>
   <string name="pref_walk_speed_fast">Rapide</string>
-  <string name="pref_show_when_locked_title">Montri kursojn kaj serĉ-rezultojn eĉ kiam la ekrano estas ŝlosita</string>
+  <string name="pref_show_when_locked_title">Montri kurson eĉ kiam la ekrano estas ŝlosita</string>
   <string name="pref_show_when_locked_summary">Montri sur ŝlosita ekrano</string>
   <string name="error">Eraro</string>
   <string name="error_no_internet">Interret-konekto bezonata. Bonvolu certigi, ke havas aliron al la interreto.</string>
@@ -107,6 +109,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="error_geo_intent">Ne povas malfermi eksteran lokon</string>
   <string name="error_find_nearby_stations">Ne povas trovi proksimajn staciojn</string>
   <string name="error_departures">Ne povas trovi iujn ajn forveturojn</string>
+  <string name="error_no_calendar">Kalendaro ne instalita :(</string>
   <string name="trip_error_ambiguous">Ne povas trovi lokon. Bonvolu provi serĉi kun alia loko.</string>
   <string name="trip_error_too_close">Lokoj “el” kaj “al” estas tro proksimaj.</string>
   <string name="trip_error_unknown_from">Ne povas trovi la lokon “el”. Bonvolu provi kun la alia.</string>
@@ -205,6 +208,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_desc_rt">Nur long-distancaj vagonaroj</string>
   <string name="np_desc_rt_networks">Societo Railteam</string>
   <string name="np_region_finland">Suomujo</string>
+  <string name="np_desc_fi">Helsinko, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">Francujo</string>
   <string name="np_name_francenortheast">Francujo nord-orienta</string>
   <string name="np_desc_francenortheast">Strasburgo, Metz, Lillo, Nancio</string>
@@ -325,4 +329,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="hungarian">Hungara</string>
   <string name="japanese">Japana</string>
   <string name="russian">Rusa</string>
+  <string name="greek">Greka</string>
+  <string name="farsi">Persa</string>
+  <string name="taiwanese">Ĉina (Tajvana)</string>
 </resources>

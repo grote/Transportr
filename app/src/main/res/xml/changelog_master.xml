@@ -3,8 +3,9 @@
 
     <release version="2.0.5" versioncode="114">
         <change>Show exact trip polylines on map for more networks</change>
-        <change>Fix VGS network</change>
-        <change>Fix crash on opening settings</change>
+        <change>Fix VGS network (Thanks Mikolai!)</change>
+        <change>Fix crash on opening settings (Thanks Mikolai!)</change>
+        <change>New translation: Swedish (Thanks Jonatan!)</change>
     </release>
 
     <release version="2.0.4" versioncode="113">

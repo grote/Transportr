@@ -59,6 +59,8 @@ und weiß immer, wo man aussteigen muss.
   <string name="action_trip_delete">Verbindung löschen</string>
   <string name="action_show_on_external_map">Auf externer Karte anzeigen</string>
   <string name="action_copy">Kopieren</string>
+  <string name="directions">Verbindungen</string>
+  <string name="directions_search">Verbindungen suchen</string>
   <string name="drawer_departures">Abfahrten</string>
   <string name="tab_about">Über</string>
   <string name="tab_libraries">Bibliotheken</string>
@@ -117,7 +119,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="pref_walk_speed_slow">Langsam</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Schnell</string>
-  <string name="pref_show_when_locked_title">Zeige Fahrt und Suchtreffer auch wenn der Bildschirm gesperrt ist</string>
+  <string name="pref_show_when_locked_title">Zeige Fahrt auch, wenn der Bildschirm gesperrt ist</string>
   <string name="pref_show_when_locked_summary">Über dem Sperrbildschirm anzeigen</string>
   <string name="error">Fehler</string>
   <string name="error_no_internet">Eine Internetverbindung wird benötigt. Bitte stelle sicher, dass dein Internetzugang funktioniert.</string>
@@ -126,6 +128,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="error_geo_intent">Konnte externe Position nicht öffnen</string>
   <string name="error_find_nearby_stations">Konnte keine Haltestellen in der Nähe finden</string>
   <string name="error_departures">Konnte keine Abfahrten finden</string>
+  <string name="error_no_calendar">Kein Kalender installiert :(</string>
   <string name="trip_error_ambiguous">Konnte den Ort nicht finden. Bitte versuche mit anderen Orten zu suchen.</string>
   <string name="trip_error_too_close">Die Orte \'von\' und \'nach\' sind zu nahe beieinander.</string>
   <string name="trip_error_unknown_from">Konnte den Ort \'von\' nicht finden. Bitte versuche es mit einem anderen.</string>
@@ -224,6 +227,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_rt">Nur Fernzüge</string>
   <string name="np_desc_rt_networks">Railteam-Allianz</string>
   <string name="np_region_finland">Finnland</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">Frankreich</string>
   <string name="np_name_francenortheast">Frankreich Nordost</string>
   <string name="np_desc_francenortheast">Straßburg, Metz, Lille, Nancy</string>
@@ -292,8 +296,13 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_nz">Neuseeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, Eisenbahnen in Polen</string>
+  <string name="np_name_pl_navitia">Stadtverkehr in Polen</string>
+  <string name="np_desc_pl_navitia">Warschau, Breslau, Stettin, Danzig, Gdyna, Zoppot</string>
+  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Tscheschnitz, MPK Busse, MPK Straßenbahnen, Sevibus Wisznia Mala, Sevibus/DLA Langewiese, Warbus Nimkau, ZDiTM Stettin, A21 Langewiese, Masowische Eisenbahnen, Warschau Öffentlicher Verkehr (ZTM Warschau), ZKM Gdynia, ZTM Danzik</string>
   <string name="np_name_spain">Spanien</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma, Navarra</string>
+  <string name="np_name_hungary">Ungarn</string>
+  <string name="np_desc_hungary">Budapest, Mischkolz</string>
   <string name="np_region_sweden">Schweden</string>
   <string name="np_desc_se">Schweden, Stockholm</string>
   <string name="np_region_switzerland">Schweiz</string>
@@ -339,4 +348,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="hungarian">Ungarisch</string>
   <string name="japanese">Japanisch</string>
   <string name="russian">Russisch</string>
+  <string name="greek">Griechisch</string>
+  <string name="farsi">Persisch</string>
+  <string name="taiwanese">Chinesisch (Taiwan)</string>
 </resources>

@@ -7,7 +7,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
 
 <b>⏱️ Live vertrektijden</b>. Laat de vertrektijden zien van elk station. In <i>ondersteunde</i> gebieden worden ook vertragingen weergegeven.
 
-<b>🗽 Softwarevrijheid</b>. De broncode van Transportr is 100% open. Je kan het vrij bekijken, bestuderen, delen of het verbeteren. Deze app is zo goed als <i>jij</i> het maakt! Je kan zelfs je eigen stad toevoegen, als het nog niet ondersteund wordt.
+<b>🗽 Vrije software</b>. De broncode van Transportr is 100% open. Je kan het vrij bekijken, bestuderen, delen of het verbeteren. Deze app is zo goed als <i>jij</i> het maakt! Je kan zelfs je eigen stad toevoegen, als het nog niet ondersteund wordt.
 
 <b>🛰️ Vind je locatie.</b> Transportr gebruikt GPS satellietnavigatie om je locatie bij te houden zodat je nooit verdwaalt. Je kan de dichtstbijzijnde stations vinden om een nieuwe reis te beginnen en te zien hoe ver je bent op je reis.
 
