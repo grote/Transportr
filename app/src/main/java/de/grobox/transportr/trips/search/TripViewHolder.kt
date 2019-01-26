@@ -25,9 +25,9 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import com.google.common.base.Strings.isNullOrEmpty
 import de.grobox.transportr.R
+import de.grobox.transportr.trips.BaseViewHolder
 import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener
 import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.DateUtils.*
@@ -36,39 +36,29 @@ import de.schildbach.pte.dto.Trip
 import de.schildbach.pte.dto.Trip.Individual
 import de.schildbach.pte.dto.Trip.Public
 
-internal class TripViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
+internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
 
-    private val context = root.context
-    private val fromTimeRel: TextView = root.findViewById(R.id.fromTimeRel)
-    private val fromTime: TextView = root.findViewById(R.id.fromTime)
-    private val fromLocation: TextView = root.findViewById(R.id.fromLocation)
-    private val fromDelay: TextView = root.findViewById(R.id.fromDelay)
-    private val toTime: TextView = root.findViewById(R.id.toTime)
-    private val toLocation: TextView = root.findViewById(R.id.toLocation)
-    private val toDelay: TextView = root.findViewById(R.id.toDelay)
-    private val warning: View = root.findViewById(R.id.warning)
-    private val lines: ViewGroup = root.findViewById(R.id.lines)
-    private val duration: TextView = root.findViewById(R.id.duration)
+    private val fromTimeRel: TextView = v.findViewById(R.id.fromTimeRel)
+    private val fromLocation: TextView = v.findViewById(R.id.fromLocation)
+    private val toLocation: TextView = v.findViewById(R.id.toLocation)
+    private val warning: View = v.findViewById(R.id.warning)
+    private val lines: ViewGroup = v.findViewById(R.id.lines)
+    private val duration: TextView = v.findViewById(R.id.duration)
 
     fun bind(trip: Trip, listener: OnTripClickListener) {
         // Relative Departure Time
         setRelativeDepartureTime(fromTimeRel, trip.firstDepartureTime)
 
-        // Departure Time
+        // Departure Time and Delay
         val firstLeg = trip.legs[0]
         if (firstLeg is Public) {
-            fromTime.text = getTime(context, firstLeg.getDepartureTime(true))
+            setDepartureTimes(fromTime, fromDelay, firstLeg.departureStop)
         } else {
             fromTime.text = getTime(context, firstLeg.departureTime)
-        }
-
-        // Departure Delay
-        val firstPublicLeg = trip.firstPublicLeg
-        if (firstPublicLeg != null && firstPublicLeg.departureDelay != null && firstPublicLeg.departureDelay != 0L) {
-            fromDelay.text = getDelayText(firstPublicLeg.departureDelay)
-            fromDelay.visibility = VISIBLE
-        } else {
-            fromDelay.visibility = GONE
+            val firstPublicLeg = trip.firstPublicLeg
+            if (firstPublicLeg != null && firstPublicLeg.departureDelay != null && firstPublicLeg.departureDelay != 0L) {
+                setDepartureTimes(null, toDelay, firstPublicLeg.departureStop)
+            }
         }
         fromLocation.text = getLocationName(trip.from)
 
@@ -88,26 +78,21 @@ internal class TripViewHolder(private val root: View) : RecyclerView.ViewHolder(
         warning.visibility = if (trip.hasProblem()) VISIBLE else GONE
         duration.text = getDuration(trip.duration)
 
-        // Arrival Time
+        // Arrival Time and Delay
         val lastLeg = trip.legs[trip.legs.size - 1]
         if (lastLeg is Public) {
-            toTime.text = getTime(context, lastLeg.getArrivalTime(true))
+            setArrivalTimes(toTime, toDelay, lastLeg.arrivalStop)
         } else {
             toTime.text = getTime(context, lastLeg.arrivalTime)
-        }
-
-        // Arrival Delay
-        val lastPublicLeg = trip.lastPublicLeg
-        if (lastPublicLeg != null && lastPublicLeg.arrivalDelay != null && lastPublicLeg.arrivalDelay != 0L) {
-            toDelay.text = getDelayText(lastPublicLeg.arrivalDelay)
-            toDelay.visibility = VISIBLE
-        } else {
-            toDelay.visibility = GONE
+            val lastPublicLeg = trip.lastPublicLeg
+            if (lastPublicLeg != null && lastPublicLeg.arrivalDelay != null && lastPublicLeg.arrivalDelay != 0L) {
+                setArrivalTimes(null, toDelay, lastPublicLeg.arrivalStop)
+            }
         }
         toLocation.text = getLocationName(trip.to)
 
         // Click Listener
-        root.setOnClickListener { listener.onClick(trip) }
+        v.setOnClickListener { listener.onClick(trip) }
     }
 
     private fun Trip.hasProblem(): Boolean {

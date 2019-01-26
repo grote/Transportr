@@ -81,15 +81,8 @@ public class DateUtils {
 		return (delay > 0 ? "+" : "") + Long.toString(delay);
 	}
 
-	@Nullable
 	public static String getDelayText(long delay) {
-		if (delay >= 0) {
-			return "+" + Long.toString(delay / 1000 / 60);
-		} else if (delay < 0) {
-			return "-" + Long.toString(delay / 1000 / 60);
-		} else {
-			return null;
-		}
+		return (delay >= 0 ? "+" : "") + Long.toString(delay / 1000 / 60);
 	}
 
 	public static boolean isToday(Calendar calendar) {

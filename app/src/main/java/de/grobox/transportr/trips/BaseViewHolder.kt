@@ -17,7 +17,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.grobox.transportr.trips.detail
+package de.grobox.transportr.trips
 
 import android.content.Context
 import android.view.View
@@ -33,7 +33,7 @@ import de.schildbach.pte.dto.Position
 import de.schildbach.pte.dto.Stop
 import java.util.*
 
-internal abstract class BaseViewHolder(v: View, protected val listener: LegClickListener) : RecyclerView.ViewHolder(v) {
+internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
     protected val context: Context = v.context
     protected val fromTime: TextView = v.findViewById(R.id.fromTime)
@@ -41,7 +41,7 @@ internal abstract class BaseViewHolder(v: View, protected val listener: LegClick
     protected val fromDelay: TextView = v.findViewById(R.id.fromDelay)
     protected val toDelay: TextView = v.findViewById(R.id.toDelay)
 
-    fun setArrivalTimes(timeView: TextView, delayView: TextView, stop: Stop) {
+    fun setArrivalTimes(timeView: TextView?, delayView: TextView, stop: Stop) {
         if (stop.arrivalTime == null) return
 
         val time = Date(stop.arrivalTime.time)
@@ -58,10 +58,10 @@ internal abstract class BaseViewHolder(v: View, protected val listener: LegClick
         } else {
             delayView.visibility = GONE
         }
-        timeView.text = getTime(context, time)
+        timeView?.let { it.text = getTime(context, time) }
     }
 
-    fun setDepartureTimes(timeView: TextView, delayView: TextView, stop: Stop) {
+    fun setDepartureTimes(timeView: TextView?, delayView: TextView, stop: Stop) {
         if (stop.departureTime == null) return
 
         val time = Date(stop.departureTime.time)
@@ -78,7 +78,7 @@ internal abstract class BaseViewHolder(v: View, protected val listener: LegClick
         } else {
             delayView.visibility = GONE
         }
-        timeView.text = getTime(context, time)
+        timeView?.let { it.text = getTime(context, time) }
     }
 
     protected fun TextView.addPlatform(position: Position?) {

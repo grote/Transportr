@@ -33,6 +33,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.common.base.Strings
 import com.google.common.base.Strings.isNullOrEmpty
 import de.grobox.transportr.R
+import de.grobox.transportr.trips.BaseViewHolder
 import de.grobox.transportr.trips.detail.LegViewHolder.LegType.*
 import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.DateUtils
@@ -45,7 +46,7 @@ import de.schildbach.pte.dto.Trip.*
 import kotlinx.android.synthetic.main.list_item_leg.view.*
 
 
-internal class LegViewHolder(v: View, listener: LegClickListener, private val showLineName: Boolean) : BaseViewHolder(v, listener) {
+internal class LegViewHolder(v: View, private val listener: LegClickListener, private val showLineName: Boolean) : BaseViewHolder(v) {
 
     internal enum class LegType {
         FIRST, MIDDLE, LAST, FIRST_LAST
