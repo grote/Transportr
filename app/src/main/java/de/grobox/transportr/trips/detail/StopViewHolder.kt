@@ -26,12 +26,13 @@ import android.view.View.VISIBLE
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import de.grobox.transportr.trips.BaseViewHolder
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Stop
 import kotlinx.android.synthetic.main.list_item_stop.view.*
 
 
-internal class StopViewHolder(v: View, listener: LegClickListener) : BaseViewHolder(v, listener) {
+internal class StopViewHolder(v: View, private val listener : LegClickListener) : BaseViewHolder(v) {
 
     private val circle: ImageView = v.circle
     private val stopLocation: TextView = v.stopLocation
