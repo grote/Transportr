@@ -224,7 +224,11 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 			if (calendar == null) return;
 		}
 
-		TripQuery tripQuery = new TripQuery(fromLocation.getValue(), viaLocation.getValue(), toLocation.getValue(),
+		WrapLocation via = null;
+		if (isExpanded.getValue() != null && isExpanded.getValue())
+			via = viaLocation.getValue();
+
+		TripQuery tripQuery = new TripQuery(fromLocation.getValue(), via, toLocation.getValue(),
 				calendar.getTime(), isDeparture.getValue(), products.getValue());
 
 		tripsRepository.search(tripQuery);
