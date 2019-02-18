@@ -44,6 +44,11 @@
 -keep class de.schildbach.pte.dto.**
 -dontwarn de.schildbach.pte.**
 
+-keepclassmembers class * implements java.io.Serializable {
+	private void writeObject(java.io.ObjectOutputStream);
+	private void readObject(java.io.ObjectInputStream);
+}
+
 -keep class de.grobox.transportr.**
 -dontwarn de.grobox.transportr.data.**
 -dontnote de.grobox.transportr.ui.**
