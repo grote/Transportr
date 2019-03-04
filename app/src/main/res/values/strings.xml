@@ -228,6 +228,11 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_name_sydney" translatable="false">Transport NSW</string>
 	<string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
 
+	<string name="np_region_pt">Portugal</string>
+	<string name="np_name_pt">Portugal</string>
+	<string name="np_desc_pt">Lisbon</string>
+	<string name="np_desc_pt_networks">Bus, Train, Funicular, Ferry, Metro</string>
+
 	<string name="np_region_austria">Austria</string>
 	<string name="np_desc_ivb">Innsbruck</string>
 	<string name="np_name_linz" translatable="false">Linz AG Linien</string>

@@ -512,6 +512,19 @@ private val networks = arrayOf(
                 )
             ),
             Country(
+                R.string.np_region_pt, flag = "🇵🇹", networks = listOf(
+                    TransportNetwork(
+                        id = NetworkId.PT,
+                        name = R.string.np_name_pt,
+                        description = R.string.np_desc_pt,
+                        agencies = R.string.np_desc_pt_networks,
+                        logo = R.drawable.network_portugal_logo,
+                        status = BETA,
+                        factory = { PortugalProvider(NAVITIA) }
+                    )
+                )
+            ),
+            Country(
                 R.string.np_name_spain, flag = "🇪🇸", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.SPAIN,
