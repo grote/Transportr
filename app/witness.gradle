@@ -94,7 +94,7 @@ dependencyVerification {
         'com.android.tools:sdklib:26.2.1:sdklib-26.2.1.jar:248df7ad5eac4aeb6f96c394c76760de4b7b89ac056e54d0c21a739368b91b45',
         'com.github.omadahealth:swipy:1.2.3:swipy-1.2.3.aar:63bff6e181742e3e243c29b595062ca65b4274bf7033c65460924f64f65c01e0',
         'com.github.tony19:logback-android:1.1.1-12:logback-android-1.1.1-12.aar:3102228f0e408e3c003b34e96a604e9b9f59d314dcf8f03aa78d9d3648198932',
-        'com.gitlab.opentransitmap:public-transport-enabler:418140f5:public-transport-enabler-418140f5.jar:123f8cbb8c232423f65b94a24528a4eaca5ed6861f8cbbaec3c2cb39b94d1561',
+        'com.gitlab.opentransitmap:public-transport-enabler:4c4321b6:public-transport-enabler-4c4321b6.jar:83158a0bbe90242d4e9b089ee858998fc6bbd381b3446abfedbd90f601214267',
         'com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.0:accessibility-test-framework-2.0.jar:cdf16ef8f5b8023d003ce3cc1b0d51bda737762e2dab2fedf43d1c4292353f7f',
         'com.google.android.material:material:1.0.0:material-1.0.0.aar:7680e381a3c03798d999b2e441caadd8a56a0a808e108024a67af9fe26c11adc',
         'com.google.android:flexbox:0.3.2:flexbox-0.3.2.aar:610a6a00695e873b4b6b785b7dce1c60f6a5964044b6d093b4d1060cbf13c278',
