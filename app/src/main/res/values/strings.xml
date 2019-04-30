@@ -156,6 +156,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="trip_error_service_down">The data provider is currently down :(\nPlease try again later.</string>
 	<string name="trip_error_pte">If you want to report this error, please report it to public-transport-enabler directly and attach a screenshot.</string>
 	<string name="trip_issue">There might be a problem with this connection.</string>
+	<string name="trip_not_travelable">Impossible or cancelled</string>
 	<string name="try_again">Try Again</string>
 
 	<!-- This string shows the number of meters one has to walk. Please keep the translation short. -->

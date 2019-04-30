@@ -46,8 +46,13 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
     private val duration: TextView = v.findViewById(R.id.duration)
 
     fun bind(trip: Trip, listener: OnTripClickListener) {
-        // Relative Departure Time
-        setRelativeDepartureTime(fromTimeRel, trip.firstDepartureTime)
+        if (trip.isTravelable) {
+            // Relative Departure Time
+            setRelativeDepartureTime(fromTimeRel, trip.firstDepartureTime)
+        } else {
+            fromTimeRel.setText(R.string.trip_not_travelable)
+            fromTimeRel.visibility = VISIBLE
+        }
 
         // Departure Time and Delay
         val firstLeg = trip.legs[0]
@@ -96,6 +101,7 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
     }
 
     private fun Trip.hasProblem(): Boolean {
+        if (!isTravelable) return true
         for (leg in legs) {
             if (leg !is Public) continue
             if (!isNullOrEmpty(leg.message)) return true
