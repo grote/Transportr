@@ -14,6 +14,8 @@
 		android:layout_height="64dp"
 		android:padding="8dp"
 		android:tint="?colorControlNormal"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
 		tools:ignore="ContentDescription"
 		tools:src="@drawable/continent_africa"/>
 

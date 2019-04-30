@@ -27,6 +27,7 @@
 		android:padding="3dp"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toEndOf="@+id/imageView"
+		app:layout_constraintTop_toTopOf="parent"
 		tools:text="This can a be location that has a very long name. It can even span two or more lines."/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
