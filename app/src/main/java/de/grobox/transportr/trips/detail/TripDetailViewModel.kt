@@ -78,7 +78,7 @@ class TripDetailViewModel @Inject internal constructor(
     }
 
     override fun onLegClick(leg: Leg) {
-        if (leg.path == null || leg.path.size == 0) return
+        if (leg.path == null || leg.path.size < 2) return
 
         val latLngs = leg.path.map { LatLng(it.latAsDouble, it.lonAsDouble) }
         zoomLeg.value = LatLngBounds.Builder().includes(latLngs).build()
