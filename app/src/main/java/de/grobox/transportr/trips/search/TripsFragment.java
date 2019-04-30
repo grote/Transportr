@@ -19,14 +19,9 @@
 
 package de.grobox.transportr.trips.search;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +40,11 @@ import java.util.regex.Pattern;
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrFragment;
 import de.grobox.transportr.trips.detail.TripDetailActivity;
@@ -60,6 +60,8 @@ import static de.grobox.transportr.trips.detail.TripDetailActivity.FROM;
 import static de.grobox.transportr.trips.detail.TripDetailActivity.TO;
 import static de.grobox.transportr.trips.detail.TripDetailActivity.TRIP;
 import static de.grobox.transportr.trips.detail.TripDetailActivity.VIA;
+import static de.grobox.transportr.ui.LceAnimator.showErrorView;
+import static de.grobox.transportr.ui.LceAnimator.showLoading;
 import static de.grobox.transportr.utils.TransportrUtils.getDragDistance;
 
 @ParametersAreNonnullByDefault
@@ -112,7 +114,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		list.setLayoutManager(layoutManager);
 		list.setHasFixedSize(false);
 
-		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(DirectionsViewModel.class);
+		viewModel = ViewModelProviders.of(requireActivity(), viewModelFactory).get(DirectionsViewModel.class);
 		viewModel.topSwipeEnabled.observe(this, this::onSwipeEnabledChanged);
 		viewModel.getQueryMoreState().observe(this, this::updateSwipeState);
 		viewModel.getTrips().observe(this, this::onTripsLoaded);
@@ -123,7 +125,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		adapter.setHasStableIds(false);
 		list.setAdapter(adapter);
 
-		LceAnimator.showLoading(progressBar, list, errorLayout);
+		showLoading(progressBar, list, errorLayout);
 
 		return v;
 	}
@@ -190,7 +192,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		errorText.setText(error + "\n\n" + getString(R.string.trip_error_pte));
 		Pattern pteMatcher = Pattern.compile("public-transport-enabler");
 		Linkify.addLinks(errorText, pteMatcher, "https://github.com/schildbach/public-transport-enabler/issues");
-		LceAnimator.showErrorView(progressBar, list, errorLayout);
+		showErrorView(progressBar, list, errorLayout);
 	}
 
 	private void onMoreError(@Nullable String error) {

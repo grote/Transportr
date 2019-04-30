@@ -1,0 +1,3 @@
+* Indicate when connections are cancelled or impossible
+* Fix bug where search results would sometimes not appear
+* New translation: Ukrainian (Thanks Paul!)

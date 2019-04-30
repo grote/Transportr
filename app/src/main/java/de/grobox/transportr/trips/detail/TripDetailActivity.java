@@ -19,19 +19,20 @@
 
 package de.grobox.transportr.trips.detail;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.locations.WrapLocation;
@@ -40,9 +41,9 @@ import de.grobox.transportr.ui.ThreeStateBottomSheetBehavior;
 import de.grobox.transportr.utils.OnboardingBuilder;
 import de.schildbach.pte.dto.Trip;
 
+import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED;
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED;
-import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.BOTTOM;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.EXPANDED;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.MIDDLE;
@@ -79,7 +80,6 @@ public class TripDetailActivity extends TransportrActivity {
 		viewModel.setTo(to);
 
 		if (viewModel.showWhenLocked()) {
-			//noinspection deprecation
 			getWindow().addFlags(FLAG_SHOW_WHEN_LOCKED);
 		}
 
