@@ -20,12 +20,12 @@
 package de.grobox.transportr.trips.search
 
 
-import androidx.lifecycle.MutableLiveData
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.WorkerThread
 import android.util.Log
+import androidx.annotation.WorkerThread
+import androidx.lifecycle.MutableLiveData
 import de.grobox.transportr.R
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.*
 import de.grobox.transportr.data.locations.LocationRepository
@@ -127,7 +127,9 @@ internal class TripsRepository(
             } else if (e is SocketTimeoutException) {
                 queryError.postValue(ctx.getString(R.string.error_connection_failure))
             } else {
-                queryError.postValue("$e\n${e.stackTrace[0]}\n${e.stackTrace[1]}\n${e.stackTrace[2]}")
+                val errorBuilder = StringBuilder("$e\n${e.stackTrace[0]}\n${e.stackTrace[1]}\n${e.stackTrace[2]}")
+                e.cause?.let { errorBuilder.append("\nCause: ${it.stackTrace[0]}\n${it.stackTrace[1]}\n${it.stackTrace[2]}") }
+                queryError.postValue(errorBuilder.toString())
             }
         }
     }
@@ -156,14 +158,14 @@ internal class TripsRepository(
     }
 
     private fun onQueryTripsResultReceived(queryTripsResult: QueryTripsResult) {
-        Handler(Looper.getMainLooper()).post({
+        Handler(Looper.getMainLooper()).post {
             queryTripsContext = queryTripsResult.context
             queryMoreState.value = getQueryMoreStateFromContext(queryTripsContext)
 
             val oldTrips = trips.value?.let { HashSet(it) } ?: HashSet()
             oldTrips.addAll(queryTripsResult.trips)
             trips.value = oldTrips
-        })
+        }
     }
 
     private fun getQueryMoreStateFromContext(context: QueryTripsContext?): QueryMoreState = context?.let {
