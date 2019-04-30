@@ -181,6 +181,10 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australia, Nowa Południowa Walia, Sydney</string>
+  <string name="np_region_pt">Portugalia</string>
+  <string name="np_name_pt">Portugalia</string>
+  <string name="np_desc_pt">Lizbona</string>
+  <string name="np_desc_pt_networks">Autobus, pociąg, kolej linowo-szynowa, prom, metro</string>
   <string name="np_region_austria">Austria</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Górna Austria, Linz</string>
@@ -334,4 +338,5 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="greek">Grecki</string>
   <string name="farsi">Perski</string>
   <string name="taiwanese">Chiński (Tajwan)</string>
+  <string name="swedish">Szwedzki</string>
 </resources>

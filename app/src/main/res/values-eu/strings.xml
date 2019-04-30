@@ -198,6 +198,10 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Sydney, Hegoaldeko Gales Berria, Australia</string>
+  <string name="np_region_pt">Portugal</string>
+  <string name="np_name_pt">Portugal</string>
+  <string name="np_desc_pt">Lisboa</string>
+  <string name="np_desc_pt_networks">Autobusa, Trena, Funikularra, Ferrya, Metroa</string>
   <string name="np_region_austria">Austria</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Linz, Austria Garaia</string>
@@ -351,4 +355,5 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="greek">Greziera</string>
   <string name="farsi">Persiera</string>
   <string name="taiwanese">Txinera (Taiwan)</string>
+  <string name="swedish">Suediera</string>
 </resources>

@@ -198,6 +198,10 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australia, New South Wales, Sydney</string>
+  <string name="np_region_pt">Portogallo</string>
+  <string name="np_name_pt">Portogallo</string>
+  <string name="np_desc_pt">Lisbona</string>
+  <string name="np_desc_pt_networks">Autobus, treno, funicolare, traghetto, metro</string>
   <string name="np_region_austria">Austria</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Alta Austria, Linz</string>
@@ -351,4 +355,5 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="greek">Grecia</string>
   <string name="farsi">Persiano</string>
   <string name="taiwanese">Cinese (Taiwan)</string>
+  <string name="swedish">Svedese</string>
 </resources>

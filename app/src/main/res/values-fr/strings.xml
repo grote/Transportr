@@ -149,7 +149,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="work">Travail</string>
   <string name="work_hint">Définir le lieu de travail</string>
   <string name="widget_name_quickwork">Aller au travail</string>
-  <string name="tap_to_set">Toquer pour définir</string>
+  <string name="tap_to_set">Toucher pour définir</string>
   <string name="widget_name_favorites">%1$s à %2$s</string>
   <string name="widget_name_favorites_via">%1$s à %2$s (via %3$s)</string>
   <string name="action_set_locations">Modifier la recherche</string>
@@ -188,6 +188,10 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_region_australia">Australie</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adélaïde, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australie, Nouvelle-Galles du Sud, Sydney</string>
+  <string name="np_region_pt">Portugal</string>
+  <string name="np_name_pt">Portugal</string>
+  <string name="np_desc_pt">Lisbonne</string>
+  <string name="np_desc_pt_networks">Bus, train, funiculaire, traversier, métro</string>
   <string name="np_region_austria">Autriche</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Haute-Autriche, Linz</string>
@@ -341,4 +345,5 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="greek">Grec</string>
   <string name="farsi">Persan</string>
   <string name="taiwanese">Chinois (Taiwan)</string>
+  <string name="swedish">Suédois</string>
 </resources>

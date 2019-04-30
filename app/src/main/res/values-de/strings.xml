@@ -198,6 +198,10 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_region_australia">Australien</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australien, Neusüdwales, Sydney</string>
+  <string name="np_region_pt">Portugal</string>
+  <string name="np_name_pt">Portugal</string>
+  <string name="np_desc_pt">Lissabon</string>
+  <string name="np_desc_pt_networks">Bus, Bahn, Standseilbahn, Fähre, Metro</string>
   <string name="np_region_austria">Österreich</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Oberösterreich, Linz</string>
@@ -351,4 +355,5 @@ und weiß immer, wo man aussteigen muss.
   <string name="greek">Griechisch</string>
   <string name="farsi">Persisch</string>
   <string name="taiwanese">Chinesisch (Taiwan)</string>
+  <string name="swedish">Schwedisch</string>
 </resources>

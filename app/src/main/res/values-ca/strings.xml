@@ -64,6 +64,7 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="action_show_on_external_map">Mostrar a mapa extern</string>
   <string name="action_copy">Copiar</string>
   <string name="directions">Direccions</string>
+  <string name="directions_search">Cerca indicacions</string>
   <string name="drawer_departures">Sortides</string>
   <string name="tab_about">Sobre</string>
   <string name="tab_libraries">Biblioteques</string>
@@ -122,6 +123,7 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="pref_walk_speed_slow">Lenta</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Ràpida</string>
+  <string name="pref_show_when_locked_title">Mostra el viatge fins i tot quan la pantalla està bloquejada</string>
   <string name="pref_show_when_locked_summary">Mostrar sobre la pantalla de desbloqueig</string>
   <string name="error">Error</string>
   <string name="error_no_internet">Es requereix connexió a Internet. Assegura\'t que el teu accés a Internet funcioni.</string>
@@ -130,6 +132,7 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="error_geo_intent">No s\'ha pogut obrir la localització externa</string>
   <string name="error_find_nearby_stations">No es poden trobar les estacions més properes</string>
   <string name="error_departures">No es troba cap sortida</string>
+  <string name="error_no_calendar">No hi ha cap calendari instal·lat :(</string>
   <string name="trip_error_ambiguous">No s\'ha pogut trobar la ubicació. Prova de cercar amb diferents ubicacions.</string>
   <string name="trip_error_too_close">Les ubicacións \'De\' i \'Cap a\' estan massa a prop.</string>
   <string name="trip_error_unknown_from">No s\'ha pogut trobar la ubicació \"De\". Prova\'n un altre.</string>
@@ -199,6 +202,10 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_region_australia">Austràlia</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Austràlia, Nova Gales del Sud, Sydney</string>
+  <string name="np_region_pt">Portugal</string>
+  <string name="np_name_pt">Portugal</string>
+  <string name="np_desc_pt">Lisboa</string>
+  <string name="np_desc_pt_networks">Bus, tren, funicular, ferri, metro</string>
   <string name="np_region_austria">Àustria</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Upper Austria, Linz</string>
@@ -228,6 +235,7 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_desc_rt">Només trens de llarga distància</string>
   <string name="np_desc_rt_networks">Aliança Railteam</string>
   <string name="np_region_finland">Finlàndia</string>
+  <string name="np_desc_fi">Helsinki, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">França</string>
   <string name="np_name_francenortheast">França (nordest)</string>
   <string name="np_desc_francenortheast">Strasbourg, Metz, Lille, Nancy</string>
@@ -296,9 +304,14 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_desc_nz">Nova Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polònia</string>
   <string name="np_desc_pl">Polònia, trens a Polònia</string>
+  <string name="np_name_pl_navitia">Transports municipals de Polònia</string>
+  <string name="np_desc_pl_navitia">Warsaw, Wroclaw, Szczecin, Gdansk, Gdynia, Sopot</string>
+  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus/DLA Dlugoleka, Warbus Miekinia, ZDiTM Szczecin, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdansk</string>
   <string name="np_name_spain">Espanya</string>
   <string name="np_desc_spain">Madrid, Barcelona, Euskadi, Val
 ència, Alacant, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
+  <string name="np_name_hungary">Hongria</string>
+  <string name="np_desc_hungary">Budapest, Miskolc</string>
   <string name="np_region_sweden">Suècia</string>
   <string name="np_desc_se">Suècia, Estocolm</string>
   <string name="np_region_switzerland">Suïssa</string>
@@ -344,4 +357,8 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="hungarian">Hongarès</string>
   <string name="japanese">Japonès</string>
   <string name="russian">Rus</string>
+  <string name="greek">Grec</string>
+  <string name="farsi">Persa</string>
+  <string name="taiwanese">Xinès (Taiwan)</string>
+  <string name="swedish">Suec</string>
 </resources>

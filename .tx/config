@@ -7,4 +7,4 @@ file_filter = app/src/main/res/values-<lang>/strings.xml
 source_lang = en
 source_file = app/src/main/res/values/strings.xml
 type = ANDROID
-minimum_perc = 80
+minimum_perc = 95

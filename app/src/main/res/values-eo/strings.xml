@@ -179,6 +179,10 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_region_australia">Aŭstralio</string>
   <string name="np_desc_australia">Melburno, Sidnejo, Brisbano, Perto, Adelajdo, Hobarto, Launceston, Burnie</string>
   <string name="np_desc_sydney">Aŭstralio, Novsudkimrio, Sidnejo</string>
+  <string name="np_region_pt">Portugalujo</string>
+  <string name="np_name_pt">Portugalujo</string>
+  <string name="np_desc_pt">Lisbono</string>
+  <string name="np_desc_pt_networks">Aŭtobuso, vagonaro, funikularo, pramo, metroo</string>
   <string name="np_region_austria">Aŭstrujo</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Supra Aŭstrujo, Linz</string>
@@ -332,4 +336,5 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="greek">Greka</string>
   <string name="farsi">Persa</string>
   <string name="taiwanese">Ĉina (Tajvana)</string>
+  <string name="swedish">Sveda</string>
 </resources>

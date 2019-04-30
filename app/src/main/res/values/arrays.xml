@@ -37,6 +37,7 @@
         <item>@string/farsi</item>
         <item>@string/taiwanese</item>
         <item>@string/swedish</item>
+        <item>@string/ukrainian</item>
     </string-array>
     <string-array name="pref_language_values">
         <item>@string/pref_language_value_default</item>
@@ -62,6 +63,7 @@
         <item>fa</item>
         <item>zh_TW</item>
         <item>sv</item>
+        <item>uk</item>
     </string-array>
     <string name="pref_language_value_default" translatable="false">default</string>
 

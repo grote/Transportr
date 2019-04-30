@@ -98,7 +98,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="yesterday">Igår</string>
   <string name="today">Idag</string>
   <string name="tomorrow">Imorgon</string>
-  <string name="in_x_minutes">på %dmin</string>
+  <string name="in_x_minutes">om %dmin</string>
   <string name="x_minutes_ago">%dmin sedan</string>
   <string name="time_picker_previous_day">Föregående dag</string>
   <string name="time_picker_next_day">Nästa dag</string>
@@ -198,6 +198,10 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_region_australia">Australien</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australien, Nya Sydwales, Sydney</string>
+  <string name="np_region_pt">Portugal</string>
+  <string name="np_name_pt">Portugal</string>
+  <string name="np_desc_pt">Lissabon</string>
+  <string name="np_desc_pt_networks">Buss, Tåg, Bergbanan, Färja, Tunnelbana</string>
   <string name="np_region_austria">Österrike</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Oberösterreich, Linz</string>
@@ -351,4 +355,5 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="greek">Grekiska</string>
   <string name="farsi">Persiska</string>
   <string name="taiwanese">Kinesiska (Taiwan)</string>
+  <string name="swedish">Svenska</string>
 </resources>

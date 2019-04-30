@@ -23,9 +23,9 @@ before_install:
 
 before_script:
     # update gradle
-    - wget https://services.gradle.org/distributions/gradle-4.8-bin.zip
-    - unzip -qq gradle-4.8-bin.zip
-    - export GRADLE_HOME=$PWD/gradle-4.8
+    - wget https://services.gradle.org/distributions/gradle-5.4.1-bin.zip
+    - unzip -qq gradle-5.4.1-bin.zip
+    - export GRADLE_HOME=$PWD/gradle-5.4.1
     - export PATH=$GRADLE_HOME/bin:$PATH
     - gradle -v
     - gradle dependencies || true

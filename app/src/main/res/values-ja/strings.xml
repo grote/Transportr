@@ -197,6 +197,10 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_region_australia">オーストラリア</string>
   <string name="np_desc_australia">メルボルン, シドニー, ブリスベン, パース, アデレード, ホバート, ローンセストン, バーニー</string>
   <string name="np_desc_sydney">オーストラリア、ニューサウスウェールズ州、シドニー</string>
+  <string name="np_region_pt">ポルトガル</string>
+  <string name="np_name_pt">ポルトガル</string>
+  <string name="np_desc_pt">リスポン</string>
+  <string name="np_desc_pt_networks">バス、電車、ケーブルカー、フェリー、地下鉄</string>
   <string name="np_region_austria">オーストリア</string>
   <string name="np_desc_ivb">インスブルック</string>
   <string name="np_desc_linz">アッパーオーストリア、リンツ</string>
@@ -350,4 +354,5 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="greek">ギリシャ語</string>
   <string name="farsi">ペルシア語</string>
   <string name="taiwanese">中国語 (台湾)</string>
+  <string name="swedish">スウェーデン語</string>
 </resources>

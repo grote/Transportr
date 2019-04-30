@@ -179,6 +179,10 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_region_australia">Australië</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australië, Nieuw-Zuid-Wales, Sydney</string>
+  <string name="np_region_pt">Portugal</string>
+  <string name="np_name_pt">Portugal</string>
+  <string name="np_desc_pt">Lissabon</string>
+  <string name="np_desc_pt_networks">Bus, trein, kabelspoorweg, veerboot, metro</string>
   <string name="np_region_austria">Oostenrijk</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Opper-Oostenrijk, Linz</string>
@@ -332,4 +336,5 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="greek">Grieks</string>
   <string name="farsi">Perzisch</string>
   <string name="taiwanese">Chinees (Taiwan)</string>
+  <string name="swedish">Zweeds</string>
 </resources>

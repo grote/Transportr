@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Trânsito Público de Código Aberto</string>
   <string name="drawer_settings">Configurações</string>
   <string name="drawer_changelog">Novidades</string>
   <string name="drawer_about">Sobre</string>
@@ -20,13 +21,14 @@
   <string name="action_show_on_external_map">Mostrar no Mapa Externo</string>
   <string name="action_copy">Copiar</string>
   <string name="directions">Direções</string>
+  <string name="directions_search">Buscar Direções</string>
   <string name="drawer_departures">Partidas</string>
   <string name="tab_about">Sobre</string>
   <string name="tab_libraries">Bibliotecas</string>
   <string name="about_copyright">© 2013 – 2018 Torsten Grote\nLicença Software Livre: GPLv3+</string>
   <string name="about_description">Transportr é o seu companheiro de transporte público desenvolvido por pessoas ao redor do mundo para deixar o transporte público o mais simples possível, não importa onde você estiver.</string>
   <string name="about_warning_title">Aviso</string>
-  <string name="about_warning_text">Não existem garantias para a exatidão dos dados (fornecidos por terceiros). Por favor, use este apllicativo por sua conta e risco.</string>
+  <string name="about_warning_text">Não existem garantias para a exatidão dos dados (fornecidos por terceiros). Por favor, use este aplicativo por sua conta e risco.</string>
   <string name="about_contributions">Este aplicativo é um Software Livre, então pode ser livremente usado, estudado, compartilhado e melhorado! Contribuições são encorajadas e valorizadas. Se você quer contribuir, visite o website do projeto para mais informações.</string>
   <string name="about_visit_website">Visite o Website</string>
   <string name="open_navigation_drawer">Abrir Planejador de Percurso</string>
@@ -42,7 +44,7 @@
   <string name="beta">beta</string>
   <string name="network">Rede</string>
   <string name="pick_network_activity">Escolha a região</string>
-  <string name="pick_network_first_run">Bem vinda ao Transportr!\n\nPor favor, selecione a rede de transporte da sua região para continuar. Você pode mudar isso a qualquer momento.</string>
+  <string name="pick_network_first_run">Bem-vindo ao Transportr!\n\nPor favor, selecione a rede de transporte da sua região para continuar. Você pode mudar isso a qualquer momento.</string>
   <string name="stations_searching_position">Pesquisando por posição atual…</string>
   <string name="drawer_nearby_stations">Estações Próximas</string>
   <string name="find_nearby_stations">Localizar Estações Próximas</string>
@@ -78,6 +80,7 @@
   <string name="pref_walk_speed_slow">Lento</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Rápido</string>
+  <string name="pref_show_when_locked_title">Mostrar viagem mesmo quando a tela estiver bloqueada</string>
   <string name="pref_show_when_locked_summary">Mostrar sobre a tela bloqueada</string>
   <string name="error">Erro</string>
   <string name="error_no_internet">É necessária uma conexão com a internet. Por favor, verifique se seu acesso à internet está funcionando.</string>
@@ -86,6 +89,7 @@
   <string name="error_geo_intent">Não foi possível abrir a localização externa</string>
   <string name="error_find_nearby_stations">Não foi possível encontrar estações próximas</string>
   <string name="error_departures">Não foi possível encontrar nenhuma partida</string>
+  <string name="error_no_calendar">Não está instalado nenhum calendário :(</string>
   <string name="trip_error_ambiguous">Não foi possível encontrar a localização. Por favor tente buscar lugares diferentes. </string>
   <string name="trip_error_too_close">As localizações de \'a partir de\' e \'para\' são muito próximas entre si.</string>
   <string name="trip_error_unknown_from">Não foi possível encontrar a localização \'a partir de\'. Por favor tente outra.</string>
@@ -127,6 +131,7 @@
   <string name="warning_no_gps_fix">Ainda não foi possível determinar sua localização.</string>
   <string name="permission_denied_gps">Você não permitiu o acesso à sua localização, assim esse comando não irá funcionar. Por favor, conceda a permissão nas configurações do aplicativo.</string>
   <string name="warning_gps_off">A localização está desativada. Por favor, ative-a nas configurações.</string>
+  <string name="onboarding_directions_title">Mais Opções de Busca</string>
   <string name="select_products">Selecione os meios de transporte</string>
   <string name="product_high_speed_train">Trem de Alta Velocidade</string>
   <string name="product_regional_train">Trem Regional</string>
@@ -154,6 +159,9 @@
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Alta Áustria, Linz</string>
   <string name="np_desc_oebb">Áustria</string>
+  <string name="np_desc_stv">Estíria, Graz, Marburg, Maribor</string>
+  <string name="np_desc_vor">Baixa Áustria, Burgenland, Viena</string>
+  <string name="np_desc_vvt">Tirol</string>
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bélgica</string>
   <string name="np_desc_sncb">Transporte público na Bélgica</string>
@@ -164,8 +172,11 @@
   <string name="np_desc_br_floripa">Muitas rotas de ônibus, sem Executivos</string>
   <string name="np_region_canada">Canada</string>
   <string name="np_name_ontario">Ontário </string>
+  <string name="np_desc_ontario">Ontário, Ottawa, Toronto, Mississauga, Região de Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
+  <string name="np_name_britishcolumbia">Colúmbia Britânica</string>
+  <string name="np_desc_britishcolumbia">Transporte público na Colúmbia Britânica</string>
   <string name="np_region_denmark">Dinamarca</string>
   <string name="np_desc_dsb">Dinamarca, Copenhague</string>
   <string name="np_name_rt">Europa</string>
@@ -176,6 +187,7 @@
   <string name="np_name_francenortheast">Nordeste da França</string>
   <string name="np_desc_francenortheast">Estrasburgo, Metz, Lila, Nanci</string>
   <string name="np_name_francenorthwest">Noroeste da França</string>
+  <string name="np_desc_francenorthwest">Bretanha, País do Loire, Centro Vale do Loire, Baixa Normandia, Alta Normandia</string>
   <string name="np_name_frenchsoutheast">Sudeste da França</string>
   <string name="np_name_frenchsouthwest">Sudeste da França</string>
   <string name="np_desc_frenchsouthwest">Poitou-Charentes, Limusino, Aquitânia, Sul Pirineus, Bordeaux, Toulouse</string>
@@ -187,6 +199,7 @@
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Alemanha</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_desc_bayern">Bavária, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlim</string>
   <string name="np_desc_db">Maior parte da Alemanha</string>
@@ -197,26 +210,33 @@
   <string name="np_desc_kvv">Baden-Württemberg, Karlsruhe</string>
   <string name="np_desc_mvg">Märkischer Kreis, Lüdenscheid</string>
   <string name="np_desc_mvv">Bavária, Munique</string>
+  <string name="np_desc_nasa">Saxônia, Leipzig, Sachsen-Anhalt, Magdeburg, Halle</string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basileia, Basileia-Cidade, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_desc_vagfr">Alsácia, Baixo Reno, Estrasburgo, Friburgo em Brisgóvia</string>
   <string name="np_desc_vbb">Brandemburgo, Berlim</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxônia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nurembergue, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
+  <string name="np_desc_vrn">Baden-Württemberg, Renânia-Palatinado, Mannheim, Mainz, Tréveris</string>
+  <string name="np_desc_vrr">Renânia do Norte - Vestfália, Colônia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
   <string name="np_desc_vrs">Colônia, Bonn</string>
   <string name="np_desc_vvm">Suábia, </string>
   <string name="np_desc_vvo">Saxônia, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
   <string name="np_desc_vvv">Vogtland, Plauen</string>
+  <string name="np_desc_vmt">Mittelthüringen</string>
   <string name="np_region_ireland">Irlanda</string>
   <string name="np_desc_tfi">Irlanda, Dublin, Belfast</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">Israel</string>
   <string name="np_desc_jet" tools:keep="@string/np_desc_jet">Israel, Jerusalém</string>
   <string name="np_name_it">Itália </string>
+  <string name="np_desc_it">Roma, Milão, Turim, Veneza, Palermo, Tremo</string>
   <string name="np_region_liechtenstein">Liechtenstein</string>
+  <string name="np_name_vmobil">VVV</string>
   <string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Luxemburgo</string>
   <string name="np_desc_lu">Luxemburgo</string>
@@ -225,15 +245,20 @@
   <string name="np_region_norway">Noruega</string>
   <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
   <string name="np_name_nz">Nova Zelândia </string>
+  <string name="np_desc_nz">Nova Zelândia, Welligton, Auckland</string>
   <string name="np_region_poland">Polônia</string>
   <string name="np_desc_pl">Polônia, ferrovias na Polônia</string>
+  <string name="np_name_pl_navitia">Transportes Municipais da Polônia</string>
   <string name="np_name_spain">Espanha</string>
+  <string name="np_name_hungary">Hungria</string>
+  <string name="np_desc_hungary">Budapeste, Miskolc</string>
   <string name="np_region_sweden">Suécia</string>
   <string name="np_desc_se">Suécia, Estocolmo</string>
   <string name="np_region_switzerland">Suíça</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_name_sbb" translatable="true">SBB</string>
   <string name="np_desc_sbb">Suíça</string>
+  <string name="np_desc_vbl">Lucerna</string>
   <string name="np_desc_zvv">Zurique</string>
   <string name="np_region_uae">Emirados Árabes Unidos</string>
   <string name="np_name_dub">Dubai</string>
@@ -247,7 +272,10 @@
   <string name="np_desc_oregon">Transporte Global no estado de Oregon (EUA)</string>
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Gana</string>
+  <string name="np_desc_ghana">Acra</string>
   <string name="np_region_central_america">América Central</string>
+  <string name="np_name_nicaragua">Nicarágua</string>
+  <string name="np_desc_nicaragua">Ônibus urbano, rural e nacional providos por MapaNica.net e colaboradores do OpenStreetMap</string>
   <string name="maintainer">Mantenedores</string>
   <string name="contributors">Contribuidores</string>
   <string name="translators">Tradutores</string>
@@ -258,6 +286,7 @@
   <string name="portuguese_br">Português (Brasil)</string>
   <string name="spanish">Espanhol</string>
   <string name="turkish">Turco</string>
+  <string name="norwegian_bokmal">Bokmål norueguês</string>
   <string name="basque">Basco</string>
   <string name="english">Inglês </string>
   <string name="catalan">Catalão</string>
@@ -267,4 +296,9 @@
   <string name="czech">Tcheco</string>
   <string name="hungarian">Húngaro</string>
   <string name="japanese">Japonês</string>
+  <string name="russian">Russo</string>
+  <string name="greek">Grego</string>
+  <string name="farsi">Persa</string>
+  <string name="taiwanese">Chinês (Taiwan)</string>
+  <string name="swedish">Sueco</string>
 </resources>
