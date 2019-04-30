@@ -2,6 +2,7 @@
 <changelog>
 
     <release version="2.0.6" versioncode="115">
+        <change>Fix bug where search results would sometimes not appear</change>
         <change>New translation: Ukrainian (Thanks Paul!)</change>
     </release>
 

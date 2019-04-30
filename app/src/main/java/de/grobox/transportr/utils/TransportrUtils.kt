@@ -23,8 +23,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.net.ConnectivityManager
-import androidx.annotation.DrawableRes
 import android.util.DisplayMetrics
+import androidx.annotation.DrawableRes
 import de.grobox.transportr.R
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.LocationType
@@ -101,4 +101,4 @@ object TransportrUtils {
 
 }
 
-fun Location.hasLocation() = latAs1E6 != 0 || lonAs1E6 != 0
+fun Location.hasLocation() = hasCoord() && (latAs1E6 != 0 || lonAs1E6 != 0)

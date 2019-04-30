@@ -19,16 +19,15 @@
 
 package de.grobox.transportr.locations;
 
-import androidx.room.Ignore;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.Nullable;
-
 import com.google.common.base.Strings;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 import java.io.Serializable;
 import java.util.Set;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
+import androidx.room.Ignore;
 import de.grobox.transportr.R;
 import de.grobox.transportr.utils.TransportrUtils;
 import de.schildbach.pte.dto.Location;
@@ -67,7 +66,7 @@ public class WrapLocation implements Serializable {
 	}
 
 	public WrapLocation(Location l) {
-		this(l.type, l.id, l.getLatAs1E6(), l.getLonAs1E6(), l.place, l.name, l.products);
+		this(l.type, l.id, l.hasCoord() ? l.getLatAs1E6() : 0, l.hasCoord() ? l.getLonAs1E6() : 0, l.place, l.name, l.products);
 	}
 
 	public WrapLocation(WrapType wrapType) {
