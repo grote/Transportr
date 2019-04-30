@@ -64,7 +64,6 @@ dependencyVerification {
         'androidx.versionedparcelable:versionedparcelable:1.0.0:versionedparcelable-1.0.0.aar:f6438a93ed8016ccddca0e140a70be0b0110e0424edaa1472f84f98fed2e1ce3',
         'androidx.versionedparcelable:versionedparcelable:1.1.0-alpha01:versionedparcelable-1.1.0-alpha01.aar:17590f5841e133b2699c9ad3791b58695c181c87316ac00a64eaef49af1904dd',
         'androidx.viewpager:viewpager:1.0.0:viewpager-1.0.0.aar:147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682',
-        'caches:transforms-2:files-2.1:jetified-kotlin-compiler-lite-1.0.3-k-1.2.40.jar:7436881b6789c6eeb668244b84ecac23d6d5074a0d4528c6a5c37179a0036acb',
         'com.android.tools.analytics-library:protos:26.4.0:protos-26.4.0.jar:ad760915586797d39319f402837b378bff3bb4ed583e3e0c48c965631fb2135f',
         'com.android.tools.analytics-library:shared:26.4.0:shared-26.4.0.jar:1332106a905d48909c81268c9e414946de3e83487db394c6073b0a9b5c3d0ed2',
         'com.android.tools.analytics-library:tracker:26.4.0:tracker-26.4.0.jar:d0020cfbfd4cd75935f2972d6a24089840d4a10df6f3ef2a796093217dd37796',
