@@ -19,6 +19,8 @@
 
 package de.grobox.transportr.trips.search;
 
+import android.util.Pair;
+
 import java.util.Calendar;
 import java.util.EnumSet;
 import java.util.Set;
@@ -249,6 +251,10 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 
 	LiveData<String> getQueryError() {
 		return tripsRepository.getQueryError();
+	}
+
+	LiveData<Pair<String,String>> getQueryPTEError() {
+		return tripsRepository.getQueryPTEError();
 	}
 
 	LiveData<String> getQueryMoreError() {
