@@ -22,7 +22,12 @@ package de.grobox.transportr.trips.search;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.util.Linkify;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
+import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +40,7 @@ import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout.OnRe
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -51,6 +57,7 @@ import de.grobox.transportr.trips.detail.TripDetailActivity;
 import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener;
 import de.grobox.transportr.trips.search.TripsRepository.QueryMoreState;
 import de.grobox.transportr.ui.LceAnimator;
+import de.grobox.transportr.utils.Linkify;
 import de.schildbach.pte.dto.Trip;
 
 import static com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection.BOTH;
@@ -119,6 +126,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		viewModel.getQueryMoreState().observe(this, this::updateSwipeState);
 		viewModel.getTrips().observe(this, this::onTripsLoaded);
 		viewModel.getQueryError().observe(this, this::onError);
+		viewModel.getQueryPTEError().observe(this, this::onPTEError);
 		viewModel.getQueryMoreError().observe(this, this::onMoreError);
 
 		adapter = new TripAdapter(this);
@@ -189,9 +197,15 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 
 	private void onError(@Nullable String error) {
 		if (error == null) return;
-		errorText.setText(error + "\n\n" + getString(R.string.trip_error_pte));
+		errorText.setText(error);
+		showErrorView(progressBar, list, errorLayout);
+	}
+
+	private void onPTEError(@Nullable Pair<String,String> error) {
+		if (error == null) return;
+		errorText.setText(error.first + "\n\n" + getString(R.string.trip_error_pte));
 		Pattern pteMatcher = Pattern.compile("public-transport-enabler");
-		Linkify.addLinks(errorText, pteMatcher, "https://github.com/schildbach/public-transport-enabler/issues");
+		Linkify.addLinks(errorText, pteMatcher, error.second);
 		showErrorView(progressBar, list, errorLayout);
 	}
 

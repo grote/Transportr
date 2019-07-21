@@ -21,15 +21,20 @@ package de.grobox.transportr.trips.search
 
 
 import android.content.Context
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.util.Pair
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.MutableLiveData
 import de.grobox.transportr.R
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.*
 import de.grobox.transportr.data.locations.LocationRepository
 import de.grobox.transportr.data.searches.SearchesRepository
+import de.grobox.transportr.networks.TransportNetwork
+import de.grobox.transportr.networks.TransportNetworkManager
+import de.grobox.transportr.networks.TransportNetworkManager_Factory
 import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.trips.TripQuery
 import de.grobox.transportr.utils.SingleLiveEvent
@@ -59,6 +64,7 @@ internal class TripsRepository(
     val trips = MutableLiveData<Set<Trip>>()
     val queryMoreState = MutableLiveData<QueryMoreState>()
     val queryError = SingleLiveEvent<String>()
+    val queryPTEError = SingleLiveEvent<Pair<String, String>>()
     val queryMoreError = SingleLiveEvent<String>()
     val isFavTrip = MutableLiveData<Boolean>()
 
@@ -116,7 +122,7 @@ internal class TripsRepository(
                 // set fav status
                 isFavTrip.postValue(searchesRepository.isFavorite(uid))
             } else {
-                queryError.postValue(queryTripsResult.getError())
+                PTEError(queryTripsResult.status.name, queryTripsResult.getError(), query)
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -129,7 +135,7 @@ internal class TripsRepository(
             } else {
                 val errorBuilder = StringBuilder("$e\n${e.stackTrace[0]}\n${e.stackTrace[1]}\n${e.stackTrace[2]}")
                 e.cause?.let { errorBuilder.append("\nCause: ${it.stackTrace[0]}\n${it.stackTrace[1]}\n${it.stackTrace[2]}") }
-                queryError.postValue(errorBuilder.toString())
+                PTEError(e.toString(), errorBuilder.toString(), query)
             }
         }
     }
@@ -193,6 +199,43 @@ internal class TripsRepository(
         SERVICE_DOWN -> ctx.getString(R.string.trip_error_service_down)
         OK -> throw IllegalArgumentException()
         null -> throw IllegalStateException()
+    }
+
+    private fun PTEError(errorShort: String, error: String, query: TripQuery) {
+        val title = StringBuilder()
+            .append(networkProvider.id().name)
+            .append(": ")
+            .append(errorShort)
+        val body = StringBuilder()
+            .appendln("### Query")
+            .appendln("- NetworkId: `${networkProvider.id().name}`")
+            .appendln("- From: `${query.from.location}`")
+            .appendln("- Via: `${if (query.via == null) "null" else query.via.location}`")
+            .appendln("- To: `${query.to.location}`")
+            .appendln("- Date: `${query.date}`")
+            .appendln("- Departure: `${query.departure}`")
+            .appendln("- Products: `${query.products}`")
+            .appendln("- Optimize for: `${settingsManager.optimize}`")
+            .appendln("- Walk Speed: `${settingsManager.walkSpeed}`")
+            .appendln()
+            .appendln("### Error")
+            .appendln("```")
+            .appendln(error)
+            .appendln("```")
+            .appendln()
+            .appendln("### Additional information")
+            .appendln("[Please modify this part]")
+
+        val uri = Uri.Builder()
+            .scheme("https")
+            .authority("github.com")
+            .appendPath("schildbach")
+            .appendPath("public-transport-enabler")
+            .appendPath("issues")
+            .appendPath("new")
+            .appendQueryParameter("title", title.toString())
+            .appendQueryParameter("body", body.toString())
+        queryPTEError.postValue(Pair(error, uri.build().toString()))
     }
 
     fun toggleFavState() {
