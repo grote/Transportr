@@ -138,7 +138,6 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="trip_error_no_trips">Ezin izan da garraioen konexiorik aurkitu :(</string>
   <string name="trip_error_invalid_date">Datuen hornitzaileak ez du bilaketa data onartzen. Saiatu beste data batekin.</string>
   <string name="trip_error_service_down">Datuen hornitzailea ez dago eskuragarri:(\n Saiatu geroago.</string>
-  <string name="trip_error_pte">Errore honen berri eman nahi baduzu, egizu public-transport-enabler proiektuan zuzenean eta gehitu pantaila-argazki bat.</string>
   <string name="trip_issue">Arazoren bat egon daiteke konexio honekin.</string>
   <string name="try_again">Saiatu berriro</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

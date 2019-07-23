@@ -138,7 +138,6 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="trip_error_no_trips">Nessuna connessione disponibile :(</string>
   <string name="trip_error_invalid_date">Il provider dei dati non supporta attualmente la ricerca per data. Riprova con un\'altra data.</string>
   <string name="trip_error_service_down">Il provider dei dati è attualmente offline :(\nRiprova di nuovo più tardi.</string>
-  <string name="trip_error_pte">Se vuoi segnalare questo errore, fallo direttamente su public-transport-enabler e inserisci uno screenshot.</string>
   <string name="trip_issue">Potrebbe esserci un problema con questa connessione.</string>
   <string name="try_again">Prova ancora</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

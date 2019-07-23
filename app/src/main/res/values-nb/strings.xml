@@ -89,7 +89,6 @@
   <string name="trip_error_no_trips">Ingen tilkoblinger ble funnet :(</string>
   <string name="trip_error_invalid_date">Søkedatoen er ikke støttet av datatilbyderen. Prøv en annen dato.</string>
   <string name="trip_error_service_down">Datatilbyderen er for tiden nede :(\n Prøv igjen senere.</string>
-  <string name="trip_error_pte">Hvis du ønsker å innrapportere denne feilen, send din rapport til public-transport-enabler direkte og legg ved en skjermavbildning.</string>
   <string name="trip_issue">Det kan være et problem med denne tilkoblingen.</string>
   <string name="try_again">Prøv igjen</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

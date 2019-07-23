@@ -139,7 +139,6 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="trip_error_invalid_date">تاریخ جستجو توسط تامین کننده داده پشتیبانی نمی شود. لطفا یک تاریخ دیگر را امتحان کنید.</string>
   <string name="trip_error_service_down">تامین کننده داده هم اکنون برقرار نمی باشد :(
 لطفا بعدا امتحان کنید.</string>
-  <string name="trip_error_pte">اگر میخواهید این خطاء را گزارش کنید، لطفا آن را به صورت مستقیم به public-transport-enabler گزارش کنید و یک اسکرین شات به همراه آن بفرستید.</string>
   <string name="trip_issue">ممکن است با این کانکشن اشکالی وجود داشته باشد.</string>
   <string name="try_again">دوباره امتحان کنید</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

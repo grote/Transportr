@@ -138,7 +138,6 @@ Transportr зберігає часто використовувані місця
   <string name="trip_error_no_trips">Не вдалося знайти жодного маршруту :(</string>
   <string name="trip_error_invalid_date">Дата пошуку наразі не підтримується постачальником даних. Спробуйте іншу дату.</string>
   <string name="trip_error_service_down">Постачальник даних зараз недоступний :(\nПовторіть спробу пізніше.</string>
-  <string name="trip_error_pte">Якщо ви бажаєте повідомити про цю помилку, повідомте про це безпосередньо постачальнику послуг громадського транспорту та додайте знімок екрану.</string>
   <string name="trip_issue">Можлива проблема з цим з\'єднанням.</string>
   <string name="try_again">Повторіть спробу</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

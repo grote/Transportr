@@ -138,7 +138,6 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="trip_error_no_trips">Inga anslutningar kunde hittas :(</string>
   <string name="trip_error_invalid_date">Sökdatumet stöds för närvarande inte av dataleverantören. Försök med ett annat datum.</string>
   <string name="trip_error_service_down">Dataleverantören är för närvarande nere : (\Vänligen försök igen senare.</string>
-  <string name="trip_error_pte">Om du vill rapportera detta fel, vänligen rapportera det till kollektivtrafiksleverantören direkt och bifoga en skärmdump.</string>
   <string name="trip_issue">Det kan vara ett problem med den här anslutningen.</string>
   <string name="try_again">Försök igen</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

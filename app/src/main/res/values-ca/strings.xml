@@ -142,7 +142,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="trip_error_no_trips">No s\'ha trobat cap connexió :(</string>
   <string name="trip_error_invalid_date">Actualment, la data de cerca no és compatible amb el proveïdor de dades. Prova\'n un altre.</string>
   <string name="trip_error_service_down">El proveïdor de dades actualment no està disponible: (\nProva-ho de nou més tard.</string>
-  <string name="trip_error_pte">Si vols informar d\'aquest error, envia\'l directament a public-transport-enabler i adjunta una captura de pantalla.</string>
   <string name="trip_issue">Potser hi ha un problema amb aquesta connexió.</string>
   <string name="try_again">Tornar-ho a provar</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

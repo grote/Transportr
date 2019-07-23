@@ -138,7 +138,6 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="trip_error_no_trips">接続が見つかりません :(</string>
   <string name="trip_error_invalid_date">検索日は現在、データプロバイダーによってサポートされていません。 別の日付を試してください。</string>
   <string name="trip_error_service_down">データプロバイダーは現在ダウンしています :(\n後でもう一度やり直してください。</string>
-  <string name="trip_error_pte">このエラーを報告する場合は、スクリーンショットを添付して、直接public-transport-enablerに報告してください。</string>
   <string name="trip_issue">この接続に問題がある可能性があります。</string>
   <string name="try_again">もう一度やり直す</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
