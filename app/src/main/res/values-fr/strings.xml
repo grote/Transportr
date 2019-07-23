@@ -128,7 +128,6 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="trip_error_no_trips">Aucune correspondance n’a été trouvée :(</string>
   <string name="trip_error_invalid_date">La date d’interrogation n’est actuellement pas prise en charge par le fournisseur de données. Veuillez essayer une autre date.</string>
   <string name="trip_error_service_down">Le fournisseur de données est actuellement hors service :(\nVeuillez ressayer ultérieurement.</string>
-  <string name="trip_error_pte">Si vous souhaitez signaler cette erreur, veuillez la signaler directement à « public-transport-enabler » et joignez une capture d’écran.</string>
   <string name="trip_issue">Cette correspondance pourrait présenter un problème.</string>
   <string name="try_again">Ressayer</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

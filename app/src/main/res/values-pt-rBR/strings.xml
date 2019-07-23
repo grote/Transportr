@@ -99,7 +99,6 @@
   <string name="trip_error_no_trips">Nenhuma conexão encontrada :(</string>
   <string name="trip_error_invalid_date">A data buscada não é suportada atualmente pelo provedor de dados. Por favor tente outra data.</string>
   <string name="trip_error_service_down">O provedor de dados está offline :(\nPor favor tente novamente mais tarde.</string>
-  <string name="trip_error_pte">Se quiser reportar esse erro, por favor o faça diretamente a um facilitador de transporte público e anexe uma captura de tela.</string>
   <string name="trip_issue">Pode haver um problema com essas conexão.</string>
   <string name="try_again">Tente novamente</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

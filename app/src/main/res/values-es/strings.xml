@@ -133,7 +133,6 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="trip_error_invalid_date">El proveedor de datos no permite esta búsqueda por fecha. Pruebe con otra fecha.</string>
   <string name="trip_error_service_down">El proveedor de datos está fuera de servicio :(
 Inténtelo de nuevo más tarde, por favor.</string>
-  <string name="trip_error_pte">Si quieres informar de este error, por favor, informa primero a la fuente de los datos de transporte público y adjunta una captura de pantalla.</string>
   <string name="trip_issue">Puede haber un problema con esta conexión.</string>
   <string name="try_again">Intentar de nuevo</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

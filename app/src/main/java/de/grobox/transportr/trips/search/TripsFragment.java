@@ -203,7 +203,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 
 	private void onPTEError(@Nullable Pair<String,String> error) {
 		if (error == null) return;
-		errorText.setText(error.first + "\n\n" + getString(R.string.trip_error_pte));
+		errorText.setText(error.first + "\n\n" + getString(R.string.trip_error_pte, "public-transport-enabler"));
 		Pattern pteMatcher = Pattern.compile("public-transport-enabler");
 		Linkify.addLinks(errorText, pteMatcher, error.second);
 		showErrorView(progressBar, list, errorLayout);

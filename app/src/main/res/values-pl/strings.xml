@@ -119,7 +119,6 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="trip_error_no_trips">Nie znaleziono połączeń :(</string>
   <string name="trip_error_invalid_date">Wyszukiwana data nie jest obecnie wspierana przez dostawcę danych. Spróbuj z inną datą.</string>
   <string name="trip_error_service_down">Dostawca danych ma awarię :(\nSpróbuj ponownie później.</string>
-  <string name="trip_error_pte">Jeżeli chcesz zaraportować ten problem, prosimy zgłosić go do bezpośrednio do public-transport-enabler i dołączyć zrzut ekranu.</string>
   <string name="trip_issue">Może być problem z tym połączeniem.</string>
   <string name="try_again">Spróbuj ponownie</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

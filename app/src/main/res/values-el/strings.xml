@@ -134,7 +134,6 @@
   <string name="trip_error_no_trips">Δεν μπόρεσαν να βρεθούν σύνδεσμοι :(</string>
   <string name="trip_error_invalid_date">Η ημερομηνία αναζήτησης δεν υποστηρίζεται προς το παρόν από τον πάροχο δεδομένων. Παρακαλώ δοκιμάστε άλλη ημερομηνία.</string>
   <string name="trip_error_service_down">Ο πάροχος δεδομένων είναι προς το παρόν μη διαθέσιμος :(\nΠαρακαλώ δοκιμάστε ξανά αργότερα.</string>
-  <string name="trip_error_pte">Αν θέλετε να αναφέρετε αυτό το σφάλμα, παρακαλώ αναφέρετε το απ\'΄ευθείας στο public-transport-enabler και επισυνάψτε μια οθονολήψη.</string>
   <string name="trip_issue">Ίσως να υπάρχει πρόβλημα με αυτή τη σύνδεση.</string>
   <string name="try_again">Δοκιμάστε ξανά</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

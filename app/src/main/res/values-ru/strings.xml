@@ -137,7 +137,6 @@ Transportr сохраняет часто используемые местопо
   <string name="trip_error_no_trips">Нет интернет-соединения :(</string>
   <string name="trip_error_invalid_date">Дата поиска в настоящее время не поддерживается поставщиком данных. Пожалуйста, попробуйте в другой раз.</string>
   <string name="trip_error_service_down">Поставщик данных в настоящее время не работает :(\Повторите попытку позже.</string>
-  <string name="trip_error_pte">Если вы хотите сообщить об этой ошибке, пожалуйста, сообщите об этом непосредственно в public-transport-enabler и приложите скриншот.</string>
   <string name="trip_issue">Возникла проблема с соединением.</string>
   <string name="try_again">Попробуйте снова</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->

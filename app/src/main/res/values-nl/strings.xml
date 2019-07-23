@@ -119,7 +119,6 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="trip_error_no_trips">Geen verbindingen gevonden :(</string>
   <string name="trip_error_invalid_date">De zoekdatum wordt momenteel niet ondersteund door de leverancier. Probeer een andere datum.</string>
   <string name="trip_error_service_down">De leveranciersdienst is momenteel uit de lucht :(\nProbeer het later opnieuw.</string>
-  <string name="trip_error_pte">Als je deze fout wilt rapporteren, doe dat dan naar public-transport-enabler en voeg een schermafbeelding toe.</string>
   <string name="trip_issue">Er is wellicht een probleem met deze verbinding.</string>
   <string name="try_again">Opnieuw proberen</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
