@@ -112,6 +112,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="tomorrow">Tomorrow</string>
 	<string name="in_x_minutes">in %dmin</string>
 	<string name="x_minutes_ago">%dmin ago</string>
+	<string name="total_time">Total time: %s</string>
 	<string name="time_picker_previous_day">Previous Day</string>
 	<string name="time_picker_next_day">Next Day</string>
 

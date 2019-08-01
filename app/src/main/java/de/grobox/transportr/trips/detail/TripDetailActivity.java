@@ -112,7 +112,7 @@ public class TripDetailActivity extends TransportrActivity {
 			viewModel.getSheetState().setValue(MIDDLE);
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.topContainer, new TripMapFragment(), TripMapFragment.TAG)
-					.add(R.id.bottomContainer, new TripDetailFragment(), TripDetailFragment.TAG)
+					.add(R.id.bottomContainer, new TripDetailFragment(), TripDetailFragment.Companion.getTAG())
 					.commit();
 
 			showOnboarding();

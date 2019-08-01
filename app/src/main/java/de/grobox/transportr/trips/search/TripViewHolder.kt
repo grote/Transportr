@@ -28,6 +28,8 @@ import android.widget.TextView
 import com.google.common.base.Strings.isNullOrEmpty
 import de.grobox.transportr.R
 import de.grobox.transportr.trips.BaseViewHolder
+import de.grobox.transportr.trips.detail.TripUtils.getStandardFare
+import de.grobox.transportr.trips.detail.TripUtils.hasFare
 import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener
 import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.DateUtils.*
@@ -44,6 +46,7 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
     private val warning: View = v.findViewById(R.id.warning)
     private val lines: ViewGroup = v.findViewById(R.id.lines)
     private val duration: TextView = v.findViewById(R.id.duration)
+    private val price: TextView = v.findViewById(R.id.price)
 
     fun bind(trip: Trip, listener: OnTripClickListener) {
         if (trip.isTravelable) {
@@ -82,6 +85,8 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
         // Warning and Duration
         warning.visibility = if (trip.hasProblem()) VISIBLE else GONE
         duration.text = getDuration(trip.duration)
+        price.visibility = if (trip.hasFare()) VISIBLE else GONE
+        price.text = trip.getStandardFare()
 
         // Arrival Time and Delay
         val lastLeg = trip.legs[trip.legs.size - 1]
