@@ -26,7 +26,10 @@ import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
 import android.util.DisplayMetrics.DENSITY_DEFAULT
+import android.util.TypedValue
+import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import de.grobox.transportr.R
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.LocationType
@@ -100,6 +103,12 @@ object TransportrUtils {
         val cm = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
+    }
+
+    // see https://stackoverflow.com/questions/33050999/programmatically-set-text-color-to-primary-android-textview
+    fun Context.getColorFromAttr(@AttrRes attrColor: Int, typedValue: TypedValue = TypedValue(), resolveRefs: Boolean = true): Int {
+        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+        return ContextCompat.getColor(this, typedValue.run { if (resourceId != 0) resourceId else data })
     }
 
 }

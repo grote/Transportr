@@ -26,8 +26,10 @@ import android.widget.Toast.LENGTH_LONG
 import de.grobox.transportr.R
 import de.grobox.transportr.utils.DateUtils.*
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
+import de.schildbach.pte.dto.Fare
 import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Trip
+import java.text.NumberFormat
 import java.util.*
 
 internal object TripUtils {
@@ -133,6 +135,20 @@ internal object TripUtils {
         Product.CABLECAR -> "🚡"
         Product.ON_DEMAND -> "🚖"
         null -> ""
+    }
+
+
+    fun Trip.hasFare(): Boolean {
+        return fares?.isNotEmpty() ?: false
+    }
+
+    fun Trip.getStandardFare(): String? {
+        fares?.find { fare -> fare.type == Fare.Type.ADULT }?.let {
+            val format = NumberFormat.getCurrencyInstance()
+            format.currency = it.currency
+            return format.format(it.fare)
+        }
+        return null
     }
 
 }

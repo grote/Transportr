@@ -87,7 +87,7 @@
 			android:layout_marginRight="8dp"
 			android:layout_marginTop="4dp"
 			app:flexWrap="wrap"
-			app:layout_constraintEnd_toStartOf="@+id/duration"
+			app:layout_constraintEnd_toStartOf="@+id/durationPrice"
 			app:layout_constraintStart_toStartOf="@+id/fromLocation"
 			app:layout_constraintTop_toBottomOf="@+id/fromLocation">
 
@@ -95,16 +95,33 @@
 
 		</com.google.android.flexbox.FlexboxLayout>
 
-		<TextView
-			android:id="@+id/duration"
+		<LinearLayout
+			android:id="@+id/durationPrice"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="8dp"
-			android:layout_marginTop="8dp"
-			app:layout_constraintBottom_toBottomOf="@+id/lines"
-			app:layout_constraintRight_toRightOf="parent"
+			android:orientation="vertical"
+			android:gravity="center_vertical"
+			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintTop_toTopOf="@+id/lines"
-			tools:text="1:30"/>
+			app:layout_constraintBottom_toBottomOf="@+id/lines">
+
+			<TextView
+				android:id="@+id/duration"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:textColor="?android:textColorSecondary"
+				tools:text="0:42"/>
+
+			<TextView
+				android:id="@+id/price"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:textColor="?android:textColorSecondary"
+				tools:text="1,50 €"/>
+
+		</LinearLayout>
 
 		<TextView
 			android:id="@+id/toTime"
