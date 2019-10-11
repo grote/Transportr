@@ -7,8 +7,8 @@ apply from: 'witness.gradle'
 
 android {
 
-	compileSdkVersion 28
-	buildToolsVersion "28.0.3"
+	compileSdkVersion 29
+	buildToolsVersion "29.0.2"
 
 	defaultConfig {
 		versionCode 115
@@ -16,7 +16,7 @@ android {
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 16
-		targetSdkVersion 28
+		targetSdkVersion 29
 
 		testInstrumentationRunner 'de.grobox.transportr.MockTestRunner'
 		javaCompileOptions {
@@ -99,7 +99,7 @@ android {
 dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-	implementation 'androidx.appcompat:appcompat:1.0.2'
+	implementation 'androidx.appcompat:appcompat:1.1.0'
 	implementation('androidx.preference:preference:1.1.0-alpha01') {
 		because 'fixes bug with preference categories'
 	}
@@ -109,10 +109,10 @@ dependencies {
 	implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
 	implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-	implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-	implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
-	implementation 'androidx.room:room-runtime:2.0.0'
-	kapt 'androidx.room:room-compiler:2.0.0'
+	implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+	implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
+	implementation 'androidx.room:room-runtime:2.2.0'
+	kapt 'androidx.room:room-compiler:2.2.0'
 
 	implementation 'com.github.omadahealth:swipy:1.2.3'
 	implementation 'de.cketti.library.changelog:ckchangelog:1.2.2'
@@ -132,7 +132,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:984cf1d6') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:ab76b35c') {
 		exclude module: 'service'
 		exclude group: 'com.google.guava', module: 'listenablefuture'
 		exclude group: 'com.google.guava', module: 'failureaccess'
@@ -141,17 +141,17 @@ dependencies {
 		exclude group: 'com.google.j2objc'
 		exclude group: 'junit'
 	}
-	debugImplementation 'org.slf4j:slf4j-api:1.7.25'
+	debugImplementation 'org.slf4j:slf4j-api:1.7.28'
 	debugImplementation 'com.github.tony19:logback-android:1.1.1-12'
 
 	testImplementation 'junit:junit:4.12'
 	testImplementation 'org.mockito:mockito-core:2.25.0'
-	testImplementation 'androidx.arch.core:core-testing:2.0.1'
+	testImplementation 'androidx.arch.core:core-testing:2.1.0'
 
-	androidTestImplementation "androidx.test:core:1.1.0"
-	androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
-	androidTestImplementation 'androidx.test:rules:1.1.1'
-	androidTestImplementation "androidx.test.ext:junit:1.1.0"
+	androidTestImplementation "androidx.test:core:1.2.0"
+	androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+	androidTestImplementation 'androidx.test:rules:1.2.0'
+	androidTestImplementation "androidx.test.ext:junit:1.1.1"
 	androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0') {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'

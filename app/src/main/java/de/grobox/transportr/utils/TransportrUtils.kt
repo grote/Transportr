@@ -22,8 +22,10 @@ package de.grobox.transportr.utils
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
+import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
-import android.util.DisplayMetrics
+import android.util.DisplayMetrics.DENSITY_DEFAULT
 import androidx.annotation.DrawableRes
 import de.grobox.transportr.R
 import de.schildbach.pte.dto.Location
@@ -31,6 +33,7 @@ import de.schildbach.pte.dto.LocationType
 import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Product.*
 import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
 
 object TransportrUtils {
@@ -52,9 +55,9 @@ object TransportrUtils {
 
     @JvmStatic
     fun copyToClipboard(context: Context, text: String) {
-        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipboard = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("label", text)
-        clipboard.primaryClip = clip
+        clipboard.setPrimaryClip(clip)
     }
 
     @JvmStatic
@@ -89,12 +92,12 @@ object TransportrUtils {
     @JvmStatic
     fun dpToPx(context: Context, dp: Int): Int {
         val displayMetrics = context.resources.displayMetrics
-        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
+        return (dp * (displayMetrics.xdpi / DENSITY_DEFAULT)).roundToInt()
     }
 
     @JvmStatic
     fun hasInternet(context: Context): Boolean {
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val cm = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting
     }

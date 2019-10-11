@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="drawableTint" format="reference"/>
     <attr name="mapInfoWindow" format="reference"/>
     <attr name="mapStyle" format="reference"/>
 
