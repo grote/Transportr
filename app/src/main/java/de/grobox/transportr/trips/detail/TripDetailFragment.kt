@@ -23,7 +23,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.Menu
@@ -31,7 +30,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 
 import javax.inject.Inject
@@ -52,6 +50,7 @@ import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.*
 import de.grobox.transportr.trips.detail.TripUtils.intoCalendar
 import de.grobox.transportr.trips.detail.TripUtils.share
 import de.grobox.transportr.utils.DateUtils.*
+import kotlinx.android.synthetic.main.fragment_trip_detail.*
 
 class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener {
 
@@ -63,38 +62,16 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: TripDetailViewModel
-    private lateinit var toolbar: Toolbar
-    private lateinit var list: RecyclerView
-    private lateinit var bottomBar: View
-    private lateinit var fromTime: TextView
-    private lateinit var from: TextView
-    private lateinit var toTime: TextView
-    private lateinit var to: TextView
-    private lateinit var duration: TextView
-    private lateinit var price: TextView
-    private lateinit var topBar: View
-    private lateinit var fromTimeRel: TextView
-    private lateinit var durationTop: TextView
-    private lateinit var priceTop: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_trip_detail, container, false)
+        return inflater.inflate(R.layout.fragment_trip_detail, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setHasOptionsMenu(true)
         component.inject(this)
-
-        toolbar = v.findViewById(R.id.toolbar)
-        list = v.findViewById(R.id.list)
-        bottomBar = v.findViewById(R.id.bottomBar)
-        fromTime = bottomBar.findViewById(R.id.fromTime)
-        from = bottomBar.findViewById(R.id.from)
-        toTime = bottomBar.findViewById(R.id.toTime)
-        to = bottomBar.findViewById(R.id.to)
-        duration = bottomBar.findViewById(R.id.duration)
-        price = bottomBar.findViewById(R.id.price)
-        topBar = v.findViewById(R.id.topBar)
-        fromTimeRel = topBar.findViewById(R.id.fromTimeRel)
-        durationTop = topBar.findViewById(R.id.durationTop)
-        priceTop = topBar.findViewById(R.id.priceTop)
 
         toolbar.setNavigationOnClickListener { _ -> onToolbarClose() }
         toolbar.setOnMenuItemClickListener(this)
@@ -104,8 +81,6 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
         viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
         viewModel.getTrip().observe(this, Observer<Trip> { this.onTripChanged(it) })
         viewModel.sheetState.observe(this, Observer<SheetState> { this.onSheetStateChanged(it) })
-
-        return v
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

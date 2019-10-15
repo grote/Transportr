@@ -25,6 +25,7 @@
 			android:id="@+id/bottomBar"
 			android:layout_width="match_parent"
 			android:layout_height="@dimen/mapPadding"
+			android:padding="8dp"
 			android:layout_marginTop="0dp"
 			android:background="@color/primary"
 			android:clickable="true"
@@ -40,9 +41,6 @@
 				android:id="@+id/fromTime"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginLeft="8dp"
-				android:layout_marginStart="8dp"
-				android:layout_marginTop="8dp"
 				android:textColor="?android:textColorPrimary"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toTopOf="parent"
@@ -54,12 +52,12 @@
 				android:layout_height="wrap_content"
 				android:layout_marginEnd="8dp"
 				android:layout_marginStart="8dp"
-				android:layout_marginTop="8dp"
 				android:ellipsize="middle"
 				android:singleLine="true"
 				android:textColor="?android:textColorPrimary"
-				app:layout_constraintEnd_toStartOf="@+id/durationPrice"
+				app:layout_constraintEnd_toStartOf="@+id/barrierRight"
 				app:layout_constraintStart_toEndOf="@+id/fromTime"
+				app:layout_constraintBaseline_toBaselineOf="@+id/fromTime"
 				app:layout_constraintTop_toTopOf="parent"
 				tools:text="From Station"/>
 
@@ -67,10 +65,6 @@
 				android:id="@+id/toTime"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="8dp"
-				android:layout_marginLeft="8dp"
-				android:layout_marginStart="8dp"
-				android:layout_marginTop="8dp"
 				android:textColor="?android:textColorPrimary"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
@@ -81,51 +75,47 @@
 				android:id="@+id/to"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="8dp"
 				android:layout_marginEnd="8dp"
 				android:layout_marginStart="8dp"
-				android:layout_marginTop="8dp"
 				android:ellipsize="middle"
 				android:singleLine="true"
 				android:textColor="?android:textColorPrimary"
 				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toStartOf="@+id/durationPrice"
+				app:layout_constraintEnd_toStartOf="@+id/barrierRight"
 				app:layout_constraintStart_toEndOf="@+id/toTime"
 				app:layout_constraintTop_toBottomOf="@+id/from"
+				app:layout_constraintBaseline_toBaselineOf="@+id/toTime"
 				tools:text="To Station"/>
 
-			<LinearLayout
-				android:id="@+id/durationPrice"
+			<TextView
+				android:id="@+id/duration"
 				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:orientation="vertical"
-				android:layout_marginTop="8dp"
-				android:layout_marginEnd="8dp"
-				android:layout_marginRight="8dp"
-				android:layout_marginBottom="8dp"
-				android:gravity="center_vertical"
-				app:layout_constraintEnd_toEndOf="parent"
+				android:layout_height="wrap_content"
+				android:textColor="?android:textColorSecondary"
 				app:layout_constraintTop_toTopOf="parent"
-				app:layout_constraintBottom_toBottomOf="parent">
+				app:layout_constraintBottom_toTopOf="@+id/price"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintVertical_chainStyle="packed"
+				tools:text="0:42"/>
 
-				<TextView
-					android:id="@+id/duration"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="end"
-					android:textColor="?android:textColorSecondary"
-					tools:text="0:42"/>
+			<TextView
+				android:id="@+id/price"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="2dp"
+				android:textColor="?android:textColorSecondary"
+				app:layout_constraintTop_toBottomOf="@+id/duration"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				tools:visibility="visible"
+				tools:text="1,50 €"/>
 
-				<TextView
-					android:id="@+id/price"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="end"
-					android:textColor="?android:textColorSecondary"
-					tools:visibility="gone"
-					tools:text="1,50 €"/>
-
-			</LinearLayout>
+			<androidx.constraintlayout.widget.Barrier
+				android:id="@+id/barrierRight"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:barrierDirection="left"
+				app:constraint_referenced_ids="duration,price"/>
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -150,9 +140,7 @@
 				android:textColor="?android:textColorPrimary"
 				app:layout_constraintTop_toTopOf="parent"
 				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintLeft_toLeftOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintRight_toLeftOf="@+id/durationTop"
 				tools:text="in 20min"
 				tools:visibility="visible"/>
 
@@ -165,8 +153,8 @@
 				android:textColor="?android:textColorSecondary"
 				app:layout_constraintTop_toTopOf="parent"
 				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintRight_toRightOf="parent"
-				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
 				tools:text="Gesamtdauer: 0:42"/>
 
 			<TextView
