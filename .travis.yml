@@ -24,14 +24,6 @@ before_install:
     - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" >> "$ANDROID_HOME/licenses/android-sdk-preview-license"
 
 before_script:
-    # update gradle
-    - wget https://services.gradle.org/distributions/gradle-5.6.2-bin.zip
-    - unzip -qq gradle-5.6.2-bin.zip
-    - export GRADLE_HOME=$PWD/gradle-5.6.2
-    - export PATH=$GRADLE_HOME/bin:$PATH
-    - gradle -v
-    - gradle dependencies || true
-
     # start emulator
     - android list sdk --no-ui --all --extended
     - android list targets
@@ -40,7 +32,7 @@ before_script:
     - android-wait-for-emulator
     - adb shell input keyevent 82 &
 
-script: gradle build connectedCheck -PbuildServer -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.LargeTest --stacktrace
+script: ./gradlew build connectedCheck -PbuildServer -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.LargeTest --stacktrace
 
 before_cache:
     - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
