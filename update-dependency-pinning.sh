@@ -3,5 +3,5 @@
 WITNESS=app/witness.gradle
 
 echo "" > $WITNESS
-gradle -q calculateChecksums | grep -v "^\(Skipping\|Verifying\|        'transforms-1\)" | grep -v transforms-2 > $WITNESS
+./gradlew -q calculateChecksums | grep -Ev "^(Skipping|Verifying)" | grep -Ev "files-2.1:|:build-tools:core-lambda-stubs.jar:|:platforms:android.jar:" > $WITNESS
 
