@@ -45,7 +45,7 @@ The next step is to clone the source code repository.
 If you don't want to use an IDE like Android Studio, you can build Transportr on the command line as follows.
 
     $ cd Transportr
-    $ gradle assembleRelease
+    $ ./gradlew assembleRelease
 
 License
 -------
