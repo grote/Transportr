@@ -549,6 +549,19 @@ private val networks = arrayOf(
                         factory = { HungaryProvider(NAVITIA) }
                     )
                 )
+            ),
+            Country(
+                R.string.np_name_czechia, flag = "🇨🇿", networks = listOf(
+                    TransportNetwork(
+                        id = NetworkId.CZECH_REPUBLIC,
+                        name = R.string.np_name_czechia,
+                        description = R.string.np_desc_czechia,
+                        agencies = R.string.np_desc_czechia_networks,
+                        logo = R.drawable.network_czechia_logo,
+                        status = BETA,
+                        factory = { CzechRepublicProvider(NAVITIA) }
+                    )
+                )
             )
         )
     ),
