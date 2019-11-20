@@ -132,7 +132,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:ab76b35c') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:125b39d0') {
 		exclude module: 'service'
 		exclude group: 'com.google.guava', module: 'listenablefuture'
 		exclude group: 'com.google.guava', module: 'failureaccess'
