@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="2.0.7" versioncode="116">
+        <change>Added data source for Czechia (Thanks Ondra!)</change>
+        <change>Display standard fares for trip results (Thanks Mikolai!)</change>
+        <change>Better error handling in case of failing trip queries (Thanks Mikolai!)</change>
+        <change>New translation: Danish (Thanks Daniel!)</change>
+    </release>
+
     <release version="2.0.6" versioncode="115">
         <change>Indicate when connections are cancelled or impossible</change>
         <change>Fix bug where search results would sometimes not appear</change>
