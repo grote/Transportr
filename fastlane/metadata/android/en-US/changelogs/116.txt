@@ -1,0 +1,4 @@
+* Added data source for Czechia (Thanks Ondra!)
+* Display standard fares for trip results (Thanks Mikolai!)
+* Better error handling in case of failing trip queries (Thanks Mikolai!)
+* New translation: Danish (Thanks Daniel!)
