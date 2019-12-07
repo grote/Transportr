@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Kode irekiko garraio publikoa</string>
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Garraio publiko librea</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Garraio publikoarentzako aplikazio lagungarria, iragarki eta tracker gabe</string>
   <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
 Transportr irabazi asmorik gabeko aplikazioa bat da, mundu osoko pertsonek bere denbora librean garatua.
@@ -139,6 +139,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="trip_error_invalid_date">Datuen hornitzaileak ez du bilaketa data onartzen. Saiatu beste data batekin.</string>
   <string name="trip_error_service_down">Datuen hornitzailea ez dago eskuragarri:(\n Saiatu geroago.</string>
   <string name="trip_issue">Arazoren bat egon daiteke konexio honekin.</string>
+  <string name="trip_not_travelable">Ezinezkoa edo ezeztatua</string>
   <string name="try_again">Saiatu berriro</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -355,4 +356,5 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="farsi">Persiera</string>
   <string name="taiwanese">Txinera (Taiwan)</string>
   <string name="swedish">Suediera</string>
+  <string name="ukrainian">Ukrainiarra</string>
 </resources>

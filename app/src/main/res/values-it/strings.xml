@@ -8,13 +8,11 @@ Il loro obiettivo è quello di rendere l\'uso del trasporto pubblico il più sem
 
 Quest\'app usa i dati di varie aziende di trasporto pubblico locali
 e li fornisce in un\'interfaccia unificata.
-L\'app non può verificare la correttezza dei dati,
-perciò <i>non fornisce alcuna garanzia</i> per le informazioni mostrate.
+L\'app non può verificare la correttezza dei dati, perciò <i>non fornisce alcuna garanzia</i> per le informazioni mostrate.
 Usa l\'app a tuo rischio.
 
 <b>🛣️ Organizza il tuo viaggio</b>. Dì a Transportr dove vuoi andare!
-L\'app troverà il collegamento migliore per te, ti avverte quando cambiare mezzo
-e persino ti dice il tempo previsto di arrivo.
+L\'app troverà il collegamento migliore per te, ti avverte quando cambiare mezzo e persino ti dice il tempo previsto di arrivo.
 
 <b>⏱️ Partenze in tempo reale</b>. Mostra le prossime partenze da qualsiasi stazione.
 Nelle aree <i>supportate</i> l\'app mostra anche il ritardo in tempo reale.
@@ -33,12 +31,10 @@ e quindi vedere quanto lontano sei dall\'arrivo.
 Transportr salva i posti e i viaggi utilizzati frequentemente.
 In questo modo non devi riscriverli ogni volta.
 
-<b>🚫 Nessuna pubblicità, nessun tracciamento</b>. Questa\'app non mostra pubblicità
-o noiose notifiche.
+<b>🚫 Nessuna pubblicità, nessun tracciamento</b>. Questa\'app non mostra pubblicità o noiose notifiche.
 Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
 
-<b>🗺️ Mappe bellissime</b>. Mostra le stazioni o l\'intero tragitto sulla mappa
-e mostra sempre dove sei per non perderti la fermata dove devi scendere.
+<b>🗺️ Mappe bellissime</b>. Mostra le stazioni o l\'intero tragitto sulla mappa e mostra sempre dove sei per non perderti la fermata dove devi scendere.
 ]]></string>
   <string name="drawer_settings">Impostazioni</string>
   <string name="drawer_changelog">Registro delle modifiche</string>
@@ -100,6 +96,7 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="tomorrow">Domani</string>
   <string name="in_x_minutes">in %d min</string>
   <string name="x_minutes_ago">%d min fa</string>
+  <string name="total_time">Tempo totale: %s</string>
   <string name="time_picker_previous_day">Giorno precedente</string>
   <string name="time_picker_next_day">Giorno successivo</string>
   <string name="ok">Ok</string>
@@ -138,7 +135,9 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="trip_error_no_trips">Nessuna connessione disponibile :(</string>
   <string name="trip_error_invalid_date">Il provider dei dati non supporta attualmente la ricerca per data. Riprova con un\'altra data.</string>
   <string name="trip_error_service_down">Il provider dei dati è attualmente offline :(\nRiprova di nuovo più tardi.</string>
+  <string name="trip_error_pte">Se vuoi segnalare questo errore, fallo direttamente a %1$s </string>
   <string name="trip_issue">Potrebbe esserci un problema con questa connessione.</string>
+  <string name="trip_not_travelable">Impossibile o cancellato</string>
   <string name="try_again">Prova ancora</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -306,6 +305,8 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="np_desc_spain">Madrid, Barcellona, Paesi Baschi, Valencia, Alicante, Maiorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungheria</string>
   <string name="np_desc_hungary">Budapest, Miskolc</string>
+  <string name="np_name_czechia">Repubblica Ceca</string>
+  <string name="np_desc_czechia">Praga e altro</string>
   <string name="np_region_sweden">Svezia</string>
   <string name="np_desc_se">Svezia, Stoccolma</string>
   <string name="np_region_switzerland">Svizzera</string>
@@ -355,4 +356,5 @@ e mostra sempre dove sei per non perderti la fermata dove devi scendere.
   <string name="farsi">Persiano</string>
   <string name="taiwanese">Cinese (Taiwan)</string>
   <string name="swedish">Svedese</string>
+  <string name="ukrainian">Ucraino</string>
 </resources>

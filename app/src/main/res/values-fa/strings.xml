@@ -120,6 +120,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="pref_walk_speed_slow">آهسته</string>
   <string name="pref_walk_speed_normal">عادی</string>
   <string name="pref_walk_speed_fast">سریع</string>
+  <string name="pref_show_when_locked_title">نمایش سفر حتی وقتی که صفحه قفل می باشد</string>
   <string name="pref_show_when_locked_summary">نمایش روی صفحه قفل شده</string>
   <string name="error">خطاء</string>
   <string name="error_no_internet">نیاز به اتصال اینترنت است. لطفا مطمئن شوید که اینترنت شما کار میکند.</string>
@@ -140,6 +141,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="trip_error_service_down">تامین کننده داده هم اکنون برقرار نمی باشد :(
 لطفا بعدا امتحان کنید.</string>
   <string name="trip_issue">ممکن است با این کانکشن اشکالی وجود داشته باشد.</string>
+  <string name="trip_not_travelable">غیر ممکن یا لغو شده</string>
   <string name="try_again">دوباره امتحان کنید</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d متر</string>
@@ -198,6 +200,10 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_region_australia">استرالیا</string>
   <string name="np_desc_australia">ملبورن، سیدنی، بریزبن، پرت، آدلاید، هوبارت، لانسستون، برنی</string>
   <string name="np_desc_sydney">استرالیا، ولز جنوبی نو، سیدنی</string>
+  <string name="np_region_pt">‍پرتغال</string>
+  <string name="np_name_pt">‍پرتغال</string>
+  <string name="np_desc_pt">لیسبون</string>
+  <string name="np_desc_pt_networks">اتوبوس، قطار، قطار کابلی، فرابر، مترو</string>
   <string name="np_region_austria">اتریش</string>
   <string name="np_desc_ivb">اینسبروک</string>
   <string name="np_desc_linz">اوبراسترایش، لینتس</string>
@@ -227,6 +233,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_desc_rt">فقط قطار های مسافت طولانی</string>
   <string name="np_desc_rt_networks">اتحادیه Railteam</string>
   <string name="np_region_finland">فنلاند</string>
+  <string name="np_desc_fi">هلسینکی، تورکو، تامپره، ییواسکیلا، اولو</string>
   <string name="np_region_france">فرانسه</string>
   <string name="np_name_francenortheast">شمال شرقی فرانسه</string>
   <string name="np_desc_francenortheast">اشتراسبورگ، مس، لیل، نانسی</string>
@@ -348,4 +355,8 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="japanese">ژاپنی</string>
   <string name="russian">روسی</string>
   <string name="greek">یونانی</string>
+  <string name="farsi">فارسی</string>
+  <string name="taiwanese">چینی (تایوان)</string>
+  <string name="swedish">سوئدی</string>
+  <string name="ukrainian">اوکراینی</string>
 </resources>

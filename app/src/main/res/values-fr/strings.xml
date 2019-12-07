@@ -90,6 +90,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="tomorrow">demain</string>
   <string name="in_x_minutes">dans %d min</string>
   <string name="x_minutes_ago">il y a %d min</string>
+  <string name="total_time">Durée totale : %s</string>
   <string name="time_picker_previous_day">Jour précédent</string>
   <string name="time_picker_next_day">Jour suivant</string>
   <string name="ok">OK</string>
@@ -128,7 +129,9 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="trip_error_no_trips">Aucune correspondance n’a été trouvée :(</string>
   <string name="trip_error_invalid_date">La date d’interrogation n’est actuellement pas prise en charge par le fournisseur de données. Veuillez essayer une autre date.</string>
   <string name="trip_error_service_down">Le fournisseur de données est actuellement hors service :(\nVeuillez ressayer ultérieurement.</string>
+  <string name="trip_error_pte">Si vous souhaitez signaler cette erreur, veuillez la signaler directement à %1$s.</string>
   <string name="trip_issue">Cette correspondance pourrait présenter un problème.</string>
+  <string name="trip_not_travelable">Impossible ou annulé</string>
   <string name="try_again">Ressayer</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -296,6 +299,8 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_desc_spain">Madrid, Barcelone, Pays basque, Valence, Alicante, Majorque, Minore, Tenerife, La Palma, Navarre</string>
   <string name="np_name_hungary">Hongrie</string>
   <string name="np_desc_hungary">Budapest, Miskolc</string>
+  <string name="np_name_czechia">Tchéquie</string>
+  <string name="np_desc_czechia">Prague et autres</string>
   <string name="np_region_sweden">Suède</string>
   <string name="np_desc_se">Suède, Stockholm</string>
   <string name="np_region_switzerland">Suisse</string>
@@ -345,4 +350,5 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="farsi">Persan</string>
   <string name="taiwanese">Chinois (Taiwan)</string>
   <string name="swedish">Suédois</string>
+  <string name="ukrainian">Ukrainien</string>
 </resources>

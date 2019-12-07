@@ -459,5 +459,6 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="taiwanese">Chinese (Taiwan)</string>
 	<string name="swedish">Swedish</string>
 	<string name="ukrainian">Ukrainian</string>
+	<string name="danish">Danish</string>
 
 </resources>

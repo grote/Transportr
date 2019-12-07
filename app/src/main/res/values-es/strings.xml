@@ -10,7 +10,7 @@ No se puede verificar la exactitud de los datos, y por tanto <i>no ofrece garant
 Por favor, úsala bajo tu propio riesgo. 
 
 <b>🛣️ Itinerario de viaje</b>. ¡Simplemente dile a Transportr dónde quieres ir!
-Encontrará las mejores conexiones para ti, te avisará dónde hacer transbordos de autobus y hasta te dará una estimación de la hora de llegada. 
+Encontrará las mejores conexiones para ti, te avisará dónde hacer transbordos de autobús y hasta te dará una estimación de la hora de llegada. 
 
 <b>⏱️ Próximas salidas</b>. Muestra las próximas salidas de todas y cada una de las estaciones. 
 <i>Cuando sea posible</i>, también se mostrarán retrasos en tiempo real. 
@@ -21,7 +21,7 @@ Esta aplicación es tan buena como <i>tú</i> la hagas.
 Puedes incluso añadir una ciudad por ti mismo, si aún no está soportada. 
 
 <b> 🛰️ Encuentra tu posición</b>. Transportr usa navegación por satélite GPS para hacer un seguimiento de tu posición actual, para que nunca te pierdas. 
-Puedes encontrar estaciones cercanas para comenzar un nuevo viaje. 
+Puedes encontrar estaciones cercanas para comenzar un nuevo viaje 
 y ver cómo de lejos estás en tu viaje. 
 
 <b>🌟 Recuerda tus sitios favoritos</b>. Para llevarte donde tienes que ir de forma más rápida, 
@@ -134,6 +134,7 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="trip_error_service_down">El proveedor de datos está fuera de servicio :(
 Inténtelo de nuevo más tarde, por favor.</string>
   <string name="trip_issue">Puede haber un problema con esta conexión.</string>
+  <string name="trip_not_travelable">Imposible o cancelado</string>
   <string name="try_again">Intentar de nuevo</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -192,6 +193,10 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_region_australia">Australia</string>
   <string name="np_desc_australia">Melbourne, Sídney, Brisbane, Perth, Adelaida, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Australia, Nueva Gales del Sur, Sídney</string>
+  <string name="np_region_pt">Portugal</string>
+  <string name="np_name_pt">Portugal</string>
+  <string name="np_desc_pt">Lisboa</string>
+  <string name="np_desc_pt_networks">Autobús, Tren, Funicular, Ferri, Metro</string>
   <string name="np_region_austria">Austria</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Alta Austria, Linz</string>
@@ -346,4 +351,5 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="farsi">Persa</string>
   <string name="taiwanese">Chino (Taiwán)</string>
   <string name="swedish">Sueco</string>
+  <string name="ukrainian">ucraniano</string>
 </resources>

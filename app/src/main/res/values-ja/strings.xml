@@ -100,6 +100,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="tomorrow">明日</string>
   <string name="in_x_minutes">%d分で</string>
   <string name="x_minutes_ago">%d分前</string>
+  <string name="total_time">合計時間: %s</string>
   <string name="time_picker_previous_day">前日</string>
   <string name="time_picker_next_day">翌日</string>
   <string name="ok">OK</string>
@@ -138,7 +139,9 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="trip_error_no_trips">接続が見つかりません :(</string>
   <string name="trip_error_invalid_date">検索日は現在、データプロバイダーによってサポートされていません。 別の日付を試してください。</string>
   <string name="trip_error_service_down">データプロバイダーは現在ダウンしています :(\n後でもう一度やり直してください。</string>
+  <string name="trip_error_pte">このエラーを報告する場合は、直接 %1$s に報告してください。</string>
   <string name="trip_issue">この接続に問題がある可能性があります。</string>
+  <string name="trip_not_travelable">不可能またはキャンセルされました</string>
   <string name="try_again">もう一度やり直す</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -148,7 +151,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="platform">(プラットフォーム %s)</string>
   <string name="system_default">システム デフォルト</string>
-  <string name="trip_share_date">日付け: %s</string>
+  <string name="trip_share_date">日付: %s</string>
   <string name="times_include_delays">(注意: 時間には報告された遅延が含まれます)</string>
   <string name="created_by">作成者 %s</string>
   <string name="home">自宅</string>
@@ -305,6 +308,8 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_desc_spain">マドリード、バルセロナ、バスク地方、バレンシア、アリカンテ、マヨルカ、メノルカ、テネリフェ、ラ・パルマ、ナバラ</string>
   <string name="np_name_hungary">ハンガリー</string>
   <string name="np_desc_hungary">ブダペスト、ミシュコルツ</string>
+  <string name="np_name_czechia">チェコ</string>
+  <string name="np_desc_czechia">プラハなど</string>
   <string name="np_region_sweden">スウェーデン</string>
   <string name="np_desc_se">スウェーデン、ストックホルム</string>
   <string name="np_region_switzerland">スイス</string>
@@ -354,4 +359,5 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="farsi">ペルシア語</string>
   <string name="taiwanese">中国語 (台湾)</string>
   <string name="swedish">スウェーデン語</string>
+  <string name="ukrainian">ウクライナ語</string>
 </resources>

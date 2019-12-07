@@ -81,6 +81,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="tomorrow">Morgaŭ</string>
   <string name="in_x_minutes">post %dmin</string>
   <string name="x_minutes_ago">antaŭ %dmin</string>
+  <string name="total_time">Tuta tempo: %s</string>
   <string name="time_picker_previous_day">Antaŭa tago</string>
   <string name="time_picker_next_day">Sekva tago</string>
   <string name="ok">Bone</string>
@@ -119,7 +120,9 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="trip_error_no_trips">Ne povas trovi komunikiloj :(</string>
   <string name="trip_error_invalid_date">La serĉita dato ne estas nuntempe subtenata de la datum-provizanto. Bonvolu provi alian daton.</string>
   <string name="trip_error_service_down">La datum-provizanto nuntempe malfunkcias :(\nBonvolu provi denove poste.</string>
+  <string name="trip_error_pte">Se vi volas raporti tiun ĉi eraron, bonvolu raporti ĝin al senpere al %1$s.</string>
   <string name="trip_issue">Povas okazi problemo kun tiu ĉi komunikilo.</string>
+  <string name="trip_not_travelable">Neebla aŭ nuligita</string>
   <string name="try_again">Reprovi</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -287,6 +290,8 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_desc_spain">Madrido, Barcelono, Eŭskujo, Valencio, Alakanto, Majorko, Minorko, Tenerifo, La Palma, Navaro</string>
   <string name="np_name_hungary">Hungarujo</string>
   <string name="np_desc_hungary">Budapeŝto, Miskolc</string>
+  <string name="np_name_czechia">Ĉeĥujo</string>
+  <string name="np_desc_czechia">Prago kaj aliaj</string>
   <string name="np_region_sweden">Svedujo</string>
   <string name="np_desc_se">Svedujo, Stokholmo</string>
   <string name="np_region_switzerland">Svisujo</string>
@@ -336,4 +341,5 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="farsi">Persa</string>
   <string name="taiwanese">Ĉina (Tajvana)</string>
   <string name="swedish">Sveda</string>
+  <string name="ukrainian">Ukrajna</string>
 </resources>
