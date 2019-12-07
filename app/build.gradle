@@ -132,7 +132,7 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:125b39d0') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:38b99f27') {
 		exclude module: 'service'
 		exclude group: 'com.google.guava', module: 'listenablefuture'
 		exclude group: 'com.google.guava', module: 'failureaccess'
@@ -141,11 +141,11 @@ dependencies {
 		exclude group: 'com.google.j2objc'
 		exclude group: 'junit'
 	}
-	debugImplementation 'org.slf4j:slf4j-api:1.7.28'
+	debugImplementation 'org.slf4j:slf4j-api:1.7.29'
 	debugImplementation 'com.github.tony19:logback-android:1.1.1-12'
 
 	testImplementation 'junit:junit:4.12'
-	testImplementation 'org.mockito:mockito-core:2.25.0'
+	testImplementation 'org.mockito:mockito-core:3.0.0'
 	testImplementation 'androidx.arch.core:core-testing:2.1.0'
 
 	androidTestImplementation "androidx.test:core:1.2.0"
