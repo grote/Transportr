@@ -44,7 +44,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="drawer_changelog">Ändringslogg</string>
   <string name="drawer_about">Om</string>
   <string name="drawer_contributors">Bidragsgivare</string>
-  <string name="drawer_report_issue">Rapport problem</string>
+  <string name="drawer_report_issue">Rapportera problem</string>
   <string name="action_fav_trip">Märk resan som favorit</string>
   <string name="action_unfav_trip">Avmärk resan som favorit</string>
   <string name="action_switch_locations">Växla Från och Till</string>
@@ -100,6 +100,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="tomorrow">Imorgon</string>
   <string name="in_x_minutes">om %dmin</string>
   <string name="x_minutes_ago">%dmin sedan</string>
+  <string name="total_time">Total tid: %s</string>
   <string name="time_picker_previous_day">Föregående dag</string>
   <string name="time_picker_next_day">Nästa dag</string>
   <string name="ok">Ok</string>
@@ -138,7 +139,9 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="trip_error_no_trips">Inga anslutningar kunde hittas :(</string>
   <string name="trip_error_invalid_date">Sökdatumet stöds för närvarande inte av dataleverantören. Försök med ett annat datum.</string>
   <string name="trip_error_service_down">Dataleverantören är för närvarande nere : (\Vänligen försök igen senare.</string>
+  <string name="trip_error_pte">Om du vill rapportera detta fel, vänligen rapportera det till %1$s direkt.</string>
   <string name="trip_issue">Det kan vara ett problem med den här anslutningen.</string>
+  <string name="trip_not_travelable">Omöjligt eller inställt</string>
   <string name="try_again">Försök igen</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -355,4 +358,5 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="farsi">Persiska</string>
   <string name="taiwanese">Kinesiska (Taiwan)</string>
   <string name="swedish">Svenska</string>
+  <string name="ukrainian">Ukrainska</string>
 </resources>

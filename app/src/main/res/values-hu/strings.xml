@@ -143,6 +143,7 @@ hogy hol kell leszállnia a buszról…
   <string name="trip_error_invalid_date">A keresési dátumot jelenleg nem támogatja az adatszolgáltató. Próbáljon egy másik dátumot.</string>
   <string name="trip_error_service_down">Az adatszolgáltató jelenleg nem érhető el :(\nPróbálja meg később.</string>
   <string name="trip_issue">Probléma lehet ezzel a csatlakozással.</string>
+  <string name="trip_not_travelable">Lehetetlen vagy visszavont</string>
   <string name="try_again">Próbálja újra</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -201,6 +202,10 @@ hogy hol kell leszállnia a buszról…
   <string name="np_region_australia">Ausztrália</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Ausztrália, Új-Dél-Wales, Sydney</string>
+  <string name="np_region_pt">Portugália</string>
+  <string name="np_name_pt">Portugália</string>
+  <string name="np_desc_pt">Lisszabon</string>
+  <string name="np_desc_pt_networks">Busz, Vonat, Sikló, Komp, Metró</string>
   <string name="np_region_austria">Ausztria</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Felső-Ausztria, Linz</string>
@@ -354,4 +359,6 @@ hogy hol kell leszállnia a buszról…
   <string name="greek">Görög</string>
   <string name="farsi">Perzsa</string>
   <string name="taiwanese">Kínai (Taiwan)</string>
+  <string name="swedish">Svéd</string>
+  <string name="ukrainian">Ukrán</string>
 </resources>

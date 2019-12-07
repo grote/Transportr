@@ -100,6 +100,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="tomorrow">Morgen</string>
   <string name="in_x_minutes">in %d min</string>
   <string name="x_minutes_ago">vor %d min</string>
+  <string name="total_time">Gesamtzeit: %s</string>
   <string name="time_picker_previous_day">Vorheriger Tag</string>
   <string name="time_picker_next_day">Nächster Tag</string>
   <string name="ok">OK</string>
@@ -138,7 +139,9 @@ und weiß immer, wo man aussteigen muss.
   <string name="trip_error_no_trips">Keine Verbindungen gefunden :(</string>
   <string name="trip_error_invalid_date">Das Suchdatum wird momentan nicht von der Datenquelle unterstützt. Bitte versuche ein anderes Datum.</string>
   <string name="trip_error_service_down">Die Datenquelle ist momentan nicht erreichbar :(\nBitte versuche es später noch einmal.</string>
+  <string name="trip_error_pte">Wenn du diesen Fehler melden möchtest, kannst du ihn bitte direkt an %1$s melden.</string>
   <string name="trip_issue">Es könnte ein Problem mit dieser Verbindung geben.</string>
+  <string name="trip_not_travelable">Unmöglich oder abgebrochen</string>
   <string name="try_again">Noch einmal versuchen</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -306,6 +309,8 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungarn</string>
   <string name="np_desc_hungary">Budapest, Mischkolz</string>
+  <string name="np_name_czechia">Tschechien</string>
+  <string name="np_desc_czechia">Prag und andere</string>
   <string name="np_region_sweden">Schweden</string>
   <string name="np_desc_se">Schweden, Stockholm</string>
   <string name="np_region_switzerland">Schweiz</string>
@@ -355,4 +360,5 @@ und weiß immer, wo man aussteigen muss.
   <string name="farsi">Persisch</string>
   <string name="taiwanese">Chinesisch (Taiwan)</string>
   <string name="swedish">Schwedisch</string>
+  <string name="ukrainian">Ukrainisch</string>
 </resources>

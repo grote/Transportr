@@ -81,6 +81,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="tomorrow">Jutro</string>
   <string name="in_x_minutes">za %dmin</string>
   <string name="x_minutes_ago">%dmin temu</string>
+  <string name="total_time">Całkowity czas: %s</string>
   <string name="time_picker_previous_day">Poprzedni dzień</string>
   <string name="time_picker_next_day">Następny dzień</string>
   <string name="ok">OK</string>
@@ -119,7 +120,9 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="trip_error_no_trips">Nie znaleziono połączeń :(</string>
   <string name="trip_error_invalid_date">Wyszukiwana data nie jest obecnie wspierana przez dostawcę danych. Spróbuj z inną datą.</string>
   <string name="trip_error_service_down">Dostawca danych ma awarię :(\nSpróbuj ponownie później.</string>
+  <string name="trip_error_pte">Jeżeli chciałbyś zaraportować ten problem, prosimy zgłosić go bezpośrednio do %1$s.</string>
   <string name="trip_issue">Może być problem z tym połączeniem.</string>
+  <string name="trip_not_travelable">Niemożliwa lub anulowana</string>
   <string name="try_again">Spróbuj ponownie</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -289,6 +292,8 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_desc_spain">Madryt, Barcelona, Kraj Basków, Walencja, Alicante, Majorka, Minorka, Teneryfa, La Palma, Nawarra</string>
   <string name="np_name_hungary">Węgry</string>
   <string name="np_desc_hungary">Budapeszt, Miszkolc</string>
+  <string name="np_name_czechia">Czechy</string>
+  <string name="np_desc_czechia">Praga i inne</string>
   <string name="np_region_sweden">Szwecja</string>
   <string name="np_desc_se">Szwecja, Sztokholm</string>
   <string name="np_region_switzerland">Szwajcaria</string>
@@ -338,4 +343,5 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="farsi">Perski</string>
   <string name="taiwanese">Chiński (Tajwan)</string>
   <string name="swedish">Szwedzki</string>
+  <string name="ukrainian">Ukraiński</string>
 </resources>

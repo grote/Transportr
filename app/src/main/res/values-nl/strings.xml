@@ -81,6 +81,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="tomorrow">Morgen</string>
   <string name="in_x_minutes">over %dmin</string>
   <string name="x_minutes_ago">%dmin geleden</string>
+  <string name="total_time">Totaalduur: %s</string>
   <string name="time_picker_previous_day">Vorige dag</string>
   <string name="time_picker_next_day">Volgende dag</string>
   <string name="ok">Oké</string>
@@ -119,7 +120,9 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="trip_error_no_trips">Geen verbindingen gevonden :(</string>
   <string name="trip_error_invalid_date">De zoekdatum wordt momenteel niet ondersteund door de leverancier. Probeer een andere datum.</string>
   <string name="trip_error_service_down">De leveranciersdienst is momenteel uit de lucht :(\nProbeer het later opnieuw.</string>
+  <string name="trip_error_pte">Als je deze fout wilt rapporteren, doe dat dan naar %1$s. </string>
   <string name="trip_issue">Er is wellicht een probleem met deze verbinding.</string>
+  <string name="trip_not_travelable">Onmogelijk of vervallen</string>
   <string name="try_again">Opnieuw proberen</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>
@@ -287,6 +290,8 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Hongarije</string>
   <string name="np_desc_hungary">Boedapest, Miskolc</string>
+  <string name="np_name_czechia">Tsjechië</string>
+  <string name="np_desc_czechia">Praag en omstreken</string>
   <string name="np_region_sweden">Zweden</string>
   <string name="np_desc_se">Zweden, Stockholm</string>
   <string name="np_region_switzerland">Zwitserland</string>
@@ -336,4 +341,5 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="farsi">Perzisch</string>
   <string name="taiwanese">Chinees (Taiwan)</string>
   <string name="swedish">Zweeds</string>
+  <string name="ukrainian">Oekraïens</string>
 </resources>
