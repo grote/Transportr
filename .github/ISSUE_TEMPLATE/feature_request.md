@@ -1,6 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
+title: ''
+labels: "enhancement \U0001F3D7️"
+assignees: ''
 
 ---
 
