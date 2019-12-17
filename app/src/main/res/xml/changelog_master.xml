@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="2.0.8" versioncode="117">
+        <change>Fix bug where the app would crash after updating</change>
+    </release>
+
     <release version="2.0.7" versioncode="116">
         <change>Added data source for Czechia (Thanks Ondra!)</change>
         <change>Display standard fares for trip results (Thanks Mikolai!)</change>

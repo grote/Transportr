@@ -11,8 +11,8 @@ android {
 	buildToolsVersion "29.0.2"
 
 	defaultConfig {
-		versionCode 116
-		versionName "2.0.7"
+		versionCode 117
+		versionName "2.0.8"
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 16
@@ -111,8 +111,8 @@ dependencies {
 
 	implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 	implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
-	implementation 'androidx.room:room-runtime:2.2.0'
-	kapt 'androidx.room:room-compiler:2.2.0'
+	implementation 'androidx.room:room-runtime:2.0.0'
+	kapt 'androidx.room:room-compiler:2.0.0'
 
 	implementation 'com.github.omadahealth:swipy:1.2.3'
 	implementation 'de.cketti.library.changelog:ckchangelog:1.2.2'
