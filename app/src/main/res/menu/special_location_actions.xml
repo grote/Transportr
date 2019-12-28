@@ -12,9 +12,9 @@
 		app:showAsAction="always"/>
 
 	<item
-		android:id="@+id/action_set_locations"
-		android:icon="@drawable/ic_mode_edit"
-		android:title="@string/action_set_locations"
+		android:id="@+id/action_show_departures"
+		android:icon="@drawable/ic_action_departures"
+		android:title="@string/find_departures"
 		app:showAsAction="always"/>
 
 	<item
