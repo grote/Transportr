@@ -263,7 +263,7 @@ public class DeparturesActivity extends TransportrActivity
 
 	@Override
 	public void onLoadFinished(Loader<QueryDeparturesResult> loader, @Nullable QueryDeparturesResult departures) {
-		if (departures != null && departures.status == OK) {
+		if (departures != null && departures.status == OK && departures.stationDepartures.size() > 0) {
 			for (StationDepartures s : departures.stationDepartures) {
 				adapter.addAll(s.departures);
 			}
