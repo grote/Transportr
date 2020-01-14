@@ -97,7 +97,6 @@ internal val LANGUAGES = listOf(
     ContributorGroup(
         R.string.french, listOf(
             Contributor("Cryptie"),
-            Contributor("Alain-Olivier"),
             Contributor("David Maulat"),
             Contributor("Paul Caranton")
         )
