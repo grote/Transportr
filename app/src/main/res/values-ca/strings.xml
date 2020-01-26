@@ -52,8 +52,7 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="action_fav_trip">Marcar trajecte com a favorit</string>
   <string name="action_unfav_trip">Desmarcar trajecte com a favorit</string>
   <string name="action_switch_locations">Intercanvia Des de i Cap a</string>
-  <string name="action_time_type">L\'hora és</string>
-  <string name="trip_dep">de sortida</string>
+	<string name="trip_dep">de sortida</string>
   <string name="trip_arr">d\'arribada</string>
   <string name="action_refresh">Actualitzar</string>
   <string name="action_navigation_expand">Mostrar via</string>
@@ -178,8 +177,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="warning_gps_off">La geolocalització està apagada. Activa-la.</string>
   <string name="onboarding_location_title">Aturar-se</string>
   <string name="onboarding_location_message">Més característiques amagades aquí sota</string>
-  <string name="onboarding_directions_title">Més opcions de cerca</string>
-  <string name="onboarding_directions_message">Clica aquesta icona per revelar opcions de cerca avançades.</string>
   <string name="select_products">Seleccionar mitjans de transport</string>
   <string name="product_high_speed_train">Tren d\'Alta Velocitat</string>
   <string name="product_regional_train">Tren regional</string>

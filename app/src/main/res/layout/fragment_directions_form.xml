@@ -31,10 +31,31 @@
 				android:contentDescription="@string/action_fav_trip"
 				android:tint="@color/md_white_1000"
 				android:visibility="gone"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintEnd_toStartOf="@+id/swapIcon"
+				app:layout_constraintTop_toTopOf="@+id/viaIcon"
 				app:srcCompat="@drawable/ic_action_star_empty"
 				tools:visibility="visible"/>
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/swapIcon"
+				android:layout_width="@dimen/buttonSize"
+				android:layout_height="@dimen/buttonSize"
+				android:background="?selectableItemBackgroundBorderless"
+				android:contentDescription="@string/action_swap_locations"
+				android:src="@drawable/ic_menu_swap_location"
+				android:tint="@color/md_white_1000"
+				app:layout_constraintEnd_toStartOf="@+id/viaIcon"
+				app:layout_constraintTop_toTopOf="@+id/viaIcon"/>
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/viaIcon"
+				android:layout_width="@dimen/buttonSize"
+				android:layout_height="@dimen/buttonSize"
+				android:background="?selectableItemBackgroundBorderless"
+				android:contentDescription="@string/action_navigation_expand"
+				android:src="@drawable/ic_action_navigation_unfold_more_white"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent"/>
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,42 +117,56 @@
 
 	</androidx.cardview.widget.CardView>
 
-	<androidx.appcompat.widget.AppCompatImageButton
-		android:id="@+id/departureIcon"
-		android:layout_width="@dimen/buttonSize"
-		android:layout_height="@dimen/buttonSize"
-		android:layout_marginTop="8dp"
+	<View
+		android:id="@+id/timeBackground"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
 		android:background="?selectableItemBackgroundBorderless"
-		android:src="@drawable/ic_trip_departure"
-		app:layout_constraintEnd_toStartOf="@+id/timeIcon"
-		app:layout_constraintStart_toStartOf="@+id/toCard"
-		app:layout_constraintTop_toBottomOf="@+id/toCard"/>
+		android:clickable="true"
+		android:focusable="true"
+		app:layout_constraintTop_toTopOf="@+id/timeIcon"
+		app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
+		app:layout_constraintStart_toStartOf="@+id/timeIcon"
+		app:layout_constraintEnd_toStartOf="@id/timeBarrier"/>
+
 
 	<androidx.appcompat.widget.AppCompatImageButton
 		android:id="@+id/timeIcon"
 		android:layout_width="@dimen/buttonSize"
 		android:layout_height="@dimen/buttonSize"
+		android:layout_marginTop="8dp"
 		android:background="?selectableItemBackgroundBorderless"
-		app:layout_constraintEnd_toStartOf="@+id/date"
-		app:layout_constraintStart_toEndOf="@+id/departureIcon"
-		app:layout_constraintTop_toTopOf="@+id/departureIcon"
+		android:clickable="false"
+		android:focusable="false"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/toCard"
 		app:srcCompat="@drawable/ic_time"/>
+
+	<TextView
+		android:id="@+id/departure"
+		android:layout_width="wrap_content"
+		android:layout_height="24dp"
+		android:paddingEnd="8dp"
+		android:paddingRight="8dp"
+		android:gravity="center"
+		android:text="@string/trip_dep"
+		android:textColor="@color/md_grey_300"
+		app:layout_constraintStart_toEndOf="@+id/timeIcon"
+		app:layout_constraintTop_toTopOf="@+id/timeIcon"
+		app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
+		tools:text="Departure"/>
 
 	<TextView
 		android:id="@+id/date"
 		android:layout_width="wrap_content"
 		android:layout_height="24dp"
-		android:background="?selectableItemBackgroundBorderless"
-		android:clickable="true"
-		android:focusable="true"
 		android:gravity="center"
 		android:textColor="@color/md_grey_300"
 		android:visibility="gone"
+		app:layout_constraintStart_toEndOf="@+id/departure"
+		app:layout_constraintEnd_toStartOf="@+id/timeBarrier"
 		app:layout_constraintBottom_toTopOf="@+id/time"
-		app:layout_constraintEnd_toEndOf="@+id/time"
-		app:layout_constraintHorizontal_bias="0"
-		app:layout_constraintStart_toStartOf="@+id/time"
-		app:layout_constraintTop_toTopOf="@+id/departureIcon"
+		app:layout_constraintTop_toTopOf="@+id/timeIcon"
 		tools:text="2042-12-23"
 		tools:visibility="visible"/>
 
@@ -139,15 +174,12 @@
 		android:id="@+id/time"
 		android:layout_width="wrap_content"
 		android:layout_height="24dp"
-		android:background="?selectableItemBackgroundBorderless"
-		android:clickable="true"
-		android:focusable="true"
 		android:gravity="center"
 		android:text="@string/now"
 		android:textColor="@color/md_grey_300"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toStartOf="@+id/timeBarrier"
-		app:layout_constraintStart_toEndOf="@+id/timeIcon"
+		app:layout_constraintStart_toEndOf="@+id/departure"
 		app:layout_constraintTop_toBottomOf="@+id/date"/>
 
 	<androidx.constraintlayout.widget.Barrier
@@ -164,22 +196,26 @@
 		android:layout_marginLeft="16dp"
 		android:layout_marginStart="16dp"
 		android:background="?selectableItemBackgroundBorderless"
+		android:contentDescription="@string/action_choose_products"
 		android:src="@drawable/product_bus"
 		android:tint="@color/md_white_1000"
-		app:layout_constraintEnd_toStartOf="@+id/swapIcon"
-		app:layout_constraintHorizontal_chainStyle="spread_inside"
-		app:layout_constraintStart_toEndOf="@+id/timeBarrier"
-		app:layout_constraintTop_toTopOf="@+id/departureIcon"/>
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/timeIcon"/>
 
-	<androidx.appcompat.widget.AppCompatImageButton
-		android:id="@+id/swapIcon"
-		android:layout_width="@dimen/buttonSize"
-		android:layout_height="@dimen/buttonSize"
-		android:background="?selectableItemBackgroundBorderless"
-		android:src="@drawable/ic_menu_swap_location"
-		android:tint="@color/md_white_1000"
-		app:layout_constraintEnd_toEndOf="@+id/toCard"
-		app:layout_constraintStart_toEndOf="@+id/productsIcon"
-		app:layout_constraintTop_toTopOf="@+id/departureIcon"/>
+	<ImageView
+		android:id="@+id/productsMarked"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/ic_action_dot"
+		android:layout_marginLeft="16dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginBottom="16dp"
+		android:tint="@color/md_grey_300"
+		app:layout_constraintStart_toStartOf="@+id/productsIcon"
+		app:layout_constraintEnd_toEndOf="@+id/productsIcon"
+		app:layout_constraintTop_toTopOf="@+id/productsIcon"
+		app:layout_constraintBottom_toBottomOf="@+id/productsIcon"
+		android:visibility="visible"
+		tools:ignore="ContentDescription"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

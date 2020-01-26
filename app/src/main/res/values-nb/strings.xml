@@ -7,8 +7,7 @@
   <string name="action_fav_trip">Merk tur som favoritt</string>
   <string name="action_unfav_trip">Avmerk tur som favoritt</string>
   <string name="action_switch_locations">Bytt fra og til</string>
-  <string name="action_time_type">Tiden er</string>
-  <string name="trip_dep">Avgang</string>
+	<string name="trip_dep">Avgang</string>
   <string name="trip_arr">Ankomst</string>
   <string name="action_refresh">Gjenoppfrisk</string>
   <string name="action_navigation_expand">Vis rutepunkt</string>

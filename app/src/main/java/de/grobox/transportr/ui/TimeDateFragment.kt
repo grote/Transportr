@@ -25,6 +25,7 @@ import android.os.Bundle
 import android.text.format.DateFormat.getDateFormat
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.TimePicker
@@ -38,19 +39,22 @@ import java.util.Calendar.*
 class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListener {
 
     private var listener: TimeDateListener? = null
+    private var departure: Boolean? = null // null means no departure/arrival selection will be possible
     private lateinit var calendar: Calendar
 
     companion object {
         @JvmField
         val TAG: String = TimeDateFragment::class.java.simpleName
         private val CALENDAR = "calendar"
+        private val DEPARTURE = "departure"
 
         @JvmStatic
-        fun newInstance(calendar: Calendar): TimeDateFragment {
+        fun newInstance(calendar: Calendar, departure: Boolean? = null): TimeDateFragment {
             val f = TimeDateFragment()
 
             val args = Bundle()
             args.putSerializable(CALENDAR, calendar)
+            args.putSerializable(DEPARTURE, departure)
             f.arguments = args
 
             return f
@@ -60,12 +64,14 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        calendar = if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             arguments?.let {
-                it.getSerializable(CALENDAR) as Calendar
+                calendar = it.getSerializable(CALENDAR) as Calendar
+                departure = it.getSerializable(DEPARTURE) as Boolean?
             } ?: throw IllegalArgumentException("Arguments missing")
         } else {
-            savedInstanceState.getSerializable(CALENDAR) as Calendar
+            calendar = savedInstanceState.getSerializable(CALENDAR) as Calendar
+            departure = savedInstanceState.getSerializable(DEPARTURE) as Boolean?
         }
     }
 
@@ -97,13 +103,34 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
             showDate(calendar)
         }
 
+        // Departure or Arrival
+        departure?.let {
+            departureButton.isChecked = it
+            arrivalButton.isChecked = !it
+
+            departureButton.setOnClickListener {
+                departure = departureButton.isChecked
+                arrivalButton.isChecked = !departure!!
+            }
+
+            arrivalButton.setOnClickListener {
+                departure = !arrivalButton.isChecked
+                departureButton.isChecked = departure!!
+            }
+        } ?: run {
+            departureButton.visibility = GONE
+            arrivalButton.visibility = GONE
+        }
+
         // Buttons
         okButton.setOnClickListener {
             listener?.onTimeAndDateSet(calendar)
+            departure?.let { listener?.onDepartureOrArrivalSet(it) }
             dismiss()
         }
         nowButton.setOnClickListener {
             listener?.onTimeAndDateSet(Calendar.getInstance())
+            departure?.let { listener?.onDepartureOrArrivalSet(it) }
             dismiss()
         }
         cancelButton.setOnClickListener {
@@ -114,6 +141,7 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putSerializable(CALENDAR, calendar)
+        outState.putSerializable(DEPARTURE, departure)
     }
 
     override fun onTimeChanged(timePicker: TimePicker, hourOfDay: Int, minute: Int) {
@@ -155,6 +183,7 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
 
     interface TimeDateListener {
         fun onTimeAndDateSet(calendar: Calendar)
+        fun onDepartureOrArrivalSet(departure: Boolean) {  }
     }
 
 }

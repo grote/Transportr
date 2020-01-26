@@ -52,8 +52,7 @@ hogy hol kell leszállnia a buszról…
   <string name="action_fav_trip">Útvonal megjelölése kedvencként</string>
   <string name="action_unfav_trip">Útvonal eltávolítása a kedvencek közül</string>
   <string name="action_switch_locations">Kiindulópont és célpont felcserélése</string>
-  <string name="action_time_type">Idő</string>
-  <string name="trip_dep">Indulás</string>
+	<string name="trip_dep">Indulás</string>
   <string name="trip_arr">Érkezés</string>
   <string name="action_refresh">Frissítés</string>
   <string name="action_navigation_expand">Érintett pont megjelenítése</string>
@@ -176,9 +175,7 @@ hogy hol kell leszállnia a buszról…
   <string name="warning_gps_off">A tartózkodási hely ki van kapcsolva. Kapcsolja be a beállításokban.</string>
   <string name="onboarding_location_title">Húzza fel</string>
   <string name="onboarding_location_message">További funkciók vannak lent elrejtve</string>
-  <string name="onboarding_directions_title">További keresési beállítások</string>
-  <string name="onboarding_directions_message">Kattintson az ikonra a speciális keresési beállítások megjelenítéséhez.</string>
-  <string name="select_products">Közlekedési eszközök kiválasztása</string>
+	<string name="select_products">Közlekedési eszközök kiválasztása</string>
   <string name="product_high_speed_train">Gyorsvasút</string>
   <string name="product_regional_train">Regionális vasút</string>
   <string name="product_suburban_train">Elővárosi vasút</string>

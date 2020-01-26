@@ -29,8 +29,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="action_fav_trip">Reis toevoegen aan favorieten</string>
   <string name="action_unfav_trip">Reis verwijderen uit favorieten</string>
   <string name="action_switch_locations">Begin- en eindpunt omwisselen</string>
-  <string name="action_time_type">De tijd is</string>
-  <string name="trip_dep">Vertrek</string>
+	<string name="trip_dep">Vertrek</string>
   <string name="trip_arr">Aankomst</string>
   <string name="action_refresh">Verversen</string>
   <string name="action_navigation_expand">\'Via\' tonen</string>
@@ -155,9 +154,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="warning_gps_off">Locatie is uitgeschakeld. Schakel deze in via de instellingen.</string>
   <string name="onboarding_location_title">Omhoogtrekken</string>
   <string name="onboarding_location_message">Hieronder verbergen zich functies</string>
-  <string name="onboarding_directions_title">Meer zoekopties</string>
-  <string name="onboarding_directions_message">Klik op dit pictogram om geavanceerde zoekinstellingen te tonen.</string>
-  <string name="select_products">Kies transportmiddelen</string>
+	<string name="select_products">Kies transportmiddelen</string>
   <string name="product_high_speed_train">InterCity- of hogesnelheidstrein</string>
   <string name="product_regional_train">Regionale trein</string>
   <string name="product_suburban_train">Stadstrein</string>

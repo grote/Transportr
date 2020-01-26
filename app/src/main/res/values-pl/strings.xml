@@ -29,8 +29,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="action_fav_trip">Oznacz trasę jako ulubioną</string>
   <string name="action_unfav_trip">Wycofaj oznaczenie trasy jako ulubionej</string>
   <string name="action_switch_locations">Odwróć trasę</string>
-  <string name="action_time_type">Czas wynosi</string>
-  <string name="trip_dep">Odjazd</string>
+	<string name="trip_dep">Odjazd</string>
   <string name="trip_arr">Przyjazd</string>
   <string name="action_refresh">Odśwież</string>
   <string name="action_navigation_expand">Pokaż przystanki</string>
@@ -157,9 +156,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="warning_gps_off">Odnajdywanie lokalizacji wyłączone. Prosimy włączyć je w ustawieniach.</string>
   <string name="onboarding_location_title">Przesuń w górę</string>
   <string name="onboarding_location_message">Więcej funkcji poniżej</string>
-  <string name="onboarding_directions_title">Zaawansowane szukanie</string>
-  <string name="onboarding_directions_message">Stuknij w ikonę, aby wyświetlić zaawansowane opcje szukania.</string>
-  <string name="select_products">Wybierz środki transportu</string>
+	<string name="select_products">Wybierz środki transportu</string>
   <string name="product_high_speed_train">Szybka kolej</string>
   <string name="product_regional_train">Koleje regionalne</string>
   <string name="product_suburban_train">Kolej podmiejska</string>

@@ -48,8 +48,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="action_fav_trip">Markatu bidaia gogoko gisa</string>
   <string name="action_unfav_trip">Desmarkatu bidaia gogokoetatik</string>
   <string name="action_switch_locations">Alderantzikatu \'nondik\' eta \'nora\'</string>
-  <string name="action_time_type">Orduaren esanahia</string>
-  <string name="trip_dep">Irteera</string>
+	<string name="trip_dep">Irteera</string>
   <string name="trip_arr">Iritsiera</string>
   <string name="action_refresh">Freskatu</string>
   <string name="action_navigation_expand">Erakutsi erdibidea</string>
@@ -172,9 +171,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="warning_gps_off">Kokapena desgaituta dago. Gaitu ezarpenetan.</string>
   <string name="onboarding_location_title">Geldialdia</string>
   <string name="onboarding_location_message">Ezaugarri gehiago azpian ezkutatuta</string>
-  <string name="onboarding_directions_title">Bilaketa aukera gehiago</string>
-  <string name="onboarding_directions_message">Egin klik ikono honetan bilaketa aurreratuaren ezarpenak agerrarazteko.</string>
-  <string name="select_products">Hautatu garriobideak</string>
+	<string name="select_products">Hautatu garriobideak</string>
   <string name="product_high_speed_train">Abiadura handiko trena</string>
   <string name="product_regional_train">Eskualdeko trena</string>
   <string name="product_suburban_train">Hiri inguruko trena</string>

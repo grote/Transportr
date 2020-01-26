@@ -1,93 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
+	android:layout_height="match_parent">
 
-	<TimePicker
-		android:id="@+id/timePicker"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toTopOf="parent"/>
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
 
-	<androidx.appcompat.widget.AppCompatImageButton
-		android:id="@+id/prevDateButton"
-		android:layout_width="48dp"
-		android:layout_height="0dp"
-		android:layout_marginLeft="16dp"
-		android:layout_marginStart="16dp"
-		android:background="?attr/selectableItemBackgroundBorderless"
-		android:contentDescription="@string/time_picker_previous_day"
-		app:layout_constraintBottom_toBottomOf="@+id/dateView"
-		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/dateView"
-		app:srcCompat="@drawable/ic_chevron_left"
-		app:tint="?attr/colorControlNormal"/>
+		<TimePicker
+			android:id="@+id/timePicker"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
 
-	<TextView
-		android:id="@+id/dateView"
-		android:layout_width="0dp"
-		android:layout_height="48dp"
-		android:background="?attr/selectableItemBackground"
-		android:clickable="true"
-		android:focusable="true"
-		android:gravity="center"
-		android:text="@string/today"
-		android:textSize="18sp"
-		app:layout_constraintLeft_toRightOf="@+id/prevDateButton"
-		app:layout_constraintRight_toLeftOf="@+id/nextDateButton"
-		app:layout_constraintTop_toBottomOf="@+id/timePicker"/>
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/prevDateButton"
+			android:layout_width="48dp"
+			android:layout_height="0dp"
+			android:layout_marginLeft="16dp"
+			android:layout_marginStart="16dp"
+			android:background="?attr/selectableItemBackgroundBorderless"
+			android:contentDescription="@string/time_picker_previous_day"
+			app:layout_constraintBottom_toBottomOf="@+id/dateView"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toTopOf="@+id/dateView"
+			app:srcCompat="@drawable/ic_chevron_left"
+			app:tint="?attr/colorControlNormal"/>
 
-	<androidx.appcompat.widget.AppCompatImageButton
-		android:id="@+id/nextDateButton"
-		android:layout_width="48dp"
-		android:layout_height="0dp"
-		android:layout_marginEnd="16dp"
-		android:layout_marginRight="16dp"
-		android:background="?attr/selectableItemBackgroundBorderless"
-		android:contentDescription="@string/time_picker_next_day"
-		app:layout_constraintBottom_toBottomOf="@+id/dateView"
-		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/dateView"
-		app:srcCompat="@drawable/ic_chevron_right"
-		app:tint="?attr/colorControlNormal"/>
+		<TextView
+			android:id="@+id/dateView"
+			android:layout_width="0dp"
+			android:layout_height="48dp"
+			android:background="?attr/selectableItemBackground"
+			android:clickable="true"
+			android:focusable="true"
+			android:gravity="center"
+			android:text="@string/today"
+			android:textSize="18sp"
+			app:layout_constraintLeft_toRightOf="@+id/prevDateButton"
+			app:layout_constraintRight_toLeftOf="@+id/nextDateButton"
+			app:layout_constraintTop_toBottomOf="@+id/timePicker"/>
 
-	<Button
-		android:id="@+id/cancelButton"
-		style="@style/Widget.AppCompat.Button.Borderless.Colored"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginEnd="8dp"
-		android:layout_marginRight="8dp"
-		android:text="@string/cancel"
-		app:layout_constraintBottom_toBottomOf="@+id/okButton"
-		app:layout_constraintRight_toLeftOf="@+id/nowButton"
-		app:layout_constraintTop_toTopOf="@+id/okButton"/>
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/nextDateButton"
+			android:layout_width="48dp"
+			android:layout_height="0dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginRight="16dp"
+			android:background="?attr/selectableItemBackgroundBorderless"
+			android:contentDescription="@string/time_picker_next_day"
+			app:layout_constraintBottom_toBottomOf="@+id/dateView"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="@+id/dateView"
+			app:srcCompat="@drawable/ic_chevron_right"
+			app:tint="?attr/colorControlNormal"/>
 
-	<Button
-		android:id="@+id/nowButton"
-		style="@style/Widget.AppCompat.Button.Borderless.Colored"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginEnd="8dp"
-		android:layout_marginRight="8dp"
-		android:text="@string/now"
-		app:layout_constraintBottom_toBottomOf="@+id/okButton"
-		app:layout_constraintRight_toLeftOf="@+id/okButton"
-		app:layout_constraintTop_toTopOf="@+id/okButton"/>
+		<androidx.appcompat.widget.AppCompatRadioButton
+			android:id="@+id/departureButton"
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:background="?attr/selectableItemBackground"
+			android:gravity="center"
+			android:text="@string/trip_dep"
+			android:textSize="18sp"
+			android:checked="true"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toLeftOf="@+id/arrivalButton"
+			app:layout_constraintTop_toBottomOf="@+id/dateView"/>
 
-	<Button
-		android:id="@+id/okButton"
-		style="@style/Widget.AppCompat.Button.Borderless.Colored"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="16dp"
-		android:text="@string/ok"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/dateView"/>
+		<androidx.appcompat.widget.AppCompatRadioButton
+			android:id="@+id/arrivalButton"
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:background="?attr/selectableItemBackground"
+			android:gravity="center"
+			android:text="@string/trip_arr"
+			android:textSize="18sp"
+			app:layout_constraintLeft_toRightOf="@+id/departureButton"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="@+id/departureButton"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+		<Button
+			android:id="@+id/cancelButton"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="8dp"
+			android:layout_marginRight="8dp"
+			android:text="@string/cancel"
+			app:layout_constraintBottom_toBottomOf="@+id/okButton"
+			app:layout_constraintRight_toLeftOf="@+id/nowButton"
+			app:layout_constraintTop_toTopOf="@+id/okButton"/>
+
+		<Button
+			android:id="@+id/nowButton"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="8dp"
+			android:layout_marginRight="8dp"
+			android:text="@string/now"
+			app:layout_constraintBottom_toBottomOf="@+id/okButton"
+			app:layout_constraintRight_toLeftOf="@+id/okButton"
+			app:layout_constraintTop_toTopOf="@+id/okButton"/>
+
+		<Button
+			android:id="@+id/okButton"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="@string/ok"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/departureButton"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

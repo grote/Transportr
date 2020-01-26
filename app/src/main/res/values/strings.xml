@@ -54,7 +54,6 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="action_fav_trip">Mark Trip as Favourite</string>
 	<string name="action_unfav_trip">Unmark Trip as Favourite</string>
 	<string name="action_switch_locations">Swap From and To</string>
-	<string name="action_time_type">Time is</string>
 	<string name="trip_dep">Departure</string>
 	<string name="trip_arr">Arrival</string>
 	<string name="action_refresh">Refresh</string>
@@ -196,8 +195,6 @@ and always knows where you are to not miss where to get off the bus.
 
 	<string name="onboarding_location_title">Pull up</string>
 	<string name="onboarding_location_message">More features are hiding below</string>
-	<string name="onboarding_directions_title">More Search Options</string>
-	<string name="onboarding_directions_message">Click this icon to reveal advanced search settings.</string>
 
 	<string name="select_products">Select Means of Transport</string>
 	<string name="product_high_speed_train">High-Speed Train</string>

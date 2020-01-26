@@ -44,8 +44,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="action_fav_trip">Segna viaggio come preferito</string>
   <string name="action_unfav_trip">Rimuovi viaggio dai preferiti</string>
   <string name="action_switch_locations">Scambia Da e A</string>
-  <string name="action_time_type">Ora inserita è</string>
-  <string name="trip_dep">Partenza</string>
+	<string name="trip_dep">Partenza</string>
   <string name="trip_arr">Arrivo</string>
   <string name="action_refresh">Ricarica</string>
   <string name="action_navigation_expand">Mostra fermate intermedie</string>
@@ -170,9 +169,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="warning_gps_off">La geolocalizzazione è disattivata. Attivala nelle impostazioni.</string>
   <string name="onboarding_location_title">Trascina</string>
   <string name="onboarding_location_message">Altre funzioni sono nascoste sotto</string>
-  <string name="onboarding_directions_title">Ricerca avanzata</string>
-  <string name="onboarding_directions_message">Premi su questa icona per rivelare le impostazioni per la ricerca avanzata</string>
-  <string name="select_products">Seleziona mezzi di trasporto</string>
+	<string name="select_products">Seleziona mezzi di trasporto</string>
   <string name="product_high_speed_train">Treno ad alta velocità</string>
   <string name="product_regional_train">Treno regionale</string>
   <string name="product_suburban_train">Treno suburbano</string>

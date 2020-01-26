@@ -46,8 +46,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="action_fav_trip">سفر را به عنوان مورد علاقه علامت بزن</string>
   <string name="action_unfav_trip">علامت سفر به عنوان مورد علاقه را بردار</string>
   <string name="action_switch_locations">جابجا کردن مبداء و مقصد</string>
-  <string name="action_time_type">ساعت</string>
-  <string name="trip_dep">حرکت</string>
+	<string name="trip_dep">حرکت</string>
   <string name="trip_arr">ورود</string>
   <string name="action_refresh">رفرش</string>
   <string name="action_navigation_expand">نمایش بده از طریق</string>
@@ -174,9 +173,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="warning_gps_off">مکان خاموش می باشد. لطفا از قسمت تنظیمات آن را روشن کنید.</string>
   <string name="onboarding_location_title">توقف کردن</string>
   <string name="onboarding_location_message">امکاناتی بیشتر در پایین به صورت مخفی قرار دارند</string>
-  <string name="onboarding_directions_title">گزینه های جستجوی بیشتر</string>
-  <string name="onboarding_directions_message">روی این آیکون برای آشکار شدن تنظیمات جستجوی پیشرفته کلیک کنید.</string>
-  <string name="select_products">انتخاب وسیله های حمل و نقل</string>
+	<string name="select_products">انتخاب وسیله های حمل و نقل</string>
   <string name="product_high_speed_train">قطار سرعت-بالا</string>
   <string name="product_regional_train">قطار منطقه ای</string>
   <string name="product_suburban_train">قطار برون شهری</string>

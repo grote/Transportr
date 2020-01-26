@@ -8,8 +8,7 @@
   <string name="action_fav_trip">標記行程為我的最愛</string>
   <string name="action_unfav_trip">從我的最愛移除此行程</string>
   <string name="action_switch_locations">對調起點和終點</string>
-  <string name="action_time_type">時間是</string>
-  <string name="trip_dep">出發</string>
+	<string name="trip_dep">出發</string>
   <string name="trip_arr">抵達</string>
   <string name="action_refresh">更新</string>
   <string name="action_navigation_expand">顯示經過</string>

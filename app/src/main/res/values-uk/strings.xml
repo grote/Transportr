@@ -48,8 +48,7 @@ Transportr зберігає часто використовувані місця
   <string name="action_fav_trip">Додати маршрут до уподобань</string>
   <string name="action_unfav_trip">Видалити маршрут з уподобань</string>
   <string name="action_switch_locations">Змінити Звідки і Куди</string>
-  <string name="action_time_type">Час</string>
-  <string name="trip_dep">Відправлення</string>
+	<string name="trip_dep">Відправлення</string>
   <string name="trip_arr">Прибуття</string>
   <string name="action_refresh">Оновити</string>
   <string name="action_navigation_expand">Показати проміжну зупинку</string>
@@ -173,9 +172,7 @@ Transportr зберігає часто використовувані місця
   <string name="warning_gps_off">Служби місцезнаходження вимкнено. Увімкніть їх в налаштуваннях.</string>
   <string name="onboarding_location_title">Потягни вверх</string>
   <string name="onboarding_location_message">Більше функцій приховано нижче</string>
-  <string name="onboarding_directions_title">Додаткові параметри пошуку</string>
-  <string name="onboarding_directions_message">Натисніть цей значок, щоб відкрити розширені параметри пошуку.</string>
-  <string name="select_products">Виберіть транспортні засоби</string>
+	<string name="select_products">Виберіть транспортні засоби</string>
   <string name="product_high_speed_train">Швидкісний поїзд</string>
   <string name="product_regional_train">Регіональний поїзд</string>
   <string name="product_suburban_train">Електричка</string>
