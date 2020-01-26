@@ -48,8 +48,7 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="action_fav_trip">Marker Rejse som Favorit</string>
   <string name="action_unfav_trip">Fjern Rejse som Favorit</string>
   <string name="action_switch_locations">Skift Fra og Til</string>
-  <string name="action_time_type">Klokken er</string>
-  <string name="trip_dep">Afgange</string>
+	<string name="trip_dep">Afgange</string>
   <string name="trip_arr">Ankomst</string>
   <string name="action_refresh">Genindlæs</string>
   <string name="action_navigation_expand">Vis Via</string>
@@ -174,9 +173,7 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="warning_gps_off">Placering er slået fra. Slå den til i instillinger.</string>
   <string name="onboarding_location_title">Træk op</string>
   <string name="onboarding_location_message">Flere funktioner gemmer sig neden under</string>
-  <string name="onboarding_directions_title">Flere Søgemuligheder</string>
-  <string name="onboarding_directions_message">Klik på dette ikon for at vise advancerede søgeinstillinger.</string>
-  <string name="select_products">Vælg Transporttype</string>
+	<string name="select_products">Vælg Transporttype</string>
   <string name="product_high_speed_train">Højhastighedstog</string>
   <string name="product_regional_train">Regional Tog</string>
   <string name="product_suburban_train">Forstadstog</string>

@@ -48,8 +48,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="action_fav_trip">Märk resan som favorit</string>
   <string name="action_unfav_trip">Avmärk resan som favorit</string>
   <string name="action_switch_locations">Växla Från och Till</string>
-  <string name="action_time_type">Tiden är</string>
-  <string name="trip_dep">Avgång</string>
+	<string name="trip_dep">Avgång</string>
   <string name="trip_arr">Ankomst</string>
   <string name="action_refresh">Uppdatera</string>
   <string name="action_navigation_expand">Visa Via</string>
@@ -174,9 +173,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="warning_gps_off">Platsen är avstängd. Vänligen slå på den i inställningarna.</string>
   <string name="onboarding_location_title">Dra upp</string>
   <string name="onboarding_location_message">Fler funktioner gömmer sig nedan</string>
-  <string name="onboarding_directions_title">Fler sökalternativ</string>
-  <string name="onboarding_directions_message">Klicka på den här ikonen för att visa avancerade sökinställningar.</string>
-  <string name="select_products">Välj transportmedel</string>
+	<string name="select_products">Välj transportmedel</string>
   <string name="product_high_speed_train">Snabbtåg</string>
   <string name="product_regional_train">Regionaltåg</string>
   <string name="product_suburban_train">Pendeltåg</string>

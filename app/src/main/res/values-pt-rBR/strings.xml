@@ -9,8 +9,7 @@
   <string name="action_fav_trip">Marcar viagem como favorita</string>
   <string name="action_unfav_trip">Desmarcar viagem como favorita</string>
   <string name="action_switch_locations">Alternar Início e Fim</string>
-  <string name="action_time_type">O tempo é</string>
-  <string name="trip_dep">Saída</string>
+	<string name="trip_dep">Saída</string>
   <string name="trip_arr">Chegada</string>
   <string name="action_refresh">Atualizar</string>
   <string name="action_navigation_expand">Exibir Via</string>
@@ -130,8 +129,7 @@
   <string name="warning_no_gps_fix">Ainda não foi possível determinar sua localização.</string>
   <string name="permission_denied_gps">Você não permitiu o acesso à sua localização, assim esse comando não irá funcionar. Por favor, conceda a permissão nas configurações do aplicativo.</string>
   <string name="warning_gps_off">A localização está desativada. Por favor, ative-a nas configurações.</string>
-  <string name="onboarding_directions_title">Mais Opções de Busca</string>
-  <string name="select_products">Selecione os meios de transporte</string>
+	<string name="select_products">Selecione os meios de transporte</string>
   <string name="product_high_speed_train">Trem de Alta Velocidade</string>
   <string name="product_regional_train">Trem Regional</string>
   <string name="product_suburban_train">Trem Suburbano</string>

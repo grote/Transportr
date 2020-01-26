@@ -29,8 +29,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="action_fav_trip">Marki kurson kiel ŝatatan</string>
   <string name="action_unfav_trip">Malmarki kurson kiel ŝatatan</string>
   <string name="action_switch_locations">Anstataŭigi komencpunkton per celo</string>
-  <string name="action_time_type">Tempo estas</string>
-  <string name="trip_dep">Forveturo</string>
+	<string name="trip_dep">Forveturo</string>
   <string name="trip_arr">Alveturo</string>
   <string name="action_refresh">Aktualigi</string>
   <string name="action_navigation_expand">Montri inter</string>
@@ -155,9 +154,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="warning_gps_off">Determinado de pozicio malŝaltita. Bonvolu aktivigi ĝin en agordoj.</string>
   <string name="onboarding_location_title">Ŝovumu supren</string>
   <string name="onboarding_location_message">Pliaj ebloj sube</string>
-  <string name="onboarding_directions_title">Pliaj serĉaj agordoj</string>
-  <string name="onboarding_directions_message">Frapetu tiun ĉi piktogramon por vidigi spertajn agordojn de serĉo.</string>
-  <string name="select_products">Elekti specojn de transportiloj</string>
+	<string name="select_products">Elekti specojn de transportiloj</string>
   <string name="product_high_speed_train">Vagonaro rapidega</string>
   <string name="product_regional_train">Vagonaro regiona</string>
   <string name="product_suburban_train">Vagonaro suburba</string>

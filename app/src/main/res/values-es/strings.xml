@@ -42,8 +42,7 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="action_fav_trip">Marcar viaje como favorito</string>
   <string name="action_unfav_trip">Desmarcar viaje como favorito</string>
   <string name="action_switch_locations">Intercambiar origen y destino</string>
-  <string name="action_time_type">Hora actual</string>
-  <string name="trip_dep">Salida</string>
+	<string name="trip_dep">Salida</string>
   <string name="trip_arr">Llegada</string>
   <string name="action_refresh">Actualizar</string>
   <string name="action_navigation_expand">Destino intermedio</string>
@@ -167,9 +166,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="warning_gps_off">La geolocalización está apagada. Por favor, enciéndela en los ajustes.</string>
   <string name="onboarding_location_title">Arrastra hacia arriba</string>
   <string name="onboarding_location_message">Hay más datos aquí abajo</string>
-  <string name="onboarding_directions_title">Más opciones de búsqueda</string>
-  <string name="onboarding_directions_message">Haz clic en este icono para mostrar opciones de búsqueda avanzadas</string>
-  <string name="select_products">Seleccionar medio de transporte</string>
+	<string name="select_products">Seleccionar medio de transporte</string>
   <string name="product_high_speed_train">Tren de alta velocidad</string>
   <string name="product_regional_train">Tren regional</string>
   <string name="product_suburban_train">Tren suburbano</string>

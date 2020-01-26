@@ -48,8 +48,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="action_fav_trip">Verbindung als Favorit markieren</string>
   <string name="action_unfav_trip">Markierung der Verbindung als Favorit aufheben</string>
   <string name="action_switch_locations">Von und Nach vertauschen</string>
-  <string name="action_time_type">Zeit ist</string>
-  <string name="trip_dep">Abfahrt</string>
+	<string name="trip_dep">Abfahrt</string>
   <string name="trip_arr">Ankunft</string>
   <string name="action_refresh">Aktualisieren</string>
   <string name="action_navigation_expand">Über anzeigen</string>
@@ -174,9 +173,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="warning_gps_off">Der Standort ist ausgeschaltet. Bitte schalte es in den Einstellungen ein.</string>
   <string name="onboarding_location_title">Hochziehen</string>
   <string name="onboarding_location_message">Weitere Funktionen verbergen sich weiter unten</string>
-  <string name="onboarding_directions_title">Weitere Suchoptionen</string>
-  <string name="onboarding_directions_message">Klicke auf dieses Symbol, um die erweiterten Sucheinstellungen anzuzeigen.</string>
-  <string name="select_products">Wähle das Verkehrsmittel</string>
+	<string name="select_products">Wähle das Verkehrsmittel</string>
   <string name="product_high_speed_train">Hochgeschwindigkeitszug</string>
   <string name="product_regional_train">Regionalbahn</string>
   <string name="product_suburban_train">S-Bahn</string>

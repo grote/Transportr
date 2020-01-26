@@ -48,8 +48,7 @@ Transportr сохраняет часто используемые местопо
   <string name="action_fav_trip">Добавить маршрут в избранное</string>
   <string name="action_unfav_trip">Удалить маршрут из избранного</string>
   <string name="action_switch_locations">Поменять местами Откуда и Куда</string>
-  <string name="action_time_type">Время</string>
-  <string name="trip_dep">Отбытие</string>
+	<string name="trip_dep">Отбытие</string>
   <string name="trip_arr">Прибытие</string>
   <string name="action_refresh">Обновить</string>
   <string name="action_navigation_expand">Показать через</string>
@@ -172,9 +171,7 @@ Transportr сохраняет часто используемые местопо
   <string name="warning_gps_off">Местоположение отключено. Пожалуйста, включите его в настройках.</string>
   <string name="onboarding_location_title">Потянуть</string>
   <string name="onboarding_location_message">Другие функции скрываются ниже</string>
-  <string name="onboarding_directions_title">Дополнительные параметры поиска</string>
-  <string name="onboarding_directions_message">Щелкните этот значок, чтобы открыть дополнительные параметры поиска.</string>
-  <string name="select_products">Выбор транспортного средства</string>
+	<string name="select_products">Выбор транспортного средства</string>
   <string name="product_high_speed_train">Скоростной поезд</string>
   <string name="product_regional_train">Региональный поезд</string>
   <string name="product_suburban_train">Пригородный поезд</string>

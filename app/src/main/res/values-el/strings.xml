@@ -48,8 +48,7 @@
   <string name="action_fav_trip">Σημείωση ταξιδιού ως αγαπημένο</string>
   <string name="action_unfav_trip">Αποσημείωση ταξιδιού ως αγαπημένο</string>
   <string name="action_switch_locations">Εναλλαγή Από και Προς</string>
-  <string name="action_time_type">Η ώρα είναι</string>
-  <string name="trip_dep">Αναχώρηση</string>
+	<string name="trip_dep">Αναχώρηση</string>
   <string name="trip_arr">Άφιξη</string>
   <string name="action_refresh">Ανανέωση</string>
   <string name="action_navigation_expand">Εμφάνιση ενδιάμεσων στάσεων</string>
@@ -167,9 +166,7 @@
   <string name="warning_gps_off">Η τοποθεσία είναι σβηστή. Παρακαλώ ανάψτε την στις ρυθμίσεις.</string>
   <string name="onboarding_location_title">Σύρετε επάνω</string>
   <string name="onboarding_location_message">Περισσότερα χαρακτηριστικά κρύβονται παρακάτω</string>
-  <string name="onboarding_directions_title">Περισσότερες επιλογές αναζήτησης</string>
-  <string name="onboarding_directions_message">Με κλικ σε αυτό το εικονίδιο αποκαλύπτονται προχωρημένες ρυθμίσεις αναζήτησης.</string>
-  <string name="select_products">Επιλογή μέσων μεταφοράς</string>
+	<string name="select_products">Επιλογή μέσων μεταφοράς</string>
   <string name="product_high_speed_train">Τρένο υψηλής ταχύτητας</string>
   <string name="product_regional_train">Τοπικό τρένο</string>
   <string name="product_suburban_train">Προαστιακό τρένο</string>

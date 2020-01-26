@@ -195,7 +195,7 @@ public class DeparturesActivity extends TransportrActivity
 				return true;
 			case R.id.action_time:
 				if (calendar == null) calendar = Calendar.getInstance();
-				TimeDateFragment fragment = TimeDateFragment.newInstance(calendar);
+				TimeDateFragment fragment = TimeDateFragment.newInstance(calendar, null);
 				fragment.setTimeDateListener(this);
 				fragment.show(getSupportFragmentManager(), TimeDateFragment.TAG);
 				return true;
@@ -213,6 +213,10 @@ public class DeparturesActivity extends TransportrActivity
 
 		Bundle args = getBundle(location.getId(), calendar.getTime(), MAX_DEPARTURES);
 		getSupportLoaderManager().restartLoader(LOADER_DEPARTURES, args, this).forceLoad();
+	}
+
+	@Override
+	public void onDepartureOrArrivalSet(boolean departure) {
 	}
 
 	private synchronized void loadMoreDepartures(boolean later) {

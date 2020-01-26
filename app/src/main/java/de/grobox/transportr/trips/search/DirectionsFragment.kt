@@ -27,10 +27,10 @@ import android.view.View.*
 import android.view.animation.Animation
 import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.TranslateAnimation
+import androidx.appcompat.widget.TooltipCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
@@ -44,6 +44,7 @@ import de.grobox.transportr.utils.Constants.DEPARTURE
 import de.grobox.transportr.utils.Constants.EXPANDED
 import de.grobox.transportr.utils.DateUtils
 import de.grobox.transportr.utils.DateUtils.*
+import de.schildbach.pte.dto.Product
 import kotlinx.android.synthetic.main.fragment_directions_form.*
 import java.util.*
 import javax.annotation.ParametersAreNonnullByDefault
@@ -58,15 +59,12 @@ class DirectionsFragment : TransportrFragment() {
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: DirectionsViewModel
-    private var expandItem: MenuItem? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_directions_form, container, false)
         component.inject(this)
 
-        setHasOptionsMenu(true)
-
-        viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(DirectionsViewModel::class.java)
+        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(DirectionsViewModel::class.java)
 
         return v
     }
@@ -89,57 +87,47 @@ class DirectionsFragment : TransportrFragment() {
         viaLocation.setLocationViewListener(viewModel)
         toLocation.setLocationViewListener(viewModel)
 
-        viewModel.home.observe(this, Observer { homeLocation ->
-            fromLocation.setHomeLocation(homeLocation)
-            viaLocation.setHomeLocation(homeLocation)
-            toLocation.setHomeLocation(homeLocation)
+        viewModel.home.observe(viewLifecycleOwner, Observer {
+            fromLocation.setHomeLocation(it)
+            viaLocation.setHomeLocation(it)
+            toLocation.setHomeLocation(it)
         })
-        viewModel.work.observe(this, Observer { workLocation ->
-            fromLocation.setWorkLocation(workLocation)
-            viaLocation.setWorkLocation(workLocation)
-            toLocation.setWorkLocation(workLocation)
+        viewModel.work.observe(viewLifecycleOwner, Observer {
+            fromLocation.setWorkLocation(it)
+            viaLocation.setWorkLocation(it)
+            toLocation.setWorkLocation(it)
         })
-        viewModel.locations.observe(this, Observer { favoriteLocations ->
-            if (favoriteLocations == null) return@Observer
-            fromLocation.setFavoriteLocations(favoriteLocations)
-            viaLocation.setFavoriteLocations(favoriteLocations)
-            toLocation.setFavoriteLocations(favoriteLocations)
+        viewModel.locations.observe(viewLifecycleOwner, Observer {
+            if (it == null) return@Observer
+            fromLocation.setFavoriteLocations(it)
+            viaLocation.setFavoriteLocations(it)
+            toLocation.setFavoriteLocations(it)
         })
-        viewModel.fromLocation.observe(this, Observer { location ->
-            fromLocation.setLocation(location)
-            if (location != null) toLocation.requestFocus()
+        viewModel.fromLocation.observe(viewLifecycleOwner, Observer {
+            fromLocation.setLocation(it)
+            if (it != null) toLocation.requestFocus()
         })
-        viewModel.viaLocation.observe(this, Observer { location -> viaLocation.setLocation(location) })
-        viewModel.toLocation.observe(this, Observer { location -> toLocation.setLocation(location) })
-        viewModel.isDeparture.observe(this, Observer<Boolean> { this.onIsDepartureChanged(it) })
-        viewModel.isExpanded.observe(this, Observer<Boolean> { this.onViaVisibleChanged(it) })
-        viewModel.calendar.observe(this, Observer { this.onCalendarUpdated(it) })
-        viewModel.findGpsLocation.observe(this, Observer { this.onFindGpsLocation(it) })
-        viewModel.isFavTrip.observe(this, Observer { this.onFavStatusChanged(it) })
+        viewModel.viaLocation.observe(viewLifecycleOwner, Observer { viaLocation.setLocation(it) })
+        viewModel.toLocation.observe(viewLifecycleOwner, Observer { toLocation.setLocation(it) })
+        viewModel.isDeparture.observe(viewLifecycleOwner, Observer<Boolean> { this.onIsDepartureChanged(it) })
+        viewModel.isExpanded.observe(viewLifecycleOwner, Observer<Boolean> { this.onViaVisibleChanged(it) })
+        viewModel.calendar.observe(viewLifecycleOwner, Observer { this.onCalendarUpdated(it) })
+        viewModel.findGpsLocation.observe(viewLifecycleOwner, Observer { this.onFindGpsLocation(it) })
+        viewModel.isFavTrip.observe(viewLifecycleOwner, Observer { this.onFavStatusChanged(it) })
+        viewModel.products.observe(viewLifecycleOwner, Observer { this.onProductsChanged(it) })
 
-        favIcon.visibility = VISIBLE
         favIcon.setOnClickListener { viewModel.toggleFavTrip() }
 
-        departureIcon.setOnClickListener { viewModel.toggleDeparture() }
-
-        val onTimeClickListener = OnClickListener {
+        timeBackground.setOnClickListener {
             if (viewModel.calendar.value == null) throw IllegalStateException()
-            val fragment = TimeDateFragment.newInstance(viewModel.calendar.value!!)
+            val fragment = TimeDateFragment.newInstance(viewModel.calendar.value!!, viewModel.isDeparture.value!!)
             fragment.setTimeDateListener(viewModel)
             fragment.show(activity!!.supportFragmentManager, TimeDateFragment.TAG)
         }
-        val onTimeLongClickListener = OnLongClickListener {
+        timeBackground.setOnLongClickListener {
             viewModel.resetCalender()
             true
         }
-
-        timeIcon.setOnClickListener(onTimeClickListener)
-        date.setOnClickListener(onTimeClickListener)
-        time.setOnClickListener(onTimeClickListener)
-
-        timeIcon.setOnLongClickListener(onTimeLongClickListener)
-        date.setOnLongClickListener(onTimeLongClickListener)
-        time.setOnLongClickListener(onTimeLongClickListener)
 
         productsIcon.setOnClickListener {
             activity?.let { a ->
@@ -147,6 +135,11 @@ class DirectionsFragment : TransportrFragment() {
             }
         }
         swapIcon.setOnClickListener { swapLocations() }
+        viaIcon.setOnClickListener { viewModel.toggleIsExpanded() }
+
+        TooltipCompat.setTooltipText(productsIcon, getString(R.string.action_choose_products))
+        TooltipCompat.setTooltipText(swapIcon, getString(R.string.action_switch_locations))
+        TooltipCompat.setTooltipText(viaIcon, getString(R.string.action_navigation_expand))
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -166,22 +159,7 @@ class DirectionsFragment : TransportrFragment() {
             viewModel.setToLocation(toLocation.getLocation())
             viewModel.onTimeAndDateSet(savedInstanceState.getSerializable(DATE) as Calendar)
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.directions, menu)
-        expandItem = menu.findItem(R.id.action_navigation_expand)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_navigation_expand -> {
-                viewModel.setIsExpanded(!item.isChecked)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        (activity!!.supportFragmentManager.findFragmentByTag(TimeDateFragment.TAG) as? TimeDateFragment)?.setTimeDateListener(viewModel)
     }
 
     private fun onCalendarUpdated(calendar: Calendar?) {
@@ -251,12 +229,11 @@ class DirectionsFragment : TransportrFragment() {
     }
 
     private fun onIsDepartureChanged(isDeparture: Boolean) {
-        departureIcon.setImageResource(if (isDeparture) R.drawable.ic_trip_departure else R.drawable.ic_trip_arrival)
+        departure.text = getString(if (isDeparture) R.string.trip_dep else R.string.trip_arr)
     }
 
     private fun onViaVisibleChanged(viaVisible: Boolean) {
-        expandItem?.isChecked = viaVisible
-        expandItem?.setIcon(if (viaVisible) R.drawable.ic_action_navigation_unfold_less_white else R.drawable.ic_action_navigation_unfold_more_white)
+        viaIcon?.setImageResource(if (viaVisible) R.drawable.ic_action_navigation_unfold_less_white else R.drawable.ic_action_navigation_unfold_more_white)
         viaCard.visibility = if (viaVisible) VISIBLE else GONE
     }
 
@@ -271,7 +248,7 @@ class DirectionsFragment : TransportrFragment() {
         }
         fromLocation.setSearching()
         toLocation.requestFocus()
-        viewModel.locationLiveData.observe(this, Observer { location ->
+        viewModel.locationLiveData.observe(viewLifecycleOwner, Observer { location ->
             viewModel.setFromLocation(location)
             viewModel.search()
             viewModel.locationLiveData.removeObservers(this@DirectionsFragment)
@@ -283,12 +260,15 @@ class DirectionsFragment : TransportrFragment() {
             favIcon.visibility = INVISIBLE
         } else {
             favIcon.visibility = VISIBLE
-            if (isFav) {
-                favIcon.setImageResource(R.drawable.ic_action_star)
-            } else {
-                favIcon.setImageResource(R.drawable.ic_action_star_empty)
-            }
+            favIcon.setImageResource(if (isFav) R.drawable.ic_action_star else R.drawable.ic_action_star_empty)
+            val tooltip = getString(if (isFav) R.string.action_unfav_trip else R.string.action_fav_trip)
+            favIcon.contentDescription = tooltip
+            TooltipCompat.setTooltipText(favIcon, tooltip)
         }
+    }
+
+    private fun onProductsChanged(products: EnumSet<Product>) {
+        productsMarked.visibility = if (Product.ALL == products) GONE else VISIBLE
     }
 
 }

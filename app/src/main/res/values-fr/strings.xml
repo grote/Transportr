@@ -38,8 +38,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="action_fav_trip">Marquer le trajet comme favori</string>
   <string name="action_unfav_trip">Supprimer la marque de trajet favori</string>
   <string name="action_switch_locations">Interchanger De et À</string>
-  <string name="action_time_type">Il est</string>
-  <string name="trip_dep">Départ</string>
+	<string name="trip_dep">Départ</string>
   <string name="trip_arr">Arrivée</string>
   <string name="action_refresh">Actualiser</string>
   <string name="action_navigation_expand">Afficher via</string>
@@ -164,9 +163,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="warning_gps_off">La localisation est désactivée. Veuillez l’activer dans les paramètres.</string>
   <string name="onboarding_location_title">Tirer vers le haut</string>
   <string name="onboarding_location_message">D’autres fonctions se cachent ci-dessous</string>
-  <string name="onboarding_directions_title">Autres options de recherche</string>
-  <string name="onboarding_directions_message">Cliquer sur cette icône pour accéder aux paramètres de recherche approfondie.</string>
-  <string name="select_products">Choisir un moyen de transport</string>
+	<string name="select_products">Choisir un moyen de transport</string>
   <string name="product_high_speed_train">Train à grande vitesse</string>
   <string name="product_regional_train">Train régional</string>
   <string name="product_suburban_train">Train de banlieue</string>

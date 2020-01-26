@@ -137,6 +137,12 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		search();
 	}
 
+	@Override
+	public void onDepartureOrArrivalSet(boolean departure) {
+		setIsDeparture(departure);
+		search();
+	}
+
 	void resetCalender() {
 		now.setValue(true);
 		search();
@@ -164,11 +170,6 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 		return isDeparture;
 	}
 
-	void toggleDeparture() {
-		isDeparture.setValue(!(isDeparture.getValue() == null || isDeparture.getValue()));
-		search();
-	}
-
 	void setIsDeparture(boolean departure) {
 		isDeparture.setValue(departure);
 		search();
@@ -181,6 +182,8 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	void setIsExpanded(boolean expanded) {
 		isExpanded.setValue(expanded);
 	}
+
+	void toggleIsExpanded() { isExpanded.setValue(!isExpanded.getValue());}
 
 	MutableLiveData<Boolean> isFavTrip() {
 		return tripsRepository.isFavTrip();
@@ -265,5 +268,4 @@ public class DirectionsViewModel extends SavedSearchesViewModel implements TimeD
 	LiveData<String> getQueryMoreError() {
 		return tripsRepository.getQueryMoreError();
 	}
-
 }

@@ -7,8 +7,7 @@
   <string name="drawer_report_issue">Hata Bildirin</string>
   <string name="action_fav_trip">Geziyi Beğenilen Olarak İşaretle</string>
   <string name="action_unfav_trip">Geziyi Beğenilen Olarak İşaretleme</string>
-  <string name="action_time_type">Saat</string>
-  <string name="trip_dep">Kalkış</string>
+	<string name="trip_dep">Kalkış</string>
   <string name="trip_arr">Varış</string>
   <string name="action_refresh">Tazele</string>
   <string name="action_navigation_expand">ile Göster</string>
