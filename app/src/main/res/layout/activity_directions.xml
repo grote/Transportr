@@ -19,7 +19,7 @@
 			android:fitsSystemWindows="true"
 			app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-			<fragment
+			<androidx.fragment.app.FragmentContainerView
 				android:id="@+id/directionsForm"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"

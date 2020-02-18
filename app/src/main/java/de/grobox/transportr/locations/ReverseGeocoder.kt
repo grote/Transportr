@@ -115,15 +115,15 @@ class ReverseGeocoder(private val context: Context, private val callback: Revers
                 try {
                     val data = JSONObject(result)
                     val address = data.getJSONObject("address")
-                    var name: String? = address.optString("road", null)
-                    if (name != null) {
-                        val number = address.optString("house_number", null)
-                        if (number != null) name += " $number"
+                    var name = address.optString("road")
+                    if (name.isNotEmpty()) {
+                        val number = address.optString("house_number")
+                        if (number.isNotEmpty()) name += " $number"
                     } else {
                         name = data.getString("display_name").split(",")[0]
                     }
-                    var place: String? = address.optString("city", null)
-                    if (place == null) place = address.optString("state", null)
+                    var place = address.optString("city")
+                    if (place.isEmpty()) place = address.optString("state")
 
                     val point = Point.fromDouble(lat, lon)
                     val l = Location(ADDRESS, null, point, place, name)

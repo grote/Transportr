@@ -24,7 +24,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import de.grobox.transportr.R
@@ -63,7 +62,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
         setContentView(R.layout.activity_directions)
 
         // get view model and observe data
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(DirectionsViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(DirectionsViewModel::class.java)
         viewModel.showTrips.observe(this, Observer { showTrips() })
 
         appBarLayout.addOnOffsetChangedListener(this)

@@ -164,8 +164,7 @@
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bélgica</string>
   <string name="np_desc_sncb">Transporte público na Bélgica</string>
-  <string name="np_region_br">Brasil</string>
-  <string name="np_name_br">Brasil</string>
+	<string name="np_name_br">Brasil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte e Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Muitas rotas de ônibus, sem Executivos</string>
@@ -213,8 +212,7 @@
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basileia, Basileia-Cidade, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alsácia, Baixo Reno, Estrasburgo, Friburgo em Brisgóvia</string>
-  <string name="np_desc_vbb">Brandemburgo, Berlim</string>
+	<string name="np_desc_vbb">Brandemburgo, Berlim</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxônia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nurembergue, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -241,9 +239,7 @@
   <string name="np_desc_lu">Luxemburgo</string>
   <string name="np_region_netherlands">Países Baixos</string>
   <string name="np_desc_ns">Países Baixos, Amsterdã</string>
-  <string name="np_region_norway">Noruega</string>
-  <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
-  <string name="np_name_nz">Nova Zelândia </string>
+	<string name="np_name_nz">Nova Zelândia </string>
   <string name="np_desc_nz">Nova Zelândia, Welligton, Auckland</string>
   <string name="np_region_poland">Polônia</string>
   <string name="np_desc_pl">Polônia, ferrovias na Polônia</string>
@@ -272,8 +268,7 @@
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Gana</string>
   <string name="np_desc_ghana">Acra</string>
-  <string name="np_region_central_america">América Central</string>
-  <string name="np_name_nicaragua">Nicarágua</string>
+	<string name="np_name_nicaragua">Nicarágua</string>
   <string name="np_desc_nicaragua">Ônibus urbano, rural e nacional providos por MapaNica.net e colaboradores do OpenStreetMap</string>
   <string name="maintainer">Mantenedores</string>
   <string name="contributors">Contribuidores</string>

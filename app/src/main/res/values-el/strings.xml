@@ -203,8 +203,7 @@
   <string name="np_desc_wien">Βιέννη</string>
   <string name="np_region_belgium">Βέλγιο</string>
   <string name="np_desc_sncb">Δημόσιες μεταφορές στο Βέλγιο</string>
-  <string name="np_region_br">Βραζιλία</string>
-  <string name="np_name_br">Βραζιλία</string>
+	<string name="np_name_br">Βραζιλία</string>
   <string name="np_desc_br">Σάο Πάολο, Ρίο ντε Τζανέιρο, Belo Horizonte και Πόρτο Αλέγκρε</string>
   <string name="np_name_br_floripa">Φλοριανόπολις</string>
   <string name="np_desc_br_floripa">Πολλαπλές διαδρομές λεωφορείων, όχι Executivos</string>
@@ -255,8 +254,7 @@
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Βασιλεία, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Φρανκρούρτη Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Ρόστοκ</string>
-  <string name="np_desc_vagfr">Αλσατία, Bas-Rhin, Στρασβούργο, Freiburg im Breisgau</string>
-  <string name="np_desc_vbb">Βρανδεμβούργο, Βερολίνο</string>
+	<string name="np_desc_vbb">Βρανδεμβούργο, Βερολίνο</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Κάτω Σαξωνία, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Νυρεμβέργη, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Σάαρλαντ, Σααρμπρύκεν</string>
@@ -284,9 +282,7 @@
   <string name="np_region_netherlands">Ολλανδία</string>
   <string name="np_desc_ns">Ολλανδία, Άμστερνταμ</string>
   <string name="np_desc_negentwee">Όλες οι δημόσιες μεταφορές της Ολλανδίας</string>
-  <string name="np_region_norway">Νορβηγία</string>
-  <string name="np_desc_nri">Νορβηγία, Όσλο, Bergen</string>
-  <string name="np_name_nz">Νέα Ζηλανδία</string>
+	<string name="np_name_nz">Νέα Ζηλανδία</string>
   <string name="np_desc_nz">Νέα Ζηλανδία, Ουέλιγκτον, Όκλαντ</string>
   <string name="np_region_poland">Πολωνία</string>
   <string name="np_desc_pl">Πολωνία, αυτοκινητόδρομοι στην Πολωνία</string>
@@ -313,8 +309,7 @@
   <string name="np_name_costa_rica">Κόστα Ρίκα</string>
   <string name="np_name_ghana">Γκάνα</string>
   <string name="np_desc_ghana">Άκκρα</string>
-  <string name="np_region_central_america">Κεντρική Αμερική</string>
-  <string name="np_name_nicaragua">Νικαράγουα</string>
+	<string name="np_name_nicaragua">Νικαράγουα</string>
   <string name="np_desc_nicaragua">Αστικά, αγροτικά και εθνικά δρομολόγια λεωφορείων που παρέχονται από τους συνεργάτες MapaNica.net και OpenStreetMap</string>
   <string name="maintainer">Συντηρητής</string>
   <string name="contributors">Συνεισφέροντες</string>

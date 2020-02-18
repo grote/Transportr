@@ -19,7 +19,7 @@
 
 package de.grobox.transportr.map
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment
 import de.grobox.transportr.favorites.trips.FavoriteTripsFragment
@@ -37,7 +37,7 @@ internal class SavedSearchesFragment : FavoriteTripsFragment<MapViewModel>() {
 
     override fun getViewModel(): MapViewModel {
         component.inject(this)
-        return ViewModelProviders.of(activity!!, viewModelFactory).get(viewModelClass)
+        return ViewModelProvider(activity!!, viewModelFactory).get(viewModelClass)
     }
 
     override fun getHomePickerDialogFragment(): HomePickerDialogFragment {
@@ -55,13 +55,13 @@ internal class SavedSearchesFragment : FavoriteTripsFragment<MapViewModel>() {
 
     class HomePickerFragment : HomePickerDialogFragment() {
         override fun viewModel(): LocationsViewModel {
-            return ViewModelProviders.of(activity!!, viewModelFactory).get(viewModelClass)
+            return ViewModelProvider(activity!!, viewModelFactory).get(viewModelClass)
         }
     }
 
     class WorkPickerFragment : WorkPickerDialogFragment() {
         override fun viewModel(): LocationsViewModel {
-            return ViewModelProviders.of(activity!!, viewModelFactory).get(viewModelClass)
+            return ViewModelProvider(activity!!, viewModelFactory).get(viewModelClass)
         }
     }
 

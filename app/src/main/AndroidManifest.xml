@@ -38,7 +38,8 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme.Light"
-		tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+		tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+		tools:targetApi="n">
 
 		<activity
 			android:name="de.grobox.transportr.map.MapActivity"

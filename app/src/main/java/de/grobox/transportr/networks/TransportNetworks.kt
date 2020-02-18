@@ -19,6 +19,7 @@
 
 package de.grobox.transportr.networks
 
+import android.annotation.SuppressLint
 import android.content.Context
 import de.grobox.transportr.R
 import de.grobox.transportr.networks.TransportNetwork.Status.ALPHA
@@ -27,6 +28,7 @@ import de.schildbach.pte.*
 import okhttp3.HttpUrl
 import java.util.*
 
+@SuppressLint("ConstantLocale")
 private val networks = arrayOf(
     Continent(
         R.string.np_continent_europe, R.drawable.continent_europe,

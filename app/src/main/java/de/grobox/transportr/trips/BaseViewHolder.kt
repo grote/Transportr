@@ -19,6 +19,7 @@
 
 package de.grobox.transportr.trips
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.view.View.GONE
@@ -81,6 +82,7 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         timeView?.let { it.text = getTime(context, time) }
     }
 
+    @SuppressLint("SetTextI18n")
     protected fun TextView.addPlatform(position: Position?) {
         if (position == null) return
         text = "$text ${context.getString(R.string.platform, position.toString())}"

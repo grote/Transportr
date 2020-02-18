@@ -212,8 +212,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Belgika</string>
   <string name="np_desc_sncb">Belgikako garraio publikoa</string>
-  <string name="np_region_br">Brasil</string>
-  <string name="np_name_br">Brasil</string>
+	<string name="np_name_br">Brasil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte eta Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Autobus bide anitz, ez Executivos</string>
@@ -265,8 +264,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alsazia, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
-  <string name="np_desc_vbb">Brandenburgo, Berlin</string>
+	<string name="np_desc_vbb">Brandenburgo, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Saxonia behera Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Sarre, Saarbrücken</string>
@@ -294,9 +292,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_region_netherlands">Herbehereak</string>
   <string name="np_desc_ns">Herbehereak, Amsterdam</string>
   <string name="np_desc_negentwee">Herbehereetako garraio publiko guztia </string>
-  <string name="np_region_norway">Norvegia</string>
-  <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
-  <string name="np_name_nz">Zeelanda Berria</string>
+	<string name="np_name_nz">Zeelanda Berria</string>
   <string name="np_desc_nz">Zeelanda Berria, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, Poloniako trenbideak</string>
@@ -328,8 +324,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
-  <string name="np_region_central_america">Ertamerika</string>
-  <string name="np_name_nicaragua">Nikaragua</string>
+	<string name="np_name_nicaragua">Nikaragua</string>
   <string name="np_desc_nicaragua">Hiri, herri eta herrialdeko autobusak MapaNica.net eta OpenStreetMap laguntzaileei esker</string>
   <string name="maintainer">Mantentzailea</string>
   <string name="contributors">Laguntzaileak</string>

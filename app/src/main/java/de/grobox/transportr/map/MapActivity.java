@@ -105,7 +105,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		});
 
 		// get view model and observe data
-		viewModel = ViewModelProviders.of(this, viewModelFactory).get(MapViewModel.class);
+		viewModel = new ViewModelProvider(this, viewModelFactory).get(MapViewModel.class);
 		gpsController = viewModel.getGpsController();
 		viewModel.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
 		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));

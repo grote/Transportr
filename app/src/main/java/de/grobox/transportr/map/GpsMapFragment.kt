@@ -24,8 +24,11 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.Observer
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.content.res.ColorStateList
-import android.graphics.PorterDuff.Mode.SRC_IN
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.annotation.CallSuper
@@ -200,7 +203,7 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
         } else if (gpsState.hasFix && !gpsState.isOld && gpsState.isTracking) {
             iconColor = ContextCompat.getColor(context, R.color.fabForegroundFollow)
         }
-        gpsFab.drawable.setColorFilter(iconColor, SRC_IN)
+        gpsFab.drawable.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN)
         gpsFab.backgroundTintList = backgroundColor
 
         // Location Marker Icon Style

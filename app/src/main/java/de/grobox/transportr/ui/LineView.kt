@@ -67,7 +67,9 @@ class LineView(context: Context, attr: AttributeSet?) : AppCompatTextView(contex
 
     private fun setDrawable(@DrawableRes res: Int, @ColorInt color: Int?) {
         val drawable = getDrawable(context, res)!!
-        if (color != null) drawable.mutate().setColorFilter(color, SRC_IN)
+        color?.let {
+            drawable.mutate().setColorFilter(color, SRC_IN)
+        }
         setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
     }
 

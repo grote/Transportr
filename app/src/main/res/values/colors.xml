@@ -9,7 +9,7 @@
     <color name="accent">#e53935</color>
 
     <!-- To enable accent color in settings for devices with API <21 -->
-    <color name="preference_fallback_accent_color" tools:override="true">@color/accent</color>
+    <color name="preference_fallback_accent_color" tools:override="true" tools:ignore="UnusedResources">@color/accent</color>
 
     <color name="drawableTintDark">#ffffffff</color>
     <color name="drawableTintLight">@color/md_grey_600</color>
@@ -23,10 +23,13 @@
     <color name="fabForegroundFollow">@color/fabBackgroundMoved</color>
     <color name="fabForegroundMoved">@color/md_white_1000</color>
 
+    <color name="cardview_dark_background" tools:override="true">#FF424242</color>
+    <color name="cardview_light_background" tools:override="true">#FFFFFFFF</color>
+
     <!-- Material Drawer -->
-    <color name="material_drawer_header_selection_text">#FFFFFFFF</color>
-    <color name="material_drawer_header_selection_subtext">#B3FFFFFF</color>
-    <color name="material_drawer_dark_header_selection_text">#FFFFFFFF</color>
-    <color name="material_drawer_dark_header_selection_subtext">#B3FFFFFF</color>
+    <color name="material_drawer_header_selection_text" tools:ignore="UnusedResources">#FFFFFFFF</color>
+    <color name="material_drawer_header_selection_subtext" tools:ignore="UnusedResources">#B3FFFFFF</color>
+    <color name="material_drawer_dark_header_selection_text" tools:ignore="UnusedResources">#FFFFFFFF</color>
+    <color name="material_drawer_dark_header_selection_subtext" tools:ignore="UnusedResources">#B3FFFFFF</color>
 
 </resources>

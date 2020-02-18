@@ -19,6 +19,7 @@
 
 package de.grobox.transportr.trips.search;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -121,13 +122,13 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		list.setLayoutManager(layoutManager);
 		list.setHasFixedSize(false);
 
-		viewModel = ViewModelProviders.of(requireActivity(), viewModelFactory).get(DirectionsViewModel.class);
-		viewModel.topSwipeEnabled.observe(this, this::onSwipeEnabledChanged);
-		viewModel.getQueryMoreState().observe(this, this::updateSwipeState);
-		viewModel.getTrips().observe(this, this::onTripsLoaded);
-		viewModel.getQueryError().observe(this, this::onError);
-		viewModel.getQueryPTEError().observe(this, this::onPTEError);
-		viewModel.getQueryMoreError().observe(this, this::onMoreError);
+		viewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(DirectionsViewModel.class);
+		viewModel.topSwipeEnabled.observe(getViewLifecycleOwner(), this::onSwipeEnabledChanged);
+		viewModel.getQueryMoreState().observe(getViewLifecycleOwner(), this::updateSwipeState);
+		viewModel.getTrips().observe(getViewLifecycleOwner(), this::onTripsLoaded);
+		viewModel.getQueryError().observe(getViewLifecycleOwner(), this::onError);
+		viewModel.getQueryPTEError().observe(getViewLifecycleOwner(), this::onPTEError);
+		viewModel.getQueryMoreError().observe(getViewLifecycleOwner(), this::onMoreError);
 
 		adapter = new TripAdapter(this);
 		adapter.setHasStableIds(false);
@@ -201,6 +202,7 @@ public class TripsFragment extends TransportrFragment implements OnRefreshListen
 		showErrorView(progressBar, list, errorLayout);
 	}
 
+	@SuppressLint("SetTextI18n")
 	private void onPTEError(@Nullable Pair<String,String> error) {
 		if (error == null) return;
 		errorText.setText(error.first + "\n\n" + getString(R.string.trip_error_pte, "public-transport-enabler"));

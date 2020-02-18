@@ -85,7 +85,7 @@ class MapActivityTest : ScreengrabTest() {
     }
 
     @Test
-    @Ignore // TODO fix
+    @Ignore("currently broken") // TODO fix
     fun favoritesTest() {
         locationRepository.setHomeLocation(getFrom(0))
         locationRepository.setWorkLocation(getTo(0))

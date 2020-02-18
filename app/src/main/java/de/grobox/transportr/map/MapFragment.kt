@@ -27,7 +27,7 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+import androidx.loader.app.LoaderManager
 import androidx.loader.app.LoaderManager.LoaderCallbacks
 import androidx.loader.content.Loader
 import com.mapbox.mapboxsdk.annotations.Marker
@@ -67,8 +67,8 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
 
         component.inject(this)
 
-        viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(MapViewModel::class.java)
-        viewModel.transportNetwork.observe(this, Observer { onTransportNetworkChanged(it) })
+        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(MapViewModel::class.java)
+        viewModel.transportNetwork.observe(viewLifecycleOwner, Observer { onTransportNetworkChanged(it) })
         gpsController = viewModel.gpsController
 
         nearbyStationsDrawer = NearbyStationsDrawer(context)
@@ -81,7 +81,7 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
 
         val location = Location(STATION, "fake")
         val args = NearbyLocationsLoader.getBundle(location, 0)
-        activity?.supportLoaderManager?.initLoader(LOADER_NEARBY_STATIONS, args, this)
+        LoaderManager.getInstance(this).initLoader(LOADER_NEARBY_STATIONS, args, this)
 
         mapboxMap.addOnMapClickListener { viewModel.mapClicked.call() }
         mapboxMap.addOnMapLongClickListener { point -> viewModel.selectLocation(WrapLocation(point)) }
@@ -133,7 +133,7 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
             // activity will reload and then zoom in to new area because this is set
             viewModel.transportNetworkWasChanged = true
             // prevent loader from re-adding nearby stations
-            activity?.supportLoaderManager?.destroyLoader(LOADER_NEARBY_STATIONS)
+            LoaderManager.getInstance(this).destroyLoader(LOADER_NEARBY_STATIONS)
         }
     }
 
@@ -158,7 +158,7 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
     private fun findNearbyStations(location: WrapLocation?) {
         if (location == null) return
         val args = NearbyLocationsLoader.getBundle(location.location, 1000)
-        activity?.supportLoaderManager?.restartLoader(LOADER_NEARBY_STATIONS, args, this)?.forceLoad()
+        LoaderManager.getInstance(this).restartLoader(LOADER_NEARBY_STATIONS, args, this).forceLoad()
     }
 
     /* Nearby Stations Loader */

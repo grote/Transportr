@@ -84,7 +84,7 @@ class PickTransportNetworkActivity : TransportrActivity(), ISelectionListener<II
         selectItem()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle) {
         val newState = adapter.saveInstanceState(outState)
         super.onSaveInstanceState(newState, outPersistentState)
     }
