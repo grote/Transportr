@@ -131,8 +131,7 @@
   <string name="np_desc_wien">Viyana</string>
   <string name="np_region_belgium">Belçika</string>
   <string name="np_desc_sncb">Belçika\'da toplu taşıma</string>
-  <string name="np_region_br">Brezilya</string>
-  <string name="np_name_br">Brezilya</string>
+	<string name="np_name_br">Brezilya</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte ve Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_region_canada">Kanada</string>
@@ -180,8 +179,7 @@
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
-  <string name="np_desc_vbb">Brandenburg, Berlin</string>
+	<string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -208,9 +206,7 @@
   <string name="np_region_netherlands">Hollanda</string>
   <string name="np_desc_ns">Hollanda, Amsterdam</string>
   <string name="np_desc_negentwee">Hollanda\'daki tüm toplu taşımalar</string>
-  <string name="np_region_norway">Norveç</string>
-  <string name="np_desc_nri">Norveç, Oslo, Bergen</string>
-  <string name="np_name_nz">Yeni Zelanda</string>
+	<string name="np_name_nz">Yeni Zelanda</string>
   <string name="np_desc_nz">Yeni Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonya</string>
   <string name="np_desc_pl">Polonya, Polonya demiryolları</string>
@@ -237,8 +233,7 @@
   <string name="np_name_costa_rica">Kosta Rika</string>
   <string name="np_name_ghana">Gana</string>
   <string name="np_desc_ghana">Akra</string>
-  <string name="np_region_central_america">Orta Amerika</string>
-  <string name="np_name_nicaragua">Nikaragua</string>
+	<string name="np_name_nicaragua">Nikaragua</string>
   <string name="contributors">Katkıda Bulunanlar</string>
   <string name="translators">Çevirmenler</string>
   <string name="dutch">Almanca</string>

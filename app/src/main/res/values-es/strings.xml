@@ -207,8 +207,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bélgica</string>
   <string name="np_desc_sncb">Transporte público en Bélgica</string>
-  <string name="np_region_br">Brazil</string>
-  <string name="np_name_br">Brazil</string>
+	<string name="np_name_br">Brazil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte y Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Muchas líneas de autobúses, ningún Executivos</string>
@@ -260,8 +259,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alsacia, Bajo Rin, Estrasburgo, Friburgo de Brisgovia</string>
-  <string name="np_desc_vbb">Brandemburgo, Berlín</string>
+	<string name="np_desc_vbb">Brandemburgo, Berlín</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baja Sajonia, Bremen, Bremerhaven, Oldemburgo (Oldemburgo), Osnabrück</string>
   <string name="np_desc_vgn">Núremberg, Fürth, Erlangen, Bayreuth, Bamberga, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -289,9 +287,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_region_netherlands">Países Bajos</string>
   <string name="np_desc_ns">Países Bajos, Ámsterdam</string>
   <string name="np_desc_negentwee">Todo el transporte público de Países Bajos</string>
-  <string name="np_region_norway">Noruega</string>
-  <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
-  <string name="np_name_nz">Nueva Zelanda</string>
+	<string name="np_name_nz">Nueva Zelanda</string>
   <string name="np_desc_nz">Nueva Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, lineas de ferrocarriles en Polonia</string>
@@ -323,8 +319,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Acra</string>
-  <string name="np_region_central_america">América Central</string>
-  <string name="np_name_nicaragua">Nicaragua</string>
+	<string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Autobuses urbanos, rurales y nacionales proporcionados por MapaNica.net y colaboradores de OpenStreetMap</string>
   <string name="maintainer">Mantenedor</string>
   <string name="contributors">Colaboradores</string>

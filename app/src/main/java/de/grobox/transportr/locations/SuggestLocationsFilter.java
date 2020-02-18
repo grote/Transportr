@@ -23,6 +23,7 @@ import android.widget.Filter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import de.schildbach.pte.dto.SuggestedLocation;
 
@@ -40,7 +41,7 @@ abstract class SuggestLocationsFilter extends Filter {
 		for (WrapLocation l : favoriteLocations) {
 			// case-insensitive match of location name and location not already included
 			// TODO don't only match name, but also place
-			if (l.getLocation().name != null && l.getLocation().name.toLowerCase().contains(constraint.toString().toLowerCase()) && !result.contains(l)) {
+			if (l.getLocation().name != null && l.getLocation().name.toLowerCase(Locale.getDefault()).contains(constraint.toString().toLowerCase(Locale.getDefault())) && !result.contains(l)) {
 				result.add(l);
 			}
 		}

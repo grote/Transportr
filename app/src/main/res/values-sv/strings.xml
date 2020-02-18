@@ -214,8 +214,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_desc_wien">Wien</string>
   <string name="np_region_belgium">Belgien</string>
   <string name="np_desc_sncb">Kollektivtrafik i Belgien</string>
-  <string name="np_region_br">Brasilien</string>
-  <string name="np_name_br">Brasilien</string>
+	<string name="np_name_br">Brasilien</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro och Belo Horizonte och Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Många busslinjer, inga Executivos</string>
@@ -267,8 +266,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
-  <string name="np_desc_vbb">Brandenburg, Berlin</string>
+	<string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -296,9 +294,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_region_netherlands">Nederländerna</string>
   <string name="np_desc_ns">Nederländerna, Amsterdam</string>
   <string name="np_desc_negentwee">All kollektivtrafik i Nederländerna</string>
-  <string name="np_region_norway">Norge</string>
-  <string name="np_desc_nri">Norge, Oslo, Bergen</string>
-  <string name="np_name_nz">Nya Zeeland</string>
+	<string name="np_name_nz">Nya Zeeland</string>
   <string name="np_desc_nz">Nya Zeeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, järnvägar i Polen</string>
@@ -330,8 +326,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
-  <string name="np_region_central_america">Centralamerika</string>
-  <string name="np_name_nicaragua">Nicaragua</string>
+	<string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Stads-, landsbygds- och landsomfattande bussar som tillhandahålls av MapaNica.net och OpenStreetMap medarbetare</string>
   <string name="maintainer">Underhållare</string>
   <string name="contributors">Bidragsgivare</string>

@@ -210,8 +210,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_wien">Vienna</string>
   <string name="np_region_belgium">Belgio</string>
   <string name="np_desc_sncb">Trasporto pubblico in Belgio</string>
-  <string name="np_region_br">Brasile</string>
-  <string name="np_name_br">Brasile</string>
+	<string name="np_name_br">Brasile</string>
   <string name="np_desc_br">San Paolo, Rio de Janeiro, Belo Horizonte e Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Molti viaggi in autobus, niente Executivos</string>
@@ -263,8 +262,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_nvbw">Baden-Württemberg, Costanza, Basilea, Basilea Città, Reutlingen, Rottweil, Tubinga, Sigmaringa</string>
   <string name="np_desc_nvv">Assia, Francoforte sul Meno, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alsazia, Basso Reno, Strasburgo, Friburgo in Brisgovia</string>
-  <string name="np_desc_vbb">Brandeburgo, Berlino</string>
+	<string name="np_desc_vbb">Brandeburgo, Berlino</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Bassa Sassonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Norimberga, Fürth, Erlangen, Bayreuth, Bamberga, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -292,9 +290,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_region_netherlands">Olanda</string>
   <string name="np_desc_ns">Olanda, Amsterdam</string>
   <string name="np_desc_negentwee">Tutti i trasporti pubblici nei Paesi Bassi</string>
-  <string name="np_region_norway">Norvegia</string>
-  <string name="np_desc_nri">Norvegia, Oslo, Bergen</string>
-  <string name="np_name_nz">Nuova Zelanda</string>
+	<string name="np_name_nz">Nuova Zelanda</string>
   <string name="np_desc_nz">Nuova Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, ferrovie in Polonia</string>
@@ -328,8 +324,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
-  <string name="np_region_central_america">America centrale</string>
-  <string name="np_name_nicaragua">Nicaragua</string>
+	<string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Autobus urbani, rurali e nazionali ottenuti da MapaNica.net e collaboratori di OpenStreetMap</string>
   <string name="maintainer">Mantenitori</string>
   <string name="contributors">Contributori</string>

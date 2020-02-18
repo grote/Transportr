@@ -204,8 +204,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_desc_wien">Vienne</string>
   <string name="np_region_belgium">Belgique</string>
   <string name="np_desc_sncb">Transports en commun en Belgique</string>
-  <string name="np_region_br">Brésil</string>
-  <string name="np_name_br">Brésil</string>
+	<string name="np_name_br">Brésil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte et Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">De nombreux trajets de bus, pas d’Executivos</string>
@@ -257,8 +256,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_desc_nvbw">Bade-Wurtemberg, Constance, Bâle, Bâle-Ville, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Francfort-sur-le-Main, Cassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Fribourg-en-Brisgau</string>
-  <string name="np_desc_vbb">Brandebourg, Berlin</string>
+	<string name="np_desc_vbb">Brandebourg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Basse-Saxe, Brême, Bremerhaven, Oldenbourg, Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangue, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Sarre, Sarrebruck</string>
@@ -286,9 +284,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_region_netherlands">Pays-Bas</string>
   <string name="np_desc_ns">Pays-Bas, Amsterdam</string>
   <string name="np_desc_negentwee">Tous les transports en commun des Pays-Bas</string>
-  <string name="np_region_norway">Norvège</string>
-  <string name="np_desc_nri">Norvège, Oslo, Bergen</string>
-  <string name="np_name_nz">Nouvelle-Zélande</string>
+	<string name="np_name_nz">Nouvelle-Zélande</string>
   <string name="np_desc_nz">Nouvelle-Zélande, Wellington, Auckland</string>
   <string name="np_region_poland">Pologne</string>
   <string name="np_desc_pl">Pologne, chemins de fer en Pologne</string>
@@ -322,8 +318,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
-  <string name="np_region_central_america">Amérique centrale</string>
-  <string name="np_name_nicaragua">Nicaragua</string>
+	<string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Les parcours et horaires des autobus urbains, ruraux et nationaux sont fournis par les collaborateurs de MapaNica.net et d’OpenStreetMap</string>
   <string name="maintainer">Mainteneur</string>
   <string name="contributors">Collaborateurs</string>

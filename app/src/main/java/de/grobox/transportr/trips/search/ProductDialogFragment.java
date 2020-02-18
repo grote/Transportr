@@ -78,9 +78,9 @@ public class ProductDialogFragment extends DialogFragment {
 		}
 
 		// Get view model and observe products
-		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(DirectionsViewModel.class);
+		viewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(DirectionsViewModel.class);
 		if (savedInstanceState == null) {
-			viewModel.getProducts().observe(this, this::onProductsChanged);
+			viewModel.getProducts().observe(getViewLifecycleOwner(), this::onProductsChanged);
 		} else {
 			adapter.withSavedInstanceState(savedInstanceState);
 		}

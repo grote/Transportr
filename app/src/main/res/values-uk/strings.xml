@@ -213,8 +213,7 @@ Transportr зберігає часто використовувані місця
   <string name="np_desc_wien">Відень</string>
   <string name="np_region_belgium">Бельгія</string>
   <string name="np_desc_sncb">Громадський транспорт у Бельгії</string>
-  <string name="np_region_br">Бразилія</string>
-  <string name="np_name_br">Бразилія</string>
+	<string name="np_name_br">Бразилія</string>
   <string name="np_desc_br">Сан-Паулу, Ріо-де-Жанейро, Белу-Оризонті і Порто-Алегре</string>
   <string name="np_name_br_floripa">Флоріанополіс</string>
   <string name="np_desc_br_floripa">Багато автобусних маршрутів, немає постачальників</string>
@@ -266,8 +265,7 @@ Transportr зберігає часто використовувані місця
   <string name="np_desc_nvbw">Баден-Вюртемберг, Констанц, Базель, Базель-Штадт, Ройтлінген, Ротвайль, Тюбінген, Сігмарінген</string>
   <string name="np_desc_nvv">Гессен, Франкфурт-на-Майні, Кассель</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Росток</string>
-  <string name="np_desc_vagfr">Ельзас, Нижній Рейн, Страсбург, Фрайбург</string>
-  <string name="np_desc_vbb">Бранденбург, Берлін</string>
+	<string name="np_desc_vbb">Бранденбург, Берлін</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Нижня Саксонія, Бремен, Бремерхафен, Ольденбург (Ольденбург), Оснабрюк</string>
   <string name="np_desc_vgn">Нюрнберг, Фюрт, Ерланген, Байройт, Бамберг, Швабах</string>
   <string name="np_desc_vgs">Саар, Саарбрюккен</string>
@@ -295,9 +293,7 @@ Transportr зберігає часто використовувані місця
   <string name="np_region_netherlands">Нідерланди</string>
   <string name="np_desc_ns">Нідерланди, Амстердам</string>
   <string name="np_desc_negentwee">Весь громадський транспорт в Нідерландах</string>
-  <string name="np_region_norway">Норвегія</string>
-  <string name="np_desc_nri">Норвегія, Осло, Берген</string>
-  <string name="np_name_nz">Нова Зеландія</string>
+	<string name="np_name_nz">Нова Зеландія</string>
   <string name="np_desc_nz">Нова Зеландія, Веллінгтон, Окленд</string>
   <string name="np_region_poland">Польща</string>
   <string name="np_desc_pl">Польща, залізниці в Польщі</string>
@@ -329,8 +325,7 @@ Transportr зберігає часто використовувані місця
   <string name="np_name_costa_rica">Коста-Рика</string>
   <string name="np_name_ghana">Гана</string>
   <string name="np_desc_ghana">Аккра</string>
-  <string name="np_region_central_america">Центральна Америка</string>
-  <string name="np_name_nicaragua">Нікарагуа</string>
+	<string name="np_name_nicaragua">Нікарагуа</string>
   <string name="np_desc_nicaragua">Міські, сільські та загальнонаціональні автобусні маршрути надаються партнерами MapaNica.net та OpenStreetMap</string>
   <string name="maintainer">Розробник</string>
   <string name="contributors">Помічники</string>

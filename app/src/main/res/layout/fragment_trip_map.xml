@@ -24,7 +24,7 @@
 		android:clickable="true"
 		android:focusable="true"
 		android:tint="@color/fabForegroundInitial"
-		app:backgroundTint="@color/cardview_light_background"
+		app:backgroundTint="@color/fabBackground"
 		app:behavior_autoHide="true"
 		app:fabSize="normal"
 		app:layout_constraintBottom_toBottomOf="parent"

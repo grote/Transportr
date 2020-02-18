@@ -21,7 +21,8 @@ package de.grobox.transportr.trips.detail
 
 
 import android.content.Context
-import android.graphics.PorterDuff
+import android.graphics.PorterDuff.Mode.SRC_IN
+import android.graphics.PorterDuff.Mode.MULTIPLY
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import androidx.annotation.ColorInt
@@ -165,7 +166,7 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
         val drawable: Drawable
         if (type == MarkerType.STOP) {
             drawable = ContextCompat.getDrawable(context, R.drawable.ic_marker_trip_stop) ?: throw RuntimeException()
-            drawable.mutate().setColorFilter(backgroundColor, PorterDuff.Mode.SRC_IN)
+            drawable.mutate().setColorFilter(backgroundColor, SRC_IN)
         } else {
             val res: Int = when (type) {
                 MarkerType.BEGIN -> R.drawable.ic_marker_trip_begin
@@ -175,8 +176,8 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
                 else -> throw IllegalArgumentException()
             }
             drawable = ContextCompat.getDrawable(context, res) as LayerDrawable
-            drawable.getDrawable(0).mutate().setColorFilter(backgroundColor, PorterDuff.Mode.MULTIPLY)
-            drawable.getDrawable(1).mutate().setColorFilter(foregroundColor, PorterDuff.Mode.SRC_IN)
+            drawable.getDrawable(0).mutate().setColorFilter(backgroundColor, MULTIPLY)
+            drawable.getDrawable(1).mutate().setColorFilter(foregroundColor, SRC_IN)
         }
         return drawable.toIcon()
     }

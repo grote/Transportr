@@ -214,7 +214,6 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_desc_wien">Vienna</string>
   <string name="np_region_belgium">Belgien</string>
   <string name="np_desc_sncb">Offentlig transport i Belgien</string>
-  <string name="np_region_br">Brasilien</string>
   <string name="np_name_br">Brasilien</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte og Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
@@ -267,7 +266,6 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alsace, Bas-Rhin, Strasbourg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Nedre Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
@@ -296,8 +294,6 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_region_netherlands">Holland</string>
   <string name="np_desc_ns">Holland, Amsterdam</string>
   <string name="np_desc_negentwee">Alt offentlige transport i Holland</string>
-  <string name="np_region_norway">Norge</string>
-  <string name="np_desc_nri">Norge, Oslo, Bergen</string>
   <string name="np_name_nz">New Zealand</string>
   <string name="np_desc_nz">New-Zealand, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
@@ -330,7 +326,6 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
-  <string name="np_region_central_america">Mellemamerika</string>
   <string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Bymæssigt, landlig og landsdækkende Buser leveret af MapaNica.net og OpenStreetMap kollaboratører</string>
   <string name="maintainer">Opretholder</string>

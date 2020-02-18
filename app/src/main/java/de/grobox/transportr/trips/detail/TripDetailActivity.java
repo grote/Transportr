@@ -68,7 +68,7 @@ public class TripDetailActivity extends TransportrActivity {
 
 		getComponent().inject(this);
 
-		TripDetailViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(TripDetailViewModel.class);
+		TripDetailViewModel viewModel = new ViewModelProvider(this, viewModelFactory).get(TripDetailViewModel.class);
 		Intent intent = getIntent();
 		Trip trip = (Trip) intent.getSerializableExtra(TRIP);
 		WrapLocation from = (WrapLocation) intent.getSerializableExtra(FROM);

@@ -214,8 +214,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_desc_wien">وین</string>
   <string name="np_region_belgium">بلژیک</string>
   <string name="np_desc_sncb">حمل و نقل عمومی در بلژیک</string>
-  <string name="np_region_br">برزیل</string>
-  <string name="np_name_br">برزیل</string>
+	<string name="np_name_br">برزیل</string>
   <string name="np_desc_br">سائو پائولو، ریو دو ژانیرو، بلو هوریزونته و پورتو آلگری</string>
   <string name="np_name_br_floripa">فلوریانوپلیس</string>
   <string name="np_desc_br_floripa">مسیر های اتوبوس زیادی وجود دارد، هیچ اتوبوس تشریفاتی وجود ندارد</string>
@@ -267,8 +266,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_desc_nvbw">بادن-وورتمبرگ، کنستانتس، بازل، کانتون بازل اشتاد، رویتلینگن، روتوایل، توبینگن، زیگمارینگن</string>
   <string name="np_desc_nvv">هسن، فرانکفورت، کاسل</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">روستوک</string>
-  <string name="np_desc_vagfr">آلزاس، با-رن، استراسبورگ، فرایبورگ</string>
-  <string name="np_desc_vbb">براندنبورگ، برلین</string>
+	<string name="np_desc_vbb">براندنبورگ، برلین</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">نیدرزاکسن، برمن، برمرهافن، اولدنبورگ (اولدنبورگ)، اسنابروک</string>
   <string name="np_desc_vgn">نورنبرگ، فورت، ارلانگن، بایرویت، بامبرگ، شواباخ</string>
   <string name="np_desc_vgs">زارلاند، زاربروکن</string>
@@ -296,9 +294,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_region_netherlands">هلند</string>
   <string name="np_desc_ns">هلند، آمستردام</string>
   <string name="np_desc_negentwee">تمام حمل و نقل عمومی در هلند</string>
-  <string name="np_region_norway">نروژ</string>
-  <string name="np_desc_nri">نروژ، اسلو، برگن</string>
-  <string name="np_name_nz">نیوزلند</string>
+	<string name="np_name_nz">نیوزلند</string>
   <string name="np_desc_nz">نیوزیلند، ولینگتون، آوکلند</string>
   <string name="np_region_poland">لهستان</string>
   <string name="np_desc_pl">لهستان، راه آهن ها در لهستان</string>
@@ -330,8 +326,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_name_costa_rica">کاستاریکا</string>
   <string name="np_name_ghana">غنا</string>
   <string name="np_desc_ghana">آکرا</string>
-  <string name="np_region_central_america">آمریکای مرکزی</string>
-  <string name="np_name_nicaragua">نیکاراگوئه</string>
+	<string name="np_name_nicaragua">نیکاراگوئه</string>
   <string name="np_desc_nicaragua">اتوبوس های شهری، روستایی و سراسری فراهم شده توسط MapaNica.net  و مشارکت کنندگان OpenStreetMap</string>
   <string name="maintainer">نگهدارنده</string>
   <string name="contributors">مشارکت کنندگان</string>

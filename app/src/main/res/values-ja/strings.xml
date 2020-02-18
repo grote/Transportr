@@ -213,8 +213,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_desc_wien">ウィーン</string>
   <string name="np_region_belgium">ベルギー</string>
   <string name="np_desc_sncb">ベルギーの公共交通機関</string>
-  <string name="np_region_br">ブラジル</string>
-  <string name="np_name_br">ブラジル</string>
+	<string name="np_name_br">ブラジル</string>
   <string name="np_desc_br">サンパウロ、リオデジャネイロ、ベロオリゾンテ、ポルトアレグレ</string>
   <string name="np_name_br_floripa">フロリアノーポリス</string>
   <string name="np_desc_br_floripa">多くのバス路線、ビジネス外</string>
@@ -266,8 +265,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_desc_nvbw">バーデン・ヴュルテンベルク、コンスタンツ、バーゼル、バーゼル・シュタット、ロイトリンゲン、ロットワイル、テュービンゲン、シグマリンゲン</string>
   <string name="np_desc_nvv">ヘッセン、フランクフルト・アム・マイン、カッセル</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">ロストック</string>
-  <string name="np_desc_vagfr">アルザス、バスライン、ストラスブール、フライブルク・イム・ブライスガウ</string>
-  <string name="np_desc_vbb">ブランデンブルク、ベルリン</string>
+	<string name="np_desc_vbb">ブランデンブルク、ベルリン</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">ニーダーザクセン、ブレーメン、ブレーマーハーフェン、オルデンブルク (オルデンブルク)、オスナブリュック</string>
   <string name="np_desc_vgn">ニュルンベルク、フュルト、エルランゲン、バイロイト、バンベルク、シュヴァバッハ</string>
   <string name="np_desc_vgs">ザールラント、ザールブリュッケン</string>
@@ -295,9 +293,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_region_netherlands">オランダ</string>
   <string name="np_desc_ns">オランダ、アムステルダム</string>
   <string name="np_desc_negentwee">オランダのすべての公共交通機関</string>
-  <string name="np_region_norway">ノルウェー</string>
-  <string name="np_desc_nri">ノルウェー、オスロ、ベルゲン</string>
-  <string name="np_name_nz">ニュージーランド</string>
+	<string name="np_name_nz">ニュージーランド</string>
   <string name="np_desc_nz">ニュージーランド、ウェリントン、オークランド</string>
   <string name="np_region_poland">ポーランド</string>
   <string name="np_desc_pl">ポーランド、ポーランドの鉄道</string>
@@ -331,8 +327,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_name_costa_rica">コスタリカ</string>
   <string name="np_name_ghana">ガーナ</string>
   <string name="np_desc_ghana">アクラ</string>
-  <string name="np_region_central_america">中央アメリカ</string>
-  <string name="np_name_nicaragua">ニカラグア</string>
+	<string name="np_name_nicaragua">ニカラグア</string>
   <string name="np_desc_nicaragua">MapaNica.net と OpenStreetMap の協力者が提供する都市、田舎、そして全国のバス</string>
   <string name="maintainer">メンテナー</string>
   <string name="contributors">貢献者</string>

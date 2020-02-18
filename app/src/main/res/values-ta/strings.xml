@@ -70,8 +70,7 @@
   <string name="np_desc_linz">அப்பர் ஆஸ்திரியா, லின்ஸ்</string>
   <string name="np_desc_oebb">ஆஸ்ட்ரியா</string>
   <string name="np_region_belgium">பெல்ஜியம்</string>
-  <string name="np_region_br">பிரேசில்</string>
-  <string name="np_name_br">பிரேசில்</string>
+	<string name="np_name_br">பிரேசில்</string>
   <string name="np_region_canada">கனடா</string>
   <string name="np_region_denmark">டென்மார்க்</string>
   <string name="np_desc_dsb">டென்மார்க், கோபன்ஹேகன்</string>
@@ -101,9 +100,7 @@
   <string name="np_desc_lu">லக்ஸம்பர்க்</string>
   <string name="np_region_netherlands">நெதர்லாந்து</string>
   <string name="np_desc_ns">நெதர்லாந்து, ஆம்ஸ்டர்டாம்</string>
-  <string name="np_region_norway">நார்வே</string>
-  <string name="np_desc_nri">நார்வே, ஓஸ்லோ, பெர்கென்</string>
-  <string name="np_name_nz">நியூசிலாந்து</string>
+	<string name="np_name_nz">நியூசிலாந்து</string>
   <string name="np_region_poland">போலாந்து</string>
   <string name="np_name_spain">ஸ்பெயின்</string>
   <string name="np_region_sweden">சுவீடன்</string>

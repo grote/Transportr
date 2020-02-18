@@ -197,8 +197,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_desc_wien">Wiedeń</string>
   <string name="np_region_belgium">Belgia</string>
   <string name="np_desc_sncb">Transport publiczny w Belgii</string>
-  <string name="np_region_br">Brazylia</string>
-  <string name="np_name_br">Brazylia</string>
+	<string name="np_name_br">Brazylia</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte i Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Wiele linii autobusowych, bez „Executivos”</string>
@@ -250,8 +249,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_desc_nvbw">Badenia-Wirtembergia, Konstancja, Bazylea, Bazylea-Miasto, Reutlingen, Rottweil, Tybinga, Sigmaringen</string>
   <string name="np_desc_nvv">Hesja, Frankfurt nad Menem, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alzacja, Dolny Ren, Strasburg, Fryburg Bryzgowijski</string>
-  <string name="np_desc_vbb">Brandenburgia, Berlin</string>
+	<string name="np_desc_vbb">Brandenburgia, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Dolna Saksonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Norymberga, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saara, Saarbrücken</string>
@@ -279,9 +277,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_region_netherlands">Holandia</string>
   <string name="np_desc_ns">Holandia, Amsterdam</string>
   <string name="np_desc_negentwee">Transport publiczny w Holandii</string>
-  <string name="np_region_norway">Norwegia</string>
-  <string name="np_desc_nri">Norwegia, Oslo, Bergen</string>
-  <string name="np_name_nz">Nowa Zelandia</string>
+	<string name="np_name_nz">Nowa Zelandia</string>
   <string name="np_desc_nz">Nowa Zelandia, Wellington, Auckland</string>
   <string name="np_region_poland">Polska</string>
   <string name="np_desc_pl">Polska, koleje w Polsce</string>
@@ -315,8 +311,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_name_costa_rica">Kostaryka</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Akra</string>
-  <string name="np_region_central_america">Ameryka Środkowa</string>
-  <string name="np_name_nicaragua">Nikaragua</string>
+	<string name="np_name_nicaragua">Nikaragua</string>
   <string name="np_desc_nicaragua">Rozkłady jazdy miejskich, wiejskich i krajowych autobusów dostarczane przez twórców MapaNica.net i OpenStreetMap</string>
   <string name="maintainer">Opiekun</string>
   <string name="contributors">Pomocnicy</string>

@@ -20,7 +20,6 @@
 package de.grobox.transportr.trips.detail
 
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.Toolbar
@@ -78,9 +77,9 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
         list.layoutManager = LinearLayoutManager(context)
         bottomBar.setOnClickListener { _ -> onBottomBarClick() }
 
-        viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
-        viewModel.getTrip().observe(this, Observer<Trip> { this.onTripChanged(it) })
-        viewModel.sheetState.observe(this, Observer<SheetState> { this.onSheetStateChanged(it) })
+        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
+        viewModel.getTrip().observe(viewLifecycleOwner, Observer<Trip> { this.onTripChanged(it) })
+        viewModel.sheetState.observe(viewLifecycleOwner, Observer<SheetState> { this.onSheetStateChanged(it) })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

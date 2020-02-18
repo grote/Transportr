@@ -113,7 +113,7 @@ public class DirectionsFragment extends TransportrFragment {
 
 		setUpToolbar(toolbar);
 
-		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(DirectionsViewModel.class);
+		viewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(DirectionsViewModel.class);
 		TransportNetwork network = viewModel.getTransportNetwork().getValue();
 		if (network == null) throw new IllegalStateException();
 		from.setTransportNetwork(network);
@@ -124,31 +124,31 @@ public class DirectionsFragment extends TransportrFragment {
 		via.setType(VIA);
 		to.setType(TO);
 
-		viewModel.getHome().observe(this, homeLocation -> {
+		viewModel.getHome().observe(getViewLifecycleOwner(), homeLocation -> {
 			from.setHomeLocation(homeLocation);
 			via.setHomeLocation(homeLocation);
 			to.setHomeLocation(homeLocation);
 		});
-		viewModel.getWork().observe(this, workLocation -> {
+		viewModel.getWork().observe(getViewLifecycleOwner(), workLocation -> {
 			from.setWorkLocation(workLocation);
 			via.setWorkLocation(workLocation);
 			to.setWorkLocation(workLocation);
 		});
-		viewModel.getLocations().observe(this, favoriteLocations -> {
+		viewModel.getLocations().observe(getViewLifecycleOwner(), favoriteLocations -> {
 			if (favoriteLocations == null) return;
 			from.setFavoriteLocations(favoriteLocations);
 			via.setFavoriteLocations(favoriteLocations);
 			to.setFavoriteLocations(favoriteLocations);
 		});
-		viewModel.getFromLocation().observe(this, location -> {
+		viewModel.getFromLocation().observe(getViewLifecycleOwner(), location -> {
 			from.setLocation(location);
 			if (location != null) to.requestFocus();
 		});
-		viewModel.getViaLocation().observe(this, location -> via.setLocation(location));
-		viewModel.getToLocation().observe(this, location -> to.setLocation(location));
-		viewModel.getCalendar().observe(this, this::onCalendarUpdated);
-		viewModel.findGpsLocation.observe(this, this::onFindGpsLocation);
-		viewModel.isFavTrip().observe(this, this::onFavStatusChanged);
+		viewModel.getViaLocation().observe(getViewLifecycleOwner(), location -> via.setLocation(location));
+		viewModel.getToLocation().observe(getViewLifecycleOwner(), location -> to.setLocation(location));
+		viewModel.getCalendar().observe(getViewLifecycleOwner(), this::onCalendarUpdated);
+		viewModel.findGpsLocation.observe(getViewLifecycleOwner(), this::onFindGpsLocation);
+		viewModel.isFavTrip().observe(getViewLifecycleOwner(), this::onFavStatusChanged);
 
 		setupClickListeners();
 

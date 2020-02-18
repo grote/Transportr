@@ -92,7 +92,15 @@ android {
 
 	lintOptions {
 		checkReleaseBuilds false
-		disable 'MissingTranslation', 'InvalidPackage', 'VectorDrawableCompat'
+		disable 'MissingTranslation', // don't put too much pressure on Transifex contributors
+				'InvalidPackage',
+				'VectorDrawableCompat',
+				'TrustAllX509TrustManager', // accept certificates as implemented in PTE
+				'GradleDependency', // don't complain about old library versions
+				'IconDensities', //todo: migrate all (network) icons to vectors
+				'PrivateResource', //todo: investigate about private Material design resources (e.g. CarcView style)
+				'Typos', //todo: remove after next translation fetch
+				'TypographyEllipsis' //todo: remove after next translation fetch
 	}
 }
 

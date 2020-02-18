@@ -35,7 +35,7 @@ import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
-import com.mikepenz.materialdrawer.util.KeyboardUtil
+import com.mikepenz.materialize.util.KeyboardUtil
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrActivity
 import de.grobox.transportr.about.AboutActivity

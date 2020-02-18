@@ -218,7 +218,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bèlgica</string>
   <string name="np_desc_sncb">Transport públic a Bèlgica</string>
-  <string name="np_region_br">Brasil</string>
   <string name="np_name_br">Brasil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte i Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
@@ -271,7 +270,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-  <string name="np_desc_vagfr">Alsàcia, Bas-Rhin, Estrasburg, Freiburg im Breisgau</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxònia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
@@ -300,8 +298,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_region_netherlands">Holanda</string>
   <string name="np_desc_ns">Holanda, Amsterdam</string>
   <string name="np_desc_negentwee">Tot el transport públic dels Països Baixos</string>
-  <string name="np_region_norway">Noruega</string>
-  <string name="np_desc_nri">Noruega, Oslo, Bergen</string>
   <string name="np_name_nz">Nova Zelanda</string>
   <string name="np_desc_nz">Nova Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polònia</string>
@@ -337,7 +333,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
-  <string name="np_region_central_america">Centreamèrica</string>
   <string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Dades de transport urbà, rural i busos del país servides per MapaNica.net i col·laboradors d\'OpenStreetMap</string>
   <string name="maintainer">Mantenidor</string>

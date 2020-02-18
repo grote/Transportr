@@ -89,7 +89,6 @@
   <string name="np_region_austria">奧地利</string>
   <string name="np_desc_oebb">奧地利</string>
   <string name="np_region_belgium">比利時</string>
-  <string name="np_region_br">巴西</string>
   <string name="np_name_br">巴西</string>
   <string name="np_region_canada">加拿大</string>
   <string name="np_region_denmark">丹麥</string>
@@ -104,8 +103,7 @@
   <string name="np_region_luxembourg">盧森堡</string>
   <string name="np_desc_lu">盧森堡</string>
   <string name="np_region_netherlands">荷蘭</string>
-  <string name="np_region_norway">挪威</string>
-  <string name="np_name_nz">紐西蘭</string>
+	<string name="np_name_nz">紐西蘭</string>
   <string name="np_region_poland">波蘭</string>
   <string name="np_name_spain">西班牙</string>
   <string name="np_name_hungary">匈牙利</string>
@@ -116,7 +114,6 @@
   <string name="np_region_usa">美國</string>
   <string name="np_name_costa_rica">哥斯達黎加</string>
   <string name="np_name_ghana">加納</string>
-  <string name="np_region_central_america">中美洲</string>
   <string name="np_name_nicaragua">尼加拉瓜</string>
   <string name="contributors">協力開發者</string>
   <string name="dutch">荷蘭文</string>

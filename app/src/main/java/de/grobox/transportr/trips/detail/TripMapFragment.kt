@@ -21,7 +21,6 @@ package de.grobox.transportr.trips.detail
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import android.util.DisplayMetrics
@@ -55,7 +54,7 @@ class TripMapFragment : GpsMapFragment() {
         val v = super.onCreateView(inflater, container, savedInstanceState)
 
         component.inject(this)
-        viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
+        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
         gpsController = viewModel.gpsController
 
         return v

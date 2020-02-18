@@ -20,7 +20,6 @@
 package de.grobox.transportr.locations;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -63,10 +62,10 @@ import de.schildbach.pte.dto.LineDestination;
 import de.schildbach.pte.dto.QueryDeparturesResult;
 import de.schildbach.pte.dto.StationDepartures;
 
-import static androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL;
 import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import static androidx.recyclerview.widget.RecyclerView.HORIZONTAL;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static de.grobox.transportr.departures.DeparturesActivity.MAX_DEPARTURES;
 import static de.grobox.transportr.departures.DeparturesLoader.getBundle;
@@ -118,8 +117,8 @@ public class LocationFragment extends TransportrFragment
 		getComponent().inject(this);
 
 		if (getActivity() == null) throw new IllegalStateException();
-		viewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(MapViewModel.class);
-		viewModel.nearbyStationsFound().observe(this, found -> onNearbyStationsLoaded());
+		viewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(MapViewModel.class);
+		viewModel.nearbyStationsFound().observe(getViewLifecycleOwner(), found -> onNearbyStationsLoaded());
 
 		// Location
 		locationIcon = v.findViewById(R.id.locationIcon);

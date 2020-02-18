@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<changelog>
+<changelog xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
 
     <release version="2.0.8" versioncode="117">
         <change>Fix bug where the app would crash after updating</change>

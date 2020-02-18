@@ -6,7 +6,7 @@
 	android:layout_height="match_parent"
 	android:fitsSystemWindows="true">
 
-	<fragment
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/mapFragment"
 		android:name="de.grobox.transportr.map.MapFragment"
 		android:layout_width="match_parent"
@@ -69,7 +69,6 @@
 		android:id="@+id/bottomSheet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:elevation="5dp"
 		app:behavior_hideable="true"
 		app:elevation="5dp"
 		app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"/>

@@ -75,9 +75,9 @@ public abstract class FavoriteTripsFragment<VM extends SavedSearchesViewModel> e
 		list.setLayoutManager(new LinearLayoutManager(getContext()));
 
 		viewModel = getViewModel();
-		viewModel.getHome().observe(this, this::onHomeLocationChanged);
-		viewModel.getWork().observe(this, this::onWorkLocationChanged);
-		viewModel.getFavoriteTrips().observe(this, this::onFavoriteTripsChanged);
+		viewModel.getHome().observe(getViewLifecycleOwner(), this::onHomeLocationChanged);
+		viewModel.getWork().observe(getViewLifecycleOwner(), this::onWorkLocationChanged);
+		viewModel.getFavoriteTrips().observe(getViewLifecycleOwner(), this::onFavoriteTripsChanged);
 
 		return v;
 	}
