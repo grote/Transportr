@@ -20,11 +20,14 @@
 package de.grobox.transportr.map
 
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
@@ -37,6 +40,7 @@ import de.grobox.transportr.TransportrFragment
 abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
 
     protected lateinit var mapView: MapView
+    private lateinit var attribution: TextView
     protected var map: MapboxMap? = null
     protected var mapPadding: Int = 0
 
@@ -48,6 +52,7 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
 
         val v = inflater.inflate(layout, container, false)
         mapView = v.findViewById(R.id.map)
+        attribution = v.findViewById(R.id.attribution)
 
         mapPadding = resources.getDimensionPixelSize(R.dimen.mapPadding)
 
@@ -58,6 +63,8 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+        attribution.movementMethod = LinkMovementMethod.getInstance()
+        attribution.text = Html.fromHtml(getString(R.string.map_attribution, getString(R.string.map_attribution_improve)))
     }
 
     override fun onStart() {

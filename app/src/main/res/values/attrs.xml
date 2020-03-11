@@ -3,6 +3,7 @@
 
     <attr name="mapInfoWindow" format="reference"/>
     <attr name="mapStyle" format="reference"/>
+    <attr name="attributionBackground" format="color"/>
 
     <declare-styleable name="LocationView">
         <attr name="showIcon" format="boolean"/>

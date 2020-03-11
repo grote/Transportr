@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
@@ -16,6 +17,23 @@
 		app:layout_constraintTop_toTopOf="parent"
 		app:mapbox_uiCompassMarginTop="72dp"
 		app:mapbox_uiRotateGestures="true"/>
+
+	<TextView
+		android:id="@+id/attribution"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:padding="4dp"
+		android:textSize="12sp"
+		android:text="@string/map_attribution"
+		android:background="?attributionBackground"
+		android:textColorLink="?android:textColorTertiary"
+		app:layout_constraintHorizontal_bias="0"
+		app:layout_constraintWidth_default="wrap"
+		app:layout_constraintStart_toStartOf="@+id/map"
+		app:layout_constraintEnd_toStartOf="@id/gpsFab"
+		app:layout_constraintBottom_toBottomOf="@+id/map"
+		tools:text="© OpenStreetMap © Mapbox Improve this map"/>
 
 	<com.google.android.material.floatingactionbutton.FloatingActionButton
 		android:id="@+id/gpsFab"
