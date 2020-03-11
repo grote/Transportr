@@ -80,6 +80,9 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="about_contributions">This app is Free Software, so you can freely use, study, share and improve it. Contributions are encouraged and appreciated. If you would like to contribute, please visit the homepage for more information.</string>
 	<string name="about_visit_website">Visit Website</string>
 
+	<string name="map_attribution" translatable="false">© &lt;a href="http://www.openstreetmap.org/copyright">OpenStreetMap&lt;/a> © &lt;a href="https://www.mapbox.com/about/maps/">Mapbox&lt;/a> &lt;b>&lt;a href="https://www.mapbox.com/map-feedback/">%1$s&lt;/a>&lt;/b></string>
+	<string name="map_attribution_improve">Improve this map</string>
+
 	<string name="open_navigation_drawer">Open Navigation Drawer</string>
 	<string name="from">From</string>
 	<string name="to">To</string>
