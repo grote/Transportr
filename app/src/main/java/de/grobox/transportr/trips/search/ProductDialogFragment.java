@@ -21,7 +21,6 @@ package de.grobox.transportr.trips.search;
 
 import android.app.Dialog;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
