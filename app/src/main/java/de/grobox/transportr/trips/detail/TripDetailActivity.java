@@ -32,7 +32,6 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.locations.WrapLocation;

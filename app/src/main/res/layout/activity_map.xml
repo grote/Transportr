@@ -6,7 +6,7 @@
 	android:layout_height="match_parent"
 	android:fitsSystemWindows="true">
 
-	<androidx.fragment.app.FragmentContainerView
+	<fragment
 		android:id="@+id/mapFragment"
 		android:name="de.grobox.transportr.map.MapFragment"
 		android:layout_width="match_parent"
