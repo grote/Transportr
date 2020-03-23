@@ -20,14 +20,13 @@
 package de.grobox.transportr.settings
 
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
-import android.content.SharedPreferences
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
-import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import de.grobox.transportr.R
@@ -40,7 +39,7 @@ import de.grobox.transportr.settings.SettingsManager.Companion.LANGUAGE
 import de.grobox.transportr.settings.SettingsManager.Companion.THEME
 import javax.inject.Inject
 
-class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
+class SettingsFragment : PreferenceFragmentCompat() {
 
     companion object {
         val TAG: String = SettingsFragment::class.java.simpleName
@@ -60,7 +59,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         addPreferencesFromResource(R.xml.preferences)
 
         // Fill in current transport network if available
-        networkPref = findPreference("pref_key_network")
+        networkPref = findPreference("pref_key_network")!!
         manager.transportNetwork.observe(this, Observer<TransportNetwork> {
             onTransportNetworkChanged(it)
         })
@@ -75,29 +74,22 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             ActivityCompat.startActivity(activity!!, intent, options.toBundle())
             true
         }
-    }
 
-    override fun onStart() {
-        super.onStart()
-        preferenceScreen.sharedPreferences.registerOnSharedPreferenceChangeListener(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        preferenceScreen.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
-    }
-
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-        if (key == THEME) {
-            val themePref = findPreference(key) as ListPreference
-            themePref.summary = themePref.entry
-
-            reload()
-        } else if (key == LANGUAGE) {
-            val langPref = findPreference(key) as ListPreference
-            langPref.summary = langPref.entry
-
-            reload()
+        (findPreference(THEME) as Preference?)?.let {
+            it.setOnPreferenceChangeListener { _, newValue ->
+                when(newValue) {
+                    "light" -> setDefaultNightMode(MODE_NIGHT_NO)
+                    "dark" -> setDefaultNightMode(MODE_NIGHT_YES)
+                    else -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+                }
+                true
+            }
+        }
+        (findPreference(LANGUAGE) as Preference?)?.let {
+            it.setOnPreferenceChangeListener { _, _ ->
+                reload()
+                true
+            }
         }
     }
 
@@ -110,7 +102,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
 
         activity?.let {
             val intent = Intent(context, MapActivity::class.java)
-            intent.flags = FLAG_ACTIVITY_CLEAR_TOP
+            intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
             it.startActivity(intent)
             it.finish()
         }

@@ -1,45 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:windowContentTransitions">true</item>
+	<style name="AppTheme" parent="AppDayNightTheme">
+		<item name="android:windowContentTransitions">true</item>
 
-        <!-- specify enter and exit transitions -->
-        <item name="android:windowEnterTransition">@transition/window</item>
-        <item name="android:windowExitTransition">@transition/window</item>
+		<!-- specify enter and exit transitions -->
+		<item name="android:windowEnterTransition">@transition/window</item>
+		<item name="android:windowExitTransition">@transition/window</item>
 
-        <!-- specify shared element transitions -->
-        <item name="android:windowSharedElementEnterTransition">@transition/element</item>
-        <item name="android:windowSharedElementExitTransition">@transition/element</item>
-    </style>
+		<!-- specify shared element transitions -->
+		<item name="android:windowSharedElementEnterTransition">@transition/element</item>
+		<item name="android:windowSharedElementExitTransition">@transition/element</item>
+	</style>
 
-    <style name="AppTheme.Light" parent="AppBaseTheme.Light">
-        <item name="android:windowContentTransitions">true</item>
+	<style name="DialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryDark">@color/primary_dark</item>
+		<item name="colorAccent">@color/accent</item>
+		<item name="android:windowAnimationStyle">@style/DialogAnimation</item>
 
-        <!-- specify enter and exit transitions -->
-        <item name="android:windowEnterTransition">@transition/window</item>
-        <item name="android:windowExitTransition">@transition/window</item>
-
-        <!-- specify shared element transitions -->
-        <item name="android:windowSharedElementEnterTransition">@transition/element</item>
-        <item name="android:windowSharedElementExitTransition">@transition/element</item>
-    </style>
-
-    <style name="DialogTheme" parent="Theme.AppCompat.Dialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
-
-        <!-- Fix for broken background on ALL devices -->
-        <item name="android:windowBackground">@color/md_grey_800</item>
-    </style>
-
-    <style name="DialogTheme.Light" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
-    </style>
+		<!-- Fix for broken background on ALL devices -->
+		<item name="android:windowBackground">@color/md_grey_800</item>
+	</style>
 
 </resources>

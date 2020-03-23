@@ -29,19 +29,11 @@ import de.grobox.transportr.settings.SettingsManager
 
 
 class TransportrChangeLog(context: Context, settingsManager: SettingsManager) : ChangeLog(
-    ContextThemeWrapper(context, getDialogTheme(settingsManager.isDarkTheme)),
+    ContextThemeWrapper(context, R.style.DialogTheme),
     settingsManager.settings,
     theme(settingsManager.isDarkTheme)
 ) {
     companion object {
-
-        private fun getDialogTheme(dark: Boolean): Int {
-            return if (dark) {
-                R.style.DialogTheme
-            } else {
-                R.style.DialogTheme_Light
-            }
-        }
 
         private fun theme(dark: Boolean): String {
             return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
