@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Theme -->
+	<string-array name="pref_theme_options">
+		<item>@string/pref_theme_light</item>
+		<item>@string/pref_theme_dark</item>
+		<item>@string/pref_theme_auto_system</item>
+	</string-array>
+</resources>

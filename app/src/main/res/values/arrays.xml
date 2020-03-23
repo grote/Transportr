@@ -4,13 +4,16 @@
     <string-array name="pref_theme_options">
         <item>@string/pref_theme_light</item>
         <item>@string/pref_theme_dark</item>
+        <item>@string/pref_theme_auto_battery</item>
     </string-array>
     <string-array name="pref_theme_values">
         <item>@string/pref_theme_value_light</item>
         <item>@string/pref_theme_value_dark</item>
+        <item>@string/pref_theme_value_auto</item>
     </string-array>
     <string name="pref_theme_value_light" translatable="false">light</string>
     <string name="pref_theme_value_dark" translatable="false">dark</string>
+    <string name="pref_theme_value_auto" translatable="false">auto</string>
 
     <!-- Language -->
     <string-array name="pref_language_options">

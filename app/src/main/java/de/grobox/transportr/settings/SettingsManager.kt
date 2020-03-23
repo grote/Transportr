@@ -21,8 +21,11 @@ package de.grobox.transportr.settings
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.content.res.Resources
+import android.os.Build
 import android.preference.PreferenceManager
-import androidx.annotation.StyleRes
+import androidx.appcompat.app.AppCompatDelegate.*
 import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider.Optimize
@@ -40,7 +43,7 @@ class SettingsManager @Inject constructor(private val context: Context) {
             val default = context.getString(R.string.pref_language_value_default)
             val str = settings.getString(LANGUAGE, default) ?: default
             return when {
-                str == default -> Locale.getDefault()
+                str == default -> Resources.getSystem().configuration.locale
                 str.contains("_") -> {
                     val langArray = str.split("_".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     Locale(langArray[0], langArray[1])
@@ -50,18 +53,21 @@ class SettingsManager @Inject constructor(private val context: Context) {
         }
 
     val theme: Int
-        @StyleRes get() {
+        get() {
             val dark = context.getString(R.string.pref_theme_value_dark)
             val light = context.getString(R.string.pref_theme_value_light)
-            val theme = settings.getString(THEME, light)
-            return if (theme == dark) {
-                R.style.AppTheme
-            } else R.style.AppTheme_Light
+            val auto = context.getString(R.string.pref_theme_value_auto)
+            return when (settings.getString(THEME, auto)) {
+                dark -> MODE_NIGHT_YES
+                light -> MODE_NIGHT_NO
+                else -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) MODE_NIGHT_FOLLOW_SYSTEM else MODE_NIGHT_AUTO_BATTERY
+            }
         }
 
     val isDarkTheme: Boolean
         get() {
-            return theme == R.style.AppTheme
+            return (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) or
+                    (theme == MODE_NIGHT_YES)
         }
 
     val walkSpeed: WalkSpeed
@@ -141,7 +147,6 @@ class SettingsManager @Inject constructor(private val context: Context) {
         private const val OPTIMIZE = "pref_key_optimize"
         private const val LOCATION_ONBOARDING = "locationOnboarding"
         private const val TRIP_DETAIL_ONBOARDING = "tripDetailOnboarding"
-        private const val DIRECTIONS_ONBOARDING = "directionsOnboarding"
     }
 
 }

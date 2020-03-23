@@ -56,7 +56,8 @@
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
 			android:title="@string/pref_theme_title"
-			app:iconSpaceReserved="false"/>
+			app:iconSpaceReserved="false"
+			app:useSimpleSummaryProvider="true"/>
 
 		<ListPreference
 			android:defaultValue="@string/pref_language_value_default"
@@ -66,7 +67,8 @@
 			android:negativeButtonText="@string/cancel"
 			android:summary="%s"
 			android:title="@string/pref_language_title"
-			app:iconSpaceReserved="false"/>
+			app:iconSpaceReserved="false"
+			app:useSimpleSummaryProvider="true"/>
 
 		<CheckBoxPreference
 			android:defaultValue="true"

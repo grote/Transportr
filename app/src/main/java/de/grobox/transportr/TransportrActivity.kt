@@ -20,16 +20,19 @@
 package de.grobox.transportr
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import de.grobox.transportr.networks.PickTransportNetworkActivity
 import de.grobox.transportr.networks.PickTransportNetworkActivity.Companion.FORCE_NETWORK_SELECTION
 import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.settings.SettingsManager
 import java.util.*
 import javax.inject.Inject
+
 
 abstract class TransportrActivity : AppCompatActivity() {
 
@@ -45,10 +48,15 @@ abstract class TransportrActivity : AppCompatActivity() {
         component.inject(this)
 
         useLanguage()
-        setTheme(settingsManager.theme)
+        AppCompatDelegate.setDefaultNightMode(settingsManager.theme)
         ensureTransportNetworkSelected()
 
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onStart() {
+        useLanguageTitle()
+        super.onStart()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -91,6 +99,15 @@ abstract class TransportrActivity : AppCompatActivity() {
         val config = resources.configuration
         config.locale = locale
         resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
+    private fun useLanguageTitle() {
+        val activityInfo = packageManager.getActivityInfo(
+            componentName,
+            PackageManager.GET_META_DATA
+        )
+        if (activityInfo.labelRes != 0)
+            setTitle(activityInfo.labelRes)
     }
 
     private fun ensureTransportNetworkSelected() {

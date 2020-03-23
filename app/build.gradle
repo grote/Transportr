@@ -107,10 +107,10 @@ android {
 dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-	implementation 'androidx.appcompat:appcompat:1.1.0'
-	implementation('androidx.preference:preference:1.1.0-alpha01') {
-		because 'fixes bug with preference categories'
+	implementation('androidx.appcompat:appcompat:1.2.0-alpha03') {
+		because 'fixes bug where stopped activities would not resume'
 	}
+	implementation 'androidx.preference:preference:1.1.0'
 	implementation 'com.google.android.material:material:1.0.0'
 	implementation 'androidx.cardview:cardview:1.0.0'
 	implementation 'androidx.recyclerview:recyclerview:1.1.0'

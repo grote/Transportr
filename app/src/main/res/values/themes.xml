@@ -1,64 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- App Theme -->
 
-    <style name="AppBaseTheme" parent="MaterialDrawerTheme">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-		<item name="colorControlNormal">@color/drawableTintDark</item>
 
         <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="cardBackgroundColor">@color/cardview_dark_background</item>
-        <item name="colorBackgroundFloating">#ff424242</item>
-
         <item name="android:dialogTheme">@style/DialogTheme</item>
         <item name="android:alertDialogTheme">@style/DialogTheme</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="mapStyle">@string/mapbox_style_dark</item>
-        <item name="attributionBackground">#99000000</item>
-
-        <item name="about_libraries_card">@color/cardview_dark_background</item>
-        <item name="about_libraries_title_openSource">@color/about_libraries_title_openSource_dark</item>
-        <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
     </style>
 
-    <style name="AppBaseTheme.Light" parent="MaterialDrawerTheme.Light.DarkToolbar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-		<item name="colorControlNormal">@color/drawableTintLight</item>
-
-        <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-        <item name="windowActionModeOverlay">true</item>
+    <style name="AppDayNightTheme" parent="AppBaseTheme">
+        <item name="colorControlNormal">@color/drawableTintLight</item>
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
-        <item name="android:dialogTheme">@style/DialogTheme.Light</item>
-        <item name="android:alertDialogTheme">@style/DialogTheme</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="mapStyle">@string/mapbox_style_mapbox_streets</item>
         <item name="attributionBackground">#99FFFFFF</item>
+
+        <!-- MaterialDrawer specific values -->
+        <item name="material_drawer_background">@color/material_drawer_background</item>
+        <item name="material_drawer_primary_text">@color/material_drawer_primary_text</item>
+        <item name="material_drawer_primary_icon">@color/material_drawer_primary_icon</item>
+        <item name="material_drawer_secondary_text">@color/material_drawer_secondary_text</item>
+        <item name="material_drawer_hint_text">@color/material_drawer_hint_text</item>
+        <item name="material_drawer_divider">@color/material_drawer_divider</item>
+        <item name="material_drawer_selected">@color/material_drawer_selected</item> <!-- Material 2 defines 12% alpha, primary color -->
+        <item name="material_drawer_selected_legacy">@color/material_drawer_selected</item> <!-- Defines the color if legacy style (Material 1, is enabled) -->
+        <item name="material_drawer_selected_text">@color/material_drawer_selected_text</item>
+        <item name="material_drawer_header_selection_text">@color/material_drawer_header_selection_text</item>
+        <item name="material_drawer_legacy_style">false</item> <!-- Enables legacy Material 1 style -->
     </style>
 
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="AppTheme" parent="AppDayNightTheme">
     </style>
-
-    <style name="AppTheme.Light" parent="AppBaseTheme.Light">
-    </style>
-
 
     <!-- Dialog Theme -->
-
-    <style name="DialogTheme" parent="Theme.AppCompat.Dialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
-    </style>
-
-    <style name="DialogTheme.Light" parent="Theme.AppCompat.Light.Dialog">
+    <style name="DialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
@@ -67,20 +49,8 @@
 
 
     <!-- Dialog Theme without transparent window -->
-    <style name="SetHomeDialogTheme" parent="Theme.AppCompat.Dialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="colorControlNormal">@color/drawableTintDark</item>
-        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
-    </style>
-
-    <style name="SetHomeDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+    <style name="SetHomeDialogTheme" parent="DialogTheme">
         <item name="colorControlNormal">@color/drawableTintLight</item>
-        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
     </style>
 
 </resources>

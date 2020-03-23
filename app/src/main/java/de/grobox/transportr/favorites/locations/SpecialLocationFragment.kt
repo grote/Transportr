@@ -64,7 +64,7 @@ abstract class SpecialLocationFragment : DialogFragment(), LocationView.Location
         inject((activity!!.application as TransportrApplication).component)
         setStyle(
             STYLE_NO_TITLE,
-            if (settingsManager.isDarkTheme) R.style.SetHomeDialogTheme else R.style.SetHomeDialogTheme_Light
+            R.style.SetHomeDialogTheme
         )
     }
 
