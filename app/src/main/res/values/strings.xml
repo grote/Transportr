@@ -263,8 +263,8 @@ and always knows where you are to not miss where to get off the bus.
 
 	<string name="np_region_canada">Canada</string>
 	<string name="np_name_ontario">Ontario</string>
-	<string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo Region</string>
-	<string name="np_desc_ontario_networks" translatable="false">GO Transit, OC Transpo, Toronto Transit Commission - TTC, MiWay, Grand River Transit - GRT</string>
+	<string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Waterloo Region</string>
+	<string name="np_desc_ontario_networks" translatable="false">GO Transit, OC Transpo, Toronto Transit Commission - TTC, MiWay, Hamilton Street Railway - HSR, Grand River Transit - GRT</string>
 	<string name="np_name_quebec">Quebec</string>
 	<string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
 	<string name="np_desc_quebec_networks" translatable="false">AMT, STM, STL</string>
