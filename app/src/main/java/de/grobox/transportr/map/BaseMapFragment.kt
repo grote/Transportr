@@ -75,6 +75,13 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
     @CallSuper
     override fun onMapReady(mapboxMap: MapboxMap) {
         map = mapboxMap
+        activity?.run {
+            // work-around to force update map style after theme switching
+            val mapStyle = obtainStyledAttributes(intArrayOf(R.attr.mapStyle)).getString(0)
+            if (mapStyle != null && mapboxMap.styleUrl != mapStyle) {
+                mapboxMap.setStyleUrl(mapStyle)
+            }
+        }
     }
 
     override fun onResume() {
