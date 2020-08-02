@@ -75,7 +75,6 @@ dependencyVerification {
         'com.android.tools.analytics-library:shared:26.5.1:shared-26.5.1.jar:ccc2f3b00ec17b11401610ba68553544fc8fc517120e84439ac6eb86b875e18d',
         'com.android.tools.analytics-library:tracker:26.5.1:tracker-26.5.1.jar:3a76984c0fe2e847ca7a8b35b4780ef0447a9d1666946cb8e60466318e0ab5ae',
         'com.android.tools.build:aapt2-proto:0.4.0:aapt2-proto-0.4.0.jar:fac0435e08898f89eeeb9ca236bea707155ff816c12205ced285ad53604133ca',
-        'com.android.tools.build:aapt2:3.5.1-5435860:aapt2-3.5.1-5435860-linux.jar:acd3c93095cc982deb4d97262c01e9fceca9e3cd8385c45fb8c3d0401f286d5d',
         'com.android.tools.build:apksig:3.5.1:apksig-3.5.1.jar:1fd33e7f009a2a0da766cfeec4211a09f548034b015c289a66d75dd8a9302f4a',
         'com.android.tools.build:apkzlib:3.5.1:apkzlib-3.5.1.jar:9f330167cbe973b7db407692f74f4f6453b7ffa5f2048934b06280c2ceee60fa',
         'com.android.tools.build:builder-model:3.5.1:builder-model-3.5.1.jar:39ea3c82b76b6e0c9f9fa88d93e0edc1dd4a0f1dfae0ef6fbf2d451da47e5450',
