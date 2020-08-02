@@ -54,14 +54,14 @@ abstract class ScreengrabTest {
     val networkId: NetworkId = when(getTestLocale()) {
         Locale.FRANCE -> NetworkId.PARIS
         Locale.US -> NetworkId.TLEM
-        Locale.forLanguageTag("pt-BR") -> NetworkId.BR
+        Locale.forLanguageTag("pt-BR") -> NetworkId.BRAZIL
         else -> NetworkId.DB
     }
 
     val departureStation = when(networkId) {
         NetworkId.PARIS -> "Gare De Lyon"
         NetworkId.TLEM -> "Waterloo Station"
-        NetworkId.BR -> "Republica"
+        NetworkId.BRAZIL -> "Republica"
         else -> "Berlin Hbf"
     }
 
@@ -78,7 +78,7 @@ abstract class ScreengrabTest {
             2 -> getLocation("Moorgate")
             else -> throw RuntimeException()
         }
-        NetworkId.BR -> when(i) {
+        NetworkId.BRAZIL -> when(i) {
             0 -> WrapLocation(STATION, "stop_point:OSA:SP:2600672", -23555071, -46662131, "São Paulo", "Paulista", null)
             1 -> getLocation("Pinheiros")
             2 -> getLocation("Vila Madalena")
@@ -105,7 +105,7 @@ abstract class ScreengrabTest {
             2 -> getLocation("Temple")
             else -> throw RuntimeException()
         }
-        NetworkId.BR -> when(i) {
+        NetworkId.BRAZIL -> when(i) {
             0 -> WrapLocation(STATION, "stop_point:OSA:SP:18876", -23543118, -46589599, "São Paulo", "Belem", null)
             1 -> getLocation("Trianon Masp")
             2 -> getLocation("Anhangabaú")
