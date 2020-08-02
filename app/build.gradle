@@ -139,14 +139,15 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:38b99f27') {
-		exclude module: 'service'
-		exclude group: 'com.google.guava', module: 'listenablefuture'
-		exclude group: 'com.google.guava', module: 'failureaccess'
+	implementation('com.google.guava:guava:29.0-android') {
+		exclude module: 'listenablefuture'
+		exclude module: 'failureaccess'
+		exclude group: 'com.google.j2objc'
+	}
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:f5c9f80d') {
+		exclude group: 'com.google.guava' // included above
 		exclude group: 'org.json', module: 'json' // provided by Android
 		exclude group: 'net.sf.kxml', module: 'kxml2' // provided by Android
-		exclude group: 'com.google.j2objc'
-		exclude group: 'junit'
 	}
 	debugImplementation 'org.slf4j:slf4j-api:1.7.30'
 	debugImplementation 'com.github.tony19:logback-android:1.1.1-12'
@@ -159,11 +160,11 @@ dependencies {
 	androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
 	androidTestImplementation 'androidx.test:rules:1.2.0'
 	androidTestImplementation "androidx.test.ext:junit:1.1.1"
-	androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0') {
+	androidTestImplementation('androidx.test.espresso:espresso-core:3.2.0') {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.google.code.findbugs'
 	}
-	androidTestImplementation('androidx.test.espresso:espresso-contrib:3.1.0') {
+	androidTestImplementation('androidx.test.espresso:espresso-contrib:3.2.0') {
 		exclude group: 'com.android.support', module: 'support-annotations'
 		exclude group: 'com.android.support', module: 'support-v4'
 		exclude group: 'com.android.support', module: 'design'

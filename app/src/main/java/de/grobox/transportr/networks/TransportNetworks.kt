@@ -693,14 +693,14 @@ private val networks = arrayOf(
             Country(
                 R.string.np_name_br, flag = "🇧🇷", networks = listOf(
                     TransportNetwork(
-                        id = NetworkId.BR,
+                        id = NetworkId.BRAZIL,
                         name = R.string.np_name_br,
                         description = R.string.np_desc_br,
                         agencies = R.string.np_desc_br_networks,
                         logo = R.drawable.network_br_logo,
                         status = ALPHA,
                         goodLineNames = true,
-                        factory = { BrProvider(NAVITIA) }
+                        factory = { BrazilProvider(NAVITIA) }
                     ),
                     TransportNetwork(
                         id = NetworkId.BRFLORIPA,
