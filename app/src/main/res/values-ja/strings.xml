@@ -48,7 +48,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="action_fav_trip">旅行をお気に入りにする</string>
   <string name="action_unfav_trip">旅行をお気に入りから解除</string>
   <string name="action_switch_locations">出発地と目的地を入れ替え</string>
-	<string name="trip_dep">発</string>
+  <string name="trip_dep">発</string>
   <string name="trip_arr">着</string>
   <string name="action_refresh">更新</string>
   <string name="action_navigation_expand">軽油を表示</string>
@@ -69,6 +69,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="about_warning_text">(外部から提供された) データの正確性は保証されません。 このアプリは自己責任で使用してください。</string>
   <string name="about_contributions">このアプリはフリーソフトウェアのため、自由に使用、学習、共有、改善することができます。 寄付は奨励され、感謝します。 貢献したい場合は、詳細についてホームページをご覧ください。</string>
   <string name="about_visit_website">Webサイトを訪問</string>
+  <string name="map_attribution_improve">この地図を改善する</string>
   <string name="open_navigation_drawer">ナビゲーションドロワーを開く</string>
   <string name="from">出発</string>
   <string name="to">目的地</string>
@@ -109,6 +110,8 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="pref_theme_title">テーマ</string>
   <string name="pref_theme_light">ライト</string>
   <string name="pref_theme_dark">ダーク</string>
+  <string name="pref_theme_auto_battery">バッテリーセーバーで設定</string>
+  <string name="pref_theme_auto_system">システム デフォルト</string>
   <string name="pref_language_title">言語</string>
   <string name="pref_directions_routing">道順と旅行のルート</string>
   <string name="pref_optimize">最適化</string>
@@ -172,7 +175,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="warning_gps_off">位置情報がオフです。設定でオンにしてください。</string>
   <string name="onboarding_location_title">上にスクロールしてください</string>
   <string name="onboarding_location_message">より多くの機能が下に隠れています</string>
-	<string name="select_products">交通手段の選択</string>
+  <string name="select_products">交通手段の選択</string>
   <string name="product_high_speed_train">高速列車</string>
   <string name="product_regional_train">地方の列車</string>
   <string name="product_suburban_train">近郊列車</string>
@@ -183,9 +186,9 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="product_cablecar">ケーブルカー</string>
   <string name="product_on_demand">オンデマンド</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">変更履歴</string>
-  <string name="changelog_title">新着情報</string>
-  <string name="changelog_show_full">さらに…</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">変更履歴</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">新着情報</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">さらに…</string>
   <string name="np_continent_europe">ヨーロッパ</string>
   <string name="np_continent_africa">アフリカ</string>
   <string name="np_continent_north_america">北アメリカ</string>
@@ -210,13 +213,13 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_desc_wien">ウィーン</string>
   <string name="np_region_belgium">ベルギー</string>
   <string name="np_desc_sncb">ベルギーの公共交通機関</string>
-	<string name="np_name_br">ブラジル</string>
+  <string name="np_name_br">ブラジル</string>
   <string name="np_desc_br">サンパウロ、リオデジャネイロ、ベロオリゾンテ、ポルトアレグレ</string>
   <string name="np_name_br_floripa">フロリアノーポリス</string>
   <string name="np_desc_br_floripa">多くのバス路線、ビジネス外</string>
   <string name="np_region_canada">カナダ</string>
   <string name="np_name_ontario">オンタリオ</string>
-  <string name="np_desc_ontario">オンタリオ、オタワ、トロント、ミシソーガ、ウォータールー地域</string>
+  <string name="np_desc_ontario">オンタリオ、オタワ、トロント、ミシソーガ、ハミルトン、ウォータールー地域</string>
   <string name="np_name_quebec">ケベック</string>
   <string name="np_desc_quebec">ドゥ-モンターニュ、ラバル、ラソンプシオン、ウタウエ、南西部、ケベック、オー-サン-ローラン、ラノディエール地域、ラ・プレスクイル、ローレンティッド地域、モントリオール、レムーラン、リシュリューバレー、シャンブリーリシュリュー-カリニャン、ルシヨン、ソレル-ヴァレンヌザ、Le Richelain、シャーブルック、サントジュリー</string>
   <string name="np_name_britishcolumbia">ブリティッシュコロンビア</string>
@@ -262,7 +265,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_desc_nvbw">バーデン・ヴュルテンベルク、コンスタンツ、バーゼル、バーゼル・シュタット、ロイトリンゲン、ロットワイル、テュービンゲン、シグマリンゲン</string>
   <string name="np_desc_nvv">ヘッセン、フランクフルト・アム・マイン、カッセル</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">ロストック</string>
-	<string name="np_desc_vbb">ブランデンブルク、ベルリン</string>
+  <string name="np_desc_vbb">ブランデンブルク、ベルリン</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">ニーダーザクセン、ブレーメン、ブレーマーハーフェン、オルデンブルク (オルデンブルク)、オスナブリュック</string>
   <string name="np_desc_vgn">ニュルンベルク、フュルト、エルランゲン、バイロイト、バンベルク、シュヴァバッハ</string>
   <string name="np_desc_vgs">ザールラント、ザールブリュッケン</string>
@@ -290,7 +293,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_region_netherlands">オランダ</string>
   <string name="np_desc_ns">オランダ、アムステルダム</string>
   <string name="np_desc_negentwee">オランダのすべての公共交通機関</string>
-	<string name="np_name_nz">ニュージーランド</string>
+  <string name="np_name_nz">ニュージーランド</string>
   <string name="np_desc_nz">ニュージーランド、ウェリントン、オークランド</string>
   <string name="np_region_poland">ポーランド</string>
   <string name="np_desc_pl">ポーランド、ポーランドの鉄道</string>
@@ -324,7 +327,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_name_costa_rica">コスタリカ</string>
   <string name="np_name_ghana">ガーナ</string>
   <string name="np_desc_ghana">アクラ</string>
-	<string name="np_name_nicaragua">ニカラグア</string>
+  <string name="np_name_nicaragua">ニカラグア</string>
   <string name="np_desc_nicaragua">MapaNica.net と OpenStreetMap の協力者が提供する都市、田舎、そして全国のバス</string>
   <string name="maintainer">メンテナー</string>
   <string name="contributors">貢献者</string>
@@ -352,4 +355,5 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="taiwanese">中国語 (台湾)</string>
   <string name="swedish">スウェーデン語</string>
   <string name="ukrainian">ウクライナ語</string>
+  <string name="danish">デンマーク語</string>
 </resources>

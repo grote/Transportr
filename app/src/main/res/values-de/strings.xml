@@ -48,7 +48,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="action_fav_trip">Verbindung als Favorit markieren</string>
   <string name="action_unfav_trip">Markierung der Verbindung als Favorit aufheben</string>
   <string name="action_switch_locations">Von und Nach vertauschen</string>
-	<string name="trip_dep">Abfahrt</string>
+  <string name="trip_dep">Abfahrt</string>
   <string name="trip_arr">Ankunft</string>
   <string name="action_refresh">Aktualisieren</string>
   <string name="action_navigation_expand">Über anzeigen</string>
@@ -69,7 +69,8 @@ und weiß immer, wo man aussteigen muss.
   <string name="about_warning_text">Es wird keine Gewähr für die Richtigkeit der (extern zur Verfügung gestellten) Daten übernommen. Bitte benutzen Sie diese App nur auf eigene Gefahr.</string>
   <string name="about_contributions">Diese App ist Freie Software, so dass Sie sie frei benutzen, studieren, teilen und verbessern können. Beiträge sind erwünscht und willkommen. Wenn Sie einen Beitrag leisten möchten, besuchen Sie bitte die Homepage für weitere Informationen.</string>
   <string name="about_visit_website">Zur Webseite</string>
-  <string name="open_navigation_drawer">Navigationsschuber öffnen</string>
+  <string name="map_attribution_improve">Diese Karte verbessern</string>
+  <string name="open_navigation_drawer">Navigationsbereich öffnen</string>
   <string name="from">Von</string>
   <string name="to">Nach</string>
   <string name="via">Über</string>
@@ -109,6 +110,8 @@ und weiß immer, wo man aussteigen muss.
   <string name="pref_theme_title">Thema</string>
   <string name="pref_theme_light">Hell</string>
   <string name="pref_theme_dark">Dunkel</string>
+  <string name="pref_theme_auto_battery">Einstellung durch Batteriesparmodus</string>
+  <string name="pref_theme_auto_system">Systemstandard</string>
   <string name="pref_language_title">Sprache</string>
   <string name="pref_directions_routing">Verbindungen und Routenkriterien</string>
   <string name="pref_optimize">Optimiert für</string>
@@ -173,7 +176,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="warning_gps_off">Der Standort ist ausgeschaltet. Bitte schalte es in den Einstellungen ein.</string>
   <string name="onboarding_location_title">Hochziehen</string>
   <string name="onboarding_location_message">Weitere Funktionen verbergen sich weiter unten</string>
-	<string name="select_products">Wähle das Verkehrsmittel</string>
+  <string name="select_products">Wähle das Verkehrsmittel</string>
   <string name="product_high_speed_train">Hochgeschwindigkeitszug</string>
   <string name="product_regional_train">Regionalbahn</string>
   <string name="product_suburban_train">S-Bahn</string>
@@ -184,9 +187,9 @@ und weiß immer, wo man aussteigen muss.
   <string name="product_cablecar">Seilbahn</string>
   <string name="product_on_demand">Auf Nachfrage</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Änderungsprotokoll</string>
-  <string name="changelog_title">Was gibt\'s Neues</string>
-  <string name="changelog_show_full">Mehr…</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Änderungsprotokoll</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Was gibt\'s Neues</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Mehr…</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">Afrika</string>
   <string name="np_continent_north_america">Nordamerika</string>
@@ -217,7 +220,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_br_floripa">Viele Buslinien, keine Executivos</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo Region</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Waterloo Region</string>
   <string name="np_name_quebec">Québec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Québec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">British Columbia</string>
@@ -353,4 +356,5 @@ und weiß immer, wo man aussteigen muss.
   <string name="taiwanese">Chinesisch (Taiwan)</string>
   <string name="swedish">Schwedisch</string>
   <string name="ukrainian">Ukrainisch</string>
+  <string name="danish">Dänisch</string>
 </resources>

@@ -48,7 +48,7 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="action_fav_trip">Marker Rejse som Favorit</string>
   <string name="action_unfav_trip">Fjern Rejse som Favorit</string>
   <string name="action_switch_locations">Skift Fra og Til</string>
-	<string name="trip_dep">Afgange</string>
+  <string name="trip_dep">Afgange</string>
   <string name="trip_arr">Ankomst</string>
   <string name="action_refresh">Genindlæs</string>
   <string name="action_navigation_expand">Vis Via</string>
@@ -83,11 +83,11 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="network">Netværk</string>
   <string name="pick_network_activity">Vælg Område</string>
   <string name="pick_network_first_run">Velkommen til Transportr!\n\nVælg et transportnetværk fra dit område for at fortsætte. Du kan altid skifte dette.</string>
-  <string name="stations_searching_position">Søger efter nuværende position...</string>
+  <string name="stations_searching_position">Søger efter nuværende position…</string>
   <string name="drawer_nearby_stations">Nærliggende Stationer</string>
   <string name="find_nearby_stations">Find Nærliggende Stationer</string>
   <string name="find_departures">Find Afgange</string>
-  <string name="share_trip_via">Del Rejse Via...</string>
+  <string name="share_trip_via">Del Rejse Via…</string>
   <string name="more">Mere</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">i %d min</string>
@@ -173,7 +173,7 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="warning_gps_off">Placering er slået fra. Slå den til i instillinger.</string>
   <string name="onboarding_location_title">Træk op</string>
   <string name="onboarding_location_message">Flere funktioner gemmer sig neden under</string>
-	<string name="select_products">Vælg Transporttype</string>
+  <string name="select_products">Vælg Transporttype</string>
   <string name="product_high_speed_train">Højhastighedstog</string>
   <string name="product_regional_train">Regional Tog</string>
   <string name="product_suburban_train">Forstadstog</string>
@@ -184,9 +184,9 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="product_cablecar">Svævebane</string>
   <string name="product_on_demand">Ved Behov</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Ændringslog</string>
-  <string name="changelog_title">Nyheder</string>
-  <string name="changelog_show_full">Mere...</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Ændringslog</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Nyheder</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Mere…</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">Afrika</string>
   <string name="np_continent_north_america">Nordamerika</string>
@@ -217,7 +217,6 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_desc_br_floripa">Mange busruter, ingen ledere</string>
   <string name="np_region_canada">Canada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo Regionen</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Britisk Columbia</string>

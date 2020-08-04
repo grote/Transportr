@@ -52,7 +52,7 @@ hogy hol kell leszállnia a buszról…
   <string name="action_fav_trip">Útvonal megjelölése kedvencként</string>
   <string name="action_unfav_trip">Útvonal eltávolítása a kedvencek közül</string>
   <string name="action_switch_locations">Kiindulópont és célpont felcserélése</string>
-	<string name="trip_dep">Indulás</string>
+  <string name="trip_dep">Indulás</string>
   <string name="trip_arr">Érkezés</string>
   <string name="action_refresh">Frissítés</string>
   <string name="action_navigation_expand">Érintett pont megjelenítése</string>
@@ -103,6 +103,7 @@ hogy hol kell leszállnia a buszról…
   <string name="tomorrow">Holnap</string>
   <string name="in_x_minutes">%d perce</string>
   <string name="x_minutes_ago">%d perce</string>
+  <string name="total_time">Teljes idő: %s</string>
   <string name="time_picker_previous_day">Előző nap</string>
   <string name="time_picker_next_day">Következő nap</string>
   <string name="ok">OK</string>
@@ -141,6 +142,7 @@ hogy hol kell leszállnia a buszról…
   <string name="trip_error_no_trips">Nem találhatók csatlakozások :(</string>
   <string name="trip_error_invalid_date">A keresési dátumot jelenleg nem támogatja az adatszolgáltató. Próbáljon egy másik dátumot.</string>
   <string name="trip_error_service_down">Az adatszolgáltató jelenleg nem érhető el :(\nPróbálja meg később.</string>
+  <string name="trip_error_pte">Ha be akarja jelenteni ezt a hibát, akkor jelentse közvetlenül ide: %1$s.</string>
   <string name="trip_issue">Probléma lehet ezzel a csatlakozással.</string>
   <string name="trip_not_travelable">Lehetetlen vagy visszavont</string>
   <string name="try_again">Próbálja újra</string>
@@ -175,7 +177,7 @@ hogy hol kell leszállnia a buszról…
   <string name="warning_gps_off">A tartózkodási hely ki van kapcsolva. Kapcsolja be a beállításokban.</string>
   <string name="onboarding_location_title">Húzza fel</string>
   <string name="onboarding_location_message">További funkciók vannak lent elrejtve</string>
-	<string name="select_products">Közlekedési eszközök kiválasztása</string>
+  <string name="select_products">Közlekedési eszközök kiválasztása</string>
   <string name="product_high_speed_train">Gyorsvasút</string>
   <string name="product_regional_train">Regionális vasút</string>
   <string name="product_suburban_train">Elővárosi vasút</string>
@@ -186,9 +188,9 @@ hogy hol kell leszállnia a buszról…
   <string name="product_cablecar">Felvonó</string>
   <string name="product_on_demand">Igény szerint</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Változásnapló</string>
-  <string name="changelog_title">Újdonságok</string>
-  <string name="changelog_show_full">Továbbiak…</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Változásnapló</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Újdonságok</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Továbbiak…</string>
   <string name="np_continent_europe">Európa</string>
   <string name="np_continent_africa">Afrika</string>
   <string name="np_continent_north_america">Észak-Amerika</string>
@@ -213,13 +215,12 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_wien">Bécs</string>
   <string name="np_region_belgium">Belgium</string>
   <string name="np_desc_sncb">Belgiumi tömegközlekedés</string>
-	<string name="np_name_br">Brazília</string>
+  <string name="np_name_br">Brazília</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte és Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Sok buszútvonal, Executivos nélkül</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo régió</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Brit Columbia</string>
@@ -265,7 +266,7 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandenburg, Berlin</string>
+  <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Alsó-Szászország, Bréma, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saar-vidék, Saarbrücken</string>
@@ -293,7 +294,7 @@ hogy hol kell leszállnia a buszról…
   <string name="np_region_netherlands">Hollandia</string>
   <string name="np_desc_ns">Hollandia, Amszterdam</string>
   <string name="np_desc_negentwee">Az összes tömegközlekedési hálózat Hollandiában</string>
-	<string name="np_name_nz">Új-Zéland</string>
+  <string name="np_name_nz">Új-Zéland</string>
   <string name="np_desc_nz">Új-Zéland, Welligton, Auckland</string>
   <string name="np_region_poland">Lengyelország</string>
   <string name="np_desc_pl">Lengyelország, vasutak Lengyelországban</string>
@@ -304,6 +305,8 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_spain">Madrid, Barcelona, Baszkföld, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Magyarország</string>
   <string name="np_desc_hungary">Budapest, Miskolc</string>
+  <string name="np_name_czechia">Csehország</string>
+  <string name="np_desc_czechia">Prága és egyebek</string>
   <string name="np_region_sweden">Svédország</string>
   <string name="np_desc_se">Svédország, Stockholm</string>
   <string name="np_region_switzerland">Svájc</string>
@@ -325,7 +328,7 @@ hogy hol kell leszállnia a buszról…
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghána</string>
   <string name="np_desc_ghana">Accra</string>
-	<string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Városi, vidéki és országos buszjáratok a MapaNica.nettől és OpenStreetMap közreműködőktől</string>
   <string name="maintainer">Karbantartó</string>
   <string name="contributors">Közreműködők</string>
@@ -353,4 +356,5 @@ hogy hol kell leszállnia a buszról…
   <string name="taiwanese">Kínai (Taiwan)</string>
   <string name="swedish">Svéd</string>
   <string name="ukrainian">Ukrán</string>
+  <string name="danish">Dán</string>
 </resources>

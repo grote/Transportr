@@ -46,7 +46,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="action_fav_trip">سفر را به عنوان مورد علاقه علامت بزن</string>
   <string name="action_unfav_trip">علامت سفر به عنوان مورد علاقه را بردار</string>
   <string name="action_switch_locations">جابجا کردن مبداء و مقصد</string>
-	<string name="trip_dep">حرکت</string>
+  <string name="trip_dep">حرکت</string>
   <string name="trip_arr">ورود</string>
   <string name="action_refresh">رفرش</string>
   <string name="action_navigation_expand">نمایش بده از طریق</string>
@@ -84,11 +84,11 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="pick_network_first_run">به Transportr خوش آمدید!
 
 لطفا شبکه حمل و نقل مرتبط با ناحیه خود را انتخاب کنید. بعدا در هر زمانی میتوانید آن را تغییر دهید.</string>
-  <string name="stations_searching_position">در جستجوی مکان فعلی...</string>
+  <string name="stations_searching_position">در جستجوی مکان فعلی…</string>
   <string name="drawer_nearby_stations">ایستگاه های نزدیک</string>
   <string name="find_nearby_stations">ایستگاه های نزدیک را پیدا کن</string>
   <string name="find_departures">یافتن حرکت ها</string>
-  <string name="share_trip_via">به اشتراک گذاری سفر از طریق...</string>
+  <string name="share_trip_via">به اشتراک گذاری سفر از طریق…</string>
   <string name="more">بیشتر</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">برای %d دقیقه</string>
@@ -100,6 +100,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="tomorrow">فردا</string>
   <string name="in_x_minutes">در %d دقیقه</string>
   <string name="x_minutes_ago">%d دقیقه گذشته</string>
+  <string name="total_time">زمان کل: %s</string>
   <string name="time_picker_previous_day">روز قبل</string>
   <string name="time_picker_next_day">روز بعد</string>
   <string name="ok">باشه</string>
@@ -139,6 +140,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="trip_error_invalid_date">تاریخ جستجو توسط تامین کننده داده پشتیبانی نمی شود. لطفا یک تاریخ دیگر را امتحان کنید.</string>
   <string name="trip_error_service_down">تامین کننده داده هم اکنون برقرار نمی باشد :(
 لطفا بعدا امتحان کنید.</string>
+  <string name="trip_error_pte">اگر میخواهید این خطا را گزارش کنید، لطفا آن را به صورت مستقیم به %1$s گزارش کنید.</string>
   <string name="trip_issue">ممکن است با این کانکشن اشکالی وجود داشته باشد.</string>
   <string name="trip_not_travelable">غیر ممکن یا لغو شده</string>
   <string name="try_again">دوباره امتحان کنید</string>
@@ -173,7 +175,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="warning_gps_off">مکان خاموش می باشد. لطفا از قسمت تنظیمات آن را روشن کنید.</string>
   <string name="onboarding_location_title">توقف کردن</string>
   <string name="onboarding_location_message">امکاناتی بیشتر در پایین به صورت مخفی قرار دارند</string>
-	<string name="select_products">انتخاب وسیله های حمل و نقل</string>
+  <string name="select_products">انتخاب وسیله های حمل و نقل</string>
   <string name="product_high_speed_train">قطار سرعت-بالا</string>
   <string name="product_regional_train">قطار منطقه ای</string>
   <string name="product_suburban_train">قطار برون شهری</string>
@@ -184,9 +186,9 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="product_cablecar">ماشین کابلی</string>
   <string name="product_on_demand">بر پایه تقاضا</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">تغییرات</string>
-  <string name="changelog_title">چه چیز جدیدی وجود دارد</string>
-  <string name="changelog_show_full">بیشتر...</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">تغییرات</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">چه چیز جدیدی وجود دارد</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">بیشتر…</string>
   <string name="np_continent_europe">اروپا</string>
   <string name="np_continent_africa">آفریقا</string>
   <string name="np_continent_north_america">آمریکای شمالی</string>
@@ -211,13 +213,12 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_desc_wien">وین</string>
   <string name="np_region_belgium">بلژیک</string>
   <string name="np_desc_sncb">حمل و نقل عمومی در بلژیک</string>
-	<string name="np_name_br">برزیل</string>
+  <string name="np_name_br">برزیل</string>
   <string name="np_desc_br">سائو پائولو، ریو دو ژانیرو، بلو هوریزونته و پورتو آلگری</string>
   <string name="np_name_br_floripa">فلوریانوپلیس</string>
   <string name="np_desc_br_floripa">مسیر های اتوبوس زیادی وجود دارد، هیچ اتوبوس تشریفاتی وجود ندارد</string>
   <string name="np_region_canada">کانادا</string>
   <string name="np_name_ontario">انتاریو</string>
-  <string name="np_desc_ontario">انتاریو، اتاوا، تورنتو، میسیساگا، منطقه واترلو</string>
   <string name="np_name_quebec">کبک</string>
   <string name="np_desc_quebec">دو-مونتاین، لاوال، لسامپسیون، اوتاوه، سودواست، کبک، اکسو، لانودییر، لورانتید، مونترآل، له مولن،  لا وله-دو-ریشولیو، روسیون، شربروک، سنت-ژولی</string>
   <string name="np_name_britishcolumbia">بریتیش کلمبیا</string>
@@ -263,7 +264,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_desc_nvbw">بادن-وورتمبرگ، کنستانتس، بازل، کانتون بازل اشتاد، رویتلینگن، روتوایل، توبینگن، زیگمارینگن</string>
   <string name="np_desc_nvv">هسن، فرانکفورت، کاسل</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">روستوک</string>
-	<string name="np_desc_vbb">براندنبورگ، برلین</string>
+  <string name="np_desc_vbb">براندنبورگ، برلین</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">نیدرزاکسن، برمن، برمرهافن، اولدنبورگ (اولدنبورگ)، اسنابروک</string>
   <string name="np_desc_vgn">نورنبرگ، فورت، ارلانگن، بایرویت، بامبرگ، شواباخ</string>
   <string name="np_desc_vgs">زارلاند، زاربروکن</string>
@@ -291,7 +292,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_region_netherlands">هلند</string>
   <string name="np_desc_ns">هلند، آمستردام</string>
   <string name="np_desc_negentwee">تمام حمل و نقل عمومی در هلند</string>
-	<string name="np_name_nz">نیوزلند</string>
+  <string name="np_name_nz">نیوزلند</string>
   <string name="np_desc_nz">نیوزیلند، ولینگتون، آوکلند</string>
   <string name="np_region_poland">لهستان</string>
   <string name="np_desc_pl">لهستان، راه آهن ها در لهستان</string>
@@ -302,6 +303,8 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_desc_spain">مادرید، بارسلون، سرزمین باسک، والنسیا، آلیکانته، مایورکا، مینورکا، تنریف، لا پالما، نابارا</string>
   <string name="np_name_hungary">مجارستان</string>
   <string name="np_desc_hungary">بوداپست، میشکولتس</string>
+  <string name="np_name_czechia">چک</string>
+  <string name="np_desc_czechia">پراگ و دیگران</string>
   <string name="np_region_sweden">سوئد</string>
   <string name="np_desc_se">سوئد، استکهلم</string>
   <string name="np_region_switzerland">سوئیس</string>
@@ -323,7 +326,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_name_costa_rica">کاستاریکا</string>
   <string name="np_name_ghana">غنا</string>
   <string name="np_desc_ghana">آکرا</string>
-	<string name="np_name_nicaragua">نیکاراگوئه</string>
+  <string name="np_name_nicaragua">نیکاراگوئه</string>
   <string name="np_desc_nicaragua">اتوبوس های شهری، روستایی و سراسری فراهم شده توسط MapaNica.net  و مشارکت کنندگان OpenStreetMap</string>
   <string name="maintainer">نگهدارنده</string>
   <string name="contributors">مشارکت کنندگان</string>
@@ -351,4 +354,5 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="taiwanese">چینی (تایوان)</string>
   <string name="swedish">سوئدی</string>
   <string name="ukrainian">اوکراینی</string>
+  <string name="danish">دانمارکی</string>
 </resources>
