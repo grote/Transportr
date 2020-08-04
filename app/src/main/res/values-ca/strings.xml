@@ -52,7 +52,7 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="action_fav_trip">Marcar trajecte com a favorit</string>
   <string name="action_unfav_trip">Desmarcar trajecte com a favorit</string>
   <string name="action_switch_locations">Intercanvia Des de i Cap a</string>
-	<string name="trip_dep">de sortida</string>
+  <string name="trip_dep">de sortida</string>
   <string name="trip_arr">d\'arribada</string>
   <string name="action_refresh">Actualitzar</string>
   <string name="action_navigation_expand">Mostrar via</string>
@@ -87,11 +87,11 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="network">Xarxa</string>
   <string name="pick_network_activity">Triar àrea</string>
   <string name="pick_network_first_run">Benvingut a Transportr!\n\n Selecciona la xarxa de transport de la teva zona per poder continuar. Pots canviar això en qualsevol moment.</string>
-  <string name="stations_searching_position">Cercant posició actual...</string>
+  <string name="stations_searching_position">Cercant posició actual…</string>
   <string name="drawer_nearby_stations">Estacions properes</string>
   <string name="find_nearby_stations">Trobar estacions properes</string>
   <string name="find_departures">Trobar sortides</string>
-  <string name="share_trip_via">Compartir trajecte via...</string>
+  <string name="share_trip_via">Compartir trajecte via…</string>
   <string name="more">Més</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">per %dmin</string>
@@ -188,9 +188,9 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="product_cablecar">Telefèric</string>
   <string name="product_on_demand">A demanda</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Canvis</string>
-  <string name="changelog_title">Què hi ha de nou</string>
-  <string name="changelog_show_full">Més</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Canvis</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Què hi ha de nou</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Més…</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">Àfrica</string>
   <string name="np_continent_north_america">Nordamèrica</string>
@@ -221,7 +221,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_desc_br_floripa">Vàries rutes, no \"executivos\"</string>
   <string name="np_region_canada">Canadà</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Regió de Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Colúmbia Britànica</string>

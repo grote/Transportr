@@ -44,7 +44,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="action_fav_trip">Segna viaggio come preferito</string>
   <string name="action_unfav_trip">Rimuovi viaggio dai preferiti</string>
   <string name="action_switch_locations">Scambia Da e A</string>
-	<string name="trip_dep">Partenza</string>
+  <string name="trip_dep">Partenza</string>
   <string name="trip_arr">Arrivo</string>
   <string name="action_refresh">Ricarica</string>
   <string name="action_navigation_expand">Mostra fermate intermedie</string>
@@ -65,6 +65,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="about_warning_text">Non c\'è alcuna garanzia per la correttezza dei dati (di terze parti). Usa quest\'app a tuo rischio.</string>
   <string name="about_contributions">Quest\'app è software libero, così sei libero di usarlo, studiarlo, condividerlo e migliorarlo. I contributi sono apprezzati e incoraggiati. Se volete contribuire, visita il sito per maggiori informazioni.</string>
   <string name="about_visit_website">Visita il sito</string>
+  <string name="map_attribution_improve">Migliora questa mappa</string>
   <string name="open_navigation_drawer">Apri menù laterale</string>
   <string name="from">Da</string>
   <string name="to">A</string>
@@ -79,11 +80,11 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="network">Rete</string>
   <string name="pick_network_activity">Scegli la zona</string>
   <string name="pick_network_first_run">Benvenuto su Transportr!\n\nSeleziona la rete di trasporto della tua zona per poter continuare. Puoi cambiare la selezione in qualunque momento.</string>
-  <string name="stations_searching_position">Ricerca posizione corrente in corso...</string>
+  <string name="stations_searching_position">Ricerca posizione corrente in corso…</string>
   <string name="drawer_nearby_stations">Stazioni vicine</string>
   <string name="find_nearby_stations">Cerca stazioni vicine</string>
   <string name="find_departures">Cerca partenze</string>
-  <string name="share_trip_via">Condividi viaggio tramite...</string>
+  <string name="share_trip_via">Condividi viaggio tramite…</string>
   <string name="more">Più</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">per %d min</string>
@@ -105,6 +106,8 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="pref_theme_title">Tema</string>
   <string name="pref_theme_light">Chiaro</string>
   <string name="pref_theme_dark">Scuro</string>
+  <string name="pref_theme_auto_battery">Impostato dal risparmio energetico</string>
+  <string name="pref_theme_auto_system">Predefinito di sistema</string>
   <string name="pref_language_title">Lingua</string>
   <string name="pref_directions_routing">Direzioni e percorso</string>
   <string name="pref_optimize">Ottimizza secondo</string>
@@ -169,7 +172,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="warning_gps_off">La geolocalizzazione è disattivata. Attivala nelle impostazioni.</string>
   <string name="onboarding_location_title">Trascina</string>
   <string name="onboarding_location_message">Altre funzioni sono nascoste sotto</string>
-	<string name="select_products">Seleziona mezzi di trasporto</string>
+  <string name="select_products">Seleziona mezzi di trasporto</string>
   <string name="product_high_speed_train">Treno ad alta velocità</string>
   <string name="product_regional_train">Treno regionale</string>
   <string name="product_suburban_train">Treno suburbano</string>
@@ -180,9 +183,9 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="product_cablecar">Funivia</string>
   <string name="product_on_demand">Su richiesta</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Registro delle modifiche</string>
-  <string name="changelog_title">Novità</string>
-  <string name="changelog_show_full">Più...</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Registro delle modifiche</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Novità</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Più…</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">Africa</string>
   <string name="np_continent_north_america">America settentrionale</string>
@@ -207,13 +210,13 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_wien">Vienna</string>
   <string name="np_region_belgium">Belgio</string>
   <string name="np_desc_sncb">Trasporto pubblico in Belgio</string>
-	<string name="np_name_br">Brasile</string>
+  <string name="np_name_br">Brasile</string>
   <string name="np_desc_br">San Paolo, Rio de Janeiro, Belo Horizonte e Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Molti viaggi in autobus, niente Executivos</string>
   <string name="np_region_canada">Canada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, regione Waterloo</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, regione di Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Columbia Britannica</string>
@@ -259,7 +262,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_nvbw">Baden-Württemberg, Costanza, Basilea, Basilea Città, Reutlingen, Rottweil, Tubinga, Sigmaringa</string>
   <string name="np_desc_nvv">Assia, Francoforte sul Meno, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandeburgo, Berlino</string>
+  <string name="np_desc_vbb">Brandeburgo, Berlino</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Bassa Sassonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Norimberga, Fürth, Erlangen, Bayreuth, Bamberga, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -287,7 +290,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_region_netherlands">Olanda</string>
   <string name="np_desc_ns">Olanda, Amsterdam</string>
   <string name="np_desc_negentwee">Tutti i trasporti pubblici nei Paesi Bassi</string>
-	<string name="np_name_nz">Nuova Zelanda</string>
+  <string name="np_name_nz">Nuova Zelanda</string>
   <string name="np_desc_nz">Nuova Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, ferrovie in Polonia</string>
@@ -321,7 +324,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
-	<string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Autobus urbani, rurali e nazionali ottenuti da MapaNica.net e collaboratori di OpenStreetMap</string>
   <string name="maintainer">Mantenitori</string>
   <string name="contributors">Contributori</string>
@@ -349,4 +352,5 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="taiwanese">Cinese (Taiwan)</string>
   <string name="swedish">Svedese</string>
   <string name="ukrainian">Ucraino</string>
+  <string name="danish">Danese</string>
 </resources>

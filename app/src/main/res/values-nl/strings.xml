@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - open-bron Openbaar Vervoer</string>
-  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Gratis openbaar vervoer-hulpmiddel zonder advertenties of tracking</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Gratis openbaarvervoerhulpmiddel zonder reclame of gevolgd te worden</string>
   <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
 Transportr is een niet-commerciële app ontwikkeld door mensen over de hele wereld in hun vrije tijd. Zij willen het gebruik van openbaar vervoer zo makkelijk mogelijk maken voor iedereen.
 
@@ -29,7 +29,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="action_fav_trip">Reis toevoegen aan favorieten</string>
   <string name="action_unfav_trip">Reis verwijderen uit favorieten</string>
   <string name="action_switch_locations">Begin- en eindpunt omwisselen</string>
-	<string name="trip_dep">Vertrek</string>
+  <string name="trip_dep">Vertrek</string>
   <string name="trip_arr">Aankomst</string>
   <string name="action_refresh">Verversen</string>
   <string name="action_navigation_expand">\'Via\' tonen</string>
@@ -50,6 +50,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="about_warning_text">Wij geven geen garantie op de (extern aangeleverde) gegevens. Gebruik de app op eigen risico.</string>
   <string name="about_contributions">Deze app is vrije software, dus je kunt het vrij gebruiken, bestuderen, delen of verbeteren. Bijdragen worden aangemoedigd en gewaardeerd. Als je wilt bijdragen, bezoek dan de homepagina voor meer informatie.</string>
   <string name="about_visit_website">Website bezoeken</string>
+  <string name="map_attribution_improve">Verbeter deze kaart</string>
   <string name="open_navigation_drawer">Navigatiemenu openen</string>
   <string name="from">Van</string>
   <string name="to">Naar</string>
@@ -64,11 +65,11 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="network">Netwerk</string>
   <string name="pick_network_activity">Kies vervoersgebied</string>
   <string name="pick_network_first_run">Welkom bij Transportr!\n\nKies hieronder een vervoersnetwerk uit je regio om door te gaan. Je kunt dit later altijd aanpassen.</string>
-  <string name="stations_searching_position">Bezig met zoeken naar huidige locatie...</string>
+  <string name="stations_searching_position">Bezig met zoeken naar huidige locatie…</string>
   <string name="drawer_nearby_stations">Nabije stations</string>
   <string name="find_nearby_stations">Zoeken naar nabije stations</string>
   <string name="find_departures">Vertrekken zoeken</string>
-  <string name="share_trip_via">Reis delen via...</string>
+  <string name="share_trip_via">Reis delen via…</string>
   <string name="more">Meer</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">%d min</string>
@@ -90,6 +91,8 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="pref_theme_title">Thema</string>
   <string name="pref_theme_light">Licht</string>
   <string name="pref_theme_dark">Donker</string>
+  <string name="pref_theme_auto_battery">Ingesteld door batterijbesparing</string>
+  <string name="pref_theme_auto_system">Systeemstandaard</string>
   <string name="pref_language_title">Taal</string>
   <string name="pref_directions_routing">Navigatie en routeplanning</string>
   <string name="pref_optimize">Optimaliseren voor</string>
@@ -154,7 +157,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="warning_gps_off">Locatie is uitgeschakeld. Schakel deze in via de instellingen.</string>
   <string name="onboarding_location_title">Omhoogtrekken</string>
   <string name="onboarding_location_message">Hieronder verbergen zich functies</string>
-	<string name="select_products">Kies transportmiddelen</string>
+  <string name="select_products">Kies transportmiddelen</string>
   <string name="product_high_speed_train">InterCity- of hogesnelheidstrein</string>
   <string name="product_regional_train">Regionale trein</string>
   <string name="product_suburban_train">Stadstrein</string>
@@ -165,9 +168,9 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="product_cablecar">Kabelbaan</string>
   <string name="product_on_demand">Op aanvraag</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Wijzigingslog</string>
-  <string name="changelog_title">Wijzigingen</string>
-  <string name="changelog_show_full">Meer...</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Wijzigingslog</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Wijzigingen</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Meer…</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">Afrika</string>
   <string name="np_continent_north_america">Noord-Amerika</string>
@@ -192,13 +195,13 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_wien">Wenen</string>
   <string name="np_region_belgium">België</string>
   <string name="np_desc_sncb">Openbaar vervoer in België</string>
-	<string name="np_name_br">Brazilie</string>
+  <string name="np_name_br">Brazilie</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte en Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Veel busroutes, geen Executivos</string>
   <string name="np_region_canada">Canada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo-regio</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Waterloo-regio</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Brits-Columbia</string>
@@ -244,7 +247,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Bazel, Bazel-Stad, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandenburg, Berlijn</string>
+  <string name="np_desc_vbb">Brandenburg, Berlijn</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Nedersaksen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Neurenberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -272,7 +275,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_region_netherlands">Nederland</string>
   <string name="np_desc_ns">Nederland, Amsterdam</string>
   <string name="np_desc_negentwee">Al het openbaar vervoer in Nederland</string>
-	<string name="np_name_nz">Nieuw-Zeeland</string>
+  <string name="np_name_nz">Nieuw-Zeeland</string>
   <string name="np_desc_nz">Nieuw-Zeeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, spoorwegen in Polen</string>
@@ -306,7 +309,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
-	<string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Stads-, streek- en binnenlandse bussen, verstrekt door MapaNica.net en OpenStreetMap-bijdragers</string>
   <string name="maintainer">Onderhouder</string>
   <string name="contributors">Bijdragers</string>
@@ -334,4 +337,5 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="taiwanese">Chinees (Taiwan)</string>
   <string name="swedish">Zweeds</string>
   <string name="ukrainian">Oekraïens</string>
+  <string name="danish">Deens</string>
 </resources>

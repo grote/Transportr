@@ -42,7 +42,7 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="action_fav_trip">Marcar viaje como favorito</string>
   <string name="action_unfav_trip">Desmarcar viaje como favorito</string>
   <string name="action_switch_locations">Intercambiar origen y destino</string>
-	<string name="trip_dep">Salida</string>
+  <string name="trip_dep">Salida</string>
   <string name="trip_arr">Llegada</string>
   <string name="action_refresh">Actualizar</string>
   <string name="action_navigation_expand">Destino intermedio</string>
@@ -66,13 +66,13 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="open_navigation_drawer">Abrir panel de navegación</string>
   <string name="from">Desde</string>
   <string name="to">Hasta</string>
-  <string name="via">Via</string>
+  <string name="via">Vía</string>
   <string name="search_hint">Buscar aquí</string>
   <string name="from_here">Desde aquí</string>
   <string name="to_here">Hasta aquí</string>
   <string name="clear_location">Limpiar ubicación</string>
   <string name="walk">Caminata</string>
-  <string name="alpha">alpha</string>
+  <string name="alpha">alfa</string>
   <string name="beta">beta</string>
   <string name="network">Red</string>
   <string name="pick_network_activity">Elige la zona</string>
@@ -166,7 +166,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="warning_gps_off">La geolocalización está apagada. Por favor, enciéndela en los ajustes.</string>
   <string name="onboarding_location_title">Arrastra hacia arriba</string>
   <string name="onboarding_location_message">Hay más datos aquí abajo</string>
-	<string name="select_products">Seleccionar medio de transporte</string>
+  <string name="select_products">Seleccionar medio de transporte</string>
   <string name="product_high_speed_train">Tren de alta velocidad</string>
   <string name="product_regional_train">Tren regional</string>
   <string name="product_suburban_train">Tren suburbano</string>
@@ -177,9 +177,9 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="product_cablecar">Teleférico</string>
   <string name="product_on_demand">Por encargo</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Cambios</string>
-  <string name="changelog_title">Novedades</string>
-  <string name="changelog_show_full">Más...</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Cambios</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Novedades</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Más…</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">África</string>
   <string name="np_continent_north_america">América del Norte</string>
@@ -204,13 +204,12 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bélgica</string>
   <string name="np_desc_sncb">Transporte público en Bélgica</string>
-	<string name="np_name_br">Brazil</string>
+  <string name="np_name_br">Brazil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte y Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Muchas líneas de autobúses, ningún Executivos</string>
   <string name="np_region_canada">Canadá</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, región de Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Columbia Británica</string>
@@ -256,7 +255,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandemburgo, Berlín</string>
+  <string name="np_desc_vbb">Brandemburgo, Berlín</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baja Sajonia, Bremen, Bremerhaven, Oldemburgo (Oldemburgo), Osnabrück</string>
   <string name="np_desc_vgn">Núremberg, Fürth, Erlangen, Bayreuth, Bamberga, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -284,10 +283,10 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_region_netherlands">Países Bajos</string>
   <string name="np_desc_ns">Países Bajos, Ámsterdam</string>
   <string name="np_desc_negentwee">Todo el transporte público de Países Bajos</string>
-	<string name="np_name_nz">Nueva Zelanda</string>
+  <string name="np_name_nz">Nueva Zelanda</string>
   <string name="np_desc_nz">Nueva Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
-  <string name="np_desc_pl">Polonia, lineas de ferrocarriles en Polonia</string>
+  <string name="np_desc_pl">Polonia, líneas de ferrocarriles en Polonia</string>
   <string name="np_name_pl_navitia">Transportes municipales de Polonia</string>
   <string name="np_desc_pl_navitia">Varsovia, Wroclaw, Szczecin, Gdansk, Gdynia, Sopot</string>
   <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus/DLA Dlugoleka, Warbus Miekinia, ZDiTM Szczecin, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdansk</string>
@@ -316,7 +315,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Acra</string>
-	<string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Autobuses urbanos, rurales y nacionales proporcionados por MapaNica.net y colaboradores de OpenStreetMap</string>
   <string name="maintainer">Mantenedor</string>
   <string name="contributors">Colaboradores</string>

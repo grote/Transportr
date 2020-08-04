@@ -29,7 +29,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="action_fav_trip">Marki kurson kiel ŝatatan</string>
   <string name="action_unfav_trip">Malmarki kurson kiel ŝatatan</string>
   <string name="action_switch_locations">Anstataŭigi komencpunkton per celo</string>
-	<string name="trip_dep">Forveturo</string>
+  <string name="trip_dep">Forveturo</string>
   <string name="trip_arr">Alveturo</string>
   <string name="action_refresh">Aktualigi</string>
   <string name="action_navigation_expand">Montri inter</string>
@@ -50,6 +50,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="about_warning_text">Estas neniu garantio pri korekteco de (ekstere-provizataj) datumoj. Bonvolu uzi tiun ĉi aplikaĵon nur sub via risko.</string>
   <string name="about_contributions">Tiu ĉi aplikaĵo estas Libera Programaro, do vi povas libere kaj senpage uzi, analizi, diskonigi kaj plibonigi ĝin. Kontribuaĵoj estas konsilindaj kaj laŭdindaj. Se vi volus kontribui, bonvolu viziti la retejon por pli da informoj.</string>
   <string name="about_visit_website">Viziti retpaĝon</string>
+  <string name="map_attribution_improve">Plibonigi tiun ĉi mapon</string>
   <string name="open_navigation_drawer">Malfermi navigan tir-menuon</string>
   <string name="from">El</string>
   <string name="to">Al</string>
@@ -90,6 +91,8 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="pref_theme_title">Etoso</string>
   <string name="pref_theme_light">Hela</string>
   <string name="pref_theme_dark">Malhela</string>
+  <string name="pref_theme_auto_battery">Laŭ bateri‑savilo</string>
+  <string name="pref_theme_auto_system">Sistema</string>
   <string name="pref_language_title">Lingvo</string>
   <string name="pref_directions_routing">Direktoj kaj difinado de kurso</string>
   <string name="pref_optimize">Plibonigi por</string>
@@ -119,7 +122,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="trip_error_no_trips">Ne povas trovi komunikiloj :(</string>
   <string name="trip_error_invalid_date">La serĉita dato ne estas nuntempe subtenata de la datum-provizanto. Bonvolu provi alian daton.</string>
   <string name="trip_error_service_down">La datum-provizanto nuntempe malfunkcias :(\nBonvolu provi denove poste.</string>
-  <string name="trip_error_pte">Se vi volas raporti tiun ĉi eraron, bonvolu raporti ĝin al senpere al %1$s.</string>
+  <string name="trip_error_pte">Se vi volas raporti tiun ĉi eraron, bonvolu raporti ĝin senpere al %1$s.</string>
   <string name="trip_issue">Povas okazi problemo kun tiu ĉi komunikilo.</string>
   <string name="trip_not_travelable">Neebla aŭ nuligita</string>
   <string name="try_again">Reprovi</string>
@@ -154,7 +157,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="warning_gps_off">Determinado de pozicio malŝaltita. Bonvolu aktivigi ĝin en agordoj.</string>
   <string name="onboarding_location_title">Ŝovumu supren</string>
   <string name="onboarding_location_message">Pliaj ebloj sube</string>
-	<string name="select_products">Elekti specojn de transportiloj</string>
+  <string name="select_products">Elekti specojn de transportiloj</string>
   <string name="product_high_speed_train">Vagonaro rapidega</string>
   <string name="product_regional_train">Vagonaro regiona</string>
   <string name="product_suburban_train">Vagonaro suburba</string>
@@ -165,9 +168,9 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="product_cablecar">Kablovojo</string>
   <string name="product_on_demand">Laŭpeta veturilo</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Ŝanĝoprotokolo</string>
-  <string name="changelog_title">Kio estas nova</string>
-  <string name="changelog_show_full">Pli…</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Ŝanĝoprotokolo</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Kio estas nova</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Pli…</string>
   <string name="np_continent_europe">Eŭropo</string>
   <string name="np_continent_africa">Afriko</string>
   <string name="np_continent_north_america">Nordameriko</string>
@@ -192,13 +195,13 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_desc_wien">Vieno</string>
   <string name="np_region_belgium">Belgujo</string>
   <string name="np_desc_sncb">Publika transporto en Belgujo</string>
-	<string name="np_name_br">Brazilo</string>
+  <string name="np_name_br">Brazilo</string>
   <string name="np_desc_br">San-Paŭlo, Rio-de-Ĵanejro, Bel-Horizonto kaj Porto-Alegro</string>
   <string name="np_name_br_floripa">Florianópolis</string>
-  <string name="np_desc_br_floripa">Diversaj aŭtobusaj kursoj, sen ‘Executivos’</string>
+  <string name="np_desc_br_floripa">Diversaj aŭtobusaj kursoj, sen “Executivos”</string>
   <string name="np_region_canada">Kanado</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Otavo, Toronto, Mississauga, Regiono Waterloo</string>
+  <string name="np_desc_ontario">Ontario, Otavo, Toronto, Mississauga, Hamiltono, regiono de Waterloo</string>
   <string name="np_name_quebec">Kebekio</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Kebekio, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montrealo, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Brita Kolumbio</string>
@@ -209,7 +212,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_name_rt">Eŭropo</string>
   <string name="np_desc_rt">Nur long-distancaj vagonaroj</string>
   <string name="np_desc_rt_networks">Societo Railteam</string>
-  <string name="np_region_finland">Suomujo</string>
+  <string name="np_region_finland">Finnlando</string>
   <string name="np_desc_fi">Helsinko, Turku, Tampere, Jyväskylä, Oulu</string>
   <string name="np_region_france">Francujo</string>
   <string name="np_name_francenortheast">Francujo nord-orienta</string>
@@ -223,7 +226,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_name_paris">Parizo</string>
   <string name="np_desc_paris">Francujo, Francilio (Île-de-France), Parizo</string>
   <string name="np_region_gb">Britujo</string>
-  <string name="np_desc_mersey">Liverpool City Region</string>
+  <string name="np_desc_mersey">Regiono de Liverpool City</string>
   <string name="np_desc_tlem">Granda Londono, Birmingham, Derbyshire, Leicestershire, Rutland, Northamptonshire, Nottinghamshire, Lincolnshire, Berkshire, Buckinghamshire, East Sussex, Hampshire, Isle of Wight, Kent, Oxfordshire, Surrey, West Sussex, Essex, Hertfordshire, Bedfordshire, Cambridgeshire, Norfolk, Suffolk, Somerset, Gloucestershire, Wiltshire, Dorset, Devon, Cornwall, West Devon, Stowford, Eastleigh, Swindon, Gloucester, Plymouth, Torbay, Bournemouth, Poole</string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Germanujo</string>
@@ -244,7 +247,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanco, Bazelo, Bazelo Urba, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesujo, Frankfurto ĉe Majno, Kaselo</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandenburgio, Berlino</string>
+  <string name="np_desc_vbb">Brandenburgio, Berlino</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Malsupra Saksujo, Bremeno, Bremerhaven, Oldenburgo (Oldenburgujo), Osnabruko</string>
   <string name="np_desc_vgn">Nurenbergo, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Sarlando, Saarbrücken</string>
@@ -272,7 +275,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_region_netherlands">Nederlando</string>
   <string name="np_desc_ns">Nederlando, Amsterdamo</string>
   <string name="np_desc_negentwee">Publika transporto en Nederlando</string>
-	<string name="np_name_nz">Nov-Zelando</string>
+  <string name="np_name_nz">Nov-Zelando</string>
   <string name="np_desc_nz">Nov-Zelando, Velingtono, Auckland</string>
   <string name="np_region_poland">Polujo</string>
   <string name="np_desc_pl">Polujo, fervojo en Polujo</string>
@@ -302,11 +305,11 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_name_california">Kalifornio</string>
   <string name="np_desc_california">Publika transporto en Kalifornio (Usono)</string>
   <string name="np_name_oregon">Oregono</string>
-  <string name="np_desc_oregon">Global Transport en Oregono Ŝtato (Usono)</string>
+  <string name="np_desc_oregon">Global Transport en subŝtato Oregono (Usono)</string>
   <string name="np_name_costa_rica">Kostariko</string>
   <string name="np_name_ghana">Ganao</string>
   <string name="np_desc_ghana">Akrao</string>
-	<string name="np_name_nicaragua">Nikaragvo</string>
+  <string name="np_name_nicaragua">Nikaragvo</string>
   <string name="np_desc_nicaragua">Veturtabeloj de urbaj, vilaĝaj kaj tutlandaj aŭtobusoj liverataj de kontribuintoj de MapaNica.net kaj OpenStreetMap</string>
   <string name="maintainer">Prizorganto</string>
   <string name="contributors">Kontribuantoj</string>
@@ -334,4 +337,5 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="taiwanese">Ĉina (Tajvana)</string>
   <string name="swedish">Sveda</string>
   <string name="ukrainian">Ukrajna</string>
+  <string name="danish">Dana</string>
 </resources>

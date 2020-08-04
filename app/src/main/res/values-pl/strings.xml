@@ -29,7 +29,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="action_fav_trip">Oznacz trasę jako ulubioną</string>
   <string name="action_unfav_trip">Wycofaj oznaczenie trasy jako ulubionej</string>
   <string name="action_switch_locations">Odwróć trasę</string>
-	<string name="trip_dep">Odjazd</string>
+  <string name="trip_dep">Odjazd</string>
   <string name="trip_arr">Przyjazd</string>
   <string name="action_refresh">Odśwież</string>
   <string name="action_navigation_expand">Pokaż przystanki</string>
@@ -50,6 +50,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="about_warning_text">Nie można zagwarantować poprawności (dostarczanych przez zewnętrzne podmioty) danych. Używasz tej aplikacji tylko na własne ryzyko.</string>
   <string name="about_contributions">Ten program jest Wolnym Oprogramowaniem, więc możesz z niego dowolnie korzystać, analizować go, dzielić się nim i go ulepszać. Ulepszenia są zawsze mile widziane. Jeżeli chciałbyś coś poprawić, prosimy odwiedzić stronę programu po więcej informacji.</string>
   <string name="about_visit_website">Odwiedź stronę</string>
+  <string name="map_attribution_improve">Ulepsz tę mapę</string>
   <string name="open_navigation_drawer">Otwórz menu nawigacji</string>
   <string name="from">Z</string>
   <string name="to">Do</string>
@@ -90,6 +91,8 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="pref_theme_title">Motyw</string>
   <string name="pref_theme_light">Jasny</string>
   <string name="pref_theme_dark">Ciemny</string>
+  <string name="pref_theme_auto_battery">Ustawiona przez oszczędzanie baterii</string>
+  <string name="pref_theme_auto_system">Systemowa</string>
   <string name="pref_language_title">Język</string>
   <string name="pref_directions_routing">Trasy i wyznaczanie drogi</string>
   <string name="pref_optimize">Optymalizuj dla</string>
@@ -156,7 +159,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="warning_gps_off">Odnajdywanie lokalizacji wyłączone. Prosimy włączyć je w ustawieniach.</string>
   <string name="onboarding_location_title">Przesuń w górę</string>
   <string name="onboarding_location_message">Więcej funkcji poniżej</string>
-	<string name="select_products">Wybierz środki transportu</string>
+  <string name="select_products">Wybierz środki transportu</string>
   <string name="product_high_speed_train">Szybka kolej</string>
   <string name="product_regional_train">Koleje regionalne</string>
   <string name="product_suburban_train">Kolej podmiejska</string>
@@ -167,9 +170,9 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="product_cablecar">Kolej linowa</string>
   <string name="product_on_demand">Na żądanie</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Lista zmian</string>
-  <string name="changelog_title">Co nowego</string>
-  <string name="changelog_show_full">Więcej…</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Lista zmian</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Co nowego</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Więcej…</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">Afryka</string>
   <string name="np_continent_north_america">Ameryka Północna</string>
@@ -194,13 +197,13 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_desc_wien">Wiedeń</string>
   <string name="np_region_belgium">Belgia</string>
   <string name="np_desc_sncb">Transport publiczny w Belgii</string>
-	<string name="np_name_br">Brazylia</string>
+  <string name="np_name_br">Brazylia</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte i Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Wiele linii autobusowych, bez „Executivos”</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Region Waterloo</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, region Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Kolumbia Brytyjska</string>
@@ -246,7 +249,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_desc_nvbw">Badenia-Wirtembergia, Konstancja, Bazylea, Bazylea-Miasto, Reutlingen, Rottweil, Tybinga, Sigmaringen</string>
   <string name="np_desc_nvv">Hesja, Frankfurt nad Menem, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandenburgia, Berlin</string>
+  <string name="np_desc_vbb">Brandenburgia, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Dolna Saksonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Norymberga, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saara, Saarbrücken</string>
@@ -274,7 +277,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_region_netherlands">Holandia</string>
   <string name="np_desc_ns">Holandia, Amsterdam</string>
   <string name="np_desc_negentwee">Transport publiczny w Holandii</string>
-	<string name="np_name_nz">Nowa Zelandia</string>
+  <string name="np_name_nz">Nowa Zelandia</string>
   <string name="np_desc_nz">Nowa Zelandia, Wellington, Auckland</string>
   <string name="np_region_poland">Polska</string>
   <string name="np_desc_pl">Polska, koleje w Polsce</string>
@@ -308,7 +311,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_name_costa_rica">Kostaryka</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Akra</string>
-	<string name="np_name_nicaragua">Nikaragua</string>
+  <string name="np_name_nicaragua">Nikaragua</string>
   <string name="np_desc_nicaragua">Rozkłady jazdy miejskich, wiejskich i krajowych autobusów dostarczane przez twórców MapaNica.net i OpenStreetMap</string>
   <string name="maintainer">Opiekun</string>
   <string name="contributors">Pomocnicy</string>
@@ -336,4 +339,5 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="taiwanese">Chiński (Tajwan)</string>
   <string name="swedish">Szwedzki</string>
   <string name="ukrainian">Ukraiński</string>
+  <string name="danish">Duński</string>
 </resources>

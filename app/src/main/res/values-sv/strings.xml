@@ -48,7 +48,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="action_fav_trip">Märk resan som favorit</string>
   <string name="action_unfav_trip">Avmärk resan som favorit</string>
   <string name="action_switch_locations">Växla Från och Till</string>
-	<string name="trip_dep">Avgång</string>
+  <string name="trip_dep">Avgång</string>
   <string name="trip_arr">Ankomst</string>
   <string name="action_refresh">Uppdatera</string>
   <string name="action_navigation_expand">Visa Via</string>
@@ -69,6 +69,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="about_warning_text">Det finns ingen garanti för att uppgifterna (externt tillhandahållna) är korrekta. Använd denna app endast på egen risk.</string>
   <string name="about_contributions">Denna app är fri programvara, så att du fritt kan använda, studera, dela och förbättra den. Bidrag uppmuntras och uppskattas. Om du vill bidra, besök webbplatsen för mer information.</string>
   <string name="about_visit_website">Besök webbplatsen</string>
+  <string name="map_attribution_improve">Förbättra denna karta</string>
   <string name="open_navigation_drawer">Öppna navigeringsritaren</string>
   <string name="from">Från</string>
   <string name="to">Till</string>
@@ -109,6 +110,8 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="pref_theme_title">Tema</string>
   <string name="pref_theme_light">Ljust</string>
   <string name="pref_theme_dark">Mörkt</string>
+  <string name="pref_theme_auto_battery">Ställ in av batterispararen</string>
+  <string name="pref_theme_auto_system">Systemstandard</string>
   <string name="pref_language_title">Språk</string>
   <string name="pref_directions_routing">Vägbeskrivning och resrutt</string>
   <string name="pref_optimize">Optimera för</string>
@@ -173,7 +176,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="warning_gps_off">Platsen är avstängd. Vänligen slå på den i inställningarna.</string>
   <string name="onboarding_location_title">Dra upp</string>
   <string name="onboarding_location_message">Fler funktioner gömmer sig nedan</string>
-	<string name="select_products">Välj transportmedel</string>
+  <string name="select_products">Välj transportmedel</string>
   <string name="product_high_speed_train">Snabbtåg</string>
   <string name="product_regional_train">Regionaltåg</string>
   <string name="product_suburban_train">Pendeltåg</string>
@@ -184,9 +187,9 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="product_cablecar">Linbana</string>
   <string name="product_on_demand">På begäran</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Ändringslogg</string>
-  <string name="changelog_title">Vad är nytt</string>
-  <string name="changelog_show_full">Mer…</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Ändringslogg</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Vad är nytt</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Mer…</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">Afrika</string>
   <string name="np_continent_north_america">Nordamerika</string>
@@ -211,13 +214,12 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_desc_wien">Wien</string>
   <string name="np_region_belgium">Belgien</string>
   <string name="np_desc_sncb">Kollektivtrafik i Belgien</string>
-	<string name="np_name_br">Brasilien</string>
+  <string name="np_name_br">Brasilien</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro och Belo Horizonte och Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Många busslinjer, inga Executivos</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto Mississauga, Waterloo regionen</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">British Columbia</string>
@@ -263,7 +265,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandenburg, Berlin</string>
+  <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -291,7 +293,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_region_netherlands">Nederländerna</string>
   <string name="np_desc_ns">Nederländerna, Amsterdam</string>
   <string name="np_desc_negentwee">All kollektivtrafik i Nederländerna</string>
-	<string name="np_name_nz">Nya Zeeland</string>
+  <string name="np_name_nz">Nya Zeeland</string>
   <string name="np_desc_nz">Nya Zeeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, järnvägar i Polen</string>
@@ -302,6 +304,8 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_desc_spain">Madrid, Barcelona, Baskien, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungern</string>
   <string name="np_desc_hungary">Budapest, Miskolc</string>
+  <string name="np_name_czechia">Tjeckien</string>
+  <string name="np_desc_czechia">Prag med flera</string>
   <string name="np_region_sweden">Sverige</string>
   <string name="np_desc_se">Sverige, Stockholm</string>
   <string name="np_region_switzerland">Schweiz</string>
@@ -323,7 +327,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Ghana</string>
   <string name="np_desc_ghana">Accra</string>
-	<string name="np_name_nicaragua">Nicaragua</string>
+  <string name="np_name_nicaragua">Nicaragua</string>
   <string name="np_desc_nicaragua">Stads-, landsbygds- och landsomfattande bussar som tillhandahålls av MapaNica.net och OpenStreetMap medarbetare</string>
   <string name="maintainer">Underhållare</string>
   <string name="contributors">Bidragsgivare</string>
@@ -351,4 +355,5 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="taiwanese">Kinesiska (Taiwan)</string>
   <string name="swedish">Svenska</string>
   <string name="ukrainian">Ukrainska</string>
+  <string name="danish">Dansk</string>
 </resources>

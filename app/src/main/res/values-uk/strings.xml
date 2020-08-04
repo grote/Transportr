@@ -48,7 +48,7 @@ Transportr зберігає часто використовувані місця
   <string name="action_fav_trip">Додати маршрут до уподобань</string>
   <string name="action_unfav_trip">Видалити маршрут з уподобань</string>
   <string name="action_switch_locations">Змінити Звідки і Куди</string>
-	<string name="trip_dep">Відправлення</string>
+  <string name="trip_dep">Відправлення</string>
   <string name="trip_arr">Прибуття</string>
   <string name="action_refresh">Оновити</string>
   <string name="action_navigation_expand">Показати проміжну зупинку</string>
@@ -172,7 +172,7 @@ Transportr зберігає часто використовувані місця
   <string name="warning_gps_off">Служби місцезнаходження вимкнено. Увімкніть їх в налаштуваннях.</string>
   <string name="onboarding_location_title">Потягни вверх</string>
   <string name="onboarding_location_message">Більше функцій приховано нижче</string>
-	<string name="select_products">Виберіть транспортні засоби</string>
+  <string name="select_products">Виберіть транспортні засоби</string>
   <string name="product_high_speed_train">Швидкісний поїзд</string>
   <string name="product_regional_train">Регіональний поїзд</string>
   <string name="product_suburban_train">Електричка</string>
@@ -183,9 +183,9 @@ Transportr зберігає часто використовувані місця
   <string name="product_cablecar">Канатна дорога</string>
   <string name="product_on_demand">На вимогу</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Опис змін</string>
-  <string name="changelog_title">Що нового</string>
-  <string name="changelog_show_full">Більше…</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Опис змін</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Що нового</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Більше…</string>
   <string name="np_continent_europe">Європа</string>
   <string name="np_continent_africa">Африка</string>
   <string name="np_continent_north_america">Північна Америка</string>
@@ -210,13 +210,12 @@ Transportr зберігає часто використовувані місця
   <string name="np_desc_wien">Відень</string>
   <string name="np_region_belgium">Бельгія</string>
   <string name="np_desc_sncb">Громадський транспорт у Бельгії</string>
-	<string name="np_name_br">Бразилія</string>
+  <string name="np_name_br">Бразилія</string>
   <string name="np_desc_br">Сан-Паулу, Ріо-де-Жанейро, Белу-Оризонті і Порто-Алегре</string>
   <string name="np_name_br_floripa">Флоріанополіс</string>
   <string name="np_desc_br_floripa">Багато автобусних маршрутів, немає постачальників</string>
   <string name="np_region_canada">Канада</string>
   <string name="np_name_ontario">Онтаріо</string>
-  <string name="np_desc_ontario">Онтаріо, Оттава, Торонто, Місісаґа, регіон Ватерлоо</string>
   <string name="np_name_quebec">Квебек</string>
   <string name="np_desc_quebec">Де-Монтань, Лаваль, Л\'Ассомпсьон, Оттава, Південний-Захід, Квебек, Haut-Saint-Laurent, Ланодьєр, La Presqu\'Île, Лорантід, Монреаль, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Британська Колумбія</string>
@@ -262,7 +261,7 @@ Transportr зберігає часто використовувані місця
   <string name="np_desc_nvbw">Баден-Вюртемберг, Констанц, Базель, Базель-Штадт, Ройтлінген, Ротвайль, Тюбінген, Сігмарінген</string>
   <string name="np_desc_nvv">Гессен, Франкфурт-на-Майні, Кассель</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Росток</string>
-	<string name="np_desc_vbb">Бранденбург, Берлін</string>
+  <string name="np_desc_vbb">Бранденбург, Берлін</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Нижня Саксонія, Бремен, Бремерхафен, Ольденбург (Ольденбург), Оснабрюк</string>
   <string name="np_desc_vgn">Нюрнберг, Фюрт, Ерланген, Байройт, Бамберг, Швабах</string>
   <string name="np_desc_vgs">Саар, Саарбрюккен</string>
@@ -290,7 +289,7 @@ Transportr зберігає часто використовувані місця
   <string name="np_region_netherlands">Нідерланди</string>
   <string name="np_desc_ns">Нідерланди, Амстердам</string>
   <string name="np_desc_negentwee">Весь громадський транспорт в Нідерландах</string>
-	<string name="np_name_nz">Нова Зеландія</string>
+  <string name="np_name_nz">Нова Зеландія</string>
   <string name="np_desc_nz">Нова Зеландія, Веллінгтон, Окленд</string>
   <string name="np_region_poland">Польща</string>
   <string name="np_desc_pl">Польща, залізниці в Польщі</string>
@@ -322,7 +321,7 @@ Transportr зберігає часто використовувані місця
   <string name="np_name_costa_rica">Коста-Рика</string>
   <string name="np_name_ghana">Гана</string>
   <string name="np_desc_ghana">Аккра</string>
-	<string name="np_name_nicaragua">Нікарагуа</string>
+  <string name="np_name_nicaragua">Нікарагуа</string>
   <string name="np_desc_nicaragua">Міські, сільські та загальнонаціональні автобусні маршрути надаються партнерами MapaNica.net та OpenStreetMap</string>
   <string name="maintainer">Розробник</string>
   <string name="contributors">Помічники</string>
