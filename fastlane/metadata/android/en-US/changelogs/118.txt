@@ -1,0 +1,3 @@
+* Rearranged directions form to see all of the options at first glance
+* New option to adapt app theme to Android settings
+* Give attribution to OpenStreetMap as map source

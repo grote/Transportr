@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
 
+    <release version="2.1.0" versioncode="118">
+        <change>Rearranged directions form to see all of the options at first glance</change>
+        <change>New option to adapt app theme to Android settings</change>
+        <change>Give attribution to OpenStreetMap as map source</change>
+    </release>
+
     <release version="2.0.8" versioncode="117">
         <change>Fix bug where the app would crash after updating</change>
     </release>
