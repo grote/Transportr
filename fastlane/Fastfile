@@ -42,8 +42,61 @@ platform :android do
   end
 
   desc "Deploy a new version without screenshots"
-  lane :deploy_no_screenshots do
-    upload_to_play_store(track: 'beta', apk: 'release/app-release.apk', skip_upload_images:'true', skip_upload_screenshots:'true')
+  lane :release do
+	# Gather data
+	package_name = CredentialsManager::AppfileConfig.try_fetch_value(:package_name)
+	android_get_version_code()
+	version_code = lane_context[SharedValues::ANDROID_VERSION_CODE]
+	android_get_version_name()
+	version_name = lane_context[SharedValues::ANDROID_VERSION_NAME]
+
+	# Get changelog
+	changelog = File.read("metadata/android/en-US/changelogs/#{version_code}.txt")
+	puts "Changelog:\n" + changelog
+
+	# Tag release
+	add_git_tag(
+		tag: version_name,
+		message: changelog,
+		sign: true
+    )
+
+	# Build
+	gradle(task: "assemble", build_type: "Release")
+	apk = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+	puts "APK: " + apk
+
+	# Github: Ensure that tag exists and push it
+	git_tag_exists(tag: version_name)
+	push_git_tags(tag: version_name)
+
+	# Github: make release
+	github_release = set_github_release(
+		repository_name: "grote/Transportr",
+		api_token: ENV["GITHUB_TOKEN"],
+		name: "Transportr " + version_name,
+		tag_name: version_name,
+		description: version_name + "\n\n" + changelog,
+		upload_assets: [apk],
+		is_draft: false
+	)
+	puts "Github Release: " + lane_context[SharedValues::SET_GITHUB_RELEASE_HTML_LINK]
+
+	# F-Droid: copy release APK into repo
+	ensure_env_vars(env_vars: ['FDROID_REPO'])
+	fdroid_repo = ENV["FDROID_REPO"]
+	system "cp #{apk} #{fdroid_repo}/repo/#{package_name}_#{version_code}.apk"
+
+	# F-Droid: set current version to releasae
+	system "sed -i 's/^Current Version:.*$/Current Version:#{version_name}/' #{fdroid_repo}/metadata/#{package_name}.txt"
+	system "sed -i 's/^Current Version Code:.*$/Current Version Code:#{version_code}/' #{fdroid_repo}/metadata/#{package_name}.txt"
+
+	# F-Droid: publish repo update
+	system "cd #{fdroid_repo} && fdroid update -v"
+	system "cd #{fdroid_repo} && fdroid server update -v"
+
+	# Google Play: upload to beta track
+	upload_to_play_store(track: 'beta', apk: apk, skip_upload_images: 'true', skip_upload_screenshots: 'true')
   end
 end
 
