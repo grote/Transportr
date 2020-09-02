@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+	<include
+		domain="sharedpref"
+		path="."
+		requireFlags="clientSideEncryption" />
+	<include
+		domain="database"
+		path="."
+		requireFlags="clientSideEncryption" />
+	<!-- we do not include file domain, because there is only the offline map tiles which should be excluded due to size  -->
+</full-backup-content>
