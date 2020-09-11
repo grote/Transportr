@@ -7,7 +7,7 @@
   <string name="drawer_report_issue">Hata Bildirin</string>
   <string name="action_fav_trip">Geziyi Beğenilen Olarak İşaretle</string>
   <string name="action_unfav_trip">Geziyi Beğenilen Olarak İşaretleme</string>
-	<string name="trip_dep">Kalkış</string>
+  <string name="trip_dep">Kalkış</string>
   <string name="trip_arr">Varış</string>
   <string name="action_refresh">Tazele</string>
   <string name="action_navigation_expand">ile Göster</string>
@@ -37,11 +37,11 @@
   <string name="network">Ağ</string>
   <string name="pick_network_activity">Alanı Seçin</string>
   <string name="pick_network_first_run">Transportr\'a hoşgeldiniz!\n\nDevam edebilmek için lütfen bölgenizdeki ulaşım ağınızı seçiniz. Seçiminizi her zaman değiştirebilirsiniz.</string>
-  <string name="stations_searching_position">Mevcut konum aranıyor...</string>
+  <string name="stations_searching_position">Mevcut konum aranıyor…</string>
   <string name="drawer_nearby_stations">Yakındaki İstasyonlar</string>
   <string name="find_nearby_stations">Yakındaki İstasyonları Bul</string>
   <string name="find_departures">Kalkışları Bul</string>
-  <string name="share_trip_via">Geziyi Paylaş...</string>
+  <string name="share_trip_via">Geziyi Paylaş…</string>
   <string name="more">Daha Fazla</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">%d dk için</string>
@@ -53,6 +53,7 @@
   <string name="tomorrow">Yarın</string>
   <string name="in_x_minutes">%d dk içerisinde</string>
   <string name="x_minutes_ago">%d dk önce</string>
+  <string name="total_time">Toplam zaman %s</string>
   <string name="time_picker_previous_day">Önceki Gün</string>
   <string name="time_picker_next_day">Sonraki Gün</string>
   <string name="ok">Tamam</string>
@@ -75,15 +76,21 @@
   <string name="error_geo_intent">Harici konum açılamadı</string>
   <string name="error_find_nearby_stations">Yakın duraklar bulunamıyor</string>
   <string name="error_departures">Herhangi bir kalkış bulunamadı</string>
+  <string name="error_no_calendar">Takvim yüklenmedi :(</string>
   <string name="trip_error_ambiguous">Konum bulunamadı. Lütfen farklı konumları kullanarak arama yapınız.</string>
   <string name="trip_error_too_close">\'Başlangıç\' ve \'Varış\' konumları birbirine çok yakın.</string>
   <string name="trip_error_unknown_from">\'Başlangıç\' konumu bulunamadı. Lütfen farklı bir konumu deneyiniz.</string>
   <string name="trip_error_unknown_to">\'Varış\' konumu bulunamadı. Lütfen farklı bir konumu deneyiniz.</string>
   <string name="trip_error_unresolvable_address">Sağlanan adres bulunamadı. Lütfen farklı bir adres deneyiniz.</string>
   <string name="trip_error_no_trips">Hiçbir bağlantı bulunamadı :(</string>
+  <string name="trip_error_pte">Bu hatayı bildirmek isterseniz lütfen %1$s \'e doğrudan bildiriniz.</string>
   <string name="trip_issue">Bu bağlantı ile ilgili bir sorun olabilir.</string>
   <string name="try_again">Tekrar Deneyiniz</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <plurals name="stops">
+    <item quantity="one">%d Durak</item>
+    <item quantity="other">%d Durak</item>
+  </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
   <string name="system_default">Sistem Varsayılanı</string>
   <string name="trip_share_date">Tarih: %s</string>
@@ -97,6 +104,7 @@
   <string name="action_swap_locations">Dönüş turu ara</string>
   <string name="action_change">Değiştir</string>
   <string name="location_gps">Mevcut Konumu Kullan</string>
+  <string name="warning_no_gps_fix">Bulunduğunuz yer henüz tespit edilemedi.</string>
   <string name="product_high_speed_train">Yüksek Hızlı Tren</string>
   <string name="product_regional_train">Bölgesel Tren</string>
   <string name="product_suburban_train">Banliyö Treni</string>
@@ -107,9 +115,9 @@
   <string name="product_cablecar">Teleferik</string>
   <string name="product_on_demand">Talep Üzerine</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Sürüm Notları</string>
-  <string name="changelog_title">Neler Yeni</string>
-  <string name="changelog_show_full">Daha Fazla...</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Sürüm Notları</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Neler Yeni</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Daha Fazla…</string>
   <string name="np_continent_europe">Avrupa</string>
   <string name="np_continent_africa">Afrika</string>
   <string name="np_continent_north_america">Kuzey Amerika</string>
@@ -120,6 +128,10 @@
   <string name="np_region_australia">Avustralya</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
   <string name="np_desc_sydney">Avustralya, Yeni Güney Wales, Sydney</string>
+  <string name="np_region_pt">Portekiz</string>
+  <string name="np_name_pt">Portekiz</string>
+  <string name="np_desc_pt">Lisbon</string>
+  <string name="np_desc_pt_networks">Otobüs, Tren, Füniküler, Gemi, Metro</string>
   <string name="np_region_austria">Avusturya</string>
   <string name="np_desc_ivb">Innsbruck</string>
   <string name="np_desc_linz">Yukarı Avusturya, Linz</string>
@@ -130,12 +142,11 @@
   <string name="np_desc_wien">Viyana</string>
   <string name="np_region_belgium">Belçika</string>
   <string name="np_desc_sncb">Belçika\'da toplu taşıma</string>
-	<string name="np_name_br">Brezilya</string>
+  <string name="np_name_br">Brezilya</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte ve Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
-  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Waterloo Bölgesi</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">British Columbia</string>
@@ -178,7 +189,7 @@
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandenburg, Berlin</string>
+  <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -205,7 +216,7 @@
   <string name="np_region_netherlands">Hollanda</string>
   <string name="np_desc_ns">Hollanda, Amsterdam</string>
   <string name="np_desc_negentwee">Hollanda\'daki tüm toplu taşımalar</string>
-	<string name="np_name_nz">Yeni Zelanda</string>
+  <string name="np_name_nz">Yeni Zelanda</string>
   <string name="np_desc_nz">Yeni Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonya</string>
   <string name="np_desc_pl">Polonya, Polonya demiryolları</string>
@@ -214,6 +225,8 @@
   <string name="np_desc_spain">Madrid, Barselona, Bask Ülkesi, Valensiya, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Macaristan</string>
   <string name="np_desc_hungary">Budapeşte, Miskolc</string>
+  <string name="np_name_czechia">Çekya</string>
+  <string name="np_desc_czechia">Prag ve diğerleri</string>
   <string name="np_region_sweden">İsveç</string>
   <string name="np_desc_se">İsveç, Stockholm</string>
   <string name="np_region_switzerland">İsviçre</string>
@@ -232,7 +245,8 @@
   <string name="np_name_costa_rica">Kosta Rika</string>
   <string name="np_name_ghana">Gana</string>
   <string name="np_desc_ghana">Akra</string>
-	<string name="np_name_nicaragua">Nikaragua</string>
+  <string name="np_name_nicaragua">Nikaragua</string>
+  <string name="maintainer">Sağlayıcı</string>
   <string name="contributors">Katkıda Bulunanlar</string>
   <string name="translators">Çevirmenler</string>
   <string name="dutch">Almanca</string>
@@ -256,4 +270,7 @@
   <string name="greek">Yunanca</string>
   <string name="farsi">Farsça</string>
   <string name="taiwanese">Çince (Tayvan)</string>
+  <string name="swedish">İsveççe</string>
+  <string name="ukrainian">Ukraynaca</string>
+  <string name="danish">Danca</string>
 </resources>

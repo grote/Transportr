@@ -26,7 +26,7 @@
   <string name="alpha">alpha</string>
   <string name="beta">beta</string>
   <string name="network">பிணைப்பு</string>
-  <string name="stations_searching_position">தற்சமயம் இருக்குமிடத்தை கணிக்க முயற்சிக்கிறோம்...</string>
+  <string name="stations_searching_position">தற்சமயம் இருக்குமிடத்தை கணிக்க முயற்சிக்கிறோம்…</string>
   <string name="drawer_nearby_stations">அருகிலுள்ள நிலையங்கள்</string>
   <string name="find_nearby_stations">அருகிலுள்ள நிலையங்களை தேடு</string>
   <string name="find_departures">புறப்பாடுகளை தேடு</string>
@@ -60,8 +60,8 @@
   <string name="product_bus">பேருந்து</string>
   <string name="product_on_demand">தேவைக்கேற்ப</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">மாற்றப்பதிவு</string>
-  <string name="changelog_show_full">மேலும்...</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">மாற்றப்பதிவு</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">மேலும்…</string>
   <string name="np_continent_europe">ஐரோப்பா</string>
   <string name="np_region_australia">ஆஸ்த்ரேலியா</string>
   <string name="np_desc_sydney">ஆஸ்த்ரேலியா, நியூ சவுத் வேல்ஸ், சிட்னி</string>
@@ -70,7 +70,7 @@
   <string name="np_desc_linz">அப்பர் ஆஸ்திரியா, லின்ஸ்</string>
   <string name="np_desc_oebb">ஆஸ்ட்ரியா</string>
   <string name="np_region_belgium">பெல்ஜியம்</string>
-	<string name="np_name_br">பிரேசில்</string>
+  <string name="np_name_br">பிரேசில்</string>
   <string name="np_region_canada">கனடா</string>
   <string name="np_region_denmark">டென்மார்க்</string>
   <string name="np_desc_dsb">டென்மார்க், கோபன்ஹேகன்</string>
@@ -100,7 +100,7 @@
   <string name="np_desc_lu">லக்ஸம்பர்க்</string>
   <string name="np_region_netherlands">நெதர்லாந்து</string>
   <string name="np_desc_ns">நெதர்லாந்து, ஆம்ஸ்டர்டாம்</string>
-	<string name="np_name_nz">நியூசிலாந்து</string>
+  <string name="np_name_nz">நியூசிலாந்து</string>
   <string name="np_region_poland">போலாந்து</string>
   <string name="np_name_spain">ஸ்பெயின்</string>
   <string name="np_region_sweden">சுவீடன்</string>

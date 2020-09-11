@@ -7,7 +7,7 @@
   <string name="action_fav_trip">Merk tur som favoritt</string>
   <string name="action_unfav_trip">Avmerk tur som favoritt</string>
   <string name="action_switch_locations">Bytt fra og til</string>
-	<string name="trip_dep">Avgang</string>
+  <string name="trip_dep">Avgang</string>
   <string name="trip_arr">Ankomst</string>
   <string name="action_refresh">Gjenoppfrisk</string>
   <string name="action_navigation_expand">Vis rutepunkt</string>
@@ -129,9 +129,9 @@
   <string name="product_cablecar">Gondolbane</string>
   <string name="product_on_demand">Ved behov</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Endringslogg</string>
-  <string name="changelog_title">Nyheter</string>
-  <string name="changelog_show_full">Mer…</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Endringslogg</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Nyheter</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Mer…</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">Afrika</string>
   <string name="np_region_australia">Australia</string>
@@ -147,7 +147,7 @@
   <string name="np_desc_wien">Wien</string>
   <string name="np_region_belgium">Belgia</string>
   <string name="np_desc_sncb">Offentlig transport i Belgia</string>
-	<string name="np_name_br">Brasil</string>
+  <string name="np_name_br">Brasil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte og Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Mange bussruter, ingen for herrefolk</string>
@@ -193,7 +193,7 @@
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandenburg, Berlin</string>
+  <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -221,7 +221,7 @@
   <string name="np_region_netherlands">Holland</string>
   <string name="np_desc_ns">Holland, Amsterdam</string>
   <string name="np_desc_negentwee">All offentlig transport i Holland</string>
-	<string name="np_name_nz">Ny-Zealand</string>
+  <string name="np_name_nz">Ny-Zealand</string>
   <string name="np_desc_nz">Ny-Zealand, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, jernbane i Polen</string>

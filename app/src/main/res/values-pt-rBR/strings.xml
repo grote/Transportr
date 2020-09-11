@@ -9,7 +9,7 @@
   <string name="action_fav_trip">Marcar viagem como favorita</string>
   <string name="action_unfav_trip">Desmarcar viagem como favorita</string>
   <string name="action_switch_locations">Alternar Início e Fim</string>
-	<string name="trip_dep">Saída</string>
+  <string name="trip_dep">Saída</string>
   <string name="trip_arr">Chegada</string>
   <string name="action_refresh">Atualizar</string>
   <string name="action_navigation_expand">Exibir Via</string>
@@ -129,7 +129,7 @@
   <string name="warning_no_gps_fix">Ainda não foi possível determinar sua localização.</string>
   <string name="permission_denied_gps">Você não permitiu o acesso à sua localização, assim esse comando não irá funcionar. Por favor, conceda a permissão nas configurações do aplicativo.</string>
   <string name="warning_gps_off">A localização está desativada. Por favor, ative-a nas configurações.</string>
-	<string name="select_products">Selecione os meios de transporte</string>
+  <string name="select_products">Selecione os meios de transporte</string>
   <string name="product_high_speed_train">Trem de Alta Velocidade</string>
   <string name="product_regional_train">Trem Regional</string>
   <string name="product_suburban_train">Trem Suburbano</string>
@@ -140,9 +140,9 @@
   <string name="product_cablecar">Teleférico</string>
   <string name="product_on_demand">Por demanda</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Novidades</string>
-  <string name="changelog_title">O que é Novo</string>
-  <string name="changelog_show_full">Mais</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Novidades</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">O que é Novo</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Mais</string>
   <string name="np_continent_europe">Europa</string>
   <string name="np_continent_africa">África</string>
   <string name="np_continent_north_america">América do Norte</string>
@@ -162,13 +162,12 @@
   <string name="np_desc_wien">Viena</string>
   <string name="np_region_belgium">Bélgica</string>
   <string name="np_desc_sncb">Transporte público na Bélgica</string>
-	<string name="np_name_br">Brasil</string>
+  <string name="np_name_br">Brasil</string>
   <string name="np_desc_br">São Paulo, Rio de Janeiro, Belo Horizonte e Porto Alegre</string>
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_desc_br_floripa">Muitas rotas de ônibus, sem Executivos</string>
   <string name="np_region_canada">Canada</string>
   <string name="np_name_ontario">Ontário </string>
-  <string name="np_desc_ontario">Ontário, Ottawa, Toronto, Mississauga, Região de Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Colúmbia Britânica</string>
@@ -210,7 +209,7 @@
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basileia, Basileia-Cidade, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
-	<string name="np_desc_vbb">Brandemburgo, Berlim</string>
+  <string name="np_desc_vbb">Brandemburgo, Berlim</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxônia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nurembergue, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
@@ -237,7 +236,7 @@
   <string name="np_desc_lu">Luxemburgo</string>
   <string name="np_region_netherlands">Países Baixos</string>
   <string name="np_desc_ns">Países Baixos, Amsterdã</string>
-	<string name="np_name_nz">Nova Zelândia </string>
+  <string name="np_name_nz">Nova Zelândia </string>
   <string name="np_desc_nz">Nova Zelândia, Welligton, Auckland</string>
   <string name="np_region_poland">Polônia</string>
   <string name="np_desc_pl">Polônia, ferrovias na Polônia</string>
@@ -266,7 +265,7 @@
   <string name="np_name_costa_rica">Costa Rica</string>
   <string name="np_name_ghana">Gana</string>
   <string name="np_desc_ghana">Acra</string>
-	<string name="np_name_nicaragua">Nicarágua</string>
+  <string name="np_name_nicaragua">Nicarágua</string>
   <string name="np_desc_nicaragua">Ônibus urbano, rural e nacional providos por MapaNica.net e colaboradores do OpenStreetMap</string>
   <string name="maintainer">Mantenedores</string>
   <string name="contributors">Contribuidores</string>
