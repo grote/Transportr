@@ -44,6 +44,7 @@ import de.schildbach.pte.dto.QueryTripsContext
 import de.schildbach.pte.dto.QueryTripsResult
 import de.schildbach.pte.dto.QueryTripsResult.Status.*
 import de.schildbach.pte.dto.Trip
+import de.schildbach.pte.dto.TripOptions
 import java.io.InterruptedIOException
 import java.net.SocketTimeoutException
 import kotlin.concurrent.thread
@@ -107,9 +108,10 @@ internal class TripsRepository(
     private fun queryTrips(query: TripQuery) {
         try {
             val queryTripsResult = networkProvider.queryTrips(
-                    query.from.location, if (query.via == null) null else query.via.location, query.to.location,
-                    query.date, query.departure, query.products, settingsManager.optimize, settingsManager.walkSpeed,
-                    null, null)
+                query.from.location, if (query.via == null) null else query.via.location, query.to.location,
+                query.date, query.departure,
+                TripOptions(query.products, settingsManager.optimize, settingsManager.walkSpeed, null, null)
+            )
             if (queryTripsResult.status == OK && queryTripsResult.trips.size > 0) {
                 // deliver result first, so UI can get updated
                 onQueryTripsResultReceived(queryTripsResult)
@@ -207,24 +209,24 @@ internal class TripsRepository(
             .append(": ")
             .append(errorShort)
         val body = StringBuilder()
-            .appendln("### Query")
-            .appendln("- NetworkId: `${networkProvider.id().name}`")
-            .appendln("- From: `${query.from.location}`")
-            .appendln("- Via: `${if (query.via == null) "null" else query.via.location}`")
-            .appendln("- To: `${query.to.location}`")
-            .appendln("- Date: `${query.date}`")
-            .appendln("- Departure: `${query.departure}`")
-            .appendln("- Products: `${query.products}`")
-            .appendln("- Optimize for: `${settingsManager.optimize}`")
-            .appendln("- Walk Speed: `${settingsManager.walkSpeed}`")
-            .appendln()
-            .appendln("### Error")
-            .appendln("```")
-            .appendln(error)
-            .appendln("```")
-            .appendln()
-            .appendln("### Additional information")
-            .appendln("[Please modify this part]")
+            .appendLine("### Query")
+            .appendLine("- NetworkId: `${networkProvider.id().name}`")
+            .appendLine("- From: `${query.from.location}`")
+            .appendLine("- Via: `${if (query.via == null) "null" else query.via.location}`")
+            .appendLine("- To: `${query.to.location}`")
+            .appendLine("- Date: `${query.date}`")
+            .appendLine("- Departure: `${query.departure}`")
+            .appendLine("- Products: `${query.products}`")
+            .appendLine("- Optimize for: `${settingsManager.optimize}`")
+            .appendLine("- Walk Speed: `${settingsManager.walkSpeed}`")
+            .appendLine()
+            .appendLine("### Error")
+            .appendLine("```")
+            .appendLine(error)
+            .appendLine("```")
+            .appendLine()
+            .appendLine("### Additional information")
+            .appendLine("[Please modify this part]")
 
         val uri = Uri.Builder()
             .scheme("https")

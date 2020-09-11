@@ -28,6 +28,7 @@ import de.schildbach.pte.NetworkProvider
 import de.schildbach.pte.dto.QueryTripsResult
 import de.schildbach.pte.dto.QueryTripsResult.Status.OK
 import de.schildbach.pte.dto.Trip
+import de.schildbach.pte.dto.TripOptions
 import java.util.*
 
 internal class TripReloader(
@@ -46,8 +47,9 @@ internal class TripReloader(
         Thread {
             try {
                 val queryTripsResult = networkProvider.queryTrips(
-                        query.from.location, query.via?.location, query.to.location, newDate, true, query.products,
-                        settingsManager.optimize, settingsManager.walkSpeed, null, null)
+                    query.from.location, query.via?.location, query.to.location, newDate, true,
+                    TripOptions(query.products, settingsManager.optimize, settingsManager.walkSpeed, null, null)
+                )
                 if (queryTripsResult.status == OK && queryTripsResult.trips.size > 0) {
                     onTripReloaded(queryTripsResult)
                 } else {
