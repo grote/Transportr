@@ -110,6 +110,8 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="pref_theme_title">Gaia</string>
   <string name="pref_theme_light">Argia</string>
   <string name="pref_theme_dark">Iluna</string>
+  <string name="pref_theme_auto_battery">Ezarri bateria aurrezleaz</string>
+  <string name="pref_theme_auto_system">Sistemako lehenetsia</string>
   <string name="pref_language_title">Hizkuntza</string>
   <string name="pref_directions_routing">Jarraibideak eta bidaiaren kalkulua</string>
   <string name="pref_optimize">Optimizatu honetarako</string>
@@ -158,7 +160,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="home">Etxea</string>
   <string name="home_dialog_title">Ezarri etxeko kokalekua</string>
   <string name="widget_name_quickhome">Eraman nazazu etxera</string>
-  <string name="work">Lana</string>
+  <string name="work">Lantokia</string>
   <string name="work_hint">Ezarri laneko kokalekua</string>
   <string name="widget_name_quickwork">Joan lanera</string>
   <string name="tap_to_set">Ukitu ezartzeko</string>
@@ -218,6 +220,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_desc_br_floripa">Autobus bide anitz, ez Executivos</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Waterloo eskualdea</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Columbia Britainiarra</string>

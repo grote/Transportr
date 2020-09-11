@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr – 開源大眾交通</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">自由的大眾交通助手 – 無廣告、不追蹤</string>
   <string name="drawer_settings">設定</string>
   <string name="drawer_changelog">最新異動</string>
   <string name="drawer_about">關於app</string>
@@ -8,7 +10,7 @@
   <string name="action_fav_trip">標記行程為我的最愛</string>
   <string name="action_unfav_trip">從我的最愛移除此行程</string>
   <string name="action_switch_locations">對調起點和終點</string>
-	<string name="trip_dep">出發</string>
+  <string name="trip_dep">出發</string>
   <string name="trip_arr">抵達</string>
   <string name="action_refresh">更新</string>
   <string name="action_navigation_expand">顯示經過</string>
@@ -37,11 +39,15 @@
   <string name="beta">beta版本</string>
   <string name="network">網絡</string>
   <string name="pick_network_activity">選擇地區</string>
+  <string name="stations_searching_position">搜尋目前位置中⋯</string>
   <string name="drawer_nearby_stations">附近車站</string>
   <string name="find_nearby_stations">尋找附近車站</string>
+  <string name="find_departures">尋找出發時間</string>
+  <string name="share_trip_via">分享行程</string>
   <string name="more">更多</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">%d分鐘</string>
+  <string name="change_time">更改時間</string>
   <string name="now">現在</string>
   <string name="now_small">現在</string>
   <string name="yesterday">昨天</string>
@@ -49,22 +55,58 @@
   <string name="tomorrow">明天</string>
   <string name="in_x_minutes">%d分鐘後</string>
   <string name="x_minutes_ago">%d分鐘前</string>
+  <string name="total_time">時間總和：%s</string>
   <string name="time_picker_previous_day">前一天</string>
   <string name="time_picker_next_day">下一天</string>
   <string name="ok">接受</string>
   <string name="cancel">取消</string>
   <string name="pref_transport_network">交通運輸網絡</string>
   <string name="pref_display">顯示</string>
+  <string name="pref_theme_title">主題</string>
+  <string name="pref_theme_light">明亮</string>
+  <string name="pref_theme_dark">深色</string>
   <string name="pref_language_title">語言</string>
+  <string name="pref_directions_routing">指示和行程路線</string>
+  <string name="pref_optimize">優化</string>
+  <string name="pref_optimize_least_duration">最短時間</string>
+  <string name="pref_optimize_least_changes">最少轉乘</string>
+  <string name="pref_optimize_least_walking">最少步行</string>
+  <string name="pref_walk_speed">步行速度</string>
+  <string name="pref_walk_speed_slow">慢</string>
+  <string name="pref_walk_speed_normal">一般</string>
+  <string name="pref_walk_speed_fast">快</string>
+  <string name="pref_show_when_locked_title">顯示行程即使螢幕已鎖</string>
+  <string name="pref_show_when_locked_summary">在已鎖螢幕上顯示</string>
   <string name="error">錯誤</string>
+  <string name="trip_not_travelable">失效或取消</string>
+  <string name="try_again">再試一次</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d公尺</string>
   <plurals name="stops">
     <item quantity="other">%d站</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
+  <string name="platform">（%s號月台）</string>
   <string name="system_default">系統預設</string>
   <string name="trip_share_date">日期：%s</string>
+  <string name="times_include_delays">（注意：時間可能已包含延遲）</string>
+  <string name="created_by">    由%s創建</string>
+  <string name="home">我的家</string>
+  <string name="home_dialog_title">設定家的地點</string>
+  <string name="widget_name_quickhome">帶我回家</string>
+  <string name="work">工作地點</string>
+  <string name="work_hint">設定工作地點</string>
+  <string name="widget_name_quickwork">帶我去工作</string>
+  <string name="tap_to_set">點擊以設定</string>
+  <string name="widget_name_favorites">%1$s到%2$s</string>
+  <string name="widget_name_favorites_via">%1$s到%2$s（經過%3$s）</string>
+  <string name="action_set_locations">編輯搜尋</string>
+  <string name="action_swap_locations">搜尋回程</string>
+  <string name="action_change">更改</string>
+  <string name="action_add_shortcut">添加桌面捷徑</string>
+  <string name="location_gps">使用目前位置</string>
+  <string name="warning_no_gps_fix">仍無法定位</string>
+  <string name="select_products">選擇交通工具</string>
   <string name="product_high_speed_train">高速鐵路</string>
   <string name="product_regional_train">區域列車</string>
   <string name="product_suburban_train">市郊列車</string>
@@ -73,10 +115,11 @@
   <string name="product_bus">公車</string>
   <string name="product_ferry">渡船</string>
   <string name="product_cablecar">纜車</string>
+  <string name="product_on_demand">指定請求</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">最新異動</string>
-  <string name="changelog_title">最新異動</string>
-  <string name="changelog_show_full">更多⋯</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">最新異動</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">最新異動</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">更多⋯</string>
   <string name="np_continent_europe">歐洲</string>
   <string name="np_continent_africa">非洲</string>
   <string name="np_continent_north_america">北美洲</string>
@@ -85,6 +128,8 @@
   <string name="np_continent_asia">亞洲</string>
   <string name="np_continent_oceania">大洋洲</string>
   <string name="np_region_australia">澳洲</string>
+  <string name="np_region_pt">葡萄牙</string>
+  <string name="np_name_pt">葡萄牙</string>
   <string name="np_region_austria">奧地利</string>
   <string name="np_desc_oebb">奧地利</string>
   <string name="np_region_belgium">比利時</string>
@@ -94,6 +139,7 @@
   <string name="np_name_rt">歐洲</string>
   <string name="np_region_finland">芬蘭</string>
   <string name="np_region_france">法國</string>
+  <string name="np_region_gb">大​不列顛</string>
   <string name="np_region_germany">德國</string>
   <string name="np_region_ireland">愛爾蘭</string>
   <string name="np_region_israel" tools:keep="@string/np_region_israel">以色列</string>
@@ -102,19 +148,23 @@
   <string name="np_region_luxembourg">盧森堡</string>
   <string name="np_desc_lu">盧森堡</string>
   <string name="np_region_netherlands">荷蘭</string>
-	<string name="np_name_nz">紐西蘭</string>
+  <string name="np_name_nz">紐西蘭</string>
   <string name="np_region_poland">波蘭</string>
   <string name="np_name_spain">西班牙</string>
   <string name="np_name_hungary">匈牙利</string>
+  <string name="np_name_czechia">捷克</string>
   <string name="np_region_sweden">瑞典</string>
   <string name="np_region_switzerland">瑞士</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
   <string name="np_desc_sbb">瑞士</string>
+  <string name="np_region_uae">阿拉伯​聯合​大公國</string>
   <string name="np_region_usa">美國</string>
   <string name="np_name_costa_rica">哥斯達黎加</string>
   <string name="np_name_ghana">加納</string>
   <string name="np_name_nicaragua">尼加拉瓜</string>
+  <string name="maintainer">維護者</string>
   <string name="contributors">協力開發者</string>
+  <string name="translators">譯者</string>
   <string name="dutch">荷蘭文</string>
   <string name="french">法文</string>
   <string name="german">德文</string>
@@ -134,4 +184,9 @@
   <string name="japanese">日文</string>
   <string name="russian">俄文</string>
   <string name="greek">希臘文</string>
+  <string name="farsi">波斯文</string>
+  <string name="taiwanese">中文（台灣）</string>
+  <string name="swedish">瑞典文</string>
+  <string name="ukrainian">烏克蘭文</string>
+  <string name="danish">丹麥文</string>
 </resources>

@@ -48,7 +48,7 @@
   <string name="action_fav_trip">Σημείωση ταξιδιού ως αγαπημένο</string>
   <string name="action_unfav_trip">Αποσημείωση ταξιδιού ως αγαπημένο</string>
   <string name="action_switch_locations">Εναλλαγή Από και Προς</string>
-	<string name="trip_dep">Αναχώρηση</string>
+  <string name="trip_dep">Αναχώρηση</string>
   <string name="trip_arr">Άφιξη</string>
   <string name="action_refresh">Ανανέωση</string>
   <string name="action_navigation_expand">Εμφάνιση ενδιάμεσων στάσεων</string>
@@ -81,11 +81,11 @@
   <string name="network">Δίκτυο</string>
   <string name="pick_network_activity">Επιλέξτε περιοχή</string>
   <string name="pick_network_first_run">Καλώς ήλθατε στο Transportr!\n\nΠαρακαλώ επιλέξτε μεταφορικό δίκτυο από την περιοχή σας για να συνεχίσετε. Μπορείτε να το αλλάξετε οποιαδήποτε στιγμή.</string>
-  <string name="stations_searching_position">Αναζήτηση τρέχουσας θέσης...</string>
+  <string name="stations_searching_position">Αναζήτηση τρέχουσας θέσης…</string>
   <string name="drawer_nearby_stations">Κοντινοί σταθμοί</string>
   <string name="find_nearby_stations">Εύρεση κοντινών σταθμών</string>
   <string name="find_departures">Εύρεση αναχωρήσεων</string>
-  <string name="share_trip_via">Μοίρασμα ενδιάμεσων τοποθεσιων ταξιδιού </string>
+  <string name="share_trip_via">Μοίρασμα ενδιάμεσων τοποθεσιων ταξιδιού…</string>
   <string name="more">Περισσότερα</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">για %d min</string>
@@ -166,7 +166,7 @@
   <string name="warning_gps_off">Η τοποθεσία είναι σβηστή. Παρακαλώ ανάψτε την στις ρυθμίσεις.</string>
   <string name="onboarding_location_title">Σύρετε επάνω</string>
   <string name="onboarding_location_message">Περισσότερα χαρακτηριστικά κρύβονται παρακάτω</string>
-	<string name="select_products">Επιλογή μέσων μεταφοράς</string>
+  <string name="select_products">Επιλογή μέσων μεταφοράς</string>
   <string name="product_high_speed_train">Τρένο υψηλής ταχύτητας</string>
   <string name="product_regional_train">Τοπικό τρένο</string>
   <string name="product_suburban_train">Προαστιακό τρένο</string>
@@ -177,9 +177,9 @@
   <string name="product_cablecar">Τελεφερίκ</string>
   <string name="product_on_demand">Κατά ζήτηση</string>
   <!--ckChangeLog-->
-  <string name="changelog_full_title">Καταγραφή αλλαγών</string>
-  <string name="changelog_title">Τι νέο υπάρχει</string>
-  <string name="changelog_show_full">Περισσότερα...</string>
+  <string name="changelog_full_title" tools:ignore="UnusedResources">Καταγραφή αλλαγών</string>
+  <string name="changelog_title" tools:ignore="UnusedResources">Τι νέο υπάρχει</string>
+  <string name="changelog_show_full" tools:ignore="UnusedResources">Περισσότερα…</string>
   <string name="np_continent_europe">Ευρώπη</string>
   <string name="np_continent_africa">Αφρική</string>
   <string name="np_continent_north_america">Βόρεια Αμερική</string>
@@ -200,13 +200,12 @@
   <string name="np_desc_wien">Βιέννη</string>
   <string name="np_region_belgium">Βέλγιο</string>
   <string name="np_desc_sncb">Δημόσιες μεταφορές στο Βέλγιο</string>
-	<string name="np_name_br">Βραζιλία</string>
+  <string name="np_name_br">Βραζιλία</string>
   <string name="np_desc_br">Σάο Πάολο, Ρίο ντε Τζανέιρο, Belo Horizonte και Πόρτο Αλέγκρε</string>
   <string name="np_name_br_floripa">Φλοριανόπολις</string>
   <string name="np_desc_br_floripa">Πολλαπλές διαδρομές λεωφορείων, όχι Executivos</string>
   <string name="np_region_canada">Καναδάς</string>
   <string name="np_name_ontario">Οντάριο</string>
-  <string name="np_desc_ontario">Οντάριο, Οτάβα, Τορόντο, Mississauga, περιοχή Waterloo</string>
   <string name="np_name_quebec">Κεμπέκ</string>
   <string name="np_desc_quebec">Deux-Montagnes, Λαβάλ, L\'Assomption, Outaouais, Νοτιοδυτικά, Κεμπέκ, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Μόντρεαλ, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Βρετανική Κολούμπια</string>
@@ -251,7 +250,7 @@
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Βασιλεία, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Φρανκρούρτη Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Ρόστοκ</string>
-	<string name="np_desc_vbb">Βρανδεμβούργο, Βερολίνο</string>
+  <string name="np_desc_vbb">Βρανδεμβούργο, Βερολίνο</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Κάτω Σαξωνία, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Νυρεμβέργη, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Σάαρλαντ, Σααρμπρύκεν</string>
@@ -279,7 +278,7 @@
   <string name="np_region_netherlands">Ολλανδία</string>
   <string name="np_desc_ns">Ολλανδία, Άμστερνταμ</string>
   <string name="np_desc_negentwee">Όλες οι δημόσιες μεταφορές της Ολλανδίας</string>
-	<string name="np_name_nz">Νέα Ζηλανδία</string>
+  <string name="np_name_nz">Νέα Ζηλανδία</string>
   <string name="np_desc_nz">Νέα Ζηλανδία, Ουέλιγκτον, Όκλαντ</string>
   <string name="np_region_poland">Πολωνία</string>
   <string name="np_desc_pl">Πολωνία, αυτοκινητόδρομοι στην Πολωνία</string>
@@ -306,7 +305,7 @@
   <string name="np_name_costa_rica">Κόστα Ρίκα</string>
   <string name="np_name_ghana">Γκάνα</string>
   <string name="np_desc_ghana">Άκκρα</string>
-	<string name="np_name_nicaragua">Νικαράγουα</string>
+  <string name="np_name_nicaragua">Νικαράγουα</string>
   <string name="np_desc_nicaragua">Αστικά, αγροτικά και εθνικά δρομολόγια λεωφορείων που παρέχονται από τους συνεργάτες MapaNica.net και OpenStreetMap</string>
   <string name="maintainer">Συντηρητής</string>
   <string name="contributors">Συνεισφέροντες</string>
