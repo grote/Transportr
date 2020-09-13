@@ -308,6 +308,8 @@ and always knows where you are to not miss where to get off the bus.
 
 	<string name="np_region_germany">Germany</string>
 	<string name="np_desc_avv">Augsburg</string>
+	<string name="np_name_avvaachen">AVV</string>
+	<string name="np_desc_avvaachen">Aachen</string>
 	<string name="np_name_bayern" translatable="false">BEG</string>
 	<string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
 	<string name="np_name_bsvag" translatable="false">BSVG</string>
@@ -329,10 +331,13 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_name_nvv" translatable="false">NVV/RMV</string>
 	<string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
 	<string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+	<string name="np_name_sh">NAH.SH</string>
+	<string name="np_desc_sh">Schleswig-Holstein, Kiel, Flensburg, Lübeck</string>
 	<string name="np_desc_vbb">Brandenburg, Berlin</string>
 	<string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
 	<string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
 	<string name="np_desc_vgn_networks" translatable="false">VAG, DB, ESTW, infra fürth, Stadtwerke Bayreuth, Stadtwerke Schwabach, STWB, GPV, GkV</string>
+	<string name="np_name_vgs">saarVV</string>
 	<string name="np_desc_vgs">Saarland, Saarbrücken</string>
 	<string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
 	<string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
@@ -410,6 +415,9 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_name_rtachicago" translatable="false">RTA</string>
 	<string name="np_desc_rtachicago">Chicago</string>
 	<string name="np_desc_rtachicago_networks" translatable="false">CTA, Metra, Pace</string>
+	<string name="np_desc_bart">San Fransisco</string>
+	<string name="np_name_cmta">Capital Metro</string>
+	<string name="np_desc_cmta">Austin</string>
 	<string name="np_name_usny">New York and New-Jersey States</string>
 	<string name="np_desc_usny" translatable="false">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
 	<string name="np_name_california">California</string>
