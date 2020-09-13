@@ -67,7 +67,7 @@ data class TransportNetwork internal constructor(
             context.getString(description) + " (" + context.getString(agencies) + ")"
         } else if (description != 0) {
             context.getString(description)
-        } else if (agencies == 0) {
+        } else if (agencies != 0) {
             context.getString(agencies)
         } else {
             throw IllegalArgumentException()
