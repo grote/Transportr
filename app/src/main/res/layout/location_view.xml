@@ -13,7 +13,7 @@
 		android:background="?attr/selectableItemBackgroundBorderless"
 		android:contentDescription="@string/open_navigation_drawer"
 		android:scaleType="center"
-		android:tint="?colorControlNormal"
+		app:tint="?colorControlNormal"
 		app:srcCompat="@drawable/ic_location"/>
 
 	<AutoCompleteTextView
