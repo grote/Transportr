@@ -94,7 +94,7 @@ android {
 		checkReleaseBuilds false
 		disable 'MissingTranslation', // don't put too much pressure on Transifex contributors
 				'InvalidPackage',
-				'VectorDrawableCompat',
+				'VectorDrawableCompat', //todo: investigate about VectorDrawableCompat
 				'TrustAllX509TrustManager', // accept certificates as implemented in PTE
 				'GradleDependency', // don't complain about old library versions
 				'IconDensities', //todo: migrate all (network) icons to vectors

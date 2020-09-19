@@ -103,7 +103,6 @@
   <string name="trip_error_no_trips">Žádné spojení nebylo nalezeno :(</string>
   <string name="trip_error_invalid_date">Datum hledání momentálně není podporován poskytovatelem dat. Zkuste prosím jiný den.</string>
   <string name="trip_error_service_down">Poskytovatel dat je momentálně mimo provoz: (zkuste to prosím znovu později.</string>
-  <string name="trip_error_pte">Chcete-li tuto chybu nahlásit, oznamte ji prosím přímo agentuře veřejné dopravy a přiložte snímek obrazovky.</string>
   <string name="trip_issue">S tímto připojením může být problém.</string>
   <string name="trip_not_travelable">Nemožné nebo zrušené</string>
   <string name="try_again">Zkuste to znovu</string>

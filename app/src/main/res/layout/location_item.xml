@@ -11,7 +11,7 @@
 		android:layout_width="32dp"
 		android:layout_height="32dp"
 		android:padding="3dp"
-		android:tint="?attr/colorControlNormal"
+		app:tint="?attr/colorControlNormal"
 		app:layout_constraintBottom_toBottomOf="@+id/textView"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/textView"

@@ -97,7 +97,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:contentDescription="@string/to"
-			android:tint="?colorControlNormal"
+			app:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="@+id/destinationView"
 			app:layout_constraintLeft_toLeftOf="@+id/guideline"
 			app:layout_constraintTop_toTopOf="@+id/destinationView"

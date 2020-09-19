@@ -20,7 +20,7 @@
 		android:layout_marginLeft="16dp"
 		android:background="?attr/selectableItemBackgroundBorderless"
 		android:scaleType="center"
-		android:tint="?colorControlNormal"
+		app:tint="?colorControlNormal"
 		app:layout_constraintBottom_toBottomOf="@+id/locationName"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/locationName"

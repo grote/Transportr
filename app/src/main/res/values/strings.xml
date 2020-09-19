@@ -415,7 +415,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_name_rtachicago" translatable="false">RTA</string>
 	<string name="np_desc_rtachicago">Chicago</string>
 	<string name="np_desc_rtachicago_networks" translatable="false">CTA, Metra, Pace</string>
-	<string name="np_desc_bart">San Fransisco</string>
+	<string name="np_desc_bart">San Francisco</string>
 	<string name="np_name_cmta">Capital Metro</string>
 	<string name="np_desc_cmta">Austin</string>
 	<string name="np_name_usny">New York and New-Jersey States</string>
