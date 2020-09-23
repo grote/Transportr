@@ -97,11 +97,11 @@ object IntentUtils {
 
     @JvmStatic
     fun getWrapLocation(geoUri: String): WrapLocation? {
-        val pattern = Pattern.compile("^geo:(-?\\d{1,3}(\\.\\d{1,8})?),(-?\\d{1,3}(\\.\\d{1,8})?).*")
+        val pattern = Pattern.compile("^geo:(0,0\\?q=)?(-?\\d{1,3}(\\.\\d{1,8})?),(-?\\d{1,3}(\\.\\d{1,8})?).*")
         val matcher = pattern.matcher(geoUri)
         if (matcher.matches()) {
-            val lat: Double = matcher.group(1)!!.toDouble()
-            val lon: Double = matcher.group(3)!!.toDouble()
+            val lat: Double = matcher.group(2)!!.toDouble()
+            val lon: Double = matcher.group(4)!!.toDouble()
             return if (lat == 0.0 && lon == 0.0) null else WrapLocation(LatLng(lat, lon))
         }
         return null
