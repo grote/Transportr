@@ -101,6 +101,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="find_nearby_stations">Find Nearby Stations</string>
 	<string name="find_departures">Find Departures</string>
 	<string name="share_trip_via">Share Trip Via&#8230;</string>
+	<string name="show_location_in">Show Location In&#8230;</string>
 	<string name="more">More</string>
 
 	<!-- Shows a short(!) representation of how long you need to walk, e.g. "for 5 min" -->
@@ -149,6 +150,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="error_find_nearby_stations">Could not find nearby stations</string>
 	<string name="error_departures">Could not find any departures</string>
 	<string name="error_no_calendar">No calendar installed :(</string>
+	<string name="error_no_map">No external map installed :(</string>
 
 	<string name="trip_error_ambiguous">Could not find the location. Please try searching with different locations.</string>
 	<string name="trip_error_too_close">The \'from\' and the \'to\' location are too close together.</string>
