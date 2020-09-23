@@ -25,7 +25,9 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import com.mapbox.mapboxsdk.geometry.LatLng
+import de.grobox.transportr.R
 import de.grobox.transportr.departures.DeparturesActivity
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.map.MapActivity
@@ -37,11 +39,19 @@ import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
 import java.util.regex.Pattern
 
+
 object IntentUtils {
 
     @JvmStatic
     @JvmOverloads
-    fun findDirections(context: Context, from: WrapLocation?, via: WrapLocation?, to: WrapLocation?, search: Boolean = true, clearTop: Boolean = false) {
+    fun findDirections(
+        context: Context,
+        from: WrapLocation?,
+        via: WrapLocation?,
+        to: WrapLocation?,
+        search: Boolean = true,
+        clearTop: Boolean = false
+    ) {
         val intent = Intent(context, DirectionsActivity::class.java)
         if (clearTop) intent.flags = FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         if (search) intent.action = ACTION_SEARCH
@@ -86,13 +96,24 @@ object IntentUtils {
         val geo = Uri.parse(uri1 + uri2)
 
         // show station on external map
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        intent.data = geo
-        if (intent.resolveActivity(context.packageManager) != null) {
-            Log.d(context.javaClass.simpleName, "Starting geo intent: " + geo.toString())
-            context.startActivity(intent)
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            data = geo
         }
+        val intents = context.packageManager.queryIntentActivities(intent, 0).mapNotNull {
+            val packageName = it.activityInfo.packageName
+            if (context.packageName != packageName)
+                Intent(intent).apply { `package` = packageName }
+            else null
+        }
+        if (intents.isEmpty()) {
+            Toast.makeText(context, context.getString(R.string.error_no_map), Toast.LENGTH_LONG).show()
+            return
+        }
+        val intentChooser = Intent.createChooser(intents[0],  context.getString(R.string.show_location_in))
+        intentChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intents.drop(1).toTypedArray())
+        Log.d(context.javaClass.simpleName, "Starting geo intent: $geo")
+        context.startActivity(intentChooser)
     }
 
     @JvmStatic
