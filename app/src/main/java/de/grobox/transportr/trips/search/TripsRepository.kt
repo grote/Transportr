@@ -49,7 +49,7 @@ import java.io.InterruptedIOException
 import java.net.SocketTimeoutException
 import kotlin.concurrent.thread
 
-internal class TripsRepository(
+class TripsRepository(
         private val ctx: Context,
         private val networkProvider: NetworkProvider,
         private val settingsManager: SettingsManager,
