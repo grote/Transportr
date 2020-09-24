@@ -83,7 +83,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
         if (verticalOffset == 0) {
-            viewModel.topSwipeEnabled.setValue(true)
+            viewModel.topSwipeEnabled.value = true
         } else {
             val enabled = viewModel.topSwipeEnabled.value
             if (enabled != null && enabled) {
