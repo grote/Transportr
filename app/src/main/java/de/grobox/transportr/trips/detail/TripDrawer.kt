@@ -34,7 +34,7 @@ import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import de.grobox.transportr.R
 import de.grobox.transportr.map.MapDrawer
-import de.grobox.transportr.utils.DateUtils.getTime
+import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.Point
@@ -185,11 +185,11 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
     private fun getStopText(stop: Stop): String {
         var text = ""
         stop.getArrivalTime(false)?.let {
-            text += "${context.getString(R.string.trip_arr)}: ${getTime(context, it)}"
+            text += "${context.getString(R.string.trip_arr)}: ${formatTime(context, it)}"
         }
         stop.getDepartureTime(false)?.let {
             if (text.isNotEmpty()) text += "\n"
-            text += "${context.getString(R.string.trip_dep)}: ${getTime(context, it)}"
+            text += "${context.getString(R.string.trip_dep)}: ${formatTime(context, it)}"
         }
         return text
     }
@@ -197,10 +197,10 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
     private fun getStationText(leg: Public, type: MarkerType): String {
         return when (type) {
             MarkerType.BEGIN -> leg.getDepartureTime(false)?.let {
-                "${context.getString(R.string.trip_dep)}: ${getTime(context, it)}"
+                "${context.getString(R.string.trip_dep)}: ${formatTime(context, it)}"
             }
             MarkerType.END -> leg.getArrivalTime(false)?.let {
-                "${context.getString(R.string.trip_arr)}: ${getTime(context, it)}"
+                "${context.getString(R.string.trip_arr)}: ${formatTime(context, it)}"
             }
             else -> throw IllegalArgumentException()
         } ?: ""
@@ -209,11 +209,11 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
     private fun getStationText(leg1: Leg, leg2: Leg): String {
         var text = ""
         leg1.arrivalTime?.let {
-            text += "${context.getString(R.string.trip_arr)}: ${getTime(context, it)}"
+            text += "${context.getString(R.string.trip_arr)}: ${formatTime(context, it)}"
         }
         leg2.departureTime?.let {
             if (text.isNotEmpty()) text += "\n"
-            text += "${context.getString(R.string.trip_dep)}: ${getTime(context, it)}"
+            text += "${context.getString(R.string.trip_dep)}: ${formatTime(context, it)}"
         }
         return text
     }

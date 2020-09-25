@@ -37,7 +37,7 @@ import de.grobox.transportr.trips.BaseViewHolder
 import de.grobox.transportr.trips.detail.LegViewHolder.LegType.*
 import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.DateUtils
-import de.grobox.transportr.utils.DateUtils.getDuration
+import de.grobox.transportr.utils.DateUtils.formatDuration
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Line
 import de.schildbach.pte.dto.Stop
@@ -105,7 +105,7 @@ internal class LegViewHolder(v: View, private val listener: LegClickListener, pr
         lineDestination.setOnClickListener { listener.onLegClick(leg) }
 
         // Leg duration
-        duration.text = getDuration(leg.departureTime, leg.arrivalTime)
+        duration.text = formatDuration(leg.departureTime, leg.arrivalTime)
 
         if (leg is Public) {
             bindPublic(leg)
@@ -185,8 +185,8 @@ internal class LegViewHolder(v: View, private val listener: LegClickListener, pr
     }
 
     private fun bindIndividual(leg: Individual) {
-        fromTime.text = DateUtils.getTime(fromTime.context, leg.departureTime)
-        toTime.text = DateUtils.getTime(toTime.context, leg.arrivalTime)
+        fromTime.text = DateUtils.formatTime(fromTime.context, leg.departureTime)
+        toTime.text = DateUtils.formatTime(toTime.context, leg.arrivalTime)
 
         fromDelay.visibility = GONE
         toDelay.visibility = GONE

@@ -38,7 +38,9 @@ import de.grobox.transportr.trips.detail.TripUtils.getStandardFare
 import de.grobox.transportr.trips.detail.TripUtils.hasFare
 import de.grobox.transportr.trips.detail.TripUtils.intoCalendar
 import de.grobox.transportr.trips.detail.TripUtils.share
-import de.grobox.transportr.utils.DateUtils.*
+import de.grobox.transportr.utils.DateUtils.formatDuration
+import de.grobox.transportr.utils.DateUtils.formatTime
+import de.grobox.transportr.utils.DateUtils.setRelativeDepartureTime
 import de.grobox.transportr.utils.TransportrUtils.getColorFromAttr
 import de.schildbach.pte.dto.Trip
 import kotlinx.android.synthetic.main.fragment_trip_detail.*
@@ -132,13 +134,13 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
         val adapter = LegAdapter(trip.legs, viewModel, showLineName)
         list.adapter = adapter
 
-        fromTime.text = getTime(context, trip.firstDepartureTime)
+        fromTime.text = formatTime(context, trip.firstDepartureTime)
         setRelativeDepartureTime(fromTimeRel, trip.firstDepartureTime)
         from.text = trip.from.uniqueShortName()
-        toTime.text = getTime(context, trip.lastArrivalTime)
+        toTime.text = formatTime(context, trip.lastArrivalTime)
         to.text = trip.to.uniqueShortName()
-        duration.text = getDuration(trip.duration)
-        durationTop.text = getString(R.string.total_time, getDuration(trip.duration))
+        duration.text = formatDuration(trip.duration)
+        durationTop.text = getString(R.string.total_time, formatDuration(trip.duration))
         price.visibility = if (trip.hasFare()) VISIBLE else GONE
         price.text = trip.getStandardFare()
         priceTop.visibility = if (trip.hasFare()) VISIBLE else GONE

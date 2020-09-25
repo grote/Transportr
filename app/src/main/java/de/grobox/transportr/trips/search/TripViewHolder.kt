@@ -32,7 +32,9 @@ import de.grobox.transportr.trips.detail.TripUtils.getStandardFare
 import de.grobox.transportr.trips.detail.TripUtils.hasFare
 import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener
 import de.grobox.transportr.ui.LineView
-import de.grobox.transportr.utils.DateUtils.*
+import de.grobox.transportr.utils.DateUtils.formatDuration
+import de.grobox.transportr.utils.DateUtils.formatTime
+import de.grobox.transportr.utils.DateUtils.setRelativeDepartureTime
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Trip
 import de.schildbach.pte.dto.Trip.Individual
@@ -62,7 +64,7 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
         if (firstLeg is Public) {
             setDepartureTimes(fromTime, fromDelay, firstLeg.departureStop)
         } else {
-            fromTime.text = getTime(context, firstLeg.departureTime)
+            fromTime.text = formatTime(context, firstLeg.departureTime)
             val firstPublicLeg = trip.firstPublicLeg
             if (firstPublicLeg != null && firstPublicLeg.departureDelay != null && firstPublicLeg.departureDelay != 0L) {
                 setDepartureTimes(null, toDelay, firstPublicLeg.departureStop)
@@ -84,7 +86,7 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
 
         // Warning and Duration
         warning.visibility = if (trip.hasProblem()) VISIBLE else GONE
-        duration.text = getDuration(trip.duration)
+        duration.text = formatDuration(trip.duration)
         price.visibility = if (trip.hasFare()) VISIBLE else GONE
         price.text = trip.getStandardFare()
 
@@ -93,7 +95,7 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
         if (lastLeg is Public) {
             setArrivalTimes(toTime, toDelay, lastLeg.arrivalStop)
         } else {
-            toTime.text = getTime(context, lastLeg.arrivalTime)
+            toTime.text = formatTime(context, lastLeg.arrivalTime)
             val lastPublicLeg = trip.lastPublicLeg
             if (lastPublicLeg != null && lastPublicLeg.arrivalDelay != null && lastPublicLeg.arrivalDelay != 0L) {
                 setArrivalTimes(null, toDelay, lastPublicLeg.arrivalStop)

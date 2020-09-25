@@ -24,7 +24,9 @@ import android.content.Intent
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import de.grobox.transportr.R
-import de.grobox.transportr.utils.DateUtils.*
+import de.grobox.transportr.utils.DateUtils.formatDate
+import de.grobox.transportr.utils.DateUtils.formatTime
+import de.grobox.transportr.utils.DateUtils.isToday
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Fare
 import de.schildbach.pte.dto.Product
@@ -66,10 +68,10 @@ internal object TripUtils {
     private fun tripToSubject(context: Context, trip: Trip): String {
         var str = "[${context.resources.getString(R.string.app_name)}] "
 
-        str += "${getTime(context, trip.firstDepartureTime)} "
+        str += "${formatTime(context, trip.firstDepartureTime)} "
         str += "${getLocationName(trip.from)} → ${getLocationName(trip.to)} "
-        str += getTime(context, trip.lastArrivalTime)
-        str += " (${getDate(context, trip.firstDepartureTime)})"
+        str += formatTime(context, trip.lastArrivalTime)
+        str += " (${formatDate(context, trip.firstDepartureTime)})"
 
         return str
     }
@@ -82,7 +84,7 @@ internal object TripUtils {
         calendar.time = trip.firstDepartureTime
         val isToday = isToday(calendar)
         if (!isToday) {
-            sb.append(context.getString(R.string.trip_share_date, getDate(context, trip.firstDepartureTime))).append("\n\n")
+            sb.append(context.getString(R.string.trip_share_date, formatDate(context, trip.firstDepartureTime))).append("\n\n")
         }
 
         for (leg in trip.legs) {
@@ -96,7 +98,7 @@ internal object TripUtils {
 
     @JvmStatic
     fun legToString(context: Context, leg: Trip.Leg): String {
-        var str = "${getTime(context, leg.departureTime)} ${getLocationName(leg.departure)}"
+        var str = "${formatTime(context, leg.departureTime)} ${getLocationName(leg.departure)}"
 
         if (leg is Trip.Public) {
             // show departure position if existing
@@ -115,7 +117,7 @@ internal object TripUtils {
             if (leg.distance > 0) str += context.resources.getString(R.string.meter, leg.distance)
             if (leg.min > 0) str += " ${context.resources.getString(R.string.for_x_min, leg.min)}"
         }
-        str += "\n${getTime(context, leg.arrivalTime)} ${getLocationName(leg.arrival)}"
+        str += "\n${formatTime(context, leg.arrivalTime)} ${getLocationName(leg.arrival)}"
 
         // add arrival position if existing
         if (leg is Trip.Public && leg.arrivalPosition != null) {

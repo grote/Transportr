@@ -25,7 +25,7 @@ import org.junit.Assert
 import org.junit.Test
 
 
-class MapViewModelTest {
+class IntentUtilsTest {
 
     @Test
     fun getWrapLocation() {

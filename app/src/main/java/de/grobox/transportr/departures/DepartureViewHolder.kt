@@ -19,26 +19,22 @@
 
 package de.grobox.transportr.departures
 
-import androidx.core.content.ContextCompat
-import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import android.widget.TextView
-
-import com.google.common.base.Strings
-
-import java.util.Date
-
-import de.grobox.transportr.R
-import de.grobox.transportr.ui.LineView
-import de.schildbach.pte.dto.Departure
-
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import de.grobox.transportr.utils.DateUtils
-import de.grobox.transportr.utils.DateUtils.*
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import de.grobox.transportr.R
+import de.grobox.transportr.ui.LineView
+import de.grobox.transportr.utils.DateUtils.formatDelay
+import de.grobox.transportr.utils.DateUtils.formatTime
+import de.grobox.transportr.utils.DateUtils.setRelativeDepartureTime
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
+import de.schildbach.pte.dto.Departure
 import kotlinx.android.synthetic.main.list_item_departure.view.*
+import java.util.*
 
 internal class DepartureViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
@@ -64,10 +60,10 @@ internal class DepartureViewHolder(v: View) : RecyclerView.ViewHolder(v) {
             else throw RuntimeException()
         }
         setRelativeDepartureTime(timeRel, predictedTime ?: plannedTime)
-        timeAbs.text = getTime(timeAbs.context, plannedTime)
+        timeAbs.text = formatTime(timeAbs.context, plannedTime)
         predictedTime?.let {
             val delayTime = it.time - plannedTime.time
-            delay.text = getDelayText(delayTime)
+            delay.text = formatDelay(delayTime)
             if (delayTime <= 0)
                 delay.setTextColor(ContextCompat.getColor(delay.context, R.color.md_green_500))
             else
