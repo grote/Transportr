@@ -26,7 +26,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import de.grobox.transportr.trips.BaseViewHolder
-import de.grobox.transportr.utils.DateUtils.getTime
+import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Stop
 import kotlinx.android.synthetic.main.list_item_stop.view.*
@@ -47,7 +47,7 @@ internal class StopViewHolder(v: View, private val listener : LegClickListener) 
             fromDelay.visibility = GONE
             if (stop.departureTime == null) {
                 // insert dummy time field for stops without times set, so that stop circles align
-                fromTime.text = getTime(context, Date())
+                fromTime.text = formatTime(context, Date())
                 fromTime.visibility = INVISIBLE
             } else {
                 fromTime.visibility = GONE

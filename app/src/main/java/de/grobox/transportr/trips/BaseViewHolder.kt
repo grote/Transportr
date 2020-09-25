@@ -28,8 +28,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import de.grobox.transportr.R
-import de.grobox.transportr.utils.DateUtils.getDelayText
-import de.grobox.transportr.utils.DateUtils.getTime
+import de.grobox.transportr.utils.DateUtils.formatDelay
+import de.grobox.transportr.utils.DateUtils.formatTime
 import de.schildbach.pte.dto.Position
 import de.schildbach.pte.dto.Stop
 import java.util.*
@@ -50,7 +50,7 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         if (stop.isArrivalTimePredicted && stop.arrivalDelay != null) {
             val delay = stop.arrivalDelay!!
             time.time = time.time - delay
-            delayView.text = getDelayText(delay)
+            delayView.text = formatDelay(delay)
             if (delay <= 0)
                 delayView.setTextColor(ContextCompat.getColor(context, R.color.md_green_500))
             else
@@ -59,7 +59,7 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         } else {
             delayView.visibility = GONE
         }
-        timeView?.let { it.text = getTime(context, time) }
+        timeView?.let { it.text = formatTime(context, time) }
     }
 
     fun setDepartureTimes(timeView: TextView?, delayView: TextView, stop: Stop) {
@@ -70,7 +70,7 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         if (stop.isDepartureTimePredicted && stop.departureDelay != null) {
             val delay = stop.departureDelay!!
             time.time = time.time - delay
-            delayView.text = getDelayText(delay)
+            delayView.text = formatDelay(delay)
             if (delay <= 0)
                 delayView.setTextColor(ContextCompat.getColor(context, R.color.md_green_500))
             else
@@ -79,7 +79,7 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         } else {
             delayView.visibility = GONE
         }
-        timeView?.let { it.text = getTime(context, time) }
+        timeView?.let { it.text = formatTime(context, time) }
     }
 
     @SuppressLint("SetTextI18n")

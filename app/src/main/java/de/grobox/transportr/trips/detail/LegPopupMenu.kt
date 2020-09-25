@@ -27,7 +27,7 @@ import de.grobox.transportr.R
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.trips.detail.TripUtils.legToString
 import de.grobox.transportr.ui.BasePopupMenu
-import de.grobox.transportr.utils.DateUtils.getTime
+import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.IntentUtils.findDepartures
 import de.grobox.transportr.utils.IntentUtils.findNearbyStations
 import de.grobox.transportr.utils.IntentUtils.presetDirections
@@ -47,7 +47,7 @@ class LegPopupMenu private constructor(context: Context, anchor: View, location:
             this(context, anchor, if (isLast) leg.arrival else leg.departure, legToString(context, leg))
 
     internal constructor(context: Context, anchor: View, stop: Stop) :
-            this(context, anchor, stop.location, "${getTime(context, stop.arrivalTime)} ${getLocationName(stop.location)}")
+            this(context, anchor, stop.location, "${formatTime(context, stop.arrivalTime)} ${getLocationName(stop.location)}")
 
     init {
         this.menuInflater.inflate(R.menu.leg_location_actions, menu)

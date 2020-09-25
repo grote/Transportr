@@ -42,8 +42,10 @@ import de.grobox.transportr.ui.TimeDateFragment
 import de.grobox.transportr.utils.Constants.DATE
 import de.grobox.transportr.utils.Constants.DEPARTURE
 import de.grobox.transportr.utils.Constants.EXPANDED
-import de.grobox.transportr.utils.DateUtils
-import de.grobox.transportr.utils.DateUtils.*
+import de.grobox.transportr.utils.DateUtils.formatDate
+import de.grobox.transportr.utils.DateUtils.formatTime
+import de.grobox.transportr.utils.DateUtils.isNow
+import de.grobox.transportr.utils.DateUtils.isToday
 import de.schildbach.pte.dto.Product
 import kotlinx.android.synthetic.main.fragment_directions_form.*
 import java.util.*
@@ -169,13 +171,13 @@ class DirectionsFragment : TransportrFragment() {
                 time.setText(R.string.now)
                 date.visibility = GONE
             }
-            DateUtils.isToday(calendar) -> {
-                time.text = getTime(context, calendar.time)
+            isToday(calendar) -> {
+                time.text = formatTime(context, calendar.time)
                 date.visibility = GONE
             }
             else -> {
-                time.text = getTime(context, calendar.time)
-                date.text = getDate(context, calendar.time)
+                time.text = formatTime(context, calendar.time)
+                date.text = formatDate(context, calendar.time)
                 date.visibility = VISIBLE
             }
         }
