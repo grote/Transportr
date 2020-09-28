@@ -45,6 +45,7 @@ import de.grobox.transportr.utils.Constants.DATE
 import de.grobox.transportr.utils.Constants.DEPARTURE
 import de.grobox.transportr.utils.Constants.EXPANDED
 import de.grobox.transportr.utils.DateUtils.formatDate
+import de.grobox.transportr.utils.DateUtils.formatRelativeTime
 import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.isNow
 import de.grobox.transportr.utils.DateUtils.isToday
@@ -175,7 +176,8 @@ class DirectionsFragment : TransportrFragment() {
                 date.visibility = GONE
             }
             isToday(calendar) -> {
-                time.text = formatTime(context, calendar.time)
+                val relTime = formatRelativeTime(context, calendar.time, 30)
+                time.text = if (relTime.visibility == VISIBLE) relTime.relativeTime else formatTime(context, calendar.time)
                 date.visibility = GONE
             }
             else -> {

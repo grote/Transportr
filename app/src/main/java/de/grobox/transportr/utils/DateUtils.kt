@@ -72,16 +72,16 @@ object DateUtils {
 
     fun isNow(calendar: Calendar): Boolean = isWithinMinutes(calendar, 1)
 
-    fun formatRelativeTime(context: Context, date: Date): RelativeTime {
+    fun formatRelativeTime(context: Context, date: Date, max: Int = 99): RelativeTime {
         val difference = getDifferenceInMinutes(date)
         return RelativeTime(
             relativeTime = when {
-                difference !in -99..99 -> ""
+                difference !in -max..max -> ""
                 difference == 0L -> context.getString(R.string.now_small)
                 difference > 0 -> context.getString(R.string.in_x_minutes, difference)
                 else -> context.getString(R.string.x_minutes_ago, difference * -1)
             },
-            visibility = if (difference in -99..99) View.VISIBLE else View.GONE
+            visibility = if (difference in -max..max) View.VISIBLE else View.GONE
         )
     }
 
