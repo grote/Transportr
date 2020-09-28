@@ -30,7 +30,7 @@ import de.grobox.transportr.R
 import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.DateUtils.formatDelay
 import de.grobox.transportr.utils.DateUtils.formatTime
-import de.grobox.transportr.utils.DateUtils.setRelativeDepartureTime
+import de.grobox.transportr.utils.DateUtils.formatRelativeTime
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Departure
 import kotlinx.android.synthetic.main.list_item_departure.view.*
@@ -59,7 +59,12 @@ internal class DepartureViewHolder(v: View) : RecyclerView.ViewHolder(v) {
             }
             else throw RuntimeException()
         }
-        setRelativeDepartureTime(timeRel, predictedTime ?: plannedTime)
+        formatRelativeTime(timeRel.context, predictedTime ?: plannedTime).let {
+            timeRel.apply {
+                text = it.relativeTime
+                visibility = it.visibility
+            }
+        }
         timeAbs.text = formatTime(timeAbs.context, plannedTime)
         predictedTime?.let {
             val delayTime = it.time - plannedTime.time

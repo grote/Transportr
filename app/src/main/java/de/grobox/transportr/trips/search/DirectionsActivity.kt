@@ -21,6 +21,7 @@ package de.grobox.transportr.trips.search
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -56,6 +57,13 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
     private val isShowingTrips: Boolean
         get() = fragmentIsVisible(TripsFragment.TAG)
 
+    private val timeUpdater: CountDownTimer = object : CountDownTimer(Long.MAX_VALUE, 1000 * 30) {
+        override fun onTick(millisUntilFinished: Long) {
+            viewModel.timeUpdate.trigger()
+        }
+        override fun onFinish() {}
+    }
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         component.inject(this)
@@ -71,6 +79,16 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
             showFavorites()
             processIntent(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        timeUpdater.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        timeUpdater.cancel()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

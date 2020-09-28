@@ -56,13 +56,6 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
     private val adapter = TripAdapter(this)
     private var topSwipingEnabled = false
     private var queryMoreDirection = SwipyRefreshLayoutDirection.BOTH
-    private val listUpdateTimer: CountDownTimer = object : CountDownTimer(Long.MAX_VALUE, 1000 * 30) {
-        override fun onTick(millisUntilFinished: Long) {
-            adapter.notifyDataSetChanged()
-        }
-
-        override fun onFinish() {}
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_trips, container, false)
@@ -95,19 +88,10 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
         viewModel.queryError.observe(viewLifecycleOwner, { error -> onError(error) })
         viewModel.queryPTEError.observe(viewLifecycleOwner, { error -> onPTEError(error) })
         viewModel.queryMoreError.observe(viewLifecycleOwner, { error -> onMoreError(error) })
+        viewModel.timeUpdate.observe(viewLifecycleOwner, { adapter.notifyDataSetChanged() })
         adapter.setHasStableIds(false)
         list.adapter = adapter
         LceAnimator.showLoading(progressBar, list, errorLayout)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        listUpdateTimer.start()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        listUpdateTimer.cancel()
     }
 
     override fun onRefresh(direction: SwipyRefreshLayoutDirection) {
