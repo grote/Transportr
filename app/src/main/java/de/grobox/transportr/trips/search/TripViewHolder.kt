@@ -34,7 +34,7 @@ import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener
 import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.DateUtils.formatDuration
 import de.grobox.transportr.utils.DateUtils.formatTime
-import de.grobox.transportr.utils.DateUtils.setRelativeDepartureTime
+import de.grobox.transportr.utils.DateUtils.formatRelativeTime
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Trip
 import de.schildbach.pte.dto.Trip.Individual
@@ -52,8 +52,12 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
 
     fun bind(trip: Trip, listener: OnTripClickListener) {
         if (trip.isTravelable) {
-            // Relative Departure Time
-            setRelativeDepartureTime(fromTimeRel, trip.firstDepartureTime)
+            formatRelativeTime(fromTimeRel.context, trip.firstDepartureTime).let {
+                fromTimeRel.apply {
+                    text = it.relativeTime
+                    visibility = it.visibility
+                }
+            }
         } else {
             fromTimeRel.setText(R.string.trip_not_travelable)
             fromTimeRel.visibility = VISIBLE

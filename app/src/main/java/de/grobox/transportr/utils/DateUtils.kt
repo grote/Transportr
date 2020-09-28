@@ -22,11 +22,9 @@ import android.content.Context
 import android.text.format.DateFormat
 import android.text.format.DateUtils
 import android.view.View
-import android.widget.TextView
 import de.grobox.transportr.R
 import java.util.*
 import kotlin.math.abs
-import kotlin.math.absoluteValue
 
 object DateUtils {
     fun formatDate(context: Context, date: Date): String {
@@ -67,21 +65,30 @@ object DateUtils {
         return DateUtils.isToday(calendar.timeInMillis)
     }
 
-    fun isNow(calendar: Calendar): Boolean {
+    fun isWithinMinutes(calendar: Calendar, minutes: Int): Boolean {
         val diff = abs(calendar.timeInMillis - Calendar.getInstance().timeInMillis)
-        return diff < 10 * DateUtils.MINUTE_IN_MILLIS
+        return diff < minutes * DateUtils.MINUTE_IN_MILLIS
     }
 
-    // todo: refactor to return Triple<String, Visibility, Color>
-    fun setRelativeDepartureTime(timeRel: TextView, date: Date) {
+    fun isNow(calendar: Calendar): Boolean = isWithinMinutes(calendar, 1)
+
+    fun formatRelativeTime(context: Context, date: Date): RelativeTime {
         val difference = getDifferenceInMinutes(date)
-        timeRel.visibility = if (difference in -99..99) View.VISIBLE else View.GONE
-        when {
-            difference == 0L -> timeRel.text = timeRel.context.getString(R.string.now_small)
-            difference > 0 -> timeRel.text = timeRel.context.getString(R.string.in_x_minutes, difference)
-            difference < 0 -> timeRel.text = timeRel.context.getString(R.string.x_minutes_ago, difference * -1)
-        }
+        return RelativeTime(
+            relativeTime = when {
+                difference !in -99..99 -> ""
+                difference == 0L -> context.getString(R.string.now_small)
+                difference > 0 -> context.getString(R.string.in_x_minutes, difference)
+                else -> context.getString(R.string.x_minutes_ago, difference * -1)
+            },
+            visibility = if (difference in -99..99) View.VISIBLE else View.GONE
+        )
     }
+
+    data class RelativeTime(
+        val relativeTime: String,
+        val visibility: Int
+    )
 
     /**
      * Returns difference in minutes

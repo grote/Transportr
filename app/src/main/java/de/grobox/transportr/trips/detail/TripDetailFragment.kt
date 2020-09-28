@@ -40,7 +40,7 @@ import de.grobox.transportr.trips.detail.TripUtils.intoCalendar
 import de.grobox.transportr.trips.detail.TripUtils.share
 import de.grobox.transportr.utils.DateUtils.formatDuration
 import de.grobox.transportr.utils.DateUtils.formatTime
-import de.grobox.transportr.utils.DateUtils.setRelativeDepartureTime
+import de.grobox.transportr.utils.DateUtils.formatRelativeTime
 import de.grobox.transportr.utils.TransportrUtils.getColorFromAttr
 import de.schildbach.pte.dto.Trip
 import kotlinx.android.synthetic.main.fragment_trip_detail.*
@@ -60,7 +60,12 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     private val timeUpdater: CountDownTimer = object : CountDownTimer(Long.MAX_VALUE, 1000 * 30) {
         override fun onTick(millisUntilFinished: Long) {
             viewModel.getTrip().value?.let {
-                setRelativeDepartureTime(fromTimeRel, it.firstDepartureTime)
+                formatRelativeTime(fromTimeRel.context, it.firstDepartureTime).let {
+                    fromTimeRel.apply {
+                        text = it.relativeTime
+                        visibility = it.visibility
+                    }
+                }
             }
         }
 
@@ -135,7 +140,12 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
         list.adapter = adapter
 
         fromTime.text = formatTime(context, trip.firstDepartureTime)
-        setRelativeDepartureTime(fromTimeRel, trip.firstDepartureTime)
+        formatRelativeTime(fromTimeRel.context, trip.firstDepartureTime).let {
+            fromTimeRel.apply {
+                text = it.relativeTime
+                visibility = it.visibility
+            }
+        }
         from.text = trip.from.uniqueShortName()
         toTime.text = formatTime(context, trip.lastArrivalTime)
         to.text = trip.to.uniqueShortName()

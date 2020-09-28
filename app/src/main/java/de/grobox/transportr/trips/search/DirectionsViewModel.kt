@@ -21,7 +21,6 @@ package de.grobox.transportr.trips.search
 import android.util.Pair
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
 import de.grobox.transportr.data.locations.LocationRepository
@@ -37,6 +36,7 @@ import de.grobox.transportr.trips.TripQuery
 import de.grobox.transportr.trips.search.TripsRepository.QueryMoreState
 import de.grobox.transportr.ui.TimeDateFragment.TimeDateListener
 import de.grobox.transportr.utils.DateUtils
+import de.grobox.transportr.utils.LiveTrigger
 import de.grobox.transportr.utils.SingleLiveEvent
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.dto.Product
@@ -56,9 +56,9 @@ class DirectionsViewModel @Inject internal constructor(
     private val _toLocation = MutableLiveData<WrapLocation?>()
     val locationLiveData = LocationLiveData(application.applicationContext)
     val findGpsLocation = MutableLiveData<FavLocationType?>()
+    val timeUpdate = LiveTrigger()
     private val _now = MutableLiveData(true)
-    val calendar = Transformations.switchMap(_now) { now: Boolean -> getUpdatedCalendar(now) }
-    private val _updatedCalendar = MutableLiveData(Calendar.getInstance())
+    private val _calendar = MutableLiveData(Calendar.getInstance())
     private val _products = MutableLiveData<EnumSet<Product>>(EnumSet.allOf(Product::class.java))
     private val _isDeparture = MutableLiveData(true)
     private val _isExpanded = MutableLiveData(false)
@@ -81,12 +81,7 @@ class DirectionsViewModel @Inject internal constructor(
         _toLocation.value = location
     }
 
-    private fun getUpdatedCalendar(now: Boolean): LiveData<Calendar?> {
-        if (now) {
-            _updatedCalendar.value = Calendar.getInstance()
-        }
-        return _updatedCalendar
-    }
+    val lastQueryCalendar: LiveData<Calendar?> = _calendar
 
     override fun onTimeAndDateSet(calendar: Calendar) {
         setCalendar(calendar)
@@ -104,12 +99,8 @@ class DirectionsViewModel @Inject internal constructor(
     }
 
     private fun setCalendar(calendar: Calendar) {
-        _updatedCalendar.value = calendar
-        if (DateUtils.isNow(calendar)) {
-            _now.setValue(true)
-        } else {
-            _now.setValue(false)
-        }
+        _calendar.value = calendar
+        _now.value = DateUtils.isNow(calendar)
     }
 
     val products: LiveData<EnumSet<Product>> = _products
@@ -170,16 +161,14 @@ class DirectionsViewModel @Inject internal constructor(
     /* Trip Queries */
     fun search() {
         val from = _fromLocation.value; val to = _toLocation.value
-        val via = if (_isExpanded.value != null && _isExpanded.value!!) _viaLocation.value else null
-
+        val via = if (_isExpanded.value != null && _isExpanded.value!!)
+            _viaLocation.value else null
         val calendar = if (_now.value != null && _now.value!!)
-            Calendar.getInstance() else _updatedCalendar.value
+            Calendar.getInstance() else _calendar.value
         if (from == null || to == null || calendar == null) return
+        _calendar.value = calendar
 
-        val tripQuery = TripQuery(
-            from, via, to,
-            calendar.time, _isDeparture.value, _products.value
-        )
+        val tripQuery = TripQuery(from, via, to, calendar.time, _isDeparture.value, _products.value)
         _tripsRepository.search(tripQuery)
         showTrips.call()
     }

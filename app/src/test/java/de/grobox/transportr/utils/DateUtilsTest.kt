@@ -19,12 +19,22 @@
 
 package de.grobox.transportr.utils
 
+import android.content.Context
+import android.view.View
+import de.grobox.transportr.R
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
+import org.mockito.Mock
+import org.mockito.Mockito.*
+import org.mockito.MockitoAnnotations
 import java.util.*
 
 
 class DateUtilsTest {
+
+    @Mock
+    lateinit var context: Context
 
     private fun minuteToMillis(minutes: Float): Long {
         return (minutes * android.text.format.DateUtils.MINUTE_IN_MILLIS).toLong()
@@ -56,6 +66,77 @@ class DateUtilsTest {
         //Assert.assertEquals("-10", DateUtils.formatDelay(minuteToMillis(-9.8f))) //todo: round to nearest minute
         Assert.assertEquals("+100", DateUtils.formatDelay(minuteToMillis(100f)))
         Assert.assertEquals("-100", DateUtils.formatDelay(minuteToMillis(-100f)))
+    }
+
+    private fun getNow() = "now"
+    private fun getIn(difference: Any) = "in $difference"
+    private fun getAgo(difference: Any) = "$difference ago"
+
+    @Before
+    fun initMocks() {
+        MockitoAnnotations.initMocks(this)
+        `when`(context.getString(R.string.now_small)).thenReturn(getNow())
+        `when`(context.getString(eq(R.string.in_x_minutes), anyLong())).thenAnswer { i -> getIn(i.arguments[1]) }
+        `when`(context.getString(eq(R.string.x_minutes_ago), anyLong())).thenAnswer { i -> getAgo(i.arguments[1]) }
+    }
+
+    @Test
+    fun formatRelativeTime() {
+        Assert.assertEquals(
+            DateUtils.RelativeTime(getNow(), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date())
+        )
+        Assert.assertEquals(
+            DateUtils.RelativeTime(getNow(), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(0.4f) })
+        )
+        Assert.assertEquals(
+            DateUtils.RelativeTime(getNow(), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(0.4f) })
+        )
+        //todo: round to nearest minute?
+        /*Assert.assertEquals(
+            DateUtils.RelativeTime(getIn(1), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(0.8f) })
+        )*/
+        //todo: round to nearest minute?
+        /*Assert.assertEquals(
+            DateUtils.RelativeTime(getAgo(1), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(0.8f) })
+        )*/
+        Assert.assertEquals(
+            DateUtils.RelativeTime(getIn(5), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(5f) })
+        )
+        Assert.assertEquals(
+            DateUtils.RelativeTime(getAgo(5), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(5f) })
+        )
+        Assert.assertEquals(
+            DateUtils.RelativeTime(getIn(5), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(5.4f) })
+        )
+        Assert.assertEquals(
+            DateUtils.RelativeTime(getAgo(5), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(5.4f) })
+        )
+        Assert.assertEquals(
+            DateUtils.RelativeTime(getIn(99), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(99f) })
+        )
+        Assert.assertEquals(
+            DateUtils.RelativeTime(getAgo(99), View.VISIBLE),
+            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(99f) })
+        )
+        Assert.assertEquals(
+            DateUtils.RelativeTime("", View.GONE),
+            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(100f) })
+        )
+        Assert.assertEquals(
+            DateUtils.RelativeTime("", View.GONE),
+            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(100f) })
+        )
+
     }
 
 }

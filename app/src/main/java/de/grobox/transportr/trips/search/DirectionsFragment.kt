@@ -22,8 +22,10 @@ package de.grobox.transportr.trips.search
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
 import android.view.View.*
+import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.TranslateAnimation
@@ -105,24 +107,25 @@ class DirectionsFragment : TransportrFragment() {
             viaLocation.setFavoriteLocations(it)
             toLocation.setFavoriteLocations(it)
         })
-        viewModel.fromLocation.observe(viewLifecycleOwner, Observer {
+        viewModel.fromLocation.observe(viewLifecycleOwner, {
             fromLocation.setLocation(it)
             if (it != null) toLocation.requestFocus()
         })
-        viewModel.viaLocation.observe(viewLifecycleOwner, Observer { viaLocation.setLocation(it) })
-        viewModel.toLocation.observe(viewLifecycleOwner, Observer { toLocation.setLocation(it) })
-        viewModel.isDeparture.observe(viewLifecycleOwner, Observer<Boolean> { this.onIsDepartureChanged(it) })
-        viewModel.isExpanded.observe(viewLifecycleOwner, Observer<Boolean> { this.onViaVisibleChanged(it) })
-        viewModel.calendar.observe(viewLifecycleOwner, Observer { this.onCalendarUpdated(it) })
-        viewModel.findGpsLocation.observe(viewLifecycleOwner, Observer { this.onFindGpsLocation(it) })
-        viewModel.isFavTrip.observe(viewLifecycleOwner, Observer { this.onFavStatusChanged(it) })
-        viewModel.products.observe(viewLifecycleOwner, Observer { this.onProductsChanged(it) })
+        viewModel.viaLocation.observe(viewLifecycleOwner, { viaLocation.setLocation(it) })
+        viewModel.toLocation.observe(viewLifecycleOwner, { toLocation.setLocation(it) })
+        viewModel.isDeparture.observe(viewLifecycleOwner, { onIsDepartureChanged(it) })
+        viewModel.isExpanded.observe(viewLifecycleOwner, { onViaVisibleChanged(it) })
+        viewModel.lastQueryCalendar.observe(viewLifecycleOwner, { onCalendarUpdated(it) })
+        viewModel.timeUpdate.observe(viewLifecycleOwner, { onCalendarUpdated(viewModel.lastQueryCalendar.value) })
+        viewModel.findGpsLocation.observe(viewLifecycleOwner, { onFindGpsLocation(it) })
+        viewModel.isFavTrip.observe(viewLifecycleOwner, { onFavStatusChanged(it) })
+        viewModel.products.observe(viewLifecycleOwner, { onProductsChanged(it) })
 
         favIcon.setOnClickListener { viewModel.toggleFavTrip() }
 
         timeBackground.setOnClickListener {
-            if (viewModel.calendar.value == null) throw IllegalStateException()
-            val fragment = TimeDateFragment.newInstance(viewModel.calendar.value!!, viewModel.isDeparture.value!!)
+            if (viewModel.lastQueryCalendar.value == null) throw IllegalStateException()
+            val fragment = TimeDateFragment.newInstance(viewModel.lastQueryCalendar.value!!, viewModel.isDeparture.value!!)
             fragment.setTimeDateListener(viewModel)
             fragment.show(activity!!.supportFragmentManager, TimeDateFragment.TAG)
         }
@@ -146,7 +149,7 @@ class DirectionsFragment : TransportrFragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putSerializable(DATE, viewModel.calendar.value)
+        outState.putSerializable(DATE, viewModel.lastQueryCalendar.value)
         outState.putBoolean(EXPANDED, viewModel.isExpanded.value ?: false)
         outState.putBoolean(DEPARTURE, viewModel.isDeparture.value ?: true)
     }
