@@ -68,12 +68,13 @@ internal class DepartureViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         timeAbs.text = formatTime(timeAbs.context, plannedTime)
         predictedTime?.let {
             val delayTime = it.time - plannedTime.time
-            delay.text = formatDelay(delayTime)
-            if (delayTime <= 0)
-                delay.setTextColor(ContextCompat.getColor(delay.context, R.color.md_green_500))
-            else
-                delay.setTextColor(ContextCompat.getColor(delay.context, R.color.md_red_500))
-            delay.visibility = VISIBLE
+            formatDelay(timeRel.context, delayTime).let {
+                delay.apply {
+                    text = it.delay
+                    setTextColor(it.color)
+                    visibility = VISIBLE
+                }
+            }
         } ?: run { delay.visibility = GONE }
 
         // line icon and name

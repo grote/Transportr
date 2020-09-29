@@ -22,6 +22,7 @@ import android.content.Context
 import android.text.format.DateFormat
 import android.text.format.DateUtils
 import android.view.View
+import androidx.core.content.ContextCompat
 import de.grobox.transportr.R
 import java.util.*
 import kotlin.math.abs
@@ -57,9 +58,15 @@ object DateUtils {
         return formatDuration(end.time - start.time)
     }
 
-    fun formatDelay(delay: Long): String {
-        return "${if (delay >= 0) '+' else ""}${delay / 1000 / 60}"
-    }
+    fun formatDelay(context: Context, delay: Long) = Delay(
+        delay = "${if (delay >= 0) '+' else ""}${delay / 1000 / 60}",
+        color = ContextCompat.getColor(context, if (delay <= 0) R.color.md_green_500 else R.color.md_red_500)
+    )
+
+    data class Delay(
+        val delay: String,
+        val color: Int
+    )
 
     fun isToday(calendar: Calendar): Boolean {
         return DateUtils.isToday(calendar.timeInMillis)

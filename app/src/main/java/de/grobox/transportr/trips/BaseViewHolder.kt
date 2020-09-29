@@ -48,14 +48,15 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val time = Date(stop.arrivalTime.time)
 
         if (stop.isArrivalTimePredicted && stop.arrivalDelay != null) {
-            val delay = stop.arrivalDelay!!
+            val delay = stop.arrivalDelay
             time.time = time.time - delay
-            delayView.text = formatDelay(delay)
-            if (delay <= 0)
-                delayView.setTextColor(ContextCompat.getColor(context, R.color.md_green_500))
-            else
-                delayView.setTextColor(ContextCompat.getColor(context, R.color.md_red_500))
-            delayView.visibility = VISIBLE
+            formatDelay(delayView.context, delay).let {
+                delayView.apply {
+                    text = it.delay
+                    setTextColor(it.color)
+                    visibility = VISIBLE
+                }
+            }
         } else {
             delayView.visibility = GONE
         }
@@ -68,14 +69,15 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val time = Date(stop.departureTime.time)
 
         if (stop.isDepartureTimePredicted && stop.departureDelay != null) {
-            val delay = stop.departureDelay!!
+            val delay = stop.departureDelay
             time.time = time.time - delay
-            delayView.text = formatDelay(delay)
-            if (delay <= 0)
-                delayView.setTextColor(ContextCompat.getColor(context, R.color.md_green_500))
-            else
-                delayView.setTextColor(ContextCompat.getColor(context, R.color.md_red_500))
-            delayView.visibility = VISIBLE
+            formatDelay(delayView.context, delay).let {
+                delayView.apply {
+                    text = it.delay
+                    setTextColor(it.color)
+                    visibility = VISIBLE
+                }
+            }
         } else {
             delayView.visibility = GONE
         }
