@@ -28,6 +28,15 @@ import java.util.*
 import kotlin.math.abs
 
 object DateUtils {
+    fun millisToMinutes(millis: Long): Long {
+        val seconds = millis / 1000
+        return seconds / 60 + when {
+            seconds % 60 >= 30 -> 1
+            seconds % 60 <= -30 -> -1
+            else -> 0
+        }
+    }
+
     fun formatDate(context: Context, date: Date): String {
         val df = DateFormat.getDateFormat(context)
         return df.format(date)
@@ -48,7 +57,7 @@ object DateUtils {
 
     fun formatDuration(duration: Long): String {
         // get duration in minutes
-        val durationMinutes = duration / 1000 / 60
+        val durationMinutes = millisToMinutes(duration)
         val m = durationMinutes % 60
         val h = durationMinutes / 60
         return "$h:${m.toString().padStart(2, '0')}"
@@ -58,10 +67,13 @@ object DateUtils {
         return formatDuration(end.time - start.time)
     }
 
-    fun formatDelay(context: Context, delay: Long) = Delay(
-        delay = "${if (delay >= 0) '+' else ""}${delay / 1000 / 60}",
-        color = ContextCompat.getColor(context, if (delay <= 0) R.color.md_green_500 else R.color.md_red_500)
-    )
+    fun formatDelay(context: Context, delay: Long): Delay {
+        val delayMinutes = millisToMinutes(delay)
+        return Delay(
+            delay = "${if (delayMinutes >= 0) '+' else ""}$delayMinutes",
+            color = ContextCompat.getColor(context, if (delayMinutes > 0) R.color.md_red_500 else R.color.md_green_500)
+        )
+    }
 
     data class Delay(
         val delay: String,
@@ -101,7 +113,7 @@ object DateUtils {
      * Returns difference in minutes
      */
     private fun getDifferenceInMinutes(d1: Date, d2: Date): Long {
-        return (d2.time - d1.time) / 1000 / 60
+        return millisToMinutes(d2.time - d1.time)
     }
 
     private fun getDifferenceInMinutes(date: Date): Long {
