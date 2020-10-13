@@ -23,7 +23,11 @@ import android.content.Context
 import android.content.res.Resources
 import android.view.View
 import de.grobox.transportr.R
-import org.junit.Assert
+import de.grobox.transportr.utils.DateUtils.formatDelay
+import de.grobox.transportr.utils.DateUtils.formatDuration
+import de.grobox.transportr.utils.DateUtils.formatRelativeTime
+import de.grobox.transportr.utils.DateUtils.millisToMinutes
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -44,25 +48,25 @@ class DateUtilsTest {
     }
 
     @Test
-    fun millisToMinutes() {
-        Assert.assertEquals(0, DateUtils.millisToMinutes(minuteToMillis(0f)))
-        Assert.assertEquals(0, DateUtils.millisToMinutes(minuteToMillis(0.3f)))
-        Assert.assertEquals(0, DateUtils.millisToMinutes(minuteToMillis(-0.3f)))
-        Assert.assertEquals(1, DateUtils.millisToMinutes(minuteToMillis(0.8f)))
-        Assert.assertEquals(-1, DateUtils.millisToMinutes(minuteToMillis(-0.8f)))
+    fun millisToMinutesTest() {
+        assertEquals(0, millisToMinutes(minuteToMillis(0f)))
+        assertEquals(0, millisToMinutes(minuteToMillis(0.3f)))
+        assertEquals(0, millisToMinutes(minuteToMillis(-0.3f)))
+        assertEquals(1, millisToMinutes(minuteToMillis(0.8f)))
+        assertEquals(-1, millisToMinutes(minuteToMillis(-0.8f)))
     }
 
     @Test
-    fun formatDuration() {
-        Assert.assertEquals("0:05", DateUtils.formatDuration(minuteToMillis(5f)))
-        Assert.assertEquals("0:05", DateUtils.formatDuration(minuteToMillis(5.3f)))
-        Assert.assertEquals("0:06", DateUtils.formatDuration(minuteToMillis(5.8f)))
-        Assert.assertEquals("0:15", DateUtils.formatDuration(minuteToMillis(15f)))
-        Assert.assertEquals("1:05", DateUtils.formatDuration(minuteToMillis(65f)))
-        Assert.assertEquals("1:05", DateUtils.formatDuration(minuteToMillis(65.3f)))
+    fun formatDurationTest() {
+        assertEquals("0:05", formatDuration(minuteToMillis(5f)))
+        assertEquals("0:05", formatDuration(minuteToMillis(5.3f)))
+        assertEquals("0:06", formatDuration(minuteToMillis(5.8f)))
+        assertEquals("0:15", formatDuration(minuteToMillis(15f)))
+        assertEquals("1:05", formatDuration(minuteToMillis(65f)))
+        assertEquals("1:05", formatDuration(minuteToMillis(65.3f)))
 
-        Assert.assertEquals("0:05", DateUtils.formatDuration(Date(), Date().apply { time += minuteToMillis(5f) }))
-        Assert.assertEquals("1:05", DateUtils.formatDuration(Date(), Date().apply { time += minuteToMillis(65f) }))
+        assertEquals("0:05", formatDuration(Date(), Date().apply { time += minuteToMillis(5f) }))
+        assertEquals("1:05", formatDuration(Date(), Date().apply { time += minuteToMillis(65f) }))
     }
 
     private val GREEN = 0
@@ -84,106 +88,106 @@ class DateUtilsTest {
     }
 
     @Test
-    fun formatDelay() {
-        Assert.assertEquals(
+    fun formatDelayTest() {
+        assertEquals(
             DateUtils.Delay("+0", GREEN),
-            DateUtils.formatDelay(context, minuteToMillis(0f))
+            formatDelay(context, minuteToMillis(0f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("+0", GREEN),
-            DateUtils.formatDelay(context, minuteToMillis(0.3f))
+            formatDelay(context, minuteToMillis(0.3f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("+0", GREEN),
-            DateUtils.formatDelay(context, minuteToMillis(-0.3f))
+            formatDelay(context, minuteToMillis(-0.3f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("+1", RED),
-            DateUtils.formatDelay(context, minuteToMillis(0.8f))
+            formatDelay(context, minuteToMillis(0.8f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("-1", GREEN),
-            DateUtils.formatDelay(context, minuteToMillis(-0.8f))
+            formatDelay(context, minuteToMillis(-0.8f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("+1", RED),
-            DateUtils.formatDelay(context, minuteToMillis(1f))
+            formatDelay(context, minuteToMillis(1f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("-1", GREEN),
-            DateUtils.formatDelay(context, minuteToMillis(-1f))
+            formatDelay(context, minuteToMillis(-1f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("+10", RED),
-            DateUtils.formatDelay(context, minuteToMillis(9.8f))
+            formatDelay(context, minuteToMillis(9.8f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("-10", GREEN),
-            DateUtils.formatDelay(context, minuteToMillis(-9.8f))
+            formatDelay(context, minuteToMillis(-9.8f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("+100", RED),
-            DateUtils.formatDelay(context, minuteToMillis(100f))
+            formatDelay(context, minuteToMillis(100f))
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.Delay("-100", GREEN),
-            DateUtils.formatDelay(context, minuteToMillis(-100f))
+            formatDelay(context, minuteToMillis(-100f))
         )
     }
 
     @Test
-    fun formatRelativeTime() {
-        Assert.assertEquals(
+    fun formatRelativeTimeTest() {
+        assertEquals(
             DateUtils.RelativeTime(getNow(), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date())
+            formatRelativeTime(context, Date())
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getNow(), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(0.4f) })
+            formatRelativeTime(context, Date().apply { time += minuteToMillis(0.4f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getNow(), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(0.4f) })
+            formatRelativeTime(context, Date().apply { time -= minuteToMillis(0.4f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getIn(1), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(0.8f) })
+            formatRelativeTime(context, Date().apply { time += minuteToMillis(0.8f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getAgo(1), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(0.8f) })
+            formatRelativeTime(context, Date().apply { time -= minuteToMillis(0.8f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getIn(5), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(5f) })
+            formatRelativeTime(context, Date().apply { time += minuteToMillis(5f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getAgo(5), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(5f) })
+            formatRelativeTime(context, Date().apply { time -= minuteToMillis(5f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getIn(5), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(5.4f) })
+            formatRelativeTime(context, Date().apply { time += minuteToMillis(5.4f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getAgo(5), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(5.4f) })
+            formatRelativeTime(context, Date().apply { time -= minuteToMillis(5.4f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getIn(99), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(99f) })
+            formatRelativeTime(context, Date().apply { time += minuteToMillis(99f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime(getAgo(99), View.VISIBLE),
-            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(99f) })
+            formatRelativeTime(context, Date().apply { time -= minuteToMillis(99f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime("", View.GONE),
-            DateUtils.formatRelativeTime(context, Date().apply { time += minuteToMillis(100f) })
+            formatRelativeTime(context, Date().apply { time += minuteToMillis(100f) })
         )
-        Assert.assertEquals(
+        assertEquals(
             DateUtils.RelativeTime("", View.GONE),
-            DateUtils.formatRelativeTime(context, Date().apply { time -= minuteToMillis(100f) })
+            formatRelativeTime(context, Date().apply { time -= minuteToMillis(100f) })
         )
 
     }
