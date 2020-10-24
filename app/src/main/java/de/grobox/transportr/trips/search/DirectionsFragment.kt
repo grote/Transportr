@@ -172,7 +172,7 @@ class DirectionsFragment : TransportrFragment() {
         if (calendar == null) return
         when {
             isNow(calendar) -> {
-                time.setText(R.string.now)
+                time.setText(R.string.now_small)
                 date.visibility = GONE
             }
             isToday(calendar) -> {
