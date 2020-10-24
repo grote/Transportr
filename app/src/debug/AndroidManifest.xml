@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
 	package="de.grobox.transportr"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- Allows unlocking your device and activating its screen so UI tests can succeed -->
 	<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
@@ -13,5 +14,9 @@
 
 	<!-- Allows changing locales -->
 	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
+
+	<application
+		android:name="de.grobox.transportr.TransportrDebugApplication"
+		tools:replace="android:name"/>
 
 </manifest>
