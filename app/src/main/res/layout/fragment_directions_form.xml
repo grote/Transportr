@@ -149,12 +149,11 @@
 		android:paddingEnd="4dp"
 		android:paddingRight="4dp"
 		android:gravity="center"
-		android:text="@string/trip_dep"
 		android:textColor="@color/md_grey_300"
 		app:layout_constraintStart_toEndOf="@+id/timeIcon"
 		app:layout_constraintTop_toTopOf="@+id/timeIcon"
 		app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
-		tools:text="Departure"/>
+		tools:text="@string/trip_dep"/>
 
 	<TextView
 		android:id="@+id/date"
@@ -168,19 +167,19 @@
 		app:layout_constraintBottom_toTopOf="@+id/time"
 		app:layout_constraintTop_toTopOf="@+id/timeIcon"
 		tools:text="2042-12-23"
-		tools:visibility="visible"/>
+		tools:visibility="gone"/>
 
 	<TextView
 		android:id="@+id/time"
 		android:layout_width="wrap_content"
 		android:layout_height="24dp"
 		android:gravity="center"
-		android:text="@string/now"
 		android:textColor="@color/md_grey_300"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toStartOf="@+id/timeBarrier"
 		app:layout_constraintStart_toEndOf="@+id/departure"
-		app:layout_constraintTop_toBottomOf="@+id/date"/>
+		app:layout_constraintTop_toBottomOf="@+id/date"
+		tools:text="@string/now_small"/>
 
 	<androidx.constraintlayout.widget.Barrier
 		android:id="@+id/timeBarrier"
