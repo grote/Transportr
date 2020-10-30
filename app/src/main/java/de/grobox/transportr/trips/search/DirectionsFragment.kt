@@ -238,7 +238,7 @@ class DirectionsFragment : TransportrFragment() {
 
     private fun onFindGpsLocation(type: FavLocationType?) {
         if (type == null) {
-            viewModel.locationLiveData.removeObservers(this@DirectionsFragment)
+            viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
             fromLocation.clearSearching()
             return
         }
@@ -250,7 +250,7 @@ class DirectionsFragment : TransportrFragment() {
         viewModel.locationLiveData.observe(viewLifecycleOwner, { location ->
             viewModel.setFromLocation(location)
             viewModel.search()
-            viewModel.locationLiveData.removeObservers(this@DirectionsFragment)
+            viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
         })
     }
 
