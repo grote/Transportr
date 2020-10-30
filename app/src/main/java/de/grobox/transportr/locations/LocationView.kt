@@ -69,6 +69,8 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
     protected var listener: LocationViewListener? = null
     protected val hint: String?
 
+    private var ignoreTextChanged = false
+
     var type = FavLocationType.FROM
         set(type) {
             field = type
@@ -97,7 +99,7 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
         ui.location.hint = hint
         if (!isInEditMode) {
             adapter = LocationAdapter(getContext())
-            ui.location.setAdapter<LocationAdapter>(adapter)
+            ui.location.setAdapter(adapter)
         }
         ui.location.setOnItemClickListener { _, _, position, _ ->
             try {
@@ -108,7 +110,7 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
             }
         }
         ui.location.onFocusChangeListener = OnFocusChangeListener { v, hasFocus -> this@LocationView.onFocusChange(v, hasFocus) }
-        ui.location.setOnClickListener { _ -> this@LocationView.onClick() }
+        ui.location.setOnClickListener { this@LocationView.onClick() }
 
         if (showIcon) {
             ui.status.setOnClickListener { _ ->
@@ -120,11 +122,12 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
         }
 
         // clear text button
-        ui.clear.setOnClickListener { _ -> clearLocationAndShowDropDown(true) }
+        ui.clear.setOnClickListener { clearLocationAndShowDropDown(true) }
 
         // From text input changed
         ui.location.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (ignoreTextChanged) return
                 if (count - before == 1 || before == 1 && count == 0) handleTextChanged(s)
             }
 
@@ -256,7 +259,9 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
 
         if (setText) {
             if (loc != null) {
+                ignoreTextChanged = true
                 ui.location.setText(loc.getName())
+                ignoreTextChanged = false
                 ui.location.setSelection(loc.getName().length)
                 ui.location.dismissDropDown()
                 ui.clear.visibility = VISIBLE

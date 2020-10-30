@@ -42,7 +42,6 @@ import de.schildbach.pte.NetworkId
 import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Trip
 import java.util.*
-import javax.annotation.ParametersAreNonnullByDefault
 import javax.inject.Inject
 
 class DirectionsViewModel @Inject internal constructor(
@@ -79,6 +78,18 @@ class DirectionsViewModel @Inject internal constructor(
 
     fun setToLocation(location: WrapLocation?) {
         _toLocation.value = location
+    }
+
+    fun swapFromAndToLocations() {
+        val tmp = _toLocation.value
+        if (_fromLocation.value?.wrapType == WrapLocation.WrapType.GPS) {
+            findGpsLocation.value = null
+            // TODO: GPS currently only supports from location, so don't swap it for now
+            _toLocation.value = null
+        } else {
+            _toLocation.value = _fromLocation.value
+        }
+        _fromLocation.value = tmp
     }
 
     val lastQueryCalendar: LiveData<Calendar?> = _calendar

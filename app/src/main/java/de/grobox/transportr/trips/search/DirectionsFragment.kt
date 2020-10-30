@@ -31,7 +31,6 @@ import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.TranslateAnimation
 import androidx.appcompat.widget.TooltipCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
@@ -92,18 +91,18 @@ class DirectionsFragment : TransportrFragment() {
         viaLocation.setLocationViewListener(viewModel)
         toLocation.setLocationViewListener(viewModel)
 
-        viewModel.home.observe(viewLifecycleOwner, Observer {
+        viewModel.home.observe(viewLifecycleOwner, {
             fromLocation.setHomeLocation(it)
             viaLocation.setHomeLocation(it)
             toLocation.setHomeLocation(it)
         })
-        viewModel.work.observe(viewLifecycleOwner, Observer {
+        viewModel.work.observe(viewLifecycleOwner, {
             fromLocation.setWorkLocation(it)
             viaLocation.setWorkLocation(it)
             toLocation.setWorkLocation(it)
         })
-        viewModel.locations.observe(viewLifecycleOwner, Observer {
-            if (it == null) return@Observer
+        viewModel.locations.observe(viewLifecycleOwner, {
+            if (it == null) return@observe
             fromLocation.setFavoriteLocations(it)
             viaLocation.setFavoriteLocations(it)
             toLocation.setFavoriteLocations(it)
@@ -191,21 +190,23 @@ class DirectionsFragment : TransportrFragment() {
     private fun swapLocations() {
         val toToY = fromCard.y - toCard.y
         val slideUp = TranslateAnimation(
-            RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF,
-            0.0f, Animation.ABSOLUTE, toToY
-        )
-        slideUp.duration = 400
-        slideUp.fillAfter = true
-        slideUp.isFillEnabled = true
+            RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f,
+            RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, toToY
+        ).apply {
+            duration = 400
+            fillAfter = true
+            isFillEnabled = true
+        }
 
         val fromToY = toCard.y - fromCard.y
         val slideDown = TranslateAnimation(
-            RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF,
-            0.0f, Animation.ABSOLUTE, fromToY
-        )
-        slideDown.duration = 400
-        slideDown.fillAfter = true
-        slideDown.isFillEnabled = true
+            RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f,
+            RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, fromToY
+        ).apply {
+            duration = 400
+            fillAfter = true
+            isFillEnabled = true
+        }
 
         fromCard.startAnimation(slideDown)
         toCard.startAnimation(slideUp)
@@ -216,16 +217,7 @@ class DirectionsFragment : TransportrFragment() {
             override fun onAnimationRepeat(animation: Animation) {}
 
             override fun onAnimationEnd(animation: Animation) {
-                // swap location objects
-                val tmp = toLocation.getLocation()
-                if (fromLocation.isSearching) {
-                    viewModel.findGpsLocation.setValue(null)
-                    // TODO: GPS currently only supports from location, so don't swap it for now
-                    viewModel.setToLocation(null)
-                } else {
-                    viewModel.setToLocation(fromLocation.getLocation())
-                }
-                viewModel.setFromLocation(tmp)
+                viewModel.swapFromAndToLocations()
 
                 fromCard.clearAnimation()
                 toCard.clearAnimation()
@@ -255,7 +247,7 @@ class DirectionsFragment : TransportrFragment() {
         }
         fromLocation.setSearching()
         toLocation.requestFocus()
-        viewModel.locationLiveData.observe(viewLifecycleOwner, Observer { location ->
+        viewModel.locationLiveData.observe(viewLifecycleOwner, { location ->
             viewModel.setFromLocation(location)
             viewModel.search()
             viewModel.locationLiveData.removeObservers(this@DirectionsFragment)
