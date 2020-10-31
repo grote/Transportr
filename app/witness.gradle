@@ -107,7 +107,7 @@ dependencyVerification {
         'com.android:zipflinger:4.0.1:zipflinger-4.0.1.jar:d08a8f5a678b2e7e22ad25200880cb209cf96c1f1bd91b703a3139632a63c2c7',
         'com.github.omadahealth:swipy:1.2.3:swipy-1.2.3.aar:63bff6e181742e3e243c29b595062ca65b4274bf7033c65460924f64f65c01e0',
         'com.github.tony19:logback-android:1.1.1-12:logback-android-1.1.1-12.aar:3102228f0e408e3c003b34e96a604e9b9f59d314dcf8f03aa78d9d3648198932',
-        'com.gitlab.opentransitmap:public-transport-enabler:f5c9f80d:public-transport-enabler-f5c9f80d.jar:3972d3a9329c94afc372fedf9649bdf687575850a6c2a454c0f8a9ce71961c28',
+        'com.gitlab.opentransitmap:public-transport-enabler:d6f8b711:public-transport-enabler-d6f8b711.jar:3d5c15845b8969e56e05ac75a49da7d29db99a9338b92019e613d487071b0b41',
         'com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.0:accessibility-test-framework-2.0.jar:cdf16ef8f5b8023d003ce3cc1b0d51bda737762e2dab2fedf43d1c4292353f7f',
         'com.google.android.material:material:1.0.0:material-1.0.0.aar:7680e381a3c03798d999b2e441caadd8a56a0a808e108024a67af9fe26c11adc',
         'com.google.android.material:material:1.2.1:material-1.2.1.aar:d3d0cc776f2341da8e572586c7d390a5b356ce39a0deb2768071dc40b364ac80',
