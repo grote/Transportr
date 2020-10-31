@@ -39,6 +39,7 @@ import de.grobox.transportr.utils.DateUtils
 import de.grobox.transportr.utils.LiveTrigger
 import de.grobox.transportr.utils.SingleLiveEvent
 import de.schildbach.pte.NetworkId
+import de.schildbach.pte.NetworkProvider
 import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Trip
 import java.util.*
@@ -52,6 +53,7 @@ class DirectionsViewModel @Inject internal constructor(
     private val _tripsRepository: TripsRepository
     private val _fromLocation = MutableLiveData<WrapLocation?>()
     private val _viaLocation = MutableLiveData<WrapLocation?>()
+    val viaSupported: LiveData<Boolean>
     private val _toLocation = MutableLiveData<WrapLocation?>()
     val locationLiveData = LocationLiveData(application.applicationContext)
     val findGpsLocation = MutableLiveData<FavLocationType?>()
@@ -207,5 +209,6 @@ class DirectionsViewModel @Inject internal constructor(
             application.applicationContext, network.networkProvider,
             settingsManager, locationRepository, searchesRepository
         )
+        viaSupported = MutableLiveData(network.networkProvider.hasCapabilities(NetworkProvider.Capability.TRIPS_VIA))
     }
 }

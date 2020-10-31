@@ -55,7 +55,8 @@
 				android:contentDescription="@string/action_navigation_expand"
 				android:src="@drawable/ic_action_navigation_unfold_more_white"
 				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintTop_toTopOf="parent"/>
+				app:layout_constraintTop_toTopOf="parent"
+				tools:visibility="gone" />
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
