@@ -141,6 +141,14 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="pref_walk_speed_fast">Fast</string>
 	<string name="pref_show_when_locked_title">Show trip even when screen is locked</string>
 	<string name="pref_show_when_locked_summary">Show over lock screen</string>
+	<string name="pref_proxy">Internet Proxy</string>
+	<string name="pref_proxy_enable_title">Use proxy</string>
+	<string name="pref_proxy_enable_summary">Use a proxy for all internet connections</string>
+	<string name="pref_proxy_protocol">Proxy protocol</string>
+	<string name="pref_proxy_protocol_socks">SOCKS</string>
+	<string name="pref_proxy_protocol_http">HTTP</string>
+	<string name="pref_proxy_host">Proxy server host</string>
+	<string name="pref_proxy_port">Proxy server port</string>
 
 	<string name="error">Error</string>
 	<string name="error_no_internet">Internet connection required. Please make sure your internet access is working.</string>

@@ -36,7 +36,12 @@ import de.grobox.transportr.networks.PickTransportNetworkActivity
 import de.grobox.transportr.networks.TransportNetwork
 import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.settings.SettingsManager.Companion.LANGUAGE
+import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_ENABLE
+import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_HOST
+import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_PORT
+import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_PROTOCOL
 import de.grobox.transportr.settings.SettingsManager.Companion.THEME
+import de.grobox.transportr.utils.updateGlobalHttpProxy
 import javax.inject.Inject
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -44,6 +49,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     companion object {
         val TAG: String = SettingsFragment::class.java.simpleName
     }
+
+    @Inject
+    internal lateinit var settingsManager: SettingsManager
 
     @Inject
     internal lateinit var manager: TransportNetworkManager
@@ -89,6 +97,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
             it.setOnPreferenceChangeListener { _, _ ->
                 reload()
                 true
+            }
+        }
+
+        arrayOf(PROXY_ENABLE, PROXY_HOST, PROXY_PORT, PROXY_PROTOCOL).forEach { prefKey ->
+            (findPreference(prefKey) as Preference?)?.let { pref ->
+                pref.setOnPreferenceChangeListener { _, _ ->
+                    updateGlobalHttpProxy(settingsManager.proxy, manager)
+                    true
+                }
             }
         }
     }

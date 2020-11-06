@@ -30,6 +30,10 @@ import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider.Optimize
 import de.schildbach.pte.NetworkProvider.WalkSpeed
+import java.lang.Exception
+import java.net.InetAddress
+import java.net.InetSocketAddress
+import java.net.Proxy
 import java.util.*
 import javax.inject.Inject
 
@@ -92,6 +96,26 @@ class SettingsManager @Inject constructor(private val context: Context) {
             }
         }
 
+    val proxy: Proxy
+        get() {
+            if (!settings.getBoolean(PROXY_ENABLE, false))
+                return Proxy.NO_PROXY
+            return try {
+                val typeStr = settings.getString(PROXY_PROTOCOL, null)
+                val type = when (typeStr) {
+                    "SOCKS" -> Proxy.Type.SOCKS
+                    "HTTP" -> Proxy.Type.HTTP
+                    else -> throw IllegalStateException("Illegal proxy type: " + typeStr)
+                }
+                val host = settings.getString(PROXY_HOST, null)
+                val port = Integer.parseInt(settings.getString(PROXY_PORT, null)!!)
+                Proxy(type, InetSocketAddress(InetAddress.getByName(host), port))
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Proxy.NO_PROXY
+            }
+        }
+
     fun showLocationFragmentOnboarding(): Boolean = settings.getBoolean(LOCATION_ONBOARDING, true)
     fun locationFragmentOnboardingShown() {
         settings.edit().putBoolean(LOCATION_ONBOARDING, false).apply()
@@ -147,6 +171,10 @@ class SettingsManager @Inject constructor(private val context: Context) {
         private const val OPTIMIZE = "pref_key_optimize"
         private const val LOCATION_ONBOARDING = "locationOnboarding"
         private const val TRIP_DETAIL_ONBOARDING = "tripDetailOnboarding"
+        internal const val PROXY_ENABLE = "pref_key_proxy_enable"
+        internal const val PROXY_PROTOCOL = "pref_key_proxy_protocol"
+        internal const val PROXY_HOST = "pref_key_proxy_host"
+        internal const val PROXY_PORT = "pref_key_proxy_port"
     }
 
 }

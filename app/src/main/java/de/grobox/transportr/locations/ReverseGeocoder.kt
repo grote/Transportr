@@ -23,6 +23,7 @@ import android.content.Context
 import android.location.Geocoder
 import androidx.annotation.WorkerThread
 import com.mapbox.mapboxsdk.geometry.LatLng
+import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.LocationType.ADDRESS
@@ -31,11 +32,16 @@ import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.net.Proxy
 import java.util.*
+import javax.inject.Inject
 import kotlin.concurrent.thread
 
 
 class ReverseGeocoder(private val context: Context, private val callback: ReverseGeocoderCallback) {
+
+    @Inject
+    lateinit var settingsManager: SettingsManager
 
     fun findLocation(location: Location) {
         if (!location.hasLocation()) return
@@ -82,7 +88,9 @@ class ReverseGeocoder(private val context: Context, private val callback: Revers
     }
 
     private fun findLocationWithOsm(lat: Double, lon: Double) {
-        val client = OkHttpClient()
+        val client = OkHttpClient.Builder()
+            .proxy(settingsManager.proxy)
+            .build()
 
         // https://nominatim.openstreetmap.org/reverse?lat=52.5217&lon=13.4324&format=json
         val url = StringBuilder("https://nominatim.openstreetmap.org/reverse?")

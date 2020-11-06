@@ -30,11 +30,16 @@ import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import com.mapbox.mapboxsdk.http.HttpRequestUtil
 import de.grobox.transportr.R
+import de.grobox.transportr.networks.TransportNetworkManager
+import de.schildbach.pte.AbstractNetworkProvider
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.LocationType
 import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Product.*
+import okhttp3.OkHttpClient
+import java.net.Proxy
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
@@ -114,3 +119,16 @@ object TransportrUtils {
 }
 
 fun Location.hasLocation() = hasCoord() && (latAs1E6 != 0 || lonAs1E6 != 0)
+
+fun updateGlobalHttpProxy(newProxy: Proxy, manager: TransportNetworkManager) {
+    // MapBox
+    HttpRequestUtil.setOkHttpClient(
+        OkHttpClient.Builder()
+            .proxy(newProxy)
+            .build())
+    // public-transport-enabler
+    manager.transportNetwork.value?.let {
+        if (it.networkProvider is AbstractNetworkProvider)
+            (it.networkProvider as AbstractNetworkProvider).setProxy(newProxy)
+    }
+}
