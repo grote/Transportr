@@ -111,7 +111,7 @@ class SettingsManager @Inject constructor(private val context: Context) {
                 val port = Integer.parseInt(settings.getString(PROXY_PORT, null)!!)
                 Proxy(type, InetSocketAddress(InetAddress.getByName(host), port))
             } catch (e: Exception) {
-                e.printStackTrace()
+                Log.e(TAG, "Error parsing proxy settings", e)
                 Proxy.NO_PROXY
             }
         }
