@@ -25,6 +25,7 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate.*
 import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
@@ -160,6 +161,8 @@ class SettingsManager @Inject constructor(private val context: Context) {
     }
 
     companion object {
+        private const val TAG = "SettingsManager"
+
         private const val NETWORK_ID_1 = "NetworkId"
         private const val NETWORK_ID_2 = "NetworkId2"
         private const val NETWORK_ID_3 = "NetworkId3"
