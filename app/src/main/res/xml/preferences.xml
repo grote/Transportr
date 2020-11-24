@@ -101,22 +101,19 @@
 			app:iconSpaceReserved="false"
 			app:useSimpleSummaryProvider="true"/>
 
-		<EditTextPreference
+		<de.grobox.transportr.ui.ValidatedEditTextPreference
 			android:key="pref_key_proxy_host"
 			android:title="@string/pref_proxy_host"
 			android:dependency="pref_key_proxy_enable"
 			android:defaultValue="127.0.0.1"
-			app:iconSpaceReserved="false"
-			app:useSimpleSummaryProvider="true"/>
+			app:iconSpaceReserved="false"/>
 
-		<EditTextPreference
+		<de.grobox.transportr.ui.ValidatedEditTextPreference
 			android:key="pref_key_proxy_port"
 			android:title="@string/pref_proxy_port"
 			android:dependency="pref_key_proxy_enable"
-			android:inputType="number"
 			android:defaultValue="9050"
-			app:iconSpaceReserved="false"
-			app:useSimpleSummaryProvider="true"/>
+			app:iconSpaceReserved="false"/>
 
 	</PreferenceCategory>
 

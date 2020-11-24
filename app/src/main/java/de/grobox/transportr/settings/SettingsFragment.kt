@@ -29,6 +29,8 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.google.common.net.HostSpecifier
+import com.google.common.net.InternetDomainName
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.map.MapActivity
@@ -41,6 +43,7 @@ import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_HOST
 import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_PORT
 import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_PROTOCOL
 import de.grobox.transportr.settings.SettingsManager.Companion.THEME
+import de.grobox.transportr.ui.ValidatedEditTextPreference
 import de.grobox.transportr.utils.updateGlobalHttpProxy
 import javax.inject.Inject
 
@@ -107,6 +110,25 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     true
                 }
             }
+        }
+
+        findPreference<ValidatedEditTextPreference>(PROXY_HOST)!!.validate = { value ->
+            /*
+            FIXME: These validation functions are marked unstable, maybe find a replacement
+
+             Valid should be everything accepted by InetAddress.getByName(...),
+             that is: IPv4 addresses, IPv6 addresses, hostnames and FQDNs.
+
+             Additionally, no network requests should be performed as part of
+             the validation, so simply using InetAddress.getByName(...) with a
+             try/catch is out of the question since it might try to resolve
+             domain names.
+             */
+            InternetDomainName.isValid(value) || HostSpecifier.isValid(value)
+        }
+
+        findPreference<ValidatedEditTextPreference>(PROXY_PORT)!!.validate = { value ->
+            value.toIntOrNull() in 1..65534
         }
     }
 
