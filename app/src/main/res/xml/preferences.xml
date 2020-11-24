@@ -84,7 +84,7 @@
 		android:title="@string/pref_proxy"
 		app:iconSpaceReserved="false">
 
-		<CheckBoxPreference
+		<SwitchPreference
 			android:key="pref_key_proxy_enable"
 			android:title="@string/pref_proxy_enable_title"
 			android:summary="@string/pref_proxy_enable_summary"
