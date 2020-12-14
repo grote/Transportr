@@ -39,8 +39,15 @@ data class TransportNetwork internal constructor(
     @field:DrawableRes @get:DrawableRes val logo: Int = R.drawable.network_placeholder,
     private val goodLineNames: Boolean = false,
     private val itemIdExtra: Int = 0,
+    private val locationFormat: LocationFormat = LocationFormat.USE_DEFAULT,
     private val factory: () -> NetworkProvider
 ) : Region {
+
+    enum class LocationFormat{
+        USE_DEFAULT,
+        STREET_NAME_FIRST,
+        STREET_NUMBER_FIRST
+    }
 
     enum class Status {
         ALPHA, BETA, STABLE
@@ -80,6 +87,10 @@ data class TransportNetwork internal constructor(
 
     internal fun getItem(): TransportNetworkItem {
         return TransportNetworkItem(this, itemIdExtra)
+    }
+
+    fun getLocationFormat() : LocationFormat{
+        return locationFormat;
     }
 
 }
