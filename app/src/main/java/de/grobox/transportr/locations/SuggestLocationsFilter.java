@@ -22,6 +22,7 @@ package de.grobox.transportr.locations;
 import android.widget.Filter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,16 +33,16 @@ abstract class SuggestLocationsFilter extends Filter {
 	/**
 	 * Starts an asynchronous filtering operation on a worker thread.
 	 */
-	FilterResults performFiltering(CharSequence constraint, List<WrapLocation> favoriteLocations, List<SuggestedLocation> suggestedLocations) {
+	FilterResults performFiltering(CharSequence constraint, List<WrapLocation> favoriteLocations, List<SuggestedLocation> suggestedLocations, LocationFormatChanger locationFormatChanger) {
 		FilterResults filterResults = new FilterResults();
 		if (constraint == null) return filterResults;
-		List<WrapLocation> result = new ArrayList<>();
+		HashSet<WrapLocation> result = new HashSet<>();
 
 		// add fav locations that fulfill constraint
 		for (WrapLocation l : favoriteLocations) {
 			// case-insensitive match of location name and location not already included
 			// TODO don't only match name, but also place
-			if (l.getLocation().name != null && l.getLocation().name.toLowerCase(Locale.getDefault()).contains(constraint.toString().toLowerCase(Locale.getDefault())) && !result.contains(l)) {
+			if (l.getLocation().name != null && l.getLocation().name.toLowerCase(Locale.getDefault()).contains(constraint.toString().toLowerCase(Locale.getDefault()))) {
 				result.add(l);
 			}
 		}
@@ -50,16 +51,16 @@ abstract class SuggestLocationsFilter extends Filter {
 		if (suggestedLocations != null) {
 			// the locations are pre-sorted by priority
 			for (SuggestedLocation l : suggestedLocations) {
+
 				WrapLocation loc = new WrapLocation(l.location);
 				// prevent duplicates
-				if (!result.contains(loc)) {
-					result.add(loc);
-				}
+				loc.name = locationFormatChanger.formatLocationString(loc.name);
+				result.add(loc);
 			}
 		}
 
 		// Assign the data to the FilterResults
-		filterResults.values = result;
+		filterResults.values = new ArrayList<WrapLocation>(result);
 		filterResults.count = result.size();
 
 		return filterResults;
