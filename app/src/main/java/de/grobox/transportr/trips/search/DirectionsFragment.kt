@@ -111,9 +111,25 @@ class DirectionsFragment : TransportrFragment() {
         viewModel.fromLocation.observe(viewLifecycleOwner, {
             fromLocation.setLocation(it)
             if (it != null) toLocation.requestFocus()
+
+            if (fromLocation.getLocation() != null && toLocation.getLocation() != null){
+                swapIcon.visibility = VISIBLE
+            }
+            else{
+                swapIcon.visibility = GONE
+            }
         })
         viewModel.viaLocation.observe(viewLifecycleOwner, { viaLocation.setLocation(it) })
-        viewModel.toLocation.observe(viewLifecycleOwner, { toLocation.setLocation(it) })
+        viewModel.toLocation.observe(viewLifecycleOwner, {
+            toLocation.setLocation(it)
+
+            if (fromLocation.getLocation() != null && toLocation.getLocation() != null){
+                swapIcon.visibility = VISIBLE
+            }
+            else{
+                swapIcon.visibility = GONE
+            }
+        })
         viewModel.isDeparture.observe(viewLifecycleOwner, { onIsDepartureChanged(it) })
         viewModel.isExpanded.observe(viewLifecycleOwner, { onViaVisibleChanged(it) })
         viewModel.lastQueryCalendar.observe(viewLifecycleOwner, { onCalendarUpdated(it) })
