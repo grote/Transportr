@@ -114,9 +114,11 @@ class DirectionsFragment : TransportrFragment() {
 
             if (fromLocation.getLocation() != null && toLocation.getLocation() != null){
                 swapIcon.visibility = VISIBLE
+                favIcon.visibility = VISIBLE
             }
             else{
                 swapIcon.visibility = GONE
+                favIcon.visibility = GONE
             }
         })
         viewModel.viaLocation.observe(viewLifecycleOwner, { viaLocation.setLocation(it) })
@@ -125,9 +127,11 @@ class DirectionsFragment : TransportrFragment() {
 
             if (fromLocation.getLocation() != null && toLocation.getLocation() != null){
                 swapIcon.visibility = VISIBLE
+                favIcon.visibility = VISIBLE
             }
             else{
                 swapIcon.visibility = GONE
+                favIcon.visibility = GONE
             }
         })
         viewModel.isDeparture.observe(viewLifecycleOwner, { onIsDepartureChanged(it) })
