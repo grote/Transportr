@@ -70,6 +70,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="find_nearby_stations">Zoeken naar nabije stations</string>
   <string name="find_departures">Vertrekken zoeken</string>
   <string name="share_trip_via">Reis delen via…</string>
+  <string name="show_location_in">Locatie tonen in…</string>
   <string name="more">Meer</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">%d min</string>
@@ -112,7 +113,8 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="error_geo_intent">Externe locatie kan niet worden geopend</string>
   <string name="error_find_nearby_stations">Geen nabije stations gevonden</string>
   <string name="error_departures">Geen vertrekken gevonden</string>
-  <string name="error_no_calendar">Geen kalender-app aangetroffen :(</string>
+  <string name="error_no_calendar">Geen kalenderapp aangetroffen :(</string>
+  <string name="error_no_map">Geen externe kaartenapp aangetroffen :(</string>
   <string name="trip_error_ambiguous">De locatie kan niet worden gevonden. Probeer een andere locatie.</string>
   <string name="trip_error_too_close">\'Van\' en \'Naar\' liggen te dicht bij elkaar.</string>
   <string name="trip_error_unknown_from">De \'Van\'-locatie kan niet worden gevonden. Probeer een andere.</string>
@@ -231,6 +233,8 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Duitsland</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aken</string>
   <string name="np_desc_bayern">Beieren, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlijn</string>
@@ -247,9 +251,12 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Bazel, Bazel-Stad, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Sleeswijk-Holstein, Kiel, Flensburg, Lübeck</string>
   <string name="np_desc_vbb">Brandenburg, Berlijn</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Nedersaksen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Neurenberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Voor-Pommeren, Schwerin</string>
@@ -301,6 +308,9 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_dub">Verenigde Arabische Emiraten, Dubai</string>
   <string name="np_region_usa">Verenigde Staten</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">De staten New York en New Jersey</string>
   <string name="np_name_california">Californië</string>
   <string name="np_desc_california">Openbaar vervoer in Californië (VS)</string>

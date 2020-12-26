@@ -79,6 +79,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="find_nearby_stations">Trouver des arrêts, stations à proximité</string>
   <string name="find_departures">Trouver des départs</string>
   <string name="share_trip_via">Partager ce trajet par…</string>
+  <string name="show_location_in">Afficher le lieu dans…</string>
   <string name="more">Plus</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">pendant %d min</string>
@@ -122,6 +123,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="error_find_nearby_stations">Impossible de trouver des arrêts, stations à proximité</string>
   <string name="error_departures">Impossible de trouver des départs</string>
   <string name="error_no_calendar">Aucun agenda n’est installé :(</string>
+  <string name="error_no_map">Aucune carte externe n’est installée :(</string>
   <string name="trip_error_ambiguous">Impossible de trouver le lieu. Veuillez tenter votre recherche avec des lieux différents.</string>
   <string name="trip_error_too_close">Le point de départ et la destination sont trop proches l’un de l’autre.</string>
   <string name="trip_error_unknown_from">Impossible de trouver le point de départ. Veuillez en essayer un autre.</string>
@@ -240,6 +242,8 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Allemagne</string>
   <string name="np_desc_avv">Augsbourg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aix-la-Chapelle</string>
   <string name="np_desc_bayern">Bavière, Wurtzbourg, Ratisbonne</string>
   <string name="np_desc_bsvag">Brunswick, Wolfsbourg</string>
   <string name="np_desc_bvg">Berlin</string>
@@ -256,9 +260,12 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_desc_nvbw">Bade-Wurtemberg, Constance, Bâle, Bâle-Ville, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Francfort-sur-le-Main, Cassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Flensbourg, Lübeck</string>
   <string name="np_desc_vbb">Brandebourg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Basse-Saxe, Brême, Bremerhaven, Oldenbourg, Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangue, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Sarre, Sarrebruck</string>
   <string name="np_desc_vms">Saxe centrale, Chemnitz</string>
   <string name="np_desc_vmv">Mecklembourg-Poméranie antérieure, Schwerin</string>
@@ -310,6 +317,9 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_desc_dub">Émirats arabes unis, Dubaï</string>
   <string name="np_region_usa">États-Unis d’Amérique</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">États de New York et New Jersey</string>
   <string name="np_name_california">Californie</string>
   <string name="np_desc_california">Transports en commun en Californie (É.-U.)</string>

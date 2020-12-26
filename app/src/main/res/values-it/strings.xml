@@ -85,6 +85,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="find_nearby_stations">Cerca stazioni vicine</string>
   <string name="find_departures">Cerca partenze</string>
   <string name="share_trip_via">Condividi viaggio tramite…</string>
+  <string name="show_location_in">Mostra la posizione in...</string>
   <string name="more">Più</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">per %d min</string>
@@ -128,6 +129,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="error_find_nearby_stations">Impossibile trovare le stazioni vicine</string>
   <string name="error_departures">Impossibile trovare alcuna partenza</string>
   <string name="error_no_calendar">Nessun calendario installato :(</string>
+  <string name="error_no_map">Nessuna mappa esterna installata :(</string>
   <string name="trip_error_ambiguous">Impossibile trovare il posto. Prova con un posto differente.</string>
   <string name="trip_error_too_close">I posti \"da\" e \"a\" sono troppo vicini.</string>
   <string name="trip_error_unknown_from">Impossibile trovare il posto di partenza. Prova con uno differente.</string>
@@ -246,6 +248,8 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Germania</string>
   <string name="np_desc_avv">Asburgo</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aachen</string>
   <string name="np_desc_bayern">Baviera, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlino</string>
@@ -262,9 +266,12 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_nvbw">Baden-Württemberg, Costanza, Basilea, Basilea Città, Reutlingen, Rottweil, Tubinga, Sigmaringa</string>
   <string name="np_desc_nvv">Assia, Francoforte sul Meno, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Flensburg, Lübeck</string>
   <string name="np_desc_vbb">Brandeburgo, Berlino</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Bassa Sassonia, Brema, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Norimberga, Fürth, Erlangen, Bayreuth, Bamberga, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vms">Sassonia Centrale, Chemnitz</string>
   <string name="np_desc_vmv">Meclemburgo-Pomerania anteriore, Schwerin</string>
@@ -316,6 +323,9 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_dub">Emirati Arabi Uniti, Dubai</string>
   <string name="np_region_usa">Stati Uniti d\'America</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">Stati di New York e del New Jersey</string>
   <string name="np_name_california">California</string>
   <string name="np_desc_california">Trasporto pubblico in California (USA)</string>
