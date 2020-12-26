@@ -70,6 +70,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="find_nearby_stations">Serĉi proksimajn staciojn</string>
   <string name="find_departures">Serĉi forveturojn</string>
   <string name="share_trip_via">Kunhavigi kurson per…</string>
+  <string name="show_location_in">Montri lokon per…</string>
   <string name="more">Pli</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">tra %d min</string>
@@ -113,6 +114,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="error_find_nearby_stations">Ne povas trovi proksimajn staciojn</string>
   <string name="error_departures">Ne povas trovi iujn ajn forveturojn</string>
   <string name="error_no_calendar">Kalendaro ne instalita :(</string>
+  <string name="error_no_map">Neniu map-aplikaĵo instalita :(</string>
   <string name="trip_error_ambiguous">Ne povas trovi lokon. Bonvolu provi serĉi kun alia loko.</string>
   <string name="trip_error_too_close">Lokoj “el” kaj “al” estas tro proksimaj.</string>
   <string name="trip_error_unknown_from">Ne povas trovi la lokon “el”. Bonvolu provi kun la alia.</string>
@@ -231,6 +233,8 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Germanujo</string>
   <string name="np_desc_avv">Aŭgsburgo</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aachen</string>
   <string name="np_desc_bayern">Bavarujo, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Brunsvigo, Wolfsburg</string>
   <string name="np_desc_bvg">Berlino</string>
@@ -247,9 +251,12 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanco, Bazelo, Bazelo Urba, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesujo, Frankfurto ĉe Majno, Kaselo</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Ŝlesvigo-Holstinio, Kiel, Flensburg, Lubeko</string>
   <string name="np_desc_vbb">Brandenburgio, Berlino</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Malsupra Saksujo, Bremeno, Bremerhaven, Oldenburgo (Oldenburgujo), Osnabruko</string>
   <string name="np_desc_vgn">Nurenbergo, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Sarlando, Saarbrücken</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Meklenburg-Antaŭpomerio, Schwerin</string>
@@ -301,6 +308,9 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_desc_dub">Unuiĝintaj Arabaj Emirlandoj, Dubajo</string>
   <string name="np_region_usa">Usono</string>
   <string name="np_desc_rtachicago">Ĉikago</string>
+  <string name="np_desc_bart">San-Francisko</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Aŭstino</string>
   <string name="np_name_usny">Nov-Jorkio kaj Nov-Ĵerzejo Ŝtatoj</string>
   <string name="np_name_california">Kalifornio</string>
   <string name="np_desc_california">Publika transporto en Kalifornio (Usono)</string>

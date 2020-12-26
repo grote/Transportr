@@ -89,6 +89,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="find_nearby_stations">Hitta närliggande stationer</string>
   <string name="find_departures">Hitta avgångar</string>
   <string name="share_trip_via">Dela resan via…</string>
+  <string name="show_location_in">Visa plats i...</string>
   <string name="more">Mer</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">för %d min</string>
@@ -132,6 +133,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="error_find_nearby_stations">Kunde inte hitta närliggande stationer</string>
   <string name="error_departures">Kunde inte hitta några avgångar</string>
   <string name="error_no_calendar">Ingen kalender installerad :(</string>
+  <string name="error_no_map">Ingen extern karta installerad :(</string>
   <string name="trip_error_ambiguous">Kunde inte hitta platsen. Försök söka med olika platser.</string>
   <string name="trip_error_too_close">\"Från\" och \"till\" platserna är för nära varandra.</string>
   <string name="trip_error_unknown_from">Kunde inte hitta \"från\" platsen. Försök med en till.</string>
@@ -319,6 +321,8 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_desc_dub">Förenade Arabemiraten, Dubai</string>
   <string name="np_region_usa">Förenta Staterna</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">New York och New Jersey Stater</string>
   <string name="np_name_california">Kalifornien</string>
   <string name="np_desc_california">Kollektivtrafik i Kalifornien (USA)</string>

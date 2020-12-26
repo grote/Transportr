@@ -89,6 +89,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="find_nearby_stations">Haltestellen in der Umgebung suchen</string>
   <string name="find_departures">Abfahrten suchen</string>
   <string name="share_trip_via">Verbindungen teilen mit…</string>
+  <string name="show_location_in">Standort anzeigen in…</string>
   <string name="more">Mehr</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">für %d min</string>
@@ -132,6 +133,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="error_find_nearby_stations">Konnte keine Haltestellen in der Nähe finden</string>
   <string name="error_departures">Konnte keine Abfahrten finden</string>
   <string name="error_no_calendar">Kein Kalender installiert :(</string>
+  <string name="error_no_map">Keine externe Karte installiert :(</string>
   <string name="trip_error_ambiguous">Konnte den Ort nicht finden. Bitte versuche mit anderen Orten zu suchen.</string>
   <string name="trip_error_too_close">Die Orte \'von\' und \'nach\' sind zu nahe beieinander.</string>
   <string name="trip_error_unknown_from">Konnte den Ort \'von\' nicht finden. Bitte versuche es mit einem anderen.</string>
@@ -199,7 +201,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_continent_oceania">Ozeanien</string>
   <string name="np_region_australia">Australien</string>
   <string name="np_desc_australia">Melbourne, Sydney, Brisbane, Perth, Adelaide, Hobart, Launceston, Burnie</string>
-  <string name="np_desc_sydney">Australien, Neusüdwales, Sydney</string>
+  <string name="np_desc_sydney">Australien, New South Wales, Sydney</string>
   <string name="np_region_pt">Portugal</string>
   <string name="np_name_pt">Portugal</string>
   <string name="np_desc_pt">Lissabon</string>
@@ -250,6 +252,8 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Deutschland</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aachen</string>
   <string name="np_desc_bayern">Bayern, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
@@ -266,9 +270,12 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Flensburg, Lübeck</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
@@ -320,6 +327,9 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_dub">Vereinigte Arabische Emirate, Dubai</string>
   <string name="np_region_usa">Vereinigte Staaten von Amerika</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">Die Bundesstaaten New York und New-Jersey</string>
   <string name="np_name_california">Kalifornien</string>
   <string name="np_desc_california">Öffentliche Verkehrsmittel in Kalifornien (USA)</string>
