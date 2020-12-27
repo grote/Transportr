@@ -1,0 +1,4 @@
+* Fix and (re-)add several regions: VMS, VTT, saarVV, VBN, nah.sh, AVV (Aachen), Luxembourg, BART, CMTA
+* Fix issues related to location sharing
+* Fix rare app crash and UI glitches in directions form
+* Enable encrypted backups
