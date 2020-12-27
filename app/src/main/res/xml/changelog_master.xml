@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
 
+    <release version="2.1.1" versioncode="119">
+        <change>Fix and (re-)add several regions: VMS, VTT, saarVV, VBN, nah.sh, AVV (Aachen), Luxembourg, BART, CMTA</change>
+        <change>Fix issues related to location sharing</change>
+        <change>Fix rare app crash and UI glitches in directions form</change>
+        <change>Enable encrypted backups</change>
+    </release>
+
     <release version="2.1.0" versioncode="118">
         <change>Rearranged directions form to see all of the options at first glance</change>
         <change>New option to adapt app theme to Android settings</change>
