@@ -93,7 +93,7 @@ platform :android do
 
 	# F-Droid: publish repo update
 	system "cd #{fdroid_repo} && fdroid update -v"
-	system "cd #{fdroid_repo} && fdroid server update -v"
+	system "cd #{fdroid_repo} && fdroid deploy -v"
 
 	# Google Play: upload to beta track
 	upload_to_play_store(track: 'beta', apk: apk, skip_upload_images: 'true', skip_upload_screenshots: 'true')
