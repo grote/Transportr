@@ -22,7 +22,7 @@ package de.grobox.transportr.locations;
 import android.widget.Filter;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,7 +36,7 @@ abstract class SuggestLocationsFilter extends Filter {
 	FilterResults performFiltering(CharSequence constraint, List<WrapLocation> favoriteLocations, List<SuggestedLocation> suggestedLocations, LocationFormatChanger locationFormatChanger) {
 		FilterResults filterResults = new FilterResults();
 		if (constraint == null) return filterResults;
-		HashSet<WrapLocation> result = new HashSet<>();
+		LinkedHashSet<WrapLocation> result = new LinkedHashSet<>();
 
 		// add fav locations that fulfill constraint
 		for (WrapLocation l : favoriteLocations) {
