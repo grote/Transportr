@@ -21,6 +21,7 @@ package de.grobox.transportr.locations
 
 import de.grobox.transportr.networks.TransportNetwork
 
+//TODO - Make robust to handle other address formats.
 class LocationFormatChanger(private val format: TransportNetwork.LocationFormat = TransportNetwork.LocationFormat.USE_DEFAULT){
 
     fun formatLocationString(unformattedLocation: String) : String {
@@ -29,15 +30,15 @@ class LocationFormatChanger(private val format: TransportNetwork.LocationFormat 
         return unformattedLocation;
     }
 
+    @ExperimentalUnsignedTypes
     private fun formatStreetNameFirst(locationName : String) : String{
         //Tokenize the address string on spaces
         val tokens: Array<String> = locationName.split(" ").toTypedArray()
 
         //If the final token is a number we assume it is in the correct format
-        if (isInteger(tokens[tokens.size - 1])) return locationName
+        if (tokens[tokens.size - 1].toUIntOrNull(10) != null) return locationName
 
         val str = StringBuilder()
-
 
         //Keep appending tokens until you get to the very last token that you already inserted
         for (i in 1 until tokens.size - 2) {
@@ -52,14 +53,14 @@ class LocationFormatChanger(private val format: TransportNetwork.LocationFormat 
     }
 
     //Converts an address of the form (Pennsylvania Avenue, 1600) into 1600 Pennsylvania Avenue
-    //TODO - Make robust to handle other address formats.
+    @ExperimentalUnsignedTypes
     private fun formatStreetNumberFirst(locationName: String) : String{
 
         //Tokenize the address string on spaces
         val tokens: Array<String> = locationName.split(" ").toTypedArray()
 
         //If the final token isn't a number we assume it's in the correct format
-        if (!isInteger(tokens[tokens.size - 1])) return locationName
+        if (tokens[tokens.size - 1].toUIntOrNull(10) == null) return locationName
 
         val str = StringBuilder()
 
@@ -74,12 +75,5 @@ class LocationFormatChanger(private val format: TransportNetwork.LocationFormat 
         }
 
         return str.toString().trim { it <= ' ' }
-    }
-    private fun isInteger(s: String): Boolean {
-        if (s.isEmpty()) return false
-        for (i in s.indices) {
-            if (!Character.isDigit(s[i])) return false
-        }
-        return true
     }
 }
