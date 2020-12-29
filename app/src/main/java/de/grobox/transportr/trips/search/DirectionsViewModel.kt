@@ -21,6 +21,7 @@ package de.grobox.transportr.trips.search
 import android.util.Pair
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
 import de.grobox.transportr.data.locations.LocationRepository
@@ -42,7 +43,6 @@ import de.schildbach.pte.NetworkId
 import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Trip
 import java.util.*
-import javax.annotation.ParametersAreNonnullByDefault
 import javax.inject.Inject
 
 class DirectionsViewModel @Inject internal constructor(
@@ -68,6 +68,9 @@ class DirectionsViewModel @Inject internal constructor(
     val fromLocation: LiveData<WrapLocation?> = _fromLocation
     val viaLocation: LiveData<WrapLocation?> = _viaLocation
     val toLocation: LiveData<WrapLocation?> = _toLocation
+    val swapIconState = Transformations.switchMap(_fromLocation){
+            from -> Transformations.map(_toLocation){to -> to != null && from != null}
+    }
 
     fun setFromLocation(location: WrapLocation?) {
         _fromLocation.value = location

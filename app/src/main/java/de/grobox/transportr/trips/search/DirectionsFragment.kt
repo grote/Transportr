@@ -111,28 +111,10 @@ class DirectionsFragment : TransportrFragment() {
         viewModel.fromLocation.observe(viewLifecycleOwner, {
             fromLocation.setLocation(it)
             if (it != null) toLocation.requestFocus()
-
-            if (fromLocation.getLocation() != null && toLocation.getLocation() != null){
-                swapIcon.visibility = VISIBLE
-                favIcon.visibility = VISIBLE
-            }
-            else{
-                swapIcon.visibility = GONE
-                favIcon.visibility = GONE
-            }
         })
         viewModel.viaLocation.observe(viewLifecycleOwner, { viaLocation.setLocation(it) })
         viewModel.toLocation.observe(viewLifecycleOwner, {
             toLocation.setLocation(it)
-
-            if (fromLocation.getLocation() != null && toLocation.getLocation() != null){
-                swapIcon.visibility = VISIBLE
-                favIcon.visibility = VISIBLE
-            }
-            else{
-                swapIcon.visibility = GONE
-                favIcon.visibility = GONE
-            }
         })
         viewModel.isDeparture.observe(viewLifecycleOwner, { onIsDepartureChanged(it) })
         viewModel.isExpanded.observe(viewLifecycleOwner, { onViaVisibleChanged(it) })
@@ -141,7 +123,7 @@ class DirectionsFragment : TransportrFragment() {
         viewModel.findGpsLocation.observe(viewLifecycleOwner, { onFindGpsLocation(it) })
         viewModel.isFavTrip.observe(viewLifecycleOwner, { onFavStatusChanged(it) })
         viewModel.products.observe(viewLifecycleOwner, { onProductsChanged(it) })
-
+        viewModel.swapIconState.observe(viewLifecycleOwner,{onSwapIconStateChanged(it)})
         favIcon.setOnClickListener { viewModel.toggleFavTrip() }
 
         timeBackground.setOnClickListener {
@@ -296,6 +278,12 @@ class DirectionsFragment : TransportrFragment() {
 
     private fun onProductsChanged(products: EnumSet<Product>) {
         productsMarked.visibility = if (Product.ALL == products) GONE else VISIBLE
+    }
+    private fun onSwapIconStateChanged(iconState : Boolean){
+        if (iconState){
+            swapIcon.visibility = VISIBLE
+        }
+        else swapIcon.visibility = GONE
     }
 
 }
