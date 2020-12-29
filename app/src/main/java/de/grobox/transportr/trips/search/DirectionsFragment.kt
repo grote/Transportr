@@ -280,10 +280,7 @@ class DirectionsFragment : TransportrFragment() {
         productsMarked.visibility = if (Product.ALL == products) GONE else VISIBLE
     }
     private fun onSwapIconStateChanged(iconState : Boolean){
-        if (iconState){
-            swapIcon.visibility = VISIBLE
-        }
-        else swapIcon.visibility = GONE
+        swapIcon.isEnabled = iconState
     }
 
 }

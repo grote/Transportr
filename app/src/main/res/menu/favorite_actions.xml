@@ -4,7 +4,7 @@
 
 	<item
 		android:id="@+id/action_swap_locations"
-		android:icon="@drawable/ic_menu_swap_location"
+		android:icon="@drawable/ic_menu_swap_location_enabled"
 		android:title="@string/action_swap_locations"/>
 
 	<item

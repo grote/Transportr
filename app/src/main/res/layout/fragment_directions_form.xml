@@ -42,8 +42,7 @@
 				android:layout_height="@dimen/buttonSize"
 				android:background="?selectableItemBackgroundBorderless"
 				android:contentDescription="@string/action_swap_locations"
-				android:src="@drawable/ic_menu_swap_location"
-				android:tint="@color/md_white_1000"
+				android:src="@drawable/swap_icon"
 				app:layout_constraintEnd_toStartOf="@+id/viaIcon"
 				app:layout_constraintTop_toTopOf="@+id/viaIcon"/>
 
