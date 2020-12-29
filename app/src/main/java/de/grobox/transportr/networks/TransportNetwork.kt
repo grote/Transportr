@@ -39,7 +39,10 @@ data class TransportNetwork internal constructor(
     @field:DrawableRes @get:DrawableRes val logo: Int = R.drawable.network_placeholder,
     private val goodLineNames: Boolean = false,
     private val itemIdExtra: Int = 0,
+
+    //TODO - Remove locationFormat when upstream change fixes the format of location.name to be correct for all North American Networks
     private val locationFormat: LocationFormat = LocationFormat.USE_DEFAULT,
+
     private val factory: () -> NetworkProvider
 ) : Region {
 

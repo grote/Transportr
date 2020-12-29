@@ -21,7 +21,7 @@ package de.grobox.transportr.locations
 
 import de.grobox.transportr.networks.TransportNetwork
 
-//TODO - Make robust to handle other address formats.
+//TODO - Remove this class when upstream change fixes the format of location.name to be consistent for the locale of the network
 class LocationFormatChanger(private val format: TransportNetwork.LocationFormat = TransportNetwork.LocationFormat.USE_DEFAULT){
 
     @ExperimentalUnsignedTypes

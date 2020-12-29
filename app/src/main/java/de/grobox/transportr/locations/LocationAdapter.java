@@ -221,6 +221,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 		resetDropDownLocations();
 	}
 
+	//TODO - Remove when LocationFormatChanger class is removed
 	void setLocationFormatChanger(TransportNetwork.LocationFormat format){
 		locationFormatChanger = new LocationFormatChanger(format);
 		updateLocations();

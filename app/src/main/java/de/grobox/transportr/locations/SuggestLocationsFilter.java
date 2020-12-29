@@ -33,6 +33,8 @@ abstract class SuggestLocationsFilter extends Filter {
 	/**
 	 * Starts an asynchronous filtering operation on a worker thread.
 	 */
+
+	//TODO - Remove locationFormatChanger when upstream changes
 	FilterResults performFiltering(CharSequence constraint, List<WrapLocation> favoriteLocations, List<SuggestedLocation> suggestedLocations, LocationFormatChanger locationFormatChanger) {
 		FilterResults filterResults = new FilterResults();
 		if (constraint == null) return filterResults;
