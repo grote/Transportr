@@ -24,6 +24,7 @@ import de.grobox.transportr.networks.TransportNetwork
 //TODO - Make robust to handle other address formats.
 class LocationFormatChanger(private val format: TransportNetwork.LocationFormat = TransportNetwork.LocationFormat.USE_DEFAULT){
 
+    @ExperimentalUnsignedTypes
     fun formatLocationString(unformattedLocation: String) : String {
         if (format == TransportNetwork.LocationFormat.STREET_NAME_FIRST) return formatStreetNameFirst(unformattedLocation);
         else if (format == TransportNetwork.LocationFormat.STREET_NUMBER_FIRST) return formatStreetNumberFirst(unformattedLocation);
