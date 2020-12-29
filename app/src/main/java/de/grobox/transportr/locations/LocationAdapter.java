@@ -68,7 +68,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	private Filter filter = null;
 	private FavLocationType sort = FROM;
 
-	private LocationFormatChanger locationFormatChanger;
+	private LocationFormatChanger locationFormatChanger = null;
 
 	static final int TYPING_THRESHOLD = 3;
 

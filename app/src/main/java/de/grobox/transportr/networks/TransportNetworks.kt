@@ -614,6 +614,7 @@ private val networks = arrayOf(
                         description = R.string.np_desc_rtachicago,
                         agencies = R.string.np_desc_rtachicago_networks,
                         logo = R.drawable.network_rtachicago_logo,
+                        locationFormat = TransportNetwork.LocationFormat.STREET_NUMBER_FIRST,
                         status = BETA,
                         factory = { RtaChicagoProvider() }
                     ),
@@ -621,6 +622,7 @@ private val networks = arrayOf(
                         id = NetworkId.BART,
                         description = R.string.np_desc_bart,
                         logo = R.drawable.network_bart_logo,
+                        locationFormat = TransportNetwork.LocationFormat.STREET_NUMBER_FIRST,
                         status = BETA,
                         factory = { BartProvider("{\"type\":\"AID\",\"aid\":\"kEwHkFUCIL500dym\"}") }
                     ),
@@ -629,6 +631,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_cmta,
                         description = R.string.np_desc_cmta,
                         logo = R.drawable.network_cmta_logo,
+                        locationFormat = TransportNetwork.LocationFormat.STREET_NUMBER_FIRST,
                         status = BETA,
                         factory = { CmtaProvider("{\"type\":\"AID\",\"aid\":\"web9j2nak29uz41irb\"}") }
                     ),
@@ -637,6 +640,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_california,
                         description = R.string.np_desc_california,
                         logo = R.drawable.network_california_logo,
+                        locationFormat = TransportNetwork.LocationFormat.STREET_NUMBER_FIRST,
                         status = ALPHA,
                         factory = { CaliforniaProvider(NAVITIA) }
                     ),
@@ -645,6 +649,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_oregon,
                         description = R.string.np_desc_oregon,
                         logo = R.drawable.network_oregon_logo,
+                        locationFormat = TransportNetwork.LocationFormat.STREET_NUMBER_FIRST,
                         status = ALPHA,
                         factory = { OregonProvider(NAVITIA) }
                     ),
@@ -652,6 +657,7 @@ private val networks = arrayOf(
                         id = NetworkId.NEWYORK,
                         name = R.string.np_name_usny,
                         description = R.string.np_desc_usny,
+                        locationFormat = TransportNetwork.LocationFormat.STREET_NUMBER_FIRST,
                         status = ALPHA,
                         factory = { NewyorkProvider(NAVITIA) }
                     )

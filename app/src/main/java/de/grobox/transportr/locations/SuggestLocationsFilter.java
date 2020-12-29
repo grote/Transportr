@@ -53,8 +53,7 @@ abstract class SuggestLocationsFilter extends Filter {
 			for (SuggestedLocation l : suggestedLocations) {
 
 				WrapLocation loc = new WrapLocation(l.location);
-				// prevent duplicates
-				loc.name = locationFormatChanger.formatLocationString(loc.name);
+				if (locationFormatChanger != null) loc.name = locationFormatChanger.formatLocationString(loc.name);
 				result.add(loc);
 			}
 		}
