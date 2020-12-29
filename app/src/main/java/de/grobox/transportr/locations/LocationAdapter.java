@@ -224,6 +224,16 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	void setLocationFormatChanger(TransportNetwork.LocationFormat format){
 		locationFormatChanger = new LocationFormatChanger(format);
 		updateLocations();
+
+		if (locations != null){
+			for (int i = 0 ; i < locations.size() ; i++){
+				if (locations.get(i) != null && locations.get(i).name != null) {
+					locations.get(i).name = locationFormatChanger.formatLocationString(locations.get(i).name);
+				}
+			}
+		}
+
+
 	}
 
 }
