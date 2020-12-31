@@ -222,7 +222,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	}
 
 	//TODO - Remove when LocationFormatChanger class is removed
-	void setLocationFormatChanger(TransportNetwork.LocationFormat format){
+	void initLocationFormatChanger(TransportNetwork.LocationFormat format){
 		locationFormatChanger = new LocationFormatChanger(format);
 		updateLocations();
 
