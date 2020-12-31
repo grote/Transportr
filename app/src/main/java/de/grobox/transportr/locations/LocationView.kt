@@ -189,6 +189,8 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
 
     fun setTransportNetwork(transportNetwork: TransportNetwork) {
         this.transportNetwork = transportNetwork
+        if (transportNetwork.getLocationFormat() != TransportNetwork.LocationFormat.USE_DEFAULT)
+            this.adapter.initLocationFormatChanger(transportNetwork.getLocationFormat())
     }
 
     fun setHomeLocation(homeLocation: HomeLocation?) {

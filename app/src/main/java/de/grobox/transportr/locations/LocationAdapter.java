@@ -46,6 +46,7 @@ import de.grobox.transportr.data.locations.FavoriteLocation;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.data.locations.HomeLocation;
 import de.grobox.transportr.data.locations.WorkLocation;
+import de.grobox.transportr.networks.TransportNetwork;
 import de.schildbach.pte.dto.SuggestedLocation;
 
 import static de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM;
@@ -66,6 +67,8 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 	private @Nullable CharSequence search;
 	private Filter filter = null;
 	private FavLocationType sort = FROM;
+
+	private LocationFormatChanger locationFormatChanger = null;
 
 	static final int TYPING_THRESHOLD = 3;
 
@@ -166,7 +169,7 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 			filter = new SuggestLocationsFilter() {
 				@Override
 				protected FilterResults performFiltering(CharSequence charSequence) {
-					return super.performFiltering(charSequence, locations, suggestedLocations);
+					return super.performFiltering(charSequence, locations, suggestedLocations,locationFormatChanger);
 				}
 
 				@Override
@@ -216,6 +219,22 @@ class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 		sort = favLocationType;
 		updateLocations();
 		resetDropDownLocations();
+	}
+
+	//TODO - Remove when LocationFormatChanger class is removed
+	void initLocationFormatChanger(TransportNetwork.LocationFormat format){
+		locationFormatChanger = new LocationFormatChanger(format);
+		updateLocations();
+
+		if (locations != null){
+			for (int i = 0 ; i < locations.size() ; i++){
+				if (locations.get(i) != null && locations.get(i).name != null) {
+					locations.get(i).name = locationFormatChanger.formatLocationString(locations.get(i).name);
+				}
+			}
+		}
+
+
 	}
 
 }
