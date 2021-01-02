@@ -89,7 +89,7 @@ class ReverseGeocoder(private val context: Context, private val callback: Revers
 
     private fun findLocationWithOsm(lat: Double, lon: Double) {
         val client = OkHttpClient.Builder()
-            .proxy(settingsManager.proxy)
+            .proxy(settingsManager.getProxy(emptyMap()))
             .build()
 
         // https://nominatim.openstreetmap.org/reverse?lat=52.5217&lon=13.4324&format=json

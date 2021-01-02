@@ -39,6 +39,7 @@ import de.schildbach.pte.dto.LocationType
 import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Product.*
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.net.Proxy
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
@@ -116,19 +117,35 @@ object TransportrUtils {
         return ContextCompat.getColor(this, typedValue.run { if (resourceId != 0) resourceId else data })
     }
 
+    @JvmStatic
+    fun updateGlobalHttpProxy(newProxy: Proxy, manager: TransportNetworkManager) {
+        // MapBox
+        HttpRequestUtil.setOkHttpClient(
+            OkHttpClient.Builder()
+                .proxy(newProxy)
+                .build())
+        // public-transport-enabler
+        manager.transportNetwork.value?.let {
+            if (it.networkProvider is AbstractNetworkProvider)
+                (it.networkProvider as AbstractNetworkProvider).setProxy(newProxy)
+        }
+    }
+
+    @JvmStatic
+    @Throws
+    fun checkInternetConnectionViaProxy(proxy: Proxy) {
+        val httpClient = OkHttpClient.Builder()
+            .proxy(proxy)
+            .build()
+        val testRequest = Request.Builder()
+            .url("https://example.com")
+            .build()
+        val testResponse = httpClient.newCall(testRequest)
+            .execute()
+        if (!testResponse.isSuccessful)
+            throw Exception("Network connection test failed")
+    }
+
 }
 
 fun Location.hasLocation() = hasCoord() && (latAs1E6 != 0 || lonAs1E6 != 0)
-
-fun updateGlobalHttpProxy(newProxy: Proxy, manager: TransportNetworkManager) {
-    // MapBox
-    HttpRequestUtil.setOkHttpClient(
-        OkHttpClient.Builder()
-            .proxy(newProxy)
-            .build())
-    // public-transport-enabler
-    manager.transportNetwork.value?.let {
-        if (it.networkProvider is AbstractNetworkProvider)
-            (it.networkProvider as AbstractNetworkProvider).setProxy(newProxy)
-    }
-}

@@ -23,7 +23,9 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
@@ -43,7 +45,7 @@ import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_PORT
 import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_PROTOCOL
 import de.grobox.transportr.settings.SettingsManager.Companion.THEME
 import de.grobox.transportr.ui.ValidatedEditTextPreference
-import de.grobox.transportr.utils.updateGlobalHttpProxy
+import de.grobox.transportr.utils.TransportrUtils
 import javax.inject.Inject
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -104,8 +106,22 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         arrayOf(PROXY_ENABLE, PROXY_HOST, PROXY_PORT, PROXY_PROTOCOL).forEach { prefKey ->
             (findPreference(prefKey) as Preference?)?.let { pref ->
-                pref.setOnPreferenceChangeListener { _, _ ->
-                    updateGlobalHttpProxy(settingsManager.proxy, manager)
+                pref.setOnPreferenceChangeListener { _, newValue ->
+                    try {
+                        val newProxy = settingsManager.getProxy(mapOf(
+                            Pair(prefKey, newValue)
+                        ))
+                        TransportrUtils.checkInternetConnectionViaProxy(newProxy)
+                        TransportrUtils.updateGlobalHttpProxy(newProxy, manager)
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Invalid proxy settings: " + e.message)
+                        AlertDialog.Builder(context!!)
+                            .setTitle(R.string.invalid_proxy_settings)
+                            .setMessage(e.message)
+                            .setPositiveButton(android.R.string.ok) { di, _ -> di.dismiss() }
+                            .create()
+                            .show()
+                    }
                     true
                 }
             }

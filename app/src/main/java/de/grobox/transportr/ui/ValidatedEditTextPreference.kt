@@ -59,9 +59,11 @@ class ValidatedEditTextPreference(ctx: Context, attrs: AttributeSet) :
                 .setCancelable(true)
                 .setPositiveButton(R.string.ok) { dialogInterface, _ ->
                     dialogInterface.dismiss()
-                    persistString(currentValue)
-                    persistedValue = currentValue
-                    notifyChanged()
+                    if (callChangeListener(currentValue)) {
+                        persistString(currentValue)
+                        persistedValue = currentValue
+                        notifyChanged()
+                    }
                 }
                 .setNegativeButton(R.string.cancel) { dialogInterface, _ ->
                     dialogInterface.cancel()

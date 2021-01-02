@@ -207,6 +207,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="warning_no_gps_fix">Could not locate your position, yet.</string>
 	<string name="permission_denied_gps">You did not allow access to your location, so this functionality will not work. Please grant the permission in the app settings.</string>
 	<string name="warning_gps_off">Location is off. Please turn it on in settings.</string>
+	<string name="invalid_proxy_settings">Invalid proxy settings</string>
 
 	<string name="onboarding_location_title">Pull up</string>
 	<string name="onboarding_location_message">More features are hiding below</string>

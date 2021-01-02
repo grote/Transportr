@@ -30,7 +30,7 @@ import de.grobox.transportr.networks.PickTransportNetworkActivity
 import de.grobox.transportr.networks.PickTransportNetworkActivity.Companion.FORCE_NETWORK_SELECTION
 import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.settings.SettingsManager
-import de.grobox.transportr.utils.updateGlobalHttpProxy
+import de.grobox.transportr.utils.TransportrUtils
 import java.util.*
 import javax.inject.Inject
 
@@ -51,7 +51,7 @@ abstract class TransportrActivity : AppCompatActivity() {
         useLanguage()
         AppCompatDelegate.setDefaultNightMode(settingsManager.theme)
         ensureTransportNetworkSelected()
-        updateGlobalHttpProxy(settingsManager.proxy, manager)
+        TransportrUtils.updateGlobalHttpProxy(settingsManager.getProxy(emptyMap()), manager)
 
         super.onCreate(savedInstanceState)
     }
