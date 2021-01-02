@@ -23,14 +23,13 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
+import android.util.Patterns
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.google.common.net.HostSpecifier
-import com.google.common.net.InternetDomainName
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.map.MapActivity
@@ -113,18 +112,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         findPreference<ValidatedEditTextPreference>(PROXY_HOST)!!.validate = { value ->
-            /*
-            FIXME: These validation functions are marked unstable, maybe find a replacement
-
-             Valid should be everything accepted by InetAddress.getByName(...),
-             that is: IPv4 addresses, IPv6 addresses, hostnames and FQDNs.
-
-             Additionally, no network requests should be performed as part of
-             the validation, so simply using InetAddress.getByName(...) with a
-             try/catch is out of the question since it might try to resolve
-             domain names.
-             */
-            InternetDomainName.isValid(value) || HostSpecifier.isValid(value)
+            Patterns.DOMAIN_NAME.matcher(value).matches() || Patterns.IP_ADDRESS.matcher(value).matches()
         }
 
         findPreference<ValidatedEditTextPreference>(PROXY_PORT)!!.validate = { value ->
