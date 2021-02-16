@@ -98,4 +98,15 @@
     </string-array>
     <string name="pref_walk_speed_value_default" translatable="false">NORMAL</string>
 
+    <!-- Proxy Protocol -->
+    <string-array name="pref_proxy_protocol_options">
+        <item>@string/pref_proxy_protocol_socks</item>
+        <item>@string/pref_proxy_protocol_http</item>
+    </string-array>
+    <string-array name="pref_proxy_protocol_values">
+        <item>@string/pref_proxy_protocol_value_default</item>
+        <item>HTTP</item>
+    </string-array>
+    <string name="pref_proxy_protocol_value_default" translatable="false">SOCKS</string>
+
 </resources>

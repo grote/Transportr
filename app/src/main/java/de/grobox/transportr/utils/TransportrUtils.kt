@@ -30,11 +30,17 @@ import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import com.mapbox.mapboxsdk.http.HttpRequestUtil
 import de.grobox.transportr.R
+import de.grobox.transportr.networks.TransportNetworkManager
+import de.schildbach.pte.AbstractNetworkProvider
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.LocationType
 import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Product.*
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.net.Proxy
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
@@ -109,6 +115,35 @@ object TransportrUtils {
     fun Context.getColorFromAttr(@AttrRes attrColor: Int, typedValue: TypedValue = TypedValue(), resolveRefs: Boolean = true): Int {
         theme.resolveAttribute(attrColor, typedValue, resolveRefs)
         return ContextCompat.getColor(this, typedValue.run { if (resourceId != 0) resourceId else data })
+    }
+
+    @JvmStatic
+    fun updateGlobalHttpProxy(newProxy: Proxy, manager: TransportNetworkManager) {
+        // MapBox
+        HttpRequestUtil.setOkHttpClient(
+            OkHttpClient.Builder()
+                .proxy(newProxy)
+                .build())
+        // public-transport-enabler
+        manager.transportNetwork.value?.let {
+            if (it.networkProvider is AbstractNetworkProvider)
+                (it.networkProvider as AbstractNetworkProvider).setProxy(newProxy)
+        }
+    }
+
+    @JvmStatic
+    @Throws
+    fun checkInternetConnectionViaProxy(proxy: Proxy) {
+        val httpClient = OkHttpClient.Builder()
+            .proxy(proxy)
+            .build()
+        val testRequest = Request.Builder()
+            .url("https://example.com")
+            .build()
+        val testResponse = httpClient.newCall(testRequest)
+            .execute()
+        if (!testResponse.isSuccessful)
+            throw Exception("Network connection test failed")
     }
 
 }

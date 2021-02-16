@@ -30,8 +30,16 @@ import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider.Optimize
 import de.schildbach.pte.NetworkProvider.WalkSpeed
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.lang.Exception
+import java.net.InetAddress
+import java.net.InetSocketAddress
+import java.net.Proxy
+import java.net.UnknownHostException
 import java.util.*
 import javax.inject.Inject
+import kotlin.Throws
 
 
 class SettingsManager @Inject constructor(private val context: Context) {
@@ -92,6 +100,23 @@ class SettingsManager @Inject constructor(private val context: Context) {
             }
         }
 
+    @Throws(UnknownHostException::class, IllegalStateException::class)
+    fun getProxy(proxyPrefOverrides: Map<String, Any>): Proxy {
+        val isEnabled = proxyPrefOverrides[PROXY_ENABLE] as Boolean? ?: settings.getBoolean(PROXY_ENABLE, false)
+        if (!isEnabled)
+            return Proxy.NO_PROXY
+        val typeStr = proxyPrefOverrides[PROXY_PROTOCOL] as String? ?: settings.getString(PROXY_PROTOCOL, null)
+        val type = when (typeStr) {
+            "SOCKS" -> Proxy.Type.SOCKS
+            "HTTP" -> Proxy.Type.HTTP
+            else -> throw IllegalStateException("Illegal proxy type: " + typeStr)
+        }
+        val host = proxyPrefOverrides[PROXY_HOST] as String? ?: settings.getString(PROXY_HOST, null)
+        val portStr = proxyPrefOverrides[PROXY_PORT] as String? ?: settings.getString(PROXY_PORT, null)
+        val port = Integer.parseInt(portStr!!)
+        return Proxy(type, InetSocketAddress(InetAddress.getByName(host), port))
+    }
+
     fun showLocationFragmentOnboarding(): Boolean = settings.getBoolean(LOCATION_ONBOARDING, true)
     fun locationFragmentOnboardingShown() {
         settings.edit().putBoolean(LOCATION_ONBOARDING, false).apply()
@@ -136,6 +161,8 @@ class SettingsManager @Inject constructor(private val context: Context) {
     }
 
     companion object {
+        private const val TAG = "SettingsManager"
+
         private const val NETWORK_ID_1 = "NetworkId"
         private const val NETWORK_ID_2 = "NetworkId2"
         private const val NETWORK_ID_3 = "NetworkId3"
@@ -147,6 +174,10 @@ class SettingsManager @Inject constructor(private val context: Context) {
         private const val OPTIMIZE = "pref_key_optimize"
         private const val LOCATION_ONBOARDING = "locationOnboarding"
         private const val TRIP_DETAIL_ONBOARDING = "tripDetailOnboarding"
+        internal const val PROXY_ENABLE = "pref_key_proxy_enable"
+        internal const val PROXY_PROTOCOL = "pref_key_proxy_protocol"
+        internal const val PROXY_HOST = "pref_key_proxy_host"
+        internal const val PROXY_PORT = "pref_key_proxy_port"
     }
 
 }

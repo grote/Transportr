@@ -23,6 +23,9 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
+import android.util.Log
+import android.util.Patterns
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
@@ -36,7 +39,13 @@ import de.grobox.transportr.networks.PickTransportNetworkActivity
 import de.grobox.transportr.networks.TransportNetwork
 import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.settings.SettingsManager.Companion.LANGUAGE
+import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_ENABLE
+import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_HOST
+import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_PORT
+import de.grobox.transportr.settings.SettingsManager.Companion.PROXY_PROTOCOL
 import de.grobox.transportr.settings.SettingsManager.Companion.THEME
+import de.grobox.transportr.ui.ValidatedEditTextPreference
+import de.grobox.transportr.utils.TransportrUtils
 import javax.inject.Inject
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -44,6 +53,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     companion object {
         val TAG: String = SettingsFragment::class.java.simpleName
     }
+
+    @Inject
+    internal lateinit var settingsManager: SettingsManager
 
     @Inject
     internal lateinit var manager: TransportNetworkManager
@@ -90,6 +102,39 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 reload()
                 true
             }
+        }
+
+        arrayOf(PROXY_ENABLE, PROXY_HOST, PROXY_PORT, PROXY_PROTOCOL).forEach { prefKey ->
+            (findPreference(prefKey) as Preference?)?.let { pref ->
+                pref.setOnPreferenceChangeListener { _, newValue ->
+                    try {
+                        val newProxy = settingsManager.getProxy(mapOf(
+                            Pair(prefKey, newValue)
+                        ))
+                        TransportrUtils.checkInternetConnectionViaProxy(newProxy)
+                        TransportrUtils.updateGlobalHttpProxy(newProxy, manager)
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Invalid proxy settings: " + e.message)
+                        AlertDialog.Builder(context!!)
+                            .setTitle(R.string.invalid_proxy_settings)
+                            .setMessage(e.message)
+                            .setPositiveButton(android.R.string.ok) { di, _ -> di.dismiss() }
+                            .create()
+                            .show()
+                    }
+                    true
+                }
+            }
+        }
+
+        findPreference<ValidatedEditTextPreference>(PROXY_HOST)!!.validate = { value ->
+            value == "localhost"
+                    || Patterns.DOMAIN_NAME.matcher(value).matches()
+                    || Patterns.IP_ADDRESS.matcher(value).matches()
+        }
+
+        findPreference<ValidatedEditTextPreference>(PROXY_PORT)!!.validate = { value ->
+            value.toIntOrNull() in 1..65534
         }
     }
 

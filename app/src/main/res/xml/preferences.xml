@@ -79,4 +79,42 @@
 
 	</PreferenceCategory>
 
+	<PreferenceCategory
+		android:key="pref_key_display"
+		android:title="@string/pref_proxy"
+		app:iconSpaceReserved="false">
+
+		<SwitchPreference
+			android:key="pref_key_proxy_enable"
+			android:title="@string/pref_proxy_enable_title"
+			android:summary="@string/pref_proxy_enable_summary"
+			android:defaultValue="false"
+			app:iconSpaceReserved="false"/>
+
+		<ListPreference
+			android:defaultValue="@string/pref_proxy_protocol_value_default"
+			android:entries="@array/pref_proxy_protocol_options"
+			android:entryValues="@array/pref_proxy_protocol_values"
+			android:key="pref_key_proxy_protocol"
+			android:title="@string/pref_proxy_protocol"
+			android:dependency="pref_key_proxy_enable"
+			app:iconSpaceReserved="false"
+			app:useSimpleSummaryProvider="true"/>
+
+		<de.grobox.transportr.ui.ValidatedEditTextPreference
+			android:key="pref_key_proxy_host"
+			android:title="@string/pref_proxy_host"
+			android:dependency="pref_key_proxy_enable"
+			android:defaultValue="127.0.0.1"
+			app:iconSpaceReserved="false"/>
+
+		<de.grobox.transportr.ui.ValidatedEditTextPreference
+			android:key="pref_key_proxy_port"
+			android:title="@string/pref_proxy_port"
+			android:dependency="pref_key_proxy_enable"
+			android:defaultValue="9050"
+			app:iconSpaceReserved="false"/>
+
+	</PreferenceCategory>
+
 </PreferenceScreen>
