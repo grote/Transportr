@@ -128,7 +128,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         findPreference<ValidatedEditTextPreference>(PROXY_HOST)!!.validate = { value ->
-            Patterns.DOMAIN_NAME.matcher(value).matches() || Patterns.IP_ADDRESS.matcher(value).matches()
+            value == "localhost"
+                    || Patterns.DOMAIN_NAME.matcher(value).matches()
+                    || Patterns.IP_ADDRESS.matcher(value).matches()
         }
 
         findPreference<ValidatedEditTextPreference>(PROXY_PORT)!!.validate = { value ->
