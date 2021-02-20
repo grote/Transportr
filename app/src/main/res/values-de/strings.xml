@@ -117,7 +117,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="pref_directions_routing">Verbindungen und Routenkriterien</string>
   <string name="pref_optimize">Optimiert für</string>
   <string name="pref_optimize_least_duration">Geringste Dauer</string>
-  <string name="pref_optimize_least_changes">Geringste Änderungen</string>
+  <string name="pref_optimize_least_changes">Geringste Umstiege</string>
   <string name="pref_optimize_least_walking">Kürzester Fußweg</string>
   <string name="pref_walk_speed">Laufgeschwindigkeit</string>
   <string name="pref_walk_speed_slow">Langsam</string>
