@@ -141,6 +141,8 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="pref_walk_speed_fast">Fast</string>
 	<string name="pref_show_when_locked_title">Show trip even when screen is locked</string>
 	<string name="pref_show_when_locked_summary">Show over lock screen</string>
+	<string name="pref_hide_walking_route_title">Hide walking route</string>
+	<string name="pref_hide_walking_route_summary">Walking route will be hidden unless it is the only one</string>
 
 	<string name="error">Error</string>
 	<string name="error_no_internet">Internet connection required. Please make sure your internet access is working.</string>

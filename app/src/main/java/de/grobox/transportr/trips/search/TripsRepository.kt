@@ -171,10 +171,17 @@ class TripsRepository(
             queryMoreState.value = getQueryMoreStateFromContext(queryTripsContext)
 
             val oldTrips = trips.value?.let { HashSet(it) } ?: HashSet()
-            oldTrips.addAll(queryTripsResult.trips)
+            oldTrips.addAll(filterOutWalkingRoute(newTrips = queryTripsResult.trips, oldTrips = oldTrips))
             trips.value = oldTrips
         }
     }
+
+    private fun filterOutWalkingRoute(newTrips: List<Trip>, oldTrips: Collection<Trip>): List<Trip> =
+        if (settingsManager.hideWalkingRoute() && (oldTrips.isNotEmpty() || newTrips.size > 1)) {
+            newTrips.filterNot { it.legs.size == 1 && it.legs.first() is Trip.Individual }
+        } else {
+            newTrips
+        }
 
     private fun getQueryMoreStateFromContext(context: QueryTripsContext?): QueryMoreState = context?.let {
         return if (it.canQueryEarlier() && it.canQueryLater()) {
