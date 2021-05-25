@@ -16,7 +16,7 @@ Here are the steps to follow when preparing a new release. Please check the foll
 * [ ] add newly supported languages to the two arrays in [`app/src/main/res/values/arrays.xml`](https://github.com/grote/Transportr/blob/master/app/src/main/res/values/arrays.xml#L16)
 * [ ] revise the commits to `master` since the last release and add interesting changes (as well as new languages) to the changelog at [`app/src/main/res/xml/changelog_master.xml`](https://github.com/grote/Transportr/blob/master/app/src/main/res/xml/changelog_master.xml), then run `python3 ./fastlane/generate_changelog.py`
 * [ ] bump the [`versionCode`](https://github.com/grote/Transportr/blob/master/app/build.gradle#L14) and [`versionName`](https://github.com/grote/Transportr/blob/master/app/build.gradle#L15) in `app/build.gradle`
-* [ ] add a last commit updating all dependencies right after the release
+* [ ] file another PR updating all dependencies which should be merged *after* the successful release
 
 Please also refer to #689 as an example.
 
