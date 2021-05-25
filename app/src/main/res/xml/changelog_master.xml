@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
 
+    <release version="2.1.2" versioncode="120">
+        <change>Prevent crash on first startup</change>
+    </release>
+
     <release version="2.1.1" versioncode="119">
         <change>Fix and (re-)add several regions: VMS, VTT, saarVV, VBN, nah.sh, AVV (Aachen), Luxembourg, BART, CMTA</change>
         <change>Fix issues related to location sharing</change>
