@@ -72,7 +72,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="tab_about">About</string>
 	<string name="tab_libraries">Libraries</string>
 
-	<string name="about_copyright">© 2013 &#8211; 2018 Torsten Grote\nFree Software License: GPLv3+</string>
+	<string name="about_copyright">© 2013 &#8211; 2021 Torsten Grote\nFree Software License: GPLv3+</string>
 	<string name="about_description">Transportr is a public transport companion developed by people around the world to make using public transport as easy as possible wherever you are.</string>
 	<string name="about_warning_title">Warning</string>
 	<string name="about_warning_text">There is no guarantee for the correctness of the (externally provided) data. Please use this app only at your own risk.</string>
