@@ -78,7 +78,7 @@
 		android:background="?selectableItemBackgroundBorderless"
 		android:contentDescription="@string/more"
 		android:cropToPadding="false"
-		android:tint="?colorControlNormal"
+		app:tint="?colorControlNormal"
 		app:layout_constraintBottom_toBottomOf="@+id/locationInfo"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.0"
