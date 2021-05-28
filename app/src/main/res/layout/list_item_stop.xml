@@ -90,7 +90,7 @@
 		android:layout_height="0dp"
 		android:background="?selectableItemBackgroundBorderless"
 		android:contentDescription="@string/more"
-		android:tint="?colorControlNormal"
+		app:tint="?colorControlNormal"
 		app:layout_constraintBottom_toBottomOf="@+id/toDelay"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/fromTime"

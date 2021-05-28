@@ -109,7 +109,7 @@
 			android:clickable="true"
 			android:contentDescription="@string/more"
 			android:focusable="true"
-			android:tint="?colorControlNormal"
+			app:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toTopOf="parent"

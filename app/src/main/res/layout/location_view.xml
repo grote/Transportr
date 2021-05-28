@@ -46,7 +46,7 @@
 		android:background="?attr/selectableItemBackgroundBorderless"
 		android:contentDescription="@string/clear_location"
 		android:src="@drawable/ic_action_content_remove"
-		android:tint="?colorControlNormal"
+		app:tint="?colorControlNormal"
 		android:visibility="gone"
 		app:srcCompat="@drawable/ic_action_content_remove"
 		tools:visibility="visible"/>
