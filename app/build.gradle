@@ -43,6 +43,7 @@ android {
 			multiDexEnabled true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
 			testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt', 'proguard-test.txt'
+			multiDexKeepProguard file('proguard-multidex.txt')
 
 			lintOptions {
 				disable 'ProtectedPermissions'

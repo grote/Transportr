@@ -1,0 +1,3 @@
+# Needed to make sure the instrumentation tests are available in the main DEX file for API < 20
+# source: https://github.com/android/testing-samples/issues/179#issuecomment-395020293
+-keep @org.junit.runner.RunWith public class *

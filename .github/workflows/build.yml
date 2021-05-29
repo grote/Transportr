@@ -1,0 +1,32 @@
+name: Build and test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest # to be able to run Android emulator, see https://github.com/marketplace/actions/android-emulator-runner
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [16, 23, 29]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: 8
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: default
+          arch: x86
+          profile: Nexus 6
+          script: ./gradlew build connectedCheck -PbuildServer -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.LargeTest --stacktrace
+
