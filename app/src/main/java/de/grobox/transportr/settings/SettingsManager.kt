@@ -135,6 +135,8 @@ class SettingsManager @Inject constructor(private val context: Context) {
         return settings.getBoolean(SHOW_WHEN_LOCKED, true)
     }
 
+    fun hideWalkingRoute(): Boolean = settings.getBoolean(HIDE_WALKING_ROUTE, false)
+
     companion object {
         private const val NETWORK_ID_1 = "NetworkId"
         private const val NETWORK_ID_2 = "NetworkId2"
@@ -147,6 +149,7 @@ class SettingsManager @Inject constructor(private val context: Context) {
         private const val OPTIMIZE = "pref_key_optimize"
         private const val LOCATION_ONBOARDING = "locationOnboarding"
         private const val TRIP_DETAIL_ONBOARDING = "tripDetailOnboarding"
+        private const val HIDE_WALKING_ROUTE = "pref_key_hide_walking_route"
     }
 
 }
