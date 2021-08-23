@@ -59,7 +59,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="drawer_departures">Partenze</string>
   <string name="tab_about">Informazioni</string>
   <string name="tab_libraries">Librerie</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+</string>
+  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nLicenza libera del software: GPLv3+</string>
   <string name="about_description">Transportr è un\'app di trasporto pubblico sviluppata da persone di tutto il mondo per rendere il trasporto pubblico il più semplice possibile ovunque tu sia.</string>
   <string name="about_warning_title">Attenzione</string>
   <string name="about_warning_text">Non c\'è alcuna garanzia per la correttezza dei dati (di terze parti). Usa quest\'app a tuo rischio.</string>

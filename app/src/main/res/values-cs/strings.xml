@@ -2,6 +2,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Open-source veřejná doprava</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Bezplatný asistent pro veřejnou dopravu bez reklam a sledovacích prvků</string>
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+Transportr je nezisková aplikace vyvinutá lidmi po celém světě ve volném čase.
+Chce všem co nejvíce usnadnit používání veřejné dopravy.
+
+Tato aplikace využívá data různých místních dopravních agentur a poskytuje jim jednotné rozhraní. Nemůže ověřit správnost údajů, a proto &lt;i&gt;neposkytuje žádné záruky&lt;/i&gt; za zobrazené informace. Používejte ji prosím na své vlastní riziko.
+
+🛣️ Navigace výletů&lt;/b&gt;. Stačí říct Transportru, kam chcete jít! Najde pro vás nejlepší spojení, poradí vám, kde přestoupit na autobus, a dokonce vám poskytne odhadovaný čas příjezdu.
+
+⏱️ Odjezdy v reálném čase&lt;/b&gt; . Zobrazuje nadcházející odjezdy ze všech stanic. V podporovaných&lt;/i&gt; oblastech se také zobrazí zpoždění v reálném čase.
+
+🗽 Svobodný software&lt;/b&gt;. Zdrojový kód pro Transportr je 100% otevřený. Můžete jej libovolně používat, studovat, sdílet a vylepšovat. Tato aplikace je jen tak dobrá, jakou ji vy&lt;/i&gt; uděláte. Můžete dokonce přidat své město sami, pokud již není podporováno.
+
+🛰️ Vyhledá vaši pozici&lt;/b&gt;. Transportr využívá satelitní navigaci GPS ke sledování své aktuální polohy - abyste se nikdy neztratili. Můžete najít nedaleké stanice a zahájit novou cestu a poté zjistit, jak daleko jste na cestě.
+
+🌟 Pamatuje si oblíbená místa&lt;/b&gt;. Abyste se dostali rychleji, kam potřebujete, Transportr ukládá často používaná místa a výlety. Tímto způsobem je nemusíte psát znovu a znovu.
+
+🚫 Žádné reklamy, žádné sledování.&lt;/b&gt; Tato aplikace nezobrazuje reklamy ani nepříjemná oznámení. Rovněž nepoužívá nástroje pro sledování, jako je Google Analytics, aby vás špehovalo.
+
+🗺️ Krásné mapy.&lt;/b&gt; Zobrazuje stanice, nebo celou vaši cestu na mapě a vždy ví, co si nenechat ujít, kde vystoupit z autobusu.
+]]></string>
   <string name="drawer_settings">Nastavení</string>
   <string name="drawer_changelog">Seznam změn</string>
   <string name="drawer_about">O</string>
@@ -25,7 +45,7 @@
   <string name="drawer_departures">Odjezdy</string>
   <string name="tab_about">O</string>
   <string name="tab_libraries">Knihovny</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nLicence svobodného softwaru: GPLv3+</string>
+  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nSvobodná softwarová licence: GPLv3+</string>
   <string name="about_description">Transportr je společník veřejné dopravy vyvinutý všemi lidmi po celém světě, aby využil veřejnou dopravu co nejjednodušší, ať jste kdekoli.</string>
   <string name="about_warning_title">Upozornění</string>
   <string name="about_warning_text">Neexistuje žádná záruka správnosti údajů (externě poskytovaných). Použijte tuto aplikaci pouze na vlastní nebezpečí.</string>
@@ -51,6 +71,7 @@
   <string name="find_nearby_stations">Hledat stanice poblíž.</string>
   <string name="find_departures">Hledat odjezdy</string>
   <string name="share_trip_via">Sdílet cestu přes…</string>
+  <string name="show_location_in">Zobrazit místo v…</string>
   <string name="more">Více</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">pro %d min</string>
@@ -94,6 +115,7 @@
   <string name="error_find_nearby_stations">Nedaleké stanice nebyly nalezeny</string>
   <string name="error_departures">Nelze najít žádné odjezdy</string>
   <string name="error_no_calendar">Není nainstalován žádný kalendář :(</string>
+  <string name="error_no_map">Není nainstalována žádná externí mapa :(</string>
   <string name="trip_error_ambiguous">Nelze najít místo. Zkuste zkusit vyhledávání s různými místy.</string>
   <string name="trip_error_too_close">oloha \"od\" a \"do\" jsou příliš blízko.</string>
   <string name="trip_error_unknown_from">Nelze najít \"z\" umístění. Zkuste prosím jinou.</string>
@@ -103,6 +125,7 @@
   <string name="trip_error_no_trips">Žádné spojení nebylo nalezeno :(</string>
   <string name="trip_error_invalid_date">Datum hledání momentálně není podporován poskytovatelem dat. Zkuste prosím jiný den.</string>
   <string name="trip_error_service_down">Poskytovatel dat je momentálně mimo provoz: (zkuste to prosím znovu později.</string>
+  <string name="trip_error_pte">Chcete-li tuto chybu nahlásit, oznamte ji prosím přímo agentuře veřejné dopravy a přiložte snímek obrazovky.</string>
   <string name="trip_issue">S tímto připojením může být problém.</string>
   <string name="trip_not_travelable">Nemožné nebo zrušené</string>
   <string name="try_again">Zkuste to znovu</string>
@@ -213,6 +236,8 @@
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Německo</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Cáchy</string>
   <string name="np_desc_bayern">Bavorsko, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlín</string>
@@ -229,9 +254,12 @@
   <string name="np_desc_nvbw">Bádensko-Württembersko, Kostnice, Basilej, Basilej-město, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesensko, Frankfurt nad Mohanem, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Roztoky</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Šlesvicko-Holštýnsko, Kiel, Flensburg, Lübeck</string>
   <string name="np_desc_vbb">Braniborsko, Berlín</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Dolní Sasko, Brémy, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Norimberk, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Sársko, Saarbrücken</string>
   <string name="np_desc_vms">Střední Sasko, Chemnitz</string>
   <string name="np_desc_vmv">Meklenbursko-Přední Pomořansko, Schwerin</string>
@@ -283,6 +311,9 @@
   <string name="np_desc_dub">Spojené arabské Emiráty, Dubai</string>
   <string name="np_region_usa">Spojené státy americké</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">Státy New York a New Jersey</string>
   <string name="np_name_california">Kalifornie</string>
   <string name="np_desc_california">Hromadná doprava v Kalifornii (USA)</string>

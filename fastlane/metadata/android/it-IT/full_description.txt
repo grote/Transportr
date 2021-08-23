@@ -4,13 +4,11 @@ Il loro obiettivo è quello di rendere l'uso del trasporto pubblico il più semp
 
 Quest'app usa i dati di varie aziende di trasporto pubblico locali
 e li fornisce in un'interfaccia unificata.
-L'app non può verificare la correttezza dei dati,
-perciò <i>non fornisce alcuna garanzia</i> per le informazioni mostrate.
+L'app non può verificare la correttezza dei dati, perciò <i>non fornisce alcuna garanzia</i> per le informazioni mostrate.
 Usa l'app a tuo rischio.
 
 <b>🛣️ Organizza il tuo viaggio</b>. Dì a Transportr dove vuoi andare!
-L'app troverà il collegamento migliore per te, ti avverte quando cambiare mezzo
-e persino ti dice il tempo previsto di arrivo.
+L'app troverà il collegamento migliore per te, ti avverte quando cambiare mezzo e persino ti dice il tempo previsto di arrivo.
 
 <b>⏱️ Partenze in tempo reale</b>. Mostra le prossime partenze da qualsiasi stazione.
 Nelle aree <i>supportate</i> l'app mostra anche il ritardo in tempo reale.
@@ -29,9 +27,7 @@ e quindi vedere quanto lontano sei dall'arrivo.
 Transportr salva i posti e i viaggi utilizzati frequentemente.
 In questo modo non devi riscriverli ogni volta.
 
-<b>🚫 Nessuna pubblicità, nessun tracciamento</b>. Questa'app non mostra pubblicità
-o noiose notifiche.
+<b>🚫 Nessuna pubblicità, nessun tracciamento</b>. Questa'app non mostra pubblicità o noiose notifiche.
 Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
 
-<b>🗺️ Mappe bellissime</b>. Mostra le stazioni o l'intero tragitto sulla mappa
-e mostra sempre dove sei per non perderti la fermata dove devi scendere.
+<b>🗺️ Mappe bellissime</b>. Mostra le stazioni o l'intero tragitto sulla mappa e mostra sempre dove sei per non perderti la fermata dove devi scendere.

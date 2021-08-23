@@ -6,7 +6,7 @@ No se puede verificar la exactitud de los datos, y por tanto <i>no ofrece garant
 Por favor, úsala bajo tu propio riesgo. 
 
 <b>🛣️ Itinerario de viaje</b>. ¡Simplemente dile a Transportr dónde quieres ir!
-Encontrará las mejores conexiones para ti, te avisará dónde hacer transbordos de autobus y hasta te dará una estimación de la hora de llegada. 
+Encontrará las mejores conexiones para ti, te avisará dónde hacer transbordos de autobús y hasta te dará una estimación de la hora de llegada. 
 
 <b>⏱️ Próximas salidas</b>. Muestra las próximas salidas de todas y cada una de las estaciones. 
 <i>Cuando sea posible</i>, también se mostrarán retrasos en tiempo real. 
@@ -17,7 +17,7 @@ Esta aplicación es tan buena como <i>tú</i> la hagas.
 Puedes incluso añadir una ciudad por ti mismo, si aún no está soportada. 
 
 <b> 🛰️ Encuentra tu posición</b>. Transportr usa navegación por satélite GPS para hacer un seguimiento de tu posición actual, para que nunca te pierdas. 
-Puedes encontrar estaciones cercanas para comenzar un nuevo viaje. 
+Puedes encontrar estaciones cercanas para comenzar un nuevo viaje 
 y ver cómo de lejos estás en tu viaje. 
 
 <b>🌟 Recuerda tus sitios favoritos</b>. Para llevarte donde tienes que ir de forma más rápida, 

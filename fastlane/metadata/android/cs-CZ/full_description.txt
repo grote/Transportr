@@ -1,1 +1,18 @@
-Transportr je nezisková app, která byla vyvinuta lidmi z celého světa, aby se používání veřejné dopravy stalo tak jednoduché, jak je to jen možné, ať jste kdekoli. V současné době funguje nejlépe v Evropě, ale také podporuje mnoho míst po celém světě. Pokud žijete v nepodporované oblasti, zvažte jeho přidání do Transportr. Pokyny jsou k dispozici na domovské stránce. Transportr najde trasu z domova, vaší aktuální polohy nebo danou stanici od odkudkoliv budete chtít jet. Můžete také uložit celé cesty jako oblíbené a najít další cesty s jednou ranou. Samozřejmě, můžete také zobrazit na mapě svou cestu a sledovat svůj pokrok pomocí GPS. Můžete také objevovat blízké stanice a ukázat nejbližší odjezdy včetně zpoždění (pokud existují).
+Transportr je nezisková aplikace vyvinutá lidmi po celém světě ve volném čase.
+Chce všem co nejvíce usnadnit používání veřejné dopravy.
+
+Tato aplikace využívá data různých místních dopravních agentur a poskytuje jim jednotné rozhraní. Nemůže ověřit správnost údajů, a proto &lt;i&gt;neposkytuje žádné záruky&lt;/i&gt; za zobrazené informace. Používejte ji prosím na své vlastní riziko.
+
+🛣️ Navigace výletů&lt;/b&gt;. Stačí říct Transportru, kam chcete jít! Najde pro vás nejlepší spojení, poradí vám, kde přestoupit na autobus, a dokonce vám poskytne odhadovaný čas příjezdu.
+
+⏱️ Odjezdy v reálném čase&lt;/b&gt; . Zobrazuje nadcházející odjezdy ze všech stanic. V podporovaných&lt;/i&gt; oblastech se také zobrazí zpoždění v reálném čase.
+
+🗽 Svobodný software&lt;/b&gt;. Zdrojový kód pro Transportr je 100% otevřený. Můžete jej libovolně používat, studovat, sdílet a vylepšovat. Tato aplikace je jen tak dobrá, jakou ji vy&lt;/i&gt; uděláte. Můžete dokonce přidat své město sami, pokud již není podporováno.
+
+🛰️ Vyhledá vaši pozici&lt;/b&gt;. Transportr využívá satelitní navigaci GPS ke sledování své aktuální polohy - abyste se nikdy neztratili. Můžete najít nedaleké stanice a zahájit novou cestu a poté zjistit, jak daleko jste na cestě.
+
+🌟 Pamatuje si oblíbená místa&lt;/b&gt;. Abyste se dostali rychleji, kam potřebujete, Transportr ukládá často používaná místa a výlety. Tímto způsobem je nemusíte psát znovu a znovu.
+
+🚫 Žádné reklamy, žádné sledování.&lt;/b&gt; Tato aplikace nezobrazuje reklamy ani nepříjemná oznámení. Rovněž nepoužívá nástroje pro sledování, jako je Google Analytics, aby vás špehovalo.
+
+🗺️ Krásné mapy.&lt;/b&gt; Zobrazuje stanice, nebo celou vaši cestu na mapě a vždy ví, co si nenechat ujít, kde vystoupit z autobusu.

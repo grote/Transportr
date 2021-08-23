@@ -53,7 +53,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="drawer_departures">Départs</string>
   <string name="tab_about">À propos</string>
   <string name="tab_libraries">Bibliothèques</string>
-  <string name="about_copyright">© 2013 à 2018 Torsten Grote\nLicence de logiciel libre : GPLv3+</string>
+  <string name="about_copyright">© 2013 à 2021 Torsten Grote\nLicence de logiciel libre : GPLv3+</string>
   <string name="about_description">Transportr est un compagnon de transports en commun développé par des personnes partout dans le monde afin de faciliter autant que possible l’utilisation des transports en commun où que vous soyez.</string>
   <string name="about_warning_title">Avertissement</string>
   <string name="about_warning_text">Il n’existe aucune garantie quant à l’exactitude des données (provenant de sources externes). Veuillez utiliser cette appli à vos propres risques.</string>

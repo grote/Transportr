@@ -63,7 +63,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="drawer_departures">Abfahrten</string>
   <string name="tab_about">Über</string>
   <string name="tab_libraries">Bibliotheken</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+</string>
+  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nFree Software License: GPLv3+</string>
   <string name="about_description">Transportr ist ein Begleiter im öffentlichen Verkehr, der von Menschen auf der ganzen Welt entwickelt wurde, um die Benutzung öffentlicher Verkehrsmittel so einfach wie möglich zu machen, egal wo Sie sich gerade befinden.</string>
   <string name="about_warning_title">Warnung</string>
   <string name="about_warning_text">Es wird keine Gewähr für die Richtigkeit der (extern zur Verfügung gestellten) Daten übernommen. Bitte benutzen Sie diese App nur auf eigene Gefahr.</string>
@@ -117,7 +117,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="pref_directions_routing">Verbindungen und Routenkriterien</string>
   <string name="pref_optimize">Optimiert für</string>
   <string name="pref_optimize_least_duration">Geringste Dauer</string>
-  <string name="pref_optimize_least_changes">Geringste Änderungen</string>
+  <string name="pref_optimize_least_changes">Wenigste Umstiege</string>
   <string name="pref_optimize_least_walking">Kürzester Fußweg</string>
   <string name="pref_walk_speed">Laufgeschwindigkeit</string>
   <string name="pref_walk_speed_slow">Langsam</string>

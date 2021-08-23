@@ -44,7 +44,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="drawer_departures">Forveturoj</string>
   <string name="tab_about">Pri</string>
   <string name="tab_libraries">Bibliotekoj</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten GROTE\nProgramo laŭ la libera permesilo: GPLv3+</string>
+  <string name="about_copyright">© 2013 – 2021 Torsten GROTE\nProgramo laŭ la libera permesilo: GPLv3+</string>
   <string name="about_description">Transportr estas publik-transporta helpilo programita de homoj ĉirkaŭ la mondo por igi uzadon de publika transporto kiel eble facile, kie ajn vi estas.</string>
   <string name="about_warning_title">Averto</string>
   <string name="about_warning_text">Estas neniu garantio pri korekteco de (ekstere-provizataj) datumoj. Bonvolu uzi tiun ĉi aplikaĵon nur sub via risko.</string>

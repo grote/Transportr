@@ -89,6 +89,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="find_nearby_stations">Bilatu inguruko geltokiak</string>
   <string name="find_departures">Bilatu irteerak</string>
   <string name="share_trip_via">Partekatu bidaia honekin…</string>
+  <string name="show_location_in">Erakutsi kokapena hemen…</string>
   <string name="more">Gehiago</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">%d minutuz</string>
@@ -132,6 +133,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="error_find_nearby_stations">Ezin izan dira inguruko geltokiak aurkitu</string>
   <string name="error_departures">Ezin izan da irteerarik aurkitu</string>
   <string name="error_no_calendar">Ez dago egutegirik instalatuta :(</string>
+  <string name="error_no_map">Ez dago kanpoko maparik instalatuta :(</string>
   <string name="trip_error_ambiguous">Ezin izan da kokalekua aurkitu. Saiatu kokaleku desberdinak bilatzen.</string>
   <string name="trip_error_too_close">\'nondik\' eta \'nora\' kokalekuak elkarrengandik hurbilegi daude.</string>
   <string name="trip_error_unknown_from">Ezin izan da \'nondik\' kokalekua aurkitu. Saiatu beste batekin.</string>
@@ -250,6 +252,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Alemania</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_desc_avvaachen">Akisgran</string>
   <string name="np_desc_bayern">Bavaria, Würzburg, Ratisbona</string>
   <string name="np_desc_bsvag">Brunswick, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
@@ -320,6 +323,8 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_desc_dub">Arabiar Emirerri Batuak, Dubai</string>
   <string name="np_region_usa">Ameriketako Estatu Batuak</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Frantzisko</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">New York eta New-Jersey estatuak</string>
   <string name="np_name_california">Kalifornia</string>
   <string name="np_desc_california">Kaliforniako (EEBB) garraio publikoa</string>
