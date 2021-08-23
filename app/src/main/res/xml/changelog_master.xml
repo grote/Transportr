@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
 
+    <release version="2.1.3" versioncode="121">
+        <change>Update PTE data library, fixes issues in Berlin</change>
+    </release>
+
     <release version="2.1.2" versioncode="120">
         <change>Prevent crash on first startup</change>
     </release>
