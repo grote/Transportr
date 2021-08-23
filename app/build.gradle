@@ -7,14 +7,13 @@ apply from: 'witness.gradle'
 
 android {
 
-	compileSdkVersion 29
-
 	defaultConfig {
 		versionCode 120
-		versionName "2.1.2"
+		versionName "2.1.3"
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 16
+		compileSdkVersion 30
 		targetSdkVersion 29
 
 		testInstrumentationRunner 'de.grobox.transportr.MockTestRunner'
