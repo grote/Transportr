@@ -45,10 +45,10 @@ platform :android do
   lane :release do
 	# Gather data
 	package_name = CredentialsManager::AppfileConfig.try_fetch_value(:package_name)
-	android_get_version_code()
-	version_code = lane_context[SharedValues::ANDROID_VERSION_CODE]
-	android_get_version_name()
-	version_name = lane_context[SharedValues::ANDROID_VERSION_NAME]
+  	version_name = get_version_name(app_project_dir: '**/app')
+  	UI.message("version_name: " + version_name)
+  	version_code = get_version_code(app_project_dir: '**/app')
+  	UI.message("version_code: " + version_code)
 
 	# Get changelog
 	changelog = File.read("metadata/android/en-US/changelogs/#{version_code}.txt")
