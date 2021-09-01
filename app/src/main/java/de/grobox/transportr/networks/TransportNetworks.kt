@@ -361,6 +361,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_lu,
                         description = R.string.np_desc_lu,
                         agencies = R.string.np_desc_lu_networks,
+                        logo = R.drawable.network_lu_logo,
                         factory = { LuProvider("{\"type\":\"AID\",\"aid\":\"Aqf9kNqJLjxFx6vv\"}") }
                     )
                 )
