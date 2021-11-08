@@ -21,13 +21,14 @@ Transportr is a non-profit app developed by people around the world to make usin
 
 ## Screenshots
 
+[<img src="https://user-images.githubusercontent.com/50620416/140822064-86778b46-f701-40b0-a9bd-fc10d1397f0f.gif" height="515">](https://transportr.app/img/transportr.webm)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png)
 
 <details>
   <summary>More screenshots</summary>
-    
+
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png)
