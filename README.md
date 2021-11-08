@@ -1,10 +1,13 @@
+[![Transportr Logo](/app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://transportr.app)
+
 ## Transportr
 
 The public transport companion that respects your privacy and your freedom.
 Transportr is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. 
 
-[![Transportr Logo](/app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://transportr.app)
 [![Build Status](https://travis-ci.org/grote/Transportr.svg?branch=master)](https://travis-ci.org/grote/Transportr)
+[![GitHub commits since latest release](https://img.shields.io/github/commits-since/grote/Transportr/latest)](https://github.com/grote/Transportr/releases/tag/latest) 
+
 
 Please **[visit the website](https://transportr.app)** for more information!
 
