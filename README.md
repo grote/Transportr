@@ -7,16 +7,9 @@ Transportr is a non-profit app developed by people around the world to make usin
 
 [![Build Status](https://travis-ci.org/grote/Transportr.svg?branch=master)](https://travis-ci.org/grote/Transportr)
 [![GitHub commits since latest release](https://img.shields.io/github/commits-since/grote/Transportr/latest)](https://github.com/grote/Transportr/releases/tag/latest) 
+[![Twitter Follow](https://img.shields.io/twitter/follow/TransportrApp?style=social)](https://twitter.com/intent/follow?screen_name=TransportrApp)
 
-
-Please **[visit the website](https://transportr.app)** for more information!
-
-If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues). Contributions are both encouraged and appreciated. If you like to contribute please [check the website](https://transportr.app/contribute) for more information.
-
-The upstream repository is at: https://github.com/grote/Transportr
-
-![Twitter Follow](https://img.shields.io/twitter/follow/TransportrApp?style=social)
-## Get Transportr
+## Install
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/grote/Transportr?label=latest%20version&sort=semver)](https://github.com/grote/Transportr/releases)
 [![F-Droid](https://img.shields.io/f-droid/v/de.grobox.liberario)](https://f-droid.org/packages/de.grobox.liberario/)
@@ -24,7 +17,7 @@ The upstream repository is at: https://github.com/grote/Transportr
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/de.grobox.liberario/)
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play Download" height="80">](https://play.google.com/store/apps/details?id=de.grobox.liberario)
 
-Pre-releases and beta versions for advanced users are available via [a special F-Droid repository](http://grobox.de/fdroid/).
+* Pre-releases and beta versions for advanced users are available via [a special F-Droid repository](http://grobox.de/fdroid/).
 
 ## Screenshots
 
@@ -40,6 +33,12 @@ Pre-releases and beta versions for advanced users are available via [a special F
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png)
 
 </details>
+
+## Contribute
+
+* If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues). Contributions are both encouraged and appreciated. 
+* If you like to contribute please [check the website](https://transportr.app/contribute) for more information.
+
 
 ## Building From Source
 
