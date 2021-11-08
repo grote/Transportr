@@ -19,8 +19,11 @@ The upstream repository is at: https://github.com/grote/Transportr
 
 ## Get Transportr
 
-[![Available on F-Droid](/artwork/f-droid.png)](https://f-droid.org/repository/browse/?fdid=de.grobox.liberario)
-[![Available on Google Play](/artwork/google-play.png)](https://play.google.com/store/apps/details?id=de.grobox.liberario)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/grote/Transportr?label=latest%20version&sort=semver)](https://github.com/grote/Transportr/releases)
+[![F-Droid](https://img.shields.io/f-droid/v/de.grobox.liberario)](https://f-droid.org/packages/de.grobox.liberario/)
+
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/de.grobox.liberario/)
+[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play Download" height="80">](https://play.google.com/store/apps/details?id=de.grobox.liberario)
 
 Pre-releases and beta versions for advanced users are available via [a special F-Droid repository](http://grobox.de/fdroid/).
 
