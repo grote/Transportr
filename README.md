@@ -45,7 +45,7 @@ Contributions should be fun. They are both encouraged and appreciated. All contr
 * People with design skills are encouraged to contribute and help making Transportr look even better.
 * Translate Transportr into your native language on [Transifex](https://www.transifex.com/projects/p/transportr/).
 
-## Building From Source
+## Build from source code
 
 If you want to start working on Transportr and if you haven't done already, you should [familiarize yourself with Android development](https://developer.android.com/training/basics/firstapp/index.html) and [set up a development environment](https://developer.android.com/sdk/index.html).
 
