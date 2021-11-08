@@ -40,8 +40,8 @@ Contributions should be fun. They are both encouraged and appreciated. All contr
 
 * Share Transportr on social media or show your friends and family that it exists and how to use it.
 * If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues).
-* Rate it in Google Play and if you have a little more time also write a short review about it.
-* Test new Pre-releases and beta versions of Transportr before they are released to the general public.
+* Rate it in [Google Play](https://play.google.com/store/apps/details?id=de.grobox.liberario) and if you have a little more time also write a short review about it.
+* Test new Pre-releases and beta versions of Transportr before they are released to the general public (instructions above).
 * People with design skills are encouraged to contribute and help making Transportr look even better.
 * Translate Transportr into your native language on [Transifex](https://www.transifex.com/projects/p/transportr/).
 
