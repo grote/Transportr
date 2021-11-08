@@ -112,7 +112,7 @@ dependencyVerification {
         'com.android:zipflinger:4.1.3:zipflinger-4.1.3.jar:48569896c0497268308a8014c66eb0f2bace2b9e2fc9390f3012823fb86387d5',
         'com.github.omadahealth:swipy:1.2.3:swipy-1.2.3.aar:63bff6e181742e3e243c29b595062ca65b4274bf7033c65460924f64f65c01e0',
         'com.github.tony19:logback-android:1.1.1-12:logback-android-1.1.1-12.aar:3102228f0e408e3c003b34e96a604e9b9f59d314dcf8f03aa78d9d3648198932',
-        'com.gitlab.opentransitmap:public-transport-enabler:82c90c87:public-transport-enabler-82c90c87.jar:446e24d404f58afbe189970b96c2f552cc8e0d280b8eb99f549ae9b711f2e706',
+        'com.gitlab.opentransitmap:public-transport-enabler:348d7340:public-transport-enabler-348d7340.jar:d47adec13759f3d348a5201df6fc5f3ace2c730d2f06ea4fd396089bcf8c57d4',
         'com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework:2.0:accessibility-test-framework-2.0.jar:cdf16ef8f5b8023d003ce3cc1b0d51bda737762e2dab2fedf43d1c4292353f7f',
         'com.google.android.material:material:1.0.0:material-1.0.0.aar:7680e381a3c03798d999b2e441caadd8a56a0a808e108024a67af9fe26c11adc',
         'com.google.android.material:material:1.3.0:material-1.3.0.aar:cbf1e7d69fc236cdadcbd1ec5f6c0a1a41aca6ad1ef7f8481058956270ab1f0a',
@@ -212,7 +212,7 @@ dependencyVerification {
         'org.ow2.asm:asm-tree:7.0:asm-tree-7.0.jar:cfd7a0874f9de36a999c127feeadfbfe6e04d4a71ee954d7af3d853f0be48a6c',
         'org.ow2.asm:asm-util:7.0:asm-util-7.0.jar:75fbbca440ef463f41c2b0ab1a80abe67e910ac486da60a7863cbcb5bae7e145',
         'org.ow2.asm:asm:7.0:asm-7.0.jar:b88ef66468b3c978ad0c97fd6e90979e56155b4ac69089ba7a44e9aa7ffe9acf',
-        'org.slf4j:slf4j-api:1.7.30:slf4j-api-1.7.30.jar:cdba07964d1bb40a0761485c6b1e8c2f8fd9eb1d19c53928ac0d7f9510105c57',
+        'org.slf4j:slf4j-api:1.7.32:slf4j-api-1.7.32.jar:3624f8474c1af46d75f98bc097d7864a323c81b3808aa43689a6e1c601c027be',
         'tools.fastlane:screengrab:1.1.0:screengrab-1.1.0.aar:03ce3868ee8a0082d14e7a1de0999f91531c0cc794392688beb08ee9bc4495fd',
         'uk.co.samuelwall:material-tap-target-prompt:2.14.0:material-tap-target-prompt-2.14.0.aar:12ab447ba97019adbecb20e048921ca30ed7a9f72a37b83f39a4333bd759b518',
     ]
