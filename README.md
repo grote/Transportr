@@ -36,15 +36,15 @@ Transportr is a non-profit app developed by people around the world to make usin
 
 ## Contribute
 
-Transportr is developed entirely by volunteers who like what they are doing. Contributions should be fun. They are both encouraged and appreciated. Contributing guides are written in detail on [our website](https://transportr.app/contribute/).
+Transportr is developed entirely by volunteers who like what they are doing. Contributions should be fun. They are both encouraged and appreciated. All contributing guides are written in most detail on [our website](https://transportr.app/contribute/), but some are written below:
 
-* The easiest way to contribute to Transportr is to tell everybody about it. You can post about it on social media or even better show your friends and family that it exists and how to use it.
-* If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues). Contributions are both encouraged and appreciated. Included screenshots are also always welcome to illustrate your description.
+* Share Transportr on social media or show your friends and family that it exists and how to use it.
+* If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues).
 * Rate it in Google Play and if you have a little more time also write a short review about it.
-* Rest new versions of Transportr before they are released to the general public.
+* Test new Pre-releases and beta versions of Transportr before they are released to the general public.
 * If you like to contribute please [check the website](https://transportr.app/contribute) for more information.
 * People with design skills are encouraged to contribute and help making Transportr look even better.
-
+* Translate Transportr into your native language on [Transifex](https://www.transifex.com/projects/p/transportr/).
 
 ## Building From Source
 
