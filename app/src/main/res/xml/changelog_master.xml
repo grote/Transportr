@@ -4,7 +4,7 @@
 
     <release
         version="2.1.4"
-        versioncode="123">
+        versioncode="122">
         <change>Update PTE data library, fixes issues with Berlin BVG, removes SBB</change>
     </release>
 
