@@ -36,7 +36,7 @@ Transportr is a non-profit app developed by people around the world to make usin
 
 ## Contribute
 
-Contributions should be fun. They are both encouraged and appreciated. All contributing guides are written in great detail on [our website](https://transportr.app/contribute/), but some are noted below:
+All contributing guides are written in great detail on [our website](https://transportr.app/contribute/), but some are noted below:
 
 * Share Transportr on social media or show your friends and family that it exists and how to use it.
 * If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues).
