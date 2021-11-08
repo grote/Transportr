@@ -36,13 +36,12 @@ Transportr is a non-profit app developed by people around the world to make usin
 
 ## Contribute
 
-Transportr is developed entirely by volunteers who like what they are doing. Contributions should be fun. They are both encouraged and appreciated. All contributing guides are written in most detail on [our website](https://transportr.app/contribute/), but some are written below:
+Contributions should be fun. They are both encouraged and appreciated. All contributing guides are written in great detail on [our website](https://transportr.app/contribute/), but some are noted below:
 
 * Share Transportr on social media or show your friends and family that it exists and how to use it.
 * If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues).
 * Rate it in Google Play and if you have a little more time also write a short review about it.
 * Test new Pre-releases and beta versions of Transportr before they are released to the general public.
-* If you like to contribute please [check the website](https://transportr.app/contribute) for more information.
 * People with design skills are encouraged to contribute and help making Transportr look even better.
 * Translate Transportr into your native language on [Transifex](https://www.transifex.com/projects/p/transportr/).
 
@@ -58,6 +57,28 @@ If you don't want to use an IDE like Android Studio, you can build Transportr on
 
     $ cd Transportr
     $ ./gradlew assembleRelease
+
+## Donations
+
+<table>
+  <tr>
+    <th colspan="3">Thank you for donating</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://liberapay.com/Transportr/donate/"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+    </td>
+    <td align="center">Liberapay</td>
+    <td>
+      <a href="https://liberapay.com/Transportr/donate">https://liberapay.com/Transportr/donate</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><a href="bitcoin:12JaQp8zfqRb83JfSwVjH4rZWsZnWRPoyG"><img src="https://transportr.app/img/bitcoin-qr.png" alt="bitcoin:12JaQp8zfqRb83JfSwVjH4rZWsZnWRPoyG" width="128px" height="128px"></a></td>
+    <td align="center">Bitcoin</a></td>
+    <td><a href="bitcoin:12JaQp8zfqRb83JfSwVjH4rZWsZnWRPoyG">12JaQp8zfqRb83JfSwVjH4rZWsZnWRPoyG</a></td>
+  </tr>
+</table>
 
 ## License
 
