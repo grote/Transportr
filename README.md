@@ -15,8 +15,7 @@ If you find any issues with this app, please report them at [the issue tracker](
 
 The upstream repository is at: https://github.com/grote/Transportr
 
-[![Follow @TransportrApp](artwork/twitter.png)](https://twitter.com/TransportrApp)
-
+![Twitter Follow](https://img.shields.io/twitter/follow/TransportrApp?style=social)
 ## Get Transportr
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/grote/Transportr?label=latest%20version&sort=semver)](https://github.com/grote/Transportr/releases)
