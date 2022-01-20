@@ -654,6 +654,13 @@ private val networks = arrayOf(
                         description = R.string.np_desc_usny,
                         status = ALPHA,
                         factory = { NewyorkProvider(NAVITIA) }
+                    ),
+                    TransportNetwork(
+                        id = NetworkId.WASHINGTONDC,
+                        name = R.string.np_name_WashingtonDc,
+                        description = R.string.np_desc_WashingtonDc,
+                        status = ALPHA,
+                        factory = { WashingtonDCProvider(NAVITIA) }
                     )
                 )
             ),

@@ -422,6 +422,9 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_cmta">Austin</string>
 	<string name="np_name_usny">New York and New-Jersey States</string>
 	<string name="np_desc_usny" translatable="false">MTA, CDTA, Port Authority, Staten Island Ferry, NFTA, Rockland County, Rochester-Genesee Regional Transportation Authority</string>
+	<string name="np_name_WashingtonDc">Washington DC</string>
+	<string name="np_desc_WashingtonDc">Washington DC</string>
+
 	<string name="np_name_california">California</string>
 	<string name="np_desc_california">Public transport in California (USA)</string>
 	<string name="np_name_oregon">Oregon</string>
