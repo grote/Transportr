@@ -28,7 +28,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="drawer_contributors">Příspívatelé</string>
   <string name="drawer_report_issue">Nahlásit problém</string>
   <string name="action_fav_trip">Označit cestu jako oblíbenou</string>
-  <string name="action_unfav_trip">Neoznačit cestu jako oblíbený</string>
+  <string name="action_unfav_trip">Neoznačit cestu jako oblíbenou</string>
   <string name="action_switch_locations">Přepnout z a do</string>
   <string name="trip_dep">Odjezd</string>
   <string name="trip_arr">Příjezd</string>
@@ -39,7 +39,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="action_trip_calendar">Doplnit do kalednáře</string>
   <string name="action_trip_delete">Smazat cestu</string>
   <string name="action_show_on_external_map">Zobrazit na externí mapě</string>
-  <string name="action_copy">Kopírování</string>
+  <string name="action_copy">Kopírovat</string>
   <string name="directions">Instrukce</string>
   <string name="directions_search">Vyhledat trasy</string>
   <string name="drawer_departures">Odjezdy</string>
@@ -67,21 +67,21 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="pick_network_activity">Zvolte oblast</string>
   <string name="pick_network_first_run">Vítejte v aplikaci Transportr!\n\nProsím vyberte dopravní síť z vaší oblasti, abyste mohli pokračovat. Můžete ji kdykoliv změnit. </string>
   <string name="stations_searching_position">Vyhledávání aktuální polohy #8230;</string>
-  <string name="drawer_nearby_stations">Poblíž stanice</string>
+  <string name="drawer_nearby_stations">Stanice poblíž</string>
   <string name="find_nearby_stations">Hledat stanice poblíž.</string>
   <string name="find_departures">Hledat odjezdy</string>
   <string name="share_trip_via">Sdílet cestu přes…</string>
   <string name="show_location_in">Zobrazit místo v…</string>
   <string name="more">Více</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
-  <string name="for_x_min">pro %d min</string>
-  <string name="change_time">Změnit času</string>
+  <string name="for_x_min">%d min</string>
+  <string name="change_time">Změnit čas</string>
   <string name="now">Nyní.</string>
   <string name="now_small">nyní</string>
   <string name="yesterday">Včera</string>
   <string name="today">Dnes</string>
   <string name="tomorrow">Zítra</string>
-  <string name="in_x_minutes">v %d min </string>
+  <string name="in_x_minutes">za %d min </string>
   <string name="x_minutes_ago">před %dmin</string>
   <string name="total_time">Celkový čas: %s</string>
   <string name="time_picker_previous_day">Předešlý den</string>
@@ -89,7 +89,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="ok">OK</string>
   <string name="cancel">Zrušit</string>
   <string name="pref_transport_network">Dopravní síť</string>
-  <string name="pref_display">Zobraz</string>
+  <string name="pref_display">Vzhled</string>
   <string name="pref_theme_title">Motiv</string>
   <string name="pref_theme_light">Světlý</string>
   <string name="pref_theme_dark">Tmavý</string>
@@ -99,7 +99,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="pref_directions_routing">Směry a směrování cesty.</string>
   <string name="pref_optimize">Optimalizace pro</string>
   <string name="pref_optimize_least_duration">Trvání</string>
-  <string name="pref_optimize_least_changes">Zmšny</string>
+  <string name="pref_optimize_least_changes">Změny</string>
   <string name="pref_optimize_least_walking">Chůze</string>
   <string name="pref_walk_speed">Rychlost chůze</string>
   <string name="pref_walk_speed_slow">Pomalu</string>
