@@ -288,7 +288,6 @@ Transportr сохраняет часто используемые местопо
   <string name="np_region_poland">Польша</string>
   <string name="np_desc_pl">Польша, железные дороги в Польше</string>
   <string name="np_name_pl_navitia">Городской транспорт Польши</string>
-  <string name="np_desc_pl_navitia">Варшава, Вроцлав, Щецин, Гданьск, Гдыня, Сопот</string>
   <string name="np_name_spain">Испания</string>
   <string name="np_desc_spain">Мадрид, Барселона, Страна Басков, Валенсия, Аликанте, Майорка, Менорка, Тенерифе, Ла-Пальма, Наварра</string>
   <string name="np_name_hungary">Венгрия</string>

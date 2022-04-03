@@ -296,8 +296,6 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_region_poland">Pologne</string>
   <string name="np_desc_pl">Pologne, chemins de fer en Pologne</string>
   <string name="np_name_pl_navitia">Transports municipaux de Pologne</string>
-  <string name="np_desc_pl_navitia">Varsovie, Wrocław, Szczecin, Gdańsk, Gdynia, Sopot</string>
-  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus/DLA Dlugoleka, Warbus Miekinia, ZDiTM Szczecin, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdansk</string>
   <string name="np_name_spain">Espagne</string>
   <string name="np_desc_spain">Madrid, Barcelone, Pays basque, Valence, Alicante, Majorque, Minore, Tenerife, La Palma, Navarre</string>
   <string name="np_name_hungary">Hongrie</string>

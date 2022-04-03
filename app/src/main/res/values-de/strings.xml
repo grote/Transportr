@@ -306,8 +306,6 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, Eisenbahnen in Polen</string>
   <string name="np_name_pl_navitia">Stadtverkehr in Polen</string>
-  <string name="np_desc_pl_navitia">Warschau, Breslau, Stettin, Danzig, Gdyna, Zoppot</string>
-  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Tscheschnitz, MPK Busse, MPK Straßenbahnen, Sevibus Wisznia Mala, Sevibus/DLA Langewiese, Warbus Nimkau, ZDiTM Stettin, A21 Langewiese, Masowische Eisenbahnen, Warschau Öffentlicher Verkehr (ZTM Warschau), ZKM Gdynia, ZTM Danzik</string>
   <string name="np_name_spain">Spanien</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungarn</string>
