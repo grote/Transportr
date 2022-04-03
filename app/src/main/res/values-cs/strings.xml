@@ -290,8 +290,6 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="np_region_poland">Polsko</string>
   <string name="np_desc_pl">Polsko, železniční doprava v Polsku</string>
   <string name="np_name_pl_navitia">Městská doprava Polska</string>
-  <string name="np_desc_pl_navitia">Varšava, Vratislav, Štětín, Gdaňsk, Gdyně, Sopoty</string>
-  <string name="np_desc_pl_navitia_networks">DLA / Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus / DLA Dlugoleka, Warbus Miekinia, ZDiTM Štětín, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdaňsk</string>
   <string name="np_name_spain">Španělsko</string>
   <string name="np_desc_spain">Madrid, Barcelona, ​​Baskicko, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Maďarsko</string>

@@ -299,8 +299,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_region_poland">Polònia</string>
   <string name="np_desc_pl">Polònia, trens a Polònia</string>
   <string name="np_name_pl_navitia">Transports municipals de Polònia</string>
-  <string name="np_desc_pl_navitia">Warsaw, Wroclaw, Szczecin, Gdansk, Gdynia, Sopot</string>
-  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus/DLA Dlugoleka, Warbus Miekinia, ZDiTM Szczecin, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdansk</string>
   <string name="np_name_spain">Espanya</string>
   <string name="np_desc_spain">Madrid, Barcelona, Euskadi, Val
 ència, Alacant, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>

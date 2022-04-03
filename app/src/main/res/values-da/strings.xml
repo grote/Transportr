@@ -295,8 +295,6 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_region_poland">Polen</string>
   <string name="np_desc_pl">Polen, rejse med jernbane i Polen</string>
   <string name="np_name_pl_navitia">Municipal Transports of Poland</string>
-  <string name="np_desc_pl_navitia">Warsaw, Wroclaw, Szczecin, Gdansk, Gdynia, Sopot</string>
-  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus/DLA Dlugoleka, Warbus Miekinia, ZDiTM Szczecin, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdansk</string>
   <string name="np_name_spain">Spanien</string>
   <string name="np_desc_spain">Madrid, Barcelona, Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungarn</string>

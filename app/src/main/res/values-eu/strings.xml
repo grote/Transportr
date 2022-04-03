@@ -302,8 +302,6 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_region_poland">Polonia</string>
   <string name="np_desc_pl">Polonia, Poloniako trenbideak</string>
   <string name="np_name_pl_navitia">Poloniako garraio munizipalak</string>
-  <string name="np_desc_pl_navitia">Warsaw, Wroclaw, Szczecin, Gdansk, Gdynia, Sopot</string>
-  <string name="np_desc_pl_navitia_networks">DLA/Sevibus Siechnice, MPK Autobusy, MPK Tramwaje, Sevibus Wisznia Mala, Sevibus/DLA Dlugoleka, Warbus Miekinia, ZDiTM Szczecin, A21 Dlugoleka, Koleje Mazowieckie, Warszawski Transport Publiczny (ZTM Warszawa), ZKM Gdynia, ZTM Gdansk</string>
   <string name="np_name_spain">Espainia</string>
   <string name="np_desc_spain">Madril, Bartzelona, Euskadi, Nafarroa, Valentzia, Alacant, Mallorca, Menorca, Tenerife, La Palma</string>
   <string name="np_name_hungary">Hungaria</string>
