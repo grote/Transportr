@@ -19,8 +19,12 @@
 
 package de.grobox.transportr.trips.detail
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.provider.CalendarContract.EXTRA_EVENT_BEGIN_TIME
+import android.provider.CalendarContract.EXTRA_EVENT_END_TIME
+import android.provider.CalendarContract.Events
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import de.grobox.transportr.R
@@ -51,16 +55,17 @@ internal object TripUtils {
     @JvmStatic
     fun intoCalendar(context: Context, trip: Trip?) {
         if (trip == null) throw IllegalStateException()
-        val intent = Intent(Intent.ACTION_EDIT)
-            .setType("vnd.android.cursor.item/event")
-            .putExtra("beginTime", trip.firstDepartureTime.time)
-            .putExtra("endTime", trip.lastArrivalTime.time)
-            .putExtra("title", trip.from.name + " → " + trip.to.name)
-            .putExtra("description", tripToString(context, trip))
-        if (trip.from.place != null) intent.putExtra("eventLocation", trip.from.place)
-        if (intent.resolveActivity(context.packageManager) != null) {
+        val intent = Intent(Intent.ACTION_INSERT).apply {
+            type = "vnd.android.cursor.item/event"
+            putExtra(EXTRA_EVENT_BEGIN_TIME, trip.firstDepartureTime.time)
+            putExtra(EXTRA_EVENT_END_TIME, trip.lastArrivalTime.time)
+            putExtra(Events.TITLE, trip.from.name + " → " + trip.to.name)
+            putExtra(Events.DESCRIPTION, tripToString(context, trip))
+            if (trip.from.place != null) putExtra(Events.EVENT_LOCATION, trip.from.place)
+        }
+        try {
             context.startActivity(intent)
-        } else {
+        } catch (e: ActivityNotFoundException) {
             Toast.makeText(context, context.getString(R.string.error_no_calendar), LENGTH_LONG).show()
         }
     }
