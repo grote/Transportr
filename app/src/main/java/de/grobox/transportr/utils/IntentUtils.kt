@@ -20,10 +20,13 @@
 package de.grobox.transportr.utils
 
 
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.net.Uri
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -100,20 +103,16 @@ object IntentUtils {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             data = geo
         }
-        val intents = context.packageManager.queryIntentActivities(intent, 0).mapNotNull {
-            val packageName = it.activityInfo.packageName
-            if (context.packageName != packageName)
-                Intent(intent).apply { `package` = packageName }
-            else null
-        }
-        if (intents.isEmpty()) {
+        val intentChooser = Intent.createChooser(intent,  context.getString(R.string.show_location_in))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            // exclude Transportr from list on Android >= 7
+            intentChooser.putExtra(Intent.EXTRA_EXCLUDE_COMPONENTS, arrayOf(ComponentName(context, MapActivity::class.java)))
+        try {
+            Log.d(context.javaClass.simpleName, "Starting geo intent: $geo")
+            context.startActivity(intentChooser)
+        } catch (e: ActivityNotFoundException) {
             Toast.makeText(context, context.getString(R.string.error_no_map), Toast.LENGTH_LONG).show()
-            return
         }
-        val intentChooser = Intent.createChooser(intents[0],  context.getString(R.string.show_location_in))
-        intentChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intents.drop(1).toTypedArray())
-        Log.d(context.javaClass.simpleName, "Starting geo intent: $geo")
-        context.startActivity(intentChooser)
     }
 
     @JvmStatic
