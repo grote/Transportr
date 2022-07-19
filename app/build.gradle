@@ -16,6 +16,8 @@ android {
 		compileSdkVersion 31
 		targetSdkVersion 30
 
+		multiDexEnabled true
+
 		testInstrumentationRunner 'de.grobox.transportr.MockTestRunner'
 		javaCompileOptions {
 			annotationProcessorOptions {
@@ -38,7 +40,6 @@ android {
 			resValue "string", "app_name", "Transportr Devel"
 			shrinkResources false
 			minifyEnabled false
-			multiDexEnabled true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
 			testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt', 'proguard-test.txt'
 			multiDexKeepProguard file('proguard-multidex.txt')
@@ -50,6 +51,8 @@ android {
 	}
 
 	compileOptions {
+		coreLibraryDesugaringEnabled true
+
 		targetCompatibility JavaVersion.VERSION_1_8
 		sourceCompatibility JavaVersion.VERSION_1_8
 	}
@@ -103,6 +106,8 @@ android {
 
 dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+	coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
 	implementation 'com.google.android.material:material:1.3.0'
 	implementation 'androidx.appcompat:appcompat:1.3.0'
