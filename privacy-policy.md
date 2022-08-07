@@ -1,6 +1,6 @@
 # Privacy Policy
 
-The Transportr developers do not collect any data themselves. But by using the app several personnal informations might get send to third party providers:
+The Transportr developers do not collect any data themselves. But by using the app some personal information might get send to third party providers:
 
 - your location
 - your IP address
