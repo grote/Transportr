@@ -25,4 +25,4 @@ When searching for a trip, the entered data (trip details, your IP address and t
 
 ### Map tiles
 
-The map tiles are retrived from the Mapbox API. The data they receive about you when dowloading the map is your IP address, your location and the fact you are using Transportr. For more information about how the selected transport provider stores your data, check their [privacy policy](https://www.mapbox.com/legal/privacy).
+The map tiles are retrieved from the Mapbox API. The data they receive about you when downloading the map is your IP address, the location for which you download the map (which might or not be your current location) and the fact you are using Transportr. For more information about how Mapbox uses your data, check their [privacy policy](https://www.mapbox.com/legal/privacy).
