@@ -21,7 +21,7 @@ Your location is only retrieved for the following 2 usages:
 
 ### Transport information providers
 
-When searching for a trip, the entered data (trip details (starting and ending point, date and time of travel...), your IP address and the fact you are using Transportr) will be available to the local transport provider you selected. For more information about how the selected transport provider stores your data, check their privacy policies.
+When searching for a trip, the entered data (trip details, your IP address and the fact you are using Transportr) will be available to the local transport provider you selected. For more information about how the selected transport provider stores your data, check their privacy policies.
 
 ### Map tiles
 
