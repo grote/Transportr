@@ -53,21 +53,10 @@
 	</style>
 
 	<style name="MapStyle">
-		<item name="mapbox_styleUrl">?attr/mapStyle</item>
 		<item name="mapbox_uiAttribution">false</item>
 		<item name="mapbox_uiCompass">true</item>
 		<item name="mapbox_uiLogo">false</item>
 		<item name="mapbox_uiTiltGestures">false</item>
-		<item name="mapbox_uiZoomControls">false</item>
-		<item name="mapbox_myLocation">false</item>
-	</style>
-
-	<style name="LocationLayer" parent="mapbox_LocationLayer">
-		<item name="mapbox_enableStaleState">false</item>
-	</style>
-
-	<style name="LocationLayerOld" parent="LocationLayer">
-		<item name="mapbox_foregroundDrawable">@drawable/mapbox_user_icon_old</item>
 	</style>
 
 </resources>

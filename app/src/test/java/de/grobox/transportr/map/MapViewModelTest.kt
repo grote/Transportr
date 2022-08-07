@@ -45,13 +45,13 @@ class MapViewModelTest {
     private val transportNetworkManager: TransportNetworkManager = Mockito.mock(TransportNetworkManager::class.java)
     private val locationRepository: LocationRepository = Mockito.mock(LocationRepository::class.java)
     private val searchesRepository: SearchesRepository = Mockito.mock(SearchesRepository::class.java)
-    private val gpsController: GpsController = Mockito.mock(GpsController::class.java)
+    private val positionController: PositionController = Mockito.mock(PositionController::class.java)
 
     private lateinit var viewModel: MapViewModel
 
     @Before
     fun setUp() {
-        viewModel = MapViewModel(application, transportNetworkManager, locationRepository, searchesRepository, gpsController)
+        viewModel = MapViewModel(application, transportNetworkManager, locationRepository, searchesRepository, positionController)
     }
 
     @Test

@@ -46,30 +46,26 @@ import de.schildbach.pte.dto.NearbyLocationsResult
 import de.schildbach.pte.dto.NearbyLocationsResult.Status.OK
 import javax.inject.Inject
 
-class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, OnMarkerClickListener {
+internal class MapFragment : GpsMapFragment<MapViewModel>(), LoaderCallbacks<NearbyLocationsResult>, OnMarkerClickListener {
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: MapViewModel
+    override lateinit var viewModel: MapViewModel
     private lateinit var nearbyStationsDrawer: NearbyStationsDrawer
 
     private var selectedLocationMarker: Marker? = null
-
-    override var useGeoCoder: Boolean = true
 
     override val layout: Int
         @LayoutRes
         get() = R.layout.fragment_map
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = super.onCreateView(inflater, container, savedInstanceState)
-
         component.inject(this)
-
         viewModel = ViewModelProvider(activity!!, viewModelFactory).get(MapViewModel::class.java)
-        viewModel.transportNetwork.observe(viewLifecycleOwner, Observer { onTransportNetworkChanged(it) })
-        gpsController = viewModel.gpsController
+
+        val v = super.onCreateView(inflater, container, savedInstanceState)
+        viewModel.transportNetwork.observe(viewLifecycleOwner) { onTransportNetworkChanged(it) }
 
         nearbyStationsDrawer = NearbyStationsDrawer(context)
 
@@ -83,8 +79,8 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
         val args = NearbyLocationsLoader.getBundle(location, 0)
         LoaderManager.getInstance(this).initLoader(LOADER_NEARBY_STATIONS, args, this)
 
-        mapboxMap.addOnMapClickListener { viewModel.mapClicked.call() }
-        mapboxMap.addOnMapLongClickListener { point -> viewModel.selectLocation(WrapLocation(point)) }
+        mapboxMap.addOnMapClickListener { viewModel.mapClicked.call(); false }
+        mapboxMap.addOnMapLongClickListener { point -> viewModel.selectLocation(WrapLocation(point)); false }
         mapboxMap.setOnMarkerClickListener(this)
 
         if (viewModel.transportNetworkWasChanged || mapboxMap.isInitialPosition()) {
@@ -105,14 +101,14 @@ class MapFragment : GpsMapFragment(), LoaderCallbacks<NearbyLocationsResult>, On
 
     private fun zoomInOnFreshStart() {
         // zoom to favorite locations or only current location, if no favorites exist
-        viewModel.liveBounds.observe(this, Observer { bounds ->
+        viewModel.liveBounds.observe(this) { bounds ->
             if (bounds != null) {
                 zoomToBounds(bounds)
             } else if (getLastKnownLocation() != null) {
-                zoomToMyLocation()
+                map?.zoomToMyLocation()
             }
             viewModel.liveBounds.removeObservers(this)
-        })
+        }
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {

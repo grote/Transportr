@@ -8,23 +8,16 @@
 
 	<com.mapbox.mapboxsdk.maps.MapView
 		android:id="@+id/map"
-		style="@style/MapStyle"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
+		app:mapbox_uiLogo="false"
+		app:mapbox_uiAttribution="false"
 		app:mapbox_uiCompassMarginTop="72dp"
 		app:mapbox_uiRotateGestures="true"/>
-
-	<ImageView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:padding="4dp"
-		app:layout_constraintStart_toStartOf="@+id/attribution"
-		app:layout_constraintBottom_toTopOf="@id/attribution"
-		app:srcCompat="@drawable/mapbox_logo_icon"/>
 
 	<TextView
 		android:id="@+id/attribution"
@@ -40,7 +33,7 @@
 		app:layout_constraintStart_toStartOf="@+id/map"
 		app:layout_constraintEnd_toStartOf="@id/gpsFab"
 		app:layout_constraintBottom_toBottomOf="@+id/map"
-		tools:text="© OpenStreetMap © Mapbox Improve this map"/>
+		tools:text="© JawgMaps | © OSM Contributors"/>
 
 	<com.google.android.material.floatingactionbutton.FloatingActionButton
 		android:id="@+id/gpsFab"

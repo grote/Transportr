@@ -48,7 +48,8 @@ internal class MapViewModel @Inject internal constructor(
         transportNetworkManager: TransportNetworkManager,
         locationRepository: LocationRepository,
         searchesRepository: SearchesRepository,
-        val gpsController: GpsController) : SavedSearchesViewModel(application, transportNetworkManager, locationRepository, searchesRepository) {
+        override val positionController: PositionController
+    ) : SavedSearchesViewModel(application, transportNetworkManager, locationRepository, searchesRepository), GpsMapViewModel by GpsMapViewModelImpl(positionController) {
 
     private val peekHeight = MutableLiveData<Int>()
     private val selectedLocationClicked = MutableLiveData<LatLng>()
@@ -84,7 +85,6 @@ internal class MapViewModel @Inject internal constructor(
         selectedLocation.value = location
         // do not reset the selected location right away, will break incoming geo intent
         // the observing fragment will call clearSelectedLocation() instead when it is done
-        gpsController.updateGpsState(isTracking = false)
     }
 
     fun clearSelectedLocation() {
@@ -131,7 +131,7 @@ internal class MapViewModel @Inject internal constructor(
                     .toMutableSet()
             home.value?.let { if (it.hasLocation()) points.add(it.latLng) }
             work.value?.let { if (it.hasLocation()) points.add(it.latLng) }
-            gpsController.getWrapLocation()?.let { if (it.hasLocation()) points.add(it.latLng) }
+            //locationController.getWrapLocation()?.let { if (it.hasLocation()) points.add(it.latLng) } //TODO!!!!
             if (points.size < 2) {
                 updatedLiveBounds.setValue(null)
             } else {

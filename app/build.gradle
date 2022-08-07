@@ -123,6 +123,7 @@ dependencies {
 	kapt 'androidx.room:room-compiler:2.3.0'
 	implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 
+	implementation 'com.squareup.okhttp3:okhttp:3.12.12'
 	implementation 'com.github.omadahealth:swipy:1.2.3'
 	implementation 'de.cketti.library.changelog:ckchangelog:1.2.2'
 	implementation 'com.google.android:flexbox:0.3.2'
@@ -132,9 +133,9 @@ dependencies {
 	implementation "com.mikepenz:fastadapter-commons:$fastadapterVersion"
 	implementation "com.mikepenz:fastadapter-extensions-expandable:$fastadapterVersion"
 	implementation 'uk.co.samuelwall:material-tap-target-prompt:2.14.0'
-	implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0'
-	implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.4.0'
-	implementation 'com.mapzen.android:lost:3.0.4'
+	implementation('org.maplibre.gl:android-sdk:9.5.2') {
+		exclude group: 'com.google.android.gms' // no proprietary Google libraries
+	}
 	// only added because of lint bug Timber 4.6.0
 	implementation 'com.jakewharton.timber:timber:4.7.0'
 

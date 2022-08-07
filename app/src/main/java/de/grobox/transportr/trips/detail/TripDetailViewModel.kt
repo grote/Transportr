@@ -27,7 +27,9 @@ import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.locations.WrapLocation
-import de.grobox.transportr.map.GpsController
+import de.grobox.transportr.map.GpsMapViewModel
+import de.grobox.transportr.map.GpsMapViewModelImpl
+import de.grobox.transportr.map.PositionController
 import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.networks.TransportNetworkViewModel
 import de.grobox.transportr.settings.SettingsManager
@@ -40,11 +42,13 @@ import de.schildbach.pte.dto.Trip
 import de.schildbach.pte.dto.Trip.Leg
 import javax.inject.Inject
 
-class TripDetailViewModel @Inject internal constructor(
-        application: TransportrApplication,
-        transportNetworkManager: TransportNetworkManager,
-        val gpsController: GpsController,
-        private val settingsManager: SettingsManager) : TransportNetworkViewModel(application, transportNetworkManager), LegClickListener {
+internal class TripDetailViewModel
+@Inject internal constructor(
+    application: TransportrApplication,
+    transportNetworkManager: TransportNetworkManager,
+    override val positionController: PositionController,
+    private val settingsManager: SettingsManager
+) : TransportNetworkViewModel(application, transportNetworkManager), LegClickListener, GpsMapViewModel by GpsMapViewModelImpl(positionController)  {
 
     enum class SheetState {
         BOTTOM, MIDDLE, EXPANDED
@@ -112,5 +116,4 @@ class TripDetailViewModel @Inject internal constructor(
         TripReloader(network.networkProvider, settingsManager, query, trip, errorString, tripReloadError)
                 .reload()
     }
-
 }

@@ -26,9 +26,9 @@ import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
 import de.grobox.transportr.data.locations.LocationRepository
 import de.grobox.transportr.data.searches.SearchesRepository
 import de.grobox.transportr.favorites.trips.SavedSearchesViewModel
-import de.grobox.transportr.locations.LocationLiveData
 import de.grobox.transportr.locations.LocationView.LocationViewListener
 import de.grobox.transportr.locations.WrapLocation
+import de.grobox.transportr.map.PositionController
 import de.grobox.transportr.networks.TransportNetworkManager
 import de.grobox.transportr.networks.getTransportNetwork
 import de.grobox.transportr.settings.SettingsManager
@@ -47,7 +47,7 @@ import javax.inject.Inject
 
 class DirectionsViewModel @Inject internal constructor(
     application: TransportrApplication, transportNetworkManager: TransportNetworkManager, settingsManager: SettingsManager,
-    locationRepository: LocationRepository, searchesRepository: SearchesRepository
+    locationRepository: LocationRepository, searchesRepository: SearchesRepository, private val positionController: PositionController
 ) : SavedSearchesViewModel(application, transportNetworkManager, locationRepository, searchesRepository), TimeDateListener, LocationViewListener {
 
     private val _tripsRepository: TripsRepository
@@ -55,7 +55,7 @@ class DirectionsViewModel @Inject internal constructor(
     private val _viaLocation = MutableLiveData<WrapLocation?>()
     val viaSupported: LiveData<Boolean>
     private val _toLocation = MutableLiveData<WrapLocation?>()
-    val locationLiveData = LocationLiveData(application.applicationContext)
+    val locationLiveData = positionController.positionName
     val findGpsLocation = MutableLiveData<FavLocationType?>()
     val timeUpdate = LiveTrigger()
     private val _now = MutableLiveData(true)

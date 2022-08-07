@@ -20,7 +20,7 @@ package de.grobox.transportr
 
 import android.app.Application
 import com.mapbox.mapboxsdk.Mapbox
-import com.mapbox.services.android.telemetry.MapboxTelemetry
+import com.mapbox.mapboxsdk.WellKnownTileServer
 
 open class TransportrApplication : Application() {
     lateinit var component: AppComponent
@@ -29,11 +29,7 @@ open class TransportrApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Mapbox.getInstance(
-            applicationContext,
-            "pk.eyJ1IjoidG92b2s3IiwiYSI6ImNpeTA1OG82YjAwN3YycXA5cWJ6NThmcWIifQ.QpURhF9y7XBMLmWhELsOnw"
-        )
-        MapboxTelemetry.getInstance().isTelemetryEnabled = false
+        Mapbox.getInstance(applicationContext)
 
         component = createComponent()
     }

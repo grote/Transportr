@@ -53,8 +53,8 @@ internal abstract class MapDrawer(protected val context: Context) {
     protected fun zoomToBounds(map: MapboxMap, builder: LatLngBounds.Builder, animate: Boolean) {
         try {
             val latLngBounds = builder.build()
-            val padding = context.resources.getDimensionPixelSize(R.dimen.mapPadding)
-            val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds, padding)
+            val padding = BaseMapFragment.MapPadding(map.cameraPosition.padding) + context.resources.getDimensionPixelSize(R.dimen.mapPadding)
+            val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds, padding.left, padding.top, padding.right, padding.bottom)
             if (animate) {
                 map.easeCamera(cameraUpdate, 750)
             } else {
