@@ -146,7 +146,7 @@ dependencies {
 		exclude module: 'failureaccess'
 		exclude group: 'com.google.j2objc'
 	}
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:348d7340') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:8f31d6bc') {
 		exclude group: 'com.google.guava' // included above
 		exclude group: 'org.json', module: 'json' // provided by Android
 		exclude group: 'net.sf.kxml', module: 'kxml2' // provided by Android

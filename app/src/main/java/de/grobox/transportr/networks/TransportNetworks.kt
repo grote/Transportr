@@ -757,6 +757,18 @@ private val networks = arrayOf(
                         factory = { DubProvider() }
                     )
                 )
+            ),Country(
+                R.string.np_name_israel, flag = "\uD83C\uDDEE\uD83C\uDDF1", networks = listOf(
+                    TransportNetwork(
+                        id = NetworkId.IL,
+                        name = R.string.np_name_israel,
+                        description = R.string.np_desc_israel,
+                        agencies = R.string.np_desc_israel_networks,
+                        logo = R.drawable.network_israel_logo,
+                        status = BETA,
+                        factory = { IsraelProvider(NAVITIA) }
+                    )
+                )
             )
         )
     ),

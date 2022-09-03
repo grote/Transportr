@@ -395,6 +395,11 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_hungary">Budapest, Miskolc</string>
 	<string name="np_desc_hungary_networks" translatable="false">BKK, MKV</string>
 
+	<string name="np_name_israel">Israel</string>
+	<string name="np_desc_israel">Jerusalem</string>
+	<string name="np_desc_israel_networks" translatable="false">אוטובוסים</string>
+
+
 	<string name="np_name_czechia">Czechia</string>
 	<string name="np_desc_czechia">Prague and others</string>
 	<string name="np_desc_czechia_networks" translatable="false">Dopravní podnik hl. m. Prahy, Jaroslav Štěpánek, ČSAD POLKOST, ABOUT ME s.r.o., ARRIVA CITY s.r.o, ARRIVA STŘEDNÍ ČECHY s.r.o., STENBUS s.r.o., Okresní autobusová doprava Kolín, Martin UHER, spol. s r.o., ČSAD MHD Kladno a.s., ČSAD Střední Čechy, Valenta BUS s.r.o., POHL Kladno s.r.o., AUTODOPRAVA LAMER s.r.o., Kateřina Kulhánková, ČSAD Benešov s.r.o., Vlastimil Slezák, ČSAD Česká Lípa a.s., ČSAD Slaný s.r.o., Pražské Benátky s.r.o., Pražská paroplavební společnost</string>
