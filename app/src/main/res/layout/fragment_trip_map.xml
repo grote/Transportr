@@ -17,14 +17,6 @@
 		app:layout_constraintTop_toTopOf="parent"
 		app:mapbox_uiCompassMarginTop="24dp"/>
 
-	<ImageView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:padding="4dp"
-		app:layout_constraintStart_toStartOf="@+id/attribution"
-		app:layout_constraintBottom_toTopOf="@id/attribution"
-		app:srcCompat="@drawable/mapbox_logo_icon"/>
-
 	<TextView
 		android:id="@+id/attribution"
 		android:layout_width="0dp"
