@@ -37,7 +37,7 @@ Transportr зберігає часто використовувані місця
 або докучливі сповіщення.
 Він також не використовує засоби відстеження, такі як Google Analytics, щоб шпигувати за вами.
 
-<b>🗺️ Красиві карти</b>. Відображає станції або всю поїздку на карті
+<b>🗺️ Красиві мапи</b>. Відображає станції або всю поїздку на мапі
 і завжди знає, де ви знаходитеся, щоб не проґавити зупинку.
 ]]></string>
   <string name="drawer_settings">Налаштування</string>
@@ -56,7 +56,7 @@ Transportr зберігає часто використовувані місця
   <string name="action_share">Поділитись</string>
   <string name="action_trip_calendar">Додати до календаря</string>
   <string name="action_trip_delete">Видалити маршрут</string>
-  <string name="action_show_on_external_map">Показати на зовнішній карті</string>
+  <string name="action_show_on_external_map">Показати на зовнішній мапі</string>
   <string name="action_copy">Копіювати</string>
   <string name="directions">Напрямки</string>
   <string name="directions_search">Пошук маршрутів</string>
@@ -326,7 +326,7 @@ Transportr зберігає часто використовувані місця
   <string name="maintainer">Розробник</string>
   <string name="contributors">Помічники</string>
   <string name="translators">Перекладачі</string>
-  <string name="dutch">Данська</string>
+  <string name="dutch">Голландська</string>
   <string name="french">Французька</string>
   <string name="german">Німецька</string>
   <string name="italian">Італійська</string>
@@ -348,4 +348,7 @@ Transportr зберігає часто використовувані місця
   <string name="farsi">Перська</string>
   <string name="taiwanese">Китайська (Тайвань)</string>
   <string name="swedish">Шведська</string>
+  <string name="ukrainian">Українська</string>
+  <string name="danish">Данська</string>
 </resources>
+
