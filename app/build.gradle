@@ -14,7 +14,7 @@ android {
 		applicationId "de.grobox.liberario"
 		minSdkVersion 21
 		compileSdkVersion 31
-		targetSdkVersion 30
+		targetSdkVersion 31
 
 		testInstrumentationRunner 'de.grobox.transportr.MockTestRunner'
 		javaCompileOptions {
