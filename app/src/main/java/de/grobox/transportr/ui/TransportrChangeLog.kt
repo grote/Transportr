@@ -36,22 +36,12 @@ class TransportrChangeLog(context: Context, settingsManager: SettingsManager) : 
     companion object {
 
         private fun theme(dark: Boolean): String {
-            return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                if (dark) {
-                    // holo dark
-                    "body { color: #e7e3e7; font-size: 0.9em; background-color: #292829; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
-                } else {
-                    // holo light
-                    "body { color: #212421; font-size: 0.9em; background-color: #f7f7f7; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
-                }
+            return if (dark) {
+                // material dark
+                "body { color: #f3f3f3; font-size: 0.9em; background-color: #424242; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
             } else {
-                if (dark) {
-                    // material dark
-                    "body { color: #f3f3f3; font-size: 0.9em; background-color: #424242; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
-                } else {
-                    // material light
-                    "body { color: #202020; font-size: 0.9em; background-color: transparent; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
-                }
+                // material light
+                "body { color: #202020; font-size: 0.9em; background-color: transparent; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
             }
         }
 
