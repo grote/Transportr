@@ -77,12 +77,8 @@ internal class CountryViewHolder(v: View) : ExpandableRegionViewHolder<Country>(
 
     override fun bind(region: Country, expanded: Boolean) {
         super.bind(region, expanded)
-        if (Build.VERSION.SDK_INT >= 21) {
-            flag.text = region.flag
-            flag.visibility = VISIBLE
-        } else {
-            flag.visibility = GONE
-        }
+        flag.text = region.flag
+        flag.visibility = VISIBLE
     }
 }
 
