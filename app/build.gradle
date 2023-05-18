@@ -167,5 +167,6 @@ dependencies {
 	androidTestImplementation('tools.fastlane:screengrab:1.1.0') {
 		exclude group: 'androidx.test.uiautomator' //requires minSDK >= 18
 	}
+	androidTestImplementation 'com.android.support:multidex-instrumentation:2.0.0'
 	kaptAndroidTestDebug "com.google.dagger:dagger-compiler:$daggerVersion"
 }
