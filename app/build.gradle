@@ -12,7 +12,7 @@ android {
 		versionName "2.1.4"
 
 		applicationId "de.grobox.liberario"
-		minSdkVersion 16
+		minSdkVersion 21
 		compileSdkVersion 31
 		targetSdkVersion 30
 
