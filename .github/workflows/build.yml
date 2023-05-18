@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api-level: [21, 23, 29]
+        api-level: [21, 29, 31]
 
     steps:
       - uses: actions/checkout@v2
@@ -22,11 +22,16 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: 8
+      - name: Get AVD arch
+        uses: ./.github/actions/get-avd-arch
+        id: avd-arch
+        with:
+          api-level: ${{ matrix.api-level }}
       - uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
           target: default
-          arch: x86
+          arch: ${{ steps.avd-arch.outputs.arch }}
           profile: Nexus 6
           script: ./gradlew build connectedCheck -PbuildServer -Pandroid.testInstrumentationRunnerArguments.notAnnotation=androidx.test.filters.LargeTest --stacktrace
 
