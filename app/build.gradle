@@ -38,10 +38,8 @@ android {
 			resValue "string", "app_name", "Transportr Devel"
 			shrinkResources false
 			minifyEnabled false
-			multiDexEnabled true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
 			testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt', 'proguard-test.txt'
-			multiDexKeepProguard file('proguard-multidex.txt')
 
 			lintOptions {
 				disable 'ProtectedPermissions'
@@ -167,6 +165,5 @@ dependencies {
 	androidTestImplementation('tools.fastlane:screengrab:1.1.0') {
 		exclude group: 'androidx.test.uiautomator' //requires minSDK >= 18
 	}
-	androidTestImplementation 'com.android.support:multidex-instrumentation:2.0.0'
 	kaptAndroidTestDebug "com.google.dagger:dagger-compiler:$daggerVersion"
 }

@@ -19,11 +19,9 @@
 package de.grobox.transportr
 
 import android.content.Context
-import androidx.multidex.MultiDex
 
 class TransportrDebugApplication : TransportrApplication() {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
-        MultiDex.install(this)
     }
 }
