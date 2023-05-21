@@ -5,7 +5,7 @@ The public transport companion that respects your privacy and your freedom.
 Transportr is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. 
 
 [![Transportr Logo](/app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://transportr.app)
-[![Build Status](https://travis-ci.org/grote/Transportr.svg?branch=master)](https://travis-ci.org/grote/Transportr)
+[![Build and test](https://github.com/grote/Transportr/actions/workflows/build.yml/badge.svg)](https://github.com/grote/Transportr/actions/workflows/build.yml)
 
 Please **[visit the website](https://transportr.app)** for more information!
 
@@ -50,7 +50,7 @@ If you don't want to use an IDE like Android Studio, you can build Transportr on
 License
 -------
 
-![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.html)
 
 This program is Free Software: You can use, study share and improve it at your
 will. Specifically you can redistribute and/or modify it under the terms of the
