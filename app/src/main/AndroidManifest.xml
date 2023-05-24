@@ -99,7 +99,7 @@
 
 		<service
 			android:name="com.mapzen.android.lost.internal.GeofencingIntentService"
-			android:exported="true" />
+			android:exported="false" />
 
 		<!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
 		<meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>
