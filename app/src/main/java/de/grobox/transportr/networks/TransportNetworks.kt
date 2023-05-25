@@ -161,13 +161,6 @@ private val networks = arrayOf(
                         factory = { VvoProvider(HttpUrl.parse("http://efaproxy.fahrinfo.uptrade.de/standard/")) }
                     ),
                     TransportNetwork(
-                        id = NetworkId.VMS,
-                        description = R.string.np_desc_vms,
-                        logo = R.drawable.network_vms_logo,
-                        status = BETA,
-                        factory = { VmsProvider(HttpUrl.parse("https://www.vms.de/Oeffi")) }
-                    ),
-                    TransportNetwork(
                         id = NetworkId.NASA,
                         name = R.string.np_name_nasa,
                         description = R.string.np_desc_nasa,
@@ -236,12 +229,6 @@ private val networks = arrayOf(
                         description = R.string.np_desc_vgs,
                         logo = R.drawable.network_vgs_logo,
                         factory = { VgsProvider("{\"type\":\"AID\",\"aid\":\"51XfsVqgbdA6oXzHrx75jhlocRg6Xe\"}", "HJtlubisvxiJxss".toByteArray(Charsets.UTF_8)) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.VRS,
-                        description = R.string.np_desc_vrs,
-                        logo = R.drawable.network_vrs_logo,
-                        factory = { VrsProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.VMT,
@@ -458,13 +445,6 @@ private val networks = arrayOf(
             ),
             Country(
                 R.string.np_region_poland, "🇵🇱", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.PL,
-                        name = R.string.np_name_pl,
-                        description = R.string.np_desc_pl,
-                        logo = R.drawable.network_pl_logo,
-                        factory = { PlProvider() }
-                    ),
                     TransportNetwork(
                         id = NetworkId.PLNAVITIA,
                         name = R.string.np_name_pl_navitia,
