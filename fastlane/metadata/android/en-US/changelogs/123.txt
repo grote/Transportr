@@ -1,0 +1,2 @@
+* Fixed bug where calendar and map apps are not found
+* Updated PTE data library - removed VMS, VRS, and PL

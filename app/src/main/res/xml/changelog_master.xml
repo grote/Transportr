@@ -3,6 +3,13 @@
     tools:ignore="UnusedResources">
 
     <release
+        version="2.1.5"
+        versioncode="123">
+        <change>Fixed bug where calendar and map apps are not found</change>
+        <change>Updated PTE data library - removed VMS, VRS, and PL</change>
+    </release>
+
+    <release
         version="2.1.4"
         versioncode="122">
         <change>Update PTE data library, fixes issues with Berlin BVG, removes SBB</change>
