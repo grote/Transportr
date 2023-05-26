@@ -5,8 +5,11 @@
     <release
         version="2.1.5"
         versioncode="123">
-        <change>Fixed bug where calendar and map apps are not found</change>
-        <change>Updated PTE data library - removed VMS, VRS, and PL</change>
+        <change>Add themed launcher Icons.</change>
+        <change>Bump minSDK to 21.</change>
+        <change>Fix bug where calendar and map apps are not found.</change>
+        <change>Update PTE data library - remove VMS, VRS, and PL.</change>
+        <change>Update the list of networks in Poland.</change>
     </release>
 
     <release
