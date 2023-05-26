@@ -1,2 +1,5 @@
-* Fixed bug where calendar and map apps are not found
-* Updated PTE data library - removed VMS, VRS, and PL
+* Add themed launcher Icons.
+* Bump minSDK to 21.
+* Fix bug where calendar and map apps are not found.
+* Update PTE data library - remove VMS, VRS, and PL.
+* Update the list of networks in Poland.
