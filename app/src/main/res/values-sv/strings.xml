@@ -271,11 +271,9 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Niedersachsen, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
-  <string name="np_desc_vms">Centrala Sachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Nordrhein-Westfalen, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
-  <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_vvm">Swabia, Mellersta Swabia, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Sachsen, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -298,7 +296,6 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_name_nz">Nya Zeeland</string>
   <string name="np_desc_nz">Nya Zeeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
-  <string name="np_desc_pl">Polen, järnvägar i Polen</string>
   <string name="np_name_pl_navitia">Kommunala transportmedel i Polen</string>
   <string name="np_name_spain">Spanien</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baskien, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma, Navarra</string>

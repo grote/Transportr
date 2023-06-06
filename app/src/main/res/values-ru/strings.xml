@@ -259,11 +259,9 @@ Transportr сохраняет часто используемые местопо
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Нижняя Саксония, Бремен, Bremerhaven, Ольденбург (Oldenburg), Оснабрюк</string>
   <string name="np_desc_vgn">Nuremberg, Фюрт, Эрланген, Байройт, Бамберг, Город Швабах</string>
   <string name="np_desc_vgs">Саар, Саарбрюккен</string>
-  <string name="np_desc_vms">Средняя Саксония, Хемниц</string>
   <string name="np_desc_vmv">Мекленбург-Передняя Померания, Шверин</string>
   <string name="np_desc_vrn">Баден-Вюртемберг, Rhineland-Palatinate, Мангейм, Майнц, Трир</string>
   <string name="np_desc_vrr">Северный Рейн-Вестфалия, Кельн, Бонн, Эссен, Дортмунд, Дюссельдорф, Мюнстер, Падерборн, Хекстер</string>
-  <string name="np_desc_vrs">Кельн, Бонн</string>
   <string name="np_desc_vvm">Швабия, центральная Швабия, Крумбах, Гюнцбург, Мемминген</string>
   <string name="np_desc_vvo">Саксония, Дрезден</string>
   <string name="np_desc_vvs">Баден-Вюртемберг, Штутгарт</string>
@@ -286,7 +284,6 @@ Transportr сохраняет часто используемые местопо
   <string name="np_name_nz">Новая Зеландия</string>
   <string name="np_desc_nz">Новая Зеландия, Веллингтон, Окленд</string>
   <string name="np_region_poland">Польша</string>
-  <string name="np_desc_pl">Польша, железные дороги в Польше</string>
   <string name="np_name_pl_navitia">Городской транспорт Польши</string>
   <string name="np_name_spain">Испания</string>
   <string name="np_desc_spain">Мадрид, Барселона, Страна Басков, Валенсия, Аликанте, Майорка, Менорка, Тенерифе, Ла-Пальма, Наварра</string>

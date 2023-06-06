@@ -213,11 +213,9 @@
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxônia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nurembergue, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
-  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Renânia-Palatinado, Mannheim, Mainz, Tréveris</string>
   <string name="np_desc_vrr">Renânia do Norte - Vestfália, Colônia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
-  <string name="np_desc_vrs">Colônia, Bonn</string>
   <string name="np_desc_vvm">Suábia, </string>
   <string name="np_desc_vvo">Saxônia, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -239,7 +237,6 @@
   <string name="np_name_nz">Nova Zelândia </string>
   <string name="np_desc_nz">Nova Zelândia, Welligton, Auckland</string>
   <string name="np_region_poland">Polônia</string>
-  <string name="np_desc_pl">Polônia, ferrovias na Polônia</string>
   <string name="np_name_pl_navitia">Transportes Municipais da Polônia</string>
   <string name="np_name_spain">Espanha</string>
   <string name="np_name_hungary">Hungria</string>

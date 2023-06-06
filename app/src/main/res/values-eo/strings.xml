@@ -258,11 +258,9 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_desc_vgn">Nurenbergo, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Sarlando, Saarbrücken</string>
-  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Meklenburg-Antaŭpomerio, Schwerin</string>
   <string name="np_desc_vrn">Baden-Virtembergo, Rejnland-Palatinato, Manhejmo, Majenco, Treviro</string>
   <string name="np_desc_vrr">Nordrejn-Vestfalujo, Kolonjo, Bonn, Essen, Dortmund, Duseldorfo, Münster, Paderborn, Höxter</string>
-  <string name="np_desc_vrs">Kolonjo, Bonn</string>
   <string name="np_desc_vvm">Ŝvabujo, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saksujo, Dresdeno</string>
   <string name="np_desc_vvs">Baden-Virtembergo, Stutgarto</string>
@@ -285,7 +283,6 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
   <string name="np_name_nz">Nov-Zelando</string>
   <string name="np_desc_nz">Nov-Zelando, Velingtono, Auckland</string>
   <string name="np_region_poland">Polujo</string>
-  <string name="np_desc_pl">Polujo, fervojo en Polujo</string>
   <string name="np_name_pl_navitia">Urbaj transport-retoj en Polujo</string>
   <string name="np_name_spain">Hispanujo</string>
   <string name="np_desc_spain">Madrido, Barcelono, Eŭskujo, Valencio, Alakanto, Majorko, Minorko, Tenerifo, La Palma, Navaro</string>

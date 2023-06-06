@@ -261,11 +261,9 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="np_desc_vgn">Norimberk, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Sársko, Saarbrücken</string>
-  <string name="np_desc_vms">Střední Sasko, Chemnitz</string>
   <string name="np_desc_vmv">Meklenbursko-Přední Pomořansko, Schwerin</string>
   <string name="np_desc_vrn">Bádensko-Württembersko, Porýní-Falc, Mannheim, Mohuč, Trier</string>
   <string name="np_desc_vrr">Severní Porýní-Vestfálsko, Kolín nad Rýnem, Bonn, Essen, Dortmund, Dusseldorf, Munster, Paderborn, Höxter</string>
-  <string name="np_desc_vrs">Kolín nad Rýnem, Bonn</string>
   <string name="np_desc_vvm">Švábsko, Střední Švábsko, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Sasko, Drážďany</string>
   <string name="np_desc_vvs">Bádensko-Württembersko, Stuttgart</string>
@@ -288,7 +286,6 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="np_name_nz">Nový Zéland</string>
   <string name="np_desc_nz">Nový Zéland, Wellington, Auckland</string>
   <string name="np_region_poland">Polsko</string>
-  <string name="np_desc_pl">Polsko, železniční doprava v Polsku</string>
   <string name="np_name_pl_navitia">Městská doprava Polska</string>
   <string name="np_name_spain">Španělsko</string>
   <string name="np_desc_spain">Madrid, Barcelona, ​​Baskicko, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>

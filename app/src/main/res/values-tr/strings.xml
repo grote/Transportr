@@ -193,11 +193,9 @@
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
-  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Kuzey Rhine-Westphalia, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
-  <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saksonya, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -219,7 +217,6 @@
   <string name="np_name_nz">Yeni Zelanda</string>
   <string name="np_desc_nz">Yeni Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonya</string>
-  <string name="np_desc_pl">Polonya, Polonya demiryolları</string>
   <string name="np_name_spain">İspanya</string>
   <string name="np_desc_spain">Madrid, Barselona, Bask Ülkesi, Valensiya, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Macaristan</string>
