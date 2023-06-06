@@ -273,11 +273,9 @@ De asemenea nu foloseşte tool-uri precum Google Analytics pentru a te spiona.
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
-  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Renania de Nord-Westfalia, Koln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
-  <string name="np_desc_vrs">Koln, Bonn</string>
   <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saxonia, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -300,7 +298,6 @@ De asemenea nu foloseşte tool-uri precum Google Analytics pentru a te spiona.
   <string name="np_name_nz">Noua Zeelandă</string>
   <string name="np_desc_nz">Noua Zeelandă, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
-  <string name="np_desc_pl">Polonia, trenuri în Polonia</string>
   <string name="np_name_pl_navitia">Transport municipal în Polonia</string>
   <string name="np_name_spain">Spania</string>
   <string name="np_desc_spain">Madrid, Barcelona, Țara Bascilor, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
