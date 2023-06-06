@@ -258,11 +258,9 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_vgn">Neurenberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
-  <string name="np_desc_vms">Mittelsachsen, Chemnitz</string>
   <string name="np_desc_vmv">Mecklenburg-Voor-Pommeren, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rijnland-Palts, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Noordrijn-Westfalen, Keulen, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
-  <string name="np_desc_vrs">Keulen, Bonn</string>
   <string name="np_desc_vvm">Zwaben, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saksen, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -285,7 +283,6 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_name_nz">Nieuw-Zeeland</string>
   <string name="np_desc_nz">Nieuw-Zeeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
-  <string name="np_desc_pl">Polen, spoorwegen in Polen</string>
   <string name="np_name_pl_navitia">Gemeentelijk vervoer in Polen</string>
   <string name="np_name_spain">Spanje</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>

@@ -273,11 +273,9 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_vgn">Norimberga, Fürth, Erlangen, Bayreuth, Bamberga, Schwabach</string>
   <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
-  <string name="np_desc_vms">Sassonia Centrale, Chemnitz</string>
   <string name="np_desc_vmv">Meclemburgo-Pomerania anteriore, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Renania-Palatinato, Mannheim, Magonza, Treviri</string>
   <string name="np_desc_vrr">Renania Settentrionale-Vestfalia, Colonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
-  <string name="np_desc_vrs">Colonia, Bonn</string>
   <string name="np_desc_vvm">Svevia, Medio Svevia, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Sassonia, Dresda</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stoccarda</string>
@@ -300,7 +298,6 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_name_nz">Nuova Zelanda</string>
   <string name="np_desc_nz">Nuova Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
-  <string name="np_desc_pl">Polonia, ferrovie in Polonia</string>
   <string name="np_name_pl_navitia">Trasporti comunali della Polonia</string>
   <string name="np_name_spain">Spagna</string>
   <string name="np_desc_spain">Madrid, Barcellona, Paesi Baschi, Valencia, Alicante, Maiorca, Menorca, Tenerife, La Palma, Navarra</string>

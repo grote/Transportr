@@ -254,11 +254,9 @@
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Κάτω Σαξωνία, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Νυρεμβέργη, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
   <string name="np_desc_vgs">Σάαρλαντ, Σααρμπρύκεν</string>
-  <string name="np_desc_vms">Mittelsachsen, Κέμνιτς</string>
   <string name="np_desc_vmv">Μεκλεμβούργο-Δυτικής Πομερανίας, Schwerin</string>
   <string name="np_desc_vrn">Μπάντεν-Βυρτεμβέργη, Ρηνανία-Παλατινάτο, Μανχάιμ, Mainz, Trier</string>
   <string name="np_desc_vrr">Βόρεια Ρηνανία-Βεστφαλία, Κολωνία, Βόνη, Έσσεν, Ντόρτμουντ, Ντίσελντορφ, Μόναχο, Πάντερμπορν, Χόκερ</string>
-  <string name="np_desc_vrs">Κολωνία, Βόνη</string>
   <string name="np_desc_vvm">Σβάμπα, Κεντρική Σβάμπα,, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Σαξονία, Δρέσδη</string>
   <string name="np_desc_vvs">Μπάντεν-Βυρτεμβέργη, Στουτγάρδη</string>
@@ -281,7 +279,6 @@
   <string name="np_name_nz">Νέα Ζηλανδία</string>
   <string name="np_desc_nz">Νέα Ζηλανδία, Ουέλιγκτον, Όκλαντ</string>
   <string name="np_region_poland">Πολωνία</string>
-  <string name="np_desc_pl">Πολωνία, αυτοκινητόδρομοι στην Πολωνία</string>
   <string name="np_name_spain">Ισπανία</string>
   <string name="np_desc_spain">Μαδρίτη, Βαρκελώνη, Κομητεία Βάσκων, Βαλένθια, Αλικάντε, Μαλόρκα, Μενόρκα, Τενερίφη, Λα Πάλμα, Ναβάρα</string>
   <string name="np_region_sweden">Σουηδία</string>
