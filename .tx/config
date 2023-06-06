@@ -1,10 +1,11 @@
 [main]
-host = https://www.transifex.com
+host     = https://www.transifex.com
 lang_map = pt_BR: pt-rBR, zh_TW: zh-rTW
 
-[transportr.strings]
-file_filter = app/src/main/res/values-<lang>/strings.xml
-source_lang = en
-source_file = app/src/main/res/values/strings.xml
-type = ANDROID
+[o:grobox:p:transportr:r:strings]
+file_filter  = app/src/main/res/values-<lang>/strings.xml
+source_file  = app/src/main/res/values/strings.xml
+source_lang  = en
+type         = ANDROID
 minimum_perc = 95
+
