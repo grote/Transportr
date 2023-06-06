@@ -1,5 +1,4 @@
-* Add themed launcher Icons.
-* Bump minSDK to 21.
+* Support themed adaptive app icon.
+* Require at least Android 5 now.
 * Fix bug where calendar and map apps are not found.
-* Update PTE data library - remove VMS, VRS, and PL.
-* Update the list of networks in Poland.
+* Update PTE data library - remove VMS (Mittelsachsen, Chemnitz), VRS (Cologne, Bonn), and PKP (Poland, railways in Poland).
