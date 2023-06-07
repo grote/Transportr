@@ -63,7 +63,6 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="drawer_departures">Irteerak</string>
   <string name="tab_about">Honi buruz</string>
   <string name="tab_libraries">Liburutegiak</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\Software lizentzia librea: GPLv3+</string>
   <string name="about_description">Transportr garraio publikorako aplikazio lagungarri bat da, mundu osoko jendeak garatutakoa, garraio publikoa erabiltzea ahalik eta errazena izan dadin zauden tokian zaudela.</string>
   <string name="about_warning_title">Abisua</string>
   <string name="about_warning_text">Ezin da bermatu (kanpotik eskuratutako) informazioaren zehaztasuna. Erabili aplikazio hau zure ardurapean.</string>

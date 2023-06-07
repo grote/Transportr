@@ -67,12 +67,13 @@ hogy hol kell leszállnia a buszról…
   <string name="drawer_departures">Indulások</string>
   <string name="tab_about">Névjegy</string>
   <string name="tab_libraries">Programkönyvtárak</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+</string>
+  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nSzabad szoftver licenc: GPLv3+</string>
   <string name="about_description">A Transportr egy olyan tömegközlekedési segéd, amelyet az emberek a világ minden tájáról azért fejlesztenek, hogy a tömegközlekedést a lehető legegyszerűbbé tegyek, bárhol is legyen.</string>
   <string name="about_warning_title">Figyelmeztetés</string>
   <string name="about_warning_text">Nincs garancia a (kívülről érkező) adatok helyességére. Ezt az alkalmazást csak saját felelősségére használja!</string>
   <string name="about_contributions">Ez az alkalmazás szabad szoftver, így szabadon használhatja, tanulmányozhatja, megoszthatja és továbbfejlesztheti. A hozzájárulását szorgalmazzák és megköszönik. Ha szeretne közreműködni, akkor látogassa meg a honlapot a további információkért.</string>
   <string name="about_visit_website">Weblap megtekintése</string>
+  <string name="map_attribution_improve">Térkép továbbfejlesztése</string>
   <string name="open_navigation_drawer">Navigációs fiók megnyitása</string>
   <string name="from">Kiindulópont</string>
   <string name="to">Célpont</string>
@@ -92,6 +93,7 @@ hogy hol kell leszállnia a buszról…
   <string name="find_nearby_stations">Közeli megállók keresése</string>
   <string name="find_departures">Indulások keresése</string>
   <string name="share_trip_via">Útvonal megosztása…</string>
+  <string name="show_location_in">Hely megjelenítése…</string>
   <string name="more">Több</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">%d perc</string>
@@ -101,7 +103,7 @@ hogy hol kell leszállnia a buszról…
   <string name="yesterday">Tegnap</string>
   <string name="today">Ma</string>
   <string name="tomorrow">Holnap</string>
-  <string name="in_x_minutes">%d perce</string>
+  <string name="in_x_minutes">%d percen belül</string>
   <string name="x_minutes_ago">%d perce</string>
   <string name="total_time">Teljes idő: %s</string>
   <string name="time_picker_previous_day">Előző nap</string>
@@ -113,6 +115,8 @@ hogy hol kell leszállnia a buszról…
   <string name="pref_theme_title">Téma</string>
   <string name="pref_theme_light">Világos</string>
   <string name="pref_theme_dark">Sötét</string>
+  <string name="pref_theme_auto_battery">Akkumulátoroptimalizálás által beálítva</string>
+  <string name="pref_theme_auto_system">Rendszer alapértelmezése</string>
   <string name="pref_language_title">Nyelv</string>
   <string name="pref_directions_routing">Útvonalválasztás és irányok</string>
   <string name="pref_optimize">Optimalizálás erre</string>
@@ -133,6 +137,7 @@ hogy hol kell leszállnia a buszról…
   <string name="error_find_nearby_stations">Nem sikerült megtalálni a közeli megállókat</string>
   <string name="error_departures">Nem sikerül megtalálni egyetlen indulást sem</string>
   <string name="error_no_calendar">Nincs telepített naptáralkalmazás :(</string>
+  <string name="error_no_map">Nincs külső térkép telepítve :(</string>
   <string name="trip_error_ambiguous">Nem sikerült megtalálni a helyet. Próbáljon meg eltérő helyeket keresni.</string>
   <string name="trip_error_too_close">A „kiindulópont” és a „célpont” helyek túl közel vannak egymáshoz.</string>
   <string name="trip_error_unknown_from">Nem sikerült megtalálni a „kiindulópont” helyet. Próbáljon egy másikat.</string>
@@ -221,6 +226,7 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_br_floripa">Sok buszútvonal, Executivos nélkül</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Waterloo régi</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Brit Columbia</string>
@@ -250,6 +256,8 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Németország</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aachen</string>
   <string name="np_desc_bayern">Bajorország, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
@@ -266,9 +274,12 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hessen, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Flensburg, Lübeck</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Alsó-Szászország, Bréma, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nürnberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Saar-vidék, Saarbrücken</string>
   <string name="np_desc_vmv">Mecklenburg-Elő-Pomeránia, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rajna-vidék-Pfalz, Mannheim, Mainz, Trier</string>
@@ -315,6 +326,9 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_dub">Egyesült Arab Emírségek, Dubaj</string>
   <string name="np_region_usa">Amerikai Egyesült Államok</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">New York és New-Jersey államok</string>
   <string name="np_name_california">Kalifornia</string>
   <string name="np_desc_california">Tömegközlekedés Kaliforniában (USA)</string>

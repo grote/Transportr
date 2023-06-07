@@ -24,8 +24,8 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
 ]]></string>
   <string name="drawer_settings">Nastavení</string>
   <string name="drawer_changelog">Seznam změn</string>
-  <string name="drawer_about">O</string>
-  <string name="drawer_contributors">Příspívatelé</string>
+  <string name="drawer_about">O aplikaci</string>
+  <string name="drawer_contributors">Přispěvatelé</string>
   <string name="drawer_report_issue">Nahlásit problém</string>
   <string name="action_fav_trip">Označit cestu jako oblíbenou</string>
   <string name="action_unfav_trip">Neoznačit cestu jako oblíbený</string>
@@ -33,17 +33,17 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="trip_dep">Odjezd</string>
   <string name="trip_arr">Příjezd</string>
   <string name="action_refresh">Obnovit</string>
-  <string name="action_navigation_expand">Zorazit Via</string>
+  <string name="action_navigation_expand">Zobrazit Přes</string>
   <string name="action_choose_products">Dopravní prostředky</string>
   <string name="action_share">Sdílet</string>
-  <string name="action_trip_calendar">Doplnit do kalednáře</string>
+  <string name="action_trip_calendar">Přidat do kalednáře</string>
   <string name="action_trip_delete">Smazat cestu</string>
   <string name="action_show_on_external_map">Zobrazit na externí mapě</string>
   <string name="action_copy">Kopírování</string>
   <string name="directions">Instrukce</string>
   <string name="directions_search">Vyhledat trasy</string>
   <string name="drawer_departures">Odjezdy</string>
-  <string name="tab_about">O</string>
+  <string name="tab_about">O aplikaci</string>
   <string name="tab_libraries">Knihovny</string>
   <string name="about_copyright">© 2013 – 2021 Torsten Grote\nSvobodná softwarová licence: GPLv3+</string>
   <string name="about_description">Transportr je společník veřejné dopravy vyvinutý všemi lidmi po celém světě, aby využil veřejnou dopravu co nejjednodušší, ať jste kdekoli.</string>
@@ -52,7 +52,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="about_contributions">Tato aplikace je svobodný software, takže můžete volně používat, studovat, sdílet a vylepšovat. Příspěvky jsou podporovány a oceňovány. Pokud chcete přispět, navštivte prosím domovskou stránku, kde naleznete další informace.</string>
   <string name="about_visit_website">Navštívit webové stránky</string>
   <string name="map_attribution_improve">Vylepšit tuto mapu</string>
-  <string name="open_navigation_drawer">Otevřít navigační zásuvku</string>
+  <string name="open_navigation_drawer">Otevřít navigační panel</string>
   <string name="from">Z</string>
   <string name="to">Do</string>
   <string name="via">Přes</string>
@@ -67,7 +67,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="pick_network_activity">Zvolte oblast</string>
   <string name="pick_network_first_run">Vítejte v aplikaci Transportr!\n\nProsím vyberte dopravní síť z vaší oblasti, abyste mohli pokračovat. Můžete ji kdykoliv změnit. </string>
   <string name="stations_searching_position">Vyhledávání aktuální polohy #8230;</string>
-  <string name="drawer_nearby_stations">Poblíž stanice</string>
+  <string name="drawer_nearby_stations">Stanice v okolí</string>
   <string name="find_nearby_stations">Hledat stanice poblíž.</string>
   <string name="find_departures">Hledat odjezdy</string>
   <string name="share_trip_via">Sdílet cestu přes…</string>
@@ -84,7 +84,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="in_x_minutes">v %d min </string>
   <string name="x_minutes_ago">před %dmin</string>
   <string name="total_time">Celkový čas: %s</string>
-  <string name="time_picker_previous_day">Předešlý den</string>
+  <string name="time_picker_previous_day">Předchozí den</string>
   <string name="time_picker_next_day">Další den</string>
   <string name="ok">OK</string>
   <string name="cancel">Zrušit</string>
@@ -97,14 +97,14 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="pref_theme_auto_system">Výchozí nastavení systému</string>
   <string name="pref_language_title">Jazyk</string>
   <string name="pref_directions_routing">Směry a směrování cesty.</string>
-  <string name="pref_optimize">Optimalizace pro</string>
-  <string name="pref_optimize_least_duration">Trvání</string>
-  <string name="pref_optimize_least_changes">Zmšny</string>
-  <string name="pref_optimize_least_walking">Chůze</string>
+  <string name="pref_optimize">Optimalizovat na</string>
+  <string name="pref_optimize_least_duration">Nejkratší čas cesty</string>
+  <string name="pref_optimize_least_changes">Nejméně přestupů</string>
+  <string name="pref_optimize_least_walking">Nejméně chůze</string>
   <string name="pref_walk_speed">Rychlost chůze</string>
-  <string name="pref_walk_speed_slow">Pomalu</string>
-  <string name="pref_walk_speed_normal">Normalně</string>
-  <string name="pref_walk_speed_fast">Rychle</string>
+  <string name="pref_walk_speed_slow">Pomalá</string>
+  <string name="pref_walk_speed_normal">Normální</string>
+  <string name="pref_walk_speed_fast">Rychlá</string>
   <string name="pref_show_when_locked_title">Zobrazte výlet a výsledky vyhledávání, i když je obrazovka uzamčena.</string>
   <string name="pref_show_when_locked_summary">Zobrazte obrazovku uzamčení</string>
   <string name="error">Chyba</string>
@@ -112,21 +112,21 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="error_connection_failure">Připojení se nezdařilo. Prosím zkuste to znovu. </string>
   <string name="error_trip_refresh_failed">Nepodařilo se aktualizovat data pro aktuální cestu.</string>
   <string name="error_geo_intent">Nelze otevřít externí umístění</string>
-  <string name="error_find_nearby_stations">Nedaleké stanice nebyly nalezeny</string>
+  <string name="error_find_nearby_stations">Stanice v okolí nebyly nalezeny</string>
   <string name="error_departures">Nelze najít žádné odjezdy</string>
   <string name="error_no_calendar">Není nainstalován žádný kalendář :(</string>
   <string name="error_no_map">Není nainstalována žádná externí mapa :(</string>
   <string name="trip_error_ambiguous">Nelze najít místo. Zkuste zkusit vyhledávání s různými místy.</string>
-  <string name="trip_error_too_close">oloha \"od\" a \"do\" jsou příliš blízko.</string>
-  <string name="trip_error_unknown_from">Nelze najít \"z\" umístění. Zkuste prosím jinou.</string>
-  <string name="trip_error_unknown_via">Nelze najít lokalitu \"přes\". Zkuste prosím jinou.</string>
-  <string name="trip_error_unknown_to">Nelze najít umístění \'do\'. Zkuste prosím jinou.</string>
+  <string name="trip_error_too_close">poloha \"od\" a \"do\" jsou příliš blízko.</string>
+  <string name="trip_error_unknown_from">Nelze najít \\"z\\" umístění. Zkuste prosím jinou.</string>
+  <string name="trip_error_unknown_via">Nelze najít lokalitu \\"přes\\". Zkuste prosím jinou.</string>
+  <string name="trip_error_unknown_to">Nelze najít umístění \\"do\\". Zkuste prosím jinou.</string>
   <string name="trip_error_unresolvable_address">Nelze najít zadanou adresu. Zkuste prosím jinou.</string>
   <string name="trip_error_no_trips">Žádné spojení nebylo nalezeno :(</string>
   <string name="trip_error_invalid_date">Datum hledání momentálně není podporován poskytovatelem dat. Zkuste prosím jiný den.</string>
   <string name="trip_error_service_down">Poskytovatel dat je momentálně mimo provoz: (zkuste to prosím znovu později.</string>
-  <string name="trip_error_pte">Chcete-li tuto chybu nahlásit, oznamte ji prosím přímo agentuře veřejné dopravy a přiložte snímek obrazovky. %1$s</string>
-  <string name="trip_issue">S tímto připojením může být problém.</string>
+  <string name="trip_error_pte">Chcete-li tuto chybu nahlásit, oznamte ji prosím přímo %1$s a přiložte snímek obrazovky.</string>
+  <string name="trip_issue">S tímto spojením může být problém.</string>
   <string name="trip_not_travelable">Nemožné nebo zrušené</string>
   <string name="try_again">Zkuste to znovu</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
@@ -144,7 +144,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="times_include_delays">(Upozornění: časy mohou zahrnovat hlášené zpoždění)</string>
   <string name="created_by">Vytvořil %s</string>
   <string name="home">Domů</string>
-  <string name="home_dialog_title">Nastavte vaši domácí pozici</string>
+  <string name="home_dialog_title">Nastavte polohu domova</string>
   <string name="widget_name_quickhome">Dostaň mě domů</string>
   <string name="work">Práce</string>
   <string name="work_hint">Nastavte polohu pracoviště</string>
@@ -155,7 +155,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="action_set_locations">Editace vyhledávání</string>
   <string name="action_swap_locations">Zobrazit zpáteční cestu</string>
   <string name="action_change">Změna</string>
-  <string name="action_add_shortcut">Přidat zástupce Launcher</string>
+  <string name="action_add_shortcut">Přidat zástupce na Plochu</string>
   <string name="location_gps">Použít aktuální pozici.</string>
   <string name="warning_no_gps_fix">Vaši pozici zatím nebylo možné najít.</string>
   <string name="permission_denied_gps">Neumožnil jste přístup k vaší poloze, takže tato funkce nebude fungovat. Prosím udělit oprávnění v nastavení aplikace.</string>
@@ -253,7 +253,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="np_desc_nasa">Sasko, Lipsko, Sasko-Anhaltsko, Magdeburg, Halle</string>
   <string name="np_desc_nvbw">Bádensko-Württembersko, Kostnice, Basilej, Basilej-město, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesensko, Frankfurt nad Mohanem, Kassel</string>
-  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Roztoky</string>
+  <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
   <string name="np_name_sh">NAH.SH</string>
   <string name="np_desc_sh">Šlesvicko-Holštýnsko, Kiel, Flensburg, Lübeck</string>
   <string name="np_desc_vbb">Braniborsko, Berlín</string>

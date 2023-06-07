@@ -67,12 +67,13 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="drawer_departures">Sortides</string>
   <string name="tab_about">Sobre</string>
   <string name="tab_libraries">Biblioteques</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+</string>
+  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nFree Software License: GPLv3+</string>
   <string name="about_description">Transportr és un assistent de transport públic desenvolupat per persones de tot el món per fer que utilitzar el transport públic sigui el més fàcil possible allà on estiguis.</string>
   <string name="about_warning_title">Avís</string>
   <string name="about_warning_text">No es garanteix la correcció de les dades (donades externament). Utilitza aquesta aplicació només sota el teu propi risc.</string>
   <string name="about_contributions">Aquesta aplicació és programari lliure, de manera que pots utilitzar-lo, estudiar-lo, compartir-lo i millorar-lo. Animem a fer aportacions i les apreciem. Si vols contribuir, visita la pàgina d\'inici per obtenir més informació.</string>
   <string name="about_visit_website">Visitar web</string>
+  <string name="map_attribution_improve">Millora aquest mapa</string>
   <string name="open_navigation_drawer">Obrir el dibuixador de navegació</string>
   <string name="from">De</string>
   <string name="to">Cap a</string>
@@ -92,6 +93,7 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="find_nearby_stations">Trobar estacions properes</string>
   <string name="find_departures">Trobar sortides</string>
   <string name="share_trip_via">Compartir trajecte via…</string>
+  <string name="show_location_in">Mostra la localització a...</string>
   <string name="more">Més</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">per %dmin</string>
@@ -113,6 +115,8 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="pref_theme_title">Interfície</string>
   <string name="pref_theme_light">Clar</string>
   <string name="pref_theme_dark">Fosc</string>
+  <string name="pref_theme_auto_battery">Estableix per l\'estalvi de bateria</string>
+  <string name="pref_theme_auto_system">Per defecte del sistema</string>
   <string name="pref_language_title">Idioma</string>
   <string name="pref_directions_routing">Rutejat de direccions i trajectes</string>
   <string name="pref_optimize">Optimitzar per</string>
@@ -133,6 +137,7 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="error_find_nearby_stations">No es poden trobar les estacions més properes</string>
   <string name="error_departures">No es troba cap sortida</string>
   <string name="error_no_calendar">No hi ha cap calendari instal·lat :(</string>
+  <string name="error_no_map">No s\'ha instal·lat cap mapa extern :(</string>
   <string name="trip_error_ambiguous">No s\'ha pogut trobar la ubicació. Prova de cercar amb diferents ubicacions.</string>
   <string name="trip_error_too_close">Les ubicacións \'De\' i \'Cap a\' estan massa a prop.</string>
   <string name="trip_error_unknown_from">No s\'ha pogut trobar la ubicació \"De\". Prova\'n un altre.</string>
@@ -221,6 +226,7 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_desc_br_floripa">Vàries rutes, no \"executivos\"</string>
   <string name="np_region_canada">Canadà</string>
   <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Regió de Waterloo</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">Colúmbia Britànica</string>
@@ -250,6 +256,8 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Alemanya</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aachen</string>
   <string name="np_desc_bayern">Baviera, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlín</string>
@@ -266,9 +274,12 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Flensburg, Lübeck</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Baixa Saxònia, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
@@ -316,6 +327,9 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_desc_dub">Emirats Àrabs Units, Dubai</string>
   <string name="np_region_usa">Estats Units d\'Amèrica</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_name_cmta">Capital Metro</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">Estats de New York i New-Jersey</string>
   <string name="np_name_california">Califòrnia</string>
   <string name="np_desc_california">Transport públic a Califòrnia (EUA)</string>
@@ -352,4 +366,5 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="taiwanese">Xinès (Taiwan)</string>
   <string name="swedish">Suec</string>
   <string name="ukrainian">Ucraïnès</string>
+  <string name="danish">Danish</string>
 </resources>
