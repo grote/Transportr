@@ -63,7 +63,6 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="drawer_departures">Avgångar</string>
   <string name="tab_about">Om</string>
   <string name="tab_libraries">Bibliotek</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nLicens för fri programvara: GPLv3+</string>
   <string name="about_description">Transportr är en kollektivtrafikshjälpmedel som utvecklats av personer runt om i världen för att göra användning av kollektivtrafik så enkelt som möjligt var du än befinner dig.</string>
   <string name="about_warning_title">Varning</string>
   <string name="about_warning_text">Det finns ingen garanti för att uppgifterna (externt tillhandahållna) är korrekta. Använd denna app endast på egen risk.</string>

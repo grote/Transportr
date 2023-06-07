@@ -57,12 +57,12 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="drawer_departures">Salidas</string>
   <string name="tab_about">Acerca de</string>
   <string name="tab_libraries">Bibliotecas de software</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nLicencia de software libre: GPLv3+</string>
   <string name="about_description">Transportr es un asistente de transporte público desarrollado por personas de todas las partes del mundo para facilitar al máximo el uso del trasporte público allá donde estés.</string>
   <string name="about_warning_title">Advertencia</string>
   <string name="about_warning_text">No hay garantía en la exactitud de los datos (proporcionados por terceros). Use esta aplicación bajo su propia responsabilidad, por favor.</string>
   <string name="about_contributions">Esta aplicación es software libre, así que puedes usarla, estudiarla, compartirla y mejorarla a voluntad. Apoyamos y apreciamos toda colaboración. Si deseas contribuir, visita el sitio web para más información.</string>
   <string name="about_visit_website">Visitar sitio web</string>
+  <string name="map_attribution_improve">Mejorar este mapa</string>
   <string name="open_navigation_drawer">Abrir panel de navegación</string>
   <string name="from">Desde</string>
   <string name="to">Hasta</string>
@@ -82,6 +82,7 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="find_nearby_stations">Encontrar estaciones cercadas</string>
   <string name="find_departures">Encontrar salidas</string>
   <string name="share_trip_via">Compartir viaje vía…</string>
+  <string name="show_location_in">Mostrar Ubicación En…</string>
   <string name="more">Más</string>
   <!--Shows a short(!) representation of how long you need to walk, e.g. "for 5 min"-->
   <string name="for_x_min">por %d minuto</string>
@@ -93,6 +94,7 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="tomorrow">Mañana</string>
   <string name="in_x_minutes">en %dmin</string>
   <string name="x_minutes_ago">hace %dmin</string>
+  <string name="total_time">Tiempo total: %s</string>
   <string name="time_picker_previous_day">Anterior día</string>
   <string name="time_picker_next_day">Próximo día</string>
   <string name="ok">OK</string>
@@ -102,6 +104,7 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="pref_theme_title">Tema</string>
   <string name="pref_theme_light">Claro</string>
   <string name="pref_theme_dark">Oscuro</string>
+  <string name="pref_theme_auto_system">Sistema por defecto</string>
   <string name="pref_language_title">Idioma</string>
   <string name="pref_directions_routing">Direcciones e itinerario de viaje</string>
   <string name="pref_optimize">Optimizar para</string>
@@ -122,6 +125,7 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="error_find_nearby_stations">No se pudieron encontrar estaciones cercanas</string>
   <string name="error_departures">No se pudieron encontrar salidas</string>
   <string name="error_no_calendar">No hay ningún calendario instalado :(</string>
+  <string name="error_no_map">No hay un mapa externo instalado :(</string>
   <string name="trip_error_ambiguous">No se pudo encontrar la ubicación. Por favor, prueba buscando diferentes ubicaciones.</string>
   <string name="trip_error_too_close">El origen y el destino están demasiado cerca uno del otro.</string>
   <string name="trip_error_unknown_from">No se pudo ubicar el origen. Por favor, prueba con otro.</string>
@@ -132,6 +136,7 @@ para que sepas siempre dónde estas, y que así no te olvides dónde bajarte del
   <string name="trip_error_invalid_date">El proveedor de datos no permite esta búsqueda por fecha. Pruebe con otra fecha.</string>
   <string name="trip_error_service_down">El proveedor de datos está fuera de servicio :(
 Inténtelo de nuevo más tarde, por favor.</string>
+  <string name="trip_error_pte">Si quieres informar de este error, por favor, comunícaselo directamente a %1$s.</string>
   <string name="trip_issue">Puede haber un problema con esta conexión.</string>
   <string name="trip_not_travelable">Imposible o cancelado</string>
   <string name="try_again">Intentar de nuevo</string>
@@ -139,6 +144,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d parada</item>
+    <item quantity="many">%d paradas</item>
     <item quantity="other">%d paradas</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
@@ -289,6 +295,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_spain">Madrid, Barcelona, Euskadi - País Vasco, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Hungría</string>
   <string name="np_desc_hungary">Budapest, Miskolc</string>
+  <string name="np_desc_czechia">Praga y otros</string>
   <string name="np_region_sweden">Suecia</string>
   <string name="np_desc_se">Suecia, Estocolmo</string>
   <string name="np_region_switzerland">Suiza</string>
@@ -302,6 +309,7 @@ Inténtelo de nuevo más tarde, por favor.</string>
   <string name="np_desc_dub">Emiratos Árabes Unidos, Dubái</string>
   <string name="np_region_usa">Estados Unidos de América</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
   <string name="np_name_usny">Estados de Nueva York y Nueva Jersey</string>
   <string name="np_name_california">California</string>
   <string name="np_desc_california">Transporte público de California (EE. UU.)</string>

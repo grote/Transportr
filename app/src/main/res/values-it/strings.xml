@@ -147,6 +147,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d fermata</item>
+    <item quantity="many">%d fermate</item>
     <item quantity="other">%d fermate</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->

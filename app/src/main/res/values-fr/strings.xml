@@ -141,6 +141,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d arrêt</item>
+    <item quantity="many">%d arrêts</item>
     <item quantity="other">%d arrêts</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->

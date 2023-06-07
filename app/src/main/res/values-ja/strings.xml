@@ -63,7 +63,6 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="drawer_departures">出発</string>
   <string name="tab_about">アプリについて</string>
   <string name="tab_libraries">ライブラリー</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nフリーソフトウェアライセンス: GPLv3+</string>
   <string name="about_description">Transportr は、公共交通機関を世界中の人々ができるだけ簡単に使用できるように開発された、公共交通機関のコンパニオンです。</string>
   <string name="about_warning_title">警告</string>
   <string name="about_warning_text">(外部から提供された) データの正確性は保証されません。 このアプリは自己責任で使用してください。</string>
