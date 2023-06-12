@@ -19,6 +19,7 @@
 package de.grobox.transportr
 
 import android.app.Application
+import com.google.android.material.color.DynamicColors
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.services.android.telemetry.MapboxTelemetry
 
@@ -27,6 +28,8 @@ open class TransportrApplication : Application() {
         private set
 
     override fun onCreate() {
+        // TODO DynamicColors.applyToActivitiesIfAvailable(this)
+
         super.onCreate()
 
         Mapbox.getInstance(

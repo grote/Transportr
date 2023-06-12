@@ -3,7 +3,7 @@
 
     <!-- App Theme -->
 
-    <style name="AppBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppBaseTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
@@ -11,9 +11,6 @@
         <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="android:dialogTheme">@style/DialogTheme</item>
-        <item name="android:alertDialogTheme">@style/DialogTheme</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
     </style>
 
     <style name="AppDayNightTheme" parent="AppBaseTheme">
@@ -36,27 +33,6 @@
         <item name="material_drawer_legacy_style">false</item> <!-- Enables legacy Material 1 style -->
     </style>
 
-    <style name="AppTheme" parent="AppDayNightTheme">
-    </style>
-
-    <!-- Dialog Theme -->
-    <style name="DialogBaseTheme" parent="Theme.AppCompat.DayNight.Dialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
-    </style>
-
-    <style name="DialogDayNightTheme" parent="DialogBaseTheme">
-    </style>
-
-    <style name="DialogTheme" parent="DialogDayNightTheme">
-    </style>
-
-
-    <!-- Dialog Theme without transparent window -->
-    <style name="SetHomeDialogTheme" parent="DialogTheme">
-        <item name="colorControlNormal">@color/drawableTintLight</item>
-    </style>
+    <style name="AppTheme" parent="AppDayNightTheme" />
 
 </resources>

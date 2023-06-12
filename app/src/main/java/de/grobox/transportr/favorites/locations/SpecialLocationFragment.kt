@@ -62,10 +62,6 @@ abstract class SpecialLocationFragment : DialogFragment(), LocationView.Location
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         inject((activity!!.application as TransportrApplication).component)
-        setStyle(
-            STYLE_NO_TITLE,
-            R.style.SetHomeDialogTheme
-        )
     }
 
     protected abstract fun inject(component: AppComponent)

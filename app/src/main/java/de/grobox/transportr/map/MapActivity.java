@@ -236,7 +236,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	private void checkAndShowChangelog() {
 		TransportrChangeLog cl = new TransportrChangeLog(this, getSettingsManager());
 		if (cl.isFirstRun() && !cl.isFirstRunEver()) {
-			cl.getLogDialog().show();
+			cl.getMaterialDialog(cl.isFirstRunEver()).show();
 		}
 	}
 

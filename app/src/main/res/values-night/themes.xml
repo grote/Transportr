@@ -28,13 +28,4 @@
 		<item name="material_drawer_header_selection_text">@color/material_drawer_dark_header_selection_text</item>
 	</style>
 
-	<style name="DialogDayNightTheme" parent="DialogBaseTheme">
-		<!-- Fix for broken background on ALL devices -->
-		<item name="android:windowBackground">@color/md_grey_800</item>
-	</style>
-
-	<style name="SetHomeDialogTheme" parent="DialogTheme">
-		<item name="colorControlNormal">@color/drawableTintDark</item>
-	</style>
-
 </resources>
