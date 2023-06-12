@@ -29,7 +29,6 @@
 			android:clickable="true"
 			android:focusable="true"
 			android:foreground="?selectableItemBackgroundBorderless"
-			android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 			android:visibility="gone"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"

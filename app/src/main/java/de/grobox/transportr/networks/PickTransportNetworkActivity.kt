@@ -26,6 +26,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.fastadapter.IItem
@@ -61,7 +63,7 @@ class PickTransportNetworkActivity : TransportrActivity(), ISelectionListener<II
         } else {
             firstStart = false
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            findViewById<View>(R.id.firstRunTextView).visibility = GONE
+            findViewById<TextView>(R.id.firstRunTextView).text = ""
         }
         setResult(RESULT_CANCELED)
 

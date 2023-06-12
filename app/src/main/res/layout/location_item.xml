@@ -4,6 +4,8 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
+	android:paddingHorizontal="12dp"
+	android:paddingVertical="8dp"
 	android:layout_height="wrap_content">
 
 	<ImageView
@@ -25,6 +27,7 @@
 		android:gravity="center_vertical"
 		android:minHeight="32dp"
 		android:padding="3dp"
+		android:layout_marginStart="8dp"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toEndOf="@+id/imageView"
 		app:layout_constraintTop_toTopOf="parent"

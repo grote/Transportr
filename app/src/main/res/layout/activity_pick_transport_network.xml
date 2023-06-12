@@ -10,8 +10,7 @@
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+		android:layout_height="wrap_content">
 
 		<com.google.android.material.appbar.CollapsingToolbarLayout
 			android:layout_width="match_parent"
@@ -34,7 +33,6 @@
 					android:layout_height="wrap_content"
 					android:padding="8dp"
 					android:text="@string/pick_network_first_run"
-					android:textColor="?android:textColorPrimary"
 					android:textSize="16sp"/>
 
 			</LinearLayout>
