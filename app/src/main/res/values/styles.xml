@@ -65,4 +65,9 @@
 		<item name="mapbox_foregroundDrawable">@drawable/mapbox_user_icon_old</item>
 	</style>
 
+	<style name="RoundedImageView">
+		<item name="cornerFamily">rounded</item>
+		<item name="cornerSize">8dp</item>
+	</style>
+
 </resources>

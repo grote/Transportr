@@ -9,29 +9,31 @@
 	android:background="@drawable/selector_list_item_background"
 	android:orientation="horizontal">
 
-	<ImageView
+	<com.google.android.material.imageview.ShapeableImageView
 		android:id="@+id/logo"
+		android:layout_marginStart="10dp"
+		android:layout_marginVertical="8dp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:contentDescription="@string/network"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		tools:src="@drawable/network_placeholder"/>
+		app:layout_constraintBottom_toBottomOf="parent"
+		tools:src="@drawable/network_placeholder"
+		app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
 	<TextView
 		android:id="@+id/name"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:layout_marginVertical="8dp"
+		android:layout_marginStart="16dp"
 		android:layout_marginEnd="8dp"
-		android:layout_marginLeft="8dp"
-		android:layout_marginRight="8dp"
-		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
 		android:textColor="?android:attr/textColorPrimary"
 		android:textSize="15sp"
 		app:layout_constraintLeft_toRightOf="@+id/logo"
 		app:layout_constraintRight_toLeftOf="@+id/status"
-		app:layout_constraintTop_toTopOf="@+id/logo"
+		app:layout_constraintTop_toTopOf="parent"
 		tools:layout_constraintLeft_creator="1"
 		tools:layout_constraintTop_creator="1"
 		tools:text="Network Name"/>
@@ -39,7 +41,7 @@
 	<TextView
 		android:id="@+id/status"
 		android:layout_width="wrap_content"
-		android:layout_height="0dp"
+		android:layout_height="wrap_content"
 		android:layout_marginEnd="8dp"
 		android:layout_marginRight="8dp"
 		android:gravity="center"
@@ -53,12 +55,9 @@
 		android:id="@+id/desc"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="8dp"
+		android:layout_marginVertical="8dp"
+		android:layout_marginStart="16dp"
 		android:layout_marginEnd="8dp"
-		android:layout_marginLeft="8dp"
-		android:layout_marginRight="8dp"
-		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
 		android:textColor="?android:attr/textColorSecondary"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintLeft_toRightOf="@+id/logo"
