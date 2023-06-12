@@ -12,7 +12,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
 
-	<androidx.cardview.widget.CardView
+	<com.google.android.material.card.MaterialCardView
 		android:layout_width="match_parent"
 		android:layout_height="48dp"
 		android:layout_marginEnd="16dp"
@@ -45,7 +45,7 @@
 			app:hint="@string/search_hint"
 			app:showIcon="false"/>
 
-	</androidx.cardview.widget.CardView>
+	</com.google.android.material.card.MaterialCardView>
 
 	<com.google.android.material.floatingactionbutton.FloatingActionButton
 		android:id="@+id/directionsFab"
@@ -57,8 +57,6 @@
 		android:layout_marginRight="16dp"
 		android:clickable="true"
 		android:focusable="true"
-		android:tint="@color/md_white_1000"
-		app:backgroundTint="@color/primary"
 		app:behavior_autoHide="true"
 		app:fabSize="normal"
 		app:layout_anchor="@+id/bottomSheet"

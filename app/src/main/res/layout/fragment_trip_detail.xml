@@ -14,7 +14,6 @@
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
-			style="@style/ToolbarStyle"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:visibility="gone"
@@ -27,7 +26,6 @@
 			android:layout_height="@dimen/mapPadding"
 			android:padding="8dp"
 			android:layout_marginTop="0dp"
-			android:background="@color/primary"
 			android:clickable="true"
 			android:focusable="true"
 			android:foreground="?selectableItemBackgroundBorderless"
@@ -41,7 +39,6 @@
 				android:id="@+id/fromTime"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textColor="?android:textColorPrimary"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toTopOf="parent"
 				tools:text="12:23"/>
@@ -54,7 +51,6 @@
 				android:layout_marginStart="8dp"
 				android:ellipsize="middle"
 				android:singleLine="true"
-				android:textColor="?android:textColorPrimary"
 				app:layout_constraintEnd_toStartOf="@+id/barrierRight"
 				app:layout_constraintStart_toEndOf="@+id/fromTime"
 				app:layout_constraintBaseline_toBaselineOf="@+id/fromTime"
@@ -65,7 +61,6 @@
 				android:id="@+id/toTime"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textColor="?android:textColorPrimary"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@+id/fromTime"

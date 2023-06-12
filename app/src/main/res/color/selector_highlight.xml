@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:color="@color/holo_red_light"
+        android:color="?colorPrimary"
         android:state_activated="false" />
     <item
         android:color="@android:color/white"

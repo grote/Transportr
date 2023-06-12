@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-	style="@style/CardView"
+<com.google.android.material.card.MaterialCardView
+	style="@style/FavoriteCard"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -10,8 +10,7 @@
 	android:layout_marginTop="4dp"
 	android:clickable="true"
 	android:focusable="true"
-	android:foreground="?android:attr/selectableItemBackground"
-	app:cardCornerRadius="0dp">
+	android:foreground="?android:attr/selectableItemBackground">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
@@ -45,7 +44,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="0dp"
 			android:gravity="end"
-			android:textColor="@color/md_red_500"
+			android:textColor="?colorPrimary"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="@+id/fromTime"
 			app:layout_constraintTop_toBottomOf="@+id/fromTime"
@@ -72,7 +71,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:contentDescription="@string/trip_issue"
-			app:tint="@color/md_red_500"
+			app:tint="?colorPrimary"
 			app:layout_constraintBottom_toTopOf="@+id/toTime"
 			app:layout_constraintEnd_toEndOf="@+id/fromTime"
 			app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +130,7 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:gravity="end"
-			android:textColor="@color/md_red_500"
+			android:textColor="?colorPrimary"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="@+id/toTime"
 			app:layout_constraintTop_toBottomOf="@+id/toTime"
@@ -165,4 +164,4 @@
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

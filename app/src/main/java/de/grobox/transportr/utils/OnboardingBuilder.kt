@@ -20,8 +20,10 @@
 package de.grobox.transportr.utils
 
 import android.app.Activity
+import android.graphics.Color
 import androidx.core.content.ContextCompat
 import android.util.TypedValue
+import com.google.android.material.color.MaterialColors
 import de.grobox.transportr.R
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
 import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground
@@ -33,7 +35,7 @@ import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFoc
 class OnboardingBuilder(activity: Activity) : MaterialTapTargetPrompt.Builder(activity) {
 
     init {
-        backgroundColour = ContextCompat.getColor(activity, R.color.primary)
+        backgroundColour = MaterialColors.getColor(activity, R.attr.colorPrimary, Color.TRANSPARENT)
         promptBackground = RectanglePromptBackground()
         promptFocal = RectanglePromptFocal()
         setFocalPadding(R.dimen.buttonSize)
@@ -48,7 +50,7 @@ class OnboardingBuilder(activity: Activity) : MaterialTapTargetPrompt.Builder(ac
 class IconOnboardingBuilder(activity: Activity) : MaterialTapTargetPrompt.Builder(activity) {
 
     init {
-        backgroundColour = ContextCompat.getColor(activity, R.color.primary)
+        backgroundColour = MaterialColors.getColor(activity, R.attr.colorPrimary, Color.TRANSPARENT)
         promptBackground = CirclePromptBackground()
         promptFocal = CirclePromptFocal()
     }

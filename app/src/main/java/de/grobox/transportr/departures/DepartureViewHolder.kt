@@ -23,22 +23,27 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import de.grobox.transportr.R
+import com.google.android.material.card.MaterialCardView
 import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.DateUtils.formatDelay
-import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.formatRelativeTime
+import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Departure
-import kotlinx.android.synthetic.main.list_item_departure.view.*
-import java.util.*
+import kotlinx.android.synthetic.main.list_item_departure.view.delay
+import kotlinx.android.synthetic.main.list_item_departure.view.departureTimeAbs
+import kotlinx.android.synthetic.main.list_item_departure.view.departureTimeRel
+import kotlinx.android.synthetic.main.list_item_departure.view.destinationView
+import kotlinx.android.synthetic.main.list_item_departure.view.line
+import kotlinx.android.synthetic.main.list_item_departure.view.lineNameView
+import kotlinx.android.synthetic.main.list_item_departure.view.messageView
+import kotlinx.android.synthetic.main.list_item_departure.view.positionView
+import java.util.Date
 
 internal class DepartureViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
-    private val card: CardView = v as CardView
+    private val card: MaterialCardView = v as MaterialCardView
     private val line: LineView = v.line
     private val lineName: TextView = v.lineNameView
     private val timeRel: TextView = v.departureTimeRel

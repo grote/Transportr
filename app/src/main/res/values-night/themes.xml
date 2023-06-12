@@ -4,8 +4,6 @@
 	<!-- App Theme -->
 
 	<style name="AppDayNightTheme" parent="AppBaseTheme">
-		<item name="colorControlNormal">@color/drawableTintDark</item>
-		<item name="cardBackgroundColor">@color/cardview_dark_background</item>
 		<item name="colorBackgroundFloating">#ff424242</item>
 
 		<item name="mapStyle">@string/mapbox_style_dark</item>
@@ -16,7 +14,7 @@
 		<item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
 
 		<!-- MaterialDrawer specific values -->
-		<item name="material_drawer_background">@color/material_drawer_dark_background</item>
+		<item name="material_drawer_background">?android:colorBackground</item>
 		<item name="material_drawer_primary_text">@color/material_drawer_dark_primary_text</item>
 		<item name="material_drawer_primary_icon">@color/material_drawer_dark_primary_icon</item>
 		<item name="material_drawer_secondary_text">@color/material_drawer_dark_secondary_text</item>

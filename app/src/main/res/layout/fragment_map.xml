@@ -49,8 +49,6 @@
 		android:layout_margin="16dp"
 		android:clickable="true"
 		android:focusable="true"
-		android:tint="@color/fabForegroundInitial"
-		app:backgroundTint="@color/fabBackground"
 		app:behavior_autoHide="true"
 		app:elevation="4dp"
 		app:fabSize="normal"

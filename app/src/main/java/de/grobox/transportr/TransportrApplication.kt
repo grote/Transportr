@@ -28,7 +28,7 @@ open class TransportrApplication : Application() {
         private set
 
     override fun onCreate() {
-        // TODO DynamicColors.applyToActivitiesIfAvailable(this)
+        DynamicColors.applyToActivitiesIfAvailable(this)
 
         super.onCreate()
 

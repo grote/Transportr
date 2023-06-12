@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="holo_red_light">#ffff4444</color>
-    <color name="walking">#ffea00</color>
-
-    <!-- material theme colors -->
-    <color name="primary">#f44336</color>
-    <color name="primary_dark">#b71c1c</color>
-    <color name="accent">#e53935</color>
-
-    <!-- To enable accent color in settings for devices with API <21 -->
-    <color name="preference_fallback_accent_color" tools:override="true" tools:ignore="UnusedResources">@color/accent</color>
-
-    <color name="drawableTintDark">#ffffffff</color>
-    <color name="drawableTintLight">@color/md_grey_600</color>
-
-    <color name="buttonColor">@color/md_blue_500</color>
 
     <!-- GPS FAB -->
     <color name="fabBackground">@color/cardview_light_background</color>
     <color name="fabBackgroundMoved">@color/md_blue_700</color>
-    <color name="fabForegroundInitial">@color/drawableTintLight</color>
+    <color name="fabForegroundInitial">@color/md_grey_600</color>
     <color name="fabForegroundFollow">@color/fabBackgroundMoved</color>
     <color name="fabForegroundMoved">@color/md_white_1000</color>
 
-    <color name="cardview_dark_background" tools:override="true">#FF424242</color>
-    <color name="cardview_light_background" tools:override="true">#FFFFFFFF</color>
-
-    <!-- Material Drawer -->
-    <color name="material_drawer_header_selection_text" tools:ignore="UnusedResources">#FFFFFFFF</color>
-    <color name="material_drawer_header_selection_subtext" tools:ignore="UnusedResources">#B3FFFFFF</color>
-    <color name="material_drawer_dark_header_selection_text" tools:ignore="UnusedResources">#FFFFFFFF</color>
-    <color name="material_drawer_dark_header_selection_subtext" tools:ignore="UnusedResources">#B3FFFFFF</color>
-
+    <color name="md_theme_primary">#0061A4</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#D1E4FF</color>
+    <color name="md_theme_onPrimaryContainer">#001D36</color>
+    <color name="md_theme_secondary">#535F70</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#D7E3F7</color>
+    <color name="md_theme_onSecondaryContainer">#101C2B</color>
+    <color name="md_theme_tertiary">#6B5778</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#F2DAFF</color>
+    <color name="md_theme_onTertiaryContainer">#251431</color>
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_onErrorContainer">#410002</color>
+    <color name="md_theme_background">#FDFCFF</color>
+    <color name="md_theme_onBackground">#1A1C1E</color>
+    <color name="md_theme_surface">#FDFCFF</color>
+    <color name="md_theme_onSurface">#1A1C1E</color>
+    <color name="md_theme_surfaceVariant">#DFE2EB</color>
+    <color name="md_theme_onSurfaceVariant">#43474E</color>
+    <color name="md_theme_outline">#73777F</color>
+    <color name="md_theme_inverseOnSurface">#F1F0F4</color>
+    <color name="md_theme_inverseSurface">#2F3033</color>
+    <color name="md_theme_inversePrimary">#9ECAFF</color>
+    <color name="md_theme_shadow">#000000</color>
+    <color name="md_theme_surfaceTint">#0061A4</color>
+    <color name="md_theme_outlineVariant">#C3C7CF</color>
+    <color name="md_theme_scrim">#000000</color>
 </resources>

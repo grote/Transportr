@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
-		<item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-		<item name="popupTheme">?popupTheme</item>
-	</style>
-
 	<style name="LineBox">
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:maxLines">1</item>
@@ -21,7 +16,7 @@
 		<item name="android:windowExitAnimation">@anim/scale_down</item>
 	</style>
 
-	<style name="FavoriteCard" parent="CardView">
+	<style name="FavoriteCard" parent="Widget.Material3.CardView.Outlined">
 		<item name="android:foreground">?selectableItemBackground</item>
 		<item name="android:clickable">true</item>
 		<item name="android:layout_marginLeft">8dp</item>
@@ -29,14 +24,14 @@
 		<item name="android:layout_marginTop">8dp</item>
 	</style>
 
-	<style name="ContributorsCard" parent="CardView">
-		<item name="cardBackgroundColor">?attr/cardBackgroundColor</item>
-		<item name="cardCornerRadius">2dp</item>
+	<style name="ContributorsCard" parent="Widget.Material3.CardView.Outlined">
+		<item name="cardCornerRadius">8dp</item>
 		<item name="cardUseCompatPadding">true</item>
+		<item name="cardElevation">2dp</item>
 	</style>
 
 	<style name="Button" parent="Widget.AppCompat.Button.Borderless.Colored">
-		<item name="android:textColor">@color/buttonColor</item>
+		<item name="android:textColor">?attr/colorPrimary</item>
 	</style>
 
 	<style name="Divider">

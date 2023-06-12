@@ -26,8 +26,6 @@
 
 			<androidx.appcompat.widget.Toolbar
 				android:id="@+id/toolbar"
-				style="@style/ToolbarStyle"
-				android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				app:layout_collapseMode="pin"/>

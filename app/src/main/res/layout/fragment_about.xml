@@ -68,7 +68,7 @@
 			android:layout_marginStart="16dp"
 			android:layout_marginTop="16dp"
 			android:text="@string/about_warning_title"
-			android:textColor="@color/md_red_500"
+			android:textColor="?colorError"
 			android:textSize="16sp"
 			android:textStyle="bold"
 			app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
 			android:layout_marginStart="16dp"
 			android:layout_marginTop="8dp"
 			android:text="@string/about_warning_text"
-			android:textColor="@color/md_red_500"
+			android:textColor="?colorError"
 			android:textSize="16sp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +104,6 @@
 
 		<Button
 			android:id="@+id/websiteButton"
-			style="@style/Widget.AppCompat.Button.Colored"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="16dp"

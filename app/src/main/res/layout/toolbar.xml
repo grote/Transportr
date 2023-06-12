@@ -3,10 +3,8 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/ToolbarStyle"
 	android:id="@+id/toolbar"
 	android:layout_height="wrap_content"
 	android:layout_width="match_parent"
-	android:background="?attr/colorPrimary"
 	app:layout_scrollFlags="scroll|enterAlways"
 	tools:ignore="Overdraw"/>
