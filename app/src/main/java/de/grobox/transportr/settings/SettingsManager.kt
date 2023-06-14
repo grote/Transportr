@@ -30,6 +30,7 @@ import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider.Optimize
 import de.schildbach.pte.NetworkProvider.WalkSpeed
+import de.schildbach.pte.dto.Product
 import java.util.*
 import javax.inject.Inject
 
@@ -133,6 +134,30 @@ class SettingsManager @Inject constructor(private val context: Context) {
 
     fun showWhenLocked(): Boolean {
         return settings.getBoolean(SHOW_WHEN_LOCKED, true)
+    }
+
+    fun setPreferredProducts(selected: Set<Product>) {
+        val editor = settings.edit()
+        Product.ALL.toSet().forEach { product ->
+            editor.putBoolean(product.name, product in selected)
+        }
+        editor.apply()
+    }
+
+    fun getPreferredProducts(): Set<Product> {
+        val firstTime = Product.ALL.none { settings.contains(it.name) }
+        if (firstTime) {
+            setPreferredProducts(Product.ALL)
+            return Product.ALL
+        }
+
+        val products = mutableSetOf<Product>()
+        Product.ALL.toSet().forEach { product ->
+            if (settings.getBoolean(product.name, false)) {
+                products.add(product)
+            }
+        }
+        return products
     }
 
     companion object {
