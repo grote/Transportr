@@ -35,9 +35,9 @@ import de.schildbach.pte.dto.Location.coord
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-internal data class GpsState(var hasFix: Boolean, var isOld: Boolean, var isTracking: Boolean)
+data class GpsState(var hasFix: Boolean, var isOld: Boolean, var isTracking: Boolean)
 
-internal class GpsController(val context: Context) : AbstractManager(), ReverseGeocoderCallback {
+class GpsController(val context: Context) : AbstractManager(), ReverseGeocoderCallback {
 
     companion object {
         internal val GPS_FIX_EXPIRY = TimeUnit.SECONDS.toMillis(3)
