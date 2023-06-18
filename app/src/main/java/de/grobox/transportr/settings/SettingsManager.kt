@@ -139,13 +139,13 @@ class SettingsManager @Inject constructor(private val context: Context) {
     fun setPreferredProducts(selected: Set<Product>) {
         val editor = settings.edit()
         Product.ALL.toSet().forEach { product ->
-            editor.putBoolean(product.name, product in selected)
+            editor.putBoolean(LAST_PRODUCT_PREFIX + product.name, product in selected)
         }
         editor.apply()
     }
 
     fun getPreferredProducts(): Set<Product> {
-        val firstTime = Product.ALL.none { settings.contains(it.name) }
+        val firstTime = Product.ALL.none { settings.contains(LAST_PRODUCT_PREFIX + it.name) }
         if (firstTime) {
             setPreferredProducts(Product.ALL)
             return Product.ALL
@@ -153,7 +153,7 @@ class SettingsManager @Inject constructor(private val context: Context) {
 
         val products = mutableSetOf<Product>()
         Product.ALL.toSet().forEach { product ->
-            if (settings.getBoolean(product.name, false)) {
+            if (settings.getBoolean(LAST_PRODUCT_PREFIX + product.name, false)) {
                 products.add(product)
             }
         }
@@ -172,6 +172,7 @@ class SettingsManager @Inject constructor(private val context: Context) {
         private const val OPTIMIZE = "pref_key_optimize"
         private const val LOCATION_ONBOARDING = "locationOnboarding"
         private const val TRIP_DETAIL_ONBOARDING = "tripDetailOnboarding"
+        private const val LAST_PRODUCT_PREFIX = "pref_key_last_product_prefix_"
     }
 
 }
