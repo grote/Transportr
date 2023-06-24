@@ -2,8 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Garraio publiko librea</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Garraio publikoarentzako aplikazio lagungarria, iragarki eta tracker gabe</string>
-  <!--suppress AndroidLintStringFormatInvalid -->
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr irabazi asmorik gabeko aplikazioa bat da, mundu osoko pertsonek bere denbora librean garatua.
 
 Garraio publikoa erabiltzea denontzat ahal beste erraztu nahi dute

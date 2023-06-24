@@ -2,8 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - عبور و مرور عمومی متن باز</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">دستیار حمل و نقل عمومی رایگان بدون تبلیغات یا ردیابی</string>
-  <!--suppress AndroidLintStringFormatInvalid -->
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr یک برنامه ناسودبر بوده که توسط افراد در سراسر جهان در اوقات فراغتشان توسعه داده شده است.
 آن ها قصد دارند تا استفاده از حمل و نقل عمومی را برای همگان به سادگی هر چه تمام تر کنند.
 
