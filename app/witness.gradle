@@ -1,6 +1,5 @@
 dependencyVerification {
     verify = [
-        'Android:Sdk:platforms:core-for-system-modules.jar:c6560a19a3d6f4478e35a55e8984efb27866bad46ceb9988315cd80aafd8b352',
         'androidx.activity:activity:1.2.4:activity-1.2.4.aar:ae8e9c7de57e387d2ad90e73f3a5a5dfd502bd4f034c1dccfdb3506d1d2df81a',
         'androidx.annotation:annotation-experimental:1.0.0:annotation-experimental-1.0.0.aar:b219d2b568e7e4ba534e09f8c2fd242343df6ccbdfbbe938846f5d740e6b0b11',
         'androidx.annotation:annotation-experimental:1.1.0:annotation-experimental-1.1.0.aar:0157de61a2064047896a058080f3fd67ba57ad9a94857b3f7a363660243e3f90',
@@ -109,6 +108,7 @@ dependencyVerification {
         'com.google.j2objc:j2objc-annotations:1.3:j2objc-annotations-1.3.jar:21af30c92267bd6122c0e0b4d20cccb6641a37eaf956c6540ec471d584e64a7b',
         'com.intellij:annotations:12.0:annotations-12.0.jar:f8ab13b14be080fe2f617f90e55599760e4a1b4deeea5c595df63d0d6375ed6d',
         'com.jakewharton.timber:timber:4.7.0:timber-4.7.0.aar:0a0c00e23cae78dd1790e4dfd8b6d1a500f4eaa358c37f6e2a43fa43c8909fe7',
+        'com.jraska:falcon:2.2.0:falcon-2.2.0.aar:8b016c6e016ef99fb493b8614b2362cfba540a68ac16a9bb6da310ae10e30b81',
         'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.4.0:mapbox-android-plugin-locationlayer-0.4.0.aar:e7f677f2aaa88a6853938bfd225f9848cb205a70d5ef688d5b314bdb9f59fda5',
         'com.mapbox.mapboxsdk:mapbox-android-sdk:5.5.0:mapbox-android-sdk-5.5.0.aar:cc527b94389ded19c6133f3c19444e8a3d1f6edc42bb1fc835d9e9a5e4ad4abc',
         'com.mapbox.mapboxsdk:mapbox-android-telemetry:2.2.10:mapbox-android-telemetry-2.2.10.aar:a03ebeb420a28287099ae5aa673c4efb3729452eab2c57b69945691d6c2cdaa6',
@@ -176,7 +176,7 @@ dependencyVerification {
         'org.slf4j:slf4j-api:1.7.32:slf4j-api-1.7.32.jar:3624f8474c1af46d75f98bc097d7864a323c81b3808aa43689a6e1c601c027be',
         'org.slf4j:slf4j-api:2.0.7:slf4j-api-2.0.7.jar:5d6298b93a1905c32cda6478808ac14c2d4a47e91535e53c41f7feeb85d946f4',
         'org.xerial:sqlite-jdbc:3.25.2:sqlite-jdbc-3.25.2.jar:a45da61abed61568a533fdece125093180828edeb0d4b6f6d572e0cf457465f6',
-        'tools.fastlane:screengrab:1.1.0:screengrab-1.1.0.aar:03ce3868ee8a0082d14e7a1de0999f91531c0cc794392688beb08ee9bc4495fd',
+        'tools.fastlane:screengrab:2.1.1:screengrab-2.1.1.aar:5a02781c0986e71ddbc691263115c2db70bdebb4b48d5b6dcf06ab1cb547d62d',
         'uk.co.samuelwall:material-tap-target-prompt:2.14.0:material-tap-target-prompt-2.14.0.aar:12ab447ba97019adbecb20e048921ca30ed7a9f72a37b83f39a4333bd759b518',
     ]
 }
