@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - オープンソース公共交通機関</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">無料の公共交通機関アシスタント、広告や追跡はありません</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr は、世界中の人々が自由な時間に開発した非営利のアプリです。
 すべての人ができるだけ簡単に公共交通機関を利用したいと考えています。
 

@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Δημόσιες μεταφορές ανοιχτού κώδικα</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Δωρεάν βοηθός δημόσιων μεταφορών χωρίς διαφημίσεις ή παρακολούθηση</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Το Transportr είναι μία εφαρμογή μη-κερδοσκοπική που αναπτύσσεται από άτομα σε όλο τον κόσμο στον ελεύθερο τους χρόνο.
 Θέλουν να κάνουν την χρήση των δημόσιων μεταφορών όσο το δυνατό ευκολότερη για όλους.
 

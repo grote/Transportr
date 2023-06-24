@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Open-source veřejná doprava</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Bezplatný asistent pro veřejnou dopravu bez reklam a sledovacích prvků</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr je nezisková aplikace vyvinutá lidmi po celém světě ve volném čase.
 Chce všem co nejvíce usnadnit používání veřejné dopravy.
 

@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Transport Public cu sursă deschisă</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Asistent pentru transportul public gratuit, fără reclame sau tracking</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr este o aplicaţie non-profit dezvoltată de persoane din întreaga lume, în timpul lor liber.
 Aceştia doresc să facă folosirea transportului public cât mai uşor posibil pentru toată lumea.
 

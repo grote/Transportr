@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Otwartoźródłowy asystent transportu publicznego bez reklam i śledzenia</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr jest aplikacją non-profit tworzoną hobbistycznie przez ludzi z całego świata. Celem jest jak najbardziej ułatwić wszystkim korzystanie z transportu publicznego.
 
 Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarcza dla nich wspólny interfejs. Nie jest możliwe sprawdzenie poprawności tych danych, więc <i>nie jest udzielana żadna gwarancja</i> na wyświetlane informacje i używasz jej na swoje własne ryzyko.

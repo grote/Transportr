@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Freier öffentlicher Nahverkehr</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Freier Assistent für den öffentlichen Nahverkehr ohne Werbung und Tracking</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr ist eine nicht-kommerzielle App, die von Menschen auf der ganzen Welt in ihrer Freizeit entwickelt wurde.
 Sie wollen die Nutzung der öffentlichen Verkehrsmittel für alle so einfach wie möglich machen.
 
