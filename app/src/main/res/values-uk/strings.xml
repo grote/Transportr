@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - міський транспорт з відкритим кодом</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Безкоштовний помічник громадського транспорту без реклами та відстеження</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr - це некомерційна програма, розроблена людьми по всьому світі у вільний час.
 Вони хочуть, щоб використання громадського транспорту було максимально простим для всіх.
 

@@ -51,7 +51,7 @@ abstract class ScreengrabTest {
         Screengrab.setDefaultScreenshotStrategy(UiAutomatorScreenshotStrategy())
     }
 
-    val networkId: NetworkId = when(getTestLocale()) {
+    val networkId: NetworkId = when(Locale.forLanguageTag(getTestLocale())) {
         Locale.FRANCE -> NetworkId.PARIS
         Locale.US -> NetworkId.TLEM
         Locale.forLanguageTag("pt-BR") -> NetworkId.BRAZIL

@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Kollektivtrafik med öppen källkod</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Gratis kollektivtrafikassistent utan annonser eller spårning</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr är en ideell app som utvecklats av personer runt om i världen på fritiden.
 De vill göra användningen av kollektivtrafiken så enkel som möjligt för alla.
 

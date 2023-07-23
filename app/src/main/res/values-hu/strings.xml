@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr – Nyílt forráskódú tömegközlekedés</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Szabad tömegközlekedési segéd reklámok és követés nélkül</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 A Transportr egy nonprofit alkalmazás, amelyet emberek a szabadidejükben fejlesztenek
 a világ minden tájáról. Azt szeretnék, hogy a tömegközlekedés olyan könnyű legyen
 mindenki számára, amennyire csak lehetséges.

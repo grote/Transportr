@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - open-bron Openbaar Vervoer</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Gratis openbaarvervoerhulpmiddel zonder reclame of gevolgd te worden</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr is een niet-commerciële app ontwikkeld door mensen over de hele wereld in hun vrije tijd. Zij willen het gebruik van openbaar vervoer zo makkelijk mogelijk maken voor iedereen.
 
 Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbieders, zoals 9292, NS en Railteam, en geeft deze overzichtelijk weer. De app kan de correctheid van de gegevens niet verifiëren en <i>biedt daarom geen garanties</i> voor de weergegeven informatie. Gebruik op eigen risico.

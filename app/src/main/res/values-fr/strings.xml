@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <string name="google_play_title" tools:keep="@string/google_play_title">Transportr — Appli libre de transport en commun</string>
   <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Assistant gratuit de transport en commun sans publicité ni suivi à la trace</string>
-  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc"><![CDATA[
+  <string name="google_play_full_desc" tools:keep="@string/google_play_full_desc" tools:ignore="StringFormatInvalid"><![CDATA[
 Transportr est une appli sans but lucratif développée par des personnes du monde entier pendant leur temps libre.
 Elles souhaitent faciliter autant que possible l’utilisation des transports en commun, pour tous.
 
