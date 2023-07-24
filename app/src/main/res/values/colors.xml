@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- GPS FAB -->
-    <color name="fabBackground">@color/cardview_light_background</color>
-    <color name="fabBackgroundMoved">@color/md_blue_700</color>
-    <color name="fabForegroundInitial">@color/md_grey_600</color>
-    <color name="fabForegroundFollow">@color/fabBackgroundMoved</color>
-    <color name="fabForegroundMoved">@color/md_white_1000</color>
-
+<resources>
     <color name="md_theme_primary">#0061A4</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#D1E4FF</color>

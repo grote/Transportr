@@ -19,6 +19,7 @@
 
 package de.grobox.transportr.favorites.locations
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Gravity
@@ -26,11 +27,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager.LayoutParams
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.mikepenz.materialize.util.KeyboardUtil
 import de.grobox.transportr.AppComponent
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrApplication
@@ -42,6 +43,7 @@ import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.settings.SettingsManager
 import javax.annotation.ParametersAreNonnullByDefault
 import javax.inject.Inject
+
 
 @ParametersAreNonnullByDefault
 abstract class SpecialLocationFragment : DialogFragment(), LocationView.LocationViewListener {
@@ -105,7 +107,8 @@ abstract class SpecialLocationFragment : DialogFragment(), LocationView.Location
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        KeyboardUtil.hideKeyboard(activity)
+        val imm = activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm?.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
     }
 
     override fun onLocationItemClick(loc: WrapLocation, type: FavLocationType) {

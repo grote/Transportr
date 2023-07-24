@@ -26,6 +26,7 @@ import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.content.res.ColorStateList
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
+import android.graphics.Color
 import android.graphics.PorterDuff
 import android.location.Location
 import android.os.Build
@@ -39,6 +40,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.android.material.color.MaterialColors
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLng
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory.newLatLngZoom
@@ -195,16 +197,19 @@ abstract class GpsMapFragment : BaseMapFragment(), LocationEngineListener {
 
     private fun onNewGpsState(gpsState: GpsState) {
         // Floating GPS Action Button Style
-        var iconColor = ContextCompat.getColor(context, R.color.fabForegroundInitial)
-        var backgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.fabBackground))
+        var iconColorAttr = R.attr.colorOnSurface
+        var backgroundColorAttr = R.attr.colorSurface
         if (gpsState.hasFix && !gpsState.isOld && !gpsState.isTracking) {
-            iconColor = ContextCompat.getColor(context, R.color.fabForegroundMoved)
-            backgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.fabBackgroundMoved))
+            iconColorAttr = R.attr.colorOnPrimary
+            backgroundColorAttr = R.attr.colorPrimary
         } else if (gpsState.hasFix && !gpsState.isOld && gpsState.isTracking) {
-            iconColor = ContextCompat.getColor(context, R.color.fabForegroundFollow)
+            iconColorAttr = R.attr.colorOnSecondary
+            backgroundColorAttr = R.attr.colorSecondary
         }
+        val iconColor = MaterialColors.getColor(context, iconColorAttr, Color.TRANSPARENT)
+        val backgroundColor = MaterialColors.getColor(context, backgroundColorAttr, Color.TRANSPARENT)
         gpsFab.drawable.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN)
-        gpsFab.backgroundTintList = backgroundColor
+        gpsFab.backgroundTintList = ColorStateList.valueOf(backgroundColor)
 
         // Location Marker Icon Style
         locationPlugin?.applyStyle(if (gpsState.isOld) R.style.LocationLayerOld else R.style.LocationLayer)

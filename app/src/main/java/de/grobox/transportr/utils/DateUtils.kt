@@ -19,10 +19,12 @@
 package de.grobox.transportr.utils
 
 import android.content.Context
+import android.graphics.Color
 import android.text.format.DateFormat
 import android.text.format.DateUtils
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.google.android.material.color.MaterialColors
 import de.grobox.transportr.R
 import java.util.*
 import kotlin.math.abs
@@ -71,7 +73,7 @@ object DateUtils {
         val delayMinutes = millisToMinutes(delay)
         return Delay(
             delay = "${if (delayMinutes >= 0) '+' else ""}$delayMinutes",
-            color = ContextCompat.getColor(context, if (delayMinutes > 0) R.color.md_red_500 else R.color.md_green_500)
+            color = MaterialColors.getColor(context, if (delayMinutes > 0) R.attr.colorError else R.attr.colorPrimary, Color.TRANSPARENT)
         )
     }
 

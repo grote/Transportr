@@ -176,10 +176,11 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
             MIDDLE -> {
                 toolbar.visibility = GONE
                 topBar.visibility = VISIBLE
+                val textColor = context.getColorFromAttr(android.R.attr.textColorPrimary)
                 topBar.setBackgroundColor(context.getColorFromAttr(R.attr.colorPrimary))
-                fromTimeRel.setTextColor(getColor(context, R.color.md_white_1000))
-                durationTop.setTextColor(getColor(context, R.color.md_white_1000))
-                priceTop.setTextColor(getColor(context, R.color.md_white_1000))
+                fromTimeRel.setTextColor(textColor)
+                durationTop.setTextColor(textColor)
+                priceTop.setTextColor(textColor)
                 bottomBar.visibility = GONE
             }
             EXPANDED -> {

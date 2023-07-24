@@ -19,16 +19,23 @@
 
 package de.grobox.transportr.map;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -36,15 +43,22 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import de.grobox.transportr.BuildConfig;
 import de.grobox.transportr.R;
+import de.grobox.transportr.TransportrActivity;
+import de.grobox.transportr.about.AboutActivity;
+import de.grobox.transportr.about.ContributorsActivity;
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType;
 import de.grobox.transportr.locations.LocationFragment;
 import de.grobox.transportr.locations.LocationView;
 import de.grobox.transportr.locations.LocationView.LocationViewListener;
 import de.grobox.transportr.locations.WrapLocation;
+import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
+import de.grobox.transportr.settings.SettingsActivity;
 import de.grobox.transportr.ui.TransportrChangeLog;
 import de.grobox.transportr.utils.OnboardingBuilder;
 
@@ -60,7 +74,7 @@ import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.S
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FOCAL_PRESSED;
 
 @ParametersAreNonnullByDefault
-public class MapActivity extends DrawerActivity implements LocationViewListener {
+public class MapActivity extends TransportrActivity implements LocationViewListener, NavigationView.OnNavigationItemSelectedListener {
 
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
@@ -78,10 +92,16 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		if (BuildConfig.DEBUG) enableStrictMode();
 		getComponent().inject(this);
 		setContentView(R.layout.activity_map);
-		setupDrawer(savedInstanceState);
+		setupDrawer();
 
 		View menu = findViewById(R.id.menu);
-		menu.setOnClickListener(view -> openDrawer());
+		menu.setOnClickListener(view -> {
+			InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+			View currentFocus = getCurrentFocus();
+			if (currentFocus != null) imm.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
+			DrawerLayout drawer = findViewById(R.id.drawerLayout);
+			drawer.open();
+		});
 
 		search = findViewById(R.id.search);
 		search.setLocationViewListener(this);
@@ -160,6 +180,54 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			search.setTransportNetwork(network);
 			transportNetworkInitialized = true;
 		}
+	}
+
+	private void setupDrawer() {
+		NavigationView navigationView = findViewById(R.id.navigationView);
+		navigationView.setNavigationItemSelectedListener(this);
+		View header = navigationView.getHeaderView(0);
+		TransportNetwork network = manager.getTransportNetwork().getValue();
+		header.setOnClickListener(view -> {
+			openPickNetworkProviderActivity();
+		});
+		if (network != null) {
+			TextView title = header.findViewById(R.id.network_name);
+			TextView description = header.findViewById(R.id.network_description);
+			ImageView image = header.findViewById(R.id.network_image);
+			title.setText(network.getName(this));
+			description.setText(network.getDescription(this));
+			image.setImageResource(network.getLogo());
+		}
+		TransportNetwork networkTwo = manager.getTransportNetwork(2);
+		TransportNetwork networkThree = manager.getTransportNetwork(3);
+
+		if (networkTwo != null) {
+			ImageView image = header.findViewById(R.id.network_image_two);
+			image.setImageResource(networkTwo.getLogo());
+			image.setOnClickListener(view -> {
+				manager.setTransportNetwork(networkTwo);
+				closeDrawer();
+			});
+		}
+
+		if (networkThree != null) {
+			ImageView image = header.findViewById(R.id.network_image_three);
+			image.setImageResource(networkThree.getLogo());
+			image.setOnClickListener(view -> {
+				manager.setTransportNetwork(networkThree);
+				closeDrawer();
+			});
+		}
+	}
+
+	private void closeDrawer() {
+		DrawerLayout drawer = findViewById(R.id.drawerLayout);
+		drawer.close();
+	}
+
+	private void openPickNetworkProviderActivity() {
+		Intent intent = new Intent(this, PickTransportNetworkActivity.class);
+		ActivityCompat.startActivity(this, intent, null);
 	}
 
 	@Override
@@ -252,4 +320,31 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		StrictMode.setVmPolicy(vmPolicy.build());
 	}
 
+	@Override
+	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.settings: {
+				startActivity(new Intent(this, SettingsActivity.class));
+				break;
+			}
+			case R.id.changelog: {
+				new TransportrChangeLog(this, settingsManager).getMaterialDialog(true).show();
+				break;
+			}
+			case R.id.about: {
+				startActivity(new Intent(this, AboutActivity.class));
+				break;
+			}
+			case R.id.contributors: {
+				startActivity(new Intent(this, ContributorsActivity.class));
+				break;
+			}
+			case R.id.bug_report: {
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.bug_tracker))));
+				break;
+			}
+		}
+		closeDrawer();
+		return true;
+	}
 }

@@ -35,7 +35,7 @@
 	</style>
 
 	<style name="Divider">
-		<item name="android:background">@color/md_grey_500</item>
+		<item name="android:background">?colorControlNormal</item>
 		<item name="android:layout_height">1px</item>
 		<item name="android:layout_width">match_parent</item>
 	</style>
