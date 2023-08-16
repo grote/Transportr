@@ -46,7 +46,7 @@ import java.util.*
 import javax.inject.Inject
 
 class DirectionsViewModel @Inject internal constructor(
-    application: TransportrApplication, transportNetworkManager: TransportNetworkManager, settingsManager: SettingsManager,
+    application: TransportrApplication, transportNetworkManager: TransportNetworkManager, private val settingsManager: SettingsManager,
     locationRepository: LocationRepository, searchesRepository: SearchesRepository
 ) : SavedSearchesViewModel(application, transportNetworkManager, locationRepository, searchesRepository), TimeDateListener, LocationViewListener {
 
@@ -60,7 +60,7 @@ class DirectionsViewModel @Inject internal constructor(
     val timeUpdate = LiveTrigger()
     private val _now = MutableLiveData(true)
     private val _calendar = MutableLiveData(Calendar.getInstance())
-    private val _products = MutableLiveData<EnumSet<Product>>(EnumSet.allOf(Product::class.java))
+    private val _products = MutableLiveData<EnumSet<Product>>(EnumSet.copyOf(settingsManager.getPreferredProducts()))
     private val _isDeparture = MutableLiveData(true)
     private val _isExpanded = MutableLiveData(false)
     val showTrips = SingleLiveEvent<Void>()
@@ -121,6 +121,7 @@ class DirectionsViewModel @Inject internal constructor(
     fun setProducts(newProducts: EnumSet<Product>) {
         _products.value = newProducts
         search()
+        settingsManager.setPreferredProducts(newProducts)
     }
 
     val isDeparture: LiveData<Boolean> = _isDeparture
