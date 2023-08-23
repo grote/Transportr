@@ -97,10 +97,6 @@
 			android:name=".about.ContributorsActivity"
 			android:label="@string/drawer_contributors"/>
 
-		<service
-			android:name="com.mapzen.android.lost.internal.GeofencingIntentService"
-			android:exported="false" />
-
 		<!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
 		<meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>
 		<!-- Version >= 3.0. DeX Dual Mode support -->
