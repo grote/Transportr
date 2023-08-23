@@ -27,7 +27,6 @@
 -dontnote com.mikepenz.iconics.**
 -dontnote com.mikepenz.materialize.view.**
 
--dontwarn com.mapbox.services.android.telemetry.location.GoogleLocationEngine
 -dontwarn com.google.auto.value.**
 
 -dontwarn okhttp3.internal.platform.ConscryptPlatform

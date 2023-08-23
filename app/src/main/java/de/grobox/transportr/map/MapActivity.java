@@ -53,6 +53,7 @@ import static com.google.android.material.bottomsheet.BottomSheetBehavior.PEEK_H
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED;
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED;
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN;
+import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.transportr.trips.search.DirectionsActivity.ACTION_SEARCH;
 import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
@@ -65,7 +66,6 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
 	private MapViewModel viewModel;
-	private GpsController gpsController;
 	private LocationView search;
 	private BottomSheetBehavior bottomSheetBehavior;
 
@@ -105,7 +105,6 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 
 		// get view model and observe data
 		viewModel = new ViewModelProvider(this, viewModelFactory).get(MapViewModel.class);
-		gpsController = viewModel.getGpsController();
 		viewModel.getTransportNetwork().observe(this, this::onTransportNetworkChanged);
 		viewModel.getHome().observe(this, homeLocation -> search.setHomeLocation(homeLocation));
 		viewModel.getWork().observe(this, workLocation -> search.setWorkLocation(workLocation));
@@ -120,7 +119,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 
 		FloatingActionButton directionsFab = findViewById(R.id.directionsFab);
 		directionsFab.setOnClickListener(view -> {
-			WrapLocation from = gpsController.getWrapLocation();
+			WrapLocation from = new WrapLocation(GPS);
 			WrapLocation to = null;
 			if (locationFragment != null && locationFragmentVisible()) {
 				to = locationFragment.getLocation();
