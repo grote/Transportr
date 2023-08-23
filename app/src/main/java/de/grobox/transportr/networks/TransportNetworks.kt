@@ -26,6 +26,7 @@ import de.grobox.transportr.networks.TransportNetwork.Status.ALPHA
 import de.grobox.transportr.networks.TransportNetwork.Status.BETA
 import de.schildbach.pte.*
 import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.util.*
 
 @SuppressLint("ConstantLocale")
@@ -158,7 +159,7 @@ private val networks = arrayOf(
                         id = NetworkId.VVO,
                         description = R.string.np_desc_vvo,
                         logo = R.drawable.network_vvo_logo,
-                        factory = { VvoProvider(HttpUrl.parse("http://efaproxy.fahrinfo.uptrade.de/standard/")) }
+                        factory = { VvoProvider("http://efaproxy.fahrinfo.uptrade.de/standard/".toHttpUrlOrNull()) }
                     ),
                     TransportNetwork(
                         id = NetworkId.NASA,
@@ -197,7 +198,7 @@ private val networks = arrayOf(
                         id = NetworkId.VVS,
                         description = R.string.np_desc_vvs,
                         logo = R.drawable.network_vvs_logo,
-                        factory = { VvsProvider(HttpUrl.parse("http://www2.vvs.de/oeffi/")) }
+                        factory = { VvsProvider("http://www2.vvs.de/oeffi/".toHttpUrlOrNull()) }
                     ),
                     TransportNetwork(
                         id = NetworkId.DING,
@@ -209,7 +210,7 @@ private val networks = arrayOf(
                         id = NetworkId.KVV,
                         description = R.string.np_desc_kvv,
                         logo = R.drawable.network_kvv_logo,
-                        factory = { KvvProvider(HttpUrl.parse("https://projekte.kvv-efa.de/oeffi/")) }
+                        factory = { KvvProvider("https://projekte.kvv-efa.de/oeffi/".toHttpUrlOrNull()) }
                     ),
                     TransportNetwork(
                         id = NetworkId.NVBW,
@@ -719,7 +720,7 @@ private val networks = arrayOf(
                         logo = R.drawable.network_brfloripa_logo,
                         status = ALPHA,
                         goodLineNames = true,
-                        factory = { BrFloripaProvider(HttpUrl.parse("https://api.transportr.app/floripa/v1/"), null) }
+                        factory = { BrFloripaProvider("https://api.transportr.app/floripa/v1/".toHttpUrlOrNull(), null) }
                     )
                 )
             )

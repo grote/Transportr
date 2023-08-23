@@ -8,7 +8,7 @@
 		<item name="cardBackgroundColor">@color/cardview_dark_background</item>
 		<item name="colorBackgroundFloating">#ff424242</item>
 
-		<item name="mapStyle">@string/mapbox_style_dark</item>
+		<item name="mapStyle">@string/jawg_style_dark</item>
 		<item name="attributionBackground">#99000000</item>
 
 		<item name="about_libraries_card">@color/cardview_dark_background</item>

@@ -103,7 +103,7 @@ class ReverseGeocoder(private val context: Context, private val callback: Revers
 
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
-                val body = response.body()
+                val body = response.body
                 if (!response.isSuccessful || body == null) {
                     callback.onLocationRetrieved(getWrapLocation(lat, lon))
                     return

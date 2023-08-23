@@ -248,11 +248,11 @@ class DirectionsFragment : TransportrFragment() {
         }
         fromLocation.setSearching()
         toLocation.requestFocus()
-        viewModel.locationLiveData.observe(viewLifecycleOwner, { location ->
+        viewModel.locationLiveData.observe(viewLifecycleOwner) { location ->
             viewModel.setFromLocation(location)
             viewModel.search()
             viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
-        })
+        }
     }
 
     private fun onFavStatusChanged(isFav: Boolean?) {
