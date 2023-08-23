@@ -85,6 +85,7 @@ import java.util.concurrent.TimeUnit
         }
     }
 
+    @RequiresPermission(ACCESS_FINE_LOCATION)
     override fun onInactive() {
         for (provider in LOCATION_PROVIDERS) {
             locationManager.removeUpdates(this)
