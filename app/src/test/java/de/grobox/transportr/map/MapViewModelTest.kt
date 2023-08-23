@@ -21,6 +21,8 @@ package de.grobox.transportr.map
 
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.data.locations.LocationRepository
 import de.grobox.transportr.data.searches.SearchesRepository
@@ -51,6 +53,8 @@ class MapViewModelTest {
 
     @Before
     fun setUp() {
+        val state = MutableLiveData<PositionController.PositionState>()
+        Mockito.`when`(positionController.positionState).thenReturn(state)
         viewModel = MapViewModel(application, transportNetworkManager, locationRepository, searchesRepository, positionController)
     }
 
