@@ -158,7 +158,7 @@ private val networks = arrayOf(
                         id = NetworkId.VVO,
                         description = R.string.np_desc_vvo,
                         logo = R.drawable.network_vvo_logo,
-                        factory = { VvoProvider(HttpUrl.parse("http://efaproxy.fahrinfo.uptrade.de/standard/")) }
+                        factory = { VvoProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.NASA,
