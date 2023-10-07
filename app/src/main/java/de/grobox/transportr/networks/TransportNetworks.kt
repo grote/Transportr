@@ -392,19 +392,6 @@ private val networks = arrayOf(
                 )
             ),
             Country(
-                R.string.np_region_finland, flag = "🇫🇮", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.FINLAND,
-                        name = R.string.np_region_finland,
-                        description = R.string.np_desc_fi,
-                        agencies = R.string.np_desc_fi_networks,
-                        logo = R.drawable.network_fi_logo,
-                        status = BETA,
-                        factory = { FinlandProvider(NAVITIA) }
-                    )
-                )
-            ),
-            Country(
                 R.string.np_region_gb, flag = "🇬🇧", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.TLEM,
@@ -441,18 +428,6 @@ private val networks = arrayOf(
                         status = BETA,
                         goodLineNames = true,
                         factory = { ItalyProvider(NAVITIA) }
-                    )
-                )
-            ),
-            Country(
-                R.string.np_region_poland, "🇵🇱", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.PLNAVITIA,
-                        name = R.string.np_name_pl_navitia,
-                        description = R.string.np_desc_pl_navitia,
-                        agencies = R.string.np_desc_pl_navitia_networks,
-                        logo = R.drawable.network_pl_navitia_logo,
-                        factory = { PlNavitiaProvider(NAVITIA) }
                     )
                 )
             ),
@@ -509,19 +484,6 @@ private val networks = arrayOf(
                 )
             ),
             Country(
-                R.string.np_region_pt, flag = "🇵🇹", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.PT,
-                        name = R.string.np_name_pt,
-                        description = R.string.np_desc_pt,
-                        agencies = R.string.np_desc_pt_networks,
-                        logo = R.drawable.network_portugal_logo,
-                        status = BETA,
-                        factory = { PortugalProvider(NAVITIA) }
-                    )
-                )
-            ),
-            Country(
                 R.string.np_name_spain, flag = "🇪🇸", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.SPAIN,
@@ -534,48 +496,6 @@ private val networks = arrayOf(
                     )
                 )
             ),
-            Country(
-                R.string.np_name_hungary, flag = "🇭🇺", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.HUNGARY,
-                        name = R.string.np_name_hungary,
-                        description = R.string.np_desc_hungary,
-                        agencies = R.string.np_desc_hungary_networks,
-                        logo = R.drawable.network_hungary_logo,
-                        status = BETA,
-                        factory = { HungaryProvider(NAVITIA) }
-                    )
-                )
-            ),
-            Country(
-                R.string.np_name_czechia, flag = "🇨🇿", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.CZECH_REPUBLIC,
-                        name = R.string.np_name_czechia,
-                        description = R.string.np_desc_czechia,
-                        agencies = R.string.np_desc_czechia_networks,
-                        logo = R.drawable.network_czechia_logo,
-                        status = BETA,
-                        factory = { CzechRepublicProvider(NAVITIA) }
-                    )
-                )
-            )
-        )
-    ),
-    Continent(
-        R.string.np_continent_africa, R.drawable.continent_africa, countries = listOf(
-            Country(
-                R.string.np_name_ghana, flag = "🇬🇭", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.GHANA,
-                        name = R.string.np_name_ghana,
-                        description = R.string.np_desc_ghana,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { GhanaProvider(NAVITIA) }
-                    )
-                )
-            )
         )
     ),
     Continent(
@@ -606,124 +526,8 @@ private val networks = arrayOf(
                         status = BETA,
                         factory = { CmtaProvider("{\"type\":\"AID\",\"aid\":\"web9j2nak29uz41irb\"}") }
                     ),
-                    TransportNetwork(
-                        id = NetworkId.CALIFORNIA,
-                        name = R.string.np_name_california,
-                        description = R.string.np_desc_california,
-                        logo = R.drawable.network_california_logo,
-                        status = ALPHA,
-                        factory = { CaliforniaProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.OREGON,
-                        name = R.string.np_name_oregon,
-                        description = R.string.np_desc_oregon,
-                        logo = R.drawable.network_oregon_logo,
-                        status = ALPHA,
-                        factory = { OregonProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.NEWYORK,
-                        name = R.string.np_name_usny,
-                        description = R.string.np_desc_usny,
-                        status = ALPHA,
-                        factory = { NewyorkProvider(NAVITIA) }
-                    )
                 )
             ),
-            Country(
-                R.string.np_region_canada, flag = "🇨🇦", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.ONTARIO,
-                        name = R.string.np_name_ontario,
-                        description = R.string.np_desc_ontario,
-                        agencies = R.string.np_desc_ontario_networks,
-                        logo = R.drawable.network_ontario_logo,
-                        status = BETA,
-                        goodLineNames = true,
-                        factory = { OntarioProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.QUEBEC,
-                        name = R.string.np_name_quebec,
-                        description = R.string.np_desc_quebec,
-                        agencies = R.string.np_desc_quebec_networks,
-                        logo = R.drawable.network_quebec_logo,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { QuebecProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.BRITISHCOLUMBIA,
-                        name = R.string.np_name_britishcolumbia,
-                        description = R.string.np_desc_britishcolumbia,
-                        agencies = R.string.np_desc_britishcolumbia_networks,
-                        logo = R.drawable.network_britishcolumbia_logo,
-                        status = ALPHA,
-                        // check the line below
-                        goodLineNames = true,
-                        factory = { BritishColumbiaProvider(NAVITIA) }
-                    )
-                )
-            )
-        )
-    ),
-    Continent(
-        R.string.np_continent_central_america, R.drawable.continent_central_america, countries = listOf(
-            Country(
-                R.string.np_name_costa_rica, flag = "🇨🇷", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.CR,
-                        name = R.string.np_name_costa_rica,
-                        description = R.string.np_desc_costa_rica,
-                        agencies = R.string.np_desc_costa_rica_networks,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { CostaRicaProvider(null) }
-                    )
-                )
-            ),
-            Country(
-                R.string.np_name_nicaragua, flag = "🇳🇮", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.NICARAGUA,
-                        name = R.string.np_name_nicaragua,
-                        description = R.string.np_desc_nicaragua,
-                        logo = R.drawable.network_nicaragua_logo,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { NicaraguaProvider(NAVITIA) }
-                    )
-                )
-            )
-        )
-    ),
-    Continent(
-        R.string.np_continent_south_america, R.drawable.continent_south_america, countries = listOf(
-            Country(
-                R.string.np_name_br, flag = "🇧🇷", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.BRAZIL,
-                        name = R.string.np_name_br,
-                        description = R.string.np_desc_br,
-                        agencies = R.string.np_desc_br_networks,
-                        logo = R.drawable.network_br_logo,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { BrazilProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.BRFLORIPA,
-                        name = R.string.np_name_br_floripa,
-                        description = R.string.np_desc_br_floripa,
-                        agencies = R.string.np_desc_br_floripa_networks,
-                        logo = R.drawable.network_brfloripa_logo,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { BrFloripaProvider("https://api.transportr.app/floripa/v1/".toHttpUrlOrNull(), null) }
-                    )
-                )
-            )
         )
     ),
     Continent(
@@ -763,19 +567,6 @@ private val networks = arrayOf(
                     )
                 )
             ),
-            Country(
-                R.string.np_name_nz, flag = "🇳🇿", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.NZ,
-                        name = R.string.np_name_nz,
-                        description = R.string.np_desc_nz,
-                        agencies = R.string.np_desc_nz_networks,
-                        logo = R.drawable.network_nz_logo,
-                        status = BETA,
-                        factory = { NzProvider(NAVITIA) }
-                    )
-                )
-            )
         )
     )
 )
