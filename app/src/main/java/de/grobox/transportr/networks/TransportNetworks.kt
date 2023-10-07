@@ -247,12 +247,13 @@ private val networks = arrayOf(
                         logo = R.drawable.network_oebb_logo,
                         factory = { OebbProvider("{\"type\":\"AID\",\"aid\":\"OWDL4fE4ixNiPBBm\"}") }
                     ),
-                    TransportNetwork(
+                    // see https://github.com/grote/Transportr/issues/817
+                    /*TransportNetwork(
                         id = NetworkId.VOR,
                         description = R.string.np_desc_vor,
                         logo = R.drawable.network_vor_logo,
                         factory = { VorProvider(VAO) }
-                    ),
+                    ),*/
                     TransportNetwork(
                         id = NetworkId.LINZ,
                         name = R.string.np_name_linz,
@@ -272,27 +273,29 @@ private val networks = arrayOf(
 //                        logo = R.drawable.network_ivb_logo,
 //                        factory = { IvbProvider() }
 //                    ),
-                    TransportNetwork(
+                    // see https://github.com/grote/Transportr/issues/817
+                    /*TransportNetwork(
                         id = NetworkId.STV,
                         name = R.string.np_name_stv,
                         description = R.string.np_desc_stv,
                         logo = R.drawable.network_stv_logo,
                         factory = { StvProvider() }
-                    ),
-                    TransportNetwork(
+                    ),*/
+                    /*TransportNetwork(
                         id = NetworkId.WIEN,
                         name = R.string.np_name_wien,
                         description = R.string.np_desc_wien,
                         logo = R.drawable.network_wien_logo,
                         factory = { WienProvider() }
-                    ),
-                    TransportNetwork(
+                    ),*/
+                    // see https://github.com/grote/Transportr/issues/817
+                    /*TransportNetwork(
                         id = NetworkId.VMOBIL,
                         name = R.string.np_name_vmobil,
                         description = R.string.np_desc_vmobil,
                         logo = R.drawable.network_vmobil_logo,
                         factory = { VmobilProvider(VAO) }
-                    )
+                    )*/
                 )
             ),
             Country(
