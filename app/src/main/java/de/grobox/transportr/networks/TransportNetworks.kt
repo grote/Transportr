@@ -323,7 +323,8 @@ private val networks = arrayOf(
                     )
                 )
             ),
-            Country(
+            // disabled until https://github.com/schildbach/public-transport-enabler/issues/502 is resolved
+            /*Country(
                 R.string.np_region_belgium, flag = "🇧🇪", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.SNCB,
@@ -334,7 +335,7 @@ private val networks = arrayOf(
                         factory = { SncbProvider("{\"type\":\"AID\",\"aid\":\"sncb-mobi\"}") }
                     )
                 )
-            ),
+            ),*/
             Country(
                 R.string.np_region_luxembourg, flag = "🇱🇺", networks = listOf(
                     TransportNetwork(
@@ -355,7 +356,8 @@ private val networks = arrayOf(
                         status = BETA,
                         factory = { NsProvider() }
                     ),
-                    TransportNetwork(
+                    // disabled until https://github.com/schildbach/public-transport-enabler/issues/438 is fixed
+                    /*TransportNetwork(
                         id = NetworkId.NEGENTWEE,
                         name = R.string.np_name_negentwee,
                         description = R.string.np_desc_negentwee,
@@ -368,7 +370,7 @@ private val networks = arrayOf(
                                 NegentweeProvider(NegentweeProvider.Language.EN_GB)
                             }
                         }
-                    )
+                    )*/
                 )
             ),
             Country(
