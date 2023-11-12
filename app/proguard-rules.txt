@@ -51,3 +51,7 @@
 -keep class de.grobox.transportr.**
 -dontwarn de.grobox.transportr.data.**
 -dontnote de.grobox.transportr.ui.**
+
+-keepclasseswithmembers class **.R$* {
+    public static final int define_*;
+}
