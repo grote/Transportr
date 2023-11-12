@@ -420,16 +420,6 @@ private val networks = arrayOf(
                 )
             ),
             Country(
-                R.string.np_region_ireland, flag = "🇮🇪", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.TFI,
-                        description = R.string.np_desc_tfi,
-                        logo = R.drawable.network_tfi_logo,
-                        factory = { TfiProvider() }
-                    )
-                )
-            ),
-            Country(
                 R.string.np_name_it, flag = "🇮🇹", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.IT,
