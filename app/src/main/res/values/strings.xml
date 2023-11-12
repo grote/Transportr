@@ -81,7 +81,7 @@ and always knows where you are to not miss where to get off the bus.
 
 	<string name="jawg_styles_url" translatable="false">https://api.jawg.io/styles/</string>
 	<string name="jawg_access_token" translatable="false">KxO8lF4U3kiO63m0c7lzqDCDrMUVg1OA2JVzRXxxmYSyjugr1xpe4W4Db5rFNvbQ</string>
-	<string name="jawg_style_light" translatable="false">jawg-light</string>
+	<string name="jawg_style_light" translatable="false">jawg-sunny</string>
 	<string name="jawg_style_dark" translatable="false">jawg-dark</string>
 
 	<string name="map_attribution" translatable="false">&lt;a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps">© &lt;b>Jawg&lt;/b>Maps&lt;/a>, &lt;a href="https://www.openstreetmap.org/copyright" title="OpenStreetMap is open data licensed under ODbL">© OSM contributors&lt;/a>&lt;br/>&lt;b>&lt;a href="https://www.openstreetmap.org/fixthemap">%1$s&lt;/a>&lt;/b></string>
