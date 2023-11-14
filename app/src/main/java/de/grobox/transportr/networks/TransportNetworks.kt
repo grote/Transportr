@@ -320,6 +320,13 @@ private val networks = arrayOf(
             Country(
                 R.string.np_region_switzerland, flag = "🇨🇭", networks = listOf(
                     TransportNetwork(
+                        id = NetworkId.SEARCHCH,
+                        name = R.string.np_name_sbb,
+                        description = R.string.np_desc_sbb,
+                        logo = R.drawable.network_sbb_logo,
+                        factory = { CHSearchProvider() }
+                    ),
+                    TransportNetwork(
                         id = NetworkId.VBL,
                         description = R.string.np_desc_vbl,
                         logo = R.drawable.network_vbl_logo,
