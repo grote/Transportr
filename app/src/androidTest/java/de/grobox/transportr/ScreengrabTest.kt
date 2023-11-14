@@ -51,17 +51,13 @@ abstract class ScreengrabTest {
         Screengrab.setDefaultScreenshotStrategy(UiAutomatorScreenshotStrategy())
     }
 
-    val networkId: NetworkId = when(Locale.forLanguageTag(getTestLocale())) {
+    val networkId: NetworkId = when(Locale.forLanguageTag(getTestLocale() ?: "de")) {
         Locale.FRANCE -> NetworkId.PARIS
-        Locale.US -> NetworkId.TLEM
-        Locale.forLanguageTag("pt-BR") -> NetworkId.BRAZIL
         else -> NetworkId.DB
     }
 
     val departureStation = when(networkId) {
         NetworkId.PARIS -> "Gare De Lyon"
-        NetworkId.TLEM -> "Waterloo Station"
-        NetworkId.BRAZIL -> "Republica"
         else -> "Berlin Hbf"
     }
 
@@ -70,18 +66,6 @@ abstract class ScreengrabTest {
             0 -> WrapLocation(STATION, "stop_area:OIF:SA:8739305", 48857298, 2293270, "Paris", "Champ De Mars Tour Eiffel", null)
             1 -> WrapLocation(STATION, "stop_area:OIF:SA:8739100", 48842481, 2321783, "Paris", "Gare Montparnasse", null)
             2 -> WrapLocation(STATION, "stop_area:OIF:SA:8727100", 48880372, 2356597, null, "Gare Du Nord", null)
-            else -> throw RuntimeException()
-        }
-        NetworkId.TLEM -> when(i) {
-            0 -> WrapLocation(STATION, "1000119", 51503449, -152036, "London", "Hyde Park Corner", null)
-            1 -> getLocation("Blackfriars Pier")
-            2 -> getLocation("Moorgate")
-            else -> throw RuntimeException()
-        }
-        NetworkId.BRAZIL -> when(i) {
-            0 -> WrapLocation(STATION, "stop_point:OSA:SP:2600672", -23555071, -46662131, "São Paulo", "Paulista", null)
-            1 -> getLocation("Pinheiros")
-            2 -> getLocation("Vila Madalena")
             else -> throw RuntimeException()
         }
         else -> when(i) {
@@ -97,18 +81,6 @@ abstract class ScreengrabTest {
             0 -> WrapLocation(STATION, "stop_area:OIF:SA:8711300", 48876241, 2358326, "Paris", "Gare De L'est", null)
             1 -> WrapLocation(STATION, "stop_area:OIF:SA:8754730", 48860751, 2325874, "Paris", "Musée D'orsay", null)
             2 -> WrapLocation(STATION, "stop_area:OIF:SA:59290", 48866800, 2334338, "Paris", "Pyramides", null)
-            else -> throw RuntimeException()
-        }
-        NetworkId.TLEM -> when(i) {
-            0 -> WrapLocation(STATION, "1000238", 51509829, -76797, "London", "Tower Hill", null)
-            1 -> getLocation("Westminster")
-            2 -> getLocation("Temple")
-            else -> throw RuntimeException()
-        }
-        NetworkId.BRAZIL -> when(i) {
-            0 -> WrapLocation(STATION, "stop_point:OSA:SP:18876", -23543118, -46589599, "São Paulo", "Belem", null)
-            1 -> getLocation("Trianon Masp")
-            2 -> getLocation("Anhangabaú")
             else -> throw RuntimeException()
         }
         else -> when(i) {
