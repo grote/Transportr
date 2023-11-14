@@ -44,7 +44,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="drawer_departures">Vertrekken</string>
   <string name="tab_about">Over</string>
   <string name="tab_libraries">Bibliotheken</string>
-  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nVrije softwarelicentie: GPLv3+</string>
+  <string name="about_copyright">© 2013 – 2023 Torsten Grote\nVrije softwarelicentie: GPLv3+</string>
   <string name="about_description">Transportr is een openbaar vervoer-hulpmiddel, ontwikkeld door mensen van over de hele wereld om het gebruik van openbaar vervoer zo makkelijk mogelijk te maken.</string>
   <string name="about_warning_title">Waarschuwing</string>
   <string name="about_warning_text">Wij geven geen garantie op de (extern aangeleverde) gegevens. Gebruik de app op eigen risico.</string>
@@ -284,7 +284,6 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_name_nz">Nieuw-Zeeland</string>
   <string name="np_desc_nz">Nieuw-Zeeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
-  <string name="np_name_pl_navitia">Gemeentelijk vervoer in Polen</string>
   <string name="np_name_spain">Spanje</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Hongarije</string>

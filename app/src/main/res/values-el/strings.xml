@@ -61,7 +61,6 @@
   <string name="drawer_departures">Αναχωρήσεις</string>
   <string name="tab_about">Σχετικά</string>
   <string name="tab_libraries">Βιβλιοθήκες</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+\nΑρχική μετάφραση: Βαγγέλης Σκαρμούτσος</string>
   <string name="about_description">Το Transportr είναι ένα εγχειρίδιο δημόσιων μεταφορών που αναπτύχθηκε από ανθρώπους σε όλο τον κόσμο για να κάνει τις δημόσιες μεταφορές όσο γίνεται πιο εύκολες όπου κι αν είστε.</string>
   <string name="about_warning_title">Προειδοποίηση</string>
   <string name="about_warning_text">Δεν υπάρχει εγγύηση για την ορθότητα των (εξωτερικώς παρεχόμενων) δεδομένων. Παρακαλώ χρησιμοποιήστε αυτή την εφαρμογή μόνο με δική σας ευθύνη.</string>

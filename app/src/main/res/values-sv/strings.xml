@@ -296,7 +296,6 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
   <string name="np_name_nz">Nya Zeeland</string>
   <string name="np_desc_nz">Nya Zeeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
-  <string name="np_name_pl_navitia">Kommunala transportmedel i Polen</string>
   <string name="np_name_spain">Spanien</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baskien, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungern</string>

@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+  <string name="google_play_title" tools:keep="@string/google_play_title">Transportr - Açık Kaynak Toplu Taşıma</string>
+  <string name="google_play_short_desc" tools:keep="@string/google_play_short_desc">Reklamlar veya Takip Etme olmaksızın Özgür ve Ücretsiz Toplu Taşıma Asistanı</string>
   <string name="drawer_settings">Ayarlar</string>
   <string name="drawer_changelog">Sürüm Notları</string>
   <string name="drawer_about">Hakkında</string>
@@ -20,10 +22,10 @@
   <string name="drawer_departures">Gelişler</string>
   <string name="tab_about">Hakkında</string>
   <string name="tab_libraries">Kütüphaneler</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nÖzgür Yazılım Lisansı: GPLv3+</string>
   <string name="about_warning_title">Uyarı</string>
   <string name="about_contributions">Bu uygulama Özgür Yazılımdır, öyle ki özgürce kullanabilir, paylaşabilir ve geliştirebilirsiniz. Katkılar teşvik ve takdir edilir. Siz de katkınızı sunmak isterseniz lütfen daha fazla bilgi için ana sayfayı ziyaret ediniz.</string>
   <string name="about_visit_website">Websitesini Ziyaret Edin</string>
+  <string name="map_attribution_improve">Bu haritayı iyileştir</string>
   <string name="from">Nereden</string>
   <string name="to">Nereye</string>
   <string name="via">İle</string>
@@ -63,11 +65,15 @@
   <string name="pref_theme_title">Tema</string>
   <string name="pref_theme_light">Açık</string>
   <string name="pref_theme_dark">Koyu</string>
+  <string name="pref_theme_auto_system">Sistem varsayılanı</string>
   <string name="pref_language_title">Dil</string>
-  <string name="pref_walk_speed">Hızlı Yürü</string>
+  <string name="pref_optimize_least_duration">En Az Süre</string>
+  <string name="pref_optimize_least_walking">En Az Yürüme</string>
+  <string name="pref_walk_speed">Yürüme Hızı</string>
   <string name="pref_walk_speed_slow">Yavaş</string>
   <string name="pref_walk_speed_normal">Normal</string>
   <string name="pref_walk_speed_fast">Hızlı</string>
+  <string name="pref_show_when_locked_title">Ekran kilitliyken bile geziyi göster</string>
   <string name="pref_show_when_locked_summary">Kilitli ekran üzerinde göster</string>
   <string name="error">Hata</string>
   <string name="error_no_internet">İnternet bağlantısı gerekmektedir. Lütfen internet bağlantınızın çalıştığından emin olunuz.</string>
@@ -77,23 +83,31 @@
   <string name="error_find_nearby_stations">Yakın duraklar bulunamıyor</string>
   <string name="error_departures">Herhangi bir kalkış bulunamadı</string>
   <string name="error_no_calendar">Takvim yüklenmedi :(</string>
+  <string name="error_no_map">Harici harita yüklenmedi :(</string>
   <string name="trip_error_ambiguous">Konum bulunamadı. Lütfen farklı konumları kullanarak arama yapınız.</string>
   <string name="trip_error_too_close">\'Başlangıç\' ve \'Varış\' konumları birbirine çok yakın.</string>
   <string name="trip_error_unknown_from">\'Başlangıç\' konumu bulunamadı. Lütfen farklı bir konumu deneyiniz.</string>
+  <string name="trip_error_unknown_via">\'İle\' konumu bulunamadı. Lütfen farklı bir konumu deneyiniz.</string>
   <string name="trip_error_unknown_to">\'Varış\' konumu bulunamadı. Lütfen farklı bir konumu deneyiniz.</string>
   <string name="trip_error_unresolvable_address">Sağlanan adres bulunamadı. Lütfen farklı bir adres deneyiniz.</string>
   <string name="trip_error_no_trips">Hiçbir bağlantı bulunamadı :(</string>
+  <string name="trip_error_invalid_date">Belirtilen arama tarihi veri sağlayıcı tarafından şu anda desteklenmemektedir. Lütfen başka bir tarih seçiniz.</string>
+  <string name="trip_error_service_down">Veri sağlayıcıya şu anda ulaşılamamakta :(\n Lütfen daha sonra tekrar deneyin.</string>
   <string name="trip_error_pte">Bu hatayı bildirmek isterseniz lütfen %1$s \'e doğrudan bildiriniz.</string>
   <string name="trip_issue">Bu bağlantı ile ilgili bir sorun olabilir.</string>
+  <string name="trip_not_travelable">İmkansız veya iptal edilmiş</string>
   <string name="try_again">Tekrar Deneyiniz</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
+  <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d Durak</item>
     <item quantity="other">%d Durak</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
+  <string name="platform">(Platform %s)</string>
   <string name="system_default">Sistem Varsayılanı</string>
   <string name="trip_share_date">Tarih: %s</string>
+  <string name="times_include_delays">(Dikkat: Zamanlar bildirilmiş gecikmeleri içerebilir)</string>
   <string name="created_by">%s tarafından oluşturulmuştur</string>
   <string name="home">Ev</string>
   <string name="home_dialog_title">Ev Konumunu Ayarla</string>
@@ -103,8 +117,11 @@
   <string name="action_set_locations">Aramaya Ekle</string>
   <string name="action_swap_locations">Dönüş turu ara</string>
   <string name="action_change">Değiştir</string>
+  <string name="action_add_shortcut">Başlatıcı Kısayolunu Ekle</string>
   <string name="location_gps">Mevcut Konumu Kullan</string>
   <string name="warning_no_gps_fix">Bulunduğunuz yer henüz tespit edilemedi.</string>
+  <string name="permission_denied_gps">Konumunuza erişim izni vermediniz, dolayısıyla bu işlev çalışmayacaktır. Lütfen uygulama ayarlarından erişim izni veriniz.</string>
+  <string name="warning_gps_off">Konum kapalı. Lütfen ayarlardan konum servisini açınız.</string>
   <string name="product_high_speed_train">Yüksek Hızlı Tren</string>
   <string name="product_regional_train">Bölgesel Tren</string>
   <string name="product_suburban_train">Banliyö Treni</string>
@@ -147,9 +164,12 @@
   <string name="np_name_br_floripa">Florianópolis</string>
   <string name="np_region_canada">Kanada</string>
   <string name="np_name_ontario">Ontario</string>
+  <string name="np_desc_ontario">Ontario, Ottawa, Toronto, Mississauga, Hamilton, Waterloo Bölgesi</string>
   <string name="np_name_quebec">Quebec</string>
   <string name="np_desc_quebec">Deux-Montagnes, Laval, L\'Assomption, Outaouais, Sud-Ouest, Quebec, Haut-Saint-Laurent, Lanaudière, La Presqu\'Île, Laurentides, Montreal, Les Moulins, Vallée du Richelieu, Chambly-Richelieu-Carignan, Roussillon, Sorel-Varennes, Le Richelain, Sherbrooke, Sainte-Julie</string>
   <string name="np_name_britishcolumbia">British Columbia</string>
+  <string name="np_desc_britishcolumbia">BC\'de toplu taşıma</string>
+  <string name="np_desc_britishcolumbia_networks">Translink (Metro Vancouver) ve BC Transit (BC\'nin geri kalanı)</string>
   <string name="np_region_denmark">Danimarka</string>
   <string name="np_desc_dsb">Danimarka, Kopenhag</string>
   <string name="np_name_rt">Avrupa</string>
@@ -173,6 +193,8 @@
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Almanya</string>
   <string name="np_desc_avv">Augsburg</string>
+  <string name="np_name_avvaachen">AVV</string>
+  <string name="np_desc_avvaachen">Aachen</string>
   <string name="np_desc_bayern">Bavarya, Würzburg, Regensburg</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
@@ -189,9 +211,12 @@
   <string name="np_desc_nvbw">Baden-Württemberg, Konstanz, Basel, Basel-Stadt, Reutlingen, Rottweil, Tübingen, Sigmaringen</string>
   <string name="np_desc_nvv">Hesse, Frankfurt am Main, Kassel</string>
   <string name="np_desc_rsag" tools:keep="@string/np_desc_rsag">Rostock</string>
+  <string name="np_name_sh">NAH.SH</string>
+  <string name="np_desc_sh">Schleswig-Holstein, Kiel, Flensburg, Lübeck</string>
   <string name="np_desc_vbb">Brandenburg, Berlin</string>
   <string name="np_desc_vbn" tools:keep="@string/np_desc_vbn">Lower Saxony, Bremen, Bremerhaven, Oldenburg (Oldenburg), Osnabrück</string>
   <string name="np_desc_vgn">Nuremberg, Fürth, Erlangen, Bayreuth, Bamberg, Schwabach</string>
+  <string name="np_name_vgs">saarVV</string>
   <string name="np_desc_vgs">Saarland, Saarbrücken</string>
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
@@ -209,6 +234,7 @@
   <string name="np_name_it">İtalya</string>
   <string name="np_desc_it">Roma, Milan, Turin, Venedik, Palermo, Trento</string>
   <string name="np_region_liechtenstein">Lihtenştayn</string>
+  <string name="np_name_vmobil">VVV</string>
   <string name="np_desc_vmobil">Lihtenştayn, Vorarlberg, Bregenz</string>
   <string name="np_region_luxembourg">Lüksemburg</string>
   <string name="np_desc_lu">Lüksemburg</string>
@@ -228,13 +254,17 @@
   <string name="np_desc_se">İsveç, Stockholm</string>
   <string name="np_region_switzerland">İsviçre</string>
   <!--SBB is german/international, CFF is french and FFS is italian! So this IS translatable.-->
+  <string name="np_name_sbb" translatable="true">SBB</string>
   <string name="np_desc_sbb">İsviçre</string>
+  <string name="np_desc_vbl">Luzern</string>
   <string name="np_desc_zvv">Zürih</string>
   <string name="np_region_uae">Birleşik Arap Emirlikleri</string>
   <string name="np_name_dub">Dubai</string>
   <string name="np_desc_dub">Birleşik Arap Emirlikleri, Dubai</string>
   <string name="np_region_usa">Amerika Birleşik Devletleri</string>
   <string name="np_desc_rtachicago">Chicago</string>
+  <string name="np_desc_bart">San Francisco</string>
+  <string name="np_desc_cmta">Austin</string>
   <string name="np_name_usny">New York ve New-Jersey Eyaletleri</string>
   <string name="np_name_california">Kaliforniya</string>
   <string name="np_desc_california">Kaliforniya\'da toplu taşıma (ABD)</string>

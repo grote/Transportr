@@ -53,7 +53,6 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="drawer_departures">Départs</string>
   <string name="tab_about">À propos</string>
   <string name="tab_libraries">Bibliothèques</string>
-  <string name="about_copyright">© 2013 à 2021 Torsten Grote\nLicence de logiciel libre : GPLv3+</string>
   <string name="about_description">Transportr est un compagnon de transports en commun développé par des personnes partout dans le monde afin de faciliter autant que possible l’utilisation des transports en commun où que vous soyez.</string>
   <string name="about_warning_title">Avertissement</string>
   <string name="about_warning_text">Il n’existe aucune garantie quant à l’exactitude des données (provenant de sources externes). Veuillez utiliser cette appli à vos propres risques.</string>
@@ -294,7 +293,6 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_name_nz">Nouvelle-Zélande</string>
   <string name="np_desc_nz">Nouvelle-Zélande, Wellington, Auckland</string>
   <string name="np_region_poland">Pologne</string>
-  <string name="np_name_pl_navitia">Transports municipaux de Pologne</string>
   <string name="np_name_spain">Espagne</string>
   <string name="np_desc_spain">Madrid, Barcelone, Pays basque, Valence, Alicante, Majorque, Minore, Tenerife, La Palma, Navarre</string>
   <string name="np_name_hungary">Hongrie</string>
