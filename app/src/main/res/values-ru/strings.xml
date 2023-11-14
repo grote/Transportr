@@ -63,7 +63,6 @@ Transportr сохраняет часто используемые местопо
   <string name="drawer_departures">Отправление</string>
   <string name="tab_about">О приложении</string>
   <string name="tab_libraries">Библиотека</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+</string>
   <string name="about_description">Transportr является помощником общественного транспорта, разработанный людьми по всему миру, чтобы сделать использование общественного транспорта как можно проще там, где вы находитесь.</string>
   <string name="about_warning_title">Предупреждение</string>
   <string name="about_warning_text">Нет никакой гарантии правильности (предоставленных) данных. Пожалуйста, используйте это приложение только на свой страх и риск.</string>
@@ -285,7 +284,6 @@ Transportr сохраняет часто используемые местопо
   <string name="np_name_nz">Новая Зеландия</string>
   <string name="np_desc_nz">Новая Зеландия, Веллингтон, Окленд</string>
   <string name="np_region_poland">Польша</string>
-  <string name="np_name_pl_navitia">Городской транспорт Польши</string>
   <string name="np_name_spain">Испания</string>
   <string name="np_desc_spain">Мадрид, Барселона, Страна Басков, Валенсия, Аликанте, Майорка, Менорка, Тенерифе, Ла-Пальма, Наварра</string>
   <string name="np_name_hungary">Венгрия</string>

@@ -67,7 +67,6 @@ hogy hol kell leszállnia a buszról…
   <string name="drawer_departures">Indulások</string>
   <string name="tab_about">Névjegy</string>
   <string name="tab_libraries">Programkönyvtárak</string>
-  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nSzabad szoftver licenc: GPLv3+</string>
   <string name="about_description">A Transportr egy olyan tömegközlekedési segéd, amelyet az emberek a világ minden tájáról azért fejlesztenek, hogy a tömegközlekedést a lehető legegyszerűbbé tegyek, bárhol is legyen.</string>
   <string name="about_warning_title">Figyelmeztetés</string>
   <string name="about_warning_text">Nincs garancia a (kívülről érkező) adatok helyességére. Ezt az alkalmazást csak saját felelősségére használja!</string>
@@ -307,7 +306,6 @@ hogy hol kell leszállnia a buszról…
   <string name="np_name_nz">Új-Zéland</string>
   <string name="np_desc_nz">Új-Zéland, Welligton, Auckland</string>
   <string name="np_region_poland">Lengyelország</string>
-  <string name="np_name_pl_navitia">Lengyel városi közlekedés</string>
   <string name="np_name_spain">Spanyolország</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baszkföld, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Magyarország</string>

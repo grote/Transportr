@@ -67,7 +67,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="drawer_departures">Sortides</string>
   <string name="tab_about">Sobre</string>
   <string name="tab_libraries">Biblioteques</string>
-  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nFree Software License: GPLv3+</string>
   <string name="about_description">Transportr és un assistent de transport públic desenvolupat per persones de tot el món per fer que utilitzar el transport públic sigui el més fàcil possible allà on estiguis.</string>
   <string name="about_warning_title">Avís</string>
   <string name="about_warning_text">No es garanteix la correcció de les dades (donades externament). Utilitza aquesta aplicació només sota el teu propi risc.</string>
@@ -307,7 +306,6 @@ i sempre saber on ets per no perdre on baixar de l\'autobús. ]]></string>
   <string name="np_name_nz">Nova Zelanda</string>
   <string name="np_desc_nz">Nova Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polònia</string>
-  <string name="np_name_pl_navitia">Transports municipals de Polònia</string>
   <string name="np_name_spain">Espanya</string>
   <string name="np_desc_spain">Madrid, Barcelona, Euskadi, Val
 ència, Alacant, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>

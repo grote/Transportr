@@ -59,7 +59,6 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="drawer_departures">Partenze</string>
   <string name="tab_about">Informazioni</string>
   <string name="tab_libraries">Librerie</string>
-  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nLicenza libera del software: GPLv3+</string>
   <string name="about_description">Transportr è un\'app di trasporto pubblico sviluppata da persone di tutto il mondo per rendere il trasporto pubblico il più semplice possibile ovunque tu sia.</string>
   <string name="about_warning_title">Attenzione</string>
   <string name="about_warning_text">Non c\'è alcuna garanzia per la correttezza dei dati (di terze parti). Usa quest\'app a tuo rischio.</string>
@@ -300,7 +299,6 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_name_nz">Nuova Zelanda</string>
   <string name="np_desc_nz">Nuova Zelanda, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
-  <string name="np_name_pl_navitia">Trasporti comunali della Polonia</string>
   <string name="np_name_spain">Spagna</string>
   <string name="np_desc_spain">Madrid, Barcellona, Paesi Baschi, Valencia, Alicante, Maiorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungheria</string>

@@ -24,7 +24,6 @@
   <string name="drawer_departures">Partidas</string>
   <string name="tab_about">Sobre</string>
   <string name="tab_libraries">Bibliotecas</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nLicença Software Livre: GPLv3+</string>
   <string name="about_description">Transportr é o seu companheiro de transporte público desenvolvido por pessoas ao redor do mundo para deixar o transporte público o mais simples possível, não importa onde você estiver.</string>
   <string name="about_warning_title">Aviso</string>
   <string name="about_warning_text">Não existem garantias para a exatidão dos dados (fornecidos por terceiros). Por favor, use este aplicativo por sua conta e risco.</string>
@@ -104,6 +103,7 @@
   <string name="meter">%d m</string>
   <plurals name="stops">
     <item quantity="one">%d Paradas</item>
+    <item quantity="many">%d Paradas</item>
     <item quantity="other">%d Paradas</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
@@ -238,7 +238,6 @@
   <string name="np_name_nz">Nova Zelândia </string>
   <string name="np_desc_nz">Nova Zelândia, Welligton, Auckland</string>
   <string name="np_region_poland">Polônia</string>
-  <string name="np_name_pl_navitia">Transportes Municipais da Polônia</string>
   <string name="np_name_spain">Espanha</string>
   <string name="np_name_hungary">Hungria</string>
   <string name="np_desc_hungary">Budapeste, Miskolc</string>

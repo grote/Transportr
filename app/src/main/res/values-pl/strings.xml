@@ -278,7 +278,6 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_name_nz">Nowa Zelandia</string>
   <string name="np_desc_nz">Nowa Zelandia, Wellington, Auckland</string>
   <string name="np_region_poland">Polska</string>
-  <string name="np_name_pl_navitia">Transport miejski w Polsce</string>
   <string name="np_name_spain">Hiszpania</string>
   <string name="np_desc_spain">Madryt, Barcelona, Kraj Basków, Walencja, Alicante, Majorka, Minorka, Teneryfa, La Palma, Nawarra</string>
   <string name="np_name_hungary">Węgry</string>
