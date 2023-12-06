@@ -53,7 +53,7 @@ object TransportrUtils {
         FERRY -> R.drawable.product_ferry
         CABLECAR -> R.drawable.product_cablecar
         ON_DEMAND -> R.drawable.product_on_demand
-        null -> R.drawable.product_bus
+        null -> R.drawable.product_null
     }
 
     @JvmStatic
