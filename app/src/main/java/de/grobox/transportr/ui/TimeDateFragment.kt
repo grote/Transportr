@@ -21,6 +21,7 @@ package de.grobox.transportr.ui
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.os.Build
 import android.os.Bundle
 import android.text.format.DateFormat.getDateFormat
 import android.view.LayoutInflater
@@ -162,8 +163,15 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
 
     @Suppress("DEPRECATION")
     private fun showTime(c: Calendar) {
-        timePicker.currentHour = c.get(HOUR_OF_DAY)
-        timePicker.currentMinute = c.get(MINUTE)
+        val hour = c.get(HOUR_OF_DAY)
+        val min = c.get(MINUTE)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.hour = hour
+            timePicker.minute = min
+        } else {
+            timePicker.currentHour = hour
+            timePicker.currentMinute = min
+        }
     }
 
     private fun showDate(c: Calendar) {
