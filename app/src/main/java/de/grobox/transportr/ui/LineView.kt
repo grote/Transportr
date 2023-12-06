@@ -51,9 +51,7 @@ class LineView(context: Context, attr: AttributeSet?) : AppCompatTextView(contex
         setPadding(0, dpToPx(context, 2), dpToPx(context, 4), dpToPx(context, 2))
 
         // product icon
-        if (line.product != null) {
-            setDrawable(getDrawableForProduct(line.product), foregroundColor)
-        }
+        setDrawable(getDrawableForProduct(line.product), foregroundColor)
 
         // set colored label
         text = line.label
