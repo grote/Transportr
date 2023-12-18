@@ -255,6 +255,7 @@ Ta aplikacja korzysta z wielu dostawców danych transportu publicznego i dostarc
   <string name="np_desc_vmv">Meklemburgia-Pomorze Przednie, Schwerin</string>
   <string name="np_desc_vrn">Badenia-Wirtembergia, Nadrenia-Palatynat, Mannheim, Moguncja, Trewir</string>
   <string name="np_desc_vrr">Nadrenia Północna-Westfalia, Kolonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Kolonia, Bonn</string>
   <string name="np_desc_vvm">Szwabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saksonia, Drezno</string>
   <string name="np_desc_vvs">Badenia-Wirtembergia, Stuttgart</string>

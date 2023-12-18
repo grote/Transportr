@@ -268,6 +268,7 @@ Transportr зберігає часто використовувані місця
   <string name="np_desc_vmv">Мекленбург-Передня Померанія, Шверін</string>
   <string name="np_desc_vrn">Баден-Вюртемберг, Рейнланд-Пфальц, Мангейм, Майнц, Трір</string>
   <string name="np_desc_vrr">Північний Рейн-Вестфалія, Кельн, Бонн, Ессен, Дортмунд, Дюссельдорф, Мюнстер, Падерборн, Хекстер</string>
+  <string name="np_desc_vrs">Кельн, Бонн</string>
   <string name="np_desc_vvm">Швабія, Центральна Швабія, Крумбах, Гюнцбург, Меммінген</string>
   <string name="np_desc_vvo">Саксонія, Дрезден</string>
   <string name="np_desc_vvs">Баден-Вюртемберг, Штутгарт</string>

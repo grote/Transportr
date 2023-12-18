@@ -269,6 +269,7 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Nord Rhine-Westphalia, Cologne, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Cologne, Bonn</string>
   <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saxony, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>

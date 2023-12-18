@@ -284,6 +284,7 @@ hogy hol kell leszállnia a buszról…
   <string name="np_desc_vmv">Mecklenburg-Elő-Pomeránia, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rajna-vidék-Pfalz, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Észak-Rajna-Vesztfália, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_vvm">Svábia, Középső-Svábia, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Szászország, Drezda</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>

@@ -349,6 +349,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
 	<string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
 	<string name="np_desc_vrr">North Rhine-Westphalia, Cologne, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+	<string name="np_desc_vrs">Cologne, Bonn</string>
 	<string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
 	<string name="np_desc_vvo">Saxony, Dresden</string>
 	<string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
