@@ -271,6 +271,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_desc_vmv">مکلنبورگ-فورپومرن، شورین</string>
   <string name="np_desc_vrn">بادن-وورتمبرگ، راینلاند-فالتس، مانهایم، ماینتس، تری‌یر</string>
   <string name="np_desc_vrr">نوردراین-وستفالن، کلن، بن، اسن، دورتموند، دوسلدورف، مونستر، پادربورن، هخستر</string>
+  <string name="np_desc_vrs">کلن، بن</string>
   <string name="np_desc_vvm">شوابن، میتلشوابن، کرومباخ، گونتسبورگ، ممینگن</string>
   <string name="np_desc_vvo">زاکسن، درسدن</string>
   <string name="np_desc_vvs">بادن-وورتمبرگ، اشتوتگارت</string>

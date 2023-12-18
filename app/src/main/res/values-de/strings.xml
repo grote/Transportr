@@ -280,6 +280,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Nordrhein-Westfalen, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_vvm">Schwaben, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Sachsen, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>

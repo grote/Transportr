@@ -277,6 +277,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_vmv">Meclemburgo-Pomerania anteriore, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Renania-Palatinato, Mannheim, Magonza, Treviri</string>
   <string name="np_desc_vrr">Renania Settentrionale-Vestfalia, Colonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Colonia, Bonn</string>
   <string name="np_desc_vvm">Svevia, Medio Svevia, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Sassonia, Dresda</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stoccarda</string>

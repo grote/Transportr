@@ -261,6 +261,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_vmv">Mecklenburg-Voor-Pommeren, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rijnland-Palts, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Noordrijn-Westfalen, Keulen, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Keulen, Bonn</string>
   <string name="np_desc_vvm">Zwaben, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saksen, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
