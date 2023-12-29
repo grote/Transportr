@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import de.grobox.transportr.R
+import de.grobox.transportr.databinding.ListItemLegBinding
 import de.grobox.transportr.trips.detail.LegViewHolder.LegType
 import de.grobox.transportr.trips.detail.LegViewHolder.LegType.*
 import de.schildbach.pte.dto.Trip.Leg
@@ -33,8 +34,8 @@ internal class LegAdapter internal constructor(
         private val showLineName: Boolean) : Adapter<LegViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): LegViewHolder {
-        val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_leg, viewGroup, false)
-        return LegViewHolder(v, listener, showLineName)
+        val binding = ListItemLegBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        return LegViewHolder(binding, listener, showLineName)
     }
 
     override fun onBindViewHolder(ui: LegViewHolder, i: Int) {
