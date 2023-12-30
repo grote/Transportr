@@ -29,6 +29,7 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
+import com.mapbox.mapboxsdk.annotations.PolylineOptions
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
@@ -38,6 +39,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
+import de.grobox.transportr.map.LineLocationData.*
 
 abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
 
@@ -83,6 +85,30 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
     @CallSuper
     override fun onMapReady(mapboxMap: MapboxMap) {
         map = mapboxMap
+        mapboxMap.addPolyline(
+            PolylineOptions().color(0xffe20613.toInt())
+                .addAll(u1)
+                .width(5f))
+
+        mapboxMap.addPolyline(
+            PolylineOptions().color(0xffa762a4.toInt())
+                .addAll(u2)
+                .width(5f))
+
+        mapboxMap.addPolyline(
+            PolylineOptions().color(0xffef7c00.toInt())
+                .addAll(u3)
+                .width(5f))
+
+        mapboxMap.addPolyline(
+            PolylineOptions().color(0xff029540.toInt())
+                .addAll(u4)
+                .width(5f))
+
+        mapboxMap.addPolyline(
+            PolylineOptions().color(0xff9c6830.toInt())
+                .addAll(u6)
+                .width(5f))
         activity?.run {
             // work-around to force update map style after theme switching
             obtainStyledAttributes(intArrayOf(R.attr.mapStyle)).apply {
