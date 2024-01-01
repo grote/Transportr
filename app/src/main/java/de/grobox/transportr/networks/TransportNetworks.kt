@@ -281,13 +281,13 @@ private val networks = arrayOf(
                         logo = R.drawable.network_stv_logo,
                         factory = { StvProvider() }
                     ),*/
-                    /*TransportNetwork(
+                    TransportNetwork(
                         id = NetworkId.WIEN,
                         name = R.string.np_name_wien,
                         description = R.string.np_desc_wien,
                         logo = R.drawable.network_wien_logo,
                         factory = { WienProvider() }
-                    ),*/
+                    ),
                     // see https://github.com/grote/Transportr/issues/817
                     /*TransportNetwork(
                         id = NetworkId.VMOBIL,
