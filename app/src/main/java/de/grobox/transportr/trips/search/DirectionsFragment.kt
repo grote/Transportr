@@ -110,8 +110,8 @@ class DirectionsFragment : TransportrFragment() {
         viewModel.fromLocation.observe(viewLifecycleOwner, {
             fromLocation.setLocation(it)
             if (it != null) toLocation.requestFocus()
+            onLocationsChanged()
         })
-        viewModel.fromLocation.observe(viewLifecycleOwner, { onLocationsChanged() })
         viewModel.viaLocation.observe(viewLifecycleOwner, { viaLocation.setLocation(it) })
         viewModel.toLocation.observe(viewLifecycleOwner, {
             toLocation.setLocation(it)
