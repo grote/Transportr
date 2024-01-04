@@ -113,8 +113,10 @@ class DirectionsFragment : TransportrFragment() {
         })
         viewModel.fromLocation.observe(viewLifecycleOwner, { onLocationsChanged() })
         viewModel.viaLocation.observe(viewLifecycleOwner, { viaLocation.setLocation(it) })
-        viewModel.toLocation.observe(viewLifecycleOwner, { toLocation.setLocation(it) })
-        viewModel.toLocation.observe(viewLifecycleOwner, { onLocationsChanged() })
+        viewModel.toLocation.observe(viewLifecycleOwner, {
+            toLocation.setLocation(it)
+            onLocationsChanged()
+        })
         viewModel.viaSupported.observe(viewLifecycleOwner, { viaIcon.visibility = if (it) VISIBLE else GONE })
         viewModel.isDeparture.observe(viewLifecycleOwner, { onIsDepartureChanged(it) })
         viewModel.isExpanded.observe(viewLifecycleOwner, { onViaVisibleChanged(it) })
