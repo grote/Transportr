@@ -155,7 +155,9 @@ class DirectionsFragment : TransportrFragment() {
     private fun onLocationsChanged() {
         val fromNotEmpty = this.viewModel.fromLocation.value != null
         val toNotEmpty = this.viewModel.toLocation.value != null
-        swapIcon.visibility = if (fromNotEmpty || toNotEmpty) VISIBLE else GONE
+        swapIcon.isEnabled = fromNotEmpty || toNotEmpty
+        // If icon disabled, grey it out
+        swapIcon.alpha = if (swapIcon.isEnabled) 1.0f else 0.5f
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
