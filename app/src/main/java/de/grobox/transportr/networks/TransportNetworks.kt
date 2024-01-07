@@ -84,11 +84,11 @@ private val networks = arrayOf(
                         factory = { BayernProvider() }
                     ),
                     TransportNetwork(
-                        id = NetworkId.AVV,
+                        id = NetworkId.AVV_AUGSBURG,
+                        name = R.string.np_name_avv,
                         description = R.string.np_desc_avv,
                         logo = R.drawable.network_avv_logo,
-                        status = BETA,
-                        factory = { AvvProvider() }
+                        factory = { AvvAugsburgProvider("{\"type\":\"AID\",\"aid\":\"jK91AVVZU77xY5oH\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.MVV,

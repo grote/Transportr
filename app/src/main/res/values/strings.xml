@@ -314,8 +314,9 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
 
 	<string name="np_region_germany">Germany</string>
+	<string name="np_name_avv" translatable="false">AVV</string>
 	<string name="np_desc_avv">Augsburg</string>
-	<string name="np_name_avvaachen">AVV</string>
+	<string name="np_name_avvaachen" translatable="false">AVV</string>
 	<string name="np_desc_avvaachen">Aachen</string>
 	<string name="np_name_bayern" translatable="false">BEG</string>
 	<string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
