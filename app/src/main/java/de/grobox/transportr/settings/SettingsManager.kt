@@ -24,8 +24,10 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
+import android.os.PowerManager
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.core.content.ContextCompat
 import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider.Optimize
@@ -67,8 +69,14 @@ class SettingsManager @Inject constructor(private val context: Context) {
 
     val isDarkTheme: Boolean
         get() {
-            return (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) or
-                    (theme == MODE_NIGHT_YES)
+            return when(theme) {
+                MODE_NIGHT_YES -> true
+                MODE_NIGHT_NO -> false
+                else -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+                else
+                    ContextCompat.getSystemService(context, PowerManager::class.java)?.isPowerSaveMode ?: false
+            }
         }
 
     val walkSpeed: WalkSpeed

@@ -60,9 +60,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         // Fill in current transport network if available
         networkPref = findPreference("pref_key_network")!!
-        manager.transportNetwork.observe(this, Observer<TransportNetwork> {
+        manager.transportNetwork.observe(this) {
             onTransportNetworkChanged(it)
-        })
+        }
 
         networkPref.setOnPreferenceClickListener {
             if (activity == null || view == null) return@setOnPreferenceClickListener false
