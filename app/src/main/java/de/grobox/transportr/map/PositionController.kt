@@ -78,10 +78,16 @@ import java.util.concurrent.TimeUnit
             PositionState.DISABLED
     }
 
+     private fun isProviderEnabled(provider: String): Boolean {
+         return locationManager.isProviderEnabled(provider)
+     }
+
     @RequiresPermission(ACCESS_FINE_LOCATION)
     override fun onActive() {
         for (provider in LOCATION_PROVIDERS) {
-            locationManager.requestLocationUpdates(provider, MIN_UPDATE_INTERVAL, MIN_UPDATE_DISTANCE, this, Looper.getMainLooper())
+            if (isProviderEnabled(provider)){
+                locationManager.requestLocationUpdates(provider, MIN_UPDATE_INTERVAL, MIN_UPDATE_DISTANCE, this, Looper.getMainLooper())
+            }
         }
     }
 
