@@ -60,47 +60,59 @@
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/appIcon"/>
 
-		<TextView
-			android:id="@+id/warningTitle"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="16dp"
-			android:layout_marginStart="16dp"
-			android:layout_marginTop="16dp"
-			android:text="@string/about_warning_title"
-			android:textColor="?colorError"
-			android:textSize="16sp"
-			android:textStyle="bold"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/aboutTextView"/>
-
-		<TextView
-			android:id="@+id/warningText"
+		<androidx.cardview.widget.CardView
+			android:id="@+id/cardView"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="16dp"
 			android:layout_marginStart="16dp"
-			android:layout_marginTop="8dp"
-			android:text="@string/about_warning_text"
-			android:textColor="?colorError"
-			android:textSize="16sp"
+			android:layout_marginTop="16dp"
+			android:layout_marginEnd="16dp"
+			style="@style/ErrorCard"
+			app:cardUseCompatPadding="false"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/warningTitle"/>
+			app:layout_constraintTop_toBottomOf="@+id/aboutTextView">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_margin="16dp"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/warningTitle"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/about_warning_title"
+					style="@style/ErrorCard"
+					android:textSize="16sp"
+					android:textStyle="bold" />
+
+				<TextView
+					android:id="@+id/warningText"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="8dp"
+					android:text="@string/about_warning_text"
+					style="@style/ErrorCard"
+					android:textSize="16sp" />
+			</LinearLayout>
+
+		</androidx.cardview.widget.CardView>
 
 		<TextView
 			android:id="@+id/contributions"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="16dp"
 			android:layout_marginStart="16dp"
 			android:layout_marginTop="16dp"
+			android:layout_marginEnd="16dp"
 			android:text="@string/about_contributions"
 			android:textColor="?android:textColorPrimary"
 			android:textSize="16sp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/warningText"/>
+			app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 		<Button
 			android:id="@+id/websiteButton"

@@ -1,58 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	style="@style/NavHeaderCard"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:orientation="vertical"
-	android:id="@+id/drawer_header"
-	android:layout_marginStart="20dp"
+	android:layout_margin="8dp"
+	android:layout_marginTop="32dp"
 	android:fitsSystemWindows="true">
 
 	<LinearLayout
-		android:layout_marginTop="50dp"
+		android:id="@+id/drawer_header"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
+		android:layout_height="match_parent"
+		android:layout_margin="12dp"
+		android:orientation="vertical">
 
-		<com.google.android.material.imageview.ShapeableImageView
-			android:id="@+id/network_image"
-			android:layout_width="60dp"
-			android:layout_height="60dp"
-			app:shapeAppearanceOverlay="@style/RoundedImageView"
-			android:layout_marginBottom="20dp"/>
 
-		<View
-			android:layout_width="0dp"
-			android:layout_weight="1"
-			android:layout_height="0px" />
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:orientation="horizontal">
 
-		<com.google.android.material.imageview.ShapeableImageView
-			android:id="@+id/network_image_two"
-			android:layout_width="30dp"
-			android:layout_height="30dp"
-			app:shapeAppearanceOverlay="@style/RoundedImageView"
-			android:layout_marginBottom="20dp"/>
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/network_image"
+				android:layout_width="60dp"
+				android:layout_height="60dp"
+				android:layout_marginBottom="20dp"
+				app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
-		<com.google.android.material.imageview.ShapeableImageView
-			android:id="@+id/network_image_three"
-			android:layout_width="30dp"
-			android:layout_height="30dp"
-			android:layout_marginStart="10dp"
-			app:shapeAppearanceOverlay="@style/RoundedImageView"
-			android:layout_marginBottom="20dp"/>
+			<View
+				android:layout_width="0dp"
+				android:layout_height="0px"
+				android:layout_weight="1" />
+
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/network_image_two"
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:layout_marginBottom="20dp"
+				app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/network_image_three"
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:layout_marginStart="10dp"
+				android:layout_marginBottom="20dp"
+				app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+		</LinearLayout>
+
+		<TextView
+			android:id="@+id/network_name"
+			style="@style/NavHeaderCard"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="20sp" />
+
+		<TextView
+			android:id="@+id/network_description"
+			style="@style/NavHeaderCard"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="30dp" />
 
 	</LinearLayout>
 
-	<TextView
-		android:id="@+id/network_name"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textSize="20sp" />
-
-	<TextView
-		android:id="@+id/network_description"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="30dp" />
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>
