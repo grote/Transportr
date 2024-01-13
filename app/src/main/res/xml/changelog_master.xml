@@ -3,6 +3,13 @@
     tools:ignore="UnusedResources">
 
     <release
+        version="2.2.1"
+        versioncode="125">
+        <change>Fix app crash at startup when no network-backed location provider was available (thanks Altonss!)</change>
+        <change>Make sure all parts of the app follow theme settings consistently</change>
+    </release>
+
+    <release
         version="2.2.0"
         versioncode="124">
         <change>Switch map library to MapLibre - finally bringing Transportr back to F-Droid!</change>
