@@ -80,16 +80,14 @@ import java.util.concurrent.TimeUnit
 
     @RequiresPermission(ACCESS_FINE_LOCATION)
     override fun onActive() {
-        for (provider in LOCATION_PROVIDERS) {
+        for (provider in LOCATION_PROVIDERS.filter(locationManager::isProviderEnabled)) {
             locationManager.requestLocationUpdates(provider, MIN_UPDATE_INTERVAL, MIN_UPDATE_DISTANCE, this, Looper.getMainLooper())
         }
     }
 
     @RequiresPermission(ACCESS_FINE_LOCATION)
     override fun onInactive() {
-        for (provider in LOCATION_PROVIDERS) {
-            locationManager.removeUpdates(this)
-        }
+        locationManager.removeUpdates(this)
     }
 
     override fun onLocationChanged(location: Location) {
