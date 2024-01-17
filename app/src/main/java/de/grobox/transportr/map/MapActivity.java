@@ -44,6 +44,7 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.splashscreen.SplashScreen;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import de.grobox.transportr.BuildConfig;
@@ -88,6 +89,7 @@ public class MapActivity extends TransportrActivity implements LocationViewListe
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
+		SplashScreen.installSplashScreen(this);
 		super.onCreate(savedInstanceState);
 		if (BuildConfig.DEBUG) enableStrictMode();
 		getComponent().inject(this);

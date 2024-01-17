@@ -162,4 +162,6 @@ dependencies {
 	androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
 	androidTestImplementation('tools.fastlane:screengrab:2.1.1')
 	kaptAndroidTestDebug "com.google.dagger:dagger-compiler:$daggerVersion"
+
+	implementation 'androidx.core:core-splashscreen:1.0.1'
 }
