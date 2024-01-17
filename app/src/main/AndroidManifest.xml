@@ -68,6 +68,7 @@
 		<activity
 			android:name="de.grobox.transportr.trips.search.DirectionsActivity"
 			android:exported="true"
+			android:theme="@style/AppTheme.MapFullscreen"
 			android:windowSoftInputMode="stateHidden"/>
 
 		<activity
@@ -79,6 +80,7 @@
 		<activity
 			android:name="de.grobox.transportr.trips.detail.TripDetailActivity"
 			android:parentActivityName="de.grobox.transportr.trips.search.DirectionsActivity"
+			android:theme="@style/AppTheme.MapFullscreen"
 			tools:targetApi="jelly_bean"/>
 
 		<activity

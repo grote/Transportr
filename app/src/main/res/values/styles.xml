@@ -86,4 +86,9 @@
 		<item name="cornerSize">8dp</item>
 	</style>
 
+
+	<style name="AppTheme.MapFullscreen" parent="AppTheme">
+		<item name="android:statusBarColor">@android:color/transparent</item>
+	</style>
+
 </resources>

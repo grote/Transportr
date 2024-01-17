@@ -61,6 +61,7 @@ import de.grobox.transportr.networks.PickTransportNetworkActivity;
 import de.grobox.transportr.networks.TransportNetwork;
 import de.grobox.transportr.settings.SettingsActivity;
 import de.grobox.transportr.ui.TransportrChangeLog;
+import de.grobox.transportr.utils.FullScreenUtil;
 import de.grobox.transportr.utils.OnboardingBuilder;
 
 import static android.content.Intent.ACTION_VIEW;
@@ -95,6 +96,7 @@ public class MapActivity extends TransportrActivity implements LocationViewListe
 		getComponent().inject(this);
 		setContentView(R.layout.activity_map);
 		setupDrawer();
+		FullScreenUtil.Companion.drawBehindStatusbar(this);
 
 		View menu = findViewById(R.id.menu);
 		menu.setOnClickListener(view -> {
