@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="md_theme_primary">@android:color/system_accent1_200</color>
+    <color name="md_theme_onPrimary">@android:color/system_accent1_900</color>
+    <color name="md_theme_primaryContainer">@android:color/system_accent1_600</color>
+    <color name="md_theme_onPrimaryContainer">@android:color/system_accent1_200</color>
+
+    <color name="md_theme_secondary">@android:color/system_accent2_200</color>
+    <color name="md_theme_onSecondary">@android:color/system_accent2_900</color>
+    <color name="md_theme_secondaryContainer">@android:color/system_accent2_600</color>
+    <color name="md_theme_onSecondaryContainer">@android:color/system_accent2_200</color>
+
+    <color name="md_theme_tertiary">@android:color/system_accent3_200</color>
+    <color name="md_theme_onTertiary">@android:color/system_accent3_900</color>
+    <color name="md_theme_tertiaryContainer">@android:color/system_accent3_400</color>
+    <color name="md_theme_onTertiaryContainer">@android:color/system_accent3_100</color>
+
+</resources>
