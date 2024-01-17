@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
@@ -116,6 +117,8 @@ public class TripDetailActivity extends TransportrActivity {
 
 			showOnboarding();
 		}
+
+		((ImageButton) findViewById(R.id.backView)).setOnClickListener(view -> getOnBackPressedDispatcher().onBackPressed());
 	}
 
 	private void showOnboarding() {
