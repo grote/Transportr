@@ -22,8 +22,8 @@
 		<item name="android:layout_marginStart">8dp</item>
 		<item name="android:layout_marginEnd">8dp</item>
 		<item name="android:layout_marginTop">8dp</item>
-		<item name="cardBackgroundColor">?attr/colorPrimaryContainer</item>
-		<item name="android:textColor">?attr/colorPrimaryContainer</item>
+		<item name="cardBackgroundColor">?attr/colorSurfaceVariant</item>
+		<item name="android:textColor">?attr/colorSurfaceVariant</item>
 	</style>
 
 	<style name="FavoriteCardForeground" parent="Widget.Material3.CardView.Elevated">
@@ -50,8 +50,8 @@
 	</style>
 
 	<style name="NavHeaderCard" parent="Card">
-		<item name="cardBackgroundColor">?attr/colorPrimary</item>
-		<item name="android:textColor">?attr/colorOnPrimary</item>
+		<item name="cardBackgroundColor">?attr/colorSurfaceVariant</item>
+		<item name="android:textColor">?attr/colorOnSurface</item>
 	</style>
 
 	<style name="Button" parent="Widget.AppCompat.Button.Borderless.Colored">
@@ -93,7 +93,6 @@
 		<item name="cornerFamily">rounded</item>
 		<item name="cornerSize">8dp</item>
 	</style>
-
 
 	<style name="AppTheme.MapFullscreen" parent="AppTheme">
 		<item name="android:statusBarColor">@android:color/transparent</item>
