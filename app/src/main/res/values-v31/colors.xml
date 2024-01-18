@@ -3,7 +3,7 @@
 
     <color name="md_theme_primary">@android:color/system_accent1_200</color>
     <color name="md_theme_onPrimary">@android:color/system_accent1_0</color>
-    <color name="md_theme_primaryContainer">@android:color/system_accent1_300</color>
+    <color name="md_theme_primaryContainer">@android:color/system_accent1_200</color>
     <color name="md_theme_onPrimaryContainer">@android:color/system_accent1_700</color>
 
     <color name="md_theme_secondary">@android:color/system_accent2_700</color>

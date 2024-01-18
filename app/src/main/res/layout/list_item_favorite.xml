@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	style="@style/FavoriteCard"
@@ -19,8 +20,8 @@
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
 			app:srcCompat="@drawable/ic_time"
-			app:tint="?colorControlNormal"
-			tools:ignore="ContentDescription" />
+			tools:ignore="ContentDescription"
+			style="@style/FavoriteCardForeground" />
 
 		<ImageView
 			android:id="@+id/fromIcon"
@@ -33,8 +34,8 @@
 			app:layout_constraintLeft_toRightOf="@+id/logo"
 			app:layout_constraintTop_toTopOf="@+id/from"
 			app:srcCompat="@drawable/trip_from"
-			app:tint="?colorControlNormal"
-			tools:ignore="ContentDescription" />
+			tools:ignore="ContentDescription"
+			style="@style/FavoriteCardForeground" />
 
 		<TextView
 			android:id="@+id/from"
@@ -43,11 +44,11 @@
 			android:layout_marginTop="8dp"
 			android:ellipsize="middle"
 			android:singleLine="true"
-			android:textColor="?android:textColorPrimary"
 			app:layout_constraintLeft_toRightOf="@+id/fromIcon"
 			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
 			app:layout_constraintTop_toTopOf="parent"
-			tools:text="From Station that can have a very long name" />
+			tools:text="From Station that can have a very long name"
+			style="@style/FavoriteCardForeground" />
 
 		<ImageView
 			android:id="@+id/viaIcon"
@@ -58,9 +59,9 @@
 			app:layout_constraintLeft_toLeftOf="@+id/fromIcon"
 			app:layout_constraintTop_toTopOf="@+id/via"
 			app:srcCompat="@drawable/trip_via"
-			app:tint="?colorControlNormal"
 			tools:ignore="ContentDescription"
-			tools:visibility="visible" />
+			tools:visibility="visible"
+			style="@style/FavoriteCardForeground" />
 
 		<TextView
 			android:id="@+id/via"
@@ -68,12 +69,12 @@
 			android:layout_height="wrap_content"
 			android:ellipsize="middle"
 			android:singleLine="true"
-			android:textColor="?android:textColorPrimary"
 			app:layout_constraintLeft_toRightOf="@+id/viaIcon"
 			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
 			app:layout_constraintTop_toBottomOf="@+id/from"
 			tools:text="Via Station"
-			tools:visibility="visible" />
+			tools:visibility="visible"
+			style="@style/FavoriteCardForeground" />
 
 		<ImageView
 			android:id="@+id/toIcon"
@@ -82,8 +83,8 @@
 			app:layout_constraintLeft_toLeftOf="@+id/fromIcon"
 			app:layout_constraintTop_toTopOf="@+id/to"
 			app:srcCompat="@drawable/trip_to"
-			app:tint="?colorControlNormal"
-			tools:ignore="ContentDescription" />
+			tools:ignore="ContentDescription"
+			style="@style/FavoriteCardForeground" />
 
 		<TextView
 			android:id="@+id/to"
@@ -92,12 +93,12 @@
 			android:layout_marginBottom="8dp"
 			android:ellipsize="middle"
 			android:singleLine="true"
-			android:textColor="?android:textColorPrimary"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintLeft_toRightOf="@+id/toIcon"
 			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
 			app:layout_constraintTop_toBottomOf="@+id/via"
-			tools:text="To station" />
+			tools:text="To station"
+			style="@style/FavoriteCardForeground" />
 
 		<ImageButton
 			android:id="@+id/overflowButton"
@@ -111,7 +112,7 @@
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
 			app:srcCompat="@drawable/ic_more_vert"
-			app:tint="?colorControlNormal" />
+			style="@style/FavoriteCardForeground" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
