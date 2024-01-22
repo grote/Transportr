@@ -24,6 +24,7 @@
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="cardBackgroundColor">?attr/colorSurfaceVariant</item>
 		<item name="android:textColor">?attr/colorSurfaceVariant</item>
+		<item name="cardElevation">3dp</item>
 	</style>
 
 	<style name="FavoriteCardForeground" parent="Widget.Material3.CardView.Elevated">
