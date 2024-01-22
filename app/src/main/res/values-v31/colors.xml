@@ -16,4 +16,19 @@
     <color name="md_theme_tertiaryContainer">@android:color/system_accent3_400</color>
     <color name="md_theme_onTertiaryContainer">@android:color/system_accent3_800</color>
 
+    <color name="md_theme_error">#B3261E</color>
+    <color name="md_theme_errorContainer">#F9DEDC</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_onErrorContainer">#410E0B</color>
+
+    <color name="md_theme_background">#FFFBFE</color>
+    <color name="md_theme_onBackground">#1C1B1F</color>
+
+    <color name="md_theme_surface">#FFFBFE</color>
+    <color name="md_theme_onSurface">#1C1B1F</color>
+    <color name="md_theme_surfaceVariant">#E7E0EC</color>
+    <color name="md_theme_onSurfaceVariant">#49454F</color>
+
+    <color name="md_theme_outline">#79747E</color>
+
 </resources>
