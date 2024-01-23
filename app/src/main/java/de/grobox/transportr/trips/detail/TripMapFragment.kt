@@ -66,7 +66,7 @@ class TripMapFragment : GpsMapFragment() {
         // set padding, so everything gets centered in top half of screen
         val metrics = DisplayMetrics()
         activity!!.windowManager.defaultDisplay.getMetrics(metrics)
-        val topPadding = mapPadding / 2
+        val topPadding = mapPadding
         val bottomPadding = mapView.height / 4
         map!!.setPadding(0, topPadding, 0, bottomPadding)
 
