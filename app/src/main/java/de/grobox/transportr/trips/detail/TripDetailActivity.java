@@ -146,7 +146,7 @@ public class TripDetailActivity extends TransportrActivity {
 			case BOTTOM:
 				bottomSheetBehavior.setBottom();
 				bottomSheetBehavior.setState(STATE_COLLAPSED);
-				FullScreenUtil.Companion.showStatusbar(this);
+				FullScreenUtil.Companion.drawBehindStatusbar(this);
 				findViewById(R.id.divider).setVisibility(View.GONE);
 				break;
 			case MIDDLE:

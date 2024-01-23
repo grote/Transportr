@@ -35,12 +35,11 @@ class FullScreenUtil {
             WindowCompat.setDecorFitsSystemWindows(activity.window, false)
             // required for the mail view, which cant properly use the theme.
             activity.window.statusBarColor = Color.TRANSPARENT
+            activity.window.navigationBarColor = Color.TRANSPARENT
         }
 
         fun showStatusbar(activity: Activity) {
             WindowCompat.setDecorFitsSystemWindows(activity.window, true)
-            // required for the mail view, which cant properly use the theme.
-            //activity.window.statusBarColor = Color.TRANSPARENT
         }
 
         fun applyTopInset(view: View?) {
