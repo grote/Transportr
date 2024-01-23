@@ -21,6 +21,8 @@ package de.grobox.transportr.favorites.locations
 
 import android.app.Activity
 import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -71,6 +73,8 @@ abstract class SpecialLocationFragment : DialogFragment(), LocationView.Location
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_special_location, container)
+
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         // Initialize LocationView
         loc = v.findViewById(R.id.location_input)

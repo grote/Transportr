@@ -15,4 +15,10 @@
 	<dimen name="locationPeekPadding">32dp</dimen>
 	<dimen name="dragToRefreshDistance">96dp</dimen>
 
+
+
+	<dimen name="searchBarMargins">16dp</dimen>
+	<dimen name="searchBarHeight">48dp</dimen>
+	<dimen name="searchBarCornerRadius">8dp</dimen>
+
 </resources>
