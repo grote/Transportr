@@ -125,18 +125,15 @@
 				android:id="@+id/fromTimeRel"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginLeft="8dp"
 				android:layout_marginStart="8dp"
-				android:layout_marginTop="8dp"
-				android:layout_marginBottom="8dp"
 				android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-				android:textStyle="normal|bold"
 				android:textColor="?attr/colorOnPrimaryContainer"
-				app:layout_constraintTop_toTopOf="parent"
-				app:layout_constraintBottom_toBottomOf="parent"
+				android:textStyle="normal|bold"
+				app:layout_constraintBottom_toBottomOf="@+id/durationTop"
 				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="@+id/durationTop"
 				tools:text="in 20min"
-				tools:visibility="visible"/>
+				tools:visibility="visible" />
 
 			<TextView
 				android:id="@+id/durationTop"
@@ -145,34 +142,36 @@
 				android:layout_marginTop="8dp"
 				android:layout_marginBottom="8dp"
 				android:textColor="?attr/colorOnPrimaryContainer"
-				app:layout_constraintTop_toTopOf="parent"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
-				tools:text="Gesamtdauer: 0:42"/>
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="Gesamtdauer: 0:42" />
 
 			<TextView
 				android:id="@+id/priceTop"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="8dp"
-				android:layout_marginBottom="8dp"
 				android:layout_marginEnd="8dp"
-				android:layout_marginRight="8dp"
 				android:textColor="?attr/colorOnPrimaryContainer"
-				app:layout_constraintTop_toTopOf="parent"
-				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintBottom_toBottomOf="@+id/durationTop"
 				app:layout_constraintEnd_toEndOf="parent"
-				tools:text="1,50 €"/>
-
-			<View
-				style="@style/Divider"
-				android:layout_width="0dp"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintLeft_toLeftOf="parent"
-				app:layout_constraintRight_toRightOf="parent"/>
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="1,50 €" />
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<View
+			android:id="@+id/divider"
+			style="@style/Divider"
+			android:layout_width="match_parent"
+			android:layout_height="2px"
+			android:layout_marginLeft="32dp"
+			android:layout_marginRight="32dp"
+			android:layout_marginBottom="8dp"
+			android:background="?attr/colorPrimary" />
 
 	</com.google.android.material.appbar.AppBarLayout>
 
