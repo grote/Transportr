@@ -26,6 +26,7 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import de.grobox.transportr.utils.TransportrUtils.dpToPx
 
 
 class FullScreenUtil {
@@ -46,9 +47,23 @@ class FullScreenUtil {
             if(view == null) {
                 return
             }
+            applyTopInset(view, 0, 8, 0 ,0)
+        }
+
+        fun applyTopInset(view: View?, margin: Int) {
+            if(view == null) {
+                return
+            }
+            applyTopInset(view, margin, margin, margin ,margin)
+        }
+
+        fun applyTopInset(view: View?, dpLeft: Int, dpTop: Int, dpRight: Int, dpBottom: Int) {
+            if(view == null) {
+                return
+            }
 
             view.setOnApplyWindowInsetsListener { v, insets ->
-                val originalOffset = (8 * (view.resources.displayMetrics.densityDpi / 160f)).toInt()
+                val originalOffset = dpToPx(view.context, dpTop)
                 val top = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
                 } else {
@@ -56,10 +71,10 @@ class FullScreenUtil {
                 }
 
                 val parameters = CoordinatorLayout.LayoutParams(
-                    CoordinatorLayout.LayoutParams.WRAP_CONTENT,
-                    CoordinatorLayout.LayoutParams.WRAP_CONTENT
+                    v.layoutParams.width,
+                    v.layoutParams.height
                 )
-                parameters.setMargins(0, top + originalOffset, 0, 0)
+                parameters.setMargins(dpToPx(view.context, dpLeft), top + originalOffset, dpToPx(view.context, dpRight), dpToPx(view.context, dpBottom))
                 v.layoutParams = parameters
 
                 return@setOnApplyWindowInsetsListener insets

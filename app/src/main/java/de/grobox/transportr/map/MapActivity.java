@@ -97,6 +97,7 @@ public class MapActivity extends TransportrActivity implements LocationViewListe
 		setContentView(R.layout.activity_map);
 		setupDrawer();
 		FullScreenUtil.Companion.drawBehindStatusbar(this);
+		FullScreenUtil.Companion.applyTopInset(findViewById(R.id.searchCardView), 16);
 
 		View menu = findViewById(R.id.menu);
 		menu.setOnClickListener(view -> {
