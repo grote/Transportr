@@ -25,6 +25,8 @@
 			android:layout_margin="12dp"
 			android:background="@drawable/shape_circle"
 			android:padding="8dp"
+			android:backgroundTint="@color/md_theme_primary"
+			app:tint="@color/md_theme_onPrimaryContainer"
 			app:srcCompat="@drawable/ic_back" />
 
 	</com.google.android.material.appbar.AppBarLayout>
