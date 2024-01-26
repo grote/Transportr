@@ -74,14 +74,12 @@
 		<activity
 			android:name="de.grobox.transportr.departures.DeparturesActivity"
 			android:label="@string/drawer_departures"
-			android:parentActivityName="de.grobox.transportr.map.MapActivity"
-			tools:targetApi="jelly_bean"/>
+			android:parentActivityName="de.grobox.transportr.map.MapActivity" />
 
 		<activity
 			android:name="de.grobox.transportr.trips.detail.TripDetailActivity"
 			android:parentActivityName="de.grobox.transportr.trips.search.DirectionsActivity"
-			android:theme="@style/AppTheme.MapFullscreen"
-			tools:targetApi="jelly_bean"/>
+			android:theme="@style/AppTheme.MapFullscreen" />
 
 		<activity
 			android:name="de.grobox.transportr.networks.PickTransportNetworkActivity"
