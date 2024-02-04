@@ -14,7 +14,7 @@
 	Then push the content back up with the padding.
 	-->
 	<androidx.cardview.widget.CardView
-		app:cardCornerRadius="10dp"
+		app:cardCornerRadius="@dimen/cardview_corner_radius"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:contentPaddingBottom="20dp"
