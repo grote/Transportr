@@ -147,7 +147,7 @@ public class TripDetailActivity extends TransportrActivity {
 				bottomSheetBehavior.setBottom();
 				bottomSheetBehavior.setState(STATE_COLLAPSED);
 				FullScreenUtil.Companion.drawBehindStatusbar(this);
-				findViewById(R.id.divider).setVisibility(View.GONE);
+				//findViewById(R.id.divider).setVisibility(View.GONE);
 				break;
 			case MIDDLE:
 				bottomSheetBehavior.setHideable(true);  // ensures it can be swiped down
@@ -155,11 +155,11 @@ public class TripDetailActivity extends TransportrActivity {
 				bottomSheetBehavior.setState(STATE_COLLAPSED);
 				FullScreenUtil.Companion.drawBehindStatusbar(this);
 				FullScreenUtil.Companion.applyTopInset(findViewById(R.id.appBarLayout));
-				findViewById(R.id.divider).setVisibility(View.GONE);
+				//findViewById(R.id.divider).setVisibility(View.GONE);
 				break;
 			case EXPANDED:
 				FullScreenUtil.Companion.showStatusbar(this);
-				findViewById(R.id.divider).setVisibility(View.VISIBLE);
+				//findViewById(R.id.divider).setVisibility(View.VISIBLE);
 				break;
 		}
 	}

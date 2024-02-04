@@ -163,16 +163,6 @@
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
-		<View
-			android:id="@+id/divider"
-			style="@style/Divider"
-			android:layout_width="match_parent"
-			android:layout_height="2px"
-			android:layout_marginLeft="32dp"
-			android:layout_marginRight="32dp"
-			android:layout_marginBottom="8dp"
-			android:background="?attr/colorPrimary" />
-
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<androidx.recyclerview.widget.RecyclerView
