@@ -138,11 +138,11 @@
 					android:layout_width="48dp"
 					android:layout_height="48dp"
 					android:padding="8dp"
-					android:tint="?attr/colorOnPrimaryContainer"
 					app:layout_constraintBottom_toBottomOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent"
-					app:srcCompat="@drawable/ic_back" />
+					app:srcCompat="@drawable/ic_back"
+					app:tint="?attr/colorOnPrimaryContainer" />
 
 				<TextView
 					android:id="@+id/fromTimeRel"
