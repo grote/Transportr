@@ -23,6 +23,12 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Build
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -74,6 +80,24 @@ class FullScreenUtil {
                     v.layoutParams.height
                 )
                 parameters.setMargins(dpToPx(view.context, dpLeft), top + originalOffset, dpToPx(view.context, dpRight), dpToPx(view.context, dpBottom))
+                v.layoutParams = parameters
+
+                return@setOnApplyWindowInsetsListener insets
+            }
+        }
+
+        fun applyImageViewTopInset(imageView: ImageView) {
+
+            imageView.setOnApplyWindowInsetsListener { v, insets ->
+                val originalOffset = dpToPx(imageView.context, 0)
+                val top = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+                } else {
+                    insets.systemWindowInsetTop
+                }
+
+                val parameters = v.layoutParams as MarginLayoutParams
+                parameters.setMargins(0, top + originalOffset, 0, 0)
                 v.layoutParams = parameters
 
                 return@setOnApplyWindowInsetsListener insets

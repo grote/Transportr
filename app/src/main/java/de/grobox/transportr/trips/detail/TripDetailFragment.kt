@@ -21,9 +21,14 @@ package de.grobox.transportr.trips.detail
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -40,7 +45,7 @@ import de.grobox.transportr.trips.detail.TripUtils.share
 import de.grobox.transportr.utils.DateUtils.formatDuration
 import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.formatRelativeTime
-import de.grobox.transportr.utils.TransportrUtils.getColorFromAttr
+import de.grobox.transportr.utils.FullScreenUtil
 import de.schildbach.pte.dto.Trip
 import kotlinx.android.synthetic.main.fragment_trip_detail.*
 import javax.inject.Inject
@@ -165,23 +170,23 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     }
 
     private fun onSheetStateChanged(sheetState: SheetState?) {
+        FullScreenUtil.applyImageViewTopInset(closeButton)
         when (sheetState) {
             null -> return
             BOTTOM -> {
-                toolbar.visibility = GONE
+                closeButton.visibility = GONE
                 topBar.visibility = GONE
                 bottomBar.visibility = VISIBLE
             }
             MIDDLE -> {
-                toolbar.visibility = GONE
+
+                closeButton.visibility = GONE
                 topBar.visibility = VISIBLE
-                topBar.setBackgroundColor(context.getColorFromAttr(R.attr.colorPrimaryContainer))
                 bottomBar.visibility = GONE
             }
             EXPANDED -> {
-                toolbar.visibility = VISIBLE
+                closeButton.visibility = VISIBLE
                 topBar.visibility = VISIBLE
-                topBar.setBackgroundColor(context.getColorFromAttr(R.attr.colorSurface))
                 bottomBar.visibility = GONE
             }
         }

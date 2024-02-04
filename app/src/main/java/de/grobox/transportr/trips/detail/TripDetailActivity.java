@@ -156,7 +156,7 @@ public class TripDetailActivity extends TransportrActivity {
 				FullScreenUtil.Companion.applyTopInset(findViewById(R.id.appBarLayout));
 				break;
 			case EXPANDED:
-				FullScreenUtil.Companion.showStatusbar(this);
+				FullScreenUtil.Companion.drawBehindStatusbar(this);
 				break;
 		}
 	}

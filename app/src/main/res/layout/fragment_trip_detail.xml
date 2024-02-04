@@ -18,148 +18,169 @@
 			android:layout_height="wrap_content"
 			android:visibility="gone"
 			app:navigationIcon="@drawable/ic_action_content_remove"
-			tools:visibility="visible"/>
+			tools:visibility="gone" />
 
 		<androidx.constraintlayout.widget.ConstraintLayout
-			android:id="@+id/bottomBar"
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/mapPadding"
-			android:padding="8dp"
-			android:layout_marginTop="0dp"
-			android:clickable="true"
-			android:focusable="true"
-			android:foreground="?selectableItemBackgroundBorderless"
-			android:visibility="gone"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			tools:visibility="visible">
-
-			<TextView
-				android:id="@+id/fromTime"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				tools:text="12:23"/>
-
-			<TextView
-				android:id="@+id/from"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_marginEnd="8dp"
-				android:layout_marginStart="8dp"
-				android:ellipsize="middle"
-				android:singleLine="true"
-				app:layout_constraintEnd_toStartOf="@+id/barrierRight"
-				app:layout_constraintStart_toEndOf="@+id/fromTime"
-				app:layout_constraintBaseline_toBaselineOf="@+id/fromTime"
-				app:layout_constraintTop_toTopOf="parent"
-				tools:text="From Station"/>
-
-			<TextView
-				android:id="@+id/toTime"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toBottomOf="@+id/fromTime"
-				tools:text="13:77"/>
-
-			<TextView
-				android:id="@+id/to"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_marginEnd="8dp"
-				android:layout_marginStart="8dp"
-				android:ellipsize="middle"
-				android:singleLine="true"
-				android:textColor="?android:textColorPrimary"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toStartOf="@+id/barrierRight"
-				app:layout_constraintStart_toEndOf="@+id/toTime"
-				app:layout_constraintTop_toBottomOf="@+id/from"
-				app:layout_constraintBaseline_toBaselineOf="@+id/toTime"
-				tools:text="To Station"/>
-
-			<TextView
-				android:id="@+id/duration"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textColor="?android:textColorSecondary"
-				app:layout_constraintTop_toTopOf="parent"
-				app:layout_constraintBottom_toTopOf="@+id/price"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintVertical_chainStyle="packed"
-				tools:text="0:42"/>
-
-			<TextView
-				android:id="@+id/price"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="2dp"
-				android:textColor="?android:textColorSecondary"
-				app:layout_constraintTop_toBottomOf="@+id/duration"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toEndOf="parent"
-				tools:visibility="visible"
-				tools:text="1,50 €"/>
-
-			<androidx.constraintlayout.widget.Barrier
-				android:id="@+id/barrierRight"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				app:barrierDirection="left"
-				app:constraint_referenced_ids="duration,price"/>
-
-		</androidx.constraintlayout.widget.ConstraintLayout>
-
-		<androidx.constraintlayout.widget.ConstraintLayout
-			android:id="@+id/topBar"
+			android:id="@+id/primaryViewContainer"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="0dp"
-			android:background="?attr/colorPrimaryContainer"
-			tools:visibility="visible">
+			android:animateLayoutChanges="true"
+			android:background="?attr/colorPrimaryContainer">
 
-			<TextView
-				android:id="@+id/fromTimeRel"
-				android:layout_width="wrap_content"
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/bottomBar"
+				android:animateLayoutChanges="true"
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginStart="8dp"
-				android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-				android:textColor="?attr/colorOnPrimaryContainer"
-				android:textStyle="normal|bold"
-				app:layout_constraintBottom_toBottomOf="@+id/durationTop"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="@+id/durationTop"
-				tools:text="in 20min"
-				tools:visibility="visible" />
-
-			<TextView
-				android:id="@+id/durationTop"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="8dp"
-				android:layout_marginBottom="8dp"
-				android:textColor="?attr/colorOnPrimaryContainer"
-				app:layout_constraintBottom_toBottomOf="parent"
+				android:clickable="true"
+				android:focusable="true"
+				android:paddingStart="8dp"
+				android:paddingTop="8dp"
+				android:paddingEnd="8dp"
+				android:paddingBottom="96dp"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toTopOf="parent"
-				tools:text="Gesamtdauer: 0:42" />
+				tools:visibility="visible">
 
-			<TextView
-				android:id="@+id/priceTop"
-				android:layout_width="wrap_content"
+				<TextView
+					android:id="@+id/fromTime"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					tools:text="12:23" />
+
+				<TextView
+					android:id="@+id/from"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="8dp"
+					android:layout_marginEnd="8dp"
+					android:ellipsize="middle"
+					android:singleLine="true"
+					app:layout_constraintBaseline_toBaselineOf="@+id/fromTime"
+					app:layout_constraintEnd_toStartOf="@+id/barrierRight"
+					app:layout_constraintStart_toEndOf="@+id/fromTime"
+					app:layout_constraintTop_toTopOf="parent"
+					tools:text="From Station" />
+
+				<TextView
+					android:id="@+id/toTime"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toBottomOf="@+id/fromTime"
+					tools:text="13:77" />
+
+				<TextView
+					android:id="@+id/to"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="8dp"
+					android:layout_marginEnd="8dp"
+					android:ellipsize="middle"
+					android:singleLine="true"
+					android:textColor="?android:textColorPrimary"
+					app:layout_constraintBaseline_toBaselineOf="@+id/toTime"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toStartOf="@+id/barrierRight"
+					app:layout_constraintStart_toEndOf="@+id/toTime"
+					app:layout_constraintTop_toBottomOf="@+id/from"
+					tools:text="To Station" />
+
+				<TextView
+					android:id="@+id/duration"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="?android:textColorSecondary"
+					app:layout_constraintBottom_toTopOf="@+id/price"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:layout_constraintVertical_chainStyle="packed"
+					tools:text="0:42" />
+
+				<TextView
+					android:id="@+id/price"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="2dp"
+					android:textColor="?android:textColorSecondary"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintTop_toBottomOf="@+id/duration"
+					tools:text="1,50 €"
+					tools:visibility="visible" />
+
+				<androidx.constraintlayout.widget.Barrier
+					android:id="@+id/barrierRight"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					app:barrierDirection="left"
+					app:constraint_referenced_ids="duration,price" />
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/topBar"
+				android:animateLayoutChanges="true"
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="8dp"
-				android:layout_marginEnd="8dp"
-				android:textColor="?attr/colorOnPrimaryContainer"
-				app:layout_constraintBottom_toBottomOf="@+id/durationTop"
+				android:padding="8dp"
 				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintRight_toRightOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				tools:text="1,50 €" />
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/bottomBar"
+				tools:visibility="visible">
+
+				<ImageView
+					android:id="@+id/closeButton"
+					android:layout_width="48dp"
+					android:layout_height="48dp"
+					android:padding="8dp"
+					android:tint="?attr/colorOnPrimaryContainer"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:srcCompat="@drawable/ic_back" />
+
+				<TextView
+					android:id="@+id/fromTimeRel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="8dp"
+					android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+					android:textColor="?attr/colorOnPrimaryContainer"
+					android:textStyle="normal|bold"
+					app:layout_constraintBottom_toBottomOf="@+id/durationTop"
+					app:layout_constraintStart_toEndOf="@+id/closeButton"
+					app:layout_constraintTop_toTopOf="@+id/durationTop"
+					tools:text="in 20min"
+					tools:visibility="visible" />
+
+				<TextView
+					android:id="@+id/durationTop"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="?attr/colorOnPrimaryContainer"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					tools:text="Gesamtdauer: 0:42" />
+
+				<TextView
+					android:id="@+id/priceTop"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="8dp"
+					android:textColor="?attr/colorOnPrimaryContainer"
+					app:layout_constraintBottom_toBottomOf="@+id/durationTop"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintRight_toRightOf="parent"
+					app:layout_constraintTop_toTopOf="@+id/durationTop"
+					tools:text="1,50 €" />
+
+			</androidx.constraintlayout.widget.ConstraintLayout>
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
