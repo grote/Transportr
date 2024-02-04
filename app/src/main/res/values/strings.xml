@@ -73,14 +73,19 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="tab_about">About</string>
 	<string name="tab_libraries">Libraries</string>
 
-	<string name="about_copyright">© 2013 &#8211; 2021 Torsten Grote\nFree Software License: GPLv3+</string>
+	<string name="about_copyright">© 2013 &#8211; 2023 Torsten Grote\nFree Software License: GPLv3+</string>
 	<string name="about_description">Transportr is a public transport companion developed by people around the world to make using public transport as easy as possible wherever you are.</string>
 	<string name="about_warning_title">Warning</string>
 	<string name="about_warning_text">There is no guarantee for the correctness of the (externally provided) data. Please use this app only at your own risk.</string>
 	<string name="about_contributions">This app is Free Software, so you can freely use, study, share and improve it. Contributions are encouraged and appreciated. If you would like to contribute, please visit the homepage for more information.</string>
 	<string name="about_visit_website">Visit Website</string>
 
-	<string name="map_attribution" translatable="false">© &lt;a href="http://www.openstreetmap.org/copyright">OpenStreetMap&lt;/a> © &lt;a href="https://www.mapbox.com/about/maps/">Mapbox&lt;/a> &lt;b>&lt;a href="https://www.mapbox.com/map-feedback/">%1$s&lt;/a>&lt;/b></string>
+	<string name="jawg_styles_url" translatable="false">https://api.jawg.io/styles/</string>
+	<string name="jawg_access_token" translatable="false">KxO8lF4U3kiO63m0c7lzqDCDrMUVg1OA2JVzRXxxmYSyjugr1xpe4W4Db5rFNvbQ</string>
+	<string name="jawg_style_light" translatable="false">jawg-sunny</string>
+	<string name="jawg_style_dark" translatable="false">jawg-dark</string>
+
+	<string name="map_attribution" translatable="false">&lt;a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps">© &lt;b>Jawg&lt;/b>Maps&lt;/a>, &lt;a href="https://www.openstreetmap.org/copyright" title="OpenStreetMap is open data licensed under ODbL">© OSM contributors&lt;/a>&lt;br/>&lt;b>&lt;a href="https://www.openstreetmap.org/fixthemap">%1$s&lt;/a>&lt;/b></string>
 	<string name="map_attribution_improve">Improve this map</string>
 
 	<string name="open_navigation_drawer">Open Navigation Drawer</string>
@@ -310,8 +315,9 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
 
 	<string name="np_region_germany">Germany</string>
+	<string name="np_name_avv" translatable="false">AVV</string>
 	<string name="np_desc_avv">Augsburg</string>
-	<string name="np_name_avvaachen">AVV</string>
+	<string name="np_name_avvaachen" translatable="false">AVV</string>
 	<string name="np_desc_avvaachen">Aachen</string>
 	<string name="np_name_bayern" translatable="false">BEG</string>
 	<string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
@@ -345,6 +351,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
 	<string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
 	<string name="np_desc_vrr">North Rhine-Westphalia, Cologne, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+	<string name="np_desc_vrs">Cologne, Bonn</string>
 	<string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
 	<string name="np_desc_vvo">Saxony, Dresden</string>
 	<string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -380,9 +387,6 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_nz_networks" translatable="false">Go Wellington, Tranz Metro, Auckland Transport</string>
 
 	<string name="np_region_poland">Poland</string>
-	<string name="np_name_pl_navitia">Municipal Transports of Poland</string>
-	<string name="np_desc_pl_navitia">Bydgoszcz, Ełk, Gdańsk, Giżycko, Gorzów, Kraków, Lódź, Łomża, Lublin, Poznań, Przemyśl, Radom, Rybnik, Rzeszów, Sanok, Słupsk, Szczecin, Świnoujscie, Warszawa, Wrocław</string>
-	<string name="np_desc_pl_navitia_networks">A21 Długołęka, DLA Kąty Wrocławskie, DLA Miękinia, DLA Wisznia Mała, GZK Bystry, Koleje Małopolskie, Komunikacja Autobusowa w Świnoujściu, Komunikacja Gminy Tarnowo Podgórne TPBUS Sp. z o.o., Kórnickie Przedsiębiorstwo Autobusowe KOMBUS Sp. z o.o., KŁOSOK Długołęka, MKS Sanok, MPK Autobusy, MPK Przemyśl / Urząd Miasta Przemyśla, MPK S.A. w Krakowie, MPK Tramwaje, MPK ZB w Łomży, MPK-Łódź Spółka z o.o., MZDiK Radom, MZK Ełk, MZK Gorzów, Miejskie Przedsiębiorstwo Komunikacyjne Sp. z o.o. w Poznaniu, PKP Szybka Kolej Miejska w Trójmieście Sp. z o.o., Przedsiębiorstwo Transportowe Translub Sp. z o.o., Przedsiębiorstwo Usług Komunalnych Komorniki sp. z o.o., Przedsiębiorstwo Wielobranżowe TRANSKOM Sp. z o.o., Swarzędzkie Przedsiębiorstwo Komunalne Sp. z o.o., Urząd Gminy Dopiewo, Warszawski Transport Publiczny, ZDMiKP Bydgoszcz, ZDiTM Szczecin, ZKM Gdynia, ZTM Gdańsk, ZTM Lublin, ZTM Rzeszów, ZTP Kraków, ZTZ Rybnik, Zakład Komunalny w Kleszczewie Sp. z o.o., Zakład Komunikacji Publicznej Suchy Las Sp. z o.o., Zakład Usług Komunikacyjnych ROKBUS Sp. z o.o., Zarząd Infrastruktury Miejskiej, Zarząd Transportu Miejskiego w Gdańsku, Łódzka Kolej Aglomeracyjna</string>
 
 	<string name="np_name_spain">Spain</string>
 	<string name="np_desc_spain">Madrid, Barcelona, Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>

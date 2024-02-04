@@ -63,7 +63,6 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="drawer_departures">Afgange</string>
   <string name="tab_about">Om</string>
   <string name="tab_libraries">Biblioteker</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nGratis Software Licens: GPLv3+</string>
   <string name="about_description">Transportr er en offentlig transport ledsager udviklede af folk overalt fra jorden for at gøre brugen af offentlig transport så nemt så muligt hvor end du er.</string>
   <string name="about_warning_title">Advarsel</string>
   <string name="about_warning_text">Der er ingen garanti for rigtigheden af (ekstern leveret) data. Brug kun denne app på egen bekostning.</string>
@@ -269,6 +268,7 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Nord Rhine-Westphalia, Cologne, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Cologne, Bonn</string>
   <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saxony, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -291,7 +291,6 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_name_nz">New Zealand</string>
   <string name="np_desc_nz">New-Zealand, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
-  <string name="np_name_pl_navitia">Municipal Transports of Poland</string>
   <string name="np_name_spain">Spanien</string>
   <string name="np_desc_spain">Madrid, Barcelona, Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungarn</string>

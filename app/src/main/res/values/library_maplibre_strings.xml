@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress UnusedResources -->
+<resources>
+
+	<string name="define_maplibre"></string>
+	<!-- Author section -->
+	<string name="library_maplibre_author">MapLibre</string>
+	<string name="library_maplibre_authorWebsite">https://maplibre.org</string>
+	<!-- Library section -->
+	<string name="library_maplibre_libraryName">MapLibre Maps SDK</string>
+	<string name="library_maplibre_libraryDescription">The MapLibre Maps SDK for Android is an open source toolset for displaying maps inside your Android application.</string>
+	<string name="library_maplibre_libraryWebsite">https://maplibre.org/projects/maplibre-native/</string>
+	<string name="library_maplibre_libraryVersion">10</string>
+	<!-- OpenSource section -->
+	<string name="library_maplibre_isOpenSource">true</string>
+	<string name="library_maplibre_repositoryLink">https://github.com/maplibre/maplibre-native/</string>
+	<!-- ClassPath for autoDetect section -->
+	<string name="library_maplibre_classPath">com.mapbox.mapboxsdk</string>
+	<!-- License section -->
+	<string name="libray_maplibre_licenseVersion">2.0</string>
+	<string name="libray_maplibre_licenseLink">https://github.com/maplibre/maplibre-native/blob/main/LICENSE.md</string>
+	<string name="libray_maplibre_licenseContent">Apache</string>
+	<!-- Custom variables section -->
+</resources>

@@ -27,7 +27,7 @@ import de.grobox.transportr.data.locations.LocationDao;
 import de.grobox.transportr.data.locations.LocationRepository;
 import de.grobox.transportr.data.searches.SearchesDao;
 import de.grobox.transportr.data.searches.SearchesRepository;
-import de.grobox.transportr.map.GpsController;
+import de.grobox.transportr.map.PositionController;
 import de.grobox.transportr.networks.TransportNetworkManager;
 import de.grobox.transportr.settings.SettingsManager;
 
@@ -70,8 +70,8 @@ class AppModule {
 	}
 
 	@Provides
-	GpsController gpsController() {
-		return new GpsController(application.getApplicationContext());
+	PositionController positionController() {
+		return new PositionController(application.getApplicationContext());
 	}
 
 }

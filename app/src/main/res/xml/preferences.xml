@@ -49,7 +49,7 @@
 		app:iconSpaceReserved="false">
 
 		<ListPreference
-			android:defaultValue="@string/pref_theme_value_light"
+			android:defaultValue="@string/pref_theme_value_auto"
 			android:entries="@array/pref_theme_options"
 			android:entryValues="@array/pref_theme_values"
 			android:key="pref_key_theme"

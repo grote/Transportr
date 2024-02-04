@@ -34,7 +34,7 @@ import de.grobox.transportr.map.GpsMapFragment
 import de.schildbach.pte.dto.Trip
 import javax.inject.Inject
 
-class TripMapFragment : GpsMapFragment() {
+internal class TripMapFragment : GpsMapFragment<TripDetailViewModel>() {
 
     companion object {
         @JvmField
@@ -48,31 +48,24 @@ class TripMapFragment : GpsMapFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: TripDetailViewModel
+    override lateinit var viewModel: TripDetailViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = super.onCreateView(inflater, container, savedInstanceState)
-
         component.inject(this)
         viewModel = ViewModelProvider(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
-        gpsController = viewModel.gpsController
 
-        return v
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onMapReady(mapboxMap: MapboxMap) {
         super.onMapReady(mapboxMap)
 
-        // set padding, so everything gets centered in top half of screen
-        val metrics = DisplayMetrics()
-        activity!!.windowManager.defaultDisplay.getMetrics(metrics)
-        val topPadding = mapPadding
-        val bottomPadding = mapView.height / 4
-        map!!.setPadding(0, topPadding, 0, bottomPadding)
+        // set bottom padding, so everything gets centered in top half of screen
+        setPadding(bottom = mapView.height / 2)
 
-        viewModel.getTrip().observe(this, Observer { onTripChanged(it) })
-        viewModel.getZoomLocation().observe(this, Observer { this.animateTo(it) })
-        viewModel.getZoomLeg().observe(this, Observer { this.animateToBounds(it) })
+        viewModel.getTrip().observe(this) { onTripChanged(it) }
+        viewModel.getZoomLocation().observe(this) { this.animateTo(it) }
+        viewModel.getZoomLeg().observe(this) { this.animateToBounds(it) }
     }
 
     private fun onTripChanged(trip: Trip?) {

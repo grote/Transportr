@@ -49,7 +49,7 @@ internal class SavedSearchesFragment : FavoriteTripsFragment<MapViewModel>() {
     }
 
     override fun onSpecialLocationClicked(location: WrapLocation) {
-        val from = viewModel.gpsController.getWrapLocation() ?: WrapLocation(GPS)
+        val from = WrapLocation(GPS)
         findDirections(context, from, null, location, true, true)
     }
 

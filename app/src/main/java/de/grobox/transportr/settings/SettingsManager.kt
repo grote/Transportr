@@ -24,12 +24,15 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
+import android.os.PowerManager
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.core.content.ContextCompat
 import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider.Optimize
 import de.schildbach.pte.NetworkProvider.WalkSpeed
+import de.schildbach.pte.dto.Product
 import java.util.*
 import javax.inject.Inject
 
@@ -66,8 +69,14 @@ class SettingsManager @Inject constructor(private val context: Context) {
 
     val isDarkTheme: Boolean
         get() {
-            return (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) or
-                    (theme == MODE_NIGHT_YES)
+            return when(theme) {
+                MODE_NIGHT_YES -> true
+                MODE_NIGHT_NO -> false
+                else -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+                else
+                    ContextCompat.getSystemService(context, PowerManager::class.java)?.isPowerSaveMode ?: false
+            }
         }
 
     val walkSpeed: WalkSpeed
@@ -135,6 +144,30 @@ class SettingsManager @Inject constructor(private val context: Context) {
         return settings.getBoolean(SHOW_WHEN_LOCKED, true)
     }
 
+    fun setPreferredProducts(selected: Set<Product>) {
+        val editor = settings.edit()
+        Product.ALL.toSet().forEach { product ->
+            editor.putBoolean(LAST_PRODUCT_PREFIX + product.name, product in selected)
+        }
+        editor.apply()
+    }
+
+    fun getPreferredProducts(): Set<Product> {
+        val firstTime = Product.ALL.none { settings.contains(LAST_PRODUCT_PREFIX + it.name) }
+        if (firstTime) {
+            setPreferredProducts(Product.ALL)
+            return Product.ALL
+        }
+
+        val products = mutableSetOf<Product>()
+        Product.ALL.toSet().forEach { product ->
+            if (settings.getBoolean(LAST_PRODUCT_PREFIX + product.name, false)) {
+                products.add(product)
+            }
+        }
+        return products
+    }
+
     companion object {
         private const val NETWORK_ID_1 = "NetworkId"
         private const val NETWORK_ID_2 = "NetworkId2"
@@ -147,6 +180,7 @@ class SettingsManager @Inject constructor(private val context: Context) {
         private const val OPTIMIZE = "pref_key_optimize"
         private const val LOCATION_ONBOARDING = "locationOnboarding"
         private const val TRIP_DETAIL_ONBOARDING = "tripDetailOnboarding"
+        private const val LAST_PRODUCT_PREFIX = "pref_key_last_product_prefix_"
     }
 
 }

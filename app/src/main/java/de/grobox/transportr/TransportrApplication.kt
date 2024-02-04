@@ -21,7 +21,6 @@ package de.grobox.transportr
 import android.app.Application
 import com.google.android.material.color.DynamicColors
 import com.mapbox.mapboxsdk.Mapbox
-import com.mapbox.services.android.telemetry.MapboxTelemetry
 
 open class TransportrApplication : Application() {
     lateinit var component: AppComponent
@@ -32,11 +31,7 @@ open class TransportrApplication : Application() {
 
         super.onCreate()
 
-        Mapbox.getInstance(
-            applicationContext,
-            "pk.eyJ1IjoidG92b2s3IiwiYSI6ImNpeTA1OG82YjAwN3YycXA5cWJ6NThmcWIifQ.QpURhF9y7XBMLmWhELsOnw"
-        )
-        MapboxTelemetry.getInstance().isTelemetryEnabled = false
+        Mapbox.getInstance(applicationContext)
 
         component = createComponent()
     }

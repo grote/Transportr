@@ -20,12 +20,14 @@
 package de.grobox.transportr.networks
 
 import android.annotation.SuppressLint
+import android.util.Base64
 import android.content.Context
 import de.grobox.transportr.R
 import de.grobox.transportr.networks.TransportNetwork.Status.ALPHA
 import de.grobox.transportr.networks.TransportNetwork.Status.BETA
 import de.schildbach.pte.*
 import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.util.*
 
 @SuppressLint("ConstantLocale")
@@ -82,11 +84,11 @@ private val networks = arrayOf(
                         factory = { BayernProvider() }
                     ),
                     TransportNetwork(
-                        id = NetworkId.AVV,
+                        id = NetworkId.AVV_AUGSBURG,
+                        name = R.string.np_name_avv,
                         description = R.string.np_desc_avv,
                         logo = R.drawable.network_avv_logo,
-                        status = BETA,
-                        factory = { AvvProvider() }
+                        factory = { AvvAugsburgProvider("{\"type\":\"AID\",\"aid\":\"jK91AVVZU77xY5oH\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.MVV,
@@ -158,7 +160,7 @@ private val networks = arrayOf(
                         id = NetworkId.VVO,
                         description = R.string.np_desc_vvo,
                         logo = R.drawable.network_vvo_logo,
-                        factory = { VvoProvider(HttpUrl.parse("http://efaproxy.fahrinfo.uptrade.de/standard/")) }
+                        factory = { VvoProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.NASA,
@@ -197,7 +199,7 @@ private val networks = arrayOf(
                         id = NetworkId.VVS,
                         description = R.string.np_desc_vvs,
                         logo = R.drawable.network_vvs_logo,
-                        factory = { VvsProvider(HttpUrl.parse("http://www2.vvs.de/oeffi/")) }
+                        factory = { VvsProvider("http://www2.vvs.de/oeffi/".toHttpUrlOrNull()) }
                     ),
                     TransportNetwork(
                         id = NetworkId.DING,
@@ -209,7 +211,7 @@ private val networks = arrayOf(
                         id = NetworkId.KVV,
                         description = R.string.np_desc_kvv,
                         logo = R.drawable.network_kvv_logo,
-                        factory = { KvvProvider(HttpUrl.parse("https://projekte.kvv-efa.de/oeffi/")) }
+                        factory = { KvvProvider("https://projekte.kvv-efa.de/oeffi/".toHttpUrlOrNull()) }
                     ),
                     TransportNetwork(
                         id = NetworkId.NVBW,
@@ -231,6 +233,12 @@ private val networks = arrayOf(
                         factory = { VgsProvider("{\"type\":\"AID\",\"aid\":\"51XfsVqgbdA6oXzHrx75jhlocRg6Xe\"}", "HJtlubisvxiJxss".toByteArray(Charsets.UTF_8)) }
                     ),
                     TransportNetwork(
+                        id = NetworkId.VRS,
+                        description = R.string.np_desc_vrs,
+                        logo = R.drawable.network_vrs_logo,
+                        factory = { VrsProvider(VRS) }
+                    ),
+                    TransportNetwork(
                         id = NetworkId.VMT,
                         description = R.string.np_desc_vmt,
                         factory = { VmtProvider("{\"aid\":\"vj5d7i3g9m5d7e3\",\"type\":\"AID\"}") }
@@ -246,12 +254,13 @@ private val networks = arrayOf(
                         logo = R.drawable.network_oebb_logo,
                         factory = { OebbProvider("{\"type\":\"AID\",\"aid\":\"OWDL4fE4ixNiPBBm\"}") }
                     ),
-                    TransportNetwork(
+                    // see https://github.com/grote/Transportr/issues/817
+                    /*TransportNetwork(
                         id = NetworkId.VOR,
                         description = R.string.np_desc_vor,
                         logo = R.drawable.network_vor_logo,
                         factory = { VorProvider(VAO) }
-                    ),
+                    ),*/
                     TransportNetwork(
                         id = NetworkId.LINZ,
                         name = R.string.np_name_linz,
@@ -271,13 +280,14 @@ private val networks = arrayOf(
 //                        logo = R.drawable.network_ivb_logo,
 //                        factory = { IvbProvider() }
 //                    ),
-                    TransportNetwork(
+                    // see https://github.com/grote/Transportr/issues/817
+                    /*TransportNetwork(
                         id = NetworkId.STV,
                         name = R.string.np_name_stv,
                         description = R.string.np_desc_stv,
                         logo = R.drawable.network_stv_logo,
                         factory = { StvProvider() }
-                    ),
+                    ),*/
                     TransportNetwork(
                         id = NetworkId.WIEN,
                         name = R.string.np_name_wien,
@@ -285,13 +295,14 @@ private val networks = arrayOf(
                         logo = R.drawable.network_wien_logo,
                         factory = { WienProvider() }
                     ),
-                    TransportNetwork(
+                    // see https://github.com/grote/Transportr/issues/817
+                    /*TransportNetwork(
                         id = NetworkId.VMOBIL,
                         name = R.string.np_name_vmobil,
                         description = R.string.np_desc_vmobil,
                         logo = R.drawable.network_vmobil_logo,
                         factory = { VmobilProvider(VAO) }
-                    )
+                    )*/
                 )
             ),
             Country(
@@ -309,6 +320,13 @@ private val networks = arrayOf(
             Country(
                 R.string.np_region_switzerland, flag = "🇨🇭", networks = listOf(
                     TransportNetwork(
+                        id = NetworkId.SEARCHCH,
+                        name = R.string.np_name_sbb,
+                        description = R.string.np_desc_sbb,
+                        logo = R.drawable.network_sbb_logo,
+                        factory = { CHSearchProvider() }
+                    ),
+                    TransportNetwork(
                         id = NetworkId.VBL,
                         description = R.string.np_desc_vbl,
                         logo = R.drawable.network_vbl_logo,
@@ -322,7 +340,8 @@ private val networks = arrayOf(
                     )
                 )
             ),
-            Country(
+            // disabled until https://github.com/schildbach/public-transport-enabler/issues/502 is resolved
+            /*Country(
                 R.string.np_region_belgium, flag = "🇧🇪", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.SNCB,
@@ -333,7 +352,7 @@ private val networks = arrayOf(
                         factory = { SncbProvider("{\"type\":\"AID\",\"aid\":\"sncb-mobi\"}") }
                     )
                 )
-            ),
+            ),*/
             Country(
                 R.string.np_region_luxembourg, flag = "🇱🇺", networks = listOf(
                     TransportNetwork(
@@ -354,7 +373,8 @@ private val networks = arrayOf(
                         status = BETA,
                         factory = { NsProvider() }
                     ),
-                    TransportNetwork(
+                    // disabled until https://github.com/schildbach/public-transport-enabler/issues/438 is fixed
+                    /*TransportNetwork(
                         id = NetworkId.NEGENTWEE,
                         name = R.string.np_name_negentwee,
                         description = R.string.np_desc_negentwee,
@@ -367,7 +387,7 @@ private val networks = arrayOf(
                                 NegentweeProvider(NegentweeProvider.Language.EN_GB)
                             }
                         }
-                    )
+                    )*/
                 )
             ),
             Country(
@@ -391,19 +411,6 @@ private val networks = arrayOf(
                 )
             ),
             Country(
-                R.string.np_region_finland, flag = "🇫🇮", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.FINLAND,
-                        name = R.string.np_region_finland,
-                        description = R.string.np_desc_fi,
-                        agencies = R.string.np_desc_fi_networks,
-                        logo = R.drawable.network_fi_logo,
-                        status = BETA,
-                        factory = { FinlandProvider(NAVITIA) }
-                    )
-                )
-            ),
-            Country(
                 R.string.np_region_gb, flag = "🇬🇧", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.TLEM,
@@ -420,16 +427,6 @@ private val networks = arrayOf(
                 )
             ),
             Country(
-                R.string.np_region_ireland, flag = "🇮🇪", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.TFI,
-                        description = R.string.np_desc_tfi,
-                        logo = R.drawable.network_tfi_logo,
-                        factory = { TfiProvider() }
-                    )
-                )
-            ),
-            Country(
                 R.string.np_name_it, flag = "🇮🇹", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.IT,
@@ -440,18 +437,6 @@ private val networks = arrayOf(
                         status = BETA,
                         goodLineNames = true,
                         factory = { ItalyProvider(NAVITIA) }
-                    )
-                )
-            ),
-            Country(
-                R.string.np_region_poland, "🇵🇱", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.PLNAVITIA,
-                        name = R.string.np_name_pl_navitia,
-                        description = R.string.np_desc_pl_navitia,
-                        agencies = R.string.np_desc_pl_navitia_networks,
-                        logo = R.drawable.network_pl_navitia_logo,
-                        factory = { PlNavitiaProvider(NAVITIA) }
                     )
                 )
             ),
@@ -508,19 +493,6 @@ private val networks = arrayOf(
                 )
             ),
             Country(
-                R.string.np_region_pt, flag = "🇵🇹", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.PT,
-                        name = R.string.np_name_pt,
-                        description = R.string.np_desc_pt,
-                        agencies = R.string.np_desc_pt_networks,
-                        logo = R.drawable.network_portugal_logo,
-                        status = BETA,
-                        factory = { PortugalProvider(NAVITIA) }
-                    )
-                )
-            ),
-            Country(
                 R.string.np_name_spain, flag = "🇪🇸", networks = listOf(
                     TransportNetwork(
                         id = NetworkId.SPAIN,
@@ -533,48 +505,6 @@ private val networks = arrayOf(
                     )
                 )
             ),
-            Country(
-                R.string.np_name_hungary, flag = "🇭🇺", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.HUNGARY,
-                        name = R.string.np_name_hungary,
-                        description = R.string.np_desc_hungary,
-                        agencies = R.string.np_desc_hungary_networks,
-                        logo = R.drawable.network_hungary_logo,
-                        status = BETA,
-                        factory = { HungaryProvider(NAVITIA) }
-                    )
-                )
-            ),
-            Country(
-                R.string.np_name_czechia, flag = "🇨🇿", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.CZECH_REPUBLIC,
-                        name = R.string.np_name_czechia,
-                        description = R.string.np_desc_czechia,
-                        agencies = R.string.np_desc_czechia_networks,
-                        logo = R.drawable.network_czechia_logo,
-                        status = BETA,
-                        factory = { CzechRepublicProvider(NAVITIA) }
-                    )
-                )
-            )
-        )
-    ),
-    Continent(
-        R.string.np_continent_africa, R.drawable.continent_africa, countries = listOf(
-            Country(
-                R.string.np_name_ghana, flag = "🇬🇭", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.GHANA,
-                        name = R.string.np_name_ghana,
-                        description = R.string.np_desc_ghana,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { GhanaProvider(NAVITIA) }
-                    )
-                )
-            )
         )
     ),
     Continent(
@@ -605,124 +535,8 @@ private val networks = arrayOf(
                         status = BETA,
                         factory = { CmtaProvider("{\"type\":\"AID\",\"aid\":\"web9j2nak29uz41irb\"}") }
                     ),
-                    TransportNetwork(
-                        id = NetworkId.CALIFORNIA,
-                        name = R.string.np_name_california,
-                        description = R.string.np_desc_california,
-                        logo = R.drawable.network_california_logo,
-                        status = ALPHA,
-                        factory = { CaliforniaProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.OREGON,
-                        name = R.string.np_name_oregon,
-                        description = R.string.np_desc_oregon,
-                        logo = R.drawable.network_oregon_logo,
-                        status = ALPHA,
-                        factory = { OregonProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.NEWYORK,
-                        name = R.string.np_name_usny,
-                        description = R.string.np_desc_usny,
-                        status = ALPHA,
-                        factory = { NewyorkProvider(NAVITIA) }
-                    )
                 )
             ),
-            Country(
-                R.string.np_region_canada, flag = "🇨🇦", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.ONTARIO,
-                        name = R.string.np_name_ontario,
-                        description = R.string.np_desc_ontario,
-                        agencies = R.string.np_desc_ontario_networks,
-                        logo = R.drawable.network_ontario_logo,
-                        status = BETA,
-                        goodLineNames = true,
-                        factory = { OntarioProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.QUEBEC,
-                        name = R.string.np_name_quebec,
-                        description = R.string.np_desc_quebec,
-                        agencies = R.string.np_desc_quebec_networks,
-                        logo = R.drawable.network_quebec_logo,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { QuebecProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.BRITISHCOLUMBIA,
-                        name = R.string.np_name_britishcolumbia,
-                        description = R.string.np_desc_britishcolumbia,
-                        agencies = R.string.np_desc_britishcolumbia_networks,
-                        logo = R.drawable.network_britishcolumbia_logo,
-                        status = ALPHA,
-                        // check the line below
-                        goodLineNames = true,
-                        factory = { BritishColumbiaProvider(NAVITIA) }
-                    )
-                )
-            )
-        )
-    ),
-    Continent(
-        R.string.np_continent_central_america, R.drawable.continent_central_america, countries = listOf(
-            Country(
-                R.string.np_name_costa_rica, flag = "🇨🇷", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.CR,
-                        name = R.string.np_name_costa_rica,
-                        description = R.string.np_desc_costa_rica,
-                        agencies = R.string.np_desc_costa_rica_networks,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { CostaRicaProvider(null) }
-                    )
-                )
-            ),
-            Country(
-                R.string.np_name_nicaragua, flag = "🇳🇮", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.NICARAGUA,
-                        name = R.string.np_name_nicaragua,
-                        description = R.string.np_desc_nicaragua,
-                        logo = R.drawable.network_nicaragua_logo,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { NicaraguaProvider(NAVITIA) }
-                    )
-                )
-            )
-        )
-    ),
-    Continent(
-        R.string.np_continent_south_america, R.drawable.continent_south_america, countries = listOf(
-            Country(
-                R.string.np_name_br, flag = "🇧🇷", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.BRAZIL,
-                        name = R.string.np_name_br,
-                        description = R.string.np_desc_br,
-                        agencies = R.string.np_desc_br_networks,
-                        logo = R.drawable.network_br_logo,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { BrazilProvider(NAVITIA) }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.BRFLORIPA,
-                        name = R.string.np_name_br_floripa,
-                        description = R.string.np_desc_br_floripa,
-                        agencies = R.string.np_desc_br_floripa_networks,
-                        logo = R.drawable.network_brfloripa_logo,
-                        status = ALPHA,
-                        goodLineNames = true,
-                        factory = { BrFloripaProvider(HttpUrl.parse("https://api.transportr.app/floripa/v1/"), null) }
-                    )
-                )
-            )
         )
     ),
     Continent(
@@ -762,26 +576,16 @@ private val networks = arrayOf(
                     )
                 )
             ),
-            Country(
-                R.string.np_name_nz, flag = "🇳🇿", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.NZ,
-                        name = R.string.np_name_nz,
-                        description = R.string.np_desc_nz,
-                        agencies = R.string.np_desc_nz_networks,
-                        logo = R.drawable.network_nz_logo,
-                        status = BETA,
-                        factory = { NzProvider(NAVITIA) }
-                    )
-                )
-            )
         )
     )
 )
 
 private const val NAVITIA = "87a37b95-913a-4cb4-ba52-eb0bc0b304ca"
 private const val VAO = "{\"aid\":\"hf7mcf9bv3nv8g5f\",\"pw\":\"87a6f8ZbnBih32\",\"type\":\"USER\",\"user\":\"mobile\"}"
-
+private val VRS: ByteArray = Base64.decode(
+    "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",
+    Base64.DEFAULT
+)
 internal fun getContinentItems(context: Context): List<ContinentItem> {
     return List(networks.size) { i ->
         networks[i].getItem(context)
