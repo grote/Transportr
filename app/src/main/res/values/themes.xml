@@ -39,8 +39,6 @@
     </style>
 
     <style name="AppDayNightTheme" parent="AppBaseTheme">
-        <item name="colorControlNormal">@color/drawableTintLight</item>
-        <item name="cardBackgroundColor">@color/cardview_light_background</item>
         <item name="mapStyle">@string/jawg_style_light</item>
         <item name="attributionBackground">#99FFFFFF</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>

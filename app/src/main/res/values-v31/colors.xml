@@ -31,4 +31,11 @@
 
     <color name="md_theme_outline">#79747E</color>
 
+
+    <color name="fabBackgroundMoved">@color/md_theme_onSurfaceVariant</color>
+    <color name="fabForegroundInitial">@color/md_theme_onPrimaryContainer</color>
+    <color name="fabForegroundFollow">@color/md_theme_onSecondaryContainer</color>
+    <color name="fabBackground">@color/md_theme_primary</color>
+    <color name="fabForegroundMoved">@android:color/white</color>
+
 </resources>

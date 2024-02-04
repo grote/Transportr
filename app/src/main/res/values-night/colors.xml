@@ -30,5 +30,10 @@
 	<color name="md_theme_shadow">#000000</color>
 	<color name="md_theme_surfaceTint">#FFB4A9</color>
 	<color name="md_theme_outlineVariant">#534341</color>
-	
+
+	<color name="fabBackgroundMoved">@color/md_theme_onSurfaceVariant</color>
+	<color name="fabForegroundInitial">@color/md_theme_onPrimaryContainer</color>
+	<color name="fabForegroundFollow">@color/md_theme_onSecondaryContainer</color>
+	<color name="fabBackground">@color/md_theme_primary</color>
+	<color name="fabForegroundMoved">@android:color/white</color>
 </resources>
