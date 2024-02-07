@@ -83,6 +83,7 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpToolbar(toolbar)
         setHasOptionsMenu(true)
         component.inject(this)
 
