@@ -46,7 +46,7 @@ public abstract class BasePopupMenu extends PopupMenu implements OnMenuItemClick
 		setOnMenuItemClickListener(this);
 
 		TypedValue typedValue = new TypedValue();
-		context.getTheme().resolveAttribute(R.attr.colorControlNormal, typedValue, true);
+		context.getTheme().resolveAttribute(R.attr.colorOnPrimarySurface, typedValue, true);
 		iconColor = typedValue.data;
 	}
 
