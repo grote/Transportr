@@ -19,7 +19,6 @@
 
 package de.grobox.transportr.trips.detail
 
-import android.graphics.Color
 import android.text.Html.fromHtml
 import android.view.View
 import android.view.View.GONE
@@ -28,9 +27,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.color.MaterialColors
 import com.google.common.base.Strings
 import com.google.common.base.Strings.isNullOrEmpty
 import de.grobox.transportr.R
@@ -195,10 +194,9 @@ internal class LegViewHolder(v: View, private val listener: LegClickListener, pr
         lineView.setWalk()
 
         // line color
-        val color = MaterialColors.getColor(fromCircle.context, R.attr.colorSecondary, Color.TRANSPARENT)
-        fromCircle.setColorFilter(color)
-        lineBar.setColorFilter(color)
-        toCircle.setColorFilter(color)
+        fromCircle.setColorFilter(getColor(fromCircle.context, R.color.walking))
+        lineBar.setColorFilter(getColor(lineBar.context, R.color.walking))
+        toCircle.setColorFilter(getColor(toCircle.context, R.color.walking))
 
         // show distance
         if (leg.distance > 0) {

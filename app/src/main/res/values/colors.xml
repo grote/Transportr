@@ -35,6 +35,10 @@
     <color name="md_theme_outlineVariant">#D8C2BE</color>
     <color name="md_theme_scrim">#000000</color>
 
+
+    <color name="walking">#ffea00</color>
+
+
     <color name="fabBackgroundMoved">@color/md_theme_onSurfaceVariant</color>
     <color name="fabForegroundInitial">@color/md_theme_onPrimaryContainer</color>
     <color name="fabForegroundFollow">@color/md_theme_onSecondaryContainer</color>
