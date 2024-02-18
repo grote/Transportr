@@ -39,7 +39,7 @@ class FullScreenUtil {
     companion object {
         fun drawBehindStatusbar(activity: Activity) {
             WindowCompat.setDecorFitsSystemWindows(activity.window, false)
-            // required for the mail view, which cant properly use the theme.
+            // required for the main view, which cant properly use the theme.xml
             activity.window.statusBarColor = Color.TRANSPARENT
             activity.window.navigationBarColor = Color.TRANSPARENT
         }
