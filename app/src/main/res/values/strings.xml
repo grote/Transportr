@@ -372,7 +372,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_vmobil">Liechtenstein, Vorarlberg, Bregenz</string>
 
 	<string name="np_region_luxembourg">Luxembourg</string>
-	<string name="np_name_lu" translatable="false">Verkéiersverbond</string>
+	<string name="np_name_lu" translatable="false">Mobilitéitszentral</string>
 	<string name="np_desc_lu">Luxembourg</string>
 	<string name="np_desc_lu_networks" translatable="false">AVL, SNCFL, FLEAA, RGTR, TICE</string>
 
