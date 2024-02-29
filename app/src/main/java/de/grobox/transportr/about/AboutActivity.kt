@@ -26,7 +26,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.mikepenz.aboutlibraries.LibsBuilder
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrActivity
-import kotlinx.android.synthetic.main.activity_about.*
+import de.grobox.transportr.databinding.ActivityAboutBinding
 
 class AboutActivity : TransportrActivity() {
 
@@ -35,16 +35,23 @@ class AboutActivity : TransportrActivity() {
         val TAG : String = AboutActivity::class.java.simpleName
     }
 
+    private lateinit var binding: ActivityAboutBinding;
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
+        binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         setUpCustomToolbar(false)
 
+        val pager = binding.pager
         pager.adapter = AboutPagerAdapter(supportFragmentManager)
+
+        val tabLayout = binding.tabLayout;
         tabLayout.setupWithViewPager(pager)
     }
 
-    private inner class AboutPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    private inner class AboutPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getItem(i: Int): Fragment {
             return when (i) {
