@@ -19,40 +19,6 @@
 		app:maplibre_uiCompassMarginTop="72dp"
 		app:maplibre_uiRotateGestures="true"/>
 
-	<View
-		android:layout_width="0dp"
-		android:layout_height="0dp"
-		android:background="?attributionBackground"
-		app:layout_constraintStart_toStartOf="@id/logo"
-		app:layout_constraintEnd_toEndOf="@id/attribution"
-		app:layout_constraintTop_toTopOf="@id/attribution"
-		app:layout_constraintBottom_toBottomOf="@id/attribution" />
-
-	<ImageView
-		android:id="@+id/logo"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:padding="4dp"
-		app:layout_constraintStart_toStartOf="@id/map"
-		app:layout_constraintTop_toTopOf="@id/attribution"
-		app:layout_constraintBottom_toBottomOf="@id/map"
-		app:srcCompat="@drawable/maplibre_logo_icon"/>
-
-	<TextView
-		android:id="@+id/attribution"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:padding="4dp"
-		android:textSize="12sp"
-		android:text="@string/map_attribution"
-		android:textColorLink="?android:textColorTertiary"
-		app:layout_constraintHorizontal_bias="0"
-		app:layout_constraintWidth_default="wrap"
-		app:layout_constraintStart_toEndOf="@+id/logo"
-		app:layout_constraintEnd_toStartOf="@id/gpsFab"
-		app:layout_constraintBottom_toBottomOf="@+id/map"
-		tools:text="© JawgMaps, © OSM Contributors\nImprove this map"/>
-
 	<com.google.android.material.floatingactionbutton.FloatingActionButton
 		android:id="@+id/gpsFab"
 		android:layout_width="wrap_content"
@@ -66,5 +32,39 @@
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:srcCompat="@drawable/ic_gps"/>
+
+	<LinearLayout
+		android:id="@+id/attributionLayout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="32dp"
+		android:background="@drawable/shape_location_dropdown"
+		android:backgroundTint="?attributionBackground"
+		android:gravity="center"
+		android:orientation="horizontal"
+		android:padding="4dp"
+		android:paddingStart="8dp"
+		android:paddingEnd="8dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent">
+
+		<ImageView
+			android:id="@+id/logo"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			app:srcCompat="@drawable/maplibre_logo_icon" />
+
+		<TextView
+			android:id="@+id/attribution"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			android:text="@string/map_attribution"
+			android:textColorLink="?android:textColorTertiary"
+			android:textSize="12sp"
+			tools:text="© JawgMaps, © OSM Contributors\nImprove this map" />
+	</LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
