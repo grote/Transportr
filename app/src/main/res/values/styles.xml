@@ -26,8 +26,8 @@
 	</style>
 
 	<style name="FavoriteCardForeground" parent="Widget.Material3.CardView.Elevated">
-		<item name="android:textColor">?attr/colorOnPrimaryContainer</item>
-		<item name="tint">?attr/colorOnPrimaryContainer</item>
+		<item name="android:textColor">@color/md_theme_onSecondaryContainer</item>
+		<item name="tint">@color/md_theme_onSecondaryContainer</item>
 	</style>
 
 	<style name="Card" parent="Widget.Material3.CardView.Elevated">
