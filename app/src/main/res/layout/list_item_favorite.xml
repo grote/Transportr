@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-	style="@style/FavoriteCard"
+<com.google.android.material.card.MaterialCardView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/FavoriteCard"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 
@@ -15,28 +15,27 @@
 			android:id="@+id/logo"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginLeft="8dp"
 			android:layout_marginStart="8dp"
-			app:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
 			app:srcCompat="@drawable/ic_time"
-			tools:ignore="ContentDescription"/>
+			tools:ignore="ContentDescription"
+			style="@style/FavoriteCardForeground" />
 
 		<ImageView
 			android:id="@+id/fromIcon"
 			android:layout_width="wrap_content"
 			android:layout_height="0dp"
-			android:layout_marginLeft="3dp"
 			android:layout_marginStart="3dp"
+			android:layout_marginLeft="3dp"
 			android:scaleType="matrix"
-			app:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="@+id/from"
 			app:layout_constraintLeft_toRightOf="@+id/logo"
 			app:layout_constraintTop_toTopOf="@+id/from"
 			app:srcCompat="@drawable/trip_from"
-			tools:ignore="ContentDescription"/>
+			tools:ignore="ContentDescription"
+			style="@style/FavoriteCardForeground" />
 
 		<TextView
 			android:id="@+id/from"
@@ -45,24 +44,24 @@
 			android:layout_marginTop="8dp"
 			android:ellipsize="middle"
 			android:singleLine="true"
-			android:textColor="?android:textColorPrimary"
 			app:layout_constraintLeft_toRightOf="@+id/fromIcon"
 			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
 			app:layout_constraintTop_toTopOf="parent"
-			tools:text="From Station that can have a very long name"/>
+			tools:text="From Station that can have a very long name"
+			style="@style/FavoriteCardForeground" />
 
 		<ImageView
 			android:id="@+id/viaIcon"
 			android:layout_width="wrap_content"
 			android:layout_height="0dp"
 			android:scaleType="centerCrop"
-			app:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="@+id/via"
 			app:layout_constraintLeft_toLeftOf="@+id/fromIcon"
 			app:layout_constraintTop_toTopOf="@+id/via"
 			app:srcCompat="@drawable/trip_via"
 			tools:ignore="ContentDescription"
-			tools:visibility="visible"/>
+			tools:visibility="visible"
+			style="@style/FavoriteCardForeground" />
 
 		<TextView
 			android:id="@+id/via"
@@ -70,22 +69,22 @@
 			android:layout_height="wrap_content"
 			android:ellipsize="middle"
 			android:singleLine="true"
-			android:textColor="?android:textColorPrimary"
 			app:layout_constraintLeft_toRightOf="@+id/viaIcon"
 			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
 			app:layout_constraintTop_toBottomOf="@+id/from"
 			tools:text="Via Station"
-			tools:visibility="visible"/>
+			tools:visibility="visible"
+			style="@style/FavoriteCardForeground" />
 
 		<ImageView
 			android:id="@+id/toIcon"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			app:tint="?colorControlNormal"
 			app:layout_constraintLeft_toLeftOf="@+id/fromIcon"
 			app:layout_constraintTop_toTopOf="@+id/to"
 			app:srcCompat="@drawable/trip_to"
-			tools:ignore="ContentDescription"/>
+			tools:ignore="ContentDescription"
+			style="@style/FavoriteCardForeground" />
 
 		<TextView
 			android:id="@+id/to"
@@ -94,12 +93,12 @@
 			android:layout_marginBottom="8dp"
 			android:ellipsize="middle"
 			android:singleLine="true"
-			android:textColor="?android:textColorPrimary"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintLeft_toRightOf="@+id/toIcon"
 			app:layout_constraintRight_toLeftOf="@+id/overflowButton"
 			app:layout_constraintTop_toBottomOf="@+id/via"
-			tools:text="To station"/>
+			tools:text="To station"
+			style="@style/FavoriteCardForeground" />
 
 		<ImageButton
 			android:id="@+id/overflowButton"
@@ -109,12 +108,12 @@
 			android:clickable="true"
 			android:contentDescription="@string/more"
 			android:focusable="true"
-			app:tint="?colorControlNormal"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
-			app:srcCompat="@drawable/ic_more_vert"/>
+			app:srcCompat="@drawable/ic_more_vert"
+			style="@style/FavoriteCardForeground" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

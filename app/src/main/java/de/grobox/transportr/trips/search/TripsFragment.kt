@@ -20,6 +20,7 @@ package de.grobox.transportr.trips.search
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Pair
@@ -30,6 +31,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.color.MaterialColors
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout.OnRefreshListener
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection
 import de.grobox.transportr.R
@@ -61,7 +63,7 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
         val v = inflater.inflate(R.layout.fragment_trips, container, false)
         component.inject(this)
 
-        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(DirectionsViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(DirectionsViewModel::class.java)
 
         return v
     }
@@ -74,7 +76,8 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
 
         // Swipe to Refresh
         swipe.let {
-            it.setColorSchemeColors(R.color.accent)
+            val color = MaterialColors.getColor(context, R.attr.colorPrimary, Color.TRANSPARENT)
+            it.setColorSchemeColors(color)
             it.setDistanceToTriggerSync(getDragDistance(context))
             it.setOnRefreshListener(this)
         }

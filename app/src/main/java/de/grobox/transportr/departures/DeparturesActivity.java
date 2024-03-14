@@ -20,6 +20,7 @@
 package de.grobox.transportr.departures;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.annotation.NonNull;
@@ -40,6 +41,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.color.MaterialColors;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
@@ -121,7 +123,7 @@ public class DeparturesActivity extends TransportrActivity
 
 		// Swipe to Refresh
 		swipe = findViewById(R.id.swipe);
-		swipe.setColorSchemeResources(R.color.accent);
+		swipe.setColorSchemeColors(MaterialColors.getColor(this, R.attr.colorPrimary, Color.TRANSPARENT));
 		swipe.setDirection(SwipyRefreshLayoutDirection.BOTH);
 		swipe.setDistanceToTriggerSync(getDragDistance(this));
 		swipe.setOnRefreshListener(direction -> loadMoreDepartures(direction != TOP));

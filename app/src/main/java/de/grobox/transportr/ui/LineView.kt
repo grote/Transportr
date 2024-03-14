@@ -30,6 +30,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import android.util.AttributeSet
 import de.grobox.transportr.R
 import de.grobox.transportr.utils.TransportrUtils.dpToPx
+import de.grobox.transportr.utils.TransportrUtils.getColorFromAttr
 import de.grobox.transportr.utils.TransportrUtils.getDrawableForProduct
 import de.schildbach.pte.dto.Line
 
@@ -61,7 +62,7 @@ class LineView(context: Context, attr: AttributeSet?) : AppCompatTextView(contex
     }
 
     fun setWalk() {
-        setDrawable(R.drawable.ic_walk, getColor(context, android.R.color.black))
+        setCompoundDrawablesWithIntrinsicBounds(getDrawable(context, R.drawable.ic_walk), null, null, null)
         setBackgroundResource(R.drawable.walk_box)
     }
 

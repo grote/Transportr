@@ -4,13 +4,16 @@
     android:exitFadeDuration="@android:integer/config_shortAnimTime" >
 
     <item
-        android:drawable="@color/primary_dark"
-        android:state_pressed="true" />
+        android:state_pressed="true" >
+        <color android:color="?colorPrimary" />
+    </item>
     <item
-        android:drawable="@color/primary"
-        android:state_selected="true" />
+        android:state_selected="true" >
+        <color android:color="?colorPrimary" />
+    </item>
     <item
-        android:drawable="@color/accent"
-        android:state_activated="true" />
+        android:state_activated="true" >
+        <color android:color="?colorSecondary" />
+    </item>
 
 </selector>

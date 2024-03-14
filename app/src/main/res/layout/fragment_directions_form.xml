@@ -12,7 +12,6 @@
 
 	<androidx.appcompat.widget.Toolbar
 		android:id="@+id/toolbar"
-		style="@style/ToolbarStyle"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		app:layout_constraintLeft_toLeftOf="parent"
@@ -29,7 +28,6 @@
 				android:layout_height="@dimen/buttonSize"
 				android:background="?selectableItemBackgroundBorderless"
 				android:contentDescription="@string/action_fav_trip"
-				android:tint="@color/md_white_1000"
 				android:visibility="gone"
 				app:layout_constraintEnd_toStartOf="@+id/swapIcon"
 				app:layout_constraintTop_toTopOf="@+id/viaIcon"
@@ -43,7 +41,6 @@
 				android:background="?selectableItemBackgroundBorderless"
 				android:contentDescription="@string/action_swap_locations"
 				android:src="@drawable/ic_menu_swap_location"
-				android:tint="@color/md_white_1000"
 				app:layout_constraintEnd_toStartOf="@+id/viaIcon"
 				app:layout_constraintTop_toTopOf="@+id/viaIcon"/>
 
@@ -62,7 +59,7 @@
 
 	</androidx.appcompat.widget.Toolbar>
 
-	<androidx.cardview.widget.CardView
+	<com.google.android.material.card.MaterialCardView
 		android:id="@+id/fromCard"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
@@ -80,9 +77,9 @@
 			android:layout_height="match_parent"
 			app:hint="@string/from"/>
 
-	</androidx.cardview.widget.CardView>
+	</com.google.android.material.card.MaterialCardView>
 
-	<androidx.cardview.widget.CardView
+	<com.google.android.material.card.MaterialCardView
 		android:id="@+id/viaCard"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
@@ -99,9 +96,9 @@
 			android:layout_height="match_parent"
 			app:hint="@string/via"/>
 
-	</androidx.cardview.widget.CardView>
+	</com.google.android.material.card.MaterialCardView>
 
-	<androidx.cardview.widget.CardView
+	<com.google.android.material.card.MaterialCardView
 		android:id="@+id/toCard"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
@@ -116,7 +113,7 @@
 			android:layout_height="match_parent"
 			app:hint="@string/to"/>
 
-	</androidx.cardview.widget.CardView>
+	</com.google.android.material.card.MaterialCardView>
 
 	<View
 		android:id="@+id/timeBackground"
@@ -150,7 +147,6 @@
 		android:paddingEnd="4dp"
 		android:paddingRight="4dp"
 		android:gravity="center"
-		android:textColor="@color/md_grey_300"
 		app:layout_constraintStart_toEndOf="@+id/timeIcon"
 		app:layout_constraintTop_toTopOf="@+id/timeIcon"
 		app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
@@ -161,7 +157,6 @@
 		android:layout_width="wrap_content"
 		android:layout_height="24dp"
 		android:gravity="center"
-		android:textColor="@color/md_grey_300"
 		android:visibility="gone"
 		app:layout_constraintStart_toEndOf="@+id/departure"
 		app:layout_constraintEnd_toStartOf="@+id/timeBarrier"
@@ -175,7 +170,6 @@
 		android:layout_width="wrap_content"
 		android:layout_height="24dp"
 		android:gravity="center"
-		android:textColor="@color/md_grey_300"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toStartOf="@+id/timeBarrier"
 		app:layout_constraintStart_toEndOf="@+id/departure"
@@ -198,7 +192,6 @@
 		android:background="?selectableItemBackgroundBorderless"
 		android:contentDescription="@string/action_choose_products"
 		android:src="@drawable/product_bus"
-		android:tint="@color/md_white_1000"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/timeIcon"/>
 
@@ -210,7 +203,6 @@
 		android:layout_marginLeft="16dp"
 		android:layout_marginStart="16dp"
 		android:layout_marginBottom="16dp"
-		app:tint="@color/md_grey_300"
 		app:layout_constraintStart_toStartOf="@+id/productsIcon"
 		app:layout_constraintEnd_toEndOf="@+id/productsIcon"
 		app:layout_constraintTop_toTopOf="@+id/productsIcon"

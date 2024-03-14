@@ -6,6 +6,7 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:layout_margin="3dp"
+	android:padding="4dp"
 	tools:background="@drawable/line_box"
 	tools:drawableLeft="@drawable/product_bus"
 	tools:ignore="RtlSymmetry"

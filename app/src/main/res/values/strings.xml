@@ -46,6 +46,7 @@ It also does not use tracking tools such as Google Analytics to spy on you.
 and always knows where you are to not miss where to get off the bus.
 ]]></string>
 
+	<string name="material_drawer_open">Open</string>
 	<string name="drawer_settings">Settings</string>
 	<string name="drawer_changelog">Changelog</string>
 	<string name="drawer_about">About</string>

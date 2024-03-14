@@ -4,8 +4,6 @@
 	<!-- App Theme -->
 
 	<style name="AppDayNightTheme" parent="AppBaseTheme">
-		<item name="colorControlNormal">@color/drawableTintDark</item>
-		<item name="cardBackgroundColor">@color/cardview_dark_background</item>
 		<item name="colorBackgroundFloating">#ff424242</item>
 
 		<item name="mapStyle">@string/jawg_style_dark</item>
@@ -14,27 +12,6 @@
 		<item name="about_libraries_card">@color/cardview_dark_background</item>
 		<item name="about_libraries_title_openSource">@color/about_libraries_title_openSource_dark</item>
 		<item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
-
-		<!-- MaterialDrawer specific values -->
-		<item name="material_drawer_background">@color/material_drawer_dark_background</item>
-		<item name="material_drawer_primary_text">@color/material_drawer_dark_primary_text</item>
-		<item name="material_drawer_primary_icon">@color/material_drawer_dark_primary_icon</item>
-		<item name="material_drawer_secondary_text">@color/material_drawer_dark_secondary_text</item>
-		<item name="material_drawer_hint_text">@color/material_drawer_dark_hint_text</item>
-		<item name="material_drawer_divider">@color/material_drawer_dark_divider</item>
-		<item name="material_drawer_selected">@color/material_drawer_dark_selected</item> <!-- Material 2 defines 12% alpha, primary color -->
-		<item name="material_drawer_selected_legacy">@color/material_drawer_dark_selected</item> <!-- Defines the color if legacy style (Material 1, is enabled) -->
-		<item name="material_drawer_selected_text">@color/material_drawer_dark_selected_text</item>
-		<item name="material_drawer_header_selection_text">@color/material_drawer_dark_header_selection_text</item>
-	</style>
-
-	<style name="DialogDayNightTheme" parent="DialogBaseTheme">
-		<!-- Fix for broken background on ALL devices -->
-		<item name="android:windowBackground">@color/md_grey_800</item>
-	</style>
-
-	<style name="SetHomeDialogTheme" parent="DialogTheme">
-		<item name="colorControlNormal">@color/drawableTintDark</item>
 	</style>
 
 </resources>

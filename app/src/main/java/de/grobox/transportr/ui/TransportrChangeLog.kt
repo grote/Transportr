@@ -20,28 +20,58 @@
 package de.grobox.transportr.ui
 
 import android.content.Context
-import android.os.Build
-import android.view.ContextThemeWrapper
-
+import android.graphics.Color
+import android.webkit.WebView
+import androidx.appcompat.app.AlertDialog
+import com.google.android.material.color.MaterialColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.cketti.library.changelog.ChangeLog
 import de.grobox.transportr.R
 import de.grobox.transportr.settings.SettingsManager
 
 
 class TransportrChangeLog(context: Context, settingsManager: SettingsManager) : ChangeLog(
-    ContextThemeWrapper(context, R.style.DialogTheme),
+    context,
     settingsManager.settings,
     theme(settingsManager.isDarkTheme)
 ) {
+    fun getMaterialDialog(full: Boolean): AlertDialog {
+        val wv = WebView(mContext)
+        wv.setBackgroundColor(Color.TRANSPARENT)
+        wv.loadDataWithBaseURL(null, getLog(full), "text/html", "UTF-8", null)
+
+        val builder = MaterialAlertDialogBuilder(mContext)
+        builder.setTitle(
+            mContext.resources.getString(
+                if (full) R.string.changelog_full_title else R.string.changelog_title
+            )
+        )
+            .setView(wv)
+            .setCancelable(false)
+            .setPositiveButton(
+                mContext.resources.getString(R.string.changelog_ok_button)
+            ) { _, _ ->
+                updateVersionInPreferences()
+            }
+
+        if (!full) {
+            builder.setNegativeButton(
+                R.string.changelog_show_full
+            ) { _, _ -> getMaterialDialog(true) }
+        }
+
+        return builder.create()
+    }
+
     companion object {
 
         private fun theme(dark: Boolean): String {
             return if (dark) {
                 // material dark
-                "body { color: #f3f3f3; font-size: 0.9em; background-color: #424242; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
+                "body { color: #f3f3f3; font-size: 0.9em; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
             } else {
                 // material light
-                "body { color: #202020; font-size: 0.9em; background-color: transparent; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
+                "body { color: #202020; font-size: 0.9em; } h1 { font-size: 1.3em; } ul { padding-left: 2em; }"
             }
         }
 

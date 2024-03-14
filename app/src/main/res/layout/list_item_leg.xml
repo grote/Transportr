@@ -13,7 +13,7 @@
 		android:layout_marginLeft="8dp"
 		android:layout_marginStart="8dp"
 		android:layout_marginTop="8dp"
-		android:textColor="?android:textColorPrimary"
+		style="@style/FavoriteCardForeground"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +23,7 @@
 		android:id="@+id/fromDelay"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textColor="@color/md_red_500"
+		android:textColor="?colorPrimary"
 		app:layout_constraintRight_toRightOf="@+id/fromTime"
 		app:layout_constraintTop_toBottomOf="@+id/fromTime"
 		tools:text="+12"
@@ -43,7 +43,7 @@
 		app:layout_constraintVertical_bias="0.0"
 		tools:ignore="ContentDescription"
 		tools:src="@drawable/leg_circle_end"
-		tools:tint="@color/md_red_300"/>
+		tools:tint="?colorPrimary"/>
 
 	<TextView
 		android:id="@+id/fromLocation"
@@ -54,7 +54,7 @@
 		android:background="?selectableItemBackground"
 		android:gravity="center_vertical"
 		android:paddingBottom="8dp"
-		android:textColor="?android:textColorPrimary"
+		style="@style/FavoriteCardForeground"
 		android:textSize="16sp"
 		app:layout_constraintEnd_toStartOf="@+id/toButton"
 		app:layout_constraintLeft_toRightOf="@+id/fromTime"
@@ -87,7 +87,7 @@
 		app:layout_constraintStart_toStartOf="@+id/fromCircle"
 		app:layout_constraintTop_toBottomOf="@+id/fromCircle"
 		tools:ignore="ContentDescription"
-		tools:tint="@color/md_red_300"/>
+		tools:tint="?colorPrimary"/>
 
 	<de.grobox.transportr.ui.LineView
 		android:id="@+id/lineView"
@@ -125,7 +125,7 @@
 		android:layout_marginEnd="8dp"
 		android:layout_marginRight="8dp"
 		android:layout_marginTop="8dp"
-		android:textColor="@color/md_red_500"
+		android:textColor="?colorError"
 		android:textSize="12sp"
 		app:layout_constraintEnd_toStartOf="@+id/duration"
 		app:layout_constraintStart_toStartOf="@+id/lineView"
@@ -141,6 +141,7 @@
 		android:layout_marginEnd="8dp"
 		android:layout_marginRight="8dp"
 		android:layout_marginTop="8dp"
+		style="@style/FavoriteCardForeground"
 		app:layout_constraintBottom_toTopOf="@+id/toButton"
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/fromButton"
@@ -188,7 +189,7 @@
 		android:id="@+id/toTime"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textColor="?android:textColorPrimary"
+		style="@style/FavoriteCardForeground"
 		app:layout_constraintBottom_toBottomOf="@+id/toCircle"
 		app:layout_constraintStart_toStartOf="@+id/fromTime"
 		app:layout_constraintTop_toTopOf="@+id/toCircle"
@@ -198,7 +199,7 @@
 		android:id="@+id/toDelay"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textColor="@color/md_red_500"
+		android:textColor="?colorPrimary"
 		app:layout_constraintEnd_toEndOf="@+id/toTime"
 		app:layout_constraintTop_toBottomOf="@+id/toTime"
 		tools:text="+3"
@@ -215,7 +216,7 @@
 		app:layout_constraintTop_toTopOf="@+id/toLocation"
 		tools:ignore="ContentDescription"
 		tools:src="@drawable/leg_circle_middle"
-		tools:tint="@color/md_red_300"/>
+		tools:tint="?colorPrimary"/>
 
 	<TextView
 		android:id="@+id/toLocation"
@@ -223,7 +224,7 @@
 		android:layout_height="wrap_content"
 		android:background="?selectableItemBackground"
 		android:paddingBottom="8dp"
-		android:textColor="?android:textColorPrimary"
+		style="@style/FavoriteCardForeground"
 		android:textSize="16sp"
 		app:layout_constraintEnd_toStartOf="@+id/toButton"
 		app:layout_constraintStart_toStartOf="@+id/fromLocation"

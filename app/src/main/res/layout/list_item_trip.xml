@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-	style="@style/CardView"
+<com.google.android.material.card.MaterialCardView
+	style="@style/FavoriteCard"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -10,8 +10,7 @@
 	android:layout_marginTop="4dp"
 	android:clickable="true"
 	android:focusable="true"
-	android:foreground="?android:attr/selectableItemBackground"
-	app:cardCornerRadius="0dp">
+	android:foreground="?android:attr/selectableItemBackground">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
@@ -19,6 +18,7 @@
 		android:padding="8dp">
 
 		<TextView
+			style="@style/FavoriteCardForeground"
 			android:id="@+id/fromTimeRel"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
 			android:id="@+id/fromTime"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textColor="?android:textColorPrimary"
+			style="@style/FavoriteCardForeground"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintBaseline_toBaselineOf="@+id/fromLocation"
 			app:layout_goneMarginTop="0dp"
@@ -45,7 +45,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="0dp"
 			android:gravity="end"
-			android:textColor="@color/md_red_500"
+			style="@style/FavoriteCardForeground"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="@+id/fromTime"
 			app:layout_constraintTop_toBottomOf="@+id/fromTime"
@@ -61,7 +61,7 @@
 			android:layout_marginStart="8dp"
 			android:layout_marginRight="8dp"
 			android:layout_marginEnd="8dp"
-			android:textColor="?android:textColorPrimary"
+			style="@style/FavoriteCardForeground"
 			app:layout_constraintTop_toBottomOf="@+id/fromTimeRel"
 			app:layout_constraintLeft_toRightOf="@+id/barrierLeft"
 			app:layout_constraintRight_toLeftOf="@+id/barrierRight"
@@ -72,7 +72,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:contentDescription="@string/trip_issue"
-			app:tint="@color/md_red_500"
+			style="@style/ErrorCard"
 			app:layout_constraintBottom_toTopOf="@+id/toTime"
 			app:layout_constraintEnd_toEndOf="@+id/fromTime"
 			app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,7 @@
 			android:id="@+id/duration"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textColor="?android:textColorSecondary"
+			style="@style/FavoriteCardForeground"
 			app:layout_constraintBottom_toTopOf="@+id/price"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintTop_toTopOf="@+id/lines"
@@ -110,7 +110,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="2dp"
-			android:textColor="?android:textColorSecondary"
+			style="@style/FavoriteCardForeground"
 			app:layout_constraintTop_toBottomOf="@+id/duration"
 			app:layout_constraintBottom_toBottomOf="@+id/lines"
 			app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +121,7 @@
 			android:id="@+id/toTime"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textColor="?android:textColorPrimary"
+			style="@style/FavoriteCardForeground"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintBaseline_toBaselineOf="@+id/toLocation"
 			tools:text="23:42"/>
@@ -131,7 +131,7 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:gravity="end"
-			android:textColor="@color/md_red_500"
+			style="@style/FavoriteCardForeground"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="@+id/toTime"
 			app:layout_constraintTop_toBottomOf="@+id/toTime"
@@ -143,7 +143,7 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="4dp"
-			android:textColor="?android:textColorPrimary"
+			style="@style/FavoriteCardForeground"
 			app:layout_constraintLeft_toLeftOf="@+id/fromLocation"
 			app:layout_constraintRight_toRightOf="@+id/fromLocation"
 			app:layout_constraintTop_toBottomOf="@+id/lines"
@@ -165,4 +165,4 @@
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

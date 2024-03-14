@@ -20,8 +20,11 @@
 package de.grobox.transportr.trips.search;
 
 import android.app.Dialog;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +38,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 
@@ -62,6 +66,29 @@ public class ProductDialogFragment extends DialogFragment {
 	private FastItemAdapter<ProductItem> adapter;
 	private Button okButton;
 
+	private View dialog;
+
+	@NonNull
+	@Override
+	public Dialog onCreateDialog(@androidx.annotation.Nullable Bundle savedInstanceState) {
+		dialog = onCreateView(LayoutInflater.from(requireContext()), null, savedInstanceState);
+
+
+		MaterialAlertDialogBuilder mb = new MaterialAlertDialogBuilder(requireContext());
+		mb.setView(dialog);
+		mb.setTitle(R.string.select_products);
+		mb.setIcon(R.drawable.product_bus);
+		mb.setNegativeButton(R.string.cancel, (dialog, which) -> {
+			getDialog().cancel();
+		});
+		mb.setPositiveButton(R.string.ok, (dialog, which) -> {
+			EnumSet<Product> products = getProductsFromItems(adapter.getSelectedItems());
+			viewModel.setProducts(products);
+			getDialog().cancel();
+		});
+		return mb.create();
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_product_dialog, container);
@@ -79,39 +106,12 @@ public class ProductDialogFragment extends DialogFragment {
 		// Get view model and observe products
 		viewModel = new ViewModelProvider(requireActivity(), viewModelFactory).get(DirectionsViewModel.class);
 		if (savedInstanceState == null) {
-			viewModel.getProducts().observe(getViewLifecycleOwner(), this::onProductsChanged);
+			viewModel.getProducts().observe(requireActivity(), this::onProductsChanged);
 		} else {
 			adapter.withSavedInstanceState(savedInstanceState);
 		}
 
-		// OK Button
-		okButton = v.findViewById(R.id.okButton);
-		okButton.setOnClickListener(view -> {
-			EnumSet<Product> products = getProductsFromItems(adapter.getSelectedItems());
-			viewModel.setProducts(products);
-			getDialog().cancel();
-		});
-		// Cancel Button
-		Button cancelButton = v.findViewById(R.id.cancelButton);
-		cancelButton.setOnClickListener(view -> getDialog().cancel());
-
 		return v;
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-
-		// adjust width and height to be shown properly in landscape orientation
-		Dialog dialog = getDialog();
-		if (dialog != null) {
-			Window window = dialog.getWindow();
-			if (window != null) {
-				int width = ViewGroup.LayoutParams.MATCH_PARENT;
-				int height = ViewGroup.LayoutParams.MATCH_PARENT;
-				window.setLayout(width, height);
-			}
-		}
 	}
 
 	@Override

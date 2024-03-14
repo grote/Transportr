@@ -8,8 +8,7 @@
 	<FrameLayout
 		android:id="@+id/topContainer"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_marginBottom="?android:actionBarSize"/>
+		android:layout_height="match_parent"/>
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:id="@+id/appBarLayout"
@@ -18,21 +17,16 @@
 		android:background="@android:color/transparent"
 		app:elevation="0dp">
 
-		<com.google.android.material.appbar.CollapsingToolbarLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			app:layout_scrollFlags="enterAlways"
-			app:titleEnabled="false">
-
-			<androidx.appcompat.widget.Toolbar
-				android:id="@+id/toolbar"
-				style="@style/ToolbarStyle"
-				android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				app:layout_collapseMode="pin"/>
-
-		</com.google.android.material.appbar.CollapsingToolbarLayout>
+		<ImageButton
+			android:id="@+id/backView"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_margin="12dp"
+			android:background="@drawable/shape_circle"
+			android:backgroundTint="@color/md_theme_surfaceVariant"
+			android:padding="8dp"
+			app:srcCompat="@drawable/ic_back"
+			app:tint="@color/md_theme_onSurface" />
 
 	</com.google.android.material.appbar.AppBarLayout>
 

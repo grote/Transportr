@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-	style="@style/CardView"
+<com.google.android.material.card.MaterialCardView
+	style="@style/FavoriteCard"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -46,7 +46,7 @@
 			android:id="@+id/delay"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textColor="@color/md_red_500"
+			android:textColor="?colorPrimary"
 			app:layout_constraintHorizontal_bias="1.0"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="@+id/departureTimeAbs"
@@ -68,7 +68,7 @@
 			app:layout_constraintLeft_toLeftOf="@+id/guideline"
 			app:layout_constraintTop_toTopOf="parent"
 			tools:background="@drawable/line_box"
-			tools:backgroundTint="@color/about_libraries_accent"
+			tools:backgroundTint="?colorTertiary"
 			tools:drawableLeft="@drawable/product_bus"
 			tools:text="1337"/>
 
@@ -118,7 +118,7 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			android:textColor="@color/md_red_500"
+			android:textColor="?colorPrimary"
 			android:textSize="12sp"
 			app:layout_constraintLeft_toLeftOf="@+id/guideline"
 			app:layout_constraintRight_toRightOf="parent"
@@ -127,4 +127,4 @@
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
