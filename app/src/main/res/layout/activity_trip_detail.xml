@@ -23,10 +23,10 @@
 			android:layout_height="48dp"
 			android:layout_margin="12dp"
 			android:background="@drawable/shape_circle"
+			android:backgroundTint="@color/md_theme_surfaceVariant"
 			android:padding="8dp"
-			android:backgroundTint="@color/md_theme_surface"
-			app:tint="@color/md_theme_onSurface"
-			app:srcCompat="@drawable/ic_back" />
+			app:srcCompat="@drawable/ic_back"
+			app:tint="@color/md_theme_onSurface" />
 
 	</com.google.android.material.appbar.AppBarLayout>
 
