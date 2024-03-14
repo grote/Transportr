@@ -58,7 +58,7 @@
 	</style>
 
 	<style name="Divider">
-		<item name="android:background">?colorControlNormal</item>
+		<item name="android:background">?colorOutline</item>
 		<item name="android:layout_height">1px</item>
 		<item name="android:layout_width">match_parent</item>
 	</style>
