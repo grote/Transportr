@@ -47,12 +47,16 @@ class LineView(context: Context, attr: AttributeSet?) : AppCompatTextView(contex
         @Suppress("DEPRECATION")
         setBackgroundDrawable(backgroundDrawable)
 
-        // correct padding that gets lost when setting background
-        setPadding(0, dpToPx(context, 2), dpToPx(context, 4), dpToPx(context, 2))
-
         // product icon
         if (line.product != null) {
+            // correct padding that gets lost when setting background
+            setPadding(0, dpToPx(context, 2), dpToPx(context, 4), dpToPx(context, 2))
+
             setDrawable(getDrawableForProduct(line.product), foregroundColor)
+        }
+        else{
+            // correct padding that gets lost when setting background
+            setPadding(dpToPx(context, 4), dpToPx(context, 2), dpToPx(context, 4), dpToPx(context, 2))
         }
 
         // set colored label
