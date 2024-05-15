@@ -158,7 +158,7 @@ public class WrapLocation implements Serializable {
 
 	String getFullName() {
 		if (name != null) {
-			return place == null ? name : name + ", " + place;
+			return place == null || place.isEmpty() ? name : name + ", " + place;
 		} else {
 			return getName();
 		}
