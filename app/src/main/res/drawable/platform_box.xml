@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+	<solid
+	    android:color="@color/md_indigo_900"/>
+
+	<corners
+	    android:radius="@dimen/line_box_corner_radius"/>
+
+	<padding
+		android:top="1dp"
+		android:left="4dp"
+		android:right="4dp"
+		android:bottom="1dp"/>
+</shape>

@@ -141,7 +141,7 @@
     <item quantity="other">%d Στάσεις</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(Πλατφόρμα %s)</string>
+  <string name="platform">Πλατφόρμα %s</string>
   <string name="system_default">Προεπιλογή συστήματος</string>
   <string name="trip_share_date">Ημερομηνία: %s</string>
   <string name="times_include_delays">(Προσοχή: Οι χρόνοι μπορεί να περιέχουν αναφερόμενες καθυστερήσεις)</string>

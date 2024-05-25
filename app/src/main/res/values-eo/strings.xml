@@ -134,7 +134,7 @@ Tiu ĉi aplikaĵo uzas datumojn de diversaj lokaj firmaoj de publika transporto 
     <item quantity="other">%d haltejoj</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(kajo %s)</string>
+  <string name="platform">kajo %s</string>
   <string name="system_default">Sistema implicita</string>
   <string name="trip_share_date">Dato: %s</string>
   <string name="times_include_delays">(Rimarko: tempoj povas enhavi raportitajn malfruojn)</string>
