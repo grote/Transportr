@@ -20,6 +20,9 @@
 package de.grobox.transportr.trips.search;
 
 import android.app.Dialog;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.os.Bundle;
@@ -38,6 +41,8 @@ import android.widget.TextView;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +52,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
+import de.grobox.transportr.TransportrApplication;
+import de.grobox.transportr.databinding.FragmentProductDialogBinding;
 import de.schildbach.pte.dto.Product;
 
 import static de.grobox.transportr.utils.TransportrUtils.getDrawableForProduct;
@@ -62,12 +69,15 @@ public class ProductDialogFragment extends DialogFragment {
 	private FastItemAdapter<ProductItem> adapter;
 	private Button okButton;
 
+	private FragmentProductDialogBinding binding;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_product_dialog, container);
+		binding = FragmentProductDialogBinding.inflate(inflater, container, false);
+		View v = binding.getRoot();
 
 		// RecyclerView
-		RecyclerView productsView = v.findViewById(R.id.productsView);
+		RecyclerView productsView = binding.productsView;
 		productsView.setLayoutManager(new LinearLayoutManager(getContext()));
 		adapter = new FastItemAdapter<>();
 		adapter.withSelectable(true);
@@ -85,17 +95,23 @@ public class ProductDialogFragment extends DialogFragment {
 		}
 
 		// OK Button
-		okButton = v.findViewById(R.id.okButton);
+		okButton = binding.okButton;
 		okButton.setOnClickListener(view -> {
 			EnumSet<Product> products = getProductsFromItems(adapter.getSelectedItems());
 			viewModel.setProducts(products);
 			getDialog().cancel();
 		});
 		// Cancel Button
-		Button cancelButton = v.findViewById(R.id.cancelButton);
+		Button cancelButton = binding.cancelButton;
 		cancelButton.setOnClickListener(view -> getDialog().cancel());
 
 		return v;
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		binding = null;
 	}
 
 	@Override
@@ -112,6 +128,12 @@ public class ProductDialogFragment extends DialogFragment {
 				window.setLayout(width, height);
 			}
 		}
+	}
+
+	@Override
+	public void onAttach(@NonNull @NotNull Context context) {
+		super.onAttach(context);
+		((TransportrApplication) getActivity().getApplicationContext()).getComponent().inject(this);
 	}
 
 	@Override
