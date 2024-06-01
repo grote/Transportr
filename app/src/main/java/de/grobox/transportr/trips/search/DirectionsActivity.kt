@@ -130,6 +130,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, TripsFragment(), TripsFragment.TAG)
             .commit()
+        binding.fragmentContainer.requestFocus()
     }
 
     private fun processIntent(intent: Intent?) {
