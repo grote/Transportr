@@ -21,12 +21,14 @@ package de.grobox.transportr.trips.detail
 
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.PorterDuff.Mode.SRC_IN
 import android.graphics.PorterDuff.Mode.MULTIPLY
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import com.google.android.material.color.MaterialColors
 import com.mapbox.mapboxsdk.annotations.Icon
 import com.mapbox.mapboxsdk.annotations.PolylineOptions
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -138,10 +140,10 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
             return if (line?.style != null && line.style!!.backgroundColor != 0) {
                 line.style!!.backgroundColor
             } else {
-                ContextCompat.getColor(context, R.color.accent)
+                MaterialColors.getColor(context, R.attr.colorPrimary, Color.TRANSPARENT)
             }
         }
-        return ContextCompat.getColor(context, R.color.walking)
+        return MaterialColors.getColor(context, R.attr.colorSecondary, Color.TRANSPARENT)
     }
 
     @ColorInt

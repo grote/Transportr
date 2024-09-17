@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<group>
+		<item android:id="@+id/settings" android:title="@string/drawer_settings" android:icon="@drawable/ic_action_settings"/>
+	</group>
+
+	<group>
+		<item android:id="@+id/changelog" android:title="@string/drawer_changelog" android:icon="@drawable/ic_action_changelog"/>
+		<item android:id="@+id/contributors" android:title="@string/drawer_contributors" android:icon="@drawable/ic_people"/>
+		<item android:id="@+id/bug_report" android:title="@string/drawer_report_issue" android:icon="@drawable/ic_bug_report"/>
+		<item android:id="@+id/about" android:title="@string/drawer_about" android:icon="@drawable/ic_action_about" />
+	</group>
+</menu>

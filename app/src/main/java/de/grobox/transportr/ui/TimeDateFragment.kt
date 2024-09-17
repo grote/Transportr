@@ -19,26 +19,25 @@
 
 package de.grobox.transportr.ui
 
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Build
+import android.app.Dialog
 import android.os.Bundle
 import android.text.format.DateFormat.getDateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
-import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.TimePicker.OnTimeChangedListener
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.grobox.transportr.R
 import kotlinx.android.synthetic.main.fragment_time_date.*
 import java.util.*
 import java.util.Calendar.*
 
-class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListener {
-
+class TimeDateFragment : DialogFragment(), OnTimeChangedListener {
     private var listener: TimeDateListener? = null
     private var departure: Boolean? = null // null means no departure/arrival selection will be possible
     private lateinit var calendar: Calendar
@@ -60,6 +59,11 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
 
             return f
         }
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return MaterialAlertDialogBuilder(requireContext())
+            .show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,8 +93,13 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
 
         // Date
         dateView.setOnClickListener {
-            DatePickerDialog(context!!, this@TimeDateFragment, calendar.get(YEAR), calendar.get(MONTH), calendar.get(DAY_OF_MONTH))
-                    .show()
+            MaterialDatePicker.Builder.datePicker()
+                .setSelection(calendar.timeInMillis)
+                .build()
+                .apply {
+                    addOnPositiveButtonClickListener(this@TimeDateFragment::onDateSet)
+                }
+                .show(childFragmentManager, null)
         }
         showDate(calendar)
 
@@ -150,10 +159,8 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
         calendar.set(MINUTE, minute)
     }
 
-    override fun onDateSet(datePicker: DatePicker, year: Int, month: Int, day: Int) {
-        calendar.set(YEAR, year)
-        calendar.set(MONTH, month)
-        calendar.set(DAY_OF_MONTH, day)
+    private fun onDateSet(timeInMillis: Long) {
+        calendar.timeInMillis = timeInMillis
         showDate(calendar)
     }
 

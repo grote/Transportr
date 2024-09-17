@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
@@ -37,6 +38,7 @@ import de.grobox.transportr.TransportrActivity;
 import de.grobox.transportr.locations.WrapLocation;
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState;
 import de.grobox.transportr.ui.ThreeStateBottomSheetBehavior;
+import de.grobox.transportr.utils.FullScreenUtil;
 import de.grobox.transportr.utils.OnboardingBuilder;
 import de.schildbach.pte.dto.Trip;
 
@@ -64,6 +66,8 @@ public class TripDetailActivity extends TransportrActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		FullScreenUtil.Companion.drawBehindStatusbar(this);
+		FullScreenUtil.Companion.applyTopInset(findViewById(R.id.appBarLayout));
 
 		getComponent().inject(this);
 
@@ -116,6 +120,8 @@ public class TripDetailActivity extends TransportrActivity {
 
 			showOnboarding();
 		}
+
+		((ImageButton) findViewById(R.id.backView)).setOnClickListener(view -> getOnBackPressedDispatcher().onBackPressed());
 	}
 
 	private void showOnboarding() {
@@ -140,11 +146,17 @@ public class TripDetailActivity extends TransportrActivity {
 			case BOTTOM:
 				bottomSheetBehavior.setBottom();
 				bottomSheetBehavior.setState(STATE_COLLAPSED);
+				FullScreenUtil.Companion.drawBehindStatusbar(this);
 				break;
 			case MIDDLE:
 				bottomSheetBehavior.setHideable(true);  // ensures it can be swiped down
 				bottomSheetBehavior.setMiddle();
 				bottomSheetBehavior.setState(STATE_COLLAPSED);
+				FullScreenUtil.Companion.drawBehindStatusbar(this);
+				FullScreenUtil.Companion.applyTopInset(findViewById(R.id.appBarLayout));
+				break;
+			case EXPANDED:
+				FullScreenUtil.Companion.drawBehindStatusbar(this);
 				break;
 		}
 	}

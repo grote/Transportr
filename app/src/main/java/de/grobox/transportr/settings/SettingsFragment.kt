@@ -27,8 +27,10 @@ import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.map.MapActivity
@@ -108,4 +110,24 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
+    override fun onDisplayPreferenceDialog(preference: Preference?) {
+        when (preference) {
+            // show a material design 3 dialog instead of the default md2 preference dialog
+            is ListPreference -> {
+                val currentValueIndex = preference.entryValues.indexOf(preference.value)
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(preference.title)
+                    .setSingleChoiceItems(preference.entries, currentValueIndex) { dialog, index ->
+                        val newValue = preference.entryValues[index]
+                        if (preference.callChangeListener(newValue)) {
+                            preference.value = newValue as String
+                        }
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton(R.string.cancel, null)
+                    .show()
+            }
+            else -> super.onDisplayPreferenceDialog(preference)
+        }
+    }
 }

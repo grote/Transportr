@@ -46,9 +46,9 @@
 		<activity
 			android:name="de.grobox.transportr.map.MapActivity"
 			android:exported="true"
-			android:label="@string/app_name"
 			android:launchMode="singleTop"
-			android:windowSoftInputMode="stateHidden|adjustPan">
+			android:windowSoftInputMode="stateHidden|adjustPan"
+			android:theme="@style/Theme.App.Starting">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				<category android:name="android.intent.category.LAUNCHER"/>
@@ -68,18 +68,18 @@
 		<activity
 			android:name="de.grobox.transportr.trips.search.DirectionsActivity"
 			android:exported="true"
+			android:theme="@style/AppTheme.MapFullscreen"
 			android:windowSoftInputMode="stateHidden"/>
 
 		<activity
 			android:name="de.grobox.transportr.departures.DeparturesActivity"
 			android:label="@string/drawer_departures"
-			android:parentActivityName="de.grobox.transportr.map.MapActivity"
-			tools:targetApi="jelly_bean"/>
+			android:parentActivityName="de.grobox.transportr.map.MapActivity" />
 
 		<activity
 			android:name="de.grobox.transportr.trips.detail.TripDetailActivity"
 			android:parentActivityName="de.grobox.transportr.trips.search.DirectionsActivity"
-			tools:targetApi="jelly_bean"/>
+			android:theme="@style/AppTheme.MapFullscreen" />
 
 		<activity
 			android:name="de.grobox.transportr.networks.PickTransportNetworkActivity"

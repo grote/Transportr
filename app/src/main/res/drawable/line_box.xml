@@ -4,7 +4,7 @@
     android:shape="rectangle" >
 
 	<solid
-	    android:color="#55FF0000" />
+	    android:color="?colorTertiary" />
 
 	<corners
 	    android:radius="@dimen/line_box_corner_radius" />

@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
-		<item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-		<item name="popupTheme">?popupTheme</item>
-	</style>
-
 	<style name="LineBox">
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:maxLines">1</item>
@@ -21,26 +16,49 @@
 		<item name="android:windowExitAnimation">@anim/scale_down</item>
 	</style>
 
-	<style name="FavoriteCard" parent="CardView">
+	<style name="FavoriteCard" parent="Widget.Material3.CardView.Filled">
 		<item name="android:foreground">?selectableItemBackground</item>
 		<item name="android:clickable">true</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginStart">8dp</item>
+		<item name="android:layout_marginEnd">8dp</item>
 		<item name="android:layout_marginTop">8dp</item>
+		<item name="cardElevation">3dp</item>
 	</style>
 
-	<style name="ContributorsCard" parent="CardView">
-		<item name="cardBackgroundColor">?attr/cardBackgroundColor</item>
-		<item name="cardCornerRadius">2dp</item>
+	<style name="FavoriteCardForeground" parent="Widget.Material3.CardView.Elevated">
+		<item name="android:textColor">@color/md_theme_onSecondaryContainer</item>
+		<item name="tint">@color/md_theme_onSecondaryContainer</item>
+	</style>
+
+	<style name="Card" parent="Widget.Material3.CardView.Elevated">
+		<item name="cardCornerRadius">8dp</item>
 		<item name="cardUseCompatPadding">true</item>
+		<item name="cardElevation">2dp</item>
+		<item name="cardBackgroundColor">?attr/colorPrimaryContainer</item>
+	</style>
+
+	<style name="ContributorsCard" parent="Card">
+		<item name="cardBackgroundColor">?attr/colorSurfaceVariant</item>
+	</style>
+
+	<style name="ErrorCard" parent="Card">
+		<item name="cardBackgroundColor">?attr/colorErrorContainer</item>
+		<item name="android:textColor">?attr/colorError</item>
+		<item name="android:textColor">?attr/colorError</item>
+		<item name="tint">?attr/colorError</item>
+	</style>
+
+	<style name="NavHeaderCard" parent="Card">
+		<item name="cardBackgroundColor">?attr/colorSurfaceVariant</item>
+		<item name="android:textColor">?attr/colorOnSurface</item>
 	</style>
 
 	<style name="Button" parent="Widget.AppCompat.Button.Borderless.Colored">
-		<item name="android:textColor">@color/buttonColor</item>
+		<item name="android:textColor">?attr/colorPrimary</item>
 	</style>
 
 	<style name="Divider">
-		<item name="android:background">@color/md_grey_500</item>
+		<item name="android:background">?colorOutline</item>
 		<item name="android:layout_height">1px</item>
 		<item name="android:layout_width">match_parent</item>
 	</style>
@@ -57,6 +75,16 @@
 		<item name="maplibre_uiCompass">true</item>
 		<item name="maplibre_uiLogo">false</item>
 		<item name="maplibre_uiTiltGestures">false</item>
+	</style>
+
+	<style name="RoundedImageView">
+		<item name="cornerFamily">rounded</item>
+		<item name="cornerSize">8dp</item>
+	</style>
+
+	<style name="AppTheme.MapFullscreen" parent="AppTheme">
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="android:navigationBarColor">@android:color/transparent</item>
 	</style>
 
 </resources>

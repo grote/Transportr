@@ -38,6 +38,7 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.core.content.res.ResourcesCompat
 import com.google.common.base.Strings.isNullOrEmpty
 import de.grobox.transportr.R
 import de.grobox.transportr.data.locations.FavoriteLocation
@@ -142,6 +143,11 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
         val location: AutoCompleteTextView = view.findViewById(R.id.location)
         internal val progress: ProgressBar = view.findViewById(R.id.progress)
         val clear: ImageButton = view.findViewById(R.id.clearButton)
+
+        init {
+            val drawable = ResourcesCompat.getDrawable(view.context.resources, R.drawable.shape_location_dropdown, null)
+            location.setDropDownBackgroundDrawable(drawable)
+        }
     }
 
     /* State Saving and Restoring */

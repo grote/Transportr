@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:color="@color/holo_red_light"
-        android:state_activated="false" />
+        android:color="?colorOnPrimary"
+        android:state_selected="true" />
     <item
-        android:color="@android:color/white"
-        android:state_activated="true" />
+        android:color="?android:attr/textColorPrimary"
+        android:state_selected="false" />
 
 </selector>

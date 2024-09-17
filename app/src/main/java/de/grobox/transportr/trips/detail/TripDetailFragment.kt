@@ -21,12 +21,16 @@ package de.grobox.transportr.trips.detail
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat.getColor
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,7 +45,7 @@ import de.grobox.transportr.trips.detail.TripUtils.share
 import de.grobox.transportr.utils.DateUtils.formatDuration
 import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.formatRelativeTime
-import de.grobox.transportr.utils.TransportrUtils.getColorFromAttr
+import de.grobox.transportr.utils.FullScreenUtil
 import de.schildbach.pte.dto.Trip
 import kotlinx.android.synthetic.main.fragment_trip_detail.*
 import javax.inject.Inject
@@ -79,6 +83,7 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpToolbar(toolbar)
         setHasOptionsMenu(true)
         component.inject(this)
 
@@ -166,29 +171,23 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     }
 
     private fun onSheetStateChanged(sheetState: SheetState?) {
+        FullScreenUtil.applyImageViewTopInset(closeButton)
         when (sheetState) {
             null -> return
             BOTTOM -> {
-                toolbar.visibility = GONE
+                closeButton.visibility = GONE
                 topBar.visibility = GONE
                 bottomBar.visibility = VISIBLE
             }
             MIDDLE -> {
-                toolbar.visibility = GONE
+
+                closeButton.visibility = GONE
                 topBar.visibility = VISIBLE
-                topBar.setBackgroundColor(context.getColorFromAttr(R.attr.colorPrimary))
-                fromTimeRel.setTextColor(getColor(context, R.color.md_white_1000))
-                durationTop.setTextColor(getColor(context, R.color.md_white_1000))
-                priceTop.setTextColor(getColor(context, R.color.md_white_1000))
                 bottomBar.visibility = GONE
             }
             EXPANDED -> {
-                toolbar.visibility = VISIBLE
+                closeButton.visibility = VISIBLE
                 topBar.visibility = VISIBLE
-                topBar.setBackgroundColor(context.getColorFromAttr(android.R.attr.colorBackground))
-                fromTimeRel.setTextColor(context.getColorFromAttr(android.R.attr.textColorPrimary))
-                durationTop.setTextColor(context.getColorFromAttr(android.R.attr.textColorSecondary))
-                priceTop.setTextColor(context.getColorFromAttr(android.R.attr.textColorSecondary))
                 bottomBar.visibility = GONE
             }
         }

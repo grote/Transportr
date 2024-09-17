@@ -20,7 +20,7 @@
 		android:id="@+id/fromDelay"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textColor="@color/md_red_500"
+		android:textColor="?colorPrimary"
 		app:layout_constraintRight_toRightOf="@+id/fromTime"
 		app:layout_constraintTop_toBottomOf="@+id/fromTime"
 		tools:text="+12"
@@ -39,7 +39,7 @@
 		android:id="@+id/toDelay"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textColor="@color/md_red_500"
+		android:textColor="?colorPrimary"
 		app:layout_constraintEnd_toEndOf="@+id/toTime"
 		app:layout_constraintTop_toBottomOf="@+id/toTime"
 		tools:text="+3"
@@ -60,12 +60,13 @@
 		android:layout_marginLeft="8dp"
 		android:layout_marginStart="8dp"
 		android:layout_marginTop="8dp"
-		android:src="@drawable/leg_circle_middle"
+		android:padding="4dp"
+		android:src="@drawable/leg_circle_end"
 		app:layout_constraintBottom_toBottomOf="@+id/toTime"
 		app:layout_constraintStart_toEndOf="@+id/barrier"
 		app:layout_constraintTop_toTopOf="@+id/fromTime"
 		tools:ignore="ContentDescription"
-		tools:tint="@color/md_red_300"/>
+		tools:tint="?colorPrimary"/>
 
 	<TextView
 		android:id="@+id/stopLocation"
