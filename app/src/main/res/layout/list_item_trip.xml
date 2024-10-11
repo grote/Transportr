@@ -88,7 +88,9 @@
 			app:flexWrap="wrap"
 			app:layout_constraintStart_toStartOf="@+id/fromLocation"
 			app:layout_constraintEnd_toEndOf="@+id/fromLocation"
-			app:layout_constraintTop_toBottomOf="@+id/fromLocation">
+			app:layout_constraintTop_toBottomOf="@+id/fromLocation"
+			app:alignItems="stretch"
+			app:alignContent="stretch">
 
 			<include layout="@layout/list_item_line"/>
 
