@@ -275,6 +275,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Renania-Palatinatua, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Ipar Rhine-Westphalia, Kolonia, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Kolonia, Bonn</string>
   <string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Saxonia, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -297,7 +298,6 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
   <string name="np_name_nz">Zeelanda Berria</string>
   <string name="np_desc_nz">Zeelanda Berria, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
-  <string name="np_name_pl_navitia">Poloniako garraio munizipalak</string>
   <string name="np_name_spain">Espainia</string>
   <string name="np_desc_spain">Madril, Bartzelona, Euskadi, Nafarroa, Valentzia, Alacant, Mallorca, Menorca, Tenerife, La Palma</string>
   <string name="np_name_hungary">Hungaria</string>

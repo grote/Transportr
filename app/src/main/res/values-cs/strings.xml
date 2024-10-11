@@ -45,7 +45,6 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="drawer_departures">Odjezdy</string>
   <string name="tab_about">O aplikaci</string>
   <string name="tab_libraries">Knihovny</string>
-  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nSvobodná softwarová licence: GPLv3+</string>
   <string name="about_description">Transportr je společník veřejné dopravy vyvinutý všemi lidmi po celém světě, aby využil veřejnou dopravu co nejjednodušší, ať jste kdekoli.</string>
   <string name="about_warning_title">Upozornění</string>
   <string name="about_warning_text">Neexistuje žádná záruka správnosti údajů (externě poskytovaných). Použijte tuto aplikaci pouze na vlastní nebezpečí.</string>
@@ -264,6 +263,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="np_desc_vmv">Meklenbursko-Přední Pomořansko, Schwerin</string>
   <string name="np_desc_vrn">Bádensko-Württembersko, Porýní-Falc, Mannheim, Mohuč, Trier</string>
   <string name="np_desc_vrr">Severní Porýní-Vestfálsko, Kolín nad Rýnem, Bonn, Essen, Dortmund, Dusseldorf, Munster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Kolín nad Rýnem, Bonn</string>
   <string name="np_desc_vvm">Švábsko, Střední Švábsko, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Sasko, Drážďany</string>
   <string name="np_desc_vvs">Bádensko-Württembersko, Stuttgart</string>
@@ -286,7 +286,6 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="np_name_nz">Nový Zéland</string>
   <string name="np_desc_nz">Nový Zéland, Wellington, Auckland</string>
   <string name="np_region_poland">Polsko</string>
-  <string name="np_name_pl_navitia">Městská doprava Polska</string>
   <string name="np_name_spain">Španělsko</string>
   <string name="np_desc_spain">Madrid, Barcelona, ​​Baskicko, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Maďarsko</string>

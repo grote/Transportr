@@ -63,7 +63,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="drawer_departures">Abfahrten</string>
   <string name="tab_about">Über</string>
   <string name="tab_libraries">Bibliotheken</string>
-  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nFree Software License: GPLv3+</string>
+  <string name="about_copyright">© 2013 – 2023 Torsten Grote\nFree Software License: GPLv3+</string>
   <string name="about_description">Transportr ist ein Begleiter im öffentlichen Verkehr, der von Menschen auf der ganzen Welt entwickelt wurde, um die Benutzung öffentlicher Verkehrsmittel so einfach wie möglich zu machen, egal wo Sie sich gerade befinden.</string>
   <string name="about_warning_title">Warnung</string>
   <string name="about_warning_text">Es wird keine Gewähr für die Richtigkeit der (extern zur Verfügung gestellten) Daten übernommen. Bitte benutzen Sie diese App nur auf eigene Gefahr.</string>
@@ -280,6 +280,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
   <string name="np_desc_vrn">Baden-Württemberg, Rheinland-Pfalz, Mannheim, Mainz, Trier</string>
   <string name="np_desc_vrr">Nordrhein-Westfalen, Köln, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+  <string name="np_desc_vrs">Köln, Bonn</string>
   <string name="np_desc_vvm">Schwaben, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Sachsen, Dresden</string>
   <string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -302,9 +303,6 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_name_nz">Neuseeland</string>
   <string name="np_desc_nz">Neuseeland, Wellington, Auckland</string>
   <string name="np_region_poland">Polen</string>
-  <string name="np_name_pl_navitia">Stadtverkehr in Polen</string>
-  <string name="np_desc_pl_navitia">Bromberg, Elk, Danzig, Gizycko, Gorzow, Krakau, Lodz, Lomza, Lublin, Posen, Przemysl, Radom, Rybnik, Rzeszow, Sanok, Stolp, Stettin, Swinemünde, Warschau, Breslau</string>
-  <string name="np_desc_pl_navitia_networks">A21 Długołęka, DLA Kąty Wrocławskie, DLA Miękinia, DLA Wisznia Mała, GZK Bystry, Koleje Małopolskie, Komunikacja Autobusowa w Świnoujściu, Komunikacja Gminy Tarnowo Podgórne TPBUS Sp. z o.o., Kórnickie Przedsiębiorstwo Autobusowe KOMBUS Sp. z o.o., KŁOSOK Długołęka, MKS Sanok, MPK Autobusy, MPK Przemyśl / Urząd Miasta Przemyśla, MPK S.A. w Krakowie, MPK Tramwaje, MPK ZB w Łomży, MPK-Łódź Spółka z o.o., MZDiK Radom, MZK Ełk, MZK Gorzów, Miejskie Przedsiębiorstwo Komunikacyjne Sp. z o.o. w Poznaniu, PKP Szybka Kolej Miejska w Trójmieście Sp. z o.o., Przedsiębiorstwo Transportowe Translub Sp. z o.o., Przedsiębiorstwo Usług Komunalnych Komorniki sp. z o.o., Przedsiębiorstwo Wielobranżowe TRANSKOM Sp. z o.o., Swarzędzkie Przedsiębiorstwo Komunalne Sp. z o.o., Urząd Gminy Dopiewo, Warszawski Transport Publiczny, ZDMiKP Bydgoszcz, ZDiTM Szczecin, ZKM Gdynia, ZTM Gdańsk, ZTM Lublin, ZTM Rzeszów, ZTP Kraków, ZTZ Rybnik, Zakład Komunalny w Kleszczewie Sp. z o.o., Zakład Komunikacji Publicznej Suchy Las Sp. z o.o., Zakład Usług Komunikacyjnych ROKBUS Sp. z o.o., Zarząd Infrastruktury Miejskiej, Zarząd Transportu Miejskiego w Gdańsku, Łódzka Kolej Aglomeracyjna</string>
   <string name="np_name_spain">Spanien</string>
   <string name="np_desc_spain">Madrid, Barcelona, Baskenland, Valencia, Alicante, Mallorca, Menorca, Teneriffa, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungarn</string>

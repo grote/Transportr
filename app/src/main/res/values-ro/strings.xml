@@ -58,7 +58,6 @@ De asemenea nu foloseşte tool-uri precum Google Analytics pentru a te spiona.
   <string name="drawer_departures">Plecări</string>
   <string name="tab_about">Despre</string>
   <string name="tab_libraries">Librării</string>
-  <string name="about_copyright">© 2013 – 2021 Torsten Grote\nFree Software License: GPLv3+</string>
   <string name="about_description">Transportr este un companion pentru transportul în comun dezvoltat de multiple persoane din jurul lumii, cu scopul de a face transportul public cât se poate de ușor, oriunde te-ai afla. </string>
   <string name="about_warning_title">Avertisment</string>
   <string name="about_warning_text">Nu este nici-o garanție pentru corectitudinea datelor (ce sunt procurate din afara aplicației). Vă rugăm să folosiți această aplicație pe riscul propriu.</string>
@@ -298,7 +297,6 @@ De asemenea nu foloseşte tool-uri precum Google Analytics pentru a te spiona.
   <string name="np_name_nz">Noua Zeelandă</string>
   <string name="np_desc_nz">Noua Zeelandă, Wellington, Auckland</string>
   <string name="np_region_poland">Polonia</string>
-  <string name="np_name_pl_navitia">Transport municipal în Polonia</string>
   <string name="np_name_spain">Spania</string>
   <string name="np_desc_spain">Madrid, Barcelona, Țara Bascilor, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>
   <string name="np_name_hungary">Ungaria</string>

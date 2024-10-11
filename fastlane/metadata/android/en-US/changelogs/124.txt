@@ -1,0 +1,6 @@
+* Switch map library to MapLibre - finally bringing Transportr back to F-Droid!
+* Remember preferred means of transport for future searches (thanks Prat!)
+* Fix minor issues on About page and with the time picker (thanks Altonss!)
+* Fix and re-add formerly broken regions: SBB (thanks Tobias!), VVO, AVV (Augsburg), GVH, VRS
+* Remove regions where information is no longer available: VOR, STV, VVV, SNCB, 9292, TFI
+* Remove a long list of regions that are no longer served by Navitia
