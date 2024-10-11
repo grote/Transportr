@@ -61,8 +61,6 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="drawer_departures">حرکت ها</string>
   <string name="tab_about">درباره</string>
   <string name="tab_libraries">کتابخانه ها</string>
-  <string name="about_copyright">© 2013 – 2018 تورستن گروت
-لایسنس نرم افزار آزاد: +GPLv3</string>
   <string name="about_description">Transportr یک همران حمل و نقل عمومی است که توسط افرادی در سرتاسر دنیا ایجاد شده تا حمل و نقل عمومی را تا جای ممکن در هرجایی که هستید آسان کند.</string>
   <string name="about_warning_title">هشدار</string>
   <string name="about_warning_text">هیچ گارانتی برای درسی داده ها ( داده های از بیرون تامین شده ) وجود ندارد. لطفا با در نظر گرفتن ریسک از این برنامه استفاده کنید.</string>
@@ -271,6 +269,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_desc_vmv">مکلنبورگ-فورپومرن، شورین</string>
   <string name="np_desc_vrn">بادن-وورتمبرگ، راینلاند-فالتس، مانهایم، ماینتس، تری‌یر</string>
   <string name="np_desc_vrr">نوردراین-وستفالن، کلن، بن، اسن، دورتموند، دوسلدورف، مونستر، پادربورن، هخستر</string>
+  <string name="np_desc_vrs">کلن، بن</string>
   <string name="np_desc_vvm">شوابن، میتلشوابن، کرومباخ، گونتسبورگ، ممینگن</string>
   <string name="np_desc_vvo">زاکسن، درسدن</string>
   <string name="np_desc_vvs">بادن-وورتمبرگ، اشتوتگارت</string>
@@ -293,7 +292,6 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
   <string name="np_name_nz">نیوزلند</string>
   <string name="np_desc_nz">نیوزیلند، ولینگتون، آوکلند</string>
   <string name="np_region_poland">لهستان</string>
-  <string name="np_name_pl_navitia">حمل و نقل های شهری لهستان</string>
   <string name="np_name_spain">اسپانیا</string>
   <string name="np_desc_spain">مادرید، بارسلون، سرزمین باسک، والنسیا، آلیکانته، مایورکا، مینورکا، تنریف، لا پالما، نابارا</string>
   <string name="np_name_hungary">مجارستان</string>

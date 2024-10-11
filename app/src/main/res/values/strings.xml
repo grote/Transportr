@@ -314,8 +314,9 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
 
 	<string name="np_region_germany">Germany</string>
+	<string name="np_name_avv" translatable="false">AVV</string>
 	<string name="np_desc_avv">Augsburg</string>
-	<string name="np_name_avvaachen">AVV</string>
+	<string name="np_name_avvaachen" translatable="false">AVV</string>
 	<string name="np_desc_avvaachen">Aachen</string>
 	<string name="np_name_bayern" translatable="false">BEG</string>
 	<string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
@@ -349,6 +350,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_vmv">Mecklenburg-Vorpommern, Schwerin</string>
 	<string name="np_desc_vrn">Baden-Württemberg, Rhineland-Palatinate, Mannheim, Mainz, Trier</string>
 	<string name="np_desc_vrr">North Rhine-Westphalia, Cologne, Bonn, Essen, Dortmund, Düsseldorf, Münster, Paderborn, Höxter</string>
+	<string name="np_desc_vrs">Cologne, Bonn</string>
 	<string name="np_desc_vvm">Swabia, Mittelschwaben, Krumbach, Günzburg, Memmingen</string>
 	<string name="np_desc_vvo">Saxony, Dresden</string>
 	<string name="np_desc_vvs">Baden-Württemberg, Stuttgart</string>
@@ -384,9 +386,6 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_desc_nz_networks" translatable="false">Go Wellington, Tranz Metro, Auckland Transport</string>
 
 	<string name="np_region_poland">Poland</string>
-	<string name="np_name_pl_navitia">Municipal Transports of Poland</string>
-	<string name="np_desc_pl_navitia">Bydgoszcz, Ełk, Gdańsk, Giżycko, Gorzów, Kraków, Lódź, Łomża, Lublin, Poznań, Przemyśl, Radom, Rybnik, Rzeszów, Sanok, Słupsk, Szczecin, Świnoujscie, Warszawa, Wrocław</string>
-	<string name="np_desc_pl_navitia_networks">A21 Długołęka, DLA Kąty Wrocławskie, DLA Miękinia, DLA Wisznia Mała, GZK Bystry, Koleje Małopolskie, Komunikacja Autobusowa w Świnoujściu, Komunikacja Gminy Tarnowo Podgórne TPBUS Sp. z o.o., Kórnickie Przedsiębiorstwo Autobusowe KOMBUS Sp. z o.o., KŁOSOK Długołęka, MKS Sanok, MPK Autobusy, MPK Przemyśl / Urząd Miasta Przemyśla, MPK S.A. w Krakowie, MPK Tramwaje, MPK ZB w Łomży, MPK-Łódź Spółka z o.o., MZDiK Radom, MZK Ełk, MZK Gorzów, Miejskie Przedsiębiorstwo Komunikacyjne Sp. z o.o. w Poznaniu, PKP Szybka Kolej Miejska w Trójmieście Sp. z o.o., Przedsiębiorstwo Transportowe Translub Sp. z o.o., Przedsiębiorstwo Usług Komunalnych Komorniki sp. z o.o., Przedsiębiorstwo Wielobranżowe TRANSKOM Sp. z o.o., Swarzędzkie Przedsiębiorstwo Komunalne Sp. z o.o., Urząd Gminy Dopiewo, Warszawski Transport Publiczny, ZDMiKP Bydgoszcz, ZDiTM Szczecin, ZKM Gdynia, ZTM Gdańsk, ZTM Lublin, ZTM Rzeszów, ZTP Kraków, ZTZ Rybnik, Zakład Komunalny w Kleszczewie Sp. z o.o., Zakład Komunikacji Publicznej Suchy Las Sp. z o.o., Zakład Usług Komunikacyjnych ROKBUS Sp. z o.o., Zarząd Infrastruktury Miejskiej, Zarząd Transportu Miejskiego w Gdańsku, Łódzka Kolej Aglomeracyjna</string>
 
 	<string name="np_name_spain">Spain</string>
 	<string name="np_desc_spain">Madrid, Barcelona, Basque Country, Valencia, Alicante, Mallorca, Menorca, Tenerife, La Palma, Navarra</string>

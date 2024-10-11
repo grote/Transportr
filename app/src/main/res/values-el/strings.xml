@@ -61,7 +61,6 @@
   <string name="drawer_departures">Αναχωρήσεις</string>
   <string name="tab_about">Σχετικά</string>
   <string name="tab_libraries">Βιβλιοθήκες</string>
-  <string name="about_copyright">© 2013 – 2018 Torsten Grote\nFree Software License: GPLv3+\nΑρχική μετάφραση: Βαγγέλης Σκαρμούτσος</string>
   <string name="about_description">Το Transportr είναι ένα εγχειρίδιο δημόσιων μεταφορών που αναπτύχθηκε από ανθρώπους σε όλο τον κόσμο για να κάνει τις δημόσιες μεταφορές όσο γίνεται πιο εύκολες όπου κι αν είστε.</string>
   <string name="about_warning_title">Προειδοποίηση</string>
   <string name="about_warning_text">Δεν υπάρχει εγγύηση για την ορθότητα των (εξωτερικώς παρεχόμενων) δεδομένων. Παρακαλώ χρησιμοποιήστε αυτή την εφαρμογή μόνο με δική σας ευθύνη.</string>
@@ -257,6 +256,7 @@
   <string name="np_desc_vmv">Μεκλεμβούργο-Δυτικής Πομερανίας, Schwerin</string>
   <string name="np_desc_vrn">Μπάντεν-Βυρτεμβέργη, Ρηνανία-Παλατινάτο, Μανχάιμ, Mainz, Trier</string>
   <string name="np_desc_vrr">Βόρεια Ρηνανία-Βεστφαλία, Κολωνία, Βόνη, Έσσεν, Ντόρτμουντ, Ντίσελντορφ, Μόναχο, Πάντερμπορν, Χόκερ</string>
+  <string name="np_desc_vrs">Κολωνία, Βόνη</string>
   <string name="np_desc_vvm">Σβάμπα, Κεντρική Σβάμπα,, Krumbach, Günzburg, Memmingen</string>
   <string name="np_desc_vvo">Σαξονία, Δρέσδη</string>
   <string name="np_desc_vvs">Μπάντεν-Βυρτεμβέργη, Στουτγάρδη</string>

@@ -8,12 +8,12 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest # to be able to run Android emulator, see https://github.com/marketplace/actions/android-emulator-runner
+    runs-on: macos-13 # to be able to run Android emulator, see https://github.com/marketplace/actions/android-emulator-runner
     
     strategy:
       fail-fast: false
       matrix:
-        api-level: [21, 29, 31]
+        api-level: [21, 29, 33]
 
     steps:
       - uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: 11
+          java-version: 17
       - name: Get AVD arch
         uses: ./.github/actions/get-avd-arch
         id: avd-arch

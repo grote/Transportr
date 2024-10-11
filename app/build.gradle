@@ -8,13 +8,13 @@ apply from: 'witness.gradle'
 android {
 
 	defaultConfig {
-		versionCode 123
-		versionName "2.1.5"
+		versionCode 125
+		versionName "2.2.1"
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 21
-		compileSdkVersion 33
-		targetSdkVersion 32
+		compileSdk 33
+		targetSdkVersion 33
 
 		testInstrumentationRunner 'de.grobox.transportr.MockTestRunner'
 		javaCompileOptions {
@@ -124,7 +124,7 @@ dependencies {
 	implementation 'com.squareup.okhttp3:okhttp:3.12.13'
 	implementation 'com.github.omadahealth:swipy:1.2.3'
 	implementation 'de.cketti.library.changelog:ckchangelog:1.2.2'
-	implementation 'com.google.android:flexbox:0.3.2'
+	implementation 'com.google.android.flexbox:flexbox:3.0.0'
 	implementation 'com.mikepenz:materialdrawer:6.1.1'
 	implementation 'com.mikepenz:aboutlibraries:6.2.0'
 	implementation "com.mikepenz:fastadapter:$fastadapterVersion"
@@ -142,7 +142,7 @@ dependencies {
 		exclude module: 'failureaccess'
 		exclude group: 'com.google.j2objc'
 	}
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:902b26d6') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:c64494b1') {
 		exclude group: 'com.google.guava' // included above
 		exclude group: 'org.json', module: 'json' // provided by Android
 		exclude group: 'net.sf.kxml', module: 'kxml2' // provided by Android
