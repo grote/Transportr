@@ -1,17 +1,14 @@
-Transportr
-==========
+Transportr | [![Build and test](https://github.com/grote/Transportr/actions/workflows/build.yml/badge.svg)](https://github.com/grote/Transportr/actions/workflows/build.yml)
+============================================================================================================================================================================
 
 The public transport companion that respects your privacy and your freedom.
 Transportr is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. 
 
 [![Transportr Logo](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://transportr.app)
-[![Build and test](https://github.com/grote/Transportr/actions/workflows/build.yml/badge.svg)](https://github.com/grote/Transportr/actions/workflows/build.yml)
 
 Please **[visit the website](https://transportr.app)** for more information!
 
 If you find any issues with this app, please report them at [the issue tracker](https://github.com/grote/Transportr/issues). Contributions are both encouraged and appreciated. If you like to contribute please [check the website](https://transportr.app/contribute) for more information.
-
-The upstream repository is at: https://github.com/grote/Transportr
 
 [![Follow @TransportrApp](artwork/twitter.png)](https://twitter.com/TransportrApp)
 
