@@ -15,8 +15,16 @@ If you find any issues with this app, please report them at [the issue tracker](
 Get Transportr
 --------------
 
-[![Available on F-Droid](./artwork/f-droid.png)](https://f-droid.org/repository/browse/?fdid=de.grobox.liberario)
-[![Available on Google Play](./artwork/google-play.png)](https://play.google.com/store/apps/details?id=de.grobox.liberario)
+<a href="https://f-droid.org/packages/de.grobox.liberario">
+    <img src="./artwork/f-droid.png"
+    alt="Get it on F-Droid"
+    height="80">
+</a>
+<a href="https://play.google.com/store/apps/details?id=de.grobox.liberario">
+    <img src="./artwork/google-play.png"
+    alt="Get it on Google Play"
+    height="80"/>
+</a>
 
 Pre-releases and beta versions for advanced users are available via [a special F-Droid repository](http://grobox.de/fdroid/).
 
