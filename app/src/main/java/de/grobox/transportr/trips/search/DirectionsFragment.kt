@@ -110,9 +110,13 @@ class DirectionsFragment : TransportrFragment() {
         viewModel.fromLocation.observe(viewLifecycleOwner, {
             fromLocation.setLocation(it)
             if (it != null) toLocation.requestFocus()
+            onLocationsChanged()
         })
         viewModel.viaLocation.observe(viewLifecycleOwner, { viaLocation.setLocation(it) })
-        viewModel.toLocation.observe(viewLifecycleOwner, { toLocation.setLocation(it) })
+        viewModel.toLocation.observe(viewLifecycleOwner, {
+            toLocation.setLocation(it)
+            onLocationsChanged()
+        })
         viewModel.viaSupported.observe(viewLifecycleOwner, { viaIcon.visibility = if (it) VISIBLE else GONE })
         viewModel.isDeparture.observe(viewLifecycleOwner, { onIsDepartureChanged(it) })
         viewModel.isExpanded.observe(viewLifecycleOwner, { onViaVisibleChanged(it) })
@@ -146,6 +150,14 @@ class DirectionsFragment : TransportrFragment() {
         TooltipCompat.setTooltipText(productsIcon, getString(R.string.action_choose_products))
         TooltipCompat.setTooltipText(swapIcon, getString(R.string.action_switch_locations))
         TooltipCompat.setTooltipText(viaIcon, getString(R.string.action_navigation_expand))
+    }
+
+    private fun onLocationsChanged() {
+        val fromNotEmpty = this.viewModel.fromLocation.value != null
+        val toNotEmpty = this.viewModel.toLocation.value != null
+        swapIcon.isEnabled = fromNotEmpty || toNotEmpty
+        // If icon disabled, grey it out
+        swapIcon.alpha = if (swapIcon.isEnabled) 1.0f else 0.5f
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -272,3 +284,4 @@ class DirectionsFragment : TransportrFragment() {
     }
 
 }
+
