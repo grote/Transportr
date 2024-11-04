@@ -93,14 +93,16 @@ object DateUtils {
 
     fun formatRelativeTime(context: Context, date: Date, max: Int = 99): RelativeTime {
         val difference = getDifferenceInMinutes(date)
+        val isNotToday = !DateUtils.isToday(date.time)
         return RelativeTime(
             relativeTime = when {
+                isNotToday -> formatDate(context, date)
                 difference !in -max..max -> ""
                 difference == 0L -> context.getString(R.string.now_small)
                 difference > 0 -> context.getString(R.string.in_x_minutes, difference)
                 else -> context.getString(R.string.x_minutes_ago, difference * -1)
             },
-            visibility = if (difference in -max..max) View.VISIBLE else View.GONE
+            visibility = if (difference in -max..max || isNotToday) View.VISIBLE else View.GONE
         )
     }
 
