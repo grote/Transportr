@@ -57,7 +57,7 @@ class LineView(context: Context, attr: AttributeSet?) : AppCompatTextView(contex
 
         // set colored label
         text = line.label
-        if (foregroundColor != null) setTextColor(getTextColorBasedOnBackground(backgroundColor))
+        setTextColor(foregroundColor)
     }
 
     fun setWalk() {

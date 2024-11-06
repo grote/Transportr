@@ -89,7 +89,7 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         if (position == null) {
             visibility = GONE
         } else {
-            text = "${context.getString(R.string.platform, position.toString())}"
+            text = context.getString(R.string.platform, position.toString())
             visibility = VISIBLE
         }
     }

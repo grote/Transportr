@@ -135,8 +135,7 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
     @ColorInt
     private fun getBackgroundColor(leg: Leg): Int {
         if (leg is Public) {
-            val line = leg.line
-            return TransportrUtils.getLineColor(context, line)
+            return TransportrUtils.getLineColor(context, leg.line)
         }
         return ContextCompat.getColor(context, R.color.walking)
     }

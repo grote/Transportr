@@ -108,7 +108,7 @@ internal object TripUtils {
         if (leg is Trip.Public) {
             // show departure position if existing
             if (leg.departurePosition != null) {
-                str += " (" + context.getString(R.string.platform, leg.departurePosition.toString()) +")"
+                str += " (${context.getString(R.string.platform, leg.departurePosition.toString())})"
             }
             str += "\n  ${getEmojiForProduct(leg.line?.product)} "
             leg.line?.label?.let {
