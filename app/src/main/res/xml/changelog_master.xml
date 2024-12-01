@@ -3,6 +3,13 @@
     tools:ignore="UnusedResources">
 
     <release
+        version="2.2.2"
+        versioncode="126">
+        <change>IMPORTANT! Remove all remaining Navitia-based networks (due to shutdown of API): all regions in France, Spain, Italy and nationwide Australia network</change>
+        <change>Various UI fixes and improvements</change>
+    </release>
+
+    <release
         version="2.2.1"
         versioncode="125">
         <change>Fix app crash at startup when no network-backed location provider was available (thanks Altonss!)</change>
