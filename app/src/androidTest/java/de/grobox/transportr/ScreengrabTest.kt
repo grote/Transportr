@@ -52,20 +52,20 @@ abstract class ScreengrabTest {
     }
 
     val networkId: NetworkId = when(Locale.forLanguageTag(getTestLocale() ?: "de")) {
-        Locale.FRANCE -> NetworkId.PARIS
+        Locale.FRANCE -> NetworkId.SEARCHCH
         else -> NetworkId.DB
     }
 
     val departureStation = when(networkId) {
-        NetworkId.PARIS -> "Gare De Lyon"
+        NetworkId.SEARCHCH -> "Genève"
         else -> "Berlin Hbf"
     }
 
     protected fun getFrom(i: Int): WrapLocation = when(networkId) {
-        NetworkId.PARIS -> when(i) {
-            0 -> WrapLocation(STATION, "stop_area:OIF:SA:8739305", 48857298, 2293270, "Paris", "Champ De Mars Tour Eiffel", null)
-            1 -> WrapLocation(STATION, "stop_area:OIF:SA:8739100", 48842481, 2321783, "Paris", "Gare Montparnasse", null)
-            2 -> WrapLocation(STATION, "stop_area:OIF:SA:8727100", 48880372, 2356597, null, "Gare Du Nord", null)
+        NetworkId.SEARCHCH -> when(i) {
+            0 -> getLocation("Zürich HB")
+            1 -> getLocation("Lausanne, gare")
+            2 -> getLocation("Basel SBB")
             else -> throw RuntimeException()
         }
         else -> when(i) {
@@ -77,10 +77,10 @@ abstract class ScreengrabTest {
     }
 
     protected fun getTo(i: Int): WrapLocation = when(networkId) {
-        NetworkId.PARIS -> when(i) {
-            0 -> WrapLocation(STATION, "stop_area:OIF:SA:8711300", 48876241, 2358326, "Paris", "Gare De L'est", null)
-            1 -> WrapLocation(STATION, "stop_area:OIF:SA:8754730", 48860751, 2325874, "Paris", "Musée D'orsay", null)
-            2 -> WrapLocation(STATION, "stop_area:OIF:SA:59290", 48866800, 2334338, "Paris", "Pyramides", null)
+        NetworkId.SEARCHCH -> when(i) {
+            0 -> getLocation("Chur West")
+            1 -> getLocation("Bern Wankdorf")
+            2 -> getLocation("Luzern, Bahnhof")
             else -> throw RuntimeException()
         }
         else -> when(i) {
