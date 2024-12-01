@@ -1,0 +1,2 @@
+* IMPORTANT! Remove all remaining Navitia-based networks (due to shutdown of API): all regions in France, Spain, Italy and nationwide Australia network
+* Various UI fixes and improvements
