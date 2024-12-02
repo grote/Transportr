@@ -30,12 +30,12 @@ import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrActivity
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
+import de.grobox.transportr.databinding.ActivityDirectionsBinding
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.locations.WrapLocation.WrapType.GPS
 import de.grobox.transportr.trips.search.SavedSearchesFragment.HomePickerFragment
 import de.grobox.transportr.trips.search.SavedSearchesFragment.WorkPickerFragment
 import de.grobox.transportr.utils.Constants.*
-import kotlinx.android.synthetic.main.activity_directions.*
 import javax.inject.Inject
 
 class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
@@ -53,6 +53,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: DirectionsViewModel
+    private lateinit var binding: ActivityDirectionsBinding
 
     private val isShowingTrips: Boolean
         get() = fragmentIsVisible(TripsFragment.TAG)
@@ -67,12 +68,14 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         component.inject(this)
-        setContentView(R.layout.activity_directions)
+        binding = ActivityDirectionsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // get view model and observe data
         viewModel = ViewModelProvider(this, viewModelFactory).get(DirectionsViewModel::class.java)
         viewModel.showTrips.observe(this, Observer { showTrips() })
 
+        val appBarLayout = binding.appBarLayout;
         appBarLayout.addOnOffsetChangedListener(this)
 
         if (savedInstanceState == null) {
@@ -127,7 +130,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, TripsFragment(), TripsFragment.TAG)
             .commit()
-        fragmentContainer.requestFocus()
+        binding.fragmentContainer.requestFocus()
     }
 
     private fun processIntent(intent: Intent?) {
