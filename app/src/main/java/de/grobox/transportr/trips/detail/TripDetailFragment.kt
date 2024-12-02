@@ -24,14 +24,17 @@ import android.os.CountDownTimer
 import android.view.*
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat.getColor
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
+import de.grobox.transportr.databinding.FragmentTripDetailBinding
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.*
 import de.grobox.transportr.trips.detail.TripUtils.getStandardFare
@@ -43,7 +46,6 @@ import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.formatRelativeTime
 import de.grobox.transportr.utils.TransportrUtils.getColorFromAttr
 import de.schildbach.pte.dto.Trip
-import kotlinx.android.synthetic.main.fragment_trip_detail.*
 import javax.inject.Inject
 
 class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener {
@@ -56,6 +58,23 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: TripDetailViewModel
+
+    private var _binding: FragmentTripDetailBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var fromTimeRel: TextView
+    private lateinit var fromTime: TextView
+    private lateinit var from: TextView
+    private lateinit var toTime: TextView
+    private lateinit var to: TextView
+    private lateinit var duration: TextView
+    private lateinit var durationTop: TextView
+    private lateinit var price: TextView
+    private lateinit var priceTop: TextView
+    private lateinit var toolbar: Toolbar
+    private lateinit var topBar: View
+    private lateinit var bottomBar: View
+    private lateinit var list: RecyclerView
 
     private val timeUpdater: CountDownTimer = object : CountDownTimer(Long.MAX_VALUE, 1000 * 30) {
         override fun onTick(millisUntilFinished: Long) {
@@ -73,7 +92,23 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_trip_detail, container, false)
+        _binding = FragmentTripDetailBinding.inflate(inflater, container, false)
+
+        fromTimeRel = binding.fromTimeRel
+        fromTime = binding.fromTime
+        from = binding.from
+        toTime = binding.toTime
+        to = binding.to
+        duration = binding.duration
+        durationTop = binding.durationTop
+        price = binding.price
+        priceTop = binding.priceTop
+        toolbar = binding.toolbar
+        topBar = binding.topBar
+        bottomBar = binding.bottomBar
+        list = binding.list
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

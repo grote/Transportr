@@ -29,6 +29,7 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
+import com.mapbox.mapboxsdk.annotations.PolylineOptions
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
@@ -83,6 +84,14 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
     @CallSuper
     override fun onMapReady(mapboxMap: MapboxMap) {
         map = mapboxMap
+        val width = 2f
+
+        lines.forEach {
+            mapboxMap.addPolyline(
+                PolylineOptions().color(it.color).addAll(it.coordinates).width(width)
+            )
+        }
+
         activity?.run {
             // work-around to force update map style after theme switching
             obtainStyledAttributes(intArrayOf(R.attr.mapStyle)).apply {
