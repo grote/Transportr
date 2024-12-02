@@ -1,7 +1,7 @@
 buildscript {
 
 	ext {
-		kotlinVersion = '1.7.10'
+		kotlinVersion = '1.8.22'
 		daggerVersion = '2.22.1'
 		fastadapterVersion = '3.2.4@aar'
 	}

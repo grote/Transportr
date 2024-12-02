@@ -30,33 +30,47 @@ import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
 import de.grobox.transportr.about.ContributorAdapter.ContributorViewHolder
 import de.grobox.transportr.about.ContributorGroupAdapter.ContributorGroupViewHolder
+import de.grobox.transportr.databinding.FragmentContributorsBinding
+import de.grobox.transportr.databinding.FragmentTranslatorsBinding
 
 class ContributorFragment : TransportrFragment() {
+    private var _binding: FragmentContributorsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_contributors, container, false)
+        _binding = FragmentContributorsBinding.inflate(inflater, container, false)
 
-        val list = v.findViewById<RecyclerView>(R.id.list)
+        val list = binding.list
         list.layoutManager = LinearLayoutManager(context)
         list.adapter = ContributorGroupAdapter(CONTRIBUTORS)
 
-        return v
+        return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
 
 class TranslatorsFragment : TransportrFragment() {
+    private var _binding: FragmentTranslatorsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_translators, container, false)
+        _binding = FragmentTranslatorsBinding.inflate(inflater, container, false)
 
-        val list = v.findViewById<RecyclerView>(R.id.list)
+        val list = binding.list
         list.layoutManager = LinearLayoutManager(context)
         list.adapter = ContributorGroupAdapter(LANGUAGES)
 
-        return v
+        return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
 
 
