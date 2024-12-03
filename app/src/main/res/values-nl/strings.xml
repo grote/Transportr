@@ -135,7 +135,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
     <item quantity="other">%d haltes</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(Perron %s)</string>
+  <string name="platform">Perron %s</string>
   <string name="system_default">Systeemstandaard</string>
   <string name="trip_share_date">Datum: %s</string>
   <string name="times_include_delays">(Let op: tijden kunnen gemelde vertragingen bevatten)</string>

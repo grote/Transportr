@@ -150,7 +150,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
     <item quantity="other">%d 駅</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(プラットフォーム %s)</string>
+  <string name="platform">プラットフォーム %s</string>
   <string name="system_default">システム デフォルト</string>
   <string name="trip_share_date">日付: %s</string>
   <string name="times_include_delays">(注意: 時間には報告された遅延が含まれます)</string>

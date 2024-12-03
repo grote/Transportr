@@ -153,7 +153,7 @@ och vet alltid var du inte ska missa var du ska gå av bussen.
     <item quantity="other">%d stopp</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(Plattform %s)</string>
+  <string name="platform">Plattform %s</string>
   <string name="system_default">Systemstandard</string>
   <string name="trip_share_date">Datum: %s</string>
   <string name="times_include_delays">(Obs: Tiderna kan inkludera rapporterade förseningar)</string>

@@ -31,6 +31,7 @@ import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.DateUtils.formatDelay
 import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.formatRelativeTime
+import de.grobox.transportr.utils.TransportrUtils.getLineColor
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Departure
 import kotlinx.android.synthetic.main.list_item_departure.view.*
@@ -77,8 +78,9 @@ internal class DepartureViewHolder(v: View) : RecyclerView.ViewHolder(v) {
             }
         } ?: run { delay.visibility = GONE }
 
+        val lineColor = getLineColor(line.context, dep.line)
         // line icon and name
-        line.setLine(dep.line)
+        line.setLine(dep.line, lineColor)
         lineName.text = dep.line.name
 
         // line destination

@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.grobox.transportr.R
 import de.grobox.transportr.ui.LineView
+import de.grobox.transportr.utils.TransportrUtils
 import de.schildbach.pte.dto.Line
 
 
@@ -51,7 +52,9 @@ internal class LineAdapter : RecyclerView.Adapter<LineViewHolder>() {
 }
 
 internal class LineViewHolder(private val lineView: LineView) : RecyclerView.ViewHolder(lineView) {
-
-    fun bind(line: Line) = lineView.setLine(line)
+    fun bind(line: Line) {
+        val lineColor = TransportrUtils.getLineColor(lineView.context, line)
+        lineView.setLine(line, lineColor)
+    }
 
 }

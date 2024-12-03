@@ -35,6 +35,7 @@ import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.DateUtils.formatDuration
 import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.formatRelativeTime
+import de.grobox.transportr.utils.TransportrUtils
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Trip
 import de.schildbach.pte.dto.Trip.Individual
@@ -81,7 +82,7 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
         for (leg in trip.legs) {
             val lineView = LayoutInflater.from(context).inflate(R.layout.list_item_line, lines, false) as LineView
             when (leg) {
-                is Public -> lineView.setLine(leg.line)
+                is Public -> lineView.setLine(leg.line, TransportrUtils.getLineColor(lineView.context, leg.line))
                 is Individual -> lineView.setWalk()
                 else -> throw RuntimeException()
             }
