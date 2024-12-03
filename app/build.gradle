@@ -148,10 +148,7 @@ dependencies {
 		exclude group: 'net.sf.kxml', module: 'kxml2' // provided by Android
 		exclude group: 'org.slf4j', module: 'slf4j-api' // v. 2.0.16 broken
 	}
-	constraints {
-		implementation 'org.slf4j:slf4j-api:2.0.9' // Force version 2.0.9 for now
-	}
-	debugImplementation 'org.slf4j:slf4j-api:1.7.32'
+	implementation 'org.slf4j:slf4j-api:2.0.9' // Force version 2.0.9 for now
 	debugImplementation 'com.github.tony19:logback-android:1.1.1-12'
 
 	testImplementation 'junit:junit:4.13.1'
