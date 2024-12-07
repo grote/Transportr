@@ -3,6 +3,14 @@
     tools:ignore="UnusedResources">
 
     <release
+        version="2.2.3"
+        versioncode="127">
+        <change>IMPORTANT! Remove all remaining Navitia-based networks (due to shutdown of API): all regions in France, Spain, Italy and nationwide Australia network</change>
+        <change>Various UI fixes and improvements</change>
+        <change>Fix app crash</change>
+    </release>
+
+    <release
         version="2.2.2"
         versioncode="126">
         <change>IMPORTANT! Remove all remaining Navitia-based networks (due to shutdown of API): all regions in France, Spain, Italy and nationwide Australia network</change>
