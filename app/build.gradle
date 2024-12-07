@@ -8,8 +8,8 @@ apply from: 'witness.gradle'
 android {
 
 	defaultConfig {
-		versionCode 126
-		versionName "2.2.2"
+		versionCode 127
+		versionName "2.2.3"
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 21
