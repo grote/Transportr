@@ -149,7 +149,7 @@ De asemenea nu foloseşte tool-uri precum Google Analytics pentru a te spiona.
     <item quantity="other">%d de opriri</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(Peron %s)</string>
+  <string name="platform">Peron %s</string>
   <string name="system_default">Implicit al sistemului</string>
   <string name="trip_share_date">Data: %s</string>
   <string name="times_include_delays">(Atenție: timpurile afișate ar putea include întărzierile rapoartate)</string>

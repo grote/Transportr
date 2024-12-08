@@ -137,7 +137,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
     <item quantity="other">%d zastávek</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(Nástupiště %s)</string>
+  <string name="platform">Nástupiště %s</string>
   <string name="system_default">Výchozí nastavení systému</string>
   <string name="trip_share_date">Datum: %s</string>
   <string name="times_include_delays">(Upozornění: časy mohou zahrnovat hlášené zpoždění)</string>

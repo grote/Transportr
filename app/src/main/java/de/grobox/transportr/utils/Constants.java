@@ -39,4 +39,7 @@ public interface Constants {
 	int LOADER_DEPARTURES = 1;
 	int LOADER_NEARBY_STATIONS = 2;
 
+	// Contrast value for line color
+	double MIN_CONTRAST_RATIO = 1.3;
+
 }

@@ -86,7 +86,7 @@
     <item quantity="other">%d站</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">（%s號月台）</string>
+  <string name="platform">%s號月台</string>
   <string name="system_default">系統預設</string>
   <string name="trip_share_date">日期：%s</string>
   <string name="times_include_delays">（注意：時間可能已包含延遲）</string>

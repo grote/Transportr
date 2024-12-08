@@ -86,8 +86,11 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
     @SuppressLint("SetTextI18n")
     protected fun TextView.addPlatform(position: Position?) {
-        if (position == null) return
-        text = "$text ${context.getString(R.string.platform, position.toString())}"
+        if (position == null) {
+            visibility = GONE
+        } else {
+            text = context.getString(R.string.platform, position.toString())
+            visibility = VISIBLE
+        }
     }
-
 }

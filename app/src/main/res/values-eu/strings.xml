@@ -153,7 +153,7 @@ eta beti daki non zauden autobusetik non jaitsi jakin dezazun.
     <item quantity="other">%d geldialdi</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(%s plataforma)</string>
+  <string name="platform">%s plataforma</string>
   <string name="system_default">Sistemaren lehenetsia</string>
   <string name="trip_share_date">Data: %s</string>
   <string name="times_include_delays">(Adi: Denborek atzerapen ezagunak barne-har ditzakete)</string>
