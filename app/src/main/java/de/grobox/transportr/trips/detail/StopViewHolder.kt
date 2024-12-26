@@ -20,24 +20,23 @@
 package de.grobox.transportr.trips.detail
 
 
-import android.view.View
 import android.view.View.*
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import de.grobox.transportr.databinding.ListItemStopBinding
 import de.grobox.transportr.trips.BaseViewHolder
 import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Stop
-import kotlinx.android.synthetic.main.list_item_stop.view.*
 import java.util.Date
 
 
-internal class StopViewHolder(v: View, private val listener : LegClickListener) : BaseViewHolder(v) {
+internal class StopViewHolder(binding: ListItemStopBinding, private val listener : LegClickListener) : BaseViewHolder(binding.root) {
 
-    private val circle: ImageView = v.circle
-    private val stopLocation: TextView = v.stopLocation
-    private val stopButton: ImageButton = v.stopButton
+    private val circle: ImageView = binding.circle
+    private val stopLocation: TextView = binding.stopLocation
+    private val stopButton: ImageButton = binding.stopButton
 
     fun bind(stop: Stop, color: Int) {
         if (stop.arrivalTime != null) {

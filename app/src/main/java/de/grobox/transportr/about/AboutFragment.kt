@@ -30,12 +30,16 @@ import android.widget.Button
 import android.widget.TextView
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
+import de.grobox.transportr.databinding.FragmentAboutBinding
 
 
 class AboutFragment : TransportrFragment() {
 
+    private var _binding: FragmentAboutBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_about, container, false)
+        _binding = FragmentAboutBinding.inflate(inflater, container, false)
 
         // add app name and version
         val versionName = try {
@@ -44,17 +48,21 @@ class AboutFragment : TransportrFragment() {
         } catch (e: NameNotFoundException) {
             "?.?"
         }
-        val appNameVersion = v.findViewById<TextView>(R.id.appNameVersion)
+        val appNameVersion = binding.appNameVersion
         appNameVersion.text = "${getString(R.string.app_name)} $versionName"
 
         // website button
-        val websiteButton = v.findViewById<Button>(R.id.websiteButton)
+        val websiteButton = binding.websiteButton
         websiteButton.setOnClickListener {
             val launchBrowser = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.website) + getString(R.string.website_source_app)))
             startActivity(launchBrowser)
         }
 
-        return v
+        return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -27,13 +27,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout.OnRefreshListener
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
+import de.grobox.transportr.databinding.FragmentTripsBinding
 import de.grobox.transportr.trips.detail.TripDetailActivity
 import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener
 import de.grobox.transportr.trips.search.TripsRepository.QueryMoreState
@@ -41,7 +45,6 @@ import de.grobox.transportr.ui.LceAnimator
 import de.grobox.transportr.utils.Linkify
 import de.grobox.transportr.utils.TransportrUtils.getDragDistance
 import de.schildbach.pte.dto.Trip
-import kotlinx.android.synthetic.main.fragment_trips.*
 import java.util.regex.Pattern
 import javax.annotation.ParametersAreNonnullByDefault
 import javax.inject.Inject
@@ -52,18 +55,35 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
     
     private lateinit var viewModel: DirectionsViewModel
+
+    private var _binding: FragmentTripsBinding? = null
+    private val binding get() = _binding!!
     
     private val adapter = TripAdapter(this)
     private var topSwipingEnabled = false
     private var queryMoreDirection = SwipyRefreshLayoutDirection.BOTH
 
+    private lateinit var swipe: SwipyRefreshLayout;
+    private lateinit var list: RecyclerView;
+    private lateinit var errorButton: Button;
+    private lateinit var errorText: TextView;
+    private lateinit var errorLayout: View;
+    private lateinit var progressBar: View;
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_trips, container, false)
+        _binding = FragmentTripsBinding.inflate(inflater, container, false)
         component.inject(this)
 
         viewModel = ViewModelProvider(activity!!, viewModelFactory).get(DirectionsViewModel::class.java)
 
-        return v
+        swipe = binding.swipe
+        list = binding.list
+        errorButton = binding.errorButton
+        errorText = binding.errorText
+        errorLayout = binding.errorLayout
+        progressBar = binding.progressBar
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

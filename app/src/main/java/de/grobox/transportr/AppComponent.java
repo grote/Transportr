@@ -34,6 +34,7 @@ import de.grobox.transportr.trips.detail.TripDetailFragment;
 import de.grobox.transportr.trips.detail.TripMapFragment;
 import de.grobox.transportr.trips.search.DirectionsActivity;
 import de.grobox.transportr.trips.search.DirectionsFragment;
+import de.grobox.transportr.trips.search.ProductDialogFragment;
 import de.grobox.transportr.trips.search.TripsFragment;
 
 @Singleton
@@ -56,5 +57,6 @@ public interface AppComponent {
 	void inject(SettingsFragment fragment);
 	void inject(HomePickerDialogFragment fragment);
 	void inject(WorkPickerDialogFragment fragment);
+	void inject(ProductDialogFragment fragment);
 
 }
