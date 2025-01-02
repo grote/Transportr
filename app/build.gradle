@@ -1,11 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'witness'
 apply from: 'witness.gradle'
 
 android {
+
+	buildFeatures {
+		viewBinding true
+		dataBinding true
+	}
 
 	defaultConfig {
 		versionCode 127
@@ -117,8 +122,8 @@ dependencies {
 	implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 	implementation 'androidx.lifecycle:lifecycle-livedata:2.3.1'
 	implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
-	implementation 'androidx.room:room-runtime:2.3.0'
-	kapt 'androidx.room:room-compiler:2.3.0'
+	implementation 'androidx.room:room-runtime:2.4.1'
+	kapt 'androidx.room:room-compiler:2.4.1'
 	implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 
 	implementation 'com.squareup.okhttp3:okhttp:3.12.13'

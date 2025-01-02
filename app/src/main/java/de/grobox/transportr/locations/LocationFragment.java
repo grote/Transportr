@@ -50,6 +50,7 @@ import javax.inject.Inject;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrFragment;
+import de.grobox.transportr.databinding.FragmentLocationBinding;
 import de.grobox.transportr.departures.DeparturesActivity;
 import de.grobox.transportr.departures.DeparturesLoader;
 import de.grobox.transportr.locations.ReverseGeocoder.ReverseGeocoderCallback;
@@ -87,6 +88,7 @@ public class LocationFragment extends TransportrFragment
 	private WrapLocation location;
 	private final LineAdapter adapter = new LineAdapter();
 
+	private FragmentLocationBinding binding;
 	private ImageView locationIcon;
 	private TextView locationName;
 	private TextView locationInfo;
@@ -113,7 +115,7 @@ public class LocationFragment extends TransportrFragment
 		location = (WrapLocation) args.getSerializable(WRAP_LOCATION);
 		if (location == null) throw new IllegalArgumentException("No location");
 
-		View v = inflater.inflate(R.layout.fragment_location, container, false);
+		binding = FragmentLocationBinding.inflate(inflater, container, false);
 		getComponent().inject(this);
 
 		if (getActivity() == null) throw new IllegalStateException();
@@ -121,20 +123,20 @@ public class LocationFragment extends TransportrFragment
 		viewModel.nearbyStationsFound().observe(getViewLifecycleOwner(), found -> onNearbyStationsLoaded());
 
 		// Location
-		locationIcon = v.findViewById(R.id.locationIcon);
-		locationName = v.findViewById(R.id.locationName);
+		locationIcon = binding.locationIcon;
+		locationName = binding.locationName;
 		locationIcon.setOnClickListener(view -> onLocationClicked());
 		locationName.setOnClickListener(view -> onLocationClicked());
 
 		// Lines
-		linesLayout = v.findViewById(R.id.linesLayout);
+		linesLayout = binding.linesLayout;
 		linesLayout.setVisibility(GONE);
 		linesLayout.setAdapter(adapter);
 		linesLayout.setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
 		linesLayout.setOnClickListener(view -> onLocationClicked());
 
 		// Location Info
-		locationInfo = v.findViewById(R.id.locationInfo);
+		locationInfo = binding.locationInfo;
 		showLocation();
 
 		if (location.getLocation().type == COORD) {
@@ -143,7 +145,7 @@ public class LocationFragment extends TransportrFragment
 		}
 
 		// Departures
-		Button departuresButton = v.findViewById(R.id.departuresButton);
+		Button departuresButton = binding.departuresButton;
 		if (location.hasId()) {
 			departuresButton.setOnClickListener(view -> {
 				Intent intent = new Intent(getContext(), DeparturesActivity.class);
@@ -155,8 +157,8 @@ public class LocationFragment extends TransportrFragment
 		}
 
 		// Nearby Stations
-		nearbyStationsButton = v.findViewById(R.id.nearbyStationsButton);
-		nearbyStationsProgress = v.findViewById(R.id.nearbyStationsProgress);
+		nearbyStationsButton = binding.nearbyStationsButton;
+		nearbyStationsProgress = binding.nearbyStationsProgress;
 		nearbyStationsButton.setOnClickListener(view -> {
 			nearbyStationsButton.setVisibility(INVISIBLE);
 			nearbyStationsProgress.setVisibility(VISIBLE);
@@ -164,16 +166,23 @@ public class LocationFragment extends TransportrFragment
 		});
 
 		// Share Location
-		Button shareButton = v.findViewById(R.id.shareButton);
+		Button shareButton = binding.shareButton;
 		shareButton.setOnClickListener(view -> startGeoIntent(getActivity(), location));
 
 		// Overflow Button
-		ImageButton overflowButton = v.findViewById(R.id.overflowButton);
+		ImageButton overflowButton = binding.overflowButton;
 		overflowButton.setOnClickListener(view -> new LocationPopupMenu(getContext(), view, location).show());
 
+		View v = binding.getRoot();
 		v.getViewTreeObserver().addOnGlobalLayoutListener(this);
 
 		return v;
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		binding = null;
 	}
 
 	@Override

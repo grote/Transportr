@@ -40,6 +40,7 @@ import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrFragment;
 import de.grobox.transportr.data.locations.HomeLocation;
 import de.grobox.transportr.data.locations.WorkLocation;
+import de.grobox.transportr.databinding.FragmentFavoritesBinding;
 import de.grobox.transportr.favorites.locations.HomePickerDialogFragment;
 import de.grobox.transportr.favorites.locations.WorkPickerDialogFragment;
 import de.grobox.transportr.locations.WrapLocation;
@@ -57,6 +58,7 @@ public abstract class FavoriteTripsFragment<VM extends SavedSearchesViewModel> e
 	@Inject protected ViewModelProvider.Factory viewModelFactory;
 	protected VM viewModel;
 
+	private FragmentFavoritesBinding binding;
 	private ProgressBar progressBar;
 	private RecyclerView list;
 	private FavoriteTripAdapter adapter;
@@ -64,11 +66,11 @@ public abstract class FavoriteTripsFragment<VM extends SavedSearchesViewModel> e
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_favorites, container, false);
+		binding = FragmentFavoritesBinding.inflate(inflater, container, false);
 
-		progressBar = v.findViewById(R.id.progressBar);
+		progressBar = binding.progressBar;
 
-		list = v.findViewById(R.id.favorites);
+		list = binding.favorites;
 		adapter = new FavoriteTripAdapter(this);
 		list.setHasFixedSize(false);
 		list.setAdapter(adapter);
@@ -79,7 +81,13 @@ public abstract class FavoriteTripsFragment<VM extends SavedSearchesViewModel> e
 		viewModel.getWork().observe(getViewLifecycleOwner(), this::onWorkLocationChanged);
 		viewModel.getFavoriteTrips().observe(getViewLifecycleOwner(), this::onFavoriteTripsChanged);
 
-		return v;
+		return binding.getRoot();
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		binding = null;
 	}
 
 	abstract protected VM getViewModel();
