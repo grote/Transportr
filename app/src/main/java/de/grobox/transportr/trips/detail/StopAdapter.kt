@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import de.grobox.transportr.R
+import de.grobox.transportr.databinding.ListItemStopBinding
 import de.grobox.transportr.trips.detail.LegViewHolder.Companion.DEFAULT_LINE_COLOR
 import de.schildbach.pte.dto.Stop
 
@@ -39,8 +40,8 @@ internal class StopAdapter internal constructor(private val listener: LegClickLi
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): StopViewHolder {
-        val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_stop, viewGroup, false)
-        return StopViewHolder(v, listener)
+        val binding = ListItemStopBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        return StopViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(ui: StopViewHolder, i: Int) {

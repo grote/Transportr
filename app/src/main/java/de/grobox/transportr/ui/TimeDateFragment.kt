@@ -28,12 +28,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.DatePicker
+import android.widget.ImageButton
+import android.widget.RadioButton
+import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.TimePicker.OnTimeChangedListener
 import androidx.fragment.app.DialogFragment
 import de.grobox.transportr.R
-import kotlinx.android.synthetic.main.fragment_time_date.*
+import de.grobox.transportr.databinding.FragmentTimeDateBinding
 import java.util.*
 import java.util.Calendar.*
 
@@ -42,6 +46,20 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
     private var listener: TimeDateListener? = null
     private var departure: Boolean? = null // null means no departure/arrival selection will be possible
     private lateinit var calendar: Calendar
+
+    private var _binding: FragmentTimeDateBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var timePicker: TimePicker
+    private lateinit var dateView: TextView
+    private lateinit var prevDateButton: ImageButton
+    private lateinit var nextDateButton: ImageButton
+    private lateinit var departureButton: RadioButton
+    private lateinit var arrivalButton: RadioButton
+    private lateinit var okButton: Button
+    private lateinit var nowButton: Button
+    private lateinit var cancelButton: Button
+
 
     companion object {
         @JvmField
@@ -76,8 +94,21 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_time_date, container)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentTimeDateBinding.inflate(inflater, container, false)
+
+        timePicker = binding.timePicker
+        dateView = binding.dateView
+        prevDateButton = binding.prevDateButton
+        nextDateButton = binding.nextDateButton
+        departureButton = binding.departureButton
+        arrivalButton = binding.arrivalButton
+        okButton = binding.okButton
+        nowButton = binding.nowButton
+        cancelButton = binding.cancelButton
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
