@@ -31,14 +31,14 @@ import android.util.AttributeSet
 import de.grobox.transportr.R
 import de.grobox.transportr.utils.TransportrUtils.dpToPx
 import de.grobox.transportr.utils.TransportrUtils.getDrawableForProduct
+import de.grobox.transportr.utils.TransportrUtils.getTextColorBasedOnBackground
 import de.schildbach.pte.dto.Line
 
 class LineView(context: Context, attr: AttributeSet?) : AppCompatTextView(context, attr) {
 
-    fun setLine(line: Line) {
+    fun setLine(line: Line, backgroundColor: Int) {
         // get colors
-        val foregroundColor = line.style?.foregroundColor
-        val backgroundColor = line.style?.backgroundColor
+        val foregroundColor = getTextColorBasedOnBackground(backgroundColor)
 
         // set colored background
         val backgroundDrawable = getDrawable(context, R.drawable.line_box) as GradientDrawable
@@ -61,7 +61,7 @@ class LineView(context: Context, attr: AttributeSet?) : AppCompatTextView(contex
 
         // set colored label
         text = line.label
-        if (foregroundColor != null) setTextColor(foregroundColor)
+        setTextColor(foregroundColor)
     }
 
     fun setWalk() {

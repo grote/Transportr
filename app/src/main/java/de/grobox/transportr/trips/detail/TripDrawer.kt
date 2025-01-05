@@ -35,6 +35,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import de.grobox.transportr.R
 import de.grobox.transportr.map.MapDrawer
 import de.grobox.transportr.utils.DateUtils.formatTime
+import de.grobox.transportr.utils.TransportrUtils
 import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.Point
@@ -60,7 +61,7 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
 
             // get colors
             val backgroundColor = getBackgroundColor(leg)
-            val foregroundColor = getForegroundColor(leg)
+            val foregroundColor = TransportrUtils.getTextColorBasedOnBackground(backgroundColor)
 
             // draw leg path first, so it is always at the bottom
             val points = ArrayList<LatLng>(leg.path.size)
@@ -134,27 +135,9 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
     @ColorInt
     private fun getBackgroundColor(leg: Leg): Int {
         if (leg is Public) {
-            val line = leg.line
-            return if (line?.style != null && line.style!!.backgroundColor != 0) {
-                line.style!!.backgroundColor
-            } else {
-                ContextCompat.getColor(context, R.color.accent)
-            }
+            return TransportrUtils.getLineColor(context, leg.line)
         }
         return ContextCompat.getColor(context, R.color.walking)
-    }
-
-    @ColorInt
-    private fun getForegroundColor(leg: Leg): Int {
-        if (leg is Public) {
-            val line = leg.line
-            return if (line?.style != null && line.style!!.foregroundColor != 0) {
-                line.style!!.foregroundColor
-            } else {
-                ContextCompat.getColor(context, android.R.color.white)
-            }
-        }
-        return ContextCompat.getColor(context, android.R.color.black)
     }
 
     private fun markLocation(map: MapboxMap, location: Location, icon: Icon, text: String) {

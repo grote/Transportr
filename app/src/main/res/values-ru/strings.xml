@@ -146,7 +146,7 @@ Transportr сохраняет часто используемые местопо
     <item quantity="other">%d остановок</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(Платформа %s)</string>
+  <string name="platform">Платформа %s</string>
   <string name="system_default">Система по умолчанию</string>
   <string name="trip_share_date">Дата: %s</string>
   <string name="times_include_delays">(Внимание: могут быть включены сообщения о задержках)</string>

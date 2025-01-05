@@ -150,7 +150,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
     <item quantity="other">%d fermate</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(binario %s)</string>
+  <string name="platform">binario %s</string>
   <string name="system_default">Predefinito di sistema</string>
   <string name="trip_share_date">Data: %s</string>
   <string name="times_include_delays">(Attenzione: l\'orario può includere il ritardo del mezzo)</string>

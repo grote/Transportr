@@ -56,17 +56,31 @@
 		android:paddingBottom="8dp"
 		android:textColor="?android:textColorPrimary"
 		android:textSize="16sp"
-		app:layout_constraintEnd_toStartOf="@+id/toButton"
+		app:layout_constraintEnd_toStartOf="@+id/fromPlatform"
 		app:layout_constraintLeft_toRightOf="@+id/fromTime"
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintStart_toEndOf="@+id/fromCircle"
 		app:layout_constraintTop_toTopOf="@+id/fromTime"
 		tools:text="From Location with quite a long name"/>
 
+	<TextView
+		android:id="@+id/fromPlatform"
+		style="@style/LineBox"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="4dp"
+		android:background="@drawable/platform_box"
+		app:layout_constraintStart_toEndOf="@+id/fromLocation"
+		app:layout_constraintEnd_toStartOf="@+id/fromButton"
+		app:layout_constraintTop_toTopOf="@+id/fromLocation"
+		android:textColor="@color/md_white_1000"
+		tools:text="Platform 3" />
+
 	<ImageButton
 		android:id="@+id/fromButton"
 		android:layout_width="48dp"
 		android:layout_height="48dp"
+		android:layout_marginBottom="8dp"
 		android:background="?selectableItemBackgroundBorderless"
 		android:contentDescription="@string/more"
 		app:tint="?colorControlNormal"
@@ -77,7 +91,7 @@
 
 	<ImageView
 		android:id="@+id/lineBar"
-		android:layout_width="20dp"
+		android:layout_width="10dp"
 		android:layout_height="0dp"
 		android:background="?selectableItemBackground"
 		android:scaleType="fitXY"
@@ -151,10 +165,11 @@
 		android:id="@+id/stopsText"
 		android:layout_width="wrap_content"
 		android:layout_height="0dp"
+		android:layout_marginLeft="36dp"
 		android:background="?selectableItemBackground"
 		android:gravity="center_vertical"
 		app:layout_constraintBottom_toBottomOf="@+id/stopsButton"
-		app:layout_constraintStart_toStartOf="@+id/lineView"
+		app:layout_constraintStart_toStartOf="@+id/stopsButton"
 		app:layout_constraintTop_toTopOf="@+id/stopsButton"
 		tools:text="42 Stops"
 		tools:visibility="visible"/>
@@ -167,7 +182,7 @@
 		android:background="?selectableItemBackgroundBorderless"
 		android:contentDescription="@string/more"
 		app:tint="?colorControlNormal"
-		app:layout_constraintStart_toEndOf="@+id/stopsText"
+		app:layout_constraintStart_toEndOf="@+id/lineBar"
 		app:layout_constraintTop_toBottomOf="@+id/message"
 		app:srcCompat="@drawable/ic_action_navigation_unfold_more"
 		tools:visibility="visible"/>
@@ -225,16 +240,31 @@
 		android:paddingBottom="8dp"
 		android:textColor="?android:textColorPrimary"
 		android:textSize="16sp"
-		app:layout_constraintEnd_toStartOf="@+id/toButton"
+		app:layout_constraintEnd_toStartOf="@+id/toPlatform"
 		app:layout_constraintStart_toStartOf="@+id/fromLocation"
 		app:layout_constraintTop_toBottomOf="@+id/stopsList"
+		android:layout_marginTop="8dp"
 		app:layout_goneMarginTop="8dp"
 		tools:text="To Location has also a very long name"/>
+
+	<TextView
+		android:id="@+id/toPlatform"
+		style="@style/LineBox"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="4dp"
+		android:background="@drawable/platform_box"
+		app:layout_constraintStart_toEndOf="@+id/toLocation"
+		app:layout_constraintEnd_toStartOf="@+id/toButton"
+		app:layout_constraintTop_toTopOf="@+id/toLocation"
+		android:textColor="@color/md_white_1000"
+		tools:text="Platform 42" />
 
 	<ImageButton
 		android:id="@+id/toButton"
 		android:layout_width="@dimen/buttonSize"
 		android:layout_height="@dimen/buttonSize"
+		android:layout_marginBottom="8dp"
 		android:background="?selectableItemBackgroundBorderless"
 		android:contentDescription="@string/more"
 		app:tint="?colorControlNormal"

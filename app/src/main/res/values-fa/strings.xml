@@ -149,7 +149,7 @@ Transportr مکان ها و سفر های انجام شده متداول را ذ
     <item quantity="other">%d توقف</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(پلتفورم %s)</string>
+  <string name="platform">پلتفورم %s</string>
   <string name="system_default">پیش فرض سیستم</string>
   <string name="trip_share_date">تاریخ: %s</string>
   <string name="times_include_delays">(توجه: زمان ها ممکن است شمال تاخیر های گزارش شده باشد)</string>

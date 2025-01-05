@@ -144,7 +144,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
     <item quantity="other">%d arrêts</item>
   </plurals>
   <!--This is the platform or position where a train will depart or arrive. Please keep it short as it will be shown after the station name.-->
-  <string name="platform">(Quai %s)</string>
+  <string name="platform">Quai %s</string>
   <string name="system_default">Valeur par défaut du système</string>
   <string name="trip_share_date">Date : %s</string>
   <string name="times_include_delays">(Avertissement : les retards signalés peuvent être inclus)</string>

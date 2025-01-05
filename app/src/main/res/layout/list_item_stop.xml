@@ -23,6 +23,7 @@
 		android:textColor="@color/md_red_500"
 		app:layout_constraintRight_toRightOf="@+id/fromTime"
 		app:layout_constraintTop_toBottomOf="@+id/fromTime"
+		app:layout_constraintEnd_toEndOf="@+id/fromTime"
 		tools:text="+12"
 		tools:visibility="visible"/>
 
@@ -54,12 +55,13 @@
 
 	<ImageView
 		android:id="@+id/circle"
-		android:layout_width="20dp"
-		android:layout_height="20dp"
+		android:layout_width="10dp"
+		android:layout_height="10dp"
 		android:layout_marginBottom="8dp"
-		android:layout_marginLeft="8dp"
-		android:layout_marginStart="8dp"
+		android:layout_marginLeft="13dp"
+		android:layout_marginStart="13dp"
 		android:layout_marginTop="8dp"
+		android:background="?android:colorBackground"
 		android:src="@drawable/leg_circle_middle"
 		app:layout_constraintBottom_toBottomOf="@+id/toTime"
 		app:layout_constraintStart_toEndOf="@+id/barrier"
@@ -77,23 +79,36 @@
 		android:paddingStart="8dp"
 		android:paddingTop="4dp"
 		app:layout_constraintBottom_toBottomOf="@+id/circle"
-		app:layout_constraintEnd_toStartOf="@+id/stopButton"
+		app:layout_constraintEnd_toStartOf="@+id/stopPlatform"
 		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toEndOf="@+id/circle"
 		app:layout_constraintTop_toTopOf="@+id/circle"
 		tools:ignore="RtlSymmetry"
 		tools:text="An intermediate stop that can have a very long name"/>
 
+	<TextView
+		android:id="@+id/stopPlatform"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="6dp"
+		android:layout_marginTop="0dp"
+		android:background="@drawable/platform_box_secondary"
+		app:layout_constraintStart_toEndOf="@+id/stopLocation"
+		app:layout_constraintEnd_toStartOf="@+id/stopButton"
+		app:layout_constraintTop_toTopOf="@+id/circle"
+		app:layout_constraintBottom_toBottomOf="@+id/circle"
+		tools:text="Platform 3" />
+
 	<ImageButton
 		android:id="@+id/stopButton"
 		android:layout_width="@dimen/buttonSize"
-		android:layout_height="0dp"
+		android:layout_height="wrap_content"
 		android:background="?selectableItemBackgroundBorderless"
 		android:contentDescription="@string/more"
 		app:tint="?colorControlNormal"
-		app:layout_constraintBottom_toBottomOf="@+id/toDelay"
+		app:layout_constraintBottom_toBottomOf="@+id/circle"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/fromTime"
+		app:layout_constraintTop_toTopOf="@+id/circle"
 		app:srcCompat="@drawable/ic_more_vert"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

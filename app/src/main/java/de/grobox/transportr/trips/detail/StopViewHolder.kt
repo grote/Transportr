@@ -37,6 +37,7 @@ internal class StopViewHolder(v: View, private val listener : LegClickListener) 
 
     private val circle: ImageView = v.circle
     private val stopLocation: TextView = v.stopLocation
+    private val stopPlatform: TextView = v.stopPlatform
     private val stopButton: ImageButton = v.stopButton
 
     fun bind(stop: Stop, color: Int) {
@@ -71,7 +72,7 @@ internal class StopViewHolder(v: View, private val listener : LegClickListener) 
 
         stopLocation.text = getLocationName(stop.location)
         stopLocation.setOnClickListener { listener.onLocationClick(stop.location) }
-        stopLocation.addPlatform(stop.arrivalPosition)
+        stopPlatform.addPlatform(stop.arrivalPosition)
 
         // show popup on button click
         stopButton.setOnClickListener { LegPopupMenu(stopButton.context, stopButton, stop).show() }
