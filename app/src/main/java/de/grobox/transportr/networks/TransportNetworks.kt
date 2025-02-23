@@ -50,7 +50,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_db,
                         description = R.string.np_desc_db2,
                         logo = R.drawable.network_db_logo,
-                        factory = { DbProvider("{\"type\":\"AID\",\"aid\":\"n91dB8Z77MLdoR0K\"}", "bdI8UVj40K5fvxwf".toByteArray(Charsets.UTF_8)) }
+                        factory = { DbProvider() }
                     )
                 )
             ),
@@ -62,7 +62,7 @@ private val networks = arrayOf(
                         description = R.string.np_desc_db,
                         logo = R.drawable.network_db_logo,
                         itemIdExtra = 1,
-                        factory = { DbProvider("{\"type\":\"AID\",\"aid\":\"n91dB8Z77MLdoR0K\"}", "bdI8UVj40K5fvxwf".toByteArray(Charsets.UTF_8)) }
+                        factory = { DbProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.BVG,
