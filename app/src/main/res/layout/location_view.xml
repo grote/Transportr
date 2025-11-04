@@ -40,6 +40,18 @@
 		tools:visibility="visible"/>
 
 	<ImageButton
+		android:id="@+id/gpsButton"
+		android:layout_width="38dp"
+		android:layout_height="48dp"
+		android:background="?attr/selectableItemBackgroundBorderless"
+		android:contentDescription="@string/location_gps"
+		android:src="@drawable/ic_gps"
+		app:tint="?colorControlNormal"
+		android:visibility="gone"
+		app:srcCompat="@drawable/ic_gps"
+		tools:visibility="gone"/>
+
+	<ImageButton
 		android:id="@+id/clearButton"
 		android:layout_width="38dp"
 		android:layout_height="48dp"

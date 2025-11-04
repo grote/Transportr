@@ -50,6 +50,7 @@ import de.grobox.transportr.utils.DateUtils.isNow
 import de.grobox.transportr.utils.DateUtils.isToday
 import de.schildbach.pte.dto.Product
 import kotlinx.android.synthetic.main.fragment_directions_form.*
+import kotlinx.android.synthetic.main.location_view.view.gpsButton
 import java.util.*
 import javax.annotation.ParametersAreNonnullByDefault
 import javax.inject.Inject
@@ -122,7 +123,7 @@ class DirectionsFragment : TransportrFragment() {
         viewModel.isExpanded.observe(viewLifecycleOwner, { onViaVisibleChanged(it) })
         viewModel.lastQueryCalendar.observe(viewLifecycleOwner, { onCalendarUpdated(it) })
         viewModel.timeUpdate.observe(viewLifecycleOwner, { onCalendarUpdated(viewModel.lastQueryCalendar.value) })
-        viewModel.findGpsLocation.observe(viewLifecycleOwner, { onFindGpsLocation(it) })
+        viewModel.findGpsLocation.observe(viewLifecycleOwner, { onFindGpsLocation(it, refresh = false) })
         viewModel.isFavTrip.observe(viewLifecycleOwner, { onFavStatusChanged(it) })
         viewModel.products.observe(viewLifecycleOwner, { onProductsChanged(it) })
 
@@ -145,6 +146,8 @@ class DirectionsFragment : TransportrFragment() {
             }
         }
         swapIcon.setOnClickListener { swapLocations() }
+        fromLocation.gpsButton.setOnClickListener {
+            onFindGpsLocation(FROM, refresh = true) }
         viaIcon.setOnClickListener { viewModel.toggleIsExpanded() }
 
         TooltipCompat.setTooltipText(productsIcon, getString(R.string.action_choose_products))
@@ -249,7 +252,7 @@ class DirectionsFragment : TransportrFragment() {
         viaCard.visibility = if (viaVisible) VISIBLE else GONE
     }
 
-    private fun onFindGpsLocation(type: FavLocationType?) {
+    private fun onFindGpsLocation(type: FavLocationType?, refresh: Boolean) {
         if (type == null) {
             viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
             fromLocation.clearSearching()
@@ -259,11 +262,15 @@ class DirectionsFragment : TransportrFragment() {
             return
         }
         fromLocation.setSearching()
-        toLocation.requestFocus()
+        if (!refresh) toLocation.requestFocus()
+        var counter = 0
         viewModel.locationLiveData.observe(viewLifecycleOwner) { location ->
-            viewModel.setFromLocation(location)
-            viewModel.search()
-            viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
+            counter ++
+            if (!refresh || counter == 2) {
+                viewModel.setFromLocation(location)
+                viewModel.search()
+                viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
+            }
         }
     }
 
