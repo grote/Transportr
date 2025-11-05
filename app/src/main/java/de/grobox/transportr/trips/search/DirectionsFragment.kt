@@ -146,8 +146,9 @@ class DirectionsFragment : TransportrFragment() {
             }
         }
         swapIcon.setOnClickListener { swapLocations() }
-        fromLocation.gpsButton.setOnClickListener {
-            updateGpsLocation(FROM, refresh = true) }
+
+        fromLocation.gpsButton.setOnClickListener { updateGpsLocation(FROM, refresh = true) }
+
         viaIcon.setOnClickListener { viewModel.toggleIsExpanded() }
 
         TooltipCompat.setTooltipText(productsIcon, getString(R.string.action_choose_products))
@@ -266,7 +267,9 @@ class DirectionsFragment : TransportrFragment() {
         var counter = 0
         viewModel.locationLiveData.observe(viewLifecycleOwner) { location ->
             counter ++
-            if (!refresh || counter == 3) {  //when fragment is started (!refresh) we do not need to wait because the location listener is running already
+            //when fragment is started (!refresh) we do not need to wait because the location listener has been running before already
+            //when refreshing the first location is old and must not be used
+            if (!refresh || counter == 3) {
                 viewModel.setFromLocation(location)
                 viewModel.search()
                 viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
