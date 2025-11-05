@@ -123,7 +123,7 @@ class DirectionsFragment : TransportrFragment() {
         viewModel.isExpanded.observe(viewLifecycleOwner, { onViaVisibleChanged(it) })
         viewModel.lastQueryCalendar.observe(viewLifecycleOwner, { onCalendarUpdated(it) })
         viewModel.timeUpdate.observe(viewLifecycleOwner, { onCalendarUpdated(viewModel.lastQueryCalendar.value) })
-        viewModel.findGpsLocation.observe(viewLifecycleOwner, { onFindGpsLocation(it, refresh = false) })
+        viewModel.findGpsLocation.observe(viewLifecycleOwner, { updateGpsLocation(it, refresh = false) })
         viewModel.isFavTrip.observe(viewLifecycleOwner, { onFavStatusChanged(it) })
         viewModel.products.observe(viewLifecycleOwner, { onProductsChanged(it) })
 
@@ -147,7 +147,7 @@ class DirectionsFragment : TransportrFragment() {
         }
         swapIcon.setOnClickListener { swapLocations() }
         fromLocation.gpsButton.setOnClickListener {
-            onFindGpsLocation(FROM, refresh = true) }
+            updateGpsLocation(FROM, refresh = true) }
         viaIcon.setOnClickListener { viewModel.toggleIsExpanded() }
 
         TooltipCompat.setTooltipText(productsIcon, getString(R.string.action_choose_products))
@@ -252,7 +252,7 @@ class DirectionsFragment : TransportrFragment() {
         viaCard.visibility = if (viaVisible) VISIBLE else GONE
     }
 
-    private fun onFindGpsLocation(type: FavLocationType?, refresh: Boolean) {
+    private fun updateGpsLocation(type: FavLocationType?, refresh: Boolean) {
         if (type == null) {
             viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
             fromLocation.clearSearching()
@@ -266,7 +266,7 @@ class DirectionsFragment : TransportrFragment() {
         var counter = 0
         viewModel.locationLiveData.observe(viewLifecycleOwner) { location ->
             counter ++
-            if (!refresh || counter == 2) {
+            if (!refresh || counter == 3) {  //when fragment is started (!refresh) we do not need to wait because the location listener is running already
                 viewModel.setFromLocation(location)
                 viewModel.search()
                 viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
