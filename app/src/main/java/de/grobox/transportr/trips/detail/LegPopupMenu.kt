@@ -19,10 +19,17 @@
 
 package de.grobox.transportr.trips.detail
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.view.MenuItem
 import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import de.grobox.transportr.AlertService
 import de.grobox.transportr.R
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.trips.detail.TripUtils.legToString
@@ -37,17 +44,18 @@ import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.Stop
 import de.schildbach.pte.dto.Trip.Leg
+import java.util.Date
 
-class LegPopupMenu private constructor(context: Context, anchor: View, location: Location, private val text: String) :
+class LegPopupMenu private constructor(context: Context, anchor: View, location: Location, private val text: String, private val time: Date) :
     BasePopupMenu(context, anchor) {
 
     private val loc1: WrapLocation = WrapLocation(location)
 
     internal constructor(context: Context, anchor: View, leg: Leg, isLast: Boolean) :
-            this(context, anchor, if (isLast) leg.arrival else leg.departure, legToString(context, leg))
+            this(context, anchor, if (isLast) leg.arrival else leg.departure, legToString(context, leg),if (isLast) leg.arrivalTime else leg.departureTime)
 
     internal constructor(context: Context, anchor: View, stop: Stop) :
-            this(context, anchor, stop.location, "${formatTime(context, stop.arrivalTime)} ${getLocationName(stop.location)}")
+            this(context, anchor, stop.location, "${formatTime(context, stop.arrivalTime)} ${getLocationName(stop.location)}", stop.arrivalTime)
 
     init {
         this.menuInflater.inflate(R.menu.leg_location_actions, menu)
@@ -98,6 +106,27 @@ class LegPopupMenu private constructor(context: Context, anchor: View, location:
     // Copy Leg to Clipboard
         R.id.action_copy -> {
             copyToClipboard(context, loc1.getName())
+            true
+        }
+    // Alert when close to Leg
+        R.id.action_alert ->{
+            if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) && (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED)){
+                ActivityCompat.requestPermissions(context as Activity, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 0)
+            } else {
+                val timeStr = time?.let { formatTime(context, it) } ?: "Unknown time"
+                val latitude = loc1.lat / 1000000.0
+                val longitude = loc1.lon / 1000000.0
+                val timeLong = time?.time ?: -1L // handle potential null safely
+
+                val intent = Intent(context, AlertService::class.java).apply {
+                    putExtra("EXTRA_TIME_LONG", timeLong)
+                    putExtra("EXTRA_LATITUDE", latitude)
+                    putExtra("EXTRA_LONGITUDE", longitude)
+                    putExtra("EXTRA_TIME_STR", timeStr)
+                    putExtra("EXTRA_LOCATION_NAME", loc1.getName())
+                }
+                ContextCompat.startForegroundService(context, intent)
+            }
             true
         }
         else -> false
