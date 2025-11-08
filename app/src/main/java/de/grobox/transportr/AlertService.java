@@ -22,7 +22,7 @@ package de.grobox.transportr;
 import android.Manifest;
 import android.app.PendingIntent;
 import android.app.Service;
-import static androidx.core.app.NotificationManagerCompat.IMPORTANCE_DEFAULT;
+import static androidx.core.app.NotificationManagerCompat.IMPORTANCE_MAX;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -45,7 +45,7 @@ import androidx.core.app.NotificationCompat.Builder;
 
 public class AlertService extends Service implements LocationListener {
 	private LocationManager mLocManager = null;
-	private boolean isLocationListenerActive = false;
+	private boolean isWatchdogRunning = false;
 	private long lastLocationUpdate = 0;
 	private NotificationManagerCompat mNotifManager = null;
 	private static final int NOTIF_ID = 111;
@@ -62,7 +62,7 @@ public class AlertService extends Service implements LocationListener {
 	private static final long WATCHDOG_INTERVAL_MS = 10_000; // 10 seconds
 	private static final long LOCATION_INTERVAL_MS = 2_000; // 2 seconds
 	private static final String ACTION_STOP = "STOP";
-	private final Handler watchdogHandler = new Handler(Looper.getMainLooper());
+	private final Handler handler = new Handler(Looper.getMainLooper());
 	private final Runnable watchdogRunnable = new Runnable() {
 		@Override
 		public void run() {
@@ -72,7 +72,7 @@ public class AlertService extends Service implements LocationListener {
 				onLocationUpdateTimeout();
 			}
 			// Reschedule the check
-			watchdogHandler.postDelayed(this, WATCHDOG_INTERVAL_MS);
+			if (isWatchdogRunning) handler.postDelayed(this, WATCHDOG_INTERVAL_MS);
 		}
 	};
 
@@ -87,7 +87,7 @@ public class AlertService extends Service implements LocationListener {
 		super.onCreate();
 		mLocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		mNotifManager = NotificationManagerCompat.from(getApplicationContext());
-		NotificationChannelCompat notifChannel = new NotificationChannelCompat.Builder(CHANNEL_ID, IMPORTANCE_DEFAULT).setName(CHANNEL_NAME).build();
+		NotificationChannelCompat notifChannel = new NotificationChannelCompat.Builder(CHANNEL_ID, IMPORTANCE_MAX).setName(CHANNEL_NAME).build();
 		mNotifManager.createNotificationChannel(notifChannel);
 
 		Intent stopIntent = new Intent(this, AlertService.class);
@@ -108,7 +108,7 @@ public class AlertService extends Service implements LocationListener {
 			return START_NOT_STICKY;
 		}
 		if (!ACTION_STOP.equals(intent.getAction())) {
-
+			handler.removeCallbacksAndMessages(null);
 			arrivalTime = intent.getStringExtra("EXTRA_TIME_STR");
 			arrivalTimeLong = intent.getLongExtra("EXTRA_TIME_LONG",0L);
 			destinationName = intent.getStringExtra("EXTRA_LOCATION_NAME");
@@ -121,7 +121,8 @@ public class AlertService extends Service implements LocationListener {
 			lastLocationUpdate = System.currentTimeMillis();
 			showNotif();
 			startGpsLocListener();
-			watchdogHandler.postDelayed(watchdogRunnable, WATCHDOG_INTERVAL_MS);
+			isWatchdogRunning = true;
+			handler.postDelayed(watchdogRunnable, WATCHDOG_INTERVAL_MS);
 			return START_STICKY;
 		} else {
 			stopSelf();
@@ -145,7 +146,6 @@ public class AlertService extends Service implements LocationListener {
 			return;
 		}
 		mLocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_INTERVAL_MS, 0, this);
-		isLocationListenerActive = true;
 	}
 
 	@Override
@@ -159,9 +159,8 @@ public class AlertService extends Service implements LocationListener {
 		} else {
 			updateNotification(getString(R.string.trip_arr),false);
 			mLocManager.removeUpdates(this);
-			isLocationListenerActive = false;
-			Handler handler = new Handler(Looper.getMainLooper());
-			handler.postDelayed(() -> {if (!isLocationListenerActive) stopSelf();}, 10000); //stop after 10s if LocationListener has not been activated again
+			isWatchdogRunning = false;
+			handler.postDelayed(this::stopSelf, 30000);
 		}
 	}
 
@@ -173,9 +172,8 @@ public class AlertService extends Service implements LocationListener {
 		} else {
 			updateNotification(getString(R.string.trip_arr),false);
 			mLocManager.removeUpdates(this);
-			isLocationListenerActive = false;
-			Handler handler = new Handler(Looper.getMainLooper());
-			handler.postDelayed(() -> {if (!isLocationListenerActive) stopSelf();}, 10000); //stop after 10s if LocationListener has not been activated again
+			isWatchdogRunning = false;
+			handler.postDelayed(this::stopSelf, 30000);
 		}
 	}
 
@@ -184,7 +182,7 @@ public class AlertService extends Service implements LocationListener {
 				.setSilent(silent)
 				.setOnlyAlertOnce(silent) // or adjust as needed
 				.setSmallIcon(R.drawable.ic_alert)
-				.setPriority(!silent ? NotificationCompat.PRIORITY_HIGH : NotificationCompat.PRIORITY_DEFAULT)
+				.setPriority(!silent ? NotificationCompat.PRIORITY_MAX : NotificationCompat.PRIORITY_DEFAULT)  //ignored on Android 8+
 				.setAutoCancel(false)
 				.setOngoing(true)
 				.addAction(R.drawable.ic_stop, getString(R.string.action_stop), stopPendingIntent)
@@ -200,8 +198,7 @@ public class AlertService extends Service implements LocationListener {
 
 	@Override
 	public void onDestroy() {
-		watchdogHandler.removeCallbacks(watchdogRunnable);
-		isLocationListenerActive = false;
+		handler.removeCallbacks(watchdogRunnable);
 		mLocManager.removeUpdates(this);
 		super.onDestroy();
 	}
