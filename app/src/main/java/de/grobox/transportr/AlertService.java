@@ -131,7 +131,7 @@ public class AlertService extends Service implements LocationListener {
 	}
 
 	private void showNotif() {
-		updateNotification(null,true);
+		updateNotification(null, false);
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 			startForeground(NOTIF_ID, mNotifBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
@@ -155,9 +155,9 @@ public class AlertService extends Service implements LocationListener {
 		String timeString = (timeToDestination > 60) ? getString(R.string.in_x_minutes, Math.round(timeToDestination / 60.0)) : getString(R.string.seconds, timeToDestination);
 		long distanceToDestination = (long) destination.distanceTo(location);
 		if (distanceToDestination > ARRIVAL_THRESHOLD_METERS){
-			updateNotification(getString(R.string.meter, distanceToDestination) + " / " + timeString ,true);
+			updateNotification(getString(R.string.meter, distanceToDestination) + " / " + timeString , false);
 		} else {
-			updateNotification(getString(R.string.trip_arr),false);
+			updateNotification(null, true);
 			mLocManager.removeUpdates(this);
 			isWatchdogRunning = false;
 			handler.postDelayed(this::stopSelf, 30000);
@@ -168,26 +168,26 @@ public class AlertService extends Service implements LocationListener {
 		long timeToDestination = (arrivalTimeLong - System.currentTimeMillis()) / 1000;
 		String timeString = (timeToDestination > 60) ? getString(R.string.in_x_minutes, Math.round(timeToDestination / 60.0)) : getString(R.string.seconds, timeToDestination);
 		if (timeToDestination > ARRIVAL_THRESHOLD_SEC){
-			updateNotification( timeString , true);
+			updateNotification( timeString , false);
 		} else {
-			updateNotification(getString(R.string.trip_arr),false);
+			updateNotification(null, true);
 			mLocManager.removeUpdates(this);
 			isWatchdogRunning = false;
 			handler.postDelayed(this::stopSelf, 30000);
 		}
 	}
 
-	private void updateNotification(@Nullable String contentText, boolean silent) {
+	private void updateNotification(@Nullable String contentText, boolean hasArrived) {
 		mNotifBuilder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-				.setSilent(silent)
-				.setOnlyAlertOnce(silent) // or adjust as needed
-				.setSmallIcon(R.drawable.ic_alert)
-				.setPriority(!silent ? NotificationCompat.PRIORITY_MAX : NotificationCompat.PRIORITY_DEFAULT)  //ignored on Android 8+
+				.setSilent(!hasArrived)
+				.setOnlyAlertOnce(!hasArrived) // or adjust as needed
+				.setSmallIcon(R.drawable.ic_transportr)
+				.setPriority(hasArrived ? NotificationCompat.PRIORITY_MAX : NotificationCompat.PRIORITY_DEFAULT)  //ignored on Android 8+
 				.setAutoCancel(false)
 				.setOngoing(true)
 				.addAction(R.drawable.ic_stop, getString(R.string.action_stop), stopPendingIntent)
 				.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-				.setContentTitle(destinationName + " " + arrivalTime);
+				.setContentTitle((hasArrived ? "\ud83c\udfc1 " : "") + destinationName + " " + arrivalTime);  //Unicode Character "🏁" (U+1F3C1)
 
 		if (contentText != null) {
 			mNotifBuilder.setContentText(contentText);
