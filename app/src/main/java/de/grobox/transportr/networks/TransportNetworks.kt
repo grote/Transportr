@@ -199,7 +199,7 @@ private val networks = arrayOf(
                         id = NetworkId.VVS,
                         description = R.string.np_desc_vvs,
                         logo = R.drawable.network_vvs_logo,
-                        factory = { VvsProvider("http://www2.vvs.de/oeffi/".toHttpUrlOrNull()) }
+                        factory = { VvsProvider() }
                     ),
                     TransportNetwork(
                         id = NetworkId.DING,
