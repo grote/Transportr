@@ -50,7 +50,6 @@ public class AlertService extends Service implements LocationListener {
 	private NotificationManagerCompat mNotifManager = null;
 	private static final int NOTIF_ID = 111;
 	private static final String CHANNEL_ID = "alert";
-	private static final String CHANNEL_NAME = "ALERT";
 	private Builder mNotifBuilder;
 	private String destinationName;
 	private String arrivalTime;
@@ -87,7 +86,7 @@ public class AlertService extends Service implements LocationListener {
 		super.onCreate();
 		mLocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		mNotifManager = NotificationManagerCompat.from(getApplicationContext());
-		NotificationChannelCompat notifChannel = new NotificationChannelCompat.Builder(CHANNEL_ID, IMPORTANCE_MAX).setName(CHANNEL_NAME).setVibrationEnabled(true).build();
+		NotificationChannelCompat notifChannel = new NotificationChannelCompat.Builder(CHANNEL_ID, IMPORTANCE_MAX).setName(getResources().getString(R.string.action_alert)).setVibrationEnabled(true).build();
 		mNotifManager.createNotificationChannel(notifChannel);
 
 		Intent stopIntent = new Intent(this, AlertService.class);
