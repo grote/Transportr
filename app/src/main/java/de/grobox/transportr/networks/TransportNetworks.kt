@@ -427,6 +427,16 @@ private val networks = arrayOf(
                     )
                 )
             ),
+            Country(
+                R.string.np_region_poland, flag = "🇵🇱", networks = listOf(
+                    TransportNetwork(
+                        id = NetworkId.PL,
+                        description = R.string.np_desc_pl,
+                        logo = R.drawable.network_pl_logo,
+                        factory = { PlProvider("{\"type\":\"AID\",\"aid\":\"DrxJYtYZQpEBCtcb\"}"); }
+                    ),
+                )
+            ),
         )
     ),
     Continent(

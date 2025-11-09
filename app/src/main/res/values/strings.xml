@@ -469,5 +469,6 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="danish">Danish</string>
 	<string name="action_alert">Alert</string>
 	<string name="action_stop">Stop</string>
+	<string name="np_desc_pl">Long-distance, regional and local (e.g. Warsaw)</string>
 
 </resources>
