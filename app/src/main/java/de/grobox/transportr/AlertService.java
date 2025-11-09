@@ -87,7 +87,7 @@ public class AlertService extends Service implements LocationListener {
 		super.onCreate();
 		mLocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		mNotifManager = NotificationManagerCompat.from(getApplicationContext());
-		NotificationChannelCompat notifChannel = new NotificationChannelCompat.Builder(CHANNEL_ID, IMPORTANCE_MAX).setName(CHANNEL_NAME).build();
+		NotificationChannelCompat notifChannel = new NotificationChannelCompat.Builder(CHANNEL_ID, IMPORTANCE_MAX).setName(CHANNEL_NAME).setVibrationEnabled(true).build();
 		mNotifManager.createNotificationChannel(notifChannel);
 
 		Intent stopIntent = new Intent(this, AlertService.class);
