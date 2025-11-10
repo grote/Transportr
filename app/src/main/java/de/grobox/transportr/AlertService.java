@@ -148,6 +148,13 @@ public class AlertService extends Service implements LocationListener {
 		mLocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_INTERVAL_MS, 0, this);
 	}
 
+	private void stopGpsLocListener() {
+		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+			return;
+		}
+		mLocManager.removeUpdates(this);
+	}
+
 	@Override
 	public void onLocationChanged(@NonNull Location location) {
 		lastLocationUpdate = System.currentTimeMillis();
@@ -158,7 +165,7 @@ public class AlertService extends Service implements LocationListener {
 			updateNotification(getString(R.string.meter, distanceToDestination) + " / " + timeString , false);
 		} else {
 			updateNotification(null, true);
-			mLocManager.removeUpdates(this);
+			stopGpsLocListener();
 			isWatchdogRunning = false;
 			handler.postDelayed(this::stopSelf, 30000);
 		}
@@ -171,7 +178,7 @@ public class AlertService extends Service implements LocationListener {
 			updateNotification( timeString , false);
 		} else {
 			updateNotification(null, true);
-			mLocManager.removeUpdates(this);
+			stopGpsLocListener();
 			isWatchdogRunning = false;
 			handler.postDelayed(this::stopSelf, 30000);
 		}
@@ -199,7 +206,7 @@ public class AlertService extends Service implements LocationListener {
 	@Override
 	public void onDestroy() {
 		handler.removeCallbacks(watchdogRunnable);
-		mLocManager.removeUpdates(this);
+		stopGpsLocListener();
 		super.onDestroy();
 	}
 }

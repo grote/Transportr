@@ -27,6 +27,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import de.grobox.transportr.AlertService
@@ -110,8 +111,18 @@ class LegPopupMenu private constructor(context: Context, anchor: View, location:
         }
     // Alert when close to Leg
         R.id.action_alert ->{
-            if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) && (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED)){
-                ActivityCompat.requestPermissions(context as Activity, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 0)
+            val permissionsToRequest = mutableListOf<String>()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                    permissionsToRequest.add(Manifest.permission.POST_NOTIFICATIONS)
+                }
+            }
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(context, context.getString(R.string.permission_denied_gps), Toast.LENGTH_LONG).show()
+                permissionsToRequest.add(Manifest.permission.ACCESS_FINE_LOCATION)
+            }
+            if (permissionsToRequest.isNotEmpty()) {
+                ActivityCompat.requestPermissions(context as Activity, permissionsToRequest.toTypedArray(),0)
             } else {
                 val timeStr = time?.let { formatTime(context, it) } ?: "Unknown time"
                 val latitude = loc1.lat / 1000000.0
