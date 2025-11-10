@@ -362,4 +362,6 @@ und weiß immer, wo man aussteigen muss.
   <string name="swedish">Schwedisch</string>
   <string name="ukrainian">Ukrainisch</string>
   <string name="danish">Dänisch</string>
+  <string name="action_alert">Alarm</string>
+  <string name="action_stop">Stop</string>
 </resources>

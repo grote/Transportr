@@ -62,6 +62,7 @@ class LocationGpsView(context: Context, attrs: AttributeSet) : LocationView(cont
 
     @RequiresPermission(ACCESS_FINE_LOCATION)
     fun setSearching() {
+        ui.gps.visibility = INVISIBLE
         if (isSearching) return
         isSearching = true
 
@@ -81,6 +82,7 @@ class LocationGpsView(context: Context, attrs: AttributeSet) : LocationView(cont
     }
 
     fun clearSearching() {
+        ui.gps.visibility = VISIBLE
         if (!isSearching) return
 
         ui.status.clearAnimation()

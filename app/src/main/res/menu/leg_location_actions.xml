@@ -36,4 +36,9 @@
 		android:icon="@drawable/ic_action_content_content_copy"
 		android:title="@string/action_copy"/>
 
+	<item
+		android:id="@+id/action_alert"
+		android:icon="@drawable/ic_alert"
+		android:title="@string/action_alert"/>
+
 </menu>

@@ -9,8 +9,12 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 	<uses-feature
 		android:name="android.hardware.WIFI"
@@ -94,6 +98,11 @@
 		<activity
 			android:name=".about.ContributorsActivity"
 			android:label="@string/drawer_contributors"/>
+
+		<service
+			android:exported="false"
+			android:foregroundServiceType="location"
+			android:name=".AlertService" />
 
 		<!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
 		<meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>

@@ -142,6 +142,7 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
         val location: AutoCompleteTextView = view.findViewById(R.id.location)
         internal val progress: ProgressBar = view.findViewById(R.id.progress)
         val clear: ImageButton = view.findViewById(R.id.clearButton)
+        val gps: ImageButton = view.findViewById(R.id.gpsButton)
     }
 
     /* State Saving and Restoring */
