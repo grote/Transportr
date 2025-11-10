@@ -20,6 +20,7 @@
 package de.grobox.transportr;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.app.Service;
 import static androidx.core.app.NotificationManagerCompat.IMPORTANCE_MAX;
@@ -148,6 +149,7 @@ public class AlertService extends Service implements LocationListener {
 		mLocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_INTERVAL_MS, 0, this);
 	}
 
+	@SuppressLint("MissingPermission")
 	private void stopGpsLocListener() {
 		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 			return;
