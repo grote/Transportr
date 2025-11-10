@@ -58,15 +58,16 @@ public class AlertService extends Service implements LocationListener {
 	private PendingIntent stopPendingIntent;
 	private static final long ARRIVAL_THRESHOLD_METERS = 150;
 	private static final long ARRIVAL_THRESHOLD_SEC = 30;
-	private static final long WATCHDOG_INTERVAL_MS = 10_000; // 10 seconds
+	private static final long WATCHDOG_INTERVAL_MS = 1_000; // 1 second
 	private static final long LOCATION_INTERVAL_MS = 2_000; // 2 seconds
+	private static final long LOCATION_TIMEOUT_MS = 10_000; // 10 seconds
 	private static final String ACTION_STOP = "STOP";
 	private final Handler handler = new Handler(Looper.getMainLooper());
 	private final Runnable watchdogRunnable = new Runnable() {
 		@Override
 		public void run() {
 			long now = System.currentTimeMillis();
-			if (now - lastLocationUpdate > WATCHDOG_INTERVAL_MS) {
+			if (now - lastLocationUpdate > LOCATION_TIMEOUT_MS) {
 				// No location update in the last 10 seconds → take action
 				onLocationUpdateTimeout();
 			}
@@ -117,7 +118,7 @@ public class AlertService extends Service implements LocationListener {
 			destination = new Location("manual");
 			destination.setLatitude(latitude);
 			destination.setLongitude(longitude);
-			lastLocationUpdate = System.currentTimeMillis();
+			lastLocationUpdate = 0;
 			showNotif();
 			startGpsLocListener();
 			isWatchdogRunning = true;
