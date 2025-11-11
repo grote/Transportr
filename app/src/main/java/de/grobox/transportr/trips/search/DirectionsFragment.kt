@@ -19,17 +19,22 @@
 
 package de.grobox.transportr.trips.search
 
+import android.Manifest
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.*
+import android.view.View.GONE
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.TranslateAnimation
+import android.widget.Toast
 import androidx.appcompat.widget.TooltipCompat
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import de.grobox.transportr.R
@@ -49,9 +54,25 @@ import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.isNow
 import de.grobox.transportr.utils.DateUtils.isToday
 import de.schildbach.pte.dto.Product
-import kotlinx.android.synthetic.main.fragment_directions_form.*
+import kotlinx.android.synthetic.main.fragment_directions_form.date
+import kotlinx.android.synthetic.main.fragment_directions_form.departure
+import kotlinx.android.synthetic.main.fragment_directions_form.favIcon
+import kotlinx.android.synthetic.main.fragment_directions_form.fromCard
+import kotlinx.android.synthetic.main.fragment_directions_form.fromLocation
+import kotlinx.android.synthetic.main.fragment_directions_form.productsIcon
+import kotlinx.android.synthetic.main.fragment_directions_form.productsMarked
+import kotlinx.android.synthetic.main.fragment_directions_form.swapIcon
+import kotlinx.android.synthetic.main.fragment_directions_form.time
+import kotlinx.android.synthetic.main.fragment_directions_form.timeBackground
+import kotlinx.android.synthetic.main.fragment_directions_form.toCard
+import kotlinx.android.synthetic.main.fragment_directions_form.toLocation
+import kotlinx.android.synthetic.main.fragment_directions_form.toolbar
+import kotlinx.android.synthetic.main.fragment_directions_form.viaCard
+import kotlinx.android.synthetic.main.fragment_directions_form.viaIcon
+import kotlinx.android.synthetic.main.fragment_directions_form.viaLocation
 import kotlinx.android.synthetic.main.location_view.view.gpsButton
-import java.util.*
+import java.util.Calendar
+import java.util.EnumSet
 import javax.annotation.ParametersAreNonnullByDefault
 import javax.inject.Inject
 
@@ -147,7 +168,15 @@ class DirectionsFragment : TransportrFragment() {
         }
         swapIcon.setOnClickListener { swapLocations() }
 
-        fromLocation.gpsButton.setOnClickListener { updateGpsLocation(FROM, refresh = true) }
+        fromLocation.gpsButton.setOnClickListener {
+            if (ActivityCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED
+            ) {
+                Toast.makeText(context,context.getString(R.string.permission_denied_gps), Toast.LENGTH_LONG).show()
+            } else {
+                updateGpsLocation(FROM, refresh = true)
+            }
+        }
 
         viaIcon.setOnClickListener { viewModel.toggleIsExpanded() }
 
