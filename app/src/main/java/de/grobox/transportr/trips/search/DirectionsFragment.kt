@@ -54,25 +54,9 @@ import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.isNow
 import de.grobox.transportr.utils.DateUtils.isToday
 import de.schildbach.pte.dto.Product
-import kotlinx.android.synthetic.main.fragment_directions_form.date
-import kotlinx.android.synthetic.main.fragment_directions_form.departure
-import kotlinx.android.synthetic.main.fragment_directions_form.favIcon
-import kotlinx.android.synthetic.main.fragment_directions_form.fromCard
-import kotlinx.android.synthetic.main.fragment_directions_form.fromLocation
-import kotlinx.android.synthetic.main.fragment_directions_form.productsIcon
-import kotlinx.android.synthetic.main.fragment_directions_form.productsMarked
-import kotlinx.android.synthetic.main.fragment_directions_form.swapIcon
-import kotlinx.android.synthetic.main.fragment_directions_form.time
-import kotlinx.android.synthetic.main.fragment_directions_form.timeBackground
-import kotlinx.android.synthetic.main.fragment_directions_form.toCard
-import kotlinx.android.synthetic.main.fragment_directions_form.toLocation
-import kotlinx.android.synthetic.main.fragment_directions_form.toolbar
-import kotlinx.android.synthetic.main.fragment_directions_form.viaCard
-import kotlinx.android.synthetic.main.fragment_directions_form.viaIcon
-import kotlinx.android.synthetic.main.fragment_directions_form.viaLocation
+import kotlinx.android.synthetic.main.fragment_directions_form.*
 import kotlinx.android.synthetic.main.location_view.view.gpsButton
-import java.util.Calendar
-import java.util.EnumSet
+import java.util.*
 import javax.annotation.ParametersAreNonnullByDefault
 import javax.inject.Inject
 
