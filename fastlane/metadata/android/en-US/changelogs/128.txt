@@ -1,4 +1,4 @@
-Fixes Deutsche Bahn, VRS, VVS
-Adds Poland
-Adds button for location update
-Adds alert service via context menu
+* Fixes Deutsche Bahn, VRS, VVS
+* Adds Poland
+* Adds button for location update
+* Adds alert service via context menu

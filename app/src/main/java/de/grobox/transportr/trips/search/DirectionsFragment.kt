@@ -19,17 +19,22 @@
 
 package de.grobox.transportr.trips.search
 
+import android.Manifest
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.*
+import android.view.View.GONE
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.TranslateAnimation
+import android.widget.Toast
 import androidx.appcompat.widget.TooltipCompat
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import de.grobox.transportr.R
@@ -147,7 +152,15 @@ class DirectionsFragment : TransportrFragment() {
         }
         swapIcon.setOnClickListener { swapLocations() }
 
-        fromLocation.gpsButton.setOnClickListener { updateGpsLocation(FROM, refresh = true) }
+        fromLocation.gpsButton.setOnClickListener {
+            if (ActivityCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED
+            ) {
+                Toast.makeText(context,context.getString(R.string.permission_denied_gps), Toast.LENGTH_LONG).show()
+            } else {
+                updateGpsLocation(FROM, refresh = true)
+            }
+        }
 
         viaIcon.setOnClickListener { viewModel.toggleIsExpanded() }
 

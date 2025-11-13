@@ -3,6 +3,15 @@
     tools:ignore="UnusedResources">
 
     <release
+        version="2.2.4"
+        versioncode="128">
+        <change>Fixes Deutsche Bahn, VRS, VVS</change>
+        <change>Adds Poland</change>
+        <change>Adds button for location update</change>
+        <change>Adds alert service via context menu</change>
+    </release>
+
+    <release
         version="2.2.3"
         versioncode="127">
         <change>IMPORTANT! Remove all remaining Navitia-based networks (due to shutdown of API): all regions in France, Spain, Italy and nationwide Australia network</change>
