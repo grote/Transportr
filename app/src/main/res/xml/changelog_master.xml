@@ -9,6 +9,7 @@
         <change>Adds Poland</change>
         <change>Adds button for location update</change>
         <change>Adds alert service via context menu</change>
+        <change>Dropped support for Android 6 (SDK 23) and below</change>
     </release>
 
     <release
