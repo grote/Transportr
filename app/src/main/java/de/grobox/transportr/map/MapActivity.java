@@ -71,6 +71,9 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 
 	private @Nullable LocationFragment locationFragment;
 	private boolean transportNetworkInitialized = false;
+	private SavedSearchesFragment savedSearchesFragment;
+	private FloatingActionButton clearAllFab;
+	private FloatingActionButton favoritesFab;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,6 +97,8 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 				if (newState == STATE_HIDDEN) {
 					search.clearLocation();
 					search.reset();
+					clearAllFab.setVisibility(View.GONE);
+					favoritesFab.setVisibility(View.VISIBLE);
 					viewModel.setPeekHeight(0);
 				}
 			}
@@ -127,11 +132,20 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 			findDirections(MapActivity.this, from, null, to);
 		});
 
+		clearAllFab = findViewById(R.id.clearAllFab);
+		clearAllFab.setOnClickListener(view -> {
+			if (savedSearchesFragment!=null) savedSearchesFragment.clearFavorites();
+		});
+		favoritesFab = findViewById(R.id.favoritesFab);
+		favoritesFab.setOnClickListener(view -> {
+			showSavedSearches();
+		});
+
 		Intent intent = getIntent();
 		if (intent != null) onNewIntent(intent);
 
+		showSavedSearches();
 		if (savedInstanceState == null) {
-			showSavedSearches();
 			checkAndShowChangelog();
 		} else {
 			locationFragment = (LocationFragment) getSupportFragmentManager().findFragmentByTag(LocationFragment.TAG);
@@ -139,9 +153,11 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	}
 
 	private void showSavedSearches() {
-		SavedSearchesFragment f = new SavedSearchesFragment();
+		savedSearchesFragment = new SavedSearchesFragment();
+		clearAllFab.setVisibility(View.VISIBLE);
+		favoritesFab.setVisibility(View.GONE);
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.bottomSheet, f, SavedSearchesFragment.class.getSimpleName())
+				.replace(R.id.bottomSheet, savedSearchesFragment, SavedSearchesFragment.class.getSimpleName())
 				.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
 		bottomSheetBehavior.setState(STATE_COLLAPSED);
 		viewModel.setPeekHeight(PEEK_HEIGHT_AUTO);
@@ -177,7 +193,8 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 
 	private void onLocationSelected(@Nullable WrapLocation loc) {
 		if (loc == null) return;
-
+		clearAllFab.setVisibility(View.GONE);
+		favoritesFab.setVisibility(View.GONE);
 		locationFragment = LocationFragment.newInstance(loc);
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, locationFragment, LocationFragment.TAG)

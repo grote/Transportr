@@ -65,6 +65,42 @@
 		app:layout_anchorGravity="top|end"
 		app:srcCompat="@drawable/ic_menu_directions"/>
 
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/clearAllFab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|start"
+		android:layout_marginBottom="88dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginLeft="16dp"
+		android:clickable="true"
+		android:focusable="true"
+		android:tint="@color/md_white_1000"
+		app:backgroundTint="@color/buttonColor"
+		app:behavior_autoHide="true"
+		app:fabSize="normal"
+		app:layout_anchor="@+id/bottomSheet"
+		app:layout_anchorGravity="top|start"
+		app:srcCompat="@drawable/ic_delete"/>
+
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/favoritesFab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom|start"
+		android:layout_marginBottom="10dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginLeft="16dp"
+		android:clickable="true"
+		android:focusable="true"
+		android:tint="@color/md_white_1000"
+		app:backgroundTint="@color/buttonColor"
+		app:behavior_autoHide="true"
+		app:fabSize="normal"
+		app:layout_anchor="@+id/bottomSheet"
+		app:layout_anchorGravity="top|start"
+		app:srcCompat="@drawable/ic_action_navigation_unfold_more"/>
+
 	<FrameLayout
 		android:id="@+id/bottomSheet"
 		android:layout_width="match_parent"

@@ -26,7 +26,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -129,6 +131,16 @@ class FavoriteTripAdapter extends RecyclerView.Adapter<AbstractFavoritesViewHold
 			if (item.getType() == type) return item;
 		}
 		return null;
+	}
+
+	public List<FavoriteTripItem> getStandardItems(){
+		List<FavoriteTripItem> standardItems = new ArrayList<>();
+		for (int i = 0; i < items.size(); i++) {
+			FavoriteTripItem item = items.get(i);
+			if (item.getType() != WORK && item.getType() != HOME) standardItems.add(item);
+		}
+		if (standardItems.size()==0) return null;
+		else return standardItems;
 	}
 
 	int findItemPosition(FavoriteTripItem item) {

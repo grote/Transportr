@@ -188,4 +188,13 @@ public abstract class FavoriteTripsFragment<VM extends SavedSearchesViewModel> e
 		viewModel.removeFavoriteTrip(item);
 	}
 
+	public void clearFavorites(){
+		List<FavoriteTripItem> standardItems = adapter.getStandardItems();
+		if (standardItems == null) return;
+		// Delete each item using the existing onFavoriteDeleted method
+		for (FavoriteTripItem item : standardItems) {
+			onFavoriteDeleted(item);
+		}
+	}
+
 }
