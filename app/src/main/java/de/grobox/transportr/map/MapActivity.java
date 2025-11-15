@@ -73,7 +73,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	private boolean transportNetworkInitialized = false;
 	private SavedSearchesFragment savedSearchesFragment;
 	private FloatingActionButton clearAllFab;
-	private FloatingActionButton favoritesFab;
+	private FloatingActionButton expandFavoritesFab;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 					search.clearLocation();
 					search.reset();
 					clearAllFab.setVisibility(View.GONE);
-					favoritesFab.setVisibility(View.VISIBLE);
+					expandFavoritesFab.setVisibility(View.VISIBLE);
 					viewModel.setPeekHeight(0);
 				}
 			}
@@ -136,8 +136,8 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 		clearAllFab.setOnClickListener(view -> {
 			if (savedSearchesFragment!=null) savedSearchesFragment.clearFavorites();
 		});
-		favoritesFab = findViewById(R.id.favoritesFab);
-		favoritesFab.setOnClickListener(view -> {
+		expandFavoritesFab = findViewById(R.id.expandFavoritesFab);
+		expandFavoritesFab.setOnClickListener(view -> {
 			showSavedSearches();
 		});
 
@@ -155,7 +155,7 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	private void showSavedSearches() {
 		savedSearchesFragment = new SavedSearchesFragment();
 		clearAllFab.setVisibility(View.VISIBLE);
-		favoritesFab.setVisibility(View.GONE);
+		expandFavoritesFab.setVisibility(View.GONE);
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, savedSearchesFragment, SavedSearchesFragment.class.getSimpleName())
 				.commitNow(); // otherwise takes some time and empty bottomSheet will not be shown
@@ -194,12 +194,12 @@ public class MapActivity extends DrawerActivity implements LocationViewListener 
 	private void onLocationSelected(@Nullable WrapLocation loc) {
 		if (loc == null) return;
 		clearAllFab.setVisibility(View.GONE);
-		favoritesFab.setVisibility(View.GONE);
+		expandFavoritesFab.setVisibility(View.GONE);
 		locationFragment = LocationFragment.newInstance(loc);
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.bottomSheet, locationFragment, LocationFragment.TAG)
 				.commit(); // takes some time and empty bottomSheet will not be shown
-		bottomSheetBehavior.setState(STATE_COLLAPSED);
+		bottomSheetBehavior.setState(STATE_EXPANDED);
 
 		// show on-boarding dialog
 		if (getSettingsManager().showLocationFragmentOnboarding()) {
