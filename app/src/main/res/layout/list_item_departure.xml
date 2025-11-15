@@ -113,7 +113,7 @@
 			app:layout_constraintTop_toBottomOf="@+id/lineNameView"
 			tools:text="Zoologischer Garten (S+U)"/>
 
-		<TextView
+		<cn.carbs.android.expandabletextview.library.ExpandableTextView
 			android:id="@+id/messageView"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
@@ -122,8 +122,9 @@
 			android:textSize="12sp"
 			app:layout_constraintLeft_toLeftOf="@+id/guideline"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/destinationView"
-			tools:text="This is a message that would be displayed and might be potentially very long."/>
+			android:text="This is a message that would be displayed and might be potentially very long."
+			app:layout_constraintTop_toBottomOf="@+id/destinationView"/>
+
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
