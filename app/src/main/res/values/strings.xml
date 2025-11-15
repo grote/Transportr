@@ -321,7 +321,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="np_name_avvaachen" translatable="false">AVV</string>
 	<string name="np_desc_avvaachen">Aachen</string>
 	<string name="np_name_bayern" translatable="false">BEG</string>
-	<string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
+	<string name="np_desc_bayern">Bavaria</string>
 	<string name="np_name_bsvag" translatable="false">BSVG</string>
 	<string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
 	<string name="np_desc_bvg">Berlin</string>

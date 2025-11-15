@@ -254,7 +254,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="np_desc_avv">Augsburg</string>
   <string name="np_name_avvaachen">AVV</string>
   <string name="np_desc_avvaachen">Aachen</string>
-  <string name="np_desc_bayern">Bayern, Würzburg, Regensburg</string>
+  <string name="np_desc_bayern">Bayern</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Fast ganz Deutschland</string>

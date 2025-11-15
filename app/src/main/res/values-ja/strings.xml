@@ -248,7 +248,7 @@ Transportr は頻繁に使用される場所や旅行を保存します。
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">バーミンガム</string>
   <string name="np_region_germany">ドイツ</string>
   <string name="np_desc_avv">アウクスブルク</string>
-  <string name="np_desc_bayern">バイエルン、ヴュルツブルク、レーゲンスブルク</string>
+  <string name="np_desc_bayern">バイエルン</string>
   <string name="np_desc_bsvag">ブラウンシュヴァイク、ヴォルフスブルク</string>
   <string name="np_desc_bvg">ベルリン</string>
   <string name="np_desc_db">ドイツの大部分</string>
