@@ -485,21 +485,6 @@ private val networks = arrayOf(
                 )
             )
         )
-    ),
-    Continent(
-        R.string.np_continent_oceania, R.drawable.continent_oceania, countries = listOf(
-            Country(
-                R.string.np_region_australia, flag = "🇦🇺", networks = listOf(
-                    TransportNetwork(
-                        id = NetworkId.SYDNEY,
-                        name = R.string.np_name_sydney,
-                        description = R.string.np_desc_sydney,
-                        logo = R.drawable.network_sydney_logo,
-                        factory = { SydneyProvider() }
-                    )
-                )
-            ),
-        )
     )
 )
 
