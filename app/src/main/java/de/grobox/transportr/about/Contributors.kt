@@ -50,7 +50,8 @@ internal val CONTRIBUTORS = listOf(
             Contributor("Rob Snelders"),
             Contributor("Robert Schütz"),
             Contributor("Sebastian Grote"),
-            Contributor("Simó Albert i Beltran")
+            Contributor("Simó Albert i Beltran"),
+            Contributor("Wolfgang Heller")
         )
     )
 )
