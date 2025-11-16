@@ -237,7 +237,7 @@ Tato aplikace využívá data různých místních dopravních agentur a poskytu
   <string name="np_desc_avv">Augsburg</string>
   <string name="np_name_avvaachen">AVV</string>
   <string name="np_desc_avvaachen">Cáchy</string>
-  <string name="np_desc_bayern">Bavorsko, Würzburg, Regensburg</string>
+  <string name="np_desc_bayern">Bavorsko</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlín</string>
   <string name="np_desc_db">Většina Německa</string>

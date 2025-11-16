@@ -250,7 +250,7 @@ Inoltre, non usa strumenti di tracciamento come Google Analytics per spiarti.
   <string name="np_desc_avv">Asburgo</string>
   <string name="np_name_avvaachen">AVV</string>
   <string name="np_desc_avvaachen">Aachen</string>
-  <string name="np_desc_bayern">Baviera, Würzburg, Regensburg</string>
+  <string name="np_desc_bayern">Baviera</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlino</string>
   <string name="np_desc_db">Maggior parte della Germania</string>

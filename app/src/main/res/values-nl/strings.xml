@@ -235,7 +235,7 @@ Deze app gebruikt de gegevens van verschillende lokale openbaar vervoersaanbiede
   <string name="np_desc_avv">Augsburg</string>
   <string name="np_name_avvaachen">AVV</string>
   <string name="np_desc_avvaachen">Aken</string>
-  <string name="np_desc_bayern">Beieren, Würzburg, Regensburg</string>
+  <string name="np_desc_bayern">Beieren</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlijn</string>
   <string name="np_desc_db">Het grootste deel van Duitsland</string>

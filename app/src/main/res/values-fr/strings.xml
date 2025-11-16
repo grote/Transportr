@@ -244,7 +244,7 @@ Elle n’utilise pas non plus des outils de suivi comme Google Analytics pour vo
   <string name="np_desc_avv">Augsbourg</string>
   <string name="np_name_avvaachen">AVV</string>
   <string name="np_desc_avvaachen">Aix-la-Chapelle</string>
-  <string name="np_desc_bayern">Bavière, Wurtzbourg, Ratisbonne</string>
+  <string name="np_desc_bayern">Bavière</string>
   <string name="np_desc_bsvag">Brunswick, Wolfsbourg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">La plupart de l’Allemagne</string>

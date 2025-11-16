@@ -245,7 +245,7 @@ og ved altid hvor du er for ikke at glemme hvor du skal stige af bussen.
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Tyskland</string>
   <string name="np_desc_avv">Augsburg</string>
-  <string name="np_desc_bayern">Bavaria, Würzburg, Regensburg</string>
+  <string name="np_desc_bayern">Bavaria</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlin</string>
   <string name="np_desc_db">Det Meste Af Tyskland</string>

@@ -194,7 +194,7 @@
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Birmingham</string>
   <string name="np_region_germany">Alemanha</string>
   <string name="np_desc_avv">Augsburg</string>
-  <string name="np_desc_bayern">Bavária, Würzburg, Regensburg</string>
+  <string name="np_desc_bayern">Bavária</string>
   <string name="np_desc_bsvag">Braunschweig, Wolfsburg</string>
   <string name="np_desc_bvg">Berlim</string>
   <string name="np_desc_db">Maior parte da Alemanha</string>

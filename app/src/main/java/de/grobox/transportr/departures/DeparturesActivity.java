@@ -223,6 +223,7 @@ public class DeparturesActivity extends TransportrActivity
 		Date date = new Date();
 		int maxDepartures = MAX_DEPARTURES;
 		int count = adapter.getItemCount();
+		if (count == 0) return; //Should fix #939
 
 		// search from end + safety margin
 		if (later) {
@@ -233,8 +234,7 @@ public class DeparturesActivity extends TransportrActivity
 			} else {
 				itemPos = count - 1;
 			}
-			// FIXME for some reason this can crash
-			Log.i(DeparturesActivity.class.getSimpleName(), "Count: " + count + " Get Item: " + itemPos);
+
 			date = adapter.getItem(itemPos).getTime();
 		}
 		// search from beginning + safety margin

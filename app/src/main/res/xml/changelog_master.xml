@@ -3,6 +3,14 @@
     tools:ignore="UnusedResources">
 
     <release
+        version="2.2.5"
+        versioncode="129">
+        <change>Remove broken Sydney provider</change>
+        <change>Add clear all button for stored trips</change>
+        <change>Minor bugfixes</change>
+    </release>
+
+    <release
         version="2.2.4"
         versioncode="128">
         <change>Fixes Deutsche Bahn, VRS, VVS</change>

@@ -43,6 +43,7 @@ import de.schildbach.pte.dto.Trip;
 import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED;
 import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED;
+import static com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.BOTTOM;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.EXPANDED;
 import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.MIDDLE;
@@ -98,6 +99,8 @@ public class TripDetailActivity extends TransportrActivity {
 					}
 				} else if (newState == STATE_EXPANDED) {
 					viewModel.getSheetState().setValue(EXPANDED);
+				} else if (newState == STATE_HIDDEN) {
+					viewModel.getSheetState().setValue(BOTTOM);
 				}
 			}
 

@@ -233,7 +233,7 @@
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Μπίρμινγκχαμ</string>
   <string name="np_region_germany">Γερμανία</string>
   <string name="np_desc_avv">Άουσμπουργκ</string>
-  <string name="np_desc_bayern">Βαυαρία, Würzburg, Ρέγκενσμπουργκ</string>
+  <string name="np_desc_bayern">Βαυαρία</string>
   <string name="np_desc_bsvag">Braunschweig, Βόλφσμπουργκ</string>
   <string name="np_desc_bvg">Βερολίνο</string>
   <string name="np_desc_db">Το περισσότερη της Γερμανίας</string>

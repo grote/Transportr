@@ -244,7 +244,7 @@ Transportr зберігає часто використовувані місця
   <string name="np_desc_tlwm" tools:keep="@string/np_desc_tlwm">Бірмінгем</string>
   <string name="np_region_germany">Німеччина</string>
   <string name="np_desc_avv">Аугсбург</string>
-  <string name="np_desc_bayern">Баварія, Вюрцбург, Регенсбург</string>
+  <string name="np_desc_bayern">Баварія</string>
   <string name="np_desc_bsvag">Брауншвайг, Вольфсбург</string>
   <string name="np_desc_bvg">Берлін</string>
   <string name="np_desc_db">Більшість Німеччини</string>

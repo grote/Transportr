@@ -1,0 +1,3 @@
+* Remove broken Sydney provider
+* Add clear all button for stored trips
+* Minor bugfixes
