@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView
 import de.grobox.transportr.R
 import de.grobox.transportr.utils.DateUtils.formatDelay
 import de.grobox.transportr.utils.DateUtils.formatTime
+import de.grobox.transportr.utils.TransportrUtils.getColorFromAttr
 import de.schildbach.pte.dto.Position
 import de.schildbach.pte.dto.Stop
 import java.util.*
@@ -49,13 +50,12 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
         if (stop.isArrivalTimePredicted && stop.arrivalDelay != null) {
             val delay = stop.arrivalDelay
-            time.time = time.time - delay
             formatDelay(delayView.context, delay).let {
                 delayView.apply {
-                    text = it.delay
-                    setTextColor(it.color)
+                    text = "("+it.delay+")"
                     visibility = VISIBLE
                 }
+                if (timeView!=null) timeView.setTextColor(it.color)
             }
         } else {
             delayView.visibility = GONE
@@ -70,13 +70,12 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
         if (stop.isDepartureTimePredicted && stop.departureDelay != null) {
             val delay = stop.departureDelay
-            time.time = time.time - delay
             formatDelay(delayView.context, delay).let {
                 delayView.apply {
-                    text = it.delay
-                    setTextColor(it.color)
+                    text = "("+it.delay+")"
                     visibility = VISIBLE
                 }
+                if (timeView!=null) timeView.setTextColor(it.color)
             }
         } else {
             delayView.visibility = GONE
