@@ -161,7 +161,7 @@ public class AlertService extends Service implements LocationListener {
 	public void onLocationChanged(@NonNull Location location) {
 		lastLocationUpdate = System.currentTimeMillis();
 		long timeToDestination = (arrivalTimeLong - System.currentTimeMillis()) / 1000;
-		String timeString = (timeToDestination > 60) ? getString(R.string.in_x_minutes, Math.round(timeToDestination / 60.0)) : getString(R.string.seconds, timeToDestination);
+		String timeString = (Math.abs(timeToDestination) > 60) ? getString(R.string.in_x_minutes, Math.round(timeToDestination / 60.0)) : getString(R.string.seconds, timeToDestination);
 		long distanceToDestination = (long) destination.distanceTo(location);
 		if (distanceToDestination > ARRIVAL_THRESHOLD_METERS){
 			updateNotification(getString(R.string.meter, distanceToDestination) + " / " + timeString , false);
@@ -175,7 +175,7 @@ public class AlertService extends Service implements LocationListener {
 
 	private void onLocationUpdateTimeout() {
 		long timeToDestination = (arrivalTimeLong - System.currentTimeMillis()) / 1000;
-		String timeString = (timeToDestination > 60) ? getString(R.string.in_x_minutes, Math.round(timeToDestination / 60.0)) : getString(R.string.seconds, timeToDestination);
+		String timeString = (Math.abs(timeToDestination) > 60) ? getString(R.string.in_x_minutes, Math.round(timeToDestination / 60.0)) : getString(R.string.seconds, timeToDestination);
 		if (timeToDestination > ARRIVAL_THRESHOLD_SEC){
 			updateNotification( timeString , false);
 		} else {
