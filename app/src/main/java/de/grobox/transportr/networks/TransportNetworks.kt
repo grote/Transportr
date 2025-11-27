@@ -444,28 +444,11 @@ private val networks = arrayOf(
             Country(
                 R.string.np_region_usa, "🇺🇸", networks = listOf(
                     TransportNetwork(
-                        id = NetworkId.RTACHICAGO,
-                        name = R.string.np_name_rtachicago,
-                        description = R.string.np_desc_rtachicago,
-                        agencies = R.string.np_desc_rtachicago_networks,
-                        logo = R.drawable.network_rtachicago_logo,
-                        status = BETA,
-                        factory = { RtaChicagoProvider() }
-                    ),
-                    TransportNetwork(
                         id = NetworkId.BART,
                         description = R.string.np_desc_bart,
                         logo = R.drawable.network_bart_logo,
                         status = BETA,
                         factory = { BartProvider("{\"type\":\"AID\",\"aid\":\"kEwHkFUCIL500dym\"}") }
-                    ),
-                    TransportNetwork(
-                        id = NetworkId.CMTA,
-                        name = R.string.np_name_cmta,
-                        description = R.string.np_desc_cmta,
-                        logo = R.drawable.network_cmta_logo,
-                        status = BETA,
-                        factory = { CmtaProvider("{\"type\":\"AID\",\"aid\":\"web9j2nak29uz41irb\"}") }
                     ),
                 )
             ),
