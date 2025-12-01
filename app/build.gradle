@@ -8,8 +8,8 @@ apply from: 'witness.gradle'
 android {
 
 	defaultConfig {
-		versionCode 130
-		versionName "2.2.6"
+		versionCode 131
+		versionName "2.2.7"
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 24
@@ -142,7 +142,7 @@ dependencies {
 		exclude module: 'failureaccess'
 		exclude group: 'com.google.j2objc'
 	}
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:2713727d07df8408e064e5ffae2733862711a10b') {
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:09b90d37bfe452f7845f73aac256fd7eb2ae978a') {
 		exclude group: 'com.google.guava' // included above
 		exclude group: 'org.json', module: 'json' // provided by Android
 		exclude group: 'net.sf.kxml', module: 'kxml2' // provided by Android

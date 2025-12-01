@@ -145,7 +145,7 @@ und weiß immer, wo man aussteigen muss.
   <string name="trip_error_service_down">Die Datenquelle ist momentan nicht erreichbar :(\nBitte versuche es später noch einmal.</string>
   <string name="trip_error_pte">Wenn du diesen Fehler melden möchtest, kannst du ihn bitte direkt an %1$s melden.</string>
   <string name="trip_issue">Es könnte ein Problem mit dieser Verbindung geben.</string>
-  <string name="trip_not_travelable">Unmöglich oder abgebrochen</string>
+  <string name="trip_not_travelable">Unmöglich oder fällt aus</string>
   <string name="try_again">Noch einmal versuchen</string>
   <!--This string shows the number of meters one has to walk. Please keep the translation short.-->
   <string name="meter">%d m</string>

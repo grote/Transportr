@@ -3,6 +3,14 @@
     tools:ignore="UnusedResources">
 
     <release
+        version="2.2.7"
+        versioncode="131">
+        <change>Remove Chicago and Austin</change>
+        <change>Network API updates</change>
+        <change>Translation update</change>
+    </release>
+
+    <release
         version="2.2.6"
         versioncode="130">
         <change>IMPORTANT CHANGE</change>
