@@ -50,12 +50,13 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
         if (stop.isArrivalTimePredicted && stop.arrivalDelay != null) {
             val delay = stop.arrivalDelay
+            time.time = time.time - delay
             formatDelay(delayView.context, delay).let {
                 delayView.apply {
-                    text = "("+it.delay+")"
+                    text = it.delay
+                    setTextColor(it.color)
                     visibility = VISIBLE
                 }
-                if (timeView!=null) timeView.setTextColor(it.color)
             }
         } else {
             delayView.visibility = GONE
@@ -67,15 +68,16 @@ internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         if (stop.departureTime == null) return
 
         val time = Date(stop.departureTime.time)
+        time.time = time.time - delay
 
         if (stop.isDepartureTimePredicted && stop.departureDelay != null) {
             val delay = stop.departureDelay
             formatDelay(delayView.context, delay).let {
                 delayView.apply {
-                    text = "("+it.delay+")"
+                    text = it.delay
+                    setTextColor(it.color)
                     visibility = VISIBLE
                 }
-                if (timeView!=null) timeView.setTextColor(it.color)
             }
         } else {
             delayView.visibility = GONE
