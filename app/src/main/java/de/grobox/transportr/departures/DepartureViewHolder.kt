@@ -67,16 +67,19 @@ internal class DepartureViewHolder(v: View) : RecyclerView.ViewHolder(v) {
             }
         }
 
-        timeAbs.text = formatTime(timeAbs.context, predictedTime?.let { Date(it.time) } ?: plannedTime)
+        timeAbs.text = formatTime(timeAbs.context, plannedTime)
+        // timeAbs.text = formatTime(timeAbs.context, predictedTime?.let { Date(it.time) } ?: plannedTime)
 
         predictedTime?.let {
             val delayTime = it.time - plannedTime.time
             formatDelay(timeRel.context, delayTime).let {
                 delay.apply {
-                    text = "("+ it.delay + ")"
+                    text = it.delay
+                    setTextColor(it.color)
+                    // text = "("+ it.delay + ")"
                     visibility = VISIBLE
                 }
-                timeAbs.setTextColor(it.color)
+                // timeAbs.setTextColor(it.color)
             }
         } ?: run { delay.visibility = GONE }
 
