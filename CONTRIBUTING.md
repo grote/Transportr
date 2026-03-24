@@ -47,4 +47,4 @@ Feel free to look there for ideas or to add your own enhancement ticket.
 There is also [a list of beginner tasks](https://github.com/grote/Transportr/labels/beginner%20job) for you to get started easily. 
 
 Please do not touch any translations with your pull request.
-These are exclusively done [via Transifex](https://www.transifex.com/projects/p/transportr/).
+These are exclusively done [via Transifex](https://explore.transifex.com/grobox/transportr/).
