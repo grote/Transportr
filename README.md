@@ -1,8 +1,9 @@
+
 Transportr | [![Build and test](https://github.com/grote/Transportr/actions/workflows/build.yml/badge.svg)](https://github.com/grote/Transportr/actions/workflows/build.yml)
 ============================================================================================================================================================================
 
 The public transport companion that respects your privacy and your freedom.
-Transportr is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are. 
+Transportr is a non-profit app developed by people around the world to make using public transport as easy as possible wherever you are.
 
 [![Transportr Logo](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)](https://transportr.app)
 
@@ -30,13 +31,13 @@ Pre-releases and beta versions for advanced users are available via [a special F
 
 Screenshots
 -----------
+
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/1_FirstStart.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/2_SavedSearches.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/3_Trips.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/4_TripDetails.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/5_Station.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png" width="290">](fastlane/metadata/android/en-US/images/phoneScreenshots/6_Departures.png)
-
 
 Building From Source
 --------------------
@@ -45,12 +46,12 @@ If you want to start working on Transportr and if you haven't done already, you 
 
 The next step is to clone the source code repository.
 
-    $ git clone https://github.com/grote/Transportr.git
+    git clone https://github.com/grote/Transportr.git
 
 If you don't want to use an IDE like Android Studio, you can build Transportr on the command line as follows.
 
-    $ cd Transportr
-    $ ./gradlew assembleRelease
+    cd Transportr
+    ./gradlew assembleRelease
 
 License
 -------
@@ -62,7 +63,6 @@ will. Specifically you can redistribute and/or modify it under the terms of the
 [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as
 published by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-
 
 Acknowledgements
 ----------------
