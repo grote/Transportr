@@ -23,11 +23,9 @@ import android.annotation.SuppressLint
 import android.util.Base64
 import android.content.Context
 import de.grobox.transportr.R
-import de.grobox.transportr.networks.TransportNetwork.Status.ALPHA
 import de.grobox.transportr.networks.TransportNetwork.Status.BETA
 import de.schildbach.pte.*
 import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.util.*
 
 @SuppressLint("ConstantLocale")
@@ -211,7 +209,7 @@ private val networks = arrayOf(
                         id = NetworkId.KVV,
                         description = R.string.np_desc_kvv,
                         logo = R.drawable.network_kvv_logo,
-                        factory = { KvvProvider("https://projekte.kvv-efa.de/oeffi/".toHttpUrlOrNull()) }
+                        factory = { KvvProvider(HttpUrl.get("https://projekte.kvv-efa.de/oeffi/")) }
                     ),
                     TransportNetwork(
                         id = NetworkId.NVBW,
