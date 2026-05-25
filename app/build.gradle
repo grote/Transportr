@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'witness'
-apply from: 'witness.gradle'
 
 android {
 	namespace "de.grobox.transportr"
