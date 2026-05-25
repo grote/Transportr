@@ -2,6 +2,7 @@ buildscript {
 
 	ext {
 		kotlinVersion = '2.3.21'
+		agpVersion = '9.0.0'
 		daggerVersion = '2.22.1'
 		fastadapterVersion = '3.2.4@aar'
 	}
@@ -12,7 +13,9 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:9.0.0'
+		classpath "com.android.tools.build:gradle:$agpVersion"
+		// todo: migrate to KSP instead, see https://developer.android.com/build/migrate-to-ksp
+		classpath "com.android.legacy-kapt:com.android.legacy-kapt.gradle.plugin:$agpVersion"
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 	}
 

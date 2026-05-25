@@ -1,6 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'com.android.legacy-kapt'
 
 android {
 	namespace "de.grobox.transportr"
@@ -53,11 +54,6 @@ android {
 	compileOptions {
 		targetCompatibility JavaVersion.VERSION_1_8
 		sourceCompatibility JavaVersion.VERSION_1_8
-	}
-
-	// as per https://developer.android.com/studio/write/java8-support
-	kotlinOptions {
-		jvmTarget = "1.8"
 	}
 
 	sourceSets {
