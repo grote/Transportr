@@ -22,13 +22,13 @@ package de.grobox.transportr.locations;
 import android.os.AsyncTask;
 import androidx.annotation.Nullable;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 
 import de.grobox.transportr.networks.TransportNetwork;
 import de.schildbach.pte.NetworkProvider;
 import de.schildbach.pte.dto.SuggestLocationsResult;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 class SuggestLocationsTask extends AsyncTask<String, Void, SuggestLocationsResult> {
 
 	private final TransportNetwork network;

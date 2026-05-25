@@ -21,11 +21,10 @@ package de.grobox.transportr.favorites.trips;
 
 import androidx.annotation.Nullable;
 
-import com.google.common.base.Objects;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Date;
-
-import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Objects;
 
 import de.grobox.transportr.data.locations.HomeLocation;
 import de.grobox.transportr.data.locations.WorkLocation;
@@ -37,7 +36,7 @@ import static de.grobox.transportr.favorites.trips.FavoriteTripType.TRIP;
 import static de.grobox.transportr.favorites.trips.FavoriteTripType.WORK;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 public class FavoriteTripItem extends StoredSearch implements Comparable<FavoriteTripItem> {
 
 	private final FavoriteTripType type;
@@ -133,13 +132,13 @@ public class FavoriteTripItem extends StoredSearch implements Comparable<Favorit
 		if (!(o instanceof FavoriteTripItem))
 			return false;
 		final FavoriteTripItem other = (FavoriteTripItem) o;
-		if (!Objects.equal(this.type, other.type))
+		if (!Objects.equals(this.type, other.type))
 			return false;
-		if (!Objects.equal(this.from, other.from))
+		if (!Objects.equals(this.from, other.from))
 			return false;
-		if (!Objects.equal(this.to, other.to))
+		if (!Objects.equals(this.to, other.to))
 			return false;
-		if (!Objects.equal(this.via, other.via))
+		if (!Objects.equals(this.via, other.via))
 			return false;
 		if (this.count != other.count)
 			return false;

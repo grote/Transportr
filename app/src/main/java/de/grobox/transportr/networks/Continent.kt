@@ -22,9 +22,7 @@ package de.grobox.transportr.networks
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import javax.annotation.concurrent.Immutable
 
-@Immutable
 internal class Continent constructor(
     @param:StringRes @field:StringRes @get:StringRes val name: Int,
     @param:DrawableRes @field:DrawableRes @get:DrawableRes val contour: Int,

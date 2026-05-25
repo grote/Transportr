@@ -25,7 +25,6 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
-import com.google.common.base.Strings.isNullOrEmpty
 import de.grobox.transportr.R
 import de.grobox.transportr.trips.BaseViewHolder
 import de.grobox.transportr.trips.detail.TripUtils.getStandardFare
@@ -116,8 +115,8 @@ internal class TripViewHolder(private val v: View) : BaseViewHolder(v) {
         if (!isTravelable) return true
         for (leg in legs) {
             if (leg !is Public) continue
-            if (!isNullOrEmpty(leg.message)) return true
-            if (!isNullOrEmpty(leg.line?.message)) return true
+            if (!leg.message.isNullOrEmpty()) return true
+            if (!leg.line?.message.isNullOrEmpty()) return true
         }
         return false
     }

@@ -30,6 +30,8 @@ import androidx.core.content.ContextCompat;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +47,7 @@ import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
@@ -66,7 +68,6 @@ import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static androidx.recyclerview.widget.RecyclerView.HORIZONTAL;
-import static com.google.common.base.Strings.isNullOrEmpty;
 import static de.grobox.transportr.departures.DeparturesActivity.MAX_DEPARTURES;
 import static de.grobox.transportr.departures.DeparturesLoader.getBundle;
 import static de.grobox.transportr.utils.Constants.LOADER_DEPARTURES;
@@ -75,7 +76,7 @@ import static de.grobox.transportr.utils.IntentUtils.startGeoIntent;
 import static de.schildbach.pte.dto.LocationType.COORD;
 import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 public class LocationFragment extends TransportrFragment
 		implements LoaderCallbacks<QueryDeparturesResult>, ReverseGeocoderCallback, OnGlobalLayoutListener {
 
@@ -191,7 +192,7 @@ public class LocationFragment extends TransportrFragment
 		locationName.setText(location.getName());
 		locationIcon.setImageDrawable(ContextCompat.getDrawable(getContext(), location.getDrawable()));
 		StringBuilder locationInfoStr = new StringBuilder();
-		if (!isNullOrEmpty(location.getLocation().place)) {
+		if (!TextUtils.isEmpty(location.getLocation().place)) {
 			locationInfoStr.append(location.getLocation().place);
 		}
 		if (location.getLocation().hasCoord()) {

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 
 import de.grobox.transportr.R;
 
@@ -38,7 +38,7 @@ import static androidx.recyclerview.widget.SortedList.INVALID_POSITION;
 import static de.grobox.transportr.favorites.trips.FavoriteTripType.HOME;
 import static de.grobox.transportr.favorites.trips.FavoriteTripType.WORK;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 class FavoriteTripAdapter extends RecyclerView.Adapter<AbstractFavoritesViewHolder> {
 
 	private final SortedList<FavoriteTripItem> items = new SortedList<>(FavoriteTripItem.class, new SortedList.Callback<FavoriteTripItem>() {

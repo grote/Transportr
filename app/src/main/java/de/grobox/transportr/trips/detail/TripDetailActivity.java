@@ -26,7 +26,7 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
@@ -50,7 +50,7 @@ import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.M
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_DISMISSED;
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FOCAL_PRESSED;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 public class TripDetailActivity extends TransportrActivity {
 
 	public static final String TRIP = "de.schildbach.pte.dto.Trip";

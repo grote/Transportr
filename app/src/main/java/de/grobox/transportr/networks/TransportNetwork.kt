@@ -22,14 +22,12 @@ package de.grobox.transportr.networks
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.google.common.base.Preconditions.checkArgument
+import de.schildbach.pte.util.Preconditions.checkArgument
 import de.grobox.transportr.R
 import de.schildbach.pte.NetworkId
 import de.schildbach.pte.NetworkProvider
 import java.lang.ref.SoftReference
-import javax.annotation.concurrent.Immutable
 
-@Immutable
 data class TransportNetwork internal constructor(
     val id: NetworkId,
     @field:StringRes private val name: Int = 0,

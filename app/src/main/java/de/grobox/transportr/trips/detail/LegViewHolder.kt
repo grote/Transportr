@@ -29,8 +29,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.common.base.Strings
-import com.google.common.base.Strings.isNullOrEmpty
 import de.grobox.transportr.R
 import de.grobox.transportr.trips.BaseViewHolder
 import de.grobox.transportr.trips.detail.LegViewHolder.LegType.*
@@ -131,7 +129,7 @@ internal class LegViewHolder(v: View, private val listener: LegClickListener, pr
 
         // Line
         lineView.setLine(leg.line, lineColor)
-        if (showLineName && !isNullOrEmpty(leg.line.name)) {
+        if (showLineName && !leg.line.name.isNullOrEmpty()) {
             lineDestination.text = leg.line.name
         } else if (leg.destination != null) {
             lineDestination.text = getLocationName(leg.destination!!)
@@ -175,7 +173,7 @@ internal class LegViewHolder(v: View, private val listener: LegClickListener, pr
 
         // Optional message
         var hasText = false
-        if (!Strings.isNullOrEmpty(leg.message)) {
+        if (!leg.message.isNullOrEmpty()) {
             message.visibility = VISIBLE
             @Suppress("DEPRECATION")
             message.text = fromHtml(leg.message)

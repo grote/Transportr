@@ -47,7 +47,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
@@ -68,7 +68,7 @@ import static de.grobox.transportr.utils.Constants.WRAP_LOCATION;
 import static de.grobox.transportr.utils.TransportrUtils.getDragDistance;
 import static de.schildbach.pte.dto.QueryDeparturesResult.Status.OK;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 public class DeparturesActivity extends TransportrActivity
 		implements LoaderCallbacks<QueryDeparturesResult>, TimeDateListener {
 

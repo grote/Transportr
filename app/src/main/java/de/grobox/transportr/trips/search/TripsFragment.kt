@@ -43,7 +43,7 @@ import de.grobox.transportr.utils.TransportrUtils.getDragDistance
 import de.schildbach.pte.dto.Trip
 import kotlinx.android.synthetic.main.fragment_trips.*
 import java.util.regex.Pattern
-import javax.annotation.ParametersAreNonnullByDefault
+import org.jspecify.annotations.NullMarked
 import javax.inject.Inject
 
 class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListener {

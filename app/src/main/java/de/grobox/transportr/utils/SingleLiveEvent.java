@@ -18,7 +18,7 @@ package de.grobox.transportr.utils;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -37,7 +37,7 @@ import androidx.lifecycle.Observer;
  * <p>
  * Note that only one observer is going to be notified of changes.
  */
-@ParametersAreNonnullByDefault
+@NullMarked
 public class SingleLiveEvent<T> extends MutableLiveData<T> {
 
 	private static final String TAG = SingleLiveEvent.class.getSimpleName();

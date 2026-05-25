@@ -25,9 +25,6 @@ import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.AsyncTask.Status.FINISHED
 import android.os.Bundle
 import android.os.Parcelable
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import androidx.core.view.ViewCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -35,10 +32,11 @@ import android.util.Log
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import com.google.common.base.Strings.isNullOrEmpty
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import androidx.core.view.ViewCompat
 import de.grobox.transportr.R
 import de.grobox.transportr.data.locations.FavoriteLocation
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
@@ -164,7 +162,7 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
             val text = state.getString(TEXT)
             if (loc != null) {
                 setLocation(loc)
-            } else if (!isNullOrEmpty(text)) {
+            } else if (!text.isNullOrEmpty()) {
                 ui.location.setText(text)
                 ui.clear.visibility = VISIBLE
             }

@@ -19,9 +19,9 @@
 
 package de.grobox.transportr.favorites.trips;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 public interface FavoriteTripListener {
 
 	void onFavoriteClicked(FavoriteTripItem item);

@@ -57,10 +57,10 @@ import de.schildbach.pte.dto.Product
 import kotlinx.android.synthetic.main.fragment_directions_form.*
 import kotlinx.android.synthetic.main.location_view.view.gpsButton
 import java.util.*
-import javax.annotation.ParametersAreNonnullByDefault
+import org.jspecify.annotations.NullMarked
 import javax.inject.Inject
 
-@ParametersAreNonnullByDefault
+@NullMarked
 class DirectionsFragment : TransportrFragment() {
 
     @Inject

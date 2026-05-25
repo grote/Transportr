@@ -28,7 +28,7 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
@@ -51,7 +51,7 @@ import static de.grobox.transportr.favorites.trips.FavoriteTripType.TRIP;
 import static de.grobox.transportr.favorites.trips.FavoriteTripType.WORK;
 import static de.grobox.transportr.utils.IntentUtils.findDirections;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 public abstract class FavoriteTripsFragment<VM extends SavedSearchesViewModel> extends TransportrFragment implements FavoriteTripListener {
 
 	@Inject protected ViewModelProvider.Factory viewModelFactory;

@@ -20,6 +20,8 @@
 package de.grobox.transportr.trips.search;
 
 import android.app.Dialog;
+
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.os.Bundle;
@@ -42,8 +44,8 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
+
 import javax.inject.Inject;
 
 import de.grobox.transportr.R;
@@ -51,7 +53,7 @@ import de.schildbach.pte.dto.Product;
 
 import static de.grobox.transportr.utils.TransportrUtils.getDrawableForProduct;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 public class ProductDialogFragment extends DialogFragment {
 
 	public static final String TAG = ProductDialogFragment.class.getSimpleName();
