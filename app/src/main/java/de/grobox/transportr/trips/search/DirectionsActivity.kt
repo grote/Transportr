@@ -30,12 +30,12 @@ import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrActivity
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
+import de.grobox.transportr.databinding.ActivityDirectionsBinding
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.locations.WrapLocation.WrapType.GPS
 import de.grobox.transportr.trips.search.SavedSearchesFragment.HomePickerFragment
 import de.grobox.transportr.trips.search.SavedSearchesFragment.WorkPickerFragment
 import de.grobox.transportr.utils.Constants.*
-import kotlinx.android.synthetic.main.activity_directions.*
 import javax.inject.Inject
 
 class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
@@ -48,6 +48,8 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
         const val INTENT_URI_WORK = "transportr://work"
         const val INTENT_URI_FAVORITE = "transportr://favorite"
     }
+
+    private lateinit var binding: ActivityDirectionsBinding
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -64,16 +66,19 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
         override fun onFinish() {}
     }
 
-    public override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         component.inject(this)
-        setContentView(R.layout.activity_directions)
+        binding = ActivityDirectionsBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         // get view model and observe data
         viewModel = ViewModelProvider(this, viewModelFactory).get(DirectionsViewModel::class.java)
         viewModel.showTrips.observe(this, Observer { showTrips() })
 
-        appBarLayout.addOnOffsetChangedListener(this)
+        binding.appBarLayout.addOnOffsetChangedListener(this)
 
         if (savedInstanceState == null) {
             showFavorites()
@@ -127,7 +132,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, TripsFragment(), TripsFragment.TAG)
             .commit()
-        fragmentContainer.requestFocus()
+        binding.fragmentContainer.requestFocus()
     }
 
     private fun processIntent(intent: Intent?) {

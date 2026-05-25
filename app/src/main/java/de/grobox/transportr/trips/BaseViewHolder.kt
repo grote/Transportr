@@ -35,6 +35,7 @@ import de.schildbach.pte.dto.Position
 import de.schildbach.pte.dto.Stop
 import java.util.*
 
+// TODO can we somehow make use of view binding here (needs XML "superclass")
 internal abstract class BaseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
     protected val context: Context = v.context

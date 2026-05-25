@@ -23,6 +23,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.grobox.transportr.R
+import de.grobox.transportr.databinding.ListItemLineBinding
 import de.grobox.transportr.ui.LineView
 import de.grobox.transportr.utils.TransportrUtils
 import de.schildbach.pte.dto.Line
@@ -33,8 +34,8 @@ internal class LineAdapter : RecyclerView.Adapter<LineViewHolder>() {
     private var lines: List<Line> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LineViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.list_item_line, parent, false) as LineView
-        return LineViewHolder(v)
+        val binding = ListItemLineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return LineViewHolder(binding.root)
     }
 
     override fun onBindViewHolder(holder: LineViewHolder, position: Int) {

@@ -21,12 +21,10 @@ package de.grobox.transportr.trips.search
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +32,8 @@ import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout.OnRe
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
+import de.grobox.transportr.databinding.FragmentDirectionsFormBinding
+import de.grobox.transportr.databinding.FragmentTripsBinding
 import de.grobox.transportr.trips.detail.TripDetailActivity
 import de.grobox.transportr.trips.search.TripAdapter.OnTripClickListener
 import de.grobox.transportr.trips.search.TripsRepository.QueryMoreState
@@ -41,12 +41,15 @@ import de.grobox.transportr.ui.LceAnimator
 import de.grobox.transportr.utils.Linkify
 import de.grobox.transportr.utils.TransportrUtils.getDragDistance
 import de.schildbach.pte.dto.Trip
-import kotlinx.android.synthetic.main.fragment_trips.*
 import java.util.regex.Pattern
-import org.jspecify.annotations.NullMarked
 import javax.inject.Inject
 
 class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListener {
+
+    private var _binding: FragmentTripsBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
     
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -58,30 +61,36 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
     private var queryMoreDirection = SwipyRefreshLayoutDirection.BOTH
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_trips, container, false)
+        _binding = FragmentTripsBinding.inflate(inflater, container, false)
         component.inject(this)
 
         viewModel = ViewModelProvider(activity!!, viewModelFactory).get(DirectionsViewModel::class.java)
 
-        return v
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Progress Bar and Error View
-        errorButton.setOnClickListener { viewModel.search() }
+        binding.errorButton.setOnClickListener { viewModel.search() }
 
         // Swipe to Refresh
-        swipe.let {
+        binding.swipe.let {
             it.setColorSchemeColors(R.color.accent)
             it.setDistanceToTriggerSync(getDragDistance(context))
             it.setOnRefreshListener(this)
         }
 
         val layoutManager = LinearLayoutManager(context)
-        list.layoutManager = layoutManager
-        list.setHasFixedSize(false)
+        binding.list.layoutManager = layoutManager
+        binding.list.setHasFixedSize(false)
         viewModel.topSwipeEnabled.observe(viewLifecycleOwner, { enabled -> onSwipeEnabledChanged(enabled) })
         viewModel.queryMoreState.observe(viewLifecycleOwner, { state -> updateSwipeState(state) })
         viewModel.trips.observe(viewLifecycleOwner, { trips -> onTripsLoaded(trips) })
@@ -90,8 +99,8 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
         viewModel.queryMoreError.observe(viewLifecycleOwner, { error -> onMoreError(error) })
         viewModel.timeUpdate.observe(viewLifecycleOwner, { adapter.notifyDataSetChanged() })
         adapter.setHasStableIds(false)
-        list.adapter = adapter
-        LceAnimator.showLoading(progressBar, list, errorLayout)
+        binding.list.adapter = adapter
+        LceAnimator.showLoading(binding.progressBar, binding.list, binding.errorLayout)
     }
 
     override fun onRefresh(direction: SwipyRefreshLayoutDirection) {
@@ -101,7 +110,7 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
     }
 
     private fun onSwipeEnabledChanged(enabled: Boolean) {
-        if (!swipe.isRefreshing && enabled != topSwipingEnabled) {
+        if (!binding.swipe.isRefreshing && enabled != topSwipingEnabled) {
             updateSwipeState(viewModel.queryMoreState.value)
         }
         topSwipingEnabled = enabled
@@ -111,10 +120,10 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
         val topEnabled = viewModel.topSwipeEnabled.value
         if (topEnabled == null || state == null) return
         if (state === QueryMoreState.NONE || (!topEnabled && state === QueryMoreState.EARLIER)) {
-            swipe.isEnabled = false
+            binding.swipe.isEnabled = false
         } else {
-            swipe.isEnabled = true
-            swipe.direction = when {
+            binding.swipe.isEnabled = true
+            binding.swipe.direction = when {
                 state === QueryMoreState.EARLIER -> SwipyRefreshLayoutDirection.TOP
                 state === QueryMoreState.LATER -> SwipyRefreshLayoutDirection.BOTTOM
                 !topEnabled && state === QueryMoreState.BOTH -> SwipyRefreshLayoutDirection.BOTTOM
@@ -128,31 +137,31 @@ class TripsFragment : TransportrFragment(), OnRefreshListener, OnTripClickListen
         val oldCount = adapter.itemCount
         adapter.addAll(trips)
         if (oldCount > 0) {
-            swipe.isRefreshing = false
-            list.smoothScrollBy(0, if (queryMoreDirection == SwipyRefreshLayoutDirection.BOTTOM) 200 else -200)
+            binding.swipe.isRefreshing = false
+            binding.list.smoothScrollBy(0, if (queryMoreDirection == SwipyRefreshLayoutDirection.BOTTOM) 200 else -200)
         } else {
-            LceAnimator.showContent(progressBar, list, errorLayout)
+            LceAnimator.showContent(binding.progressBar, binding.list, binding.errorLayout)
         }
     }
 
     private fun onError(error: String?) {
         if (error == null) return
-        errorText.text = error
-        LceAnimator.showErrorView(progressBar, list, errorLayout)
+        binding.errorText.text = error
+        LceAnimator.showErrorView(binding.progressBar, binding.list, binding.errorLayout)
     }
 
     @SuppressLint("SetTextI18n")
     private fun onPTEError(error: Pair<String, String>?) {
         if (error == null) return
-        errorText.text = "${error.first}\n\n${getString(R.string.trip_error_pte, "public-transport-enabler")}"
+        binding.errorText.text = "${error.first}\n\n${getString(R.string.trip_error_pte, "public-transport-enabler")}"
         val pteMatcher = Pattern.compile("public-transport-enabler")
-        Linkify.addLinks(errorText, pteMatcher, error.second)
-        LceAnimator.showErrorView(progressBar, list, errorLayout)
+        Linkify.addLinks(binding.errorText, pteMatcher, error.second)
+        LceAnimator.showErrorView(binding.progressBar, binding.list, binding.errorLayout)
     }
 
     private fun onMoreError(error: String?) {
         if (error == null) return
-        swipe.isRefreshing = false
+        binding.swipe.isRefreshing = false
         Toast.makeText(context, error, Toast.LENGTH_LONG).show()
     }
 

@@ -32,6 +32,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
+import de.grobox.transportr.databinding.FragmentTripDetailBinding
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState
 import de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.*
 import de.grobox.transportr.trips.detail.TripUtils.getStandardFare
@@ -43,10 +44,14 @@ import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.formatRelativeTime
 import de.grobox.transportr.utils.TransportrUtils.getColorFromAttr
 import de.schildbach.pte.dto.Trip
-import kotlinx.android.synthetic.main.fragment_trip_detail.*
 import javax.inject.Inject
 
 class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener {
+
+    private var _binding: FragmentTripDetailBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     companion object {
         val TAG = TripDetailFragment::class.java.simpleName
@@ -60,8 +65,8 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     private val timeUpdater: CountDownTimer = object : CountDownTimer(Long.MAX_VALUE, 1000 * 30) {
         override fun onTick(millisUntilFinished: Long) {
             viewModel.getTrip().value?.let {
-                formatRelativeTime(fromTimeRel.context, it.firstDepartureTime).let {
-                    fromTimeRel.apply {
+                formatRelativeTime(binding.fromTimeRel.context, it.firstDepartureTime).let {
+                    binding.fromTimeRel.apply {
                         text = it.relativeTime
                         visibility = it.visibility
                     }
@@ -73,7 +78,14 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_trip_detail, container, false)
+        _binding = FragmentTripDetailBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -82,10 +94,10 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
         setHasOptionsMenu(true)
         component.inject(this)
 
-        toolbar.setNavigationOnClickListener { _ -> onToolbarClose() }
-        toolbar.setOnMenuItemClickListener(this)
-        list.layoutManager = LinearLayoutManager(context)
-        bottomBar.setOnClickListener { _ -> onBottomBarClick() }
+        binding.toolbar.setNavigationOnClickListener { _ -> onToolbarClose() }
+        binding.toolbar.setOnMenuItemClickListener(this)
+        binding.list.layoutManager = LinearLayoutManager(context)
+        binding.bottomBar.setOnClickListener { _ -> onBottomBarClick() }
 
         viewModel = ViewModelProvider(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
         viewModel.getTrip().observe(viewLifecycleOwner, Observer<Trip> { this.onTripChanged(it) })
@@ -103,7 +115,7 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        val toolbarMenu = toolbar.menu
+        val toolbarMenu = binding.toolbar.menu
         inflater.inflate(R.menu.trip_details, toolbarMenu)
         viewModel.tripReloadError.observe(this, Observer<String> { this.onTripReloadError(it) })
         super.onCreateOptionsMenu(menu, inflater)
@@ -131,30 +143,30 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
     private fun onTripChanged(trip: Trip?) {
         if (trip == null) return
 
-        val reloadMenuItem = toolbar.menu.findItem(R.id.action_reload)
+        val reloadMenuItem = binding.toolbar.menu.findItem(R.id.action_reload)
         if (reloadMenuItem != null) reloadMenuItem.actionView = null
 
         val network = viewModel.transportNetwork.value
         val showLineName = network != null && network.hasGoodLineNames()
         val adapter = LegAdapter(trip.legs, viewModel, showLineName)
-        list.adapter = adapter
+        binding.list.adapter = adapter
 
-        fromTime.text = formatTime(context, trip.firstDepartureTime)
-        formatRelativeTime(fromTimeRel.context, trip.firstDepartureTime).let {
-            fromTimeRel.apply {
+        binding.fromTime.text = formatTime(context, trip.firstDepartureTime)
+        formatRelativeTime(binding.fromTimeRel.context, trip.firstDepartureTime).let {
+            binding.fromTimeRel.apply {
                 text = it.relativeTime
                 visibility = it.visibility
             }
         }
-        from.text = trip.from.uniqueShortName()
-        toTime.text = formatTime(context, trip.lastArrivalTime)
-        to.text = trip.to.uniqueShortName()
-        duration.text = formatDuration(trip.duration)
-        durationTop.text = getString(R.string.total_time, formatDuration(trip.duration))
-        price.visibility = if (trip.hasFare()) VISIBLE else GONE
-        price.text = trip.getStandardFare()
-        priceTop.visibility = if (trip.hasFare()) VISIBLE else GONE
-        priceTop.text = trip.getStandardFare()
+        binding.from.text = trip.from.uniqueShortName()
+        binding.toTime.text = formatTime(context, trip.lastArrivalTime)
+        binding.to.text = trip.to.uniqueShortName()
+        binding.duration.text = formatDuration(trip.duration)
+        binding.durationTop.text = getString(R.string.total_time, formatDuration(trip.duration))
+        binding.price.visibility = if (trip.hasFare()) VISIBLE else GONE
+        binding.price.text = trip.getStandardFare()
+        binding.priceTop.visibility = if (trip.hasFare()) VISIBLE else GONE
+        binding.priceTop.text = trip.getStandardFare()
     }
 
     private fun onToolbarClose() {
@@ -169,33 +181,33 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
         when (sheetState) {
             null -> return
             BOTTOM -> {
-                toolbar.visibility = GONE
-                topBar.visibility = GONE
-                bottomBar.visibility = VISIBLE
+                binding.toolbar.visibility = GONE
+                binding.topBar.visibility = GONE
+                binding.bottomBar.visibility = VISIBLE
             }
             MIDDLE -> {
-                toolbar.visibility = GONE
-                topBar.visibility = VISIBLE
-                topBar.setBackgroundColor(context.getColorFromAttr(R.attr.colorPrimary))
-                fromTimeRel.setTextColor(getColor(context, R.color.md_white_1000))
-                durationTop.setTextColor(getColor(context, R.color.md_white_1000))
-                priceTop.setTextColor(getColor(context, R.color.md_white_1000))
-                bottomBar.visibility = GONE
+                binding.toolbar.visibility = GONE
+                binding.topBar.visibility = VISIBLE
+                binding.topBar.setBackgroundColor(context.getColorFromAttr(R.attr.colorPrimary))
+                binding.fromTimeRel.setTextColor(getColor(context, R.color.md_white_1000))
+                binding.durationTop.setTextColor(getColor(context, R.color.md_white_1000))
+                binding.priceTop.setTextColor(getColor(context, R.color.md_white_1000))
+                binding.bottomBar.visibility = GONE
             }
             EXPANDED -> {
-                toolbar.visibility = VISIBLE
-                topBar.visibility = VISIBLE
-                topBar.setBackgroundColor(context.getColorFromAttr(android.R.attr.colorBackground))
-                fromTimeRel.setTextColor(context.getColorFromAttr(android.R.attr.textColorPrimary))
-                durationTop.setTextColor(context.getColorFromAttr(android.R.attr.textColorSecondary))
-                priceTop.setTextColor(context.getColorFromAttr(android.R.attr.textColorSecondary))
-                bottomBar.visibility = GONE
+                binding.toolbar.visibility = VISIBLE
+                binding.topBar.visibility = VISIBLE
+                binding.topBar.setBackgroundColor(context.getColorFromAttr(android.R.attr.colorBackground))
+                binding.fromTimeRel.setTextColor(context.getColorFromAttr(android.R.attr.textColorPrimary))
+                binding.durationTop.setTextColor(context.getColorFromAttr(android.R.attr.textColorSecondary))
+                binding.priceTop.setTextColor(context.getColorFromAttr(android.R.attr.textColorSecondary))
+                binding.bottomBar.visibility = GONE
             }
         }
     }
 
     private fun onTripReloadError(error: String?) {
-        toolbar.menu.findItem(R.id.action_reload).actionView = null
+        binding.toolbar.menu.findItem(R.id.action_reload).actionView = null
         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
 

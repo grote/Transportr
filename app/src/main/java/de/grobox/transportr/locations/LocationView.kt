@@ -63,7 +63,7 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
     private var transportNetwork: TransportNetwork? = null
     private var location: WrapLocation? = null
     private var suggestLocationsTaskPending = false
-    protected val ui: LocationViewHolder
+    val ui: LocationViewHolder
     protected var listener: LocationViewListener? = null
     protected val hint: String?
 
@@ -135,7 +135,7 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
         })
     }
 
-    protected class LocationViewHolder internal constructor(view: View) {
+    class LocationViewHolder internal constructor(view: View) {
         val status: ImageView = view.findViewById(R.id.statusButton)
         val location: AutoCompleteTextView = view.findViewById(R.id.location)
         internal val progress: ProgressBar = view.findViewById(R.id.progress)
