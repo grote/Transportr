@@ -5,6 +5,7 @@ apply plugin: 'witness'
 apply from: 'witness.gradle'
 
 android {
+	namespace "de.grobox.transportr"
 
 	defaultConfig {
 		versionCode 131
@@ -24,6 +25,7 @@ android {
 	}
 
 	buildFeatures {
+		buildConfig true
 		viewBinding true
 	}
 
@@ -53,6 +55,11 @@ android {
 	compileOptions {
 		targetCompatibility JavaVersion.VERSION_1_8
 		sourceCompatibility JavaVersion.VERSION_1_8
+	}
+
+	// as per https://developer.android.com/studio/write/java8-support
+	kotlinOptions {
+		jvmTarget = "1.8"
 	}
 
 	sourceSets {
@@ -141,12 +148,8 @@ dependencies {
 		exclude group: 'org.json', module: 'json' // provided by Android
 		exclude group: 'net.sf.kxml', module: 'kxml2' // provided by Android
 		exclude group: 'org.slf4j', module: 'slf4j-api' // v. 2.0.16 broken
-		exclude group: 'com.squareup.okhttp3', module: 'okhttp' // included version 4.12.0 requires newer kotlin version than what we have
-		exclude group: 'com.squareup.okhttp3', module: 'logging-interceptor'
 	}
 	implementation 'org.slf4j:slf4j-api:2.0.9' // Force version 2.0.9 for now
-	implementation 'com.squareup.okhttp3:okhttp:3.12.13'
-	implementation 'com.squareup.okhttp3:logging-interceptor:3.12.13'
 	debugImplementation 'com.github.tony19:logback-android:1.1.1-12'
 
 	testImplementation 'junit:junit:4.13.1'
