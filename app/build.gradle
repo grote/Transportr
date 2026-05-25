@@ -138,17 +138,22 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
+	// TODO may get rid of guava by switching to PTE-utils
+	// see https://gitlab.com/opentransitmap/public-transport-enabler/-/commit/bf8fe7544ac9bf27a2154c23b7f99481c8f30780
 	implementation('com.google.guava:guava:29.0-android') {
 		exclude module: 'failureaccess'
 		exclude group: 'com.google.j2objc'
 	}
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:09b90d37bfe452f7845f73aac256fd7eb2ae978a') {
-		exclude group: 'com.google.guava' // included above
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:1b2afb8f0224ed6d2461cf2c8e5a4a83f7fa20f6') {
 		exclude group: 'org.json', module: 'json' // provided by Android
 		exclude group: 'net.sf.kxml', module: 'kxml2' // provided by Android
 		exclude group: 'org.slf4j', module: 'slf4j-api' // v. 2.0.16 broken
+		exclude group: 'com.squareup.okhttp3', module: 'okhttp' // included version 4.12.0 requires newer kotlin version than what we have
+		exclude group: 'com.squareup.okhttp3', module: 'logging-interceptor'
 	}
 	implementation 'org.slf4j:slf4j-api:2.0.9' // Force version 2.0.9 for now
+	implementation 'com.squareup.okhttp3:okhttp:3.12.13'
+	implementation 'com.squareup.okhttp3:logging-interceptor:3.12.13'
 	debugImplementation 'com.github.tony19:logback-android:1.1.1-12'
 
 	testImplementation 'junit:junit:4.13.1'
