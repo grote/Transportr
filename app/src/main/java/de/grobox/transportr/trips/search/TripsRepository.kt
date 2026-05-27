@@ -70,7 +70,8 @@ class TripsRepository(
     val isFavTrip = MutableLiveData<Boolean>()
 
     private var uid: Long = 0L
-    private var queryTripsContext: QueryTripsContext? = null
+    private var queryTripsLaterContext: QueryTripsContext? = null
+    private var queryTripsEarlierContext: QueryTripsContext? = null
     private var queryTripsTask = Thread()
 
     init {
@@ -80,7 +81,8 @@ class TripsRepository(
     private fun clearState() {
         trips.value = null
         queryMoreState.value = QueryMoreState.NONE
-        queryTripsContext = null
+        queryTripsLaterContext = null
+        queryTripsEarlierContext = null
         isFavTrip.value = null
         uid = 0L
     }
@@ -114,7 +116,7 @@ class TripsRepository(
             )
             if (queryTripsResult.status == OK && queryTripsResult.trips.size > 0) {
                 // deliver result first, so UI can get updated
-                onQueryTripsResultReceived(queryTripsResult)
+                onQueryTripsResultReceived(queryTripsResult, null)
                 // store locations (needed for references in stored search)
                 val from = locationRepository.addFavoriteLocation(query.from, FROM)
                 val via = query.via?.let { locationRepository.addFavoriteLocation(it, VIA) }
@@ -143,19 +145,19 @@ class TripsRepository(
     }
 
     fun searchMore(later: Boolean) {
-        if (queryTripsContext == null) throw IllegalStateException("No query context")
+        if (later && !queryTripsLaterContext!!.canQueryLater()) throw IllegalStateException("Can not query later")
+        if (!later && !queryTripsEarlierContext!!.canQueryEarlier()) throw IllegalStateException("Can not query earlier")
 
-        Log.i(TAG, "QueryTripsContext: " + queryTripsContext!!.toString())
+        val queryTripsContext = if (later) queryTripsLaterContext!! else queryTripsEarlierContext!!
+
+        Log.i(TAG, "QueryTripsContext: " + queryTripsContext.toString())
         Log.i(TAG, "Later: $later")
-
-        if (later && !queryTripsContext!!.canQueryLater()) throw IllegalStateException("Can not query later")
-        if (!later && !queryTripsContext!!.canQueryEarlier()) throw IllegalStateException("Can not query earlier")
 
         thread(true) {
             try {
                 val queryTripsResult = networkProvider.queryMoreTrips(queryTripsContext, later)
                 if (queryTripsResult.status == OK && queryTripsResult.trips.size > 0) {
-                    onQueryTripsResultReceived(queryTripsResult)
+                    onQueryTripsResultReceived(queryTripsResult, later)
                 } else {
                     queryMoreError.postValue(queryTripsResult.getError())
                 }
@@ -165,10 +167,11 @@ class TripsRepository(
         }
     }
 
-    private fun onQueryTripsResultReceived(queryTripsResult: QueryTripsResult) {
+    private fun onQueryTripsResultReceived(queryTripsResult: QueryTripsResult, later: Boolean?) {
         Handler(Looper.getMainLooper()).post {
-            queryTripsContext = queryTripsResult.context
-            queryMoreState.value = getQueryMoreStateFromContext(queryTripsContext)
+            if (later == null || !later) queryTripsEarlierContext = queryTripsResult.context
+            if (later == null || later) queryTripsLaterContext = queryTripsResult.context
+            queryMoreState.value = getQueryMoreStateFromContext()
 
             val oldTrips = trips.value?.let { HashSet(it) } ?: HashSet()
             oldTrips.addAll(queryTripsResult.trips)
@@ -176,17 +179,16 @@ class TripsRepository(
         }
     }
 
-    private fun getQueryMoreStateFromContext(context: QueryTripsContext?): QueryMoreState = context?.let {
-        return if (it.canQueryEarlier() && it.canQueryLater()) {
+    private fun getQueryMoreStateFromContext() =
+        if (queryTripsEarlierContext?.canQueryEarlier() == true && queryTripsLaterContext?.canQueryLater() == true) {
             QueryMoreState.BOTH
-        } else if (it.canQueryEarlier()) {
+        } else if (queryTripsEarlierContext?.canQueryEarlier() == true) {
             QueryMoreState.EARLIER
-        } else if (it.canQueryLater()) {
+        } else if (queryTripsLaterContext?.canQueryLater() == true) {
             QueryMoreState.LATER
         } else {
             QueryMoreState.NONE
         }
-    } ?: QueryMoreState.NONE
 
     private fun QueryTripsResult.getError(): String = when (status) {
         AMBIGUOUS -> ctx.getString(R.string.trip_error_ambiguous)
