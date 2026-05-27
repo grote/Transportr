@@ -37,6 +37,7 @@ import de.schildbach.pte.dto.Product
 import de.schildbach.pte.dto.Trip
 import java.text.NumberFormat
 import java.util.*
+import kotlin.time.Duration.Companion.minutes
 
 internal object TripUtils {
 
@@ -57,8 +58,8 @@ internal object TripUtils {
         if (trip == null) throw IllegalStateException()
         val intent = Intent(Intent.ACTION_INSERT).apply {
             type = "vnd.android.cursor.item/event"
-            putExtra(EXTRA_EVENT_BEGIN_TIME, trip.firstDepartureTime.time)
-            putExtra(EXTRA_EVENT_END_TIME, trip.lastArrivalTime.time)
+            putExtra(EXTRA_EVENT_BEGIN_TIME, trip.firstDepartureTime.time - (trip.firstPublicLeg?.departureDelay ?: 0))
+            putExtra(EXTRA_EVENT_END_TIME, trip.lastArrivalTime.time - (trip.lastPublicLeg?.arrivalDelay ?: 0))
             putExtra(Events.TITLE, trip.from.name + " → " + trip.to.name)
             putExtra(Events.DESCRIPTION, tripToString(context, trip))
             if (trip.from.place != null) putExtra(Events.EVENT_LOCATION, trip.from.place)
@@ -86,7 +87,7 @@ internal object TripUtils {
 
         // show date first, if trip doesn't start today
         val calendar = Calendar.getInstance()
-        calendar.time = trip.firstDepartureTime
+        calendar.time = Date(trip.firstDepartureTime.time - (trip.firstPublicLeg?.departureDelay ?: 0))
         val isToday = isToday(calendar)
         if (!isToday) {
             sb.append(context.getString(R.string.trip_share_date, formatDate(context, trip.firstDepartureTime))).append("\n\n")
@@ -95,7 +96,7 @@ internal object TripUtils {
         for (leg in trip.legs) {
             sb.append(legToString(context, leg)).append("\n\n")
         }
-        if (isToday) sb.append(context.getString(R.string.times_include_delays)).append("\n\n")
+        if (isToday) sb.append(context.getString(R.string.times_do_not_include_delays)).append("\n\n")
         sb.append(context.getString(R.string.created_by, context.getString(R.string.app_name)))
                 .append("\n").append(context.getString(R.string.website)).append(context.getString(R.string.website_source_shared))
         return sb.toString()
@@ -103,7 +104,15 @@ internal object TripUtils {
 
     @JvmStatic
     fun legToString(context: Context, leg: Trip.Leg): String {
-        var str = "${formatTime(context, leg.departureTime)} ${getLocationName(leg.departure)}"
+        var str = ""
+        var departureTime = leg.departureTime.time
+        var arrivalTime = leg.arrivalTime.time
+
+        if (leg is Trip.Public) {
+            departureTime -= leg.departureDelay
+            arrivalTime -= leg.arrivalDelay
+        }
+        str += "${formatTime(context, Date(departureTime))} ${getLocationName(leg.departure)}"
 
         if (leg is Trip.Public) {
             // show departure position if existing
@@ -122,7 +131,7 @@ internal object TripUtils {
             if (leg.distance > 0) str += context.resources.getString(R.string.meter, leg.distance)
             if (leg.min > 0) str += " ${context.resources.getString(R.string.for_x_min, leg.min)}"
         }
-        str += "\n${formatTime(context, leg.arrivalTime)} ${getLocationName(leg.arrival)}"
+        str += "\n${formatTime(context, Date(arrivalTime))} ${getLocationName(leg.arrival)}"
 
         // add arrival position if existing
         if (leg is Trip.Public && leg.arrivalPosition != null) {

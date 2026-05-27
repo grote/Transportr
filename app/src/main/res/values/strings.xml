@@ -187,6 +187,7 @@ and always knows where you are to not miss where to get off the bus.
 	<string name="system_default">System Default</string>
 	<string name="trip_share_date">Date: %s</string>
 	<string name="times_include_delays">(Attention: Times may include reported delays)</string>
+	<string name="times_do_not_include_delays">(Attention: Times don\'t include reported delays)</string>
 	<string name="created_by">Created by %s</string>
 
 	<string name="home">Home</string>
