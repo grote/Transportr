@@ -40,10 +40,10 @@ import de.grobox.transportr.locations.LocationView
 import de.grobox.transportr.locations.LocationsViewModel
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.settings.SettingsManager
-import javax.annotation.ParametersAreNonnullByDefault
+import org.jspecify.annotations.NullMarked
 import javax.inject.Inject
 
-@ParametersAreNonnullByDefault
+@NullMarked
 abstract class SpecialLocationFragment : DialogFragment(), LocationView.LocationViewListener {
 
     @Inject

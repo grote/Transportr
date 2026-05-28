@@ -31,7 +31,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCa
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
@@ -60,7 +60,7 @@ import static de.grobox.transportr.utils.IntentUtils.findDirections;
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_DISMISSED;
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FOCAL_PRESSED;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 public class MapActivity extends DrawerActivity implements LocationViewListener {
 
 	@Inject ViewModelProvider.Factory viewModelFactory;

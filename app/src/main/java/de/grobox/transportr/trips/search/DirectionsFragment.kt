@@ -43,6 +43,7 @@ import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.FROM
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.TO
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType.VIA
+import de.grobox.transportr.databinding.FragmentDirectionsFormBinding
 import de.grobox.transportr.settings.SettingsManager
 import de.grobox.transportr.ui.TimeDateFragment
 import de.grobox.transportr.utils.Constants.DATE
@@ -54,14 +55,17 @@ import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.DateUtils.isNow
 import de.grobox.transportr.utils.DateUtils.isToday
 import de.schildbach.pte.dto.Product
-import kotlinx.android.synthetic.main.fragment_directions_form.*
-import kotlinx.android.synthetic.main.location_view.view.gpsButton
 import java.util.*
-import javax.annotation.ParametersAreNonnullByDefault
+import org.jspecify.annotations.NullMarked
 import javax.inject.Inject
 
-@ParametersAreNonnullByDefault
+@NullMarked
 class DirectionsFragment : TransportrFragment() {
+
+    private var _binding: FragmentDirectionsFormBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     @Inject
     internal lateinit var settingsManager: SettingsManager
@@ -71,59 +75,67 @@ class DirectionsFragment : TransportrFragment() {
     private lateinit var viewModel: DirectionsViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_directions_form, container, false)
+        _binding = FragmentDirectionsFormBinding.inflate(inflater, container, false)
         component.inject(this)
 
         viewModel = ViewModelProvider(activity!!, viewModelFactory).get(DirectionsViewModel::class.java)
 
-        return v
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpToolbar(toolbar)
+        setUpToolbar(binding.toolbar)
 
         val network = viewModel.transportNetwork.value ?: throw IllegalStateException()
-        fromLocation.setTransportNetwork(network)
-        viaLocation.setTransportNetwork(network)
-        toLocation.setTransportNetwork(network)
+        binding.fromLocation.setTransportNetwork(network)
+        binding.viaLocation.setTransportNetwork(network)
+        binding.toLocation.setTransportNetwork(network)
 
-        fromLocation.type = FROM
-        viaLocation.type = VIA
-        toLocation.type = TO
+        binding.fromLocation.type = FROM
+        binding.viaLocation.type = VIA
+        binding.toLocation.type = TO
 
-        fromLocation.setLocationViewListener(viewModel)
-        viaLocation.setLocationViewListener(viewModel)
-        toLocation.setLocationViewListener(viewModel)
+        binding.fromLocation.setLocationViewListener(viewModel)
+        binding.viaLocation.setLocationViewListener(viewModel)
+        binding.toLocation.setLocationViewListener(viewModel)
 
         viewModel.home.observe(viewLifecycleOwner, {
-            fromLocation.setHomeLocation(it)
-            viaLocation.setHomeLocation(it)
-            toLocation.setHomeLocation(it)
+            binding.fromLocation.setHomeLocation(it)
+            binding.viaLocation.setHomeLocation(it)
+            binding.toLocation.setHomeLocation(it)
         })
         viewModel.work.observe(viewLifecycleOwner, {
-            fromLocation.setWorkLocation(it)
-            viaLocation.setWorkLocation(it)
-            toLocation.setWorkLocation(it)
+            binding.fromLocation.setWorkLocation(it)
+            binding.viaLocation.setWorkLocation(it)
+            binding.toLocation.setWorkLocation(it)
         })
         viewModel.locations.observe(viewLifecycleOwner, {
             if (it == null) return@observe
-            fromLocation.setFavoriteLocations(it)
-            viaLocation.setFavoriteLocations(it)
-            toLocation.setFavoriteLocations(it)
+            binding.fromLocation.setFavoriteLocations(it)
+            binding.viaLocation.setFavoriteLocations(it)
+            binding.toLocation.setFavoriteLocations(it)
         })
         viewModel.fromLocation.observe(viewLifecycleOwner, {
-            fromLocation.setLocation(it)
-            if (it != null) toLocation.requestFocus()
+            binding.fromLocation.setLocation(it)
+            if (it != null) binding.toLocation.requestFocus()
             onLocationsChanged()
         })
-        viewModel.viaLocation.observe(viewLifecycleOwner, { viaLocation.setLocation(it) })
+        viewModel.viaLocation.observe(viewLifecycleOwner, {
+            binding.viaLocation.setLocation(it)
+        })
         viewModel.toLocation.observe(viewLifecycleOwner, {
-            toLocation.setLocation(it)
+            binding.toLocation.setLocation(it)
             onLocationsChanged()
         })
-        viewModel.viaSupported.observe(viewLifecycleOwner, { viaIcon.visibility = if (it) VISIBLE else GONE })
+        viewModel.viaSupported.observe(viewLifecycleOwner, { binding.viaIcon.visibility = if (it) VISIBLE else GONE })
         viewModel.isDeparture.observe(viewLifecycleOwner, { onIsDepartureChanged(it) })
         viewModel.isExpanded.observe(viewLifecycleOwner, { onViaVisibleChanged(it) })
         viewModel.lastQueryCalendar.observe(viewLifecycleOwner, { onCalendarUpdated(it) })
@@ -132,27 +144,28 @@ class DirectionsFragment : TransportrFragment() {
         viewModel.isFavTrip.observe(viewLifecycleOwner, { onFavStatusChanged(it) })
         viewModel.products.observe(viewLifecycleOwner, { onProductsChanged(it) })
 
-        favIcon.setOnClickListener { viewModel.toggleFavTrip() }
+        binding.favIcon.setOnClickListener { viewModel.toggleFavTrip() }
 
-        timeBackground.setOnClickListener {
+        binding.timeBackground.setOnClickListener {
             if (viewModel.lastQueryCalendar.value == null) throw IllegalStateException()
             val fragment = TimeDateFragment.newInstance(viewModel.lastQueryCalendar.value!!, viewModel.isDeparture.value!!)
             fragment.setTimeDateListener(viewModel)
             fragment.show(activity!!.supportFragmentManager, TimeDateFragment.TAG)
         }
-        timeBackground.setOnLongClickListener {
+        binding.timeBackground.setOnLongClickListener {
             viewModel.resetCalender()
             true
         }
 
-        productsIcon.setOnClickListener {
+        binding.productsIcon.setOnClickListener {
             activity?.let { a ->
                 ProductDialogFragment().show(a.supportFragmentManager, ProductDialogFragment.TAG)
             }
         }
-        swapIcon.setOnClickListener { swapLocations() }
+        binding.swapIcon.setOnClickListener { swapLocations() }
 
-        fromLocation.gpsButton.setOnClickListener {
+        // todo: how to access gpsButton here?
+        binding.fromLocation.ui.gps.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED
             ) {
@@ -162,19 +175,19 @@ class DirectionsFragment : TransportrFragment() {
             }
         }
 
-        viaIcon.setOnClickListener { viewModel.toggleIsExpanded() }
+        binding.viaIcon.setOnClickListener { viewModel.toggleIsExpanded() }
 
-        TooltipCompat.setTooltipText(productsIcon, getString(R.string.action_choose_products))
-        TooltipCompat.setTooltipText(swapIcon, getString(R.string.action_switch_locations))
-        TooltipCompat.setTooltipText(viaIcon, getString(R.string.action_navigation_expand))
+        TooltipCompat.setTooltipText(binding.productsIcon, getString(R.string.action_choose_products))
+        TooltipCompat.setTooltipText(binding.swapIcon, getString(R.string.action_switch_locations))
+        TooltipCompat.setTooltipText(binding.viaIcon, getString(R.string.action_navigation_expand))
     }
 
     private fun onLocationsChanged() {
         val fromNotEmpty = this.viewModel.fromLocation.value != null
         val toNotEmpty = this.viewModel.toLocation.value != null
-        swapIcon.isEnabled = fromNotEmpty || toNotEmpty
+        binding.swapIcon.isEnabled = fromNotEmpty || toNotEmpty
         // If icon disabled, grey it out
-        swapIcon.alpha = if (swapIcon.isEnabled) 1.0f else 0.5f
+        binding.swapIcon.alpha = if (binding.swapIcon.isEnabled) 1.0f else 0.5f
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -189,9 +202,9 @@ class DirectionsFragment : TransportrFragment() {
         if (savedInstanceState != null && viewModel.trips.value == null) {
             viewModel.setIsExpanded(savedInstanceState.getBoolean(EXPANDED, false))
             viewModel.setIsDeparture(savedInstanceState.getBoolean(DEPARTURE, true))
-            viewModel.setFromLocation(fromLocation.getLocation())
-            viewModel.setViaLocation(viaLocation.getLocation())
-            viewModel.setToLocation(toLocation.getLocation())
+            viewModel.setFromLocation(binding.fromLocation.getLocation())
+            viewModel.setViaLocation(binding.viaLocation.getLocation())
+            viewModel.setToLocation(binding.toLocation.getLocation())
             viewModel.onTimeAndDateSet(savedInstanceState.getSerializable(DATE) as Calendar)
         }
         (activity!!.supportFragmentManager.findFragmentByTag(TimeDateFragment.TAG) as? TimeDateFragment)?.setTimeDateListener(viewModel)
@@ -201,24 +214,24 @@ class DirectionsFragment : TransportrFragment() {
         if (calendar == null) return
         when {
             isNow(calendar) -> {
-                time.setText(R.string.now_small)
-                date.visibility = GONE
+                binding.time.setText(R.string.now_small)
+                binding.date.visibility = GONE
             }
             isToday(calendar) -> {
                 val relTime = formatRelativeTime(context, calendar.time, 30)
-                time.text = if (relTime.visibility == VISIBLE) relTime.relativeTime else formatTime(context, calendar.time)
-                date.visibility = GONE
+                binding.time.text = if (relTime.visibility == VISIBLE) relTime.relativeTime else formatTime(context, calendar.time)
+                binding.date.visibility = GONE
             }
             else -> {
-                time.text = formatTime(context, calendar.time)
-                date.text = formatDate(context, calendar.time)
-                date.visibility = VISIBLE
+                binding.time.text = formatTime(context, calendar.time)
+                binding.date.text = formatDate(context, calendar.time)
+                binding.date.visibility = VISIBLE
             }
         }
     }
 
     private fun swapLocations() {
-        val toToY = fromCard.y - toCard.y
+        val toToY = binding.fromCard.y - binding.toCard.y
         val slideUp = TranslateAnimation(
             RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f,
             RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, toToY
@@ -228,7 +241,7 @@ class DirectionsFragment : TransportrFragment() {
             isFillEnabled = true
         }
 
-        val fromToY = toCard.y - fromCard.y
+        val fromToY = binding.toCard.y - binding.fromCard.y
         val slideDown = TranslateAnimation(
             RELATIVE_TO_SELF, 0.0f, RELATIVE_TO_SELF, 0.0f,
             RELATIVE_TO_SELF, 0.0f, Animation.ABSOLUTE, fromToY
@@ -238,8 +251,8 @@ class DirectionsFragment : TransportrFragment() {
             isFillEnabled = true
         }
 
-        fromCard.startAnimation(slideDown)
-        toCard.startAnimation(slideUp)
+        binding.fromCard.startAnimation(slideDown)
+        binding.toCard.startAnimation(slideUp)
 
         slideUp.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {}
@@ -249,8 +262,8 @@ class DirectionsFragment : TransportrFragment() {
             override fun onAnimationEnd(animation: Animation) {
                 viewModel.swapFromAndToLocations()
 
-                fromCard.clearAnimation()
-                toCard.clearAnimation()
+                binding.fromCard.clearAnimation()
+                binding.toCard.clearAnimation()
 
                 viewModel.search()
             }
@@ -258,25 +271,25 @@ class DirectionsFragment : TransportrFragment() {
     }
 
     private fun onIsDepartureChanged(isDeparture: Boolean) {
-        departure.text = getString(if (isDeparture) R.string.trip_dep else R.string.trip_arr)
+        binding.departure.text = getString(if (isDeparture) R.string.trip_dep else R.string.trip_arr)
     }
 
     private fun onViaVisibleChanged(viaVisible: Boolean) {
-        viaIcon?.setImageResource(if (viaVisible) R.drawable.ic_action_navigation_unfold_less_white else R.drawable.ic_action_navigation_unfold_more_white)
-        viaCard.visibility = if (viaVisible) VISIBLE else GONE
+        binding.viaIcon?.setImageResource(if (viaVisible) R.drawable.ic_action_navigation_unfold_less_white else R.drawable.ic_action_navigation_unfold_more_white)
+        binding.viaCard.visibility = if (viaVisible) VISIBLE else GONE
     }
 
     private fun updateGpsLocation(type: FavLocationType?, refresh: Boolean) {
         if (type == null) {
             viewModel.locationLiveData.removeObservers(viewLifecycleOwner)
-            fromLocation.clearSearching()
+            binding.fromLocation.clearSearching()
             return
         }
         if (ContextCompat.checkSelfPermission(context, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED) {
             return
         }
-        fromLocation.setSearching()
-        if (!refresh) toLocation.requestFocus()
+        binding.fromLocation.setSearching()
+        if (!refresh) binding.toLocation.requestFocus()
         var counter = 0
         viewModel.locationLiveData.observe(viewLifecycleOwner) { location ->
             counter ++
@@ -292,18 +305,18 @@ class DirectionsFragment : TransportrFragment() {
 
     private fun onFavStatusChanged(isFav: Boolean?) {
         if (isFav == null) {
-            favIcon.visibility = INVISIBLE
+            binding.favIcon.visibility = INVISIBLE
         } else {
-            favIcon.visibility = VISIBLE
-            favIcon.setImageResource(if (isFav) R.drawable.ic_action_star else R.drawable.ic_action_star_empty)
+            binding.favIcon.visibility = VISIBLE
+            binding.favIcon.setImageResource(if (isFav) R.drawable.ic_action_star else R.drawable.ic_action_star_empty)
             val tooltip = getString(if (isFav) R.string.action_unfav_trip else R.string.action_fav_trip)
-            favIcon.contentDescription = tooltip
-            TooltipCompat.setTooltipText(favIcon, tooltip)
+            binding.favIcon.contentDescription = tooltip
+            TooltipCompat.setTooltipText(binding.favIcon, tooltip)
         }
     }
 
     private fun onProductsChanged(products: EnumSet<Product>) {
-        productsMarked.visibility = if (Product.ALL == products) GONE else VISIBLE
+        binding.productsMarked.visibility = if (Product.ALL == products) GONE else VISIBLE
     }
 
 }

@@ -19,7 +19,8 @@
 
 package de.grobox.transportr.locations;
 
-import com.google.common.base.Strings;
+import android.text.TextUtils;
+
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 import java.io.Serializable;
@@ -35,10 +36,10 @@ import de.schildbach.pte.dto.LocationType;
 import de.schildbach.pte.dto.Point;
 import de.schildbach.pte.dto.Product;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.NORMAL;
 import static de.schildbach.pte.dto.LocationType.ANY;
 import static de.schildbach.pte.dto.LocationType.COORD;
+import static de.schildbach.pte.util.Preconditions.checkArgument;
 
 public class WrapLocation implements Serializable {
 
@@ -70,7 +71,7 @@ public class WrapLocation implements Serializable {
 	}
 
 	public WrapLocation(WrapType wrapType) {
-		checkArgument(wrapType != NORMAL, "Type can't be normal");
+		checkArgument(wrapType != NORMAL, () -> "Type can't be normal");
 		this.wrapType = wrapType;
 		this.type = ANY;
 	}
@@ -80,7 +81,7 @@ public class WrapLocation implements Serializable {
 		this.type = COORD;
 		this.lat = (int) (latLng.getLatitude() * 1E6);
 		this.lon = (int) (latLng.getLongitude() * 1E6);
-		checkArgument(lat != 0 || lon != 0, "Null Island is not a valid location");
+		checkArgument(lat != 0 || lon != 0, () -> "Null Island is not a valid location");
 	}
 
 	public WrapType getWrapType() {
@@ -101,7 +102,7 @@ public class WrapLocation implements Serializable {
 	}
 
 	public boolean hasId() {
-		return !Strings.isNullOrEmpty(id);
+		return !TextUtils.isEmpty(id);
 	}
 
 	public final boolean hasLocation() {

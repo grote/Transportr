@@ -37,7 +37,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,7 +55,7 @@ import static de.grobox.transportr.data.locations.FavoriteLocation.ViaComparator
 import static de.grobox.transportr.locations.WrapLocation.WrapType.GPS;
 import static de.grobox.transportr.locations.WrapLocation.WrapType.NORMAL;
 
-@ParametersAreNonnullByDefault
+@NullMarked
 class LocationAdapter extends ArrayAdapter<WrapLocation> implements Filterable {
 
 	private @Nullable HomeLocation homeLocation;

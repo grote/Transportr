@@ -16,7 +16,7 @@
 package de.grobox.transportr.utils
 
 import androidx.annotation.MainThread
-import javax.annotation.ParametersAreNonnullByDefault
+import org.jspecify.annotations.NullMarked
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -36,7 +36,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  *
  * Note that only one observer is going to be notified of changes.
  */
-@ParametersAreNonnullByDefault
+@NullMarked
 class NotifyingLiveData<T>(private val callback: OnActivationCallback) : MutableLiveData<T>() {
 
     @MainThread

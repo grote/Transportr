@@ -21,9 +21,7 @@ package de.grobox.transportr.networks
 
 import android.content.Context
 import androidx.annotation.StringRes
-import javax.annotation.concurrent.Immutable
 
-@Immutable
 internal class Country constructor(
     @param:StringRes @field:StringRes @get:StringRes val name: Int,
     val flag: String,

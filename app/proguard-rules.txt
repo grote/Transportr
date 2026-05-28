@@ -1,3 +1,5 @@
+# todo: try to disable and test for breakages
+-dontoptimize
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
 -dontpreverify

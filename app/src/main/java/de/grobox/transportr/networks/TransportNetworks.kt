@@ -23,11 +23,9 @@ import android.annotation.SuppressLint
 import android.util.Base64
 import android.content.Context
 import de.grobox.transportr.R
-import de.grobox.transportr.networks.TransportNetwork.Status.ALPHA
 import de.grobox.transportr.networks.TransportNetwork.Status.BETA
 import de.schildbach.pte.*
 import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.util.*
 
 @SuppressLint("ConstantLocale")
@@ -74,7 +72,7 @@ private val networks = arrayOf(
                         id = NetworkId.VBB,
                         description = R.string.np_desc_vbb,
                         logo = R.drawable.network_vbb_logo,
-                        factory = { VbbProvider("{\"type\":\"AID\",\"aid\":\"hafas-vbb-apps\"}", "RCTJM2fFxFfxxQfI".toByteArray(Charsets.UTF_8)) }
+                        factory = { VbbProvider("{\"type\":\"AID\",\"aid\":\"hafas-vbb-apps\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.BAYERN,
@@ -101,13 +99,13 @@ private val networks = arrayOf(
                         description = R.string.np_desc_invg,
                         logo = R.drawable.network_invg_logo,
                         status = BETA,
-                        factory = { InvgProvider("{\"type\":\"AID\",\"aid\":\"GITvwi3BGOmTQ2a5\"}", "ERxotxpwFT7uYRsI".toByteArray(Charsets.UTF_8)) }
+                        factory = { InvgProvider("{\"type\":\"AID\",\"aid\":\"GITvwi3BGOmTQ2a5\"}") }
                     ),
                     TransportNetwork (
                         id = NetworkId.VBN,
                         description = R.string.np_desc_vbn,
                         logo = R.drawable.network_vbn_logo,
-                        factory = { VbnProvider("{\"type\":\"AID\",\"aid\":\"rnOHBWhesvc7gFkd\"}", "SP31mBufSyCLmNxp".toByteArray(Charsets.UTF_8)) }
+                        factory = { VbnProvider("{\"type\":\"AID\",\"aid\":\"rnOHBWhesvc7gFkd\"}") }
                     ),
                     TransportNetwork (
                         id = NetworkId.SH,
@@ -211,7 +209,7 @@ private val networks = arrayOf(
                         id = NetworkId.KVV,
                         description = R.string.np_desc_kvv,
                         logo = R.drawable.network_kvv_logo,
-                        factory = { KvvProvider("https://projekte.kvv-efa.de/oeffi/".toHttpUrlOrNull()) }
+                        factory = { KvvProvider(HttpUrl.get("https://projekte.kvv-efa.de/oeffi/")) }
                     ),
                     TransportNetwork(
                         id = NetworkId.NVBW,
@@ -230,7 +228,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_vgs,
                         description = R.string.np_desc_vgs,
                         logo = R.drawable.network_vgs_logo,
-                        factory = { VgsProvider("{\"type\":\"AID\",\"aid\":\"51XfsVqgbdA6oXzHrx75jhlocRg6Xe\"}", "HJtlubisvxiJxss".toByteArray(Charsets.UTF_8)) }
+                        factory = { VgsProvider("{\"type\":\"AID\",\"aid\":\"51XfsVqgbdA6oXzHrx75jhlocRg6Xe\"}") }
                     ),
                     TransportNetwork(
                         id = NetworkId.VRS,

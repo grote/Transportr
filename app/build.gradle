@@ -1,11 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'witness'
-apply from: 'witness.gradle'
+apply plugin: 'com.android.legacy-kapt'
 
 android {
+	namespace "de.grobox.transportr"
 
 	defaultConfig {
 		versionCode 131
@@ -13,7 +12,7 @@ android {
 
 		applicationId "de.grobox.liberario"
 		minSdkVersion 24
-		compileSdk 33
+		compileSdk 34
 		targetSdkVersion 34
 
 		testInstrumentationRunner 'de.grobox.transportr.MockTestRunner'
@@ -24,12 +23,17 @@ android {
 		}
 	}
 
+	buildFeatures {
+		buildConfig true
+		viewBinding true
+	}
+
 	buildTypes {
 		release {
 			resValue "string", "app_name", "Transportr"
 			shrinkResources true
 			minifyEnabled true
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
 		}
 
 		debug {
@@ -38,8 +42,8 @@ android {
 			resValue "string", "app_name", "Transportr Devel"
 			shrinkResources false
 			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-			testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt', 'proguard-test.txt'
+			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
+			testProguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt', 'proguard-test.txt'
 
 			lintOptions {
 				disable 'ProtectedPermissions'
@@ -50,11 +54,6 @@ android {
 	compileOptions {
 		targetCompatibility JavaVersion.VERSION_1_8
 		sourceCompatibility JavaVersion.VERSION_1_8
-	}
-
-	dexOptions {
-		preDexLibraries !project.hasProperty('buildServer')
-		javaMaxHeapSize "1g"
 	}
 
 	sourceSets {
@@ -87,7 +86,7 @@ android {
 		buildTypes.release.signingConfig = null
 	}
 
-	lintOptions {
+	lint {
 		checkReleaseBuilds false
 		disable 'MissingTranslation', // don't put too much pressure on Transifex contributors
 				'InvalidPackage',
@@ -138,12 +137,8 @@ dependencies {
 	implementation "com.google.dagger:dagger:$daggerVersion"
 	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-	implementation('com.google.guava:guava:29.0-android') {
-		exclude module: 'failureaccess'
-		exclude group: 'com.google.j2objc'
-	}
-	implementation('com.gitlab.opentransitmap:public-transport-enabler:09b90d37bfe452f7845f73aac256fd7eb2ae978a') {
-		exclude group: 'com.google.guava' // included above
+	implementation("org.jspecify:jspecify:1.0.0")
+	implementation('com.gitlab.opentransitmap:public-transport-enabler:1b2afb8f0224ed6d2461cf2c8e5a4a83f7fa20f6') {
 		exclude group: 'org.json', module: 'json' // provided by Android
 		exclude group: 'net.sf.kxml', module: 'kxml2' // provided by Android
 		exclude group: 'org.slf4j', module: 'slf4j-api' // v. 2.0.16 broken

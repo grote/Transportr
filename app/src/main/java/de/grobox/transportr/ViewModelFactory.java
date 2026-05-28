@@ -22,13 +22,13 @@ import androidx.annotation.NonNull;
 
 import java.util.Map;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 
 @Singleton
-@ParametersAreNonnullByDefault
+@NullMarked
 public class ViewModelFactory implements ViewModelProvider.Factory {
 	private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
 

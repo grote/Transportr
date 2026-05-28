@@ -25,10 +25,10 @@ import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;
 
 
-@ParametersAreNonnullByDefault
+@NullMarked
 public abstract class TransportrFragment extends Fragment {
 
 	protected AppComponent getComponent() {
