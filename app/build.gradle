@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -95,6 +94,7 @@ android {
 				'IconDensities', //todo: migrate all (network) icons to vectors
 				'PrivateResource' //todo: investigate about private Material design resources (e.g. CardView style)
 	}
+	namespace 'de.grobox.transportr'
 }
 
 dependencies {
