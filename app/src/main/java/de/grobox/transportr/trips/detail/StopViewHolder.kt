@@ -29,16 +29,19 @@ import de.grobox.transportr.trips.BaseViewHolder
 import de.grobox.transportr.utils.DateUtils.formatTime
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Stop
-import kotlinx.android.synthetic.main.list_item_stop.view.*
 import java.util.Date
+import de.grobox.transportr.databinding.ListItemStopBinding
 
 
-internal class StopViewHolder(v: View, private val listener : LegClickListener) : BaseViewHolder(v) {
+internal class StopViewHolder(
+    private val binding: ListItemStopBinding,
+    private val listener: LegClickListener
+) : BaseViewHolder(binding.root) {
 
-    private val circle: ImageView = v.circle
-    private val stopLocation: TextView = v.stopLocation
-    private val stopPlatform: TextView = v.stopPlatform
-    private val stopButton: ImageButton = v.stopButton
+    private val circle: ImageView = binding.circle
+    private val stopLocation: TextView = binding.stopLocation
+    private val stopPlatform: TextView = binding.stopPlatform
+    private val stopButton: ImageButton = binding.stopButton
 
     fun bind(stop: Stop, color: Int) {
         if (stop.arrivalTime != null) {

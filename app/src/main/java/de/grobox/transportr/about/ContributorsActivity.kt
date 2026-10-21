@@ -25,7 +25,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrActivity
-import kotlinx.android.synthetic.main.activity_about.*
+import de.grobox.transportr.databinding.ActivityAboutBinding
 
 class ContributorsActivity : TransportrActivity() {
 
@@ -33,14 +33,19 @@ class ContributorsActivity : TransportrActivity() {
         @JvmField
         val TAG : String = ContributorsActivity::class.java.simpleName
     }
+    private lateinit var binding: ActivityAboutBinding
+
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
         setUpCustomToolbar(false)
 
-        pager.adapter = ContributorsPagerAdapter(supportFragmentManager)
-        tabLayout.setupWithViewPager(pager)
+        binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.pager.adapter = ContributorsPagerAdapter(supportFragmentManager)
+        binding.tabLayout.setupWithViewPager(binding.pager)
     }
 
     private inner class ContributorsPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
