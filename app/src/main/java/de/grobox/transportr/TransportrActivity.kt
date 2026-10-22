@@ -23,7 +23,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.MenuItem
 import android.view.View
@@ -60,6 +59,11 @@ abstract class TransportrActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         WindowCompat.enableEdgeToEdge(window)
+
+        //putting this here instead of each individual Activity
+        WindowCompat.getInsetsController(window, window.decorView)
+            .setAppearanceLightNavigationBars(!isDarkMode())
+
 
     }
 
@@ -148,11 +152,6 @@ abstract class TransportrActivity : AppCompatActivity() {
             if(consumed) WindowInsetsCompat.CONSUMED else insets
         }
         ViewCompat.requestApplyInsets(view)
-    }
-
-    protected fun setSystemBarsIconsAsLight(light: Boolean){
-        WindowCompat.getInsetsController(window, window.decorView)
-            .isAppearanceLightStatusBars = !light
     }
 
     fun getColorInt(id: Int): Int{

@@ -99,7 +99,6 @@ class PickTransportNetworkActivity : TransportrActivity(), ISelectionListener<II
             ColorProtection(Side.TOP, color),
             GradientProtection(Side.BOTTOM, color)
         ))
-        setSystemBarsIconsAsLight(true)
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
