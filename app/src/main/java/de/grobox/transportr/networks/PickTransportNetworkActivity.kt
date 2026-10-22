@@ -20,12 +20,17 @@
 package de.grobox.transportr.networks
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsCompat.Side
+import androidx.core.view.insets.ColorProtection
+import androidx.core.view.insets.GradientProtection
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.fastadapter.IItem
@@ -34,6 +39,7 @@ import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.expandable.ExpandableExtension
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrActivity
+import de.grobox.transportr.databinding.ActivityPickTransportNetworkBinding
 import de.grobox.transportr.map.MapActivity
 
 class PickTransportNetworkActivity : TransportrActivity(), ISelectionListener<IItem<*, *>> {
@@ -44,6 +50,7 @@ class PickTransportNetworkActivity : TransportrActivity(), ISelectionListener<II
 
     private var firstStart: Boolean = false
     private var selectAllowed = false
+    private lateinit var viewBinding: ActivityPickTransportNetworkBinding
 
     companion object {
         const val FORCE_NETWORK_SELECTION = "ForceNetworkSelection"
@@ -51,7 +58,8 @@ class PickTransportNetworkActivity : TransportrActivity(), ISelectionListener<II
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pick_transport_network)
+        viewBinding = ActivityPickTransportNetworkBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
         setUpCustomToolbar(false)
 
         if (intent.getBooleanExtra(FORCE_NETWORK_SELECTION, false)) {
@@ -82,6 +90,16 @@ class PickTransportNetworkActivity : TransportrActivity(), ISelectionListener<II
         if (savedInstanceState != null) adapter.withSavedInstanceState(savedInstanceState)
 
         selectItem()
+        // ROAD NOT TAKEN: Apply paddings to top toolbar and bottom list
+        //applyInsetsAsPadding(viewBinding.collapsingToolbar, top=true, consumed=false)
+        //add padding to the recyclerview
+        //applyInsetsAsPadding(viewBinding.list, bottom = true, consumed = false)
+        val color = getColorInt(android.R.attr.colorPrimary)
+        viewBinding.protectionLayout.setProtections(listOf(
+            ColorProtection(Side.TOP, color),
+            GradientProtection(Side.BOTTOM, color)
+        ))
+        setSystemBarsIconsAsLight(true)
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
