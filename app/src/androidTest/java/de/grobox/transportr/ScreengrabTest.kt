@@ -52,22 +52,24 @@ abstract class ScreengrabTest {
     }
 
     val networkId: NetworkId = when(Locale.forLanguageTag(getTestLocale() ?: "de")) {
-        Locale.FRANCE -> NetworkId.SEARCHCH
+        //Locale.FRANCE -> NetworkId.SEARCHCH
         else -> NetworkId.DB
     }
 
     val departureStation = when(networkId) {
-        NetworkId.SEARCHCH -> "Genève"
+        //NetworkId.SEARCHCH -> "Genève"
         else -> "Berlin Hbf"
     }
 
     protected fun getFrom(i: Int): WrapLocation = when(networkId) {
-        NetworkId.SEARCHCH -> when(i) {
+        /*NetworkId.SEARCHCH -> when(i) {
             0 -> getLocation("Zürich HB")
             1 -> getLocation("Lausanne, gare")
             2 -> getLocation("Basel SBB")
             else -> throw RuntimeException()
         }
+
+         */
         else -> when(i) {
             0 -> WrapLocation(STATION, "8011155", 52521481, 13410962, null, "Berlin Alexanderplatz", null)
             1 -> getLocation("Zoologischer Garten")
@@ -77,12 +79,14 @@ abstract class ScreengrabTest {
     }
 
     protected fun getTo(i: Int): WrapLocation = when(networkId) {
-        NetworkId.SEARCHCH -> when(i) {
+        /*NetworkId.SEARCHCH -> when(i) {
             0 -> getLocation("Chur West")
             1 -> getLocation("Bern Wankdorf")
             2 -> getLocation("Luzern, Bahnhof")
             else -> throw RuntimeException()
         }
+
+         */
         else -> when(i) {
             0 -> WrapLocation(STATION, "730874", 52507278, 13331992, null, "Checkpoint Charlie", null)
             1 -> getLocation("Bundestag")
