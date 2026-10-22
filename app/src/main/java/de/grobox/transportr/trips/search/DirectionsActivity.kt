@@ -81,6 +81,8 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
             showFavorites()
             processIntent(intent)
         }
+
+        applyInsetsAsPadding(binding.appBarLayout, top=true)
     }
 
     override fun onStart() {

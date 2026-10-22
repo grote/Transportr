@@ -23,9 +23,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import de.grobox.transportr.networks.PickTransportNetworkActivity
 import de.grobox.transportr.networks.PickTransportNetworkActivity.Companion.FORCE_NETWORK_SELECTION
 import de.grobox.transportr.networks.TransportNetworkManager
@@ -119,6 +122,26 @@ abstract class TransportrActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    protected fun applyInsetsAsPadding(view: View, top: Boolean = false, bottom: Boolean = false, sides: Boolean = true) {
+        val l = view.paddingLeft;
+        val t = view.paddingTop;
+        val r = view.paddingRight;
+        val b = view.paddingBottom
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+            val bars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            v.setPadding(
+                l + if (sides) bars.left else 0,
+                t + if (top) bars.top else 0,
+                r + if (sides) bars.right else 0,
+                b + if (bottom) bars.bottom else 0
+            )
+            insets   // non consumati, così arrivano anche agli altri figli
+        }
+        ViewCompat.requestApplyInsets(view)
     }
 
 
