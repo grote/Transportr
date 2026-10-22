@@ -34,7 +34,6 @@ internal class LegAdapter internal constructor(
         private val showLineName: Boolean) : Adapter<LegViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): LegViewHolder {
-        //val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_leg, viewGroup, false)
         val binding = ListItemLegBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return LegViewHolder(binding, listener, showLineName)
     }

@@ -33,7 +33,7 @@ class ContributorsActivity : TransportrActivity() {
         @JvmField
         val TAG : String = ContributorsActivity::class.java.simpleName
     }
-    private lateinit var binding: ActivityAboutBinding
+    private lateinit var viewBinding: ActivityAboutBinding
 
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +41,11 @@ class ContributorsActivity : TransportrActivity() {
         setContentView(R.layout.activity_about)
         setUpCustomToolbar(false)
 
-        binding = ActivityAboutBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        viewBinding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
-        binding.pager.adapter = ContributorsPagerAdapter(supportFragmentManager)
-        binding.tabLayout.setupWithViewPager(binding.pager)
+        viewBinding.pager.adapter = ContributorsPagerAdapter(supportFragmentManager)
+        viewBinding.tabLayout.setupWithViewPager(viewBinding.pager)
     }
 
     private inner class ContributorsPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {

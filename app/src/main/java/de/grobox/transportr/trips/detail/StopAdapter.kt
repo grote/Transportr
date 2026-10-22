@@ -41,7 +41,6 @@ internal class StopAdapter internal constructor(private val listener: LegClickLi
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): StopViewHolder {
         val v = ListItemStopBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
-            //LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item_stop, viewGroup, false)
         return StopViewHolder(v, listener)
     }
 
