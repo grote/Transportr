@@ -29,6 +29,6 @@ abstract class TransportNetworkViewModel protected constructor(
     manager: TransportNetworkManager
 ) : AndroidViewModel(application) {
 
-    val transportNetwork: LiveData<TransportNetwork> = manager.transportNetwork
+    val transportNetwork: LiveData<TransportNetwork?> = manager.transportNetwork
 
 }
