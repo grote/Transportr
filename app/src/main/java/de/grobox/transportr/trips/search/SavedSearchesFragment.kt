@@ -35,7 +35,7 @@ class SavedSearchesFragment : FavoriteTripsFragment<DirectionsViewModel>() {
 
     override fun getViewModel(): DirectionsViewModel {
         component.inject(this)
-        return ViewModelProvider(activity!!, viewModelFactory).get(viewModelClass)
+        return ViewModelProvider(requireActivity(), viewModelFactory).get(viewModelClass)
     }
 
     override fun getHomePickerDialogFragment(): HomePickerDialogFragment {
@@ -53,13 +53,13 @@ class SavedSearchesFragment : FavoriteTripsFragment<DirectionsViewModel>() {
 
     class HomePickerFragment : HomePickerDialogFragment() {
         override fun viewModel(): LocationsViewModel {
-            return ViewModelProvider(activity!!, viewModelFactory).get(viewModelClass)
+            return ViewModelProvider(requireActivity(), viewModelFactory).get(viewModelClass)
         }
     }
 
     class WorkPickerFragment : WorkPickerDialogFragment() {
         override fun viewModel(): LocationsViewModel {
-            return ViewModelProvider(activity!!, viewModelFactory).get(viewModelClass)
+            return ViewModelProvider(requireActivity(), viewModelFactory).get(viewModelClass)
         }
     }
 

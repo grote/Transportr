@@ -52,7 +52,7 @@ internal class TripMapFragment : GpsMapFragment<TripDetailViewModel>() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         component.inject(this)
-        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(TripDetailViewModel::class.java)
 
         return super.onCreateView(inflater, container, savedInstanceState)
     }

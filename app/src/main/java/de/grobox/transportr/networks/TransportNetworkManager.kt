@@ -30,9 +30,9 @@ import javax.inject.Inject
 class TransportNetworkManager @Inject
 constructor(private val settingsManager: SettingsManager) {
 
-    val transportNetwork = MutableLiveData<TransportNetwork>()
+    val transportNetwork = MutableLiveData<TransportNetwork?>()
     val networkId : LiveData<NetworkId?> =  transportNetwork.map { network ->
-        if(network==null) null else network.id
+        network?.id
     }
     private var transportNetwork2: TransportNetwork? = null
     private var transportNetwork3: TransportNetwork? = null

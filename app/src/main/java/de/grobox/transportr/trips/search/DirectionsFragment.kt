@@ -74,7 +74,7 @@ class DirectionsFragment : TransportrFragment() {
         viewBinding = FragmentDirectionsFormBinding.inflate(inflater, container, false)
         component.inject(this)
 
-        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(DirectionsViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(DirectionsViewModel::class.java)
 
         return viewBinding.root
     }
@@ -138,7 +138,7 @@ class DirectionsFragment : TransportrFragment() {
             if (viewModel.lastQueryCalendar.value == null) throw IllegalStateException()
             val fragment = TimeDateFragment.newInstance(viewModel.lastQueryCalendar.value!!, viewModel.isDeparture.value!!)
             fragment.setTimeDateListener(viewModel)
-            fragment.show(activity!!.supportFragmentManager, TimeDateFragment.TAG)
+            fragment.show(requireActivity().supportFragmentManager, TimeDateFragment.TAG)
         }
         viewBinding.timeBackground.setOnLongClickListener {
             viewModel.resetCalender()
@@ -194,7 +194,7 @@ class DirectionsFragment : TransportrFragment() {
             viewModel.setToLocation(viewBinding.toLocation.getLocation())
             viewModel.onTimeAndDateSet(savedInstanceState.getSerializable(DATE) as Calendar)
         }
-        (activity!!.supportFragmentManager.findFragmentByTag(TimeDateFragment.TAG) as? TimeDateFragment)?.setTimeDateListener(viewModel)
+        (requireActivity().supportFragmentManager.findFragmentByTag(TimeDateFragment.TAG) as? TimeDateFragment)?.setTimeDateListener(viewModel)
     }
 
     private fun onCalendarUpdated(calendar: Calendar?) {

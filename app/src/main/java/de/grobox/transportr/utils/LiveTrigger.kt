@@ -21,7 +21,7 @@ package de.grobox.transportr.utils
 
 import androidx.lifecycle.MutableLiveData
 
-class LiveTrigger : MutableLiveData<Unit>() {
+class LiveTrigger : MutableLiveData<Unit?>() {
     fun trigger() {
         value = null
     }

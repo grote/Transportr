@@ -64,7 +64,7 @@ internal class MapFragment : GpsMapFragment<MapViewModel>(), LoaderCallbacks<Nea
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         component.inject(this)
-        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(MapViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(MapViewModel::class.java)
 
         val v = super.onCreateView(inflater, container, savedInstanceState)
         viewModel.transportNetwork.observe(viewLifecycleOwner) { onTransportNetworkChanged(it) }
