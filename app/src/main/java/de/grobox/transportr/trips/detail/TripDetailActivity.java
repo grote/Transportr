@@ -137,7 +137,7 @@ public class TripDetailActivity extends TransportrActivity {
 		}
 
 		viewBinding.protectionLayout.setProtections(List.of(new ColorProtection(WindowInsetsCompat.Side.BOTTOM
-				, getColorInt(android.R.attr.colorPrimary)
+				//, getColorInt(android.R.attr.colorPrimary)
 				)));
 
 	}
