@@ -19,7 +19,7 @@
 package de.grobox.transportr
 
 import android.app.Application
-import com.mapbox.mapboxsdk.Mapbox
+import org.maplibre.android.MapLibre
 
 open class TransportrApplication : Application() {
     lateinit var component: AppComponent
@@ -28,7 +28,7 @@ open class TransportrApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Mapbox.getInstance(applicationContext)
+        MapLibre.getInstance(applicationContext)
 
         component = createComponent()
     }

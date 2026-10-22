@@ -19,7 +19,7 @@
 
 package de.grobox.transportr.utils
 
-import com.mapbox.mapboxsdk.geometry.LatLng
+import org.maplibre.android.geometry.LatLng
 import de.grobox.transportr.locations.WrapLocation
 import org.junit.Assert
 import org.junit.Test

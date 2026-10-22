@@ -21,8 +21,8 @@ package de.grobox.transportr.data.searches
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Transformations
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.switchMap
 import de.grobox.transportr.AbstractManager
 import de.grobox.transportr.data.locations.FavoriteLocation
 import de.grobox.transportr.data.locations.LocationDao
@@ -38,14 +38,14 @@ class SearchesRepository @Inject constructor(
         private val locationDao: LocationDao,
         transportNetworkManager: TransportNetworkManager) : AbstractManager() {
 
-    private val networkId: LiveData<NetworkId> = transportNetworkManager.networkId
+    private val networkId: LiveData<NetworkId?> = transportNetworkManager.networkId
     private val favoriteTripItems: MediatorLiveData<List<FavoriteTripItem>> = MediatorLiveData()
 
     val favoriteTrips: LiveData<List<FavoriteTripItem>>
         get() = favoriteTripItems
 
     init {
-        val storedSearches = Transformations.switchMap<NetworkId, List<StoredSearch>>(networkId, searchesDao::getStoredSearches)
+        val storedSearches = networkId.switchMap(searchesDao::getStoredSearches)
         this.favoriteTripItems.addSource(storedSearches, this::fetchFavoriteTrips)
     }
 

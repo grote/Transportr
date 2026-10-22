@@ -22,7 +22,7 @@ package de.grobox.transportr.locations
 import android.content.Context
 import android.location.Geocoder
 import androidx.annotation.WorkerThread
-import com.mapbox.mapboxsdk.geometry.LatLng
+import org.maplibre.android.geometry.LatLng
 import de.grobox.transportr.utils.hasLocation
 import de.schildbach.pte.dto.Location
 import de.schildbach.pte.dto.LocationType.ADDRESS

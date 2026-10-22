@@ -31,12 +31,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.loader.app.LoaderManager
 import androidx.loader.app.LoaderManager.LoaderCallbacks
 import androidx.loader.content.Loader
-import com.mapbox.mapboxsdk.annotations.Marker
-import com.mapbox.mapboxsdk.annotations.MarkerOptions
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerClickListener
-import com.mapbox.mapboxsdk.maps.Style
+import org.maplibre.android.annotations.Marker
+import org.maplibre.android.annotations.MarkerOptions
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapLibreMap.OnMarkerClickListener
+import org.maplibre.android.maps.Style
 import de.grobox.transportr.R
 import de.grobox.transportr.locations.NearbyLocationsLoader
 import de.grobox.transportr.locations.WrapLocation
@@ -74,7 +74,7 @@ internal class MapFragment : GpsMapFragment<MapViewModel>(), LoaderCallbacks<Nea
         return v
     }
 
-    override fun onMapReady(mapboxMap: MapboxMap) {
+    override fun onMapReady(mapboxMap: MapLibreMap) {
         super.onMapReady(mapboxMap)
 
         val location = Location(STATION, "fake")
@@ -99,7 +99,7 @@ internal class MapFragment : GpsMapFragment<MapViewModel>(), LoaderCallbacks<Nea
         }
     }
 
-    private fun MapboxMap.isInitialPosition(): Boolean {
+    private fun MapLibreMap.isInitialPosition(): Boolean {
         return cameraPosition.zoom == minZoomLevel &&
                 cameraPosition.target == LatLng(0.0, 0.0)
     }

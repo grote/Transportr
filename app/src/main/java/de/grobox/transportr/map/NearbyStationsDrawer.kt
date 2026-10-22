@@ -21,10 +21,10 @@ package de.grobox.transportr.map
 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import com.mapbox.mapboxsdk.annotations.Icon
-import com.mapbox.mapboxsdk.annotations.Marker
-import com.mapbox.mapboxsdk.geometry.LatLngBounds
-import com.mapbox.mapboxsdk.maps.MapboxMap
+import org.maplibre.android.annotations.Icon
+import org.maplibre.android.annotations.Marker
+import org.maplibre.android.geometry.LatLngBounds
+import org.maplibre.android.maps.MapLibreMap
 import de.grobox.transportr.R
 import de.grobox.transportr.locations.WrapLocation
 import de.grobox.transportr.utils.hasLocation
@@ -37,7 +37,7 @@ internal class NearbyStationsDrawer(context: Context) : MapDrawer(context) {
 
     private val nearbyLocations = HashMap<Marker, Location>()
 
-    fun draw(map: MapboxMap, nearbyStations: List<Location>) {
+    fun draw(map: MapLibreMap, nearbyStations: List<Location>) {
         val builder = LatLngBounds.Builder()
         for (location in nearbyStations) {
             if (!location.hasLocation()) continue

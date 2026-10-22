@@ -29,13 +29,13 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.geometry.LatLngBounds
-import com.mapbox.mapboxsdk.maps.MapView
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
-import com.mapbox.mapboxsdk.maps.Style
+import org.maplibre.android.camera.CameraUpdateFactory
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.geometry.LatLngBounds
+import org.maplibre.android.maps.MapView
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.OnMapReadyCallback
+import org.maplibre.android.maps.Style
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrFragment
 
@@ -43,7 +43,7 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
 
     protected lateinit var mapView: MapView
     private lateinit var attribution: TextView
-    protected var map: MapboxMap? = null
+    protected var map: MapLibreMap? = null
     protected var mapPadding: Int = 0
     protected var mapInset: MapPadding = MapPadding()
 
@@ -81,7 +81,7 @@ abstract class BaseMapFragment : TransportrFragment(), OnMapReadyCallback {
     }
 
     @CallSuper
-    override fun onMapReady(mapboxMap: MapboxMap) {
+    override fun onMapReady(mapboxMap: MapLibreMap) {
         map = mapboxMap
         activity?.run {
             // work-around to force update map style after theme switching

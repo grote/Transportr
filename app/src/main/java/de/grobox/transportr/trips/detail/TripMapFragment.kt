@@ -27,11 +27,11 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.maps.MapboxMap
 import de.grobox.transportr.R
 import de.grobox.transportr.map.GpsMapFragment
 import de.schildbach.pte.dto.Trip
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.maps.MapLibreMap
 import javax.inject.Inject
 
 internal class TripMapFragment : GpsMapFragment<TripDetailViewModel>() {
@@ -57,7 +57,7 @@ internal class TripMapFragment : GpsMapFragment<TripDetailViewModel>() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun onMapReady(mapboxMap: MapboxMap) {
+    override fun onMapReady(mapboxMap: MapLibreMap) {
         super.onMapReady(mapboxMap)
 
         // set bottom padding, so everything gets centered in top half of screen

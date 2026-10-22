@@ -23,12 +23,12 @@ import android.app.Application
 import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.geometry.LatLngBounds
+import androidx.lifecycle.switchMap
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.geometry.LatLngBounds
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrApplication
 import de.grobox.transportr.data.locations.FavoriteLocation
@@ -53,15 +53,15 @@ internal class MapViewModel @Inject internal constructor(
     ) : SavedSearchesViewModel(application, transportNetworkManager, locationRepository, searchesRepository), GpsMapViewModel by GpsMapViewModelImpl(positionController) {
 
     private val peekHeight = MutableLiveData<Int>()
-    private val selectedLocationClicked = MutableLiveData<LatLng>()
-    private val updatedLiveBounds = MutableLiveData<LatLngBounds>()
-    private val selectedLocation = MutableLiveData<WrapLocation>()
+    private val selectedLocationClicked = MutableLiveData<LatLng?>()
+    private val updatedLiveBounds = MutableLiveData<LatLngBounds?>()
+    private val selectedLocation = MutableLiveData<WrapLocation?>()
     private val findNearbyStations = SingleLiveEvent<WrapLocation>()
     private val nearbyStationsFound = SingleLiveEvent<Boolean>()
 
     val mapClicked = SingleLiveEvent<Void>()
     val markerClicked = SingleLiveEvent<Void>()
-    val liveBounds: LiveData<LatLngBounds> = Transformations.switchMap<List<FavoriteLocation>, LatLngBounds>(locations, this::switchMap)
+    val liveBounds = locations.switchMap(this::switchMap)
     var transportNetworkWasChanged = false
 
     fun getPeekHeight(): LiveData<Int> {
@@ -72,7 +72,7 @@ internal class MapViewModel @Inject internal constructor(
         this.peekHeight.value = peekHeight
     }
 
-    fun getSelectedLocationClicked(): LiveData<LatLng> {
+    fun getSelectedLocationClicked(): MutableLiveData<LatLng?> {
         return selectedLocationClicked
     }
 
@@ -92,7 +92,7 @@ internal class MapViewModel @Inject internal constructor(
         selectedLocation.postValue(null)
     }
 
-    fun getSelectedLocation(): LiveData<WrapLocation> {
+    fun getSelectedLocation(): LiveData<WrapLocation?> {
         return selectedLocation
     }
 
@@ -122,7 +122,7 @@ internal class MapViewModel @Inject internal constructor(
         }
     }
 
-    private fun switchMap(input: List<FavoriteLocation>?): MutableLiveData<LatLngBounds> {
+    private fun switchMap(input: List<FavoriteLocation>?): MutableLiveData<LatLngBounds?> {
         if (input == null) {
             updatedLiveBounds.setValue(null)
         } else {

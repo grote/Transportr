@@ -27,11 +27,11 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
-import com.mapbox.mapboxsdk.annotations.Icon
-import com.mapbox.mapboxsdk.annotations.PolylineOptions
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.geometry.LatLngBounds
-import com.mapbox.mapboxsdk.maps.MapboxMap
+import org.maplibre.android.annotations.Icon
+import org.maplibre.android.annotations.PolylineOptions
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.geometry.LatLngBounds
+import org.maplibre.android.maps.MapLibreMap
 import de.grobox.transportr.R
 import de.grobox.transportr.map.MapDrawer
 import de.grobox.transportr.utils.DateUtils.formatTime
@@ -50,7 +50,7 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
         BEGIN, CHANGE, STOP, END, WALK
     }
 
-    fun draw(map: MapboxMap, trip: Trip, zoom: Boolean) {
+    fun draw(map: MapLibreMap, trip: Trip, zoom: Boolean) {
         // draw leg path first, so it is always at the bottom
         var i = 1
         val builder = LatLngBounds.Builder()
@@ -140,7 +140,7 @@ internal class TripDrawer(context: Context) : MapDrawer(context) {
         return ContextCompat.getColor(context, R.color.walking)
     }
 
-    private fun markLocation(map: MapboxMap, location: Location, icon: Icon, text: String) {
+    private fun markLocation(map: MapLibreMap, location: Location, icon: Icon, text: String) {
         markLocation(map, location, icon, location.uniqueShortName(), text)
     }
 
