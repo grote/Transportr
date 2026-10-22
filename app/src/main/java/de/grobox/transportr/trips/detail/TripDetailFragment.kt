@@ -27,6 +27,8 @@ import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,6 +59,8 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
 
     private lateinit var viewModel: TripDetailViewModel
     private lateinit var viewBinding: FragmentTripDetailBinding
+
+    private var appliedInsetsToolbar = false
 
     private val timeUpdater: CountDownTimer = object : CountDownTimer(Long.MAX_VALUE, 1000 * 30) {
         override fun onTick(millisUntilFinished: Long) {
@@ -90,9 +94,21 @@ class TripDetailFragment : TransportrFragment(), Toolbar.OnMenuItemClickListener
         viewBinding.list.layoutManager = LinearLayoutManager(context)
         viewBinding.bottomBar.setOnClickListener { _ -> onBottomBarClick() }
 
-        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(TripDetailViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(TripDetailViewModel::class.java)
         viewModel.getTrip().observe(viewLifecycleOwner, Observer<Trip> { this.onTripChanged(it) })
         viewModel.sheetState.observe(viewLifecycleOwner, Observer<SheetState> { this.onSheetStateChanged(it) })
+
+        //consume top insets for toolbar
+        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.toolbar) { v, insets ->
+            if(appliedInsetsToolbar) //avoid applying them too many times
+                return@setOnApplyWindowInsetsListener WindowInsetsCompat.CONSUMED
+            val bars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            v.setPadding(v.left, v.top +bars.top, v.right , v.bottom)
+            appliedInsetsToolbar = true
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     override fun onStart() {

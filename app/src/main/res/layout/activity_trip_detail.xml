@@ -1,47 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.core.view.insets.ProtectionLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
-
-	<FrameLayout
-		android:id="@+id/topContainer"
+	android:layout_height="match_parent"
+	android:id="@+id/protectionLayout"
+>
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_marginBottom="?android:actionBarSize"/>
+		android:layout_height="match_parent">
 
-	<com.google.android.material.appbar.AppBarLayout
-		android:id="@+id/appBarLayout"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="@android:color/transparent"
-		app:elevation="0dp">
 
-		<com.google.android.material.appbar.CollapsingToolbarLayout
+		<FrameLayout
+			android:id="@+id/topContainer"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			app:layout_scrollFlags="enterAlways"
-			app:titleEnabled="false">
+			android:layout_marginBottom="?android:actionBarSize"/>
 
-			<androidx.appcompat.widget.Toolbar
-				android:id="@+id/toolbar"
-				style="@style/ToolbarStyle"
-				android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+		<com.google.android.material.appbar.AppBarLayout
+			android:id="@+id/appBarLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@android:color/transparent"
+			app:elevation="0dp">
+
+			<com.google.android.material.appbar.CollapsingToolbarLayout
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				app:layout_collapseMode="pin"/>
+				android:layout_height="match_parent"
+				app:layout_scrollFlags="enterAlways"
+				app:titleEnabled="false">
 
-		</com.google.android.material.appbar.CollapsingToolbarLayout>
+				<androidx.appcompat.widget.Toolbar
+					android:id="@+id/toolbar"
+					style="@style/ToolbarStyle"
+					android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:layout_collapseMode="pin"/>
 
-	</com.google.android.material.appbar.AppBarLayout>
+			</com.google.android.material.appbar.CollapsingToolbarLayout>
 
-	<FrameLayout
-		android:id="@+id/bottomContainer"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="?android:windowBackground"
-		app:behavior_hideable="false"
-		app:layout_behavior="de.grobox.transportr.ui.ThreeStateBottomSheetBehavior"/>
+		</com.google.android.material.appbar.AppBarLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+		<FrameLayout
+			android:id="@+id/bottomContainer"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="?android:windowBackground"
+			app:behavior_hideable="false"
+			app:layout_behavior="de.grobox.transportr.ui.ThreeStateBottomSheetBehavior"/>
+
+
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.core.view.insets.ProtectionLayout>
