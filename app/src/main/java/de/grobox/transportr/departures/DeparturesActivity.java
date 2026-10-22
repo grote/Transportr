@@ -160,6 +160,11 @@ public class DeparturesActivity extends TransportrActivity
 				((TimeDateFragment) fragments.get(0)).setTimeDateListener(this);
 			}
 		}
+		applyInsetsAsPadding(toolbar, true, false, false, true);
+		//handle bottom insets
+		applyInsetsAsPadding(list,false, true, false, true);
+		//need also the error layout
+		applyInsetsAsPadding(errorLayout, false, true, false, true);
 	}
 
 	@Override

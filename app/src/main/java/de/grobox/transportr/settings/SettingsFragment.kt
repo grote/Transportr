@@ -50,7 +50,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private lateinit var networkPref: Preference
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (activity!!.application as TransportrApplication).component.inject(this)
+        (requireActivity().application as TransportrApplication).component.inject(this)
         super.onCreate(savedInstanceState)
     }
 
@@ -71,7 +71,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             val x : Float = view?.x ?: view?.findFocus()?.x ?: 0f
             val y : Float = view?.y ?: view?.findFocus()?.y ?: 0f
             val options = ActivityOptionsCompat.makeScaleUpAnimation(view!!, x.toInt(), y.toInt(), 0, 0)
-            ActivityCompat.startActivity(activity!!, intent, options.toBundle())
+            ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())
             true
         }
 
