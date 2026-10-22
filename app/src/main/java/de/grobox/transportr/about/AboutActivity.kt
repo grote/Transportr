@@ -26,7 +26,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.mikepenz.aboutlibraries.LibsBuilder
 import de.grobox.transportr.R
 import de.grobox.transportr.TransportrActivity
-//import kotlinx.android.synthetic.main.activity_about.*
 import de.grobox.transportr.databinding.ActivityAboutBinding
 
 class AboutActivity : TransportrActivity() {
