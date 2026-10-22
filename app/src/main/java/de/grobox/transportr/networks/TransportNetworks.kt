@@ -74,7 +74,7 @@ private val networks = arrayOf(
                         id = NetworkId.VBB,
                         description = R.string.np_desc_vbb,
                         logo = R.drawable.network_vbb_logo,
-                        factory = { VbbProvider("{\"type\":\"AID\",\"aid\":\"hafas-vbb-apps\"}", "RCTJM2fFxFfxxQfI") }
+                        factory = { VbbProvider("{\"type\":\"AID\",\"aid\":\"hafas-vbb-apps\"}", "RCTJM2fFxFfxxQfI".toByteArray(Charsets.UTF_8)) }
                     ),
                     TransportNetwork(
                         id = NetworkId.BAYERN,
@@ -101,13 +101,13 @@ private val networks = arrayOf(
                         description = R.string.np_desc_invg,
                         logo = R.drawable.network_invg_logo,
                         status = BETA,
-                        factory = { InvgProvider("{\"type\":\"AID\",\"aid\":\"GITvwi3BGOmTQ2a5\"}", "ERxotxpwFT7uYRsI") }
+                        factory = { InvgProvider("{\"type\":\"AID\",\"aid\":\"GITvwi3BGOmTQ2a5\"}", "ERxotxpwFT7uYRsI".toByteArray(Charsets.UTF_8)) }
                     ),
                     TransportNetwork (
                         id = NetworkId.VBN,
                         description = R.string.np_desc_vbn,
                         logo = R.drawable.network_vbn_logo,
-                        factory = { VbnProvider("{\"type\":\"AID\",\"aid\":\"rnOHBWhesvc7gFkd\"}", "SP31mBufSyCLmNxp") }
+                        factory = { VbnProvider("{\"type\":\"AID\",\"aid\":\"rnOHBWhesvc7gFkd\"}", "SP31mBufSyCLmNxp".toByteArray(Charsets.UTF_8)) }
                     ),
                     TransportNetwork (
                         id = NetworkId.SH,
@@ -230,7 +230,7 @@ private val networks = arrayOf(
                         name = R.string.np_name_vgs,
                         description = R.string.np_desc_vgs,
                         logo = R.drawable.network_vgs_logo,
-                        factory = { VgsProvider("{\"type\":\"AID\",\"aid\":\"51XfsVqgbdA6oXzHrx75jhlocRg6Xe\"}", "HJtlubisvxiJxss") }
+                        factory = { VgsProvider("{\"type\":\"AID\",\"aid\":\"51XfsVqgbdA6oXzHrx75jhlocRg6Xe\"}", "HJtlubisvxiJxss".toByteArray(Charsets.UTF_8)) }
                     ),
                     TransportNetwork(
                         id = NetworkId.VRS,
@@ -319,7 +319,7 @@ private val networks = arrayOf(
             ),
             Country(
                 R.string.np_region_switzerland, flag = "🇨🇭", networks = listOf(
-                    /*TransportNetwork(
+                    TransportNetwork(
                         id = NetworkId.SEARCHCH,
                         name = R.string.np_name_sbb,
                         description = R.string.np_desc_sbb,
@@ -332,7 +332,6 @@ private val networks = arrayOf(
                         logo = R.drawable.network_vbl_logo,
                         factory = { VblProvider() }
                     ),
-                     */
                     TransportNetwork(
                         id = NetworkId.ZVV,
                         description = R.string.np_desc_zvv,
