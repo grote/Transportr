@@ -186,6 +186,7 @@ public class AlertService extends Service implements LocationListener {
 		}
 	}
 
+	@SuppressLint("MissingPermission")
 	private void updateNotification(@Nullable String contentText, boolean hasArrived) {
 		mNotifBuilder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
 				.setSilent(!hasArrived)

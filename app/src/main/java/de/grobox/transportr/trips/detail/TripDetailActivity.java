@@ -26,11 +26,19 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import java.util.List;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewGroupCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.core.view.insets.ColorProtection;
 import androidx.lifecycle.ViewModelProvider;
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
@@ -50,6 +58,8 @@ import static de.grobox.transportr.trips.detail.TripDetailViewModel.SheetState.M
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_DISMISSED;
 import static uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt.STATE_FOCAL_PRESSED;
 
+import de.grobox.transportr.databinding.ActivityTripDetailBinding;
+
 @ParametersAreNonnullByDefault
 public class TripDetailActivity extends TransportrActivity {
 
@@ -61,6 +71,7 @@ public class TripDetailActivity extends TransportrActivity {
 	@Inject ViewModelProvider.Factory viewModelFactory;
 
 	private ThreeStateBottomSheetBehavior bottomSheetBehavior;
+	private ActivityTripDetailBinding viewBinding;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,11 +93,16 @@ public class TripDetailActivity extends TransportrActivity {
 		if (viewModel.showWhenLocked()) {
 			getWindow().addFlags(FLAG_SHOW_WHEN_LOCKED);
 		}
-
-		setContentView(R.layout.activity_trip_detail);
+		viewBinding = ActivityTripDetailBinding.inflate(getLayoutInflater());
+		setContentView(viewBinding.getRoot());
 		setUpCustomToolbar(true);
+		ViewGroupCompat.installCompatInsetsDispatch(viewBinding.getRoot());
+		//top - add padding for bar
+		applyInsetsAsPadding(viewBinding.appBarLayout, true, false, true, false);
+		WindowInsetsControllerCompat windowInsetsController = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+		windowInsetsController.setAppearanceLightStatusBars(!isDarkMode());
 
-		FrameLayout bottomContainer = findViewById(R.id.bottomContainer);
+		FrameLayout bottomContainer = viewBinding.bottomContainer;
 		bottomSheetBehavior = ThreeStateBottomSheetBehavior.from(bottomContainer);
 		bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 			@Override
@@ -119,6 +135,11 @@ public class TripDetailActivity extends TransportrActivity {
 
 			showOnboarding();
 		}
+
+		viewBinding.protectionLayout.setProtections(List.of(new ColorProtection(WindowInsetsCompat.Side.BOTTOM
+				//, getColorInt(android.R.attr.colorPrimary)
+				)));
+
 	}
 
 	private void showOnboarding() {
@@ -139,6 +160,8 @@ public class TripDetailActivity extends TransportrActivity {
 
 	private void onSheetStateChanged(@Nullable SheetState sheetState) {
 		if (sheetState == null) return;
+		WindowInsetsControllerCompat windowInsetsController = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+
 		switch (sheetState) {
 			case BOTTOM:
 				bottomSheetBehavior.setBottom();
@@ -149,6 +172,11 @@ public class TripDetailActivity extends TransportrActivity {
 				bottomSheetBehavior.setMiddle();
 				bottomSheetBehavior.setState(STATE_COLLAPSED);
 				break;
+		}
+		if(sheetState == SheetState.EXPANDED){
+			windowInsetsController.setAppearanceLightStatusBars(false);
+		} else{
+			windowInsetsController.setAppearanceLightStatusBars(!isDarkMode());
 		}
 	}
 

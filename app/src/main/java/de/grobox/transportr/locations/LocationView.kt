@@ -35,7 +35,6 @@ import android.util.Log
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.google.common.base.Strings.isNullOrEmpty
@@ -281,6 +280,10 @@ open class LocationView @JvmOverloads constructor(context: Context, attrs: Attri
 
     fun getLocation(): WrapLocation? {
         return this.location
+    }
+
+    fun getGpsButton(): ImageButton{
+        return this.ui.gps
     }
 
     fun setHint(@StringRes hint: Int) {

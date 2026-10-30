@@ -35,7 +35,7 @@ import de.grobox.transportr.locations.WrapLocation.WrapType.GPS
 import de.grobox.transportr.trips.search.SavedSearchesFragment.HomePickerFragment
 import de.grobox.transportr.trips.search.SavedSearchesFragment.WorkPickerFragment
 import de.grobox.transportr.utils.Constants.*
-import kotlinx.android.synthetic.main.activity_directions.*
+import de.grobox.transportr.databinding.ActivityDirectionsBinding
 import javax.inject.Inject
 
 class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
@@ -53,6 +53,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: DirectionsViewModel
+    private lateinit var viewBinding: ActivityDirectionsBinding
 
     private val isShowingTrips: Boolean
         get() = fragmentIsVisible(TripsFragment.TAG)
@@ -67,18 +68,22 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         component.inject(this)
-        setContentView(R.layout.activity_directions)
+        viewBinding = ActivityDirectionsBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
         // get view model and observe data
         viewModel = ViewModelProvider(this, viewModelFactory).get(DirectionsViewModel::class.java)
         viewModel.showTrips.observe(this, Observer { showTrips() })
 
-        appBarLayout.addOnOffsetChangedListener(this)
+        viewBinding.appBarLayout.addOnOffsetChangedListener(this)
 
         if (savedInstanceState == null) {
             showFavorites()
             processIntent(intent)
         }
+
+        applyInsetsAsPadding(viewBinding.appBarLayout, top = true, consumed = true)
+        applyInsetsAsPadding(viewBinding.fragmentContainer, bottom = true, consumed = true)
     }
 
     override fun onStart() {
@@ -127,7 +132,7 @@ class DirectionsActivity : TransportrActivity(), OnOffsetChangedListener {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, TripsFragment(), TripsFragment.TAG)
             .commit()
-        fragmentContainer.requestFocus()
+        viewBinding.fragmentContainer.requestFocus()
     }
 
     private fun processIntent(intent: Intent?) {

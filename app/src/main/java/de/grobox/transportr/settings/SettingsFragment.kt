@@ -50,7 +50,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private lateinit var networkPref: Preference
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (activity!!.application as TransportrApplication).component.inject(this)
+        (requireActivity().application as TransportrApplication).component.inject(this)
         super.onCreate(savedInstanceState)
     }
 
@@ -61,7 +61,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         // Fill in current transport network if available
         networkPref = findPreference("pref_key_network")!!
         manager.transportNetwork.observe(this) {
-            onTransportNetworkChanged(it)
+            it?.let {onTransportNetworkChanged(it)}
         }
 
         networkPref.setOnPreferenceClickListener {
@@ -70,8 +70,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
             val intent = Intent(activity, PickTransportNetworkActivity::class.java)
             val x : Float = view?.x ?: view?.findFocus()?.x ?: 0f
             val y : Float = view?.y ?: view?.findFocus()?.y ?: 0f
-            val options = ActivityOptionsCompat.makeScaleUpAnimation(view!!, x.toInt(), y.toInt(), 0, 0)
-            ActivityCompat.startActivity(activity!!, intent, options.toBundle())
+            val options = ActivityOptionsCompat.makeScaleUpAnimation(requireView(), x.toInt(), y.toInt(), 0, 0)
+            ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())
             true
         }
 

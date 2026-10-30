@@ -62,12 +62,12 @@ class TripsRepository(
 
     enum class QueryMoreState { EARLIER, LATER, BOTH, NONE }
 
-    val trips = MutableLiveData<Set<Trip>>()
+    val trips = MutableLiveData<Set<Trip>?>()
     val queryMoreState = MutableLiveData<QueryMoreState>()
     val queryError = SingleLiveEvent<String>()
     val queryPTEError = SingleLiveEvent<Pair<String, String>>()
     val queryMoreError = SingleLiveEvent<String>()
-    val isFavTrip = MutableLiveData<Boolean>()
+    val isFavTrip = MutableLiveData<Boolean?>()
 
     private var uid: Long = 0L
     private var queryTripsContext: QueryTripsContext? = null

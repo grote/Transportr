@@ -22,6 +22,7 @@ package de.grobox.transportr.settings;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 
+import androidx.appcompat.widget.Toolbar;
 import de.grobox.transportr.R;
 import de.grobox.transportr.TransportrActivity;
 
@@ -32,13 +33,15 @@ public class SettingsActivity extends TransportrActivity {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		setUpCustomToolbar(false);
+		Toolbar toolbar = setUpCustomToolbar(false);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.fragment_container, new SettingsFragment())
 					.commit();
 		}
+		if(toolbar!=null)
+			applyInsetsAsPadding(toolbar, true, false, false, true);
 	}
 
 }

@@ -141,7 +141,7 @@ class DirectionsViewModel @Inject internal constructor(
         _isExpanded.value = !_isExpanded.value!!
     }
 
-    val isFavTrip: MutableLiveData<Boolean>
+    val isFavTrip: MutableLiveData<Boolean?>
         get() = _tripsRepository.isFavTrip
 
     fun toggleFavTrip() {
@@ -193,7 +193,7 @@ class DirectionsViewModel @Inject internal constructor(
 
     val queryMoreState: LiveData<QueryMoreState>
         get() = _tripsRepository.queryMoreState
-    val trips: LiveData<Set<Trip>>
+    val trips: LiveData<Set<Trip>?>
         get() = _tripsRepository.trips
     val queryError: LiveData<String>
         get() = _tripsRepository.queryError

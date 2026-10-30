@@ -30,6 +30,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import de.grobox.transportr.R;
+import de.grobox.transportr.databinding.ListItemDepartureBinding;
 import de.schildbach.pte.dto.Departure;
 
 class DepartureAdapter extends RecyclerView.Adapter<DepartureViewHolder> {
@@ -73,9 +74,11 @@ class DepartureAdapter extends RecyclerView.Adapter<DepartureViewHolder> {
 
 	@NonNull
 	@Override
-	public DepartureViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-		View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_departure, viewGroup, false);
-		return new DepartureViewHolder(v);
+	public DepartureViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		ListItemDepartureBinding binding = ListItemDepartureBinding.inflate(
+				LayoutInflater.from(parent.getContext()), parent, false
+		);
+		return new DepartureViewHolder(binding);
 	}
 
 	@Override

@@ -1,8 +1,8 @@
 buildscript {
 
 	ext {
-		kotlinVersion = '1.7.10'
-		daggerVersion = '2.22.1'
+		kotlinVersion = '2.2.21'
+		daggerVersion = '2.60.1'
 		fastadapterVersion = '3.2.4@aar'
 	}
 
@@ -12,11 +12,13 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:7.4.2'
+		classpath 'com.android.tools.build:gradle:8.13.2'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-		classpath files('app/libs/gradle-witness.jar')
 	}
 
+}
+plugins{
+	id 'com.google.devtools.ksp' version '2.3.4' apply false
 }
 
 allprojects {
@@ -24,6 +26,7 @@ allprojects {
 		google()
 		mavenCentral()
 		maven { url 'https://jitpack.io' }
+		mavenLocal()
 	}
 }
 

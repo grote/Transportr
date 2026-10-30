@@ -21,8 +21,8 @@ package de.grobox.transportr.data.locations
 
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.switchMap
 import de.grobox.transportr.AbstractManager
 import de.grobox.transportr.data.locations.FavoriteLocation.FavLocationType
 import de.grobox.transportr.locations.WrapLocation
@@ -38,10 +38,10 @@ import javax.inject.Singleton
 class LocationRepository @Inject
 constructor(private val locationDao: LocationDao, transportNetworkManager: TransportNetworkManager) : AbstractManager() {
 
-    private val networkId: LiveData<NetworkId> = transportNetworkManager.networkId
-    val homeLocation: LiveData<HomeLocation> = Transformations.switchMap(networkId, locationDao::getHomeLocation)
-    val workLocation: LiveData<WorkLocation> = Transformations.switchMap(networkId, locationDao::getWorkLocation)
-    val favoriteLocations: LiveData<List<FavoriteLocation>> = Transformations.switchMap(networkId, locationDao::getFavoriteLocations)
+    private val networkId: LiveData<NetworkId?> = transportNetworkManager.networkId
+    val homeLocation: LiveData<HomeLocation> = networkId.switchMap(locationDao::getHomeLocation)
+    val workLocation: LiveData<WorkLocation> = networkId.switchMap(locationDao::getWorkLocation)
+    val favoriteLocations: LiveData<List<FavoriteLocation>> = networkId.switchMap(locationDao::getFavoriteLocations)
 
     fun setHomeLocation(location: WrapLocation) {
         runOnBackgroundThread {

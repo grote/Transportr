@@ -55,6 +55,11 @@ class MapViewModelTest {
     fun setUp() {
         val state = MutableLiveData<PositionController.PositionState>()
         Mockito.`when`(positionController.positionState).thenReturn(state)
+
+        Mockito.`when`(locationRepository.homeLocation).thenReturn(MutableLiveData())
+        Mockito.`when`(locationRepository.workLocation).thenReturn(MutableLiveData())
+        Mockito.`when`(locationRepository.favoriteLocations).thenReturn(MutableLiveData())
+        Mockito.`when`(searchesRepository.favoriteTrips).thenReturn(MutableLiveData())
         viewModel = MapViewModel(application, transportNetworkManager, locationRepository, searchesRepository, positionController)
     }
 

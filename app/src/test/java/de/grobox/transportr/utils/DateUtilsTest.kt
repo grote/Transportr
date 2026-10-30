@@ -70,8 +70,8 @@ class DateUtilsTest {
         assertEquals("1:05", formatDuration(Date(), Date().apply { time += minuteToMillis(65f) }))
     }
 
-    private val GREEN = 0
-    private val RED = 1
+    private val GREEN = 9
+    private val RED = 10
     private fun getNow() = "now"
     private fun getIn(difference: Any) = "in $difference"
     private fun getAgo(difference: Any) = "$difference ago"
@@ -80,8 +80,8 @@ class DateUtilsTest {
     fun initMocks() {
         MockitoAnnotations.initMocks(this)
         `when`(context.resources).thenReturn(resources)
-        `when`(resources.getColor(R.color.md_green_500)).thenReturn(GREEN)
-        `when`(resources.getColor(R.color.md_red_500)).thenReturn(RED)
+        `when`(context.getColor(R.color.md_green_500)).thenReturn(GREEN)
+        `when`(context.getColor(R.color.md_red_500)).thenReturn(RED)
 
         `when`(context.getString(R.string.now_small)).thenReturn(getNow())
         `when`(context.getString(eq(R.string.in_x_minutes), anyLong())).thenAnswer { i -> getIn(i.arguments[1]) }

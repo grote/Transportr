@@ -43,10 +43,9 @@ import de.schildbach.pte.dto.Line
 import de.schildbach.pte.dto.Stop
 import de.schildbach.pte.dto.Style.RED
 import de.schildbach.pte.dto.Trip.*
-import kotlinx.android.synthetic.main.list_item_leg.view.*
+import de.grobox.transportr.databinding.ListItemLegBinding
 
-
-internal class LegViewHolder(v: View, private val listener: LegClickListener, private val showLineName: Boolean) : BaseViewHolder(v) {
+internal class LegViewHolder(private val binding: ListItemLegBinding, private val listener: LegClickListener, private val showLineName: Boolean) : BaseViewHolder(binding.root) {
 
     internal enum class LegType {
         FIRST, MIDDLE, LAST, FIRST_LAST
@@ -56,24 +55,24 @@ internal class LegViewHolder(v: View, private val listener: LegClickListener, pr
         internal val DEFAULT_LINE_COLOR = RED
     }
 
-    private val fromCircle: ImageView = v.fromCircle
-    private val fromLocation: TextView = v.fromLocation
-    private val fromPlatform: TextView = v.fromPlatform
-    private val fromButton: ImageButton = v.fromButton
+    private val fromCircle: ImageView = binding.fromCircle
+    private val fromLocation: TextView = binding.fromLocation
+    private val fromPlatform: TextView = binding.fromPlatform
+    private val fromButton: ImageButton = binding.fromButton
 
-    private val lineBar: ImageView = v.lineBar
-    private val lineView: LineView = v.lineView
-    private val lineDestination: TextView = v.lineDestination
-    private val message: TextView = v.message
-    private val duration: TextView = v.duration
-    private val stopsText: TextView = v.stopsText
-    private val stopsButton: ImageButton = v.stopsButton
-    private val stopsList: RecyclerView = v.stopsList
+    private val lineBar: ImageView = binding.lineBar
+    private val lineView: LineView = binding.lineView
+    private val lineDestination: TextView = binding.lineDestination
+    private val message: TextView = binding.message
+    private val duration: TextView = binding.duration
+    private val stopsText: TextView = binding.stopsText
+    private val stopsButton: ImageButton = binding.stopsButton
+    private val stopsList: RecyclerView = binding.stopsList
 
-    private val toCircle: ImageView = v.toCircle
-    private val toLocation: TextView = v.toLocation
-    private val toPlatform: TextView = v.toPlatform
-    private val toButton: ImageButton = v.toButton
+    private val toCircle: ImageView = binding.toCircle
+    private val toLocation: TextView = binding.toLocation
+    private val toPlatform: TextView = binding.toPlatform
+    private val toButton: ImageButton = binding.toButton
 
     private val adapter = StopAdapter(listener)
     fun bind(leg: Leg, legType: LegType) {

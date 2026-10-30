@@ -34,20 +34,20 @@ import de.grobox.transportr.utils.DateUtils.formatRelativeTime
 import de.grobox.transportr.utils.TransportrUtils.getLineColor
 import de.grobox.transportr.utils.TransportrUtils.getLocationName
 import de.schildbach.pte.dto.Departure
-import kotlinx.android.synthetic.main.list_item_departure.view.*
+import de.grobox.transportr.databinding.ListItemDepartureBinding
 import java.util.*
 
-internal class DepartureViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+internal class DepartureViewHolder(private val binding: ListItemDepartureBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    private val card: CardView = v as CardView
-    private val line: LineView = v.line
-    private val lineName: TextView = v.lineNameView
-    private val timeRel: TextView = v.departureTimeRel
-    private val timeAbs: TextView = v.departureTimeAbs
-    private val delay: TextView = v.delay
-    private val destination: TextView = v.destinationView
-    private val position: TextView = v.positionView
-    private val message: TextView = v.messageView
+    private val card: CardView = binding.root as CardView
+    private val line: LineView = binding.line
+    private val lineName: TextView = binding.lineNameView
+    private val timeRel: TextView = binding.departureTimeRel
+    private val timeAbs: TextView = binding.departureTimeAbs
+    private val delay: TextView = binding.delay
+    private val destination: TextView = binding.destinationView
+    private val position: TextView = binding.positionView
+    private val message: TextView = binding.messageView
 
     fun bind(dep: Departure) {
         // times and delay
@@ -107,5 +107,7 @@ internal class DepartureViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // TODO show line from here on
         card.isClickable = false
     }
+
+
 
 }

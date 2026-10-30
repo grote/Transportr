@@ -33,7 +33,7 @@ import android.widget.TimePicker
 import android.widget.TimePicker.OnTimeChangedListener
 import androidx.fragment.app.DialogFragment
 import de.grobox.transportr.R
-import kotlinx.android.synthetic.main.fragment_time_date.*
+import de.grobox.transportr.databinding.FragmentTimeDateBinding
 import java.util.*
 import java.util.Calendar.*
 
@@ -42,6 +42,7 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
     private var listener: TimeDateListener? = null
     private var departure: Boolean? = null // null means no departure/arrival selection will be possible
     private lateinit var calendar: Calendar
+    private lateinit var viewBinding: FragmentTimeDateBinding
 
     companion object {
         @JvmField
@@ -76,65 +77,67 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_time_date, container)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewBinding = FragmentTimeDateBinding.inflate(inflater, container, false)
+        return viewBinding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Time
-        timePicker.setIs24HourView(android.text.format.DateFormat.is24HourFormat(context))
-        timePicker.setOnTimeChangedListener(this)
+        viewBinding.timePicker.setIs24HourView(android.text.format.DateFormat.is24HourFormat(context))
+        viewBinding.timePicker.setOnTimeChangedListener(this)
         showTime(calendar)
 
         // Date
-        dateView.setOnClickListener {
-            DatePickerDialog(context!!, this@TimeDateFragment, calendar.get(YEAR), calendar.get(MONTH), calendar.get(DAY_OF_MONTH))
+        viewBinding.dateView.setOnClickListener {
+            DatePickerDialog(requireContext(), this@TimeDateFragment, calendar.get(YEAR), calendar.get(MONTH), calendar.get(DAY_OF_MONTH))
                     .show()
         }
         showDate(calendar)
 
         // Previous and Next Date
-        prevDateButton.setOnClickListener {
+        viewBinding.prevDateButton.setOnClickListener {
             calendar.add(DAY_OF_MONTH, -1)
             showDate(calendar)
         }
-        nextDateButton.setOnClickListener {
+        viewBinding.nextDateButton.setOnClickListener {
             calendar.add(DAY_OF_MONTH, 1)
             showDate(calendar)
         }
 
         // Departure or Arrival
         departure?.let {
-            departureButton.isChecked = it
-            arrivalButton.isChecked = !it
+            viewBinding.departureButton.isChecked = it
+            viewBinding.arrivalButton.isChecked = !it
 
-            departureButton.setOnClickListener {
-                departure = departureButton.isChecked
-                arrivalButton.isChecked = !departure!!
+            viewBinding.departureButton.setOnClickListener {
+                departure = viewBinding.departureButton.isChecked
+                viewBinding.arrivalButton.isChecked = !departure!!
             }
 
-            arrivalButton.setOnClickListener {
-                departure = !arrivalButton.isChecked
-                departureButton.isChecked = departure!!
+            viewBinding.arrivalButton.setOnClickListener {
+                departure = !viewBinding.arrivalButton.isChecked
+                viewBinding.departureButton.isChecked = departure!!
             }
         } ?: run {
-            departureButton.visibility = GONE
-            arrivalButton.visibility = GONE
+            viewBinding.departureButton.visibility = GONE
+            viewBinding.arrivalButton.visibility = GONE
         }
 
         // Buttons
-        okButton.setOnClickListener {
+        viewBinding.okButton.setOnClickListener {
             listener?.onTimeAndDateSet(calendar)
             departure?.let { listener?.onDepartureOrArrivalSet(it) }
             dismiss()
         }
-        nowButton.setOnClickListener {
+        viewBinding.nowButton.setOnClickListener {
             listener?.onTimeAndDateSet(Calendar.getInstance())
             departure?.let { listener?.onDepartureOrArrivalSet(it) }
             dismiss()
         }
-        cancelButton.setOnClickListener {
+        viewBinding.cancelButton.setOnClickListener {
             dismiss()
         }
     }
@@ -166,17 +169,17 @@ class TimeDateFragment : DialogFragment(), OnDateSetListener, OnTimeChangedListe
         val hour = c.get(HOUR_OF_DAY)
         val min = c.get(MINUTE)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            timePicker.hour = hour
-            timePicker.minute = min
+            viewBinding.timePicker.hour = hour
+            viewBinding.timePicker.minute = min
         } else {
-            timePicker.currentHour = hour
-            timePicker.currentMinute = min
+            viewBinding.timePicker.currentHour = hour
+            viewBinding.timePicker.currentMinute = min
         }
     }
 
     private fun showDate(c: Calendar) {
         val now = Calendar.getInstance()
-        dateView.text = when {
+        viewBinding.dateView.text = when {
             c.isYesterday(now) -> getString(R.string.yesterday)
             c.isToday(now) -> getString(R.string.today)
             c.isTomorrow(now) -> getString(R.string.tomorrow)
