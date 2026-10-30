@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.devtools.ksp'
 
 android {
 
@@ -47,6 +47,9 @@ android {
 	compileOptions {
 		targetCompatibility JavaVersion.VERSION_17
 		sourceCompatibility JavaVersion.VERSION_17
+	}
+	kotlin{
+		jvmToolchain 17
 	}
 
 	buildFeatures{
@@ -112,7 +115,8 @@ dependencies {
 	implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 	implementation 'androidx.lifecycle:lifecycle-livedata:2.11.0'
 	implementation 'androidx.room:room-runtime:2.8.5'
-	kapt 'androidx.room:room-compiler:2.8.5'
+	ksp 'androidx.room:room-compiler:2.8.5'
+
 	implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
 
 	implementation 'com.squareup.okhttp3:okhttp:5.4.0'
@@ -130,7 +134,7 @@ dependencies {
 	implementation 'com.jakewharton.timber:timber:4.7.0'
 
 	implementation "com.google.dagger:dagger:$daggerVersion"
-	kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+	ksp "com.google.dagger:dagger-compiler:$daggerVersion"
 
 	implementation('com.google.guava:guava:32.0.1-android') {
 		exclude module: 'failureaccess'
@@ -156,5 +160,5 @@ dependencies {
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 	androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
 	androidTestImplementation('tools.fastlane:screengrab:2.1.1')
-	kaptAndroidTestDebug "com.google.dagger:dagger-compiler:$daggerVersion"
+	kspAndroidTestDebug "com.google.dagger:dagger-compiler:$daggerVersion"
 }

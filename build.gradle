@@ -2,7 +2,7 @@ buildscript {
 
 	ext {
 		kotlinVersion = '2.2.21'
-		daggerVersion = '2.22.1'
+		daggerVersion = '2.60.1'
 		fastadapterVersion = '3.2.4@aar'
 	}
 
@@ -17,12 +17,16 @@ buildscript {
 	}
 
 }
+plugins{
+	id 'com.google.devtools.ksp' version '2.3.4' apply false
+}
 
 allprojects {
 	repositories {
 		google()
 		mavenCentral()
 		maven { url 'https://jitpack.io' }
+		mavenLocal()
 	}
 }
 
